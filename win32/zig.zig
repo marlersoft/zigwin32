@@ -240,7 +240,7 @@ pub const FormatError = struct {
 
     pub const format = if (@import("builtin").zig_version.order(.{ .major = 0, .minor = 15, .patch = 0 }) == .lt)
         formatLegacy
-        else
+    else
         formatNew;
     fn formatLegacy(
         self: @This(),
