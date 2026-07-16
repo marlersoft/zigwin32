@@ -2,7 +2,7 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (69)
 //--------------------------------------------------------------------------------
-pub const D2D1_DEFAULT_FLATTENING_TOLERANCE = @as(f32, 2.5e-1);
+pub const D2D1_DEFAULT_FLATTENING_TOLERANCE = @as(f32, 0.25);
 pub const CLSID_D2D12DAffineTransform = Guid.initString("6aa97485-6354-4cfc-908c-e4a74f62c96c");
 pub const CLSID_D2D13DPerspectiveTransform = Guid.initString("c2844d0b-3d86-46e7-85ba-526c9240f3fb");
 pub const CLSID_D2D13DTransform = Guid.initString("e8467b04-ec61-4b8a-b5de-d4d73debea5a");
@@ -66,7 +66,7 @@ pub const CLSID_D2D1Opacity = Guid.initString("811d79a4-de28-4454-8094-c64685f8b
 pub const CLSID_D2D1AlphaMask = Guid.initString("c80ecff0-3fd5-4f05-8328-c5d1724b4f0a");
 pub const CLSID_D2D1CrossFade = Guid.initString("12f575e8-4db1-485f-9a84-03a07dd3829f");
 pub const CLSID_D2D1Tint = Guid.initString("36312b17-f7dd-4014-915d-ffca768cf211");
-pub const D2D1_SCENE_REFERRED_SDR_WHITE_LEVEL = @as(f32, 80);
+pub const D2D1_SCENE_REFERRED_SDR_WHITE_LEVEL = @as(f32, 80.0);
 pub const CLSID_D2D1WhiteLevelAdjustment = Guid.initString("44a1cadb-6cdd-4818-8ff4-26c1cfe95bdb");
 pub const CLSID_D2D1HdrToneMap = Guid.initString("7b0b748d-4610-4486-a90c-999d9a2e2b11");
 pub const D2D1_APPEND_ALIGNED_ELEMENT = @as(u32, 4294967295);

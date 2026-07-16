@@ -16,8 +16,8 @@ pub const APOERR_INVALID_COEFFCOUNT = @import("../../zig.zig").typedConst(HRESUL
 pub const APOERR_INVALID_COEFFICIENT = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073908));
 pub const APOERR_INVALID_CURVE_PARAM = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073907));
 pub const APOERR_INVALID_INPUTID = @import("../../zig.zig").typedConst(HRESULT, @as(i32, -2005073906));
-pub const AUDIO_MIN_FRAMERATE = @as(f64, 10);
-pub const AUDIO_MAX_FRAMERATE = @as(f64, 384000);
+pub const AUDIO_MIN_FRAMERATE = @as(f64, 10.0);
+pub const AUDIO_MAX_FRAMERATE = @as(f64, 384000.0);
 pub const AUDIO_MIN_CHANNELS = @as(u32, 1);
 pub const AUDIO_MAX_CHANNELS = @as(u32, 4096);
 pub const PKEY_FX_Association = PROPERTYKEY { .fmtid = Guid.initString("d04e05a6-594b-4fb6-a80d-01af5eed7d1d"), .pid = 0 };

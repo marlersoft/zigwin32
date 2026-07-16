@@ -1112,11 +1112,11 @@ pub const PKEY_Photo_FocalPlaneYResolution = PROPERTYKEY { .fmtid = Guid.initStr
 pub const PKEY_Photo_FocalPlaneYResolutionDenominator = PROPERTYKEY { .fmtid = Guid.initString("1d6179a6-a876-4031-b013-3347b2b64dc8"), .pid = 100 };
 pub const PKEY_Photo_FocalPlaneYResolutionNumerator = PROPERTYKEY { .fmtid = Guid.initString("a2e541c5-4440-4ba8-867e-75cfc06828cd"), .pid = 100 };
 pub const PKEY_Photo_GainControl = PROPERTYKEY { .fmtid = Guid.initString("fa304789-00c7-4d80-904a-1e4dcc7265aa"), .pid = 100 };
-pub const PHOTO_GAINCONTROL_NONE = @as(f64, 0);
-pub const PHOTO_GAINCONTROL_LOWGAINUP = @as(f64, 1);
-pub const PHOTO_GAINCONTROL_HIGHGAINUP = @as(f64, 2);
-pub const PHOTO_GAINCONTROL_LOWGAINDOWN = @as(f64, 3);
-pub const PHOTO_GAINCONTROL_HIGHGAINDOWN = @as(f64, 4);
+pub const PHOTO_GAINCONTROL_NONE = @as(f64, 0.0);
+pub const PHOTO_GAINCONTROL_LOWGAINUP = @as(f64, 1.0);
+pub const PHOTO_GAINCONTROL_HIGHGAINUP = @as(f64, 2.0);
+pub const PHOTO_GAINCONTROL_LOWGAINDOWN = @as(f64, 3.0);
+pub const PHOTO_GAINCONTROL_HIGHGAINDOWN = @as(f64, 4.0);
 pub const PKEY_Photo_GainControlDenominator = PROPERTYKEY { .fmtid = Guid.initString("42864dfd-9da4-4f77-bded-4aad7b256735"), .pid = 100 };
 pub const PKEY_Photo_GainControlNumerator = PROPERTYKEY { .fmtid = Guid.initString("8e8ecf7c-b7b8-4eb8-a63f-0ee715c96f9e"), .pid = 100 };
 pub const PKEY_Photo_GainControlText = PROPERTYKEY { .fmtid = Guid.initString("c06238b2-0bf9-4279-a723-25856715cb9d"), .pid = 100 };
