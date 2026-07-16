@@ -247,7 +247,7 @@ pub extern "uxtheme" fn OpenThemeDataForDpi(
     hwnd: ?HWND,
     pszClassList: ?[*:0]const u16,
     dpi: u32,
-) callconv(.winapi) isize;
+) callconv(.winapi) HTHEME;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "user32" fn PhysicalToLogicalPointForPerMonitorDPI(
@@ -303,12 +303,13 @@ pub extern "user32" fn SystemParametersInfoForDpi(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (12)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
 const HRESULT = @import("../foundation.zig").HRESULT;
+const HTHEME = @import("../ui/controls.zig").HTHEME;
 const HWND = @import("../foundation.zig").HWND;
 const POINT = @import("../foundation.zig").POINT;
 const PWSTR = @import("../foundation.zig").PWSTR;

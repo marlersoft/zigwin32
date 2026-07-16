@@ -5054,7 +5054,7 @@ pub const IWTSVirtualChannelManager = extern union {
         base: IUnknown.VTable,
         CreateListener: *const fn(
             self: *const IWTSVirtualChannelManager,
-            pszChannelName: ?*const u8,
+            pszChannelName: ?[*:0]const u8,
             uFlags: u32,
             pListenerCallback: ?*IWTSListenerCallback,
             ppListener: ?*?*IWTSListener,
@@ -5062,7 +5062,7 @@ pub const IWTSVirtualChannelManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateListener(self: *const IWTSVirtualChannelManager, pszChannelName: ?*const u8, uFlags: u32, pListenerCallback: ?*IWTSListenerCallback, ppListener: ?*?*IWTSListener) callconv(.@"inline") HRESULT {
+    pub fn CreateListener(self: *const IWTSVirtualChannelManager, pszChannelName: ?[*:0]const u8, uFlags: u32, pListenerCallback: ?*IWTSListenerCallback, ppListener: ?*?*IWTSListener) callconv(.@"inline") HRESULT {
         return self.vtable.CreateListener(self, pszChannelName, uFlags, pListenerCallback, ppListener);
     }
 };

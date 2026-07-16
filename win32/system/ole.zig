@@ -7991,7 +7991,7 @@ pub extern "ole32" fn OleDraw(
 pub extern "ole32" fn OleDuplicateData(
     hSrc: ?HANDLE,
     cfFormat: u16,
-    uiFlags: u32,
+    uiFlags: GLOBAL_ALLOC_FLAGS,
 ) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -10419,7 +10419,7 @@ pub const OleUIUpdateLinks = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (92)
+// Section: Imports (93)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ADVF = @import("../system/com.zig").ADVF;
@@ -10441,6 +10441,7 @@ const FILETIME = @import("../foundation.zig").FILETIME;
 const FLAGGED_WORD_BLOB = @import("../system/com.zig").FLAGGED_WORD_BLOB;
 const FORMATETC = @import("../system/com.zig").FORMATETC;
 const FUNCDESC = @import("../system/com.zig").FUNCDESC;
+const GLOBAL_ALLOC_FLAGS = @import("../system/memory.zig").GLOBAL_ALLOC_FLAGS;
 const HACCEL = @import("../ui/windows_and_messaging.zig").HACCEL;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;

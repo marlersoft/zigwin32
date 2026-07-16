@@ -1650,7 +1650,7 @@ pub extern "advapi32" fn AccessCheckByTypeResultListAndAuditAlarmW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn AddAccessAllowedAce(
     pAcl: ?*ACL,
-    dwAceRevision: u32,
+    dwAceRevision: ACE_REVISION,
     AccessMask: u32,
     pSid: ?PSID,
 ) callconv(.winapi) BOOL;
@@ -1658,7 +1658,7 @@ pub extern "advapi32" fn AddAccessAllowedAce(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn AddAccessAllowedAceEx(
     pAcl: ?*ACL,
-    dwAceRevision: u32,
+    dwAceRevision: ACE_REVISION,
     AceFlags: ACE_FLAGS,
     AccessMask: u32,
     pSid: ?PSID,
@@ -1667,7 +1667,7 @@ pub extern "advapi32" fn AddAccessAllowedAceEx(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn AddAccessAllowedObjectAce(
     pAcl: ?*ACL,
-    dwAceRevision: u32,
+    dwAceRevision: ACE_REVISION,
     AceFlags: ACE_FLAGS,
     AccessMask: u32,
     ObjectTypeGuid: ?*Guid,
@@ -1678,7 +1678,7 @@ pub extern "advapi32" fn AddAccessAllowedObjectAce(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn AddAccessDeniedAce(
     pAcl: ?*ACL,
-    dwAceRevision: u32,
+    dwAceRevision: ACE_REVISION,
     AccessMask: u32,
     pSid: ?PSID,
 ) callconv(.winapi) BOOL;
@@ -1686,7 +1686,7 @@ pub extern "advapi32" fn AddAccessDeniedAce(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn AddAccessDeniedAceEx(
     pAcl: ?*ACL,
-    dwAceRevision: u32,
+    dwAceRevision: ACE_REVISION,
     AceFlags: ACE_FLAGS,
     AccessMask: u32,
     pSid: ?PSID,
@@ -1695,7 +1695,7 @@ pub extern "advapi32" fn AddAccessDeniedAceEx(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn AddAccessDeniedObjectAce(
     pAcl: ?*ACL,
-    dwAceRevision: u32,
+    dwAceRevision: ACE_REVISION,
     AceFlags: ACE_FLAGS,
     AccessMask: u32,
     ObjectTypeGuid: ?*Guid,
@@ -1706,7 +1706,7 @@ pub extern "advapi32" fn AddAccessDeniedObjectAce(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn AddAce(
     pAcl: ?*ACL,
-    dwAceRevision: u32,
+    dwAceRevision: ACE_REVISION,
     dwStartingAceIndex: u32,
     // TODO: what to do with BytesParamIndex 4?
     pAceList: ?*anyopaque,
@@ -1716,7 +1716,7 @@ pub extern "advapi32" fn AddAce(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn AddAuditAccessAce(
     pAcl: ?*ACL,
-    dwAceRevision: u32,
+    dwAceRevision: ACE_REVISION,
     dwAccessMask: u32,
     pSid: ?PSID,
     bAuditSuccess: BOOL,
@@ -1726,7 +1726,7 @@ pub extern "advapi32" fn AddAuditAccessAce(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn AddAuditAccessAceEx(
     pAcl: ?*ACL,
-    dwAceRevision: u32,
+    dwAceRevision: ACE_REVISION,
     AceFlags: ACE_FLAGS,
     dwAccessMask: u32,
     pSid: ?PSID,
@@ -1737,7 +1737,7 @@ pub extern "advapi32" fn AddAuditAccessAceEx(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn AddAuditAccessObjectAce(
     pAcl: ?*ACL,
-    dwAceRevision: u32,
+    dwAceRevision: ACE_REVISION,
     AceFlags: ACE_FLAGS,
     AccessMask: u32,
     ObjectTypeGuid: ?*Guid,
@@ -1750,7 +1750,7 @@ pub extern "advapi32" fn AddAuditAccessObjectAce(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "advapi32" fn AddConditionalAce(
     pAcl: ?*ACL,
-    dwAceRevision: u32,
+    dwAceRevision: ACE_REVISION,
     AceFlags: ACE_FLAGS,
     AceType: u8,
     AccessMask: u32,
@@ -1771,7 +1771,7 @@ pub extern "advapi32" fn AddMandatoryAce(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn AddResourceAttributeAce(
     pAcl: ?*ACL,
-    dwAceRevision: u32,
+    dwAceRevision: ACE_REVISION,
     AceFlags: ACE_FLAGS,
     AccessMask: u32,
     pSid: ?PSID,
@@ -1782,7 +1782,7 @@ pub extern "kernel32" fn AddResourceAttributeAce(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn AddScopedPolicyIDAce(
     pAcl: ?*ACL,
-    dwAceRevision: u32,
+    dwAceRevision: ACE_REVISION,
     AceFlags: ACE_FLAGS,
     AccessMask: u32,
     pSid: ?PSID,
