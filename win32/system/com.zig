@@ -43,7 +43,7 @@ pub const STG_TOEND = @as(i32, -1);
 pub const STGTY_REPEAT = @as(i32, 256);
 
 //--------------------------------------------------------------------------------
-// Section: Types (240)
+// Section: Types (244)
 //--------------------------------------------------------------------------------
 pub const ADVANCED_FEATURE_FLAGS = packed struct(u16) {
     AUTO: u1 = 0,
@@ -842,6 +842,29 @@ pub const DESCKIND_TYPECOMP = DESCKIND.TYPECOMP;
 pub const DESCKIND_IMPLICITAPPOBJ = DESCKIND.IMPLICITAPPOBJ;
 pub const DESCKIND_MAX = DESCKIND.MAX;
 
+pub const DISPATCH_FLAGS = packed struct(u16) {
+    METHOD: u1 = 0,
+    PROPERTYGET: u1 = 0,
+    PROPERTYPUT: u1 = 0,
+    PROPERTYPUTREF: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+};
+pub const DISPATCH_METHOD = DISPATCH_FLAGS{ .METHOD = 1 };
+pub const DISPATCH_PROPERTYGET = DISPATCH_FLAGS{ .PROPERTYGET = 1 };
+pub const DISPATCH_PROPERTYPUT = DISPATCH_FLAGS{ .PROPERTYPUT = 1 };
+pub const DISPATCH_PROPERTYPUTREF = DISPATCH_FLAGS{ .PROPERTYPUTREF = 1 };
+
 pub const DISPPARAMS = extern struct {
     rgvarg: ?*VARIANT,
     rgdispidNamedArgs: ?*i32,
@@ -849,16 +872,20 @@ pub const DISPPARAMS = extern struct {
     cNamedArgs: u32,
 };
 
-pub const DVASPECT = enum(i32) {
+pub const DVASPECT = enum(u32) {
     CONTENT = 1,
     THUMBNAIL = 2,
     ICON = 4,
     DOCPRINT = 8,
+    OPAQUE = 16,
+    TRANSPARENT = 32,
 };
 pub const DVASPECT_CONTENT = DVASPECT.CONTENT;
 pub const DVASPECT_THUMBNAIL = DVASPECT.THUMBNAIL;
 pub const DVASPECT_ICON = DVASPECT.ICON;
 pub const DVASPECT_DOCPRINT = DVASPECT.DOCPRINT;
+pub const DVASPECT_OPAQUE = DVASPECT.OPAQUE;
+pub const DVASPECT_TRANSPARENT = DVASPECT.TRANSPARENT;
 
 pub const DVTARGETDEVICE = extern struct {
     tdSize: u32,
@@ -981,8 +1008,37 @@ pub const FUNCDESC = extern struct {
     oVft: i16,
     cScodes: i16,
     elemdescFunc: ELEMDESC,
-    wFuncFlags: u16,
+    wFuncFlags: FUNCFLAGS,
 };
+
+pub const FUNCFLAGS = enum(u16) {
+    RESTRICTED = 1,
+    SOURCE = 2,
+    BINDABLE = 4,
+    REQUESTEDIT = 8,
+    DISPLAYBIND = 16,
+    DEFAULTBIND = 32,
+    HIDDEN = 64,
+    USESGETLASTERROR = 128,
+    DEFAULTCOLLELEM = 256,
+    UIDEFAULT = 512,
+    NONBROWSABLE = 1024,
+    REPLACEABLE = 2048,
+    IMMEDIATEBIND = 4096,
+};
+pub const FUNCFLAG_FRESTRICTED = FUNCFLAGS.RESTRICTED;
+pub const FUNCFLAG_FSOURCE = FUNCFLAGS.SOURCE;
+pub const FUNCFLAG_FBINDABLE = FUNCFLAGS.BINDABLE;
+pub const FUNCFLAG_FREQUESTEDIT = FUNCFLAGS.REQUESTEDIT;
+pub const FUNCFLAG_FDISPLAYBIND = FUNCFLAGS.DISPLAYBIND;
+pub const FUNCFLAG_FDEFAULTBIND = FUNCFLAGS.DEFAULTBIND;
+pub const FUNCFLAG_FHIDDEN = FUNCFLAGS.HIDDEN;
+pub const FUNCFLAG_FUSESGETLASTERROR = FUNCFLAGS.USESGETLASTERROR;
+pub const FUNCFLAG_FDEFAULTCOLLELEM = FUNCFLAGS.DEFAULTCOLLELEM;
+pub const FUNCFLAG_FUIDEFAULT = FUNCFLAGS.UIDEFAULT;
+pub const FUNCFLAG_FNONBROWSABLE = FUNCFLAGS.NONBROWSABLE;
+pub const FUNCFLAG_FREPLACEABLE = FUNCFLAGS.REPLACEABLE;
+pub const FUNCFLAG_FIMMEDIATEBIND = FUNCFLAGS.IMMEDIATEBIND;
 
 pub const FUNCKIND = enum(i32) {
     VIRTUAL = 0,
@@ -2268,7 +2324,7 @@ pub const IDispatch = extern union {
             dispIdMember: i32,
             riid: ?*const Guid,
             lcid: u32,
-            wFlags: u16,
+            wFlags: DISPATCH_FLAGS,
             pDispParams: ?*DISPPARAMS,
             pVarResult: ?*VARIANT,
             pExcepInfo: ?*EXCEPINFO,
@@ -2286,15 +2342,39 @@ pub const IDispatch = extern union {
     pub fn GetIDsOfNames(self: *const IDispatch, riid: ?*const Guid, rgszNames: [*]?PWSTR, cNames: u32, lcid: u32, rgDispId: [*]i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIDsOfNames(self, riid, rgszNames, cNames, lcid, rgDispId);
     }
-    pub fn Invoke(self: *const IDispatch, dispIdMember: i32, riid: ?*const Guid, lcid: u32, wFlags: u16, pDispParams: ?*DISPPARAMS, pVarResult: ?*VARIANT, pExcepInfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn Invoke(self: *const IDispatch, dispIdMember: i32, riid: ?*const Guid, lcid: u32, wFlags: DISPATCH_FLAGS, pDispParams: ?*DISPPARAMS, pVarResult: ?*VARIANT, pExcepInfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Invoke(self, dispIdMember, riid, lcid, wFlags, pDispParams, pVarResult, pExcepInfo, puArgErr);
     }
 };
 
 pub const IDLDESC = extern struct {
     dwReserved: usize,
-    wIDLFlags: u16,
+    wIDLFlags: IDLFLAGS,
 };
+
+pub const IDLFLAGS = packed struct(u16) {
+    FIN: u1 = 0,
+    FOUT: u1 = 0,
+    FLCID: u1 = 0,
+    FRETVAL: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+};
+pub const IDLFLAG_NONE = IDLFLAGS{ };
+pub const IDLFLAG_FIN = IDLFLAGS{ .FIN = 1 };
+pub const IDLFLAG_FOUT = IDLFLAGS{ .FOUT = 1 };
+pub const IDLFLAG_FLCID = IDLFLAGS{ .FLCID = 1 };
+pub const IDLFLAG_FRETVAL = IDLFLAGS{ .FRETVAL = 1 };
 
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IEnumCATEGORYINFO_Value = Guid.initString("0002e011-0000-0000-c000-000000000046");
@@ -3238,6 +3318,45 @@ pub const IMoniker = extern union {
         return self.vtable.IsSystemMoniker(self, pdwMksys);
     }
 };
+
+pub const IMPLTYPEFLAGS = packed struct(i32) {
+    DEFAULT: u1 = 0,
+    SOURCE: u1 = 0,
+    RESTRICTED: u1 = 0,
+    DEFAULTVTABLE: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const IMPLTYPEFLAG_FDEFAULT = IMPLTYPEFLAGS{ .DEFAULT = 1 };
+pub const IMPLTYPEFLAG_FSOURCE = IMPLTYPEFLAGS{ .SOURCE = 1 };
+pub const IMPLTYPEFLAG_FRESTRICTED = IMPLTYPEFLAGS{ .RESTRICTED = 1 };
+pub const IMPLTYPEFLAG_FDEFAULTVTABLE = IMPLTYPEFLAGS{ .DEFAULTVTABLE = 1 };
 
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IMultiQI_Value = Guid.initString("00000020-0000-0000-c000-000000000046");
@@ -4634,7 +4753,7 @@ pub const ITypeInfo = extern union {
             self: *const ITypeInfo,
             pvInstance: ?*anyopaque,
             memid: i32,
-            wFlags: u16,
+            wFlags: DISPATCH_FLAGS,
             pDispParams: ?*DISPPARAMS,
             pVarResult: ?*VARIANT,
             pExcepInfo: ?*EXCEPINFO,
@@ -4722,7 +4841,7 @@ pub const ITypeInfo = extern union {
     pub fn GetIDsOfNames(self: *const ITypeInfo, rgszNames: [*]?PWSTR, cNames: u32, pMemId: [*]i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIDsOfNames(self, rgszNames, cNames, pMemId);
     }
-    pub fn Invoke(self: *const ITypeInfo, pvInstance: ?*anyopaque, memid: i32, wFlags: u16, pDispParams: ?*DISPPARAMS, pVarResult: ?*VARIANT, pExcepInfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn Invoke(self: *const ITypeInfo, pvInstance: ?*anyopaque, memid: i32, wFlags: DISPATCH_FLAGS, pDispParams: ?*DISPPARAMS, pVarResult: ?*VARIANT, pExcepInfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Invoke(self, pvInstance, memid, wFlags, pDispParams, pVarResult, pExcepInfo, puArgErr);
     }
     pub fn GetDocumentation(self: *const ITypeInfo, memid: i32, pBstrName: ?*?BSTR, pBstrDocString: ?*?BSTR, pdwHelpContext: ?*u32, pBstrHelpFile: ?*?BSTR) callconv(.@"inline") HRESULT {

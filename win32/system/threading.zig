@@ -3228,7 +3228,7 @@ pub extern "kernel32" fn WaitForThreadpoolWorkCallbacks(
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "vertdll" fn WaitOnAddress(
+pub extern "api-ms-win-core-synch-l1-2-0" fn WaitOnAddress(
     // TODO: what to do with BytesParamIndex 2?
     Address: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
@@ -3243,12 +3243,12 @@ pub extern "kernel32" fn WakeAllConditionVariable(
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "vertdll" fn WakeByAddressAll(
+pub extern "api-ms-win-core-synch-l1-2-0" fn WakeByAddressAll(
     Address: ?*anyopaque,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "vertdll" fn WakeByAddressSingle(
+pub extern "api-ms-win-core-synch-l1-2-0" fn WakeByAddressSingle(
     Address: ?*anyopaque,
 ) callconv(.winapi) void;
 

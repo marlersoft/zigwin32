@@ -9795,8 +9795,8 @@ pub const DOCHOSTUIFLAG_DPI_AWARE = DOCHOSTUIFLAG.DPI_AWARE;
 
 pub const DOCHOSTUIINFO = extern struct {
     cbSize: u32,
-    dwFlags: u32,
-    dwDoubleClick: u32,
+    dwFlags: DOCHOSTUIFLAG,
+    dwDoubleClick: DOCHOSTUIDBLCLK,
     pchHostCss: ?PWSTR,
     pchHostNS: ?PWSTR,
 };

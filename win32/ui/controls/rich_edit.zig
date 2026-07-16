@@ -775,7 +775,7 @@ pub const CHARFORMATA = extern struct {
     yOffset: i32,
     crTextColor: COLORREF,
     bCharSet: EMBED_FONT_CHARSET,
-    bPitchAndFamily: FONT_PITCH_AND_FAMILY,
+    bPitchAndFamily: u8,
     szFaceName: [32]CHAR,
 };
 
@@ -787,7 +787,7 @@ pub const CHARFORMATW = extern struct {
     yOffset: i32,
     crTextColor: COLORREF,
     bCharSet: EMBED_FONT_CHARSET,
-    bPitchAndFamily: FONT_PITCH_AND_FAMILY,
+    bPitchAndFamily: u8,
     szFaceName: [32]u16,
 };
 
@@ -2826,7 +2826,7 @@ pub const ITextHost = extern union {
         ) callconv(.winapi) HRESULT,
         TxGetSysColor: *const fn(
             self: *const ITextHost,
-            nIndex: i32,
+            nIndex: SYS_COLOR_INDEX,
         ) callconv(.winapi) COLORREF,
         TxGetBackStyle: *const fn(
             self: *const ITextHost,
@@ -2959,7 +2959,7 @@ pub const ITextHost = extern union {
     pub fn TxGetParaFormat(self: *const ITextHost, ppPF: ?*const ?*PARAFORMAT) callconv(.@"inline") HRESULT {
         return self.vtable.TxGetParaFormat(self, ppPF);
     }
-    pub fn TxGetSysColor(self: *const ITextHost, nIndex: i32) callconv(.@"inline") COLORREF {
+    pub fn TxGetSysColor(self: *const ITextHost, nIndex: SYS_COLOR_INDEX) callconv(.@"inline") COLORREF {
         return self.vtable.TxGetSysColor(self, nIndex);
     }
     pub fn TxGetBackStyle(self: *const ITextHost, pstyle: ?*TXTBACKSTYLE) callconv(.@"inline") HRESULT {
@@ -7156,7 +7156,6 @@ const DVASPECT = @import("../../system/com.zig").DVASPECT;
 const DVTARGETDEVICE = @import("../../system/com.zig").DVTARGETDEVICE;
 const EMBED_FONT_CHARSET = @import("../../graphics/gdi.zig").EMBED_FONT_CHARSET;
 const ENABLE_SCROLL_BAR_ARROWS = @import("../../ui/controls.zig").ENABLE_SCROLL_BAR_ARROWS;
-const FONT_PITCH_AND_FAMILY = @import("../../graphics/gdi.zig").FONT_PITCH_AND_FAMILY;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const HBITMAP = @import("../../graphics/gdi.zig").HBITMAP;
 const HCURSOR = @import("../../ui/windows_and_messaging.zig").HCURSOR;
@@ -7192,6 +7191,7 @@ const RECTL = @import("../../foundation.zig").RECTL;
 const SCROLLBAR_CONSTANTS = @import("../../ui/windows_and_messaging.zig").SCROLLBAR_CONSTANTS;
 const SHOW_WINDOW_CMD = @import("../../ui/windows_and_messaging.zig").SHOW_WINDOW_CMD;
 const SIZE = @import("../../foundation.zig").SIZE;
+const SYS_COLOR_INDEX = @import("../../graphics/gdi.zig").SYS_COLOR_INDEX;
 const TEXT_ALIGN_OPTIONS = @import("../../graphics/gdi.zig").TEXT_ALIGN_OPTIONS;
 const VARIANT = @import("../../system/com.zig").VARIANT;
 const WPARAM = @import("../../foundation.zig").WPARAM;
