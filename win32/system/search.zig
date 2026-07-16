@@ -3397,7 +3397,7 @@ pub const XML_E_BADSXQL = @as(i32, -2147212799);
 pub const XML_E_NODEFAULTNS = @as(i32, -2147212800);
 
 //--------------------------------------------------------------------------------
-// Section: Types (437)
+// Section: Types (438)
 //--------------------------------------------------------------------------------
 pub const ACCESS_MASKENUM = enum(i32) {
     EXCLUSIVE = 512,
@@ -4100,14 +4100,14 @@ pub const DBDATE = extern struct {
     day: u16,
 };
 
-pub const dbdatetime = extern struct {
-    dtdays: i32,
-    dttime: u32,
-};
-
-pub const dbdatetime4 = extern struct {
+pub const DBDATETIM4 = extern struct {
     numdays: u16,
     nummins: u16,
+};
+
+pub const DBDATETIME = extern struct {
+    dtdays: i32,
+    dttime: u32,
 };
 
 pub const DBDEFERRABILITYENUM = enum(i32) {
@@ -4248,7 +4248,7 @@ pub const DBMEMOWNERENUM = enum(i32) {
 pub const DBMEMOWNER_CLIENTOWNED = DBMEMOWNERENUM.CLIENTOWNED;
 pub const DBMEMOWNER_PROVIDEROWNED = DBMEMOWNERENUM.PROVIDEROWNED;
 
-pub const dbmoney = extern struct {
+pub const DBMONEY = extern struct {
     mnyhigh: i32,
     mnylow: u32,
 };
@@ -5157,6 +5157,8 @@ pub const DBROWSTATUSENUM20 = enum(i32) {
 };
 pub const DBROWSTATUS_S_NOCHANGE = DBROWSTATUSENUM20.E;
 
+
+
 pub const DBSEEKENUM = enum(i32) {
     INVALID = 0,
     FIRSTEQ = 1,
@@ -5388,12 +5390,12 @@ pub const DBUPDELRULE_CASCADE = DBUPDELRULEENUM.CASCADE;
 pub const DBUPDELRULE_SETNULL = DBUPDELRULEENUM.SETNULL;
 pub const DBUPDELRULE_SETDEFAULT = DBUPDELRULEENUM.SETDEFAULT;
 
-pub const dbvarybin = extern struct {
+pub const DBVARYBIN = extern struct {
     len: i16,
     array: [8001]u8,
 };
 
-pub const dbvarychar = extern struct {
+pub const DBVARYCHAR = extern struct {
     len: i16,
     str: [8001]i8,
 };
@@ -5463,6 +5465,9 @@ pub const FOLLOW_FLAGS = enum(i32) {
 pub const FF_INDEXCOMPLEXURLS = FOLLOW_FLAGS.INDEXCOMPLEXURLS;
 pub const FF_SUPPRESSINDEXING = FOLLOW_FLAGS.SUPPRESSINDEXING;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HACCESSOR = usize;
+
 pub const HITRANGE = extern struct {
     iPosition: u32,
     cLength: u32,
@@ -5475,7 +5480,7 @@ pub const IAccessor = extern union {
         base: IUnknown.VTable,
         AddRefAccessor: *const fn(
             self: *const IAccessor,
-            hAccessor: usize,
+            hAccessor: HACCESSOR,
             pcRefCount: ?*u32,
         ) callconv(.winapi) HRESULT,
         CreateAccessor: *const fn(
@@ -5484,34 +5489,34 @@ pub const IAccessor = extern union {
             cBindings: usize,
             rgBindings: [*]const DBBINDING,
             cbRowSize: usize,
-            phAccessor: ?*usize,
+            phAccessor: ?*HACCESSOR,
             rgStatus: ?[*]u32,
         ) callconv(.winapi) HRESULT,
         GetBindings: *const fn(
             self: *const IAccessor,
-            hAccessor: usize,
+            hAccessor: HACCESSOR,
             pdwAccessorFlags: ?*u32,
             pcBindings: ?*usize,
             prgBindings: ?*?*DBBINDING,
         ) callconv(.winapi) HRESULT,
         ReleaseAccessor: *const fn(
             self: *const IAccessor,
-            hAccessor: usize,
+            hAccessor: HACCESSOR,
             pcRefCount: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddRefAccessor(self: *const IAccessor, hAccessor: usize, pcRefCount: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn AddRefAccessor(self: *const IAccessor, hAccessor: HACCESSOR, pcRefCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddRefAccessor(self, hAccessor, pcRefCount);
     }
-    pub fn CreateAccessor(self: *const IAccessor, dwAccessorFlags: u32, cBindings: usize, rgBindings: [*]const DBBINDING, cbRowSize: usize, phAccessor: ?*usize, rgStatus: ?[*]u32) callconv(.@"inline") HRESULT {
+    pub fn CreateAccessor(self: *const IAccessor, dwAccessorFlags: u32, cBindings: usize, rgBindings: [*]const DBBINDING, cbRowSize: usize, phAccessor: ?*HACCESSOR, rgStatus: ?[*]u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateAccessor(self, dwAccessorFlags, cBindings, rgBindings, cbRowSize, phAccessor, rgStatus);
     }
-    pub fn GetBindings(self: *const IAccessor, hAccessor: usize, pdwAccessorFlags: ?*u32, pcBindings: ?*usize, prgBindings: ?*?*DBBINDING) callconv(.@"inline") HRESULT {
+    pub fn GetBindings(self: *const IAccessor, hAccessor: HACCESSOR, pdwAccessorFlags: ?*u32, pcBindings: ?*usize, prgBindings: ?*?*DBBINDING) callconv(.@"inline") HRESULT {
         return self.vtable.GetBindings(self, hAccessor, pdwAccessorFlags, pcBindings, prgBindings);
     }
-    pub fn ReleaseAccessor(self: *const IAccessor, hAccessor: usize, pcRefCount: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn ReleaseAccessor(self: *const IAccessor, hAccessor: HACCESSOR, pcRefCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseAccessor(self, hAccessor, pcRefCount);
     }
 };
@@ -6574,12 +6579,12 @@ pub const IDataSourceLocator = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_hWnd: *const fn(
             self: *const IDataSourceLocator,
-            phwndParent: ?*i64,
+            phwndParent: ?*?HWND,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_hWnd: *const fn(
             self: *const IDataSourceLocator,
-            hwndParent: i64,
+            hwndParent: ?HWND,
         ) callconv(.winapi) HRESULT,
         PromptNew: *const fn(
             self: *const IDataSourceLocator,
@@ -6594,10 +6599,10 @@ pub const IDataSourceLocator = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_hWnd(self: *const IDataSourceLocator, phwndParent: ?*i64) callconv(.@"inline") HRESULT {
+    pub fn get_hWnd(self: *const IDataSourceLocator, phwndParent: ?*?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.get_hWnd(self, phwndParent);
     }
-    pub fn put_hWnd(self: *const IDataSourceLocator, hwndParent: i64) callconv(.@"inline") HRESULT {
+    pub fn put_hWnd(self: *const IDataSourceLocator, hwndParent: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.put_hWnd(self, hwndParent);
     }
     pub fn PromptNew(self: *const IDataSourceLocator, ppADOConnection: ?*?*IDispatch) callconv(.@"inline") HRESULT {
@@ -7570,7 +7575,7 @@ pub const IMDDataset = extern union {
         ) callconv(.winapi) HRESULT,
         GetCellData: *const fn(
             self: *const IMDDataset,
-            hAccessor: usize,
+            hAccessor: HACCESSOR,
             ulStartCell: usize,
             ulEndCell: usize,
             pData: ?*anyopaque,
@@ -7592,7 +7597,7 @@ pub const IMDDataset = extern union {
     pub fn GetAxisRowset(self: *const IMDDataset, pUnkOuter: ?*IUnknown, iAxis: usize, riid: ?*const Guid, cPropertySets: u32, rgPropertySets: ?*DBPROPSET, ppRowset: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetAxisRowset(self, pUnkOuter, iAxis, riid, cPropertySets, rgPropertySets, ppRowset);
     }
-    pub fn GetCellData(self: *const IMDDataset, hAccessor: usize, ulStartCell: usize, ulEndCell: usize, pData: ?*anyopaque) callconv(.@"inline") HRESULT {
+    pub fn GetCellData(self: *const IMDDataset, hAccessor: HACCESSOR, ulStartCell: usize, ulEndCell: usize, pData: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetCellData(self, hAccessor, ulStartCell, ulEndCell, pData);
     }
     pub fn GetSpecification(self: *const IMDDataset, riid: ?*const Guid, ppSpecification: ?*?*IUnknown) callconv(.@"inline") HRESULT {
@@ -8095,7 +8100,7 @@ pub const IReadData = extern union {
             cbBookmark: usize,
             pBookmark: ?*const u8,
             lRowsOffset: isize,
-            hAccessor: usize,
+            hAccessor: HACCESSOR,
             cRows: isize,
             pcRowsObtained: ?*usize,
             ppFixedData: ?*?*u8,
@@ -8109,7 +8114,7 @@ pub const IReadData = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ReadData(self: *const IReadData, hChapter: usize, cbBookmark: usize, pBookmark: ?*const u8, lRowsOffset: isize, hAccessor: usize, cRows: isize, pcRowsObtained: ?*usize, ppFixedData: ?*?*u8, pcbVariableTotal: ?*usize, ppVariableData: ?*?*u8) callconv(.@"inline") HRESULT {
+    pub fn ReadData(self: *const IReadData, hChapter: usize, cbBookmark: usize, pBookmark: ?*const u8, lRowsOffset: isize, hAccessor: HACCESSOR, cRows: isize, pcRowsObtained: ?*usize, ppFixedData: ?*?*u8, pcbVariableTotal: ?*usize, ppVariableData: ?*?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.ReadData(self, hChapter, cbBookmark, pBookmark, lRowsOffset, hAccessor, cRows, pcRowsObtained, ppFixedData, pcbVariableTotal, ppVariableData);
     }
     pub fn ReleaseChapter(self: *const IReadData, hChapter: usize) callconv(.@"inline") HRESULT {
@@ -8391,7 +8396,7 @@ pub const IRowset = extern union {
         GetData: *const fn(
             self: *const IRowset,
             hRow: usize,
-            hAccessor: usize,
+            hAccessor: HACCESSOR,
             pData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         GetNextRows: *const fn(
@@ -8420,7 +8425,7 @@ pub const IRowset = extern union {
     pub fn AddRefRows(self: *const IRowset, cRows: usize, rghRows: ?*const usize, rgRefCounts: ?*u32, rgRowStatus: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddRefRows(self, cRows, rghRows, rgRefCounts, rgRowStatus);
     }
-    pub fn GetData(self: *const IRowset, hRow: usize, hAccessor: usize, pData: ?*anyopaque) callconv(.@"inline") HRESULT {
+    pub fn GetData(self: *const IRowset, hRow: usize, hAccessor: HACCESSOR, pData: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetData(self, hRow, hAccessor, pData);
     }
     pub fn GetNextRows(self: *const IRowset, hReserved: usize, lRowsOffset: isize, cRows: isize, pcRowsObtained: ?*usize, prghRows: ?*?*usize) callconv(.@"inline") HRESULT {
@@ -8495,13 +8500,13 @@ pub const IRowsetChange = extern union {
         SetData: *const fn(
             self: *const IRowsetChange,
             hRow: usize,
-            hAccessor: usize,
+            hAccessor: HACCESSOR,
             pData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         InsertRow: *const fn(
             self: *const IRowsetChange,
             hReserved: usize,
-            hAccessor: usize,
+            hAccessor: HACCESSOR,
             pData: ?*anyopaque,
             phRow: ?*usize,
         ) callconv(.winapi) HRESULT,
@@ -8511,10 +8516,10 @@ pub const IRowsetChange = extern union {
     pub fn DeleteRows(self: *const IRowsetChange, hReserved: usize, cRows: usize, rghRows: ?*const usize, rgRowStatus: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteRows(self, hReserved, cRows, rghRows, rgRowStatus);
     }
-    pub fn SetData(self: *const IRowsetChange, hRow: usize, hAccessor: usize, pData: ?*anyopaque) callconv(.@"inline") HRESULT {
+    pub fn SetData(self: *const IRowsetChange, hRow: usize, hAccessor: HACCESSOR, pData: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.SetData(self, hRow, hAccessor, pData);
     }
-    pub fn InsertRow(self: *const IRowsetChange, hReserved: usize, hAccessor: usize, pData: ?*anyopaque, phRow: ?*usize) callconv(.@"inline") HRESULT {
+    pub fn InsertRow(self: *const IRowsetChange, hReserved: usize, hAccessor: HACCESSOR, pData: ?*anyopaque, phRow: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.InsertRow(self, hReserved, hAccessor, pData, phRow);
     }
 };
@@ -8697,7 +8702,7 @@ pub const IRowsetFastLoad = extern union {
         base: IUnknown.VTable,
         InsertRow: *const fn(
             self: *const IRowsetFastLoad,
-            hAccessor: usize,
+            hAccessor: HACCESSOR,
             pData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         Commit: *const fn(
@@ -8707,7 +8712,7 @@ pub const IRowsetFastLoad = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn InsertRow(self: *const IRowsetFastLoad, hAccessor: usize, pData: ?*anyopaque) callconv(.@"inline") HRESULT {
+    pub fn InsertRow(self: *const IRowsetFastLoad, hAccessor: HACCESSOR, pData: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.InsertRow(self, hAccessor, pData);
     }
     pub fn Commit(self: *const IRowsetFastLoad, fDone: BOOL) callconv(.@"inline") HRESULT {
@@ -8723,7 +8728,7 @@ pub const IRowsetFind = extern union {
         FindNextRow: *const fn(
             self: *const IRowsetFind,
             hChapter: usize,
-            hAccessor: usize,
+            hAccessor: HACCESSOR,
             pFindValue: ?*anyopaque,
             CompareOp: u32,
             cbBookmark: usize,
@@ -8736,7 +8741,7 @@ pub const IRowsetFind = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FindNextRow(self: *const IRowsetFind, hChapter: usize, hAccessor: usize, pFindValue: ?*anyopaque, CompareOp: u32, cbBookmark: usize, pBookmark: ?*const u8, lRowsOffset: isize, cRows: isize, pcRowsObtained: ?*usize, prghRows: ?*?*usize) callconv(.@"inline") HRESULT {
+    pub fn FindNextRow(self: *const IRowsetFind, hChapter: usize, hAccessor: HACCESSOR, pFindValue: ?*anyopaque, CompareOp: u32, cbBookmark: usize, pBookmark: ?*const u8, lRowsOffset: isize, cRows: isize, pcRowsObtained: ?*usize, prghRows: ?*?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.FindNextRow(self, hChapter, hAccessor, pFindValue, CompareOp, cbBookmark, pBookmark, lRowsOffset, cRows, pcRowsObtained, prghRows);
     }
 };
@@ -8773,14 +8778,14 @@ pub const IRowsetIndex = extern union {
         ) callconv(.winapi) HRESULT,
         Seek: *const fn(
             self: *const IRowsetIndex,
-            hAccessor: usize,
+            hAccessor: HACCESSOR,
             cKeyValues: usize,
             pData: ?*anyopaque,
             dwSeekOptions: u32,
         ) callconv(.winapi) HRESULT,
         SetRange: *const fn(
             self: *const IRowsetIndex,
-            hAccessor: usize,
+            hAccessor: HACCESSOR,
             cStartKeyColumns: usize,
             pStartData: ?*anyopaque,
             cEndKeyColumns: usize,
@@ -8793,10 +8798,10 @@ pub const IRowsetIndex = extern union {
     pub fn GetIndexInfo(self: *const IRowsetIndex, pcKeyColumns: ?*usize, prgIndexColumnDesc: ?*?*DBINDEXCOLUMNDESC, pcIndexPropertySets: ?*u32, prgIndexPropertySets: ?*?*DBPROPSET) callconv(.@"inline") HRESULT {
         return self.vtable.GetIndexInfo(self, pcKeyColumns, prgIndexColumnDesc, pcIndexPropertySets, prgIndexPropertySets);
     }
-    pub fn Seek(self: *const IRowsetIndex, hAccessor: usize, cKeyValues: usize, pData: ?*anyopaque, dwSeekOptions: u32) callconv(.@"inline") HRESULT {
+    pub fn Seek(self: *const IRowsetIndex, hAccessor: HACCESSOR, cKeyValues: usize, pData: ?*anyopaque, dwSeekOptions: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Seek(self, hAccessor, cKeyValues, pData, dwSeekOptions);
     }
-    pub fn SetRange(self: *const IRowsetIndex, hAccessor: usize, cStartKeyColumns: usize, pStartData: ?*anyopaque, cEndKeyColumns: usize, pEndData: ?*anyopaque, dwRangeOptions: u32) callconv(.@"inline") HRESULT {
+    pub fn SetRange(self: *const IRowsetIndex, hAccessor: HACCESSOR, cStartKeyColumns: usize, pStartData: ?*anyopaque, cEndKeyColumns: usize, pEndData: ?*anyopaque, dwRangeOptions: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetRange(self, hAccessor, cStartKeyColumns, pStartData, cEndKeyColumns, pEndData, dwRangeOptions);
     }
 };
@@ -8927,14 +8932,14 @@ pub const IRowsetNewRowAfter = extern union {
             hChapter: usize,
             cbbmPrevious: u32,
             pbmPrevious: ?*const u8,
-            hAccessor: usize,
+            hAccessor: HACCESSOR,
             pData: ?*u8,
             phRow: ?*usize,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetNewDataAfter(self: *const IRowsetNewRowAfter, hChapter: usize, cbbmPrevious: u32, pbmPrevious: ?*const u8, hAccessor: usize, pData: ?*u8, phRow: ?*usize) callconv(.@"inline") HRESULT {
+    pub fn SetNewDataAfter(self: *const IRowsetNewRowAfter, hChapter: usize, cbbmPrevious: u32, pbmPrevious: ?*const u8, hAccessor: HACCESSOR, pData: ?*u8, phRow: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.SetNewDataAfter(self, hChapter, cbbmPrevious, pbmPrevious, hAccessor, pData, phRow);
     }
 };
@@ -9089,7 +9094,7 @@ pub const IRowsetRefresh = extern union {
         GetLastVisibleData: *const fn(
             self: *const IRowsetRefresh,
             hRow: usize,
-            hAccessor: usize,
+            hAccessor: HACCESSOR,
             pData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
     };
@@ -9098,7 +9103,7 @@ pub const IRowsetRefresh = extern union {
     pub fn RefreshVisibleData(self: *const IRowsetRefresh, hChapter: usize, cRows: usize, rghRows: ?*const usize, fOverWrite: BOOL, pcRowsRefreshed: ?*usize, prghRowsRefreshed: ?*?*usize, prgRowStatus: ?*?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.RefreshVisibleData(self, hChapter, cRows, rghRows, fOverWrite, pcRowsRefreshed, prghRowsRefreshed, prgRowStatus);
     }
-    pub fn GetLastVisibleData(self: *const IRowsetRefresh, hRow: usize, hAccessor: usize, pData: ?*anyopaque) callconv(.@"inline") HRESULT {
+    pub fn GetLastVisibleData(self: *const IRowsetRefresh, hRow: usize, hAccessor: HACCESSOR, pData: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetLastVisibleData(self, hRow, hAccessor, pData);
     }
 };
@@ -9111,7 +9116,7 @@ pub const IRowsetResynch = extern union {
         GetVisibleData: *const fn(
             self: *const IRowsetResynch,
             hRow: usize,
-            hAccessor: usize,
+            hAccessor: HACCESSOR,
             pData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         ResynchRows: *const fn(
@@ -9125,7 +9130,7 @@ pub const IRowsetResynch = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetVisibleData(self: *const IRowsetResynch, hRow: usize, hAccessor: usize, pData: ?*anyopaque) callconv(.@"inline") HRESULT {
+    pub fn GetVisibleData(self: *const IRowsetResynch, hRow: usize, hAccessor: HACCESSOR, pData: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetVisibleData(self, hRow, hAccessor, pData);
     }
     pub fn ResynchRows(self: *const IRowsetResynch, cRows: usize, rghRows: ?*const usize, pcRowsResynched: ?*usize, prghRowsResynched: ?*?*usize, prgRowStatus: ?*?*u32) callconv(.@"inline") HRESULT {
@@ -9177,7 +9182,7 @@ pub const IRowsetUpdate = extern union {
         GetOriginalData: *const fn(
             self: *const IRowsetUpdate,
             hRow: usize,
-            hAccessor: usize,
+            hAccessor: HACCESSOR,
             pData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         GetPendingRows: *const fn(
@@ -9217,7 +9222,7 @@ pub const IRowsetUpdate = extern union {
     vtable: *const VTable,
     IRowsetChange: IRowsetChange,
     IUnknown: IUnknown,
-    pub fn GetOriginalData(self: *const IRowsetUpdate, hRow: usize, hAccessor: usize, pData: ?*anyopaque) callconv(.@"inline") HRESULT {
+    pub fn GetOriginalData(self: *const IRowsetUpdate, hRow: usize, hAccessor: HACCESSOR, pData: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetOriginalData(self, hRow, hAccessor, pData);
     }
     pub fn GetPendingRows(self: *const IRowsetUpdate, hReserved: usize, dwRowStatus: u32, pcPendingRows: ?*usize, prgPendingRows: ?*?*usize, prgPendingStatus: ?*?*u32) callconv(.@"inline") HRESULT {
@@ -9340,7 +9345,7 @@ pub const IRowsetWatchRegion = extern union {
         Refresh: *const fn(
             self: *const IRowsetWatchRegion,
             pcChangesObtained: ?*usize,
-            prgChanges: ?*?*tagDBROWWATCHRANGE,
+            prgChanges: ?*?*DBROWWATCHCHANGE,
         ) callconv(.winapi) HRESULT,
         ShrinkWatchRegion: *const fn(
             self: *const IRowsetWatchRegion,
@@ -9366,7 +9371,7 @@ pub const IRowsetWatchRegion = extern union {
     pub fn GetWatchRegionInfo(self: *const IRowsetWatchRegion, hRegion: usize, pdwWatchMode: ?*u32, phChapter: ?*usize, pcbBookmark: ?*usize, ppBookmark: ?*?*u8, pcRows: ?*isize) callconv(.@"inline") HRESULT {
         return self.vtable.GetWatchRegionInfo(self, hRegion, pdwWatchMode, phChapter, pcbBookmark, ppBookmark, pcRows);
     }
-    pub fn Refresh(self: *const IRowsetWatchRegion, pcChangesObtained: ?*usize, prgChanges: ?*?*tagDBROWWATCHRANGE) callconv(.@"inline") HRESULT {
+    pub fn Refresh(self: *const IRowsetWatchRegion, pcChangesObtained: ?*usize, prgChanges: ?*?*DBROWWATCHCHANGE) callconv(.@"inline") HRESULT {
         return self.vtable.Refresh(self, pcChangesObtained, prgChanges);
     }
     pub fn ShrinkWatchRegion(self: *const IRowsetWatchRegion, hRegion: usize, hChapter: usize, cbBookmark: usize, pBookmark: ?*u8, cRows: isize) callconv(.@"inline") HRESULT {
@@ -11022,13 +11027,13 @@ pub const ISQLServerErrorInfo = extern union {
         base: IUnknown.VTable,
         GetErrorInfo: *const fn(
             self: *const ISQLServerErrorInfo,
-            ppErrorInfo: ?*?*tagSSErrorInfo,
+            ppErrorInfo: ?*?*SSERRORINFO,
             ppStringsBuffer: ?*?*u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetErrorInfo(self: *const ISQLServerErrorInfo, ppErrorInfo: ?*?*tagSSErrorInfo, ppStringsBuffer: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn GetErrorInfo(self: *const ISQLServerErrorInfo, ppErrorInfo: ?*?*SSERRORINFO, ppStringsBuffer: ?*?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetErrorInfo(self, ppErrorInfo, ppStringsBuffer);
     }
 };
@@ -11928,7 +11933,7 @@ pub const IViewFilter = extern union {
         base: IUnknown.VTable,
         GetFilter: *const fn(
             self: *const IViewFilter,
-            hAccessor: usize,
+            hAccessor: HACCESSOR,
             pcRows: ?*usize,
             pCompareOps: [*]?*u32,
             pCriteriaData: ?*anyopaque,
@@ -11940,7 +11945,7 @@ pub const IViewFilter = extern union {
         ) callconv(.winapi) HRESULT,
         SetFilter: *const fn(
             self: *const IViewFilter,
-            hAccessor: usize,
+            hAccessor: HACCESSOR,
             cRows: usize,
             CompareOps: [*]u32,
             pCriteriaData: ?*anyopaque,
@@ -11948,13 +11953,13 @@ pub const IViewFilter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFilter(self: *const IViewFilter, hAccessor: usize, pcRows: ?*usize, pCompareOps: [*]?*u32, pCriteriaData: ?*anyopaque) callconv(.@"inline") HRESULT {
+    pub fn GetFilter(self: *const IViewFilter, hAccessor: HACCESSOR, pcRows: ?*usize, pCompareOps: [*]?*u32, pCriteriaData: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetFilter(self, hAccessor, pcRows, pCompareOps, pCriteriaData);
     }
     pub fn GetFilterBindings(self: *const IViewFilter, pcBindings: ?*usize, prgBindings: ?*?*DBBINDING) callconv(.@"inline") HRESULT {
         return self.vtable.GetFilterBindings(self, pcBindings, prgBindings);
     }
-    pub fn SetFilter(self: *const IViewFilter, hAccessor: usize, cRows: usize, CompareOps: [*]u32, pCriteriaData: ?*anyopaque) callconv(.@"inline") HRESULT {
+    pub fn SetFilter(self: *const IViewFilter, hAccessor: HACCESSOR, cRows: usize, CompareOps: [*]u32, pCriteriaData: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.SetFilter(self, hAccessor, cRows, CompareOps, pCriteriaData);
     }
 };
@@ -12705,12 +12710,20 @@ pub const SQL_ASYNC_NOTIFICATION_CALLBACK = *const fn(
     fLast: BOOL,
 ) callconv(.winapi) i16;
 
+pub const SQL_DAY_SECOND_STRUCT = extern struct {
+    day: u32,
+    hour: u32,
+    minute: u32,
+    second: u32,
+    fraction: u32,
+};
+
 pub const SQL_INTERVAL_STRUCT = extern struct {
     interval_type: SQLINTERVAL,
     interval_sign: i16,
     intval: extern union {
-        year_month: tagSQL_YEAR_MONTH,
-        day_second: tagSQL_DAY_SECOND,
+        year_month: SQL_YEAR_MONTH_STRUCT,
+        day_second: SQL_DAY_SECOND_STRUCT,
     },
 };
 
@@ -12719,6 +12732,11 @@ pub const SQL_NUMERIC_STRUCT = extern struct {
     scale: i8,
     sign: u8,
     val: [16]u8,
+};
+
+pub const SQL_YEAR_MONTH_STRUCT = extern struct {
+    year: u32,
+    month: u32,
 };
 
 pub const SQLINTERVAL = enum(i32) {
@@ -12750,7 +12768,7 @@ pub const SQL_IS_HOUR_TO_MINUTE = SQLINTERVAL.HOUR_TO_MINUTE;
 pub const SQL_IS_HOUR_TO_SECOND = SQLINTERVAL.HOUR_TO_SECOND;
 pub const SQL_IS_MINUTE_TO_SECOND = SQLINTERVAL.MINUTE_TO_SECOND;
 
-pub const sqlperf = extern struct {
+pub const SQLPERF = extern struct {
     TimerResolution: u32,
     SQLidu: u32,
     SQLiduRows: u32,
@@ -12834,6 +12852,16 @@ pub const VT_SS_SMALLDATETIME = SQLVARENUM.SMALLDATETIME;
 pub const VT_SS_BINARY = SQLVARENUM.BINARY;
 pub const VT_SS_VARBINARY = SQLVARENUM.VARBINARY;
 pub const VT_SS_UNKNOWN = SQLVARENUM.UNKNOWN;
+
+pub const SSERRORINFO = extern struct {
+    pwszMessage: ?PWSTR,
+    pwszServer: ?PWSTR,
+    pwszProcedure: ?PWSTR,
+    lNative: i32,
+    bState: u8,
+    bClass: u8,
+    wLineNumber: u16,
+};
 
 pub const SSVARIANT = extern struct {
     vt: u16,
@@ -13087,31 +13115,6 @@ pub const SUBSTYPE_CHANNEL = SUBSCRIPTIONTYPE.CHANNEL;
 pub const SUBSTYPE_DESKTOPURL = SUBSCRIPTIONTYPE.DESKTOPURL;
 pub const SUBSTYPE_EXTERNAL = SUBSCRIPTIONTYPE.EXTERNAL;
 pub const SUBSTYPE_DESKTOPCHANNEL = SUBSCRIPTIONTYPE.DESKTOPCHANNEL;
-
-
-
-pub const tagSQL_DAY_SECOND = extern struct {
-    day: u32,
-    hour: u32,
-    minute: u32,
-    second: u32,
-    fraction: u32,
-};
-
-pub const tagSQL_YEAR_MONTH = extern struct {
-    year: u32,
-    month: u32,
-};
-
-pub const tagSSErrorInfo = extern struct {
-    pwszMessage: ?PWSTR,
-    pwszServer: ?PWSTR,
-    pwszProcedure: ?PWSTR,
-    lNative: i32,
-    bState: u8,
-    bClass: u8,
-    wLineNumber: u16,
-};
 
 pub const TEXT_SOURCE = extern struct {
     pfnFillTextBuffer: ?PFNFILLTEXTBUFFER,
@@ -13438,12 +13441,12 @@ pub const DBPARAMS = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         pData: ?*anyopaque,
         cParamSets: usize,
-        hAccessor: usize,
+        hAccessor: HACCESSOR,
     },
     .X86 => extern struct {
         pData: ?*anyopaque align(2),
         cParamSets: usize align(2),
-        hAccessor: usize align(2),
+        hAccessor: HACCESSOR align(2),
     },
 };
 pub const DBPROP = switch(@import("../zig.zig").arch) {
@@ -13512,6 +13515,20 @@ pub const DBPROPSET = switch(@import("../zig.zig").arch) {
         rgProperties: ?*DBPROP align(2),
         cProperties: u32 align(2),
         guidPropertySet: Guid align(2),
+    },
+};
+pub const DBROWWATCHCHANGE = switch(@import("../zig.zig").arch) {
+    .X64, .Arm64 => extern struct {
+        hRegion: usize,
+        eChangeKind: u32,
+        hRow: usize,
+        iRow: usize,
+    },
+    .X86 => extern struct {
+        hRegion: usize align(2),
+        eChangeKind: u32 align(2),
+        hRow: usize align(2),
+        iRow: usize align(2),
     },
 };
 pub const DBTIMESTAMP = switch(@import("../zig.zig").arch) {
@@ -13630,20 +13647,6 @@ pub const SEC_OBJECT_ELEMENT = switch(@import("../zig.zig").arch) {
     .X86 => extern struct {
         guidObjectType: Guid align(2),
         ObjectID: DBID align(2),
-    },
-};
-pub const tagDBROWWATCHRANGE = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        hRegion: usize,
-        eChangeKind: u32,
-        hRow: usize,
-        iRow: usize,
-    },
-    .X86 => extern struct {
-        hRegion: usize align(2),
-        eChangeKind: u32 align(2),
-        hRow: usize align(2),
-        iRow: usize align(2),
     },
 };
 

@@ -560,7 +560,7 @@ pub const CBADMITRESULT = *const fn(
     ulPcmActionFlags: u32,
     LpmError: i32,
     PolicyDecisionsCount: i32,
-    pPolicyDecisions: ?*policy_decision,
+    pPolicyDecisions: ?*POLICY_DECISION,
 ) callconv(.winapi) ?*u32;
 
 pub const CBGETRSVPOBJECTS = *const fn(
@@ -645,7 +645,7 @@ pub const FILTERSPECV4_GPI = FilterType.V4_GPI;
 pub const FILTERSPECV6_GPI = FilterType.V6_GPI;
 pub const FILTERSPEC_END = FilterType._END;
 
-pub const flow_desc = extern struct {
+pub const FLOW_DESC = extern struct {
     u1: extern union {
         stspec: ?*SENDER_TSPEC,
         isflow: ?*IS_FLOWSPEC,
@@ -845,7 +845,7 @@ pub const LPM_INIT_INFO = extern struct {
     GetRsvpObjectsCallback: ?CBGETRSVPOBJECTS,
 };
 
-pub const lpmiptable = extern struct {
+pub const LPMIPTABLE = extern struct {
     ulIfIndex: u32,
     MediaType: u32,
     IfIpAddr: IN_ADDR,
@@ -872,7 +872,7 @@ pub const POLICY_DATA = extern struct {
     usReserved: u16,
 };
 
-pub const policy_decision = extern struct {
+pub const POLICY_DECISION = extern struct {
     lpvResult: u32,
     wPolicyErrCode: u16,
     wPolicyErrValue: u16,
@@ -1119,7 +1119,7 @@ pub const RSVP_MSG_OBJS = extern struct {
     pResvStyle: ?*RESV_STYLE,
     pRsvpScope: ?*RSVP_SCOPE,
     FlowDescCount: i32,
-    pFlowDescs: ?*flow_desc,
+    pFlowDescs: ?*FLOW_DESC,
     PdObjectCount: i32,
     ppPdObjects: ?*?*POLICY_DATA,
     pErrorSpec: ?*ERROR_SPEC,
@@ -1190,20 +1190,20 @@ pub const Session_IPv4 = extern struct {
     sess_destport: u16,
 };
 
-pub const tag_SIPAEVENT_KSR_SIGNATURE_PAYLOAD = extern struct {
+pub const SIPAEVENT_KSR_SIGNATURE_PAYLOAD = extern struct {
     SignAlgID: u32 align(1),
     SignatureLength: u32 align(1),
     Signature: [1]u8 align(1),
 };
 
-pub const tag_SIPAEVENT_REVOCATION_LIST_PAYLOAD = extern struct {
+pub const SIPAEVENT_REVOCATION_LIST_PAYLOAD = extern struct {
     CreationTime: i64 align(1),
     DigestLength: u32 align(1),
     HashAlgID: u16 align(1),
     Digest: [1]u8 align(1),
 };
 
-pub const tag_SIPAEVENT_SBCP_INFO_PAYLOAD_V1 = extern struct {
+pub const SIPAEVENT_SBCP_INFO_PAYLOAD_V1 = extern struct {
     PayloadVersion: u32 align(1),
     VarDataOffset: u32 align(1),
     HashAlgID: u16 align(1),
@@ -1213,7 +1213,7 @@ pub const tag_SIPAEVENT_SBCP_INFO_PAYLOAD_V1 = extern struct {
     VarData: [1]u8 align(1),
 };
 
-pub const tag_SIPAEVENT_SI_POLICY_PAYLOAD = extern struct {
+pub const SIPAEVENT_SI_POLICY_PAYLOAD = extern struct {
     PolicyVersion: u64 align(1),
     PolicyNameLength: u16 align(1),
     HashAlgID: u16 align(1),
@@ -1221,14 +1221,14 @@ pub const tag_SIPAEVENT_SI_POLICY_PAYLOAD = extern struct {
     VarLengthData: [1]u8 align(1),
 };
 
-pub const tag_SIPAEVENT_VSM_IDK_INFO_PAYLOAD = extern struct {
+pub const SIPAEVENT_VSM_IDK_INFO_PAYLOAD = extern struct {
     KeyAlgID: u32 align(1),
     Anonymous: extern union {
-        RsaKeyInfo: tag_SIPAEVENT_VSM_IDK_RSA_INFO,
+        RsaKeyInfo: SIPAEVENT_VSM_IDK_RSA_INFO,
     } align(1),
 };
 
-pub const tag_SIPAEVENT_VSM_IDK_RSA_INFO = extern struct {
+pub const SIPAEVENT_VSM_IDK_RSA_INFO = extern struct {
     KeyBitLength: u32 align(1),
     PublicExpLengthBytes: u32 align(1),
     ModulusSizeBytes: u32 align(1),

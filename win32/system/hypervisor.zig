@@ -776,13 +776,11 @@ pub const WHV_CACHE_TYPE = enum(i32) {
     Uncached = 0,
     WriteCombining = 1,
     WriteThrough = 4,
-    WriteProtected = 5,
     WriteBack = 6,
 };
 pub const WHvCacheTypeUncached = WHV_CACHE_TYPE.Uncached;
 pub const WHvCacheTypeWriteCombining = WHV_CACHE_TYPE.WriteCombining;
 pub const WHvCacheTypeWriteThrough = WHV_CACHE_TYPE.WriteThrough;
-pub const WHvCacheTypeWriteProtected = WHV_CACHE_TYPE.WriteProtected;
 pub const WHvCacheTypeWriteBack = WHV_CACHE_TYPE.WriteBack;
 
 pub const WHV_CAPABILITY = extern union {

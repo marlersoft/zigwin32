@@ -158,14 +158,14 @@ pub extern "oleaut32" fn BSTR_UserSize64(
 
 pub extern "oleaut32" fn BSTR_UserUnmarshal(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?BSTR,
 ) callconv(.winapi) ?*u8;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "oleaut32" fn BSTR_UserUnmarshal64(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?BSTR,
 ) callconv(.winapi) ?*u8;
 
@@ -205,13 +205,13 @@ pub extern "ole32" fn CLIPFORMAT_UserSize64(
 
 pub extern "ole32" fn CLIPFORMAT_UserUnmarshal(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*u16,
 ) callconv(.winapi) ?*u8;
 
 pub extern "ole32" fn CLIPFORMAT_UserUnmarshal64(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*u16,
 ) callconv(.winapi) ?*u8;
 
@@ -319,13 +319,13 @@ pub extern "ole32" fn HACCEL_UserSize64(
 
 pub extern "ole32" fn HACCEL_UserUnmarshal(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?HACCEL,
 ) callconv(.winapi) ?*u8;
 
 pub extern "ole32" fn HACCEL_UserUnmarshal64(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?HACCEL,
 ) callconv(.winapi) ?*u8;
 
@@ -365,13 +365,13 @@ pub extern "ole32" fn HBITMAP_UserSize64(
 
 pub extern "ole32" fn HBITMAP_UserUnmarshal(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?HBITMAP,
 ) callconv(.winapi) ?*u8;
 
 pub extern "ole32" fn HBITMAP_UserUnmarshal64(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?HBITMAP,
 ) callconv(.winapi) ?*u8;
 
@@ -411,13 +411,13 @@ pub extern "ole32" fn HDC_UserSize64(
 
 pub extern "ole32" fn HDC_UserUnmarshal(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?HDC,
 ) callconv(.winapi) ?*u8;
 
 pub extern "ole32" fn HDC_UserUnmarshal64(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?HDC,
 ) callconv(.winapi) ?*u8;
 
@@ -457,13 +457,13 @@ pub extern "ole32" fn HGLOBAL_UserSize64(
 
 pub extern "ole32" fn HGLOBAL_UserUnmarshal(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*isize,
 ) callconv(.winapi) ?*u8;
 
 pub extern "ole32" fn HGLOBAL_UserUnmarshal64(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*isize,
 ) callconv(.winapi) ?*u8;
 
@@ -503,13 +503,13 @@ pub extern "ole32" fn HICON_UserSize64(
 
 pub extern "ole32" fn HICON_UserUnmarshal(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?HICON,
 ) callconv(.winapi) ?*u8;
 
 pub extern "ole32" fn HICON_UserUnmarshal64(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?HICON,
 ) callconv(.winapi) ?*u8;
 
@@ -549,13 +549,13 @@ pub extern "ole32" fn HMENU_UserSize64(
 
 pub extern "ole32" fn HMENU_UserUnmarshal(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?HMENU,
 ) callconv(.winapi) ?*u8;
 
 pub extern "ole32" fn HMENU_UserUnmarshal64(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?HMENU,
 ) callconv(.winapi) ?*u8;
 
@@ -595,13 +595,13 @@ pub extern "ole32" fn HPALETTE_UserSize64(
 
 pub extern "ole32" fn HPALETTE_UserUnmarshal(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?HPALETTE,
 ) callconv(.winapi) ?*u8;
 
 pub extern "ole32" fn HPALETTE_UserUnmarshal64(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?HPALETTE,
 ) callconv(.winapi) ?*u8;
 
@@ -641,13 +641,13 @@ pub extern "ole32" fn HWND_UserSize64(
 
 pub extern "ole32" fn HWND_UserUnmarshal(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?HWND,
 ) callconv(.winapi) ?*u8;
 
 pub extern "ole32" fn HWND_UserUnmarshal64(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?HWND,
 ) callconv(.winapi) ?*u8;
 
@@ -690,14 +690,14 @@ pub extern "oleaut32" fn LPSAFEARRAY_UserSize64(
 
 pub extern "oleaut32" fn LPSAFEARRAY_UserUnmarshal(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?*SAFEARRAY,
 ) callconv(.winapi) ?*u8;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "oleaut32" fn LPSAFEARRAY_UserUnmarshal64(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?*SAFEARRAY,
 ) callconv(.winapi) ?*u8;
 
@@ -737,13 +737,13 @@ pub extern "ole32" fn SNB_UserSize64(
 
 pub extern "ole32" fn SNB_UserUnmarshal(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?*?*u16,
 ) callconv(.winapi) ?*u8;
 
 pub extern "ole32" fn SNB_UserUnmarshal64(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?*?*u16,
 ) callconv(.winapi) ?*u8;
 
@@ -783,13 +783,13 @@ pub extern "ole32" fn STGMEDIUM_UserSize64(
 
 pub extern "ole32" fn STGMEDIUM_UserUnmarshal(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*STGMEDIUM,
 ) callconv(.winapi) ?*u8;
 
 pub extern "ole32" fn STGMEDIUM_UserUnmarshal64(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*STGMEDIUM,
 ) callconv(.winapi) ?*u8;
 
@@ -832,14 +832,14 @@ pub extern "oleaut32" fn VARIANT_UserSize64(
 
 pub extern "oleaut32" fn VARIANT_UserUnmarshal(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*VARIANT,
 ) callconv(.winapi) ?*u8;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "oleaut32" fn VARIANT_UserUnmarshal64(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*VARIANT,
 ) callconv(.winapi) ?*u8;
 

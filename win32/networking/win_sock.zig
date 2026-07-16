@@ -1168,7 +1168,7 @@ pub const AF_INET = ADDRESS_FAMILY.INET;
 pub const AF_INET6 = ADDRESS_FAMILY.INET6;
 pub const AF_UNSPEC = ADDRESS_FAMILY.UNSPEC;
 
-pub const addrinfo_dns_server = extern struct {
+pub const ADDRINFO_DNS_SERVER = extern struct {
     ai_servertype: u32,
     ai_flags: u64,
     ai_addrlen: u32,
@@ -1293,7 +1293,7 @@ pub const ADDRINFOEX6 = extern struct {
     ai_resolutionhandle: ?HANDLE,
     ai_ttl: u32,
     ai_numservers: u32,
-    ai_servers: ?*addrinfo_dns_server,
+    ai_servers: ?*ADDRINFO_DNS_SERVER,
     ai_responseflags: u64,
 };
 
@@ -1464,7 +1464,7 @@ pub const ATM_TRANSIT_NETWORK_SELECTION_IE = extern struct {
     NetworkId: [1]u8,
 };
 
-pub const cmsghdr = extern struct {
+pub const CMSGHDR = extern struct {
     cmsg_len: usize,
     cmsg_level: i32,
     cmsg_type: i32,
@@ -1534,7 +1534,7 @@ pub const DL_OUI = extern union {
 };
 
 pub const DL_TEREDO_ADDRESS = extern struct {
-    Reserved: [6]u8,
+    Reserved: [6]u8 align(1),
     Anonymous: extern union {
         Eui64: DL_EUI64 align(1),
         Anonymous: extern struct {
@@ -1542,11 +1542,11 @@ pub const DL_TEREDO_ADDRESS = extern struct {
             MappedPort: u16 align(1),
             MappedAddress: IN_ADDR align(1),
         } align(1),
-    },
+    } align(1),
 };
 
 pub const DL_TEREDO_ADDRESS_PRV = extern struct {
-    Reserved: [6]u8,
+    Reserved: [6]u8 align(1),
     Anonymous: extern union {
         Eui64: DL_EUI64 align(1),
         Anonymous: extern struct {
@@ -1558,7 +1558,7 @@ pub const DL_TEREDO_ADDRESS_PRV = extern struct {
             LocalPort: u16 align(1),
             DlDestination: DL_EUI48 align(1),
         } align(1),
-    },
+    } align(1),
 };
 
 pub const DL_TUNNEL_ADDRESS = extern struct {
@@ -1590,7 +1590,7 @@ pub const FALLBACK_INDEX = enum(i32) {
 pub const FallbackIndexTcpFastopen = FALLBACK_INDEX.TcpFastopen;
 pub const FallbackIndexMax = FALLBACK_INDEX.Max;
 
-pub const fd_set = extern struct {
+pub const FD_SET = extern struct {
     fd_count: u32,
     fd_array: [64]?SOCKET,
 };
@@ -1625,7 +1625,7 @@ pub const GROUP_SOURCE_REQ = extern struct {
     gsr_source: SOCKADDR_STORAGE,
 };
 
-pub const hostent = extern struct {
+pub const HOSTENT = extern struct {
     h_name: ?PSTR,
     h_aliases: ?*?*i8,
     h_addrtype: i16,
@@ -2172,7 +2172,7 @@ pub const IPX_SPXCONNSTATUS_DATA = extern struct {
     SuppressedPacket: u16,
 };
 
-pub const linger = extern struct {
+pub const LINGER = extern struct {
     l_onoff: u16,
     l_linger: u16,
 };
@@ -2536,7 +2536,7 @@ pub const LPWPUCREATESOCKETHANDLE = *const fn(
 
 pub const LPWPUFDISSET = *const fn(
     s: ?SOCKET,
-    fdset: ?*fd_set,
+    fdset: ?*FD_SET,
 ) callconv(.winapi) i32;
 
 pub const LPWPUGETPROVIDERPATH = *const fn(
@@ -2862,10 +2862,10 @@ pub const LPWSPRECVFROM = *const fn(
 
 pub const LPWSPSELECT = *const fn(
     nfds: i32,
-    readfds: ?*fd_set,
-    writefds: ?*fd_set,
-    exceptfds: ?*fd_set,
-    timeout: ?*const timeval,
+    readfds: ?*FD_SET,
+    writefds: ?*FD_SET,
+    exceptfds: ?*FD_SET,
+    timeout: ?*const TIMEVAL,
     lpErrno: ?*i32,
 ) callconv(.winapi) i32;
 
@@ -2930,7 +2930,7 @@ pub const LPWSPSOCKET = *const fn(
 
 pub const LPWSPSTARTUP = *const fn(
     wVersionRequested: u16,
-    lpWSPData: ?*WSPData,
+    lpWSPData: ?*WSPDATA,
     lpProtocolInfo: ?*WSAPROTOCOL_INFOW,
     UpcallTable: WSPUPCALLTABLE,
     lpProcTable: ?*WSPPROC_TABLE,
@@ -3151,7 +3151,7 @@ pub const ND_ROUTER_ADVERT_HEADER = extern struct {
     nd_ra_retransmit: u32,
 };
 
-pub const nd_router_solicit = extern struct {
+pub const ND_ROUTER_SOLICIT_HEADER = extern struct {
     nd_rs_hdr: ICMP_MESSAGE,
 };
 
@@ -3711,7 +3711,7 @@ pub const PROTOCOL_INFOW = extern struct {
     lpProtocol: ?PWSTR,
 };
 
-pub const protoent = extern struct {
+pub const PROTOENT = extern struct {
     p_name: ?PSTR,
     p_aliases: ?*?*i8,
     p_proto: i16,
@@ -4119,7 +4119,7 @@ pub const SOCKADDR = extern struct {
     sa_data: [14]CHAR,
 };
 
-pub const sockaddr_atm = extern struct {
+pub const SOCKADDR_ATM = extern struct {
     satm_family: u16,
     satm_number: ATM_ADDRESS,
     satm_blli: ATM_BLLI,
@@ -4182,7 +4182,7 @@ pub const SOCKADDR_INET = extern union {
     si_family: u16,
 };
 
-pub const sockaddr_ipx = extern struct {
+pub const SOCKADDR_IPX = extern struct {
     sa_family: i16,
     sa_netnum: [4]CHAR,
     sa_nodenum: [6]CHAR,
@@ -4195,7 +4195,7 @@ pub const SOCKADDR_IRDA = extern struct {
     irdaServiceName: [25]CHAR,
 };
 
-pub const sockaddr_nb = extern struct {
+pub const SOCKADDR_NB = extern struct {
     snb_family: i16,
     snb_type: u16,
     snb_name: [16]CHAR,
@@ -4215,7 +4215,7 @@ pub const SOCKADDR_STORAGE_XP = extern struct {
     __ss_pad2: [112]CHAR,
 };
 
-pub const sockaddr_tp = extern struct {
+pub const SOCKADDR_TP = extern struct {
     tp_family: u16,
     tp_addr_type: u16,
     tp_taddr_len: u16,
@@ -4223,12 +4223,12 @@ pub const sockaddr_tp = extern struct {
     tp_addr: [64]u8,
 };
 
-pub const sockaddr_un = extern struct {
+pub const SOCKADDR_UN = extern struct {
     sun_family: u16,
     sun_path: [108]CHAR,
 };
 
-pub const sockaddr_vns = extern struct {
+pub const SOCKADDR_VNS = extern struct {
     sin_family: u16,
     net_address: [4]u8,
     subnet_addr: [2]u8,
@@ -4350,7 +4350,7 @@ pub const TCP_ACK_FREQUENCY_PARAMETERS = extern struct {
     TcpDelayedAckFrequency: u8,
 };
 
-pub const tcp_hdr = extern struct {
+pub const TCP_HDR = extern struct {
     th_sport: u16 align(1),
     th_dport: u16 align(1),
     th_seq: u32 align(1),
@@ -4447,49 +4447,49 @@ pub const tcp_keepalive = extern struct {
     keepaliveinterval: u32,
 };
 
-pub const tcp_opt_fastopen = extern struct {
-    Kind: u8,
-    Length: u8,
-    Cookie: [1]u8,
+pub const TCP_OPT_FASTOPEN = extern struct {
+    Kind: u8 align(1),
+    Length: u8 align(1),
+    Cookie: [1]u8 align(1),
 };
 
-pub const tcp_opt_mss = extern struct {
+pub const TCP_OPT_MSS = extern struct {
     Kind: u8 align(1),
     Length: u8 align(1),
     Mss: u16 align(1),
 };
 
-pub const tcp_opt_sack = extern struct {
+pub const TCP_OPT_SACK = extern struct {
     pub const tcp_opt_sack_block = extern struct {
         Left: u32 align(1),
         Right: u32 align(1),
     };
-    Kind: u8,
-    Length: u8,
-    Block: [1]tcp_opt_sack_block,
+    Kind: u8 align(1),
+    Length: u8 align(1),
+    Block: [1]tcp_opt_sack_block align(1),
 };
 
-pub const tcp_opt_sack_permitted = extern struct {
-    Kind: u8,
-    Length: u8,
+pub const TCP_OPT_SACK_PERMITTED = extern struct {
+    Kind: u8 align(1),
+    Length: u8 align(1),
 };
 
-pub const tcp_opt_ts = extern struct {
+pub const TCP_OPT_TS = extern struct {
     Kind: u8 align(1),
     Length: u8 align(1),
     Val: u32 align(1),
     EcR: u32 align(1),
 };
 
-pub const tcp_opt_unknown = extern struct {
-    Kind: u8,
-    Length: u8,
+pub const TCP_OPT_UNKNOWN = extern struct {
+    Kind: u8 align(1),
+    Length: u8 align(1),
 };
 
-pub const tcp_opt_ws = extern struct {
-    Kind: u8,
-    Length: u8,
-    ShiftCnt: u8,
+pub const TCP_OPT_WS = extern struct {
+    Kind: u8 align(1),
+    Length: u8 align(1),
+    ShiftCnt: u8 align(1),
 };
 
 pub const TCPSTATE = enum(i32) {
@@ -4524,7 +4524,7 @@ pub const TIMESTAMPING_CONFIG = extern struct {
     TxTimestampsBuffered: u16,
 };
 
-pub const timeval = extern struct {
+pub const TIMEVAL = extern struct {
     tv_sec: i32,
     tv_usec: i32,
 };
@@ -5152,7 +5152,7 @@ pub const WSC_PROVIDER_INFO_TYPE = enum(i32) {
 pub const ProviderInfoLspCategories = WSC_PROVIDER_INFO_TYPE.LspCategories;
 pub const ProviderInfoAudit = WSC_PROVIDER_INFO_TYPE.Audit;
 
-pub const WSPData = extern struct {
+pub const WSPDATA = extern struct {
     wVersion: u16,
     wHighVersion: u16,
     szDescription: [256]u16,
@@ -5209,7 +5209,7 @@ pub const WSPUPCALLTABLE = extern struct {
     lpWPUCloseThread: ?LPWPUCLOSETHREAD,
 };
 
-pub const servent = switch(@import("../zig.zig").arch) {
+pub const SERVENT = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         s_name: ?PSTR,
         s_aliases: ?*?*i8,
@@ -5223,7 +5223,7 @@ pub const servent = switch(@import("../zig.zig").arch) {
         s_proto: ?PSTR,
     },
 };
-pub const WSAData = switch(@import("../zig.zig").arch) {
+pub const WSADATA = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         wVersion: u16,
         wHighVersion: u16,
@@ -5250,7 +5250,7 @@ pub const WSAData = switch(@import("../zig.zig").arch) {
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ws2_32" fn __WSAFDIsSet(
     fd: ?SOCKET,
-    param1: ?*fd_set,
+    param1: ?*FD_SET,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -5388,7 +5388,7 @@ pub extern "ws2_32" fn GetAddrInfoExA(
     lpNspId: ?*Guid,
     hints: ?*const ADDRINFOEXA,
     ppResult: ?*?*ADDRINFOEXA,
-    timeout: ?*timeval,
+    timeout: ?*TIMEVAL,
     lpOverlapped: ?*OVERLAPPED,
     lpCompletionRoutine: ?LPLOOKUPSERVICE_COMPLETION_ROUTINE,
     lpNameHandle: ?*?HANDLE,
@@ -5412,7 +5412,7 @@ pub extern "ws2_32" fn GetAddrInfoExW(
     lpNspId: ?*Guid,
     hints: ?*const ADDRINFOEXW,
     ppResult: ?*?*ADDRINFOEXW,
-    timeout: ?*timeval,
+    timeout: ?*TIMEVAL,
     lpOverlapped: ?*OVERLAPPED,
     lpCompletionRoutine: ?LPLOOKUPSERVICE_COMPLETION_ROUTINE,
     lpHandle: ?*?HANDLE,
@@ -5432,12 +5432,12 @@ pub extern "ws2_32" fn gethostbyaddr(
     addr: ?[*:0]const u8,
     len: i32,
     type: i32,
-) callconv(.winapi) ?*hostent;
+) callconv(.winapi) ?*HOSTENT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ws2_32" fn gethostbyname(
     name: ?[*:0]const u8,
-) callconv(.winapi) ?*hostent;
+) callconv(.winapi) ?*HOSTENT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ws2_32" fn gethostname(
@@ -5503,24 +5503,24 @@ pub extern "ws2_32" fn getpeername(
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ws2_32" fn getprotobyname(
     name: ?[*:0]const u8,
-) callconv(.winapi) ?*protoent;
+) callconv(.winapi) ?*PROTOENT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ws2_32" fn getprotobynumber(
     number: i32,
-) callconv(.winapi) ?*protoent;
+) callconv(.winapi) ?*PROTOENT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ws2_32" fn getservbyname(
     name: ?[*:0]const u8,
     proto: ?[*:0]const u8,
-) callconv(.winapi) ?*servent;
+) callconv(.winapi) ?*SERVENT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ws2_32" fn getservbyport(
     port: i32,
     proto: ?[*:0]const u8,
-) callconv(.winapi) ?*servent;
+) callconv(.winapi) ?*SERVENT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "mswsock" fn GetServiceA(
@@ -5825,10 +5825,10 @@ pub extern "ntdll" fn RtlIpv6StringToAddressW(
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ws2_32" fn select(
     nfds: i32,
-    readfds: ?*fd_set,
-    writefds: ?*fd_set,
-    exceptfds: ?*fd_set,
-    timeout: ?*const timeval,
+    readfds: ?*FD_SET,
+    writefds: ?*FD_SET,
+    exceptfds: ?*FD_SET,
+    timeout: ?*const TIMEVAL,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -5862,7 +5862,7 @@ pub extern "ws2_32" fn SetAddrInfoExA(
     dwFlags: u32,
     dwNameSpace: u32,
     lpNspId: ?*Guid,
-    timeout: ?*timeval,
+    timeout: ?*TIMEVAL,
     lpOverlapped: ?*OVERLAPPED,
     lpCompletionRoutine: ?LPLOOKUPSERVICE_COMPLETION_ROUTINE,
     lpNameHandle: ?*?HANDLE,
@@ -5878,7 +5878,7 @@ pub extern "ws2_32" fn SetAddrInfoExW(
     dwFlags: u32,
     dwNameSpace: u32,
     lpNspId: ?*Guid,
-    timeout: ?*timeval,
+    timeout: ?*TIMEVAL,
     lpOverlapped: ?*OVERLAPPED,
     lpCompletionRoutine: ?LPLOOKUPSERVICE_COMPLETION_ROUTINE,
     lpNameHandle: ?*?HANDLE,
@@ -6100,7 +6100,7 @@ pub extern "ws2_32" fn WSAConnectByList(
     RemoteAddressLength: ?*u32,
     // TODO: what to do with BytesParamIndex 4?
     RemoteAddress: ?*SOCKADDR,
-    timeout: ?*const timeval,
+    timeout: ?*const TIMEVAL,
     Reserved: ?*OVERLAPPED,
 ) callconv(.winapi) BOOL;
 
@@ -6115,7 +6115,7 @@ pub extern "ws2_32" fn WSAConnectByNameA(
     RemoteAddressLength: ?*u32,
     // TODO: what to do with BytesParamIndex 5?
     RemoteAddress: ?*SOCKADDR,
-    timeout: ?*const timeval,
+    timeout: ?*const TIMEVAL,
     Reserved: ?*OVERLAPPED,
 ) callconv(.winapi) BOOL;
 
@@ -6130,7 +6130,7 @@ pub extern "ws2_32" fn WSAConnectByNameW(
     RemoteAddressLength: ?*u32,
     // TODO: what to do with BytesParamIndex 5?
     RemoteAddress: ?*SOCKADDR,
-    timeout: ?*const timeval,
+    timeout: ?*const TIMEVAL,
     Reserved: ?*OVERLAPPED,
 ) callconv(.winapi) BOOL;
 
@@ -6601,7 +6601,7 @@ pub extern "ws2_32" fn WSASocketW(
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ws2_32" fn WSAStartup(
     wVersionRequested: u16,
-    lpWSAData: ?*WSAData,
+    lpWSAData: ?*WSADATA,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows8.1'

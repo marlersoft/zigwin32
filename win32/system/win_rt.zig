@@ -1350,14 +1350,14 @@ pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserSize64(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserUnmarshal(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?HSTRING,
 ) callconv(.winapi) ?*u8;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserUnmarshal64(
     param0: ?*u32,
-    param1: [*:0]u8,
+    param1: ?*u8,
     param2: ?*?HSTRING,
 ) callconv(.winapi) ?*u8;
 

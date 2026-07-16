@@ -646,21 +646,6 @@ pub const WST_TVTUNER_CHANGE_END_TUNE = @as(i32, 8192);
 //--------------------------------------------------------------------------------
 // Section: Types (1024)
 //--------------------------------------------------------------------------------
-pub const _KSAUDIO_PACKETSIZE_SIGNALPROCESSINGMODE_CONSTRAINT = extern struct {
-    ProcessingMode: Guid,
-    SamplesPerProcessingPacket: u32,
-    ProcessingPacketDurationInHns: u32,
-};
-
-pub const _TunerDecoderLockType = enum(i32) {
-    None = 0,
-    Within_Scan_Sensing_Range = 1,
-    Locked = 2,
-};
-pub const Tuner_LockType_None = _TunerDecoderLockType.None;
-pub const Tuner_LockType_Within_Scan_Sensing_Range = _TunerDecoderLockType.Within_Scan_Sensing_Range;
-pub const Tuner_LockType_Locked = _TunerDecoderLockType.Locked;
-
 pub const ALLOCATOR_PROPERTIES_EX = extern struct {
     cBuffers: i32,
     cbBuffer: i32,
@@ -1361,7 +1346,7 @@ pub const KS_AMVPSIZE = extern struct {
     dwHeight: u32,
 };
 
-pub const KS_AnalogVideoInfo = extern struct {
+pub const KS_ANALOGVIDEOINFO = extern struct {
     rcSource: RECT,
     rcTarget: RECT,
     dwActiveWidth: u32,
@@ -1515,7 +1500,7 @@ pub const KS_DATAFORMAT_VIDEOINFOHEADER2 = extern struct {
 
 pub const KS_DATARANGE_ANALOGVIDEO = extern struct {
     DataRange: KSDATAFORMAT,
-    AnalogVideoInfo: KS_AnalogVideoInfo,
+    AnalogVideoInfo: KS_ANALOGVIDEOINFO,
 };
 
 pub const KS_DATARANGE_H264_VIDEO = extern struct {
@@ -1760,13 +1745,6 @@ pub const KS_MemoryTypeDeviceSpecific = KS_LogicalMemoryType.DeviceSpecific;
 pub const KS_MemoryTypeUser = KS_LogicalMemoryType.User;
 pub const KS_MemoryTypeAnyHost = KS_LogicalMemoryType.AnyHost;
 
-pub const KS_MPEAUDIOINFO = extern struct {
-    dwFlags: u32,
-    dwReserved1: u32,
-    dwReserved2: u32,
-    dwReserved3: u32,
-};
-
 pub const KS_MPEG1VIDEOINFO = extern struct {
     hdr: KS_VIDEOINFOHEADER,
     dwStartTimeCode: u32,
@@ -1797,6 +1775,13 @@ pub const KS_MPEG2Profile_Main = KS_MPEG2Profile.Main;
 pub const KS_MPEG2Profile_SNRScalable = KS_MPEG2Profile.SNRScalable;
 pub const KS_MPEG2Profile_SpatiallyScalable = KS_MPEG2Profile.SpatiallyScalable;
 pub const KS_MPEG2Profile_High = KS_MPEG2Profile.High;
+
+pub const KS_MPEGAUDIOINFO = extern struct {
+    dwFlags: u32,
+    dwReserved1: u32,
+    dwReserved2: u32,
+    dwReserved3: u32,
+};
 
 pub const KS_MPEGVIDEOINFO2 = extern struct {
     hdr: KS_VIDEOINFOHEADER2,
@@ -2365,7 +2350,7 @@ pub const KSAUDIO_PACKETSIZE_CONSTRAINTS = extern struct {
     PacketSizeFileAlignment: u32,
     Reserved: u32,
     NumProcessingModeConstraints: u32,
-    ProcessingModeConstraints: [1]_KSAUDIO_PACKETSIZE_SIGNALPROCESSINGMODE_CONSTRAINT,
+    ProcessingModeConstraints: [1]KSAUDIO_PACKETSIZE_PROCESSINGMODE_CONSTRAINT,
 };
 
 pub const KSAUDIO_PACKETSIZE_CONSTRAINTS2 = extern struct {
@@ -2373,7 +2358,13 @@ pub const KSAUDIO_PACKETSIZE_CONSTRAINTS2 = extern struct {
     PacketSizeFileAlignment: u32,
     MaxPacketSizeInBytes: u32,
     NumProcessingModeConstraints: u32,
-    ProcessingModeConstraints: [1]_KSAUDIO_PACKETSIZE_SIGNALPROCESSINGMODE_CONSTRAINT,
+    ProcessingModeConstraints: [1]KSAUDIO_PACKETSIZE_PROCESSINGMODE_CONSTRAINT,
+};
+
+pub const KSAUDIO_PACKETSIZE_PROCESSINGMODE_CONSTRAINT = extern struct {
+    ProcessingMode: Guid,
+    SamplesPerProcessingPacket: u32,
+    ProcessingPacketDurationInHns: u32,
 };
 
 pub const KSAUDIO_POSITION = extern struct {
@@ -5763,7 +5754,7 @@ pub const KSPROPERTY_TUNER_SCAN_CAPS_S = extern struct {
 
 pub const KSPROPERTY_TUNER_SCAN_STATUS_S = extern struct {
     Property: KSIDENTIFIER,
-    LockStatus: _TunerDecoderLockType,
+    LockStatus: TunerLockType,
     CurrentFrequency: u32,
 };
 
@@ -7039,6 +7030,15 @@ pub const TUNER_ANALOG_CAPS_S = extern struct {
     ScanSensingRange: u32,
     FineTuneSensingRange: u32,
 };
+
+pub const TunerLockType = enum(i32) {
+    None = 0,
+    Within_Scan_Sensing_Range = 1,
+    Locked = 2,
+};
+pub const Tuner_LockType_None = TunerLockType.None;
+pub const Tuner_LockType_Within_Scan_Sensing_Range = TunerLockType.Within_Scan_Sensing_Range;
+pub const Tuner_LockType_Locked = TunerLockType.Locked;
 
 pub const VBICAP_PROPERTIES_PROTECTION_S = extern struct {
     Property: KSIDENTIFIER,

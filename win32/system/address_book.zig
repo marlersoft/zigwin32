@@ -224,12 +224,7 @@ pub const WABOBJECT_ME_NOCREATE = @as(u32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (128)
 //--------------------------------------------------------------------------------
-pub const _flaglist = extern struct {
-    cFlags: u32,
-    ulFlag: [1]u32,
-};
-
-pub const _PV = extern union {
+pub const __UPV = extern union {
     i: i16,
     l: i32,
     ul: u32,
@@ -427,6 +422,11 @@ pub const EXTENDED_NOTIFICATION = extern struct {
     pbEventParameters: ?*u8,
 };
 
+pub const FlagList = extern struct {
+    cFlags: u32,
+    ulFlag: [1]u32,
+};
+
 pub const FLATENTRY = extern struct {
     cb: u32,
     abEntry: [1]u8,
@@ -482,7 +482,7 @@ pub const IABContainer = extern union {
             lpPropTagArray: ?*SPropTagArray,
             ulFlags: u32,
             lpAdrList: ?*ADRLIST,
-            lpFlagList: ?*_flaglist,
+            lpFlagList: ?*FlagList,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -498,7 +498,7 @@ pub const IABContainer = extern union {
     pub fn DeleteEntries(self: *const IABContainer, lpEntries: ?*SBinaryArray, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteEntries(self, lpEntries, ulFlags);
     }
-    pub fn ResolveNames(self: *const IABContainer, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpAdrList: ?*ADRLIST, lpFlagList: ?*_flaglist) callconv(.@"inline") HRESULT {
+    pub fn ResolveNames(self: *const IABContainer, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpAdrList: ?*ADRLIST, lpFlagList: ?*FlagList) callconv(.@"inline") HRESULT {
         return self.vtable.ResolveNames(self, lpPropTagArray, ulFlags, lpAdrList, lpFlagList);
     }
 };
@@ -729,7 +729,7 @@ pub const IDistList = extern union {
             lpPropTagArray: ?*SPropTagArray,
             ulFlags: u32,
             lpAdrList: ?*ADRLIST,
-            lpFlagList: ?*_flaglist,
+            lpFlagList: ?*FlagList,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -745,7 +745,7 @@ pub const IDistList = extern union {
     pub fn DeleteEntries(self: *const IDistList, lpEntries: ?*SBinaryArray, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteEntries(self, lpEntries, ulFlags);
     }
-    pub fn ResolveNames(self: *const IDistList, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpAdrList: ?*ADRLIST, lpFlagList: ?*_flaglist) callconv(.@"inline") HRESULT {
+    pub fn ResolveNames(self: *const IDistList, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpAdrList: ?*ADRLIST, lpFlagList: ?*FlagList) callconv(.@"inline") HRESULT {
         return self.vtable.ResolveNames(self, lpPropTagArray, ulFlags, lpAdrList, lpFlagList);
     }
 };
@@ -2467,7 +2467,7 @@ pub const SPropTagArray = extern struct {
 pub const SPropValue = extern struct {
     ulPropTag: u32,
     dwAlignPad: u32,
-    Value: _PV,
+    Value: __UPV,
 };
 
 pub const SRealArray = extern struct {

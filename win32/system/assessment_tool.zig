@@ -216,12 +216,12 @@ pub const IQueryOEMWinSATCustomization = extern union {
         base: IUnknown.VTable,
         GetOEMPrePopulationInfo: *const fn(
             self: *const IQueryOEMWinSATCustomization,
-            state: ?*WINSAT_OEM_DATA_TYPE,
+            state: ?*WINSAT_OEM_CUSTOMIZATION_STATE,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetOEMPrePopulationInfo(self: *const IQueryOEMWinSATCustomization, state: ?*WINSAT_OEM_DATA_TYPE) callconv(.@"inline") HRESULT {
+    pub fn GetOEMPrePopulationInfo(self: *const IQueryOEMWinSATCustomization, state: ?*WINSAT_OEM_CUSTOMIZATION_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.GetOEMPrePopulationInfo(self, state);
     }
 };
@@ -320,16 +320,16 @@ pub const WINSAT_BITMAP_SIZE = enum(i32) {
 pub const WINSAT_BITMAP_SIZE_SMALL = WINSAT_BITMAP_SIZE.SMALL;
 pub const WINSAT_BITMAP_SIZE_NORMAL = WINSAT_BITMAP_SIZE.NORMAL;
 
-pub const WINSAT_OEM_DATA_TYPE = enum(i32) {
+pub const WINSAT_OEM_CUSTOMIZATION_STATE = enum(i32) {
     DATA_VALID = 0,
     DATA_NON_SYS_CONFIG_MATCH = 1,
     DATA_INVALID = 2,
     NO_DATA_SUPPLIED = 3,
 };
-pub const WINSAT_OEM_DATA_VALID = WINSAT_OEM_DATA_TYPE.DATA_VALID;
-pub const WINSAT_OEM_DATA_NON_SYS_CONFIG_MATCH = WINSAT_OEM_DATA_TYPE.DATA_NON_SYS_CONFIG_MATCH;
-pub const WINSAT_OEM_DATA_INVALID = WINSAT_OEM_DATA_TYPE.DATA_INVALID;
-pub const WINSAT_OEM_NO_DATA_SUPPLIED = WINSAT_OEM_DATA_TYPE.NO_DATA_SUPPLIED;
+pub const WINSAT_OEM_DATA_VALID = WINSAT_OEM_CUSTOMIZATION_STATE.DATA_VALID;
+pub const WINSAT_OEM_DATA_NON_SYS_CONFIG_MATCH = WINSAT_OEM_CUSTOMIZATION_STATE.DATA_NON_SYS_CONFIG_MATCH;
+pub const WINSAT_OEM_DATA_INVALID = WINSAT_OEM_CUSTOMIZATION_STATE.DATA_INVALID;
+pub const WINSAT_OEM_NO_DATA_SUPPLIED = WINSAT_OEM_CUSTOMIZATION_STATE.NO_DATA_SUPPLIED;
 
 
 //--------------------------------------------------------------------------------

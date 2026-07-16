@@ -1609,22 +1609,22 @@ pub const PXE_DHCP_MESSAGE = extern struct {
 };
 
 pub const PXE_DHCP_OPTION = extern struct {
-    OptionType: u8,
-    OptionLength: u8,
-    OptionValue: [1]u8,
+    OptionType: u8 align(1),
+    OptionLength: u8 align(1),
+    OptionValue: [1]u8 align(1),
 };
 
 pub const PXE_DHCPV6_MESSAGE = extern struct {
-    MessageType: u8,
-    TransactionIDByte1: u8,
-    TransactionIDByte2: u8,
-    TransactionIDByte3: u8,
-    Options: [1]PXE_DHCPV6_OPTION,
+    MessageType: u8 align(1),
+    TransactionIDByte1: u8 align(1),
+    TransactionIDByte2: u8 align(1),
+    TransactionIDByte3: u8 align(1),
+    Options: [1]PXE_DHCPV6_OPTION align(1),
 };
 
 pub const PXE_DHCPV6_MESSAGE_HEADER = extern struct {
-    MessageType: u8,
-    Message: [1]u8,
+    MessageType: u8 align(1),
+    Message: [1]u8 align(1),
 };
 
 pub const PXE_DHCPV6_NESTED_RELAY_MESSAGE = extern struct {
@@ -1641,11 +1641,11 @@ pub const PXE_DHCPV6_OPTION = extern struct {
 };
 
 pub const PXE_DHCPV6_RELAY_MESSAGE = extern struct {
-    MessageType: u8,
-    HopCount: u8,
-    LinkAddress: [16]u8,
-    PeerAddress: [16]u8,
-    Options: [1]PXE_DHCPV6_OPTION,
+    MessageType: u8 align(1),
+    HopCount: u8 align(1),
+    LinkAddress: [16]u8 align(1),
+    PeerAddress: [16]u8 align(1),
+    Options: [1]PXE_DHCPV6_OPTION align(1),
 };
 
 pub const PXE_PROVIDER = extern struct {

@@ -85,6 +85,20 @@ pub const szCERT_CERTIFICATE_ACTION_VERIFY = "{7801ebd0-cf4b-11d0-851f-006097938
 //--------------------------------------------------------------------------------
 // Section: Types (40)
 //--------------------------------------------------------------------------------
+pub const CERT_FILTER_DATA = extern struct {
+    dwSize: u32,
+    cExtensionChecks: u32,
+    arrayExtensionChecks: ?*CERT_FILTER_EXTENSION_MATCH,
+    dwCheckingFlags: u32,
+};
+
+pub const CERT_FILTER_EXTENSION_MATCH = extern struct {
+    szExtensionOID: ?[*:0]const u8,
+    dwTestOperation: u32,
+    pbTestData: ?*u8,
+    cbTestData: u32,
+};
+
 pub const CERT_SELECT_STRUCT_A = extern struct {
     dwSize: u32,
     hwndParent: ?HWND,
@@ -287,20 +301,6 @@ pub const CERT_VIEWPROPERTIES_STRUCT_W = extern struct {
     nStartPage: u32,
     cArrayPropSheetPages: u32,
     arrayPropSheetPages: ?*PROPSHEETPAGEA,
-};
-
-pub const CMFLTR = extern struct {
-    dwSize: u32,
-    cExtensionChecks: u32,
-    arrayExtensionChecks: ?*CMOID,
-    dwCheckingFlags: u32,
-};
-
-pub const CMOID = extern struct {
-    szExtensionOID: ?[*:0]const u8,
-    dwTestOperation: u32,
-    pbTestData: ?*u8,
-    cbTestData: u32,
 };
 
 pub const CRYPTUI_CERT_MGR_STRUCT = extern struct {

@@ -1019,15 +1019,6 @@ pub const WRITE_COMPRESSION_INFO_VALID = @as(u32, 16);
 //--------------------------------------------------------------------------------
 // Section: Types (521)
 //--------------------------------------------------------------------------------
-pub const _DEVICEDUMP_COLLECTION_TYPE = enum(i32) {
-    BugCheck = 1,
-    ApplicationRequested = 2,
-    DeviceRequested = 3,
-};
-pub const TCCollectionBugCheck = _DEVICEDUMP_COLLECTION_TYPE.BugCheck;
-pub const TCCollectionApplicationRequested = _DEVICEDUMP_COLLECTION_TYPE.ApplicationRequested;
-pub const TCCollectionDeviceRequested = _DEVICEDUMP_COLLECTION_TYPE.DeviceRequested;
-
 pub const ASYNC_DUPLICATE_EXTENTS_STATUS = extern struct {
     Version: u32,
     State: DUPLICATE_EXTENTS_STATE,
@@ -1854,6 +1845,15 @@ pub const DEVICE_WRITE_AGGREGATION_DESCRIPTOR = extern struct {
     BenefitsFromWriteAggregation: BOOLEAN,
 };
 
+pub const DEVICEDUMP_COLLECTION_TYPEIDE_NOTIFICATION_TYPE = enum(i32) {
+    BugCheck = 1,
+    ApplicationRequested = 2,
+    DeviceRequested = 3,
+};
+pub const TCCollectionBugCheck = DEVICEDUMP_COLLECTION_TYPEIDE_NOTIFICATION_TYPE.BugCheck;
+pub const TCCollectionApplicationRequested = DEVICEDUMP_COLLECTION_TYPEIDE_NOTIFICATION_TYPE.ApplicationRequested;
+pub const TCCollectionDeviceRequested = DEVICEDUMP_COLLECTION_TYPEIDE_NOTIFICATION_TYPE.DeviceRequested;
+
 pub const DEVICEDUMP_PRIVATE_SUBSECTION = extern struct {
     dwFlags: u32 align(1),
     GPLogId: GP_LOG_PAGE_DESCRIPTOR align(1),
@@ -2396,7 +2396,7 @@ pub const FILE_STORAGE_TIER = extern struct {
     Id: Guid,
     Name: [256]u16,
     Description: [256]u16,
-    Flags: FILE_STORAGE_TIER_FLAGS,
+    Flags: u64,
     ProvisionedCapacity: u64,
     MediaType: FILE_STORAGE_TIER_MEDIA_TYPE,
     Class: FILE_STORAGE_TIER_CLASS,

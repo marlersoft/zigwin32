@@ -1581,7 +1581,7 @@ pub const USB_UNICODE_NAME = extern struct {
 };
 
 pub const USB_USB2HW_VERSION_PARAMETERS = extern struct {
-    Usb2HwRevision: u8,
+    Usb2HwRevision: u8 align(1),
 };
 
 pub const USB_USER_ERROR_CODE = enum(i32) {
@@ -1877,58 +1877,58 @@ pub const USBSCAN_TIMEOUT = extern struct {
 };
 
 pub const USBUSER_BANDWIDTH_INFO_REQUEST = extern struct {
-    Header: USBUSER_REQUEST_HEADER,
-    BandwidthInformation: USB_BANDWIDTH_INFO,
+    Header: USBUSER_REQUEST_HEADER align(1),
+    BandwidthInformation: USB_BANDWIDTH_INFO align(1),
 };
 
 pub const USBUSER_BUS_STATISTICS_0_REQUEST = extern struct {
-    Header: USBUSER_REQUEST_HEADER,
-    BusStatistics0: USB_BUS_STATISTICS_0,
+    Header: USBUSER_REQUEST_HEADER align(1),
+    BusStatistics0: USB_BUS_STATISTICS_0 align(1),
 };
 
 pub const USBUSER_CLOSE_RAW_DEVICE = extern struct {
-    Header: USBUSER_REQUEST_HEADER,
-    Parameters: USB_CLOSE_RAW_DEVICE_PARAMETERS,
+    Header: USBUSER_REQUEST_HEADER align(1),
+    Parameters: USB_CLOSE_RAW_DEVICE_PARAMETERS align(1),
 };
 
 pub const USBUSER_CONTROLLER_INFO_0 = extern struct {
-    Header: USBUSER_REQUEST_HEADER,
-    Info0: USB_CONTROLLER_INFO_0,
+    Header: USBUSER_REQUEST_HEADER align(1),
+    Info0: USB_CONTROLLER_INFO_0 align(1),
 };
 
 pub const USBUSER_CONTROLLER_UNICODE_NAME = extern struct {
-    Header: USBUSER_REQUEST_HEADER,
-    UnicodeName: USB_UNICODE_NAME,
+    Header: USBUSER_REQUEST_HEADER align(1),
+    UnicodeName: USB_UNICODE_NAME align(1),
 };
 
 pub const USBUSER_GET_DRIVER_VERSION = extern struct {
-    Header: USBUSER_REQUEST_HEADER,
-    Parameters: USB_DRIVER_VERSION_PARAMETERS,
+    Header: USBUSER_REQUEST_HEADER align(1),
+    Parameters: USB_DRIVER_VERSION_PARAMETERS align(1),
 };
 
 pub const USBUSER_GET_USB2HW_VERSION = extern struct {
-    Header: USBUSER_REQUEST_HEADER,
-    Parameters: USB_USB2HW_VERSION_PARAMETERS,
+    Header: USBUSER_REQUEST_HEADER align(1),
+    Parameters: USB_USB2HW_VERSION_PARAMETERS align(1),
 };
 
 pub const USBUSER_OPEN_RAW_DEVICE = extern struct {
-    Header: USBUSER_REQUEST_HEADER,
-    Parameters: USB_OPEN_RAW_DEVICE_PARAMETERS,
+    Header: USBUSER_REQUEST_HEADER align(1),
+    Parameters: USB_OPEN_RAW_DEVICE_PARAMETERS align(1),
 };
 
 pub const USBUSER_PASS_THRU_REQUEST = extern struct {
-    Header: USBUSER_REQUEST_HEADER,
-    PassThru: USB_PASS_THRU_PARAMETERS,
+    Header: USBUSER_REQUEST_HEADER align(1),
+    PassThru: USB_PASS_THRU_PARAMETERS align(1),
 };
 
 pub const USBUSER_POWER_INFO_REQUEST = extern struct {
-    Header: USBUSER_REQUEST_HEADER,
-    PowerInformation: USB_POWER_INFO,
+    Header: USBUSER_REQUEST_HEADER align(1),
+    PowerInformation: USB_POWER_INFO align(1),
 };
 
 pub const USBUSER_RAW_RESET_ROOT_PORT = extern struct {
-    Header: USBUSER_REQUEST_HEADER,
-    Parameters: RAW_RESET_PORT_PARAMETERS,
+    Header: USBUSER_REQUEST_HEADER align(1),
+    Parameters: RAW_RESET_PORT_PARAMETERS align(1),
 };
 
 pub const USBUSER_REFRESH_HCT_REG = extern struct {
@@ -1944,23 +1944,23 @@ pub const USBUSER_REQUEST_HEADER = extern struct {
 };
 
 pub const USBUSER_ROOTPORT_FEATURE_REQUEST = extern struct {
-    Header: USBUSER_REQUEST_HEADER,
-    Parameters: RAW_ROOTPORT_FEATURE,
+    Header: USBUSER_REQUEST_HEADER align(1),
+    Parameters: RAW_ROOTPORT_FEATURE align(1),
 };
 
 pub const USBUSER_ROOTPORT_PARAMETERS = extern struct {
-    Header: USBUSER_REQUEST_HEADER,
-    Parameters: RAW_ROOTPORT_PARAMETERS,
+    Header: USBUSER_REQUEST_HEADER align(1),
+    Parameters: RAW_ROOTPORT_PARAMETERS align(1),
 };
 
 pub const USBUSER_SEND_ONE_PACKET = extern struct {
-    Header: USBUSER_REQUEST_HEADER,
-    PacketParameters: PACKET_PARAMETERS,
+    Header: USBUSER_REQUEST_HEADER align(1),
+    PacketParameters: PACKET_PARAMETERS align(1),
 };
 
 pub const USBUSER_SEND_RAW_COMMAND = extern struct {
-    Header: USBUSER_REQUEST_HEADER,
-    Parameters: USB_SEND_RAW_COMMAND_PARAMETERS,
+    Header: USBUSER_REQUEST_HEADER align(1),
+    Parameters: USB_SEND_RAW_COMMAND_PARAMETERS align(1),
 };
 
 pub const WDMUSB_POWER_STATE = enum(i32) {

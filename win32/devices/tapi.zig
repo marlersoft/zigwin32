@@ -1134,39 +1134,6 @@ pub const TUISPIDLL_OBJECT_PROVIDERID = @as(i32, 3);
 //--------------------------------------------------------------------------------
 // Section: Types (269)
 //--------------------------------------------------------------------------------
-pub const _ADDR_ALIAS = extern struct {
-    rgchName: [41]CHAR,
-    rgchEName: [11]CHAR,
-    rgchSrvr: [12]CHAR,
-    dibDetail: u32,
-    type: u16,
-};
-
-pub const _dtr = extern struct {
-    wYear: u16 align(1),
-    wMonth: u16 align(1),
-    wDay: u16 align(1),
-    wHour: u16 align(1),
-    wMinute: u16 align(1),
-    wSecond: u16 align(1),
-    wDayOfWeek: u16 align(1),
-};
-
-pub const _renddata = extern struct {
-    atyp: u16 align(1),
-    ulPosition: u32 align(1),
-    dxWidth: u16 align(1),
-    dyHeight: u16 align(1),
-    dwFlags: u32 align(1),
-};
-
-pub const _trp = extern struct {
-    trpid: u16,
-    cbgrtrp: u16,
-    cch: u16,
-    cbRgb: u16,
-};
-
 pub const ACDGROUP_EVENT = enum(i32) {
     NEW_GROUP = 0,
     GROUP_REMOVED = 1,
@@ -1180,6 +1147,14 @@ pub const ACDQUEUE_EVENT = enum(i32) {
 };
 pub const ACDQE_NEW_QUEUE = ACDQUEUE_EVENT.NEW_QUEUE;
 pub const ACDQE_QUEUE_REMOVED = ACDQUEUE_EVENT.QUEUE_REMOVED;
+
+pub const ADDRALIAS = extern struct {
+    rgchName: [41]CHAR,
+    rgchEName: [11]CHAR,
+    rgchSrvr: [12]CHAR,
+    dibDetail: u32,
+    type: u16,
+};
 
 pub const ADDRESS_CAPABILITY = enum(i32) {
     ADDRESSTYPES = 0,
@@ -1690,6 +1665,16 @@ pub const DC_REJECTED = DISCONNECT_CODE.REJECTED;
 
 const CLSID_DispatchMapper_Value = Guid.initString("e9225296-c759-11d1-a02b-00c04fb6809f");
 pub const CLSID_DispatchMapper = &CLSID_DispatchMapper_Value;
+
+pub const DTR = extern struct {
+    wYear: u16 align(1),
+    wMonth: u16 align(1),
+    wDay: u16 align(1),
+    wHour: u16 align(1),
+    wMinute: u16 align(1),
+    wSecond: u16 align(1),
+    wDayOfWeek: u16 align(1),
+};
 
 pub const FINISH_MODE = enum(i32) {
     TRANSFER = 0,
@@ -9089,7 +9074,7 @@ pub const LINEREQMAKECALL = extern struct {
     szComment: [80]CHAR,
 };
 
-pub const linereqmakecallW_tag = extern struct {
+pub const LINEREQMAKECALLW = extern struct {
     szDestAddress: [80]u16 align(1),
     szAppName: [40]u16 align(1),
     szCalledParty: [40]u16 align(1),
@@ -9109,7 +9094,7 @@ pub const LINEREQMEDIACALL = extern struct {
     szComment: [80]CHAR align(1),
 };
 
-pub const linereqmediacallW_tag = extern struct {
+pub const LINEREQMEDIACALLW = extern struct {
     hWnd: ?HWND align(1),
     wRequestID: WPARAM align(1),
     szDeviceClass: [40]u16 align(1),
@@ -9297,7 +9282,7 @@ pub const NSID = extern struct {
     xtype: u32,
     lTime: i32,
     address: extern union {
-        alias: _ADDR_ALIAS,
+        alias: ADDRALIAS,
         rgchInterNet: [1]CHAR,
     },
 };
@@ -9742,6 +9727,14 @@ pub const QSL_NEEDED = QOS_SERVICE_LEVEL.NEEDED;
 pub const QSL_IF_AVAILABLE = QOS_SERVICE_LEVEL.IF_AVAILABLE;
 pub const QSL_BEST_EFFORT = QOS_SERVICE_LEVEL.BEST_EFFORT;
 
+pub const RENDDATA = extern struct {
+    atyp: u16 align(1),
+    ulPosition: u32 align(1),
+    dxWidth: u16 align(1),
+    dyHeight: u16 align(1),
+    dwFlags: u32 align(1),
+};
+
 const CLSID_Rendezvous_Value = Guid.initString("f1029e5b-cb5b-11d0-8d59-00c04fd91ac0");
 pub const CLSID_Rendezvous = &CLSID_Rendezvous_Value;
 
@@ -9939,6 +9932,13 @@ pub const TERMINAL_TYPE = enum(i32) {
 };
 pub const TT_STATIC = TERMINAL_TYPE.STATIC;
 pub const TT_DYNAMIC = TERMINAL_TYPE.DYNAMIC;
+
+pub const TRP = extern struct {
+    trpid: u16,
+    cbgrtrp: u16,
+    cch: u16,
+    cbRgb: u16,
+};
 
 pub const TUISPICREATEDIALOGINSTANCEPARAMS = extern struct {
     dwRequestID: u32,

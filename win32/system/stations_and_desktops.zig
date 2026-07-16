@@ -4,7 +4,7 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (11)
+// Section: Types (12)
 //--------------------------------------------------------------------------------
 pub const BROADCAST_SYSTEM_MESSAGE_FLAGS = packed struct(u32) {
     QUERY: u1 = 0,
@@ -96,6 +96,11 @@ pub const BSMINFO = extern struct {
     hwnd: ?HWND,
     luid: LUID,
 };
+
+pub const DESKTOP_CONTROL_FLAGS = enum(u32) {
+    K = 1,
+};
+pub const DF_ALLOWOTHERACCOUNTHOOK = DESKTOP_CONTROL_FLAGS.K;
 
 pub const DESKTOPENUMPROCA = *const fn(
     param0: ?PSTR,
@@ -202,7 +207,7 @@ pub extern "user32" fn CreateDesktopA(
     lpszDesktop: ?[*:0]const u8,
     lpszDevice: ?[*:0]const u8,
     pDevmode: ?*DEVMODEA,
-    dwFlags: u32,
+    dwFlags: DESKTOP_CONTROL_FLAGS,
     dwDesiredAccess: u32,
     lpsa: ?*SECURITY_ATTRIBUTES,
 ) callconv(.winapi) ?HDESK;
@@ -212,7 +217,7 @@ pub extern "user32" fn CreateDesktopExA(
     lpszDesktop: ?[*:0]const u8,
     lpszDevice: ?[*:0]const u8,
     pDevmode: ?*DEVMODEA,
-    dwFlags: u32,
+    dwFlags: DESKTOP_CONTROL_FLAGS,
     dwDesiredAccess: u32,
     lpsa: ?*SECURITY_ATTRIBUTES,
     ulHeapSize: u32,
@@ -224,7 +229,7 @@ pub extern "user32" fn CreateDesktopExW(
     lpszDesktop: ?[*:0]const u16,
     lpszDevice: ?[*:0]const u16,
     pDevmode: ?*DEVMODEW,
-    dwFlags: u32,
+    dwFlags: DESKTOP_CONTROL_FLAGS,
     dwDesiredAccess: u32,
     lpsa: ?*SECURITY_ATTRIBUTES,
     ulHeapSize: u32,
@@ -236,7 +241,7 @@ pub extern "user32" fn CreateDesktopW(
     lpszDesktop: ?[*:0]const u16,
     lpszDevice: ?[*:0]const u16,
     pDevmode: ?*DEVMODEW,
-    dwFlags: u32,
+    dwFlags: DESKTOP_CONTROL_FLAGS,
     dwDesiredAccess: u32,
     lpsa: ?*SECURITY_ATTRIBUTES,
 ) callconv(.winapi) ?HDESK;
@@ -322,7 +327,7 @@ pub extern "user32" fn GetUserObjectInformationW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn OpenDesktopA(
     lpszDesktop: ?[*:0]const u8,
-    dwFlags: u32,
+    dwFlags: DESKTOP_CONTROL_FLAGS,
     fInherit: BOOL,
     dwDesiredAccess: u32,
 ) callconv(.winapi) ?HDESK;
@@ -330,14 +335,14 @@ pub extern "user32" fn OpenDesktopA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn OpenDesktopW(
     lpszDesktop: ?[*:0]const u16,
-    dwFlags: u32,
+    dwFlags: DESKTOP_CONTROL_FLAGS,
     fInherit: BOOL,
     dwDesiredAccess: u32,
 ) callconv(.winapi) ?HDESK;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn OpenInputDesktop(
-    dwFlags: u32,
+    dwFlags: DESKTOP_CONTROL_FLAGS,
     fInherit: BOOL,
     dwDesiredAccess: u32,
 ) callconv(.winapi) ?HDESK;

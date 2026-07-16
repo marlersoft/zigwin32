@@ -726,16 +726,6 @@ pub const WM_RASDIALEVENT = @as(u32, 52429);
 //--------------------------------------------------------------------------------
 // Section: Types (224)
 //--------------------------------------------------------------------------------
-pub const _MPR_VPN_SELECTOR = extern struct {
-    type: MPR_VPN_TS_TYPE,
-    protocolId: u8,
-    portStart: u16,
-    portEnd: u16,
-    tsPayloadId: u16,
-    addrStart: VPN_TS_IP_ADDRESS,
-    addrEnd: VPN_TS_IP_ADDRESS,
-};
-
 pub const AUTH_VALIDATION_EX = extern struct {
     Header: MPRAPI_OBJECT_HEADER,
     hRasConnection: ?HANDLE,
@@ -1162,11 +1152,21 @@ pub const MPR_TRANSPORT_0 = extern struct {
     wszTransportName: [41]u16,
 };
 
+pub const MPR_VPN_TRAFFIC_SELECTOR = extern struct {
+    type: MPR_VPN_TS_TYPE,
+    protocolId: u8,
+    portStart: u16,
+    portEnd: u16,
+    tsPayloadId: u16,
+    addrStart: VPN_TS_IP_ADDRESS,
+    addrEnd: VPN_TS_IP_ADDRESS,
+};
+
 pub const MPR_VPN_TRAFFIC_SELECTORS = extern struct {
     numTsi: u32,
     numTsr: u32,
-    tsI: ?*_MPR_VPN_SELECTOR,
-    tsR: ?*_MPR_VPN_SELECTOR,
+    tsI: ?*MPR_VPN_TRAFFIC_SELECTOR,
+    tsR: ?*MPR_VPN_TRAFFIC_SELECTOR,
 };
 
 pub const MPR_VPN_TS_TYPE = enum(i32) {

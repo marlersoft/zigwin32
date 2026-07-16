@@ -156,20 +156,6 @@ pub const wszUMLAUT = "\xcc\x88";
 //--------------------------------------------------------------------------------
 // Section: Types (44)
 //--------------------------------------------------------------------------------
-pub const _VK_FUNCTION_PARAM = extern struct {
-    NLSFEProcIndex: u8,
-    NLSFEProcParam: u32,
-};
-
-pub const _VK_TO_FUNCTION_TABLE = extern struct {
-    Vk: u8,
-    NLSFEProcType: u8,
-    NLSFEProcCurrent: u8,
-    NLSFEProcSwitch: u8,
-    NLSFEProc: [8]_VK_FUNCTION_PARAM,
-    NLSFEProcAlt: [8]_VK_FUNCTION_PARAM,
-};
-
 pub const ACTIVATE_KEYBOARD_LAYOUT_FLAGS = enum(u32) {
     REORDER = 8,
     RESET = 1073741824,
@@ -272,6 +258,15 @@ pub const KBD_TYPE_INFO = extern struct {
     dwSubType: u32,
 };
 
+pub const KBDNLSTABLES = extern struct {
+    OEMIdentifier: u16,
+    LayoutInformation: u16,
+    NumOfVkToF: u32,
+    pVkToF: ?*VK_F_TABLE,
+    NumOfMouseVKey: i32,
+    pusMouseVKey: ?*u16,
+};
+
 pub const KBDTABLE_DESC = extern struct {
     wszDllName: [32]u16,
     dwType: u32,
@@ -281,6 +276,25 @@ pub const KBDTABLE_DESC = extern struct {
 pub const KBDTABLE_MULTI = extern struct {
     nTables: u32,
     aKbdTables: [8]KBDTABLE_DESC,
+};
+
+pub const KBDTABLES = extern struct {
+    pCharModifiers: ?*MODIFIERS,
+    pVkToWcharTable: ?*VK_TO_WCHAR_TABLE,
+    pDeadKey: ?*DEADKEY,
+    pKeyNames: ?*VSC_LPWSTR,
+    pKeyNamesExt: ?*VSC_LPWSTR,
+    pKeyNamesDead: ?*?*u16,
+    pusVSCtoVK: ?*u16,
+    bMaxVSCtoVK: u8,
+    pVSCtoVK_E0: ?*VSC_VK,
+    pVSCtoVK_E1: ?*VSC_VK,
+    fLocaleFlags: u32,
+    nLgMax: u8,
+    cbLgEntry: u8,
+    pLigature: ?*LIGATURE1,
+    dwType: u32,
+    dwSubType: u32,
 };
 
 pub const KEYBD_EVENT_FLAGS = packed struct(u32) {
@@ -434,34 +448,6 @@ pub const MOUSEMOVEPOINT = extern struct {
     y: i32,
     time: u32,
     dwExtraInfo: usize,
-};
-
-pub const tagKbdLayer = extern struct {
-    pCharModifiers: ?*MODIFIERS,
-    pVkToWcharTable: ?*VK_TO_WCHAR_TABLE,
-    pDeadKey: ?*DEADKEY,
-    pKeyNames: ?*VSC_LPWSTR,
-    pKeyNamesExt: ?*VSC_LPWSTR,
-    pKeyNamesDead: ?*?*u16,
-    pusVSCtoVK: ?*u16,
-    bMaxVSCtoVK: u8,
-    pVSCtoVK_E0: ?*VSC_VK,
-    pVSCtoVK_E1: ?*VSC_VK,
-    fLocaleFlags: u32,
-    nLgMax: u8,
-    cbLgEntry: u8,
-    pLigature: ?*LIGATURE1,
-    dwType: u32,
-    dwSubType: u32,
-};
-
-pub const tagKbdNlsLayer = extern struct {
-    OEMIdentifier: u16,
-    LayoutInformation: u16,
-    NumOfVkToF: u32,
-    pVkToF: ?*_VK_TO_FUNCTION_TABLE,
-    NumOfMouseVKey: i32,
-    pusMouseVKey: ?*u16,
 };
 
 pub const TRACKMOUSEEVENT = extern struct {
@@ -973,6 +959,20 @@ pub const VK_ZOOM = VIRTUAL_KEY.ZOOM;
 pub const VK_NONAME = VIRTUAL_KEY.NONAME;
 pub const VK_PA1 = VIRTUAL_KEY.PA1;
 pub const VK_OEM_CLEAR = VIRTUAL_KEY.OEM_CLEAR;
+
+pub const VK_F_TABLE = extern struct {
+    Vk: u8,
+    NLSFEProcType: u8,
+    NLSFEProcCurrent: u8,
+    NLSFEProcSwitch: u8,
+    NLSFEProc: [8]VK_FPARAM,
+    NLSFEProcAlt: [8]VK_FPARAM,
+};
+
+pub const VK_FPARAM = extern struct {
+    NLSFEProcIndex: u8,
+    NLSFEProcParam: u32,
+};
 
 pub const VK_TO_BIT = extern struct {
     Vk: u8,

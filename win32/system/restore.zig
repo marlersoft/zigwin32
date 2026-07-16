@@ -27,14 +27,6 @@ pub const WINDOWS_UPDATE = @as(u32, 17);
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
-pub const _RESTOREPTINFOEX = extern struct {
-    ftCreation: FILETIME align(1),
-    dwEventType: u32 align(1),
-    dwRestorePtType: u32 align(1),
-    dwRPNum: u32 align(1),
-    szDescription: [256]u16 align(1),
-};
-
 pub const RESTOREPOINTINFO_EVENT_TYPE = enum(u32) {
     BEGIN_NESTED_SYSTEM_CHANGE = 102,
     BEGIN_SYSTEM_CHANGE = 100,
@@ -64,6 +56,14 @@ pub const RESTOREPOINTINFOA = extern struct {
     dwRestorePtType: RESTOREPOINTINFO_TYPE align(1),
     llSequenceNumber: i64 align(1),
     szDescription: [64]CHAR align(1),
+};
+
+pub const RESTOREPOINTINFOEX = extern struct {
+    ftCreation: FILETIME align(1),
+    dwEventType: u32 align(1),
+    dwRestorePtType: u32 align(1),
+    dwRPNum: u32 align(1),
+    szDescription: [256]u16 align(1),
 };
 
 pub const RESTOREPOINTINFOW = extern struct {

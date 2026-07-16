@@ -96,7 +96,7 @@ pub const ABORTPROC = *const fn(
     param1: i32,
 ) callconv(.winapi) BOOL;
 
-pub const DEVICE_CAPABILITIES = enum(u32) {
+pub const DEVICE_CAPABILITIES = enum(u16) {
     BINNAMES = 12,
     BINS = 6,
     COLLATE = 22,

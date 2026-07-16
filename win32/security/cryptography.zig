@@ -7043,7 +7043,7 @@ pub const HCRYPTPROV_LEGACY = usize;
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HCRYPTPROV_OR_NCRYPT_KEY_HANDLE = usize;
 
-pub const HMAC_Info = extern struct {
+pub const HMAC_INFO = extern struct {
     HashAlgid: u32,
     pbInnerString: ?*u8,
     cbInnerString: u32,
@@ -7859,7 +7859,7 @@ pub const NCRYPT_PCP_HMAC_AUTH_SIGNATURE_INFO = extern struct {
     pabHMAC: [32]u8,
 };
 
-pub const NCRYPT_PCP_RAW_POLICYDIGEST = extern struct {
+pub const NCRYPT_PCP_RAW_POLICYDIGEST_INFO = extern struct {
     dwVersion: u32,
     cbDigest: u32,
 };

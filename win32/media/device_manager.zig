@@ -283,11 +283,6 @@ pub const WMDMID_LENGTH = @as(u32, 128);
 //--------------------------------------------------------------------------------
 // Section: Types (88)
 //--------------------------------------------------------------------------------
-pub const __MACINFO = extern struct {
-    fUsed: BOOL,
-    abMacState: [36]u8,
-};
-
 const IID_IComponentAuthenticate_Value = Guid.initString("a9889c00-6d2b-11d3-8496-00c04f79dbc0");
 pub const IID_IComponentAuthenticate = &IID_IComponentAuthenticate_Value;
 pub const IComponentAuthenticate = extern union {
@@ -2838,6 +2833,11 @@ pub const IWMDMStorageGlobals = extern union {
     pub fn Initialize(self: *const IWMDMStorageGlobals, fuMode: u32, pProgress: ?*IWMDMProgress) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, fuMode, pProgress);
     }
+};
+
+pub const MACINFO = extern struct {
+    fUsed: BOOL,
+    abMacState: [36]u8,
 };
 
 const CLSID_MediaDevMgr_Value = Guid.initString("25baad81-3560-11d3-8471-00c04f79dbc0");

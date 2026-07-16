@@ -349,24 +349,6 @@ pub const _DnsRecordOptA = extern struct {
     },
 };
 
-pub const _DnsRecordOptW = extern struct {
-    pNext: ?*DNS_RECORDW,
-    pName: ?PWSTR,
-    wType: u16,
-    wDataLength: u16,
-    Flags: extern union {
-        DW: u32,
-        S: DNS_RECORD_FLAGS,
-    },
-    ExtHeader: DNS_HEADER_EXT,
-    wPayloadSize: u16,
-    wReserved: u16,
-    Data: extern union {
-        OPT: DNS_OPT_DATA,
-        Opt: DNS_OPT_DATA,
-    },
-};
-
 pub const DNS_A_DATA = extern struct {
     IpAddress: u32,
 };
@@ -821,6 +803,24 @@ pub const DNS_QUERY_RESULT = extern struct {
 
 pub const DNS_RECORD_FLAGS = extern struct {
     _bitfield: u32,
+};
+
+pub const DNS_RECORD_OPTW = extern struct {
+    pNext: ?*DNS_RECORDW,
+    pName: ?PWSTR,
+    wType: u16,
+    wDataLength: u16,
+    Flags: extern union {
+        DW: u32,
+        S: DNS_RECORD_FLAGS,
+    },
+    ExtHeader: DNS_HEADER_EXT,
+    wPayloadSize: u16,
+    wReserved: u16,
+    Data: extern union {
+        OPT: DNS_OPT_DATA,
+        Opt: DNS_OPT_DATA,
+    },
 };
 
 pub const DNS_RECORDA = extern struct {
@@ -1750,15 +1750,8 @@ pub extern "dnsapi" fn DnsWriteQuestionToBuffer_W(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (21)
+// Section: Unicode Aliases (20)
 //--------------------------------------------------------------------------------
-pub const _DnsRecordOpt = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This()._DnsRecordOptA,
-    .wide => @This()._DnsRecordOptW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'_DnsRecordOpt' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const DNS_MINFO_DATA = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().DNS_MINFO_DATAA,
     .wide => @This().DNS_MINFO_DATAW,

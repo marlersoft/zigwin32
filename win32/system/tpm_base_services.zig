@@ -73,16 +73,16 @@ pub const TBS_CONTEXT_PARAMS2 = extern struct {
     },
 };
 
-pub const tdTPM_WNF_PROVISIONING = extern struct {
-    status: u32,
-    message: [28]u8,
-};
-
 pub const TPM_DEVICE_INFO = extern struct {
     structVersion: u32,
     tpmVersion: u32,
     tpmInterfaceType: u32,
     tpmImpRevision: u32,
+};
+
+pub const TPM_WNF_PROVISIONING = extern struct {
+    status: u32,
+    message: [28]u8,
 };
 
 

@@ -1176,12 +1176,12 @@ pub const FWPM_NET_EVENT3 = extern struct {
     },
 };
 
-pub const FWPM_NET_EVENT4_ = extern struct {
+pub const FWPM_NET_EVENT4 = extern struct {
     header: FWPM_NET_EVENT_HEADER3,
     type: FWPM_NET_EVENT_TYPE,
     Anonymous: extern union {
-        ikeMmFailure: ?*FWPM_NET_EVENT_IKEEXT_MM_FAILURE2_,
-        ikeQmFailure: ?*FWPM_NET_EVENT_IKEEXT_QM_FAILURE1_,
+        ikeMmFailure: ?*FWPM_NET_EVENT_IKEEXT_MM_FAILURE2,
+        ikeQmFailure: ?*FWPM_NET_EVENT_IKEEXT_QM_FAILURE1,
         ikeEmFailure: ?*FWPM_NET_EVENT_IKEEXT_EM_FAILURE1,
         classifyDrop: ?*FWPM_NET_EVENT_CLASSIFY_DROP2,
         ipsecDrop: ?*FWPM_NET_EVENT_IPSEC_KERNEL_DROP0,
@@ -1193,12 +1193,12 @@ pub const FWPM_NET_EVENT4_ = extern struct {
     },
 };
 
-pub const FWPM_NET_EVENT5_ = extern struct {
+pub const FWPM_NET_EVENT5 = extern struct {
     header: FWPM_NET_EVENT_HEADER3,
     type: FWPM_NET_EVENT_TYPE,
     Anonymous: extern union {
-        ikeMmFailure: ?*FWPM_NET_EVENT_IKEEXT_MM_FAILURE2_,
-        ikeQmFailure: ?*FWPM_NET_EVENT_IKEEXT_QM_FAILURE1_,
+        ikeMmFailure: ?*FWPM_NET_EVENT_IKEEXT_MM_FAILURE2,
+        ikeQmFailure: ?*FWPM_NET_EVENT_IKEEXT_QM_FAILURE1,
         ikeEmFailure: ?*FWPM_NET_EVENT_IKEEXT_EM_FAILURE1,
         classifyDrop: ?*FWPM_NET_EVENT_CLASSIFY_DROP2,
         ipsecDrop: ?*FWPM_NET_EVENT_IPSEC_KERNEL_DROP0,
@@ -1207,7 +1207,7 @@ pub const FWPM_NET_EVENT5_ = extern struct {
         capabilityDrop: ?*FWPM_NET_EVENT_CAPABILITY_DROP0,
         capabilityAllow: ?*FWPM_NET_EVENT_CAPABILITY_ALLOW0,
         classifyDropMac: ?*FWPM_NET_EVENT_CLASSIFY_DROP_MAC0,
-        lpmPacketArrival: ?*FWPM_NET_EVENT_LPM_PACKET_ARRIVAL0_,
+        lpmPacketArrival: ?*FWPM_NET_EVENT_LPM_PACKET_ARRIVAL0,
     },
 };
 
@@ -1228,12 +1228,12 @@ pub const FWPM_NET_EVENT_CALLBACK2 = *const fn(
 
 pub const FWPM_NET_EVENT_CALLBACK3 = *const fn(
     context: ?*anyopaque,
-    event: ?*const FWPM_NET_EVENT4_,
+    event: ?*const FWPM_NET_EVENT4,
 ) callconv(.winapi) void;
 
 pub const FWPM_NET_EVENT_CALLBACK4 = *const fn(
     context: ?*anyopaque,
-    event: ?*const FWPM_NET_EVENT5_,
+    event: ?*const FWPM_NET_EVENT5,
 ) callconv(.winapi) void;
 
 pub const FWPM_NET_EVENT_CAPABILITY_ALLOW0 = extern struct {
@@ -1483,7 +1483,7 @@ pub const FWPM_NET_EVENT_IKEEXT_MM_FAILURE1 = extern struct {
     remotePrincipalGroupSids: ?*?PWSTR,
 };
 
-pub const FWPM_NET_EVENT_IKEEXT_MM_FAILURE2_ = extern struct {
+pub const FWPM_NET_EVENT_IKEEXT_MM_FAILURE2 = extern struct {
     failureErrorCode: u32,
     failurePoint: IPSEC_FAILURE_POINT,
     flags: u32,
@@ -1519,7 +1519,7 @@ pub const FWPM_NET_EVENT_IKEEXT_QM_FAILURE0 = extern struct {
     qmFilterId: u64,
 };
 
-pub const FWPM_NET_EVENT_IKEEXT_QM_FAILURE1_ = extern struct {
+pub const FWPM_NET_EVENT_IKEEXT_QM_FAILURE1 = extern struct {
     failureErrorCode: u32,
     failurePoint: IPSEC_FAILURE_POINT,
     keyingModuleType: IKEEXT_KEY_MODULE_TYPE,
@@ -1559,7 +1559,7 @@ pub const FWPM_NET_EVENT_IPSEC_KERNEL_DROP0 = extern struct {
     layerId: u16,
 };
 
-pub const FWPM_NET_EVENT_LPM_PACKET_ARRIVAL0_ = extern struct {
+pub const FWPM_NET_EVENT_LPM_PACKET_ARRIVAL0 = extern struct {
     spi: u32,
 };
 
@@ -1684,7 +1684,7 @@ pub const FWPM_PROVIDER_CONTEXT2 = extern struct {
     providerContextId: u64,
 };
 
-pub const FWPM_PROVIDER_CONTEXT3_ = extern struct {
+pub const FWPM_PROVIDER_CONTEXT3 = extern struct {
     providerContextKey: Guid,
     displayData: FWPM_DISPLAY_DATA0,
     flags: u32,
@@ -1694,14 +1694,14 @@ pub const FWPM_PROVIDER_CONTEXT3_ = extern struct {
     Anonymous: extern union {
         keyingPolicy: ?*IPSEC_KEYING_POLICY1,
         ikeQmTransportPolicy: ?*IPSEC_TRANSPORT_POLICY2,
-        ikeQmTunnelPolicy: ?*IPSEC_TUNNEL_POLICY3_,
+        ikeQmTunnelPolicy: ?*IPSEC_TUNNEL_POLICY3,
         authipQmTransportPolicy: ?*IPSEC_TRANSPORT_POLICY2,
-        authipQmTunnelPolicy: ?*IPSEC_TUNNEL_POLICY3_,
+        authipQmTunnelPolicy: ?*IPSEC_TUNNEL_POLICY3,
         ikeMmPolicy: ?*IKEEXT_POLICY2,
         authIpMmPolicy: ?*IKEEXT_POLICY2,
         dataBuffer: ?*FWP_BYTE_BLOB,
         classifyOptions: ?*FWPM_CLASSIFY_OPTIONS0,
-        ikeV2QmTunnelPolicy: ?*IPSEC_TUNNEL_POLICY3_,
+        ikeV2QmTunnelPolicy: ?*IPSEC_TUNNEL_POLICY3,
         ikeV2QmTransportPolicy: ?*IPSEC_TRANSPORT_POLICY2,
         ikeV2MmPolicy: ?*IKEEXT_POLICY2,
         idpOptions: ?*IPSEC_DOSP_OPTIONS0,
@@ -3578,7 +3578,7 @@ pub const IPSEC_TRAFFIC1 = extern struct {
     realIfProfileId: u32,
 };
 
-pub const IPSEC_TRAFFIC_SELECTOR0_ = extern struct {
+pub const IPSEC_TRAFFIC_SELECTOR0 = extern struct {
     protocolId: u8,
     portStart: u16,
     portEnd: u16,
@@ -3593,12 +3593,12 @@ pub const IPSEC_TRAFFIC_SELECTOR0_ = extern struct {
     },
 };
 
-pub const IPSEC_TRAFFIC_SELECTOR_POLICY0_ = extern struct {
+pub const IPSEC_TRAFFIC_SELECTOR_POLICY0 = extern struct {
     flags: u32,
     numLocalTrafficSelectors: u32,
-    localTrafficSelectors: ?*IPSEC_TRAFFIC_SELECTOR0_,
+    localTrafficSelectors: ?*IPSEC_TRAFFIC_SELECTOR0,
     numRemoteTrafficSelectors: u32,
-    remoteTrafficSelectors: ?*IPSEC_TRAFFIC_SELECTOR0_,
+    remoteTrafficSelectors: ?*IPSEC_TRAFFIC_SELECTOR0,
 };
 
 pub const IPSEC_TRAFFIC_STATISTICS0 = extern struct {
@@ -3748,7 +3748,7 @@ pub const IPSEC_TUNNEL_POLICY2 = extern struct {
     fwdPathSaLifetime: u32,
 };
 
-pub const IPSEC_TUNNEL_POLICY3_ = extern struct {
+pub const IPSEC_TUNNEL_POLICY3 = extern struct {
     flags: u32,
     numIpsecProposals: u32,
     ipsecProposals: ?*IPSEC_PROPOSAL0,
@@ -3758,7 +3758,7 @@ pub const IPSEC_TUNNEL_POLICY3_ = extern struct {
     fwdPathSaLifetime: u32,
     compartmentId: u32,
     numTrafficSelectorPolicy: u32,
-    trafficSelectorPolicies: ?*IPSEC_TRAFFIC_SELECTOR_POLICY0_,
+    trafficSelectorPolicies: ?*IPSEC_TRAFFIC_SELECTOR_POLICY0,
 };
 
 pub const IPSEC_V4_UDP_ENCAPSULATION0 = extern struct {
@@ -4151,8 +4151,8 @@ pub extern "fwpuclnt" fn FwpmIPsecTunnelAdd2(
 pub extern "fwpuclnt" fn FwpmIPsecTunnelAdd3(
     engineHandle: ?HANDLE,
     flags: u32,
-    mainModePolicy: ?*const FWPM_PROVIDER_CONTEXT3_,
-    tunnelPolicy: ?*const FWPM_PROVIDER_CONTEXT3_,
+    mainModePolicy: ?*const FWPM_PROVIDER_CONTEXT3,
+    tunnelPolicy: ?*const FWPM_PROVIDER_CONTEXT3,
     numFilterConditions: u32,
     filterConditions: [*]const FWPM_FILTER_CONDITION0,
     keyModKey: ?*const Guid,
@@ -4277,7 +4277,7 @@ pub extern "fwpuclnt" fn FwpmNetEventEnum4(
     engineHandle: ?HANDLE,
     enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ?*?*?*FWPM_NET_EVENT4_,
+    entries: ?*?*?*FWPM_NET_EVENT4,
     numEntriesReturned: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -4285,7 +4285,7 @@ pub extern "fwpuclnt" fn FwpmNetEventEnum5(
     engineHandle: ?HANDLE,
     enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ?*?*?*FWPM_NET_EVENT5_,
+    entries: ?*?*?*FWPM_NET_EVENT5,
     numEntriesReturned: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -4399,7 +4399,7 @@ pub extern "fwpuclnt" fn FwpmProviderContextAdd2(
 
 pub extern "fwpuclnt" fn FwpmProviderContextAdd3(
     engineHandle: ?HANDLE,
-    providerContext: ?*const FWPM_PROVIDER_CONTEXT3_,
+    providerContext: ?*const FWPM_PROVIDER_CONTEXT3,
     sd: ?PSECURITY_DESCRIPTOR,
     id: ?*u64,
 ) callconv(.winapi) u32;
@@ -4460,7 +4460,7 @@ pub extern "fwpuclnt" fn FwpmProviderContextEnum3(
     engineHandle: ?HANDLE,
     enumHandle: ?HANDLE,
     numEntriesRequested: u32,
-    entries: ?*?*?*FWPM_PROVIDER_CONTEXT3_,
+    entries: ?*?*?*FWPM_PROVIDER_CONTEXT3,
     numEntriesReturned: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -4488,7 +4488,7 @@ pub extern "fwpuclnt" fn FwpmProviderContextGetById2(
 pub extern "fwpuclnt" fn FwpmProviderContextGetById3(
     engineHandle: ?HANDLE,
     id: u64,
-    providerContext: ?*?*FWPM_PROVIDER_CONTEXT3_,
+    providerContext: ?*?*FWPM_PROVIDER_CONTEXT3,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4515,7 +4515,7 @@ pub extern "fwpuclnt" fn FwpmProviderContextGetByKey2(
 pub extern "fwpuclnt" fn FwpmProviderContextGetByKey3(
     engineHandle: ?HANDLE,
     key: ?*const Guid,
-    providerContext: ?*?*FWPM_PROVIDER_CONTEXT3_,
+    providerContext: ?*?*FWPM_PROVIDER_CONTEXT3,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'

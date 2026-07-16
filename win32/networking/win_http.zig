@@ -474,10 +474,6 @@ pub const WINHTTP_WEB_SOCKET_MIN_KEEPALIVE_VALUE = @as(u32, 15000);
 //--------------------------------------------------------------------------------
 // Section: Types (46)
 //--------------------------------------------------------------------------------
-pub const _WinHttpProxyNetworkKey = extern struct {
-    pbBuffer: [128]u8,
-};
-
 pub const HTTP_VERSION_INFO = extern struct {
     dwMajorVersion: u32,
     dwMinorVersion: u32,
@@ -691,6 +687,10 @@ pub const WINHTTP_PROXY_INFO = extern struct {
     lpszProxyBypass: ?PWSTR,
 };
 
+pub const WINHTTP_PROXY_NETWORKING_KEY = extern struct {
+    pbBuffer: [128]u8,
+};
+
 pub const WINHTTP_PROXY_RESULT = extern struct {
     cEntries: u32,
     pEntries: ?*WINHTTP_PROXY_RESULT_ENTRY,
@@ -727,7 +727,7 @@ pub const WINHTTP_PROXY_SETTINGS = extern struct {
     dwDetectedInterfaceIpCount: u32,
     pdwDetectedInterfaceIp: ?*u32,
     cNetworkKeys: u32,
-    pNetworkKeys: ?*_WinHttpProxyNetworkKey,
+    pNetworkKeys: ?*WINHTTP_PROXY_NETWORKING_KEY,
 };
 
 pub const WINHTTP_QUERY_CONNECTION_GROUP_RESULT = extern struct {

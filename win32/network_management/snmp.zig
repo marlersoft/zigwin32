@@ -99,7 +99,7 @@ pub const SNMPLISTEN_USEENTITY_ADDR = @as(u32, 0);
 // Section: Types (29)
 //--------------------------------------------------------------------------------
 pub const AsnAny = extern struct {
-    asnType: u8,
+    asnType: u8 align(4),
     asnValue: extern union {
         number: i32 align(4),
         unsigned32: u32 align(4),
@@ -113,7 +113,7 @@ pub const AsnAny = extern struct {
         gauge: u32 align(4),
         ticks: u32 align(4),
         arbitrary: AsnOctetString align(4),
-    },
+    } align(4),
 };
 
 pub const AsnObjectIdentifier = extern struct {
@@ -393,8 +393,8 @@ pub const SNMPAPI_CALLBACK = *const fn(
 ) callconv(.winapi) u32;
 
 pub const SnmpVarBind = extern struct {
-    name: AsnObjectIdentifier,
-    value: AsnAny,
+    name: AsnObjectIdentifier align(4),
+    value: AsnAny align(4),
 };
 
 pub const SnmpVarBindList = extern struct {

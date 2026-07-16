@@ -810,12 +810,6 @@ pub const WLAN_UI_API_VERSION = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (402)
 //--------------------------------------------------------------------------------
-pub const _DOT11_WME_AC_PARAMTERS_LIST = extern struct {
-    uNumOfEntries: u32,
-    uTotalNumOfEntries: u32,
-    dot11WMEACParameters: [1]DOT11_WME_AC_PARAMETERS,
-};
-
 pub const CH_DESCRIPTION_TYPE = enum(i32) {
     logical = 1,
     center_frequency = 2,
@@ -3006,6 +3000,12 @@ pub const DOT11_WME_AC_PARAMETERS = extern struct {
     ucECWmin: u8,
     ucECWmax: u8,
     usTXOPLimit: u16,
+};
+
+pub const DOT11_WME_AC_PARAMETERS_LIST = extern struct {
+    uNumOfEntries: u32,
+    uTotalNumOfEntries: u32,
+    dot11WMEACParameters: [1]DOT11_WME_AC_PARAMETERS,
 };
 
 pub const DOT11_WME_UPDATE_IE = extern struct {

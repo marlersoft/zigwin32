@@ -243,33 +243,6 @@ pub const WLOOP_TYPE_RELEASE = @as(u32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (74)
 //--------------------------------------------------------------------------------
-pub const _DMUS_PORTPARAMS = extern struct {
-    dwSize: u32,
-    dwValidParams: u32,
-    dwVoices: u32,
-    dwChannelGroups: u32,
-    dwAudioChannels: u32,
-    dwSampleRate: u32,
-    dwEffectFlags: u32,
-    fShare: BOOL,
-};
-
-pub const _rloop = extern struct {
-    cbSize: u32,
-    ulType: u32,
-    ulStart: u32,
-    ulLength: u32,
-};
-
-pub const _rwsmp = extern struct {
-    cbSize: u32,
-    usUnityNote: u16,
-    sFineTune: i16,
-    lAttenuation: i32,
-    fulOptions: u32,
-    cSampleLoops: u32,
-};
-
 pub const CONNECTION = extern struct {
     usSource: u16,
     usControl: u16,
@@ -443,6 +416,17 @@ pub const DMUS_PORTCAPS = extern struct {
     wszDescription: [128]u16,
 };
 
+pub const DMUS_PORTPARAMS7 = extern struct {
+    dwSize: u32,
+    dwValidParams: u32,
+    dwVoices: u32,
+    dwChannelGroups: u32,
+    dwAudioChannels: u32,
+    dwSampleRate: u32,
+    dwEffectFlags: u32,
+    fShare: BOOL,
+};
+
 pub const DMUS_PORTPARAMS8 = extern struct {
     dwSize: u32,
     dwValidParams: u32,
@@ -464,8 +448,8 @@ pub const DMUS_REGION = extern struct {
     ulNextRegionIdx: u32,
     ulFirstExtCkIdx: u32,
     WaveLink: WAVELINK,
-    WSMP: _rwsmp,
-    WLOOP: [1]_rloop,
+    WSMP: WSMPL,
+    WLOOP: [1]WLOOP,
 };
 
 pub const DMUS_SYNTHSTATS = extern struct {
@@ -612,6 +596,16 @@ pub const DSPROPERTY_DIRECTSOUNDDEVICE_WAVEDEVICEMAPPING_W_DATA = extern struct 
     DeviceName: ?PWSTR,
     DataFlow: DIRECTSOUNDDEVICE_DATAFLOW,
     DeviceId: Guid,
+};
+
+pub const DVAudInfo = extern struct {
+    bAudStyle: [2]u8,
+    bAudQu: [2]u8,
+    bNumAudPin: u8,
+    wAvgSamplesPerPinPerFrm: [2]u16,
+    wBlkMode: u16,
+    wDIFMode: u16,
+    wBlkDiv: u16,
 };
 
 const IID_IDirectMusic_Value = Guid.initString("6536115a-7b2d-11d2-ba18-0000f875ac12");
@@ -1453,21 +1447,27 @@ pub const RGNRANGE = extern struct {
     usHigh: u16,
 };
 
-pub const Tag_DVAudInfo = extern struct {
-    bAudStyle: [2]u8,
-    bAudQu: [2]u8,
-    bNumAudPin: u8,
-    wAvgSamplesPerPinPerFrm: [2]u16,
-    wBlkMode: u16,
-    wDIFMode: u16,
-    wBlkDiv: u16,
-};
-
 pub const WAVELINK = extern struct {
     fusOptions: u16,
     usPhaseGroup: u16,
     ulChannel: u32,
     ulTableIndex: u32,
+};
+
+pub const WLOOP = extern struct {
+    cbSize: u32,
+    ulType: u32,
+    ulStart: u32,
+    ulLength: u32,
+};
+
+pub const WSMPL = extern struct {
+    cbSize: u32,
+    usUnityNote: u16,
+    sFineTune: i16,
+    lAttenuation: i32,
+    fulOptions: u32,
+    cSampleLoops: u32,
 };
 
 

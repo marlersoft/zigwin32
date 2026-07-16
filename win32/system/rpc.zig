@@ -458,7 +458,7 @@ pub const I_RpcProxyUpdatePerfCounterBackendServerFn = *const fn(
 ) callconv(.winapi) void;
 
 pub const I_RpcProxyUpdatePerfCounterFn = *const fn(
-    Counter: RpcProxyPerfCounters,
+    Counter: RpcPerfCounters,
     ModifyTrend: i32,
     Size: u32,
 ) callconv(.winapi) void;
@@ -2359,7 +2359,7 @@ pub const RPCLT_PDU_FILTER_FUNC = *const fn(
     fDatagram: i32,
 ) callconv(.winapi) void;
 
-pub const RpcProxyPerfCounters = enum(i32) {
+pub const RpcPerfCounters = enum(i32) {
     CurrentUniqueUser = 1,
     BackEndConnectionAttempts = 2,
     BackEndConnectionFailed = 3,
@@ -2373,18 +2373,18 @@ pub const RpcProxyPerfCounters = enum(i32) {
     FailedLbsMessages = 11,
     LastCounter = 12,
 };
-pub const RpcCurrentUniqueUser = RpcProxyPerfCounters.CurrentUniqueUser;
-pub const RpcBackEndConnectionAttempts = RpcProxyPerfCounters.BackEndConnectionAttempts;
-pub const RpcBackEndConnectionFailed = RpcProxyPerfCounters.BackEndConnectionFailed;
-pub const RpcRequestsPerSecond = RpcProxyPerfCounters.RequestsPerSecond;
-pub const RpcIncomingConnections = RpcProxyPerfCounters.IncomingConnections;
-pub const RpcIncomingBandwidth = RpcProxyPerfCounters.IncomingBandwidth;
-pub const RpcOutgoingBandwidth = RpcProxyPerfCounters.OutgoingBandwidth;
-pub const RpcAttemptedLbsDecisions = RpcProxyPerfCounters.AttemptedLbsDecisions;
-pub const RpcFailedLbsDecisions = RpcProxyPerfCounters.FailedLbsDecisions;
-pub const RpcAttemptedLbsMessages = RpcProxyPerfCounters.AttemptedLbsMessages;
-pub const RpcFailedLbsMessages = RpcProxyPerfCounters.FailedLbsMessages;
-pub const RpcLastCounter = RpcProxyPerfCounters.LastCounter;
+pub const RpcCurrentUniqueUser = RpcPerfCounters.CurrentUniqueUser;
+pub const RpcBackEndConnectionAttempts = RpcPerfCounters.BackEndConnectionAttempts;
+pub const RpcBackEndConnectionFailed = RpcPerfCounters.BackEndConnectionFailed;
+pub const RpcRequestsPerSecond = RpcPerfCounters.RequestsPerSecond;
+pub const RpcIncomingConnections = RpcPerfCounters.IncomingConnections;
+pub const RpcIncomingBandwidth = RpcPerfCounters.IncomingBandwidth;
+pub const RpcOutgoingBandwidth = RpcPerfCounters.OutgoingBandwidth;
+pub const RpcAttemptedLbsDecisions = RpcPerfCounters.AttemptedLbsDecisions;
+pub const RpcFailedLbsDecisions = RpcPerfCounters.FailedLbsDecisions;
+pub const RpcAttemptedLbsMessages = RpcPerfCounters.AttemptedLbsMessages;
+pub const RpcFailedLbsMessages = RpcPerfCounters.FailedLbsMessages;
+pub const RpcLastCounter = RpcPerfCounters.LastCounter;
 
 pub const SCONTEXT_QUEUE = extern struct {
     NumberOfObjects: u32,

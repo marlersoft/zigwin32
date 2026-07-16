@@ -1392,7 +1392,7 @@ pub const WDIGEST_SP_NAME_W = "WDigest";
 pub const WINDOWS_SLID = Guid.initString("55c92734-d682-4d71-983e-d6ec3f16059f");
 
 //--------------------------------------------------------------------------------
-// Section: Types (608)
+// Section: Types (610)
 //--------------------------------------------------------------------------------
 pub const _HMAPPER = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -1461,7 +1461,7 @@ pub const APPLY_CONTROL_TOKEN_FN = *const fn(
     param1: ?*SecBufferDesc,
 ) callconv(.winapi) HRESULT;
 
-pub const ASC_REQ_FLAGS = packed struct(u64) {
+pub const ASC_REQ_FLAGS = packed struct(u32) {
     DELEGATE: u1 = 0,
     MUTUAL_AUTH: u1 = 0,
     REPLAY_DETECT: u1 = 0,
@@ -1494,7 +1494,67 @@ pub const ASC_REQ_FLAGS = packed struct(u64) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    MESSAGES: u1 = 0,
+};
+pub const ASC_REQ_DELEGATE = ASC_REQ_FLAGS{ .DELEGATE = 1 };
+pub const ASC_REQ_MUTUAL_AUTH = ASC_REQ_FLAGS{ .MUTUAL_AUTH = 1 };
+pub const ASC_REQ_REPLAY_DETECT = ASC_REQ_FLAGS{ .REPLAY_DETECT = 1 };
+pub const ASC_REQ_SEQUENCE_DETECT = ASC_REQ_FLAGS{ .SEQUENCE_DETECT = 1 };
+pub const ASC_REQ_CONFIDENTIALITY = ASC_REQ_FLAGS{ .CONFIDENTIALITY = 1 };
+pub const ASC_REQ_USE_SESSION_KEY = ASC_REQ_FLAGS{ .USE_SESSION_KEY = 1 };
+pub const ASC_REQ_SESSION_TICKET = ASC_REQ_FLAGS{ .SESSION_TICKET = 1 };
+pub const ASC_REQ_ALLOCATE_MEMORY = ASC_REQ_FLAGS{ .ALLOCATE_MEMORY = 1 };
+pub const ASC_REQ_USE_DCE_STYLE = ASC_REQ_FLAGS{ .USE_DCE_STYLE = 1 };
+pub const ASC_REQ_DATAGRAM = ASC_REQ_FLAGS{ .DATAGRAM = 1 };
+pub const ASC_REQ_CONNECTION = ASC_REQ_FLAGS{ .CONNECTION = 1 };
+pub const ASC_REQ_CALL_LEVEL = ASC_REQ_FLAGS{ .CALL_LEVEL = 1 };
+pub const ASC_REQ_FRAGMENT_SUPPLIED = ASC_REQ_FLAGS{ .FRAGMENT_SUPPLIED = 1 };
+pub const ASC_REQ_EXTENDED_ERROR = ASC_REQ_FLAGS{ .EXTENDED_ERROR = 1 };
+pub const ASC_REQ_STREAM = ASC_REQ_FLAGS{ .STREAM = 1 };
+pub const ASC_REQ_INTEGRITY = ASC_REQ_FLAGS{ .INTEGRITY = 1 };
+pub const ASC_REQ_LICENSING = ASC_REQ_FLAGS{ .LICENSING = 1 };
+pub const ASC_REQ_IDENTIFY = ASC_REQ_FLAGS{ .IDENTIFY = 1 };
+pub const ASC_REQ_ALLOW_NULL_SESSION = ASC_REQ_FLAGS{ .ALLOW_NULL_SESSION = 1 };
+pub const ASC_REQ_ALLOW_NON_USER_LOGONS = ASC_REQ_FLAGS{ .ALLOW_NON_USER_LOGONS = 1 };
+pub const ASC_REQ_ALLOW_CONTEXT_REPLAY = ASC_REQ_FLAGS{ .ALLOW_CONTEXT_REPLAY = 1 };
+pub const ASC_REQ_FRAGMENT_TO_FIT = ASC_REQ_FLAGS{ .FRAGMENT_TO_FIT = 1 };
+pub const ASC_REQ_NO_TOKEN = ASC_REQ_FLAGS{ .NO_TOKEN = 1 };
+pub const ASC_REQ_PROXY_BINDINGS = ASC_REQ_FLAGS{ .PROXY_BINDINGS = 1 };
+pub const ASC_REQ_ALLOW_MISSING_BINDINGS = ASC_REQ_FLAGS{ .ALLOW_MISSING_BINDINGS = 1 };
+
+pub const ASC_REQ_HIGH_FLAGS = packed struct(u64) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    S: u1 = 0,
     _33: u1 = 0,
     _34: u1 = 0,
     _35: u1 = 0,
@@ -1527,32 +1587,7 @@ pub const ASC_REQ_FLAGS = packed struct(u64) {
     _62: u1 = 0,
     _63: u1 = 0,
 };
-pub const ASC_REQ_DELEGATE = ASC_REQ_FLAGS{ .DELEGATE = 1 };
-pub const ASC_REQ_MUTUAL_AUTH = ASC_REQ_FLAGS{ .MUTUAL_AUTH = 1 };
-pub const ASC_REQ_REPLAY_DETECT = ASC_REQ_FLAGS{ .REPLAY_DETECT = 1 };
-pub const ASC_REQ_SEQUENCE_DETECT = ASC_REQ_FLAGS{ .SEQUENCE_DETECT = 1 };
-pub const ASC_REQ_CONFIDENTIALITY = ASC_REQ_FLAGS{ .CONFIDENTIALITY = 1 };
-pub const ASC_REQ_USE_SESSION_KEY = ASC_REQ_FLAGS{ .USE_SESSION_KEY = 1 };
-pub const ASC_REQ_SESSION_TICKET = ASC_REQ_FLAGS{ .SESSION_TICKET = 1 };
-pub const ASC_REQ_ALLOCATE_MEMORY = ASC_REQ_FLAGS{ .ALLOCATE_MEMORY = 1 };
-pub const ASC_REQ_USE_DCE_STYLE = ASC_REQ_FLAGS{ .USE_DCE_STYLE = 1 };
-pub const ASC_REQ_DATAGRAM = ASC_REQ_FLAGS{ .DATAGRAM = 1 };
-pub const ASC_REQ_CONNECTION = ASC_REQ_FLAGS{ .CONNECTION = 1 };
-pub const ASC_REQ_CALL_LEVEL = ASC_REQ_FLAGS{ .CALL_LEVEL = 1 };
-pub const ASC_REQ_FRAGMENT_SUPPLIED = ASC_REQ_FLAGS{ .FRAGMENT_SUPPLIED = 1 };
-pub const ASC_REQ_EXTENDED_ERROR = ASC_REQ_FLAGS{ .EXTENDED_ERROR = 1 };
-pub const ASC_REQ_STREAM = ASC_REQ_FLAGS{ .STREAM = 1 };
-pub const ASC_REQ_INTEGRITY = ASC_REQ_FLAGS{ .INTEGRITY = 1 };
-pub const ASC_REQ_LICENSING = ASC_REQ_FLAGS{ .LICENSING = 1 };
-pub const ASC_REQ_IDENTIFY = ASC_REQ_FLAGS{ .IDENTIFY = 1 };
-pub const ASC_REQ_ALLOW_NULL_SESSION = ASC_REQ_FLAGS{ .ALLOW_NULL_SESSION = 1 };
-pub const ASC_REQ_ALLOW_NON_USER_LOGONS = ASC_REQ_FLAGS{ .ALLOW_NON_USER_LOGONS = 1 };
-pub const ASC_REQ_ALLOW_CONTEXT_REPLAY = ASC_REQ_FLAGS{ .ALLOW_CONTEXT_REPLAY = 1 };
-pub const ASC_REQ_FRAGMENT_TO_FIT = ASC_REQ_FLAGS{ .FRAGMENT_TO_FIT = 1 };
-pub const ASC_REQ_NO_TOKEN = ASC_REQ_FLAGS{ .NO_TOKEN = 1 };
-pub const ASC_REQ_PROXY_BINDINGS = ASC_REQ_FLAGS{ .PROXY_BINDINGS = 1 };
-pub const ASC_REQ_ALLOW_MISSING_BINDINGS = ASC_REQ_FLAGS{ .ALLOW_MISSING_BINDINGS = 1 };
-pub const ASC_REQ_MESSAGES = ASC_REQ_FLAGS{ .MESSAGES = 1 };
+pub const ASC_REQ_MESSAGES = ASC_REQ_HIGH_FLAGS{ .S = 1 };
 
 pub const AUDIT_POLICY_INFORMATION = extern struct {
     AuditSubCategoryGuid: Guid,
@@ -1924,7 +1959,7 @@ pub const INITIALIZE_SECURITY_CONTEXT_FN_W = *const fn(
     param11: ?*LARGE_INTEGER,
 ) callconv(.winapi) HRESULT;
 
-pub const ISC_REQ_FLAGS = packed struct(u64) {
+pub const ISC_REQ_FLAGS = packed struct(u32) {
     DELEGATE: u1 = 0,
     MUTUAL_AUTH: u1 = 0,
     REPLAY_DETECT: u1 = 0,
@@ -1956,6 +1991,68 @@ pub const ISC_REQ_FLAGS = packed struct(u64) {
     _28: u1 = 0,
     UNVERIFIED_TARGET_NAME: u1 = 0,
     CONFIDENTIALITY_ONLY: u1 = 0,
+    _31: u1 = 0,
+};
+pub const ISC_REQ_DELEGATE = ISC_REQ_FLAGS{ .DELEGATE = 1 };
+pub const ISC_REQ_MUTUAL_AUTH = ISC_REQ_FLAGS{ .MUTUAL_AUTH = 1 };
+pub const ISC_REQ_REPLAY_DETECT = ISC_REQ_FLAGS{ .REPLAY_DETECT = 1 };
+pub const ISC_REQ_SEQUENCE_DETECT = ISC_REQ_FLAGS{ .SEQUENCE_DETECT = 1 };
+pub const ISC_REQ_CONFIDENTIALITY = ISC_REQ_FLAGS{ .CONFIDENTIALITY = 1 };
+pub const ISC_REQ_USE_SESSION_KEY = ISC_REQ_FLAGS{ .USE_SESSION_KEY = 1 };
+pub const ISC_REQ_PROMPT_FOR_CREDS = ISC_REQ_FLAGS{ .PROMPT_FOR_CREDS = 1 };
+pub const ISC_REQ_USE_SUPPLIED_CREDS = ISC_REQ_FLAGS{ .USE_SUPPLIED_CREDS = 1 };
+pub const ISC_REQ_ALLOCATE_MEMORY = ISC_REQ_FLAGS{ .ALLOCATE_MEMORY = 1 };
+pub const ISC_REQ_USE_DCE_STYLE = ISC_REQ_FLAGS{ .USE_DCE_STYLE = 1 };
+pub const ISC_REQ_DATAGRAM = ISC_REQ_FLAGS{ .DATAGRAM = 1 };
+pub const ISC_REQ_CONNECTION = ISC_REQ_FLAGS{ .CONNECTION = 1 };
+pub const ISC_REQ_CALL_LEVEL = ISC_REQ_FLAGS{ .CALL_LEVEL = 1 };
+pub const ISC_REQ_FRAGMENT_SUPPLIED = ISC_REQ_FLAGS{ .FRAGMENT_SUPPLIED = 1 };
+pub const ISC_REQ_EXTENDED_ERROR = ISC_REQ_FLAGS{ .EXTENDED_ERROR = 1 };
+pub const ISC_REQ_STREAM = ISC_REQ_FLAGS{ .STREAM = 1 };
+pub const ISC_REQ_INTEGRITY = ISC_REQ_FLAGS{ .INTEGRITY = 1 };
+pub const ISC_REQ_IDENTIFY = ISC_REQ_FLAGS{ .IDENTIFY = 1 };
+pub const ISC_REQ_NULL_SESSION = ISC_REQ_FLAGS{ .NULL_SESSION = 1 };
+pub const ISC_REQ_MANUAL_CRED_VALIDATION = ISC_REQ_FLAGS{ .MANUAL_CRED_VALIDATION = 1 };
+pub const ISC_REQ_RESERVED1 = ISC_REQ_FLAGS{ .RESERVED1 = 1 };
+pub const ISC_REQ_FRAGMENT_TO_FIT = ISC_REQ_FLAGS{ .FRAGMENT_TO_FIT = 1 };
+pub const ISC_REQ_FORWARD_CREDENTIALS = ISC_REQ_FLAGS{ .FORWARD_CREDENTIALS = 1 };
+pub const ISC_REQ_NO_INTEGRITY = ISC_REQ_FLAGS{ .NO_INTEGRITY = 1 };
+pub const ISC_REQ_USE_HTTP_STYLE = ISC_REQ_FLAGS{ .USE_HTTP_STYLE = 1 };
+pub const ISC_REQ_UNVERIFIED_TARGET_NAME = ISC_REQ_FLAGS{ .UNVERIFIED_TARGET_NAME = 1 };
+pub const ISC_REQ_CONFIDENTIALITY_ONLY = ISC_REQ_FLAGS{ .CONFIDENTIALITY_ONLY = 1 };
+
+pub const ISC_REQ_HIGH_FLAGS = packed struct(u64) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
     _31: u1 = 0,
     MESSAGES: u1 = 0,
     DEFERRED_CRED_VALIDATION: u1 = 0,
@@ -1990,35 +2087,8 @@ pub const ISC_REQ_FLAGS = packed struct(u64) {
     _62: u1 = 0,
     _63: u1 = 0,
 };
-pub const ISC_REQ_DELEGATE = ISC_REQ_FLAGS{ .DELEGATE = 1 };
-pub const ISC_REQ_MUTUAL_AUTH = ISC_REQ_FLAGS{ .MUTUAL_AUTH = 1 };
-pub const ISC_REQ_REPLAY_DETECT = ISC_REQ_FLAGS{ .REPLAY_DETECT = 1 };
-pub const ISC_REQ_SEQUENCE_DETECT = ISC_REQ_FLAGS{ .SEQUENCE_DETECT = 1 };
-pub const ISC_REQ_CONFIDENTIALITY = ISC_REQ_FLAGS{ .CONFIDENTIALITY = 1 };
-pub const ISC_REQ_USE_SESSION_KEY = ISC_REQ_FLAGS{ .USE_SESSION_KEY = 1 };
-pub const ISC_REQ_PROMPT_FOR_CREDS = ISC_REQ_FLAGS{ .PROMPT_FOR_CREDS = 1 };
-pub const ISC_REQ_USE_SUPPLIED_CREDS = ISC_REQ_FLAGS{ .USE_SUPPLIED_CREDS = 1 };
-pub const ISC_REQ_ALLOCATE_MEMORY = ISC_REQ_FLAGS{ .ALLOCATE_MEMORY = 1 };
-pub const ISC_REQ_USE_DCE_STYLE = ISC_REQ_FLAGS{ .USE_DCE_STYLE = 1 };
-pub const ISC_REQ_DATAGRAM = ISC_REQ_FLAGS{ .DATAGRAM = 1 };
-pub const ISC_REQ_CONNECTION = ISC_REQ_FLAGS{ .CONNECTION = 1 };
-pub const ISC_REQ_CALL_LEVEL = ISC_REQ_FLAGS{ .CALL_LEVEL = 1 };
-pub const ISC_REQ_FRAGMENT_SUPPLIED = ISC_REQ_FLAGS{ .FRAGMENT_SUPPLIED = 1 };
-pub const ISC_REQ_EXTENDED_ERROR = ISC_REQ_FLAGS{ .EXTENDED_ERROR = 1 };
-pub const ISC_REQ_STREAM = ISC_REQ_FLAGS{ .STREAM = 1 };
-pub const ISC_REQ_INTEGRITY = ISC_REQ_FLAGS{ .INTEGRITY = 1 };
-pub const ISC_REQ_IDENTIFY = ISC_REQ_FLAGS{ .IDENTIFY = 1 };
-pub const ISC_REQ_NULL_SESSION = ISC_REQ_FLAGS{ .NULL_SESSION = 1 };
-pub const ISC_REQ_MANUAL_CRED_VALIDATION = ISC_REQ_FLAGS{ .MANUAL_CRED_VALIDATION = 1 };
-pub const ISC_REQ_RESERVED1 = ISC_REQ_FLAGS{ .RESERVED1 = 1 };
-pub const ISC_REQ_FRAGMENT_TO_FIT = ISC_REQ_FLAGS{ .FRAGMENT_TO_FIT = 1 };
-pub const ISC_REQ_FORWARD_CREDENTIALS = ISC_REQ_FLAGS{ .FORWARD_CREDENTIALS = 1 };
-pub const ISC_REQ_NO_INTEGRITY = ISC_REQ_FLAGS{ .NO_INTEGRITY = 1 };
-pub const ISC_REQ_USE_HTTP_STYLE = ISC_REQ_FLAGS{ .USE_HTTP_STYLE = 1 };
-pub const ISC_REQ_UNVERIFIED_TARGET_NAME = ISC_REQ_FLAGS{ .UNVERIFIED_TARGET_NAME = 1 };
-pub const ISC_REQ_CONFIDENTIALITY_ONLY = ISC_REQ_FLAGS{ .CONFIDENTIALITY_ONLY = 1 };
-pub const ISC_REQ_MESSAGES = ISC_REQ_FLAGS{ .MESSAGES = 1 };
-pub const ISC_REQ_DEFERRED_CRED_VALIDATION = ISC_REQ_FLAGS{ .DEFERRED_CRED_VALIDATION = 1 };
+pub const ISC_REQ_MESSAGES = ISC_REQ_HIGH_FLAGS{ .MESSAGES = 1 };
+pub const ISC_REQ_DEFERRED_CRED_VALIDATION = ISC_REQ_HIGH_FLAGS{ .DEFERRED_CRED_VALIDATION = 1 };
 
 pub const KDC_PROXY_CACHE_ENTRY_DATA = extern struct {
     SinceLastUsed: u64,

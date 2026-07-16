@@ -451,7 +451,7 @@ pub const UDP_TABLE = @as(u32, 16);
 //--------------------------------------------------------------------------------
 // Section: Types (206)
 //--------------------------------------------------------------------------------
-pub const arp_send_reply = extern struct {
+pub const ARP_SEND_REPLY = extern struct {
     DestAddress: u32,
     SrcAddress: u32,
 };
@@ -666,14 +666,14 @@ pub const ND_NEIGHBOR_ADVERT = ICMP6_TYPE.ND_NEIGHBOR_ADVERT;
 pub const ND_REDIRECT = ICMP6_TYPE.ND_REDIRECT;
 pub const ICMP6_V2_MEMBERSHIP_REPORT = ICMP6_TYPE.ICMP6_V2_MEMBERSHIP_REPORT;
 
-pub const icmp_echo_reply = extern struct {
+pub const ICMP_ECHO_REPLY = extern struct {
     Address: u32,
     Status: u32,
     RoundTripTime: u32,
     DataSize: u16,
     Reserved: u16,
     Data: ?*anyopaque,
-    Options: ip_option_information,
+    Options: IP_OPTION_INFORMATION,
 };
 
 
@@ -681,7 +681,7 @@ pub const icmp_echo_reply = extern struct {
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const IcmpHandle = isize;
 
-pub const icmpv6_echo_reply_lh = extern struct {
+pub const ICMPV6_ECHO_REPLY_LH = extern struct {
     Address: IPV6_ADDRESS_EX,
     Status: u32,
     RoundTripTime: u32,
@@ -995,7 +995,7 @@ pub const IP_INTERFACE_INFO = extern struct {
     Adapter: [1]IP_ADAPTER_INDEX_MAP,
 };
 
-pub const ip_interface_name_info_w2ksp1 = extern struct {
+pub const IP_INTERFACE_NAME_INFO_W2KSP1 = extern struct {
     Index: u32,
     MediaType: u32,
     ConnectionType: u8,
@@ -1011,7 +1011,7 @@ pub const IP_MCAST_COUNTER_INFO = extern struct {
     OutMcastPkts: u64,
 };
 
-pub const ip_option_information = extern struct {
+pub const IP_OPTION_INFORMATION = extern struct {
     Ttl: u8,
     Tos: u8,
     Flags: u8,
@@ -2450,7 +2450,7 @@ pub const TcpConnectionEstatsBandwidth = TCP_ESTATS_TYPE.Bandwidth;
 pub const TcpConnectionEstatsFineRtt = TCP_ESTATS_TYPE.FineRtt;
 pub const TcpConnectionEstatsMaximum = TCP_ESTATS_TYPE.Maximum;
 
-pub const tcp_reserve_port_range = extern struct {
+pub const TCP_RESERVE_PORT_RANGE = extern struct {
     UpperRange: u16,
     LowerRange: u16,
 };
@@ -2537,7 +2537,7 @@ pub const UDP_TABLE_BASIC = UDP_TABLE_CLASS.BASIC;
 pub const UDP_TABLE_OWNER_PID = UDP_TABLE_CLASS.OWNER_PID;
 pub const UDP_TABLE_OWNER_MODULE = UDP_TABLE_CLASS.OWNER_MODULE;
 
-pub const icmp_echo_reply32 = switch(@import("../zig.zig").arch) {
+pub const ICMP_ECHO_REPLY32 = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         Address: u32,
         Status: u32,
@@ -2545,11 +2545,11 @@ pub const icmp_echo_reply32 = switch(@import("../zig.zig").arch) {
         DataSize: u16,
         Reserved: u16,
         Data: ?*anyopaque,
-        Options: ip_option_information32,
+        Options: IP_OPTION_INFORMATION32,
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-pub const ip_option_information32 = switch(@import("../zig.zig").arch) {
+pub const IP_OPTION_INFORMATION32 = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         Ttl: u8,
         Tos: u8,
@@ -3384,7 +3384,7 @@ pub extern "iphlpapi" fn Icmp6SendEcho2(
     // TODO: what to do with BytesParamIndex 7?
     RequestData: ?*anyopaque,
     RequestSize: u16,
-    RequestOptions: ?*ip_option_information,
+    RequestOptions: ?*IP_OPTION_INFORMATION,
     // TODO: what to do with BytesParamIndex 10?
     ReplyBuffer: ?*anyopaque,
     ReplySize: u32,
@@ -3414,7 +3414,7 @@ pub extern "iphlpapi" fn IcmpSendEcho(
     // TODO: what to do with BytesParamIndex 3?
     RequestData: ?*anyopaque,
     RequestSize: u16,
-    RequestOptions: ?*ip_option_information,
+    RequestOptions: ?*IP_OPTION_INFORMATION,
     // TODO: what to do with BytesParamIndex 6?
     ReplyBuffer: ?*anyopaque,
     ReplySize: u32,
@@ -3431,7 +3431,7 @@ pub extern "iphlpapi" fn IcmpSendEcho2(
     // TODO: what to do with BytesParamIndex 6?
     RequestData: ?*anyopaque,
     RequestSize: u16,
-    RequestOptions: ?*ip_option_information,
+    RequestOptions: ?*IP_OPTION_INFORMATION,
     // TODO: what to do with BytesParamIndex 9?
     ReplyBuffer: ?*anyopaque,
     ReplySize: u32,
@@ -3449,7 +3449,7 @@ pub extern "iphlpapi" fn IcmpSendEcho2Ex(
     // TODO: what to do with BytesParamIndex 7?
     RequestData: ?*anyopaque,
     RequestSize: u16,
-    RequestOptions: ?*ip_option_information,
+    RequestOptions: ?*IP_OPTION_INFORMATION,
     // TODO: what to do with BytesParamIndex 10?
     ReplyBuffer: ?*anyopaque,
     ReplySize: u32,
@@ -3508,7 +3508,7 @@ pub extern "iphlpapi" fn LookupPersistentUdpPortReservation(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "iphlpapi" fn NhpAllocateAndGetInterfaceInfoFromStack(
-    ppTable: ?*?*ip_interface_name_info_w2ksp1,
+    ppTable: ?*?*IP_INTERFACE_NAME_INFO_W2KSP1,
     pdwCount: ?*u32,
     bOrder: BOOL,
     hHeap: ?HANDLE,

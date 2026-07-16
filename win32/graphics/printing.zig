@@ -1404,12 +1404,6 @@ pub const _CPSUICALLBACK = *const fn(
     pCPSUICBParam: ?*CPSUICBPARAM,
 ) callconv(.winapi) i32;
 
-pub const _SPLCLIENT_INFO_2_V1 = extern struct {
-    hSplPrinter: usize,
-};
-
-
-
 pub const _SPLCLIENT_INFO_2_V3 = extern struct {
     hSplPrinter: u64,
 };
@@ -6075,53 +6069,48 @@ pub const MONITORUI = extern struct {
     pfnDeletePortUI: isize,
 };
 
-pub const MxdcEscapeHeader = extern struct {
+pub const MXDC_ESCAPE_HEADER_T = extern struct {
     cbInput: u32 align(1),
     cbOutput: u32 align(1),
     opCode: u32 align(1),
 };
 
-pub const MxdcGetFileNameData = extern struct {
+pub const MXDC_GET_FILENAME_DATA_T = extern struct {
     cbOutput: u32 align(1),
     wszData: [1]u16 align(1),
 };
 
-pub const MxdcImageTypeEnums = enum(i32) {
+pub const MXDC_IMAGE_TYPE_ENUMS = enum(i32) {
     JPEGHIGH_COMPRESSION = 1,
     JPEGMEDIUM_COMPRESSION = 2,
     JPEGLOW_COMPRESSION = 3,
     PNG = 4,
 };
-pub const MXDC_IMAGETYPE_JPEGHIGH_COMPRESSION = MxdcImageTypeEnums.JPEGHIGH_COMPRESSION;
-pub const MXDC_IMAGETYPE_JPEGMEDIUM_COMPRESSION = MxdcImageTypeEnums.JPEGMEDIUM_COMPRESSION;
-pub const MXDC_IMAGETYPE_JPEGLOW_COMPRESSION = MxdcImageTypeEnums.JPEGLOW_COMPRESSION;
-pub const MXDC_IMAGETYPE_PNG = MxdcImageTypeEnums.PNG;
+pub const MXDC_IMAGETYPE_JPEGHIGH_COMPRESSION = MXDC_IMAGE_TYPE_ENUMS.JPEGHIGH_COMPRESSION;
+pub const MXDC_IMAGETYPE_JPEGMEDIUM_COMPRESSION = MXDC_IMAGE_TYPE_ENUMS.JPEGMEDIUM_COMPRESSION;
+pub const MXDC_IMAGETYPE_JPEGLOW_COMPRESSION = MXDC_IMAGE_TYPE_ENUMS.JPEGLOW_COMPRESSION;
+pub const MXDC_IMAGETYPE_PNG = MXDC_IMAGE_TYPE_ENUMS.PNG;
 
-pub const MxdcLandscapeRotationEnums = enum(i32) {
+pub const MXDC_LANDSCAPE_ROTATION_ENUMS = enum(i32) {
     COUNTERCLOCKWISE_90_DEGREES = 90,
     NONE = 0,
     COUNTERCLOCKWISE_270_DEGREES = -90,
 };
-pub const MXDC_LANDSCAPE_ROTATE_COUNTERCLOCKWISE_90_DEGREES = MxdcLandscapeRotationEnums.COUNTERCLOCKWISE_90_DEGREES;
-pub const MXDC_LANDSCAPE_ROTATE_NONE = MxdcLandscapeRotationEnums.NONE;
-pub const MXDC_LANDSCAPE_ROTATE_COUNTERCLOCKWISE_270_DEGREES = MxdcLandscapeRotationEnums.COUNTERCLOCKWISE_270_DEGREES;
+pub const MXDC_LANDSCAPE_ROTATE_COUNTERCLOCKWISE_90_DEGREES = MXDC_LANDSCAPE_ROTATION_ENUMS.COUNTERCLOCKWISE_90_DEGREES;
+pub const MXDC_LANDSCAPE_ROTATE_NONE = MXDC_LANDSCAPE_ROTATION_ENUMS.NONE;
+pub const MXDC_LANDSCAPE_ROTATE_COUNTERCLOCKWISE_270_DEGREES = MXDC_LANDSCAPE_ROTATION_ENUMS.COUNTERCLOCKWISE_270_DEGREES;
 
-pub const MxdcPrintTicketEscape = extern struct {
-    mxdcEscape: MxdcEscapeHeader,
-    printTicketData: MxdcPrintTicketPassthrough,
-};
-
-pub const MxdcPrintTicketPassthrough = extern struct {
+pub const MXDC_PRINTTICKET_DATA_T = extern struct {
     dwDataSize: u32 align(1),
     bData: [1]u8 align(1),
 };
 
-pub const MxdcS0PageData = extern struct {
-    dwSize: u32 align(1),
-    bData: [1]u8 align(1),
+pub const MXDC_PRINTTICKET_ESCAPE_T = extern struct {
+    mxdcEscape: MXDC_ESCAPE_HEADER_T align(1),
+    printTicketData: MXDC_PRINTTICKET_DATA_T align(1),
 };
 
-pub const MxdcS0PageEnums = enum(i32) {
+pub const MXDC_S0_PAGE_ENUMS = enum(i32) {
     TTF = 0,
     JPEG = 1,
     PNG = 2,
@@ -6133,28 +6122,33 @@ pub const MxdcS0PageEnums = enum(i32) {
     PNG_THUMBNAIL = 8,
     MAX = 9,
 };
-pub const MXDC_RESOURCE_TTF = MxdcS0PageEnums.TTF;
-pub const MXDC_RESOURCE_JPEG = MxdcS0PageEnums.JPEG;
-pub const MXDC_RESOURCE_PNG = MxdcS0PageEnums.PNG;
-pub const MXDC_RESOURCE_TIFF = MxdcS0PageEnums.TIFF;
-pub const MXDC_RESOURCE_WDP = MxdcS0PageEnums.WDP;
-pub const MXDC_RESOURCE_DICTIONARY = MxdcS0PageEnums.DICTIONARY;
-pub const MXDC_RESOURCE_ICC_PROFILE = MxdcS0PageEnums.ICC_PROFILE;
-pub const MXDC_RESOURCE_JPEG_THUMBNAIL = MxdcS0PageEnums.JPEG_THUMBNAIL;
-pub const MXDC_RESOURCE_PNG_THUMBNAIL = MxdcS0PageEnums.PNG_THUMBNAIL;
-pub const MXDC_RESOURCE_MAX = MxdcS0PageEnums.MAX;
+pub const MXDC_RESOURCE_TTF = MXDC_S0_PAGE_ENUMS.TTF;
+pub const MXDC_RESOURCE_JPEG = MXDC_S0_PAGE_ENUMS.JPEG;
+pub const MXDC_RESOURCE_PNG = MXDC_S0_PAGE_ENUMS.PNG;
+pub const MXDC_RESOURCE_TIFF = MXDC_S0_PAGE_ENUMS.TIFF;
+pub const MXDC_RESOURCE_WDP = MXDC_S0_PAGE_ENUMS.WDP;
+pub const MXDC_RESOURCE_DICTIONARY = MXDC_S0_PAGE_ENUMS.DICTIONARY;
+pub const MXDC_RESOURCE_ICC_PROFILE = MXDC_S0_PAGE_ENUMS.ICC_PROFILE;
+pub const MXDC_RESOURCE_JPEG_THUMBNAIL = MXDC_S0_PAGE_ENUMS.JPEG_THUMBNAIL;
+pub const MXDC_RESOURCE_PNG_THUMBNAIL = MXDC_S0_PAGE_ENUMS.PNG_THUMBNAIL;
+pub const MXDC_RESOURCE_MAX = MXDC_S0_PAGE_ENUMS.MAX;
 
-pub const MxdcS0PagePassthroughEscape = extern struct {
-    mxdcEscape: MxdcEscapeHeader,
-    xpsS0PageData: MxdcS0PageData,
+pub const MXDC_S0PAGE_DATA_T = extern struct {
+    dwSize: u32 align(1),
+    bData: [1]u8 align(1),
 };
 
-pub const MxdcS0PageResourceEscape = extern struct {
-    mxdcEscape: MxdcEscapeHeader,
-    xpsS0PageResourcePassthrough: MxdcXpsS0PageResource,
+pub const MXDC_S0PAGE_PASSTHROUGH_ESCAPE_T = extern struct {
+    mxdcEscape: MXDC_ESCAPE_HEADER_T align(1),
+    xpsS0PageData: MXDC_S0PAGE_DATA_T align(1),
 };
 
-pub const MxdcXpsS0PageResource = extern struct {
+pub const MXDC_S0PAGE_RESOURCE_ESCAPE_T = extern struct {
+    mxdcEscape: MXDC_ESCAPE_HEADER_T align(1),
+    xpsS0PageResourcePassthrough: MXDC_XPS_S0PAGE_RESOURCE_T align(1),
+};
+
+pub const MXDC_XPS_S0PAGE_RESOURCE_T = extern struct {
     dwSize: u32 align(1),
     dwResourceType: u32 align(1),
     szUri: [260]u8 align(1),
@@ -7279,6 +7273,12 @@ pub const SPLCLIENT_INFO_1 = extern struct {
     wProcessorArchitecture: u16,
 };
 
+pub const SPLCLIENT_INFO_2_W2K = extern struct {
+    hSplPrinter: usize,
+};
+
+
+
 pub const SPLCLIENT_INFO_3_VISTA = extern struct {
     cbSize: u32,
     dwFlags: u32,
@@ -7429,7 +7429,7 @@ pub const XPSRAS_RENDERING_MODE = enum(i32) {
 pub const XPSRAS_RENDERING_MODE_ANTIALIASED = XPSRAS_RENDERING_MODE.NTIALIASED;
 pub const XPSRAS_RENDERING_MODE_ALIASED = XPSRAS_RENDERING_MODE.LIASED;
 
-pub const _SPLCLIENT_INFO_2_V2 = switch(@import("../zig.zig").arch) {
+pub const SPLCLIENT_INFO_2_WINXP = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         hSplPrinter: u64,
     },

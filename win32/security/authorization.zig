@@ -990,7 +990,7 @@ pub const EXPLICIT_ACCESS_W = extern struct {
     Trustee: TRUSTEE_W,
 };
 
-pub const FN_OBJECT_MGR_FUNCTIONS = extern struct {
+pub const FN_OBJECT_MGR_FUNCTS = extern struct {
     Placeholder: u32,
 };
 
@@ -5072,7 +5072,7 @@ pub extern "advapi32" fn ConvertStringSidToSidW(
 pub extern "advapi32" fn FreeInheritedFromArray(
     pInheritArray: [*]INHERITED_FROMW,
     AceCnt: u16,
-    pfnArray: ?*FN_OBJECT_MGR_FUNCTIONS,
+    pfnArray: ?*FN_OBJECT_MGR_FUNCTS,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5128,7 +5128,7 @@ pub extern "advapi32" fn GetInheritanceSourceA(
     pObjectClassGuids: ?[*]?*Guid,
     GuidCount: u32,
     pAcl: ?*ACL,
-    pfnArray: ?*FN_OBJECT_MGR_FUNCTIONS,
+    pfnArray: ?*FN_OBJECT_MGR_FUNCTS,
     pGenericMapping: ?*GENERIC_MAPPING,
     pInheritArray: ?*INHERITED_FROMA,
 ) callconv(.winapi) u32;
@@ -5142,7 +5142,7 @@ pub extern "advapi32" fn GetInheritanceSourceW(
     pObjectClassGuids: ?[*]?*Guid,
     GuidCount: u32,
     pAcl: ?*ACL,
-    pfnArray: ?*FN_OBJECT_MGR_FUNCTIONS,
+    pfnArray: ?*FN_OBJECT_MGR_FUNCTS,
     pGenericMapping: ?*GENERIC_MAPPING,
     pInheritArray: ?*INHERITED_FROMW,
 ) callconv(.winapi) u32;

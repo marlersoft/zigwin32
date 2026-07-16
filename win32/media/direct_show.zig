@@ -1177,33 +1177,6 @@ pub const _AMSTREAMSELECTINFOFLAGS = enum(i32) {
 pub const AMSTREAMSELECTINFO_ENABLED = _AMSTREAMSELECTINFOFLAGS.NABLED;
 pub const AMSTREAMSELECTINFO_EXCLUSIVE = _AMSTREAMSELECTINFOFLAGS.XCLUSIVE;
 
-pub const _avitcdlindex = extern struct {
-    fcc: u32 align(2),
-    cb: u32 align(2),
-    wLongsPerEntry: u16 align(2),
-    bIndexSubType: u8 align(2),
-    bIndexType: u8 align(2),
-    nEntriesInUse: u32 align(2),
-    dwChunkId: u32 align(2),
-    dwReserved: [3]u32 align(2),
-    aIndex: [584]AVITCDLINDEX_ENTRY align(2),
-    adwTrailingFill: [3512]u32 align(2),
-};
-
-pub const _avitimedindex = extern struct {
-    fcc: u32 align(2),
-    cb: u32 align(2),
-    wLongsPerEntry: u16 align(2),
-    bIndexSubType: u8 align(2),
-    bIndexType: u8 align(2),
-    nEntriesInUse: u32 align(2),
-    dwChunkId: u32 align(2),
-    qwBaseOffset: u64 align(2),
-    dwReserved_3: u32 align(2),
-    aIndex: [1362]AVITIMEDINDEX_ENTRY align(2),
-    adwTrailingFill: [2734]u32 align(2),
-};
-
 pub const _DVDECODERRESOLUTION = enum(i32) {
     @"720x480" = 1000,
     @"360x240" = 1001,
@@ -1795,7 +1768,7 @@ pub const AM_SEEKING_CanPlayBackwards = AM_SEEKING_SEEKING_CAPABILITIES.CanPlayB
 pub const AM_SEEKING_CanDoSegments = AM_SEEKING_SEEKING_CAPABILITIES.CanDoSegments;
 pub const AM_SEEKING_Source = AM_SEEKING_SEEKING_CAPABILITIES.Source;
 
-pub const AM_SEEKING_SeekingFlags = enum(i32) {
+pub const AM_SEEKING_SEEKING_FLAGS = enum(i32) {
     NoPositioning = 0,
     AbsolutePositioning = 1,
     RelativePositioning = 2,
@@ -1806,15 +1779,15 @@ pub const AM_SEEKING_SeekingFlags = enum(i32) {
     NoFlush = 32,
     pub const PositioningBitsMask = .IncrementalPositioning;
 };
-pub const AM_SEEKING_NoPositioning = AM_SEEKING_SeekingFlags.NoPositioning;
-pub const AM_SEEKING_AbsolutePositioning = AM_SEEKING_SeekingFlags.AbsolutePositioning;
-pub const AM_SEEKING_RelativePositioning = AM_SEEKING_SeekingFlags.RelativePositioning;
-pub const AM_SEEKING_IncrementalPositioning = AM_SEEKING_SeekingFlags.IncrementalPositioning;
-pub const AM_SEEKING_PositioningBitsMask = AM_SEEKING_SeekingFlags.IncrementalPositioning;
-pub const AM_SEEKING_SeekToKeyFrame = AM_SEEKING_SeekingFlags.SeekToKeyFrame;
-pub const AM_SEEKING_ReturnTime = AM_SEEKING_SeekingFlags.ReturnTime;
-pub const AM_SEEKING_Segment = AM_SEEKING_SeekingFlags.Segment;
-pub const AM_SEEKING_NoFlush = AM_SEEKING_SeekingFlags.NoFlush;
+pub const AM_SEEKING_NoPositioning = AM_SEEKING_SEEKING_FLAGS.NoPositioning;
+pub const AM_SEEKING_AbsolutePositioning = AM_SEEKING_SEEKING_FLAGS.AbsolutePositioning;
+pub const AM_SEEKING_RelativePositioning = AM_SEEKING_SEEKING_FLAGS.RelativePositioning;
+pub const AM_SEEKING_IncrementalPositioning = AM_SEEKING_SEEKING_FLAGS.IncrementalPositioning;
+pub const AM_SEEKING_PositioningBitsMask = AM_SEEKING_SEEKING_FLAGS.IncrementalPositioning;
+pub const AM_SEEKING_SeekToKeyFrame = AM_SEEKING_SEEKING_FLAGS.SeekToKeyFrame;
+pub const AM_SEEKING_ReturnTime = AM_SEEKING_SEEKING_FLAGS.ReturnTime;
+pub const AM_SEEKING_Segment = AM_SEEKING_SEEKING_FLAGS.Segment;
+pub const AM_SEEKING_NoFlush = AM_SEEKING_SEEKING_FLAGS.NoFlush;
 
 pub const AM_SimpleRateChange = extern struct {
     StartTime: i64,
@@ -2534,6 +2507,19 @@ pub const AVISUPERINDEX = extern struct {
     aIndex: [1022]_avisuperindex_entry align(2),
 };
 
+pub const AVITCDLINDEX = extern struct {
+    fcc: u32 align(2),
+    cb: u32 align(2),
+    wLongsPerEntry: u16 align(2),
+    bIndexSubType: u8 align(2),
+    bIndexType: u8 align(2),
+    nEntriesInUse: u32 align(2),
+    dwChunkId: u32 align(2),
+    dwReserved: [3]u32 align(2),
+    aIndex: [584]AVITCDLINDEX_ENTRY align(2),
+    adwTrailingFill: [3512]u32 align(2),
+};
+
 pub const AVITCDLINDEX_ENTRY = extern struct {
     dwTick: u32 align(2),
     time: TIMECODE align(2),
@@ -2552,6 +2538,20 @@ pub const AVITIMECODEINDEX = extern struct {
     dwChunkId: u32 align(2),
     dwReserved: [3]u32 align(2),
     aIndex: [1022]TIMECODEDATA align(2),
+};
+
+pub const AVITIMEDINDEX = extern struct {
+    fcc: u32 align(2),
+    cb: u32 align(2),
+    wLongsPerEntry: u16 align(2),
+    bIndexSubType: u8 align(2),
+    bIndexType: u8 align(2),
+    nEntriesInUse: u32 align(2),
+    dwChunkId: u32 align(2),
+    qwBaseOffset: u64 align(2),
+    dwReserved_3: u32 align(2),
+    aIndex: [1362]AVITIMEDINDEX_ENTRY align(2),
+    adwTrailingFill: [2734]u32 align(2),
 };
 
 pub const AVITIMEDINDEX_ENTRY = extern struct {
@@ -39496,8 +39496,8 @@ pub const MPEG_DATE = extern struct {
 };
 
 pub const MPEG_DATE_AND_TIME = extern struct {
-    D: MPEG_DATE,
-    T: MPEG_TIME,
+    D: MPEG_DATE align(1),
+    T: MPEG_TIME align(1),
 };
 
 pub const MPEG_HEADER_BITS = extern struct {
@@ -39577,9 +39577,9 @@ pub const MPEG_STREAM_FILTER = extern struct {
 };
 
 pub const MPEG_TIME = extern struct {
-    Hours: u8,
-    Minutes: u8,
-    Seconds: u8,
+    Hours: u8 align(1),
+    Minutes: u8 align(1),
+    Seconds: u8 align(1),
 };
 
 pub const MPEG_WINSOCK = extern struct {
@@ -40519,12 +40519,12 @@ pub const BDA_SCAN_MOD_16APSK = ScanModulationTypes.BDA_SCAN_MOD_16APSK;
 pub const BDA_SCAN_MOD_32APSK = ScanModulationTypes.BDA_SCAN_MOD_32APSK;
 
 pub const SECTION = extern struct {
-    TableId: u8,
+    TableId: u8 align(1),
     Header: extern union {
         S: MPEG_HEADER_BITS_MIDL align(1),
         W: u16 align(1),
-    },
-    SectionData: [1]u8,
+    } align(1),
+    SectionData: [1]u8 align(1),
 };
 
 const CLSID_SectionList_Value = Guid.initString("73da5d04-4347-45d3-a9dc-fae9ddbe558d");

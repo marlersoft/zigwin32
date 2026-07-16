@@ -60812,19 +60812,19 @@ pub const IMediaActivityNotifySite = extern union {
         base: IUnknown.VTable,
         OnMediaActivityStarted: *const fn(
             self: *const IMediaActivityNotifySite,
-            mediaActivityType: MediaActivityNotifyType,
+            mediaActivityType: MEDIA_ACTIVITY_NOTIFY_TYPE,
         ) callconv(.winapi) HRESULT,
         OnMediaActivityStopped: *const fn(
             self: *const IMediaActivityNotifySite,
-            mediaActivityType: MediaActivityNotifyType,
+            mediaActivityType: MEDIA_ACTIVITY_NOTIFY_TYPE,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnMediaActivityStarted(self: *const IMediaActivityNotifySite, mediaActivityType: MediaActivityNotifyType) callconv(.@"inline") HRESULT {
+    pub fn OnMediaActivityStarted(self: *const IMediaActivityNotifySite, mediaActivityType: MEDIA_ACTIVITY_NOTIFY_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.OnMediaActivityStarted(self, mediaActivityType);
     }
-    pub fn OnMediaActivityStopped(self: *const IMediaActivityNotifySite, mediaActivityType: MediaActivityNotifyType) callconv(.@"inline") HRESULT {
+    pub fn OnMediaActivityStopped(self: *const IMediaActivityNotifySite, mediaActivityType: MEDIA_ACTIVITY_NOTIFY_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.OnMediaActivityStopped(self, mediaActivityType);
     }
 };
@@ -70073,14 +70073,14 @@ pub const CONTEXT_TYPE_ExitScope = MARKUP_CONTEXT_TYPE.CONTEXT_TYPE_ExitScope;
 pub const CONTEXT_TYPE_NoScope = MARKUP_CONTEXT_TYPE.CONTEXT_TYPE_NoScope;
 pub const MARKUP_CONTEXT_TYPE_Max = MARKUP_CONTEXT_TYPE.MARKUP_CONTEXT_TYPE_Max;
 
-pub const MediaActivityNotifyType = enum(i32) {
+pub const MEDIA_ACTIVITY_NOTIFY_TYPE = enum(i32) {
     Playback = 0,
     Recording = 1,
     Casting = 2,
 };
-pub const MediaPlayback = MediaActivityNotifyType.Playback;
-pub const MediaRecording = MediaActivityNotifyType.Recording;
-pub const MediaCasting = MediaActivityNotifyType.Casting;
+pub const MediaPlayback = MEDIA_ACTIVITY_NOTIFY_TYPE.Playback;
+pub const MediaRecording = MEDIA_ACTIVITY_NOTIFY_TYPE.Recording;
+pub const MediaCasting = MEDIA_ACTIVITY_NOTIFY_TYPE.Casting;
 
 pub const mediaType = enum(i32) {
     NotSet = 0,
@@ -70153,6 +70153,14 @@ pub const MOVEUNIT_NEXTSENTENCE = MOVEUNIT_ACTION.NEXTSENTENCE;
 pub const MOVEUNIT_PREVBLOCK = MOVEUNIT_ACTION.PREVBLOCK;
 pub const MOVEUNIT_NEXTBLOCK = MOVEUNIT_ACTION.NEXTBLOCK;
 pub const MOVEUNIT_ACTION_Max = MOVEUNIT_ACTION.ACTION_Max;
+
+pub const NAVIGATEDATA = extern struct {
+    ulTarget: u32,
+    ulURL: u32,
+    ulRefURL: u32,
+    ulPostData: u32,
+    dwFlags: u32,
+};
 
 pub const NAVIGATEFRAME_FLAGS = enum(i32) {
     RECORD = 1,
@@ -73166,14 +73174,6 @@ pub const CLSID_SVGViewElement = &CLSID_SVGViewElement_Value;
 
 const CLSID_SVGZoomEvent_Value = Guid.initString("305105d9-98b5-11cf-bb82-00aa00bdce0b");
 pub const CLSID_SVGZoomEvent = &CLSID_SVGZoomEvent_Value;
-
-pub const tagNavigateData = extern struct {
-    ulTarget: u32,
-    ulURL: u32,
-    ulRefURL: u32,
-    ulPostData: u32,
-    dwFlags: u32,
-};
 
 pub const textDecoration = enum(i32) {
     None = 0,

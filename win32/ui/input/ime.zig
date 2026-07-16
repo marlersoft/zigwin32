@@ -3285,6 +3285,12 @@ pub const IMEDP = extern struct {
     relID: IMEREL align(1),
 };
 
+pub const IMEFAREASTINFO = extern struct {
+    dwSize: u32,
+    dwType: u32,
+    dwData: [1]u32,
+};
+
 pub const IMEFMT = enum(i32) {
     UNKNOWN = 0,
     MSIME2_BIN_SYSTEM = 1,
@@ -3519,11 +3525,16 @@ pub const IMESTRINGCANDIDATE = extern struct {
 
 pub const IMESTRINGCANDIDATEINFO = extern struct {
     dwFarEastId: u32,
-    lpFarEastInfo: ?*tabIMEFAREASTINFO,
+    lpFarEastInfo: ?*IMEFAREASTINFO,
     fInfoMask: u32,
     iSelIndex: i32,
     uCount: u32,
     lpwstr: [1]?PWSTR,
+};
+
+pub const IMESTRINGINFO = extern struct {
+    dwFarEastId: u32,
+    lpwstr: ?PWSTR,
 };
 
 pub const IMEUCT = enum(i32) {
@@ -3704,17 +3715,6 @@ pub const STYLEBUFA = extern struct {
 pub const STYLEBUFW = extern struct {
     dwStyle: u32,
     szDescription: [32]u16,
-};
-
-pub const tabIMEFAREASTINFO = extern struct {
-    dwSize: u32,
-    dwType: u32,
-    dwData: [1]u32,
-};
-
-pub const tabIMESTRINGINFO = extern struct {
-    dwFarEastId: u32,
-    lpwstr: ?PWSTR,
 };
 
 pub const TRANSMSG = extern struct {

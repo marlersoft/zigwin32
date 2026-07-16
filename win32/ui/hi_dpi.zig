@@ -209,7 +209,7 @@ pub extern "user32" fn GetSystemDpiForProcess(
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "user32" fn GetSystemMetricsForDpi(
-    nIndex: i32,
+    nIndex: SYSTEM_METRICS_INDEX,
     dpi: u32,
 ) callconv(.winapi) i32;
 
@@ -303,7 +303,7 @@ pub extern "user32" fn SystemParametersInfoForDpi(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
@@ -313,6 +313,7 @@ const HWND = @import("../foundation.zig").HWND;
 const POINT = @import("../foundation.zig").POINT;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
+const SYSTEM_METRICS_INDEX = @import("../ui/windows_and_messaging.zig").SYSTEM_METRICS_INDEX;
 const WINDOW_EX_STYLE = @import("../ui/windows_and_messaging.zig").WINDOW_EX_STYLE;
 const WINDOW_STYLE = @import("../ui/windows_and_messaging.zig").WINDOW_STYLE;
 

@@ -538,6 +538,30 @@ pub const ACMDRVFORMATSUGGEST = extern struct {
     cbwfxDst: u32 align(1),
 };
 
+pub const ACMDRVOPENDESCA = extern struct {
+    cbStruct: u32 align(1),
+    fccType: u32 align(1),
+    fccComp: u32 align(1),
+    dwVersion: u32 align(1),
+    dwFlags: u32 align(1),
+    dwError: u32 align(1),
+    pszSectionName: ?[*:0]const u8 align(1),
+    pszAliasName: ?[*:0]const u8 align(1),
+    dnDevNode: u32 align(1),
+};
+
+pub const ACMDRVOPENDESCW = extern struct {
+    cbStruct: u32 align(1),
+    fccType: u32 align(1),
+    fccComp: u32 align(1),
+    dwVersion: u32 align(1),
+    dwFlags: u32 align(1),
+    dwError: u32 align(1),
+    pszSectionName: ?[*:0]const u16 align(1),
+    pszAliasName: ?[*:0]const u16 align(1),
+    dnDevNode: u32 align(1),
+};
+
 pub const ACMDRVSTREAMHEADER = extern struct {
     cbStruct: u32 align(1),
     fdwStatus: u32 align(1),
@@ -4672,30 +4696,6 @@ pub const SpatialAudioObjectRenderStreamForMetadataActivationParams2 = extern st
     Options: SPATIAL_AUDIO_STREAM_OPTIONS align(1),
 };
 
-pub const tACMDRVOPENDESCA = extern struct {
-    cbStruct: u32 align(1),
-    fccType: u32 align(1),
-    fccComp: u32 align(1),
-    dwVersion: u32 align(1),
-    dwFlags: u32 align(1),
-    dwError: u32 align(1),
-    pszSectionName: ?[*:0]const u8 align(1),
-    pszAliasName: ?[*:0]const u8 align(1),
-    dnDevNode: u32 align(1),
-};
-
-pub const tACMDRVOPENDESCW = extern struct {
-    cbStruct: u32 align(1),
-    fccType: u32 align(1),
-    fccComp: u32 align(1),
-    dwVersion: u32 align(1),
-    dwFlags: u32 align(1),
-    dwError: u32 align(1),
-    pszSectionName: ?[*:0]const u16 align(1),
-    pszAliasName: ?[*:0]const u16 align(1),
-    dnDevNode: u32 align(1),
-};
-
 pub const tACMFORMATDETAILSW = extern struct {
     cbStruct: u32 align(1),
     dwFormatIndex: u32 align(1),
@@ -5969,6 +5969,13 @@ pub const ACMDRIVERDETAILS = switch (@import("../zig.zig").unicode_mode) {
         "'ACMDRIVERDETAILS' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const ACMDRVOPENDESC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ACMDRVOPENDESCA,
+    .wide => @This().ACMDRVOPENDESCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ACMDRVOPENDESC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const ACMFILTERCHOOSE = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().ACMFILTERCHOOSEA,
     .wide => @This().ACMFILTERCHOOSEW,
@@ -6128,13 +6135,6 @@ pub const MIXERLINECONTROLS = switch (@import("../zig.zig").unicode_mode) {
     .wide => @This().MIXERLINECONTROLSW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'MIXERLINECONTROLS' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const tACMDRVOPENDESC = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().tACMDRVOPENDESCA,
-    .wide => @This().tACMDRVOPENDESCW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'tACMDRVOPENDESC' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const WAVEINCAPS2 = switch (@import("../zig.zig").unicode_mode) {
@@ -6378,7 +6378,7 @@ const PROPERTYKEY = @import("../ui/shell/properties_system.zig").PROPERTYKEY;
 const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const STGM = @import("../system/com/structured_storage.zig").STGM;
+const STGM = @import("../system/com.zig").STGM;
 const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {

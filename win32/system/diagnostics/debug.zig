@@ -1321,44 +1321,8 @@ pub const WOW64_MAXIMUM_SUPPORTED_EXTENSION = @as(u32, 512);
 pub const WOW64_SIZE_OF_80387_REGISTERS = @as(u32, 80);
 
 //--------------------------------------------------------------------------------
-// Section: Types (840)
+// Section: Types (838)
 //--------------------------------------------------------------------------------
-pub const _DUMP_TYPES = enum(i32) {
-    INVALID = -1,
-    UNKNOWN = 0,
-    FULL = 1,
-    SUMMARY = 2,
-    HEADER = 3,
-    TRIAGE = 4,
-    BITMAP_FULL = 5,
-    BITMAP_KERNEL = 6,
-    AUTOMATIC = 7,
-};
-pub const DUMP_TYPE_INVALID = _DUMP_TYPES.INVALID;
-pub const DUMP_TYPE_UNKNOWN = _DUMP_TYPES.UNKNOWN;
-pub const DUMP_TYPE_FULL = _DUMP_TYPES.FULL;
-pub const DUMP_TYPE_SUMMARY = _DUMP_TYPES.SUMMARY;
-pub const DUMP_TYPE_HEADER = _DUMP_TYPES.HEADER;
-pub const DUMP_TYPE_TRIAGE = _DUMP_TYPES.TRIAGE;
-pub const DUMP_TYPE_BITMAP_FULL = _DUMP_TYPES.BITMAP_FULL;
-pub const DUMP_TYPE_BITMAP_KERNEL = _DUMP_TYPES.BITMAP_KERNEL;
-pub const DUMP_TYPE_AUTOMATIC = _DUMP_TYPES.AUTOMATIC;
-
-pub const _GETSETBUSDATA = extern struct {
-    BusDataType: u32,
-    BusNumber: u32,
-    SlotNumber: u32,
-    Buffer: ?*anyopaque,
-    Offset: u32,
-    Length: u32,
-};
-
-pub const _IMAGEHLP_JIT_SYMBOL_MAP = extern struct {
-    SizeOfStruct: u32,
-    Address: u64,
-    BaseOfImage: u64,
-};
-
 
 pub const ADDRESS64 = extern struct {
     Offset: u64,
@@ -1523,7 +1487,7 @@ pub const BREAKREASON_ERROR = BREAKREASON.ERROR;
 pub const BREAKREASON_JIT = BREAKREASON.JIT;
 pub const BREAKREASON_MUTATION_BREAKPOINT = BREAKREASON.MUTATION_BREAKPOINT;
 
-pub const BREAKRESUME_ACTION = enum(i32) {
+pub const BREAKRESUMEACTION = enum(i32) {
     ABORT = 0,
     CONTINUE = 1,
     STEP_INTO = 2,
@@ -1532,13 +1496,13 @@ pub const BREAKRESUME_ACTION = enum(i32) {
     IGNORE = 5,
     STEP_DOCUMENT = 6,
 };
-pub const BREAKRESUMEACTION_ABORT = BREAKRESUME_ACTION.ABORT;
-pub const BREAKRESUMEACTION_CONTINUE = BREAKRESUME_ACTION.CONTINUE;
-pub const BREAKRESUMEACTION_STEP_INTO = BREAKRESUME_ACTION.STEP_INTO;
-pub const BREAKRESUMEACTION_STEP_OVER = BREAKRESUME_ACTION.STEP_OVER;
-pub const BREAKRESUMEACTION_STEP_OUT = BREAKRESUME_ACTION.STEP_OUT;
-pub const BREAKRESUMEACTION_IGNORE = BREAKRESUME_ACTION.IGNORE;
-pub const BREAKRESUMEACTION_STEP_DOCUMENT = BREAKRESUME_ACTION.STEP_DOCUMENT;
+pub const BREAKRESUMEACTION_ABORT = BREAKRESUMEACTION.ABORT;
+pub const BREAKRESUMEACTION_CONTINUE = BREAKRESUMEACTION.CONTINUE;
+pub const BREAKRESUMEACTION_STEP_INTO = BREAKRESUMEACTION.STEP_INTO;
+pub const BREAKRESUMEACTION_STEP_OVER = BREAKRESUMEACTION.STEP_OVER;
+pub const BREAKRESUMEACTION_STEP_OUT = BREAKRESUMEACTION.STEP_OUT;
+pub const BREAKRESUMEACTION_IGNORE = BREAKRESUMEACTION.IGNORE;
+pub const BREAKRESUMEACTION_STEP_DOCUMENT = BREAKRESUMEACTION.STEP_DOCUMENT;
 
 pub const BUGCHECK_ERROR = enum(u32) {
     HARDWARE_PROFILE_UNDOCKED_STRING = 1073807361,
@@ -2577,6 +2541,15 @@ pub const WINLOGON_FATAL_ERROR = BUGCHECK_ERROR.WINLOGON_FATAL_ERROR;
 pub const MANUALLY_INITIATED_CRASH1 = BUGCHECK_ERROR.MANUALLY_INITIATED_CRASH1;
 pub const BUGCHECK_CONTEXT_MODIFIER = BUGCHECK_ERROR.BUGCHECK_CONTEXT_MODIFIER;
 
+pub const BUSDATA = extern struct {
+    BusDataType: u32,
+    BusNumber: u32,
+    SlotNumber: u32,
+    Buffer: ?*anyopaque,
+    Offset: u32,
+    Length: u32,
+};
+
 pub const CallingConventionKind = enum(i32) {
     Unknown = 0,
     CDecl = 1,
@@ -3370,6 +3343,27 @@ pub const DUMP_HEADER64 = extern struct {
     BootId: u32,
     _reserved0: [4008]u8,
 };
+
+pub const DUMP_TYPE = enum(i32) {
+    INVALID = -1,
+    UNKNOWN = 0,
+    FULL = 1,
+    SUMMARY = 2,
+    HEADER = 3,
+    TRIAGE = 4,
+    BITMAP_FULL = 5,
+    BITMAP_KERNEL = 6,
+    AUTOMATIC = 7,
+};
+pub const DUMP_TYPE_INVALID = DUMP_TYPE.INVALID;
+pub const DUMP_TYPE_UNKNOWN = DUMP_TYPE.UNKNOWN;
+pub const DUMP_TYPE_FULL = DUMP_TYPE.FULL;
+pub const DUMP_TYPE_SUMMARY = DUMP_TYPE.SUMMARY;
+pub const DUMP_TYPE_HEADER = DUMP_TYPE.HEADER;
+pub const DUMP_TYPE_TRIAGE = DUMP_TYPE.TRIAGE;
+pub const DUMP_TYPE_BITMAP_FULL = DUMP_TYPE.BITMAP_FULL;
+pub const DUMP_TYPE_BITMAP_KERNEL = DUMP_TYPE.BITMAP_KERNEL;
+pub const DUMP_TYPE_AUTOMATIC = DUMP_TYPE.AUTOMATIC;
 
 pub const ErrorClass = enum(i32) {
     Warning = 0,
@@ -6978,7 +6972,7 @@ pub const IDebugApplication32 = extern union {
         HandleBreakPoint: *const fn(
             self: *const IDebugApplication32,
             br: BREAKREASON,
-            pbra: ?*BREAKRESUME_ACTION,
+            pbra: ?*BREAKRESUMEACTION,
         ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IDebugApplication32,
@@ -7029,7 +7023,7 @@ pub const IDebugApplication32 = extern union {
             self: *const IDebugApplication32,
             pErrorDebug: ?*IActiveScriptErrorDebug,
             pScriptSite: ?*IActiveScriptSite,
-            pbra: ?*BREAKRESUME_ACTION,
+            pbra: ?*BREAKRESUMEACTION,
             perra: ?*ERRORRESUMEACTION,
             pfCallOnScriptError: ?*BOOL,
         ) callconv(.winapi) HRESULT,
@@ -7064,7 +7058,7 @@ pub const IDebugApplication32 = extern union {
     pub fn StartDebugSession(self: *const IDebugApplication32) callconv(.@"inline") HRESULT {
         return self.vtable.StartDebugSession(self);
     }
-    pub fn HandleBreakPoint(self: *const IDebugApplication32, br: BREAKREASON, pbra: ?*BREAKRESUME_ACTION) callconv(.@"inline") HRESULT {
+    pub fn HandleBreakPoint(self: *const IDebugApplication32, br: BREAKREASON, pbra: ?*BREAKRESUMEACTION) callconv(.@"inline") HRESULT {
         return self.vtable.HandleBreakPoint(self, br, pbra);
     }
     pub fn Close(self: *const IDebugApplication32) callconv(.@"inline") HRESULT {
@@ -7097,7 +7091,7 @@ pub const IDebugApplication32 = extern union {
     pub fn FireDebuggerEvent(self: *const IDebugApplication32, riid: ?*const Guid, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.FireDebuggerEvent(self, riid, punk);
     }
-    pub fn HandleRuntimeError(self: *const IDebugApplication32, pErrorDebug: ?*IActiveScriptErrorDebug, pScriptSite: ?*IActiveScriptSite, pbra: ?*BREAKRESUME_ACTION, perra: ?*ERRORRESUMEACTION, pfCallOnScriptError: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn HandleRuntimeError(self: *const IDebugApplication32, pErrorDebug: ?*IActiveScriptErrorDebug, pScriptSite: ?*IActiveScriptSite, pbra: ?*BREAKRESUMEACTION, perra: ?*ERRORRESUMEACTION, pfCallOnScriptError: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.HandleRuntimeError(self, pErrorDebug, pScriptSite, pbra, perra, pfCallOnScriptError);
     }
     pub fn FCanJitDebug(self: *const IDebugApplication32) callconv(.@"inline") BOOL {
@@ -7136,7 +7130,7 @@ pub const IDebugApplication64 = extern union {
         HandleBreakPoint: *const fn(
             self: *const IDebugApplication64,
             br: BREAKREASON,
-            pbra: ?*BREAKRESUME_ACTION,
+            pbra: ?*BREAKRESUMEACTION,
         ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IDebugApplication64,
@@ -7187,7 +7181,7 @@ pub const IDebugApplication64 = extern union {
             self: *const IDebugApplication64,
             pErrorDebug: ?*IActiveScriptErrorDebug,
             pScriptSite: ?*IActiveScriptSite,
-            pbra: ?*BREAKRESUME_ACTION,
+            pbra: ?*BREAKRESUMEACTION,
             perra: ?*ERRORRESUMEACTION,
             pfCallOnScriptError: ?*BOOL,
         ) callconv(.winapi) HRESULT,
@@ -7222,7 +7216,7 @@ pub const IDebugApplication64 = extern union {
     pub fn StartDebugSession(self: *const IDebugApplication64) callconv(.@"inline") HRESULT {
         return self.vtable.StartDebugSession(self);
     }
-    pub fn HandleBreakPoint(self: *const IDebugApplication64, br: BREAKREASON, pbra: ?*BREAKRESUME_ACTION) callconv(.@"inline") HRESULT {
+    pub fn HandleBreakPoint(self: *const IDebugApplication64, br: BREAKREASON, pbra: ?*BREAKRESUMEACTION) callconv(.@"inline") HRESULT {
         return self.vtable.HandleBreakPoint(self, br, pbra);
     }
     pub fn Close(self: *const IDebugApplication64) callconv(.@"inline") HRESULT {
@@ -7255,7 +7249,7 @@ pub const IDebugApplication64 = extern union {
     pub fn FireDebuggerEvent(self: *const IDebugApplication64, riid: ?*const Guid, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.FireDebuggerEvent(self, riid, punk);
     }
-    pub fn HandleRuntimeError(self: *const IDebugApplication64, pErrorDebug: ?*IActiveScriptErrorDebug, pScriptSite: ?*IActiveScriptSite, pbra: ?*BREAKRESUME_ACTION, perra: ?*ERRORRESUMEACTION, pfCallOnScriptError: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn HandleRuntimeError(self: *const IDebugApplication64, pErrorDebug: ?*IActiveScriptErrorDebug, pScriptSite: ?*IActiveScriptSite, pbra: ?*BREAKRESUMEACTION, perra: ?*ERRORRESUMEACTION, pfCallOnScriptError: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.HandleRuntimeError(self, pErrorDebug, pScriptSite, pbra, perra, pfCallOnScriptError);
     }
     pub fn FCanJitDebug(self: *const IDebugApplication64) callconv(.@"inline") BOOL {
@@ -34393,6 +34387,12 @@ pub const hdSym = IMAGEHLP_HD_TYPE.Sym;
 pub const hdSrc = IMAGEHLP_HD_TYPE.Src;
 pub const hdMax = IMAGEHLP_HD_TYPE.Max;
 
+pub const IMAGEHLP_JIT_SYMBOLMAP = extern struct {
+    SizeOfStruct: u32,
+    Address: u64,
+    BaseOfImage: u64,
+};
+
 
 pub const IMAGEHLP_LINE64 = extern struct {
     SizeOfStruct: u32,
@@ -35436,7 +35436,7 @@ pub const IRemoteDebugApplication = extern union {
         ResumeFromBreakPoint: *const fn(
             self: *const IRemoteDebugApplication,
             prptFocus: ?*IRemoteDebugApplicationThread,
-            bra: BREAKRESUME_ACTION,
+            bra: BREAKRESUMEACTION,
             era: ERRORRESUMEACTION,
         ) callconv(.winapi) HRESULT,
         CauseBreak: *const fn(
@@ -35483,7 +35483,7 @@ pub const IRemoteDebugApplication = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ResumeFromBreakPoint(self: *const IRemoteDebugApplication, prptFocus: ?*IRemoteDebugApplicationThread, bra: BREAKRESUME_ACTION, era: ERRORRESUMEACTION) callconv(.@"inline") HRESULT {
+    pub fn ResumeFromBreakPoint(self: *const IRemoteDebugApplication, prptFocus: ?*IRemoteDebugApplicationThread, bra: BREAKRESUMEACTION, era: ERRORRESUMEACTION) callconv(.@"inline") HRESULT {
         return self.vtable.ResumeFromBreakPoint(self, prptFocus, bra, era);
     }
     pub fn CauseBreak(self: *const IRemoteDebugApplication) callconv(.@"inline") HRESULT {
@@ -36519,9 +36519,9 @@ pub const MINIDUMP_CALLBACK_INFORMATION = extern struct {
 };
 
 pub const MINIDUMP_CALLBACK_INPUT = extern struct {
-    ProcessId: u32,
-    ProcessHandle: ?HANDLE,
-    CallbackType: u32,
+    ProcessId: u32 align(4),
+    ProcessHandle: ?HANDLE align(4),
+    CallbackType: u32 align(4),
     Anonymous: extern union {
         Status: HRESULT,
         Thread: MINIDUMP_THREAD_CALLBACK,
@@ -36535,37 +36535,37 @@ pub const MINIDUMP_CALLBACK_INPUT = extern struct {
         VmQuery: MINIDUMP_VM_QUERY_CALLBACK,
         VmPreRead: MINIDUMP_VM_PRE_READ_CALLBACK,
         VmPostRead: MINIDUMP_VM_POST_READ_CALLBACK,
-    },
+    } align(4),
 };
 
 pub const MINIDUMP_CALLBACK_OUTPUT = extern struct {
     Anonymous: extern union {
-        ModuleWriteFlags: u32 align(4),
-        ThreadWriteFlags: u32 align(4),
-        SecondaryFlags: u32 align(4),
+        ModuleWriteFlags: u32,
+        ThreadWriteFlags: u32,
+        SecondaryFlags: u32,
         Anonymous1: extern struct {
             MemoryBase: u64 align(4),
             MemorySize: u32 align(4),
-        } align(4),
+        },
         Anonymous2: extern struct {
             CheckCancel: BOOL,
             Cancel: BOOL,
-        } align(4),
-        Handle: ?HANDLE align(4),
+        },
+        Handle: ?HANDLE,
         Anonymous3: extern struct {
             VmRegion: MINIDUMP_MEMORY_INFO,
             Continue: BOOL,
-        } align(4),
+        },
         Anonymous4: extern struct {
             VmQueryStatus: HRESULT,
             VmQueryResult: MINIDUMP_MEMORY_INFO,
-        } align(4),
+        },
         Anonymous5: extern struct {
             VmReadStatus: HRESULT,
             VmReadBytesCompleted: u32,
-        } align(4),
-        Status: HRESULT align(4),
-    },
+        },
+        Status: HRESULT,
+    } align(4),
 };
 
 pub const MINIDUMP_CALLBACK_ROUTINE = *const fn(
@@ -36620,8 +36620,8 @@ pub const VmPreReadCallback = MINIDUMP_CALLBACK_TYPE.VmPreReadCallback;
 pub const VmPostReadCallback = MINIDUMP_CALLBACK_TYPE.VmPostReadCallback;
 
 pub const MINIDUMP_DIRECTORY = extern struct {
-    StreamType: u32,
-    Location: MINIDUMP_LOCATION_DESCRIPTOR,
+    StreamType: u32 align(4),
+    Location: MINIDUMP_LOCATION_DESCRIPTOR align(4),
 };
 
 pub const MINIDUMP_EXCEPTION = extern struct {
@@ -36648,10 +36648,10 @@ pub const MINIDUMP_EXCEPTION_INFORMATION64 = extern struct {
 };
 
 pub const MINIDUMP_EXCEPTION_STREAM = extern struct {
-    ThreadId: u32,
-    __alignment: u32,
-    ExceptionRecord: MINIDUMP_EXCEPTION,
-    ThreadContext: MINIDUMP_LOCATION_DESCRIPTOR,
+    ThreadId: u32 align(4),
+    __alignment: u32 align(4),
+    ExceptionRecord: MINIDUMP_EXCEPTION align(4),
+    ThreadContext: MINIDUMP_LOCATION_DESCRIPTOR align(4),
 };
 
 pub const MINIDUMP_FUNCTION_TABLE_DESCRIPTOR = extern struct {
@@ -36663,19 +36663,19 @@ pub const MINIDUMP_FUNCTION_TABLE_DESCRIPTOR = extern struct {
 };
 
 pub const MINIDUMP_FUNCTION_TABLE_STREAM = extern struct {
-    SizeOfHeader: u32,
-    SizeOfDescriptor: u32,
-    SizeOfNativeDescriptor: u32,
-    SizeOfFunctionEntry: u32,
-    NumberOfDescriptors: u32,
-    SizeOfAlignPad: u32,
+    SizeOfHeader: u32 align(4),
+    SizeOfDescriptor: u32 align(4),
+    SizeOfNativeDescriptor: u32 align(4),
+    SizeOfFunctionEntry: u32 align(4),
+    NumberOfDescriptors: u32 align(4),
+    SizeOfAlignPad: u32 align(4),
 };
 
 pub const MINIDUMP_HANDLE_DATA_STREAM = extern struct {
-    SizeOfHeader: u32,
-    SizeOfDescriptor: u32,
-    NumberOfDescriptors: u32,
-    Reserved: u32,
+    SizeOfHeader: u32 align(4),
+    SizeOfDescriptor: u32 align(4),
+    NumberOfDescriptors: u32 align(4),
+    Reserved: u32 align(4),
 };
 
 pub const MINIDUMP_HANDLE_DESCRIPTOR = extern struct {
@@ -36701,9 +36701,9 @@ pub const MINIDUMP_HANDLE_DESCRIPTOR_2 = extern struct {
 };
 
 pub const MINIDUMP_HANDLE_OBJECT_INFORMATION = extern struct {
-    NextInfoRva: u32,
-    InfoType: u32,
-    SizeOfInfo: u32,
+    NextInfoRva: u32 align(4),
+    InfoType: u32 align(4),
+    SizeOfInfo: u32 align(4),
 };
 
 pub const MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE = enum(i32) {
@@ -36730,10 +36730,10 @@ pub const MiniSemaphoreInformation1 = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.Se
 pub const MiniHandleObjectInformationTypeMax = MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE.HandleObjectInformationTypeMax;
 
 pub const MINIDUMP_HANDLE_OPERATION_LIST = extern struct {
-    SizeOfHeader: u32,
-    SizeOfEntry: u32,
-    NumberOfEntries: u32,
-    Reserved: u32,
+    SizeOfHeader: u32 align(4),
+    SizeOfEntry: u32 align(4),
+    NumberOfEntries: u32 align(4),
+    Reserved: u32 align(4),
 };
 
 pub const MINIDUMP_HEADER = extern struct {
@@ -36754,7 +36754,7 @@ pub const MINIDUMP_INCLUDE_MODULE_CALLBACK = extern struct {
 };
 
 pub const MINIDUMP_INCLUDE_THREAD_CALLBACK = extern struct {
-    ThreadId: u32,
+    ThreadId: u32 align(4),
 };
 
 pub const MINIDUMP_IO_CALLBACK = extern struct {
@@ -36765,8 +36765,8 @@ pub const MINIDUMP_IO_CALLBACK = extern struct {
 };
 
 pub const MINIDUMP_LOCATION_DESCRIPTOR = extern struct {
-    DataSize: u32,
-    Rva: u32,
+    DataSize: u32 align(4),
+    Rva: u32 align(4),
 };
 
 pub const MINIDUMP_LOCATION_DESCRIPTOR64 = extern struct {
@@ -36809,94 +36809,94 @@ pub const MINIDUMP_MEMORY_INFO_LIST = extern struct {
 };
 
 pub const MINIDUMP_MEMORY_LIST = extern struct {
-    NumberOfMemoryRanges: u32,
-    MemoryRanges: [1]MINIDUMP_MEMORY_DESCRIPTOR,
+    NumberOfMemoryRanges: u32 align(4),
+    MemoryRanges: [1]MINIDUMP_MEMORY_DESCRIPTOR align(4),
 };
 
 pub const MINIDUMP_MISC_INFO = extern struct {
-    SizeOfInfo: u32,
-    Flags1: MINIDUMP_MISC_INFO_FLAGS,
-    ProcessId: u32,
-    ProcessCreateTime: u32,
-    ProcessUserTime: u32,
-    ProcessKernelTime: u32,
+    SizeOfInfo: u32 align(4),
+    Flags1: MINIDUMP_MISC_INFO_FLAGS align(4),
+    ProcessId: u32 align(4),
+    ProcessCreateTime: u32 align(4),
+    ProcessUserTime: u32 align(4),
+    ProcessKernelTime: u32 align(4),
 };
 
 pub const MINIDUMP_MISC_INFO_2 = extern struct {
-    SizeOfInfo: u32,
-    Flags1: u32,
-    ProcessId: u32,
-    ProcessCreateTime: u32,
-    ProcessUserTime: u32,
-    ProcessKernelTime: u32,
-    ProcessorMaxMhz: u32,
-    ProcessorCurrentMhz: u32,
-    ProcessorMhzLimit: u32,
-    ProcessorMaxIdleState: u32,
-    ProcessorCurrentIdleState: u32,
+    SizeOfInfo: u32 align(4),
+    Flags1: u32 align(4),
+    ProcessId: u32 align(4),
+    ProcessCreateTime: u32 align(4),
+    ProcessUserTime: u32 align(4),
+    ProcessKernelTime: u32 align(4),
+    ProcessorMaxMhz: u32 align(4),
+    ProcessorCurrentMhz: u32 align(4),
+    ProcessorMhzLimit: u32 align(4),
+    ProcessorMaxIdleState: u32 align(4),
+    ProcessorCurrentIdleState: u32 align(4),
 };
 
 pub const MINIDUMP_MISC_INFO_3 = extern struct {
-    SizeOfInfo: u32,
-    Flags1: u32,
-    ProcessId: u32,
-    ProcessCreateTime: u32,
-    ProcessUserTime: u32,
-    ProcessKernelTime: u32,
-    ProcessorMaxMhz: u32,
-    ProcessorCurrentMhz: u32,
-    ProcessorMhzLimit: u32,
-    ProcessorMaxIdleState: u32,
-    ProcessorCurrentIdleState: u32,
-    ProcessIntegrityLevel: u32,
-    ProcessExecuteFlags: u32,
-    ProtectedProcess: u32,
-    TimeZoneId: u32,
-    TimeZone: TIME_ZONE_INFORMATION,
+    SizeOfInfo: u32 align(4),
+    Flags1: u32 align(4),
+    ProcessId: u32 align(4),
+    ProcessCreateTime: u32 align(4),
+    ProcessUserTime: u32 align(4),
+    ProcessKernelTime: u32 align(4),
+    ProcessorMaxMhz: u32 align(4),
+    ProcessorCurrentMhz: u32 align(4),
+    ProcessorMhzLimit: u32 align(4),
+    ProcessorMaxIdleState: u32 align(4),
+    ProcessorCurrentIdleState: u32 align(4),
+    ProcessIntegrityLevel: u32 align(4),
+    ProcessExecuteFlags: u32 align(4),
+    ProtectedProcess: u32 align(4),
+    TimeZoneId: u32 align(4),
+    TimeZone: TIME_ZONE_INFORMATION align(4),
 };
 
 pub const MINIDUMP_MISC_INFO_4 = extern struct {
-    SizeOfInfo: u32,
-    Flags1: u32,
-    ProcessId: u32,
-    ProcessCreateTime: u32,
-    ProcessUserTime: u32,
-    ProcessKernelTime: u32,
-    ProcessorMaxMhz: u32,
-    ProcessorCurrentMhz: u32,
-    ProcessorMhzLimit: u32,
-    ProcessorMaxIdleState: u32,
-    ProcessorCurrentIdleState: u32,
-    ProcessIntegrityLevel: u32,
-    ProcessExecuteFlags: u32,
-    ProtectedProcess: u32,
-    TimeZoneId: u32,
-    TimeZone: TIME_ZONE_INFORMATION,
-    BuildString: [260]u16,
-    DbgBldStr: [40]u16,
+    SizeOfInfo: u32 align(4),
+    Flags1: u32 align(4),
+    ProcessId: u32 align(4),
+    ProcessCreateTime: u32 align(4),
+    ProcessUserTime: u32 align(4),
+    ProcessKernelTime: u32 align(4),
+    ProcessorMaxMhz: u32 align(4),
+    ProcessorCurrentMhz: u32 align(4),
+    ProcessorMhzLimit: u32 align(4),
+    ProcessorMaxIdleState: u32 align(4),
+    ProcessorCurrentIdleState: u32 align(4),
+    ProcessIntegrityLevel: u32 align(4),
+    ProcessExecuteFlags: u32 align(4),
+    ProtectedProcess: u32 align(4),
+    TimeZoneId: u32 align(4),
+    TimeZone: TIME_ZONE_INFORMATION align(4),
+    BuildString: [260]u16 align(4),
+    DbgBldStr: [40]u16 align(4),
 };
 
 pub const MINIDUMP_MISC_INFO_5 = extern struct {
-    SizeOfInfo: u32,
-    Flags1: u32,
-    ProcessId: u32,
-    ProcessCreateTime: u32,
-    ProcessUserTime: u32,
-    ProcessKernelTime: u32,
-    ProcessorMaxMhz: u32,
-    ProcessorCurrentMhz: u32,
-    ProcessorMhzLimit: u32,
-    ProcessorMaxIdleState: u32,
-    ProcessorCurrentIdleState: u32,
-    ProcessIntegrityLevel: u32,
-    ProcessExecuteFlags: u32,
-    ProtectedProcess: u32,
-    TimeZoneId: u32,
-    TimeZone: TIME_ZONE_INFORMATION,
-    BuildString: [260]u16,
-    DbgBldStr: [40]u16,
-    XStateData: XSTATE_CONFIG_FEATURE_MSC_INFO,
-    ProcessCookie: u32,
+    SizeOfInfo: u32 align(4),
+    Flags1: u32 align(4),
+    ProcessId: u32 align(4),
+    ProcessCreateTime: u32 align(4),
+    ProcessUserTime: u32 align(4),
+    ProcessKernelTime: u32 align(4),
+    ProcessorMaxMhz: u32 align(4),
+    ProcessorCurrentMhz: u32 align(4),
+    ProcessorMhzLimit: u32 align(4),
+    ProcessorMaxIdleState: u32 align(4),
+    ProcessorCurrentIdleState: u32 align(4),
+    ProcessIntegrityLevel: u32 align(4),
+    ProcessExecuteFlags: u32 align(4),
+    ProtectedProcess: u32 align(4),
+    TimeZoneId: u32 align(4),
+    TimeZone: TIME_ZONE_INFORMATION align(4),
+    BuildString: [260]u16 align(4),
+    DbgBldStr: [40]u16 align(4),
+    XStateData: XSTATE_CONFIG_FEATURE_MSC_INFO align(4),
+    ProcessCookie: u32 align(4),
 };
 
 pub const MINIDUMP_MISC_INFO_FLAGS = packed struct(u32) {
@@ -36963,8 +36963,8 @@ pub const MINIDUMP_MODULE_CALLBACK = extern struct {
 };
 
 pub const MINIDUMP_MODULE_LIST = extern struct {
-    NumberOfModules: u32,
-    Modules: [1]MINIDUMP_MODULE,
+    NumberOfModules: u32 align(4),
+    Modules: [1]MINIDUMP_MODULE align(4),
 };
 
 pub const MINIDUMP_PROCESS_VM_COUNTERS_1 = extern struct {
@@ -37100,8 +37100,8 @@ pub const ceStreamDiagnosisList = MINIDUMP_STREAM_TYPE.ceStreamDiagnosisList;
 pub const LastReservedStream = MINIDUMP_STREAM_TYPE.LastReservedStream;
 
 pub const MINIDUMP_STRING = extern struct {
-    Length: u32,
-    Buffer: [1]u16,
+    Length: u32 align(4),
+    Buffer: [1]u16 align(4),
 };
 
 pub const MINIDUMP_SYSTEM_BASIC_INFORMATION = extern struct {
@@ -37137,38 +37137,38 @@ pub const MINIDUMP_SYSTEM_FILECACHE_INFORMATION = extern struct {
 };
 
 pub const MINIDUMP_SYSTEM_INFO = extern struct {
-    ProcessorArchitecture: PROCESSOR_ARCHITECTURE,
-    ProcessorLevel: u16,
-    ProcessorRevision: u16,
+    ProcessorArchitecture: PROCESSOR_ARCHITECTURE align(4),
+    ProcessorLevel: u16 align(4),
+    ProcessorRevision: u16 align(4),
     Anonymous1: extern union {
         Reserved0: u16,
         Anonymous: extern struct {
             NumberOfProcessors: u8,
             ProductType: u8,
         },
-    },
-    MajorVersion: u32,
-    MinorVersion: u32,
-    BuildNumber: u32,
-    PlatformId: VER_PLATFORM,
-    CSDVersionRva: u32,
+    } align(4),
+    MajorVersion: u32 align(4),
+    MinorVersion: u32 align(4),
+    BuildNumber: u32 align(4),
+    PlatformId: VER_PLATFORM align(4),
+    CSDVersionRva: u32 align(4),
     Anonymous2: extern union {
         Reserved1: u32,
         Anonymous: extern struct {
             SuiteMask: u16,
             Reserved2: u16,
         },
-    },
-    Cpu: CPU_INFORMATION,
+    } align(4),
+    Cpu: CPU_INFORMATION align(4),
 };
 
 pub const MINIDUMP_SYSTEM_MEMORY_INFO_1 = extern struct {
-    Revision: u16,
-    Flags: u16,
-    BasicInfo: MINIDUMP_SYSTEM_BASIC_INFORMATION,
-    FileCacheInfo: MINIDUMP_SYSTEM_FILECACHE_INFORMATION,
-    BasicPerfInfo: MINIDUMP_SYSTEM_BASIC_PERFORMANCE_INFORMATION,
-    PerfInfo: MINIDUMP_SYSTEM_PERFORMANCE_INFORMATION,
+    Revision: u16 align(4),
+    Flags: u16 align(4),
+    BasicInfo: MINIDUMP_SYSTEM_BASIC_INFORMATION align(4),
+    FileCacheInfo: MINIDUMP_SYSTEM_FILECACHE_INFORMATION align(4),
+    BasicPerfInfo: MINIDUMP_SYSTEM_BASIC_PERFORMANCE_INFORMATION align(4),
+    PerfInfo: MINIDUMP_SYSTEM_PERFORMANCE_INFORMATION align(4),
 };
 
 pub const MINIDUMP_SYSTEM_PERFORMANCE_INFORMATION = extern struct {
@@ -37264,7 +37264,6 @@ pub const MINIDUMP_THREAD = extern struct {
 
 
 
-
 pub const MINIDUMP_THREAD_EX = extern struct {
     ThreadId: u32 align(4),
     SuspendCount: u32 align(4),
@@ -37278,10 +37277,9 @@ pub const MINIDUMP_THREAD_EX = extern struct {
 
 
 
-
 pub const MINIDUMP_THREAD_EX_LIST = extern struct {
-    NumberOfThreads: u32,
-    Threads: [1]MINIDUMP_THREAD_EX,
+    NumberOfThreads: u32 align(4),
+    Threads: [1]MINIDUMP_THREAD_EX align(4),
 };
 
 pub const MINIDUMP_THREAD_INFO = extern struct {
@@ -37313,14 +37311,14 @@ pub const MINIDUMP_THREAD_INFO_INVALID_TEB = MINIDUMP_THREAD_INFO_DUMP_FLAGS.INV
 pub const MINIDUMP_THREAD_INFO_WRITING_THREAD = MINIDUMP_THREAD_INFO_DUMP_FLAGS.WRITING_THREAD;
 
 pub const MINIDUMP_THREAD_INFO_LIST = extern struct {
-    SizeOfHeader: u32,
-    SizeOfEntry: u32,
-    NumberOfEntries: u32,
+    SizeOfHeader: u32 align(4),
+    SizeOfEntry: u32 align(4),
+    NumberOfEntries: u32 align(4),
 };
 
 pub const MINIDUMP_THREAD_LIST = extern struct {
-    NumberOfThreads: u32,
-    Threads: [1]MINIDUMP_THREAD,
+    NumberOfThreads: u32 align(4),
+    Threads: [1]MINIDUMP_THREAD align(4),
 };
 
 pub const MINIDUMP_THREAD_NAME = extern struct {
@@ -37329,8 +37327,8 @@ pub const MINIDUMP_THREAD_NAME = extern struct {
 };
 
 pub const MINIDUMP_THREAD_NAME_LIST = extern struct {
-    NumberOfThreadNames: u32,
-    ThreadNames: [1]MINIDUMP_THREAD_NAME,
+    NumberOfThreadNames: u32 align(4),
+    ThreadNames: [1]MINIDUMP_THREAD_NAME align(4),
 };
 
 pub const MINIDUMP_TOKEN_INFO_HEADER = extern struct {
@@ -37340,10 +37338,10 @@ pub const MINIDUMP_TOKEN_INFO_HEADER = extern struct {
 };
 
 pub const MINIDUMP_TOKEN_INFO_LIST = extern struct {
-    TokenListSize: u32,
-    TokenListEntries: u32,
-    ListHeaderSize: u32,
-    ElementHeaderSize: u32,
+    TokenListSize: u32 align(4),
+    TokenListEntries: u32 align(4),
+    ListHeaderSize: u32 align(4),
+    ElementHeaderSize: u32 align(4),
 };
 
 pub const MINIDUMP_TYPE = packed struct(u32) {
@@ -37443,14 +37441,14 @@ pub const MINIDUMP_UNLOADED_MODULE = extern struct {
 };
 
 pub const MINIDUMP_UNLOADED_MODULE_LIST = extern struct {
-    SizeOfHeader: u32,
-    SizeOfEntry: u32,
-    NumberOfEntries: u32,
+    SizeOfHeader: u32 align(4),
+    SizeOfEntry: u32 align(4),
+    NumberOfEntries: u32 align(4),
 };
 
 pub const MINIDUMP_USER_RECORD = extern struct {
-    Type: u32,
-    Memory: MINIDUMP_LOCATION_DESCRIPTOR,
+    Type: u32 align(4),
+    Memory: MINIDUMP_LOCATION_DESCRIPTOR align(4),
 };
 
 pub const MINIDUMP_USER_STREAM = extern struct {
@@ -37557,80 +37555,78 @@ pub const ModuleReferencedByMemory = MODULE_WRITE_FLAGS.ReferencedByMemory;
 pub const ModuleWriteTlsData = MODULE_WRITE_FLAGS.WriteTlsData;
 pub const ModuleWriteCodeSegs = MODULE_WRITE_FLAGS.WriteCodeSegs;
 
-pub const OBJECT_ATTRIB_FLAG = packed struct(u32) {
-    NO_NAME: u1 = 0,
-    NO_TYPE: u1 = 0,
-    NO_VALUE: u1 = 0,
-    VALUE_IS_INVALID: u1 = 0,
-    VALUE_IS_OBJECT: u1 = 0,
-    VALUE_IS_ENUM: u1 = 0,
-    VALUE_IS_CUSTOM: u1 = 0,
-    VALUE_HAS_CODE: u1 = 0,
-    TYPE_IS_OBJECT: u1 = 0,
-    TYPE_HAS_CODE: u1 = 0,
-    SLOT_IS_CATEGORY: u1 = 0,
-    VALUE_READONLY: u1 = 0,
-    ACCESS_PUBLIC: u1 = 0,
-    ACCESS_PRIVATE: u1 = 0,
-    ACCESS_PROTECTED: u1 = 0,
-    ACCESS_FINAL: u1 = 0,
-    STORAGE_GLOBAL: u1 = 0,
-    STORAGE_STATIC: u1 = 0,
-    STORAGE_FIELD: u1 = 0,
-    STORAGE_VIRTUAL: u1 = 0,
-    TYPE_IS_CONSTANT: u1 = 0,
-    TYPE_IS_SYNCHRONIZED: u1 = 0,
-    TYPE_IS_VOLATILE: u1 = 0,
-    HAS_EXTENDED_ATTRIBS: u1 = 0,
-    IS_CLASS: u1 = 0,
-    IS_FUNCTION: u1 = 0,
-    IS_VARIABLE: u1 = 0,
-    IS_PROPERTY: u1 = 0,
-    IS_MACRO: u1 = 0,
-    IS_TYPE: u1 = 0,
-    IS_INHERITED: u1 = 0,
-    IS_INTERFACE: u1 = 0,
-    // TYPE_IS_EXPANDABLE (bit index 8) conflicts with TYPE_IS_OBJECT
+pub const OBJECT_ATTRIB_FLAGS = enum(i32) {
+    NO_ATTRIB = 0,
+    NO_NAME = 1,
+    NO_TYPE = 2,
+    NO_VALUE = 4,
+    VALUE_IS_INVALID = 8,
+    VALUE_IS_OBJECT = 16,
+    VALUE_IS_ENUM = 32,
+    VALUE_IS_CUSTOM = 64,
+    OBJECT_IS_EXPANDABLE = 112,
+    VALUE_HAS_CODE = 128,
+    TYPE_IS_OBJECT = 256,
+    TYPE_HAS_CODE = 512,
+    SLOT_IS_CATEGORY = 1024,
+    VALUE_READONLY = 2048,
+    ACCESS_PUBLIC = 4096,
+    ACCESS_PRIVATE = 8192,
+    ACCESS_PROTECTED = 16384,
+    ACCESS_FINAL = 32768,
+    STORAGE_GLOBAL = 65536,
+    STORAGE_STATIC = 131072,
+    STORAGE_FIELD = 262144,
+    STORAGE_VIRTUAL = 524288,
+    TYPE_IS_CONSTANT = 1048576,
+    TYPE_IS_SYNCHRONIZED = 2097152,
+    TYPE_IS_VOLATILE = 4194304,
+    HAS_EXTENDED_ATTRIBS = 8388608,
+    IS_CLASS = 16777216,
+    IS_FUNCTION = 33554432,
+    IS_VARIABLE = 67108864,
+    IS_PROPERTY = 134217728,
+    IS_MACRO = 268435456,
+    IS_TYPE = 536870912,
+    IS_INHERITED = 1073741824,
+    IS_INTERFACE = -2147483648,
+    pub const TYPE_IS_EXPANDABLE = .TYPE_IS_OBJECT;
 };
-pub const OBJECT_ATTRIB_NO_ATTRIB = OBJECT_ATTRIB_FLAG{ };
-pub const OBJECT_ATTRIB_NO_NAME = OBJECT_ATTRIB_FLAG{ .NO_NAME = 1 };
-pub const OBJECT_ATTRIB_NO_TYPE = OBJECT_ATTRIB_FLAG{ .NO_TYPE = 1 };
-pub const OBJECT_ATTRIB_NO_VALUE = OBJECT_ATTRIB_FLAG{ .NO_VALUE = 1 };
-pub const OBJECT_ATTRIB_VALUE_IS_INVALID = OBJECT_ATTRIB_FLAG{ .VALUE_IS_INVALID = 1 };
-pub const OBJECT_ATTRIB_VALUE_IS_OBJECT = OBJECT_ATTRIB_FLAG{ .VALUE_IS_OBJECT = 1 };
-pub const OBJECT_ATTRIB_VALUE_IS_ENUM = OBJECT_ATTRIB_FLAG{ .VALUE_IS_ENUM = 1 };
-pub const OBJECT_ATTRIB_VALUE_IS_CUSTOM = OBJECT_ATTRIB_FLAG{ .VALUE_IS_CUSTOM = 1 };
-pub const OBJECT_ATTRIB_OBJECT_IS_EXPANDABLE = OBJECT_ATTRIB_FLAG{
-    .VALUE_IS_OBJECT = 1,
-    .VALUE_IS_ENUM = 1,
-    .VALUE_IS_CUSTOM = 1,
-};
-pub const OBJECT_ATTRIB_VALUE_HAS_CODE = OBJECT_ATTRIB_FLAG{ .VALUE_HAS_CODE = 1 };
-pub const OBJECT_ATTRIB_TYPE_IS_OBJECT = OBJECT_ATTRIB_FLAG{ .TYPE_IS_OBJECT = 1 };
-pub const OBJECT_ATTRIB_TYPE_HAS_CODE = OBJECT_ATTRIB_FLAG{ .TYPE_HAS_CODE = 1 };
-pub const OBJECT_ATTRIB_TYPE_IS_EXPANDABLE = OBJECT_ATTRIB_FLAG{ .TYPE_IS_OBJECT = 1 };
-pub const OBJECT_ATTRIB_SLOT_IS_CATEGORY = OBJECT_ATTRIB_FLAG{ .SLOT_IS_CATEGORY = 1 };
-pub const OBJECT_ATTRIB_VALUE_READONLY = OBJECT_ATTRIB_FLAG{ .VALUE_READONLY = 1 };
-pub const OBJECT_ATTRIB_ACCESS_PUBLIC = OBJECT_ATTRIB_FLAG{ .ACCESS_PUBLIC = 1 };
-pub const OBJECT_ATTRIB_ACCESS_PRIVATE = OBJECT_ATTRIB_FLAG{ .ACCESS_PRIVATE = 1 };
-pub const OBJECT_ATTRIB_ACCESS_PROTECTED = OBJECT_ATTRIB_FLAG{ .ACCESS_PROTECTED = 1 };
-pub const OBJECT_ATTRIB_ACCESS_FINAL = OBJECT_ATTRIB_FLAG{ .ACCESS_FINAL = 1 };
-pub const OBJECT_ATTRIB_STORAGE_GLOBAL = OBJECT_ATTRIB_FLAG{ .STORAGE_GLOBAL = 1 };
-pub const OBJECT_ATTRIB_STORAGE_STATIC = OBJECT_ATTRIB_FLAG{ .STORAGE_STATIC = 1 };
-pub const OBJECT_ATTRIB_STORAGE_FIELD = OBJECT_ATTRIB_FLAG{ .STORAGE_FIELD = 1 };
-pub const OBJECT_ATTRIB_STORAGE_VIRTUAL = OBJECT_ATTRIB_FLAG{ .STORAGE_VIRTUAL = 1 };
-pub const OBJECT_ATTRIB_TYPE_IS_CONSTANT = OBJECT_ATTRIB_FLAG{ .TYPE_IS_CONSTANT = 1 };
-pub const OBJECT_ATTRIB_TYPE_IS_SYNCHRONIZED = OBJECT_ATTRIB_FLAG{ .TYPE_IS_SYNCHRONIZED = 1 };
-pub const OBJECT_ATTRIB_TYPE_IS_VOLATILE = OBJECT_ATTRIB_FLAG{ .TYPE_IS_VOLATILE = 1 };
-pub const OBJECT_ATTRIB_HAS_EXTENDED_ATTRIBS = OBJECT_ATTRIB_FLAG{ .HAS_EXTENDED_ATTRIBS = 1 };
-pub const OBJECT_ATTRIB_IS_CLASS = OBJECT_ATTRIB_FLAG{ .IS_CLASS = 1 };
-pub const OBJECT_ATTRIB_IS_FUNCTION = OBJECT_ATTRIB_FLAG{ .IS_FUNCTION = 1 };
-pub const OBJECT_ATTRIB_IS_VARIABLE = OBJECT_ATTRIB_FLAG{ .IS_VARIABLE = 1 };
-pub const OBJECT_ATTRIB_IS_PROPERTY = OBJECT_ATTRIB_FLAG{ .IS_PROPERTY = 1 };
-pub const OBJECT_ATTRIB_IS_MACRO = OBJECT_ATTRIB_FLAG{ .IS_MACRO = 1 };
-pub const OBJECT_ATTRIB_IS_TYPE = OBJECT_ATTRIB_FLAG{ .IS_TYPE = 1 };
-pub const OBJECT_ATTRIB_IS_INHERITED = OBJECT_ATTRIB_FLAG{ .IS_INHERITED = 1 };
-pub const OBJECT_ATTRIB_IS_INTERFACE = OBJECT_ATTRIB_FLAG{ .IS_INTERFACE = 1 };
+pub const OBJECT_ATTRIB_NO_ATTRIB = OBJECT_ATTRIB_FLAGS.NO_ATTRIB;
+pub const OBJECT_ATTRIB_NO_NAME = OBJECT_ATTRIB_FLAGS.NO_NAME;
+pub const OBJECT_ATTRIB_NO_TYPE = OBJECT_ATTRIB_FLAGS.NO_TYPE;
+pub const OBJECT_ATTRIB_NO_VALUE = OBJECT_ATTRIB_FLAGS.NO_VALUE;
+pub const OBJECT_ATTRIB_VALUE_IS_INVALID = OBJECT_ATTRIB_FLAGS.VALUE_IS_INVALID;
+pub const OBJECT_ATTRIB_VALUE_IS_OBJECT = OBJECT_ATTRIB_FLAGS.VALUE_IS_OBJECT;
+pub const OBJECT_ATTRIB_VALUE_IS_ENUM = OBJECT_ATTRIB_FLAGS.VALUE_IS_ENUM;
+pub const OBJECT_ATTRIB_VALUE_IS_CUSTOM = OBJECT_ATTRIB_FLAGS.VALUE_IS_CUSTOM;
+pub const OBJECT_ATTRIB_OBJECT_IS_EXPANDABLE = OBJECT_ATTRIB_FLAGS.OBJECT_IS_EXPANDABLE;
+pub const OBJECT_ATTRIB_VALUE_HAS_CODE = OBJECT_ATTRIB_FLAGS.VALUE_HAS_CODE;
+pub const OBJECT_ATTRIB_TYPE_IS_OBJECT = OBJECT_ATTRIB_FLAGS.TYPE_IS_OBJECT;
+pub const OBJECT_ATTRIB_TYPE_HAS_CODE = OBJECT_ATTRIB_FLAGS.TYPE_HAS_CODE;
+pub const OBJECT_ATTRIB_TYPE_IS_EXPANDABLE = OBJECT_ATTRIB_FLAGS.TYPE_IS_OBJECT;
+pub const OBJECT_ATTRIB_SLOT_IS_CATEGORY = OBJECT_ATTRIB_FLAGS.SLOT_IS_CATEGORY;
+pub const OBJECT_ATTRIB_VALUE_READONLY = OBJECT_ATTRIB_FLAGS.VALUE_READONLY;
+pub const OBJECT_ATTRIB_ACCESS_PUBLIC = OBJECT_ATTRIB_FLAGS.ACCESS_PUBLIC;
+pub const OBJECT_ATTRIB_ACCESS_PRIVATE = OBJECT_ATTRIB_FLAGS.ACCESS_PRIVATE;
+pub const OBJECT_ATTRIB_ACCESS_PROTECTED = OBJECT_ATTRIB_FLAGS.ACCESS_PROTECTED;
+pub const OBJECT_ATTRIB_ACCESS_FINAL = OBJECT_ATTRIB_FLAGS.ACCESS_FINAL;
+pub const OBJECT_ATTRIB_STORAGE_GLOBAL = OBJECT_ATTRIB_FLAGS.STORAGE_GLOBAL;
+pub const OBJECT_ATTRIB_STORAGE_STATIC = OBJECT_ATTRIB_FLAGS.STORAGE_STATIC;
+pub const OBJECT_ATTRIB_STORAGE_FIELD = OBJECT_ATTRIB_FLAGS.STORAGE_FIELD;
+pub const OBJECT_ATTRIB_STORAGE_VIRTUAL = OBJECT_ATTRIB_FLAGS.STORAGE_VIRTUAL;
+pub const OBJECT_ATTRIB_TYPE_IS_CONSTANT = OBJECT_ATTRIB_FLAGS.TYPE_IS_CONSTANT;
+pub const OBJECT_ATTRIB_TYPE_IS_SYNCHRONIZED = OBJECT_ATTRIB_FLAGS.TYPE_IS_SYNCHRONIZED;
+pub const OBJECT_ATTRIB_TYPE_IS_VOLATILE = OBJECT_ATTRIB_FLAGS.TYPE_IS_VOLATILE;
+pub const OBJECT_ATTRIB_HAS_EXTENDED_ATTRIBS = OBJECT_ATTRIB_FLAGS.HAS_EXTENDED_ATTRIBS;
+pub const OBJECT_ATTRIB_IS_CLASS = OBJECT_ATTRIB_FLAGS.IS_CLASS;
+pub const OBJECT_ATTRIB_IS_FUNCTION = OBJECT_ATTRIB_FLAGS.IS_FUNCTION;
+pub const OBJECT_ATTRIB_IS_VARIABLE = OBJECT_ATTRIB_FLAGS.IS_VARIABLE;
+pub const OBJECT_ATTRIB_IS_PROPERTY = OBJECT_ATTRIB_FLAGS.IS_PROPERTY;
+pub const OBJECT_ATTRIB_IS_MACRO = OBJECT_ATTRIB_FLAGS.IS_MACRO;
+pub const OBJECT_ATTRIB_IS_TYPE = OBJECT_ATTRIB_FLAGS.IS_TYPE;
+pub const OBJECT_ATTRIB_IS_INHERITED = OBJECT_ATTRIB_FLAGS.IS_INHERITED;
+pub const OBJECT_ATTRIB_IS_INTERFACE = OBJECT_ATTRIB_FLAGS.IS_INTERFACE;
 
 pub const OMAP = extern struct {
     rva: u32,
@@ -40796,23 +40792,15 @@ pub const LOADED_IMAGE = switch(@import("../../zig.zig").arch) {
 };
 pub const MINIDUMP_THREAD_CALLBACK = switch(@import("../../zig.zig").arch) {
     .Arm64 => extern struct {
-        ThreadId: u32,
-        ThreadHandle: ?HANDLE,
-        Pad: u32,
-        Context: CONTEXT,
-        SizeOfContext: u32,
-        StackBase: u64,
-        StackEnd: u64,
+        ThreadId: u32 align(4),
+        ThreadHandle: ?HANDLE align(4),
+        Pad: u32 align(4),
+        Context: CONTEXT align(4),
+        SizeOfContext: u32 align(4),
+        StackBase: u64 align(4),
+        StackEnd: u64 align(4),
     },
-    .X64 => extern struct {
-        ThreadId: u32,
-        ThreadHandle: ?HANDLE,
-        Context: CONTEXT,
-        SizeOfContext: u32,
-        StackBase: u64,
-        StackEnd: u64,
-    },
-    .X86 => extern struct {
+    .X86, .X64 => extern struct {
         ThreadId: u32 align(4),
         ThreadHandle: ?HANDLE align(4),
         Context: CONTEXT align(4),
@@ -40823,27 +40811,17 @@ pub const MINIDUMP_THREAD_CALLBACK = switch(@import("../../zig.zig").arch) {
 };
 pub const MINIDUMP_THREAD_EX_CALLBACK = switch(@import("../../zig.zig").arch) {
     .Arm64 => extern struct {
-        ThreadId: u32,
-        ThreadHandle: ?HANDLE,
-        Pad: u32,
-        Context: CONTEXT,
-        SizeOfContext: u32,
-        StackBase: u64,
-        StackEnd: u64,
-        BackingStoreBase: u64,
-        BackingStoreEnd: u64,
+        ThreadId: u32 align(4),
+        ThreadHandle: ?HANDLE align(4),
+        Pad: u32 align(4),
+        Context: CONTEXT align(4),
+        SizeOfContext: u32 align(4),
+        StackBase: u64 align(4),
+        StackEnd: u64 align(4),
+        BackingStoreBase: u64 align(4),
+        BackingStoreEnd: u64 align(4),
     },
-    .X64 => extern struct {
-        ThreadId: u32,
-        ThreadHandle: ?HANDLE,
-        Context: CONTEXT,
-        SizeOfContext: u32,
-        StackBase: u64,
-        StackEnd: u64,
-        BackingStoreBase: u64,
-        BackingStoreEnd: u64,
-    },
-    .X86 => extern struct {
+    .X86, .X64 => extern struct {
         ThreadId: u32 align(4),
         ThreadHandle: ?HANDLE align(4),
         Context: CONTEXT align(4),
@@ -41040,7 +41018,7 @@ pub const XSTATE_CONTEXT = switch(@import("../../zig.zig").arch) {
 };
 
 //--------------------------------------------------------------------------------
-// Section: Functions (328)
+// Section: Functions (329)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn AddVectoredContinueHandler(
@@ -41679,7 +41657,7 @@ pub extern "imagehlp" fn MapFileAndCheckSumW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn MessageBeep(
-    uType: u32,
+    uType: MESSAGEBOX_STYLE,
 ) callconv(.winapi) BOOL;
 
 pub extern "dbghelp" fn MiniDumpReadDumpStream(
@@ -41960,7 +41938,19 @@ pub extern "ntdll" fn RtlGrowFunctionTable(
 };
 
 pub const RtlInstallFunctionTableCallback = switch (@import("../../zig.zig").arch) {
-.X64, .Arm64 => (struct {
+.X64 => (struct {
+
+pub extern "kernel32" fn RtlInstallFunctionTableCallback(
+    TableIdentifier: u64,
+    BaseAddress: u64,
+    Length: u32,
+    Callback: ?PGET_RUNTIME_FUNCTION_CALLBACK,
+    Context: ?*anyopaque,
+    OutOfProcessCallbackDll: ?[*:0]const u16,
+) callconv(.winapi) BOOLEAN;
+
+}).RtlInstallFunctionTableCallback,
+.Arm64 => (struct {
 
 pub extern "kernel32" fn RtlInstallFunctionTableCallback(
     TableIdentifier: u64,
@@ -43646,7 +43636,7 @@ pub const OutputDebugString = switch (@import("../../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (40)
+// Section: Imports (41)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -43675,6 +43665,7 @@ const LIST_ENTRY32 = @import("../../system/kernel.zig").LIST_ENTRY32;
 const LIST_ENTRY64 = @import("../../system/kernel.zig").LIST_ENTRY64;
 const LPTHREAD_START_ROUTINE = @import("../../system/threading.zig").LPTHREAD_START_ROUTINE;
 const MEMORY_BASIC_INFORMATION64 = @import("../../system/memory.zig").MEMORY_BASIC_INFORMATION64;
+const MESSAGEBOX_STYLE = @import("../../ui/windows_and_messaging.zig").MESSAGEBOX_STYLE;
 const NTSTATUS = @import("../../foundation.zig").NTSTATUS;
 const PSTR = @import("../../foundation.zig").PSTR;
 const PWSTR = @import("../../foundation.zig").PWSTR;

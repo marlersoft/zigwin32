@@ -43,8 +43,45 @@ pub const STG_TOEND = @as(i32, -1);
 pub const STGTY_REPEAT = @as(i32, 256);
 
 //--------------------------------------------------------------------------------
-// Section: Types (235)
+// Section: Types (240)
 //--------------------------------------------------------------------------------
+pub const ADVANCED_FEATURE_FLAGS = packed struct(u16) {
+    AUTO: u1 = 0,
+    STATIC: u1 = 0,
+    EMBEDDED: u1 = 0,
+    _3: u1 = 0,
+    FIXEDSIZE: u1 = 0,
+    RECORD: u1 = 0,
+    HAVEIID: u1 = 0,
+    HAVEVARTYPE: u1 = 0,
+    BSTR: u1 = 0,
+    UNKNOWN: u1 = 0,
+    DISPATCH: u1 = 0,
+    VARIANT: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+};
+pub const FADF_AUTO = ADVANCED_FEATURE_FLAGS{ .AUTO = 1 };
+pub const FADF_STATIC = ADVANCED_FEATURE_FLAGS{ .STATIC = 1 };
+pub const FADF_EMBEDDED = ADVANCED_FEATURE_FLAGS{ .EMBEDDED = 1 };
+pub const FADF_FIXEDSIZE = ADVANCED_FEATURE_FLAGS{ .FIXEDSIZE = 1 };
+pub const FADF_RECORD = ADVANCED_FEATURE_FLAGS{ .RECORD = 1 };
+pub const FADF_HAVEIID = ADVANCED_FEATURE_FLAGS{ .HAVEIID = 1 };
+pub const FADF_HAVEVARTYPE = ADVANCED_FEATURE_FLAGS{ .HAVEVARTYPE = 1 };
+pub const FADF_BSTR = ADVANCED_FEATURE_FLAGS{ .BSTR = 1 };
+pub const FADF_UNKNOWN = ADVANCED_FEATURE_FLAGS{ .UNKNOWN = 1 };
+pub const FADF_DISPATCH = ADVANCED_FEATURE_FLAGS{ .DISPATCH = 1 };
+pub const FADF_VARIANT = ADVANCED_FEATURE_FLAGS{ .VARIANT = 1 };
+pub const FADF_RESERVED = ADVANCED_FEATURE_FLAGS{
+    ._3 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+};
+
 pub const ADVF = enum(i32) {
     _NODATA = 1,
     _PRIMEFIRST = 2,
@@ -835,6 +872,11 @@ pub const DVTARGETDEVICE = extern struct {
 pub const DWORD_BLOB = extern struct {
     clSize: u32,
     alData: [1]u32,
+};
+
+pub const DWORD_SIZEDARR = extern struct {
+    clSize: u32,
+    pData: ?*u32,
 };
 
 pub const ELEMDESC = extern struct {
@@ -4240,7 +4282,7 @@ pub const IStream = extern union {
             self: *const IStream,
             libOffset: ULARGE_INTEGER,
             cb: ULARGE_INTEGER,
-            dwLockType: u32,
+            dwLockType: LOCKTYPE,
         ) callconv(.winapi) HRESULT,
         UnlockRegion: *const fn(
             self: *const IStream,
@@ -4251,7 +4293,7 @@ pub const IStream = extern union {
         Stat: *const fn(
             self: *const IStream,
             pstatstg: ?*STATSTG,
-            grfStatFlag: u32,
+            grfStatFlag: STATFLAG,
         ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IStream,
@@ -4276,13 +4318,13 @@ pub const IStream = extern union {
     pub fn Revert(self: *const IStream) callconv(.@"inline") HRESULT {
         return self.vtable.Revert(self);
     }
-    pub fn LockRegion(self: *const IStream, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: u32) callconv(.@"inline") HRESULT {
+    pub fn LockRegion(self: *const IStream, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: LOCKTYPE) callconv(.@"inline") HRESULT {
         return self.vtable.LockRegion(self, libOffset, cb, dwLockType);
     }
     pub fn UnlockRegion(self: *const IStream, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UnlockRegion(self, libOffset, cb, dwLockType);
     }
-    pub fn Stat(self: *const IStream, pstatstg: ?*STATSTG, grfStatFlag: u32) callconv(.@"inline") HRESULT {
+    pub fn Stat(self: *const IStream, pstatstg: ?*STATSTG, grfStatFlag: STATFLAG) callconv(.@"inline") HRESULT {
         return self.vtable.Stat(self, pstatstg, grfStatFlag);
     }
     pub fn Clone(self: *const IStream, ppstm: ?*?*IStream) callconv(.@"inline") HRESULT {
@@ -5534,10 +5576,14 @@ pub const IWaitMultiple = extern union {
     }
 };
 
-pub const LONG_SIZEDARR = extern struct {
-    clSize: u32,
-    pData: ?*u32,
+pub const LOCKTYPE = enum(i32) {
+    WRITE = 1,
+    EXCLUSIVE = 2,
+    ONLYONCE = 4,
 };
+pub const LOCK_WRITE = LOCKTYPE.WRITE;
+pub const LOCK_EXCLUSIVE = LOCKTYPE.EXCLUSIVE;
+pub const LOCK_ONLYONCE = LOCKTYPE.ONLYONCE;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
 pub const LPEXCEPFINO_DEFERRED_FILLIN = *const fn() callconv(.winapi) void;
@@ -5568,16 +5614,16 @@ pub const MEMCTX_MACSYSTEM = MEMCTX.MACSYSTEM;
 pub const MEMCTX_UNKNOWN = MEMCTX.UNKNOWN;
 pub const MEMCTX_SAME = MEMCTX.SAME;
 
-pub const MKREDUCE = enum(i32) {
+pub const MKRREDUCE = enum(i32) {
     ONE = 196608,
     TOUSER = 131072,
     THROUGHUSER = 65536,
     ALL = 0,
 };
-pub const MKRREDUCE_ONE = MKREDUCE.ONE;
-pub const MKRREDUCE_TOUSER = MKREDUCE.TOUSER;
-pub const MKRREDUCE_THROUGHUSER = MKREDUCE.THROUGHUSER;
-pub const MKRREDUCE_ALL = MKREDUCE.ALL;
+pub const MKRREDUCE_ONE = MKRREDUCE.ONE;
+pub const MKRREDUCE_TOUSER = MKRREDUCE.TOUSER;
+pub const MKRREDUCE_THROUGHUSER = MKRREDUCE.THROUGHUSER;
+pub const MKRREDUCE_ALL = MKRREDUCE.ALL;
 
 pub const MKSYS = enum(i32) {
     NONE = 0,
@@ -5686,7 +5732,7 @@ pub const REGCLS_SURROGATE = REGCLS.SURROGATE;
 pub const REGCLS_AGILE = REGCLS.AGILE;
 
 pub const RemSTGMEDIUM = extern struct {
-    tymed: u32,
+    tymed: TYMED,
     dwHandleType: u32,
     pData: u32,
     pUnkForRelease: u32,
@@ -5797,7 +5843,7 @@ pub const SERVER_LOCALITY_REMOTE = RPCOPT_SERVER_LOCALITY_VALUES.REMOTE;
 
 pub const SAFEARRAY = extern struct {
     cDims: u16,
-    fFeatures: u16,
+    fFeatures: ADVANCED_FEATURE_FLAGS,
     cbElements: u32,
     cLocks: u32,
     pvData: ?*anyopaque,
@@ -5826,11 +5872,6 @@ pub const SERVERCALL = enum(i32) {
 pub const SERVERCALL_ISHANDLED = SERVERCALL.ISHANDLED;
 pub const SERVERCALL_REJECTED = SERVERCALL.REJECTED;
 pub const SERVERCALL_RETRYLATER = SERVERCALL.RETRYLATER;
-
-pub const SHORT_SIZEDARR = extern struct {
-    clSize: u32,
-    pData: ?*u16,
-};
 
 pub const ShutdownType = enum(i32) {
     IdleShutdown = 0,
@@ -5864,6 +5905,15 @@ pub const STATDATA = extern struct {
     dwConnection: u32,
 };
 
+pub const STATFLAG = enum(i32) {
+    DEFAULT = 0,
+    NONAME = 1,
+    NOOPEN = 2,
+};
+pub const STATFLAG_DEFAULT = STATFLAG.DEFAULT;
+pub const STATFLAG_NONAME = STATFLAG.NONAME;
+pub const STATFLAG_NOOPEN = STATFLAG.NOOPEN;
+
 pub const STATSTG = extern struct {
     pwcsName: ?PWSTR,
     type: u32,
@@ -5871,8 +5921,8 @@ pub const STATSTG = extern struct {
     mtime: FILETIME,
     ctime: FILETIME,
     atime: FILETIME,
-    grfMode: u32,
-    grfLocksSupported: u32,
+    grfMode: STGM,
+    grfLocksSupported: LOCKTYPE,
     clsid: Guid,
     grfStateBits: u32,
     reserved: u32,
@@ -5918,8 +5968,64 @@ pub const STGC_ONLYIFCURRENT = STGC{ .ONLYIFCURRENT = 1 };
 pub const STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = STGC{ .DANGEROUSLYCOMMITMERELYTODISKCACHE = 1 };
 pub const STGC_CONSOLIDATE = STGC{ .CONSOLIDATE = 1 };
 
+pub const STGM = packed struct(u32) {
+    WRITE: u1 = 0,
+    READWRITE: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    SHARE_EXCLUSIVE: u1 = 0,
+    SHARE_DENY_WRITE: u1 = 0,
+    SHARE_DENY_NONE: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    CREATE: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    TRANSACTED: u1 = 0,
+    CONVERT: u1 = 0,
+    PRIORITY: u1 = 0,
+    _19: u1 = 0,
+    NOSCRATCH: u1 = 0,
+    NOSNAPSHOT: u1 = 0,
+    DIRECT_SWMR: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    DELETEONRELEASE: u1 = 0,
+    SIMPLE: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const STGM_DIRECT = STGM{ };
+pub const STGM_TRANSACTED = STGM{ .TRANSACTED = 1 };
+pub const STGM_SIMPLE = STGM{ .SIMPLE = 1 };
+pub const STGM_READ = STGM{ };
+pub const STGM_WRITE = STGM{ .WRITE = 1 };
+pub const STGM_READWRITE = STGM{ .READWRITE = 1 };
+pub const STGM_SHARE_DENY_NONE = STGM{ .SHARE_DENY_NONE = 1 };
+pub const STGM_SHARE_DENY_READ = STGM{
+    .SHARE_EXCLUSIVE = 1,
+    .SHARE_DENY_WRITE = 1,
+};
+pub const STGM_SHARE_DENY_WRITE = STGM{ .SHARE_DENY_WRITE = 1 };
+pub const STGM_SHARE_EXCLUSIVE = STGM{ .SHARE_EXCLUSIVE = 1 };
+pub const STGM_PRIORITY = STGM{ .PRIORITY = 1 };
+pub const STGM_DELETEONRELEASE = STGM{ .DELETEONRELEASE = 1 };
+pub const STGM_NOSCRATCH = STGM{ .NOSCRATCH = 1 };
+pub const STGM_CREATE = STGM{ .CREATE = 1 };
+pub const STGM_CONVERT = STGM{ .CONVERT = 1 };
+pub const STGM_FAILIFTHERE = STGM{ };
+pub const STGM_NOSNAPSHOT = STGM{ .NOSNAPSHOT = 1 };
+pub const STGM_DIRECT_SWMR = STGM{ .DIRECT_SWMR = 1 };
+
 pub const STGMEDIUM = extern struct {
-    tymed: u32,
+    tymed: TYMED,
     Anonymous: extern union {
         hBitmap: ?HBITMAP,
         hMetaFilePict: ?*anyopaque,
@@ -6224,7 +6330,7 @@ pub const VARDESC = extern struct {
         lpvarValue: ?*VARIANT,
     },
     elemdescVar: ELEMDESC,
-    wVarFlags: u16,
+    wVarFlags: VARFLAGS,
     varkind: VARKIND,
 };
 
@@ -6335,6 +6441,35 @@ pub const VT_ILLEGAL = VARENUM.ILLEGAL;
 pub const VT_ILLEGALMASKED = VARENUM.BSTR_BLOB;
 pub const VT_TYPEMASK = VARENUM.BSTR_BLOB;
 
+pub const VARFLAGS = enum(u16) {
+    READONLY = 1,
+    SOURCE = 2,
+    BINDABLE = 4,
+    REQUESTEDIT = 8,
+    DISPLAYBIND = 16,
+    DEFAULTBIND = 32,
+    HIDDEN = 64,
+    RESTRICTED = 128,
+    DEFAULTCOLLELEM = 256,
+    UIDEFAULT = 512,
+    NONBROWSABLE = 1024,
+    REPLACEABLE = 2048,
+    IMMEDIATEBIND = 4096,
+};
+pub const VARFLAG_FREADONLY = VARFLAGS.READONLY;
+pub const VARFLAG_FSOURCE = VARFLAGS.SOURCE;
+pub const VARFLAG_FBINDABLE = VARFLAGS.BINDABLE;
+pub const VARFLAG_FREQUESTEDIT = VARFLAGS.REQUESTEDIT;
+pub const VARFLAG_FDISPLAYBIND = VARFLAGS.DISPLAYBIND;
+pub const VARFLAG_FDEFAULTBIND = VARFLAGS.DEFAULTBIND;
+pub const VARFLAG_FHIDDEN = VARFLAGS.HIDDEN;
+pub const VARFLAG_FRESTRICTED = VARFLAGS.RESTRICTED;
+pub const VARFLAG_FDEFAULTCOLLELEM = VARFLAGS.DEFAULTCOLLELEM;
+pub const VARFLAG_FUIDEFAULT = VARFLAGS.UIDEFAULT;
+pub const VARFLAG_FNONBROWSABLE = VARFLAGS.NONBROWSABLE;
+pub const VARFLAG_FREPLACEABLE = VARFLAGS.REPLACEABLE;
+pub const VARFLAG_FIMMEDIATEBIND = VARFLAGS.IMMEDIATEBIND;
+
 pub const VARIANT = extern struct {
     Anonymous: extern union {
         Anonymous: extern struct {
@@ -6412,6 +6547,11 @@ pub const VAR_DISPATCH = VARKIND.DISPATCH;
 pub const WORD_BLOB = extern struct {
     clSize: u32,
     asData: [1]u16,
+};
+
+pub const WORD_SIZEDARR = extern struct {
+    clSize: u32,
+    pData: ?*u16,
 };
 
 

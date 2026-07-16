@@ -3157,7 +3157,7 @@ pub const XSTATE_PASID = @as(u32, 10);
 pub const XSTATE_XFD_BIT = @as(u32, 2);
 
 //--------------------------------------------------------------------------------
-// Section: Types (261)
+// Section: Types (265)
 //--------------------------------------------------------------------------------
 pub const _DEV_BROADCAST_HEADER = extern struct {
     dbcd_size: u32,
@@ -3643,48 +3643,30 @@ pub const CF_PRIVATELAST = CLIPBOARD_FORMATS.PRIVATELAST;
 pub const CF_GDIOBJFIRST = CLIPBOARD_FORMATS.GDIOBJFIRST;
 pub const CF_GDIOBJLAST = CLIPBOARD_FORMATS.GDIOBJLAST;
 
-pub const CM_ERROR_CONTROL_TYPE = enum(i32) {
-    IgnoreError = 0,
-    NormalError = 1,
-    SevereError = 2,
-    CriticalError = 3,
-};
-pub const IgnoreError = CM_ERROR_CONTROL_TYPE.IgnoreError;
-pub const NormalError = CM_ERROR_CONTROL_TYPE.NormalError;
-pub const SevereError = CM_ERROR_CONTROL_TYPE.SevereError;
-pub const CriticalError = CM_ERROR_CONTROL_TYPE.CriticalError;
-
-pub const CM_SERVICE_LOAD_TYPE = enum(i32) {
-    BootLoad = 0,
-    SystemLoad = 1,
-    AutoLoad = 2,
-    DemandLoad = 3,
-    DisableLoad = 4,
-};
-pub const BootLoad = CM_SERVICE_LOAD_TYPE.BootLoad;
-pub const SystemLoad = CM_SERVICE_LOAD_TYPE.SystemLoad;
-pub const AutoLoad = CM_SERVICE_LOAD_TYPE.AutoLoad;
-pub const DemandLoad = CM_SERVICE_LOAD_TYPE.DemandLoad;
-pub const DisableLoad = CM_SERVICE_LOAD_TYPE.DisableLoad;
-
-pub const CM_SERVICE_NODE_TYPE = enum(i32) {
-    DriverType = 1,
-    FileSystemType = 2,
-    Win32ServiceOwnProcess = 16,
-    Win32ServiceShareProcess = 32,
-    AdapterType = 4,
-    RecognizerType = 8,
-};
-pub const DriverType = CM_SERVICE_NODE_TYPE.DriverType;
-pub const FileSystemType = CM_SERVICE_NODE_TYPE.FileSystemType;
-pub const Win32ServiceOwnProcess = CM_SERVICE_NODE_TYPE.Win32ServiceOwnProcess;
-pub const Win32ServiceShareProcess = CM_SERVICE_NODE_TYPE.Win32ServiceShareProcess;
-pub const AdapterType = CM_SERVICE_NODE_TYPE.AdapterType;
-pub const RecognizerType = CM_SERVICE_NODE_TYPE.RecognizerType;
-
 pub const COMPONENT_FILTER = extern struct {
     ComponentFlags: u32,
 };
+
+pub const DESKTOP_ACCESS_FLAGS = enum(u32) {
+    READOBJECTS = 1,
+    CREATEWINDOW = 2,
+    CREATEMENU = 4,
+    HOOKCONTROL = 8,
+    JOURNALRECORD = 16,
+    JOURNALPLAYBACK = 32,
+    ENUMERATE = 64,
+    WRITEOBJECTS = 128,
+    SWITCHDESKTOP = 256,
+};
+pub const DESKTOP_READOBJECTS = DESKTOP_ACCESS_FLAGS.READOBJECTS;
+pub const DESKTOP_CREATEWINDOW = DESKTOP_ACCESS_FLAGS.CREATEWINDOW;
+pub const DESKTOP_CREATEMENU = DESKTOP_ACCESS_FLAGS.CREATEMENU;
+pub const DESKTOP_HOOKCONTROL = DESKTOP_ACCESS_FLAGS.HOOKCONTROL;
+pub const DESKTOP_JOURNALRECORD = DESKTOP_ACCESS_FLAGS.JOURNALRECORD;
+pub const DESKTOP_JOURNALPLAYBACK = DESKTOP_ACCESS_FLAGS.JOURNALPLAYBACK;
+pub const DESKTOP_ENUMERATE = DESKTOP_ACCESS_FLAGS.ENUMERATE;
+pub const DESKTOP_WRITEOBJECTS = DESKTOP_ACCESS_FLAGS.WRITEOBJECTS;
+pub const DESKTOP_SWITCHDESKTOP = DESKTOP_ACCESS_FLAGS.SWITCHDESKTOP;
 
 pub const DEV_BROADCAST_DEVICEINTERFACE_A = extern struct {
     dbcc_size: u32,
@@ -4625,6 +4607,16 @@ pub const IMPORT_OBJECT_CODE = IMPORT_OBJECT_TYPE.CODE;
 pub const IMPORT_OBJECT_DATA = IMPORT_OBJECT_TYPE.DATA;
 pub const IMPORT_OBJECT_CONST = IMPORT_OBJECT_TYPE.CONST;
 
+pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V1 = extern struct {
+    MaxIops: i64,
+    MaxBandwidth: i64,
+    ReservationIops: i64,
+    VolumeName: ?PWSTR,
+    BaseIoSize: u32,
+    ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
+    VolumeNameLength: u16,
+};
+
 pub const KERNEL_CET_CONTEXT = extern struct {
     Ssp: u64,
     Rip: u64,
@@ -5410,6 +5402,49 @@ pub const REARRANGE_FILE_DATA = extern struct {
 };
 
 
+pub const RECO_FLAGS = packed struct(u32) {
+    DROP: u1 = 0,
+    COPY: u1 = 0,
+    DRAG: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const RECO_PASTE = RECO_FLAGS{ };
+pub const RECO_DROP = RECO_FLAGS{ .DROP = 1 };
+pub const RECO_COPY = RECO_FLAGS{ .COPY = 1 };
+pub const RECO_CUT = RECO_FLAGS{
+    .DROP = 1,
+    .COPY = 1,
+};
+pub const RECO_DRAG = RECO_FLAGS{ .DRAG = 1 };
+
 pub const REDBOOK_DIGITAL_AUDIO_EXTRACTION_INFO = extern struct {
     Version: u32,
     Accurate: u32,
@@ -5417,12 +5452,12 @@ pub const REDBOOK_DIGITAL_AUDIO_EXTRACTION_INFO = extern struct {
     AccurateMask0: u32,
 };
 
-pub const RemBRUSH = extern struct {
+pub const RemHBITMAP = extern struct {
     cbData: u32,
     data: [1]u8,
 };
 
-pub const RemHBITMAP = extern struct {
+pub const RemHBRUSH = extern struct {
     cbData: u32,
     data: [1]u8,
 };
@@ -5758,6 +5793,180 @@ pub const SERVERSILO_STARTED = SERVERSILO_STATE.STARTED;
 pub const SERVERSILO_SHUTTING_DOWN = SERVERSILO_STATE.SHUTTING_DOWN;
 pub const SERVERSILO_TERMINATING = SERVERSILO_STATE.TERMINATING;
 pub const SERVERSILO_TERMINATED = SERVERSILO_STATE.TERMINATED;
+
+pub const SERVICE_ERROR_TYPE = enum(i32) {
+    IgnoreError = 0,
+    NormalError = 1,
+    SevereError = 2,
+    CriticalError = 3,
+};
+pub const IgnoreError = SERVICE_ERROR_TYPE.IgnoreError;
+pub const NormalError = SERVICE_ERROR_TYPE.NormalError;
+pub const SevereError = SERVICE_ERROR_TYPE.SevereError;
+pub const CriticalError = SERVICE_ERROR_TYPE.CriticalError;
+
+pub const SERVICE_LOAD_TYPE = enum(i32) {
+    BootLoad = 0,
+    SystemLoad = 1,
+    AutoLoad = 2,
+    DemandLoad = 3,
+    DisableLoad = 4,
+};
+pub const BootLoad = SERVICE_LOAD_TYPE.BootLoad;
+pub const SystemLoad = SERVICE_LOAD_TYPE.SystemLoad;
+pub const AutoLoad = SERVICE_LOAD_TYPE.AutoLoad;
+pub const DemandLoad = SERVICE_LOAD_TYPE.DemandLoad;
+pub const DisableLoad = SERVICE_LOAD_TYPE.DisableLoad;
+
+pub const SERVICE_NODE_TYPE = enum(i32) {
+    DriverType = 1,
+    FileSystemType = 2,
+    Win32ServiceOwnProcess = 16,
+    Win32ServiceShareProcess = 32,
+    AdapterType = 4,
+    RecognizerType = 8,
+};
+pub const DriverType = SERVICE_NODE_TYPE.DriverType;
+pub const FileSystemType = SERVICE_NODE_TYPE.FileSystemType;
+pub const Win32ServiceOwnProcess = SERVICE_NODE_TYPE.Win32ServiceOwnProcess;
+pub const Win32ServiceShareProcess = SERVICE_NODE_TYPE.Win32ServiceShareProcess;
+pub const AdapterType = SERVICE_NODE_TYPE.AdapterType;
+pub const RecognizerType = SERVICE_NODE_TYPE.RecognizerType;
+
+pub const SFGAO_FLAGS = packed struct(u64) {
+    CANCOPY: u1 = 0,
+    CANMOVE: u1 = 0,
+    CANLINK: u1 = 0,
+    STORAGE: u1 = 0,
+    CANRENAME: u1 = 0,
+    CANDELETE: u1 = 0,
+    HASPROPSHEET: u1 = 0,
+    _7: u1 = 0,
+    DROPTARGET: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    PLACEHOLDER: u1 = 0,
+    SYSTEM: u1 = 0,
+    ENCRYPTED: u1 = 0,
+    ISSLOW: u1 = 0,
+    GHOSTED: u1 = 0,
+    LINK: u1 = 0,
+    SHARE: u1 = 0,
+    READONLY: u1 = 0,
+    HIDDEN: u1 = 0,
+    NONENUMERATED: u1 = 0,
+    NEWCONTENT: u1 = 0,
+    CANMONIKER: u1 = 0,
+    STORAGEANCESTOR: u1 = 0,
+    VALIDATE: u1 = 0,
+    REMOVABLE: u1 = 0,
+    COMPRESSED: u1 = 0,
+    BROWSABLE: u1 = 0,
+    FILESYSANCESTOR: u1 = 0,
+    FOLDER: u1 = 0,
+    FILESYSTEM: u1 = 0,
+    HASSUBFOLDER: u1 = 0,
+    _32: u1 = 0,
+    _33: u1 = 0,
+    _34: u1 = 0,
+    _35: u1 = 0,
+    _36: u1 = 0,
+    _37: u1 = 0,
+    _38: u1 = 0,
+    _39: u1 = 0,
+    _40: u1 = 0,
+    _41: u1 = 0,
+    _42: u1 = 0,
+    _43: u1 = 0,
+    _44: u1 = 0,
+    _45: u1 = 0,
+    _46: u1 = 0,
+    _47: u1 = 0,
+    _48: u1 = 0,
+    _49: u1 = 0,
+    _50: u1 = 0,
+    _51: u1 = 0,
+    _52: u1 = 0,
+    _53: u1 = 0,
+    _54: u1 = 0,
+    _55: u1 = 0,
+    _56: u1 = 0,
+    _57: u1 = 0,
+    _58: u1 = 0,
+    _59: u1 = 0,
+    _60: u1 = 0,
+    _61: u1 = 0,
+    _62: u1 = 0,
+    _63: u1 = 0,
+    // CONTENTSMASK (bit index 31) conflicts with HASSUBFOLDER
+    // HASSTORAGE (bit index 22) conflicts with CANMONIKER
+    // STREAM (bit index 22) conflicts with CANMONIKER
+};
+pub const SFGAO_CANCOPY = SFGAO_FLAGS{ .CANCOPY = 1 };
+pub const SFGAO_CANMOVE = SFGAO_FLAGS{ .CANMOVE = 1 };
+pub const SFGAO_CANLINK = SFGAO_FLAGS{ .CANLINK = 1 };
+pub const SFGAO_STORAGE = SFGAO_FLAGS{ .STORAGE = 1 };
+pub const SFGAO_CANRENAME = SFGAO_FLAGS{ .CANRENAME = 1 };
+pub const SFGAO_CANDELETE = SFGAO_FLAGS{ .CANDELETE = 1 };
+pub const SFGAO_HASPROPSHEET = SFGAO_FLAGS{ .HASPROPSHEET = 1 };
+pub const SFGAO_DROPTARGET = SFGAO_FLAGS{ .DROPTARGET = 1 };
+pub const SFGAO_CAPABILITYMASK = SFGAO_FLAGS{
+    .CANCOPY = 1,
+    .CANMOVE = 1,
+    .CANLINK = 1,
+    .CANRENAME = 1,
+    .CANDELETE = 1,
+    .HASPROPSHEET = 1,
+    .DROPTARGET = 1,
+};
+pub const SFGAO_PLACEHOLDER = SFGAO_FLAGS{ .PLACEHOLDER = 1 };
+pub const SFGAO_SYSTEM = SFGAO_FLAGS{ .SYSTEM = 1 };
+pub const SFGAO_ENCRYPTED = SFGAO_FLAGS{ .ENCRYPTED = 1 };
+pub const SFGAO_ISSLOW = SFGAO_FLAGS{ .ISSLOW = 1 };
+pub const SFGAO_GHOSTED = SFGAO_FLAGS{ .GHOSTED = 1 };
+pub const SFGAO_LINK = SFGAO_FLAGS{ .LINK = 1 };
+pub const SFGAO_SHARE = SFGAO_FLAGS{ .SHARE = 1 };
+pub const SFGAO_READONLY = SFGAO_FLAGS{ .READONLY = 1 };
+pub const SFGAO_HIDDEN = SFGAO_FLAGS{ .HIDDEN = 1 };
+pub const SFGAO_DISPLAYATTRMASK = SFGAO_FLAGS{
+    .ISSLOW = 1,
+    .GHOSTED = 1,
+    .LINK = 1,
+    .SHARE = 1,
+    .READONLY = 1,
+    .HIDDEN = 1,
+};
+pub const SFGAO_FILESYSANCESTOR = SFGAO_FLAGS{ .FILESYSANCESTOR = 1 };
+pub const SFGAO_FOLDER = SFGAO_FLAGS{ .FOLDER = 1 };
+pub const SFGAO_FILESYSTEM = SFGAO_FLAGS{ .FILESYSTEM = 1 };
+pub const SFGAO_HASSUBFOLDER = SFGAO_FLAGS{ .HASSUBFOLDER = 1 };
+pub const SFGAO_CONTENTSMASK = SFGAO_FLAGS{ .HASSUBFOLDER = 1 };
+pub const SFGAO_VALIDATE = SFGAO_FLAGS{ .VALIDATE = 1 };
+pub const SFGAO_REMOVABLE = SFGAO_FLAGS{ .REMOVABLE = 1 };
+pub const SFGAO_COMPRESSED = SFGAO_FLAGS{ .COMPRESSED = 1 };
+pub const SFGAO_BROWSABLE = SFGAO_FLAGS{ .BROWSABLE = 1 };
+pub const SFGAO_NONENUMERATED = SFGAO_FLAGS{ .NONENUMERATED = 1 };
+pub const SFGAO_NEWCONTENT = SFGAO_FLAGS{ .NEWCONTENT = 1 };
+pub const SFGAO_CANMONIKER = SFGAO_FLAGS{ .CANMONIKER = 1 };
+pub const SFGAO_HASSTORAGE = SFGAO_FLAGS{ .CANMONIKER = 1 };
+pub const SFGAO_STREAM = SFGAO_FLAGS{ .CANMONIKER = 1 };
+pub const SFGAO_STORAGEANCESTOR = SFGAO_FLAGS{ .STORAGEANCESTOR = 1 };
+pub const SFGAO_STORAGECAPMASK = SFGAO_FLAGS{
+    .STORAGE = 1,
+    .LINK = 1,
+    .READONLY = 1,
+    .CANMONIKER = 1,
+    .STORAGEANCESTOR = 1,
+    .FILESYSANCESTOR = 1,
+    .FOLDER = 1,
+    .FILESYSTEM = 1,
+};
+pub const SFGAO_PKEYSFGAOMASK = SFGAO_FLAGS{
+    .ISSLOW = 1,
+    .READONLY = 1,
+    .VALIDATE = 1,
+    .HASSUBFOLDER = 1,
+};
 
 pub const SHARED_VIRTUAL_DISK_SUPPORT = extern struct {
     SharedVirtualDiskSupport: SharedVirtualDiskSupportType,
@@ -6403,7 +6612,7 @@ pub const DEV_BROADCAST_PORT_ = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (20)
+// Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -6413,6 +6622,7 @@ const CHAR = @import("../foundation.zig").CHAR;
 const DWORD_BLOB = @import("../system/com.zig").DWORD_BLOB;
 const FLAGGED_BYTE_BLOB = @import("../system/com.zig").FLAGGED_BYTE_BLOB;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const JOB_OBJECT_IO_RATE_CONTROL_FLAGS = @import("../system/job_objects.zig").JOB_OBJECT_IO_RATE_CONTROL_FLAGS;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const LOGPALETTE = @import("../graphics/gdi.zig").LOGPALETTE;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;

@@ -955,26 +955,6 @@ pub const wrnBTNotVisibleRejected = @as(u32, 352);
 //--------------------------------------------------------------------------------
 // Section: Types (95)
 //--------------------------------------------------------------------------------
-pub const CONVERT_A = extern struct {
-    szOldDll: ?PSTR,
-    Anonymous: extern union {
-        fFlags: u32,
-        Anonymous: extern struct {
-            _bitfield: u32,
-        },
-    },
-};
-
-pub const CONVERT_W = extern struct {
-    szOldDll: ?PWSTR,
-    Anonymous: extern union {
-        fFlags: u32,
-        Anonymous: extern struct {
-            _bitfield: u32,
-        },
-    },
-};
-
 pub const JET_BKINFO = extern struct {
     lgposMark: JET_LGPOS align(1),
     Anonymous: extern union {
@@ -1115,6 +1095,26 @@ pub const JET_CONDITIONALCOLUMN_W = extern struct {
     cbStruct: u32,
     szColumnName: ?PWSTR,
     grbit: u32,
+};
+
+pub const JET_CONVERT_A = extern struct {
+    szOldDll: ?PSTR,
+    Anonymous: extern union {
+        fFlags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
+};
+
+pub const JET_CONVERT_W = extern struct {
+    szOldDll: ?PWSTR,
+    Anonymous: extern union {
+        fFlags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const JET_DBINFOMISC = extern struct {
@@ -2309,7 +2309,7 @@ pub extern "esent" fn JetCompactA(
     szDatabaseSrc: ?*i8,
     szDatabaseDest: ?*i8,
     pfnStatus: ?JET_PFNSTATUS,
-    pconvert: ?*CONVERT_A,
+    pconvert: ?*JET_CONVERT_A,
     grbit: u32,
 ) callconv(.winapi) i32;
 
@@ -2318,7 +2318,7 @@ pub extern "esent" fn JetCompactW(
     szDatabaseSrc: ?*u16,
     szDatabaseDest: ?*u16,
     pfnStatus: ?JET_PFNSTATUS,
-    pconvert: ?*CONVERT_W,
+    pconvert: ?*JET_CONVERT_W,
     grbit: u32,
 ) callconv(.winapi) i32;
 
@@ -3841,13 +3841,6 @@ pub extern "esent" fn JetUpdate2(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (85)
 //--------------------------------------------------------------------------------
-pub const CONVERT_ = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CONVERT_A,
-    .wide => @This().CONVERT_W,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CONVERT_' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const JET_COLUMNBASE_ = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().JET_COLUMNBASE_A,
     .wide => @This().JET_COLUMNBASE_W,
@@ -3867,6 +3860,13 @@ pub const JET_CONDITIONALCOLUMN_ = switch (@import("../zig.zig").unicode_mode) {
     .wide => @This().JET_CONDITIONALCOLUMN_W,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'JET_CONDITIONALCOLUMN_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const JET_CONVERT_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().JET_CONVERT_A,
+    .wide => @This().JET_CONVERT_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'JET_CONVERT_' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const JET_INDEXCREATE2_ = switch (@import("../zig.zig").unicode_mode) {

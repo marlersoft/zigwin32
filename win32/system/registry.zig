@@ -944,23 +944,14 @@ pub const PQUERYHANDLER = *const fn(
     input_blen: u32,
 ) callconv(.winapi) u32;
 
-pub const provider_info = extern struct {
-    pi_R0_1val: ?PQUERYHANDLER,
-    pi_R0_allvals: ?PQUERYHANDLER,
-    pi_R3_1val: ?PQUERYHANDLER,
-    pi_R3_allvals: ?PQUERYHANDLER,
-    pi_flags: u32,
-    pi_key_context: ?*anyopaque,
-};
-
-pub const pvalueA = extern struct {
+pub const PVALUEA = extern struct {
     pv_valuename: ?PSTR,
     pv_valuelen: i32,
     pv_value_context: ?*anyopaque,
     pv_type: u32,
 };
 
-pub const pvalueW = extern struct {
+pub const PVALUEW = extern struct {
     pv_valuename: ?PWSTR,
     pv_valuelen: i32,
     pv_value_context: ?*anyopaque,
@@ -1049,6 +1040,15 @@ pub const REG_OPEN_CREATE_OPTIONS = packed struct(u32) {
     _31: u1 = 0,
 };
 // TODO: enum 'REG_OPEN_CREATE_OPTIONS' has known issues with its value aliases
+
+pub const REG_PROVIDER = extern struct {
+    pi_R0_1val: ?PQUERYHANDLER,
+    pi_R0_allvals: ?PQUERYHANDLER,
+    pi_R3_1val: ?PQUERYHANDLER,
+    pi_R3_allvals: ?PQUERYHANDLER,
+    pi_flags: u32,
+    pi_key_context: ?*anyopaque,
+};
 
 pub const REG_RESTORE_KEY_FLAGS = enum(i32) {
     FORCE_RESTORE = 8,
@@ -1994,11 +1994,11 @@ pub extern "advapi32" fn RegUnLoadKeyW(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (36)
 //--------------------------------------------------------------------------------
-pub const pvalue = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().pvalueA,
-    .wide => @This().pvalueW,
+pub const PVALUE = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PVALUEA,
+    .wide => @This().PVALUEW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'pvalue' requires that UNICODE be set to true or false in the root module",
+        "'PVALUE' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const VALENT = switch (@import("../zig.zig").unicode_mode) {

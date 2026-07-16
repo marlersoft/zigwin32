@@ -766,7 +766,7 @@ pub const ADS_ACETYPE_SYSTEM_ALARM_CALLBACK_OBJECT = ADS_ACETYPE_ENUM.SYSTEM_ALA
 
 pub const ADS_ATTR_DEF = extern struct {
     pszAttrName: ?PWSTR,
-    dwADsType: ADSTYPEENUM,
+    dwADsType: ADSTYPE,
     dwMinRange: u32,
     dwMaxRange: u32,
     fMultiValued: BOOL,
@@ -775,7 +775,7 @@ pub const ADS_ATTR_DEF = extern struct {
 pub const ADS_ATTR_INFO = extern struct {
     pszAttrName: ?PWSTR,
     dwControlCode: u32,
-    dwADsType: ADSTYPEENUM,
+    dwADsType: ADSTYPE,
     pADsValues: ?*ADSVALUE,
     dwNumValues: u32,
 };
@@ -1205,9 +1205,9 @@ pub const ADS_SD_REVISION_ENUM = enum(i32) {
 };
 pub const ADS_SD_REVISION_DS = ADS_SD_REVISION_ENUM.S;
 
-pub const ads_search_column = extern struct {
+pub const ADS_SEARCH_COLUMN = extern struct {
     pszAttrName: ?PWSTR,
-    dwADsType: ADSTYPEENUM,
+    dwADsType: ADSTYPE,
     pADsValues: ?*ADSVALUE,
     dwNumValues: u32,
     hReserved: ?HANDLE,
@@ -1257,7 +1257,7 @@ pub const ADS_SEARCHPREF_SECURITY_MASK = ADS_SEARCHPREF_ENUM.SECURITY_MASK;
 pub const ADS_SEARCHPREF_DIRSYNC_FLAG = ADS_SEARCHPREF_ENUM.DIRSYNC_FLAG;
 pub const ADS_SEARCHPREF_EXTENDED_DN = ADS_SEARCHPREF_ENUM.EXTENDED_DN;
 
-pub const ads_searchpref_info = extern struct {
+pub const ADS_SEARCHPREF_INFO = extern struct {
     dwSearchPref: ADS_SEARCHPREF_ENUM,
     vValue: ADSVALUE,
     dwStatus: ADS_STATUSENUM,
@@ -1417,7 +1417,7 @@ pub const ADSPROPINITPARAMS = extern struct {
 const CLSID_ADsSecurityUtility_Value = Guid.initString("f270c64a-ffb8-4ae4-85fe-3a75e5347966");
 pub const CLSID_ADsSecurityUtility = &CLSID_ADsSecurityUtility_Value;
 
-pub const ADSTYPEENUM = enum(i32) {
+pub const ADSTYPE = enum(i32) {
     INVALID = 0,
     DN_STRING = 1,
     CASE_EXACT_STRING = 2,
@@ -1448,38 +1448,38 @@ pub const ADSTYPEENUM = enum(i32) {
     DN_WITH_BINARY = 27,
     DN_WITH_STRING = 28,
 };
-pub const ADSTYPE_INVALID = ADSTYPEENUM.INVALID;
-pub const ADSTYPE_DN_STRING = ADSTYPEENUM.DN_STRING;
-pub const ADSTYPE_CASE_EXACT_STRING = ADSTYPEENUM.CASE_EXACT_STRING;
-pub const ADSTYPE_CASE_IGNORE_STRING = ADSTYPEENUM.CASE_IGNORE_STRING;
-pub const ADSTYPE_PRINTABLE_STRING = ADSTYPEENUM.PRINTABLE_STRING;
-pub const ADSTYPE_NUMERIC_STRING = ADSTYPEENUM.NUMERIC_STRING;
-pub const ADSTYPE_BOOLEAN = ADSTYPEENUM.BOOLEAN;
-pub const ADSTYPE_INTEGER = ADSTYPEENUM.INTEGER;
-pub const ADSTYPE_OCTET_STRING = ADSTYPEENUM.OCTET_STRING;
-pub const ADSTYPE_UTC_TIME = ADSTYPEENUM.UTC_TIME;
-pub const ADSTYPE_LARGE_INTEGER = ADSTYPEENUM.LARGE_INTEGER;
-pub const ADSTYPE_PROV_SPECIFIC = ADSTYPEENUM.PROV_SPECIFIC;
-pub const ADSTYPE_OBJECT_CLASS = ADSTYPEENUM.OBJECT_CLASS;
-pub const ADSTYPE_CASEIGNORE_LIST = ADSTYPEENUM.CASEIGNORE_LIST;
-pub const ADSTYPE_OCTET_LIST = ADSTYPEENUM.OCTET_LIST;
-pub const ADSTYPE_PATH = ADSTYPEENUM.PATH;
-pub const ADSTYPE_POSTALADDRESS = ADSTYPEENUM.POSTALADDRESS;
-pub const ADSTYPE_TIMESTAMP = ADSTYPEENUM.TIMESTAMP;
-pub const ADSTYPE_BACKLINK = ADSTYPEENUM.BACKLINK;
-pub const ADSTYPE_TYPEDNAME = ADSTYPEENUM.TYPEDNAME;
-pub const ADSTYPE_HOLD = ADSTYPEENUM.HOLD;
-pub const ADSTYPE_NETADDRESS = ADSTYPEENUM.NETADDRESS;
-pub const ADSTYPE_REPLICAPOINTER = ADSTYPEENUM.REPLICAPOINTER;
-pub const ADSTYPE_FAXNUMBER = ADSTYPEENUM.FAXNUMBER;
-pub const ADSTYPE_EMAIL = ADSTYPEENUM.EMAIL;
-pub const ADSTYPE_NT_SECURITY_DESCRIPTOR = ADSTYPEENUM.NT_SECURITY_DESCRIPTOR;
-pub const ADSTYPE_UNKNOWN = ADSTYPEENUM.UNKNOWN;
-pub const ADSTYPE_DN_WITH_BINARY = ADSTYPEENUM.DN_WITH_BINARY;
-pub const ADSTYPE_DN_WITH_STRING = ADSTYPEENUM.DN_WITH_STRING;
+pub const ADSTYPE_INVALID = ADSTYPE.INVALID;
+pub const ADSTYPE_DN_STRING = ADSTYPE.DN_STRING;
+pub const ADSTYPE_CASE_EXACT_STRING = ADSTYPE.CASE_EXACT_STRING;
+pub const ADSTYPE_CASE_IGNORE_STRING = ADSTYPE.CASE_IGNORE_STRING;
+pub const ADSTYPE_PRINTABLE_STRING = ADSTYPE.PRINTABLE_STRING;
+pub const ADSTYPE_NUMERIC_STRING = ADSTYPE.NUMERIC_STRING;
+pub const ADSTYPE_BOOLEAN = ADSTYPE.BOOLEAN;
+pub const ADSTYPE_INTEGER = ADSTYPE.INTEGER;
+pub const ADSTYPE_OCTET_STRING = ADSTYPE.OCTET_STRING;
+pub const ADSTYPE_UTC_TIME = ADSTYPE.UTC_TIME;
+pub const ADSTYPE_LARGE_INTEGER = ADSTYPE.LARGE_INTEGER;
+pub const ADSTYPE_PROV_SPECIFIC = ADSTYPE.PROV_SPECIFIC;
+pub const ADSTYPE_OBJECT_CLASS = ADSTYPE.OBJECT_CLASS;
+pub const ADSTYPE_CASEIGNORE_LIST = ADSTYPE.CASEIGNORE_LIST;
+pub const ADSTYPE_OCTET_LIST = ADSTYPE.OCTET_LIST;
+pub const ADSTYPE_PATH = ADSTYPE.PATH;
+pub const ADSTYPE_POSTALADDRESS = ADSTYPE.POSTALADDRESS;
+pub const ADSTYPE_TIMESTAMP = ADSTYPE.TIMESTAMP;
+pub const ADSTYPE_BACKLINK = ADSTYPE.BACKLINK;
+pub const ADSTYPE_TYPEDNAME = ADSTYPE.TYPEDNAME;
+pub const ADSTYPE_HOLD = ADSTYPE.HOLD;
+pub const ADSTYPE_NETADDRESS = ADSTYPE.NETADDRESS;
+pub const ADSTYPE_REPLICAPOINTER = ADSTYPE.REPLICAPOINTER;
+pub const ADSTYPE_FAXNUMBER = ADSTYPE.FAXNUMBER;
+pub const ADSTYPE_EMAIL = ADSTYPE.EMAIL;
+pub const ADSTYPE_NT_SECURITY_DESCRIPTOR = ADSTYPE.NT_SECURITY_DESCRIPTOR;
+pub const ADSTYPE_UNKNOWN = ADSTYPE.UNKNOWN;
+pub const ADSTYPE_DN_WITH_BINARY = ADSTYPE.DN_WITH_BINARY;
+pub const ADSTYPE_DN_WITH_STRING = ADSTYPE.DN_WITH_STRING;
 
 pub const ADSVALUE = extern struct {
-    dwType: ADSTYPEENUM,
+    dwType: ADSTYPE,
     Anonymous: extern union {
         DNString: ?*u16,
         CaseExactString: ?*u16,
@@ -8008,7 +8008,7 @@ pub const IDirectorySearch = extern union {
         base: IUnknown.VTable,
         SetSearchPreference: *const fn(
             self: *const IDirectorySearch,
-            pSearchPrefs: ?*ads_searchpref_info,
+            pSearchPrefs: ?*ADS_SEARCHPREF_INFO,
             dwNumPrefs: u32,
         ) callconv(.winapi) HRESULT,
         ExecuteSearch: *const fn(
@@ -8043,11 +8043,11 @@ pub const IDirectorySearch = extern union {
             self: *const IDirectorySearch,
             hSearchResult: ADS_SEARCH_HANDLE,
             szColumnName: ?PWSTR,
-            pSearchColumn: ?*ads_search_column,
+            pSearchColumn: ?*ADS_SEARCH_COLUMN,
         ) callconv(.winapi) HRESULT,
         FreeColumn: *const fn(
             self: *const IDirectorySearch,
-            pSearchColumn: ?*ads_search_column,
+            pSearchColumn: ?*ADS_SEARCH_COLUMN,
         ) callconv(.winapi) HRESULT,
         CloseSearchHandle: *const fn(
             self: *const IDirectorySearch,
@@ -8056,7 +8056,7 @@ pub const IDirectorySearch = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetSearchPreference(self: *const IDirectorySearch, pSearchPrefs: ?*ads_searchpref_info, dwNumPrefs: u32) callconv(.@"inline") HRESULT {
+    pub fn SetSearchPreference(self: *const IDirectorySearch, pSearchPrefs: ?*ADS_SEARCHPREF_INFO, dwNumPrefs: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSearchPreference(self, pSearchPrefs, dwNumPrefs);
     }
     pub fn ExecuteSearch(self: *const IDirectorySearch, pszSearchFilter: ?PWSTR, pAttributeNames: ?*?PWSTR, dwNumberAttributes: u32, phSearchResult: ?*ADS_SEARCH_HANDLE) callconv(.@"inline") HRESULT {
@@ -8077,10 +8077,10 @@ pub const IDirectorySearch = extern union {
     pub fn GetNextColumnName(self: *const IDirectorySearch, hSearchHandle: ADS_SEARCH_HANDLE, ppszColumnName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetNextColumnName(self, hSearchHandle, ppszColumnName);
     }
-    pub fn GetColumn(self: *const IDirectorySearch, hSearchResult: ADS_SEARCH_HANDLE, szColumnName: ?PWSTR, pSearchColumn: ?*ads_search_column) callconv(.@"inline") HRESULT {
+    pub fn GetColumn(self: *const IDirectorySearch, hSearchResult: ADS_SEARCH_HANDLE, szColumnName: ?PWSTR, pSearchColumn: ?*ADS_SEARCH_COLUMN) callconv(.@"inline") HRESULT {
         return self.vtable.GetColumn(self, hSearchResult, szColumnName, pSearchColumn);
     }
-    pub fn FreeColumn(self: *const IDirectorySearch, pSearchColumn: ?*ads_search_column) callconv(.@"inline") HRESULT {
+    pub fn FreeColumn(self: *const IDirectorySearch, pSearchColumn: ?*ADS_SEARCH_COLUMN) callconv(.@"inline") HRESULT {
         return self.vtable.FreeColumn(self, pSearchColumn);
     }
     pub fn CloseSearchHandle(self: *const IDirectorySearch, hSearchResult: ADS_SEARCH_HANDLE) callconv(.@"inline") HRESULT {
@@ -8393,7 +8393,7 @@ pub const IDsDisplaySpecifier = extern union {
         GetAttributeADsType: *const fn(
             self: *const IDsDisplaySpecifier,
             pszAttributeName: ?[*:0]const u16,
-        ) callconv(.winapi) ADSTYPEENUM,
+        ) callconv(.winapi) ADSTYPE,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
@@ -8427,7 +8427,7 @@ pub const IDsDisplaySpecifier = extern union {
     pub fn EnumClassAttributes(self: *const IDsDisplaySpecifier, pszObjectClass: ?[*:0]const u16, pcbEnum: ?LPDSENUMATTRIBUTES, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.EnumClassAttributes(self, pszObjectClass, pcbEnum, lParam);
     }
-    pub fn GetAttributeADsType(self: *const IDsDisplaySpecifier, pszAttributeName: ?[*:0]const u16) callconv(.@"inline") ADSTYPEENUM {
+    pub fn GetAttributeADsType(self: *const IDsDisplaySpecifier, pszAttributeName: ?[*:0]const u16) callconv(.@"inline") ADSTYPE {
         return self.vtable.GetAttributeADsType(self, pszAttributeName);
     }
 };

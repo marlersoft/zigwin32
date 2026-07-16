@@ -327,7 +327,7 @@ pub const V5_ADDRESS_STATE_OFFERED = @as(u32, 0);
 pub const WARNING_EXTENDED_LESS = @as(i32, 20026);
 
 //--------------------------------------------------------------------------------
-// Section: Types (164)
+// Section: Types (163)
 //--------------------------------------------------------------------------------
 pub const DATE_TIME = extern struct {
     dwLowDateTime: u32,
@@ -1265,7 +1265,33 @@ pub const DHCP_SERVER_CONFIG_INFO_VQ = extern struct {
     QuarRuntimeStatus: BOOL,
 };
 
-
+pub const DHCP_SERVER_OPTIONS = extern struct {
+    MessageType: ?*u8,
+    SubnetMask: ?*u32,
+    RequestedAddress: ?*u32,
+    RequestLeaseTime: ?*u32,
+    OverlayFields: ?*u8,
+    RouterAddress: ?*u32,
+    Server: ?*u32,
+    ParameterRequestList: ?*u8,
+    ParameterRequestListLength: u32,
+    MachineName: ?PSTR,
+    MachineNameLength: u32,
+    ClientHardwareAddressType: u8,
+    ClientHardwareAddressLength: u8,
+    ClientHardwareAddress: ?*u8,
+    ClassIdentifier: ?PSTR,
+    ClassIdentifierLength: u32,
+    VendorClass: ?*u8,
+    VendorClassLength: u32,
+    DNSFlags: u32,
+    DNSNameLength: u32,
+    DNSName: ?*u8,
+    DSDomainNameRequested: BOOLEAN,
+    DSDomainName: ?PSTR,
+    DSDomainNameLen: u32,
+    ScopeId: ?*u32,
+};
 
 pub const DHCP_SERVER_SPECIFIC_STRINGS = extern struct {
     DefaultVendorClassName: ?PWSTR,
@@ -1771,62 +1797,6 @@ pub const STATUS_UNSPECIFIED_FAILURE = StatusCode.UNSPECIFIED_FAILURE;
 pub const STATUS_NO_BINDING = StatusCode.NO_BINDING;
 pub const STATUS_NOPREFIX_AVAIL = StatusCode.NOPREFIX_AVAIL;
 
-pub const DHCP_SERVER_OPTIONS = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => extern struct {
-        MessageType: ?*u8,
-        SubnetMask: ?*u32,
-        RequestedAddress: ?*u32,
-        RequestLeaseTime: ?*u32,
-        OverlayFields: ?*u8,
-        RouterAddress: ?*u32,
-        Server: ?*u32,
-        ParameterRequestList: ?*u8,
-        ParameterRequestListLength: u32,
-        MachineName: ?PSTR,
-        MachineNameLength: u32,
-        ClientHardwareAddressType: u8,
-        ClientHardwareAddressLength: u8,
-        ClientHardwareAddress: ?*u8,
-        ClassIdentifier: ?PSTR,
-        ClassIdentifierLength: u32,
-        VendorClass: ?*u8,
-        VendorClassLength: u32,
-        DNSFlags: u32,
-        DNSNameLength: u32,
-        DNSName: ?*u8,
-        DSDomainNameRequested: BOOLEAN,
-        DSDomainName: ?PSTR,
-        DSDomainNameLen: u32,
-        ScopeId: ?*u32,
-    },
-    .X86 => extern struct {
-        MessageType: ?*u8,
-        SubnetMask: ?*u32,
-        RequestedAddress: ?*u32,
-        RequestLeaseTime: ?*u32,
-        OverlayFields: ?*u8,
-        RouterAddress: ?*u32,
-        Server: ?*u32,
-        ParameterRequestList: ?*u8,
-        ParameterRequestListLength: u32,
-        MachineName: ?PSTR,
-        MachineNameLength: u32,
-        ClientHardwareAddressType: u8,
-        ClientHardwareAddressLength: u8,
-        ClientHardwareAddress: ?*u8,
-        ClassIdentifier: ?PSTR,
-        ClassIdentifierLength: u32,
-        VendorClass: ?*u8,
-        VendorClassLength: u32,
-        DNSFlags: u32,
-        DNSNameLength: u32,
-        DNSName: ?*u8,
-        DSDomainNameRequested: BOOLEAN,
-        DSDomainName: ?PSTR,
-        DSDomainNameLen: u32,
-        ScopeId: ?*u32,
-    },
-};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (210)

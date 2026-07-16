@@ -4,7 +4,7 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (34)
+// Section: Types (33)
 //--------------------------------------------------------------------------------
 pub const JOB_OBJECT_CPU_RATE_CONTROL = packed struct(u32) {
     ENABLE: u1 = 0,
@@ -426,16 +426,6 @@ pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION = extern struct {
     VolumeName: ?[*:0]const u16,
     BaseIoSize: u32,
     ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
-};
-
-pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE = extern struct {
-    MaxIops: i64,
-    MaxBandwidth: i64,
-    ReservationIops: i64,
-    VolumeName: ?PWSTR,
-    BaseIoSize: u32,
-    ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
-    VolumeNameLength: u16,
 };
 
 pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V2 = extern struct {

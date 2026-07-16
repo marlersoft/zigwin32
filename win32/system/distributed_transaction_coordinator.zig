@@ -75,91 +75,6 @@ pub const XIDDATASIZE = @as(u32, 128);
 //--------------------------------------------------------------------------------
 // Section: Types (110)
 //--------------------------------------------------------------------------------
-pub const _DtcLu_CompareState = enum(i32) {
-    COMMITTED = 1,
-    HEURISTICCOMMITTED = 2,
-    HEURISTICMIXED = 3,
-    HEURISTICRESET = 4,
-    INDOUBT = 5,
-    RESET = 6,
-};
-pub const DTCLUCOMPARESTATE_COMMITTED = _DtcLu_CompareState.COMMITTED;
-pub const DTCLUCOMPARESTATE_HEURISTICCOMMITTED = _DtcLu_CompareState.HEURISTICCOMMITTED;
-pub const DTCLUCOMPARESTATE_HEURISTICMIXED = _DtcLu_CompareState.HEURISTICMIXED;
-pub const DTCLUCOMPARESTATE_HEURISTICRESET = _DtcLu_CompareState.HEURISTICRESET;
-pub const DTCLUCOMPARESTATE_INDOUBT = _DtcLu_CompareState.INDOUBT;
-pub const DTCLUCOMPARESTATE_RESET = _DtcLu_CompareState.RESET;
-
-pub const _DtcLu_CompareStates_Confirmation = enum(i32) {
-    CONFIRM = 1,
-    PROTOCOL = 2,
-};
-pub const DTCLUCOMPARESTATESCONFIRMATION_CONFIRM = _DtcLu_CompareStates_Confirmation.CONFIRM;
-pub const DTCLUCOMPARESTATESCONFIRMATION_PROTOCOL = _DtcLu_CompareStates_Confirmation.PROTOCOL;
-
-pub const _DtcLu_CompareStates_Error = enum(i32) {
-    L = 1,
-};
-pub const DTCLUCOMPARESTATESERROR_PROTOCOL = _DtcLu_CompareStates_Error.L;
-
-pub const _DtcLu_CompareStates_Response = enum(i32) {
-    OK = 1,
-    PROTOCOL = 2,
-};
-pub const DTCLUCOMPARESTATESRESPONSE_OK = _DtcLu_CompareStates_Response.OK;
-pub const DTCLUCOMPARESTATESRESPONSE_PROTOCOL = _DtcLu_CompareStates_Response.PROTOCOL;
-
-pub const _DtcLu_LocalRecovery_Work = enum(i32) {
-    CHECKLUSTATUS = 1,
-    TRANS = 2,
-    TMDOWN = 3,
-};
-pub const DTCINITIATEDRECOVERYWORK_CHECKLUSTATUS = _DtcLu_LocalRecovery_Work.CHECKLUSTATUS;
-pub const DTCINITIATEDRECOVERYWORK_TRANS = _DtcLu_LocalRecovery_Work.TRANS;
-pub const DTCINITIATEDRECOVERYWORK_TMDOWN = _DtcLu_LocalRecovery_Work.TMDOWN;
-
-pub const _DtcLu_Xln = enum(i32) {
-    COLD = 1,
-    WARM = 2,
-};
-pub const DTCLUXLN_COLD = _DtcLu_Xln.COLD;
-pub const DTCLUXLN_WARM = _DtcLu_Xln.WARM;
-
-pub const _DtcLu_Xln_Confirmation = enum(i32) {
-    CONFIRM = 1,
-    LOGNAMEMISMATCH = 2,
-    COLDWARMMISMATCH = 3,
-    OBSOLETE = 4,
-};
-pub const DTCLUXLNCONFIRMATION_CONFIRM = _DtcLu_Xln_Confirmation.CONFIRM;
-pub const DTCLUXLNCONFIRMATION_LOGNAMEMISMATCH = _DtcLu_Xln_Confirmation.LOGNAMEMISMATCH;
-pub const DTCLUXLNCONFIRMATION_COLDWARMMISMATCH = _DtcLu_Xln_Confirmation.COLDWARMMISMATCH;
-pub const DTCLUXLNCONFIRMATION_OBSOLETE = _DtcLu_Xln_Confirmation.OBSOLETE;
-
-pub const _DtcLu_Xln_Error = enum(i32) {
-    PROTOCOL = 1,
-    LOGNAMEMISMATCH = 2,
-    COLDWARMMISMATCH = 3,
-};
-pub const DTCLUXLNERROR_PROTOCOL = _DtcLu_Xln_Error.PROTOCOL;
-pub const DTCLUXLNERROR_LOGNAMEMISMATCH = _DtcLu_Xln_Error.LOGNAMEMISMATCH;
-pub const DTCLUXLNERROR_COLDWARMMISMATCH = _DtcLu_Xln_Error.COLDWARMMISMATCH;
-
-pub const _DtcLu_Xln_Response = enum(i32) {
-    OK_SENDOURXLNBACK = 1,
-    OK_SENDCONFIRMATION = 2,
-    LOGNAMEMISMATCH = 3,
-    COLDWARMMISMATCH = 4,
-};
-pub const DTCLUXLNRESPONSE_OK_SENDOURXLNBACK = _DtcLu_Xln_Response.OK_SENDOURXLNBACK;
-pub const DTCLUXLNRESPONSE_OK_SENDCONFIRMATION = _DtcLu_Xln_Response.OK_SENDCONFIRMATION;
-pub const DTCLUXLNRESPONSE_LOGNAMEMISMATCH = _DtcLu_Xln_Response.LOGNAMEMISMATCH;
-pub const DTCLUXLNRESPONSE_COLDWARMMISMATCH = _DtcLu_Xln_Response.COLDWARMMISMATCH;
-
-pub const _ProxyConfigParams = extern struct {
-    wcThreadsMax: u16,
-};
-
 pub const APPLICATIONTYPE = enum(i32) {
     LOCAL_APPLICATIONTYPE = 0,
     CLUSTERRESOURCE_APPLICATIONTYPE = 1,
@@ -237,6 +152,87 @@ pub const DTC_STATUS_STOPPED = DTC_STATUS_.STOPPED;
 pub const DTC_STATUS_E_CANTCONTROL = DTC_STATUS_.E_CANTCONTROL;
 pub const DTC_STATUS_FAILED = DTC_STATUS_.FAILED;
 
+pub const DTCINITIATEDRECOVERYWORK = enum(i32) {
+    CHECKLUSTATUS = 1,
+    TRANS = 2,
+    TMDOWN = 3,
+};
+pub const DTCINITIATEDRECOVERYWORK_CHECKLUSTATUS = DTCINITIATEDRECOVERYWORK.CHECKLUSTATUS;
+pub const DTCINITIATEDRECOVERYWORK_TRANS = DTCINITIATEDRECOVERYWORK.TRANS;
+pub const DTCINITIATEDRECOVERYWORK_TMDOWN = DTCINITIATEDRECOVERYWORK.TMDOWN;
+
+pub const DTCLUCOMPARESTATE = enum(i32) {
+    COMMITTED = 1,
+    HEURISTICCOMMITTED = 2,
+    HEURISTICMIXED = 3,
+    HEURISTICRESET = 4,
+    INDOUBT = 5,
+    RESET = 6,
+};
+pub const DTCLUCOMPARESTATE_COMMITTED = DTCLUCOMPARESTATE.COMMITTED;
+pub const DTCLUCOMPARESTATE_HEURISTICCOMMITTED = DTCLUCOMPARESTATE.HEURISTICCOMMITTED;
+pub const DTCLUCOMPARESTATE_HEURISTICMIXED = DTCLUCOMPARESTATE.HEURISTICMIXED;
+pub const DTCLUCOMPARESTATE_HEURISTICRESET = DTCLUCOMPARESTATE.HEURISTICRESET;
+pub const DTCLUCOMPARESTATE_INDOUBT = DTCLUCOMPARESTATE.INDOUBT;
+pub const DTCLUCOMPARESTATE_RESET = DTCLUCOMPARESTATE.RESET;
+
+pub const DTCLUCOMPARESTATESCONFIRMATION = enum(i32) {
+    CONFIRM = 1,
+    PROTOCOL = 2,
+};
+pub const DTCLUCOMPARESTATESCONFIRMATION_CONFIRM = DTCLUCOMPARESTATESCONFIRMATION.CONFIRM;
+pub const DTCLUCOMPARESTATESCONFIRMATION_PROTOCOL = DTCLUCOMPARESTATESCONFIRMATION.PROTOCOL;
+
+pub const DTCLUCOMPARESTATESERROR = enum(i32) {
+    L = 1,
+};
+pub const DTCLUCOMPARESTATESERROR_PROTOCOL = DTCLUCOMPARESTATESERROR.L;
+
+pub const DTCLUCOMPARESTATESRESPONSE = enum(i32) {
+    OK = 1,
+    PROTOCOL = 2,
+};
+pub const DTCLUCOMPARESTATESRESPONSE_OK = DTCLUCOMPARESTATESRESPONSE.OK;
+pub const DTCLUCOMPARESTATESRESPONSE_PROTOCOL = DTCLUCOMPARESTATESRESPONSE.PROTOCOL;
+
+pub const DTCLUXLN = enum(i32) {
+    COLD = 1,
+    WARM = 2,
+};
+pub const DTCLUXLN_COLD = DTCLUXLN.COLD;
+pub const DTCLUXLN_WARM = DTCLUXLN.WARM;
+
+pub const DTCLUXLNCONFIRMATION = enum(i32) {
+    CONFIRM = 1,
+    LOGNAMEMISMATCH = 2,
+    COLDWARMMISMATCH = 3,
+    OBSOLETE = 4,
+};
+pub const DTCLUXLNCONFIRMATION_CONFIRM = DTCLUXLNCONFIRMATION.CONFIRM;
+pub const DTCLUXLNCONFIRMATION_LOGNAMEMISMATCH = DTCLUXLNCONFIRMATION.LOGNAMEMISMATCH;
+pub const DTCLUXLNCONFIRMATION_COLDWARMMISMATCH = DTCLUXLNCONFIRMATION.COLDWARMMISMATCH;
+pub const DTCLUXLNCONFIRMATION_OBSOLETE = DTCLUXLNCONFIRMATION.OBSOLETE;
+
+pub const DTCLUXLNERROR = enum(i32) {
+    PROTOCOL = 1,
+    LOGNAMEMISMATCH = 2,
+    COLDWARMMISMATCH = 3,
+};
+pub const DTCLUXLNERROR_PROTOCOL = DTCLUXLNERROR.PROTOCOL;
+pub const DTCLUXLNERROR_LOGNAMEMISMATCH = DTCLUXLNERROR.LOGNAMEMISMATCH;
+pub const DTCLUXLNERROR_COLDWARMMISMATCH = DTCLUXLNERROR.COLDWARMMISMATCH;
+
+pub const DTCLUXLNRESPONSE = enum(i32) {
+    OK_SENDOURXLNBACK = 1,
+    OK_SENDCONFIRMATION = 2,
+    LOGNAMEMISMATCH = 3,
+    COLDWARMMISMATCH = 4,
+};
+pub const DTCLUXLNRESPONSE_OK_SENDOURXLNBACK = DTCLUXLNRESPONSE.OK_SENDOURXLNBACK;
+pub const DTCLUXLNRESPONSE_OK_SENDCONFIRMATION = DTCLUXLNRESPONSE.OK_SENDCONFIRMATION;
+pub const DTCLUXLNRESPONSE_LOGNAMEMISMATCH = DTCLUXLNRESPONSE.LOGNAMEMISMATCH;
+pub const DTCLUXLNRESPONSE_COLDWARMMISMATCH = DTCLUXLNRESPONSE.COLDWARMMISMATCH;
+
 const IID_IDtcLuConfigure_Value = Guid.initString("4131e760-1aea-11d0-944b-00a0c905416e");
 pub const IID_IDtcLuConfigure = &IID_IDtcLuConfigure_Value;
 pub const IDtcLuConfigure = extern union {
@@ -299,13 +295,13 @@ pub const IDtcLuRecoveryInitiatedByDtc = extern union {
         base: IUnknown.VTable,
         GetWork: *const fn(
             self: *const IDtcLuRecoveryInitiatedByDtc,
-            pWork: ?*_DtcLu_LocalRecovery_Work,
+            pWork: ?*DTCINITIATEDRECOVERYWORK,
             ppv: ?*?*anyopaque,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetWork(self: *const IDtcLuRecoveryInitiatedByDtc, pWork: ?*_DtcLu_LocalRecovery_Work, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
+    pub fn GetWork(self: *const IDtcLuRecoveryInitiatedByDtc, pWork: ?*DTCINITIATEDRECOVERYWORK, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetWork(self, pWork, ppv);
     }
 };
@@ -339,26 +335,26 @@ pub const IDtcLuRecoveryInitiatedByDtcTransWork = extern union {
         ) callconv(.winapi) HRESULT,
         GetOurXln: *const fn(
             self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
-            pXln: ?*_DtcLu_Xln,
+            pXln: ?*DTCLUXLN,
             pOurLogName: ?*u8,
             pRemoteLogName: ?*u8,
             pdwProtocol: ?*u32,
         ) callconv(.winapi) HRESULT,
         HandleConfirmationFromOurXln: *const fn(
             self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
-            Confirmation: _DtcLu_Xln_Confirmation,
+            Confirmation: DTCLUXLNCONFIRMATION,
         ) callconv(.winapi) HRESULT,
         HandleTheirXlnResponse: *const fn(
             self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
-            Xln: _DtcLu_Xln,
+            Xln: DTCLUXLN,
             pRemoteLogName: ?*u8,
             cbRemoteLogName: u32,
             dwProtocol: u32,
-            pConfirmation: ?*_DtcLu_Xln_Confirmation,
+            pConfirmation: ?*DTCLUXLNCONFIRMATION,
         ) callconv(.winapi) HRESULT,
         HandleErrorFromOurXln: *const fn(
             self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
-            Error: _DtcLu_Xln_Error,
+            Error: DTCLUXLNERROR,
         ) callconv(.winapi) HRESULT,
         CheckForCompareStates: *const fn(
             self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
@@ -371,16 +367,16 @@ pub const IDtcLuRecoveryInitiatedByDtcTransWork = extern union {
         GetOurCompareStates: *const fn(
             self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
             pOurTransId: ?*u8,
-            pCompareState: ?*_DtcLu_CompareState,
+            pCompareState: ?*DTCLUCOMPARESTATE,
         ) callconv(.winapi) HRESULT,
         HandleTheirCompareStatesResponse: *const fn(
             self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
-            CompareState: _DtcLu_CompareState,
-            pConfirmation: ?*_DtcLu_CompareStates_Confirmation,
+            CompareState: DTCLUCOMPARESTATE,
+            pConfirmation: ?*DTCLUCOMPARESTATESCONFIRMATION,
         ) callconv(.winapi) HRESULT,
         HandleErrorFromOurCompareStates: *const fn(
             self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
-            Error: _DtcLu_CompareStates_Error,
+            Error: DTCLUCOMPARESTATESERROR,
         ) callconv(.winapi) HRESULT,
         ConversationLost: *const fn(
             self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
@@ -399,16 +395,16 @@ pub const IDtcLuRecoveryInitiatedByDtcTransWork = extern union {
     pub fn GetLogNameSizes(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, pcbOurLogName: ?*u32, pcbRemoteLogName: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLogNameSizes(self, pcbOurLogName, pcbRemoteLogName);
     }
-    pub fn GetOurXln(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, pXln: ?*_DtcLu_Xln, pOurLogName: ?*u8, pRemoteLogName: ?*u8, pdwProtocol: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetOurXln(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, pXln: ?*DTCLUXLN, pOurLogName: ?*u8, pRemoteLogName: ?*u8, pdwProtocol: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOurXln(self, pXln, pOurLogName, pRemoteLogName, pdwProtocol);
     }
-    pub fn HandleConfirmationFromOurXln(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, Confirmation: _DtcLu_Xln_Confirmation) callconv(.@"inline") HRESULT {
+    pub fn HandleConfirmationFromOurXln(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, Confirmation: DTCLUXLNCONFIRMATION) callconv(.@"inline") HRESULT {
         return self.vtable.HandleConfirmationFromOurXln(self, Confirmation);
     }
-    pub fn HandleTheirXlnResponse(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, Xln: _DtcLu_Xln, pRemoteLogName: ?*u8, cbRemoteLogName: u32, dwProtocol: u32, pConfirmation: ?*_DtcLu_Xln_Confirmation) callconv(.@"inline") HRESULT {
+    pub fn HandleTheirXlnResponse(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, Xln: DTCLUXLN, pRemoteLogName: ?*u8, cbRemoteLogName: u32, dwProtocol: u32, pConfirmation: ?*DTCLUXLNCONFIRMATION) callconv(.@"inline") HRESULT {
         return self.vtable.HandleTheirXlnResponse(self, Xln, pRemoteLogName, cbRemoteLogName, dwProtocol, pConfirmation);
     }
-    pub fn HandleErrorFromOurXln(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, Error: _DtcLu_Xln_Error) callconv(.@"inline") HRESULT {
+    pub fn HandleErrorFromOurXln(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, Error: DTCLUXLNERROR) callconv(.@"inline") HRESULT {
         return self.vtable.HandleErrorFromOurXln(self, Error);
     }
     pub fn CheckForCompareStates(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, fCompareStates: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -417,13 +413,13 @@ pub const IDtcLuRecoveryInitiatedByDtcTransWork = extern union {
     pub fn GetOurTransIdSize(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, pcbOurTransId: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOurTransIdSize(self, pcbOurTransId);
     }
-    pub fn GetOurCompareStates(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, pOurTransId: ?*u8, pCompareState: ?*_DtcLu_CompareState) callconv(.@"inline") HRESULT {
+    pub fn GetOurCompareStates(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, pOurTransId: ?*u8, pCompareState: ?*DTCLUCOMPARESTATE) callconv(.@"inline") HRESULT {
         return self.vtable.GetOurCompareStates(self, pOurTransId, pCompareState);
     }
-    pub fn HandleTheirCompareStatesResponse(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, CompareState: _DtcLu_CompareState, pConfirmation: ?*_DtcLu_CompareStates_Confirmation) callconv(.@"inline") HRESULT {
+    pub fn HandleTheirCompareStatesResponse(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, CompareState: DTCLUCOMPARESTATE, pConfirmation: ?*DTCLUCOMPARESTATESCONFIRMATION) callconv(.@"inline") HRESULT {
         return self.vtable.HandleTheirCompareStatesResponse(self, CompareState, pConfirmation);
     }
-    pub fn HandleErrorFromOurCompareStates(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, Error: _DtcLu_CompareStates_Error) callconv(.@"inline") HRESULT {
+    pub fn HandleErrorFromOurCompareStates(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, Error: DTCLUCOMPARESTATESERROR) callconv(.@"inline") HRESULT {
         return self.vtable.HandleErrorFromOurCompareStates(self, Error);
     }
     pub fn ConversationLost(self: *const IDtcLuRecoveryInitiatedByDtcTransWork) callconv(.@"inline") HRESULT {
@@ -462,13 +458,13 @@ pub const IDtcLuRecoveryInitiatedByLuWork = extern union {
         HandleTheirXln: *const fn(
             self: *const IDtcLuRecoveryInitiatedByLuWork,
             lRecoverySeqNum: i32,
-            Xln: _DtcLu_Xln,
+            Xln: DTCLUXLN,
             pRemoteLogName: ?*u8,
             cbRemoteLogName: u32,
             pOurLogName: ?*u8,
             cbOurLogName: u32,
             dwProtocol: u32,
-            pResponse: ?*_DtcLu_Xln_Response,
+            pResponse: ?*DTCLUXLNRESPONSE,
         ) callconv(.winapi) HRESULT,
         GetOurLogNameSize: *const fn(
             self: *const IDtcLuRecoveryInitiatedByLuWork,
@@ -476,29 +472,29 @@ pub const IDtcLuRecoveryInitiatedByLuWork = extern union {
         ) callconv(.winapi) HRESULT,
         GetOurXln: *const fn(
             self: *const IDtcLuRecoveryInitiatedByLuWork,
-            pXln: ?*_DtcLu_Xln,
+            pXln: ?*DTCLUXLN,
             pOurLogName: ?*u8,
             pdwProtocol: ?*u32,
         ) callconv(.winapi) HRESULT,
         HandleConfirmationOfOurXln: *const fn(
             self: *const IDtcLuRecoveryInitiatedByLuWork,
-            Confirmation: _DtcLu_Xln_Confirmation,
+            Confirmation: DTCLUXLNCONFIRMATION,
         ) callconv(.winapi) HRESULT,
         HandleTheirCompareStates: *const fn(
             self: *const IDtcLuRecoveryInitiatedByLuWork,
             pRemoteTransId: ?*u8,
             cbRemoteTransId: u32,
-            CompareState: _DtcLu_CompareState,
-            pResponse: ?*_DtcLu_CompareStates_Response,
-            pCompareState: ?*_DtcLu_CompareState,
+            CompareState: DTCLUCOMPARESTATE,
+            pResponse: ?*DTCLUCOMPARESTATESRESPONSE,
+            pCompareState: ?*DTCLUCOMPARESTATE,
         ) callconv(.winapi) HRESULT,
         HandleConfirmationOfOurCompareStates: *const fn(
             self: *const IDtcLuRecoveryInitiatedByLuWork,
-            Confirmation: _DtcLu_CompareStates_Confirmation,
+            Confirmation: DTCLUCOMPARESTATESCONFIRMATION,
         ) callconv(.winapi) HRESULT,
         HandleErrorFromOurCompareStates: *const fn(
             self: *const IDtcLuRecoveryInitiatedByLuWork,
-            Error: _DtcLu_CompareStates_Error,
+            Error: DTCLUCOMPARESTATESERROR,
         ) callconv(.winapi) HRESULT,
         ConversationLost: *const fn(
             self: *const IDtcLuRecoveryInitiatedByLuWork,
@@ -506,25 +502,25 @@ pub const IDtcLuRecoveryInitiatedByLuWork = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn HandleTheirXln(self: *const IDtcLuRecoveryInitiatedByLuWork, lRecoverySeqNum: i32, Xln: _DtcLu_Xln, pRemoteLogName: ?*u8, cbRemoteLogName: u32, pOurLogName: ?*u8, cbOurLogName: u32, dwProtocol: u32, pResponse: ?*_DtcLu_Xln_Response) callconv(.@"inline") HRESULT {
+    pub fn HandleTheirXln(self: *const IDtcLuRecoveryInitiatedByLuWork, lRecoverySeqNum: i32, Xln: DTCLUXLN, pRemoteLogName: ?*u8, cbRemoteLogName: u32, pOurLogName: ?*u8, cbOurLogName: u32, dwProtocol: u32, pResponse: ?*DTCLUXLNRESPONSE) callconv(.@"inline") HRESULT {
         return self.vtable.HandleTheirXln(self, lRecoverySeqNum, Xln, pRemoteLogName, cbRemoteLogName, pOurLogName, cbOurLogName, dwProtocol, pResponse);
     }
     pub fn GetOurLogNameSize(self: *const IDtcLuRecoveryInitiatedByLuWork, pcbOurLogName: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOurLogNameSize(self, pcbOurLogName);
     }
-    pub fn GetOurXln(self: *const IDtcLuRecoveryInitiatedByLuWork, pXln: ?*_DtcLu_Xln, pOurLogName: ?*u8, pdwProtocol: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetOurXln(self: *const IDtcLuRecoveryInitiatedByLuWork, pXln: ?*DTCLUXLN, pOurLogName: ?*u8, pdwProtocol: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOurXln(self, pXln, pOurLogName, pdwProtocol);
     }
-    pub fn HandleConfirmationOfOurXln(self: *const IDtcLuRecoveryInitiatedByLuWork, Confirmation: _DtcLu_Xln_Confirmation) callconv(.@"inline") HRESULT {
+    pub fn HandleConfirmationOfOurXln(self: *const IDtcLuRecoveryInitiatedByLuWork, Confirmation: DTCLUXLNCONFIRMATION) callconv(.@"inline") HRESULT {
         return self.vtable.HandleConfirmationOfOurXln(self, Confirmation);
     }
-    pub fn HandleTheirCompareStates(self: *const IDtcLuRecoveryInitiatedByLuWork, pRemoteTransId: ?*u8, cbRemoteTransId: u32, CompareState: _DtcLu_CompareState, pResponse: ?*_DtcLu_CompareStates_Response, pCompareState: ?*_DtcLu_CompareState) callconv(.@"inline") HRESULT {
+    pub fn HandleTheirCompareStates(self: *const IDtcLuRecoveryInitiatedByLuWork, pRemoteTransId: ?*u8, cbRemoteTransId: u32, CompareState: DTCLUCOMPARESTATE, pResponse: ?*DTCLUCOMPARESTATESRESPONSE, pCompareState: ?*DTCLUCOMPARESTATE) callconv(.@"inline") HRESULT {
         return self.vtable.HandleTheirCompareStates(self, pRemoteTransId, cbRemoteTransId, CompareState, pResponse, pCompareState);
     }
-    pub fn HandleConfirmationOfOurCompareStates(self: *const IDtcLuRecoveryInitiatedByLuWork, Confirmation: _DtcLu_CompareStates_Confirmation) callconv(.@"inline") HRESULT {
+    pub fn HandleConfirmationOfOurCompareStates(self: *const IDtcLuRecoveryInitiatedByLuWork, Confirmation: DTCLUCOMPARESTATESCONFIRMATION) callconv(.@"inline") HRESULT {
         return self.vtable.HandleConfirmationOfOurCompareStates(self, Confirmation);
     }
-    pub fn HandleErrorFromOurCompareStates(self: *const IDtcLuRecoveryInitiatedByLuWork, Error: _DtcLu_CompareStates_Error) callconv(.@"inline") HRESULT {
+    pub fn HandleErrorFromOurCompareStates(self: *const IDtcLuRecoveryInitiatedByLuWork, Error: DTCLUCOMPARESTATESERROR) callconv(.@"inline") HRESULT {
         return self.vtable.HandleErrorFromOurCompareStates(self, Error);
     }
     pub fn ConversationLost(self: *const IDtcLuRecoveryInitiatedByLuWork) callconv(.@"inline") HRESULT {
@@ -996,7 +992,7 @@ pub const IDtcToXaHelper = extern union {
             self: *const IDtcToXaHelper,
             pITransaction: ?*ITransaction,
             pguidBqual: ?*Guid,
-            pXid: ?*xid_t,
+            pXid: ?*XID,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1004,7 +1000,7 @@ pub const IDtcToXaHelper = extern union {
     pub fn Close(self: *const IDtcToXaHelper, i_fDoRecovery: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self, i_fDoRecovery);
     }
-    pub fn TranslateTridToXid(self: *const IDtcToXaHelper, pITransaction: ?*ITransaction, pguidBqual: ?*Guid, pXid: ?*xid_t) callconv(.@"inline") HRESULT {
+    pub fn TranslateTridToXid(self: *const IDtcToXaHelper, pITransaction: ?*ITransaction, pguidBqual: ?*Guid, pXid: ?*XID) callconv(.@"inline") HRESULT {
         return self.vtable.TranslateTridToXid(self, pITransaction, pguidBqual, pXid);
     }
 };
@@ -1044,7 +1040,7 @@ pub const IDtcToXaHelperSinglePipe = extern union {
             self: *const IDtcToXaHelperSinglePipe,
             pdwITrans: ?*u32,
             dwRMCookie: u32,
-            pxid: ?*xid_t,
+            pxid: ?*XID,
         ) callconv(.winapi) HRESULT,
         EnlistWithRM: *const fn(
             self: *const IDtcToXaHelperSinglePipe,
@@ -1064,7 +1060,7 @@ pub const IDtcToXaHelperSinglePipe = extern union {
     pub fn XARMCreate(self: *const IDtcToXaHelperSinglePipe, pszDSN: ?PSTR, pszClientDll: ?PSTR, pdwRMCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.XARMCreate(self, pszDSN, pszClientDll, pdwRMCookie);
     }
-    pub fn ConvertTridToXID(self: *const IDtcToXaHelperSinglePipe, pdwITrans: ?*u32, dwRMCookie: u32, pxid: ?*xid_t) callconv(.@"inline") HRESULT {
+    pub fn ConvertTridToXID(self: *const IDtcToXaHelperSinglePipe, pdwITrans: ?*u32, dwRMCookie: u32, pxid: ?*XID) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertTridToXID(self, pdwITrans, dwRMCookie, pxid);
     }
     pub fn EnlistWithRM(self: *const IDtcToXaHelperSinglePipe, dwRMCookie: u32, i_pITransaction: ?*ITransaction, i_pITransRes: ?*ITransactionResourceAsync, o_ppITransEnslitment: ?*?*ITransactionEnlistmentAsync) callconv(.@"inline") HRESULT {
@@ -1090,7 +1086,7 @@ pub const IDtcToXaMapper = extern union {
             self: *const IDtcToXaMapper,
             pdwITransaction: ?*u32,
             dwRMCookie: u32,
-            pXid: ?*xid_t,
+            pXid: ?*XID,
         ) callconv(.winapi) HRESULT,
         EnlistResourceManager: *const fn(
             self: *const IDtcToXaMapper,
@@ -1107,7 +1103,7 @@ pub const IDtcToXaMapper = extern union {
     pub fn RequestNewResourceManager(self: *const IDtcToXaMapper, pszDSN: ?PSTR, pszClientDllName: ?PSTR, pdwRMCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.RequestNewResourceManager(self, pszDSN, pszClientDllName, pdwRMCookie);
     }
-    pub fn TranslateTridToXid(self: *const IDtcToXaMapper, pdwITransaction: ?*u32, dwRMCookie: u32, pXid: ?*xid_t) callconv(.@"inline") HRESULT {
+    pub fn TranslateTridToXid(self: *const IDtcToXaMapper, pdwITransaction: ?*u32, dwRMCookie: u32, pXid: ?*XID) callconv(.@"inline") HRESULT {
         return self.vtable.TranslateTridToXid(self, pdwITransaction, dwRMCookie, pXid);
     }
     pub fn EnlistResourceManager(self: *const IDtcToXaMapper, dwRMCookie: u32, pdwITransaction: ?*u32) callconv(.@"inline") HRESULT {
@@ -1283,12 +1279,12 @@ pub const IResourceManager2 = extern union {
             pResAsync: ?*ITransactionResourceAsync,
             pUOW: ?*BOID,
             pisoLevel: ?*i32,
-            pXid: ?*xid_t,
+            pXid: ?*XID,
             ppEnlist: ?*?*ITransactionEnlistmentAsync,
         ) callconv(.winapi) HRESULT,
         Reenlist2: *const fn(
             self: *const IResourceManager2,
-            pXid: ?*xid_t,
+            pXid: ?*XID,
             dwTimeout: u32,
             pXactStat: ?*XACTSTAT,
         ) callconv(.winapi) HRESULT,
@@ -1296,10 +1292,10 @@ pub const IResourceManager2 = extern union {
     vtable: *const VTable,
     IResourceManager: IResourceManager,
     IUnknown: IUnknown,
-    pub fn Enlist2(self: *const IResourceManager2, pTransaction: ?*ITransaction, pResAsync: ?*ITransactionResourceAsync, pUOW: ?*BOID, pisoLevel: ?*i32, pXid: ?*xid_t, ppEnlist: ?*?*ITransactionEnlistmentAsync) callconv(.@"inline") HRESULT {
+    pub fn Enlist2(self: *const IResourceManager2, pTransaction: ?*ITransaction, pResAsync: ?*ITransactionResourceAsync, pUOW: ?*BOID, pisoLevel: ?*i32, pXid: ?*XID, ppEnlist: ?*?*ITransactionEnlistmentAsync) callconv(.@"inline") HRESULT {
         return self.vtable.Enlist2(self, pTransaction, pResAsync, pUOW, pisoLevel, pXid, ppEnlist);
     }
-    pub fn Reenlist2(self: *const IResourceManager2, pXid: ?*xid_t, dwTimeout: u32, pXactStat: ?*XACTSTAT) callconv(.@"inline") HRESULT {
+    pub fn Reenlist2(self: *const IResourceManager2, pXid: ?*XID, dwTimeout: u32, pXactStat: ?*XACTSTAT) callconv(.@"inline") HRESULT {
         return self.vtable.Reenlist2(self, pXid, dwTimeout, pXactStat);
     }
 };
@@ -2311,13 +2307,13 @@ pub const IXATransLookup2 = extern union {
         base: IUnknown.VTable,
         Lookup: *const fn(
             self: *const IXATransLookup2,
-            pXID: ?*xid_t,
+            pXID: ?*XID,
             ppTransaction: ?*?*ITransaction,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Lookup(self: *const IXATransLookup2, pXID: ?*xid_t, ppTransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
+    pub fn Lookup(self: *const IXATransLookup2, pXID: ?*XID, ppTransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
         return self.vtable.Lookup(self, pXID, ppTransaction);
     }
 };
@@ -2334,6 +2330,10 @@ pub const OLE_TM_CONFIG_PARAMS_V2 = extern struct {
     clusterResourceId: Guid,
 };
 
+pub const PROXY_CONFIG_PARAMS = extern struct {
+    wcThreadsMax: u16,
+};
+
 pub const TX_MISC_CONSTANTS = enum(i32) {
     C = 40,
 };
@@ -2346,7 +2346,7 @@ pub const XA_CLOSE_EPT = *const fn(
 ) callconv(.winapi) i32;
 
 pub const XA_COMMIT_EPT = *const fn(
-    param0: ?*xid_t,
+    param0: ?*XID,
     param1: i32,
     param2: i32,
 ) callconv(.winapi) i32;
@@ -2359,13 +2359,13 @@ pub const XA_COMPLETE_EPT = *const fn(
 ) callconv(.winapi) i32;
 
 pub const XA_END_EPT = *const fn(
-    param0: ?*xid_t,
+    param0: ?*XID,
     param1: i32,
     param2: i32,
 ) callconv(.winapi) i32;
 
 pub const XA_FORGET_EPT = *const fn(
-    param0: ?*xid_t,
+    param0: ?*XID,
     param1: i32,
     param2: i32,
 ) callconv(.winapi) i32;
@@ -2377,26 +2377,26 @@ pub const XA_OPEN_EPT = *const fn(
 ) callconv(.winapi) i32;
 
 pub const XA_PREPARE_EPT = *const fn(
-    param0: ?*xid_t,
+    param0: ?*XID,
     param1: i32,
     param2: i32,
 ) callconv(.winapi) i32;
 
 pub const XA_RECOVER_EPT = *const fn(
-    param0: ?*xid_t,
+    param0: ?*XID,
     param1: i32,
     param2: i32,
     param3: i32,
 ) callconv(.winapi) i32;
 
 pub const XA_ROLLBACK_EPT = *const fn(
-    param0: ?*xid_t,
+    param0: ?*XID,
     param1: i32,
     param2: i32,
 ) callconv(.winapi) i32;
 
 pub const XA_START_EPT = *const fn(
-    param0: ?*xid_t,
+    param0: ?*XID,
     param1: i32,
     param2: i32,
 ) callconv(.winapi) i32;
@@ -2579,7 +2579,7 @@ pub const XACTTRANSINFO = extern struct {
     grfRMSupportedRetaining: u32,
 };
 
-pub const xid_t = extern struct {
+pub const XID = extern struct {
     formatID: i32,
     gtrid_length: i32,
     bqual_length: i32,

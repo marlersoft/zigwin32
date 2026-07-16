@@ -2414,7 +2414,7 @@ pub const LPPROGRESS_ROUTINE_CALLBACK_REASON = enum(u32) {
 pub const CALLBACK_CHUNK_FINISHED = LPPROGRESS_ROUTINE_CALLBACK_REASON.CHUNK_FINISHED;
 pub const CALLBACK_STREAM_SWITCH = LPPROGRESS_ROUTINE_CALLBACK_REASON.STREAM_SWITCH;
 
-pub const LZOPENFILE_STYLE = packed struct(u32) {
+pub const LZOPENFILE_STYLE = packed struct(u16) {
     WRITE: u1 = 0,
     READWRITE: u1 = 0,
     _2: u1 = 0,
@@ -2431,22 +2431,6 @@ pub const LZOPENFILE_STYLE = packed struct(u32) {
     PROMPT: u1 = 0,
     EXIST: u1 = 0,
     REOPEN: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
 };
 pub const OF_CANCEL = LZOPENFILE_STYLE{ .CANCEL = 1 };
 pub const OF_CREATE = LZOPENFILE_STYLE{ .CREATE = 1 };
@@ -4307,23 +4291,23 @@ pub const TXF_ID = extern struct {
     Anonymous: extern struct {
         LowPart: i64 align(4),
         HighPart: i64 align(4),
-    },
+    } align(4),
 };
 
 pub const TXF_LOG_RECORD_AFFECTED_FILE = extern struct {
-    Version: u16,
-    RecordLength: u32,
-    Flags: u32,
-    TxfFileId: TXF_ID,
-    KtmGuid: Guid,
-    FileNameLength: u32,
-    FileNameByteOffsetInStructure: u32,
+    Version: u16 align(4),
+    RecordLength: u32 align(4),
+    Flags: u32 align(4),
+    TxfFileId: TXF_ID align(4),
+    KtmGuid: Guid align(4),
+    FileNameLength: u32 align(4),
+    FileNameByteOffsetInStructure: u32 align(4),
 };
 
 pub const TXF_LOG_RECORD_BASE = extern struct {
-    Version: u16,
-    RecordType: TXF_LOG_RECORD_TYPE,
-    RecordLength: u32,
+    Version: u16 align(4),
+    RecordType: TXF_LOG_RECORD_TYPE align(4),
+    RecordLength: u32 align(4),
 };
 
 pub const TXF_LOG_RECORD_TRUNCATE = extern struct {
@@ -6786,7 +6770,7 @@ pub extern "ktmw32" fn OpenEnlistment(
 pub extern "kernel32" fn OpenFile(
     lpFileName: ?[*:0]const u8,
     lpReOpenBuff: ?*OFSTRUCT,
-    uStyle: LZOPENFILE_STYLE,
+    uStyle: u32,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'

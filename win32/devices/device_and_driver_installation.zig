@@ -1531,8 +1531,8 @@ pub const BUSNUMBER_RANGE = extern struct {
 };
 
 pub const BUSNUMBER_RESOURCE = extern struct {
-    BusNumber_Header: BUSNUMBER_DES,
-    BusNumber_Data: [1]BUSNUMBER_RANGE,
+    BusNumber_Header: BUSNUMBER_DES align(1),
+    BusNumber_Data: [1]BUSNUMBER_RANGE align(1),
 };
 
 
@@ -1766,7 +1766,7 @@ pub const CONFLICT_DETAILS_W = extern struct {
     CD_szDescription: [260]u16,
 };
 
-pub const Connection_Des_s = extern struct {
+pub const CONNECTION_DES = extern struct {
     COND_Type: u32 align(1),
     COND_Flags: u32 align(1),
     COND_Class: u8 align(1),
@@ -1776,8 +1776,8 @@ pub const Connection_Des_s = extern struct {
     COND_Id: LARGE_INTEGER align(1),
 };
 
-pub const Connection_Resource_s = extern struct {
-    Connection_Header: Connection_Des_s,
+pub const CONNECTION_RESOURCE = extern struct {
+    Connection_Header: CONNECTION_DES align(1),
 };
 
 pub const CS_DES = extern struct {
@@ -1790,10 +1790,10 @@ pub const CS_DES = extern struct {
 };
 
 pub const CS_RESOURCE = extern struct {
-    CS_Header: CS_DES,
+    CS_Header: CS_DES align(1),
 };
 
-pub const DevPrivate_Des_s = extern struct {
+pub const DEVPRIVATE_DES = extern struct {
     PD_Count: u32 align(1),
     PD_Type: u32 align(1),
     PD_Data1: u32 align(1),
@@ -1802,15 +1802,15 @@ pub const DevPrivate_Des_s = extern struct {
     PD_Flags: u32 align(1),
 };
 
-pub const DevPrivate_Range_s = extern struct {
+pub const DEVPRIVATE_RANGE = extern struct {
     PR_Data1: u32 align(1),
     PR_Data2: u32 align(1),
     PR_Data3: u32 align(1),
 };
 
-pub const DevPrivate_Resource_s = extern struct {
-    PRV_Header: DevPrivate_Des_s,
-    PRV_Data: [1]DevPrivate_Range_s,
+pub const DEVPRIVATE_RESOURCE = extern struct {
+    PRV_Header: DEVPRIVATE_DES align(1),
+    PRV_Data: [1]DEVPRIVATE_RANGE align(1),
 };
 
 pub const DMA_DES = extern struct {
@@ -1827,8 +1827,8 @@ pub const DMA_RANGE = extern struct {
 };
 
 pub const DMA_RESOURCE = extern struct {
-    DMA_Header: DMA_DES,
-    DMA_Data: [1]DMA_RANGE,
+    DMA_Header: DMA_DES align(1),
+    DMA_Data: [1]DMA_RANGE align(1),
 };
 
 
@@ -1856,7 +1856,7 @@ pub const HWProfileInfo_sA = extern struct {
     HWPI_dwFlags: u32 align(1),
 };
 
-pub const HWProfileInfo_sW = extern struct {
+pub const HWPROFILEINFO_W = extern struct {
     HWPI_ulHWProfile: u32 align(1),
     HWPI_szFriendlyName: [80]u16 align(1),
     HWPI_dwFlags: u32 align(1),
@@ -1909,13 +1909,13 @@ pub const IRQ_RANGE = extern struct {
 };
 
 pub const IRQ_RESOURCE_32 = extern struct {
-    IRQ_Header: IRQ_DES_32,
-    IRQ_Data: [1]IRQ_RANGE,
+    IRQ_Header: IRQ_DES_32 align(1),
+    IRQ_Data: [1]IRQ_RANGE align(1),
 };
 
 pub const IRQ_RESOURCE_64 = extern struct {
-    IRQ_Header: IRQ_DES_64,
-    IRQ_Data: [1]IRQ_RANGE,
+    IRQ_Header: IRQ_DES_64 align(1),
+    IRQ_Data: [1]IRQ_RANGE align(1),
 };
 
 pub const MEM_DES = extern struct {
@@ -1927,7 +1927,7 @@ pub const MEM_DES = extern struct {
     MD_Reserved: u32 align(1),
 };
 
-pub const Mem_Large_Des_s = extern struct {
+pub const MEM_LARGE_DES = extern struct {
     MLD_Count: u32 align(1),
     MLD_Type: u32 align(1),
     MLD_Alloc_Base: u64 align(1),
@@ -1936,7 +1936,7 @@ pub const Mem_Large_Des_s = extern struct {
     MLD_Reserved: u32 align(1),
 };
 
-pub const Mem_Large_Range_s = extern struct {
+pub const MEM_LARGE_RANGE = extern struct {
     MLR_Align: u64 align(1),
     MLR_nBytes: u64 align(1),
     MLR_Min: u64 align(1),
@@ -1945,9 +1945,9 @@ pub const Mem_Large_Range_s = extern struct {
     MLR_Reserved: u32 align(1),
 };
 
-pub const Mem_Large_Resource_s = extern struct {
-    MEM_LARGE_Header: Mem_Large_Des_s,
-    MEM_LARGE_Data: [1]Mem_Large_Range_s,
+pub const MEM_LARGE_RESOURCE = extern struct {
+    MEM_LARGE_Header: MEM_LARGE_DES align(1),
+    MEM_LARGE_Data: [1]MEM_LARGE_RANGE align(1),
 };
 
 pub const MEM_RANGE = extern struct {
@@ -1960,8 +1960,8 @@ pub const MEM_RANGE = extern struct {
 };
 
 pub const MEM_RESOURCE = extern struct {
-    MEM_Header: MEM_DES,
-    MEM_Data: [1]MEM_RANGE,
+    MEM_Header: MEM_DES align(1),
+    MEM_Data: [1]MEM_RANGE align(1),
 };
 
 pub const MFCARD_DES = extern struct {
@@ -1975,7 +1975,7 @@ pub const MFCARD_DES = extern struct {
 };
 
 pub const MFCARD_RESOURCE = extern struct {
-    MfCard_Header: MFCARD_DES,
+    MfCard_Header: MFCARD_DES align(1),
 };
 
 pub const OEM_SOURCE_MEDIA_TYPE = enum(u32) {
@@ -2001,7 +2001,7 @@ pub const PCCARD_DES = extern struct {
 };
 
 pub const PCCARD_RESOURCE = extern struct {
-    PcCard_Header: PCCARD_DES,
+    PcCard_Header: PCCARD_DES align(1),
 };
 
 pub const PCM_NOTIFY_CALLBACK = *const fn(
@@ -4186,7 +4186,7 @@ pub extern "cfgmgr32" fn CM_Get_Hardware_Profile_Info_ExA(
 
 pub extern "cfgmgr32" fn CM_Get_Hardware_Profile_Info_ExW(
     ulIndex: u32,
-    pHWProfileInfo: ?*HWProfileInfo_sW,
+    pHWProfileInfo: ?*HWPROFILEINFO_W,
     ulFlags: u32,
     hMachine: isize,
 ) callconv(.winapi) CONFIGRET;
@@ -4199,7 +4199,7 @@ pub extern "cfgmgr32" fn CM_Get_Hardware_Profile_InfoA(
 
 pub extern "cfgmgr32" fn CM_Get_Hardware_Profile_InfoW(
     ulIndex: u32,
-    pHWProfileInfo: ?*HWProfileInfo_sW,
+    pHWProfileInfo: ?*HWPROFILEINFO_W,
     ulFlags: u32,
 ) callconv(.winapi) CONFIGRET;
 
@@ -8036,7 +8036,7 @@ pub extern "newdev" fn UpdateDriverForPlugAndPlayDevicesW(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (206)
+// Section: Unicode Aliases (205)
 //--------------------------------------------------------------------------------
 pub const CABINET_INFO_ = switch (@import("../zig.zig").unicode_mode) {
     .ansi => @This().CABINET_INFO_A,
@@ -8071,13 +8071,6 @@ pub const FILEPATHS_SIGNERINFO_ = switch (@import("../zig.zig").unicode_mode) {
     .wide => @This().FILEPATHS_SIGNERINFO_W,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'FILEPATHS_SIGNERINFO_' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const HWProfileInfo_s = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().HWProfileInfo_sA,
-    .wide => @This().HWProfileInfo_sW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'HWProfileInfo_s' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const PSP_FILE_CALLBACK_ = switch (@import("../zig.zig").unicode_mode) {

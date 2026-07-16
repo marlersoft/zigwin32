@@ -10,42 +10,105 @@ pub const S_OBJECT_NO_LONGER_VALID = @import("../zig.zig").typedConst(HRESULT, @
 //--------------------------------------------------------------------------------
 // Section: Types (97)
 //--------------------------------------------------------------------------------
-pub const _tag_FW_DYNAMIC_KEYWORD_ADDRESS0 = extern struct {
+pub const FW_DYNAMIC_KEYWORD_ADDRESS0 = extern struct {
     id: Guid,
     keyword: ?[*:0]const u16,
     flags: u32,
     addresses: ?[*:0]const u16,
 };
 
-pub const _tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0 = extern struct {
-    dynamicKeywordAddress: _tag_FW_DYNAMIC_KEYWORD_ADDRESS0,
-    next: ?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
+pub const FW_DYNAMIC_KEYWORD_ADDRESS_DATA0 = extern struct {
+    dynamicKeywordAddress: FW_DYNAMIC_KEYWORD_ADDRESS0,
+    next: ?*FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
     schemaVersion: u16,
-    originType: _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE,
+    originType: FW_DYNAMIC_KEYWORD_ORIGIN_TYPE,
 };
 
-pub const _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS = enum(i32) {
-    AUTO_RESOLVE = 1,
-    NON_AUTO_RESOLVE = 2,
-    ALL = 3,
+pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS = packed struct(u32) {
+    AUTO_RESOLVE: u1 = 0,
+    NON_AUTO_RESOLVE: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_AUTO_RESOLVE = _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS.AUTO_RESOLVE;
-pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_NON_AUTO_RESOLVE = _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS.NON_AUTO_RESOLVE;
-pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_ALL = _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS.ALL;
-
-pub const _tag_FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS = enum(i32) {
-    E = 1,
+pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_AUTO_RESOLVE = FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS{ .AUTO_RESOLVE = 1 };
+pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_NON_AUTO_RESOLVE = FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS{ .NON_AUTO_RESOLVE = 1 };
+pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_ALL = FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS{
+    .AUTO_RESOLVE = 1,
+    .NON_AUTO_RESOLVE = 1,
 };
-pub const FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS_AUTO_RESOLVE = _tag_FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS.E;
 
-pub const _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE = enum(i32) {
+pub const FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS = packed struct(u32) {
+    E: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS_AUTO_RESOLVE = FW_DYNAMIC_KEYWORD_ADDRESS_FLAGS{ .E = 1 };
+
+pub const FW_DYNAMIC_KEYWORD_ORIGIN_TYPE = enum(i32) {
     INVALID = 0,
     LOCAL = 1,
     MDM = 2,
 };
-pub const FW_DYNAMIC_KEYWORD_ORIGIN_INVALID = _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE.INVALID;
-pub const FW_DYNAMIC_KEYWORD_ORIGIN_LOCAL = _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE.LOCAL;
-pub const FW_DYNAMIC_KEYWORD_ORIGIN_MDM = _tag_FW_DYNAMIC_KEYWORD_ORIGIN_TYPE.MDM;
+pub const FW_DYNAMIC_KEYWORD_ORIGIN_INVALID = FW_DYNAMIC_KEYWORD_ORIGIN_TYPE.INVALID;
+pub const FW_DYNAMIC_KEYWORD_ORIGIN_LOCAL = FW_DYNAMIC_KEYWORD_ORIGIN_TYPE.LOCAL;
+pub const FW_DYNAMIC_KEYWORD_ORIGIN_MDM = FW_DYNAMIC_KEYWORD_ORIGIN_TYPE.MDM;
 
 pub const ICS_TARGETTYPE = enum(i32) {
     NAME = 0,
@@ -3382,7 +3445,7 @@ pub const PAC_CHANGES_CALLBACK_FN = *const fn(
 ) callconv(.winapi) void;
 
 pub const PFN_FWADDDYNAMICKEYWORDADDRESS0 = *const fn(
-    dynamicKeywordAddress: ?*const _tag_FW_DYNAMIC_KEYWORD_ADDRESS0,
+    dynamicKeywordAddress: ?*const FW_DYNAMIC_KEYWORD_ADDRESS0,
 ) callconv(.winapi) u32;
 
 pub const PFN_FWDELETEDYNAMICKEYWORDADDRESS0 = *const fn(
@@ -3391,16 +3454,16 @@ pub const PFN_FWDELETEDYNAMICKEYWORDADDRESS0 = *const fn(
 
 pub const PFN_FWENUMDYNAMICKEYWORDADDRESSBYID0 = *const fn(
     dynamicKeywordAddressId: Guid,
-    dynamicKeywordAddressData: ?*?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
+    dynamicKeywordAddressData: ?*?*FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
 ) callconv(.winapi) u32;
 
 pub const PFN_FWENUMDYNAMICKEYWORDADDRESSESBYTYPE0 = *const fn(
     flags: u32,
-    dynamicKeywordAddressData: ?*?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
+    dynamicKeywordAddressData: ?*?*FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
 ) callconv(.winapi) u32;
 
 pub const PFN_FWFREEDYNAMICKEYWORDADDRESSDATA0 = *const fn(
-    dynamicKeywordAddressData: ?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
+    dynamicKeywordAddressData: ?*FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
 ) callconv(.winapi) u32;
 
 pub const PFN_FWUPDATEDYNAMICKEYWORDADDRESS0 = *const fn(

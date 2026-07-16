@@ -942,7 +942,7 @@ pub const VMEMHEAP_LINEAR = @as(i32, 1);
 pub const VMEMHEAP_RECTANGULAR = @as(i32, 2);
 
 //--------------------------------------------------------------------------------
-// Section: Types (466)
+// Section: Types (448)
 //--------------------------------------------------------------------------------
 pub const _DD_DESTROYDRIVERDATA = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -4020,10 +4020,6 @@ pub const IDDVideoPortContainer = extern union {
     }
 };
 
-pub const IDDVideoPortContainerVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 const IID_IDirectDraw_Value = Guid.initString("6c14db80-a733-11ce-a521-0020af0be560");
 pub const IID_IDirectDraw = &IID_IDirectDraw_Value;
 pub const IDirectDraw = extern union {
@@ -4369,10 +4365,6 @@ pub const IDirectDraw2 = extern union {
     }
 };
 
-pub const IDirectDraw2Vtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 const IID_IDirectDraw4_Value = Guid.initString("9c59509a-39bd-11d1-8c4a-00c04fd930c5");
 pub const IID_IDirectDraw4 = &IID_IDirectDraw4_Value;
 pub const IDirectDraw4 = extern union {
@@ -4577,10 +4569,6 @@ pub const IDirectDraw4 = extern union {
     pub fn GetDeviceIdentifier(self: *const IDirectDraw4, param0: ?*DDDEVICEIDENTIFIER, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceIdentifier(self, param0, param1);
     }
-};
-
-pub const IDirectDraw4Vtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
 };
 
 const IID_IDirectDraw7_Value = Guid.initString("15e65ec0-3b9c-11d2-b92f-00609797ea5b");
@@ -4806,10 +4794,6 @@ pub const IDirectDraw7 = extern union {
     }
 };
 
-pub const IDirectDraw7Vtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 const IID_IDirectDrawClipper_Value = Guid.initString("6c14db85-a733-11ce-a521-0020af0be560");
 pub const IID_IDirectDrawClipper = &IID_IDirectDrawClipper_Value;
 pub const IDirectDrawClipper = extern union {
@@ -4867,10 +4851,6 @@ pub const IDirectDrawClipper = extern union {
     }
 };
 
-pub const IDirectDrawClipperVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 const IID_IDirectDrawColorControl_Value = Guid.initString("4b9f0ee0-0d7e-11d0-9b06-00a0c903a3b8");
 pub const IID_IDirectDrawColorControl = &IID_IDirectDrawColorControl_Value;
 pub const IDirectDrawColorControl = extern union {
@@ -4893,10 +4873,6 @@ pub const IDirectDrawColorControl = extern union {
     pub fn SetColorControls(self: *const IDirectDrawColorControl, param0: ?*DDCOLORCONTROL) callconv(.@"inline") HRESULT {
         return self.vtable.SetColorControls(self, param0);
     }
-};
-
-pub const IDirectDrawColorControlVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
 };
 
 const IID_IDirectDrawGammaControl_Value = Guid.initString("69c11c3e-b46b-11d1-ad7a-00c04fc29b4e");
@@ -4923,10 +4899,6 @@ pub const IDirectDrawGammaControl = extern union {
     pub fn SetGammaRamp(self: *const IDirectDrawGammaControl, param0: u32, param1: ?*DDGAMMARAMP) callconv(.@"inline") HRESULT {
         return self.vtable.SetGammaRamp(self, param0, param1);
     }
-};
-
-pub const IDirectDrawGammaControlVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
 };
 
 const IID_IDirectDrawKernel_Value = Guid.initString("8d56c120-6a08-11d0-9b06-00a0c903a3b8");
@@ -4957,10 +4929,6 @@ pub const IDirectDrawKernel = extern union {
     pub fn ReleaseKernelHandle(self: *const IDirectDrawKernel) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseKernelHandle(self);
     }
-};
-
-pub const IDirectDrawKernelVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
 };
 
 const IID_IDirectDrawPalette_Value = Guid.initString("6c14db84-a733-11ce-a521-0020af0be560");
@@ -5007,10 +4975,6 @@ pub const IDirectDrawPalette = extern union {
     pub fn SetEntries(self: *const IDirectDrawPalette, param0: u32, param1: u32, param2: u32, param3: ?*PALETTEENTRY) callconv(.@"inline") HRESULT {
         return self.vtable.SetEntries(self, param0, param1, param2, param3);
     }
-};
-
-pub const IDirectDrawPaletteVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
 };
 
 const IID_IDirectDrawSurface_Value = Guid.initString("6c14db81-a733-11ce-a521-0020af0be560");
@@ -5570,10 +5534,6 @@ pub const IDirectDrawSurface2 = extern union {
     }
 };
 
-pub const IDirectDrawSurface2Vtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 const IID_IDirectDrawSurface3_Value = Guid.initString("da044e00-69b2-11d0-a1d5-00aa00b8dfbb");
 pub const IID_IDirectDrawSurface3 = &IID_IDirectDrawSurface3_Value;
 pub const IDirectDrawSurface3 = extern union {
@@ -5869,10 +5829,6 @@ pub const IDirectDrawSurface3 = extern union {
     pub fn SetSurfaceDesc(self: *const IDirectDrawSurface3, param0: ?*DDSURFACEDESC, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSurfaceDesc(self, param0, param1);
     }
-};
-
-pub const IDirectDrawSurface3Vtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
 };
 
 const IID_IDirectDrawSurface4_Value = Guid.initString("0b2b8630-ad35-11d0-8ea6-00609797ea5b");
@@ -6209,10 +6165,6 @@ pub const IDirectDrawSurface4 = extern union {
     pub fn ChangeUniquenessValue(self: *const IDirectDrawSurface4) callconv(.@"inline") HRESULT {
         return self.vtable.ChangeUniquenessValue(self);
     }
-};
-
-pub const IDirectDrawSurface4Vtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
 };
 
 const IID_IDirectDrawSurface7_Value = Guid.initString("06675a80-3b9b-11d2-b92f-00609797ea5b");
@@ -6579,10 +6531,6 @@ pub const IDirectDrawSurface7 = extern union {
     }
 };
 
-pub const IDirectDrawSurface7Vtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 const IID_IDirectDrawSurfaceKernel_Value = Guid.initString("60755da0-6a40-11d0-9b06-00a0c903a3b8");
 pub const IID_IDirectDrawSurfaceKernel = &IID_IDirectDrawSurfaceKernel_Value;
 pub const IDirectDrawSurfaceKernel = extern union {
@@ -6604,14 +6552,6 @@ pub const IDirectDrawSurfaceKernel = extern union {
     pub fn ReleaseKernelHandle(self: *const IDirectDrawSurfaceKernel) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseKernelHandle(self);
     }
-};
-
-pub const IDirectDrawSurfaceKernelVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IDirectDrawSurfaceVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
 };
 
 const IID_IDirectDrawVideoPort_Value = Guid.initString("b36d93e0-2b43-11cf-a2de-00aa00b93356");
@@ -6757,18 +6697,6 @@ pub const IDirectDrawVideoPortNotify = extern union {
     pub fn ReleaseNotification(self: *const IDirectDrawVideoPortNotify, param0: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseNotification(self, param0);
     }
-};
-
-pub const IDirectDrawVideoPortNotifyVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IDirectDrawVideoPortVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IDirectDrawVtbl = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IUNKNOWN_LIST = extern struct {

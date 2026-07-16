@@ -802,7 +802,7 @@ pub const MITMProtectionNotRequiredGeneralBonding = AUTHENTICATION_REQUIREMENTS.
 pub const MITMProtectionRequiredGeneralBonding = AUTHENTICATION_REQUIREMENTS.RequiredGeneralBonding;
 pub const MITMProtectionNotDefined = AUTHENTICATION_REQUIREMENTS.NotDefined;
 
-pub const BLUETOOTH_ADDRESS = extern struct {
+pub const BLUETOOTH_ADDRESS_STRUCT = extern struct {
     Anonymous: extern union {
         ullLong: u64,
         rgBytes: [6]u8,
@@ -810,7 +810,7 @@ pub const BLUETOOTH_ADDRESS = extern struct {
 };
 
 pub const BLUETOOTH_AUTHENTICATE_RESPONSE = extern struct {
-    bthAddressRemote: BLUETOOTH_ADDRESS,
+    bthAddressRemote: BLUETOOTH_ADDRESS_STRUCT,
     authMethod: BLUETOOTH_AUTHENTICATION_METHOD,
     Anonymous: extern union {
         pinInfo: BLUETOOTH_PIN_INFO,
@@ -822,7 +822,7 @@ pub const BLUETOOTH_AUTHENTICATE_RESPONSE = extern struct {
 };
 
 pub const BLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS = extern struct {
-    deviceInfo: BLUETOOTH_DEVICE_INFO,
+    deviceInfo: BLUETOOTH_DEVICE_INFO_STRUCT,
     authenticationMethod: BLUETOOTH_AUTHENTICATION_METHOD,
     ioCapability: BLUETOOTH_IO_CAPABILITY,
     authenticationRequirements: BLUETOOTH_AUTHENTICATION_REQUIREMENTS,
@@ -867,9 +867,9 @@ pub const BLUETOOTH_COD_PAIRS = extern struct {
     pcszDescription: ?[*:0]const u16,
 };
 
-pub const BLUETOOTH_DEVICE_INFO = extern struct {
+pub const BLUETOOTH_DEVICE_INFO_STRUCT = extern struct {
     dwSize: u32,
-    Address: BLUETOOTH_ADDRESS,
+    Address: BLUETOOTH_ADDRESS_STRUCT,
     ulClassofDevice: u32,
     fConnected: BOOL,
     fRemembered: BOOL,
@@ -918,9 +918,9 @@ pub const BLUETOOTH_IO_CAPABILITY_KEYBOARDONLY = BLUETOOTH_IO_CAPABILITY.KEYBOAR
 pub const BLUETOOTH_IO_CAPABILITY_NOINPUTNOOUTPUT = BLUETOOTH_IO_CAPABILITY.NOINPUTNOOUTPUT;
 pub const BLUETOOTH_IO_CAPABILITY_UNDEFINED = BLUETOOTH_IO_CAPABILITY.UNDEFINED;
 
-pub const BLUETOOTH_LOCAL_SERVICE_INFO = extern struct {
+pub const BLUETOOTH_LOCAL_SERVICE_INFO_STRUCT = extern struct {
     Enabled: BOOL,
-    btAddr: BLUETOOTH_ADDRESS,
+    btAddr: BLUETOOTH_ADDRESS_STRUCT,
     szName: [256]u16,
     szDeviceString: [256]u16,
 };
@@ -945,7 +945,7 @@ pub const BLUETOOTH_PIN_INFO = extern struct {
 
 pub const BLUETOOTH_RADIO_INFO = extern struct {
     dwSize: u32,
-    address: BLUETOOTH_ADDRESS,
+    address: BLUETOOTH_ADDRESS_STRUCT,
     szName: [248]u16,
     ulClassofDevice: u32,
     lmpSubversion: u16,
@@ -967,7 +967,7 @@ pub const BLUETOOTH_SELECT_DEVICE_PARAMS = extern struct {
     pfnDeviceCallback: ?PFN_DEVICE_CALLBACK,
     pvParam: ?*anyopaque,
     cNumDevices: u32,
-    pDevices: ?*BLUETOOTH_DEVICE_INFO,
+    pDevices: ?*BLUETOOTH_DEVICE_INFO_STRUCT,
 };
 
 pub const BTH_DEVICE_INFO = extern struct {
@@ -1157,7 +1157,7 @@ pub const NodeContainerTypeAlternative = NodeContainerType.Alternative;
 
 pub const PFN_AUTHENTICATION_CALLBACK = *const fn(
     pvParam: ?*anyopaque,
-    pDevice: ?*BLUETOOTH_DEVICE_INFO,
+    pDevice: ?*BLUETOOTH_DEVICE_INFO_STRUCT,
 ) callconv(.winapi) BOOL;
 
 pub const PFN_AUTHENTICATION_CALLBACK_EX = *const fn(
@@ -1175,7 +1175,7 @@ pub const PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK = *const fn(
 
 pub const PFN_DEVICE_CALLBACK = *const fn(
     pvParam: ?*anyopaque,
-    pDevice: ?*const BLUETOOTH_DEVICE_INFO,
+    pDevice: ?*const BLUETOOTH_DEVICE_INFO_STRUCT,
 ) callconv(.winapi) BOOL;
 
 pub const PFNBLUETOOTH_GATT_EVENT_CALLBACK = *const fn(
@@ -1350,7 +1350,7 @@ pub const SOCKADDR_BTH = extern struct {
 pub extern "bthprops.cpl" fn BluetoothAuthenticateDevice(
     hwndParent: ?HWND,
     hRadio: ?HANDLE,
-    pbtbi: ?*BLUETOOTH_DEVICE_INFO,
+    pbtbi: ?*BLUETOOTH_DEVICE_INFO_STRUCT,
     pszPasskey: ?[*:0]u16,
     ulPasskeyLength: u32,
 ) callconv(.winapi) u32;
@@ -1359,7 +1359,7 @@ pub extern "bthprops.cpl" fn BluetoothAuthenticateDevice(
 pub extern "bthprops.cpl" fn BluetoothAuthenticateDeviceEx(
     hwndParentIn: ?HWND,
     hRadioIn: ?HANDLE,
-    pbtdiInout: ?*BLUETOOTH_DEVICE_INFO,
+    pbtdiInout: ?*BLUETOOTH_DEVICE_INFO_STRUCT,
     pbtOobData: ?*BLUETOOTH_OOB_DATA_INFO,
     authenticationRequirement: AUTHENTICATION_REQUIREMENTS,
 ) callconv(.winapi) u32;
@@ -1369,13 +1369,13 @@ pub extern "bthprops.cpl" fn BluetoothAuthenticateMultipleDevices(
     hwndParent: ?HWND,
     hRadio: ?HANDLE,
     cDevices: u32,
-    rgbtdi: [*]BLUETOOTH_DEVICE_INFO,
+    rgbtdi: [*]BLUETOOTH_DEVICE_INFO_STRUCT,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bthprops.cpl" fn BluetoothDisplayDeviceProperties(
     hwndParent: ?HWND,
-    pbtdi: ?*BLUETOOTH_DEVICE_INFO,
+    pbtdi: ?*BLUETOOTH_DEVICE_INFO_STRUCT,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1393,7 +1393,7 @@ pub extern "bluetoothapis" fn BluetoothEnableIncomingConnections(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bluetoothapis" fn BluetoothEnumerateInstalledServices(
     hRadio: ?HANDLE,
-    pbtdi: ?*const BLUETOOTH_DEVICE_INFO,
+    pbtdi: ?*const BLUETOOTH_DEVICE_INFO_STRUCT,
     pcServiceInout: ?*u32,
     pGuidServices: ?[*]Guid,
 ) callconv(.winapi) u32;
@@ -1406,7 +1406,7 @@ pub extern "bluetoothapis" fn BluetoothFindDeviceClose(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bluetoothapis" fn BluetoothFindFirstDevice(
     pbtsp: ?*const BLUETOOTH_DEVICE_SEARCH_PARAMS,
-    pbtdi: ?*BLUETOOTH_DEVICE_INFO,
+    pbtdi: ?*BLUETOOTH_DEVICE_INFO_STRUCT,
 ) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1418,7 +1418,7 @@ pub extern "bluetoothapis" fn BluetoothFindFirstRadio(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bluetoothapis" fn BluetoothFindNextDevice(
     hFind: isize,
-    pbtdi: ?*BLUETOOTH_DEVICE_INFO,
+    pbtdi: ?*BLUETOOTH_DEVICE_INFO_STRUCT,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1549,7 +1549,7 @@ pub extern "bluetoothapis" fn BluetoothGATTUnregisterEvent(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bluetoothapis" fn BluetoothGetDeviceInfo(
     hRadio: ?HANDLE,
-    pbtdi: ?*BLUETOOTH_DEVICE_INFO,
+    pbtdi: ?*BLUETOOTH_DEVICE_INFO_STRUCT,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1576,7 +1576,7 @@ pub extern "bluetoothapis" fn BluetoothIsVersionAvailable(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bluetoothapis" fn BluetoothRegisterForAuthentication(
-    pbtdi: ?*const BLUETOOTH_DEVICE_INFO,
+    pbtdi: ?*const BLUETOOTH_DEVICE_INFO_STRUCT,
     phRegHandle: ?*isize,
     pfnCallback: ?PFN_AUTHENTICATION_CALLBACK,
     pvParam: ?*anyopaque,
@@ -1584,7 +1584,7 @@ pub extern "bluetoothapis" fn BluetoothRegisterForAuthentication(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bluetoothapis" fn BluetoothRegisterForAuthenticationEx(
-    pbtdiIn: ?*const BLUETOOTH_DEVICE_INFO,
+    pbtdiIn: ?*const BLUETOOTH_DEVICE_INFO_STRUCT,
     phRegHandleOut: ?*isize,
     pfnCallbackIn: ?PFN_AUTHENTICATION_CALLBACK_EX,
     pvParam: ?*anyopaque,
@@ -1592,7 +1592,7 @@ pub extern "bluetoothapis" fn BluetoothRegisterForAuthenticationEx(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bluetoothapis" fn BluetoothRemoveDevice(
-    pAddress: ?*const BLUETOOTH_ADDRESS,
+    pAddress: ?*const BLUETOOTH_ADDRESS_STRUCT,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1654,7 +1654,7 @@ pub extern "bthprops.cpl" fn BluetoothSelectDevicesFree(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bluetoothapis" fn BluetoothSendAuthenticationResponse(
     hRadio: ?HANDLE,
-    pbtdi: ?*const BLUETOOTH_DEVICE_INFO,
+    pbtdi: ?*const BLUETOOTH_DEVICE_INFO_STRUCT,
     pszPasskey: ?[*:0]const u16,
 ) callconv(.winapi) u32;
 
@@ -1669,13 +1669,13 @@ pub extern "bluetoothapis" fn BluetoothSetLocalServiceInfo(
     hRadioIn: ?HANDLE,
     pClassGuid: ?*const Guid,
     ulInstance: u32,
-    pServiceInfoIn: ?*const BLUETOOTH_LOCAL_SERVICE_INFO,
+    pServiceInfoIn: ?*const BLUETOOTH_LOCAL_SERVICE_INFO_STRUCT,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bluetoothapis" fn BluetoothSetServiceState(
     hRadio: ?HANDLE,
-    pbtdi: ?*const BLUETOOTH_DEVICE_INFO,
+    pbtdi: ?*const BLUETOOTH_DEVICE_INFO_STRUCT,
     pGuidService: ?*const Guid,
     dwServiceFlags: u32,
 ) callconv(.winapi) u32;
@@ -1687,7 +1687,7 @@ pub extern "bluetoothapis" fn BluetoothUnregisterAuthentication(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bluetoothapis" fn BluetoothUpdateDeviceRecord(
-    pbtdi: ?*const BLUETOOTH_DEVICE_INFO,
+    pbtdi: ?*const BLUETOOTH_DEVICE_INFO_STRUCT,
 ) callconv(.winapi) u32;
 
 

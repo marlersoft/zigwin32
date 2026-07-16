@@ -17,6 +17,13 @@ pub const TRACKER_STARTSTOP_EVENT = "Global\\COM+ Tracker Push Event";
 //--------------------------------------------------------------------------------
 // Section: Types (211)
 //--------------------------------------------------------------------------------
+pub const APPDATA = extern struct {
+    m_idApp: u32,
+    m_szAppGuid: [40]u16,
+    m_dwAppProcessId: u32,
+    m_AppStatistics: APPSTATISTICS,
+};
+
 const CLSID_AppDomainHelper_Value = Guid.initString("ef24f689-14f8-4d92-b4af-d7b1f0e70fd4");
 pub const CLSID_AppDomainHelper = &CLSID_AppDomainHelper_Value;
 
@@ -68,6 +75,13 @@ pub const ApplicationSummary = extern struct {
     ApplicationName: ?PWSTR,
     NumTrackedComponents: u32,
     NumComponentInstances: u32,
+};
+
+pub const APPSTATISTICS = extern struct {
+    m_cTotalCalls: u32,
+    m_cTotalInstances: u32,
+    m_cTotalClasses: u32,
+    m_cCallsPerSecond: u32,
 };
 
 pub const AutoSvcs_Error_Constants = enum(u32) {
@@ -128,21 +142,10 @@ pub const comqcErrBadMarshaledObject = AutoSvcs_Error_Constants.comqcErrBadMarsh
 const CLSID_ByotServerEx_Value = Guid.initString("ecabb0aa-7f19-11d2-978e-0000f8757e2a");
 pub const CLSID_ByotServerEx = &CLSID_ByotServerEx_Value;
 
-pub const CAppData = extern struct {
-    m_idApp: u32,
-    m_szAppGuid: [40]u16,
-    m_dwAppProcessId: u32,
-    m_AppStatistics: CAppStatistics,
-};
+const CLSID_ClrAssemblyLocator_Value = Guid.initString("458aa3b5-265a-4b75-bc05-9bea4630cf18");
+pub const CLSID_ClrAssemblyLocator = &CLSID_ClrAssemblyLocator_Value;
 
-pub const CAppStatistics = extern struct {
-    m_cTotalCalls: u32,
-    m_cTotalInstances: u32,
-    m_cTotalClasses: u32,
-    m_cCallsPerSecond: u32,
-};
-
-pub const CCLSIDData = extern struct {
+pub const CLSIDDATA = extern struct {
     m_clsid: Guid,
     m_cReferences: u32,
     m_cBound: u32,
@@ -153,7 +156,7 @@ pub const CCLSIDData = extern struct {
     m_cCallsFailed: u32,
 };
 
-pub const CCLSIDData2 = extern struct {
+pub const CLSIDDATA2 = extern struct {
     m_clsid: Guid,
     m_appid: Guid,
     m_partid: Guid,
@@ -168,9 +171,6 @@ pub const CCLSIDData2 = extern struct {
     m_cCallsCompleted: u32,
     m_cCallsFailed: u32,
 };
-
-const CLSID_ClrAssemblyLocator_Value = Guid.initString("458aa3b5-265a-4b75-bc05-9bea4630cf18");
-pub const CLSID_ClrAssemblyLocator = &CLSID_ClrAssemblyLocator_Value;
 
 pub const COMAdminAccessChecksLevelOptions = enum(i32) {
     Level = 0,

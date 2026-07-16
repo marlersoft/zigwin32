@@ -277,16 +277,6 @@ pub const _ITSWkspEvents = extern union {
     IUnknown: IUnknown,
 };
 
-pub const _WTS_PRODUCT_INFOA = extern struct {
-    CompanyName: [256]CHAR,
-    ProductID: [4]CHAR,
-};
-
-pub const _WTS_PRODUCT_INFOW = extern struct {
-    CompanyName: [256]u16,
-    ProductID: [4]u16,
-};
-
 pub const AAAccountingData = extern struct {
     userName: ?BSTR,
     clientName: ?BSTR,
@@ -5185,6 +5175,16 @@ pub const ClipboardRedirectionDisabled = PolicyAttributeType.ClipboardRedirectio
 pub const PnpRedirectionDisabled = PolicyAttributeType.PnpRedirectionDisabled;
 pub const AllowOnlySDRServers = PolicyAttributeType.AllowOnlySDRServers;
 
+pub const PRODUCT_INFOA = extern struct {
+    CompanyName: [256]CHAR,
+    ProductID: [4]CHAR,
+};
+
+pub const PRODUCT_INFOW = extern struct {
+    CompanyName: [256]u16,
+    ProductID: [4]u16,
+};
+
 pub const PVIRTUALCHANNELCLOSE = *const fn(
     openHandle: u32,
 ) callconv(.winapi) u32;
@@ -6258,7 +6258,7 @@ pub const WTS_USER_DATA = extern struct {
 };
 
 pub const WTS_VALIDATION_INFORMATIONA = extern struct {
-    ProductInfo: _WTS_PRODUCT_INFOA,
+    ProductInfo: PRODUCT_INFOA,
     License: [16384]u8,
     LicenseLength: u32,
     HardwareID: [20]u8,
@@ -6266,7 +6266,7 @@ pub const WTS_VALIDATION_INFORMATIONA = extern struct {
 };
 
 pub const WTS_VALIDATION_INFORMATIONW = extern struct {
-    ProductInfo: _WTS_PRODUCT_INFOW,
+    ProductInfo: PRODUCT_INFOW,
     License: [16384]u8,
     LicenseLength: u32,
     HardwareID: [20]u8,
@@ -7180,11 +7180,11 @@ pub extern "wtsapi32" fn WTSWaitSystemEvent(
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (34)
 //--------------------------------------------------------------------------------
-pub const _WTS_PRODUCT_INFO = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This()._WTS_PRODUCT_INFOA,
-    .wide => @This()._WTS_PRODUCT_INFOW,
+pub const PRODUCT_INFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PRODUCT_INFOA,
+    .wide => @This().PRODUCT_INFOW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'_WTS_PRODUCT_INFO' requires that UNICODE be set to true or false in the root module",
+        "'PRODUCT_INFO' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const WTS_PROCESS_INFO_EX = switch (@import("../zig.zig").unicode_mode) {

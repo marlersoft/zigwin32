@@ -1467,29 +1467,6 @@ pub const DYNAMIC_RENDERER_CACHED_DATA = extern struct {
 const CLSID_DynamicRenderer_Value = Guid.initString("ecd32aea-746f-4dcb-bf68-082757faff18");
 pub const CLSID_DynamicRenderer = &CLSID_DynamicRenderer_Value;
 
-pub const enumGetCandidateFlags = enum(i32) {
-    ALLOW_RECOGNITION = 1,
-    FORCE_RECOGNITION = 2,
-};
-pub const TCF_ALLOW_RECOGNITION = enumGetCandidateFlags.ALLOW_RECOGNITION;
-pub const TCF_FORCE_RECOGNITION = enumGetCandidateFlags.FORCE_RECOGNITION;
-
-pub const enumINKMETRIC_FLAGS = enum(i32) {
-    FONT_SELECTED_IN_HDC = 1,
-    ITALIC = 2,
-    BOLD = 4,
-};
-pub const IMF_FONT_SELECTED_IN_HDC = enumINKMETRIC_FLAGS.FONT_SELECTED_IN_HDC;
-pub const IMF_ITALIC = enumINKMETRIC_FLAGS.ITALIC;
-pub const IMF_BOLD = enumINKMETRIC_FLAGS.BOLD;
-
-pub const enumRECO_TYPE = enum(i32) {
-    STRING = 0,
-    CHAR = 1,
-};
-pub const RECO_TYPE_WSTRING = enumRECO_TYPE.STRING;
-pub const RECO_TYPE_WCHAR = enumRECO_TYPE.CHAR;
-
 pub const EventMask = enum(i32) {
     InPlaceStateChanging = 1,
     InPlaceStateChanged = 2,
@@ -1586,6 +1563,13 @@ pub const GESTURE_DATA = extern struct {
 
 const CLSID_GestureRecognizer_Value = Guid.initString("ea30c654-c62c-441f-ac00-95f9a196782c");
 pub const CLSID_GestureRecognizer = &CLSID_GestureRecognizer_Value;
+
+pub const GET_DANDIDATE_FLAGS = enum(i32) {
+    ALLOW_RECOGNITION = 1,
+    FORCE_RECOGNITION = 2,
+};
+pub const TCF_ALLOW_RECOGNITION = GET_DANDIDATE_FLAGS.ALLOW_RECOGNITION;
+pub const TCF_FORCE_RECOGNITION = GET_DANDIDATE_FLAGS.FORCE_RECOGNITION;
 
 const CLSID_HandwrittenTextInsertion_Value = Guid.initString("9f074ee2-e6e9-4d8a-a047-eb5b5c3c55da");
 pub const CLSID_HandwrittenTextInsertion = &CLSID_HandwrittenTextInsertion_Value;
@@ -6684,6 +6668,15 @@ pub const IMathInputControl = extern union {
 const CLSID_Ink_Value = Guid.initString("13de4a42-8d21-4c8e-bf9c-8f69cb068fca");
 pub const CLSID_Ink = &CLSID_Ink_Value;
 
+pub const INK_METRIC_FLAGS = enum(i32) {
+    FONT_SELECTED_IN_HDC = 1,
+    ITALIC = 2,
+    BOLD = 4,
+};
+pub const IMF_FONT_SELECTED_IN_HDC = INK_METRIC_FLAGS.FONT_SELECTED_IN_HDC;
+pub const IMF_ITALIC = INK_METRIC_FLAGS.ITALIC;
+pub const IMF_BOLD = INK_METRIC_FLAGS.BOLD;
+
 pub const InkApplicationGesture = enum(i32) {
     AllGestures = 0,
     NoGesture = 61440,
@@ -8849,6 +8842,13 @@ pub const RECO_RANGE = extern struct {
     iwcBegin: u32,
     cCount: u32,
 };
+
+pub const RECO_TYPE = enum(i32) {
+    STRING = 0,
+    CHAR = 1,
+};
+pub const RECO_TYPE_WSTRING = RECO_TYPE.STRING;
+pub const RECO_TYPE_WCHAR = RECO_TYPE.CHAR;
 
 pub const ScrollBarsConstants = enum(i32) {
     None = 0,

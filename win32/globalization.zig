@@ -1545,7 +1545,7 @@ pub const IMLangFontLink2 = extern union {
             sid: u8,
             dwFlags: u32,
             puiFonts: ?*u32,
-            pScriptFont: ?*tagSCRIPFONTINFO,
+            pScriptFont: ?*SCRIPTFONTINFO,
         ) callconv(.winapi) HRESULT,
         CodePageToScriptID: *const fn(
             self: *const IMLangFontLink2,
@@ -1571,7 +1571,7 @@ pub const IMLangFontLink2 = extern union {
     pub fn GetFontUnicodeRanges(self: *const IMLangFontLink2, hDC: ?HDC, puiRanges: ?*u32, pUranges: ?*UNICODERANGE) callconv(.@"inline") HRESULT {
         return self.vtable.GetFontUnicodeRanges(self, hDC, puiRanges, pUranges);
     }
-    pub fn GetScriptFontInfo(self: *const IMLangFontLink2, sid: u8, dwFlags: u32, puiFonts: ?*u32, pScriptFont: ?*tagSCRIPFONTINFO) callconv(.@"inline") HRESULT {
+    pub fn GetScriptFontInfo(self: *const IMLangFontLink2, sid: u8, dwFlags: u32, puiFonts: ?*u32, pScriptFont: ?*SCRIPTFONTINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetScriptFontInfo(self, sid, dwFlags, puiFonts, pScriptFont);
     }
     pub fn CodePageToScriptID(self: *const IMLangFontLink2, uiCodePage: u32, pSid: ?*u8) callconv(.@"inline") HRESULT {
@@ -3135,6 +3135,42 @@ pub const MIMECSETINFO = extern struct {
     wszCharset: [50]u16,
 };
 
+pub const MLCONVCHAR = enum(i32) {
+    AUTODETECT = 1,
+    ENTITIZE = 2,
+    NAME_ENTITIZE = 4,
+    USEDEFCHAR = 8,
+    NOBESTFITCHARS = 16,
+    DETECTJPN = 32,
+    pub const NCR_ENTITIZE = .ENTITIZE;
+};
+pub const MLCONVCHARF_AUTODETECT = MLCONVCHAR.AUTODETECT;
+pub const MLCONVCHARF_ENTITIZE = MLCONVCHAR.ENTITIZE;
+pub const MLCONVCHARF_NCR_ENTITIZE = MLCONVCHAR.ENTITIZE;
+pub const MLCONVCHARF_NAME_ENTITIZE = MLCONVCHAR.NAME_ENTITIZE;
+pub const MLCONVCHARF_USEDEFCHAR = MLCONVCHAR.USEDEFCHAR;
+pub const MLCONVCHARF_NOBESTFITCHARS = MLCONVCHAR.NOBESTFITCHARS;
+pub const MLCONVCHARF_DETECTJPN = MLCONVCHAR.DETECTJPN;
+
+pub const MLCP = enum(i32) {
+    MAILNEWS = 1,
+    BROWSER = 2,
+    VALID = 4,
+    VALID_NLS = 8,
+    PRESERVE_ORDER = 16,
+    PREFERRED_ONLY = 32,
+    FILTER_SPECIALCHAR = 64,
+    EURO_UTF8 = 128,
+};
+pub const MLDETECTF_MAILNEWS = MLCP.MAILNEWS;
+pub const MLDETECTF_BROWSER = MLCP.BROWSER;
+pub const MLDETECTF_VALID = MLCP.VALID;
+pub const MLDETECTF_VALID_NLS = MLCP.VALID_NLS;
+pub const MLDETECTF_PRESERVE_ORDER = MLCP.PRESERVE_ORDER;
+pub const MLDETECTF_PREFERRED_ONLY = MLCP.PREFERRED_ONLY;
+pub const MLDETECTF_FILTER_SPECIALCHAR = MLCP.FILTER_SPECIALCHAR;
+pub const MLDETECTF_EURO_UTF8 = MLCP.EURO_UTF8;
+
 pub const MLDETECTCP = enum(i32) {
     NONE = 0,
     @"7BIT" = 1,
@@ -3253,7 +3289,7 @@ pub const NUMBERFMTW = extern struct {
     NegativeOrder: u32,
 };
 
-pub const opentype_feature_record = extern struct {
+pub const OPENTYPE_FEATURE_RECORD = extern struct {
     tagFeature: u32,
     lParameter: i32,
 };
@@ -3276,7 +3312,7 @@ pub const SCRIPT_ANALYSIS = extern struct {
     s: SCRIPT_STATE,
 };
 
-pub const script_charprop = extern struct {
+pub const SCRIPT_CHARPROP = extern struct {
     _bitfield: u16,
 };
 
@@ -3299,7 +3335,7 @@ pub const SCRIPT_FONTPROPERTIES = extern struct {
     iKashidaWidth: i32,
 };
 
-pub const script_glyphprop = extern struct {
+pub const SCRIPT_GLYPHPROP = extern struct {
     sva: SCRIPT_VISATTR,
     reserved: u16,
 };
@@ -3481,6 +3517,11 @@ pub const SCRIPTCONTF_SCRIPT_USER = SCRIPTFONTCONTF.SCRIPT_USER;
 pub const SCRIPTCONTF_SCRIPT_HIDE = SCRIPTFONTCONTF.SCRIPT_HIDE;
 pub const SCRIPTCONTF_SCRIPT_SYSTEM = SCRIPTFONTCONTF.SCRIPT_SYSTEM;
 
+pub const SCRIPTFONTINFO = extern struct {
+    scripts: i64,
+    wszFont: [32]u16,
+};
+
 pub const SCRIPTINFO = extern struct {
     ScriptId: u8,
     uiCodePage: u32,
@@ -3545,49 +3586,8 @@ pub const SYSNLS_FUNCTION = enum(i32) {
 };
 pub const COMPARE_STRING = SYSNLS_FUNCTION.G;
 
-pub const tagMLCONVCHARF = enum(i32) {
-    AUTODETECT = 1,
-    ENTITIZE = 2,
-    NAME_ENTITIZE = 4,
-    USEDEFCHAR = 8,
-    NOBESTFITCHARS = 16,
-    DETECTJPN = 32,
-    pub const NCR_ENTITIZE = .ENTITIZE;
-};
-pub const MLCONVCHARF_AUTODETECT = tagMLCONVCHARF.AUTODETECT;
-pub const MLCONVCHARF_ENTITIZE = tagMLCONVCHARF.ENTITIZE;
-pub const MLCONVCHARF_NCR_ENTITIZE = tagMLCONVCHARF.ENTITIZE;
-pub const MLCONVCHARF_NAME_ENTITIZE = tagMLCONVCHARF.NAME_ENTITIZE;
-pub const MLCONVCHARF_USEDEFCHAR = tagMLCONVCHARF.USEDEFCHAR;
-pub const MLCONVCHARF_NOBESTFITCHARS = tagMLCONVCHARF.NOBESTFITCHARS;
-pub const MLCONVCHARF_DETECTJPN = tagMLCONVCHARF.DETECTJPN;
-
-pub const tagMLCPF = enum(i32) {
-    MAILNEWS = 1,
-    BROWSER = 2,
-    VALID = 4,
-    VALID_NLS = 8,
-    PRESERVE_ORDER = 16,
-    PREFERRED_ONLY = 32,
-    FILTER_SPECIALCHAR = 64,
-    EURO_UTF8 = 128,
-};
-pub const MLDETECTF_MAILNEWS = tagMLCPF.MAILNEWS;
-pub const MLDETECTF_BROWSER = tagMLCPF.BROWSER;
-pub const MLDETECTF_VALID = tagMLCPF.VALID;
-pub const MLDETECTF_VALID_NLS = tagMLCPF.VALID_NLS;
-pub const MLDETECTF_PRESERVE_ORDER = tagMLCPF.PRESERVE_ORDER;
-pub const MLDETECTF_PREFERRED_ONLY = tagMLCPF.PREFERRED_ONLY;
-pub const MLDETECTF_FILTER_SPECIALCHAR = tagMLCPF.FILTER_SPECIALCHAR;
-pub const MLDETECTF_EURO_UTF8 = tagMLCPF.EURO_UTF8;
-
-pub const tagSCRIPFONTINFO = extern struct {
-    scripts: i64,
-    wszFont: [32]u16,
-};
-
-pub const textrange_properties = extern struct {
-    potfRecords: ?*opentype_feature_record,
+pub const TEXTRANGE_PROPERTIES = extern struct {
+    potfRecords: ?*OPENTYPE_FEATURE_RECORD,
     cotfRecords: i32,
 };
 
@@ -9736,14 +9736,14 @@ pub extern "usp10" fn ScriptPlaceOpenType(
     tagScript: u32,
     tagLangSys: u32,
     rcRangeChars: ?[*]i32,
-    rpRangeProperties: ?[*]?*textrange_properties,
+    rpRangeProperties: ?[*]?*TEXTRANGE_PROPERTIES,
     cRanges: i32,
     pwcChars: [*:0]const u16,
     pwLogClust: [*:0]u16,
-    pCharProps: [*]script_charprop,
+    pCharProps: [*]SCRIPT_CHARPROP,
     cChars: i32,
     pwGlyphs: [*:0]const u16,
-    pGlyphProps: [*]const script_glyphprop,
+    pGlyphProps: [*]const SCRIPT_GLYPHPROP,
     cGlyphs: i32,
     piAdvance: [*]i32,
     pGoffset: [*]GOFFSET,
@@ -9794,15 +9794,15 @@ pub extern "usp10" fn ScriptShapeOpenType(
     tagScript: u32,
     tagLangSys: u32,
     rcRangeChars: ?[*]i32,
-    rpRangeProperties: ?[*]?*textrange_properties,
+    rpRangeProperties: ?[*]?*TEXTRANGE_PROPERTIES,
     cRanges: i32,
     pwcChars: [*:0]const u16,
     cChars: i32,
     cMaxGlyphs: i32,
     pwLogClust: [*:0]u16,
-    pCharProps: [*]script_charprop,
+    pCharProps: [*]SCRIPT_CHARPROP,
     pwOutGlyphs: [*:0]u16,
-    pOutGlyphProps: [*]script_glyphprop,
+    pOutGlyphProps: [*]SCRIPT_GLYPHPROP,
     pcGlyphs: ?*i32,
 ) callconv(.winapi) HRESULT;
 

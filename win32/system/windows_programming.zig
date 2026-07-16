@@ -1598,17 +1598,17 @@ pub const SYSTEM_TIMEOFDAY_INFORMATION = extern struct {
 };
 
 
-pub const tcp_request_query_information_ex_w2k = extern struct {
+pub const TCP_REQUEST_QUERY_INFORMATION_EX_W2K = extern struct {
     ID: TDIObjectID,
     Context: [16]u8,
 };
 
-pub const tcp_request_query_information_ex_xp = extern struct {
+pub const TCP_REQUEST_QUERY_INFORMATION_EX_XP = extern struct {
     ID: TDIObjectID,
-    Context: [2]usize,
+    Context: [4]usize,
 };
 
-pub const tcp_request_set_information_ex = extern struct {
+pub const TCP_REQUEST_SET_INFORMATION_EX = extern struct {
     ID: TDIObjectID,
     BufferSize: u32,
     Buffer: [1]u8,
@@ -1819,7 +1819,7 @@ pub const DELAYLOAD_INFO = switch(@import("../zig.zig").arch) {
         LastError: u32,
     },
 };
-pub const tcp_request_query_information_ex32_xp = switch(@import("../zig.zig").arch) {
+pub const TCP_REQUEST_QUERY_INFORMATION_EX32_XP = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         ID: TDIObjectID,
         Context: [4]u32,

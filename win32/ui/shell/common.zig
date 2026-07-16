@@ -122,7 +122,7 @@ pub const IObjectCollection = extern union {
 };
 
 pub const ITEMIDLIST = extern struct {
-    mkid: SHITEMID,
+    mkid: SHITEMID align(1),
 };
 
 pub const PERCEIVED = enum(i32) {

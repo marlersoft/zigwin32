@@ -6055,7 +6055,7 @@ pub const ISpRecognizer = extern union {
         ) callconv(.winapi) HRESULT,
         GetFormat: *const fn(
             self: *const ISpRecognizer,
-            WaveFormatType: SPWAVEFORMATTYPE,
+            WaveFormatType: SPSTREAMFORMATTYPE,
             pFormatId: ?*Guid,
             ppCoMemWFEX: ?*?*WAVEFORMATEX,
         ) callconv(.winapi) HRESULT,
@@ -6118,7 +6118,7 @@ pub const ISpRecognizer = extern union {
     pub fn GetStatus(self: *const ISpRecognizer, pStatus: ?*SPRECOGNIZERSTATUS) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, pStatus);
     }
-    pub fn GetFormat(self: *const ISpRecognizer, WaveFormatType: SPWAVEFORMATTYPE, pFormatId: ?*Guid, ppCoMemWFEX: ?*?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
+    pub fn GetFormat(self: *const ISpRecognizer, WaveFormatType: SPSTREAMFORMATTYPE, pFormatId: ?*Guid, ppCoMemWFEX: ?*?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
         return self.vtable.GetFormat(self, WaveFormatType, pFormatId, ppCoMemWFEX);
     }
     pub fn IsUISupported(self: *const ISpRecognizer, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, pfSupported: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -7177,6 +7177,21 @@ pub const SPDKL_CurrentUser = SPDATAKEYLOCATION.CurrentUser;
 pub const SPDKL_LocalMachine = SPDATAKEYLOCATION.LocalMachine;
 pub const SPDKL_CurrentConfig = SPDATAKEYLOCATION.CurrentConfig;
 
+pub const SPDISPLAYATTRIBUTES = enum(i32) {
+    ONE_TRAILING_SPACE = 2,
+    TWO_TRAILING_SPACES = 4,
+    CONSUME_LEADING_SPACES = 8,
+    BUFFER_POSITION = 16,
+    ALL = 31,
+    USER_SPECIFIED = 128,
+};
+pub const SPAF_ONE_TRAILING_SPACE = SPDISPLAYATTRIBUTES.ONE_TRAILING_SPACE;
+pub const SPAF_TWO_TRAILING_SPACES = SPDISPLAYATTRIBUTES.TWO_TRAILING_SPACES;
+pub const SPAF_CONSUME_LEADING_SPACES = SPDISPLAYATTRIBUTES.CONSUME_LEADING_SPACES;
+pub const SPAF_BUFFER_POSITION = SPDISPLAYATTRIBUTES.BUFFER_POSITION;
+pub const SPAF_ALL = SPDISPLAYATTRIBUTES.ALL;
+pub const SPAF_USER_SPECIFIED = SPDISPLAYATTRIBUTES.USER_SPECIFIED;
+
 pub const SPDISPLAYPHRASE = extern struct {
     ulNumTokens: u32,
     pTokens: ?*SPDISPLAYTOKEN,
@@ -7187,21 +7202,6 @@ pub const SPDISPLAYTOKEN = extern struct {
     pszDisplay: ?[*:0]const u16,
     bDisplayAttributes: u8,
 };
-
-pub const SPDISPLYATTRIBUTES = enum(i32) {
-    ONE_TRAILING_SPACE = 2,
-    TWO_TRAILING_SPACES = 4,
-    CONSUME_LEADING_SPACES = 8,
-    BUFFER_POSITION = 16,
-    ALL = 31,
-    USER_SPECIFIED = 128,
-};
-pub const SPAF_ONE_TRAILING_SPACE = SPDISPLYATTRIBUTES.ONE_TRAILING_SPACE;
-pub const SPAF_TWO_TRAILING_SPACES = SPDISPLYATTRIBUTES.TWO_TRAILING_SPACES;
-pub const SPAF_CONSUME_LEADING_SPACES = SPDISPLYATTRIBUTES.CONSUME_LEADING_SPACES;
-pub const SPAF_BUFFER_POSITION = SPDISPLYATTRIBUTES.BUFFER_POSITION;
-pub const SPAF_ALL = SPDISPLYATTRIBUTES.ALL;
-pub const SPAF_USER_SPECIFIED = SPDISPLYATTRIBUTES.USER_SPECIFIED;
 
 pub const SPEAKFLAGS = enum(i32) {
     DEFAULT = 0,
@@ -8673,6 +8673,13 @@ pub const SPSF_NUM_FORMATS = SPSTREAMFORMAT.NUM_FORMATS;
 const CLSID_SpStreamFormatConverter_Value = Guid.initString("7013943a-e2ec-11d2-a086-00c04f8ef9b5");
 pub const CLSID_SpStreamFormatConverter = &CLSID_SpStreamFormatConverter_Value;
 
+pub const SPSTREAMFORMATTYPE = enum(i32) {
+    INPUT = 0,
+    SRENGINE = 1,
+};
+pub const SPWF_INPUT = SPSTREAMFORMATTYPE.INPUT;
+pub const SPWF_SRENGINE = SPSTREAMFORMATTYPE.SRENGINE;
+
 pub const SPTEXTSELECTIONINFO = extern struct {
     ulStartActiveOffset: u32,
     cchActiveChars: u32,
@@ -8844,13 +8851,6 @@ pub const SPVSTATE = extern struct {
 
 const CLSID_SpWaveFormatEx_Value = Guid.initString("c79a574c-63be-44b9-801f-283f87f898be");
 pub const CLSID_SpWaveFormatEx = &CLSID_SpWaveFormatEx_Value;
-
-pub const SPWAVEFORMATTYPE = enum(i32) {
-    INPUT = 0,
-    SRENGINE = 1,
-};
-pub const SPWF_INPUT = SPWAVEFORMATTYPE.INPUT;
-pub const SPWF_SRENGINE = SPWAVEFORMATTYPE.SRENGINE;
 
 pub const SPWORD = extern struct {
     pNextWord: ?*SPWORD,

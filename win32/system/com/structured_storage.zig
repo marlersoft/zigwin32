@@ -70,7 +70,7 @@ pub const PRSPEC_INVALID = @as(u32, 4294967295);
 pub const STGOPTIONS_VERSION = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
-// Section: Types (57)
+// Section: Types (54)
 //--------------------------------------------------------------------------------
 pub const BSTRBLOB = extern struct {
     cbSize: u32,
@@ -468,7 +468,7 @@ pub const ILockBytes = extern union {
             self: *const ILockBytes,
             libOffset: ULARGE_INTEGER,
             cb: ULARGE_INTEGER,
-            dwLockType: u32,
+            dwLockType: LOCKTYPE,
         ) callconv(.winapi) HRESULT,
         UnlockRegion: *const fn(
             self: *const ILockBytes,
@@ -479,7 +479,7 @@ pub const ILockBytes = extern union {
         Stat: *const fn(
             self: *const ILockBytes,
             pstatstg: ?*STATSTG,
-            grfStatFlag: u32,
+            grfStatFlag: STATFLAG,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -496,13 +496,13 @@ pub const ILockBytes = extern union {
     pub fn SetSize(self: *const ILockBytes, cb: ULARGE_INTEGER) callconv(.@"inline") HRESULT {
         return self.vtable.SetSize(self, cb);
     }
-    pub fn LockRegion(self: *const ILockBytes, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: u32) callconv(.@"inline") HRESULT {
+    pub fn LockRegion(self: *const ILockBytes, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: LOCKTYPE) callconv(.@"inline") HRESULT {
         return self.vtable.LockRegion(self, libOffset, cb, dwLockType);
     }
     pub fn UnlockRegion(self: *const ILockBytes, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UnlockRegion(self, libOffset, cb, dwLockType);
     }
-    pub fn Stat(self: *const ILockBytes, pstatstg: ?*STATSTG, grfStatFlag: u32) callconv(.@"inline") HRESULT {
+    pub fn Stat(self: *const ILockBytes, pstatstg: ?*STATSTG, grfStatFlag: STATFLAG) callconv(.@"inline") HRESULT {
         return self.vtable.Stat(self, pstatstg, grfStatFlag);
     }
 };
@@ -909,7 +909,7 @@ pub const IStorage = extern union {
         Stat: *const fn(
             self: *const IStorage,
             pstatstg: ?*STATSTG,
-            grfStatFlag: u32,
+            grfStatFlag: STATFLAG,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -956,19 +956,10 @@ pub const IStorage = extern union {
     pub fn SetStateBits(self: *const IStorage, grfStateBits: u32, grfMask: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetStateBits(self, grfStateBits, grfMask);
     }
-    pub fn Stat(self: *const IStorage, pstatstg: ?*STATSTG, grfStatFlag: u32) callconv(.@"inline") HRESULT {
+    pub fn Stat(self: *const IStorage, pstatstg: ?*STATSTG, grfStatFlag: STATFLAG) callconv(.@"inline") HRESULT {
         return self.vtable.Stat(self, pstatstg, grfStatFlag);
     }
 };
-
-pub const LOCKTYPE = enum(i32) {
-    WRITE = 1,
-    EXCLUSIVE = 2,
-    ONLYONCE = 4,
-};
-pub const LOCK_WRITE = LOCKTYPE.WRITE;
-pub const LOCK_EXCLUSIVE = LOCKTYPE.EXCLUSIVE;
-pub const LOCK_ONLYONCE = LOCKTYPE.ONLYONCE;
 
 pub const OLESTREAM = extern struct {
     lpstbl: ?*OLESTREAMVTBL,
@@ -1128,15 +1119,6 @@ pub const SERIALIZEDPROPERTYVALUE = extern struct {
     rgb: [1]u8,
 };
 
-pub const STATFLAG = enum(i32) {
-    DEFAULT = 0,
-    NONAME = 1,
-    NOOPEN = 2,
-};
-pub const STATFLAG_DEFAULT = STATFLAG.DEFAULT;
-pub const STATFLAG_NONAME = STATFLAG.NONAME;
-pub const STATFLAG_NOOPEN = STATFLAG.NOOPEN;
-
 pub const STATPROPSETSTG = extern struct {
     fmtid: Guid,
     clsid: Guid,
@@ -1167,62 +1149,6 @@ pub const STGFMT_FILE = STGFMT.FILE;
 pub const STGFMT_ANY = STGFMT.ANY;
 pub const STGFMT_DOCFILE = STGFMT.DOCFILE;
 pub const STGFMT_DOCUMENT = STGFMT.STORAGE;
-
-pub const STGM = packed struct(u32) {
-    WRITE: u1 = 0,
-    READWRITE: u1 = 0,
-    _2: u1 = 0,
-    _3: u1 = 0,
-    SHARE_EXCLUSIVE: u1 = 0,
-    SHARE_DENY_WRITE: u1 = 0,
-    SHARE_DENY_NONE: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    CREATE: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    TRANSACTED: u1 = 0,
-    CONVERT: u1 = 0,
-    PRIORITY: u1 = 0,
-    _19: u1 = 0,
-    NOSCRATCH: u1 = 0,
-    NOSNAPSHOT: u1 = 0,
-    DIRECT_SWMR: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    DELETEONRELEASE: u1 = 0,
-    SIMPLE: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const STGM_DIRECT = STGM{ };
-pub const STGM_TRANSACTED = STGM{ .TRANSACTED = 1 };
-pub const STGM_SIMPLE = STGM{ .SIMPLE = 1 };
-pub const STGM_READ = STGM{ };
-pub const STGM_WRITE = STGM{ .WRITE = 1 };
-pub const STGM_READWRITE = STGM{ .READWRITE = 1 };
-pub const STGM_SHARE_DENY_NONE = STGM{ .SHARE_DENY_NONE = 1 };
-pub const STGM_SHARE_DENY_READ = STGM{
-    .SHARE_EXCLUSIVE = 1,
-    .SHARE_DENY_WRITE = 1,
-};
-pub const STGM_SHARE_DENY_WRITE = STGM{ .SHARE_DENY_WRITE = 1 };
-pub const STGM_SHARE_EXCLUSIVE = STGM{ .SHARE_EXCLUSIVE = 1 };
-pub const STGM_PRIORITY = STGM{ .PRIORITY = 1 };
-pub const STGM_DELETEONRELEASE = STGM{ .DELETEONRELEASE = 1 };
-pub const STGM_NOSCRATCH = STGM{ .NOSCRATCH = 1 };
-pub const STGM_CREATE = STGM{ .CREATE = 1 };
-pub const STGM_CONVERT = STGM{ .CONVERT = 1 };
-pub const STGM_FAILIFTHERE = STGM{ };
-pub const STGM_NOSNAPSHOT = STGM{ .NOSNAPSHOT = 1 };
-pub const STGM_DIRECT_SWMR = STGM{ .DIRECT_SWMR = 1 };
 
 pub const STGMOVE = enum(i32) {
     MOVE = 0,
@@ -1540,7 +1466,7 @@ pub extern "ole32" fn StgOpenStorageEx(
 pub extern "ole32" fn StgOpenStorageOnILockBytes(
     plkbyt: ?*ILockBytes,
     pstgPriority: ?*IStorage,
-    grfMode: u32,
+    grfMode: STGM,
     snbExclude: ?*?*u16,
     reserved: u32,
     ppstgOpen: ?*?*IStorage,
@@ -1594,7 +1520,7 @@ pub extern "ole32" fn WriteFmtUserTypeStg(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (31)
+// Section: Imports (34)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BLOB = @import("../../system/com.zig").BLOB;
@@ -1615,13 +1541,16 @@ const IPersist = @import("../../system/com.zig").IPersist;
 const IStream = @import("../../system/com.zig").IStream;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../../foundation.zig").LARGE_INTEGER;
+const LOCKTYPE = @import("../../system/com.zig").LOCKTYPE;
 const MULTI_QI = @import("../../system/com.zig").MULTI_QI;
 const PSECURITY_DESCRIPTOR = @import("../../security.zig").PSECURITY_DESCRIPTOR;
 const PSTR = @import("../../foundation.zig").PSTR;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 const SAFEARRAY = @import("../../system/com.zig").SAFEARRAY;
+const STATFLAG = @import("../../system/com.zig").STATFLAG;
 const STATSTG = @import("../../system/com.zig").STATSTG;
 const STGC = @import("../../system/com.zig").STGC;
+const STGM = @import("../../system/com.zig").STGM;
 const STGMEDIUM = @import("../../system/com.zig").STGMEDIUM;
 const StorageLayout = @import("../../system/com.zig").StorageLayout;
 const ULARGE_INTEGER = @import("../../foundation.zig").ULARGE_INTEGER;
