@@ -325,11 +325,11 @@ pub const VK_PAD_RTHUMB_DOWNLEFT = XINPUT_VIRTUAL_KEY.RTHUMB_DOWNLEFT;
 //--------------------------------------------------------------------------------
 // Section: Functions (7)
 //--------------------------------------------------------------------------------
-pub extern "xinputuap" fn XInputEnable(
+pub extern "xinput1_4" fn XInputEnable(
     enable: BOOL,
 ) callconv(.winapi) void;
 
-pub extern "xinputuap" fn XInputGetAudioDeviceIds(
+pub extern "xinput1_4" fn XInputGetAudioDeviceIds(
     dwUserIndex: u32,
     pRenderDeviceId: ?[*:0]u16,
     pRenderCount: ?*u32,
@@ -337,30 +337,30 @@ pub extern "xinputuap" fn XInputGetAudioDeviceIds(
     pCaptureCount: ?*u32,
 ) callconv(.winapi) u32;
 
-pub extern "xinputuap" fn XInputGetBatteryInformation(
+pub extern "xinput1_4" fn XInputGetBatteryInformation(
     dwUserIndex: u32,
     devType: BATTERY_DEVTYPE,
     pBatteryInformation: ?*XINPUT_BATTERY_INFORMATION,
 ) callconv(.winapi) u32;
 
-pub extern "xinputuap" fn XInputGetCapabilities(
+pub extern "xinput1_4" fn XInputGetCapabilities(
     dwUserIndex: u32,
     dwFlags: XINPUT_FLAG,
     pCapabilities: ?*XINPUT_CAPABILITIES,
 ) callconv(.winapi) u32;
 
-pub extern "xinputuap" fn XInputGetKeystroke(
+pub extern "xinput1_4" fn XInputGetKeystroke(
     dwUserIndex: u32,
     dwReserved: u32,
     pKeystroke: ?*XINPUT_KEYSTROKE,
 ) callconv(.winapi) u32;
 
-pub extern "xinputuap" fn XInputGetState(
+pub extern "xinput1_4" fn XInputGetState(
     dwUserIndex: u32,
     pState: ?*XINPUT_STATE,
 ) callconv(.winapi) u32;
 
-pub extern "xinputuap" fn XInputSetState(
+pub extern "xinput1_4" fn XInputSetState(
     dwUserIndex: u32,
     pVibration: ?*XINPUT_VIBRATION,
 ) callconv(.winapi) u32;

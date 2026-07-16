@@ -1580,7 +1580,7 @@ pub const IBackgroundCopyJobHttpOptions = extern union {
             self: *const IBackgroundCopyJobHttpOptions,
             pStoreLocation: ?*BG_CERT_STORE_LOCATION,
             pStoreName: ?*?PWSTR,
-            ppCertHashBlob: *[20]?*u8,
+            ppCertHashBlob: ?*?*u8,
             pSubjectName: ?*?PWSTR,
         ) callconv(.winapi) HRESULT,
         SetCustomHeaders: *const fn(
@@ -1611,7 +1611,7 @@ pub const IBackgroundCopyJobHttpOptions = extern union {
     pub fn RemoveClientCertificate(self: *const IBackgroundCopyJobHttpOptions) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveClientCertificate(self);
     }
-    pub fn GetClientCertificate(self: *const IBackgroundCopyJobHttpOptions, pStoreLocation: ?*BG_CERT_STORE_LOCATION, pStoreName: ?*?PWSTR, ppCertHashBlob: *[20]?*u8, pSubjectName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetClientCertificate(self: *const IBackgroundCopyJobHttpOptions, pStoreLocation: ?*BG_CERT_STORE_LOCATION, pStoreName: ?*?PWSTR, ppCertHashBlob: ?*?*u8, pSubjectName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetClientCertificate(self, pStoreLocation, pStoreName, ppCertHashBlob, pSubjectName);
     }
     pub fn SetCustomHeaders(self: *const IBackgroundCopyJobHttpOptions, RequestHeaders: ?[*:0]const u16) callconv(.@"inline") HRESULT {

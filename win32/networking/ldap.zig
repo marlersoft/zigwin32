@@ -2529,8 +2529,8 @@ pub extern "wldap32" fn LdapGetLastError(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn LdapMapErrorToWin32(
-    LdapError: u32,
-) callconv(.winapi) u32;
+    LdapError: LDAP_RETCODE,
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn LdapUnicodeToUTF8(
@@ -2651,7 +2651,7 @@ pub const ldap_start_tls_s = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
@@ -2660,6 +2660,7 @@ const HANDLE = @import("../foundation.zig").HANDLE;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SecPkgContext_IssuerListInfoEx = @import("../security/authentication/identity.zig").SecPkgContext_IssuerListInfoEx;
+const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -6796,7 +6796,7 @@ pub const IDWriteTypography = extern union {
 pub extern "dwrite" fn DWriteCreateFactory(
     factoryType: DWRITE_FACTORY_TYPE,
     iid: ?*const Guid,
-    factory: **IUnknown,
+    factory: **anyopaque,
 ) callconv(.winapi) HRESULT;
 
 
