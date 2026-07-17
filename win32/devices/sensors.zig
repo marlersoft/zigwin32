@@ -423,7 +423,7 @@ pub const ISensor = extern union {
         SupportsDataField: *const fn(
             self: *const ISensor,
             key: ?*const PROPERTYKEY,
-            pIsSupported: ?*i16,
+            pIsSupported: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetState: *const fn(
             self: *const ISensor,
@@ -436,7 +436,7 @@ pub const ISensor = extern union {
         SupportsEvent: *const fn(
             self: *const ISensor,
             eventGuid: ?*const Guid,
-            pIsSupported: ?*i16,
+            pIsSupported: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetEventInterest: *const fn(
             self: *const ISensor,
@@ -479,7 +479,7 @@ pub const ISensor = extern union {
     pub fn SetProperties(self: *const ISensor, pProperties: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperties(self, pProperties, ppResults);
     }
-    pub fn SupportsDataField(self: *const ISensor, key: ?*const PROPERTYKEY, pIsSupported: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn SupportsDataField(self: *const ISensor, key: ?*const PROPERTYKEY, pIsSupported: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SupportsDataField(self, key, pIsSupported);
     }
     pub fn GetState(self: *const ISensor, pState: ?*SensorState) callconv(.@"inline") HRESULT {
@@ -488,7 +488,7 @@ pub const ISensor = extern union {
     pub fn GetData(self: *const ISensor, ppDataReport: ?*?*ISensorDataReport) callconv(.@"inline") HRESULT {
         return self.vtable.GetData(self, ppDataReport);
     }
-    pub fn SupportsEvent(self: *const ISensor, eventGuid: ?*const Guid, pIsSupported: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn SupportsEvent(self: *const ISensor, eventGuid: ?*const Guid, pIsSupported: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SupportsEvent(self, eventGuid, pIsSupported);
     }
     pub fn GetEventInterest(self: *const ISensor, ppValues: [*]?*Guid, pCount: ?*u32) callconv(.@"inline") HRESULT {
@@ -1145,7 +1145,7 @@ pub extern "sensorsutilsv2" fn SerializationBufferFree(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (14)
+// Section: Imports (15)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -1161,6 +1161,7 @@ const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const PROPERTYKEY = @import("../ui/shell/properties_system.zig").PROPERTYKEY;
 const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     @setEvalBranchQuota(

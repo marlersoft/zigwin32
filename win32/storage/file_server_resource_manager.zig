@@ -879,12 +879,12 @@ pub const IFsrmActionCommand = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MonitorCommand: *const fn(
             self: *const IFsrmActionCommand,
-            monitorCommand: ?*i16,
+            monitorCommand: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MonitorCommand: *const fn(
             self: *const IFsrmActionCommand,
-            monitorCommand: i16,
+            monitorCommand: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KillTimeOut: *const fn(
@@ -899,12 +899,12 @@ pub const IFsrmActionCommand = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogResult: *const fn(
             self: *const IFsrmActionCommand,
-            logResults: ?*i16,
+            logResults: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LogResult: *const fn(
             self: *const IFsrmActionCommand,
-            logResults: i16,
+            logResults: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -935,10 +935,10 @@ pub const IFsrmActionCommand = extern union {
     pub fn put_WorkingDirectory(self: *const IFsrmActionCommand, workingDirectory: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_WorkingDirectory(self, workingDirectory);
     }
-    pub fn get_MonitorCommand(self: *const IFsrmActionCommand, monitorCommand: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_MonitorCommand(self: *const IFsrmActionCommand, monitorCommand: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_MonitorCommand(self, monitorCommand);
     }
-    pub fn put_MonitorCommand(self: *const IFsrmActionCommand, monitorCommand: i16) callconv(.@"inline") HRESULT {
+    pub fn put_MonitorCommand(self: *const IFsrmActionCommand, monitorCommand: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_MonitorCommand(self, monitorCommand);
     }
     pub fn get_KillTimeOut(self: *const IFsrmActionCommand, minutes: ?*i32) callconv(.@"inline") HRESULT {
@@ -947,10 +947,10 @@ pub const IFsrmActionCommand = extern union {
     pub fn put_KillTimeOut(self: *const IFsrmActionCommand, minutes: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_KillTimeOut(self, minutes);
     }
-    pub fn get_LogResult(self: *const IFsrmActionCommand, logResults: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_LogResult(self: *const IFsrmActionCommand, logResults: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_LogResult(self, logResults);
     }
-    pub fn put_LogResult(self: *const IFsrmActionCommand, logResults: i16) callconv(.@"inline") HRESULT {
+    pub fn put_LogResult(self: *const IFsrmActionCommand, logResults: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_LogResult(self, logResults);
     }
 };
@@ -1279,12 +1279,12 @@ pub const IFsrmClassificationManager = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClassificationReportEnabled: *const fn(
             self: *const IFsrmClassificationManager,
-            reportEnabled: ?*i16,
+            reportEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClassificationReportEnabled: *const fn(
             self: *const IFsrmClassificationManager,
-            reportEnabled: i16,
+            reportEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClassificationLastReportPathWithoutExtension: *const fn(
@@ -1357,7 +1357,7 @@ pub const IFsrmClassificationManager = extern union {
         WaitForClassificationCompletion: *const fn(
             self: *const IFsrmClassificationManager,
             waitSeconds: i32,
-            completed: ?*i16,
+            completed: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         CancelClassification: *const fn(
             self: *const IFsrmClassificationManager,
@@ -1408,10 +1408,10 @@ pub const IFsrmClassificationManager = extern union {
     pub fn put_ClassificationReportMailTo(self: *const IFsrmClassificationManager, mailTo: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ClassificationReportMailTo(self, mailTo);
     }
-    pub fn get_ClassificationReportEnabled(self: *const IFsrmClassificationManager, reportEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_ClassificationReportEnabled(self: *const IFsrmClassificationManager, reportEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ClassificationReportEnabled(self, reportEnabled);
     }
-    pub fn put_ClassificationReportEnabled(self: *const IFsrmClassificationManager, reportEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_ClassificationReportEnabled(self: *const IFsrmClassificationManager, reportEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_ClassificationReportEnabled(self, reportEnabled);
     }
     pub fn get_ClassificationLastReportPathWithoutExtension(self: *const IFsrmClassificationManager, lastReportPath: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -1453,7 +1453,7 @@ pub const IFsrmClassificationManager = extern union {
     pub fn RunClassification(self: *const IFsrmClassificationManager, context: FsrmReportGenerationContext, reserved: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.RunClassification(self, context, reserved);
     }
-    pub fn WaitForClassificationCompletion(self: *const IFsrmClassificationManager, waitSeconds: i32, completed: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn WaitForClassificationCompletion(self: *const IFsrmClassificationManager, waitSeconds: i32, completed: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.WaitForClassificationCompletion(self, waitSeconds, completed);
     }
     pub fn CancelClassification(self: *const IFsrmClassificationManager) callconv(.@"inline") HRESULT {
@@ -1587,12 +1587,12 @@ pub const IFsrmClassifierModuleDefinition = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NeedsExplicitValue: *const fn(
             self: *const IFsrmClassifierModuleDefinition,
-            needsExplicitValue: ?*i16,
+            needsExplicitValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NeedsExplicitValue: *const fn(
             self: *const IFsrmClassifierModuleDefinition,
-            needsExplicitValue: i16,
+            needsExplicitValue: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1612,10 +1612,10 @@ pub const IFsrmClassifierModuleDefinition = extern union {
     pub fn put_PropertiesUsed(self: *const IFsrmClassifierModuleDefinition, propertiesUsed: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_PropertiesUsed(self, propertiesUsed);
     }
-    pub fn get_NeedsExplicitValue(self: *const IFsrmClassifierModuleDefinition, needsExplicitValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_NeedsExplicitValue(self: *const IFsrmClassifierModuleDefinition, needsExplicitValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_NeedsExplicitValue(self, needsExplicitValue);
     }
-    pub fn put_NeedsExplicitValue(self: *const IFsrmClassifierModuleDefinition, needsExplicitValue: i16) callconv(.@"inline") HRESULT {
+    pub fn put_NeedsExplicitValue(self: *const IFsrmClassifierModuleDefinition, needsExplicitValue: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_NeedsExplicitValue(self, needsExplicitValue);
     }
 };
@@ -1645,7 +1645,7 @@ pub const IFsrmClassifierModuleImplementation = extern union {
             self: *const IFsrmClassifierModuleImplementation,
             property: ?BSTR,
             value: ?BSTR,
-            applyValue: ?*i16,
+            applyValue: ?*VARIANT_BOOL,
             idRule: Guid,
             idPropDef: Guid,
         ) callconv(.winapi) HRESULT,
@@ -1673,7 +1673,7 @@ pub const IFsrmClassifierModuleImplementation = extern union {
     pub fn OnBeginFile(self: *const IFsrmClassifierModuleImplementation, propertyBag: ?*IFsrmPropertyBag, arrayRuleIds: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.OnBeginFile(self, propertyBag, arrayRuleIds);
     }
-    pub fn DoesPropertyValueApply(self: *const IFsrmClassifierModuleImplementation, property: ?BSTR, value: ?BSTR, applyValue: ?*i16, idRule: Guid, idPropDef: Guid) callconv(.@"inline") HRESULT {
+    pub fn DoesPropertyValueApply(self: *const IFsrmClassifierModuleImplementation, property: ?BSTR, value: ?BSTR, applyValue: ?*VARIANT_BOOL, idRule: Guid, idPropDef: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.DoesPropertyValueApply(self, property, value, applyValue, idRule, idPropDef);
     }
     pub fn GetPropertyValueToApply(self: *const IFsrmClassifierModuleImplementation, property: ?BSTR, value: ?*?BSTR, idRule: Guid, idPropDef: Guid) callconv(.@"inline") HRESULT {
@@ -1716,7 +1716,7 @@ pub const IFsrmCollection = extern union {
         WaitForCompletion: *const fn(
             self: *const IFsrmCollection,
             waitSeconds: i32,
-            completed: ?*i16,
+            completed: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetById: *const fn(
             self: *const IFsrmCollection,
@@ -1742,7 +1742,7 @@ pub const IFsrmCollection = extern union {
     pub fn Cancel(self: *const IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.Cancel(self);
     }
-    pub fn WaitForCompletion(self: *const IFsrmCollection, waitSeconds: i32, completed: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn WaitForCompletion(self: *const IFsrmCollection, waitSeconds: i32, completed: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.WaitForCompletion(self, waitSeconds, completed);
     }
     pub fn GetById(self: *const IFsrmCollection, id: Guid, entry: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -2057,12 +2057,12 @@ pub const IFsrmFileGroupImported = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OverwriteOnCommit: *const fn(
             self: *const IFsrmFileGroupImported,
-            overwrite: ?*i16,
+            overwrite: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OverwriteOnCommit: *const fn(
             self: *const IFsrmFileGroupImported,
-            overwrite: i16,
+            overwrite: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -2070,10 +2070,10 @@ pub const IFsrmFileGroupImported = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_OverwriteOnCommit(self: *const IFsrmFileGroupImported, overwrite: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_OverwriteOnCommit(self: *const IFsrmFileGroupImported, overwrite: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_OverwriteOnCommit(self, overwrite);
     }
-    pub fn put_OverwriteOnCommit(self: *const IFsrmFileGroupImported, overwrite: i16) callconv(.@"inline") HRESULT {
+    pub fn put_OverwriteOnCommit(self: *const IFsrmFileGroupImported, overwrite: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_OverwriteOnCommit(self, overwrite);
     }
 };
@@ -2159,12 +2159,12 @@ pub const IFsrmFileManagementJob = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IFsrmFileManagementJob,
-            enabled: ?*i16,
+            enabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IFsrmFileManagementJob,
-            enabled: i16,
+            enabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OperationType: *const fn(
@@ -2209,12 +2209,12 @@ pub const IFsrmFileManagementJob = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReportEnabled: *const fn(
             self: *const IFsrmFileManagementJob,
-            reportEnabled: ?*i16,
+            reportEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReportEnabled: *const fn(
             self: *const IFsrmFileManagementJob,
-            reportEnabled: i16,
+            reportEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Formats: *const fn(
@@ -2338,7 +2338,7 @@ pub const IFsrmFileManagementJob = extern union {
         WaitForCompletion: *const fn(
             self: *const IFsrmFileManagementJob,
             waitSeconds: i32,
-            completed: ?*i16,
+            completed: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Cancel: *const fn(
             self: *const IFsrmFileManagementJob,
@@ -2393,10 +2393,10 @@ pub const IFsrmFileManagementJob = extern union {
     pub fn put_NamespaceRoots(self: *const IFsrmFileManagementJob, namespaceRoots: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_NamespaceRoots(self, namespaceRoots);
     }
-    pub fn get_Enabled(self: *const IFsrmFileManagementJob, enabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const IFsrmFileManagementJob, enabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, enabled);
     }
-    pub fn put_Enabled(self: *const IFsrmFileManagementJob, enabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Enabled(self: *const IFsrmFileManagementJob, enabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
     pub fn get_OperationType(self: *const IFsrmFileManagementJob, operationType: ?*FsrmFileManagementType) callconv(.@"inline") HRESULT {
@@ -2423,10 +2423,10 @@ pub const IFsrmFileManagementJob = extern union {
     pub fn put_Logging(self: *const IFsrmFileManagementJob, loggingFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Logging(self, loggingFlags);
     }
-    pub fn get_ReportEnabled(self: *const IFsrmFileManagementJob, reportEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_ReportEnabled(self: *const IFsrmFileManagementJob, reportEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ReportEnabled(self, reportEnabled);
     }
-    pub fn put_ReportEnabled(self: *const IFsrmFileManagementJob, reportEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_ReportEnabled(self: *const IFsrmFileManagementJob, reportEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_ReportEnabled(self, reportEnabled);
     }
     pub fn get_Formats(self: *const IFsrmFileManagementJob, formats: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
@@ -2501,7 +2501,7 @@ pub const IFsrmFileManagementJob = extern union {
     pub fn Run(self: *const IFsrmFileManagementJob, context: FsrmReportGenerationContext) callconv(.@"inline") HRESULT {
         return self.vtable.Run(self, context);
     }
-    pub fn WaitForCompletion(self: *const IFsrmFileManagementJob, waitSeconds: i32, completed: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn WaitForCompletion(self: *const IFsrmFileManagementJob, waitSeconds: i32, completed: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.WaitForCompletion(self, waitSeconds, completed);
     }
     pub fn Cancel(self: *const IFsrmFileManagementJob) callconv(.@"inline") HRESULT {
@@ -2600,7 +2600,7 @@ pub const IFsrmFileScreen = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MatchesSourceTemplate: *const fn(
             self: *const IFsrmFileScreen,
-            matches: ?*i16,
+            matches: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserSid: *const fn(
@@ -2628,7 +2628,7 @@ pub const IFsrmFileScreen = extern union {
     pub fn get_SourceTemplateName(self: *const IFsrmFileScreen, fileScreenTemplateName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_SourceTemplateName(self, fileScreenTemplateName);
     }
-    pub fn get_MatchesSourceTemplate(self: *const IFsrmFileScreen, matches: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_MatchesSourceTemplate(self: *const IFsrmFileScreen, matches: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_MatchesSourceTemplate(self, matches);
     }
     pub fn get_UserSid(self: *const IFsrmFileScreen, userSid: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -2879,12 +2879,12 @@ pub const IFsrmFileScreenTemplateImported = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OverwriteOnCommit: *const fn(
             self: *const IFsrmFileScreenTemplateImported,
-            overwrite: ?*i16,
+            overwrite: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OverwriteOnCommit: *const fn(
             self: *const IFsrmFileScreenTemplateImported,
-            overwrite: i16,
+            overwrite: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -2893,10 +2893,10 @@ pub const IFsrmFileScreenTemplateImported = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_OverwriteOnCommit(self: *const IFsrmFileScreenTemplateImported, overwrite: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_OverwriteOnCommit(self: *const IFsrmFileScreenTemplateImported, overwrite: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_OverwriteOnCommit(self, overwrite);
     }
-    pub fn put_OverwriteOnCommit(self: *const IFsrmFileScreenTemplateImported, overwrite: i16) callconv(.@"inline") HRESULT {
+    pub fn put_OverwriteOnCommit(self: *const IFsrmFileScreenTemplateImported, overwrite: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_OverwriteOnCommit(self, overwrite);
     }
 };
@@ -3168,22 +3168,22 @@ pub const IFsrmPipelineModuleDefinition = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
-            enabled: ?*i16,
+            enabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
-            enabled: i16,
+            enabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NeedsFileContent: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
-            needsFileContent: ?*i16,
+            needsFileContent: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NeedsFileContent: *const fn(
             self: *const IFsrmPipelineModuleDefinition,
-            needsFileContent: i16,
+            needsFileContent: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Account: *const fn(
@@ -3247,16 +3247,16 @@ pub const IFsrmPipelineModuleDefinition = extern union {
     pub fn get_ModuleType(self: *const IFsrmPipelineModuleDefinition, moduleType: ?*FsrmPipelineModuleType) callconv(.@"inline") HRESULT {
         return self.vtable.get_ModuleType(self, moduleType);
     }
-    pub fn get_Enabled(self: *const IFsrmPipelineModuleDefinition, enabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const IFsrmPipelineModuleDefinition, enabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, enabled);
     }
-    pub fn put_Enabled(self: *const IFsrmPipelineModuleDefinition, enabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Enabled(self: *const IFsrmPipelineModuleDefinition, enabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
-    pub fn get_NeedsFileContent(self: *const IFsrmPipelineModuleDefinition, needsFileContent: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_NeedsFileContent(self: *const IFsrmPipelineModuleDefinition, needsFileContent: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_NeedsFileContent(self, needsFileContent);
     }
-    pub fn put_NeedsFileContent(self: *const IFsrmPipelineModuleDefinition, needsFileContent: i16) callconv(.@"inline") HRESULT {
+    pub fn put_NeedsFileContent(self: *const IFsrmPipelineModuleDefinition, needsFileContent: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_NeedsFileContent(self, needsFileContent);
     }
     pub fn get_Account(self: *const IFsrmPipelineModuleDefinition, retrievalAccount: ?*FsrmAccountType) callconv(.@"inline") HRESULT {
@@ -4077,14 +4077,14 @@ pub const IFsrmQuotaManagerEx = extern union {
             self: *const IFsrmQuotaManagerEx,
             path: ?BSTR,
             options: FsrmEnumOptions,
-            affected: ?*i16,
+            affected: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IFsrmQuotaManager: IFsrmQuotaManager,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn IsAffectedByQuota(self: *const IFsrmQuotaManagerEx, path: ?BSTR, options: FsrmEnumOptions, affected: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsAffectedByQuota(self: *const IFsrmQuotaManagerEx, path: ?BSTR, options: FsrmEnumOptions, affected: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsAffectedByQuota(self, path, options, affected);
     }
 };
@@ -4118,7 +4118,7 @@ pub const IFsrmQuotaObject = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MatchesSourceTemplate: *const fn(
             self: *const IFsrmQuotaObject,
-            matches: ?*i16,
+            matches: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         ApplyTemplate: *const fn(
             self: *const IFsrmQuotaObject,
@@ -4142,7 +4142,7 @@ pub const IFsrmQuotaObject = extern union {
     pub fn get_SourceTemplateName(self: *const IFsrmQuotaObject, quotaTemplateName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_SourceTemplateName(self, quotaTemplateName);
     }
-    pub fn get_MatchesSourceTemplate(self: *const IFsrmQuotaObject, matches: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_MatchesSourceTemplate(self: *const IFsrmQuotaObject, matches: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_MatchesSourceTemplate(self, matches);
     }
     pub fn ApplyTemplate(self: *const IFsrmQuotaObject, quotaTemplateName: ?BSTR) callconv(.@"inline") HRESULT {
@@ -4205,12 +4205,12 @@ pub const IFsrmQuotaTemplateImported = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OverwriteOnCommit: *const fn(
             self: *const IFsrmQuotaTemplateImported,
-            overwrite: ?*i16,
+            overwrite: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OverwriteOnCommit: *const fn(
             self: *const IFsrmQuotaTemplateImported,
-            overwrite: i16,
+            overwrite: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -4219,10 +4219,10 @@ pub const IFsrmQuotaTemplateImported = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_OverwriteOnCommit(self: *const IFsrmQuotaTemplateImported, overwrite: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_OverwriteOnCommit(self: *const IFsrmQuotaTemplateImported, overwrite: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_OverwriteOnCommit(self, overwrite);
     }
-    pub fn put_OverwriteOnCommit(self: *const IFsrmQuotaTemplateImported, overwrite: i16) callconv(.@"inline") HRESULT {
+    pub fn put_OverwriteOnCommit(self: *const IFsrmQuotaTemplateImported, overwrite: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_OverwriteOnCommit(self, overwrite);
     }
 };
@@ -4443,7 +4443,7 @@ pub const IFsrmReportJob = extern union {
         WaitForCompletion: *const fn(
             self: *const IFsrmReportJob,
             waitSeconds: i32,
-            completed: ?*i16,
+            completed: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Cancel: *const fn(
             self: *const IFsrmReportJob,
@@ -4498,7 +4498,7 @@ pub const IFsrmReportJob = extern union {
     pub fn Run(self: *const IFsrmReportJob, context: FsrmReportGenerationContext) callconv(.@"inline") HRESULT {
         return self.vtable.Run(self, context);
     }
-    pub fn WaitForCompletion(self: *const IFsrmReportJob, waitSeconds: i32, completed: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn WaitForCompletion(self: *const IFsrmReportJob, waitSeconds: i32, completed: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.WaitForCompletion(self, waitSeconds, completed);
     }
     pub fn Cancel(self: *const IFsrmReportJob) callconv(.@"inline") HRESULT {
@@ -4540,7 +4540,7 @@ pub const IFsrmReportManager = extern union {
             self: *const IFsrmReportManager,
             reportType: FsrmReportType,
             filter: FsrmReportFilter,
-            valid: ?*i16,
+            valid: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetDefaultFilter: *const fn(
             self: *const IFsrmReportManager,
@@ -4583,7 +4583,7 @@ pub const IFsrmReportManager = extern union {
     pub fn SetOutputDirectory(self: *const IFsrmReportManager, context: FsrmReportGenerationContext, path: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SetOutputDirectory(self, context, path);
     }
-    pub fn IsFilterValidForReportType(self: *const IFsrmReportManager, reportType: FsrmReportType, filter: FsrmReportFilter, valid: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsFilterValidForReportType(self: *const IFsrmReportManager, reportType: FsrmReportType, filter: FsrmReportFilter, valid: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsFilterValidForReportType(self, reportType, filter, valid);
     }
     pub fn GetDefaultFilter(self: *const IFsrmReportManager, reportType: FsrmReportType, filter: FsrmReportFilter, filterValue: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -4792,22 +4792,22 @@ pub const IFsrmSetting = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisableCommandLine: *const fn(
             self: *const IFsrmSetting,
-            disableCommandLine: ?*i16,
+            disableCommandLine: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisableCommandLine: *const fn(
             self: *const IFsrmSetting,
-            disableCommandLine: i16,
+            disableCommandLine: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableScreeningAudit: *const fn(
             self: *const IFsrmSetting,
-            enableScreeningAudit: ?*i16,
+            enableScreeningAudit: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableScreeningAudit: *const fn(
             self: *const IFsrmSetting,
-            enableScreeningAudit: i16,
+            enableScreeningAudit: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         EmailTest: *const fn(
             self: *const IFsrmSetting,
@@ -4845,16 +4845,16 @@ pub const IFsrmSetting = extern union {
     pub fn put_AdminEmail(self: *const IFsrmSetting, adminEmail: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_AdminEmail(self, adminEmail);
     }
-    pub fn get_DisableCommandLine(self: *const IFsrmSetting, disableCommandLine: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_DisableCommandLine(self: *const IFsrmSetting, disableCommandLine: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_DisableCommandLine(self, disableCommandLine);
     }
-    pub fn put_DisableCommandLine(self: *const IFsrmSetting, disableCommandLine: i16) callconv(.@"inline") HRESULT {
+    pub fn put_DisableCommandLine(self: *const IFsrmSetting, disableCommandLine: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_DisableCommandLine(self, disableCommandLine);
     }
-    pub fn get_EnableScreeningAudit(self: *const IFsrmSetting, enableScreeningAudit: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_EnableScreeningAudit(self: *const IFsrmSetting, enableScreeningAudit: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnableScreeningAudit(self, enableScreeningAudit);
     }
-    pub fn put_EnableScreeningAudit(self: *const IFsrmSetting, enableScreeningAudit: i16) callconv(.@"inline") HRESULT {
+    pub fn put_EnableScreeningAudit(self: *const IFsrmSetting, enableScreeningAudit: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_EnableScreeningAudit(self, enableScreeningAudit);
     }
     pub fn EmailTest(self: *const IFsrmSetting, mailTo: ?BSTR) callconv(.@"inline") HRESULT {
@@ -4897,12 +4897,12 @@ pub const IFsrmStorageModuleDefinition = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UpdatesFileContent: *const fn(
             self: *const IFsrmStorageModuleDefinition,
-            updatesFileContent: ?*i16,
+            updatesFileContent: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UpdatesFileContent: *const fn(
             self: *const IFsrmStorageModuleDefinition,
-            updatesFileContent: i16,
+            updatesFileContent: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -4922,10 +4922,10 @@ pub const IFsrmStorageModuleDefinition = extern union {
     pub fn put_StorageType(self: *const IFsrmStorageModuleDefinition, storageType: FsrmStorageModuleType) callconv(.@"inline") HRESULT {
         return self.vtable.put_StorageType(self, storageType);
     }
-    pub fn get_UpdatesFileContent(self: *const IFsrmStorageModuleDefinition, updatesFileContent: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_UpdatesFileContent(self: *const IFsrmStorageModuleDefinition, updatesFileContent: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UpdatesFileContent(self, updatesFileContent);
     }
-    pub fn put_UpdatesFileContent(self: *const IFsrmStorageModuleDefinition, updatesFileContent: i16) callconv(.@"inline") HRESULT {
+    pub fn put_UpdatesFileContent(self: *const IFsrmStorageModuleDefinition, updatesFileContent: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_UpdatesFileContent(self, updatesFileContent);
     }
 };
@@ -4973,7 +4973,7 @@ pub const IFsrmStorageModuleImplementation = extern union {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BSTR = @import("../foundation.zig").BSTR;
@@ -4982,6 +4982,7 @@ const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     @setEvalBranchQuota(

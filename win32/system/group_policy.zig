@@ -597,7 +597,7 @@ pub const IGPM = extern union {
             self: *const IGPM,
             bstrTrustee: ?BSTR,
             perm: GPMPermissionType,
-            bInheritable: i16,
+            bInheritable: VARIANT_BOOL,
             ppPerm: ?*?*IGPMPermission,
         ) callconv(.winapi) HRESULT,
         CreateSearchCriteria: *const fn(
@@ -646,7 +646,7 @@ pub const IGPM = extern union {
     pub fn GetRSOP(self: *const IGPM, gpmRSoPMode: GPMRSOPMode, bstrNamespace: ?BSTR, lFlags: i32, ppIGPMRSOP: ?*?*IGPMRSOP) callconv(.@"inline") HRESULT {
         return self.vtable.GetRSOP(self, gpmRSoPMode, bstrNamespace, lFlags, ppIGPMRSOP);
     }
-    pub fn CreatePermission(self: *const IGPM, bstrTrustee: ?BSTR, perm: GPMPermissionType, bInheritable: i16, ppPerm: ?*?*IGPMPermission) callconv(.@"inline") HRESULT {
+    pub fn CreatePermission(self: *const IGPM, bstrTrustee: ?BSTR, perm: GPMPermissionType, bInheritable: VARIANT_BOOL, ppPerm: ?*?*IGPMPermission) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePermission(self, bstrTrustee, perm, bInheritable, ppPerm);
     }
     pub fn CreateSearchCriteria(self: *const IGPM, ppIGPMSearchCriteria: ?*?*IGPMSearchCriteria) callconv(.@"inline") HRESULT {
@@ -970,11 +970,11 @@ pub const IGPMClientSideExtension = extern union {
         ) callconv(.winapi) HRESULT,
         IsUserEnabled: *const fn(
             self: *const IGPMClientSideExtension,
-            pvbEnabled: ?*i16,
+            pvbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         IsComputerEnabled: *const fn(
             self: *const IGPMClientSideExtension,
-            pvbEnabled: ?*i16,
+            pvbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -986,10 +986,10 @@ pub const IGPMClientSideExtension = extern union {
     pub fn get_DisplayName(self: *const IGPMClientSideExtension, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_DisplayName(self, pVal);
     }
-    pub fn IsUserEnabled(self: *const IGPMClientSideExtension, pvbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsUserEnabled(self: *const IGPMClientSideExtension, pvbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsUserEnabled(self, pvbEnabled);
     }
-    pub fn IsComputerEnabled(self: *const IGPMClientSideExtension, pvbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsComputerEnabled(self: *const IGPMClientSideExtension, pvbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsComputerEnabled(self, pvbEnabled);
     }
 };
@@ -1172,10 +1172,10 @@ pub const IGPMConstants = extern union {
         ) callconv(.winapi) HRESULT,
         get_SecurityFlags: *const fn(
             self: *const IGPMConstants,
-            vbOwner: i16,
-            vbGroup: i16,
-            vbDACL: i16,
-            vbSACL: i16,
+            vbOwner: VARIANT_BOOL,
+            vbGroup: VARIANT_BOOL,
+            vbDACL: VARIANT_BOOL,
+            vbSACL: VARIANT_BOOL,
             pVal: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -1290,7 +1290,7 @@ pub const IGPMConstants = extern union {
         ) callconv(.winapi) HRESULT,
         get_RsopPlanningLoopbackOption: *const fn(
             self: *const IGPMConstants,
-            vbMerge: i16,
+            vbMerge: VARIANT_BOOL,
             pVal: ?*i32,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -1409,7 +1409,7 @@ pub const IGPMConstants = extern union {
     pub fn get_SOMOU(self: *const IGPMConstants, pVal: ?*GPMSOMType) callconv(.@"inline") HRESULT {
         return self.vtable.get_SOMOU(self, pVal);
     }
-    pub fn get_SecurityFlags(self: *const IGPMConstants, vbOwner: i16, vbGroup: i16, vbDACL: i16, vbSACL: i16, pVal: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_SecurityFlags(self: *const IGPMConstants, vbOwner: VARIANT_BOOL, vbGroup: VARIANT_BOOL, vbDACL: VARIANT_BOOL, vbSACL: VARIANT_BOOL, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_SecurityFlags(self, vbOwner, vbGroup, vbDACL, vbSACL, pVal);
     }
     pub fn get_DoNotValidateDC(self: *const IGPMConstants, pVal: ?*i32) callconv(.@"inline") HRESULT {
@@ -1478,7 +1478,7 @@ pub const IGPMConstants = extern union {
     pub fn get_RsopPlanningAssumeSlowLink(self: *const IGPMConstants, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_RsopPlanningAssumeSlowLink(self, pVal);
     }
-    pub fn get_RsopPlanningLoopbackOption(self: *const IGPMConstants, vbMerge: i16, pVal: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_RsopPlanningLoopbackOption(self: *const IGPMConstants, vbMerge: VARIANT_BOOL, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_RsopPlanningLoopbackOption(self, vbMerge, pVal);
     }
     pub fn get_RsopPlanningAssumeUserWQLFilterTrue(self: *const IGPMConstants, pVal: ?*i32) callconv(.@"inline") HRESULT {
@@ -1780,7 +1780,7 @@ pub const IGPMDomain2 = extern union {
         LoadStarterGPO: *const fn(
             self: *const IGPMDomain2,
             bstrLoadFile: ?BSTR,
-            bOverwrite: i16,
+            bOverwrite: VARIANT_BOOL,
             pvarGPMProgress: ?*VARIANT,
             pvarGPMCancel: ?*VARIANT,
             ppIGPMResult: ?*?*IGPMResult,
@@ -1809,7 +1809,7 @@ pub const IGPMDomain2 = extern union {
     pub fn SearchStarterGPOs(self: *const IGPMDomain2, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMTemplateCollection: ?*?*IGPMStarterGPOCollection) callconv(.@"inline") HRESULT {
         return self.vtable.SearchStarterGPOs(self, pIGPMSearchCriteria, ppIGPMTemplateCollection);
     }
-    pub fn LoadStarterGPO(self: *const IGPMDomain2, bstrLoadFile: ?BSTR, bOverwrite: i16, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
+    pub fn LoadStarterGPO(self: *const IGPMDomain2, bstrLoadFile: ?BSTR, bOverwrite: VARIANT_BOOL, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
         return self.vtable.LoadStarterGPO(self, bstrLoadFile, bOverwrite, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
     }
     pub fn RestoreStarterGPO(self: *const IGPMDomain2, pIGPMTmplBackup: ?*IGPMStarterGPOBackup, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
@@ -1935,19 +1935,19 @@ pub const IGPMGPO = extern union {
         ) callconv(.winapi) HRESULT,
         SetUserEnabled: *const fn(
             self: *const IGPMGPO,
-            vbEnabled: i16,
+            vbEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SetComputerEnabled: *const fn(
             self: *const IGPMGPO,
-            vbEnabled: i16,
+            vbEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         IsUserEnabled: *const fn(
             self: *const IGPMGPO,
-            pvbEnabled: ?*i16,
+            pvbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         IsComputerEnabled: *const fn(
             self: *const IGPMGPO,
-            pvbEnabled: ?*i16,
+            pvbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetSecurityInfo: *const fn(
             self: *const IGPMGPO,
@@ -2012,7 +2012,7 @@ pub const IGPMGPO = extern union {
         ) callconv(.winapi) HRESULT,
         IsACLConsistent: *const fn(
             self: *const IGPMGPO,
-            pvbConsistent: ?*i16,
+            pvbConsistent: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         MakeACLConsistent: *const fn(
             self: *const IGPMGPO,
@@ -2060,16 +2060,16 @@ pub const IGPMGPO = extern union {
     pub fn SetWMIFilter(self: *const IGPMGPO, pIGPMWMIFilter: ?*IGPMWMIFilter) callconv(.@"inline") HRESULT {
         return self.vtable.SetWMIFilter(self, pIGPMWMIFilter);
     }
-    pub fn SetUserEnabled(self: *const IGPMGPO, vbEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn SetUserEnabled(self: *const IGPMGPO, vbEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetUserEnabled(self, vbEnabled);
     }
-    pub fn SetComputerEnabled(self: *const IGPMGPO, vbEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn SetComputerEnabled(self: *const IGPMGPO, vbEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetComputerEnabled(self, vbEnabled);
     }
-    pub fn IsUserEnabled(self: *const IGPMGPO, pvbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsUserEnabled(self: *const IGPMGPO, pvbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsUserEnabled(self, pvbEnabled);
     }
-    pub fn IsComputerEnabled(self: *const IGPMGPO, pvbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsComputerEnabled(self: *const IGPMGPO, pvbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsComputerEnabled(self, pvbEnabled);
     }
     pub fn GetSecurityInfo(self: *const IGPMGPO, ppSecurityInfo: ?*?*IGPMSecurityInfo) callconv(.@"inline") HRESULT {
@@ -2102,7 +2102,7 @@ pub const IGPMGPO = extern union {
     pub fn GetSecurityDescriptor(self: *const IGPMGPO, lFlags: i32, ppSD: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.GetSecurityDescriptor(self, lFlags, ppSD);
     }
-    pub fn IsACLConsistent(self: *const IGPMGPO, pvbConsistent: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsACLConsistent(self: *const IGPMGPO, pvbConsistent: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsACLConsistent(self, pvbConsistent);
     }
     pub fn MakeACLConsistent(self: *const IGPMGPO) callconv(.@"inline") HRESULT {
@@ -2231,22 +2231,22 @@ pub const IGPMGPOLink = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IGPMGPOLink,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IGPMGPOLink,
-            newVal: i16,
+            newVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enforced: *const fn(
             self: *const IGPMGPOLink,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enforced: *const fn(
             self: *const IGPMGPOLink,
-            newVal: i16,
+            newVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SOMLinkOrder: *const fn(
@@ -2271,16 +2271,16 @@ pub const IGPMGPOLink = extern union {
     pub fn get_GPODomain(self: *const IGPMGPOLink, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_GPODomain(self, pVal);
     }
-    pub fn get_Enabled(self: *const IGPMGPOLink, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const IGPMGPOLink, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, pVal);
     }
-    pub fn put_Enabled(self: *const IGPMGPOLink, newVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Enabled(self: *const IGPMGPOLink, newVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, newVal);
     }
-    pub fn get_Enforced(self: *const IGPMGPOLink, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enforced(self: *const IGPMGPOLink, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enforced(self, pVal);
     }
-    pub fn put_Enforced(self: *const IGPMGPOLink, newVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Enforced(self: *const IGPMGPOLink, newVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enforced(self, newVal);
     }
     pub fn get_SOMLinkOrder(self: *const IGPMGPOLink, lVal: ?*i32) callconv(.@"inline") HRESULT {
@@ -2494,17 +2494,17 @@ pub const IGPMPermission = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Inherited: *const fn(
             self: *const IGPMPermission,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Inheritable: *const fn(
             self: *const IGPMPermission,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Denied: *const fn(
             self: *const IGPMPermission,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Permission: *const fn(
@@ -2520,13 +2520,13 @@ pub const IGPMPermission = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Inherited(self: *const IGPMPermission, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Inherited(self: *const IGPMPermission, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Inherited(self, pVal);
     }
-    pub fn get_Inheritable(self: *const IGPMPermission, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Inheritable(self: *const IGPMPermission, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Inheritable(self, pVal);
     }
-    pub fn get_Denied(self: *const IGPMPermission, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Denied(self: *const IGPMPermission, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Denied(self, pVal);
     }
     pub fn get_Permission(self: *const IGPMPermission, pVal: ?*GPMPermissionType) callconv(.@"inline") HRESULT {
@@ -3000,12 +3000,12 @@ pub const IGPMSOM = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GPOInheritanceBlocked: *const fn(
             self: *const IGPMSOM,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GPOInheritanceBlocked: *const fn(
             self: *const IGPMSOM,
-            newVal: i16,
+            newVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
@@ -3048,10 +3048,10 @@ pub const IGPMSOM = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_GPOInheritanceBlocked(self: *const IGPMSOM, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_GPOInheritanceBlocked(self: *const IGPMSOM, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_GPOInheritanceBlocked(self, pVal);
     }
-    pub fn put_GPOInheritanceBlocked(self: *const IGPMSOM, newVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_GPOInheritanceBlocked(self: *const IGPMSOM, newVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_GPOInheritanceBlocked(self, newVal);
     }
     pub fn get_Name(self: *const IGPMSOM, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -3193,8 +3193,8 @@ pub const IGPMStarterGPO = extern union {
         Save: *const fn(
             self: *const IGPMStarterGPO,
             bstrSaveFile: ?BSTR,
-            bOverwrite: i16,
-            bSaveAsSystem: i16,
+            bOverwrite: VARIANT_BOOL,
+            bSaveAsSystem: VARIANT_BOOL,
             bstrLanguage: ?*VARIANT,
             bstrAuthor: ?*VARIANT,
             bstrProduct: ?*VARIANT,
@@ -3286,7 +3286,7 @@ pub const IGPMStarterGPO = extern union {
     pub fn Delete(self: *const IGPMStarterGPO) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self);
     }
-    pub fn Save(self: *const IGPMStarterGPO, bstrSaveFile: ?BSTR, bOverwrite: i16, bSaveAsSystem: i16, bstrLanguage: ?*VARIANT, bstrAuthor: ?*VARIANT, bstrProduct: ?*VARIANT, bstrUniqueID: ?*VARIANT, bstrVersion: ?*VARIANT, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
+    pub fn Save(self: *const IGPMStarterGPO, bstrSaveFile: ?BSTR, bOverwrite: VARIANT_BOOL, bSaveAsSystem: VARIANT_BOOL, bstrLanguage: ?*VARIANT, bstrAuthor: ?*VARIANT, bstrProduct: ?*VARIANT, bstrUniqueID: ?*VARIANT, bstrVersion: ?*VARIANT, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
         return self.vtable.Save(self, bstrSaveFile, bOverwrite, bSaveAsSystem, bstrLanguage, bstrAuthor, bstrProduct, bstrUniqueID, bstrVersion, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
     }
     pub fn Backup(self: *const IGPMStarterGPO, bstrBackupDir: ?BSTR, bstrComment: ?BSTR, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) callconv(.@"inline") HRESULT {
@@ -4310,7 +4310,7 @@ pub const GetGPOList = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (26)
+// Section: Imports (27)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const APPCATEGORYINFOLIST = @import("../ui/shell.zig").APPCATEGORYINFOLIST;
@@ -4338,6 +4338,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -615,7 +615,7 @@ pub const IRTCClient = extern union {
         SetPreferredMediaTypes: *const fn(
             self: *const IRTCClient,
             lMediaTypes: i32,
-            fPersistent: i16,
+            fPersistent: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PreferredMediaTypes: *const fn(
@@ -647,8 +647,8 @@ pub const IRTCClient = extern union {
         ) callconv(.winapi) HRESULT,
         get_NetworkAddresses: *const fn(
             self: *const IRTCClient,
-            fTCP: i16,
-            fExternal: i16,
+            fTCP: VARIANT_BOOL,
+            fExternal: VARIANT_BOOL,
             pvAddresses: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
         put_Volume: *const fn(
@@ -664,12 +664,12 @@ pub const IRTCClient = extern union {
         put_AudioMuted: *const fn(
             self: *const IRTCClient,
             enDevice: RTC_AUDIO_DEVICE,
-            fMuted: i16,
+            fMuted: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         get_AudioMuted: *const fn(
             self: *const IRTCClient,
             enDevice: RTC_AUDIO_DEVICE,
-            pfMuted: ?*i16,
+            pfMuted: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         get_IVideoWindow: *const fn(
             self: *const IRTCClient,
@@ -699,12 +699,12 @@ pub const IRTCClient = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PreferredAEC: *const fn(
             self: *const IRTCClient,
-            bEnable: i16,
+            bEnable: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PreferredAEC: *const fn(
             self: *const IRTCClient,
-            pbEnabled: ?*i16,
+            pbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PreferredVideoDevice: *const fn(
@@ -756,7 +756,7 @@ pub const IRTCClient = extern union {
         get_IsT120AppletRunning: *const fn(
             self: *const IRTCClient,
             enApplet: RTC_T120_APPLET,
-            pfRunning: ?*i16,
+            pfRunning: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LocalUserURI: *const fn(
@@ -781,7 +781,7 @@ pub const IRTCClient = extern union {
         PlayRing: *const fn(
             self: *const IRTCClient,
             enType: RTC_RING_TYPE,
-            bPlay: i16,
+            bPlay: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SendDTMF: *const fn(
             self: *const IRTCClient,
@@ -794,7 +794,7 @@ pub const IRTCClient = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsTuned: *const fn(
             self: *const IRTCClient,
-            pfTuned: ?*i16,
+            pfTuned: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -814,7 +814,7 @@ pub const IRTCClient = extern union {
     pub fn get_EventFilter(self: *const IRTCClient, plFilter: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_EventFilter(self, plFilter);
     }
-    pub fn SetPreferredMediaTypes(self: *const IRTCClient, lMediaTypes: i32, fPersistent: i16) callconv(.@"inline") HRESULT {
+    pub fn SetPreferredMediaTypes(self: *const IRTCClient, lMediaTypes: i32, fPersistent: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetPreferredMediaTypes(self, lMediaTypes, fPersistent);
     }
     pub fn get_PreferredMediaTypes(self: *const IRTCClient, plMediaTypes: ?*i32) callconv(.@"inline") HRESULT {
@@ -832,7 +832,7 @@ pub const IRTCClient = extern union {
     pub fn get_ListenForIncomingSessions(self: *const IRTCClient, penListen: ?*RTC_LISTEN_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.get_ListenForIncomingSessions(self, penListen);
     }
-    pub fn get_NetworkAddresses(self: *const IRTCClient, fTCP: i16, fExternal: i16, pvAddresses: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn get_NetworkAddresses(self: *const IRTCClient, fTCP: VARIANT_BOOL, fExternal: VARIANT_BOOL, pvAddresses: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_NetworkAddresses(self, fTCP, fExternal, pvAddresses);
     }
     pub fn put_Volume(self: *const IRTCClient, enDevice: RTC_AUDIO_DEVICE, lVolume: i32) callconv(.@"inline") HRESULT {
@@ -841,10 +841,10 @@ pub const IRTCClient = extern union {
     pub fn get_Volume(self: *const IRTCClient, enDevice: RTC_AUDIO_DEVICE, plVolume: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Volume(self, enDevice, plVolume);
     }
-    pub fn put_AudioMuted(self: *const IRTCClient, enDevice: RTC_AUDIO_DEVICE, fMuted: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AudioMuted(self: *const IRTCClient, enDevice: RTC_AUDIO_DEVICE, fMuted: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AudioMuted(self, enDevice, fMuted);
     }
-    pub fn get_AudioMuted(self: *const IRTCClient, enDevice: RTC_AUDIO_DEVICE, pfMuted: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AudioMuted(self: *const IRTCClient, enDevice: RTC_AUDIO_DEVICE, pfMuted: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AudioMuted(self, enDevice, pfMuted);
     }
     pub fn get_IVideoWindow(self: *const IRTCClient, enDevice: RTC_VIDEO_DEVICE, ppIVideoWindow: ?*?*IVideoWindow) callconv(.@"inline") HRESULT {
@@ -862,10 +862,10 @@ pub const IRTCClient = extern union {
     pub fn get_PreferredVolume(self: *const IRTCClient, enDevice: RTC_AUDIO_DEVICE, plVolume: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_PreferredVolume(self, enDevice, plVolume);
     }
-    pub fn put_PreferredAEC(self: *const IRTCClient, bEnable: i16) callconv(.@"inline") HRESULT {
+    pub fn put_PreferredAEC(self: *const IRTCClient, bEnable: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_PreferredAEC(self, bEnable);
     }
-    pub fn get_PreferredAEC(self: *const IRTCClient, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_PreferredAEC(self: *const IRTCClient, pbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_PreferredAEC(self, pbEnabled);
     }
     pub fn put_PreferredVideoDevice(self: *const IRTCClient, bstrDeviceName: ?BSTR) callconv(.@"inline") HRESULT {
@@ -898,7 +898,7 @@ pub const IRTCClient = extern union {
     pub fn StopT120Applets(self: *const IRTCClient) callconv(.@"inline") HRESULT {
         return self.vtable.StopT120Applets(self);
     }
-    pub fn get_IsT120AppletRunning(self: *const IRTCClient, enApplet: RTC_T120_APPLET, pfRunning: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsT120AppletRunning(self: *const IRTCClient, enApplet: RTC_T120_APPLET, pfRunning: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsT120AppletRunning(self, enApplet, pfRunning);
     }
     pub fn get_LocalUserURI(self: *const IRTCClient, pbstrUserURI: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -913,7 +913,7 @@ pub const IRTCClient = extern union {
     pub fn put_LocalUserName(self: *const IRTCClient, bstrUserName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_LocalUserName(self, bstrUserName);
     }
-    pub fn PlayRing(self: *const IRTCClient, enType: RTC_RING_TYPE, bPlay: i16) callconv(.@"inline") HRESULT {
+    pub fn PlayRing(self: *const IRTCClient, enType: RTC_RING_TYPE, bPlay: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.PlayRing(self, enType, bPlay);
     }
     pub fn SendDTMF(self: *const IRTCClient, enDTMF: RTC_DTMF) callconv(.@"inline") HRESULT {
@@ -922,7 +922,7 @@ pub const IRTCClient = extern union {
     pub fn InvokeTuningWizard(self: *const IRTCClient, hwndParent: isize) callconv(.@"inline") HRESULT {
         return self.vtable.InvokeTuningWizard(self, hwndParent);
     }
-    pub fn get_IsTuned(self: *const IRTCClient, pfTuned: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsTuned(self: *const IRTCClient, pfTuned: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsTuned(self, pfTuned);
     }
 };
@@ -945,8 +945,8 @@ pub const IRTCClient2 = extern union {
         InvokeTuningWizardEx: *const fn(
             self: *const IRTCClient2,
             hwndParent: isize,
-            fAllowAudio: i16,
-            fAllowVideo: i16,
+            fAllowAudio: VARIANT_BOOL,
+            fAllowVideo: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Version: *const fn(
@@ -1009,7 +1009,7 @@ pub const IRTCClient2 = extern union {
     pub fn get_AnswerMode(self: *const IRTCClient2, enType: RTC_SESSION_TYPE, penMode: ?*RTC_ANSWER_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.get_AnswerMode(self, enType, penMode);
     }
-    pub fn InvokeTuningWizardEx(self: *const IRTCClient2, hwndParent: isize, fAllowAudio: i16, fAllowVideo: i16) callconv(.@"inline") HRESULT {
+    pub fn InvokeTuningWizardEx(self: *const IRTCClient2, hwndParent: isize, fAllowAudio: VARIANT_BOOL, fAllowVideo: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.InvokeTuningWizardEx(self, hwndParent, fAllowAudio, fAllowVideo);
     }
     pub fn get_Version(self: *const IRTCClient2, plVersion: ?*i32) callconv(.@"inline") HRESULT {
@@ -1113,7 +1113,7 @@ pub const IRTCClientPresence = extern union {
         base: IUnknown.VTable,
         EnablePresence: *const fn(
             self: *const IRTCClientPresence,
-            fUseStorage: i16,
+            fUseStorage: VARIANT_BOOL,
             varStorage: VARIANT,
         ) callconv(.winapi) HRESULT,
         Export: *const fn(
@@ -1123,7 +1123,7 @@ pub const IRTCClientPresence = extern union {
         Import: *const fn(
             self: *const IRTCClientPresence,
             varStorage: VARIANT,
-            fReplaceAll: i16,
+            fReplaceAll: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         EnumerateBuddies: *const fn(
             self: *const IRTCClientPresence,
@@ -1144,7 +1144,7 @@ pub const IRTCClientPresence = extern union {
             bstrPresentityURI: ?BSTR,
             bstrUserName: ?BSTR,
             bstrData: ?BSTR,
-            fPersistent: i16,
+            fPersistent: VARIANT_BOOL,
             pProfile: ?*IRTCProfile,
             lFlags: i32,
             ppBuddy: ?*?*IRTCBuddy,
@@ -1172,8 +1172,8 @@ pub const IRTCClientPresence = extern union {
             bstrPresentityURI: ?BSTR,
             bstrUserName: ?BSTR,
             bstrData: ?BSTR,
-            fBlocked: i16,
-            fPersistent: i16,
+            fBlocked: VARIANT_BOOL,
+            fPersistent: VARIANT_BOOL,
             ppWatcher: ?*?*IRTCWatcher,
         ) callconv(.winapi) HRESULT,
         RemoveWatcher: *const fn(
@@ -1208,13 +1208,13 @@ pub const IRTCClientPresence = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EnablePresence(self: *const IRTCClientPresence, fUseStorage: i16, varStorage: VARIANT) callconv(.@"inline") HRESULT {
+    pub fn EnablePresence(self: *const IRTCClientPresence, fUseStorage: VARIANT_BOOL, varStorage: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.EnablePresence(self, fUseStorage, varStorage);
     }
     pub fn Export(self: *const IRTCClientPresence, varStorage: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Export(self, varStorage);
     }
-    pub fn Import(self: *const IRTCClientPresence, varStorage: VARIANT, fReplaceAll: i16) callconv(.@"inline") HRESULT {
+    pub fn Import(self: *const IRTCClientPresence, varStorage: VARIANT, fReplaceAll: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Import(self, varStorage, fReplaceAll);
     }
     pub fn EnumerateBuddies(self: *const IRTCClientPresence, ppEnum: ?*?*IRTCEnumBuddies) callconv(.@"inline") HRESULT {
@@ -1226,7 +1226,7 @@ pub const IRTCClientPresence = extern union {
     pub fn get_Buddy(self: *const IRTCClientPresence, bstrPresentityURI: ?BSTR, ppBuddy: ?*?*IRTCBuddy) callconv(.@"inline") HRESULT {
         return self.vtable.get_Buddy(self, bstrPresentityURI, ppBuddy);
     }
-    pub fn AddBuddy(self: *const IRTCClientPresence, bstrPresentityURI: ?BSTR, bstrUserName: ?BSTR, bstrData: ?BSTR, fPersistent: i16, pProfile: ?*IRTCProfile, lFlags: i32, ppBuddy: ?*?*IRTCBuddy) callconv(.@"inline") HRESULT {
+    pub fn AddBuddy(self: *const IRTCClientPresence, bstrPresentityURI: ?BSTR, bstrUserName: ?BSTR, bstrData: ?BSTR, fPersistent: VARIANT_BOOL, pProfile: ?*IRTCProfile, lFlags: i32, ppBuddy: ?*?*IRTCBuddy) callconv(.@"inline") HRESULT {
         return self.vtable.AddBuddy(self, bstrPresentityURI, bstrUserName, bstrData, fPersistent, pProfile, lFlags, ppBuddy);
     }
     pub fn RemoveBuddy(self: *const IRTCClientPresence, pBuddy: ?*IRTCBuddy) callconv(.@"inline") HRESULT {
@@ -1241,7 +1241,7 @@ pub const IRTCClientPresence = extern union {
     pub fn get_Watcher(self: *const IRTCClientPresence, bstrPresentityURI: ?BSTR, ppWatcher: ?*?*IRTCWatcher) callconv(.@"inline") HRESULT {
         return self.vtable.get_Watcher(self, bstrPresentityURI, ppWatcher);
     }
-    pub fn AddWatcher(self: *const IRTCClientPresence, bstrPresentityURI: ?BSTR, bstrUserName: ?BSTR, bstrData: ?BSTR, fBlocked: i16, fPersistent: i16, ppWatcher: ?*?*IRTCWatcher) callconv(.@"inline") HRESULT {
+    pub fn AddWatcher(self: *const IRTCClientPresence, bstrPresentityURI: ?BSTR, bstrUserName: ?BSTR, bstrData: ?BSTR, fBlocked: VARIANT_BOOL, fPersistent: VARIANT_BOOL, ppWatcher: ?*?*IRTCWatcher) callconv(.@"inline") HRESULT {
         return self.vtable.AddWatcher(self, bstrPresentityURI, bstrUserName, bstrData, fBlocked, fPersistent, ppWatcher);
     }
     pub fn RemoveWatcher(self: *const IRTCClientPresence, pWatcher: ?*IRTCWatcher) callconv(.@"inline") HRESULT {
@@ -1310,7 +1310,7 @@ pub const IRTCClientPresence2 = extern union {
             bstrUserName: ?BSTR,
             bstrData: ?BSTR,
             enState: RTC_WATCHER_STATE,
-            fPersistent: i16,
+            fPersistent: VARIANT_BOOL,
             enScope: RTC_ACE_SCOPE,
             pProfile: ?*IRTCProfile,
             lFlags: i32,
@@ -1352,7 +1352,7 @@ pub const IRTCClientPresence2 = extern union {
             bstrPresentityURI: ?BSTR,
             bstrUserName: ?BSTR,
             bstrData: ?BSTR,
-            fPersistent: i16,
+            fPersistent: VARIANT_BOOL,
             enSubscriptionType: RTC_BUDDY_SUBSCRIPTION_TYPE,
             pProfile: ?*IRTCProfile,
             lFlags: i32,
@@ -1383,7 +1383,7 @@ pub const IRTCClientPresence2 = extern union {
     pub fn get_Group(self: *const IRTCClientPresence2, bstrGroupName: ?BSTR, ppGroup: ?*?*IRTCBuddyGroup) callconv(.@"inline") HRESULT {
         return self.vtable.get_Group(self, bstrGroupName, ppGroup);
     }
-    pub fn AddWatcherEx(self: *const IRTCClientPresence2, bstrPresentityURI: ?BSTR, bstrUserName: ?BSTR, bstrData: ?BSTR, enState: RTC_WATCHER_STATE, fPersistent: i16, enScope: RTC_ACE_SCOPE, pProfile: ?*IRTCProfile, lFlags: i32, ppWatcher: ?*?*IRTCWatcher2) callconv(.@"inline") HRESULT {
+    pub fn AddWatcherEx(self: *const IRTCClientPresence2, bstrPresentityURI: ?BSTR, bstrUserName: ?BSTR, bstrData: ?BSTR, enState: RTC_WATCHER_STATE, fPersistent: VARIANT_BOOL, enScope: RTC_ACE_SCOPE, pProfile: ?*IRTCProfile, lFlags: i32, ppWatcher: ?*?*IRTCWatcher2) callconv(.@"inline") HRESULT {
         return self.vtable.AddWatcherEx(self, bstrPresentityURI, bstrUserName, bstrData, enState, fPersistent, enScope, pProfile, lFlags, ppWatcher);
     }
     pub fn get_WatcherEx(self: *const IRTCClientPresence2, enMode: RTC_WATCHER_MATCH_MODE, bstrPresentityURI: ?BSTR, ppWatcher: ?*?*IRTCWatcher2) callconv(.@"inline") HRESULT {
@@ -1404,7 +1404,7 @@ pub const IRTCClientPresence2 = extern union {
     pub fn GetLocalPresenceInfo(self: *const IRTCClientPresence2, penStatus: ?*RTC_PRESENCE_STATUS, pbstrNotes: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetLocalPresenceInfo(self, penStatus, pbstrNotes);
     }
-    pub fn AddBuddyEx(self: *const IRTCClientPresence2, bstrPresentityURI: ?BSTR, bstrUserName: ?BSTR, bstrData: ?BSTR, fPersistent: i16, enSubscriptionType: RTC_BUDDY_SUBSCRIPTION_TYPE, pProfile: ?*IRTCProfile, lFlags: i32, ppBuddy: ?*?*IRTCBuddy2) callconv(.@"inline") HRESULT {
+    pub fn AddBuddyEx(self: *const IRTCClientPresence2, bstrPresentityURI: ?BSTR, bstrUserName: ?BSTR, bstrData: ?BSTR, fPersistent: VARIANT_BOOL, enSubscriptionType: RTC_BUDDY_SUBSCRIPTION_TYPE, pProfile: ?*IRTCProfile, lFlags: i32, ppBuddy: ?*?*IRTCBuddy2) callconv(.@"inline") HRESULT {
         return self.vtable.AddBuddyEx(self, bstrPresentityURI, bstrUserName, bstrData, fPersistent, enSubscriptionType, pProfile, lFlags, ppBuddy);
     }
 };
@@ -2096,7 +2096,7 @@ pub const IRTCParticipant = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Removable: *const fn(
             self: *const IRTCParticipant,
-            pfRemovable: ?*i16,
+            pfRemovable: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: *const fn(
@@ -2117,7 +2117,7 @@ pub const IRTCParticipant = extern union {
     pub fn get_Name(self: *const IRTCParticipant, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn get_Removable(self: *const IRTCParticipant, pfRemovable: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Removable(self: *const IRTCParticipant, pfRemovable: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Removable(self, pfRemovable);
     }
     pub fn get_State(self: *const IRTCParticipant, penState: ?*RTC_PARTICIPANT_STATE) callconv(.@"inline") HRESULT {
@@ -2244,12 +2244,12 @@ pub const IRTCPresenceContact = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Persistent: *const fn(
             self: *const IRTCPresenceContact,
-            pfPersistent: ?*i16,
+            pfPersistent: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Persistent: *const fn(
             self: *const IRTCPresenceContact,
-            fPersistent: i16,
+            fPersistent: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -2272,10 +2272,10 @@ pub const IRTCPresenceContact = extern union {
     pub fn put_Data(self: *const IRTCPresenceContact, bstrData: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Data(self, bstrData);
     }
-    pub fn get_Persistent(self: *const IRTCPresenceContact, pfPersistent: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Persistent(self: *const IRTCPresenceContact, pfPersistent: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Persistent(self, pfPersistent);
     }
-    pub fn put_Persistent(self: *const IRTCPresenceContact, fPersistent: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Persistent(self: *const IRTCPresenceContact, fPersistent: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Persistent(self, fPersistent);
     }
 };
@@ -2478,7 +2478,7 @@ pub const IRTCProfile = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClientBanner: *const fn(
             self: *const IRTCProfile,
-            pfBanner: ?*i16,
+            pfBanner: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClientMinVer: *const fn(
@@ -2555,7 +2555,7 @@ pub const IRTCProfile = extern union {
     pub fn get_ClientName(self: *const IRTCProfile, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ClientName(self, pbstrName);
     }
-    pub fn get_ClientBanner(self: *const IRTCProfile, pfBanner: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_ClientBanner(self: *const IRTCProfile, pfBanner: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ClientBanner(self, pfBanner);
     }
     pub fn get_ClientMinVer(self: *const IRTCProfile, pbstrMinVer: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -2884,7 +2884,7 @@ pub const IRTCSession = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanAddParticipants: *const fn(
             self: *const IRTCSession,
-            pfCanAdd: ?*i16,
+            pfCanAdd: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RedirectedUserURI: *const fn(
@@ -2961,7 +2961,7 @@ pub const IRTCSession = extern union {
     pub fn EnumerateParticipants(self: *const IRTCSession, ppEnum: ?*?*IRTCEnumParticipants) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerateParticipants(self, ppEnum);
     }
-    pub fn get_CanAddParticipants(self: *const IRTCSession, pfCanAdd: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_CanAddParticipants(self: *const IRTCSession, pfCanAdd: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_CanAddParticipants(self, pfCanAdd);
     }
     pub fn get_RedirectedUserURI(self: *const IRTCSession, pbstrUserURI: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -3014,7 +3014,7 @@ pub const IRTCSession2 = extern union {
         IsSecurityEnabled: *const fn(
             self: *const IRTCSession2,
             enSecurityType: RTC_SECURITY_TYPE,
-            pfSecurityEnabled: ?*i16,
+            pfSecurityEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         AnswerWithSessionDescription: *const fn(
             self: *const IRTCSession2,
@@ -3040,7 +3040,7 @@ pub const IRTCSession2 = extern union {
     pub fn get_PreferredSecurityLevel(self: *const IRTCSession2, enSecurityType: RTC_SECURITY_TYPE, penSecurityLevel: ?*RTC_SECURITY_LEVEL) callconv(.@"inline") HRESULT {
         return self.vtable.get_PreferredSecurityLevel(self, enSecurityType, penSecurityLevel);
     }
-    pub fn IsSecurityEnabled(self: *const IRTCSession2, enSecurityType: RTC_SECURITY_TYPE, pfSecurityEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsSecurityEnabled(self: *const IRTCSession2, enSecurityType: RTC_SECURITY_TYPE, pfSecurityEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsSecurityEnabled(self, enSecurityType, pfSecurityEnabled);
     }
     pub fn AnswerWithSessionDescription(self: *const IRTCSession2, bstrContentType: ?BSTR, bstrSessionDescription: ?BSTR) callconv(.@"inline") HRESULT {
@@ -3096,7 +3096,7 @@ pub const IRTCSessionCallControl = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsReferred: *const fn(
             self: *const IRTCSessionCallControl,
-            pfIsReferred: ?*i16,
+            pfIsReferred: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -3125,7 +3125,7 @@ pub const IRTCSessionCallControl = extern union {
     pub fn get_ReferCookie(self: *const IRTCSessionCallControl, pbstrReferCookie: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ReferCookie(self, pbstrReferCookie);
     }
-    pub fn get_IsReferred(self: *const IRTCSessionCallControl, pfIsReferred: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsReferred(self: *const IRTCSessionCallControl, pfIsReferred: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsReferred(self, pfIsReferred);
     }
 };
@@ -3139,12 +3139,12 @@ pub const IRTCSessionDescriptionManager = extern union {
             self: *const IRTCSessionDescriptionManager,
             bstrContentType: ?BSTR,
             bstrSessionDescription: ?BSTR,
-            pfApplicationSession: ?*i16,
+            pfApplicationSession: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EvaluateSessionDescription(self: *const IRTCSessionDescriptionManager, bstrContentType: ?BSTR, bstrSessionDescription: ?BSTR, pfApplicationSession: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn EvaluateSessionDescription(self: *const IRTCSessionDescriptionManager, bstrContentType: ?BSTR, bstrSessionDescription: ?BSTR, pfApplicationSession: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.EvaluateSessionDescription(self, bstrContentType, bstrSessionDescription, pfApplicationSession);
     }
 };
@@ -3403,7 +3403,7 @@ pub const IRTCSessionStateChangeEvent2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsForked: *const fn(
             self: *const IRTCSessionStateChangeEvent2,
-            pfIsForked: ?*i16,
+            pfIsForked: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetRemoteSessionDescription: *const fn(
             self: *const IRTCSessionStateChangeEvent2,
@@ -3421,7 +3421,7 @@ pub const IRTCSessionStateChangeEvent2 = extern union {
     pub fn get_RemotePreferredSecurityLevel(self: *const IRTCSessionStateChangeEvent2, enSecurityType: RTC_SECURITY_TYPE, penSecurityLevel: ?*RTC_SECURITY_LEVEL) callconv(.@"inline") HRESULT {
         return self.vtable.get_RemotePreferredSecurityLevel(self, enSecurityType, penSecurityLevel);
     }
-    pub fn get_IsForked(self: *const IRTCSessionStateChangeEvent2, pfIsForked: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsForked(self: *const IRTCSessionStateChangeEvent2, pfIsForked: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsForked(self, pfIsForked);
     }
     pub fn GetRemoteSessionDescription(self: *const IRTCSessionStateChangeEvent2, pbstrContentType: ?*?BSTR, pbstrSessionDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -3576,7 +3576,7 @@ pub const IRTCUserSearchResultsEvent = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MoreAvailable: *const fn(
             self: *const IRTCUserSearchResultsEvent,
-            pfMoreAvailable: ?*i16,
+            pfMoreAvailable: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -3600,7 +3600,7 @@ pub const IRTCUserSearchResultsEvent = extern union {
     pub fn get_StatusCode(self: *const IRTCUserSearchResultsEvent, plStatusCode: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_StatusCode(self, plStatusCode);
     }
-    pub fn get_MoreAvailable(self: *const IRTCUserSearchResultsEvent, pfMoreAvailable: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_MoreAvailable(self: *const IRTCUserSearchResultsEvent, pfMoreAvailable: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_MoreAvailable(self, pfMoreAvailable);
     }
 };
@@ -4276,7 +4276,7 @@ pub const TRANSPORT_SETTING = extern struct {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BSTR = @import("../foundation.zig").BSTR;
@@ -4286,6 +4286,7 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const IVideoWindow = @import("../media/direct_show.zig").IVideoWindow;
 const TRANSPORT_SETTING_ID = @import("../networking/win_sock.zig").TRANSPORT_SETTING_ID;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     @setEvalBranchQuota(

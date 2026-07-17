@@ -3469,7 +3469,7 @@ pub const IPersistFile = extern union {
         Load: *const fn(
             self: *const IPersistFile,
             pszFileName: ?[*:0]const u16,
-            dwMode: u32,
+            dwMode: STGM,
         ) callconv(.winapi) HRESULT,
         Save: *const fn(
             self: *const IPersistFile,
@@ -3491,7 +3491,7 @@ pub const IPersistFile = extern union {
     pub fn IsDirty(self: *const IPersistFile) callconv(.@"inline") HRESULT {
         return self.vtable.IsDirty(self);
     }
-    pub fn Load(self: *const IPersistFile, pszFileName: ?[*:0]const u16, dwMode: u32) callconv(.@"inline") HRESULT {
+    pub fn Load(self: *const IPersistFile, pszFileName: ?[*:0]const u16, dwMode: STGM) callconv(.@"inline") HRESULT {
         return self.vtable.Load(self, pszFileName, dwMode);
     }
     pub fn Save(self: *const IPersistFile, pszFileName: ?[*:0]const u16, fRemember: BOOL) callconv(.@"inline") HRESULT {
@@ -6603,8 +6603,8 @@ pub const VARIANT = extern struct {
                 iVal: i16,
                 fltVal: f32,
                 dblVal: f64,
-                boolVal: i16,
-                __OBSOLETE__VARIANT_BOOL: i16,
+                boolVal: VARIANT_BOOL,
+                __OBSOLETE__VARIANT_BOOL: VARIANT_BOOL,
                 scode: i32,
                 cyVal: CY,
                 date: f64,
@@ -6618,8 +6618,8 @@ pub const VARIANT = extern struct {
                 pllVal: ?*i64,
                 pfltVal: ?*f32,
                 pdblVal: ?*f64,
-                pboolVal: ?*i16,
-                __OBSOLETE__VARIANT_PBOOL: ?*i16,
+                pboolVal: ?*VARIANT_BOOL,
+                __OBSOLETE__VARIANT_PBOOL: ?*VARIANT_BOOL,
                 pscode: ?*i32,
                 pcyVal: ?*CY,
                 pdate: ?*f64,
@@ -7355,7 +7355,7 @@ pub extern "ole32" fn StringFromIID(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (27)
+// Section: Imports (28)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ARRAYDESC = @import("../system/ole.zig").ARRAYDESC;
@@ -7384,6 +7384,7 @@ const userHENHMETAFILE = @import("../system/system_services.zig").userHENHMETAFI
 const userHGLOBAL = @import("../system/system_services.zig").userHGLOBAL;
 const userHMETAFILEPICT = @import("../system/system_services.zig").userHMETAFILEPICT;
 const userHPALETTE = @import("../system/system_services.zig").userHPALETTE;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

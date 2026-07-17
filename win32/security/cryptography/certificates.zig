@@ -3145,7 +3145,7 @@ pub const IAlternativeName = extern union {
             pObjectId: ?*IObjectId,
             Encoding: EncodingType,
             strRawData: ?BSTR,
-            ToBeWrapped: i16,
+            ToBeWrapped: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: *const fn(
@@ -3177,7 +3177,7 @@ pub const IAlternativeName = extern union {
     pub fn InitializeFromRawData(self: *const IAlternativeName, Type: AlternativeNameType, Encoding: EncodingType, strRawData: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromRawData(self, Type, Encoding, strRawData);
     }
-    pub fn InitializeFromOtherName(self: *const IAlternativeName, pObjectId: ?*IObjectId, Encoding: EncodingType, strRawData: ?BSTR, ToBeWrapped: i16) callconv(.@"inline") HRESULT {
+    pub fn InitializeFromOtherName(self: *const IAlternativeName, pObjectId: ?*IObjectId, Encoding: EncodingType, strRawData: ?BSTR, ToBeWrapped: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromOtherName(self, pObjectId, Encoding, strRawData, ToBeWrapped);
     }
     pub fn get_Type(self: *const IAlternativeName, pValue: ?*AlternativeNameType) callconv(.@"inline") HRESULT {
@@ -5563,7 +5563,7 @@ pub const ICertProperties = extern union {
         ) callconv(.winapi) HRESULT,
         InitializeFromCertificate: *const fn(
             self: *const ICertProperties,
-            MachineContext: i16,
+            MachineContext: VARIANT_BOOL,
             Encoding: EncodingType,
             strCertificate: ?BSTR,
         ) callconv(.winapi) HRESULT,
@@ -5589,7 +5589,7 @@ pub const ICertProperties = extern union {
     pub fn Clear(self: *const ICertProperties) callconv(.@"inline") HRESULT {
         return self.vtable.Clear(self);
     }
-    pub fn InitializeFromCertificate(self: *const ICertProperties, MachineContext: i16, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn InitializeFromCertificate(self: *const ICertProperties, MachineContext: VARIANT_BOOL, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromCertificate(self, MachineContext, Encoding, strCertificate);
     }
 };
@@ -5602,7 +5602,7 @@ pub const ICertProperty = extern union {
         base: IDispatch.VTable,
         InitializeFromCertificate: *const fn(
             self: *const ICertProperty,
-            MachineContext: i16,
+            MachineContext: VARIANT_BOOL,
             Encoding: EncodingType,
             strCertificate: ?BSTR,
         ) callconv(.winapi) HRESULT,
@@ -5628,13 +5628,13 @@ pub const ICertProperty = extern union {
         ) callconv(.winapi) HRESULT,
         RemoveFromCertificate: *const fn(
             self: *const ICertProperty,
-            MachineContext: i16,
+            MachineContext: VARIANT_BOOL,
             Encoding: EncodingType,
             strCertificate: ?BSTR,
         ) callconv(.winapi) HRESULT,
         SetValueOnCertificate: *const fn(
             self: *const ICertProperty,
-            MachineContext: i16,
+            MachineContext: VARIANT_BOOL,
             Encoding: EncodingType,
             strCertificate: ?BSTR,
         ) callconv(.winapi) HRESULT,
@@ -5642,7 +5642,7 @@ pub const ICertProperty = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn InitializeFromCertificate(self: *const ICertProperty, MachineContext: i16, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn InitializeFromCertificate(self: *const ICertProperty, MachineContext: VARIANT_BOOL, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromCertificate(self, MachineContext, Encoding, strCertificate);
     }
     pub fn InitializeDecode(self: *const ICertProperty, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.@"inline") HRESULT {
@@ -5657,10 +5657,10 @@ pub const ICertProperty = extern union {
     pub fn get_RawData(self: *const ICertProperty, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_RawData(self, Encoding, pValue);
     }
-    pub fn RemoveFromCertificate(self: *const ICertProperty, MachineContext: i16, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn RemoveFromCertificate(self: *const ICertProperty, MachineContext: VARIANT_BOOL, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveFromCertificate(self, MachineContext, Encoding, strCertificate);
     }
-    pub fn SetValueOnCertificate(self: *const ICertProperty, MachineContext: i16, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn SetValueOnCertificate(self: *const ICertProperty, MachineContext: VARIANT_BOOL, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SetValueOnCertificate(self, MachineContext, Encoding, strCertificate);
     }
 };
@@ -5673,22 +5673,22 @@ pub const ICertPropertyArchived = extern union {
         base: ICertProperty.VTable,
         Initialize: *const fn(
             self: *const ICertPropertyArchived,
-            ArchivedValue: i16,
+            ArchivedValue: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Archived: *const fn(
             self: *const ICertPropertyArchived,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICertProperty: ICertProperty,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const ICertPropertyArchived, ArchivedValue: i16) callconv(.@"inline") HRESULT {
+    pub fn Initialize(self: *const ICertPropertyArchived, ArchivedValue: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, ArchivedValue);
     }
-    pub fn get_Archived(self: *const ICertPropertyArchived, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Archived(self: *const ICertPropertyArchived, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Archived(self, pValue);
     }
 };
@@ -5758,17 +5758,17 @@ pub const ICertPropertyBackedUp = extern union {
         base: ICertProperty.VTable,
         InitializeFromCurrentTime: *const fn(
             self: *const ICertPropertyBackedUp,
-            BackedUpValue: i16,
+            BackedUpValue: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const ICertPropertyBackedUp,
-            BackedUpValue: i16,
+            BackedUpValue: VARIANT_BOOL,
             Date: f64,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BackedUpValue: *const fn(
             self: *const ICertPropertyBackedUp,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BackedUpTime: *const fn(
@@ -5780,13 +5780,13 @@ pub const ICertPropertyBackedUp = extern union {
     ICertProperty: ICertProperty,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn InitializeFromCurrentTime(self: *const ICertPropertyBackedUp, BackedUpValue: i16) callconv(.@"inline") HRESULT {
+    pub fn InitializeFromCurrentTime(self: *const ICertPropertyBackedUp, BackedUpValue: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromCurrentTime(self, BackedUpValue);
     }
-    pub fn Initialize(self: *const ICertPropertyBackedUp, BackedUpValue: i16, Date: f64) callconv(.@"inline") HRESULT {
+    pub fn Initialize(self: *const ICertPropertyBackedUp, BackedUpValue: VARIANT_BOOL, Date: f64) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, BackedUpValue, Date);
     }
-    pub fn get_BackedUpValue(self: *const ICertPropertyBackedUp, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_BackedUpValue(self: *const ICertPropertyBackedUp, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_BackedUpValue(self, pValue);
     }
     pub fn get_BackedUpTime(self: *const ICertPropertyBackedUp, pDate: ?*f64) callconv(.@"inline") HRESULT {
@@ -6029,7 +6029,7 @@ pub const ICertPropertyRenewal = extern union {
         ) callconv(.winapi) HRESULT,
         InitializeFromCertificateHash: *const fn(
             self: *const ICertPropertyRenewal,
-            MachineContext: i16,
+            MachineContext: VARIANT_BOOL,
             Encoding: EncodingType,
             strCertificate: ?BSTR,
         ) callconv(.winapi) HRESULT,
@@ -6046,7 +6046,7 @@ pub const ICertPropertyRenewal = extern union {
     pub fn Initialize(self: *const ICertPropertyRenewal, Encoding: EncodingType, strRenewalValue: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, Encoding, strRenewalValue);
     }
-    pub fn InitializeFromCertificateHash(self: *const ICertPropertyRenewal, MachineContext: i16, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn InitializeFromCertificateHash(self: *const ICertPropertyRenewal, MachineContext: VARIANT_BOOL, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromCertificateHash(self, MachineContext, Encoding, strCertificate);
     }
     pub fn get_Renewal(self: *const ICertPropertyRenewal, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -6287,7 +6287,7 @@ pub const ICertRequest3 = extern union {
         ) callconv(.winapi) HRESULT,
         GetRefreshPolicy: *const fn(
             self: *const ICertRequest3,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -6304,7 +6304,7 @@ pub const ICertRequest3 = extern union {
     pub fn GetIssuedCertificate2(self: *const ICertRequest3, strConfig: ?BSTR, strRequestId: ?BSTR, strSerialNumber: ?BSTR, pDisposition: ?*CR_DISP) callconv(.@"inline") HRESULT {
         return self.vtable.GetIssuedCertificate2(self, strConfig, strRequestId, strSerialNumber, pDisposition);
     }
-    pub fn GetRefreshPolicy(self: *const ICertRequest3, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn GetRefreshPolicy(self: *const ICertRequest3, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetRefreshPolicy(self, pValue);
     }
 };
@@ -6863,7 +6863,7 @@ pub const ICspAlgorithm = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Valid: *const fn(
             self: *const ICspAlgorithm,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxLength: *const fn(
@@ -6906,7 +6906,7 @@ pub const ICspAlgorithm = extern union {
     pub fn get_LongName(self: *const ICspAlgorithm, pValue: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LongName(self, pValue);
     }
-    pub fn get_Valid(self: *const ICspAlgorithm, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Valid(self: *const ICspAlgorithm, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Valid(self, pValue);
     }
     pub fn get_MaxLength(self: *const ICspAlgorithm, pValue: ?*i32) callconv(.@"inline") HRESULT {
@@ -7012,7 +7012,7 @@ pub const ICspInformation = extern union {
             self: *const ICspInformation,
             Type: X509ProviderType,
             pAlgorithm: ?*IObjectId,
-            MachineContext: i16,
+            MachineContext: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CspAlgorithms: *const fn(
@@ -7022,27 +7022,27 @@ pub const ICspInformation = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HasHardwareRandomNumberGenerator: *const fn(
             self: *const ICspInformation,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsHardwareDevice: *const fn(
             self: *const ICspInformation,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsRemovable: *const fn(
             self: *const ICspInformation,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsSoftwareDevice: *const fn(
             self: *const ICspInformation,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Valid: *const fn(
             self: *const ICspInformation,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxKeyContainerNameLength: *const fn(
@@ -7072,17 +7072,17 @@ pub const ICspInformation = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsSmartCard: *const fn(
             self: *const ICspInformation,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetDefaultSecurityDescriptor: *const fn(
             self: *const ICspInformation,
-            MachineContext: i16,
+            MachineContext: VARIANT_BOOL,
             pValue: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LegacyCsp: *const fn(
             self: *const ICspInformation,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetCspStatusFromOperations: *const fn(
             self: *const ICspInformation,
@@ -7097,25 +7097,25 @@ pub const ICspInformation = extern union {
     pub fn InitializeFromName(self: *const ICspInformation, strName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromName(self, strName);
     }
-    pub fn InitializeFromType(self: *const ICspInformation, Type: X509ProviderType, pAlgorithm: ?*IObjectId, MachineContext: i16) callconv(.@"inline") HRESULT {
+    pub fn InitializeFromType(self: *const ICspInformation, Type: X509ProviderType, pAlgorithm: ?*IObjectId, MachineContext: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromType(self, Type, pAlgorithm, MachineContext);
     }
     pub fn get_CspAlgorithms(self: *const ICspInformation, ppValue: ?*?*ICspAlgorithms) callconv(.@"inline") HRESULT {
         return self.vtable.get_CspAlgorithms(self, ppValue);
     }
-    pub fn get_HasHardwareRandomNumberGenerator(self: *const ICspInformation, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_HasHardwareRandomNumberGenerator(self: *const ICspInformation, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_HasHardwareRandomNumberGenerator(self, pValue);
     }
-    pub fn get_IsHardwareDevice(self: *const ICspInformation, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsHardwareDevice(self: *const ICspInformation, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsHardwareDevice(self, pValue);
     }
-    pub fn get_IsRemovable(self: *const ICspInformation, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsRemovable(self: *const ICspInformation, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsRemovable(self, pValue);
     }
-    pub fn get_IsSoftwareDevice(self: *const ICspInformation, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsSoftwareDevice(self: *const ICspInformation, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsSoftwareDevice(self, pValue);
     }
-    pub fn get_Valid(self: *const ICspInformation, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Valid(self: *const ICspInformation, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Valid(self, pValue);
     }
     pub fn get_MaxKeyContainerNameLength(self: *const ICspInformation, pValue: ?*i32) callconv(.@"inline") HRESULT {
@@ -7133,13 +7133,13 @@ pub const ICspInformation = extern union {
     pub fn get_KeySpec(self: *const ICspInformation, pValue: ?*X509KeySpec) callconv(.@"inline") HRESULT {
         return self.vtable.get_KeySpec(self, pValue);
     }
-    pub fn get_IsSmartCard(self: *const ICspInformation, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsSmartCard(self: *const ICspInformation, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsSmartCard(self, pValue);
     }
-    pub fn GetDefaultSecurityDescriptor(self: *const ICspInformation, MachineContext: i16, pValue: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDefaultSecurityDescriptor(self: *const ICspInformation, MachineContext: VARIANT_BOOL, pValue: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultSecurityDescriptor(self, MachineContext, pValue);
     }
-    pub fn get_LegacyCsp(self: *const ICspInformation, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_LegacyCsp(self: *const ICspInformation, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_LegacyCsp(self, pValue);
     }
     pub fn GetCspStatusFromOperations(self: *const ICspInformation, pAlgorithm: ?*IObjectId, Operations: AlgorithmOperationFlags, ppValue: ?*?*ICspStatus) callconv(.@"inline") HRESULT {
@@ -7430,15 +7430,15 @@ pub const IEnroll = extern union {
             self: *const IEnroll,
             DNName: ?[*:0]const u16,
             Usage: ?[*:0]const u16,
-            pPkcs10Blob: ?*CRYPTOAPI_BLOB,
+            pPkcs10Blob: ?*CRYPT_INTEGER_BLOB,
         ) callconv(.winapi) HRESULT,
         acceptPKCS7Blob: *const fn(
             self: *const IEnroll,
-            pBlobPKCS7: ?*CRYPTOAPI_BLOB,
+            pBlobPKCS7: ?*CRYPT_INTEGER_BLOB,
         ) callconv(.winapi) HRESULT,
         getCertContextFromPKCS7: *const fn(
             self: *const IEnroll,
-            pBlobPKCS7: ?*CRYPTOAPI_BLOB,
+            pBlobPKCS7: ?*CRYPT_INTEGER_BLOB,
         ) callconv(.winapi) ?*CERT_CONTEXT,
         getMyStore: *const fn(
             self: *const IEnroll,
@@ -7462,7 +7462,7 @@ pub const IEnroll = extern union {
         ) callconv(.winapi) HRESULT,
         freeRequestInfoBlob: *const fn(
             self: *const IEnroll,
-            pkcs7OrPkcs10: CRYPTOAPI_BLOB,
+            pkcs7OrPkcs10: CRYPT_INTEGER_BLOB,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MyStoreNameWStr: *const fn(
@@ -7753,9 +7753,9 @@ pub const IEnroll = extern union {
         ) callconv(.winapi) HRESULT,
         CreatePKCS7RequestFromRequest: *const fn(
             self: *const IEnroll,
-            pRequest: ?*CRYPTOAPI_BLOB,
+            pRequest: ?*CRYPT_INTEGER_BLOB,
             pSigningCertContext: ?*const CERT_CONTEXT,
-            pPkcs7Blob: ?*CRYPTOAPI_BLOB,
+            pPkcs7Blob: ?*CRYPT_INTEGER_BLOB,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -7766,13 +7766,13 @@ pub const IEnroll = extern union {
     pub fn acceptFilePKCS7WStr(self: *const IEnroll, wszPKCS7FileName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.acceptFilePKCS7WStr(self, wszPKCS7FileName);
     }
-    pub fn createPKCS10WStr(self: *const IEnroll, DNName: ?[*:0]const u16, Usage: ?[*:0]const u16, pPkcs10Blob: ?*CRYPTOAPI_BLOB) callconv(.@"inline") HRESULT {
+    pub fn createPKCS10WStr(self: *const IEnroll, DNName: ?[*:0]const u16, Usage: ?[*:0]const u16, pPkcs10Blob: ?*CRYPT_INTEGER_BLOB) callconv(.@"inline") HRESULT {
         return self.vtable.createPKCS10WStr(self, DNName, Usage, pPkcs10Blob);
     }
-    pub fn acceptPKCS7Blob(self: *const IEnroll, pBlobPKCS7: ?*CRYPTOAPI_BLOB) callconv(.@"inline") HRESULT {
+    pub fn acceptPKCS7Blob(self: *const IEnroll, pBlobPKCS7: ?*CRYPT_INTEGER_BLOB) callconv(.@"inline") HRESULT {
         return self.vtable.acceptPKCS7Blob(self, pBlobPKCS7);
     }
-    pub fn getCertContextFromPKCS7(self: *const IEnroll, pBlobPKCS7: ?*CRYPTOAPI_BLOB) callconv(.@"inline") ?*CERT_CONTEXT {
+    pub fn getCertContextFromPKCS7(self: *const IEnroll, pBlobPKCS7: ?*CRYPT_INTEGER_BLOB) callconv(.@"inline") ?*CERT_CONTEXT {
         return self.vtable.getCertContextFromPKCS7(self, pBlobPKCS7);
     }
     pub fn getMyStore(self: *const IEnroll) callconv(.@"inline") ?HCERTSTORE {
@@ -7790,7 +7790,7 @@ pub const IEnroll = extern union {
     pub fn enumContainersWStr(self: *const IEnroll, dwIndex: i32, pbstr: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.enumContainersWStr(self, dwIndex, pbstr);
     }
-    pub fn freeRequestInfoBlob(self: *const IEnroll, pkcs7OrPkcs10: CRYPTOAPI_BLOB) callconv(.@"inline") HRESULT {
+    pub fn freeRequestInfoBlob(self: *const IEnroll, pkcs7OrPkcs10: CRYPT_INTEGER_BLOB) callconv(.@"inline") HRESULT {
         return self.vtable.freeRequestInfoBlob(self, pkcs7OrPkcs10);
     }
     pub fn get_MyStoreNameWStr(self: *const IEnroll, szwName: ?*?PWSTR) callconv(.@"inline") HRESULT {
@@ -7967,7 +7967,7 @@ pub const IEnroll = extern union {
     pub fn AddAuthenticatedAttributesToPKCS7Request(self: *const IEnroll, pAttributes: ?*CRYPT_ATTRIBUTES) callconv(.@"inline") HRESULT {
         return self.vtable.AddAuthenticatedAttributesToPKCS7Request(self, pAttributes);
     }
-    pub fn CreatePKCS7RequestFromRequest(self: *const IEnroll, pRequest: ?*CRYPTOAPI_BLOB, pSigningCertContext: ?*const CERT_CONTEXT, pPkcs7Blob: ?*CRYPTOAPI_BLOB) callconv(.@"inline") HRESULT {
+    pub fn CreatePKCS7RequestFromRequest(self: *const IEnroll, pRequest: ?*CRYPT_INTEGER_BLOB, pSigningCertContext: ?*const CERT_CONTEXT, pPkcs7Blob: ?*CRYPT_INTEGER_BLOB) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePKCS7RequestFromRequest(self, pRequest, pSigningCertContext, pPkcs7Blob);
     }
 };
@@ -7980,7 +7980,7 @@ pub const IEnroll2 = extern union {
         base: IEnroll.VTable,
         InstallPKCS7Blob: *const fn(
             self: *const IEnroll2,
-            pBlobPKCS7: ?*CRYPTOAPI_BLOB,
+            pBlobPKCS7: ?*CRYPT_INTEGER_BLOB,
         ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnroll2,
@@ -8066,7 +8066,7 @@ pub const IEnroll2 = extern union {
     vtable: *const VTable,
     IEnroll: IEnroll,
     IUnknown: IUnknown,
-    pub fn InstallPKCS7Blob(self: *const IEnroll2, pBlobPKCS7: ?*CRYPTOAPI_BLOB) callconv(.@"inline") HRESULT {
+    pub fn InstallPKCS7Blob(self: *const IEnroll2, pBlobPKCS7: ?*CRYPT_INTEGER_BLOB) callconv(.@"inline") HRESULT {
         return self.vtable.InstallPKCS7Blob(self, pBlobPKCS7);
     }
     pub fn Reset(self: *const IEnroll2) callconv(.@"inline") HRESULT {
@@ -8131,12 +8131,12 @@ pub const IEnroll4 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ThumbPrintWStr: *const fn(
             self: *const IEnroll4,
-            thumbPrintBlob: CRYPTOAPI_BLOB,
+            thumbPrintBlob: CRYPT_INTEGER_BLOB,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ThumbPrintWStr: *const fn(
             self: *const IEnroll4,
-            thumbPrintBlob: ?*CRYPTOAPI_BLOB,
+            thumbPrintBlob: ?*CRYPT_INTEGER_BLOB,
         ) callconv(.winapi) HRESULT,
         SetPrivateKeyArchiveCertificate: *const fn(
             self: *const IEnroll4,
@@ -8148,14 +8148,14 @@ pub const IEnroll4 = extern union {
         binaryBlobToString: *const fn(
             self: *const IEnroll4,
             Flags: i32,
-            pblobBinary: ?*CRYPTOAPI_BLOB,
+            pblobBinary: ?*CRYPT_INTEGER_BLOB,
             ppwszString: ?*?PWSTR,
         ) callconv(.winapi) HRESULT,
         stringToBinaryBlob: *const fn(
             self: *const IEnroll4,
             Flags: i32,
             pwszString: ?[*:0]const u16,
-            pblobBinary: ?*CRYPTOAPI_BLOB,
+            pblobBinary: ?*CRYPT_INTEGER_BLOB,
             pdwSkip: ?*i32,
             pdwFlags: ?*i32,
         ) callconv(.winapi) HRESULT,
@@ -8163,13 +8163,13 @@ pub const IEnroll4 = extern union {
             self: *const IEnroll4,
             Flags: i32,
             pwszName: ?[*:0]const u16,
-            pblobValue: ?*CRYPTOAPI_BLOB,
+            pblobValue: ?*CRYPT_INTEGER_BLOB,
         ) callconv(.winapi) HRESULT,
         addAttributeToRequestWStr: *const fn(
             self: *const IEnroll4,
             Flags: i32,
             pwszName: ?[*:0]const u16,
-            pblobValue: ?*CRYPTOAPI_BLOB,
+            pblobValue: ?*CRYPT_INTEGER_BLOB,
         ) callconv(.winapi) HRESULT,
         addNameValuePairToRequestWStr: *const fn(
             self: *const IEnroll4,
@@ -8188,7 +8188,7 @@ pub const IEnroll4 = extern union {
             Flags: CERT_CREATE_REQUEST_FLAGS,
             pwszDNName: ?[*:0]const u16,
             pwszUsage: ?[*:0]const u16,
-            pblobRequest: ?*CRYPTOAPI_BLOB,
+            pblobRequest: ?*CRYPT_INTEGER_BLOB,
         ) callconv(.winapi) HRESULT,
         createFileRequestWStr: *const fn(
             self: *const IEnroll4,
@@ -8199,7 +8199,7 @@ pub const IEnroll4 = extern union {
         ) callconv(.winapi) HRESULT,
         acceptResponseBlob: *const fn(
             self: *const IEnroll4,
-            pblobResponse: ?*CRYPTOAPI_BLOB,
+            pblobResponse: ?*CRYPT_INTEGER_BLOB,
         ) callconv(.winapi) HRESULT,
         acceptFileResponseWStr: *const fn(
             self: *const IEnroll4,
@@ -8207,7 +8207,7 @@ pub const IEnroll4 = extern union {
         ) callconv(.winapi) HRESULT,
         getCertContextFromResponseBlob: *const fn(
             self: *const IEnroll4,
-            pblobResponse: ?*CRYPTOAPI_BLOB,
+            pblobResponse: ?*CRYPT_INTEGER_BLOB,
             ppCertContext: ?*?*CERT_CONTEXT,
         ) callconv(.winapi) HRESULT,
         getCertContextFromFileResponseWStr: *const fn(
@@ -8218,7 +8218,7 @@ pub const IEnroll4 = extern union {
         createPFXWStr: *const fn(
             self: *const IEnroll4,
             pwszPassword: ?[*:0]const u16,
-            pblobPFX: ?*CRYPTOAPI_BLOB,
+            pblobPFX: ?*CRYPT_INTEGER_BLOB,
         ) callconv(.winapi) HRESULT,
         createFilePFXWStr: *const fn(
             self: *const IEnroll4,
@@ -8240,7 +8240,7 @@ pub const IEnroll4 = extern union {
         ) callconv(.winapi) HRESULT,
         removePendingRequestWStr: *const fn(
             self: *const IEnroll4,
-            thumbPrintBlob: CRYPTOAPI_BLOB,
+            thumbPrintBlob: CRYPT_INTEGER_BLOB,
         ) callconv(.winapi) HRESULT,
         GetKeyLenEx: *const fn(
             self: *const IEnroll4,
@@ -8250,7 +8250,7 @@ pub const IEnroll4 = extern union {
         ) callconv(.winapi) HRESULT,
         InstallPKCS7BlobEx: *const fn(
             self: *const IEnroll4,
-            pBlobPKCS7: ?*CRYPTOAPI_BLOB,
+            pBlobPKCS7: ?*CRYPT_INTEGER_BLOB,
             plCertInstalled: ?*i32,
         ) callconv(.winapi) HRESULT,
         AddCertTypeToRequestWStrEx: *const fn(
@@ -8270,7 +8270,7 @@ pub const IEnroll4 = extern union {
             self: *const IEnroll4,
             lPropertyId: i32,
             lReserved: i32,
-            pBlobProperty: ?*CRYPTOAPI_BLOB,
+            pBlobProperty: ?*CRYPT_INTEGER_BLOB,
         ) callconv(.winapi) HRESULT,
         SetSignerCertificate: *const fn(
             self: *const IEnroll4,
@@ -8301,10 +8301,10 @@ pub const IEnroll4 = extern union {
     IEnroll2: IEnroll2,
     IEnroll: IEnroll,
     IUnknown: IUnknown,
-    pub fn put_ThumbPrintWStr(self: *const IEnroll4, thumbPrintBlob: CRYPTOAPI_BLOB) callconv(.@"inline") HRESULT {
+    pub fn put_ThumbPrintWStr(self: *const IEnroll4, thumbPrintBlob: CRYPT_INTEGER_BLOB) callconv(.@"inline") HRESULT {
         return self.vtable.put_ThumbPrintWStr(self, thumbPrintBlob);
     }
-    pub fn get_ThumbPrintWStr(self: *const IEnroll4, thumbPrintBlob: ?*CRYPTOAPI_BLOB) callconv(.@"inline") HRESULT {
+    pub fn get_ThumbPrintWStr(self: *const IEnroll4, thumbPrintBlob: ?*CRYPT_INTEGER_BLOB) callconv(.@"inline") HRESULT {
         return self.vtable.get_ThumbPrintWStr(self, thumbPrintBlob);
     }
     pub fn SetPrivateKeyArchiveCertificate(self: *const IEnroll4, pPrivateKeyArchiveCert: ?*const CERT_CONTEXT) callconv(.@"inline") HRESULT {
@@ -8313,16 +8313,16 @@ pub const IEnroll4 = extern union {
     pub fn GetPrivateKeyArchiveCertificate(self: *const IEnroll4) callconv(.@"inline") ?*CERT_CONTEXT {
         return self.vtable.GetPrivateKeyArchiveCertificate(self);
     }
-    pub fn binaryBlobToString(self: *const IEnroll4, Flags: i32, pblobBinary: ?*CRYPTOAPI_BLOB, ppwszString: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn binaryBlobToString(self: *const IEnroll4, Flags: i32, pblobBinary: ?*CRYPT_INTEGER_BLOB, ppwszString: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.binaryBlobToString(self, Flags, pblobBinary, ppwszString);
     }
-    pub fn stringToBinaryBlob(self: *const IEnroll4, Flags: i32, pwszString: ?[*:0]const u16, pblobBinary: ?*CRYPTOAPI_BLOB, pdwSkip: ?*i32, pdwFlags: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn stringToBinaryBlob(self: *const IEnroll4, Flags: i32, pwszString: ?[*:0]const u16, pblobBinary: ?*CRYPT_INTEGER_BLOB, pdwSkip: ?*i32, pdwFlags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.stringToBinaryBlob(self, Flags, pwszString, pblobBinary, pdwSkip, pdwFlags);
     }
-    pub fn addExtensionToRequestWStr(self: *const IEnroll4, Flags: i32, pwszName: ?[*:0]const u16, pblobValue: ?*CRYPTOAPI_BLOB) callconv(.@"inline") HRESULT {
+    pub fn addExtensionToRequestWStr(self: *const IEnroll4, Flags: i32, pwszName: ?[*:0]const u16, pblobValue: ?*CRYPT_INTEGER_BLOB) callconv(.@"inline") HRESULT {
         return self.vtable.addExtensionToRequestWStr(self, Flags, pwszName, pblobValue);
     }
-    pub fn addAttributeToRequestWStr(self: *const IEnroll4, Flags: i32, pwszName: ?[*:0]const u16, pblobValue: ?*CRYPTOAPI_BLOB) callconv(.@"inline") HRESULT {
+    pub fn addAttributeToRequestWStr(self: *const IEnroll4, Flags: i32, pwszName: ?[*:0]const u16, pblobValue: ?*CRYPT_INTEGER_BLOB) callconv(.@"inline") HRESULT {
         return self.vtable.addAttributeToRequestWStr(self, Flags, pwszName, pblobValue);
     }
     pub fn addNameValuePairToRequestWStr(self: *const IEnroll4, Flags: i32, pwszName: ?[*:0]const u16, pwszValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -8334,25 +8334,25 @@ pub const IEnroll4 = extern union {
     pub fn resetAttributes(self: *const IEnroll4) callconv(.@"inline") HRESULT {
         return self.vtable.resetAttributes(self);
     }
-    pub fn createRequestWStr(self: *const IEnroll4, Flags: CERT_CREATE_REQUEST_FLAGS, pwszDNName: ?[*:0]const u16, pwszUsage: ?[*:0]const u16, pblobRequest: ?*CRYPTOAPI_BLOB) callconv(.@"inline") HRESULT {
+    pub fn createRequestWStr(self: *const IEnroll4, Flags: CERT_CREATE_REQUEST_FLAGS, pwszDNName: ?[*:0]const u16, pwszUsage: ?[*:0]const u16, pblobRequest: ?*CRYPT_INTEGER_BLOB) callconv(.@"inline") HRESULT {
         return self.vtable.createRequestWStr(self, Flags, pwszDNName, pwszUsage, pblobRequest);
     }
     pub fn createFileRequestWStr(self: *const IEnroll4, Flags: CERT_CREATE_REQUEST_FLAGS, pwszDNName: ?[*:0]const u16, pwszUsage: ?[*:0]const u16, pwszRequestFileName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.createFileRequestWStr(self, Flags, pwszDNName, pwszUsage, pwszRequestFileName);
     }
-    pub fn acceptResponseBlob(self: *const IEnroll4, pblobResponse: ?*CRYPTOAPI_BLOB) callconv(.@"inline") HRESULT {
+    pub fn acceptResponseBlob(self: *const IEnroll4, pblobResponse: ?*CRYPT_INTEGER_BLOB) callconv(.@"inline") HRESULT {
         return self.vtable.acceptResponseBlob(self, pblobResponse);
     }
     pub fn acceptFileResponseWStr(self: *const IEnroll4, pwszResponseFileName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.acceptFileResponseWStr(self, pwszResponseFileName);
     }
-    pub fn getCertContextFromResponseBlob(self: *const IEnroll4, pblobResponse: ?*CRYPTOAPI_BLOB, ppCertContext: ?*?*CERT_CONTEXT) callconv(.@"inline") HRESULT {
+    pub fn getCertContextFromResponseBlob(self: *const IEnroll4, pblobResponse: ?*CRYPT_INTEGER_BLOB, ppCertContext: ?*?*CERT_CONTEXT) callconv(.@"inline") HRESULT {
         return self.vtable.getCertContextFromResponseBlob(self, pblobResponse, ppCertContext);
     }
     pub fn getCertContextFromFileResponseWStr(self: *const IEnroll4, pwszResponseFileName: ?[*:0]const u16, ppCertContext: ?*?*CERT_CONTEXT) callconv(.@"inline") HRESULT {
         return self.vtable.getCertContextFromFileResponseWStr(self, pwszResponseFileName, ppCertContext);
     }
-    pub fn createPFXWStr(self: *const IEnroll4, pwszPassword: ?[*:0]const u16, pblobPFX: ?*CRYPTOAPI_BLOB) callconv(.@"inline") HRESULT {
+    pub fn createPFXWStr(self: *const IEnroll4, pwszPassword: ?[*:0]const u16, pblobPFX: ?*CRYPT_INTEGER_BLOB) callconv(.@"inline") HRESULT {
         return self.vtable.createPFXWStr(self, pwszPassword, pblobPFX);
     }
     pub fn createFilePFXWStr(self: *const IEnroll4, pwszPassword: ?[*:0]const u16, pwszPFXFileName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -8364,13 +8364,13 @@ pub const IEnroll4 = extern union {
     pub fn enumPendingRequestWStr(self: *const IEnroll4, lIndex: i32, lDesiredProperty: PENDING_REQUEST_DESIRED_PROPERTY, ppProperty: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.enumPendingRequestWStr(self, lIndex, lDesiredProperty, ppProperty);
     }
-    pub fn removePendingRequestWStr(self: *const IEnroll4, thumbPrintBlob: CRYPTOAPI_BLOB) callconv(.@"inline") HRESULT {
+    pub fn removePendingRequestWStr(self: *const IEnroll4, thumbPrintBlob: CRYPT_INTEGER_BLOB) callconv(.@"inline") HRESULT {
         return self.vtable.removePendingRequestWStr(self, thumbPrintBlob);
     }
     pub fn GetKeyLenEx(self: *const IEnroll4, lSizeSpec: XEKL_KEYSIZE, lKeySpec: XEKL_KEYSPEC, pdwKeySize: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetKeyLenEx(self, lSizeSpec, lKeySpec, pdwKeySize);
     }
-    pub fn InstallPKCS7BlobEx(self: *const IEnroll4, pBlobPKCS7: ?*CRYPTOAPI_BLOB, plCertInstalled: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn InstallPKCS7BlobEx(self: *const IEnroll4, pBlobPKCS7: ?*CRYPT_INTEGER_BLOB, plCertInstalled: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.InstallPKCS7BlobEx(self, pBlobPKCS7, plCertInstalled);
     }
     pub fn AddCertTypeToRequestWStrEx(self: *const IEnroll4, lType: ADDED_CERT_TYPE, pwszOIDOrName: ?[*:0]const u16, lMajorVersion: i32, fMinorVersion: BOOL, lMinorVersion: i32) callconv(.@"inline") HRESULT {
@@ -8379,7 +8379,7 @@ pub const IEnroll4 = extern union {
     pub fn getProviderTypeWStr(self: *const IEnroll4, pwszProvName: ?[*:0]const u16, plProvType: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.getProviderTypeWStr(self, pwszProvName, plProvType);
     }
-    pub fn addBlobPropertyToCertificateWStr(self: *const IEnroll4, lPropertyId: i32, lReserved: i32, pBlobProperty: ?*CRYPTOAPI_BLOB) callconv(.@"inline") HRESULT {
+    pub fn addBlobPropertyToCertificateWStr(self: *const IEnroll4, lPropertyId: i32, lReserved: i32, pBlobProperty: ?*CRYPT_INTEGER_BLOB) callconv(.@"inline") HRESULT {
         return self.vtable.addBlobPropertyToCertificateWStr(self, lPropertyId, lReserved, pBlobProperty);
     }
     pub fn SetSignerCertificate(self: *const IEnroll4, pSignerCert: ?*const CERT_CONTEXT) callconv(.@"inline") HRESULT {
@@ -8924,12 +8924,12 @@ pub const IOCSPAdmin = extern union {
         GetConfiguration: *const fn(
             self: *const IOCSPAdmin,
             bstrServerName: ?BSTR,
-            bForce: i16,
+            bForce: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SetConfiguration: *const fn(
             self: *const IOCSPAdmin,
             bstrServerName: ?BSTR,
-            bForce: i16,
+            bForce: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetMyRoles: *const fn(
             self: *const IOCSPAdmin,
@@ -8972,10 +8972,10 @@ pub const IOCSPAdmin = extern union {
     pub fn get_OCSPCAConfigurationCollection(self: *const IOCSPAdmin, pVal: ?*?*IOCSPCAConfigurationCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_OCSPCAConfigurationCollection(self, pVal);
     }
-    pub fn GetConfiguration(self: *const IOCSPAdmin, bstrServerName: ?BSTR, bForce: i16) callconv(.@"inline") HRESULT {
+    pub fn GetConfiguration(self: *const IOCSPAdmin, bstrServerName: ?BSTR, bForce: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetConfiguration(self, bstrServerName, bForce);
     }
-    pub fn SetConfiguration(self: *const IOCSPAdmin, bstrServerName: ?BSTR, bForce: i16) callconv(.@"inline") HRESULT {
+    pub fn SetConfiguration(self: *const IOCSPAdmin, bstrServerName: ?BSTR, bForce: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetConfiguration(self, bstrServerName, bForce);
     }
     pub fn GetMyRoles(self: *const IOCSPAdmin, bstrServerName: ?BSTR, pRoles: ?*i32) callconv(.@"inline") HRESULT {
@@ -9092,7 +9092,7 @@ pub const IOCSPCAConfiguration = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Modified: *const fn(
             self: *const IOCSPCAConfiguration,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LocalRevocationInformation: *const fn(
@@ -9179,7 +9179,7 @@ pub const IOCSPCAConfiguration = extern union {
     pub fn put_ProviderProperties(self: *const IOCSPCAConfiguration, newVal: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.put_ProviderProperties(self, newVal);
     }
-    pub fn get_Modified(self: *const IOCSPCAConfiguration, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Modified(self: *const IOCSPCAConfiguration, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Modified(self, pVal);
     }
     pub fn get_LocalRevocationInformation(self: *const IOCSPCAConfiguration, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -9286,7 +9286,7 @@ pub const IOCSPProperty = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Modified: *const fn(
             self: *const IOCSPProperty,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -9301,7 +9301,7 @@ pub const IOCSPProperty = extern union {
     pub fn put_Value(self: *const IOCSPProperty, newVal: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.put_Value(self, newVal);
     }
-    pub fn get_Modified(self: *const IOCSPProperty, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Modified(self: *const IOCSPProperty, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Modified(self, pVal);
     }
 };
@@ -9496,7 +9496,7 @@ pub const ISignerCertificate = extern union {
         base: IDispatch.VTable,
         Initialize: *const fn(
             self: *const ISignerCertificate,
-            MachineContext: i16,
+            MachineContext: VARIANT_BOOL,
             VerifyType: X509PrivateKeyVerify,
             Encoding: EncodingType,
             strCertificate: ?BSTR,
@@ -9514,12 +9514,12 @@ pub const ISignerCertificate = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Silent: *const fn(
             self: *const ISignerCertificate,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Silent: *const fn(
             self: *const ISignerCertificate,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ParentWindow: *const fn(
@@ -9555,7 +9555,7 @@ pub const ISignerCertificate = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const ISignerCertificate, MachineContext: i16, VerifyType: X509PrivateKeyVerify, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn Initialize(self: *const ISignerCertificate, MachineContext: VARIANT_BOOL, VerifyType: X509PrivateKeyVerify, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, MachineContext, VerifyType, Encoding, strCertificate);
     }
     pub fn get_Certificate(self: *const ISignerCertificate, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -9564,10 +9564,10 @@ pub const ISignerCertificate = extern union {
     pub fn get_PrivateKey(self: *const ISignerCertificate, ppValue: ?*?*IX509PrivateKey) callconv(.@"inline") HRESULT {
         return self.vtable.get_PrivateKey(self, ppValue);
     }
-    pub fn get_Silent(self: *const ISignerCertificate, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Silent(self: *const ISignerCertificate, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Silent(self, pValue);
     }
-    pub fn put_Silent(self: *const ISignerCertificate, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Silent(self: *const ISignerCertificate, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Silent(self, Value);
     }
     pub fn get_ParentWindow(self: *const ISignerCertificate, pValue: ?*i32) callconv(.@"inline") HRESULT {
@@ -9692,7 +9692,7 @@ pub const ISmimeCapabilities = extern union {
         ) callconv(.winapi) HRESULT,
         AddAvailableSmimeCapabilities: *const fn(
             self: *const ISmimeCapabilities,
-            MachineContext: i16,
+            MachineContext: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -9719,7 +9719,7 @@ pub const ISmimeCapabilities = extern union {
     pub fn AddFromCsp(self: *const ISmimeCapabilities, pValue: ?*ICspInformation) callconv(.@"inline") HRESULT {
         return self.vtable.AddFromCsp(self, pValue);
     }
-    pub fn AddAvailableSmimeCapabilities(self: *const ISmimeCapabilities, MachineContext: i16) callconv(.@"inline") HRESULT {
+    pub fn AddAvailableSmimeCapabilities(self: *const ISmimeCapabilities, MachineContext: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.AddAvailableSmimeCapabilities(self, MachineContext);
     }
 };
@@ -10252,12 +10252,12 @@ pub const IX509CertificateRequest = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Silent: *const fn(
             self: *const IX509CertificateRequest,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Silent: *const fn(
             self: *const IX509CertificateRequest,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ParentWindow: *const fn(
@@ -10282,12 +10282,12 @@ pub const IX509CertificateRequest = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SuppressDefaults: *const fn(
             self: *const IX509CertificateRequest,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SuppressDefaults: *const fn(
             self: *const IX509CertificateRequest,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         get_RenewalCertificate: *const fn(
             self: *const IX509CertificateRequest,
@@ -10332,12 +10332,12 @@ pub const IX509CertificateRequest = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AlternateSignatureAlgorithm: *const fn(
             self: *const IX509CertificateRequest,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AlternateSignatureAlgorithm: *const fn(
             self: *const IX509CertificateRequest,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         get_RawData: *const fn(
             self: *const IX509CertificateRequest,
@@ -10366,10 +10366,10 @@ pub const IX509CertificateRequest = extern union {
     pub fn get_EnrollmentContext(self: *const IX509CertificateRequest, pValue: ?*X509CertificateEnrollmentContext) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnrollmentContext(self, pValue);
     }
-    pub fn get_Silent(self: *const IX509CertificateRequest, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Silent(self: *const IX509CertificateRequest, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Silent(self, pValue);
     }
-    pub fn put_Silent(self: *const IX509CertificateRequest, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Silent(self: *const IX509CertificateRequest, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Silent(self, Value);
     }
     pub fn get_ParentWindow(self: *const IX509CertificateRequest, pValue: ?*i32) callconv(.@"inline") HRESULT {
@@ -10384,10 +10384,10 @@ pub const IX509CertificateRequest = extern union {
     pub fn put_UIContextMessage(self: *const IX509CertificateRequest, Value: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_UIContextMessage(self, Value);
     }
-    pub fn get_SuppressDefaults(self: *const IX509CertificateRequest, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SuppressDefaults(self: *const IX509CertificateRequest, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SuppressDefaults(self, pValue);
     }
-    pub fn put_SuppressDefaults(self: *const IX509CertificateRequest, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_SuppressDefaults(self: *const IX509CertificateRequest, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_SuppressDefaults(self, Value);
     }
     pub fn get_RenewalCertificate(self: *const IX509CertificateRequest, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -10414,10 +10414,10 @@ pub const IX509CertificateRequest = extern union {
     pub fn put_HashAlgorithm(self: *const IX509CertificateRequest, pValue: ?*IObjectId) callconv(.@"inline") HRESULT {
         return self.vtable.put_HashAlgorithm(self, pValue);
     }
-    pub fn get_AlternateSignatureAlgorithm(self: *const IX509CertificateRequest, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AlternateSignatureAlgorithm(self: *const IX509CertificateRequest, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AlternateSignatureAlgorithm(self, pValue);
     }
-    pub fn put_AlternateSignatureAlgorithm(self: *const IX509CertificateRequest, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AlternateSignatureAlgorithm(self: *const IX509CertificateRequest, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AlternateSignatureAlgorithm(self, Value);
     }
     pub fn get_RawData(self: *const IX509CertificateRequest, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -10595,7 +10595,7 @@ pub const IX509CertificateRequestCmc = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NullSigned: *const fn(
             self: *const IX509CertificateRequestCmc,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CryptAttributes: *const fn(
@@ -10650,12 +10650,12 @@ pub const IX509CertificateRequestCmc = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ArchivePrivateKey: *const fn(
             self: *const IX509CertificateRequestCmc,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ArchivePrivateKey: *const fn(
             self: *const IX509CertificateRequestCmc,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         get_KeyArchivalCertificate: *const fn(
             self: *const IX509CertificateRequestCmc,
@@ -10709,7 +10709,7 @@ pub const IX509CertificateRequestCmc = extern union {
     pub fn get_TemplateObjectId(self: *const IX509CertificateRequestCmc, ppValue: ?*?*IObjectId) callconv(.@"inline") HRESULT {
         return self.vtable.get_TemplateObjectId(self, ppValue);
     }
-    pub fn get_NullSigned(self: *const IX509CertificateRequestCmc, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_NullSigned(self: *const IX509CertificateRequestCmc, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_NullSigned(self, pValue);
     }
     pub fn get_CryptAttributes(self: *const IX509CertificateRequestCmc, ppValue: ?*?*ICryptAttributes) callconv(.@"inline") HRESULT {
@@ -10742,10 +10742,10 @@ pub const IX509CertificateRequestCmc = extern union {
     pub fn get_SignatureInformation(self: *const IX509CertificateRequestCmc, ppValue: ?*?*IX509SignatureInformation) callconv(.@"inline") HRESULT {
         return self.vtable.get_SignatureInformation(self, ppValue);
     }
-    pub fn get_ArchivePrivateKey(self: *const IX509CertificateRequestCmc, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_ArchivePrivateKey(self: *const IX509CertificateRequestCmc, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ArchivePrivateKey(self, pValue);
     }
-    pub fn put_ArchivePrivateKey(self: *const IX509CertificateRequestCmc, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_ArchivePrivateKey(self: *const IX509CertificateRequestCmc, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_ArchivePrivateKey(self, Value);
     }
     pub fn get_KeyArchivalCertificate(self: *const IX509CertificateRequestCmc, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -10809,7 +10809,7 @@ pub const IX509CertificateRequestCmc2 = extern union {
         CheckCertificateSignature: *const fn(
             self: *const IX509CertificateRequestCmc2,
             pSignerCertificate: ?*ISignerCertificate,
-            ValidateCertificateChain: i16,
+            ValidateCertificateChain: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -10833,7 +10833,7 @@ pub const IX509CertificateRequestCmc2 = extern union {
     pub fn CheckSignature(self: *const IX509CertificateRequestCmc2, AllowedSignatureTypes: Pkcs10AllowedSignatureTypes) callconv(.@"inline") HRESULT {
         return self.vtable.CheckSignature(self, AllowedSignatureTypes);
     }
-    pub fn CheckCertificateSignature(self: *const IX509CertificateRequestCmc2, pSignerCertificate: ?*ISignerCertificate, ValidateCertificateChain: i16) callconv(.@"inline") HRESULT {
+    pub fn CheckCertificateSignature(self: *const IX509CertificateRequestCmc2, pSignerCertificate: ?*ISignerCertificate, ValidateCertificateChain: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CheckCertificateSignature(self, pSignerCertificate, ValidateCertificateChain);
     }
 };
@@ -10879,7 +10879,7 @@ pub const IX509CertificateRequestPkcs10 = extern union {
         ) callconv(.winapi) HRESULT,
         IsSmartCard: *const fn(
             self: *const IX509CertificateRequestPkcs10,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TemplateObjectId: *const fn(
@@ -10899,12 +10899,12 @@ pub const IX509CertificateRequestPkcs10 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NullSigned: *const fn(
             self: *const IX509CertificateRequestPkcs10,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReuseKey: *const fn(
             self: *const IX509CertificateRequestPkcs10,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         get_OldCertificate: *const fn(
             self: *const IX509CertificateRequestPkcs10,
@@ -10929,12 +10929,12 @@ pub const IX509CertificateRequestPkcs10 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SmimeCapabilities: *const fn(
             self: *const IX509CertificateRequestPkcs10,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SmimeCapabilities: *const fn(
             self: *const IX509CertificateRequestPkcs10,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SignatureInformation: *const fn(
@@ -11009,7 +11009,7 @@ pub const IX509CertificateRequestPkcs10 = extern union {
     pub fn CheckSignature(self: *const IX509CertificateRequestPkcs10, AllowedSignatureTypes: Pkcs10AllowedSignatureTypes) callconv(.@"inline") HRESULT {
         return self.vtable.CheckSignature(self, AllowedSignatureTypes);
     }
-    pub fn IsSmartCard(self: *const IX509CertificateRequestPkcs10, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsSmartCard(self: *const IX509CertificateRequestPkcs10, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsSmartCard(self, pValue);
     }
     pub fn get_TemplateObjectId(self: *const IX509CertificateRequestPkcs10, ppValue: ?*?*IObjectId) callconv(.@"inline") HRESULT {
@@ -11021,10 +11021,10 @@ pub const IX509CertificateRequestPkcs10 = extern union {
     pub fn get_PrivateKey(self: *const IX509CertificateRequestPkcs10, ppValue: ?*?*IX509PrivateKey) callconv(.@"inline") HRESULT {
         return self.vtable.get_PrivateKey(self, ppValue);
     }
-    pub fn get_NullSigned(self: *const IX509CertificateRequestPkcs10, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_NullSigned(self: *const IX509CertificateRequestPkcs10, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_NullSigned(self, pValue);
     }
-    pub fn get_ReuseKey(self: *const IX509CertificateRequestPkcs10, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_ReuseKey(self: *const IX509CertificateRequestPkcs10, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ReuseKey(self, pValue);
     }
     pub fn get_OldCertificate(self: *const IX509CertificateRequestPkcs10, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -11039,10 +11039,10 @@ pub const IX509CertificateRequestPkcs10 = extern union {
     pub fn get_CspStatuses(self: *const IX509CertificateRequestPkcs10, ppValue: ?*?*ICspStatuses) callconv(.@"inline") HRESULT {
         return self.vtable.get_CspStatuses(self, ppValue);
     }
-    pub fn get_SmimeCapabilities(self: *const IX509CertificateRequestPkcs10, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SmimeCapabilities(self: *const IX509CertificateRequestPkcs10, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SmimeCapabilities(self, pValue);
     }
-    pub fn put_SmimeCapabilities(self: *const IX509CertificateRequestPkcs10, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_SmimeCapabilities(self: *const IX509CertificateRequestPkcs10, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_SmimeCapabilities(self, Value);
     }
     pub fn get_SignatureInformation(self: *const IX509CertificateRequestPkcs10, ppValue: ?*?*IX509SignatureInformation) callconv(.@"inline") HRESULT {
@@ -11144,12 +11144,12 @@ pub const IX509CertificateRequestPkcs10V3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AttestPrivateKey: *const fn(
             self: *const IX509CertificateRequestPkcs10V3,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AttestPrivateKey: *const fn(
             self: *const IX509CertificateRequestPkcs10V3,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         get_AttestationEncryptionCertificate: *const fn(
             self: *const IX509CertificateRequestPkcs10V3,
@@ -11203,10 +11203,10 @@ pub const IX509CertificateRequestPkcs10V3 = extern union {
     IX509CertificateRequest: IX509CertificateRequest,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_AttestPrivateKey(self: *const IX509CertificateRequestPkcs10V3, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AttestPrivateKey(self: *const IX509CertificateRequestPkcs10V3, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AttestPrivateKey(self, pValue);
     }
-    pub fn put_AttestPrivateKey(self: *const IX509CertificateRequestPkcs10V3, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AttestPrivateKey(self: *const IX509CertificateRequestPkcs10V3, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AttestPrivateKey(self, Value);
     }
     pub fn get_AttestationEncryptionCertificate(self: *const IX509CertificateRequestPkcs10V3, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -11256,12 +11256,12 @@ pub const IX509CertificateRequestPkcs10V4 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AttestPrivateKeyPreferred: *const fn(
             self: *const IX509CertificateRequestPkcs10V4,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AttestPrivateKeyPreferred: *const fn(
             self: *const IX509CertificateRequestPkcs10V4,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -11277,10 +11277,10 @@ pub const IX509CertificateRequestPkcs10V4 = extern union {
     pub fn put_ClaimType(self: *const IX509CertificateRequestPkcs10V4, Value: KeyAttestationClaimType) callconv(.@"inline") HRESULT {
         return self.vtable.put_ClaimType(self, Value);
     }
-    pub fn get_AttestPrivateKeyPreferred(self: *const IX509CertificateRequestPkcs10V4, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AttestPrivateKeyPreferred(self: *const IX509CertificateRequestPkcs10V4, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AttestPrivateKeyPreferred(self, pValue);
     }
-    pub fn put_AttestPrivateKeyPreferred(self: *const IX509CertificateRequestPkcs10V4, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AttestPrivateKeyPreferred(self: *const IX509CertificateRequestPkcs10V4, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AttestPrivateKeyPreferred(self, Value);
     }
 };
@@ -11299,7 +11299,7 @@ pub const IX509CertificateRequestPkcs7 = extern union {
         InitializeFromCertificate: *const fn(
             self: *const IX509CertificateRequestPkcs7,
             Context: X509CertificateEnrollmentContext,
-            RenewalRequest: i16,
+            RenewalRequest: VARIANT_BOOL,
             strCertificate: ?BSTR,
             Encoding: EncodingType,
             InheritOptions: X509RequestInheritOptions,
@@ -11341,7 +11341,7 @@ pub const IX509CertificateRequestPkcs7 = extern union {
     pub fn InitializeFromTemplateName(self: *const IX509CertificateRequestPkcs7, Context: X509CertificateEnrollmentContext, strTemplateName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromTemplateName(self, Context, strTemplateName);
     }
-    pub fn InitializeFromCertificate(self: *const IX509CertificateRequestPkcs7, Context: X509CertificateEnrollmentContext, RenewalRequest: i16, strCertificate: ?BSTR, Encoding: EncodingType, InheritOptions: X509RequestInheritOptions) callconv(.@"inline") HRESULT {
+    pub fn InitializeFromCertificate(self: *const IX509CertificateRequestPkcs7, Context: X509CertificateEnrollmentContext, RenewalRequest: VARIANT_BOOL, strCertificate: ?BSTR, Encoding: EncodingType, InheritOptions: X509RequestInheritOptions) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromCertificate(self, Context, RenewalRequest, strCertificate, Encoding, InheritOptions);
     }
     pub fn InitializeFromInnerRequest(self: *const IX509CertificateRequestPkcs7, pInnerRequest: ?*IX509CertificateRequest) callconv(.@"inline") HRESULT {
@@ -11388,7 +11388,7 @@ pub const IX509CertificateRequestPkcs7V2 = extern union {
         ) callconv(.winapi) HRESULT,
         CheckCertificateSignature: *const fn(
             self: *const IX509CertificateRequestPkcs7V2,
-            ValidateCertificateChain: i16,
+            ValidateCertificateChain: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -11405,7 +11405,7 @@ pub const IX509CertificateRequestPkcs7V2 = extern union {
     pub fn get_Template(self: *const IX509CertificateRequestPkcs7V2, ppTemplate: ?*?*IX509CertificateTemplate) callconv(.@"inline") HRESULT {
         return self.vtable.get_Template(self, ppTemplate);
     }
-    pub fn CheckCertificateSignature(self: *const IX509CertificateRequestPkcs7V2, ValidateCertificateChain: i16) callconv(.@"inline") HRESULT {
+    pub fn CheckCertificateSignature(self: *const IX509CertificateRequestPkcs7V2, ValidateCertificateChain: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CheckCertificateSignature(self, ValidateCertificateChain);
     }
 };
@@ -11514,12 +11514,12 @@ pub const IX509CertificateRevocationList = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BaseCRL: *const fn(
             self: *const IX509CertificateRevocationList,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NullSigned: *const fn(
             self: *const IX509CertificateRevocationList,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HashAlgorithm: *const fn(
@@ -11534,12 +11534,12 @@ pub const IX509CertificateRevocationList = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AlternateSignatureAlgorithm: *const fn(
             self: *const IX509CertificateRevocationList,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AlternateSignatureAlgorithm: *const fn(
             self: *const IX509CertificateRevocationList,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SignatureInformation: *const fn(
@@ -11628,10 +11628,10 @@ pub const IX509CertificateRevocationList = extern union {
     pub fn put_CAVersion(self: *const IX509CertificateRevocationList, pValue: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_CAVersion(self, pValue);
     }
-    pub fn get_BaseCRL(self: *const IX509CertificateRevocationList, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_BaseCRL(self: *const IX509CertificateRevocationList, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_BaseCRL(self, pValue);
     }
-    pub fn get_NullSigned(self: *const IX509CertificateRevocationList, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_NullSigned(self: *const IX509CertificateRevocationList, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_NullSigned(self, pValue);
     }
     pub fn get_HashAlgorithm(self: *const IX509CertificateRevocationList, ppValue: ?*?*IObjectId) callconv(.@"inline") HRESULT {
@@ -11640,10 +11640,10 @@ pub const IX509CertificateRevocationList = extern union {
     pub fn put_HashAlgorithm(self: *const IX509CertificateRevocationList, pValue: ?*IObjectId) callconv(.@"inline") HRESULT {
         return self.vtable.put_HashAlgorithm(self, pValue);
     }
-    pub fn get_AlternateSignatureAlgorithm(self: *const IX509CertificateRevocationList, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AlternateSignatureAlgorithm(self: *const IX509CertificateRevocationList, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AlternateSignatureAlgorithm(self, pValue);
     }
-    pub fn put_AlternateSignatureAlgorithm(self: *const IX509CertificateRevocationList, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AlternateSignatureAlgorithm(self: *const IX509CertificateRevocationList, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AlternateSignatureAlgorithm(self, Value);
     }
     pub fn get_SignatureInformation(self: *const IX509CertificateRevocationList, ppValue: ?*?*IX509SignatureInformation) callconv(.@"inline") HRESULT {
@@ -11965,7 +11965,7 @@ pub const IX509EndorsementKey = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Opened: *const fn(
             self: *const IX509EndorsementKey,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         AddCertificate: *const fn(
             self: *const IX509EndorsementKey,
@@ -11979,14 +11979,14 @@ pub const IX509EndorsementKey = extern union {
         ) callconv(.winapi) HRESULT,
         GetCertificateByIndex: *const fn(
             self: *const IX509EndorsementKey,
-            ManufacturerOnly: i16,
+            ManufacturerOnly: VARIANT_BOOL,
             dwIndex: i32,
             Encoding: EncodingType,
             pValue: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         GetCertificateCount: *const fn(
             self: *const IX509EndorsementKey,
-            ManufacturerOnly: i16,
+            ManufacturerOnly: VARIANT_BOOL,
             pCount: ?*i32,
         ) callconv(.winapi) HRESULT,
         ExportPublicKey: *const fn(
@@ -12012,7 +12012,7 @@ pub const IX509EndorsementKey = extern union {
     pub fn get_Length(self: *const IX509EndorsementKey, pValue: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Length(self, pValue);
     }
-    pub fn get_Opened(self: *const IX509EndorsementKey, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Opened(self: *const IX509EndorsementKey, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Opened(self, pValue);
     }
     pub fn AddCertificate(self: *const IX509EndorsementKey, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.@"inline") HRESULT {
@@ -12021,10 +12021,10 @@ pub const IX509EndorsementKey = extern union {
     pub fn RemoveCertificate(self: *const IX509EndorsementKey, Encoding: EncodingType, strCertificate: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveCertificate(self, Encoding, strCertificate);
     }
-    pub fn GetCertificateByIndex(self: *const IX509EndorsementKey, ManufacturerOnly: i16, dwIndex: i32, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn GetCertificateByIndex(self: *const IX509EndorsementKey, ManufacturerOnly: VARIANT_BOOL, dwIndex: i32, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetCertificateByIndex(self, ManufacturerOnly, dwIndex, Encoding, pValue);
     }
-    pub fn GetCertificateCount(self: *const IX509EndorsementKey, ManufacturerOnly: i16, pCount: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn GetCertificateCount(self: *const IX509EndorsementKey, ManufacturerOnly: VARIANT_BOOL, pCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCertificateCount(self, ManufacturerOnly, pCount);
     }
     pub fn ExportPublicKey(self: *const IX509EndorsementKey, ppPublicKey: ?*?*IX509PublicKey) callconv(.@"inline") HRESULT {
@@ -12087,12 +12087,12 @@ pub const IX509Enrollment = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Silent: *const fn(
             self: *const IX509Enrollment,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Silent: *const fn(
             self: *const IX509Enrollment,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ParentWindow: *const fn(
@@ -12187,10 +12187,10 @@ pub const IX509Enrollment = extern union {
     pub fn get_Request(self: *const IX509Enrollment, pValue: ?*?*IX509CertificateRequest) callconv(.@"inline") HRESULT {
         return self.vtable.get_Request(self, pValue);
     }
-    pub fn get_Silent(self: *const IX509Enrollment, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Silent(self: *const IX509Enrollment, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Silent(self, pValue);
     }
-    pub fn put_Silent(self: *const IX509Enrollment, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Silent(self: *const IX509Enrollment, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Silent(self, Value);
     }
     pub fn get_ParentWindow(self: *const IX509Enrollment, pValue: ?*i32) callconv(.@"inline") HRESULT {
@@ -12357,7 +12357,7 @@ pub const IX509EnrollmentPolicyServer = extern union {
             bstrPolicyServerUrl: ?BSTR,
             bstrPolicyServerId: ?BSTR,
             authFlags: X509EnrollmentAuthFlags,
-            fIsUnTrusted: i16,
+            fIsUnTrusted: VARIANT_BOOL,
             context: X509CertificateEnrollmentContext,
         ) callconv(.winapi) HRESULT,
         LoadPolicy: *const fn(
@@ -12406,15 +12406,15 @@ pub const IX509EnrollmentPolicyServer = extern union {
         ) callconv(.winapi) HRESULT,
         GetIsDefaultCEP: *const fn(
             self: *const IX509EnrollmentPolicyServer,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetUseClientId: *const fn(
             self: *const IX509EnrollmentPolicyServer,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetAllowUnTrustedCA: *const fn(
             self: *const IX509EnrollmentPolicyServer,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetCachePath: *const fn(
             self: *const IX509EnrollmentPolicyServer,
@@ -12437,7 +12437,7 @@ pub const IX509EnrollmentPolicyServer = extern union {
         ) callconv(.winapi) HRESULT,
         QueryChanges: *const fn(
             self: *const IX509EnrollmentPolicyServer,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         InitializeImport: *const fn(
             self: *const IX509EnrollmentPolicyServer,
@@ -12462,7 +12462,7 @@ pub const IX509EnrollmentPolicyServer = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IX509EnrollmentPolicyServer, bstrPolicyServerUrl: ?BSTR, bstrPolicyServerId: ?BSTR, authFlags: X509EnrollmentAuthFlags, fIsUnTrusted: i16, context: X509CertificateEnrollmentContext) callconv(.@"inline") HRESULT {
+    pub fn Initialize(self: *const IX509EnrollmentPolicyServer, bstrPolicyServerUrl: ?BSTR, bstrPolicyServerId: ?BSTR, authFlags: X509EnrollmentAuthFlags, fIsUnTrusted: VARIANT_BOOL, context: X509CertificateEnrollmentContext) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, bstrPolicyServerUrl, bstrPolicyServerId, authFlags, fIsUnTrusted, context);
     }
     pub fn LoadPolicy(self: *const IX509EnrollmentPolicyServer, option: X509EnrollmentPolicyLoadOption) callconv(.@"inline") HRESULT {
@@ -12498,13 +12498,13 @@ pub const IX509EnrollmentPolicyServer = extern union {
     pub fn GetFriendlyName(self: *const IX509EnrollmentPolicyServer, pValue: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetFriendlyName(self, pValue);
     }
-    pub fn GetIsDefaultCEP(self: *const IX509EnrollmentPolicyServer, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn GetIsDefaultCEP(self: *const IX509EnrollmentPolicyServer, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetIsDefaultCEP(self, pValue);
     }
-    pub fn GetUseClientId(self: *const IX509EnrollmentPolicyServer, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn GetUseClientId(self: *const IX509EnrollmentPolicyServer, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetUseClientId(self, pValue);
     }
-    pub fn GetAllowUnTrustedCA(self: *const IX509EnrollmentPolicyServer, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn GetAllowUnTrustedCA(self: *const IX509EnrollmentPolicyServer, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetAllowUnTrustedCA(self, pValue);
     }
     pub fn GetCachePath(self: *const IX509EnrollmentPolicyServer, pValue: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -12519,7 +12519,7 @@ pub const IX509EnrollmentPolicyServer = extern union {
     pub fn SetCredential(self: *const IX509EnrollmentPolicyServer, hWndParent: i32, flag: X509EnrollmentAuthFlags, strCredential: ?BSTR, strPassword: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SetCredential(self, hWndParent, flag, strCredential, strPassword);
     }
-    pub fn QueryChanges(self: *const IX509EnrollmentPolicyServer, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn QueryChanges(self: *const IX509EnrollmentPolicyServer, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.QueryChanges(self, pValue);
     }
     pub fn InitializeImport(self: *const IX509EnrollmentPolicyServer, val: VARIANT) callconv(.@"inline") HRESULT {
@@ -12688,12 +12688,12 @@ pub const IX509Extension = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Critical: *const fn(
             self: *const IX509Extension,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Critical: *const fn(
             self: *const IX509Extension,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -12708,10 +12708,10 @@ pub const IX509Extension = extern union {
     pub fn get_RawData(self: *const IX509Extension, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_RawData(self, Encoding, pValue);
     }
-    pub fn get_Critical(self: *const IX509Extension, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Critical(self: *const IX509Extension, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Critical(self, pValue);
     }
-    pub fn put_Critical(self: *const IX509Extension, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Critical(self: *const IX509Extension, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Critical(self, Value);
     }
 };
@@ -12797,7 +12797,7 @@ pub const IX509ExtensionBasicConstraints = extern union {
         base: IX509Extension.VTable,
         InitializeEncode: *const fn(
             self: *const IX509ExtensionBasicConstraints,
-            IsCA: i16,
+            IsCA: VARIANT_BOOL,
             PathLenConstraint: i32,
         ) callconv(.winapi) HRESULT,
         InitializeDecode: *const fn(
@@ -12808,7 +12808,7 @@ pub const IX509ExtensionBasicConstraints = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsCA: *const fn(
             self: *const IX509ExtensionBasicConstraints,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PathLenConstraint: *const fn(
@@ -12820,13 +12820,13 @@ pub const IX509ExtensionBasicConstraints = extern union {
     IX509Extension: IX509Extension,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn InitializeEncode(self: *const IX509ExtensionBasicConstraints, IsCA: i16, PathLenConstraint: i32) callconv(.@"inline") HRESULT {
+    pub fn InitializeEncode(self: *const IX509ExtensionBasicConstraints, IsCA: VARIANT_BOOL, PathLenConstraint: i32) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeEncode(self, IsCA, PathLenConstraint);
     }
     pub fn InitializeDecode(self: *const IX509ExtensionBasicConstraints, Encoding: EncodingType, strEncodedData: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeDecode(self, Encoding, strEncodedData);
     }
-    pub fn get_IsCA(self: *const IX509ExtensionBasicConstraints, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsCA(self: *const IX509ExtensionBasicConstraints, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsCA(self, pValue);
     }
     pub fn get_PathLenConstraint(self: *const IX509ExtensionBasicConstraints, pValue: ?*i32) callconv(.@"inline") HRESULT {
@@ -13411,12 +13411,12 @@ pub const IX509PolicyServerUrl = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Default: *const fn(
             self: *const IX509PolicyServerUrl,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Default: *const fn(
             self: *const IX509PolicyServerUrl,
-            value: i16,
+            value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Flags: *const fn(
@@ -13479,10 +13479,10 @@ pub const IX509PolicyServerUrl = extern union {
     pub fn put_Url(self: *const IX509PolicyServerUrl, pValue: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Url(self, pValue);
     }
-    pub fn get_Default(self: *const IX509PolicyServerUrl, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Default(self: *const IX509PolicyServerUrl, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Default(self, pValue);
     }
-    pub fn put_Default(self: *const IX509PolicyServerUrl, value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Default(self: *const IX509PolicyServerUrl, value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Default(self, value);
     }
     pub fn get_Flags(self: *const IX509PolicyServerUrl, pValue: ?*PolicyServerUrlFlags) callconv(.@"inline") HRESULT {
@@ -13628,12 +13628,12 @@ pub const IX509PrivateKey = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LegacyCsp: *const fn(
             self: *const IX509PrivateKey,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LegacyCsp: *const fn(
             self: *const IX509PrivateKey,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Algorithm: *const fn(
@@ -13698,12 +13698,12 @@ pub const IX509PrivateKey = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MachineContext: *const fn(
             self: *const IX509PrivateKey,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MachineContext: *const fn(
             self: *const IX509PrivateKey,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SecurityDescriptor: *const fn(
@@ -13733,32 +13733,32 @@ pub const IX509PrivateKey = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Opened: *const fn(
             self: *const IX509PrivateKey,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DefaultContainer: *const fn(
             self: *const IX509PrivateKey,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Existing: *const fn(
             self: *const IX509PrivateKey,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Existing: *const fn(
             self: *const IX509PrivateKey,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Silent: *const fn(
             self: *const IX509PrivateKey,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Silent: *const fn(
             self: *const IX509PrivateKey,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ParentWindow: *const fn(
@@ -13875,10 +13875,10 @@ pub const IX509PrivateKey = extern union {
     pub fn put_ProviderType(self: *const IX509PrivateKey, Value: X509ProviderType) callconv(.@"inline") HRESULT {
         return self.vtable.put_ProviderType(self, Value);
     }
-    pub fn get_LegacyCsp(self: *const IX509PrivateKey, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_LegacyCsp(self: *const IX509PrivateKey, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_LegacyCsp(self, pValue);
     }
-    pub fn put_LegacyCsp(self: *const IX509PrivateKey, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_LegacyCsp(self: *const IX509PrivateKey, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_LegacyCsp(self, Value);
     }
     pub fn get_Algorithm(self: *const IX509PrivateKey, ppValue: ?*?*IObjectId) callconv(.@"inline") HRESULT {
@@ -13917,10 +13917,10 @@ pub const IX509PrivateKey = extern union {
     pub fn put_KeyProtection(self: *const IX509PrivateKey, Value: X509PrivateKeyProtection) callconv(.@"inline") HRESULT {
         return self.vtable.put_KeyProtection(self, Value);
     }
-    pub fn get_MachineContext(self: *const IX509PrivateKey, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_MachineContext(self: *const IX509PrivateKey, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_MachineContext(self, pValue);
     }
-    pub fn put_MachineContext(self: *const IX509PrivateKey, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_MachineContext(self: *const IX509PrivateKey, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_MachineContext(self, Value);
     }
     pub fn get_SecurityDescriptor(self: *const IX509PrivateKey, pValue: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -13938,22 +13938,22 @@ pub const IX509PrivateKey = extern union {
     pub fn get_UniqueContainerName(self: *const IX509PrivateKey, pValue: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_UniqueContainerName(self, pValue);
     }
-    pub fn get_Opened(self: *const IX509PrivateKey, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Opened(self: *const IX509PrivateKey, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Opened(self, pValue);
     }
-    pub fn get_DefaultContainer(self: *const IX509PrivateKey, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_DefaultContainer(self: *const IX509PrivateKey, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_DefaultContainer(self, pValue);
     }
-    pub fn get_Existing(self: *const IX509PrivateKey, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Existing(self: *const IX509PrivateKey, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Existing(self, pValue);
     }
-    pub fn put_Existing(self: *const IX509PrivateKey, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Existing(self: *const IX509PrivateKey, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Existing(self, Value);
     }
-    pub fn get_Silent(self: *const IX509PrivateKey, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Silent(self: *const IX509PrivateKey, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Silent(self, pValue);
     }
-    pub fn put_Silent(self: *const IX509PrivateKey, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Silent(self: *const IX509PrivateKey, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Silent(self, Value);
     }
     pub fn get_ParentWindow(self: *const IX509PrivateKey, pValue: ?*i32) callconv(.@"inline") HRESULT {
@@ -14259,12 +14259,12 @@ pub const IX509SCEPEnrollment = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Silent: *const fn(
             self: *const IX509SCEPEnrollment,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Silent: *const fn(
             self: *const IX509SCEPEnrollment,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         DeleteRequest: *const fn(
             self: *const IX509SCEPEnrollment,
@@ -14330,10 +14330,10 @@ pub const IX509SCEPEnrollment = extern union {
     pub fn get_Certificate(self: *const IX509SCEPEnrollment, Encoding: EncodingType, pValue: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Certificate(self, Encoding, pValue);
     }
-    pub fn get_Silent(self: *const IX509SCEPEnrollment, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Silent(self: *const IX509SCEPEnrollment, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Silent(self, pValue);
     }
-    pub fn put_Silent(self: *const IX509SCEPEnrollment, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Silent(self: *const IX509SCEPEnrollment, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Silent(self, Value);
     }
     pub fn DeleteRequest(self: *const IX509SCEPEnrollment) callconv(.@"inline") HRESULT {
@@ -14505,32 +14505,32 @@ pub const IX509SignatureInformation = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AlternateSignatureAlgorithm: *const fn(
             self: *const IX509SignatureInformation,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AlternateSignatureAlgorithm: *const fn(
             self: *const IX509SignatureInformation,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AlternateSignatureAlgorithmSet: *const fn(
             self: *const IX509SignatureInformation,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NullSigned: *const fn(
             self: *const IX509SignatureInformation,
-            pValue: ?*i16,
+            pValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NullSigned: *const fn(
             self: *const IX509SignatureInformation,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetSignatureAlgorithm: *const fn(
             self: *const IX509SignatureInformation,
-            Pkcs7Signature: i16,
-            SignatureKey: i16,
+            Pkcs7Signature: VARIANT_BOOL,
+            SignatureKey: VARIANT_BOOL,
             ppValue: ?*?*IObjectId,
         ) callconv(.winapi) HRESULT,
         SetDefaultValues: *const fn(
@@ -14558,22 +14558,22 @@ pub const IX509SignatureInformation = extern union {
     pub fn put_Parameters(self: *const IX509SignatureInformation, Encoding: EncodingType, Value: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Parameters(self, Encoding, Value);
     }
-    pub fn get_AlternateSignatureAlgorithm(self: *const IX509SignatureInformation, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AlternateSignatureAlgorithm(self: *const IX509SignatureInformation, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AlternateSignatureAlgorithm(self, pValue);
     }
-    pub fn put_AlternateSignatureAlgorithm(self: *const IX509SignatureInformation, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AlternateSignatureAlgorithm(self: *const IX509SignatureInformation, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AlternateSignatureAlgorithm(self, Value);
     }
-    pub fn get_AlternateSignatureAlgorithmSet(self: *const IX509SignatureInformation, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AlternateSignatureAlgorithmSet(self: *const IX509SignatureInformation, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AlternateSignatureAlgorithmSet(self, pValue);
     }
-    pub fn get_NullSigned(self: *const IX509SignatureInformation, pValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_NullSigned(self: *const IX509SignatureInformation, pValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_NullSigned(self, pValue);
     }
-    pub fn put_NullSigned(self: *const IX509SignatureInformation, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_NullSigned(self: *const IX509SignatureInformation, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_NullSigned(self, Value);
     }
-    pub fn GetSignatureAlgorithm(self: *const IX509SignatureInformation, Pkcs7Signature: i16, SignatureKey: i16, ppValue: ?*?*IObjectId) callconv(.@"inline") HRESULT {
+    pub fn GetSignatureAlgorithm(self: *const IX509SignatureInformation, Pkcs7Signature: VARIANT_BOOL, SignatureKey: VARIANT_BOOL, ppValue: ?*?*IObjectId) callconv(.@"inline") HRESULT {
         return self.vtable.GetSignatureAlgorithm(self, Pkcs7Signature, SignatureKey, ppValue);
     }
     pub fn SetDefaultValues(self: *const IX509SignatureInformation) callconv(.@"inline") HRESULT {
@@ -15475,7 +15475,7 @@ pub extern "certpoleng" fn PstValidate(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (23)
+// Section: Imports (24)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -15487,7 +15487,7 @@ const CERT_RDN_ATTR_VALUE_TYPE = @import("../../security/cryptography.zig").CERT
 const CERT_SELECT_CRITERIA = @import("../../security/cryptography.zig").CERT_SELECT_CRITERIA;
 const CERT_USAGE_MATCH = @import("../../security/cryptography.zig").CERT_USAGE_MATCH;
 const CRYPT_ATTRIBUTES = @import("../../security/cryptography.zig").CRYPT_ATTRIBUTES;
-const CRYPTOAPI_BLOB = @import("../../security/cryptography.zig").CRYPTOAPI_BLOB;
+const CRYPT_INTEGER_BLOB = @import("../../security/cryptography.zig").CRYPT_INTEGER_BLOB;
 const HCERTSTORE = @import("../../security/cryptography.zig").HCERTSTORE;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const HWND = @import("../../foundation.zig").HWND;
@@ -15500,6 +15500,7 @@ const PWSTR = @import("../../foundation.zig").PWSTR;
 const SecPkgContext_IssuerListInfoEx = @import("../../security/authentication/identity.zig").SecPkgContext_IssuerListInfoEx;
 const UNICODE_STRING = @import("../../foundation.zig").UNICODE_STRING;
 const VARIANT = @import("../../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../../foundation.zig").VARIANT_BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -221,7 +221,7 @@ pub const IWdsTransportCacheable = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Dirty: *const fn(
             self: *const IWdsTransportCacheable,
-            pbDirty: ?*i16,
+            pbDirty: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Discard: *const fn(
             self: *const IWdsTransportCacheable,
@@ -236,7 +236,7 @@ pub const IWdsTransportCacheable = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Dirty(self: *const IWdsTransportCacheable, pbDirty: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Dirty(self: *const IWdsTransportCacheable, pbDirty: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Dirty(self, pbDirty);
     }
     pub fn Discard(self: *const IWdsTransportCacheable) callconv(.@"inline") HRESULT {
@@ -411,8 +411,8 @@ pub const IWdsTransportConfigurationManager = extern union {
         ) callconv(.winapi) HRESULT,
         get_WdsTransportServicesRunning: *const fn(
             self: *const IWdsTransportConfigurationManager,
-            bRealtimeStatus: i16,
-            pbServicesRunning: ?*i16,
+            bRealtimeStatus: VARIANT_BOOL,
+            pbServicesRunning: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         EnableWdsTransportServices: *const fn(
             self: *const IWdsTransportConfigurationManager,
@@ -443,7 +443,7 @@ pub const IWdsTransportConfigurationManager = extern union {
     pub fn get_DiagnosticsPolicy(self: *const IWdsTransportConfigurationManager, ppWdsTransportDiagnosticsPolicy: ?*?*IWdsTransportDiagnosticsPolicy) callconv(.@"inline") HRESULT {
         return self.vtable.get_DiagnosticsPolicy(self, ppWdsTransportDiagnosticsPolicy);
     }
-    pub fn get_WdsTransportServicesRunning(self: *const IWdsTransportConfigurationManager, bRealtimeStatus: i16, pbServicesRunning: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_WdsTransportServicesRunning(self: *const IWdsTransportConfigurationManager, bRealtimeStatus: VARIANT_BOOL, pbServicesRunning: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_WdsTransportServicesRunning(self, bRealtimeStatus, pbServicesRunning);
     }
     pub fn EnableWdsTransportServices(self: *const IWdsTransportConfigurationManager) callconv(.@"inline") HRESULT {
@@ -589,12 +589,12 @@ pub const IWdsTransportDiagnosticsPolicy = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IWdsTransportDiagnosticsPolicy,
-            pbEnabled: ?*i16,
+            pbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IWdsTransportDiagnosticsPolicy,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Components: *const fn(
@@ -611,10 +611,10 @@ pub const IWdsTransportDiagnosticsPolicy = extern union {
     IWdsTransportCacheable: IWdsTransportCacheable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Enabled(self: *const IWdsTransportDiagnosticsPolicy, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const IWdsTransportDiagnosticsPolicy, pbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, pbEnabled);
     }
-    pub fn put_Enabled(self: *const IWdsTransportDiagnosticsPolicy, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Enabled(self: *const IWdsTransportDiagnosticsPolicy, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, bEnabled);
     }
     pub fn get_Components(self: *const IWdsTransportDiagnosticsPolicy, pulComponents: ?*u32) callconv(.@"inline") HRESULT {
@@ -684,12 +684,12 @@ pub const IWdsTransportMulticastSessionPolicy = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SlowClientFallback: *const fn(
             self: *const IWdsTransportMulticastSessionPolicy,
-            pbClientFallback: ?*i16,
+            pbClientFallback: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SlowClientFallback: *const fn(
             self: *const IWdsTransportMulticastSessionPolicy,
-            bClientFallback: i16,
+            bClientFallback: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -714,10 +714,10 @@ pub const IWdsTransportMulticastSessionPolicy = extern union {
     pub fn put_MultistreamStreamCount(self: *const IWdsTransportMulticastSessionPolicy, ulStreamCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.put_MultistreamStreamCount(self, ulStreamCount);
     }
-    pub fn get_SlowClientFallback(self: *const IWdsTransportMulticastSessionPolicy, pbClientFallback: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SlowClientFallback(self: *const IWdsTransportMulticastSessionPolicy, pbClientFallback: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SlowClientFallback(self, pbClientFallback);
     }
-    pub fn put_SlowClientFallback(self: *const IWdsTransportMulticastSessionPolicy, bClientFallback: i16) callconv(.@"inline") HRESULT {
+    pub fn put_SlowClientFallback(self: *const IWdsTransportMulticastSessionPolicy, bClientFallback: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_SlowClientFallback(self, bClientFallback);
     }
 };
@@ -791,12 +791,12 @@ pub const IWdsTransportNamespace = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Registered: *const fn(
             self: *const IWdsTransportNamespace,
-            pbRegistered: ?*i16,
+            pbRegistered: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Tombstoned: *const fn(
             self: *const IWdsTransportNamespace,
-            pbTombstoned: ?*i16,
+            pbTombstoned: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TombstoneTime: *const fn(
@@ -806,14 +806,14 @@ pub const IWdsTransportNamespace = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TransmissionStarted: *const fn(
             self: *const IWdsTransportNamespace,
-            pbTransmissionStarted: ?*i16,
+            pbTransmissionStarted: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Register: *const fn(
             self: *const IWdsTransportNamespace,
         ) callconv(.winapi) HRESULT,
         Deregister: *const fn(
             self: *const IWdsTransportNamespace,
-            bTerminateSessions: i16,
+            bTerminateSessions: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IWdsTransportNamespace,
@@ -866,22 +866,22 @@ pub const IWdsTransportNamespace = extern union {
     pub fn put_Configuration(self: *const IWdsTransportNamespace, bszConfiguration: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Configuration(self, bszConfiguration);
     }
-    pub fn get_Registered(self: *const IWdsTransportNamespace, pbRegistered: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Registered(self: *const IWdsTransportNamespace, pbRegistered: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Registered(self, pbRegistered);
     }
-    pub fn get_Tombstoned(self: *const IWdsTransportNamespace, pbTombstoned: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Tombstoned(self: *const IWdsTransportNamespace, pbTombstoned: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Tombstoned(self, pbTombstoned);
     }
     pub fn get_TombstoneTime(self: *const IWdsTransportNamespace, pTombstoneTime: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.get_TombstoneTime(self, pTombstoneTime);
     }
-    pub fn get_TransmissionStarted(self: *const IWdsTransportNamespace, pbTransmissionStarted: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_TransmissionStarted(self: *const IWdsTransportNamespace, pbTransmissionStarted: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_TransmissionStarted(self, pbTransmissionStarted);
     }
     pub fn Register(self: *const IWdsTransportNamespace) callconv(.@"inline") HRESULT {
         return self.vtable.Register(self);
     }
-    pub fn Deregister(self: *const IWdsTransportNamespace, bTerminateSessions: i16) callconv(.@"inline") HRESULT {
+    pub fn Deregister(self: *const IWdsTransportNamespace, bTerminateSessions: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Deregister(self, bTerminateSessions);
     }
     pub fn Clone(self: *const IWdsTransportNamespace, ppWdsTransportNamespaceClone: ?*?*IWdsTransportNamespace) callconv(.@"inline") HRESULT {
@@ -931,7 +931,7 @@ pub const IWdsTransportNamespaceManager = extern union {
             self: *const IWdsTransportNamespaceManager,
             bszContentProvider: ?BSTR,
             bszNamespaceName: ?BSTR,
-            bIncludeTombstones: i16,
+            bIncludeTombstones: VARIANT_BOOL,
             ppWdsTransportNamespaces: ?*?*IWdsTransportCollection,
         ) callconv(.winapi) HRESULT,
     };
@@ -944,7 +944,7 @@ pub const IWdsTransportNamespaceManager = extern union {
     pub fn RetrieveNamespace(self: *const IWdsTransportNamespaceManager, bszNamespaceName: ?BSTR, ppWdsTransportNamespace: ?*?*IWdsTransportNamespace) callconv(.@"inline") HRESULT {
         return self.vtable.RetrieveNamespace(self, bszNamespaceName, ppWdsTransportNamespace);
     }
-    pub fn RetrieveNamespaces(self: *const IWdsTransportNamespaceManager, bszContentProvider: ?BSTR, bszNamespaceName: ?BSTR, bIncludeTombstones: i16, ppWdsTransportNamespaces: ?*?*IWdsTransportCollection) callconv(.@"inline") HRESULT {
+    pub fn RetrieveNamespaces(self: *const IWdsTransportNamespaceManager, bszContentProvider: ?BSTR, bszNamespaceName: ?BSTR, bIncludeTombstones: VARIANT_BOOL, ppWdsTransportNamespaces: ?*?*IWdsTransportCollection) callconv(.@"inline") HRESULT {
         return self.vtable.RetrieveNamespaces(self, bszContentProvider, bszNamespaceName, bIncludeTombstones, ppWdsTransportNamespaces);
     }
 };
@@ -1239,12 +1239,12 @@ pub const IWdsTransportServicePolicy2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableTftpVariableWindowExtension: *const fn(
             self: *const IWdsTransportServicePolicy2,
-            pbEnableTftpVariableWindowExtension: ?*i16,
+            pbEnableTftpVariableWindowExtension: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableTftpVariableWindowExtension: *const fn(
             self: *const IWdsTransportServicePolicy2,
-            bEnableTftpVariableWindowExtension: i16,
+            bEnableTftpVariableWindowExtension: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1264,10 +1264,10 @@ pub const IWdsTransportServicePolicy2 = extern union {
     pub fn put_TftpMaximumBlockSize(self: *const IWdsTransportServicePolicy2, ulTftpMaximumBlockSize: u32) callconv(.@"inline") HRESULT {
         return self.vtable.put_TftpMaximumBlockSize(self, ulTftpMaximumBlockSize);
     }
-    pub fn get_EnableTftpVariableWindowExtension(self: *const IWdsTransportServicePolicy2, pbEnableTftpVariableWindowExtension: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_EnableTftpVariableWindowExtension(self: *const IWdsTransportServicePolicy2, pbEnableTftpVariableWindowExtension: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnableTftpVariableWindowExtension(self, pbEnableTftpVariableWindowExtension);
     }
-    pub fn put_EnableTftpVariableWindowExtension(self: *const IWdsTransportServicePolicy2, bEnableTftpVariableWindowExtension: i16) callconv(.@"inline") HRESULT {
+    pub fn put_EnableTftpVariableWindowExtension(self: *const IWdsTransportServicePolicy2, bEnableTftpVariableWindowExtension: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_EnableTftpVariableWindowExtension(self, bEnableTftpVariableWindowExtension);
     }
 };
@@ -2649,7 +2649,7 @@ pub extern "wdsmc" fn WdsTransportServerTraceV(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (13)
+// Section: Imports (14)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -2663,6 +2663,7 @@ const LPARAM = @import("../foundation.zig").LPARAM;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {

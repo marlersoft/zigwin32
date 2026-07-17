@@ -1451,7 +1451,7 @@ pub const IMsmMerge = extern union {
         ) callconv(.winapi) HRESULT,
         CloseDatabase: *const fn(
             self: *const IMsmMerge,
-            Commit: i16,
+            Commit: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         CloseModule: *const fn(
             self: *const IMsmMerge,
@@ -1504,7 +1504,7 @@ pub const IMsmMerge = extern union {
     pub fn OpenModule(self: *const IMsmMerge, Path: ?BSTR, Language: i16) callconv(.@"inline") HRESULT {
         return self.vtable.OpenModule(self, Path, Language);
     }
-    pub fn CloseDatabase(self: *const IMsmMerge, Commit: i16) callconv(.@"inline") HRESULT {
+    pub fn CloseDatabase(self: *const IMsmMerge, Commit: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CloseDatabase(self, Commit);
     }
     pub fn CloseModule(self: *const IMsmMerge) callconv(.@"inline") HRESULT {
@@ -8974,7 +8974,7 @@ pub const TestApplyPatchToFile = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (19)
+// Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA = @import("../system/windows_programming.zig").ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA;
@@ -8995,6 +8995,7 @@ const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

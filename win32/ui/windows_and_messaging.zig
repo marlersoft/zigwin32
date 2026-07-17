@@ -1322,7 +1322,7 @@ pub const WVR_VALIDRECTS = @as(u32, 1024);
 pub const WVR_VREDRAW = @as(u32, 512);
 
 //--------------------------------------------------------------------------------
-// Section: Types (155)
+// Section: Types (156)
 //--------------------------------------------------------------------------------
 pub const ACCEL = extern struct {
     fVirt: ACCEL_VIRT_FLAGS,
@@ -1942,6 +1942,9 @@ pub const HARDWAREHOOKSTRUCT = extern struct {
 //      convertible to 'HICON' but not the other way around.  I don't know how to do this
 //      in Zig so for now I'm just defining it as an alias
 pub const HCURSOR = HICON;
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HDWP = isize;
 
 // TODO: this type has a FreeFunc 'UnhookWindowsHookEx', what can Zig do with this information?
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
@@ -5791,7 +5794,7 @@ pub extern "user32" fn ArrangeIconicWindows(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn BeginDeferWindowPos(
     nNumWindows: i32,
-) callconv(.winapi) isize;
+) callconv(.winapi) HDWP;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn BringWindowToTop(
@@ -6257,7 +6260,7 @@ pub extern "user32" fn DefDlgProcW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DeferWindowPos(
-    hWinPosInfo: isize,
+    hWinPosInfo: HDWP,
     hWnd: ?HWND,
     hWndInsertAfter: ?HWND,
     x: i32,
@@ -6265,7 +6268,7 @@ pub extern "user32" fn DeferWindowPos(
     cx: i32,
     cy: i32,
     uFlags: SET_WINDOW_POS_FLAGS,
-) callconv(.winapi) isize;
+) callconv(.winapi) HDWP;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DefFrameProcA(
@@ -6463,7 +6466,7 @@ pub extern "user32" fn EnableMenuItem(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EndDeferWindowPos(
-    hWinPosInfo: isize,
+    hWinPosInfo: HDWP,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'

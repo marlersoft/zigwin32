@@ -13267,7 +13267,7 @@ pub const ICanvasRenderingContext2D = extern union {
             self: *const ICanvasRenderingContext2D,
             x: f32,
             y: f32,
-            pResult: ?*i16,
+            pResult: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_font: *const fn(
@@ -13508,7 +13508,7 @@ pub const ICanvasRenderingContext2D = extern union {
     pub fn stroke(self: *const ICanvasRenderingContext2D) callconv(.@"inline") HRESULT {
         return self.vtable.stroke(self);
     }
-    pub fn isPointInPath(self: *const ICanvasRenderingContext2D, x: f32, y: f32, pResult: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isPointInPath(self: *const ICanvasRenderingContext2D, x: f32, y: f32, pResult: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isPointInPath(self, x, y, pResult);
     }
     pub fn put_font(self: *const ICanvasRenderingContext2D, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -13618,12 +13618,12 @@ pub const IClientCaps = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_javaEnabled: *const fn(
             self: *const IClientCaps,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_cookieEnabled: *const fn(
             self: *const IClientCaps,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_cpuClass: *const fn(
@@ -13653,7 +13653,7 @@ pub const IClientCaps = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_onLine: *const fn(
             self: *const IClientCaps,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_colorDepth: *const fn(
@@ -13695,7 +13695,7 @@ pub const IClientCaps = extern union {
             bstrName: ?BSTR,
             bstrUrl: ?BSTR,
             bStrVer: ?BSTR,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getComponentVersion: *const fn(
             self: *const IClientCaps,
@@ -13717,7 +13717,7 @@ pub const IClientCaps = extern union {
         ) callconv(.winapi) HRESULT,
         doComponentRequest: *const fn(
             self: *const IClientCaps,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         clearComponentRequest: *const fn(
             self: *const IClientCaps,
@@ -13726,10 +13726,10 @@ pub const IClientCaps = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_javaEnabled(self: *const IClientCaps, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_javaEnabled(self: *const IClientCaps, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_javaEnabled(self, p);
     }
-    pub fn get_cookieEnabled(self: *const IClientCaps, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_cookieEnabled(self: *const IClientCaps, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_cookieEnabled(self, p);
     }
     pub fn get_cpuClass(self: *const IClientCaps, p: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -13747,7 +13747,7 @@ pub const IClientCaps = extern union {
     pub fn get_connectionSpeed(self: *const IClientCaps, p: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_connectionSpeed(self, p);
     }
-    pub fn get_onLine(self: *const IClientCaps, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_onLine(self: *const IClientCaps, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_onLine(self, p);
     }
     pub fn get_colorDepth(self: *const IClientCaps, p: ?*i32) callconv(.@"inline") HRESULT {
@@ -13771,7 +13771,7 @@ pub const IClientCaps = extern union {
     pub fn get_connectionType(self: *const IClientCaps, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_connectionType(self, p);
     }
-    pub fn isComponentInstalled(self: *const IClientCaps, bstrName: ?BSTR, bstrUrl: ?BSTR, bStrVer: ?BSTR, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isComponentInstalled(self: *const IClientCaps, bstrName: ?BSTR, bstrUrl: ?BSTR, bStrVer: ?BSTR, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isComponentInstalled(self, bstrName, bstrUrl, bStrVer, p);
     }
     pub fn getComponentVersion(self: *const IClientCaps, bstrName: ?BSTR, bstrUrl: ?BSTR, pbstrVer: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -13783,7 +13783,7 @@ pub const IClientCaps = extern union {
     pub fn addComponentRequest(self: *const IClientCaps, bstrName: ?BSTR, bstrUrl: ?BSTR, bStrVer: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.addComponentRequest(self, bstrName, bstrUrl, bStrVer);
     }
-    pub fn doComponentRequest(self: *const IClientCaps, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn doComponentRequest(self: *const IClientCaps, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.doComponentRequest(self, p);
     }
     pub fn clearComponentRequest(self: *const IClientCaps) callconv(.@"inline") HRESULT {
@@ -14671,7 +14671,7 @@ pub const IDocumentTraversal = extern union {
             pRootNode: ?*IDispatch,
             ulWhatToShow: i32,
             pFilter: ?*VARIANT,
-            fEntityReferenceExpansion: i16,
+            fEntityReferenceExpansion: VARIANT_BOOL,
             ppNodeIterator: ?*?*IDOMNodeIterator,
         ) callconv(.winapi) HRESULT,
         createTreeWalker: *const fn(
@@ -14679,17 +14679,17 @@ pub const IDocumentTraversal = extern union {
             pRootNode: ?*IDispatch,
             ulWhatToShow: i32,
             pFilter: ?*VARIANT,
-            fEntityReferenceExpansion: i16,
+            fEntityReferenceExpansion: VARIANT_BOOL,
             ppTreeWalker: ?*?*IDOMTreeWalker,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn createNodeIterator(self: *const IDocumentTraversal, pRootNode: ?*IDispatch, ulWhatToShow: i32, pFilter: ?*VARIANT, fEntityReferenceExpansion: i16, ppNodeIterator: ?*?*IDOMNodeIterator) callconv(.@"inline") HRESULT {
+    pub fn createNodeIterator(self: *const IDocumentTraversal, pRootNode: ?*IDispatch, ulWhatToShow: i32, pFilter: ?*VARIANT, fEntityReferenceExpansion: VARIANT_BOOL, ppNodeIterator: ?*?*IDOMNodeIterator) callconv(.@"inline") HRESULT {
         return self.vtable.createNodeIterator(self, pRootNode, ulWhatToShow, pFilter, fEntityReferenceExpansion, ppNodeIterator);
     }
-    pub fn createTreeWalker(self: *const IDocumentTraversal, pRootNode: ?*IDispatch, ulWhatToShow: i32, pFilter: ?*VARIANT, fEntityReferenceExpansion: i16, ppTreeWalker: ?*?*IDOMTreeWalker) callconv(.@"inline") HRESULT {
+    pub fn createTreeWalker(self: *const IDocumentTraversal, pRootNode: ?*IDispatch, ulWhatToShow: i32, pFilter: ?*VARIANT, fEntityReferenceExpansion: VARIANT_BOOL, ppTreeWalker: ?*?*IDOMTreeWalker) callconv(.@"inline") HRESULT {
         return self.vtable.createTreeWalker(self, pRootNode, ulWhatToShow, pFilter, fEntityReferenceExpansion, ppTreeWalker);
     }
 };
@@ -14729,14 +14729,14 @@ pub const IDOMCloseEvent = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_wasClean: *const fn(
             self: *const IDOMCloseEvent,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         initCloseEvent: *const fn(
             self: *const IDOMCloseEvent,
             eventType: ?BSTR,
-            canBubble: i16,
-            cancelable: i16,
-            wasClean: i16,
+            canBubble: VARIANT_BOOL,
+            cancelable: VARIANT_BOOL,
+            wasClean: VARIANT_BOOL,
             code: i32,
             reason: ?BSTR,
         ) callconv(.winapi) HRESULT,
@@ -14744,10 +14744,10 @@ pub const IDOMCloseEvent = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_wasClean(self: *const IDOMCloseEvent, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_wasClean(self: *const IDOMCloseEvent, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_wasClean(self, p);
     }
-    pub fn initCloseEvent(self: *const IDOMCloseEvent, eventType: ?BSTR, canBubble: i16, cancelable: i16, wasClean: i16, code: i32, reason: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn initCloseEvent(self: *const IDOMCloseEvent, eventType: ?BSTR, canBubble: VARIANT_BOOL, cancelable: VARIANT_BOOL, wasClean: VARIANT_BOOL, code: i32, reason: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.initCloseEvent(self, eventType, canBubble, cancelable, wasClean, code, reason);
     }
 };
@@ -14765,8 +14765,8 @@ pub const IDOMCompositionEvent = extern union {
         initCompositionEvent: *const fn(
             self: *const IDOMCompositionEvent,
             eventType: ?BSTR,
-            canBubble: i16,
-            cancelable: i16,
+            canBubble: VARIANT_BOOL,
+            cancelable: VARIANT_BOOL,
             viewArg: ?*IHTMLWindow2,
             data: ?BSTR,
             locale: ?BSTR,
@@ -14783,7 +14783,7 @@ pub const IDOMCompositionEvent = extern union {
     pub fn get_data(self: *const IDOMCompositionEvent, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_data(self, p);
     }
-    pub fn initCompositionEvent(self: *const IDOMCompositionEvent, eventType: ?BSTR, canBubble: i16, cancelable: i16, viewArg: ?*IHTMLWindow2, data: ?BSTR, locale: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn initCompositionEvent(self: *const IDOMCompositionEvent, eventType: ?BSTR, canBubble: VARIANT_BOOL, cancelable: VARIANT_BOOL, viewArg: ?*IHTMLWindow2, data: ?BSTR, locale: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.initCompositionEvent(self, eventType, canBubble, cancelable, viewArg, data, locale);
     }
     pub fn get_locale(self: *const IDOMCompositionEvent, p: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -14804,8 +14804,8 @@ pub const IDOMCustomEvent = extern union {
         initCustomEvent: *const fn(
             self: *const IDOMCustomEvent,
             eventType: ?BSTR,
-            canBubble: i16,
-            cancelable: i16,
+            canBubble: VARIANT_BOOL,
+            cancelable: VARIANT_BOOL,
             detail: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
     };
@@ -14815,7 +14815,7 @@ pub const IDOMCustomEvent = extern union {
     pub fn get_detail(self: *const IDOMCustomEvent, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_detail(self, p);
     }
-    pub fn initCustomEvent(self: *const IDOMCustomEvent, eventType: ?BSTR, canBubble: i16, cancelable: i16, detail: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn initCustomEvent(self: *const IDOMCustomEvent, eventType: ?BSTR, canBubble: VARIANT_BOOL, cancelable: VARIANT_BOOL, detail: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.initCustomEvent(self, eventType, canBubble, cancelable, detail);
     }
 };
@@ -14892,18 +14892,18 @@ pub const IDOMDragEvent = extern union {
         initDragEvent: *const fn(
             self: *const IDOMDragEvent,
             eventType: ?BSTR,
-            canBubble: i16,
-            cancelable: i16,
+            canBubble: VARIANT_BOOL,
+            cancelable: VARIANT_BOOL,
             viewArg: ?*IHTMLWindow2,
             detailArg: i32,
             screenXArg: i32,
             screenYArg: i32,
             clientXArg: i32,
             clientYArg: i32,
-            ctrlKeyArg: i16,
-            altKeyArg: i16,
-            shiftKeyArg: i16,
-            metaKeyArg: i16,
+            ctrlKeyArg: VARIANT_BOOL,
+            altKeyArg: VARIANT_BOOL,
+            shiftKeyArg: VARIANT_BOOL,
+            metaKeyArg: VARIANT_BOOL,
             buttonArg: u16,
             relatedTargetArg: ?*IEventTarget,
             dataTransferArg: ?*IHTMLDataTransfer,
@@ -14915,7 +14915,7 @@ pub const IDOMDragEvent = extern union {
     pub fn get_dataTransfer(self: *const IDOMDragEvent, p: ?*?*IHTMLDataTransfer) callconv(.@"inline") HRESULT {
         return self.vtable.get_dataTransfer(self, p);
     }
-    pub fn initDragEvent(self: *const IDOMDragEvent, eventType: ?BSTR, canBubble: i16, cancelable: i16, viewArg: ?*IHTMLWindow2, detailArg: i32, screenXArg: i32, screenYArg: i32, clientXArg: i32, clientYArg: i32, ctrlKeyArg: i16, altKeyArg: i16, shiftKeyArg: i16, metaKeyArg: i16, buttonArg: u16, relatedTargetArg: ?*IEventTarget, dataTransferArg: ?*IHTMLDataTransfer) callconv(.@"inline") HRESULT {
+    pub fn initDragEvent(self: *const IDOMDragEvent, eventType: ?BSTR, canBubble: VARIANT_BOOL, cancelable: VARIANT_BOOL, viewArg: ?*IHTMLWindow2, detailArg: i32, screenXArg: i32, screenYArg: i32, clientXArg: i32, clientYArg: i32, ctrlKeyArg: VARIANT_BOOL, altKeyArg: VARIANT_BOOL, shiftKeyArg: VARIANT_BOOL, metaKeyArg: VARIANT_BOOL, buttonArg: u16, relatedTargetArg: ?*IEventTarget, dataTransferArg: ?*IHTMLDataTransfer) callconv(.@"inline") HRESULT {
         return self.vtable.initDragEvent(self, eventType, canBubble, cancelable, viewArg, detailArg, screenXArg, screenYArg, clientXArg, clientYArg, ctrlKeyArg, altKeyArg, shiftKeyArg, metaKeyArg, buttonArg, relatedTargetArg, dataTransferArg);
     }
 };
@@ -14928,12 +14928,12 @@ pub const IDOMEvent = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_bubbles: *const fn(
             self: *const IDOMEvent,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_cancelable: *const fn(
             self: *const IDOMEvent,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_currentTarget: *const fn(
@@ -14943,7 +14943,7 @@ pub const IDOMEvent = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_defaultPrevented: *const fn(
             self: *const IDOMEvent,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_eventPhase: *const fn(
@@ -14968,8 +14968,8 @@ pub const IDOMEvent = extern union {
         initEvent: *const fn(
             self: *const IDOMEvent,
             eventType: ?BSTR,
-            canBubble: i16,
-            cancelable: i16,
+            canBubble: VARIANT_BOOL,
+            cancelable: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         preventDefault: *const fn(
             self: *const IDOMEvent,
@@ -14983,17 +14983,17 @@ pub const IDOMEvent = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isTrusted: *const fn(
             self: *const IDOMEvent,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_cancelBubble: *const fn(
             self: *const IDOMEvent,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_cancelBubble: *const fn(
             self: *const IDOMEvent,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_srcElement: *const fn(
@@ -15004,16 +15004,16 @@ pub const IDOMEvent = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_bubbles(self: *const IDOMEvent, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_bubbles(self: *const IDOMEvent, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_bubbles(self, p);
     }
-    pub fn get_cancelable(self: *const IDOMEvent, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_cancelable(self: *const IDOMEvent, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_cancelable(self, p);
     }
     pub fn get_currentTarget(self: *const IDOMEvent, p: ?*?*IEventTarget) callconv(.@"inline") HRESULT {
         return self.vtable.get_currentTarget(self, p);
     }
-    pub fn get_defaultPrevented(self: *const IDOMEvent, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_defaultPrevented(self: *const IDOMEvent, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_defaultPrevented(self, p);
     }
     pub fn get_eventPhase(self: *const IDOMEvent, p: ?*u16) callconv(.@"inline") HRESULT {
@@ -15028,7 +15028,7 @@ pub const IDOMEvent = extern union {
     pub fn get_type(self: *const IDOMEvent, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_type(self, p);
     }
-    pub fn initEvent(self: *const IDOMEvent, eventType: ?BSTR, canBubble: i16, cancelable: i16) callconv(.@"inline") HRESULT {
+    pub fn initEvent(self: *const IDOMEvent, eventType: ?BSTR, canBubble: VARIANT_BOOL, cancelable: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.initEvent(self, eventType, canBubble, cancelable);
     }
     pub fn preventDefault(self: *const IDOMEvent) callconv(.@"inline") HRESULT {
@@ -15040,13 +15040,13 @@ pub const IDOMEvent = extern union {
     pub fn stopImmediatePropagation(self: *const IDOMEvent) callconv(.@"inline") HRESULT {
         return self.vtable.stopImmediatePropagation(self);
     }
-    pub fn get_isTrusted(self: *const IDOMEvent, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isTrusted(self: *const IDOMEvent, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isTrusted(self, p);
     }
-    pub fn put_cancelBubble(self: *const IDOMEvent, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_cancelBubble(self: *const IDOMEvent, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_cancelBubble(self, v);
     }
-    pub fn get_cancelBubble(self: *const IDOMEvent, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_cancelBubble(self: *const IDOMEvent, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_cancelBubble(self, p);
     }
     pub fn get_srcElement(self: *const IDOMEvent, p: ?*?*IHTMLElement) callconv(.@"inline") HRESULT {
@@ -15127,8 +15127,8 @@ pub const IDOMFocusEvent = extern union {
         initFocusEvent: *const fn(
             self: *const IDOMFocusEvent,
             eventType: ?BSTR,
-            canBubble: i16,
-            cancelable: i16,
+            canBubble: VARIANT_BOOL,
+            cancelable: VARIANT_BOOL,
             view: ?*IHTMLWindow2,
             detail: i32,
             relatedTargetArg: ?*IEventTarget,
@@ -15140,7 +15140,7 @@ pub const IDOMFocusEvent = extern union {
     pub fn get_relatedTarget(self: *const IDOMFocusEvent, p: ?*?*IEventTarget) callconv(.@"inline") HRESULT {
         return self.vtable.get_relatedTarget(self, p);
     }
-    pub fn initFocusEvent(self: *const IDOMFocusEvent, eventType: ?BSTR, canBubble: i16, cancelable: i16, view: ?*IHTMLWindow2, detail: i32, relatedTargetArg: ?*IEventTarget) callconv(.@"inline") HRESULT {
+    pub fn initFocusEvent(self: *const IDOMFocusEvent, eventType: ?BSTR, canBubble: VARIANT_BOOL, cancelable: VARIANT_BOOL, view: ?*IHTMLWindow2, detail: i32, relatedTargetArg: ?*IEventTarget) callconv(.@"inline") HRESULT {
         return self.vtable.initFocusEvent(self, eventType, canBubble, cancelable, view, detail, relatedTargetArg);
     }
 };
@@ -15163,43 +15163,43 @@ pub const IDOMKeyboardEvent = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ctrlKey: *const fn(
             self: *const IDOMKeyboardEvent,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_shiftKey: *const fn(
             self: *const IDOMKeyboardEvent,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_altKey: *const fn(
             self: *const IDOMKeyboardEvent,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_metaKey: *const fn(
             self: *const IDOMKeyboardEvent,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_repeat: *const fn(
             self: *const IDOMKeyboardEvent,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getModifierState: *const fn(
             self: *const IDOMKeyboardEvent,
             keyArg: ?BSTR,
-            state: ?*i16,
+            state: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         initKeyboardEvent: *const fn(
             self: *const IDOMKeyboardEvent,
             eventType: ?BSTR,
-            canBubble: i16,
-            cancelable: i16,
+            canBubble: VARIANT_BOOL,
+            cancelable: VARIANT_BOOL,
             viewArg: ?*IHTMLWindow2,
             keyArg: ?BSTR,
             locationArg: u32,
             modifiersListArg: ?BSTR,
-            repeat: i16,
+            repeat: VARIANT_BOOL,
             locale: ?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -15237,25 +15237,25 @@ pub const IDOMKeyboardEvent = extern union {
     pub fn get_location(self: *const IDOMKeyboardEvent, p: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_location(self, p);
     }
-    pub fn get_ctrlKey(self: *const IDOMKeyboardEvent, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_ctrlKey(self: *const IDOMKeyboardEvent, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ctrlKey(self, p);
     }
-    pub fn get_shiftKey(self: *const IDOMKeyboardEvent, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_shiftKey(self: *const IDOMKeyboardEvent, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_shiftKey(self, p);
     }
-    pub fn get_altKey(self: *const IDOMKeyboardEvent, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_altKey(self: *const IDOMKeyboardEvent, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_altKey(self, p);
     }
-    pub fn get_metaKey(self: *const IDOMKeyboardEvent, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_metaKey(self: *const IDOMKeyboardEvent, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_metaKey(self, p);
     }
-    pub fn get_repeat(self: *const IDOMKeyboardEvent, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_repeat(self: *const IDOMKeyboardEvent, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_repeat(self, p);
     }
-    pub fn getModifierState(self: *const IDOMKeyboardEvent, keyArg: ?BSTR, state: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn getModifierState(self: *const IDOMKeyboardEvent, keyArg: ?BSTR, state: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.getModifierState(self, keyArg, state);
     }
-    pub fn initKeyboardEvent(self: *const IDOMKeyboardEvent, eventType: ?BSTR, canBubble: i16, cancelable: i16, viewArg: ?*IHTMLWindow2, keyArg: ?BSTR, locationArg: u32, modifiersListArg: ?BSTR, repeat: i16, locale: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn initKeyboardEvent(self: *const IDOMKeyboardEvent, eventType: ?BSTR, canBubble: VARIANT_BOOL, cancelable: VARIANT_BOOL, viewArg: ?*IHTMLWindow2, keyArg: ?BSTR, locationArg: u32, modifiersListArg: ?BSTR, repeat: VARIANT_BOOL, locale: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.initKeyboardEvent(self, eventType, canBubble, cancelable, viewArg, keyArg, locationArg, modifiersListArg, repeat, locale);
     }
     pub fn get_keyCode(self: *const IDOMKeyboardEvent, p: ?*i32) callconv(.@"inline") HRESULT {
@@ -15298,8 +15298,8 @@ pub const IDOMMessageEvent = extern union {
         initMessageEvent: *const fn(
             self: *const IDOMMessageEvent,
             eventType: ?BSTR,
-            canBubble: i16,
-            cancelable: i16,
+            canBubble: VARIANT_BOOL,
+            cancelable: VARIANT_BOOL,
             data: ?BSTR,
             origin: ?BSTR,
             lastEventId: ?BSTR,
@@ -15318,7 +15318,7 @@ pub const IDOMMessageEvent = extern union {
     pub fn get_source(self: *const IDOMMessageEvent, p: ?*?*IHTMLWindow2) callconv(.@"inline") HRESULT {
         return self.vtable.get_source(self, p);
     }
-    pub fn initMessageEvent(self: *const IDOMMessageEvent, eventType: ?BSTR, canBubble: i16, cancelable: i16, data: ?BSTR, origin: ?BSTR, lastEventId: ?BSTR, source: ?*IHTMLWindow2) callconv(.@"inline") HRESULT {
+    pub fn initMessageEvent(self: *const IDOMMessageEvent, eventType: ?BSTR, canBubble: VARIANT_BOOL, cancelable: VARIANT_BOOL, data: ?BSTR, origin: ?BSTR, lastEventId: ?BSTR, source: ?*IHTMLWindow2) callconv(.@"inline") HRESULT {
         return self.vtable.initMessageEvent(self, eventType, canBubble, cancelable, data, origin, lastEventId, source);
     }
 };
@@ -15351,22 +15351,22 @@ pub const IDOMMouseEvent = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ctrlKey: *const fn(
             self: *const IDOMMouseEvent,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_shiftKey: *const fn(
             self: *const IDOMMouseEvent,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_altKey: *const fn(
             self: *const IDOMMouseEvent,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_metaKey: *const fn(
             self: *const IDOMMouseEvent,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_button: *const fn(
@@ -15381,25 +15381,25 @@ pub const IDOMMouseEvent = extern union {
         initMouseEvent: *const fn(
             self: *const IDOMMouseEvent,
             eventType: ?BSTR,
-            canBubble: i16,
-            cancelable: i16,
+            canBubble: VARIANT_BOOL,
+            cancelable: VARIANT_BOOL,
             viewArg: ?*IHTMLWindow2,
             detailArg: i32,
             screenXArg: i32,
             screenYArg: i32,
             clientXArg: i32,
             clientYArg: i32,
-            ctrlKeyArg: i16,
-            altKeyArg: i16,
-            shiftKeyArg: i16,
-            metaKeyArg: i16,
+            ctrlKeyArg: VARIANT_BOOL,
+            altKeyArg: VARIANT_BOOL,
+            shiftKeyArg: VARIANT_BOOL,
+            metaKeyArg: VARIANT_BOOL,
             buttonArg: u16,
             relatedTargetArg: ?*IEventTarget,
         ) callconv(.winapi) HRESULT,
         getModifierState: *const fn(
             self: *const IDOMMouseEvent,
             keyArg: ?BSTR,
-            activated: ?*i16,
+            activated: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_buttons: *const fn(
@@ -15477,16 +15477,16 @@ pub const IDOMMouseEvent = extern union {
     pub fn get_clientY(self: *const IDOMMouseEvent, p: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_clientY(self, p);
     }
-    pub fn get_ctrlKey(self: *const IDOMMouseEvent, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_ctrlKey(self: *const IDOMMouseEvent, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ctrlKey(self, p);
     }
-    pub fn get_shiftKey(self: *const IDOMMouseEvent, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_shiftKey(self: *const IDOMMouseEvent, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_shiftKey(self, p);
     }
-    pub fn get_altKey(self: *const IDOMMouseEvent, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_altKey(self: *const IDOMMouseEvent, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_altKey(self, p);
     }
-    pub fn get_metaKey(self: *const IDOMMouseEvent, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_metaKey(self: *const IDOMMouseEvent, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_metaKey(self, p);
     }
     pub fn get_button(self: *const IDOMMouseEvent, p: ?*u16) callconv(.@"inline") HRESULT {
@@ -15495,10 +15495,10 @@ pub const IDOMMouseEvent = extern union {
     pub fn get_relatedTarget(self: *const IDOMMouseEvent, p: ?*?*IEventTarget) callconv(.@"inline") HRESULT {
         return self.vtable.get_relatedTarget(self, p);
     }
-    pub fn initMouseEvent(self: *const IDOMMouseEvent, eventType: ?BSTR, canBubble: i16, cancelable: i16, viewArg: ?*IHTMLWindow2, detailArg: i32, screenXArg: i32, screenYArg: i32, clientXArg: i32, clientYArg: i32, ctrlKeyArg: i16, altKeyArg: i16, shiftKeyArg: i16, metaKeyArg: i16, buttonArg: u16, relatedTargetArg: ?*IEventTarget) callconv(.@"inline") HRESULT {
+    pub fn initMouseEvent(self: *const IDOMMouseEvent, eventType: ?BSTR, canBubble: VARIANT_BOOL, cancelable: VARIANT_BOOL, viewArg: ?*IHTMLWindow2, detailArg: i32, screenXArg: i32, screenYArg: i32, clientXArg: i32, clientYArg: i32, ctrlKeyArg: VARIANT_BOOL, altKeyArg: VARIANT_BOOL, shiftKeyArg: VARIANT_BOOL, metaKeyArg: VARIANT_BOOL, buttonArg: u16, relatedTargetArg: ?*IEventTarget) callconv(.@"inline") HRESULT {
         return self.vtable.initMouseEvent(self, eventType, canBubble, cancelable, viewArg, detailArg, screenXArg, screenYArg, clientXArg, clientYArg, ctrlKeyArg, altKeyArg, shiftKeyArg, metaKeyArg, buttonArg, relatedTargetArg);
     }
-    pub fn getModifierState(self: *const IDOMMouseEvent, keyArg: ?BSTR, activated: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn getModifierState(self: *const IDOMMouseEvent, keyArg: ?BSTR, activated: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.getModifierState(self, keyArg, activated);
     }
     pub fn get_buttons(self: *const IDOMMouseEvent, p: ?*u16) callconv(.@"inline") HRESULT {
@@ -15552,8 +15552,8 @@ pub const IDOMMouseWheelEvent = extern union {
         initMouseWheelEvent: *const fn(
             self: *const IDOMMouseWheelEvent,
             eventType: ?BSTR,
-            canBubble: i16,
-            cancelable: i16,
+            canBubble: VARIANT_BOOL,
+            cancelable: VARIANT_BOOL,
             viewArg: ?*IHTMLWindow2,
             detailArg: i32,
             screenXArg: i32,
@@ -15572,7 +15572,7 @@ pub const IDOMMouseWheelEvent = extern union {
     pub fn get_wheelDelta(self: *const IDOMMouseWheelEvent, p: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_wheelDelta(self, p);
     }
-    pub fn initMouseWheelEvent(self: *const IDOMMouseWheelEvent, eventType: ?BSTR, canBubble: i16, cancelable: i16, viewArg: ?*IHTMLWindow2, detailArg: i32, screenXArg: i32, screenYArg: i32, clientXArg: i32, clientYArg: i32, buttonArg: u16, relatedTargetArg: ?*IEventTarget, modifiersListArg: ?BSTR, wheelDeltaArg: i32) callconv(.@"inline") HRESULT {
+    pub fn initMouseWheelEvent(self: *const IDOMMouseWheelEvent, eventType: ?BSTR, canBubble: VARIANT_BOOL, cancelable: VARIANT_BOOL, viewArg: ?*IHTMLWindow2, detailArg: i32, screenXArg: i32, screenYArg: i32, clientXArg: i32, clientYArg: i32, buttonArg: u16, relatedTargetArg: ?*IEventTarget, modifiersListArg: ?BSTR, wheelDeltaArg: i32) callconv(.@"inline") HRESULT {
         return self.vtable.initMouseWheelEvent(self, eventType, canBubble, cancelable, viewArg, detailArg, screenXArg, screenYArg, clientXArg, clientYArg, buttonArg, relatedTargetArg, modifiersListArg, wheelDeltaArg);
     }
 };
@@ -15595,8 +15595,8 @@ pub const IDOMMSAnimationEvent = extern union {
         initMSAnimationEvent: *const fn(
             self: *const IDOMMSAnimationEvent,
             eventType: ?BSTR,
-            canBubble: i16,
-            cancelable: i16,
+            canBubble: VARIANT_BOOL,
+            cancelable: VARIANT_BOOL,
             animationName: ?BSTR,
             elapsedTime: f32,
         ) callconv(.winapi) HRESULT,
@@ -15610,7 +15610,7 @@ pub const IDOMMSAnimationEvent = extern union {
     pub fn get_elapsedTime(self: *const IDOMMSAnimationEvent, p: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.get_elapsedTime(self, p);
     }
-    pub fn initMSAnimationEvent(self: *const IDOMMSAnimationEvent, eventType: ?BSTR, canBubble: i16, cancelable: i16, animationName: ?BSTR, elapsedTime: f32) callconv(.@"inline") HRESULT {
+    pub fn initMSAnimationEvent(self: *const IDOMMSAnimationEvent, eventType: ?BSTR, canBubble: VARIANT_BOOL, cancelable: VARIANT_BOOL, animationName: ?BSTR, elapsedTime: f32) callconv(.@"inline") HRESULT {
         return self.vtable.initMSAnimationEvent(self, eventType, canBubble, cancelable, animationName, elapsedTime);
     }
 };
@@ -15633,8 +15633,8 @@ pub const IDOMMSManipulationEvent = extern union {
         initMSManipulationEvent: *const fn(
             self: *const IDOMMSManipulationEvent,
             eventType: ?BSTR,
-            canBubble: i16,
-            cancelable: i16,
+            canBubble: VARIANT_BOOL,
+            cancelable: VARIANT_BOOL,
             viewArg: ?*IHTMLWindow2,
             detailArg: i32,
             lastState: i32,
@@ -15650,7 +15650,7 @@ pub const IDOMMSManipulationEvent = extern union {
     pub fn get_currentState(self: *const IDOMMSManipulationEvent, p: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_currentState(self, p);
     }
-    pub fn initMSManipulationEvent(self: *const IDOMMSManipulationEvent, eventType: ?BSTR, canBubble: i16, cancelable: i16, viewArg: ?*IHTMLWindow2, detailArg: i32, lastState: i32, currentState: i32) callconv(.@"inline") HRESULT {
+    pub fn initMSManipulationEvent(self: *const IDOMMSManipulationEvent, eventType: ?BSTR, canBubble: VARIANT_BOOL, cancelable: VARIANT_BOOL, viewArg: ?*IHTMLWindow2, detailArg: i32, lastState: i32, currentState: i32) callconv(.@"inline") HRESULT {
         return self.vtable.initMSManipulationEvent(self, eventType, canBubble, cancelable, viewArg, detailArg, lastState, currentState);
     }
 };
@@ -15673,8 +15673,8 @@ pub const IDOMMSTransitionEvent = extern union {
         initMSTransitionEvent: *const fn(
             self: *const IDOMMSTransitionEvent,
             eventType: ?BSTR,
-            canBubble: i16,
-            cancelable: i16,
+            canBubble: VARIANT_BOOL,
+            cancelable: VARIANT_BOOL,
             propertyName: ?BSTR,
             elapsedTime: f32,
         ) callconv(.winapi) HRESULT,
@@ -15688,7 +15688,7 @@ pub const IDOMMSTransitionEvent = extern union {
     pub fn get_elapsedTime(self: *const IDOMMSTransitionEvent, p: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.get_elapsedTime(self, p);
     }
-    pub fn initMSTransitionEvent(self: *const IDOMMSTransitionEvent, eventType: ?BSTR, canBubble: i16, cancelable: i16, propertyName: ?BSTR, elapsedTime: f32) callconv(.@"inline") HRESULT {
+    pub fn initMSTransitionEvent(self: *const IDOMMSTransitionEvent, eventType: ?BSTR, canBubble: VARIANT_BOOL, cancelable: VARIANT_BOOL, propertyName: ?BSTR, elapsedTime: f32) callconv(.@"inline") HRESULT {
         return self.vtable.initMSTransitionEvent(self, eventType, canBubble, cancelable, propertyName, elapsedTime);
     }
 };
@@ -15726,8 +15726,8 @@ pub const IDOMMutationEvent = extern union {
         initMutationEvent: *const fn(
             self: *const IDOMMutationEvent,
             eventType: ?BSTR,
-            canBubble: i16,
-            cancelable: i16,
+            canBubble: VARIANT_BOOL,
+            cancelable: VARIANT_BOOL,
             relatedNodeArg: ?*IDispatch,
             prevValueArg: ?BSTR,
             newValueArg: ?BSTR,
@@ -15753,7 +15753,7 @@ pub const IDOMMutationEvent = extern union {
     pub fn get_attrChange(self: *const IDOMMutationEvent, p: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_attrChange(self, p);
     }
-    pub fn initMutationEvent(self: *const IDOMMutationEvent, eventType: ?BSTR, canBubble: i16, cancelable: i16, relatedNodeArg: ?*IDispatch, prevValueArg: ?BSTR, newValueArg: ?BSTR, attrNameArg: ?BSTR, attrChangeArg: u16) callconv(.@"inline") HRESULT {
+    pub fn initMutationEvent(self: *const IDOMMutationEvent, eventType: ?BSTR, canBubble: VARIANT_BOOL, cancelable: VARIANT_BOOL, relatedNodeArg: ?*IDispatch, prevValueArg: ?BSTR, newValueArg: ?BSTR, attrNameArg: ?BSTR, attrChangeArg: u16) callconv(.@"inline") HRESULT {
         return self.vtable.initMutationEvent(self, eventType, canBubble, cancelable, relatedNodeArg, prevValueArg, newValueArg, attrNameArg, attrChangeArg);
     }
 };
@@ -15781,7 +15781,7 @@ pub const IDOMNodeIterator = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_expandEntityReferences: *const fn(
             self: *const IDOMNodeIterator,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         nextNode: *const fn(
             self: *const IDOMNodeIterator,
@@ -15807,7 +15807,7 @@ pub const IDOMNodeIterator = extern union {
     pub fn get_filter(self: *const IDOMNodeIterator, p: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_filter(self, p);
     }
-    pub fn get_expandEntityReferences(self: *const IDOMNodeIterator, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_expandEntityReferences(self: *const IDOMNodeIterator, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_expandEntityReferences(self, p);
     }
     pub fn nextNode(self: *const IDOMNodeIterator, ppRetNode: ?*?*IDispatch) callconv(.@"inline") HRESULT {
@@ -15902,7 +15902,7 @@ pub const IDOMProgressEvent = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_lengthComputable: *const fn(
             self: *const IDOMProgressEvent,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_loaded: *const fn(
@@ -15917,9 +15917,9 @@ pub const IDOMProgressEvent = extern union {
         initProgressEvent: *const fn(
             self: *const IDOMProgressEvent,
             eventType: ?BSTR,
-            canBubble: i16,
-            cancelable: i16,
-            lengthComputableArg: i16,
+            canBubble: VARIANT_BOOL,
+            cancelable: VARIANT_BOOL,
+            lengthComputableArg: VARIANT_BOOL,
             loadedArg: u64,
             totalArg: u64,
         ) callconv(.winapi) HRESULT,
@@ -15927,7 +15927,7 @@ pub const IDOMProgressEvent = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_lengthComputable(self: *const IDOMProgressEvent, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_lengthComputable(self: *const IDOMProgressEvent, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_lengthComputable(self, p);
     }
     pub fn get_loaded(self: *const IDOMProgressEvent, p: ?*u64) callconv(.@"inline") HRESULT {
@@ -15936,7 +15936,7 @@ pub const IDOMProgressEvent = extern union {
     pub fn get_total(self: *const IDOMProgressEvent, p: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.get_total(self, p);
     }
-    pub fn initProgressEvent(self: *const IDOMProgressEvent, eventType: ?BSTR, canBubble: i16, cancelable: i16, lengthComputableArg: i16, loadedArg: u64, totalArg: u64) callconv(.@"inline") HRESULT {
+    pub fn initProgressEvent(self: *const IDOMProgressEvent, eventType: ?BSTR, canBubble: VARIANT_BOOL, cancelable: VARIANT_BOOL, lengthComputableArg: VARIANT_BOOL, loadedArg: u64, totalArg: u64) callconv(.@"inline") HRESULT {
         return self.vtable.initProgressEvent(self, eventType, canBubble, cancelable, lengthComputableArg, loadedArg, totalArg);
     }
 };
@@ -16001,8 +16001,8 @@ pub const IDOMStorageEvent = extern union {
         initStorageEvent: *const fn(
             self: *const IDOMStorageEvent,
             eventType: ?BSTR,
-            canBubble: i16,
-            cancelable: i16,
+            canBubble: VARIANT_BOOL,
+            cancelable: VARIANT_BOOL,
             keyArg: ?BSTR,
             oldValueArg: ?BSTR,
             newValueArg: ?BSTR,
@@ -16028,7 +16028,7 @@ pub const IDOMStorageEvent = extern union {
     pub fn get_storageArea(self: *const IDOMStorageEvent, p: ?*?*IHTMLStorage) callconv(.@"inline") HRESULT {
         return self.vtable.get_storageArea(self, p);
     }
-    pub fn initStorageEvent(self: *const IDOMStorageEvent, eventType: ?BSTR, canBubble: i16, cancelable: i16, keyArg: ?BSTR, oldValueArg: ?BSTR, newValueArg: ?BSTR, urlArg: ?BSTR, storageAreaArg: ?*IHTMLStorage) callconv(.@"inline") HRESULT {
+    pub fn initStorageEvent(self: *const IDOMStorageEvent, eventType: ?BSTR, canBubble: VARIANT_BOOL, cancelable: VARIANT_BOOL, keyArg: ?BSTR, oldValueArg: ?BSTR, newValueArg: ?BSTR, urlArg: ?BSTR, storageAreaArg: ?*IHTMLStorage) callconv(.@"inline") HRESULT {
         return self.vtable.initStorageEvent(self, eventType, canBubble, cancelable, keyArg, oldValueArg, newValueArg, urlArg, storageAreaArg);
     }
 };
@@ -16051,8 +16051,8 @@ pub const IDOMTextEvent = extern union {
         initTextEvent: *const fn(
             self: *const IDOMTextEvent,
             eventType: ?BSTR,
-            canBubble: i16,
-            cancelable: i16,
+            canBubble: VARIANT_BOOL,
+            cancelable: VARIANT_BOOL,
             viewArg: ?*IHTMLWindow2,
             dataArg: ?BSTR,
             inputMethod: u32,
@@ -16073,7 +16073,7 @@ pub const IDOMTextEvent = extern union {
     pub fn get_inputMethod(self: *const IDOMTextEvent, p: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_inputMethod(self, p);
     }
-    pub fn initTextEvent(self: *const IDOMTextEvent, eventType: ?BSTR, canBubble: i16, cancelable: i16, viewArg: ?*IHTMLWindow2, dataArg: ?BSTR, inputMethod: u32, locale: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn initTextEvent(self: *const IDOMTextEvent, eventType: ?BSTR, canBubble: VARIANT_BOOL, cancelable: VARIANT_BOOL, viewArg: ?*IHTMLWindow2, dataArg: ?BSTR, inputMethod: u32, locale: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.initTextEvent(self, eventType, canBubble, cancelable, viewArg, dataArg, inputMethod, locale);
     }
     pub fn get_locale(self: *const IDOMTextEvent, p: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -16104,7 +16104,7 @@ pub const IDOMTreeWalker = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_expandEntityReferences: *const fn(
             self: *const IDOMTreeWalker,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         putref_currentNode: *const fn(
             self: *const IDOMTreeWalker,
@@ -16156,7 +16156,7 @@ pub const IDOMTreeWalker = extern union {
     pub fn get_filter(self: *const IDOMTreeWalker, p: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_filter(self, p);
     }
-    pub fn get_expandEntityReferences(self: *const IDOMTreeWalker, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_expandEntityReferences(self: *const IDOMTreeWalker, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_expandEntityReferences(self, p);
     }
     pub fn putref_currentNode(self: *const IDOMTreeWalker, v: ?*IDispatch) callconv(.@"inline") HRESULT {
@@ -16206,8 +16206,8 @@ pub const IDOMUIEvent = extern union {
         initUIEvent: *const fn(
             self: *const IDOMUIEvent,
             eventType: ?BSTR,
-            canBubble: i16,
-            cancelable: i16,
+            canBubble: VARIANT_BOOL,
+            cancelable: VARIANT_BOOL,
             view: ?*IHTMLWindow2,
             detail: i32,
         ) callconv(.winapi) HRESULT,
@@ -16221,7 +16221,7 @@ pub const IDOMUIEvent = extern union {
     pub fn get_detail(self: *const IDOMUIEvent, p: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_detail(self, p);
     }
-    pub fn initUIEvent(self: *const IDOMUIEvent, eventType: ?BSTR, canBubble: i16, cancelable: i16, view: ?*IHTMLWindow2, detail: i32) callconv(.@"inline") HRESULT {
+    pub fn initUIEvent(self: *const IDOMUIEvent, eventType: ?BSTR, canBubble: VARIANT_BOOL, cancelable: VARIANT_BOOL, view: ?*IHTMLWindow2, detail: i32) callconv(.@"inline") HRESULT {
         return self.vtable.initUIEvent(self, eventType, canBubble, cancelable, view, detail);
     }
 };
@@ -16254,8 +16254,8 @@ pub const IDOMWheelEvent = extern union {
         initWheelEvent: *const fn(
             self: *const IDOMWheelEvent,
             eventType: ?BSTR,
-            canBubble: i16,
-            cancelable: i16,
+            canBubble: VARIANT_BOOL,
+            cancelable: VARIANT_BOOL,
             viewArg: ?*IHTMLWindow2,
             detailArg: i32,
             screenXArg: i32,
@@ -16286,7 +16286,7 @@ pub const IDOMWheelEvent = extern union {
     pub fn get_deltaMode(self: *const IDOMWheelEvent, p: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_deltaMode(self, p);
     }
-    pub fn initWheelEvent(self: *const IDOMWheelEvent, eventType: ?BSTR, canBubble: i16, cancelable: i16, viewArg: ?*IHTMLWindow2, detailArg: i32, screenXArg: i32, screenYArg: i32, clientXArg: i32, clientYArg: i32, buttonArg: u16, relatedTargetArg: ?*IEventTarget, modifiersListArg: ?BSTR, deltaX: i32, deltaY: i32, deltaZ: i32, deltaMode: u32) callconv(.@"inline") HRESULT {
+    pub fn initWheelEvent(self: *const IDOMWheelEvent, eventType: ?BSTR, canBubble: VARIANT_BOOL, cancelable: VARIANT_BOOL, viewArg: ?*IHTMLWindow2, detailArg: i32, screenXArg: i32, screenYArg: i32, clientXArg: i32, clientYArg: i32, buttonArg: u16, relatedTargetArg: ?*IEventTarget, modifiersListArg: ?BSTR, deltaX: i32, deltaY: i32, deltaZ: i32, deltaMode: u32) callconv(.@"inline") HRESULT {
         return self.vtable.initWheelEvent(self, eventType, canBubble, cancelable, viewArg, detailArg, screenXArg, screenYArg, clientXArg, clientYArg, buttonArg, relatedTargetArg, modifiersListArg, deltaX, deltaY, deltaZ, deltaMode);
     }
 };
@@ -17255,30 +17255,30 @@ pub const IEventTarget = extern union {
             self: *const IEventTarget,
             type: ?BSTR,
             listener: ?*IDispatch,
-            useCapture: i16,
+            useCapture: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         removeEventListener: *const fn(
             self: *const IEventTarget,
             type: ?BSTR,
             listener: ?*IDispatch,
-            useCapture: i16,
+            useCapture: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         dispatchEvent: *const fn(
             self: *const IEventTarget,
             evt: ?*IDOMEvent,
-            pfResult: ?*i16,
+            pfResult: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn addEventListener(self: *const IEventTarget, @"type": ?BSTR, listener: ?*IDispatch, useCapture: i16) callconv(.@"inline") HRESULT {
+    pub fn addEventListener(self: *const IEventTarget, @"type": ?BSTR, listener: ?*IDispatch, useCapture: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.addEventListener(self, @"type", listener, useCapture);
     }
-    pub fn removeEventListener(self: *const IEventTarget, @"type": ?BSTR, listener: ?*IDispatch, useCapture: i16) callconv(.@"inline") HRESULT {
+    pub fn removeEventListener(self: *const IEventTarget, @"type": ?BSTR, listener: ?*IDispatch, useCapture: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.removeEventListener(self, @"type", listener, useCapture);
     }
-    pub fn dispatchEvent(self: *const IEventTarget, evt: ?*IDOMEvent, pfResult: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn dispatchEvent(self: *const IEventTarget, evt: ?*IDOMEvent, pfResult: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.dispatchEvent(self, evt, pfResult);
     }
 };
@@ -17687,7 +17687,7 @@ pub const IHomePage = extern union {
         isHomePage: *const fn(
             self: *const IHomePage,
             bstrURL: ?BSTR,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -17699,7 +17699,7 @@ pub const IHomePage = extern union {
     pub fn setHomePage(self: *const IHomePage, bstrURL: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.setHomePage(self, bstrURL);
     }
-    pub fn isHomePage(self: *const IHomePage, bstrURL: ?BSTR, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isHomePage(self: *const IHomePage, bstrURL: ?BSTR, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isHomePage(self, bstrURL, p);
     }
 };
@@ -18985,12 +18985,12 @@ pub const IHTMLAreaElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_noHref: *const fn(
             self: *const IHTMLAreaElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_noHref: *const fn(
             self: *const IHTMLAreaElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_host: *const fn(
@@ -19132,10 +19132,10 @@ pub const IHTMLAreaElement = extern union {
     pub fn get_alt(self: *const IHTMLAreaElement, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_alt(self, p);
     }
-    pub fn put_noHref(self: *const IHTMLAreaElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_noHref(self: *const IHTMLAreaElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_noHref(self, v);
     }
-    pub fn get_noHref(self: *const IHTMLAreaElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_noHref(self: *const IHTMLAreaElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_noHref(self, p);
     }
     pub fn put_host(self: *const IHTMLAreaElement, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -20002,12 +20002,12 @@ pub const IHTMLBodyElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_noWrap: *const fn(
             self: *const IHTMLBodyElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_noWrap: *const fn(
             self: *const IHTMLBodyElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_bgColor: *const fn(
@@ -20153,10 +20153,10 @@ pub const IHTMLBodyElement = extern union {
     pub fn get_bottomMargin(self: *const IHTMLBodyElement, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_bottomMargin(self, p);
     }
-    pub fn put_noWrap(self: *const IHTMLBodyElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_noWrap(self: *const IHTMLBodyElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_noWrap(self, v);
     }
-    pub fn get_noWrap(self: *const IHTMLBodyElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_noWrap(self: *const IHTMLBodyElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_noWrap(self, p);
     }
     pub fn put_bgColor(self: *const IHTMLBodyElement, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -20517,12 +20517,12 @@ pub const IHTMLButtonElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_disabled: *const fn(
             self: *const IHTMLButtonElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_disabled: *const fn(
             self: *const IHTMLButtonElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_form: *const fn(
@@ -20558,10 +20558,10 @@ pub const IHTMLButtonElement = extern union {
     pub fn get_status(self: *const IHTMLButtonElement, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_status(self, p);
     }
-    pub fn put_disabled(self: *const IHTMLButtonElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_disabled(self: *const IHTMLButtonElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_disabled(self, v);
     }
-    pub fn get_disabled(self: *const IHTMLButtonElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_disabled(self: *const IHTMLButtonElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_disabled(self, p);
     }
     pub fn get_form(self: *const IHTMLButtonElement, p: ?*?*IHTMLFormElement) callconv(.@"inline") HRESULT {
@@ -20983,42 +20983,42 @@ pub const IHTMLComputedStyle = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_bold: *const fn(
             self: *const IHTMLComputedStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_italic: *const fn(
             self: *const IHTMLComputedStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_underline: *const fn(
             self: *const IHTMLComputedStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_overline: *const fn(
             self: *const IHTMLComputedStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_strikeOut: *const fn(
             self: *const IHTMLComputedStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_subScript: *const fn(
             self: *const IHTMLComputedStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_superScript: *const fn(
             self: *const IHTMLComputedStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_explicitFace: *const fn(
             self: *const IHTMLComputedStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_fontWeight: *const fn(
@@ -21038,7 +21038,7 @@ pub const IHTMLComputedStyle = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_hasBgColor: *const fn(
             self: *const IHTMLComputedStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_textColor: *const fn(
@@ -21053,53 +21053,53 @@ pub const IHTMLComputedStyle = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_preFormatted: *const fn(
             self: *const IHTMLComputedStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_direction: *const fn(
             self: *const IHTMLComputedStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_blockDirection: *const fn(
             self: *const IHTMLComputedStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OL: *const fn(
             self: *const IHTMLComputedStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         IsEqual: *const fn(
             self: *const IHTMLComputedStyle,
             pComputedStyle: ?*IHTMLComputedStyle,
-            pfEqual: ?*i16,
+            pfEqual: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_bold(self: *const IHTMLComputedStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_bold(self: *const IHTMLComputedStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_bold(self, p);
     }
-    pub fn get_italic(self: *const IHTMLComputedStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_italic(self: *const IHTMLComputedStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_italic(self, p);
     }
-    pub fn get_underline(self: *const IHTMLComputedStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_underline(self: *const IHTMLComputedStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_underline(self, p);
     }
-    pub fn get_overline(self: *const IHTMLComputedStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_overline(self: *const IHTMLComputedStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_overline(self, p);
     }
-    pub fn get_strikeOut(self: *const IHTMLComputedStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_strikeOut(self: *const IHTMLComputedStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_strikeOut(self, p);
     }
-    pub fn get_subScript(self: *const IHTMLComputedStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_subScript(self: *const IHTMLComputedStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_subScript(self, p);
     }
-    pub fn get_superScript(self: *const IHTMLComputedStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_superScript(self: *const IHTMLComputedStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_superScript(self, p);
     }
-    pub fn get_explicitFace(self: *const IHTMLComputedStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_explicitFace(self: *const IHTMLComputedStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_explicitFace(self, p);
     }
     pub fn get_fontWeight(self: *const IHTMLComputedStyle, p: ?*i32) callconv(.@"inline") HRESULT {
@@ -21111,7 +21111,7 @@ pub const IHTMLComputedStyle = extern union {
     pub fn get_fontName(self: *const IHTMLComputedStyle, p: ?*i8) callconv(.@"inline") HRESULT {
         return self.vtable.get_fontName(self, p);
     }
-    pub fn get_hasBgColor(self: *const IHTMLComputedStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_hasBgColor(self: *const IHTMLComputedStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_hasBgColor(self, p);
     }
     pub fn get_textColor(self: *const IHTMLComputedStyle, p: ?*u32) callconv(.@"inline") HRESULT {
@@ -21120,19 +21120,19 @@ pub const IHTMLComputedStyle = extern union {
     pub fn get_backgroundColor(self: *const IHTMLComputedStyle, p: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_backgroundColor(self, p);
     }
-    pub fn get_preFormatted(self: *const IHTMLComputedStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_preFormatted(self: *const IHTMLComputedStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_preFormatted(self, p);
     }
-    pub fn get_direction(self: *const IHTMLComputedStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_direction(self: *const IHTMLComputedStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_direction(self, p);
     }
-    pub fn get_blockDirection(self: *const IHTMLComputedStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_blockDirection(self: *const IHTMLComputedStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_blockDirection(self, p);
     }
-    pub fn get_OL(self: *const IHTMLComputedStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_OL(self: *const IHTMLComputedStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_OL(self, p);
     }
-    pub fn IsEqual(self: *const IHTMLComputedStyle, pComputedStyle: ?*IHTMLComputedStyle, pfEqual: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsEqual(self: *const IHTMLComputedStyle, pComputedStyle: ?*IHTMLComputedStyle, pfEqual: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsEqual(self, pComputedStyle, pfEqual);
     }
 };
@@ -21314,22 +21314,22 @@ pub const IHTMLControlRange = extern union {
         queryCommandSupported: *const fn(
             self: *const IHTMLControlRange,
             cmdID: ?BSTR,
-            pfRet: ?*i16,
+            pfRet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         queryCommandEnabled: *const fn(
             self: *const IHTMLControlRange,
             cmdID: ?BSTR,
-            pfRet: ?*i16,
+            pfRet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         queryCommandState: *const fn(
             self: *const IHTMLControlRange,
             cmdID: ?BSTR,
-            pfRet: ?*i16,
+            pfRet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         queryCommandIndeterm: *const fn(
             self: *const IHTMLControlRange,
             cmdID: ?BSTR,
-            pfRet: ?*i16,
+            pfRet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         queryCommandText: *const fn(
             self: *const IHTMLControlRange,
@@ -21344,14 +21344,14 @@ pub const IHTMLControlRange = extern union {
         execCommand: *const fn(
             self: *const IHTMLControlRange,
             cmdID: ?BSTR,
-            showUI: i16,
+            showUI: VARIANT_BOOL,
             value: VARIANT,
-            pfRet: ?*i16,
+            pfRet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         execCommandShowHelp: *const fn(
             self: *const IHTMLControlRange,
             cmdID: ?BSTR,
-            pfRet: ?*i16,
+            pfRet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         commonParentElement: *const fn(
             self: *const IHTMLControlRange,
@@ -21381,16 +21381,16 @@ pub const IHTMLControlRange = extern union {
     pub fn scrollIntoView(self: *const IHTMLControlRange, varargStart: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.scrollIntoView(self, varargStart);
     }
-    pub fn queryCommandSupported(self: *const IHTMLControlRange, cmdID: ?BSTR, pfRet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn queryCommandSupported(self: *const IHTMLControlRange, cmdID: ?BSTR, pfRet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.queryCommandSupported(self, cmdID, pfRet);
     }
-    pub fn queryCommandEnabled(self: *const IHTMLControlRange, cmdID: ?BSTR, pfRet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn queryCommandEnabled(self: *const IHTMLControlRange, cmdID: ?BSTR, pfRet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.queryCommandEnabled(self, cmdID, pfRet);
     }
-    pub fn queryCommandState(self: *const IHTMLControlRange, cmdID: ?BSTR, pfRet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn queryCommandState(self: *const IHTMLControlRange, cmdID: ?BSTR, pfRet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.queryCommandState(self, cmdID, pfRet);
     }
-    pub fn queryCommandIndeterm(self: *const IHTMLControlRange, cmdID: ?BSTR, pfRet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn queryCommandIndeterm(self: *const IHTMLControlRange, cmdID: ?BSTR, pfRet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.queryCommandIndeterm(self, cmdID, pfRet);
     }
     pub fn queryCommandText(self: *const IHTMLControlRange, cmdID: ?BSTR, pcmdText: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -21399,10 +21399,10 @@ pub const IHTMLControlRange = extern union {
     pub fn queryCommandValue(self: *const IHTMLControlRange, cmdID: ?BSTR, pcmdValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.queryCommandValue(self, cmdID, pcmdValue);
     }
-    pub fn execCommand(self: *const IHTMLControlRange, cmdID: ?BSTR, showUI: i16, value: VARIANT, pfRet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn execCommand(self: *const IHTMLControlRange, cmdID: ?BSTR, showUI: VARIANT_BOOL, value: VARIANT, pfRet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.execCommand(self, cmdID, showUI, value, pfRet);
     }
-    pub fn execCommandShowHelp(self: *const IHTMLControlRange, cmdID: ?BSTR, pfRet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn execCommandShowHelp(self: *const IHTMLControlRange, cmdID: ?BSTR, pfRet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.execCommandShowHelp(self, cmdID, pfRet);
     }
     pub fn commonParentElement(self: *const IHTMLControlRange, parent: ?*?*IHTMLElement) callconv(.@"inline") HRESULT {
@@ -28324,7 +28324,7 @@ pub const IHTMLCurrentStyle2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_hasLayout: *const fn(
             self: *const IHTMLCurrentStyle2,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_scrollbarBaseColor: *const fn(
@@ -28394,7 +28394,7 @@ pub const IHTMLCurrentStyle2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isBlock: *const fn(
             self: *const IHTMLCurrentStyle2,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -28409,7 +28409,7 @@ pub const IHTMLCurrentStyle2 = extern union {
     pub fn get_textUnderlinePosition(self: *const IHTMLCurrentStyle2, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_textUnderlinePosition(self, p);
     }
-    pub fn get_hasLayout(self: *const IHTMLCurrentStyle2, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_hasLayout(self: *const IHTMLCurrentStyle2, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_hasLayout(self, p);
     }
     pub fn get_scrollbarBaseColor(self: *const IHTMLCurrentStyle2, p: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -28451,7 +28451,7 @@ pub const IHTMLCurrentStyle2 = extern union {
     pub fn get_textKashidaSpace(self: *const IHTMLCurrentStyle2, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_textKashidaSpace(self, p);
     }
-    pub fn get_isBlock(self: *const IHTMLCurrentStyle2, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isBlock(self: *const IHTMLCurrentStyle2, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isBlock(self, p);
     }
 };
@@ -28725,7 +28725,7 @@ pub const IHTMLDataTransfer = extern union {
             self: *const IHTMLDataTransfer,
             format: ?BSTR,
             data: ?*VARIANT,
-            pret: ?*i16,
+            pret: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getData: *const fn(
             self: *const IHTMLDataTransfer,
@@ -28735,7 +28735,7 @@ pub const IHTMLDataTransfer = extern union {
         clearData: *const fn(
             self: *const IHTMLDataTransfer,
             format: ?BSTR,
-            pret: ?*i16,
+            pret: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_dropEffect: *const fn(
@@ -28761,13 +28761,13 @@ pub const IHTMLDataTransfer = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn setData(self: *const IHTMLDataTransfer, format: ?BSTR, data: ?*VARIANT, pret: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn setData(self: *const IHTMLDataTransfer, format: ?BSTR, data: ?*VARIANT, pret: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.setData(self, format, data, pret);
     }
     pub fn getData(self: *const IHTMLDataTransfer, format: ?BSTR, pvarRet: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.getData(self, format, pvarRet);
     }
-    pub fn clearData(self: *const IHTMLDataTransfer, format: ?BSTR, pret: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn clearData(self: *const IHTMLDataTransfer, format: ?BSTR, pret: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.clearData(self, format, pret);
     }
     pub fn put_dropEffect(self: *const IHTMLDataTransfer, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -28792,21 +28792,21 @@ pub const IHTMLDDElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_noWrap: *const fn(
             self: *const IHTMLDDElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_noWrap: *const fn(
             self: *const IHTMLDDElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_noWrap(self: *const IHTMLDDElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_noWrap(self: *const IHTMLDDElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_noWrap(self, v);
     }
-    pub fn get_noWrap(self: *const IHTMLDDElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_noWrap(self: *const IHTMLDDElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_noWrap(self, p);
     }
 };
@@ -29035,12 +29035,12 @@ pub const IHTMLDivElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_noWrap: *const fn(
             self: *const IHTMLDivElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_noWrap: *const fn(
             self: *const IHTMLDivElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -29052,10 +29052,10 @@ pub const IHTMLDivElement = extern union {
     pub fn get_align(self: *const IHTMLDivElement, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_align(self, p);
     }
-    pub fn put_noWrap(self: *const IHTMLDivElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_noWrap(self: *const IHTMLDivElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_noWrap(self, v);
     }
-    pub fn get_noWrap(self: *const IHTMLDivElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_noWrap(self: *const IHTMLDivElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_noWrap(self, p);
     }
 };
@@ -29138,21 +29138,21 @@ pub const IHTMLDListElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_compact: *const fn(
             self: *const IHTMLDListElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_compact: *const fn(
             self: *const IHTMLDListElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_compact(self: *const IHTMLDListElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_compact(self: *const IHTMLDListElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_compact(self, v);
     }
-    pub fn get_compact(self: *const IHTMLDListElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_compact(self: *const IHTMLDListElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_compact(self, p);
     }
 };
@@ -29369,12 +29369,12 @@ pub const IHTMLDocument2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_expando: *const fn(
             self: *const IHTMLDocument2,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_expando: *const fn(
             self: *const IHTMLDocument2,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_charset: *const fn(
@@ -29461,22 +29461,22 @@ pub const IHTMLDocument2 = extern union {
         queryCommandSupported: *const fn(
             self: *const IHTMLDocument2,
             cmdID: ?BSTR,
-            pfRet: ?*i16,
+            pfRet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         queryCommandEnabled: *const fn(
             self: *const IHTMLDocument2,
             cmdID: ?BSTR,
-            pfRet: ?*i16,
+            pfRet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         queryCommandState: *const fn(
             self: *const IHTMLDocument2,
             cmdID: ?BSTR,
-            pfRet: ?*i16,
+            pfRet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         queryCommandIndeterm: *const fn(
             self: *const IHTMLDocument2,
             cmdID: ?BSTR,
-            pfRet: ?*i16,
+            pfRet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         queryCommandText: *const fn(
             self: *const IHTMLDocument2,
@@ -29491,14 +29491,14 @@ pub const IHTMLDocument2 = extern union {
         execCommand: *const fn(
             self: *const IHTMLDocument2,
             cmdID: ?BSTR,
-            showUI: i16,
+            showUI: VARIANT_BOOL,
             value: VARIANT,
-            pfRet: ?*i16,
+            pfRet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         execCommandShowHelp: *const fn(
             self: *const IHTMLDocument2,
             cmdID: ?BSTR,
-            pfRet: ?*i16,
+            pfRet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         createElement: *const fn(
             self: *const IHTMLDocument2,
@@ -29837,10 +29837,10 @@ pub const IHTMLDocument2 = extern union {
     pub fn get_cookie(self: *const IHTMLDocument2, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_cookie(self, p);
     }
-    pub fn put_expando(self: *const IHTMLDocument2, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_expando(self: *const IHTMLDocument2, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_expando(self, v);
     }
-    pub fn get_expando(self: *const IHTMLDocument2, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_expando(self: *const IHTMLDocument2, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_expando(self, p);
     }
     pub fn put_charset(self: *const IHTMLDocument2, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -29894,16 +29894,16 @@ pub const IHTMLDocument2 = extern union {
     pub fn clear(self: *const IHTMLDocument2) callconv(.@"inline") HRESULT {
         return self.vtable.clear(self);
     }
-    pub fn queryCommandSupported(self: *const IHTMLDocument2, cmdID: ?BSTR, pfRet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn queryCommandSupported(self: *const IHTMLDocument2, cmdID: ?BSTR, pfRet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.queryCommandSupported(self, cmdID, pfRet);
     }
-    pub fn queryCommandEnabled(self: *const IHTMLDocument2, cmdID: ?BSTR, pfRet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn queryCommandEnabled(self: *const IHTMLDocument2, cmdID: ?BSTR, pfRet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.queryCommandEnabled(self, cmdID, pfRet);
     }
-    pub fn queryCommandState(self: *const IHTMLDocument2, cmdID: ?BSTR, pfRet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn queryCommandState(self: *const IHTMLDocument2, cmdID: ?BSTR, pfRet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.queryCommandState(self, cmdID, pfRet);
     }
-    pub fn queryCommandIndeterm(self: *const IHTMLDocument2, cmdID: ?BSTR, pfRet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn queryCommandIndeterm(self: *const IHTMLDocument2, cmdID: ?BSTR, pfRet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.queryCommandIndeterm(self, cmdID, pfRet);
     }
     pub fn queryCommandText(self: *const IHTMLDocument2, cmdID: ?BSTR, pcmdText: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -29912,10 +29912,10 @@ pub const IHTMLDocument2 = extern union {
     pub fn queryCommandValue(self: *const IHTMLDocument2, cmdID: ?BSTR, pcmdValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.queryCommandValue(self, cmdID, pcmdValue);
     }
-    pub fn execCommand(self: *const IHTMLDocument2, cmdID: ?BSTR, showUI: i16, value: VARIANT, pfRet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn execCommand(self: *const IHTMLDocument2, cmdID: ?BSTR, showUI: VARIANT_BOOL, value: VARIANT, pfRet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.execCommand(self, cmdID, showUI, value, pfRet);
     }
-    pub fn execCommandShowHelp(self: *const IHTMLDocument2, cmdID: ?BSTR, pfRet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn execCommandShowHelp(self: *const IHTMLDocument2, cmdID: ?BSTR, pfRet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.execCommandShowHelp(self, cmdID, pfRet);
     }
     pub fn createElement(self: *const IHTMLDocument2, eTag: ?BSTR, newElem: ?*?*IHTMLElement) callconv(.@"inline") HRESULT {
@@ -30062,7 +30062,7 @@ pub const IHTMLDocument3 = extern union {
         ) callconv(.winapi) HRESULT,
         recalc: *const fn(
             self: *const IHTMLDocument3,
-            fForce: i16,
+            fForce: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         createTextNode: *const fn(
             self: *const IHTMLDocument3,
@@ -30083,7 +30083,7 @@ pub const IHTMLDocument3 = extern union {
             self: *const IHTMLDocument3,
             event: ?BSTR,
             pDisp: ?*IDispatch,
-            pfResult: ?*i16,
+            pfResult: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         detachEvent: *const fn(
             self: *const IHTMLDocument3,
@@ -30202,12 +30202,12 @@ pub const IHTMLDocument3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_enableDownload: *const fn(
             self: *const IHTMLDocument3,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_enableDownload: *const fn(
             self: *const IHTMLDocument3,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_baseUrl: *const fn(
@@ -30227,12 +30227,12 @@ pub const IHTMLDocument3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_inheritStyleSheets: *const fn(
             self: *const IHTMLDocument3,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_inheritStyleSheets: *const fn(
             self: *const IHTMLDocument3,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_onbeforeeditfocus: *const fn(
@@ -30266,7 +30266,7 @@ pub const IHTMLDocument3 = extern union {
     pub fn releaseCapture(self: *const IHTMLDocument3) callconv(.@"inline") HRESULT {
         return self.vtable.releaseCapture(self);
     }
-    pub fn recalc(self: *const IHTMLDocument3, fForce: i16) callconv(.@"inline") HRESULT {
+    pub fn recalc(self: *const IHTMLDocument3, fForce: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.recalc(self, fForce);
     }
     pub fn createTextNode(self: *const IHTMLDocument3, text: ?BSTR, newTextNode: ?*?*IHTMLDOMNode) callconv(.@"inline") HRESULT {
@@ -30278,7 +30278,7 @@ pub const IHTMLDocument3 = extern union {
     pub fn get_uniqueID(self: *const IHTMLDocument3, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_uniqueID(self, p);
     }
-    pub fn attachEvent(self: *const IHTMLDocument3, event: ?BSTR, pDisp: ?*IDispatch, pfResult: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn attachEvent(self: *const IHTMLDocument3, event: ?BSTR, pDisp: ?*IDispatch, pfResult: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.attachEvent(self, event, pDisp, pfResult);
     }
     pub fn detachEvent(self: *const IHTMLDocument3, event: ?BSTR, pDisp: ?*IDispatch) callconv(.@"inline") HRESULT {
@@ -30350,10 +30350,10 @@ pub const IHTMLDocument3 = extern union {
     pub fn get_parentDocument(self: *const IHTMLDocument3, p: ?*?*IHTMLDocument2) callconv(.@"inline") HRESULT {
         return self.vtable.get_parentDocument(self, p);
     }
-    pub fn put_enableDownload(self: *const IHTMLDocument3, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_enableDownload(self: *const IHTMLDocument3, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_enableDownload(self, v);
     }
-    pub fn get_enableDownload(self: *const IHTMLDocument3, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_enableDownload(self: *const IHTMLDocument3, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_enableDownload(self, p);
     }
     pub fn put_baseUrl(self: *const IHTMLDocument3, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -30365,10 +30365,10 @@ pub const IHTMLDocument3 = extern union {
     pub fn get_childNodes(self: *const IHTMLDocument3, p: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_childNodes(self, p);
     }
-    pub fn put_inheritStyleSheets(self: *const IHTMLDocument3, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_inheritStyleSheets(self: *const IHTMLDocument3, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_inheritStyleSheets(self, v);
     }
-    pub fn get_inheritStyleSheets(self: *const IHTMLDocument3, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_inheritStyleSheets(self: *const IHTMLDocument3, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_inheritStyleSheets(self, p);
     }
     pub fn put_onbeforeeditfocus(self: *const IHTMLDocument3, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -30398,7 +30398,7 @@ pub const IHTMLDocument4 = extern union {
         ) callconv(.winapi) HRESULT,
         hasFocus: *const fn(
             self: *const IHTMLDocument4,
-            pfFocus: ?*i16,
+            pfFocus: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_onselectionchange: *const fn(
@@ -30440,7 +30440,7 @@ pub const IHTMLDocument4 = extern union {
             self: *const IHTMLDocument4,
             bstrEventName: ?BSTR,
             pvarEventObject: ?*VARIANT,
-            pfCancelled: ?*i16,
+            pfCancelled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         createRenderStyle: *const fn(
             self: *const IHTMLDocument4,
@@ -30469,7 +30469,7 @@ pub const IHTMLDocument4 = extern union {
     pub fn focus(self: *const IHTMLDocument4) callconv(.@"inline") HRESULT {
         return self.vtable.focus(self);
     }
-    pub fn hasFocus(self: *const IHTMLDocument4, pfFocus: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn hasFocus(self: *const IHTMLDocument4, pfFocus: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.hasFocus(self, pfFocus);
     }
     pub fn put_onselectionchange(self: *const IHTMLDocument4, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -30493,7 +30493,7 @@ pub const IHTMLDocument4 = extern union {
     pub fn createEventObject(self: *const IHTMLDocument4, pvarEventObject: ?*VARIANT, ppEventObj: ?*?*IHTMLEventObj) callconv(.@"inline") HRESULT {
         return self.vtable.createEventObject(self, pvarEventObject, ppEventObj);
     }
-    pub fn fireEvent(self: *const IHTMLDocument4, bstrEventName: ?BSTR, pvarEventObject: ?*VARIANT, pfCancelled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn fireEvent(self: *const IHTMLDocument4, bstrEventName: ?BSTR, pvarEventObject: ?*VARIANT, pfCancelled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.fireEvent(self, bstrEventName, pvarEventObject, pfCancelled);
     }
     pub fn createRenderStyle(self: *const IHTMLDocument4, v: ?BSTR, ppIHTMLRenderStyle: ?*?*IHTMLRenderStyle) callconv(.@"inline") HRESULT {
@@ -30852,12 +30852,12 @@ pub const IHTMLDocument7 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_xmlStandalone: *const fn(
             self: *const IHTMLDocument7,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_xmlStandalone: *const fn(
             self: *const IHTMLDocument7,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_xmlVersion: *const fn(
@@ -30871,7 +30871,7 @@ pub const IHTMLDocument7 = extern union {
         ) callconv(.winapi) HRESULT,
         hasAttributes: *const fn(
             self: *const IHTMLDocument7,
-            pfHasAttributes: ?*i16,
+            pfHasAttributes: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_onabort: *const fn(
@@ -31249,7 +31249,7 @@ pub const IHTMLDocument7 = extern union {
         importNode: *const fn(
             self: *const IHTMLDocument7,
             pNodeSource: ?*IHTMLDOMNode,
-            fDeep: i16,
+            fDeep: VARIANT_BOOL,
             ppNodeDest: ?*?*IHTMLDOMNode3,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -31332,10 +31332,10 @@ pub const IHTMLDocument7 = extern union {
     pub fn get_xmlEncoding(self: *const IHTMLDocument7, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_xmlEncoding(self, p);
     }
-    pub fn put_xmlStandalone(self: *const IHTMLDocument7, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_xmlStandalone(self: *const IHTMLDocument7, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_xmlStandalone(self, v);
     }
-    pub fn get_xmlStandalone(self: *const IHTMLDocument7, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_xmlStandalone(self: *const IHTMLDocument7, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_xmlStandalone(self, p);
     }
     pub fn put_xmlVersion(self: *const IHTMLDocument7, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -31344,7 +31344,7 @@ pub const IHTMLDocument7 = extern union {
     pub fn get_xmlVersion(self: *const IHTMLDocument7, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_xmlVersion(self, p);
     }
-    pub fn hasAttributes(self: *const IHTMLDocument7, pfHasAttributes: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn hasAttributes(self: *const IHTMLDocument7, pfHasAttributes: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.hasAttributes(self, pfHasAttributes);
     }
     pub fn put_onabort(self: *const IHTMLDocument7, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -31572,7 +31572,7 @@ pub const IHTMLDocument7 = extern union {
     pub fn normalize(self: *const IHTMLDocument7) callconv(.@"inline") HRESULT {
         return self.vtable.normalize(self);
     }
-    pub fn importNode(self: *const IHTMLDocument7, pNodeSource: ?*IHTMLDOMNode, fDeep: i16, ppNodeDest: ?*?*IHTMLDOMNode3) callconv(.@"inline") HRESULT {
+    pub fn importNode(self: *const IHTMLDocument7, pNodeSource: ?*IHTMLDOMNode, fDeep: VARIANT_BOOL, ppNodeDest: ?*?*IHTMLDOMNode3) callconv(.@"inline") HRESULT {
         return self.vtable.importNode(self, pNodeSource, fDeep, ppNodeDest);
     }
     pub fn get_parentWindow(self: *const IHTMLDocument7, p: ?*?*IHTMLWindow2) callconv(.@"inline") HRESULT {
@@ -31771,12 +31771,12 @@ pub const IHTMLDocument8 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_msCapsLockWarningOff: *const fn(
             self: *const IHTMLDocument8,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_msCapsLockWarningOff: *const fn(
             self: *const IHTMLDocument8,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -31884,10 +31884,10 @@ pub const IHTMLDocument8 = extern union {
     pub fn get_onmsmanipulationstatechanged(self: *const IHTMLDocument8, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_onmsmanipulationstatechanged(self, p);
     }
-    pub fn put_msCapsLockWarningOff(self: *const IHTMLDocument8, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_msCapsLockWarningOff(self: *const IHTMLDocument8, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_msCapsLockWarningOff(self, v);
     }
-    pub fn get_msCapsLockWarningOff(self: *const IHTMLDocument8, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_msCapsLockWarningOff(self: *const IHTMLDocument8, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_msCapsLockWarningOff(self, p);
     }
 };
@@ -31969,7 +31969,7 @@ pub const IHTMLDOMAttribute = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_specified: *const fn(
             self: *const IHTMLDOMAttribute,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -31984,7 +31984,7 @@ pub const IHTMLDOMAttribute = extern union {
     pub fn get_nodeValue(self: *const IHTMLDOMAttribute, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_nodeValue(self, p);
     }
-    pub fn get_specified(self: *const IHTMLDOMAttribute, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_specified(self: *const IHTMLDOMAttribute, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_specified(self, p);
     }
 };
@@ -32012,7 +32012,7 @@ pub const IHTMLDOMAttribute2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_expando: *const fn(
             self: *const IHTMLDOMAttribute2,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_nodeType: *const fn(
@@ -32083,11 +32083,11 @@ pub const IHTMLDOMAttribute2 = extern union {
         ) callconv(.winapi) HRESULT,
         hasChildNodes: *const fn(
             self: *const IHTMLDOMAttribute2,
-            fChildren: ?*i16,
+            fChildren: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         cloneNode: *const fn(
             self: *const IHTMLDOMAttribute2,
-            fDeep: i16,
+            fDeep: VARIANT_BOOL,
             clonedNode: ?*?*IHTMLDOMAttribute,
         ) callconv(.winapi) HRESULT,
     };
@@ -32103,7 +32103,7 @@ pub const IHTMLDOMAttribute2 = extern union {
     pub fn get_value(self: *const IHTMLDOMAttribute2, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_value(self, p);
     }
-    pub fn get_expando(self: *const IHTMLDOMAttribute2, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_expando(self: *const IHTMLDOMAttribute2, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_expando(self, p);
     }
     pub fn get_nodeType(self: *const IHTMLDOMAttribute2, p: ?*i32) callconv(.@"inline") HRESULT {
@@ -32145,10 +32145,10 @@ pub const IHTMLDOMAttribute2 = extern union {
     pub fn appendChild(self: *const IHTMLDOMAttribute2, newChild: ?*IHTMLDOMNode, node: ?*?*IHTMLDOMNode) callconv(.@"inline") HRESULT {
         return self.vtable.appendChild(self, newChild, node);
     }
-    pub fn hasChildNodes(self: *const IHTMLDOMAttribute2, fChildren: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn hasChildNodes(self: *const IHTMLDOMAttribute2, fChildren: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.hasChildNodes(self, fChildren);
     }
-    pub fn cloneNode(self: *const IHTMLDOMAttribute2, fDeep: i16, clonedNode: ?*?*IHTMLDOMAttribute) callconv(.@"inline") HRESULT {
+    pub fn cloneNode(self: *const IHTMLDOMAttribute2, fDeep: VARIANT_BOOL, clonedNode: ?*?*IHTMLDOMAttribute) callconv(.@"inline") HRESULT {
         return self.vtable.cloneNode(self, fDeep, clonedNode);
     }
 };
@@ -32181,7 +32181,7 @@ pub const IHTMLDOMAttribute3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_specified: *const fn(
             self: *const IHTMLDOMAttribute3,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ownerElement: *const fn(
@@ -32204,7 +32204,7 @@ pub const IHTMLDOMAttribute3 = extern union {
     pub fn get_value(self: *const IHTMLDOMAttribute3, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_value(self, p);
     }
-    pub fn get_specified(self: *const IHTMLDOMAttribute3, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_specified(self: *const IHTMLDOMAttribute3, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_specified(self, p);
     }
     pub fn get_ownerElement(self: *const IHTMLDOMAttribute3, p: ?*?*IHTMLElement2) callconv(.@"inline") HRESULT {
@@ -32264,11 +32264,11 @@ pub const IHTMLDOMAttribute4 = extern union {
         ) callconv(.winapi) HRESULT,
         hasAttributes: *const fn(
             self: *const IHTMLDOMAttribute4,
-            pfHasAttributes: ?*i16,
+            pfHasAttributes: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         hasChildNodes: *const fn(
             self: *const IHTMLDOMAttribute4,
-            fChildren: ?*i16,
+            fChildren: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         normalize: *const fn(
             self: *const IHTMLDOMAttribute4,
@@ -32276,7 +32276,7 @@ pub const IHTMLDOMAttribute4 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_specified: *const fn(
             self: *const IHTMLDOMAttribute4,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -32309,16 +32309,16 @@ pub const IHTMLDOMAttribute4 = extern union {
     pub fn get_childNodes(self: *const IHTMLDOMAttribute4, p: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_childNodes(self, p);
     }
-    pub fn hasAttributes(self: *const IHTMLDOMAttribute4, pfHasAttributes: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn hasAttributes(self: *const IHTMLDOMAttribute4, pfHasAttributes: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.hasAttributes(self, pfHasAttributes);
     }
-    pub fn hasChildNodes(self: *const IHTMLDOMAttribute4, fChildren: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn hasChildNodes(self: *const IHTMLDOMAttribute4, fChildren: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.hasChildNodes(self, fChildren);
     }
     pub fn normalize(self: *const IHTMLDOMAttribute4) callconv(.@"inline") HRESULT {
         return self.vtable.normalize(self);
     }
-    pub fn get_specified(self: *const IHTMLDOMAttribute4, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_specified(self: *const IHTMLDOMAttribute4, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_specified(self, p);
     }
 };
@@ -33296,13 +33296,13 @@ pub const IHTMLDOMImplementation = extern union {
             self: *const IHTMLDOMImplementation,
             bstrfeature: ?BSTR,
             version: VARIANT,
-            pfHasFeature: ?*i16,
+            pfHasFeature: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn hasFeature(self: *const IHTMLDOMImplementation, bstrfeature: ?BSTR, version: VARIANT, pfHasFeature: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn hasFeature(self: *const IHTMLDOMImplementation, bstrfeature: ?BSTR, version: VARIANT, pfHasFeature: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.hasFeature(self, bstrfeature, version, pfHasFeature);
     }
 };
@@ -33335,7 +33335,7 @@ pub const IHTMLDOMImplementation2 = extern union {
             self: *const IHTMLDOMImplementation2,
             bstrfeature: ?BSTR,
             version: VARIANT,
-            pfHasFeature: ?*i16,
+            pfHasFeature: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -33350,7 +33350,7 @@ pub const IHTMLDOMImplementation2 = extern union {
     pub fn createHTMLDocument(self: *const IHTMLDOMImplementation2, bstrTitle: ?BSTR, ppnewDocument: ?*?*IHTMLDocument7) callconv(.@"inline") HRESULT {
         return self.vtable.createHTMLDocument(self, bstrTitle, ppnewDocument);
     }
-    pub fn hasFeature(self: *const IHTMLDOMImplementation2, bstrfeature: ?BSTR, version: VARIANT, pfHasFeature: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn hasFeature(self: *const IHTMLDOMImplementation2, bstrfeature: ?BSTR, version: VARIANT, pfHasFeature: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.hasFeature(self, bstrfeature, version, pfHasFeature);
     }
 };
@@ -33372,7 +33372,7 @@ pub const IHTMLDOMNode = extern union {
         ) callconv(.winapi) HRESULT,
         hasChildNodes: *const fn(
             self: *const IHTMLDOMNode,
-            fChildren: ?*i16,
+            fChildren: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_childNodes: *const fn(
@@ -33403,12 +33403,12 @@ pub const IHTMLDOMNode = extern union {
         ) callconv(.winapi) HRESULT,
         cloneNode: *const fn(
             self: *const IHTMLDOMNode,
-            fDeep: i16,
+            fDeep: VARIANT_BOOL,
             clonedNode: ?*?*IHTMLDOMNode,
         ) callconv(.winapi) HRESULT,
         removeNode: *const fn(
             self: *const IHTMLDOMNode,
-            fDeep: i16,
+            fDeep: VARIANT_BOOL,
             removed: ?*?*IHTMLDOMNode,
         ) callconv(.winapi) HRESULT,
         swapNode: *const fn(
@@ -33471,7 +33471,7 @@ pub const IHTMLDOMNode = extern union {
     pub fn get_parentNode(self: *const IHTMLDOMNode, p: ?*?*IHTMLDOMNode) callconv(.@"inline") HRESULT {
         return self.vtable.get_parentNode(self, p);
     }
-    pub fn hasChildNodes(self: *const IHTMLDOMNode, fChildren: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn hasChildNodes(self: *const IHTMLDOMNode, fChildren: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.hasChildNodes(self, fChildren);
     }
     pub fn get_childNodes(self: *const IHTMLDOMNode, p: ?*?*IDispatch) callconv(.@"inline") HRESULT {
@@ -33489,10 +33489,10 @@ pub const IHTMLDOMNode = extern union {
     pub fn replaceChild(self: *const IHTMLDOMNode, newChild: ?*IHTMLDOMNode, oldChild: ?*IHTMLDOMNode, node: ?*?*IHTMLDOMNode) callconv(.@"inline") HRESULT {
         return self.vtable.replaceChild(self, newChild, oldChild, node);
     }
-    pub fn cloneNode(self: *const IHTMLDOMNode, fDeep: i16, clonedNode: ?*?*IHTMLDOMNode) callconv(.@"inline") HRESULT {
+    pub fn cloneNode(self: *const IHTMLDOMNode, fDeep: VARIANT_BOOL, clonedNode: ?*?*IHTMLDOMNode) callconv(.@"inline") HRESULT {
         return self.vtable.cloneNode(self, fDeep, clonedNode);
     }
-    pub fn removeNode(self: *const IHTMLDOMNode, fDeep: i16, removed: ?*?*IHTMLDOMNode) callconv(.@"inline") HRESULT {
+    pub fn removeNode(self: *const IHTMLDOMNode, fDeep: VARIANT_BOOL, removed: ?*?*IHTMLDOMNode) callconv(.@"inline") HRESULT {
         return self.vtable.removeNode(self, fDeep, removed);
     }
     pub fn swapNode(self: *const IHTMLDOMNode, otherNode: ?*IHTMLDOMNode, swappedNode: ?*?*IHTMLDOMNode) callconv(.@"inline") HRESULT {
@@ -33584,7 +33584,7 @@ pub const IHTMLDOMNode3 = extern union {
         isEqualNode: *const fn(
             self: *const IHTMLDOMNode3,
             otherNode: ?*IHTMLDOMNode3,
-            isEqual: ?*i16,
+            isEqual: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         lookupNamespaceURI: *const fn(
             self: *const IHTMLDOMNode3,
@@ -33599,7 +33599,7 @@ pub const IHTMLDOMNode3 = extern union {
         isDefaultNamespace: *const fn(
             self: *const IHTMLDOMNode3,
             pvarNamespace: ?*VARIANT,
-            pfDefaultNamespace: ?*i16,
+            pfDefaultNamespace: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         appendChild: *const fn(
             self: *const IHTMLDOMNode3,
@@ -33626,7 +33626,7 @@ pub const IHTMLDOMNode3 = extern union {
         isSameNode: *const fn(
             self: *const IHTMLDOMNode3,
             otherNode: ?*IHTMLDOMNode3,
-            isSame: ?*i16,
+            isSame: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         compareDocumentPosition: *const fn(
             self: *const IHTMLDOMNode3,
@@ -33637,7 +33637,7 @@ pub const IHTMLDOMNode3 = extern union {
             self: *const IHTMLDOMNode3,
             feature: ?BSTR,
             version: VARIANT,
-            pfisSupported: ?*i16,
+            pfisSupported: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -33661,7 +33661,7 @@ pub const IHTMLDOMNode3 = extern union {
     pub fn get_textContent(self: *const IHTMLDOMNode3, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_textContent(self, p);
     }
-    pub fn isEqualNode(self: *const IHTMLDOMNode3, otherNode: ?*IHTMLDOMNode3, isEqual: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isEqualNode(self: *const IHTMLDOMNode3, otherNode: ?*IHTMLDOMNode3, isEqual: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isEqualNode(self, otherNode, isEqual);
     }
     pub fn lookupNamespaceURI(self: *const IHTMLDOMNode3, pvarPrefix: ?*VARIANT, pvarNamespaceURI: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -33670,7 +33670,7 @@ pub const IHTMLDOMNode3 = extern union {
     pub fn lookupPrefix(self: *const IHTMLDOMNode3, pvarNamespaceURI: ?*VARIANT, pvarPrefix: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.lookupPrefix(self, pvarNamespaceURI, pvarPrefix);
     }
-    pub fn isDefaultNamespace(self: *const IHTMLDOMNode3, pvarNamespace: ?*VARIANT, pfDefaultNamespace: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isDefaultNamespace(self: *const IHTMLDOMNode3, pvarNamespace: ?*VARIANT, pfDefaultNamespace: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isDefaultNamespace(self, pvarNamespace, pfDefaultNamespace);
     }
     pub fn appendChild(self: *const IHTMLDOMNode3, newChild: ?*IHTMLDOMNode, node: ?*?*IHTMLDOMNode) callconv(.@"inline") HRESULT {
@@ -33685,13 +33685,13 @@ pub const IHTMLDOMNode3 = extern union {
     pub fn replaceChild(self: *const IHTMLDOMNode3, newChild: ?*IHTMLDOMNode, oldChild: ?*IHTMLDOMNode, node: ?*?*IHTMLDOMNode) callconv(.@"inline") HRESULT {
         return self.vtable.replaceChild(self, newChild, oldChild, node);
     }
-    pub fn isSameNode(self: *const IHTMLDOMNode3, otherNode: ?*IHTMLDOMNode3, isSame: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isSameNode(self: *const IHTMLDOMNode3, otherNode: ?*IHTMLDOMNode3, isSame: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isSameNode(self, otherNode, isSame);
     }
     pub fn compareDocumentPosition(self: *const IHTMLDOMNode3, otherNode: ?*IHTMLDOMNode, flags: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.compareDocumentPosition(self, otherNode, flags);
     }
-    pub fn isSupported(self: *const IHTMLDOMNode3, feature: ?BSTR, version: VARIANT, pfisSupported: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isSupported(self: *const IHTMLDOMNode3, feature: ?BSTR, version: VARIANT, pfisSupported: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isSupported(self, feature, version, pfisSupported);
     }
 };
@@ -33724,7 +33724,7 @@ pub const IHTMLDOMRange = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_collapsed: *const fn(
             self: *const IHTMLDOMRange,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_commonAncestorContainer: *const fn(
@@ -33759,7 +33759,7 @@ pub const IHTMLDOMRange = extern union {
         ) callconv(.winapi) HRESULT,
         collapse: *const fn(
             self: *const IHTMLDOMRange,
-            toStart: i16,
+            toStart: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         selectNode: *const fn(
             self: *const IHTMLDOMRange,
@@ -33829,7 +33829,7 @@ pub const IHTMLDOMRange = extern union {
     pub fn get_endOffset(self: *const IHTMLDOMRange, p: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_endOffset(self, p);
     }
-    pub fn get_collapsed(self: *const IHTMLDOMRange, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_collapsed(self: *const IHTMLDOMRange, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_collapsed(self, p);
     }
     pub fn get_commonAncestorContainer(self: *const IHTMLDOMRange, p: ?*?*IHTMLDOMNode) callconv(.@"inline") HRESULT {
@@ -33853,7 +33853,7 @@ pub const IHTMLDOMRange = extern union {
     pub fn setEndAfter(self: *const IHTMLDOMRange, refNode: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.setEndAfter(self, refNode);
     }
-    pub fn collapse(self: *const IHTMLDOMRange, toStart: i16) callconv(.@"inline") HRESULT {
+    pub fn collapse(self: *const IHTMLDOMRange, toStart: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.collapse(self, toStart);
     }
     pub fn selectNode(self: *const IHTMLDOMRange, refNode: ?*IDispatch) callconv(.@"inline") HRESULT {
@@ -34043,7 +34043,7 @@ pub const IHTMLDOMTextNode3 = extern union {
         ) callconv(.winapi) HRESULT,
         hasAttributes: *const fn(
             self: *const IHTMLDOMTextNode3,
-            pfHasAttributes: ?*i16,
+            pfHasAttributes: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         normalize: *const fn(
             self: *const IHTMLDOMTextNode3,
@@ -34073,7 +34073,7 @@ pub const IHTMLDOMTextNode3 = extern union {
     pub fn replaceWholeText(self: *const IHTMLDOMTextNode3, bstrText: ?BSTR, ppRetNode: ?*?*IHTMLDOMNode) callconv(.@"inline") HRESULT {
         return self.vtable.replaceWholeText(self, bstrText, ppRetNode);
     }
-    pub fn hasAttributes(self: *const IHTMLDOMTextNode3, pfHasAttributes: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn hasAttributes(self: *const IHTMLDOMTextNode3, pfHasAttributes: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.hasAttributes(self, pfHasAttributes);
     }
     pub fn normalize(self: *const IHTMLDOMTextNode3) callconv(.@"inline") HRESULT {
@@ -34089,21 +34089,21 @@ pub const IHTMLDTElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_noWrap: *const fn(
             self: *const IHTMLDTElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_noWrap: *const fn(
             self: *const IHTMLDTElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_noWrap(self: *const IHTMLDTElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_noWrap(self: *const IHTMLDTElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_noWrap(self, v);
     }
-    pub fn get_noWrap(self: *const IHTMLDTElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_noWrap(self: *const IHTMLDTElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_noWrap(self, p);
     }
 };
@@ -34301,7 +34301,7 @@ pub const IHTMLElement = extern union {
             self: *const IHTMLElement,
             strAttributeName: ?BSTR,
             lFlags: i32,
-            pfSuccess: ?*i16,
+            pfSuccess: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_className: *const fn(
@@ -34490,7 +34490,7 @@ pub const IHTMLElement = extern union {
         contains: *const fn(
             self: *const IHTMLElement,
             pChild: ?*IHTMLElement,
-            pfResult: ?*i16,
+            pfResult: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_sourceIndex: *const fn(
@@ -34595,7 +34595,7 @@ pub const IHTMLElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isTextEdit: *const fn(
             self: *const IHTMLElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         click: *const fn(
             self: *const IHTMLElement,
@@ -34729,7 +34729,7 @@ pub const IHTMLElement = extern union {
     pub fn getAttribute(self: *const IHTMLElement, strAttributeName: ?BSTR, lFlags: i32, AttributeValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.getAttribute(self, strAttributeName, lFlags, AttributeValue);
     }
-    pub fn removeAttribute(self: *const IHTMLElement, strAttributeName: ?BSTR, lFlags: i32, pfSuccess: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn removeAttribute(self: *const IHTMLElement, strAttributeName: ?BSTR, lFlags: i32, pfSuccess: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.removeAttribute(self, strAttributeName, lFlags, pfSuccess);
     }
     pub fn put_className(self: *const IHTMLElement, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -34843,7 +34843,7 @@ pub const IHTMLElement = extern union {
     pub fn scrollIntoView(self: *const IHTMLElement, varargStart: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.scrollIntoView(self, varargStart);
     }
-    pub fn contains(self: *const IHTMLElement, pChild: ?*IHTMLElement, pfResult: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn contains(self: *const IHTMLElement, pChild: ?*IHTMLElement, pfResult: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.contains(self, pChild, pfResult);
     }
     pub fn get_sourceIndex(self: *const IHTMLElement, p: ?*i32) callconv(.@"inline") HRESULT {
@@ -34906,7 +34906,7 @@ pub const IHTMLElement = extern union {
     pub fn get_parentTextEdit(self: *const IHTMLElement, p: ?*?*IHTMLElement) callconv(.@"inline") HRESULT {
         return self.vtable.get_parentTextEdit(self, p);
     }
-    pub fn get_isTextEdit(self: *const IHTMLElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isTextEdit(self: *const IHTMLElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isTextEdit(self, p);
     }
     pub fn click(self: *const IHTMLElement) callconv(.@"inline") HRESULT {
@@ -34998,7 +34998,7 @@ pub const IHTMLElement2 = extern union {
         ) callconv(.winapi) HRESULT,
         setCapture: *const fn(
             self: *const IHTMLElement2,
-            containerCapture: i16,
+            containerCapture: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         releaseCapture: *const fn(
             self: *const IHTMLElement2,
@@ -35190,7 +35190,7 @@ pub const IHTMLElement2 = extern union {
         removeExpression: *const fn(
             self: *const IHTMLElement2,
             propname: ?BSTR,
-            pfSuccess: ?*i16,
+            pfSuccess: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_tabIndex: *const fn(
@@ -35280,7 +35280,7 @@ pub const IHTMLElement2 = extern union {
             self: *const IHTMLElement2,
             event: ?BSTR,
             pDisp: ?*IDispatch,
-            pfResult: ?*i16,
+            pfResult: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         detachEvent: *const fn(
             self: *const IHTMLElement2,
@@ -35419,7 +35419,7 @@ pub const IHTMLElement2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_canHaveChildren: *const fn(
             self: *const IHTMLElement2,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         addBehavior: *const fn(
             self: *const IHTMLElement2,
@@ -35430,7 +35430,7 @@ pub const IHTMLElement2 = extern union {
         removeBehavior: *const fn(
             self: *const IHTMLElement2,
             cookie: i32,
-            pfResult: ?*i16,
+            pfResult: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_runtimeStyle: *const fn(
@@ -35479,7 +35479,7 @@ pub const IHTMLElement2 = extern union {
     pub fn get_scopeName(self: *const IHTMLElement2, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_scopeName(self, p);
     }
-    pub fn setCapture(self: *const IHTMLElement2, containerCapture: i16) callconv(.@"inline") HRESULT {
+    pub fn setCapture(self: *const IHTMLElement2, containerCapture: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.setCapture(self, containerCapture);
     }
     pub fn releaseCapture(self: *const IHTMLElement2) callconv(.@"inline") HRESULT {
@@ -35596,7 +35596,7 @@ pub const IHTMLElement2 = extern union {
     pub fn getExpression(self: *const IHTMLElement2, propname: ?BSTR, expression: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.getExpression(self, propname, expression);
     }
-    pub fn removeExpression(self: *const IHTMLElement2, propname: ?BSTR, pfSuccess: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn removeExpression(self: *const IHTMLElement2, propname: ?BSTR, pfSuccess: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.removeExpression(self, propname, pfSuccess);
     }
     pub fn put_tabIndex(self: *const IHTMLElement2, v: i16) callconv(.@"inline") HRESULT {
@@ -35653,7 +35653,7 @@ pub const IHTMLElement2 = extern union {
     pub fn get_clientLeft(self: *const IHTMLElement2, p: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_clientLeft(self, p);
     }
-    pub fn attachEvent(self: *const IHTMLElement2, event: ?BSTR, pDisp: ?*IDispatch, pfResult: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn attachEvent(self: *const IHTMLElement2, event: ?BSTR, pDisp: ?*IDispatch, pfResult: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.attachEvent(self, event, pDisp, pfResult);
     }
     pub fn detachEvent(self: *const IHTMLElement2, event: ?BSTR, pDisp: ?*IDispatch) callconv(.@"inline") HRESULT {
@@ -35737,13 +35737,13 @@ pub const IHTMLElement2 = extern union {
     pub fn replaceAdjacentText(self: *const IHTMLElement2, where: ?BSTR, newText: ?BSTR, oldText: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.replaceAdjacentText(self, where, newText, oldText);
     }
-    pub fn get_canHaveChildren(self: *const IHTMLElement2, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_canHaveChildren(self: *const IHTMLElement2, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_canHaveChildren(self, p);
     }
     pub fn addBehavior(self: *const IHTMLElement2, bstrUrl: ?BSTR, pvarFactory: ?*VARIANT, pCookie: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.addBehavior(self, bstrUrl, pvarFactory, pCookie);
     }
-    pub fn removeBehavior(self: *const IHTMLElement2, cookie: i32, pfResult: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn removeBehavior(self: *const IHTMLElement2, cookie: i32, pfResult: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.removeBehavior(self, cookie, pfResult);
     }
     pub fn get_runtimeStyle(self: *const IHTMLElement2, p: ?*?*IHTMLStyle) callconv(.@"inline") HRESULT {
@@ -35785,12 +35785,12 @@ pub const IHTMLElement3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isMultiLine: *const fn(
             self: *const IHTMLElement3,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_canHaveHTML: *const fn(
             self: *const IHTMLElement3,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_onlayoutcomplete: *const fn(
@@ -35815,12 +35815,12 @@ pub const IHTMLElement3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_inflateBlock: *const fn(
             self: *const IHTMLElement3,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_inflateBlock: *const fn(
             self: *const IHTMLElement3,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_onbeforedeactivate: *const fn(
@@ -35848,32 +35848,32 @@ pub const IHTMLElement3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isContentEditable: *const fn(
             self: *const IHTMLElement3,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_hideFocus: *const fn(
             self: *const IHTMLElement3,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_hideFocus: *const fn(
             self: *const IHTMLElement3,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_disabled: *const fn(
             self: *const IHTMLElement3,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_disabled: *const fn(
             self: *const IHTMLElement3,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isDisabled: *const fn(
             self: *const IHTMLElement3,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_onmove: *const fn(
@@ -35899,7 +35899,7 @@ pub const IHTMLElement3 = extern union {
             self: *const IHTMLElement3,
             bstrEventName: ?BSTR,
             pvarEventObject: ?*VARIANT,
-            pfCancelled: ?*i16,
+            pfCancelled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_onresizestart: *const fn(
@@ -35983,7 +35983,7 @@ pub const IHTMLElement3 = extern union {
         ) callconv(.winapi) HRESULT,
         dragDrop: *const fn(
             self: *const IHTMLElement3,
-            pfRet: ?*i16,
+            pfRet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_glyphMode: *const fn(
@@ -35997,10 +35997,10 @@ pub const IHTMLElement3 = extern union {
     pub fn mergeAttributes(self: *const IHTMLElement3, mergeThis: ?*IHTMLElement, pvarFlags: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.mergeAttributes(self, mergeThis, pvarFlags);
     }
-    pub fn get_isMultiLine(self: *const IHTMLElement3, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isMultiLine(self: *const IHTMLElement3, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isMultiLine(self, p);
     }
-    pub fn get_canHaveHTML(self: *const IHTMLElement3, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_canHaveHTML(self: *const IHTMLElement3, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_canHaveHTML(self, p);
     }
     pub fn put_onlayoutcomplete(self: *const IHTMLElement3, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -36015,10 +36015,10 @@ pub const IHTMLElement3 = extern union {
     pub fn get_onpage(self: *const IHTMLElement3, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_onpage(self, p);
     }
-    pub fn put_inflateBlock(self: *const IHTMLElement3, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_inflateBlock(self: *const IHTMLElement3, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_inflateBlock(self, v);
     }
-    pub fn get_inflateBlock(self: *const IHTMLElement3, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_inflateBlock(self: *const IHTMLElement3, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_inflateBlock(self, p);
     }
     pub fn put_onbeforedeactivate(self: *const IHTMLElement3, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -36036,22 +36036,22 @@ pub const IHTMLElement3 = extern union {
     pub fn get_contentEditable(self: *const IHTMLElement3, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_contentEditable(self, p);
     }
-    pub fn get_isContentEditable(self: *const IHTMLElement3, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isContentEditable(self: *const IHTMLElement3, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isContentEditable(self, p);
     }
-    pub fn put_hideFocus(self: *const IHTMLElement3, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_hideFocus(self: *const IHTMLElement3, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_hideFocus(self, v);
     }
-    pub fn get_hideFocus(self: *const IHTMLElement3, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_hideFocus(self: *const IHTMLElement3, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_hideFocus(self, p);
     }
-    pub fn put_disabled(self: *const IHTMLElement3, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_disabled(self: *const IHTMLElement3, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_disabled(self, v);
     }
-    pub fn get_disabled(self: *const IHTMLElement3, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_disabled(self: *const IHTMLElement3, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_disabled(self, p);
     }
-    pub fn get_isDisabled(self: *const IHTMLElement3, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isDisabled(self: *const IHTMLElement3, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isDisabled(self, p);
     }
     pub fn put_onmove(self: *const IHTMLElement3, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -36066,7 +36066,7 @@ pub const IHTMLElement3 = extern union {
     pub fn get_oncontrolselect(self: *const IHTMLElement3, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_oncontrolselect(self, p);
     }
-    pub fn fireEvent(self: *const IHTMLElement3, bstrEventName: ?BSTR, pvarEventObject: ?*VARIANT, pfCancelled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn fireEvent(self: *const IHTMLElement3, bstrEventName: ?BSTR, pvarEventObject: ?*VARIANT, pfCancelled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.fireEvent(self, bstrEventName, pvarEventObject, pfCancelled);
     }
     pub fn put_onresizestart(self: *const IHTMLElement3, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -36117,7 +36117,7 @@ pub const IHTMLElement3 = extern union {
     pub fn get_ondeactivate(self: *const IHTMLElement3, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_ondeactivate(self, p);
     }
-    pub fn dragDrop(self: *const IHTMLElement3, pfRet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn dragDrop(self: *const IHTMLElement3, pfRet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.dragDrop(self, pfRet);
     }
     pub fn get_glyphMode(self: *const IHTMLElement3, p: ?*i32) callconv(.@"inline") HRESULT {
@@ -36253,7 +36253,7 @@ pub const IHTMLElement5 = extern union {
         hasAttribute: *const fn(
             self: *const IHTMLElement5,
             name: ?BSTR,
-            pfHasAttribute: ?*i16,
+            pfHasAttribute: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_role: *const fn(
@@ -36408,7 +36408,7 @@ pub const IHTMLElement5 = extern union {
         removeAttribute: *const fn(
             self: *const IHTMLElement5,
             strAttributeName: ?BSTR,
-            pfSuccess: ?*i16,
+            pfSuccess: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_attributes: *const fn(
@@ -36537,7 +36537,7 @@ pub const IHTMLElement5 = extern union {
         ) callconv(.winapi) HRESULT,
         hasAttributes: *const fn(
             self: *const IHTMLElement5,
-            pfHasAttributes: ?*i16,
+            pfHasAttributes: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ariaLive: *const fn(
@@ -36572,7 +36572,7 @@ pub const IHTMLElement5 = extern union {
     pub fn removeAttributeNode(self: *const IHTMLElement5, pattr: ?*IHTMLDOMAttribute2, ppretAttribute: ?*?*IHTMLDOMAttribute2) callconv(.@"inline") HRESULT {
         return self.vtable.removeAttributeNode(self, pattr, ppretAttribute);
     }
-    pub fn hasAttribute(self: *const IHTMLElement5, name: ?BSTR, pfHasAttribute: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn hasAttribute(self: *const IHTMLElement5, name: ?BSTR, pfHasAttribute: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.hasAttribute(self, name, pfHasAttribute);
     }
     pub fn put_role(self: *const IHTMLElement5, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -36665,7 +36665,7 @@ pub const IHTMLElement5 = extern union {
     pub fn setAttribute(self: *const IHTMLElement5, strAttributeName: ?BSTR, AttributeValue: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.setAttribute(self, strAttributeName, AttributeValue);
     }
-    pub fn removeAttribute(self: *const IHTMLElement5, strAttributeName: ?BSTR, pfSuccess: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn removeAttribute(self: *const IHTMLElement5, strAttributeName: ?BSTR, pfSuccess: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.removeAttribute(self, strAttributeName, pfSuccess);
     }
     pub fn get_attributes(self: *const IHTMLElement5, p: ?*?*IHTMLAttributeCollection3) callconv(.@"inline") HRESULT {
@@ -36743,7 +36743,7 @@ pub const IHTMLElement5 = extern union {
     pub fn get_ariaOwns(self: *const IHTMLElement5, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ariaOwns(self, p);
     }
-    pub fn hasAttributes(self: *const IHTMLElement5, pfHasAttributes: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn hasAttributes(self: *const IHTMLElement5, pfHasAttributes: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.hasAttributes(self, pfHasAttributes);
     }
     pub fn put_ariaLive(self: *const IHTMLElement5, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -36797,7 +36797,7 @@ pub const IHTMLElement6 = extern union {
             self: *const IHTMLElement6,
             pvarNS: ?*VARIANT,
             name: ?BSTR,
-            pfHasAttribute: ?*i16,
+            pfHasAttribute: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getAttribute: *const fn(
             self: *const IHTMLElement6,
@@ -36831,7 +36831,7 @@ pub const IHTMLElement6 = extern union {
         hasAttribute: *const fn(
             self: *const IHTMLElement6,
             name: ?BSTR,
-            pfHasAttribute: ?*i16,
+            pfHasAttribute: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getElementsByTagNameNS: *const fn(
             self: *const IHTMLElement6,
@@ -36857,7 +36857,7 @@ pub const IHTMLElement6 = extern union {
         msMatchesSelector: *const fn(
             self: *const IHTMLElement6,
             v: ?BSTR,
-            pfMatches: ?*i16,
+            pfMatches: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_onabort: *const fn(
@@ -37141,7 +37141,7 @@ pub const IHTMLElement6 = extern union {
         ) callconv(.winapi) HRESULT,
         hasAttributes: *const fn(
             self: *const IHTMLElement6,
-            pfHasAttributes: ?*i16,
+            pfHasAttributes: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -37162,7 +37162,7 @@ pub const IHTMLElement6 = extern union {
     pub fn setAttributeNodeNS(self: *const IHTMLElement6, pattr: ?*IHTMLDOMAttribute2, ppretAttribute: ?*?*IHTMLDOMAttribute2) callconv(.@"inline") HRESULT {
         return self.vtable.setAttributeNodeNS(self, pattr, ppretAttribute);
     }
-    pub fn hasAttributeNS(self: *const IHTMLElement6, pvarNS: ?*VARIANT, name: ?BSTR, pfHasAttribute: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn hasAttributeNS(self: *const IHTMLElement6, pvarNS: ?*VARIANT, name: ?BSTR, pfHasAttribute: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.hasAttributeNS(self, pvarNS, name, pfHasAttribute);
     }
     pub fn getAttribute(self: *const IHTMLElement6, strAttributeName: ?BSTR, AttributeValue: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -37183,7 +37183,7 @@ pub const IHTMLElement6 = extern union {
     pub fn removeAttributeNode(self: *const IHTMLElement6, pattr: ?*IHTMLDOMAttribute2, ppretAttribute: ?*?*IHTMLDOMAttribute2) callconv(.@"inline") HRESULT {
         return self.vtable.removeAttributeNode(self, pattr, ppretAttribute);
     }
-    pub fn hasAttribute(self: *const IHTMLElement6, name: ?BSTR, pfHasAttribute: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn hasAttribute(self: *const IHTMLElement6, name: ?BSTR, pfHasAttribute: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.hasAttribute(self, name, pfHasAttribute);
     }
     pub fn getElementsByTagNameNS(self: *const IHTMLElement6, varNS: ?*VARIANT, bstrLocalName: ?BSTR, pelColl: ?*?*IHTMLElementCollection) callconv(.@"inline") HRESULT {
@@ -37198,7 +37198,7 @@ pub const IHTMLElement6 = extern union {
     pub fn getElementsByClassName(self: *const IHTMLElement6, v: ?BSTR, pel: ?*?*IHTMLElementCollection) callconv(.@"inline") HRESULT {
         return self.vtable.getElementsByClassName(self, v, pel);
     }
-    pub fn msMatchesSelector(self: *const IHTMLElement6, v: ?BSTR, pfMatches: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn msMatchesSelector(self: *const IHTMLElement6, v: ?BSTR, pfMatches: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.msMatchesSelector(self, v, pfMatches);
     }
     pub fn put_onabort(self: *const IHTMLElement6, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -37369,7 +37369,7 @@ pub const IHTMLElement6 = extern union {
     pub fn get_onwaiting(self: *const IHTMLElement6, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_onwaiting(self, p);
     }
-    pub fn hasAttributes(self: *const IHTMLElement6, pfHasAttributes: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn hasAttributes(self: *const IHTMLElement6, pfHasAttributes: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.hasAttributes(self, pfHasAttributes);
     }
 };
@@ -37986,32 +37986,32 @@ pub const IHTMLElementDefaults = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_tabStop: *const fn(
             self: *const IHTMLElementDefaults,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_tabStop: *const fn(
             self: *const IHTMLElementDefaults,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_viewInheritStyle: *const fn(
             self: *const IHTMLElementDefaults,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_viewInheritStyle: *const fn(
             self: *const IHTMLElementDefaults,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_viewMasterTab: *const fn(
             self: *const IHTMLElementDefaults,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_viewMasterTab: *const fn(
             self: *const IHTMLElementDefaults,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_scrollSegmentX: *const fn(
@@ -38036,12 +38036,12 @@ pub const IHTMLElementDefaults = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_isMultiLine: *const fn(
             self: *const IHTMLElementDefaults,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isMultiLine: *const fn(
             self: *const IHTMLElementDefaults,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_contentEditable: *const fn(
@@ -38056,12 +38056,12 @@ pub const IHTMLElementDefaults = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_canHaveHTML: *const fn(
             self: *const IHTMLElementDefaults,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_canHaveHTML: *const fn(
             self: *const IHTMLElementDefaults,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         putref_viewLink: *const fn(
             self: *const IHTMLElementDefaults,
@@ -38075,12 +38075,12 @@ pub const IHTMLElementDefaults = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_frozen: *const fn(
             self: *const IHTMLElementDefaults,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_frozen: *const fn(
             self: *const IHTMLElementDefaults,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -38089,22 +38089,22 @@ pub const IHTMLElementDefaults = extern union {
     pub fn get_style(self: *const IHTMLElementDefaults, p: ?*?*IHTMLStyle) callconv(.@"inline") HRESULT {
         return self.vtable.get_style(self, p);
     }
-    pub fn put_tabStop(self: *const IHTMLElementDefaults, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_tabStop(self: *const IHTMLElementDefaults, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_tabStop(self, v);
     }
-    pub fn get_tabStop(self: *const IHTMLElementDefaults, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_tabStop(self: *const IHTMLElementDefaults, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_tabStop(self, p);
     }
-    pub fn put_viewInheritStyle(self: *const IHTMLElementDefaults, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_viewInheritStyle(self: *const IHTMLElementDefaults, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_viewInheritStyle(self, v);
     }
-    pub fn get_viewInheritStyle(self: *const IHTMLElementDefaults, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_viewInheritStyle(self: *const IHTMLElementDefaults, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_viewInheritStyle(self, p);
     }
-    pub fn put_viewMasterTab(self: *const IHTMLElementDefaults, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_viewMasterTab(self: *const IHTMLElementDefaults, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_viewMasterTab(self, v);
     }
-    pub fn get_viewMasterTab(self: *const IHTMLElementDefaults, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_viewMasterTab(self: *const IHTMLElementDefaults, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_viewMasterTab(self, p);
     }
     pub fn put_scrollSegmentX(self: *const IHTMLElementDefaults, v: i32) callconv(.@"inline") HRESULT {
@@ -38119,10 +38119,10 @@ pub const IHTMLElementDefaults = extern union {
     pub fn get_scrollSegmentY(self: *const IHTMLElementDefaults, p: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_scrollSegmentY(self, p);
     }
-    pub fn put_isMultiLine(self: *const IHTMLElementDefaults, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_isMultiLine(self: *const IHTMLElementDefaults, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_isMultiLine(self, v);
     }
-    pub fn get_isMultiLine(self: *const IHTMLElementDefaults, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isMultiLine(self: *const IHTMLElementDefaults, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isMultiLine(self, p);
     }
     pub fn put_contentEditable(self: *const IHTMLElementDefaults, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -38131,10 +38131,10 @@ pub const IHTMLElementDefaults = extern union {
     pub fn get_contentEditable(self: *const IHTMLElementDefaults, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_contentEditable(self, p);
     }
-    pub fn put_canHaveHTML(self: *const IHTMLElementDefaults, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_canHaveHTML(self: *const IHTMLElementDefaults, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_canHaveHTML(self, v);
     }
-    pub fn get_canHaveHTML(self: *const IHTMLElementDefaults, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_canHaveHTML(self: *const IHTMLElementDefaults, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_canHaveHTML(self, p);
     }
     pub fn putref_viewLink(self: *const IHTMLElementDefaults, v: ?*IHTMLDocument) callconv(.@"inline") HRESULT {
@@ -38143,10 +38143,10 @@ pub const IHTMLElementDefaults = extern union {
     pub fn get_viewLink(self: *const IHTMLElementDefaults, p: ?*?*IHTMLDocument) callconv(.@"inline") HRESULT {
         return self.vtable.get_viewLink(self, p);
     }
-    pub fn put_frozen(self: *const IHTMLElementDefaults, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_frozen(self: *const IHTMLElementDefaults, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_frozen(self, v);
     }
-    pub fn get_frozen(self: *const IHTMLElementDefaults, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_frozen(self: *const IHTMLElementDefaults, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_frozen(self, p);
     }
 };
@@ -38347,17 +38347,17 @@ pub const IHTMLEventObj = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_altKey: *const fn(
             self: *const IHTMLEventObj,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ctrlKey: *const fn(
             self: *const IHTMLEventObj,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_shiftKey: *const fn(
             self: *const IHTMLEventObj,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_returnValue: *const fn(
@@ -38372,12 +38372,12 @@ pub const IHTMLEventObj = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_cancelBubble: *const fn(
             self: *const IHTMLEventObj,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_cancelBubble: *const fn(
             self: *const IHTMLEventObj,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_fromElement: *const fn(
@@ -38471,13 +38471,13 @@ pub const IHTMLEventObj = extern union {
     pub fn get_srcElement(self: *const IHTMLEventObj, p: ?*?*IHTMLElement) callconv(.@"inline") HRESULT {
         return self.vtable.get_srcElement(self, p);
     }
-    pub fn get_altKey(self: *const IHTMLEventObj, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_altKey(self: *const IHTMLEventObj, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_altKey(self, p);
     }
-    pub fn get_ctrlKey(self: *const IHTMLEventObj, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_ctrlKey(self: *const IHTMLEventObj, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ctrlKey(self, p);
     }
-    pub fn get_shiftKey(self: *const IHTMLEventObj, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_shiftKey(self: *const IHTMLEventObj, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_shiftKey(self, p);
     }
     pub fn put_returnValue(self: *const IHTMLEventObj, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -38486,10 +38486,10 @@ pub const IHTMLEventObj = extern union {
     pub fn get_returnValue(self: *const IHTMLEventObj, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_returnValue(self, p);
     }
-    pub fn put_cancelBubble(self: *const IHTMLEventObj, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_cancelBubble(self: *const IHTMLEventObj, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_cancelBubble(self, v);
     }
-    pub fn get_cancelBubble(self: *const IHTMLEventObj, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_cancelBubble(self: *const IHTMLEventObj, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_cancelBubble(self, p);
     }
     pub fn get_fromElement(self: *const IHTMLEventObj, p: ?*?*IHTMLElement) callconv(.@"inline") HRESULT {
@@ -38566,7 +38566,7 @@ pub const IHTMLEventObj2 = extern union {
             self: *const IHTMLEventObj2,
             strAttributeName: ?BSTR,
             lFlags: i32,
-            pfSuccess: ?*i16,
+            pfSuccess: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_propertyName: *const fn(
@@ -38618,12 +38618,12 @@ pub const IHTMLEventObj2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_repeat: *const fn(
             self: *const IHTMLEventObj2,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_repeat: *const fn(
             self: *const IHTMLEventObj2,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_srcUrn: *const fn(
@@ -38647,32 +38647,32 @@ pub const IHTMLEventObj2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_altKey: *const fn(
             self: *const IHTMLEventObj2,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_altKey: *const fn(
             self: *const IHTMLEventObj2,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ctrlKey: *const fn(
             self: *const IHTMLEventObj2,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ctrlKey: *const fn(
             self: *const IHTMLEventObj2,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_shiftKey: *const fn(
             self: *const IHTMLEventObj2,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_shiftKey: *const fn(
             self: *const IHTMLEventObj2,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         putref_fromElement: *const fn(
             self: *const IHTMLEventObj2,
@@ -38836,7 +38836,7 @@ pub const IHTMLEventObj2 = extern union {
     pub fn getAttribute(self: *const IHTMLEventObj2, strAttributeName: ?BSTR, lFlags: i32, AttributeValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.getAttribute(self, strAttributeName, lFlags, AttributeValue);
     }
-    pub fn removeAttribute(self: *const IHTMLEventObj2, strAttributeName: ?BSTR, lFlags: i32, pfSuccess: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn removeAttribute(self: *const IHTMLEventObj2, strAttributeName: ?BSTR, lFlags: i32, pfSuccess: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.removeAttribute(self, strAttributeName, lFlags, pfSuccess);
     }
     pub fn put_propertyName(self: *const IHTMLEventObj2, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -38869,10 +38869,10 @@ pub const IHTMLEventObj2 = extern union {
     pub fn get_boundElements(self: *const IHTMLEventObj2, p: ?*?*IHTMLElementCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_boundElements(self, p);
     }
-    pub fn put_repeat(self: *const IHTMLEventObj2, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_repeat(self: *const IHTMLEventObj2, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_repeat(self, v);
     }
-    pub fn get_repeat(self: *const IHTMLEventObj2, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_repeat(self: *const IHTMLEventObj2, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_repeat(self, p);
     }
     pub fn put_srcUrn(self: *const IHTMLEventObj2, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -38887,22 +38887,22 @@ pub const IHTMLEventObj2 = extern union {
     pub fn get_srcElement(self: *const IHTMLEventObj2, p: ?*?*IHTMLElement) callconv(.@"inline") HRESULT {
         return self.vtable.get_srcElement(self, p);
     }
-    pub fn put_altKey(self: *const IHTMLEventObj2, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_altKey(self: *const IHTMLEventObj2, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_altKey(self, v);
     }
-    pub fn get_altKey(self: *const IHTMLEventObj2, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_altKey(self: *const IHTMLEventObj2, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_altKey(self, p);
     }
-    pub fn put_ctrlKey(self: *const IHTMLEventObj2, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_ctrlKey(self: *const IHTMLEventObj2, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_ctrlKey(self, v);
     }
-    pub fn get_ctrlKey(self: *const IHTMLEventObj2, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_ctrlKey(self: *const IHTMLEventObj2, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ctrlKey(self, p);
     }
-    pub fn put_shiftKey(self: *const IHTMLEventObj2, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_shiftKey(self: *const IHTMLEventObj2, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_shiftKey(self, v);
     }
-    pub fn get_shiftKey(self: *const IHTMLEventObj2, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_shiftKey(self: *const IHTMLEventObj2, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_shiftKey(self, p);
     }
     pub fn putref_fromElement(self: *const IHTMLEventObj2, v: ?*IHTMLElement) callconv(.@"inline") HRESULT {
@@ -39008,37 +39008,37 @@ pub const IHTMLEventObj3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_contentOverflow: *const fn(
             self: *const IHTMLEventObj3,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_shiftLeft: *const fn(
             self: *const IHTMLEventObj3,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_shiftLeft: *const fn(
             self: *const IHTMLEventObj3,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_altLeft: *const fn(
             self: *const IHTMLEventObj3,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_altLeft: *const fn(
             self: *const IHTMLEventObj3,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ctrlLeft: *const fn(
             self: *const IHTMLEventObj3,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ctrlLeft: *const fn(
             self: *const IHTMLEventObj3,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_imeCompositionChange: *const fn(
@@ -39089,25 +39089,25 @@ pub const IHTMLEventObj3 = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_contentOverflow(self: *const IHTMLEventObj3, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_contentOverflow(self: *const IHTMLEventObj3, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_contentOverflow(self, p);
     }
-    pub fn put_shiftLeft(self: *const IHTMLEventObj3, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_shiftLeft(self: *const IHTMLEventObj3, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_shiftLeft(self, v);
     }
-    pub fn get_shiftLeft(self: *const IHTMLEventObj3, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_shiftLeft(self: *const IHTMLEventObj3, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_shiftLeft(self, p);
     }
-    pub fn put_altLeft(self: *const IHTMLEventObj3, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_altLeft(self: *const IHTMLEventObj3, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_altLeft(self, v);
     }
-    pub fn get_altLeft(self: *const IHTMLEventObj3, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_altLeft(self: *const IHTMLEventObj3, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_altLeft(self, p);
     }
-    pub fn put_ctrlLeft(self: *const IHTMLEventObj3, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_ctrlLeft(self: *const IHTMLEventObj3, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_ctrlLeft(self, v);
     }
-    pub fn get_ctrlLeft(self: *const IHTMLEventObj3, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_ctrlLeft(self: *const IHTMLEventObj3, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ctrlLeft(self, p);
     }
     pub fn get_imeCompositionChange(self: *const IHTMLEventObj3, p: ?*isize) callconv(.@"inline") HRESULT {
@@ -39201,12 +39201,12 @@ pub const IHTMLEventObj5 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_issession: *const fn(
             self: *const IHTMLEventObj5,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_issession: *const fn(
             self: *const IHTMLEventObj5,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -39233,10 +39233,10 @@ pub const IHTMLEventObj5 = extern union {
     pub fn get_origin(self: *const IHTMLEventObj5, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_origin(self, p);
     }
-    pub fn put_issession(self: *const IHTMLEventObj5, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_issession(self: *const IHTMLEventObj5, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_issession(self, v);
     }
-    pub fn get_issession(self: *const IHTMLEventObj5, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_issession(self: *const IHTMLEventObj5, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_issession(self, p);
     }
 };
@@ -39845,12 +39845,12 @@ pub const IHTMLFrameBase = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_noResize: *const fn(
             self: *const IHTMLFrameBase,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_noResize: *const fn(
             self: *const IHTMLFrameBase,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_scrolling: *const fn(
@@ -39908,10 +39908,10 @@ pub const IHTMLFrameBase = extern union {
     pub fn get_marginHeight(self: *const IHTMLFrameBase, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_marginHeight(self, p);
     }
-    pub fn put_noResize(self: *const IHTMLFrameBase, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_noResize(self: *const IHTMLFrameBase, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_noResize(self, v);
     }
-    pub fn get_noResize(self: *const IHTMLFrameBase, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_noResize(self: *const IHTMLFrameBase, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_noResize(self, p);
     }
     pub fn put_scrolling(self: *const IHTMLFrameBase, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -39960,12 +39960,12 @@ pub const IHTMLFrameBase2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_allowTransparency: *const fn(
             self: *const IHTMLFrameBase2,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_allowTransparency: *const fn(
             self: *const IHTMLFrameBase2,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -39989,10 +39989,10 @@ pub const IHTMLFrameBase2 = extern union {
     pub fn get_readyState(self: *const IHTMLFrameBase2, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_readyState(self, p);
     }
-    pub fn put_allowTransparency(self: *const IHTMLFrameBase2, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_allowTransparency(self: *const IHTMLFrameBase2, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_allowTransparency(self, v);
     }
-    pub fn get_allowTransparency(self: *const IHTMLFrameBase2, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_allowTransparency(self: *const IHTMLFrameBase2, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_allowTransparency(self, p);
     }
 };
@@ -40630,12 +40630,12 @@ pub const IHTMLHRElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_noShade: *const fn(
             self: *const IHTMLHRElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_noShade: *const fn(
             self: *const IHTMLHRElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_width: *const fn(
@@ -40673,10 +40673,10 @@ pub const IHTMLHRElement = extern union {
     pub fn get_color(self: *const IHTMLHRElement, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_color(self, p);
     }
-    pub fn put_noShade(self: *const IHTMLHRElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_noShade(self: *const IHTMLHRElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_noShade(self, v);
     }
-    pub fn get_noShade(self: *const IHTMLHRElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_noShade(self: *const IHTMLHRElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_noShade(self, p);
     }
     pub fn put_width(self: *const IHTMLHRElement, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -40917,12 +40917,12 @@ pub const IHTMLImgElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_isMap: *const fn(
             self: *const IHTMLImgElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isMap: *const fn(
             self: *const IHTMLImgElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_useMap: *const fn(
@@ -41062,7 +41062,7 @@ pub const IHTMLImgElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_complete: *const fn(
             self: *const IHTMLImgElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_loop: *const fn(
@@ -41158,10 +41158,10 @@ pub const IHTMLImgElement = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_isMap(self: *const IHTMLImgElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_isMap(self: *const IHTMLImgElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_isMap(self, v);
     }
-    pub fn get_isMap(self: *const IHTMLImgElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isMap(self: *const IHTMLImgElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isMap(self, p);
     }
     pub fn put_useMap(self: *const IHTMLImgElement, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -41245,7 +41245,7 @@ pub const IHTMLImgElement = extern union {
     pub fn get_readyState(self: *const IHTMLImgElement, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_readyState(self, p);
     }
-    pub fn get_complete(self: *const IHTMLImgElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_complete(self: *const IHTMLImgElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_complete(self, p);
     }
     pub fn put_loop(self: *const IHTMLImgElement, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -41476,12 +41476,12 @@ pub const IHTMLInputButtonElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_disabled: *const fn(
             self: *const IHTMLInputButtonElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_disabled: *const fn(
             self: *const IHTMLInputButtonElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_form: *const fn(
@@ -41517,10 +41517,10 @@ pub const IHTMLInputButtonElement = extern union {
     pub fn get_status(self: *const IHTMLInputButtonElement, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_status(self, p);
     }
-    pub fn put_disabled(self: *const IHTMLInputButtonElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_disabled(self: *const IHTMLInputButtonElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_disabled(self, v);
     }
-    pub fn get_disabled(self: *const IHTMLInputButtonElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_disabled(self: *const IHTMLInputButtonElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_disabled(self, p);
     }
     pub fn get_form(self: *const IHTMLInputButtonElement, p: ?*?*IHTMLFormElement) callconv(.@"inline") HRESULT {
@@ -41569,22 +41569,22 @@ pub const IHTMLInputElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_status: *const fn(
             self: *const IHTMLInputElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_status: *const fn(
             self: *const IHTMLInputElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_disabled: *const fn(
             self: *const IHTMLInputElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_disabled: *const fn(
             self: *const IHTMLInputElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_form: *const fn(
@@ -41647,12 +41647,12 @@ pub const IHTMLInputElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_readOnly: *const fn(
             self: *const IHTMLInputElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_readOnly: *const fn(
             self: *const IHTMLInputElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         createTextRange: *const fn(
             self: *const IHTMLInputElement,
@@ -41661,32 +41661,32 @@ pub const IHTMLInputElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_indeterminate: *const fn(
             self: *const IHTMLInputElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_indeterminate: *const fn(
             self: *const IHTMLInputElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_defaultChecked: *const fn(
             self: *const IHTMLInputElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_defaultChecked: *const fn(
             self: *const IHTMLInputElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_checked: *const fn(
             self: *const IHTMLInputElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_checked: *const fn(
             self: *const IHTMLInputElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_border: *const fn(
@@ -41776,7 +41776,7 @@ pub const IHTMLInputElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_complete: *const fn(
             self: *const IHTMLInputElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_loop: *const fn(
@@ -41880,16 +41880,16 @@ pub const IHTMLInputElement = extern union {
     pub fn get_name(self: *const IHTMLInputElement, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_name(self, p);
     }
-    pub fn put_status(self: *const IHTMLInputElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_status(self: *const IHTMLInputElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_status(self, v);
     }
-    pub fn get_status(self: *const IHTMLInputElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_status(self: *const IHTMLInputElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_status(self, p);
     }
-    pub fn put_disabled(self: *const IHTMLInputElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_disabled(self: *const IHTMLInputElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_disabled(self, v);
     }
-    pub fn get_disabled(self: *const IHTMLInputElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_disabled(self: *const IHTMLInputElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_disabled(self, p);
     }
     pub fn get_form(self: *const IHTMLInputElement, p: ?*?*IHTMLFormElement) callconv(.@"inline") HRESULT {
@@ -41928,31 +41928,31 @@ pub const IHTMLInputElement = extern union {
     pub fn get_defaultValue(self: *const IHTMLInputElement, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_defaultValue(self, p);
     }
-    pub fn put_readOnly(self: *const IHTMLInputElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_readOnly(self: *const IHTMLInputElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_readOnly(self, v);
     }
-    pub fn get_readOnly(self: *const IHTMLInputElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_readOnly(self: *const IHTMLInputElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_readOnly(self, p);
     }
     pub fn createTextRange(self: *const IHTMLInputElement, range: ?*?*IHTMLTxtRange) callconv(.@"inline") HRESULT {
         return self.vtable.createTextRange(self, range);
     }
-    pub fn put_indeterminate(self: *const IHTMLInputElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_indeterminate(self: *const IHTMLInputElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_indeterminate(self, v);
     }
-    pub fn get_indeterminate(self: *const IHTMLInputElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_indeterminate(self: *const IHTMLInputElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_indeterminate(self, p);
     }
-    pub fn put_defaultChecked(self: *const IHTMLInputElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_defaultChecked(self: *const IHTMLInputElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_defaultChecked(self, v);
     }
-    pub fn get_defaultChecked(self: *const IHTMLInputElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_defaultChecked(self: *const IHTMLInputElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_defaultChecked(self, p);
     }
-    pub fn put_checked(self: *const IHTMLInputElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_checked(self: *const IHTMLInputElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_checked(self, v);
     }
-    pub fn get_checked(self: *const IHTMLInputElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_checked(self: *const IHTMLInputElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_checked(self, p);
     }
     pub fn put_border(self: *const IHTMLInputElement, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -42006,7 +42006,7 @@ pub const IHTMLInputElement = extern union {
     pub fn get_readyState(self: *const IHTMLInputElement, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_readyState(self, p);
     }
-    pub fn get_complete(self: *const IHTMLInputElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_complete(self: *const IHTMLInputElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_complete(self, p);
     }
     pub fn put_loop(self: *const IHTMLInputElement, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -42210,12 +42210,12 @@ pub const IHTMLInputFileElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_disabled: *const fn(
             self: *const IHTMLInputFileElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_disabled: *const fn(
             self: *const IHTMLInputFileElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_form: *const fn(
@@ -42294,10 +42294,10 @@ pub const IHTMLInputFileElement = extern union {
     pub fn get_status(self: *const IHTMLInputFileElement, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_status(self, p);
     }
-    pub fn put_disabled(self: *const IHTMLInputFileElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_disabled(self: *const IHTMLInputFileElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_disabled(self, v);
     }
-    pub fn get_disabled(self: *const IHTMLInputFileElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_disabled(self: *const IHTMLInputFileElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_disabled(self, p);
     }
     pub fn get_form(self: *const IHTMLInputFileElement, p: ?*?*IHTMLFormElement) callconv(.@"inline") HRESULT {
@@ -42381,12 +42381,12 @@ pub const IHTMLInputHiddenElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_disabled: *const fn(
             self: *const IHTMLInputHiddenElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_disabled: *const fn(
             self: *const IHTMLInputHiddenElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_form: *const fn(
@@ -42422,10 +42422,10 @@ pub const IHTMLInputHiddenElement = extern union {
     pub fn get_status(self: *const IHTMLInputHiddenElement, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_status(self, p);
     }
-    pub fn put_disabled(self: *const IHTMLInputHiddenElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_disabled(self: *const IHTMLInputHiddenElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_disabled(self, v);
     }
-    pub fn get_disabled(self: *const IHTMLInputHiddenElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_disabled(self: *const IHTMLInputHiddenElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_disabled(self, p);
     }
     pub fn get_form(self: *const IHTMLInputHiddenElement, p: ?*?*IHTMLFormElement) callconv(.@"inline") HRESULT {
@@ -42449,12 +42449,12 @@ pub const IHTMLInputImage = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_disabled: *const fn(
             self: *const IHTMLInputImage,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_disabled: *const fn(
             self: *const IHTMLInputImage,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_border: *const fn(
@@ -42544,7 +42544,7 @@ pub const IHTMLInputImage = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_complete: *const fn(
             self: *const IHTMLInputImage,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_loop: *const fn(
@@ -42643,10 +42643,10 @@ pub const IHTMLInputImage = extern union {
     pub fn get_type(self: *const IHTMLInputImage, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_type(self, p);
     }
-    pub fn put_disabled(self: *const IHTMLInputImage, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_disabled(self: *const IHTMLInputImage, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_disabled(self, v);
     }
-    pub fn get_disabled(self: *const IHTMLInputImage, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_disabled(self: *const IHTMLInputImage, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_disabled(self, p);
     }
     pub fn put_border(self: *const IHTMLInputImage, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -42700,7 +42700,7 @@ pub const IHTMLInputImage = extern union {
     pub fn get_readyState(self: *const IHTMLInputImage, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_readyState(self, p);
     }
-    pub fn get_complete(self: *const IHTMLInputImage, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_complete(self: *const IHTMLInputImage, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_complete(self, p);
     }
     pub fn put_loop(self: *const IHTMLInputImage, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -42767,12 +42767,12 @@ pub const IHTMLInputRangeElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_disabled: *const fn(
             self: *const IHTMLInputRangeElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_disabled: *const fn(
             self: *const IHTMLInputRangeElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_type: *const fn(
@@ -42861,10 +42861,10 @@ pub const IHTMLInputRangeElement = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_disabled(self: *const IHTMLInputRangeElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_disabled(self: *const IHTMLInputRangeElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_disabled(self, v);
     }
-    pub fn get_disabled(self: *const IHTMLInputRangeElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_disabled(self: *const IHTMLInputRangeElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_disabled(self, p);
     }
     pub fn get_type(self: *const IHTMLInputRangeElement, p: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -42963,12 +42963,12 @@ pub const IHTMLInputTextElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_disabled: *const fn(
             self: *const IHTMLInputTextElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_disabled: *const fn(
             self: *const IHTMLInputTextElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_form: *const fn(
@@ -43031,12 +43031,12 @@ pub const IHTMLInputTextElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_readOnly: *const fn(
             self: *const IHTMLInputTextElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_readOnly: *const fn(
             self: *const IHTMLInputTextElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         createTextRange: *const fn(
             self: *const IHTMLInputTextElement,
@@ -43067,10 +43067,10 @@ pub const IHTMLInputTextElement = extern union {
     pub fn get_status(self: *const IHTMLInputTextElement, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_status(self, p);
     }
-    pub fn put_disabled(self: *const IHTMLInputTextElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_disabled(self: *const IHTMLInputTextElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_disabled(self, v);
     }
-    pub fn get_disabled(self: *const IHTMLInputTextElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_disabled(self: *const IHTMLInputTextElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_disabled(self, p);
     }
     pub fn get_form(self: *const IHTMLInputTextElement, p: ?*?*IHTMLFormElement) callconv(.@"inline") HRESULT {
@@ -43109,10 +43109,10 @@ pub const IHTMLInputTextElement = extern union {
     pub fn get_onselect(self: *const IHTMLInputTextElement, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_onselect(self, p);
     }
-    pub fn put_readOnly(self: *const IHTMLInputTextElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_readOnly(self: *const IHTMLInputTextElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_readOnly(self, v);
     }
-    pub fn get_readOnly(self: *const IHTMLInputTextElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_readOnly(self: *const IHTMLInputTextElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_readOnly(self, p);
     }
     pub fn createTextRange(self: *const IHTMLInputTextElement, range: ?*?*IHTMLTxtRange) callconv(.@"inline") HRESULT {
@@ -43507,12 +43507,12 @@ pub const IHTMLLinkElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_disabled: *const fn(
             self: *const IHTMLLinkElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_disabled: *const fn(
             self: *const IHTMLLinkElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_media: *const fn(
@@ -43576,10 +43576,10 @@ pub const IHTMLLinkElement = extern union {
     pub fn get_styleSheet(self: *const IHTMLLinkElement, p: ?*?*IHTMLStyleSheet) callconv(.@"inline") HRESULT {
         return self.vtable.get_styleSheet(self, p);
     }
-    pub fn put_disabled(self: *const IHTMLLinkElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_disabled(self: *const IHTMLLinkElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_disabled(self, v);
     }
-    pub fn get_disabled(self: *const IHTMLLinkElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_disabled(self: *const IHTMLLinkElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_disabled(self, p);
     }
     pub fn put_media(self: *const IHTMLLinkElement, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -43725,21 +43725,21 @@ pub const IHTMLListElement2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_compact: *const fn(
             self: *const IHTMLListElement2,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_compact: *const fn(
             self: *const IHTMLListElement2,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_compact(self: *const IHTMLListElement2, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_compact(self: *const IHTMLListElement2, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_compact(self, v);
     }
-    pub fn get_compact(self: *const IHTMLListElement2, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_compact(self: *const IHTMLListElement2, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_compact(self, p);
     }
 };
@@ -43831,7 +43831,7 @@ pub const IHTMLLocation = extern union {
         ) callconv(.winapi) HRESULT,
         reload: *const fn(
             self: *const IHTMLLocation,
-            flag: i16,
+            flag: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         replace: *const fn(
             self: *const IHTMLLocation,
@@ -43897,7 +43897,7 @@ pub const IHTMLLocation = extern union {
     pub fn get_hash(self: *const IHTMLLocation, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_hash(self, p);
     }
-    pub fn reload(self: *const IHTMLLocation, flag: i16) callconv(.@"inline") HRESULT {
+    pub fn reload(self: *const IHTMLLocation, flag: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.reload(self, flag);
     }
     pub fn replace(self: *const IHTMLLocation, bstr: ?BSTR) callconv(.@"inline") HRESULT {
@@ -44084,12 +44084,12 @@ pub const IHTMLMarqueeElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_trueSpeed: *const fn(
             self: *const IHTMLMarqueeElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_trueSpeed: *const fn(
             self: *const IHTMLMarqueeElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         start: *const fn(
             self: *const IHTMLMarqueeElement,
@@ -44179,10 +44179,10 @@ pub const IHTMLMarqueeElement = extern union {
     pub fn get_height(self: *const IHTMLMarqueeElement, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_height(self, p);
     }
-    pub fn put_trueSpeed(self: *const IHTMLMarqueeElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_trueSpeed(self: *const IHTMLMarqueeElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_trueSpeed(self, v);
     }
-    pub fn get_trueSpeed(self: *const IHTMLMarqueeElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_trueSpeed(self: *const IHTMLMarqueeElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_trueSpeed(self, p);
     }
     pub fn start(self: *const IHTMLMarqueeElement) callconv(.@"inline") HRESULT {
@@ -44249,7 +44249,7 @@ pub const IHTMLMediaElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_seeking: *const fn(
             self: *const IHTMLMediaElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_currentTime: *const fn(
@@ -44274,7 +44274,7 @@ pub const IHTMLMediaElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_paused: *const fn(
             self: *const IHTMLMediaElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_defaultPlaybackRate: *const fn(
@@ -44309,27 +44309,27 @@ pub const IHTMLMediaElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ended: *const fn(
             self: *const IHTMLMediaElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_autoplay: *const fn(
             self: *const IHTMLMediaElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_autoplay: *const fn(
             self: *const IHTMLMediaElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_loop: *const fn(
             self: *const IHTMLMediaElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_loop: *const fn(
             self: *const IHTMLMediaElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         play: *const fn(
             self: *const IHTMLMediaElement,
@@ -44340,12 +44340,12 @@ pub const IHTMLMediaElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_controls: *const fn(
             self: *const IHTMLMediaElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_controls: *const fn(
             self: *const IHTMLMediaElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_volume: *const fn(
@@ -44360,22 +44360,22 @@ pub const IHTMLMediaElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_muted: *const fn(
             self: *const IHTMLMediaElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_muted: *const fn(
             self: *const IHTMLMediaElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_autobuffer: *const fn(
             self: *const IHTMLMediaElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_autobuffer: *const fn(
             self: *const IHTMLMediaElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -44411,7 +44411,7 @@ pub const IHTMLMediaElement = extern union {
     pub fn canPlayType(self: *const IHTMLMediaElement, @"type": ?BSTR, canPlay: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.canPlayType(self, @"type", canPlay);
     }
-    pub fn get_seeking(self: *const IHTMLMediaElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_seeking(self: *const IHTMLMediaElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_seeking(self, p);
     }
     pub fn put_currentTime(self: *const IHTMLMediaElement, v: f32) callconv(.@"inline") HRESULT {
@@ -44426,7 +44426,7 @@ pub const IHTMLMediaElement = extern union {
     pub fn get_duration(self: *const IHTMLMediaElement, p: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.get_duration(self, p);
     }
-    pub fn get_paused(self: *const IHTMLMediaElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_paused(self: *const IHTMLMediaElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_paused(self, p);
     }
     pub fn put_defaultPlaybackRate(self: *const IHTMLMediaElement, v: f32) callconv(.@"inline") HRESULT {
@@ -44447,19 +44447,19 @@ pub const IHTMLMediaElement = extern union {
     pub fn get_seekable(self: *const IHTMLMediaElement, p: ?*?*IHTMLTimeRanges) callconv(.@"inline") HRESULT {
         return self.vtable.get_seekable(self, p);
     }
-    pub fn get_ended(self: *const IHTMLMediaElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_ended(self: *const IHTMLMediaElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ended(self, p);
     }
-    pub fn put_autoplay(self: *const IHTMLMediaElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_autoplay(self: *const IHTMLMediaElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_autoplay(self, v);
     }
-    pub fn get_autoplay(self: *const IHTMLMediaElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_autoplay(self: *const IHTMLMediaElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_autoplay(self, p);
     }
-    pub fn put_loop(self: *const IHTMLMediaElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_loop(self: *const IHTMLMediaElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_loop(self, v);
     }
-    pub fn get_loop(self: *const IHTMLMediaElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_loop(self: *const IHTMLMediaElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_loop(self, p);
     }
     pub fn play(self: *const IHTMLMediaElement) callconv(.@"inline") HRESULT {
@@ -44468,10 +44468,10 @@ pub const IHTMLMediaElement = extern union {
     pub fn pause(self: *const IHTMLMediaElement) callconv(.@"inline") HRESULT {
         return self.vtable.pause(self);
     }
-    pub fn put_controls(self: *const IHTMLMediaElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_controls(self: *const IHTMLMediaElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_controls(self, v);
     }
-    pub fn get_controls(self: *const IHTMLMediaElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_controls(self: *const IHTMLMediaElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_controls(self, p);
     }
     pub fn put_volume(self: *const IHTMLMediaElement, v: f32) callconv(.@"inline") HRESULT {
@@ -44480,16 +44480,16 @@ pub const IHTMLMediaElement = extern union {
     pub fn get_volume(self: *const IHTMLMediaElement, p: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.get_volume(self, p);
     }
-    pub fn put_muted(self: *const IHTMLMediaElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_muted(self: *const IHTMLMediaElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_muted(self, v);
     }
-    pub fn get_muted(self: *const IHTMLMediaElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_muted(self: *const IHTMLMediaElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_muted(self, p);
     }
-    pub fn put_autobuffer(self: *const IHTMLMediaElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_autobuffer(self: *const IHTMLMediaElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_autobuffer(self, v);
     }
-    pub fn get_autobuffer(self: *const IHTMLMediaElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_autobuffer(self: *const IHTMLMediaElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_autobuffer(self, p);
     }
 };
@@ -44911,37 +44911,37 @@ pub const IHTMLMSImgElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_msPlayToDisabled: *const fn(
             self: *const IHTMLMSImgElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_msPlayToDisabled: *const fn(
             self: *const IHTMLMSImgElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_msPlayToPrimary: *const fn(
             self: *const IHTMLMSImgElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_msPlayToPrimary: *const fn(
             self: *const IHTMLMSImgElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_msPlayToDisabled(self: *const IHTMLMSImgElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_msPlayToDisabled(self: *const IHTMLMSImgElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_msPlayToDisabled(self, v);
     }
-    pub fn get_msPlayToDisabled(self: *const IHTMLMSImgElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_msPlayToDisabled(self: *const IHTMLMSImgElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_msPlayToDisabled(self, p);
     }
-    pub fn put_msPlayToPrimary(self: *const IHTMLMSImgElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_msPlayToPrimary(self: *const IHTMLMSImgElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_msPlayToPrimary(self, v);
     }
-    pub fn get_msPlayToPrimary(self: *const IHTMLMSImgElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_msPlayToPrimary(self: *const IHTMLMSImgElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_msPlayToPrimary(self, p);
     }
 };
@@ -44954,37 +44954,37 @@ pub const IHTMLMSMediaElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_msPlayToDisabled: *const fn(
             self: *const IHTMLMSMediaElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_msPlayToDisabled: *const fn(
             self: *const IHTMLMSMediaElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_msPlayToPrimary: *const fn(
             self: *const IHTMLMSMediaElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_msPlayToPrimary: *const fn(
             self: *const IHTMLMSMediaElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_msPlayToDisabled(self: *const IHTMLMSMediaElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_msPlayToDisabled(self: *const IHTMLMSMediaElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_msPlayToDisabled(self, v);
     }
-    pub fn get_msPlayToDisabled(self: *const IHTMLMSMediaElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_msPlayToDisabled(self: *const IHTMLMSMediaElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_msPlayToDisabled(self, p);
     }
-    pub fn put_msPlayToPrimary(self: *const IHTMLMSMediaElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_msPlayToPrimary(self: *const IHTMLMSMediaElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_msPlayToPrimary(self, v);
     }
-    pub fn get_msPlayToPrimary(self: *const IHTMLMSMediaElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_msPlayToPrimary(self: *const IHTMLMSMediaElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_msPlayToPrimary(self, p);
     }
 };
@@ -45032,7 +45032,7 @@ pub const IHTMLNamespace = extern union {
             self: *const IHTMLNamespace,
             event: ?BSTR,
             pDisp: ?*IDispatch,
-            pfResult: ?*i16,
+            pfResult: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         detachEvent: *const fn(
             self: *const IHTMLNamespace,
@@ -45064,7 +45064,7 @@ pub const IHTMLNamespace = extern union {
     pub fn doImport(self: *const IHTMLNamespace, bstrImplementationUrl: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.doImport(self, bstrImplementationUrl);
     }
-    pub fn attachEvent(self: *const IHTMLNamespace, event: ?BSTR, pDisp: ?*IDispatch, pfResult: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn attachEvent(self: *const IHTMLNamespace, event: ?BSTR, pDisp: ?*IDispatch, pfResult: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.attachEvent(self, event, pDisp, pfResult);
     }
     pub fn detachEvent(self: *const IHTMLNamespace, event: ?BSTR, pDisp: ?*IDispatch) callconv(.@"inline") HRESULT {
@@ -45509,12 +45509,12 @@ pub const IHTMLObjectElement3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_declare: *const fn(
             self: *const IHTMLObjectElement3,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_declare: *const fn(
             self: *const IHTMLObjectElement3,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_standby: *const fn(
@@ -45562,10 +45562,10 @@ pub const IHTMLObjectElement3 = extern union {
     pub fn get_alt(self: *const IHTMLObjectElement3, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_alt(self, p);
     }
-    pub fn put_declare(self: *const IHTMLObjectElement3, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_declare(self: *const IHTMLObjectElement3, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_declare(self, v);
     }
-    pub fn get_declare(self: *const IHTMLObjectElement3, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_declare(self: *const IHTMLObjectElement3, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_declare(self, p);
     }
     pub fn put_standby(self: *const IHTMLObjectElement3, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -45674,12 +45674,12 @@ pub const IHTMLOListElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_compact: *const fn(
             self: *const IHTMLOListElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_compact: *const fn(
             self: *const IHTMLOListElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_start: *const fn(
@@ -45705,10 +45705,10 @@ pub const IHTMLOListElement = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_compact(self: *const IHTMLOListElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_compact(self: *const IHTMLOListElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_compact(self, v);
     }
-    pub fn get_compact(self: *const IHTMLOListElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_compact(self: *const IHTMLOListElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_compact(self, p);
     }
     pub fn put_start(self: *const IHTMLOListElement, v: i32) callconv(.@"inline") HRESULT {
@@ -45776,7 +45776,7 @@ pub const IHTMLOpsProfile = extern union {
             self: *const IHTMLOpsProfile,
             name: ?BSTR,
             reserved: VARIANT,
-            success: ?*i16,
+            success: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         clearRequest: *const fn(
             self: *const IHTMLOpsProfile,
@@ -45800,17 +45800,17 @@ pub const IHTMLOpsProfile = extern union {
             name: ?BSTR,
             value: ?BSTR,
             prefs: VARIANT,
-            success: ?*i16,
+            success: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         commitChanges: *const fn(
             self: *const IHTMLOpsProfile,
-            success: ?*i16,
+            success: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         addReadRequest: *const fn(
             self: *const IHTMLOpsProfile,
             name: ?BSTR,
             reserved: VARIANT,
-            success: ?*i16,
+            success: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         doReadRequest: *const fn(
             self: *const IHTMLOpsProfile,
@@ -45823,13 +45823,13 @@ pub const IHTMLOpsProfile = extern union {
         ) callconv(.winapi) HRESULT,
         doWriteRequest: *const fn(
             self: *const IHTMLOpsProfile,
-            success: ?*i16,
+            success: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn addRequest(self: *const IHTMLOpsProfile, name: ?BSTR, reserved: VARIANT, success: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn addRequest(self: *const IHTMLOpsProfile, name: ?BSTR, reserved: VARIANT, success: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.addRequest(self, name, reserved, success);
     }
     pub fn clearRequest(self: *const IHTMLOpsProfile) callconv(.@"inline") HRESULT {
@@ -45841,19 +45841,19 @@ pub const IHTMLOpsProfile = extern union {
     pub fn getAttribute(self: *const IHTMLOpsProfile, name: ?BSTR, value: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.getAttribute(self, name, value);
     }
-    pub fn setAttribute(self: *const IHTMLOpsProfile, name: ?BSTR, value: ?BSTR, prefs: VARIANT, success: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn setAttribute(self: *const IHTMLOpsProfile, name: ?BSTR, value: ?BSTR, prefs: VARIANT, success: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.setAttribute(self, name, value, prefs, success);
     }
-    pub fn commitChanges(self: *const IHTMLOpsProfile, success: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn commitChanges(self: *const IHTMLOpsProfile, success: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.commitChanges(self, success);
     }
-    pub fn addReadRequest(self: *const IHTMLOpsProfile, name: ?BSTR, reserved: VARIANT, success: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn addReadRequest(self: *const IHTMLOpsProfile, name: ?BSTR, reserved: VARIANT, success: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.addReadRequest(self, name, reserved, success);
     }
     pub fn doReadRequest(self: *const IHTMLOpsProfile, usage: VARIANT, fname: VARIANT, domain: VARIANT, path: VARIANT, expire: VARIANT, reserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.doReadRequest(self, usage, fname, domain, path, expire, reserved);
     }
-    pub fn doWriteRequest(self: *const IHTMLOpsProfile, success: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn doWriteRequest(self: *const IHTMLOpsProfile, success: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.doWriteRequest(self, success);
     }
 };
@@ -45891,22 +45891,22 @@ pub const IHTMLOptionButtonElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_checked: *const fn(
             self: *const IHTMLOptionButtonElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_checked: *const fn(
             self: *const IHTMLOptionButtonElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_defaultChecked: *const fn(
             self: *const IHTMLOptionButtonElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_defaultChecked: *const fn(
             self: *const IHTMLOptionButtonElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_onchange: *const fn(
@@ -45921,32 +45921,32 @@ pub const IHTMLOptionButtonElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_disabled: *const fn(
             self: *const IHTMLOptionButtonElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_disabled: *const fn(
             self: *const IHTMLOptionButtonElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_status: *const fn(
             self: *const IHTMLOptionButtonElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_status: *const fn(
             self: *const IHTMLOptionButtonElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_indeterminate: *const fn(
             self: *const IHTMLOptionButtonElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_indeterminate: *const fn(
             self: *const IHTMLOptionButtonElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_form: *const fn(
@@ -45972,16 +45972,16 @@ pub const IHTMLOptionButtonElement = extern union {
     pub fn get_name(self: *const IHTMLOptionButtonElement, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_name(self, p);
     }
-    pub fn put_checked(self: *const IHTMLOptionButtonElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_checked(self: *const IHTMLOptionButtonElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_checked(self, v);
     }
-    pub fn get_checked(self: *const IHTMLOptionButtonElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_checked(self: *const IHTMLOptionButtonElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_checked(self, p);
     }
-    pub fn put_defaultChecked(self: *const IHTMLOptionButtonElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_defaultChecked(self: *const IHTMLOptionButtonElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_defaultChecked(self, v);
     }
-    pub fn get_defaultChecked(self: *const IHTMLOptionButtonElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_defaultChecked(self: *const IHTMLOptionButtonElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_defaultChecked(self, p);
     }
     pub fn put_onchange(self: *const IHTMLOptionButtonElement, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -45990,22 +45990,22 @@ pub const IHTMLOptionButtonElement = extern union {
     pub fn get_onchange(self: *const IHTMLOptionButtonElement, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_onchange(self, p);
     }
-    pub fn put_disabled(self: *const IHTMLOptionButtonElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_disabled(self: *const IHTMLOptionButtonElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_disabled(self, v);
     }
-    pub fn get_disabled(self: *const IHTMLOptionButtonElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_disabled(self: *const IHTMLOptionButtonElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_disabled(self, p);
     }
-    pub fn put_status(self: *const IHTMLOptionButtonElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_status(self: *const IHTMLOptionButtonElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_status(self, v);
     }
-    pub fn get_status(self: *const IHTMLOptionButtonElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_status(self: *const IHTMLOptionButtonElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_status(self, p);
     }
-    pub fn put_indeterminate(self: *const IHTMLOptionButtonElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_indeterminate(self: *const IHTMLOptionButtonElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_indeterminate(self, v);
     }
-    pub fn get_indeterminate(self: *const IHTMLOptionButtonElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_indeterminate(self: *const IHTMLOptionButtonElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_indeterminate(self, p);
     }
     pub fn get_form(self: *const IHTMLOptionButtonElement, p: ?*?*IHTMLFormElement) callconv(.@"inline") HRESULT {
@@ -46021,12 +46021,12 @@ pub const IHTMLOptionElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_selected: *const fn(
             self: *const IHTMLOptionElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_selected: *const fn(
             self: *const IHTMLOptionElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_value: *const fn(
@@ -46041,12 +46041,12 @@ pub const IHTMLOptionElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_defaultSelected: *const fn(
             self: *const IHTMLOptionElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_defaultSelected: *const fn(
             self: *const IHTMLOptionElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_index: *const fn(
@@ -46077,10 +46077,10 @@ pub const IHTMLOptionElement = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_selected(self: *const IHTMLOptionElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_selected(self: *const IHTMLOptionElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_selected(self, v);
     }
-    pub fn get_selected(self: *const IHTMLOptionElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_selected(self: *const IHTMLOptionElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_selected(self, p);
     }
     pub fn put_value(self: *const IHTMLOptionElement, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -46089,10 +46089,10 @@ pub const IHTMLOptionElement = extern union {
     pub fn get_value(self: *const IHTMLOptionElement, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_value(self, p);
     }
-    pub fn put_defaultSelected(self: *const IHTMLOptionElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_defaultSelected(self: *const IHTMLOptionElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_defaultSelected(self, v);
     }
-    pub fn get_defaultSelected(self: *const IHTMLOptionElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_defaultSelected(self: *const IHTMLOptionElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_defaultSelected(self, p);
     }
     pub fn put_index(self: *const IHTMLOptionElement, v: i32) callconv(.@"inline") HRESULT {
@@ -46256,12 +46256,12 @@ pub const IHTMLOptionsHolder = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_errorDebug: *const fn(
             self: *const IHTMLOptionsHolder,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_errorDebug: *const fn(
             self: *const IHTMLOptionsHolder,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_unsecuredWindowOfDocument: *const fn(
@@ -46281,12 +46281,12 @@ pub const IHTMLOptionsHolder = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_anythingAfterFrameset: *const fn(
             self: *const IHTMLOptionsHolder,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_anythingAfterFrameset: *const fn(
             self: *const IHTMLOptionsHolder,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         sizes: *const fn(
             self: *const IHTMLOptionsHolder,
@@ -46320,7 +46320,7 @@ pub const IHTMLOptionsHolder = extern union {
         isApartmentModel: *const fn(
             self: *const IHTMLOptionsHolder,
             object: ?*IHTMLObjectElement,
-            fApartment: ?*i16,
+            fApartment: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getCharset: *const fn(
             self: *const IHTMLOptionsHolder,
@@ -46372,10 +46372,10 @@ pub const IHTMLOptionsHolder = extern union {
     pub fn get_errorMessage(self: *const IHTMLOptionsHolder, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_errorMessage(self, p);
     }
-    pub fn put_errorDebug(self: *const IHTMLOptionsHolder, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_errorDebug(self: *const IHTMLOptionsHolder, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_errorDebug(self, v);
     }
-    pub fn get_errorDebug(self: *const IHTMLOptionsHolder, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_errorDebug(self: *const IHTMLOptionsHolder, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_errorDebug(self, p);
     }
     pub fn get_unsecuredWindowOfDocument(self: *const IHTMLOptionsHolder, p: ?*?*IHTMLWindow2) callconv(.@"inline") HRESULT {
@@ -46387,10 +46387,10 @@ pub const IHTMLOptionsHolder = extern union {
     pub fn get_findText(self: *const IHTMLOptionsHolder, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_findText(self, p);
     }
-    pub fn put_anythingAfterFrameset(self: *const IHTMLOptionsHolder, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_anythingAfterFrameset(self: *const IHTMLOptionsHolder, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_anythingAfterFrameset(self, v);
     }
-    pub fn get_anythingAfterFrameset(self: *const IHTMLOptionsHolder, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_anythingAfterFrameset(self: *const IHTMLOptionsHolder, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_anythingAfterFrameset(self, p);
     }
     pub fn sizes(self: *const IHTMLOptionsHolder, fontName: ?BSTR, pSizesCollection: ?*?*IHTMLFontSizesCollection) callconv(.@"inline") HRESULT {
@@ -46408,7 +46408,7 @@ pub const IHTMLOptionsHolder = extern union {
     pub fn showSecurityInfo(self: *const IHTMLOptionsHolder) callconv(.@"inline") HRESULT {
         return self.vtable.showSecurityInfo(self);
     }
-    pub fn isApartmentModel(self: *const IHTMLOptionsHolder, object: ?*IHTMLObjectElement, fApartment: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isApartmentModel(self: *const IHTMLOptionsHolder, object: ?*IHTMLObjectElement, fApartment: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isApartmentModel(self, object, fApartment);
     }
     pub fn getCharset(self: *const IHTMLOptionsHolder, fontName: ?BSTR, charset: ?*i32) callconv(.@"inline") HRESULT {
@@ -47041,29 +47041,29 @@ pub const IHTMLPersistData = extern union {
             self: *const IHTMLPersistData,
             pUnk: ?*IUnknown,
             lType: i32,
-            fContinueBroacast: ?*i16,
+            fContinueBroacast: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         load: *const fn(
             self: *const IHTMLPersistData,
             pUnk: ?*IUnknown,
             lType: i32,
-            fDoDefault: ?*i16,
+            fDoDefault: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         queryType: *const fn(
             self: *const IHTMLPersistData,
             lType: i32,
-            pfSupportsType: ?*i16,
+            pfSupportsType: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn save(self: *const IHTMLPersistData, pUnk: ?*IUnknown, lType: i32, fContinueBroacast: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn save(self: *const IHTMLPersistData, pUnk: ?*IUnknown, lType: i32, fContinueBroacast: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.save(self, pUnk, lType, fContinueBroacast);
     }
-    pub fn load(self: *const IHTMLPersistData, pUnk: ?*IUnknown, lType: i32, fDoDefault: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn load(self: *const IHTMLPersistData, pUnk: ?*IUnknown, lType: i32, fDoDefault: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.load(self, pUnk, lType, fDoDefault);
     }
-    pub fn queryType(self: *const IHTMLPersistData, lType: i32, pfSupportsType: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn queryType(self: *const IHTMLPersistData, lType: i32, pfSupportsType: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.queryType(self, lType, pfSupportsType);
     }
 };
@@ -47203,7 +47203,7 @@ pub const IHTMLPluginsCollection = extern union {
         ) callconv(.winapi) HRESULT,
         refresh: *const fn(
             self: *const IHTMLPluginsCollection,
-            reload: i16,
+            reload: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -47212,7 +47212,7 @@ pub const IHTMLPluginsCollection = extern union {
     pub fn get_length(self: *const IHTMLPluginsCollection, p: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_length(self, p);
     }
-    pub fn refresh(self: *const IHTMLPluginsCollection, reload: i16) callconv(.@"inline") HRESULT {
+    pub fn refresh(self: *const IHTMLPluginsCollection, reload: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.refresh(self, reload);
     }
 };
@@ -47241,7 +47241,7 @@ pub const IHTMLPopup = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isOpen: *const fn(
             self: *const IHTMLPopup,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -47256,7 +47256,7 @@ pub const IHTMLPopup = extern union {
     pub fn get_document(self: *const IHTMLPopup, p: ?*?*IHTMLDocument) callconv(.@"inline") HRESULT {
         return self.vtable.get_document(self, p);
     }
-    pub fn get_isOpen(self: *const IHTMLPopup, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isOpen(self: *const IHTMLPopup, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isOpen(self, p);
     }
 };
@@ -47800,52 +47800,52 @@ pub const IHTMLRuleStyle = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_textDecorationNone: *const fn(
             self: *const IHTMLRuleStyle,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_textDecorationNone: *const fn(
             self: *const IHTMLRuleStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_textDecorationUnderline: *const fn(
             self: *const IHTMLRuleStyle,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_textDecorationUnderline: *const fn(
             self: *const IHTMLRuleStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_textDecorationOverline: *const fn(
             self: *const IHTMLRuleStyle,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_textDecorationOverline: *const fn(
             self: *const IHTMLRuleStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_textDecorationLineThrough: *const fn(
             self: *const IHTMLRuleStyle,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_textDecorationLineThrough: *const fn(
             self: *const IHTMLRuleStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_textDecorationBlink: *const fn(
             self: *const IHTMLRuleStyle,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_textDecorationBlink: *const fn(
             self: *const IHTMLRuleStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_verticalAlign: *const fn(
@@ -48428,7 +48428,7 @@ pub const IHTMLRuleStyle = extern union {
             self: *const IHTMLRuleStyle,
             strAttributeName: ?BSTR,
             lFlags: i32,
-            pfSuccess: ?*i16,
+            pfSuccess: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -48542,34 +48542,34 @@ pub const IHTMLRuleStyle = extern union {
     pub fn get_textDecoration(self: *const IHTMLRuleStyle, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_textDecoration(self, p);
     }
-    pub fn put_textDecorationNone(self: *const IHTMLRuleStyle, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_textDecorationNone(self: *const IHTMLRuleStyle, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_textDecorationNone(self, v);
     }
-    pub fn get_textDecorationNone(self: *const IHTMLRuleStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_textDecorationNone(self: *const IHTMLRuleStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_textDecorationNone(self, p);
     }
-    pub fn put_textDecorationUnderline(self: *const IHTMLRuleStyle, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_textDecorationUnderline(self: *const IHTMLRuleStyle, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_textDecorationUnderline(self, v);
     }
-    pub fn get_textDecorationUnderline(self: *const IHTMLRuleStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_textDecorationUnderline(self: *const IHTMLRuleStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_textDecorationUnderline(self, p);
     }
-    pub fn put_textDecorationOverline(self: *const IHTMLRuleStyle, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_textDecorationOverline(self: *const IHTMLRuleStyle, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_textDecorationOverline(self, v);
     }
-    pub fn get_textDecorationOverline(self: *const IHTMLRuleStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_textDecorationOverline(self: *const IHTMLRuleStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_textDecorationOverline(self, p);
     }
-    pub fn put_textDecorationLineThrough(self: *const IHTMLRuleStyle, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_textDecorationLineThrough(self: *const IHTMLRuleStyle, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_textDecorationLineThrough(self, v);
     }
-    pub fn get_textDecorationLineThrough(self: *const IHTMLRuleStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_textDecorationLineThrough(self: *const IHTMLRuleStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_textDecorationLineThrough(self, p);
     }
-    pub fn put_textDecorationBlink(self: *const IHTMLRuleStyle, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_textDecorationBlink(self: *const IHTMLRuleStyle, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_textDecorationBlink(self, v);
     }
-    pub fn get_textDecorationBlink(self: *const IHTMLRuleStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_textDecorationBlink(self: *const IHTMLRuleStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_textDecorationBlink(self, p);
     }
     pub fn put_verticalAlign(self: *const IHTMLRuleStyle, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -48917,7 +48917,7 @@ pub const IHTMLRuleStyle = extern union {
     pub fn getAttribute(self: *const IHTMLRuleStyle, strAttributeName: ?BSTR, lFlags: i32, AttributeValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.getAttribute(self, strAttributeName, lFlags, AttributeValue);
     }
-    pub fn removeAttribute(self: *const IHTMLRuleStyle, strAttributeName: ?BSTR, lFlags: i32, pfSuccess: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn removeAttribute(self: *const IHTMLRuleStyle, strAttributeName: ?BSTR, lFlags: i32, pfSuccess: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.removeAttribute(self, strAttributeName, lFlags, pfSuccess);
     }
 };
@@ -50102,7 +50102,7 @@ pub const IHTMLScreen = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_fontSmoothingEnabled: *const fn(
             self: *const IHTMLScreen,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -50135,7 +50135,7 @@ pub const IHTMLScreen = extern union {
     pub fn get_availWidth(self: *const IHTMLScreen, p: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_availWidth(self, p);
     }
-    pub fn get_fontSmoothingEnabled(self: *const IHTMLScreen, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_fontSmoothingEnabled(self: *const IHTMLScreen, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_fontSmoothingEnabled(self, p);
     }
 };
@@ -50277,12 +50277,12 @@ pub const IHTMLScriptElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_defer: *const fn(
             self: *const IHTMLScriptElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_defer: *const fn(
             self: *const IHTMLScriptElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_readyState: *const fn(
@@ -50337,10 +50337,10 @@ pub const IHTMLScriptElement = extern union {
     pub fn get_text(self: *const IHTMLScriptElement, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_text(self, p);
     }
-    pub fn put_defer(self: *const IHTMLScriptElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_defer(self: *const IHTMLScriptElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_defer(self, v);
     }
-    pub fn get_defer(self: *const IHTMLScriptElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_defer(self: *const IHTMLScriptElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_defer(self, p);
     }
     pub fn get_readyState(self: *const IHTMLScriptElement, p: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -50451,12 +50451,12 @@ pub const IHTMLSelectElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_multiple: *const fn(
             self: *const IHTMLSelectElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_multiple: *const fn(
             self: *const IHTMLSelectElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_name: *const fn(
@@ -50511,12 +50511,12 @@ pub const IHTMLSelectElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_disabled: *const fn(
             self: *const IHTMLSelectElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_disabled: *const fn(
             self: *const IHTMLSelectElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_form: *const fn(
@@ -50568,10 +50568,10 @@ pub const IHTMLSelectElement = extern union {
     pub fn get_size(self: *const IHTMLSelectElement, p: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_size(self, p);
     }
-    pub fn put_multiple(self: *const IHTMLSelectElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_multiple(self: *const IHTMLSelectElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_multiple(self, v);
     }
-    pub fn get_multiple(self: *const IHTMLSelectElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_multiple(self: *const IHTMLSelectElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_multiple(self, p);
     }
     pub fn put_name(self: *const IHTMLSelectElement, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -50604,10 +50604,10 @@ pub const IHTMLSelectElement = extern union {
     pub fn get_value(self: *const IHTMLSelectElement, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_value(self, p);
     }
-    pub fn put_disabled(self: *const IHTMLSelectElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_disabled(self: *const IHTMLSelectElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_disabled(self, v);
     }
-    pub fn get_disabled(self: *const IHTMLSelectElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_disabled(self: *const IHTMLSelectElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_disabled(self, p);
     }
     pub fn get_form(self: *const IHTMLSelectElement, p: ?*?*IHTMLFormElement) callconv(.@"inline") HRESULT {
@@ -50794,7 +50794,7 @@ pub const IHTMLSelection = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isCollapsed: *const fn(
             self: *const IHTMLSelection,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         collapse: *const fn(
             self: *const IHTMLSelection,
@@ -50855,7 +50855,7 @@ pub const IHTMLSelection = extern union {
     pub fn get_focusOffset(self: *const IHTMLSelection, p: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_focusOffset(self, p);
     }
-    pub fn get_isCollapsed(self: *const IHTMLSelection, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isCollapsed(self: *const IHTMLSelection, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isCollapsed(self, p);
     }
     pub fn collapse(self: *const IHTMLSelection, parentNode: ?*IDispatch, offfset: i32) callconv(.@"inline") HRESULT {
@@ -51325,52 +51325,52 @@ pub const IHTMLStyle = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_textDecorationNone: *const fn(
             self: *const IHTMLStyle,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_textDecorationNone: *const fn(
             self: *const IHTMLStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_textDecorationUnderline: *const fn(
             self: *const IHTMLStyle,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_textDecorationUnderline: *const fn(
             self: *const IHTMLStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_textDecorationOverline: *const fn(
             self: *const IHTMLStyle,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_textDecorationOverline: *const fn(
             self: *const IHTMLStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_textDecorationLineThrough: *const fn(
             self: *const IHTMLStyle,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_textDecorationLineThrough: *const fn(
             self: *const IHTMLStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_textDecorationBlink: *const fn(
             self: *const IHTMLStyle,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_textDecorationBlink: *const fn(
             self: *const IHTMLStyle,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_verticalAlign: *const fn(
@@ -52033,7 +52033,7 @@ pub const IHTMLStyle = extern union {
             self: *const IHTMLStyle,
             strAttributeName: ?BSTR,
             lFlags: i32,
-            pfSuccess: ?*i16,
+            pfSuccess: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         toString: *const fn(
             self: *const IHTMLStyle,
@@ -52151,34 +52151,34 @@ pub const IHTMLStyle = extern union {
     pub fn get_textDecoration(self: *const IHTMLStyle, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_textDecoration(self, p);
     }
-    pub fn put_textDecorationNone(self: *const IHTMLStyle, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_textDecorationNone(self: *const IHTMLStyle, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_textDecorationNone(self, v);
     }
-    pub fn get_textDecorationNone(self: *const IHTMLStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_textDecorationNone(self: *const IHTMLStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_textDecorationNone(self, p);
     }
-    pub fn put_textDecorationUnderline(self: *const IHTMLStyle, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_textDecorationUnderline(self: *const IHTMLStyle, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_textDecorationUnderline(self, v);
     }
-    pub fn get_textDecorationUnderline(self: *const IHTMLStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_textDecorationUnderline(self: *const IHTMLStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_textDecorationUnderline(self, p);
     }
-    pub fn put_textDecorationOverline(self: *const IHTMLStyle, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_textDecorationOverline(self: *const IHTMLStyle, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_textDecorationOverline(self, v);
     }
-    pub fn get_textDecorationOverline(self: *const IHTMLStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_textDecorationOverline(self: *const IHTMLStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_textDecorationOverline(self, p);
     }
-    pub fn put_textDecorationLineThrough(self: *const IHTMLStyle, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_textDecorationLineThrough(self: *const IHTMLStyle, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_textDecorationLineThrough(self, v);
     }
-    pub fn get_textDecorationLineThrough(self: *const IHTMLStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_textDecorationLineThrough(self: *const IHTMLStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_textDecorationLineThrough(self, p);
     }
-    pub fn put_textDecorationBlink(self: *const IHTMLStyle, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_textDecorationBlink(self: *const IHTMLStyle, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_textDecorationBlink(self, v);
     }
-    pub fn get_textDecorationBlink(self: *const IHTMLStyle, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_textDecorationBlink(self: *const IHTMLStyle, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_textDecorationBlink(self, p);
     }
     pub fn put_verticalAlign(self: *const IHTMLStyle, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -52574,7 +52574,7 @@ pub const IHTMLStyle = extern union {
     pub fn getAttribute(self: *const IHTMLStyle, strAttributeName: ?BSTR, lFlags: i32, AttributeValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.getAttribute(self, strAttributeName, lFlags, AttributeValue);
     }
-    pub fn removeAttribute(self: *const IHTMLStyle, strAttributeName: ?BSTR, lFlags: i32, pfSuccess: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn removeAttribute(self: *const IHTMLStyle, strAttributeName: ?BSTR, lFlags: i32, pfSuccess: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.removeAttribute(self, strAttributeName, lFlags, pfSuccess);
     }
     pub fn toString(self: *const IHTMLStyle, String: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -52641,7 +52641,7 @@ pub const IHTMLStyle2 = extern union {
         removeExpression: *const fn(
             self: *const IHTMLStyle2,
             propname: ?BSTR,
-            pfSuccess: ?*i16,
+            pfSuccess: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_position: *const fn(
@@ -52937,7 +52937,7 @@ pub const IHTMLStyle2 = extern union {
     pub fn getExpression(self: *const IHTMLStyle2, propname: ?BSTR, expression: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.getExpression(self, propname, expression);
     }
-    pub fn removeExpression(self: *const IHTMLStyle2, propname: ?BSTR, pfSuccess: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn removeExpression(self: *const IHTMLStyle2, propname: ?BSTR, pfSuccess: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.removeExpression(self, propname, pfSuccess);
     }
     pub fn put_position(self: *const IHTMLStyle2, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -53792,12 +53792,12 @@ pub const IHTMLStyleElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_disabled: *const fn(
             self: *const IHTMLStyleElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_disabled: *const fn(
             self: *const IHTMLStyleElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_media: *const fn(
@@ -53843,10 +53843,10 @@ pub const IHTMLStyleElement = extern union {
     pub fn get_styleSheet(self: *const IHTMLStyleElement, p: ?*?*IHTMLStyleSheet) callconv(.@"inline") HRESULT {
         return self.vtable.get_styleSheet(self, p);
     }
-    pub fn put_disabled(self: *const IHTMLStyleElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_disabled(self: *const IHTMLStyleElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_disabled(self, v);
     }
-    pub fn get_disabled(self: *const IHTMLStyleElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_disabled(self: *const IHTMLStyleElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_disabled(self, p);
     }
     pub fn put_media(self: *const IHTMLStyleElement, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -53884,21 +53884,21 @@ pub const IHTMLStyleEnabled = extern union {
         msGetPropertyEnabled: *const fn(
             self: *const IHTMLStyleEnabled,
             name: ?BSTR,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         msPutPropertyEnabled: *const fn(
             self: *const IHTMLStyleEnabled,
             name: ?BSTR,
-            b: i16,
+            b: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn msGetPropertyEnabled(self: *const IHTMLStyleEnabled, name: ?BSTR, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn msGetPropertyEnabled(self: *const IHTMLStyleEnabled, name: ?BSTR, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.msGetPropertyEnabled(self, name, p);
     }
-    pub fn msPutPropertyEnabled(self: *const IHTMLStyleEnabled, name: ?BSTR, b: i16) callconv(.@"inline") HRESULT {
+    pub fn msPutPropertyEnabled(self: *const IHTMLStyleEnabled, name: ?BSTR, b: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.msPutPropertyEnabled(self, name, b);
     }
 };
@@ -53962,7 +53962,7 @@ pub const IHTMLStyleMedia = extern union {
         matchMedium: *const fn(
             self: *const IHTMLStyleMedia,
             mediaQuery: ?BSTR,
-            matches: ?*i16,
+            matches: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -53971,7 +53971,7 @@ pub const IHTMLStyleMedia = extern union {
     pub fn get_type(self: *const IHTMLStyleMedia, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_type(self, p);
     }
-    pub fn matchMedium(self: *const IHTMLStyleMedia, mediaQuery: ?BSTR, matches: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn matchMedium(self: *const IHTMLStyleMedia, mediaQuery: ?BSTR, matches: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.matchMedium(self, mediaQuery, matches);
     }
 };
@@ -54004,17 +54004,17 @@ pub const IHTMLStyleSheet = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_disabled: *const fn(
             self: *const IHTMLStyleSheet,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_disabled: *const fn(
             self: *const IHTMLStyleSheet,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_readOnly: *const fn(
             self: *const IHTMLStyleSheet,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_imports: *const fn(
@@ -54103,13 +54103,13 @@ pub const IHTMLStyleSheet = extern union {
     pub fn get_owningElement(self: *const IHTMLStyleSheet, p: ?*?*IHTMLElement) callconv(.@"inline") HRESULT {
         return self.vtable.get_owningElement(self, p);
     }
-    pub fn put_disabled(self: *const IHTMLStyleSheet, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_disabled(self: *const IHTMLStyleSheet, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_disabled(self, v);
     }
-    pub fn get_disabled(self: *const IHTMLStyleSheet, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_disabled(self: *const IHTMLStyleSheet, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_disabled(self, p);
     }
-    pub fn get_readOnly(self: *const IHTMLStyleSheet, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_readOnly(self: *const IHTMLStyleSheet, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_readOnly(self, p);
     }
     pub fn get_imports(self: *const IHTMLStyleSheet, p: ?*?*IHTMLStyleSheetsCollection) callconv(.@"inline") HRESULT {
@@ -54203,12 +54203,12 @@ pub const IHTMLStyleSheet3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isAlternate: *const fn(
             self: *const IHTMLStyleSheet3,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isPrefAlternate: *const fn(
             self: *const IHTMLStyleSheet3,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -54220,10 +54220,10 @@ pub const IHTMLStyleSheet3 = extern union {
     pub fn get_href(self: *const IHTMLStyleSheet3, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_href(self, p);
     }
-    pub fn get_isAlternate(self: *const IHTMLStyleSheet3, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isAlternate(self: *const IHTMLStyleSheet3, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isAlternate(self, p);
     }
-    pub fn get_isPrefAlternate(self: *const IHTMLStyleSheet3, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isPrefAlternate(self: *const IHTMLStyleSheet3, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isPrefAlternate(self, p);
     }
 };
@@ -54423,7 +54423,7 @@ pub const IHTMLStyleSheetRule = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_readOnly: *const fn(
             self: *const IHTMLStyleSheetRule,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -54438,7 +54438,7 @@ pub const IHTMLStyleSheetRule = extern union {
     pub fn get_style(self: *const IHTMLStyleSheetRule, p: ?*?*IHTMLRuleStyle) callconv(.@"inline") HRESULT {
         return self.vtable.get_style(self, p);
     }
-    pub fn get_readOnly(self: *const IHTMLStyleSheetRule, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_readOnly(self: *const IHTMLStyleSheetRule, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_readOnly(self, p);
     }
 };
@@ -55323,12 +55323,12 @@ pub const IHTMLTableCell = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_noWrap: *const fn(
             self: *const IHTMLTableCell,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_noWrap: *const fn(
             self: *const IHTMLTableCell,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_background: *const fn(
@@ -55429,10 +55429,10 @@ pub const IHTMLTableCell = extern union {
     pub fn get_bgColor(self: *const IHTMLTableCell, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_bgColor(self, p);
     }
-    pub fn put_noWrap(self: *const IHTMLTableCell, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_noWrap(self: *const IHTMLTableCell, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_noWrap(self, v);
     }
-    pub fn get_noWrap(self: *const IHTMLTableCell, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_noWrap(self: *const IHTMLTableCell, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_noWrap(self, p);
     }
     pub fn put_background(self: *const IHTMLTableCell, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -56350,12 +56350,12 @@ pub const IHTMLTextAreaElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_disabled: *const fn(
             self: *const IHTMLTextAreaElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_disabled: *const fn(
             self: *const IHTMLTextAreaElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_form: *const fn(
@@ -56398,12 +56398,12 @@ pub const IHTMLTextAreaElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_readOnly: *const fn(
             self: *const IHTMLTextAreaElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_readOnly: *const fn(
             self: *const IHTMLTextAreaElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_rows: *const fn(
@@ -56464,10 +56464,10 @@ pub const IHTMLTextAreaElement = extern union {
     pub fn get_status(self: *const IHTMLTextAreaElement, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_status(self, p);
     }
-    pub fn put_disabled(self: *const IHTMLTextAreaElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_disabled(self: *const IHTMLTextAreaElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_disabled(self, v);
     }
-    pub fn get_disabled(self: *const IHTMLTextAreaElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_disabled(self: *const IHTMLTextAreaElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_disabled(self, p);
     }
     pub fn get_form(self: *const IHTMLTextAreaElement, p: ?*?*IHTMLFormElement) callconv(.@"inline") HRESULT {
@@ -56494,10 +56494,10 @@ pub const IHTMLTextAreaElement = extern union {
     pub fn get_onselect(self: *const IHTMLTextAreaElement, p: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_onselect(self, p);
     }
-    pub fn put_readOnly(self: *const IHTMLTextAreaElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_readOnly(self: *const IHTMLTextAreaElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_readOnly(self, v);
     }
-    pub fn get_readOnly(self: *const IHTMLTextAreaElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_readOnly(self: *const IHTMLTextAreaElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_readOnly(self, p);
     }
     pub fn put_rows(self: *const IHTMLTextAreaElement, v: i32) callconv(.@"inline") HRESULT {
@@ -56871,25 +56871,25 @@ pub const IHTMLTxtRange = extern union {
         inRange: *const fn(
             self: *const IHTMLTxtRange,
             Range: ?*IHTMLTxtRange,
-            InRange: ?*i16,
+            InRange: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         isEqual: *const fn(
             self: *const IHTMLTxtRange,
             Range: ?*IHTMLTxtRange,
-            IsEqual: ?*i16,
+            IsEqual: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         scrollIntoView: *const fn(
             self: *const IHTMLTxtRange,
-            fStart: i16,
+            fStart: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         collapse: *const fn(
             self: *const IHTMLTxtRange,
-            Start: i16,
+            Start: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         expand: *const fn(
             self: *const IHTMLTxtRange,
             Unit: ?BSTR,
-            Success: ?*i16,
+            Success: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         move: *const fn(
             self: *const IHTMLTxtRange,
@@ -56936,7 +56936,7 @@ pub const IHTMLTxtRange = extern union {
             String: ?BSTR,
             count: i32,
             Flags: i32,
-            Success: ?*i16,
+            Success: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         moveToPoint: *const fn(
             self: *const IHTMLTxtRange,
@@ -56950,27 +56950,27 @@ pub const IHTMLTxtRange = extern union {
         moveToBookmark: *const fn(
             self: *const IHTMLTxtRange,
             Bookmark: ?BSTR,
-            Success: ?*i16,
+            Success: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         queryCommandSupported: *const fn(
             self: *const IHTMLTxtRange,
             cmdID: ?BSTR,
-            pfRet: ?*i16,
+            pfRet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         queryCommandEnabled: *const fn(
             self: *const IHTMLTxtRange,
             cmdID: ?BSTR,
-            pfRet: ?*i16,
+            pfRet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         queryCommandState: *const fn(
             self: *const IHTMLTxtRange,
             cmdID: ?BSTR,
-            pfRet: ?*i16,
+            pfRet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         queryCommandIndeterm: *const fn(
             self: *const IHTMLTxtRange,
             cmdID: ?BSTR,
-            pfRet: ?*i16,
+            pfRet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         queryCommandText: *const fn(
             self: *const IHTMLTxtRange,
@@ -56985,14 +56985,14 @@ pub const IHTMLTxtRange = extern union {
         execCommand: *const fn(
             self: *const IHTMLTxtRange,
             cmdID: ?BSTR,
-            showUI: i16,
+            showUI: VARIANT_BOOL,
             value: VARIANT,
-            pfRet: ?*i16,
+            pfRet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         execCommandShowHelp: *const fn(
             self: *const IHTMLTxtRange,
             cmdID: ?BSTR,
-            pfRet: ?*i16,
+            pfRet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -57013,19 +57013,19 @@ pub const IHTMLTxtRange = extern union {
     pub fn duplicate(self: *const IHTMLTxtRange, Duplicate: ?*?*IHTMLTxtRange) callconv(.@"inline") HRESULT {
         return self.vtable.duplicate(self, Duplicate);
     }
-    pub fn inRange(self: *const IHTMLTxtRange, Range: ?*IHTMLTxtRange, InRange: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn inRange(self: *const IHTMLTxtRange, Range: ?*IHTMLTxtRange, InRange: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.inRange(self, Range, InRange);
     }
-    pub fn isEqual(self: *const IHTMLTxtRange, Range: ?*IHTMLTxtRange, IsEqual: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isEqual(self: *const IHTMLTxtRange, Range: ?*IHTMLTxtRange, IsEqual: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isEqual(self, Range, IsEqual);
     }
-    pub fn scrollIntoView(self: *const IHTMLTxtRange, fStart: i16) callconv(.@"inline") HRESULT {
+    pub fn scrollIntoView(self: *const IHTMLTxtRange, fStart: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.scrollIntoView(self, fStart);
     }
-    pub fn collapse(self: *const IHTMLTxtRange, Start: i16) callconv(.@"inline") HRESULT {
+    pub fn collapse(self: *const IHTMLTxtRange, Start: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.collapse(self, Start);
     }
-    pub fn expand(self: *const IHTMLTxtRange, Unit: ?BSTR, Success: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn expand(self: *const IHTMLTxtRange, Unit: ?BSTR, Success: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.expand(self, Unit, Success);
     }
     pub fn move(self: *const IHTMLTxtRange, Unit: ?BSTR, Count: i32, ActualCount: ?*i32) callconv(.@"inline") HRESULT {
@@ -57052,7 +57052,7 @@ pub const IHTMLTxtRange = extern union {
     pub fn compareEndPoints(self: *const IHTMLTxtRange, how: ?BSTR, SourceRange: ?*IHTMLTxtRange, ret: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.compareEndPoints(self, how, SourceRange, ret);
     }
-    pub fn findText(self: *const IHTMLTxtRange, String: ?BSTR, count: i32, Flags: i32, Success: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn findText(self: *const IHTMLTxtRange, String: ?BSTR, count: i32, Flags: i32, Success: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.findText(self, String, count, Flags, Success);
     }
     pub fn moveToPoint(self: *const IHTMLTxtRange, x: i32, y: i32) callconv(.@"inline") HRESULT {
@@ -57061,19 +57061,19 @@ pub const IHTMLTxtRange = extern union {
     pub fn getBookmark(self: *const IHTMLTxtRange, Boolmark: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.getBookmark(self, Boolmark);
     }
-    pub fn moveToBookmark(self: *const IHTMLTxtRange, Bookmark: ?BSTR, Success: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn moveToBookmark(self: *const IHTMLTxtRange, Bookmark: ?BSTR, Success: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.moveToBookmark(self, Bookmark, Success);
     }
-    pub fn queryCommandSupported(self: *const IHTMLTxtRange, cmdID: ?BSTR, pfRet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn queryCommandSupported(self: *const IHTMLTxtRange, cmdID: ?BSTR, pfRet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.queryCommandSupported(self, cmdID, pfRet);
     }
-    pub fn queryCommandEnabled(self: *const IHTMLTxtRange, cmdID: ?BSTR, pfRet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn queryCommandEnabled(self: *const IHTMLTxtRange, cmdID: ?BSTR, pfRet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.queryCommandEnabled(self, cmdID, pfRet);
     }
-    pub fn queryCommandState(self: *const IHTMLTxtRange, cmdID: ?BSTR, pfRet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn queryCommandState(self: *const IHTMLTxtRange, cmdID: ?BSTR, pfRet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.queryCommandState(self, cmdID, pfRet);
     }
-    pub fn queryCommandIndeterm(self: *const IHTMLTxtRange, cmdID: ?BSTR, pfRet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn queryCommandIndeterm(self: *const IHTMLTxtRange, cmdID: ?BSTR, pfRet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.queryCommandIndeterm(self, cmdID, pfRet);
     }
     pub fn queryCommandText(self: *const IHTMLTxtRange, cmdID: ?BSTR, pcmdText: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -57082,10 +57082,10 @@ pub const IHTMLTxtRange = extern union {
     pub fn queryCommandValue(self: *const IHTMLTxtRange, cmdID: ?BSTR, pcmdValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.queryCommandValue(self, cmdID, pcmdValue);
     }
-    pub fn execCommand(self: *const IHTMLTxtRange, cmdID: ?BSTR, showUI: i16, value: VARIANT, pfRet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn execCommand(self: *const IHTMLTxtRange, cmdID: ?BSTR, showUI: VARIANT_BOOL, value: VARIANT, pfRet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.execCommand(self, cmdID, showUI, value, pfRet);
     }
-    pub fn execCommandShowHelp(self: *const IHTMLTxtRange, cmdID: ?BSTR, pfRet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn execCommandShowHelp(self: *const IHTMLTxtRange, cmdID: ?BSTR, pfRet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.execCommandShowHelp(self, cmdID, pfRet);
     }
 };
@@ -57133,12 +57133,12 @@ pub const IHTMLUListElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_compact: *const fn(
             self: *const IHTMLUListElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_compact: *const fn(
             self: *const IHTMLUListElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_type: *const fn(
@@ -57154,10 +57154,10 @@ pub const IHTMLUListElement = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_compact(self: *const IHTMLUListElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_compact(self: *const IHTMLUListElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_compact(self, v);
     }
-    pub fn get_compact(self: *const IHTMLUListElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_compact(self: *const IHTMLUListElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_compact(self, p);
     }
     pub fn put_type(self: *const IHTMLUListElement, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -57428,7 +57428,7 @@ pub const IHTMLWindow2 = extern union {
         confirm: *const fn(
             self: *const IHTMLWindow2,
             message: ?BSTR,
-            confirmed: ?*i16,
+            confirmed: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         prompt: *const fn(
             self: *const IHTMLWindow2,
@@ -57489,7 +57489,7 @@ pub const IHTMLWindow2 = extern union {
             url: ?BSTR,
             name: ?BSTR,
             features: ?BSTR,
-            replace: i16,
+            replace: VARIANT_BOOL,
             pomWindowResult: ?*?*IHTMLWindow2,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -57645,7 +57645,7 @@ pub const IHTMLWindow2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_closed: *const fn(
             self: *const IHTMLWindow2,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         blur: *const fn(
             self: *const IHTMLWindow2,
@@ -57755,7 +57755,7 @@ pub const IHTMLWindow2 = extern union {
     pub fn alert(self: *const IHTMLWindow2, message: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.alert(self, message);
     }
-    pub fn confirm(self: *const IHTMLWindow2, message: ?BSTR, confirmed: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn confirm(self: *const IHTMLWindow2, message: ?BSTR, confirmed: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.confirm(self, message, confirmed);
     }
     pub fn prompt(self: *const IHTMLWindow2, message: ?BSTR, defstr: ?BSTR, textdata: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -57791,7 +57791,7 @@ pub const IHTMLWindow2 = extern union {
     pub fn get_parent(self: *const IHTMLWindow2, p: ?*?*IHTMLWindow2) callconv(.@"inline") HRESULT {
         return self.vtable.get_parent(self, p);
     }
-    pub fn open(self: *const IHTMLWindow2, url: ?BSTR, name: ?BSTR, features: ?BSTR, replace: i16, pomWindowResult: ?*?*IHTMLWindow2) callconv(.@"inline") HRESULT {
+    pub fn open(self: *const IHTMLWindow2, url: ?BSTR, name: ?BSTR, features: ?BSTR, replace: VARIANT_BOOL, pomWindowResult: ?*?*IHTMLWindow2) callconv(.@"inline") HRESULT {
         return self.vtable.open(self, url, name, features, replace, pomWindowResult);
     }
     pub fn get_self(self: *const IHTMLWindow2, p: ?*?*IHTMLWindow2) callconv(.@"inline") HRESULT {
@@ -57884,7 +57884,7 @@ pub const IHTMLWindow2 = extern union {
     pub fn focus(self: *const IHTMLWindow2) callconv(.@"inline") HRESULT {
         return self.vtable.focus(self);
     }
-    pub fn get_closed(self: *const IHTMLWindow2, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_closed(self: *const IHTMLWindow2, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_closed(self, p);
     }
     pub fn blur(self: *const IHTMLWindow2) callconv(.@"inline") HRESULT {
@@ -57956,7 +57956,7 @@ pub const IHTMLWindow3 = extern union {
             self: *const IHTMLWindow3,
             event: ?BSTR,
             pDisp: ?*IDispatch,
-            pfResult: ?*i16,
+            pfResult: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         detachEvent: *const fn(
             self: *const IHTMLWindow3,
@@ -58022,7 +58022,7 @@ pub const IHTMLWindow3 = extern union {
     pub fn get_screenTop(self: *const IHTMLWindow3, p: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_screenTop(self, p);
     }
-    pub fn attachEvent(self: *const IHTMLWindow3, event: ?BSTR, pDisp: ?*IDispatch, pfResult: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn attachEvent(self: *const IHTMLWindow3, event: ?BSTR, pDisp: ?*IDispatch, pfResult: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.attachEvent(self, event, pDisp, pfResult);
     }
     pub fn detachEvent(self: *const IHTMLWindow3, event: ?BSTR, pDisp: ?*IDispatch) callconv(.@"inline") HRESULT {
@@ -59989,21 +59989,21 @@ pub const IIntelliForms = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_enabled: *const fn(
             self: *const IIntelliForms,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_enabled: *const fn(
             self: *const IIntelliForms,
-            bVal: i16,
+            bVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_enabled(self: *const IIntelliForms, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_enabled(self: *const IIntelliForms, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_enabled(self, pVal);
     }
-    pub fn put_enabled(self: *const IIntelliForms, bVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_enabled(self: *const IIntelliForms, bVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_enabled(self, bVal);
     }
 };
@@ -60073,22 +60073,22 @@ pub const ILayoutRect = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_honorPageBreaks: *const fn(
             self: *const ILayoutRect,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_honorPageBreaks: *const fn(
             self: *const ILayoutRect,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_honorPageRules: *const fn(
             self: *const ILayoutRect,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_honorPageRules: *const fn(
             self: *const ILayoutRect,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_nextRectElement: *const fn(
@@ -60121,16 +60121,16 @@ pub const ILayoutRect = extern union {
     pub fn get_contentSrc(self: *const ILayoutRect, pvarContentSrc: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_contentSrc(self, pvarContentSrc);
     }
-    pub fn put_honorPageBreaks(self: *const ILayoutRect, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_honorPageBreaks(self: *const ILayoutRect, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_honorPageBreaks(self, v);
     }
-    pub fn get_honorPageBreaks(self: *const ILayoutRect, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_honorPageBreaks(self: *const ILayoutRect, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_honorPageBreaks(self, p);
     }
-    pub fn put_honorPageRules(self: *const ILayoutRect, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_honorPageRules(self: *const ILayoutRect, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_honorPageRules(self, v);
     }
-    pub fn get_honorPageRules(self: *const ILayoutRect, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_honorPageRules(self: *const ILayoutRect, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_honorPageRules(self, p);
     }
     pub fn put_nextRectElement(self: *const ILayoutRect, pElem: ?*IDispatch) callconv(.@"inline") HRESULT {
@@ -60949,11 +60949,11 @@ pub const IOmNavigator = extern union {
         ) callconv(.winapi) HRESULT,
         javaEnabled: *const fn(
             self: *const IOmNavigator,
-            enabled: ?*i16,
+            enabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         taintEnabled: *const fn(
             self: *const IOmNavigator,
-            enabled: ?*i16,
+            enabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_mimeTypes: *const fn(
@@ -60968,7 +60968,7 @@ pub const IOmNavigator = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_cookieEnabled: *const fn(
             self: *const IOmNavigator,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_opsProfile: *const fn(
@@ -61017,7 +61017,7 @@ pub const IOmNavigator = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_onLine: *const fn(
             self: *const IOmNavigator,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_userProfile: *const fn(
@@ -61040,10 +61040,10 @@ pub const IOmNavigator = extern union {
     pub fn get_userAgent(self: *const IOmNavigator, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_userAgent(self, p);
     }
-    pub fn javaEnabled(self: *const IOmNavigator, enabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn javaEnabled(self: *const IOmNavigator, enabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.javaEnabled(self, enabled);
     }
-    pub fn taintEnabled(self: *const IOmNavigator, enabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn taintEnabled(self: *const IOmNavigator, enabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.taintEnabled(self, enabled);
     }
     pub fn get_mimeTypes(self: *const IOmNavigator, p: ?*?*IHTMLMimeTypesCollection) callconv(.@"inline") HRESULT {
@@ -61052,7 +61052,7 @@ pub const IOmNavigator = extern union {
     pub fn get_plugins(self: *const IOmNavigator, p: ?*?*IHTMLPluginsCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_plugins(self, p);
     }
-    pub fn get_cookieEnabled(self: *const IOmNavigator, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_cookieEnabled(self: *const IOmNavigator, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_cookieEnabled(self, p);
     }
     pub fn get_opsProfile(self: *const IOmNavigator, p: ?*?*IHTMLOpsProfile) callconv(.@"inline") HRESULT {
@@ -61082,7 +61082,7 @@ pub const IOmNavigator = extern union {
     pub fn get_connectionSpeed(self: *const IOmNavigator, p: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_connectionSpeed(self, p);
     }
-    pub fn get_onLine(self: *const IOmNavigator, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_onLine(self: *const IOmNavigator, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_onLine(self, p);
     }
     pub fn get_userProfile(self: *const IOmNavigator, p: ?*?*IHTMLOpsProfile) callconv(.@"inline") HRESULT {
@@ -61568,12 +61568,12 @@ pub const IPrintManagerTemplatePrinter2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_showHeaderFooter: *const fn(
             self: *const IPrintManagerTemplatePrinter2,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_shrinkToFit: *const fn(
             self: *const IPrintManagerTemplatePrinter2,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_percentScale: *const fn(
@@ -61585,10 +61585,10 @@ pub const IPrintManagerTemplatePrinter2 = extern union {
     IPrintManagerTemplatePrinter: IPrintManagerTemplatePrinter,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_showHeaderFooter(self: *const IPrintManagerTemplatePrinter2, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_showHeaderFooter(self: *const IPrintManagerTemplatePrinter2, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_showHeaderFooter(self, p);
     }
-    pub fn get_shrinkToFit(self: *const IPrintManagerTemplatePrinter2, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_shrinkToFit(self: *const IPrintManagerTemplatePrinter2, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_shrinkToFit(self, p);
     }
     pub fn get_percentScale(self: *const IPrintManagerTemplatePrinter2, p: ?*f32) callconv(.@"inline") HRESULT {
@@ -61689,16 +61689,16 @@ pub const IRulesApplied = extern union {
         propertyIsInline: *const fn(
             self: *const IRulesApplied,
             name: ?BSTR,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         propertyIsInheritable: *const fn(
             self: *const IRulesApplied,
             name: ?BSTR,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         hasInheritableProperty: *const fn(
             self: *const IRulesApplied,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -61713,13 +61713,13 @@ pub const IRulesApplied = extern union {
     pub fn get_appliedRules(self: *const IRulesApplied, p: ?*?*IHTMLStyleSheetRulesAppliedCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_appliedRules(self, p);
     }
-    pub fn propertyIsInline(self: *const IRulesApplied, name: ?BSTR, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn propertyIsInline(self: *const IRulesApplied, name: ?BSTR, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.propertyIsInline(self, name, p);
     }
-    pub fn propertyIsInheritable(self: *const IRulesApplied, name: ?BSTR, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn propertyIsInheritable(self: *const IRulesApplied, name: ?BSTR, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.propertyIsInheritable(self, name, p);
     }
-    pub fn hasInheritableProperty(self: *const IRulesApplied, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn hasInheritableProperty(self: *const IRulesApplied, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.hasInheritableProperty(self, p);
     }
 };
@@ -62431,37 +62431,37 @@ pub const ISVGAnimatedBoolean = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_baseVal: *const fn(
             self: *const ISVGAnimatedBoolean,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_baseVal: *const fn(
             self: *const ISVGAnimatedBoolean,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_animVal: *const fn(
             self: *const ISVGAnimatedBoolean,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_animVal: *const fn(
             self: *const ISVGAnimatedBoolean,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_baseVal(self: *const ISVGAnimatedBoolean, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_baseVal(self: *const ISVGAnimatedBoolean, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_baseVal(self, v);
     }
-    pub fn get_baseVal(self: *const ISVGAnimatedBoolean, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_baseVal(self: *const ISVGAnimatedBoolean, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_baseVal(self, p);
     }
-    pub fn put_animVal(self: *const ISVGAnimatedBoolean, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_animVal(self: *const ISVGAnimatedBoolean, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_animVal(self, v);
     }
-    pub fn get_animVal(self: *const ISVGAnimatedBoolean, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_animVal(self: *const ISVGAnimatedBoolean, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_animVal(self, p);
     }
 };
@@ -64652,8 +64652,8 @@ pub const ISVGPathElement = extern union {
             r1: f32,
             r2: f32,
             angle: f32,
-            largeArcFlag: i16,
-            sweepFlag: i16,
+            largeArcFlag: VARIANT_BOOL,
+            sweepFlag: VARIANT_BOOL,
             ppResult: ?*?*ISVGPathSegArcAbs,
         ) callconv(.winapi) HRESULT,
         createSVGPathSegArcRel: *const fn(
@@ -64663,8 +64663,8 @@ pub const ISVGPathElement = extern union {
             r1: f32,
             r2: f32,
             angle: f32,
-            largeArcFlag: i16,
-            sweepFlag: i16,
+            largeArcFlag: VARIANT_BOOL,
+            sweepFlag: VARIANT_BOOL,
             ppResult: ?*?*ISVGPathSegArcRel,
         ) callconv(.winapi) HRESULT,
         createSVGPathSegLinetoHorizontalAbs: *const fn(
@@ -64761,10 +64761,10 @@ pub const ISVGPathElement = extern union {
     pub fn createSVGPathSegCurvetoQuadraticRel(self: *const ISVGPathElement, x: f32, y: f32, x1: f32, y1: f32, ppResult: ?*?*ISVGPathSegCurvetoQuadraticRel) callconv(.@"inline") HRESULT {
         return self.vtable.createSVGPathSegCurvetoQuadraticRel(self, x, y, x1, y1, ppResult);
     }
-    pub fn createSVGPathSegArcAbs(self: *const ISVGPathElement, x: f32, y: f32, r1: f32, r2: f32, angle: f32, largeArcFlag: i16, sweepFlag: i16, ppResult: ?*?*ISVGPathSegArcAbs) callconv(.@"inline") HRESULT {
+    pub fn createSVGPathSegArcAbs(self: *const ISVGPathElement, x: f32, y: f32, r1: f32, r2: f32, angle: f32, largeArcFlag: VARIANT_BOOL, sweepFlag: VARIANT_BOOL, ppResult: ?*?*ISVGPathSegArcAbs) callconv(.@"inline") HRESULT {
         return self.vtable.createSVGPathSegArcAbs(self, x, y, r1, r2, angle, largeArcFlag, sweepFlag, ppResult);
     }
-    pub fn createSVGPathSegArcRel(self: *const ISVGPathElement, x: f32, y: f32, r1: f32, r2: f32, angle: f32, largeArcFlag: i16, sweepFlag: i16, ppResult: ?*?*ISVGPathSegArcRel) callconv(.@"inline") HRESULT {
+    pub fn createSVGPathSegArcRel(self: *const ISVGPathElement, x: f32, y: f32, r1: f32, r2: f32, angle: f32, largeArcFlag: VARIANT_BOOL, sweepFlag: VARIANT_BOOL, ppResult: ?*?*ISVGPathSegArcRel) callconv(.@"inline") HRESULT {
         return self.vtable.createSVGPathSegArcRel(self, x, y, r1, r2, angle, largeArcFlag, sweepFlag, ppResult);
     }
     pub fn createSVGPathSegLinetoHorizontalAbs(self: *const ISVGPathElement, x: f32, ppResult: ?*?*ISVGPathSegLinetoHorizontalAbs) callconv(.@"inline") HRESULT {
@@ -64886,22 +64886,22 @@ pub const ISVGPathSegArcAbs = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_largeArcFlag: *const fn(
             self: *const ISVGPathSegArcAbs,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_largeArcFlag: *const fn(
             self: *const ISVGPathSegArcAbs,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_sweepFlag: *const fn(
             self: *const ISVGPathSegArcAbs,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_sweepFlag: *const fn(
             self: *const ISVGPathSegArcAbs,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -64937,16 +64937,16 @@ pub const ISVGPathSegArcAbs = extern union {
     pub fn get_angle(self: *const ISVGPathSegArcAbs, p: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.get_angle(self, p);
     }
-    pub fn put_largeArcFlag(self: *const ISVGPathSegArcAbs, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_largeArcFlag(self: *const ISVGPathSegArcAbs, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_largeArcFlag(self, v);
     }
-    pub fn get_largeArcFlag(self: *const ISVGPathSegArcAbs, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_largeArcFlag(self: *const ISVGPathSegArcAbs, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_largeArcFlag(self, p);
     }
-    pub fn put_sweepFlag(self: *const ISVGPathSegArcAbs, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_sweepFlag(self: *const ISVGPathSegArcAbs, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_sweepFlag(self, v);
     }
-    pub fn get_sweepFlag(self: *const ISVGPathSegArcAbs, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_sweepFlag(self: *const ISVGPathSegArcAbs, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_sweepFlag(self, p);
     }
 };
@@ -65009,22 +65009,22 @@ pub const ISVGPathSegArcRel = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_largeArcFlag: *const fn(
             self: *const ISVGPathSegArcRel,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_largeArcFlag: *const fn(
             self: *const ISVGPathSegArcRel,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_sweepFlag: *const fn(
             self: *const ISVGPathSegArcRel,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_sweepFlag: *const fn(
             self: *const ISVGPathSegArcRel,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -65060,16 +65060,16 @@ pub const ISVGPathSegArcRel = extern union {
     pub fn get_angle(self: *const ISVGPathSegArcRel, p: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.get_angle(self, p);
     }
-    pub fn put_largeArcFlag(self: *const ISVGPathSegArcRel, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_largeArcFlag(self: *const ISVGPathSegArcRel, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_largeArcFlag(self, v);
     }
-    pub fn get_largeArcFlag(self: *const ISVGPathSegArcRel, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_largeArcFlag(self: *const ISVGPathSegArcRel, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_largeArcFlag(self, p);
     }
-    pub fn put_sweepFlag(self: *const ISVGPathSegArcRel, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_sweepFlag(self: *const ISVGPathSegArcRel, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_sweepFlag(self, v);
     }
-    pub fn get_sweepFlag(self: *const ISVGPathSegArcRel, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_sweepFlag(self: *const ISVGPathSegArcRel, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_sweepFlag(self, p);
     }
 };
@@ -66936,12 +66936,12 @@ pub const ISVGSVGElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_useCurrentView: *const fn(
             self: *const ISVGSVGElement,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_useCurrentView: *const fn(
             self: *const ISVGSVGElement,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         putref_currentView: *const fn(
             self: *const ISVGSVGElement,
@@ -66994,7 +66994,7 @@ pub const ISVGSVGElement = extern union {
         ) callconv(.winapi) HRESULT,
         animationsPaused: *const fn(
             self: *const ISVGSVGElement,
-            pResult: ?*i16,
+            pResult: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getCurrentTime: *const fn(
             self: *const ISVGSVGElement,
@@ -67020,13 +67020,13 @@ pub const ISVGSVGElement = extern union {
             self: *const ISVGSVGElement,
             element: ?*ISVGElement,
             rect: ?*ISVGRect,
-            pResult: ?*i16,
+            pResult: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         checkEnclosure: *const fn(
             self: *const ISVGSVGElement,
             element: ?*ISVGElement,
             rect: ?*ISVGRect,
-            pResult: ?*i16,
+            pResult: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         deselectAll: *const fn(
             self: *const ISVGSVGElement,
@@ -67139,10 +67139,10 @@ pub const ISVGSVGElement = extern union {
     pub fn get_screenPixelToMillimeterY(self: *const ISVGSVGElement, p: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.get_screenPixelToMillimeterY(self, p);
     }
-    pub fn put_useCurrentView(self: *const ISVGSVGElement, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_useCurrentView(self: *const ISVGSVGElement, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_useCurrentView(self, v);
     }
-    pub fn get_useCurrentView(self: *const ISVGSVGElement, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_useCurrentView(self: *const ISVGSVGElement, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_useCurrentView(self, p);
     }
     pub fn putref_currentView(self: *const ISVGSVGElement, v: ?*ISVGViewSpec) callconv(.@"inline") HRESULT {
@@ -67181,7 +67181,7 @@ pub const ISVGSVGElement = extern union {
     pub fn unpauseAnimations(self: *const ISVGSVGElement) callconv(.@"inline") HRESULT {
         return self.vtable.unpauseAnimations(self);
     }
-    pub fn animationsPaused(self: *const ISVGSVGElement, pResult: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn animationsPaused(self: *const ISVGSVGElement, pResult: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.animationsPaused(self, pResult);
     }
     pub fn getCurrentTime(self: *const ISVGSVGElement, pResult: ?*f32) callconv(.@"inline") HRESULT {
@@ -67196,10 +67196,10 @@ pub const ISVGSVGElement = extern union {
     pub fn getEnclosureList(self: *const ISVGSVGElement, rect: ?*ISVGRect, referenceElement: ?*ISVGElement, pResult: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.getEnclosureList(self, rect, referenceElement, pResult);
     }
-    pub fn checkIntersection(self: *const ISVGSVGElement, element: ?*ISVGElement, rect: ?*ISVGRect, pResult: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn checkIntersection(self: *const ISVGSVGElement, element: ?*ISVGElement, rect: ?*ISVGRect, pResult: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.checkIntersection(self, element, rect, pResult);
     }
-    pub fn checkEnclosure(self: *const ISVGSVGElement, element: ?*ISVGElement, rect: ?*ISVGRect, pResult: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn checkEnclosure(self: *const ISVGSVGElement, element: ?*ISVGElement, rect: ?*ISVGRect, pResult: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.checkEnclosure(self, element, rect, pResult);
     }
     pub fn deselectAll(self: *const ISVGSVGElement) callconv(.@"inline") HRESULT {
@@ -67279,7 +67279,7 @@ pub const ISVGTests = extern union {
         hasExtension: *const fn(
             self: *const ISVGTests,
             extension: ?BSTR,
-            pResult: ?*i16,
+            pResult: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -67294,7 +67294,7 @@ pub const ISVGTests = extern union {
     pub fn get_systemLanguage(self: *const ISVGTests, p: ?*?*ISVGStringList) callconv(.@"inline") HRESULT {
         return self.vtable.get_systemLanguage(self, p);
     }
-    pub fn hasExtension(self: *const ISVGTests, extension: ?BSTR, pResult: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn hasExtension(self: *const ISVGTests, extension: ?BSTR, pResult: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.hasExtension(self, extension, pResult);
     }
 };
@@ -68425,7 +68425,7 @@ pub const ITemplatePrinter = extern union {
         startDoc: *const fn(
             self: *const ITemplatePrinter,
             bstrTitle: ?BSTR,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         stopDoc: *const fn(
             self: *const ITemplatePrinter,
@@ -68439,110 +68439,110 @@ pub const ITemplatePrinter = extern union {
         ) callconv(.winapi) HRESULT,
         ensurePrintDialogDefaults: *const fn(
             self: *const ITemplatePrinter,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         showPrintDialog: *const fn(
             self: *const ITemplatePrinter,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         showPageSetupDialog: *const fn(
             self: *const ITemplatePrinter,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         printNonNative: *const fn(
             self: *const ITemplatePrinter,
             pMarkup: ?*IUnknown,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         printNonNativeFrames: *const fn(
             self: *const ITemplatePrinter,
             pMarkup: ?*IUnknown,
-            fActiveFrame: i16,
+            fActiveFrame: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_framesetDocument: *const fn(
             self: *const ITemplatePrinter,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_framesetDocument: *const fn(
             self: *const ITemplatePrinter,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_frameActive: *const fn(
             self: *const ITemplatePrinter,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_frameActive: *const fn(
             self: *const ITemplatePrinter,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_frameAsShown: *const fn(
             self: *const ITemplatePrinter,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_frameAsShown: *const fn(
             self: *const ITemplatePrinter,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_selection: *const fn(
             self: *const ITemplatePrinter,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_selection: *const fn(
             self: *const ITemplatePrinter,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_selectedPages: *const fn(
             self: *const ITemplatePrinter,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_selectedPages: *const fn(
             self: *const ITemplatePrinter,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_currentPage: *const fn(
             self: *const ITemplatePrinter,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_currentPage: *const fn(
             self: *const ITemplatePrinter,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_currentPageAvail: *const fn(
             self: *const ITemplatePrinter,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_currentPageAvail: *const fn(
             self: *const ITemplatePrinter,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_collate: *const fn(
             self: *const ITemplatePrinter,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_collate: *const fn(
             self: *const ITemplatePrinter,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_duplex: *const fn(
             self: *const ITemplatePrinter,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_copies: *const fn(
@@ -68577,22 +68577,22 @@ pub const ITemplatePrinter = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_tableOfLinks: *const fn(
             self: *const ITemplatePrinter,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_tableOfLinks: *const fn(
             self: *const ITemplatePrinter,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_allLinkedDocuments: *const fn(
             self: *const ITemplatePrinter,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_allLinkedDocuments: *const fn(
             self: *const ITemplatePrinter,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_header: *const fn(
@@ -68692,7 +68692,7 @@ pub const ITemplatePrinter = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn startDoc(self: *const ITemplatePrinter, bstrTitle: ?BSTR, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn startDoc(self: *const ITemplatePrinter, bstrTitle: ?BSTR, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.startDoc(self, bstrTitle, p);
     }
     pub fn stopDoc(self: *const ITemplatePrinter) callconv(.@"inline") HRESULT {
@@ -68704,70 +68704,70 @@ pub const ITemplatePrinter = extern union {
     pub fn printPage(self: *const ITemplatePrinter, pElemDisp: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.printPage(self, pElemDisp);
     }
-    pub fn ensurePrintDialogDefaults(self: *const ITemplatePrinter, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn ensurePrintDialogDefaults(self: *const ITemplatePrinter, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ensurePrintDialogDefaults(self, p);
     }
-    pub fn showPrintDialog(self: *const ITemplatePrinter, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn showPrintDialog(self: *const ITemplatePrinter, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.showPrintDialog(self, p);
     }
-    pub fn showPageSetupDialog(self: *const ITemplatePrinter, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn showPageSetupDialog(self: *const ITemplatePrinter, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.showPageSetupDialog(self, p);
     }
-    pub fn printNonNative(self: *const ITemplatePrinter, pMarkup: ?*IUnknown, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn printNonNative(self: *const ITemplatePrinter, pMarkup: ?*IUnknown, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.printNonNative(self, pMarkup, p);
     }
-    pub fn printNonNativeFrames(self: *const ITemplatePrinter, pMarkup: ?*IUnknown, fActiveFrame: i16) callconv(.@"inline") HRESULT {
+    pub fn printNonNativeFrames(self: *const ITemplatePrinter, pMarkup: ?*IUnknown, fActiveFrame: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.printNonNativeFrames(self, pMarkup, fActiveFrame);
     }
-    pub fn put_framesetDocument(self: *const ITemplatePrinter, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_framesetDocument(self: *const ITemplatePrinter, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_framesetDocument(self, v);
     }
-    pub fn get_framesetDocument(self: *const ITemplatePrinter, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_framesetDocument(self: *const ITemplatePrinter, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_framesetDocument(self, p);
     }
-    pub fn put_frameActive(self: *const ITemplatePrinter, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_frameActive(self: *const ITemplatePrinter, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_frameActive(self, v);
     }
-    pub fn get_frameActive(self: *const ITemplatePrinter, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_frameActive(self: *const ITemplatePrinter, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_frameActive(self, p);
     }
-    pub fn put_frameAsShown(self: *const ITemplatePrinter, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_frameAsShown(self: *const ITemplatePrinter, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_frameAsShown(self, v);
     }
-    pub fn get_frameAsShown(self: *const ITemplatePrinter, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_frameAsShown(self: *const ITemplatePrinter, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_frameAsShown(self, p);
     }
-    pub fn put_selection(self: *const ITemplatePrinter, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_selection(self: *const ITemplatePrinter, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_selection(self, v);
     }
-    pub fn get_selection(self: *const ITemplatePrinter, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_selection(self: *const ITemplatePrinter, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_selection(self, p);
     }
-    pub fn put_selectedPages(self: *const ITemplatePrinter, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_selectedPages(self: *const ITemplatePrinter, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_selectedPages(self, v);
     }
-    pub fn get_selectedPages(self: *const ITemplatePrinter, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_selectedPages(self: *const ITemplatePrinter, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_selectedPages(self, p);
     }
-    pub fn put_currentPage(self: *const ITemplatePrinter, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_currentPage(self: *const ITemplatePrinter, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_currentPage(self, v);
     }
-    pub fn get_currentPage(self: *const ITemplatePrinter, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_currentPage(self: *const ITemplatePrinter, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_currentPage(self, p);
     }
-    pub fn put_currentPageAvail(self: *const ITemplatePrinter, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_currentPageAvail(self: *const ITemplatePrinter, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_currentPageAvail(self, v);
     }
-    pub fn get_currentPageAvail(self: *const ITemplatePrinter, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_currentPageAvail(self: *const ITemplatePrinter, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_currentPageAvail(self, p);
     }
-    pub fn put_collate(self: *const ITemplatePrinter, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_collate(self: *const ITemplatePrinter, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_collate(self, v);
     }
-    pub fn get_collate(self: *const ITemplatePrinter, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_collate(self: *const ITemplatePrinter, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_collate(self, p);
     }
-    pub fn get_duplex(self: *const ITemplatePrinter, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_duplex(self: *const ITemplatePrinter, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_duplex(self, p);
     }
     pub fn put_copies(self: *const ITemplatePrinter, v: u16) callconv(.@"inline") HRESULT {
@@ -68788,16 +68788,16 @@ pub const ITemplatePrinter = extern union {
     pub fn get_pageTo(self: *const ITemplatePrinter, p: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_pageTo(self, p);
     }
-    pub fn put_tableOfLinks(self: *const ITemplatePrinter, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_tableOfLinks(self: *const ITemplatePrinter, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_tableOfLinks(self, v);
     }
-    pub fn get_tableOfLinks(self: *const ITemplatePrinter, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_tableOfLinks(self: *const ITemplatePrinter, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_tableOfLinks(self, p);
     }
-    pub fn put_allLinkedDocuments(self: *const ITemplatePrinter, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_allLinkedDocuments(self: *const ITemplatePrinter, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_allLinkedDocuments(self, v);
     }
-    pub fn get_allLinkedDocuments(self: *const ITemplatePrinter, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_allLinkedDocuments(self: *const ITemplatePrinter, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_allLinkedDocuments(self, p);
     }
     pub fn put_header(self: *const ITemplatePrinter, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -68867,22 +68867,22 @@ pub const ITemplatePrinter2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_selectionEnabled: *const fn(
             self: *const ITemplatePrinter2,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_selectionEnabled: *const fn(
             self: *const ITemplatePrinter2,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_frameActiveEnabled: *const fn(
             self: *const ITemplatePrinter2,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_frameActiveEnabled: *const fn(
             self: *const ITemplatePrinter2,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_orientation: *const fn(
@@ -68897,12 +68897,12 @@ pub const ITemplatePrinter2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_usePrinterCopyCollate: *const fn(
             self: *const ITemplatePrinter2,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_usePrinterCopyCollate: *const fn(
             self: *const ITemplatePrinter2,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         deviceSupports: *const fn(
             self: *const ITemplatePrinter2,
@@ -68914,16 +68914,16 @@ pub const ITemplatePrinter2 = extern union {
     ITemplatePrinter: ITemplatePrinter,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_selectionEnabled(self: *const ITemplatePrinter2, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_selectionEnabled(self: *const ITemplatePrinter2, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_selectionEnabled(self, v);
     }
-    pub fn get_selectionEnabled(self: *const ITemplatePrinter2, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_selectionEnabled(self: *const ITemplatePrinter2, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_selectionEnabled(self, p);
     }
-    pub fn put_frameActiveEnabled(self: *const ITemplatePrinter2, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_frameActiveEnabled(self: *const ITemplatePrinter2, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_frameActiveEnabled(self, v);
     }
-    pub fn get_frameActiveEnabled(self: *const ITemplatePrinter2, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_frameActiveEnabled(self: *const ITemplatePrinter2, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_frameActiveEnabled(self, p);
     }
     pub fn put_orientation(self: *const ITemplatePrinter2, v: ?BSTR) callconv(.@"inline") HRESULT {
@@ -68932,10 +68932,10 @@ pub const ITemplatePrinter2 = extern union {
     pub fn get_orientation(self: *const ITemplatePrinter2, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_orientation(self, p);
     }
-    pub fn put_usePrinterCopyCollate(self: *const ITemplatePrinter2, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_usePrinterCopyCollate(self: *const ITemplatePrinter2, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_usePrinterCopyCollate(self, v);
     }
-    pub fn get_usePrinterCopyCollate(self: *const ITemplatePrinter2, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_usePrinterCopyCollate(self: *const ITemplatePrinter2, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_usePrinterCopyCollate(self, p);
     }
     pub fn deviceSupports(self: *const ITemplatePrinter2, bstrProperty: ?BSTR, pvar: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -68989,22 +68989,22 @@ pub const ITemplatePrinter3 = extern union {
         getPageMarginTopImportant: *const fn(
             self: *const ITemplatePrinter3,
             pageRule: ?*IDispatch,
-            pbImportant: ?*i16,
+            pbImportant: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getPageMarginRightImportant: *const fn(
             self: *const ITemplatePrinter3,
             pageRule: ?*IDispatch,
-            pbImportant: ?*i16,
+            pbImportant: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getPageMarginBottomImportant: *const fn(
             self: *const ITemplatePrinter3,
             pageRule: ?*IDispatch,
-            pbImportant: ?*i16,
+            pbImportant: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getPageMarginLeftImportant: *const fn(
             self: *const ITemplatePrinter3,
             pageRule: ?*IDispatch,
-            pbImportant: ?*i16,
+            pbImportant: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -69030,16 +69030,16 @@ pub const ITemplatePrinter3 = extern union {
     pub fn getPageMarginLeft(self: *const ITemplatePrinter3, pageRule: ?*IDispatch, pageWidth: i32, pageHeight: i32, pMargin: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.getPageMarginLeft(self, pageRule, pageWidth, pageHeight, pMargin);
     }
-    pub fn getPageMarginTopImportant(self: *const ITemplatePrinter3, pageRule: ?*IDispatch, pbImportant: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn getPageMarginTopImportant(self: *const ITemplatePrinter3, pageRule: ?*IDispatch, pbImportant: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.getPageMarginTopImportant(self, pageRule, pbImportant);
     }
-    pub fn getPageMarginRightImportant(self: *const ITemplatePrinter3, pageRule: ?*IDispatch, pbImportant: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn getPageMarginRightImportant(self: *const ITemplatePrinter3, pageRule: ?*IDispatch, pbImportant: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.getPageMarginRightImportant(self, pageRule, pbImportant);
     }
-    pub fn getPageMarginBottomImportant(self: *const ITemplatePrinter3, pageRule: ?*IDispatch, pbImportant: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn getPageMarginBottomImportant(self: *const ITemplatePrinter3, pageRule: ?*IDispatch, pbImportant: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.getPageMarginBottomImportant(self, pageRule, pbImportant);
     }
-    pub fn getPageMarginLeftImportant(self: *const ITemplatePrinter3, pageRule: ?*IDispatch, pbImportant: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn getPageMarginLeftImportant(self: *const ITemplatePrinter3, pageRule: ?*IDispatch, pbImportant: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.getPageMarginLeftImportant(self, pageRule, pbImportant);
     }
 };
@@ -69562,27 +69562,27 @@ pub const IWBScriptControl = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_selectableContent: *const fn(
             self: *const IWBScriptControl,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_selectableContent: *const fn(
             self: *const IWBScriptControl,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_frozen: *const fn(
             self: *const IWBScriptControl,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_scrollbar: *const fn(
             self: *const IWBScriptControl,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_scrollbar: *const fn(
             self: *const IWBScriptControl,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_version: *const fn(
@@ -69592,7 +69592,7 @@ pub const IWBScriptControl = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_visibility: *const fn(
             self: *const IWBScriptControl,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_onvisibilitychange: *const fn(
@@ -69617,25 +69617,25 @@ pub const IWBScriptControl = extern union {
     pub fn setContextMenu(self: *const IWBScriptControl, menuItemPairs: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.setContextMenu(self, menuItemPairs);
     }
-    pub fn put_selectableContent(self: *const IWBScriptControl, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_selectableContent(self: *const IWBScriptControl, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_selectableContent(self, v);
     }
-    pub fn get_selectableContent(self: *const IWBScriptControl, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_selectableContent(self: *const IWBScriptControl, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_selectableContent(self, p);
     }
-    pub fn get_frozen(self: *const IWBScriptControl, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_frozen(self: *const IWBScriptControl, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_frozen(self, p);
     }
-    pub fn put_scrollbar(self: *const IWBScriptControl, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_scrollbar(self: *const IWBScriptControl, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_scrollbar(self, v);
     }
-    pub fn get_scrollbar(self: *const IWBScriptControl, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_scrollbar(self: *const IWBScriptControl, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_scrollbar(self, p);
     }
     pub fn get_version(self: *const IWBScriptControl, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_version(self, p);
     }
-    pub fn get_visibility(self: *const IWBScriptControl, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_visibility(self: *const IWBScriptControl, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_visibility(self, p);
     }
     pub fn put_onvisibilitychange(self: *const IWBScriptControl, v: VARIANT) callconv(.@"inline") HRESULT {
@@ -69664,22 +69664,22 @@ pub const IWebBridge = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Scrollbar: *const fn(
             self: *const IWebBridge,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Scrollbar: *const fn(
             self: *const IWebBridge,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_embed: *const fn(
             self: *const IWebBridge,
-            v: i16,
+            v: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_embed: *const fn(
             self: *const IWebBridge,
-            p: ?*i16,
+            p: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_event: *const fn(
@@ -69704,16 +69704,16 @@ pub const IWebBridge = extern union {
     pub fn get_URL(self: *const IWebBridge, p: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_URL(self, p);
     }
-    pub fn put_Scrollbar(self: *const IWebBridge, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Scrollbar(self: *const IWebBridge, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Scrollbar(self, v);
     }
-    pub fn get_Scrollbar(self: *const IWebBridge, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Scrollbar(self: *const IWebBridge, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Scrollbar(self, p);
     }
-    pub fn put_embed(self: *const IWebBridge, v: i16) callconv(.@"inline") HRESULT {
+    pub fn put_embed(self: *const IWebBridge, v: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_embed(self, v);
     }
-    pub fn get_embed(self: *const IWebBridge, p: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_embed(self: *const IWebBridge, p: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_embed(self, p);
     }
     pub fn get_event(self: *const IWebBridge, p: ?*?*IDispatch) callconv(.@"inline") HRESULT {
@@ -69734,7 +69734,7 @@ pub const IWebBrowserEventsService = extern union {
         base: IUnknown.VTable,
         FireBeforeNavigate2Event: *const fn(
             self: *const IWebBrowserEventsService,
-            pfCancel: ?*i16,
+            pfCancel: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         FireNavigateComplete2Event: *const fn(
             self: *const IWebBrowserEventsService,
@@ -69751,7 +69751,7 @@ pub const IWebBrowserEventsService = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FireBeforeNavigate2Event(self: *const IWebBrowserEventsService, pfCancel: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn FireBeforeNavigate2Event(self: *const IWebBrowserEventsService, pfCancel: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.FireBeforeNavigate2Event(self, pfCancel);
     }
     pub fn FireNavigateComplete2Event(self: *const IWebBrowserEventsService) callconv(.@"inline") HRESULT {
@@ -70013,12 +70013,12 @@ pub const IXMLGenericParse = extern union {
         base: IUnknown.VTable,
         SetGenericParse: *const fn(
             self: *const IXMLGenericParse,
-            fDoGeneric: i16,
+            fDoGeneric: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetGenericParse(self: *const IXMLGenericParse, fDoGeneric: i16) callconv(.@"inline") HRESULT {
+    pub fn SetGenericParse(self: *const IXMLGenericParse, fDoGeneric: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetGenericParse(self, fDoGeneric);
     }
 };
@@ -73462,7 +73462,7 @@ pub extern "imgutil" fn SniffStream(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (51)
+// Section: Imports (52)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BINDINFO = @import("../system/com.zig").BINDINFO;
@@ -73514,6 +73514,7 @@ const RGBQUAD = @import("../graphics/gdi.zig").RGBQUAD;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const SIZE = @import("../foundation.zig").SIZE;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {

@@ -229,12 +229,12 @@ pub const IRDPSRAPIApplication = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Shared: *const fn(
             self: *const IRDPSRAPIApplication,
-            pRetVal: ?*i16,
+            pRetVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Shared: *const fn(
             self: *const IRDPSRAPIApplication,
-            NewVal: i16,
+            NewVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
@@ -256,10 +256,10 @@ pub const IRDPSRAPIApplication = extern union {
     pub fn get_Id(self: *const IRDPSRAPIApplication, pRetVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Id(self, pRetVal);
     }
-    pub fn get_Shared(self: *const IRDPSRAPIApplication, pRetVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Shared(self: *const IRDPSRAPIApplication, pRetVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Shared(self, pRetVal);
     }
-    pub fn put_Shared(self: *const IRDPSRAPIApplication, NewVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Shared(self: *const IRDPSRAPIApplication, NewVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Shared(self, NewVal);
     }
     pub fn get_Name(self: *const IRDPSRAPIApplication, pRetVal: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -289,12 +289,12 @@ pub const IRDPSRAPIApplicationFilter = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IRDPSRAPIApplicationFilter,
-            pRetVal: ?*i16,
+            pRetVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IRDPSRAPIApplicationFilter,
-            NewVal: i16,
+            NewVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -306,10 +306,10 @@ pub const IRDPSRAPIApplicationFilter = extern union {
     pub fn get_Windows(self: *const IRDPSRAPIApplicationFilter, pWindows: ?*?*IRDPSRAPIWindowList) callconv(.@"inline") HRESULT {
         return self.vtable.get_Windows(self, pWindows);
     }
-    pub fn get_Enabled(self: *const IRDPSRAPIApplicationFilter, pRetVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const IRDPSRAPIApplicationFilter, pRetVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, pRetVal);
     }
-    pub fn put_Enabled(self: *const IRDPSRAPIApplicationFilter, NewVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Enabled(self: *const IRDPSRAPIApplicationFilter, NewVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, NewVal);
     }
 };
@@ -535,12 +535,12 @@ pub const IRDPSRAPIClipboardUseEvents = extern union {
             self: *const IRDPSRAPIClipboardUseEvents,
             clipboardFormat: u32,
             pAttendee: ?*IDispatch,
-            pRetVal: ?*i16,
+            pRetVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnPasteFromClipboard(self: *const IRDPSRAPIClipboardUseEvents, clipboardFormat: u32, pAttendee: ?*IDispatch, pRetVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn OnPasteFromClipboard(self: *const IRDPSRAPIClipboardUseEvents, clipboardFormat: u32, pAttendee: ?*IDispatch, pRetVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnPasteFromClipboard(self, clipboardFormat, pAttendee, pRetVal);
     }
 };
@@ -652,12 +652,12 @@ pub const IRDPSRAPIInvitation = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Revoked: *const fn(
             self: *const IRDPSRAPIInvitation,
-            pRetVal: ?*i16,
+            pRetVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Revoked: *const fn(
             self: *const IRDPSRAPIInvitation,
-            NewVal: i16,
+            NewVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -678,10 +678,10 @@ pub const IRDPSRAPIInvitation = extern union {
     pub fn put_AttendeeLimit(self: *const IRDPSRAPIInvitation, NewVal: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_AttendeeLimit(self, NewVal);
     }
-    pub fn get_Revoked(self: *const IRDPSRAPIInvitation, pRetVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Revoked(self: *const IRDPSRAPIInvitation, pRetVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Revoked(self, pRetVal);
     }
-    pub fn put_Revoked(self: *const IRDPSRAPIInvitation, NewVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Revoked(self: *const IRDPSRAPIInvitation, NewVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Revoked(self, NewVal);
     }
 };
@@ -1222,12 +1222,12 @@ pub const IRDPSRAPIViewer = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SmartSizing: *const fn(
             self: *const IRDPSRAPIViewer,
-            vbSmartSizing: i16,
+            vbSmartSizing: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SmartSizing: *const fn(
             self: *const IRDPSRAPIViewer,
-            pvbSmartSizing: ?*i16,
+            pvbSmartSizing: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         RequestControl: *const fn(
             self: *const IRDPSRAPIViewer,
@@ -1281,10 +1281,10 @@ pub const IRDPSRAPIViewer = extern union {
     pub fn get_VirtualChannelManager(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIVirtualChannelManager) callconv(.@"inline") HRESULT {
         return self.vtable.get_VirtualChannelManager(self, ppVal);
     }
-    pub fn put_SmartSizing(self: *const IRDPSRAPIViewer, vbSmartSizing: i16) callconv(.@"inline") HRESULT {
+    pub fn put_SmartSizing(self: *const IRDPSRAPIViewer, vbSmartSizing: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_SmartSizing(self, vbSmartSizing);
     }
-    pub fn get_SmartSizing(self: *const IRDPSRAPIViewer, pvbSmartSizing: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SmartSizing(self: *const IRDPSRAPIViewer, pvbSmartSizing: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SmartSizing(self, pvbSmartSizing);
     }
     pub fn RequestControl(self: *const IRDPSRAPIViewer, CtrlLevel: CTRL_LEVEL) callconv(.@"inline") HRESULT {
@@ -1417,12 +1417,12 @@ pub const IRDPSRAPIWindow = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Shared: *const fn(
             self: *const IRDPSRAPIWindow,
-            pRetVal: ?*i16,
+            pRetVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Shared: *const fn(
             self: *const IRDPSRAPIWindow,
-            NewVal: i16,
+            NewVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
@@ -1447,10 +1447,10 @@ pub const IRDPSRAPIWindow = extern union {
     pub fn get_Application(self: *const IRDPSRAPIWindow, pApplication: ?*?*IRDPSRAPIApplication) callconv(.@"inline") HRESULT {
         return self.vtable.get_Application(self, pApplication);
     }
-    pub fn get_Shared(self: *const IRDPSRAPIWindow, pRetVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Shared(self: *const IRDPSRAPIWindow, pRetVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Shared(self, pRetVal);
     }
-    pub fn put_Shared(self: *const IRDPSRAPIWindow, NewVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Shared(self: *const IRDPSRAPIWindow, NewVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Shared(self, NewVal);
     }
     pub fn get_Name(self: *const IRDPSRAPIWindow, pRetVal: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -1501,7 +1501,7 @@ pub const IRDPViewerInputSink = extern union {
         SendMouseButtonEvent: *const fn(
             self: *const IRDPViewerInputSink,
             buttonType: RDPSRAPI_MOUSE_BUTTON_TYPE,
-            vbButtonDown: i16,
+            vbButtonDown: VARIANT_BOOL,
             xPos: u32,
             yPos: u32,
         ) callconv(.winapi) HRESULT,
@@ -1518,9 +1518,9 @@ pub const IRDPViewerInputSink = extern union {
             self: *const IRDPViewerInputSink,
             codeType: RDPSRAPI_KBD_CODE_TYPE,
             keycode: u16,
-            vbKeyUp: i16,
-            vbRepeat: i16,
-            vbExtended: i16,
+            vbKeyUp: VARIANT_BOOL,
+            vbRepeat: VARIANT_BOOL,
+            vbExtended: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SendSyncEvent: *const fn(
             self: *const IRDPViewerInputSink,
@@ -1542,7 +1542,7 @@ pub const IRDPViewerInputSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SendMouseButtonEvent(self: *const IRDPViewerInputSink, buttonType: RDPSRAPI_MOUSE_BUTTON_TYPE, vbButtonDown: i16, xPos: u32, yPos: u32) callconv(.@"inline") HRESULT {
+    pub fn SendMouseButtonEvent(self: *const IRDPViewerInputSink, buttonType: RDPSRAPI_MOUSE_BUTTON_TYPE, vbButtonDown: VARIANT_BOOL, xPos: u32, yPos: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendMouseButtonEvent(self, buttonType, vbButtonDown, xPos, yPos);
     }
     pub fn SendMouseMoveEvent(self: *const IRDPViewerInputSink, xPos: u32, yPos: u32) callconv(.@"inline") HRESULT {
@@ -1551,7 +1551,7 @@ pub const IRDPViewerInputSink = extern union {
     pub fn SendMouseWheelEvent(self: *const IRDPViewerInputSink, wheelRotation: u16) callconv(.@"inline") HRESULT {
         return self.vtable.SendMouseWheelEvent(self, wheelRotation);
     }
-    pub fn SendKeyboardEvent(self: *const IRDPViewerInputSink, codeType: RDPSRAPI_KBD_CODE_TYPE, keycode: u16, vbKeyUp: i16, vbRepeat: i16, vbExtended: i16) callconv(.@"inline") HRESULT {
+    pub fn SendKeyboardEvent(self: *const IRDPViewerInputSink, codeType: RDPSRAPI_KBD_CODE_TYPE, keycode: u16, vbKeyUp: VARIANT_BOOL, vbRepeat: VARIANT_BOOL, vbExtended: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SendKeyboardEvent(self, codeType, keycode, vbKeyUp, vbRepeat, vbExtended);
     }
     pub fn SendSyncEvent(self: *const IRDPViewerInputSink, syncFlags: u32) callconv(.@"inline") HRESULT {
@@ -1693,7 +1693,7 @@ pub const CLSID_RDPViewer = &CLSID_RDPViewer_Value;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BSTR = @import("../foundation.zig").BSTR;
@@ -1702,6 +1702,7 @@ const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     @setEvalBranchQuota(

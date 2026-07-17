@@ -3339,9 +3339,9 @@ pub const CERT_ALT_NAME_ENTRY = extern struct {
         pOtherName: ?*CERT_OTHER_NAME,
         pwszRfc822Name: ?PWSTR,
         pwszDNSName: ?PWSTR,
-        DirectoryName: CRYPTOAPI_BLOB,
+        DirectoryName: CRYPT_INTEGER_BLOB,
         pwszURL: ?PWSTR,
-        IPAddress: CRYPTOAPI_BLOB,
+        IPAddress: CRYPT_INTEGER_BLOB,
         pszRegisteredID: ?PSTR,
     },
 };
@@ -3357,15 +3357,15 @@ pub const CERT_AUTHORITY_INFO_ACCESS = extern struct {
 };
 
 pub const CERT_AUTHORITY_KEY_ID2_INFO = extern struct {
-    KeyId: CRYPTOAPI_BLOB,
+    KeyId: CRYPT_INTEGER_BLOB,
     AuthorityCertIssuer: CERT_ALT_NAME_INFO,
-    AuthorityCertSerialNumber: CRYPTOAPI_BLOB,
+    AuthorityCertSerialNumber: CRYPT_INTEGER_BLOB,
 };
 
 pub const CERT_AUTHORITY_KEY_ID_INFO = extern struct {
-    KeyId: CRYPTOAPI_BLOB,
-    CertIssuer: CRYPTOAPI_BLOB,
-    CertSerialNumber: CRYPTOAPI_BLOB,
+    KeyId: CRYPT_INTEGER_BLOB,
+    CertIssuer: CRYPT_INTEGER_BLOB,
+    CertSerialNumber: CRYPT_INTEGER_BLOB,
 };
 
 pub const CERT_BASIC_CONSTRAINTS2_INFO = extern struct {
@@ -3379,7 +3379,7 @@ pub const CERT_BASIC_CONSTRAINTS_INFO = extern struct {
     fPathLenConstraint: BOOL,
     dwPathLenConstraint: u32,
     cSubtreesConstraint: u32,
-    rgSubtreesConstraint: ?*CRYPTOAPI_BLOB,
+    rgSubtreesConstraint: ?*CRYPT_INTEGER_BLOB,
 };
 
 pub const CERT_BIOMETRIC_DATA = extern struct {
@@ -3405,7 +3405,7 @@ pub const CERT_BIOMETRIC_EXT_INFO = extern struct {
 
 pub const CERT_CHAIN = extern struct {
     cCerts: u32,
-    certs: ?*CRYPTOAPI_BLOB,
+    certs: ?*CRYPT_INTEGER_BLOB,
     keyLocatorInfo: CRYPT_KEY_PROV_INFO,
 };
 
@@ -3454,7 +3454,7 @@ pub const CERT_CHAIN_FIND_BY_ISSUER_PARA = extern struct {
     dwKeySpec: u32,
     dwAcquirePrivateKeyFlags: u32,
     cIssuer: u32,
-    rgIssuer: ?*CRYPTOAPI_BLOB,
+    rgIssuer: ?*CRYPT_INTEGER_BLOB,
     pfnFindCallback: ?PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK,
     pvFindArg: ?*anyopaque,
 };
@@ -3518,7 +3518,7 @@ pub const CERT_CHAIN_POLICY_STATUS = extern struct {
 };
 
 pub const CERT_CONTEXT = extern struct {
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pbCertEncoded: ?*u8,
     cbCertEncoded: u32,
     pCertInfo: ?*CERT_INFO,
@@ -3585,25 +3585,25 @@ pub const CERT_CRL_CONTEXT_PAIR = extern struct {
 };
 
 pub const CERT_DH_PARAMETERS = extern struct {
-    p: CRYPTOAPI_BLOB,
-    g: CRYPTOAPI_BLOB,
+    p: CRYPT_INTEGER_BLOB,
+    g: CRYPT_INTEGER_BLOB,
 };
 
 pub const CERT_DSS_PARAMETERS = extern struct {
-    p: CRYPTOAPI_BLOB,
-    q: CRYPTOAPI_BLOB,
-    g: CRYPTOAPI_BLOB,
+    p: CRYPT_INTEGER_BLOB,
+    q: CRYPT_INTEGER_BLOB,
+    g: CRYPT_INTEGER_BLOB,
 };
 
 pub const CERT_ECC_SIGNATURE = extern struct {
-    r: CRYPTOAPI_BLOB,
-    s: CRYPTOAPI_BLOB,
+    r: CRYPT_INTEGER_BLOB,
+    s: CRYPT_INTEGER_BLOB,
 };
 
 pub const CERT_EXTENSION = extern struct {
     pszObjId: ?PSTR,
     fCritical: BOOL,
-    Value: CRYPTOAPI_BLOB,
+    Value: CRYPT_INTEGER_BLOB,
 };
 
 pub const CERT_EXTENSIONS = extern struct {
@@ -3866,7 +3866,7 @@ pub const CERT_GENERAL_SUBTREE = extern struct {
 
 pub const CERT_HASHED_URL = extern struct {
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    Hash: CRYPTOAPI_BLOB,
+    Hash: CRYPT_INTEGER_BLOB,
     pwszUrl: ?PWSTR,
 };
 
@@ -3874,8 +3874,8 @@ pub const CERT_ID = extern struct {
     dwIdChoice: CERT_ID_OPTION,
     Anonymous: extern union {
         IssuerSerialNumber: CERT_ISSUER_SERIAL_NUMBER,
-        KeyId: CRYPTOAPI_BLOB,
-        HashId: CRYPTOAPI_BLOB,
+        KeyId: CRYPT_INTEGER_BLOB,
+        HashId: CRYPT_INTEGER_BLOB,
     },
 };
 
@@ -3890,12 +3890,12 @@ pub const CERT_ID_SHA1_HASH = CERT_ID_OPTION.SHA1_HASH;
 
 pub const CERT_INFO = extern struct {
     dwVersion: u32,
-    SerialNumber: CRYPTOAPI_BLOB,
+    SerialNumber: CRYPT_INTEGER_BLOB,
     SignatureAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    Issuer: CRYPTOAPI_BLOB,
+    Issuer: CRYPT_INTEGER_BLOB,
     NotBefore: FILETIME,
     NotAfter: FILETIME,
-    Subject: CRYPTOAPI_BLOB,
+    Subject: CRYPT_INTEGER_BLOB,
     SubjectPublicKeyInfo: CERT_PUBLIC_KEY_INFO,
     IssuerUniqueId: CRYPT_BIT_BLOB,
     SubjectUniqueId: CRYPT_BIT_BLOB,
@@ -3904,12 +3904,12 @@ pub const CERT_INFO = extern struct {
 };
 
 pub const CERT_ISSUER_SERIAL_NUMBER = extern struct {
-    Issuer: CRYPTOAPI_BLOB,
-    SerialNumber: CRYPTOAPI_BLOB,
+    Issuer: CRYPT_INTEGER_BLOB,
+    SerialNumber: CRYPT_INTEGER_BLOB,
 };
 
 pub const CERT_KEY_ATTRIBUTES_INFO = extern struct {
-    KeyId: CRYPTOAPI_BLOB,
+    KeyId: CRYPT_INTEGER_BLOB,
     IntendedKeyUsage: CRYPT_BIT_BLOB,
     pPrivateKeyUsagePeriod: ?*CERT_PRIVATE_KEY_VALIDITY,
 };
@@ -4052,7 +4052,7 @@ pub const CERT_NAME_INFO = extern struct {
 
 pub const CERT_NAME_VALUE = extern struct {
     dwValueType: u32,
-    Value: CRYPTOAPI_BLOB,
+    Value: CRYPT_INTEGER_BLOB,
 };
 
 pub const CERT_OPEN_STORE_FLAGS = enum(u32) {
@@ -4100,12 +4100,12 @@ pub const CERT_OTHER_LOGOTYPE_INFO = extern struct {
 
 pub const CERT_OTHER_NAME = extern struct {
     pszObjId: ?PSTR,
-    Value: CRYPTOAPI_BLOB,
+    Value: CRYPT_INTEGER_BLOB,
 };
 
 pub const CERT_PAIR = extern struct {
-    Forward: CRYPTOAPI_BLOB,
-    Reverse: CRYPTOAPI_BLOB,
+    Forward: CRYPT_INTEGER_BLOB,
+    Reverse: CRYPT_INTEGER_BLOB,
 };
 
 pub const CERT_PHYSICAL_STORE_INFO = extern struct {
@@ -4113,7 +4113,7 @@ pub const CERT_PHYSICAL_STORE_INFO = extern struct {
     pszOpenStoreProvider: ?PSTR,
     dwOpenEncodingType: u32,
     dwOpenFlags: u32,
-    OpenParameters: CRYPTOAPI_BLOB,
+    OpenParameters: CRYPT_INTEGER_BLOB,
     dwFlags: u32,
     dwPriority: u32,
 };
@@ -4161,7 +4161,7 @@ pub const CERT_POLICY_MAPPINGS_INFO = extern struct {
 
 pub const CERT_POLICY_QUALIFIER_INFO = extern struct {
     pszPolicyQualifierId: ?PSTR,
-    Qualifier: CRYPTOAPI_BLOB,
+    Qualifier: CRYPT_INTEGER_BLOB,
 };
 
 pub const CERT_POLICY_QUALIFIER_NOTICE_REFERENCE = extern struct {
@@ -4187,7 +4187,7 @@ pub const CERT_PUBLIC_KEY_INFO = extern struct {
 
 pub const CERT_QC_STATEMENT = extern struct {
     pszStatementId: ?PSTR,
-    StatementInfo: CRYPTOAPI_BLOB,
+    StatementInfo: CRYPT_INTEGER_BLOB,
 };
 
 pub const CERT_QC_STATEMENTS_EXT_INFO = extern struct {
@@ -4261,12 +4261,42 @@ pub const CERT_QUERY_CONTENT_FLAG_PFX_AND_LOAD = CERT_QUERY_CONTENT_TYPE_FLAGS.P
 pub const CERT_QUERY_CONTENT_FLAG_ALL = CERT_QUERY_CONTENT_TYPE_FLAGS.ALL;
 pub const CERT_QUERY_CONTENT_FLAG_ALL_ISSUER_CERT = CERT_QUERY_CONTENT_TYPE_FLAGS.ALL_ISSUER_CERT;
 
-pub const CERT_QUERY_ENCODING_TYPE = enum(u32) {
-    X509_ASN_ENCODING = 1,
-    PKCS_7_ASN_ENCODING = 65536,
+pub const CERT_QUERY_ENCODING_TYPE = packed struct(u32) {
+    X509_ASN_ENCODING: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    PKCS_7_ASN_ENCODING: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const X509_ASN_ENCODING = CERT_QUERY_ENCODING_TYPE.X509_ASN_ENCODING;
-pub const PKCS_7_ASN_ENCODING = CERT_QUERY_ENCODING_TYPE.PKCS_7_ASN_ENCODING;
+pub const X509_ASN_ENCODING = CERT_QUERY_ENCODING_TYPE{ .X509_ASN_ENCODING = 1 };
+pub const PKCS_7_ASN_ENCODING = CERT_QUERY_ENCODING_TYPE{ .PKCS_7_ASN_ENCODING = 1 };
 
 pub const CERT_QUERY_FORMAT_TYPE = enum(u32) {
     BINARY = 1,
@@ -4303,7 +4333,7 @@ pub const CERT_RDN = extern struct {
 pub const CERT_RDN_ATTR = extern struct {
     pszObjId: ?PSTR,
     dwValueType: CERT_RDN_ATTR_VALUE_TYPE,
-    Value: CRYPTOAPI_BLOB,
+    Value: CRYPT_INTEGER_BLOB,
 };
 
 pub const CERT_RDN_ATTR_VALUE_TYPE = enum(u32) {
@@ -4357,7 +4387,7 @@ pub const CERT_REGISTRY_STORE_ROAMING_PARA = extern struct {
 
 pub const CERT_REQUEST_INFO = extern struct {
     dwVersion: u32,
-    Subject: CRYPTOAPI_BLOB,
+    Subject: CRYPT_INTEGER_BLOB,
     SubjectPublicKeyInfo: CERT_PUBLIC_KEY_INFO,
     cAttribute: u32,
     rgAttribute: ?*CRYPT_ATTRIBUTE,
@@ -4522,7 +4552,7 @@ pub const CERT_SERVER_OCSP_RESPONSE_OPEN_PARA = extern struct {
 };
 
 pub const CERT_SIGNED_CONTENT_INFO = extern struct {
-    ToBeSigned: CRYPTOAPI_BLOB,
+    ToBeSigned: CRYPT_INTEGER_BLOB,
     SignatureAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     Signature: CRYPT_BIT_BLOB,
 };
@@ -4735,10 +4765,10 @@ pub const CERT_USAGE_MATCH = extern struct {
 };
 
 pub const CERT_X942_DH_PARAMETERS = extern struct {
-    p: CRYPTOAPI_BLOB,
-    g: CRYPTOAPI_BLOB,
-    q: CRYPTOAPI_BLOB,
-    j: CRYPTOAPI_BLOB,
+    p: CRYPT_INTEGER_BLOB,
+    g: CRYPT_INTEGER_BLOB,
+    q: CRYPT_INTEGER_BLOB,
+    j: CRYPT_INTEGER_BLOB,
     pValidationParams: ?*CERT_X942_DH_VALIDATION_PARAMS,
 };
 
@@ -4749,7 +4779,7 @@ pub const CERT_X942_DH_VALIDATION_PARAMS = extern struct {
 
 pub const CERTIFICATE_CHAIN_BLOB = extern struct {
     certCount: u32,
-    rawCertificates: ?*CRYPTOAPI_BLOB,
+    rawCertificates: ?*CRYPT_INTEGER_BLOB,
 };
 
 pub const CertKeyType = enum(u32) {
@@ -4823,7 +4853,7 @@ pub const CMC_DATA_INFO = extern struct {
 };
 
 pub const CMC_PEND_INFO = extern struct {
-    PendToken: CRYPTOAPI_BLOB,
+    PendToken: CRYPT_INTEGER_BLOB,
     PendTime: FILETIME,
 };
 
@@ -4855,18 +4885,18 @@ pub const CMC_TAGGED_ATTRIBUTE = extern struct {
 
 pub const CMC_TAGGED_CERT_REQUEST = extern struct {
     dwBodyPartID: u32,
-    SignedCertRequest: CRYPTOAPI_BLOB,
+    SignedCertRequest: CRYPT_INTEGER_BLOB,
 };
 
 pub const CMC_TAGGED_CONTENT_INFO = extern struct {
     dwBodyPartID: u32,
-    EncodedContentInfo: CRYPTOAPI_BLOB,
+    EncodedContentInfo: CRYPT_INTEGER_BLOB,
 };
 
 pub const CMC_TAGGED_OTHER_MSG = extern struct {
     dwBodyPartID: u32,
     pszObjId: ?PSTR,
-    Value: CRYPTOAPI_BLOB,
+    Value: CRYPT_INTEGER_BLOB,
 };
 
 pub const CMC_TAGGED_REQUEST = extern struct {
@@ -4880,7 +4910,7 @@ pub const CMS_DH_KEY_INFO = extern struct {
     dwVersion: u32,
     Algid: u32,
     pszContentEncObjId: ?PSTR,
-    PubInfo: CRYPTOAPI_BLOB,
+    PubInfo: CRYPT_INTEGER_BLOB,
     pReserved: ?*anyopaque,
 };
 
@@ -4908,7 +4938,7 @@ pub const CMSG_CMS_SIGNER_INFO = extern struct {
     SignerId: CERT_ID,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     HashEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    EncryptedHash: CRYPTOAPI_BLOB,
+    EncryptedHash: CRYPT_INTEGER_BLOB,
     AuthAttrs: CRYPT_ATTRIBUTES,
     UnauthAttrs: CRYPT_ATTRIBUTES,
 };
@@ -4949,7 +4979,7 @@ pub const CMSG_CONTENT_ENCRYPT_INFO = extern struct {
 pub const CMSG_CTRL_ADD_SIGNER_UNAUTH_ATTR_PARA = extern struct {
     cbSize: u32,
     dwSignerIndex: u32,
-    blob: CRYPTOAPI_BLOB,
+    blob: CRYPT_INTEGER_BLOB,
 };
 
 pub const CMSG_CTRL_DECRYPT_PARA = extern struct {
@@ -5038,7 +5068,7 @@ pub const CMSG_KEY_AGREE_ENCRYPT_INFO = extern struct {
     cbSize: u32,
     dwRecipientIndex: u32,
     KeyEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    UserKeyingMaterial: CRYPTOAPI_BLOB,
+    UserKeyingMaterial: CRYPT_INTEGER_BLOB,
     dwOriginatorChoice: CMSG_KEY_AGREE_ORIGINATOR,
     Anonymous: extern union {
         OriginatorCertId: CERT_ID,
@@ -5051,7 +5081,7 @@ pub const CMSG_KEY_AGREE_ENCRYPT_INFO = extern struct {
 
 pub const CMSG_KEY_AGREE_KEY_ENCRYPT_INFO = extern struct {
     cbSize: u32,
-    EncryptedKey: CRYPTOAPI_BLOB,
+    EncryptedKey: CRYPT_INTEGER_BLOB,
 };
 
 pub const CMSG_KEY_AGREE_OPTION = enum(u32) {
@@ -5081,7 +5111,7 @@ pub const CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO = extern struct {
         pEphemeralAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
         pSenderId: ?*CERT_ID,
     },
-    UserKeyingMaterial: CRYPTOAPI_BLOB,
+    UserKeyingMaterial: CRYPT_INTEGER_BLOB,
     cRecipientEncryptedKeys: u32,
     rgpRecipientEncryptedKeys: ?*?*CMSG_RECIPIENT_ENCRYPTED_KEY_ENCODE_INFO,
 };
@@ -5093,7 +5123,7 @@ pub const CMSG_KEY_AGREE_RECIPIENT_INFO = extern struct {
         OriginatorCertId: CERT_ID,
         OriginatorPublicKeyInfo: CERT_PUBLIC_KEY_INFO,
     },
-    UserKeyingMaterial: CRYPTOAPI_BLOB,
+    UserKeyingMaterial: CRYPT_INTEGER_BLOB,
     KeyEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     cRecipientEncryptedKeys: u32,
     rgpRecipientEncryptedKeys: ?*?*CMSG_RECIPIENT_ENCRYPTED_KEY_INFO,
@@ -5103,7 +5133,7 @@ pub const CMSG_KEY_TRANS_ENCRYPT_INFO = extern struct {
     cbSize: u32,
     dwRecipientIndex: u32,
     KeyEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    EncryptedKey: CRYPTOAPI_BLOB,
+    EncryptedKey: CRYPT_INTEGER_BLOB,
     dwFlags: u32,
 };
 
@@ -5120,14 +5150,14 @@ pub const CMSG_KEY_TRANS_RECIPIENT_INFO = extern struct {
     dwVersion: u32,
     RecipientId: CERT_ID,
     KeyEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    EncryptedKey: CRYPTOAPI_BLOB,
+    EncryptedKey: CRYPT_INTEGER_BLOB,
 };
 
 pub const CMSG_MAIL_LIST_ENCRYPT_INFO = extern struct {
     cbSize: u32,
     dwRecipientIndex: u32,
     KeyEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    EncryptedKey: CRYPTOAPI_BLOB,
+    EncryptedKey: CRYPT_INTEGER_BLOB,
     dwFlags: u32,
 };
 
@@ -5141,16 +5171,16 @@ pub const CMSG_MAIL_LIST_RECIPIENT_ENCODE_INFO = extern struct {
         hKeyEncryptionKey: usize,
         pvKeyEncryptionKey: ?*anyopaque,
     },
-    KeyId: CRYPTOAPI_BLOB,
+    KeyId: CRYPT_INTEGER_BLOB,
     Date: FILETIME,
     pOtherAttr: ?*CRYPT_ATTRIBUTE_TYPE_VALUE,
 };
 
 pub const CMSG_MAIL_LIST_RECIPIENT_INFO = extern struct {
     dwVersion: u32,
-    KeyId: CRYPTOAPI_BLOB,
+    KeyId: CRYPT_INTEGER_BLOB,
     KeyEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    EncryptedKey: CRYPTOAPI_BLOB,
+    EncryptedKey: CRYPT_INTEGER_BLOB,
     Date: FILETIME,
     pOtherAttr: ?*CRYPT_ATTRIBUTE_TYPE_VALUE,
 };
@@ -5184,7 +5214,7 @@ pub const CMSG_RECIPIENT_ENCRYPTED_KEY_ENCODE_INFO = extern struct {
 
 pub const CMSG_RECIPIENT_ENCRYPTED_KEY_INFO = extern struct {
     RecipientId: CERT_ID,
-    EncryptedKey: CRYPTOAPI_BLOB,
+    EncryptedKey: CRYPT_INTEGER_BLOB,
     Date: FILETIME,
     pOtherAttr: ?*CRYPT_ATTRIBUTE_TYPE_VALUE,
 };
@@ -5200,9 +5230,9 @@ pub const CMSG_SIGNED_ENCODE_INFO = extern struct {
     cSigners: u32,
     rgSigners: ?*CMSG_SIGNER_ENCODE_INFO,
     cCertEncoded: u32,
-    rgCertEncoded: ?*CRYPTOAPI_BLOB,
+    rgCertEncoded: ?*CRYPT_INTEGER_BLOB,
     cCrlEncoded: u32,
-    rgCrlEncoded: ?*CRYPTOAPI_BLOB,
+    rgCrlEncoded: ?*CRYPT_INTEGER_BLOB,
 };
 
 pub const CMSG_SIGNER_ENCODE_INFO = extern struct {
@@ -5223,11 +5253,11 @@ pub const CMSG_SIGNER_ENCODE_INFO = extern struct {
 
 pub const CMSG_SIGNER_INFO = extern struct {
     dwVersion: u32,
-    Issuer: CRYPTOAPI_BLOB,
-    SerialNumber: CRYPTOAPI_BLOB,
+    Issuer: CRYPT_INTEGER_BLOB,
+    SerialNumber: CRYPT_INTEGER_BLOB,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     HashEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    EncryptedHash: CRYPTOAPI_BLOB,
+    EncryptedHash: CRYPT_INTEGER_BLOB,
     AuthAttrs: CRYPT_ATTRIBUTES,
     UnauthAttrs: CRYPT_ATTRIBUTES,
 };
@@ -5246,11 +5276,11 @@ pub const CMSG_STREAM_INFO = extern struct {
 pub const CPS_URLS = extern struct {
     pszURL: ?PWSTR,
     pAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
-    pDigest: ?*CRYPTOAPI_BLOB,
+    pDigest: ?*CRYPT_INTEGER_BLOB,
 };
 
 pub const CRL_CONTEXT = extern struct {
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pbCrlEncoded: ?*u8,
     cbCrlEncoded: u32,
     pCrlInfo: ?*CRL_INFO,
@@ -5276,7 +5306,7 @@ pub const CRL_DIST_POINTS_INFO = extern struct {
 };
 
 pub const CRL_ENTRY = extern struct {
-    SerialNumber: CRYPTOAPI_BLOB,
+    SerialNumber: CRYPT_INTEGER_BLOB,
     RevocationDate: FILETIME,
     cExtension: u32,
     rgExtension: ?*CERT_EXTENSION,
@@ -5290,7 +5320,7 @@ pub const CRL_FIND_ISSUED_FOR_PARA = extern struct {
 pub const CRL_INFO = extern struct {
     dwVersion: u32,
     SignatureAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    Issuer: CRYPTOAPI_BLOB,
+    Issuer: CRYPT_INTEGER_BLOB,
     ThisUpdate: FILETIME,
     NextUpdate: FILETIME,
     cCRLEntry: u32,
@@ -5383,7 +5413,7 @@ pub const CRYPT_AES_256_KEY_STATE = extern struct {
 
 pub const CRYPT_ALGORITHM_IDENTIFIER = extern struct {
     pszObjId: ?PSTR,
-    Parameters: CRYPTOAPI_BLOB,
+    Parameters: CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_ASYNC_RETRIEVAL_COMPLETION = extern struct {
@@ -5394,12 +5424,12 @@ pub const CRYPT_ASYNC_RETRIEVAL_COMPLETION = extern struct {
 pub const CRYPT_ATTRIBUTE = extern struct {
     pszObjId: ?PSTR,
     cValue: u32,
-    rgValue: ?*CRYPTOAPI_BLOB,
+    rgValue: ?*CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_ATTRIBUTE_TYPE_VALUE = extern struct {
     pszObjId: ?PSTR,
-    Value: CRYPTOAPI_BLOB,
+    Value: CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_ATTRIBUTES = extern struct {
@@ -5415,18 +5445,18 @@ pub const CRYPT_BIT_BLOB = extern struct {
 
 pub const CRYPT_BLOB_ARRAY = extern struct {
     cBlob: u32,
-    rgBlob: ?*CRYPTOAPI_BLOB,
+    rgBlob: ?*CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_CONTENT_INFO = extern struct {
     pszObjId: ?PSTR,
-    Content: CRYPTOAPI_BLOB,
+    Content: CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_CONTENT_INFO_SEQUENCE_OF_ANY = extern struct {
     pszObjId: ?PSTR,
     cValue: u32,
-    rgValue: ?*CRYPTOAPI_BLOB,
+    rgValue: ?*CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_CONTEXT_CONFIG = extern struct {
@@ -5573,13 +5603,13 @@ pub const CRYPT_DES_KEY_STATE = extern struct {
 
 pub const CRYPT_ECC_CMS_SHARED_INFO = extern struct {
     Algorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    EntityUInfo: CRYPTOAPI_BLOB,
+    EntityUInfo: CRYPT_INTEGER_BLOB,
     rgbSuppPubInfo: [4]u8,
 };
 
 pub const CRYPT_ECC_PRIVATE_KEY_INFO = extern struct {
     dwVersion: u32,
-    PrivateKey: CRYPTOAPI_BLOB,
+    PrivateKey: CRYPT_INTEGER_BLOB,
     szCurveOid: ?PSTR,
     PublicKey: CRYPT_BIT_BLOB,
 };
@@ -5642,7 +5672,7 @@ pub const CRYPT_ENCRYPT_MESSAGE_PARA = extern struct {
 
 pub const CRYPT_ENCRYPTED_PRIVATE_KEY_INFO = extern struct {
     EncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    EncryptedPrivateKey: CRYPTOAPI_BLOB,
+    EncryptedPrivateKey: CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_ENROLLMENT_NAME_VALUE_PAIR = extern struct {
@@ -5666,7 +5696,7 @@ pub const CRYPT_GET_TIME_VALID_OBJECT_EXTRA_INFO = extern struct {
     pLastSyncTime: ?*FILETIME,
     pMaxAgeTime: ?*FILETIME,
     pChainPara: ?*CERT_REVOCATION_CHAIN_PARA,
-    pDeltaCrlIndicator: ?*CRYPTOAPI_BLOB,
+    pDeltaCrlIndicator: ?*CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_GET_URL_FLAGS = packed struct(u32) {
@@ -5710,7 +5740,7 @@ pub const CRYPT_GET_URL_FROM_AUTH_ATTRIBUTE = CRYPT_GET_URL_FLAGS{ .AUTH_ATTRIBU
 
 pub const CRYPT_HASH_INFO = extern struct {
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    Hash: CRYPTOAPI_BLOB,
+    Hash: CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_HASH_MESSAGE_PARA = extern struct {
@@ -5805,6 +5835,11 @@ pub const CRYPT_IMPORT_PUBLIC_KEY_FLAGS = packed struct(u32) {
 };
 pub const CRYPT_OID_INFO_PUBKEY_SIGN_KEY_FLAG = CRYPT_IMPORT_PUBLIC_KEY_FLAGS{ .SIGN_KEY_FLAG = 1 };
 pub const CRYPT_OID_INFO_PUBKEY_ENCRYPT_KEY_FLAG = CRYPT_IMPORT_PUBLIC_KEY_FLAGS{ .ENCRYPT_KEY_FLAG = 1 };
+
+pub const CRYPT_INTEGER_BLOB = extern struct {
+    cbData: u32,
+    pbData: ?*u8,
+};
 
 pub const CRYPT_INTERFACE_REG = extern struct {
     dwInterface: BCRYPT_INTERFACE,
@@ -6008,7 +6043,7 @@ pub const CRYPT_OID_INFO = extern struct {
         Algid: u32,
         dwLength: u32,
     },
-    ExtraInfo: CRYPTOAPI_BLOB,
+    ExtraInfo: CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_PASSWORD_CREDENTIALSA = extern struct {
@@ -6037,7 +6072,7 @@ pub const CRYPT_PKCS8_EXPORT_PARAMS = extern struct {
 };
 
 pub const CRYPT_PKCS8_IMPORT_PARAMS = extern struct {
-    PrivateKey: CRYPTOAPI_BLOB,
+    PrivateKey: CRYPT_INTEGER_BLOB,
     pResolvehCryptProvFunc: ?PCRYPT_RESOLVE_HCRYPTPROV_FUNC,
     pVoidResolveFunc: ?*anyopaque,
     pDecryptPrivateKeyFunc: ?PCRYPT_DECRYPT_PRIVATE_KEY_FUNC,
@@ -6047,7 +6082,7 @@ pub const CRYPT_PKCS8_IMPORT_PARAMS = extern struct {
 pub const CRYPT_PRIVATE_KEY_INFO = extern struct {
     Version: u32,
     Algorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    PrivateKey: CRYPTOAPI_BLOB,
+    PrivateKey: CRYPT_INTEGER_BLOB,
     pAttributes: ?*CRYPT_ATTRIBUTES,
 };
 
@@ -6086,7 +6121,7 @@ pub const CRYPT_PROVIDERS = extern struct {
 
 pub const CRYPT_PSOURCE_ALGORITHM = extern struct {
     pszObjId: ?PSTR,
-    EncodingParameters: CRYPTOAPI_BLOB,
+    EncodingParameters: CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_RC2_CBC_PARAMETERS = extern struct {
@@ -6114,7 +6149,7 @@ pub const CRYPT_RETRIEVE_AUX_INFO = extern struct {
     fProxyCacheRetrieval: BOOL,
     dwHttpStatusCode: u32,
     ppwszErrorResponseHeaders: ?*?PWSTR,
-    ppErrorContentBlob: ?*?*CRYPTOAPI_BLOB,
+    ppErrorContentBlob: ?*?*CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_RSA_SSA_PSS_PARAMETERS = extern struct {
@@ -6132,7 +6167,7 @@ pub const CRYPT_RSAES_OAEP_PARAMETERS = extern struct {
 
 pub const CRYPT_SEQUENCE_OF_ANY = extern struct {
     cValue: u32,
-    rgValue: ?*CRYPTOAPI_BLOB,
+    rgValue: ?*CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_SET_HASH_PARAM = enum(u32) {
@@ -6209,7 +6244,7 @@ pub const CRYPT_SMIME_CAPABILITIES = extern struct {
 
 pub const CRYPT_SMIME_CAPABILITY = extern struct {
     pszObjId: ?PSTR,
-    Parameters: CRYPTOAPI_BLOB,
+    Parameters: CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_STRING = enum(u32) {
@@ -6246,7 +6281,7 @@ pub const CRYPT_STRING_HEX_ANY = CRYPT_STRING.HEX_ANY;
 pub const CRYPT_TIME_STAMP_REQUEST_INFO = extern struct {
     pszTimeStampAlgorithm: ?PSTR,
     pszContentType: ?PSTR,
-    Content: CRYPTOAPI_BLOB,
+    Content: CRYPT_INTEGER_BLOB,
     cAttribute: u32,
     rgAttribute: ?*CRYPT_ATTRIBUTE,
 };
@@ -6267,13 +6302,13 @@ pub const CRYPT_TIMESTAMP_INFO = extern struct {
     dwVersion: u32,
     pszTSAPolicyId: ?PSTR,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    HashedMessage: CRYPTOAPI_BLOB,
-    SerialNumber: CRYPTOAPI_BLOB,
+    HashedMessage: CRYPT_INTEGER_BLOB,
+    SerialNumber: CRYPT_INTEGER_BLOB,
     ftTime: FILETIME,
     pvAccuracy: ?*CRYPT_TIMESTAMP_ACCURACY,
     fOrdering: BOOL,
-    Nonce: CRYPTOAPI_BLOB,
-    Tsa: CRYPTOAPI_BLOB,
+    Nonce: CRYPT_INTEGER_BLOB,
+    Tsa: CRYPT_INTEGER_BLOB,
     cExtension: u32,
     rgExtension: ?*CERT_EXTENSION,
 };
@@ -6281,7 +6316,7 @@ pub const CRYPT_TIMESTAMP_INFO = extern struct {
 pub const CRYPT_TIMESTAMP_PARA = extern struct {
     pszTSAPolicyId: ?[*:0]const u8,
     fRequestCerts: BOOL,
-    Nonce: CRYPTOAPI_BLOB,
+    Nonce: CRYPT_INTEGER_BLOB,
     cExtension: u32,
     rgExtension: ?*CERT_EXTENSION,
 };
@@ -6289,9 +6324,9 @@ pub const CRYPT_TIMESTAMP_PARA = extern struct {
 pub const CRYPT_TIMESTAMP_REQUEST = extern struct {
     dwVersion: CRYPT_TIMESTAMP_VERSION,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    HashedMessage: CRYPTOAPI_BLOB,
+    HashedMessage: CRYPT_INTEGER_BLOB,
     pszTSAPolicyId: ?PSTR,
-    Nonce: CRYPTOAPI_BLOB,
+    Nonce: CRYPT_INTEGER_BLOB,
     fCertReq: BOOL,
     cExtension: u32,
     rgExtension: ?*CERT_EXTENSION,
@@ -6302,7 +6337,7 @@ pub const CRYPT_TIMESTAMP_RESPONSE = extern struct {
     cFreeText: u32,
     rgFreeText: ?*?PWSTR,
     FailureInfo: CRYPT_BIT_BLOB,
-    ContentInfo: CRYPTOAPI_BLOB,
+    ContentInfo: CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_TIMESTAMP_RESPONSE_STATUS = enum(u32) {
@@ -6347,8 +6382,8 @@ pub const CRYPT_VERIFY_CERT_SIGN_SET_STRONG_PROPERTIES_FLAG = CRYPT_VERIFY_CERT_
 pub const CRYPT_VERIFY_CERT_SIGN_RETURN_STRONG_PROPERTIES_FLAG = CRYPT_VERIFY_CERT_FLAGS.RETURN_STRONG_PROPERTIES_FLAG;
 
 pub const CRYPT_VERIFY_CERT_SIGN_STRONG_PROPERTIES_INFO = extern struct {
-    CertSignHashCNGAlgPropData: CRYPTOAPI_BLOB,
-    CertIssuerPubKeyBitLengthPropData: CRYPTOAPI_BLOB,
+    CertSignHashCNGAlgPropData: CRYPT_INTEGER_BLOB,
+    CertIssuerPubKeyBitLengthPropData: CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO = extern struct {
@@ -6369,7 +6404,7 @@ pub const CRYPT_X942_OTHER_INFO = extern struct {
     pszContentEncryptionObjId: ?PSTR,
     rgbCounter: [4]u8,
     rgbKeyLength: [4]u8,
-    PubInfo: CRYPTOAPI_BLOB,
+    PubInfo: CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_XML_ALGORITHM = extern struct {
@@ -6526,12 +6561,12 @@ pub const CRYPT_XML_KEY_VALUE_TYPE_CUSTOM = CRYPT_XML_KEY_VALUE_TYPE.CUSTOM;
 pub const CRYPT_XML_KEYINFO_PARAM = extern struct {
     wszId: ?[*:0]const u16,
     wszKeyName: ?[*:0]const u16,
-    SKI: CRYPTOAPI_BLOB,
+    SKI: CRYPT_INTEGER_BLOB,
     wszSubjectName: ?[*:0]const u16,
     cCertificate: u32,
-    rgCertificate: ?*CRYPTOAPI_BLOB,
+    rgCertificate: ?*CRYPT_INTEGER_BLOB,
     cCRL: u32,
-    rgCRL: ?*CRYPTOAPI_BLOB,
+    rgCRL: ?*CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_XML_KEYINFO_SPEC = enum(i32) {
@@ -6592,7 +6627,7 @@ pub const CRYPT_XML_REFERENCE = extern struct {
     wszUri: ?[*:0]const u16,
     wszType: ?[*:0]const u16,
     DigestMethod: CRYPT_XML_ALGORITHM,
-    DigestValue: CRYPTOAPI_BLOB,
+    DigestValue: CRYPT_INTEGER_BLOB,
     cTransform: u32,
     rgTransform: ?*CRYPT_XML_ALGORITHM,
 };
@@ -6607,7 +6642,7 @@ pub const CRYPT_XML_SIGNATURE = extern struct {
     hSignature: ?*anyopaque,
     wszId: ?[*:0]const u16,
     SignedInfo: CRYPT_XML_SIGNED_INFO,
-    SignatureValue: CRYPTOAPI_BLOB,
+    SignatureValue: CRYPT_INTEGER_BLOB,
     pKeyInfo: ?*CRYPT_XML_KEY_INFO,
     cObject: u32,
     rgpObject: ?*?*CRYPT_XML_OBJECT,
@@ -6772,11 +6807,6 @@ pub const CRYPTNET_URL_CACHE_RESPONSE_INFO = extern struct {
     dwProxyId: u32,
 };
 
-pub const CRYPTOAPI_BLOB = extern struct {
-    cbData: u32,
-    pbData: ?*u8,
-};
-
 pub const CRYPTPROTECT_PROMPTSTRUCT = extern struct {
     cbSize: u32,
     dwPromptFlags: u32,
@@ -6864,7 +6894,7 @@ pub const CryptXmlDllVerifySignature = *const fn(
 
 pub const CTL_ANY_SUBJECT_INFO = extern struct {
     SubjectAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    SubjectIdentifier: CRYPTOAPI_BLOB,
+    SubjectIdentifier: CRYPT_INTEGER_BLOB,
 };
 
 pub const CTL_CONTEXT = extern struct {
@@ -6879,7 +6909,7 @@ pub const CTL_CONTEXT = extern struct {
 };
 
 pub const CTL_ENTRY = extern struct {
-    SubjectIdentifier: CRYPTOAPI_BLOB,
+    SubjectIdentifier: CRYPT_INTEGER_BLOB,
     cAttribute: u32,
     rgAttribute: ?*CRYPT_ATTRIBUTE,
 };
@@ -6894,15 +6924,15 @@ pub const CTL_FIND_SUBJECT_PARA = extern struct {
 pub const CTL_FIND_USAGE_PARA = extern struct {
     cbSize: u32,
     SubjectUsage: CTL_USAGE,
-    ListIdentifier: CRYPTOAPI_BLOB,
+    ListIdentifier: CRYPT_INTEGER_BLOB,
     pSigner: ?*CERT_INFO,
 };
 
 pub const CTL_INFO = extern struct {
     dwVersion: u32,
     SubjectUsage: CTL_USAGE,
-    ListIdentifier: CRYPTOAPI_BLOB,
-    SequenceNumber: CRYPTOAPI_BLOB,
+    ListIdentifier: CRYPT_INTEGER_BLOB,
+    SequenceNumber: CRYPT_INTEGER_BLOB,
     ThisUpdate: FILETIME,
     NextUpdate: FILETIME,
     SubjectAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
@@ -6924,7 +6954,7 @@ pub const CTL_USAGE_MATCH = extern struct {
 
 pub const CTL_VERIFY_USAGE_PARA = extern struct {
     cbSize: u32,
-    ListIdentifier: CRYPTOAPI_BLOB,
+    ListIdentifier: CRYPT_INTEGER_BLOB,
     cCtlStore: u32,
     rghCtlStore: ?*?HCERTSTORE,
     cSignerStore: u32,
@@ -6977,7 +7007,7 @@ pub const BCRYPT_ECC_PRIME_MONTGOMERY_CURVE = ECC_CURVE_TYPE_ENUM.MONTGOMERY_CUR
 pub const ENDPOINTADDRESS = extern struct {
     serviceUrl: ?[*:0]const u16,
     policyUrl: ?[*:0]const u16,
-    rawCertificate: CRYPTOAPI_BLOB,
+    rawCertificate: CRYPT_INTEGER_BLOB,
 };
 
 pub const ENDPOINTADDRESS2 = extern struct {
@@ -7205,8 +7235,8 @@ pub const ICertSrvSetup = extern union {
         ) callconv(.winapi) HRESULT,
         InitializeDefaults: *const fn(
             self: *const ICertSrvSetup,
-            bServer: i16,
-            bClient: i16,
+            bServer: VARIANT_BOOL,
+            bClient: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetCASetupProperty: *const fn(
             self: *const ICertSrvSetup,
@@ -7221,7 +7251,7 @@ pub const ICertSrvSetup = extern union {
         IsPropertyEditable: *const fn(
             self: *const ICertSrvSetup,
             propertyId: CASetupProperty,
-            pbEditable: ?*i16,
+            pbEditable: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetSupportedCATypes: *const fn(
             self: *const ICertSrvSetup,
@@ -7254,22 +7284,22 @@ pub const ICertSrvSetup = extern union {
             self: *const ICertSrvSetup,
             bstrFileName: ?BSTR,
             bstrPasswd: ?BSTR,
-            bOverwriteExistingKey: i16,
+            bOverwriteExistingKey: VARIANT_BOOL,
             ppVal: ?*?*ICertSrvSetupKeyInformation,
         ) callconv(.winapi) HRESULT,
         SetCADistinguishedName: *const fn(
             self: *const ICertSrvSetup,
             bstrCADN: ?BSTR,
-            bIgnoreUnicode: i16,
-            bOverwriteExistingKey: i16,
-            bOverwriteExistingCAInDS: i16,
+            bIgnoreUnicode: VARIANT_BOOL,
+            bOverwriteExistingKey: VARIANT_BOOL,
+            bOverwriteExistingCAInDS: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SetDatabaseInformation: *const fn(
             self: *const ICertSrvSetup,
             bstrDBDirectory: ?BSTR,
             bstrLogDirectory: ?BSTR,
             bstrSharedFolder: ?BSTR,
-            bForceOverwrite: i16,
+            bForceOverwrite: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SetParentCAInformation: *const fn(
             self: *const ICertSrvSetup,
@@ -7284,7 +7314,7 @@ pub const ICertSrvSetup = extern union {
         ) callconv(.winapi) HRESULT,
         PreUnInstall: *const fn(
             self: *const ICertSrvSetup,
-            bClientOnly: i16,
+            bClientOnly: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         PostUnInstall: *const fn(
             self: *const ICertSrvSetup,
@@ -7299,7 +7329,7 @@ pub const ICertSrvSetup = extern union {
     pub fn get_CAErrorString(self: *const ICertSrvSetup, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_CAErrorString(self, pVal);
     }
-    pub fn InitializeDefaults(self: *const ICertSrvSetup, bServer: i16, bClient: i16) callconv(.@"inline") HRESULT {
+    pub fn InitializeDefaults(self: *const ICertSrvSetup, bServer: VARIANT_BOOL, bClient: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeDefaults(self, bServer, bClient);
     }
     pub fn GetCASetupProperty(self: *const ICertSrvSetup, propertyId: CASetupProperty, pPropertyValue: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -7308,7 +7338,7 @@ pub const ICertSrvSetup = extern union {
     pub fn SetCASetupProperty(self: *const ICertSrvSetup, propertyId: CASetupProperty, pPropertyValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetCASetupProperty(self, propertyId, pPropertyValue);
     }
-    pub fn IsPropertyEditable(self: *const ICertSrvSetup, propertyId: CASetupProperty, pbEditable: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsPropertyEditable(self: *const ICertSrvSetup, propertyId: CASetupProperty, pbEditable: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsPropertyEditable(self, propertyId, pbEditable);
     }
     pub fn GetSupportedCATypes(self: *const ICertSrvSetup, pCATypes: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -7329,13 +7359,13 @@ pub const ICertSrvSetup = extern union {
     pub fn GetExistingCACertificates(self: *const ICertSrvSetup, ppVal: ?*?*ICertSrvSetupKeyInformationCollection) callconv(.@"inline") HRESULT {
         return self.vtable.GetExistingCACertificates(self, ppVal);
     }
-    pub fn CAImportPFX(self: *const ICertSrvSetup, bstrFileName: ?BSTR, bstrPasswd: ?BSTR, bOverwriteExistingKey: i16, ppVal: ?*?*ICertSrvSetupKeyInformation) callconv(.@"inline") HRESULT {
+    pub fn CAImportPFX(self: *const ICertSrvSetup, bstrFileName: ?BSTR, bstrPasswd: ?BSTR, bOverwriteExistingKey: VARIANT_BOOL, ppVal: ?*?*ICertSrvSetupKeyInformation) callconv(.@"inline") HRESULT {
         return self.vtable.CAImportPFX(self, bstrFileName, bstrPasswd, bOverwriteExistingKey, ppVal);
     }
-    pub fn SetCADistinguishedName(self: *const ICertSrvSetup, bstrCADN: ?BSTR, bIgnoreUnicode: i16, bOverwriteExistingKey: i16, bOverwriteExistingCAInDS: i16) callconv(.@"inline") HRESULT {
+    pub fn SetCADistinguishedName(self: *const ICertSrvSetup, bstrCADN: ?BSTR, bIgnoreUnicode: VARIANT_BOOL, bOverwriteExistingKey: VARIANT_BOOL, bOverwriteExistingCAInDS: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetCADistinguishedName(self, bstrCADN, bIgnoreUnicode, bOverwriteExistingKey, bOverwriteExistingCAInDS);
     }
-    pub fn SetDatabaseInformation(self: *const ICertSrvSetup, bstrDBDirectory: ?BSTR, bstrLogDirectory: ?BSTR, bstrSharedFolder: ?BSTR, bForceOverwrite: i16) callconv(.@"inline") HRESULT {
+    pub fn SetDatabaseInformation(self: *const ICertSrvSetup, bstrDBDirectory: ?BSTR, bstrLogDirectory: ?BSTR, bstrSharedFolder: ?BSTR, bForceOverwrite: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetDatabaseInformation(self, bstrDBDirectory, bstrLogDirectory, bstrSharedFolder, bForceOverwrite);
     }
     pub fn SetParentCAInformation(self: *const ICertSrvSetup, bstrCAConfiguration: ?BSTR) callconv(.@"inline") HRESULT {
@@ -7347,7 +7377,7 @@ pub const ICertSrvSetup = extern union {
     pub fn Install(self: *const ICertSrvSetup) callconv(.@"inline") HRESULT {
         return self.vtable.Install(self);
     }
-    pub fn PreUnInstall(self: *const ICertSrvSetup, bClientOnly: i16) callconv(.@"inline") HRESULT {
+    pub fn PreUnInstall(self: *const ICertSrvSetup, bClientOnly: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.PreUnInstall(self, bClientOnly);
     }
     pub fn PostUnInstall(self: *const ICertSrvSetup) callconv(.@"inline") HRESULT {
@@ -7384,12 +7414,12 @@ pub const ICertSrvSetupKeyInformation = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Existing: *const fn(
             self: *const ICertSrvSetupKeyInformation,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Existing: *const fn(
             self: *const ICertSrvSetupKeyInformation,
-            bVal: i16,
+            bVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContainerName: *const fn(
@@ -7437,10 +7467,10 @@ pub const ICertSrvSetupKeyInformation = extern union {
     pub fn put_Length(self: *const ICertSrvSetupKeyInformation, lVal: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Length(self, lVal);
     }
-    pub fn get_Existing(self: *const ICertSrvSetupKeyInformation, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Existing(self: *const ICertSrvSetupKeyInformation, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Existing(self, pVal);
     }
-    pub fn put_Existing(self: *const ICertSrvSetupKeyInformation, bVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Existing(self: *const ICertSrvSetupKeyInformation, bVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Existing(self, bVal);
     }
     pub fn get_ContainerName(self: *const ICertSrvSetupKeyInformation, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -7542,16 +7572,16 @@ pub const IMSCEPSetup = extern union {
         ) callconv(.winapi) HRESULT,
         IsMSCEPStoreEmpty: *const fn(
             self: *const IMSCEPSetup,
-            pbEmpty: ?*i16,
+            pbEmpty: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetProviderNameList: *const fn(
             self: *const IMSCEPSetup,
-            bExchange: i16,
+            bExchange: VARIANT_BOOL,
             pVal: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
         GetKeyLengthList: *const fn(
             self: *const IMSCEPSetup,
-            bExchange: i16,
+            bExchange: VARIANT_BOOL,
             bstrProviderName: ?BSTR,
             pVal: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
@@ -7586,13 +7616,13 @@ pub const IMSCEPSetup = extern union {
     pub fn SetAccountInformation(self: *const IMSCEPSetup, bstrUserName: ?BSTR, bstrPassword: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SetAccountInformation(self, bstrUserName, bstrPassword);
     }
-    pub fn IsMSCEPStoreEmpty(self: *const IMSCEPSetup, pbEmpty: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsMSCEPStoreEmpty(self: *const IMSCEPSetup, pbEmpty: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsMSCEPStoreEmpty(self, pbEmpty);
     }
-    pub fn GetProviderNameList(self: *const IMSCEPSetup, bExchange: i16, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn GetProviderNameList(self: *const IMSCEPSetup, bExchange: VARIANT_BOOL, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetProviderNameList(self, bExchange, pVal);
     }
-    pub fn GetKeyLengthList(self: *const IMSCEPSetup, bExchange: i16, bstrProviderName: ?BSTR, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn GetKeyLengthList(self: *const IMSCEPSetup, bExchange: VARIANT_BOOL, bstrProviderName: ?BSTR, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetKeyLengthList(self, bExchange, bstrProviderName, pVal);
     }
     pub fn Install(self: *const IMSCEPSetup) callconv(.@"inline") HRESULT {
@@ -7986,8 +8016,8 @@ pub const OCSP_BASIC_RESPONSE_INFO = extern struct {
     dwVersion: u32,
     dwResponderIdChoice: u32,
     Anonymous: extern union {
-        ByNameResponderId: CRYPTOAPI_BLOB,
-        ByKeyResponderId: CRYPTOAPI_BLOB,
+        ByNameResponderId: CRYPT_INTEGER_BLOB,
+        ByKeyResponderId: CRYPT_INTEGER_BLOB,
     },
     ProducedAt: FILETIME,
     cResponseEntry: u32,
@@ -8002,15 +8032,15 @@ pub const OCSP_BASIC_REVOKED_INFO = extern struct {
 };
 
 pub const OCSP_BASIC_SIGNED_RESPONSE_INFO = extern struct {
-    ToBeSigned: CRYPTOAPI_BLOB,
+    ToBeSigned: CRYPT_INTEGER_BLOB,
     SignatureInfo: OCSP_SIGNATURE_INFO,
 };
 
 pub const OCSP_CERT_ID = extern struct {
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    IssuerNameHash: CRYPTOAPI_BLOB,
-    IssuerKeyHash: CRYPTOAPI_BLOB,
-    SerialNumber: CRYPTOAPI_BLOB,
+    IssuerNameHash: CRYPT_INTEGER_BLOB,
+    IssuerKeyHash: CRYPT_INTEGER_BLOB,
+    SerialNumber: CRYPT_INTEGER_BLOB,
 };
 
 pub const OCSP_REQUEST_ENTRY = extern struct {
@@ -8031,18 +8061,18 @@ pub const OCSP_REQUEST_INFO = extern struct {
 pub const OCSP_RESPONSE_INFO = extern struct {
     dwStatus: u32,
     pszObjId: ?PSTR,
-    Value: CRYPTOAPI_BLOB,
+    Value: CRYPT_INTEGER_BLOB,
 };
 
 pub const OCSP_SIGNATURE_INFO = extern struct {
     SignatureAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     Signature: CRYPT_BIT_BLOB,
     cCertEncoded: u32,
-    rgCertEncoded: ?*CRYPTOAPI_BLOB,
+    rgCertEncoded: ?*CRYPT_INTEGER_BLOB,
 };
 
 pub const OCSP_SIGNED_REQUEST_INFO = extern struct {
-    ToBeSigned: CRYPTOAPI_BLOB,
+    ToBeSigned: CRYPT_INTEGER_BLOB,
     pOptionalSignatureInfo: ?*OCSP_SIGNATURE_INFO,
 };
 
@@ -8057,7 +8087,7 @@ pub const PaddingMode = enum(i32) {
 
 pub const PCRYPT_DECRYPT_PRIVATE_KEY_FUNC = *const fn(
     Algorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    EncryptedPrivateKey: CRYPTOAPI_BLOB,
+    EncryptedPrivateKey: CRYPT_INTEGER_BLOB,
     // TODO: what to do with BytesParamIndex 3?
     pbClearTextKey: ?*u8,
     pcbClearTextKey: ?*u32,
@@ -8066,7 +8096,7 @@ pub const PCRYPT_DECRYPT_PRIVATE_KEY_FUNC = *const fn(
 
 pub const PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC = *const fn(
     pAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
-    pClearTextPrivateKey: ?*CRYPTOAPI_BLOB,
+    pClearTextPrivateKey: ?*CRYPT_INTEGER_BLOB,
     // TODO: what to do with BytesParamIndex 3?
     pbEncryptedKey: ?*u8,
     pcbEncryptedKey: ?*u32,
@@ -8462,7 +8492,7 @@ pub const PFN_CRYPT_CANCEL_RETRIEVAL = *const fn(
 ) callconv(.winapi) BOOL;
 
 pub const PFN_CRYPT_ENUM_KEYID_PROP = *const fn(
-    pKeyIdentifier: ?*const CRYPTOAPI_BLOB,
+    pKeyIdentifier: ?*const CRYPT_INTEGER_BLOB,
     dwFlags: u32,
     pvReserved: ?*anyopaque,
     pvArg: ?*anyopaque,
@@ -8491,7 +8521,7 @@ pub const PFN_CRYPT_ENUM_OID_INFO = *const fn(
 
 pub const PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC = *const fn(
     hNCryptKey: NCRYPT_KEY_HANDLE,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pszPublicKeyObjId: ?PSTR,
     dwFlags: u32,
     pvAuxInfo: ?*anyopaque,
@@ -8502,7 +8532,7 @@ pub const PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC = *const fn(
 
 pub const PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC = *const fn(
     hBCryptKey: BCRYPT_KEY_HANDLE,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pszPublicKeyObjId: ?PSTR,
     dwFlags: u32,
     pvAuxInfo: ?*anyopaque,
@@ -8512,7 +8542,7 @@ pub const PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC = *const fn(
 ) callconv(.winapi) BOOL;
 
 pub const PFN_CRYPT_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC = *const fn(
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pSignatureAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
     ppvDecodedSignPara: ?*?*anyopaque,
     ppwszCNGHashAlgid: ?*?PWSTR,
@@ -8524,14 +8554,14 @@ pub const PFN_CRYPT_FREE = *const fn(
 
 pub const PFN_CRYPT_GET_SIGNER_CERTIFICATE = *const fn(
     pvGetArg: ?*anyopaque,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pSignerId: ?*CERT_INFO,
     hMsgCertStore: ?HCERTSTORE,
 ) callconv(.winapi) ?*CERT_CONTEXT;
 
 pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH = *const fn(
     pContext: ?*anyopaque,
-    rgIdentifierOrNameList: [*]?*CRYPTOAPI_BLOB,
+    rgIdentifierOrNameList: [*]?*CRYPT_INTEGER_BLOB,
     dwIdentifierOrNameListCount: u32,
 ) callconv(.winapi) BOOL;
 
@@ -8542,7 +8572,7 @@ pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE = *const fn(
 
 pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER = *const fn(
     pPluginContext: ?*anyopaque,
-    pIdentifier: ?*CRYPTOAPI_BLOB,
+    pIdentifier: ?*CRYPT_INTEGER_BLOB,
 ) callconv(.winapi) void;
 
 pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD = *const fn(
@@ -8552,13 +8582,13 @@ pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD = *const fn(
 
 pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET = *const fn(
     pPluginContext: ?*anyopaque,
-    pIdentifier: ?*CRYPTOAPI_BLOB,
+    pIdentifier: ?*CRYPT_INTEGER_BLOB,
     dwNameType: u32,
-    pNameBlob: ?*CRYPTOAPI_BLOB,
+    pNameBlob: ?*CRYPT_INTEGER_BLOB,
     ppbContent: ?*?*u8,
     pcbContent: ?*u32,
     ppwszPassword: ?*?PWSTR,
-    ppIdentifier: ?*?*CRYPTOAPI_BLOB,
+    ppIdentifier: ?*?*CRYPT_INTEGER_BLOB,
 ) callconv(.winapi) BOOL;
 
 pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_INITIALIZE = *const fn(
@@ -8576,7 +8606,7 @@ pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE = *const fn(
 
 pub const PFN_CRYPT_SIGN_AND_ENCODE_HASH_FUNC = *const fn(
     hKey: NCRYPT_KEY_HANDLE,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pSignatureAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
     pvDecodedSignPara: ?*anyopaque,
     pwszCNGPubKeyAlgid: ?[*:0]const u16,
@@ -8590,7 +8620,7 @@ pub const PFN_CRYPT_SIGN_AND_ENCODE_HASH_FUNC = *const fn(
 ) callconv(.winapi) BOOL;
 
 pub const PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC = *const fn(
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pPubKeyInfo: ?*CERT_PUBLIC_KEY_INFO,
     pSignatureAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
     pvDecodedSignPara: ?*anyopaque,
@@ -8659,7 +8689,7 @@ pub const PFN_IMPORT_PRIV_KEY_FUNC = *const fn(
 ) callconv(.winapi) BOOL;
 
 pub const PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC = *const fn(
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pInfo: ?*CERT_PUBLIC_KEY_INFO,
     dwFlags: u32,
     pvAuxInfo: ?*anyopaque,
@@ -9397,7 +9427,7 @@ pub extern "crypt32" fn CertAddCTLLinkToStore(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertAddEncodedCertificateToStore(
     hCertStore: ?HCERTSTORE,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     // TODO: what to do with BytesParamIndex 3?
     pbCertEncoded: ?*const u8,
     cbCertEncoded: u32,
@@ -9424,7 +9454,7 @@ pub extern "crypt32" fn CertAddEncodedCertificateToSystemStoreW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertAddEncodedCRLToStore(
     hCertStore: ?HCERTSTORE,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     // TODO: what to do with BytesParamIndex 3?
     pbCrlEncoded: ?*const u8,
     cbCrlEncoded: u32,
@@ -9435,7 +9465,7 @@ pub extern "crypt32" fn CertAddEncodedCRLToStore(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertAddEncodedCTLToStore(
     hCertStore: ?HCERTSTORE,
-    dwMsgAndCertEncodingType: u32,
+    dwMsgAndCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     // TODO: what to do with BytesParamIndex 3?
     pbCtlEncoded: ?*const u8,
     cbCtlEncoded: u32,
@@ -9499,27 +9529,27 @@ pub extern "crypt32" fn CertCloseStore(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertCompareCertificate(
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pCertId1: ?*CERT_INFO,
     pCertId2: ?*CERT_INFO,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertCompareCertificateName(
-    dwCertEncodingType: u32,
-    pCertName1: ?*CRYPTOAPI_BLOB,
-    pCertName2: ?*CRYPTOAPI_BLOB,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
+    pCertName1: ?*CRYPT_INTEGER_BLOB,
+    pCertName2: ?*CRYPT_INTEGER_BLOB,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertCompareIntegerBlob(
-    pInt1: ?*CRYPTOAPI_BLOB,
-    pInt2: ?*CRYPTOAPI_BLOB,
+    pInt1: ?*CRYPT_INTEGER_BLOB,
+    pInt2: ?*CRYPT_INTEGER_BLOB,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertComparePublicKeyInfo(
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pPublicKey1: ?*CERT_PUBLIC_KEY_INFO,
     pPublicKey2: ?*CERT_PUBLIC_KEY_INFO,
 ) callconv(.winapi) BOOL;
@@ -9540,7 +9570,7 @@ pub extern "crypt32" fn CertCreateCertificateChainEngine(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertCreateCertificateContext(
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     // TODO: what to do with BytesParamIndex 2?
     pbCertEncoded: ?*const u8,
     cbCertEncoded: u32,
@@ -9559,7 +9589,7 @@ pub extern "crypt32" fn CertCreateContext(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertCreateCRLContext(
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     // TODO: what to do with BytesParamIndex 2?
     pbCrlEncoded: ?*const u8,
     cbCrlEncoded: u32,
@@ -9588,7 +9618,7 @@ pub extern "crypt32" fn CertCreateCTLEntryFromCertificateContextProperties(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertCreateSelfSignCertificate(
     hCryptProvOrNCryptKey: HCRYPTPROV_OR_NCRYPT_KEY_HANDLE,
-    pSubjectIssuerBlob: ?*CRYPTOAPI_BLOB,
+    pSubjectIssuerBlob: ?*CRYPT_INTEGER_BLOB,
     dwFlags: CERT_CREATE_SELFSIGN_FLAGS,
     pKeyProvInfo: ?*CRYPT_KEY_PROV_INFO,
     pSignatureAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
@@ -9685,8 +9715,8 @@ pub extern "crypt32" fn CertEnumPhysicalStore(
 pub extern "crypt32" fn CertEnumSubjectInSortedCTL(
     pCtlContext: ?*CTL_CONTEXT,
     ppvNextSubject: ?*?*anyopaque,
-    pSubjectIdentifier: ?*CRYPTOAPI_BLOB,
-    pEncodedAttributes: ?*CRYPTOAPI_BLOB,
+    pSubjectIdentifier: ?*CRYPT_INTEGER_BLOB,
+    pEncodedAttributes: ?*CRYPT_INTEGER_BLOB,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9723,7 +9753,7 @@ pub extern "crypt32" fn CertFindCertificateInCRL(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertFindCertificateInStore(
     hCertStore: ?HCERTSTORE,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     dwFindFlags: u32,
     dwFindType: CERT_FIND_FLAGS,
     pvFindPara: ?*const anyopaque,
@@ -9733,7 +9763,7 @@ pub extern "crypt32" fn CertFindCertificateInStore(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertFindChainInStore(
     hCertStore: ?HCERTSTORE,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     dwFindFlags: CERT_FIND_CHAIN_IN_STORE_FLAGS,
     dwFindType: u32,
     pvFindPara: ?*const anyopaque,
@@ -9743,7 +9773,7 @@ pub extern "crypt32" fn CertFindChainInStore(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertFindCRLInStore(
     hCertStore: ?HCERTSTORE,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     dwFindFlags: u32,
     dwFindType: u32,
     pvFindPara: ?*const anyopaque,
@@ -9784,11 +9814,11 @@ pub extern "crypt32" fn CertFindSubjectInCTL(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertFindSubjectInSortedCTL(
-    pSubjectIdentifier: ?*CRYPTOAPI_BLOB,
+    pSubjectIdentifier: ?*CRYPT_INTEGER_BLOB,
     pCtlContext: ?*CTL_CONTEXT,
     dwFlags: u32,
     pvReserved: ?*anyopaque,
-    pEncodedAttributes: ?*CRYPTOAPI_BLOB,
+    pEncodedAttributes: ?*CRYPT_INTEGER_BLOB,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9884,7 +9914,7 @@ pub extern "crypt32" fn CertGetEnhancedKeyUsage(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertGetIntendedKeyUsage(
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pCertInfo: ?*CERT_INFO,
     // TODO: what to do with BytesParamIndex 3?
     pbKeyUsage: ?*u8,
@@ -9921,7 +9951,7 @@ pub extern "crypt32" fn CertGetNameStringW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertGetPublicKeyLength(
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pPublicKey: ?*CERT_PUBLIC_KEY_INFO,
 ) callconv(.winapi) u32;
 
@@ -9944,7 +9974,7 @@ pub extern "crypt32" fn CertGetStoreProperty(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertGetSubjectCertificateFromStore(
     hCertStore: ?HCERTSTORE,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pCertId: ?*CERT_INFO,
 ) callconv(.winapi) ?*CERT_CONTEXT;
 
@@ -9960,9 +9990,9 @@ pub extern "crypt32" fn CertGetValidUsages(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertIsRDNAttrsInCertificateName(
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     dwFlags: u32,
-    pCertName: ?*CRYPTOAPI_BLOB,
+    pCertName: ?*CRYPT_INTEGER_BLOB,
     pRDN: ?*CERT_RDN,
 ) callconv(.winapi) BOOL;
 
@@ -9992,8 +10022,8 @@ pub extern "crypt32" fn CertIsWeakHash(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertNameToStrA(
-    dwCertEncodingType: u32,
-    pName: ?*CRYPTOAPI_BLOB,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
+    pName: ?*CRYPT_INTEGER_BLOB,
     dwStrType: CERT_STRING_TYPE,
     psz: ?[*:0]u8,
     csz: u32,
@@ -10001,8 +10031,8 @@ pub extern "crypt32" fn CertNameToStrA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertNameToStrW(
-    dwCertEncodingType: u32,
-    pName: ?*CRYPTOAPI_BLOB,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
+    pName: ?*CRYPT_INTEGER_BLOB,
     dwStrType: CERT_STRING_TYPE,
     psz: ?[*:0]u16,
     csz: u32,
@@ -10044,7 +10074,7 @@ pub extern "crypt32" fn CertOpenSystemStoreW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertRDNValueToStrA(
     dwValueType: u32,
-    pValue: ?*CRYPTOAPI_BLOB,
+    pValue: ?*CRYPT_INTEGER_BLOB,
     psz: ?[*:0]u8,
     csz: u32,
 ) callconv(.winapi) u32;
@@ -10052,7 +10082,7 @@ pub extern "crypt32" fn CertRDNValueToStrA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertRDNValueToStrW(
     dwValueType: u32,
-    pValue: ?*CRYPTOAPI_BLOB,
+    pValue: ?*CRYPT_INTEGER_BLOB,
     psz: ?[*:0]u16,
     csz: u32,
 ) callconv(.winapi) u32;
@@ -10200,7 +10230,7 @@ pub extern "crypt32" fn CertSetStoreProperty(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertStrToNameA(
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pszX500: ?[*:0]const u8,
     dwStrType: CERT_STRING_TYPE,
     pvReserved: ?*anyopaque,
@@ -10212,7 +10242,7 @@ pub extern "crypt32" fn CertStrToNameA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertStrToNameW(
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pszX500: ?[*:0]const u16,
     dwStrType: CERT_STRING_TYPE,
     pvReserved: ?*anyopaque,
@@ -10245,7 +10275,7 @@ pub extern "crypt32" fn CertVerifyCertificateChainPolicy(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertVerifyCRLRevocation(
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pCertId: ?*CERT_INFO,
     cCrlInfo: u32,
     rgpCrlInfo: [*]?*CRL_INFO,
@@ -10377,7 +10407,7 @@ pub extern "advapi32" fn CryptCreateHash(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptCreateKeyIdentifierFromCSP(
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pszPubKeyOID: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
     pPubKeyStruc: ?*const PUBLICKEYSTRUC,
@@ -10410,7 +10440,7 @@ pub extern "crypt32" fn CryptDecodeMessage(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptDecodeObject(
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     lpszStructType: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
     pbEncoded: ?*const u8,
@@ -10423,7 +10453,7 @@ pub extern "crypt32" fn CryptDecodeObject(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptDecodeObjectEx(
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     lpszStructType: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
     pbEncoded: ?*const u8,
@@ -10509,7 +10539,7 @@ pub extern "advapi32" fn CryptDuplicateKey(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptEncodeObject(
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     lpszStructType: ?[*:0]const u8,
     pvStructInfo: ?*const anyopaque,
     // TODO: what to do with BytesParamIndex 4?
@@ -10555,7 +10585,7 @@ pub extern "crypt32" fn CryptEncryptMessage(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptEnumKeyIdentifierProperties(
-    pKeyIdentifier: ?*const CRYPTOAPI_BLOB,
+    pKeyIdentifier: ?*const CRYPT_INTEGER_BLOB,
     dwPropId: u32,
     dwFlags: u32,
     pwszComputerName: ?[*:0]const u16,
@@ -10653,7 +10683,7 @@ pub extern "crypt32" fn CryptExportPKCS8(
 pub extern "crypt32" fn CryptExportPublicKeyInfo(
     hCryptProvOrNCryptKey: HCRYPTPROV_OR_NCRYPT_KEY_HANDLE,
     dwKeySpec: u32,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     // TODO: what to do with BytesParamIndex 4?
     pInfo: ?*CERT_PUBLIC_KEY_INFO,
     pcbInfo: ?*u32,
@@ -10663,7 +10693,7 @@ pub extern "crypt32" fn CryptExportPublicKeyInfo(
 pub extern "crypt32" fn CryptExportPublicKeyInfoEx(
     hCryptProvOrNCryptKey: HCRYPTPROV_OR_NCRYPT_KEY_HANDLE,
     dwKeySpec: u32,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pszPublicKeyObjId: ?PSTR,
     dwFlags: u32,
     pvAuxInfo: ?*anyopaque,
@@ -10675,7 +10705,7 @@ pub extern "crypt32" fn CryptExportPublicKeyInfoEx(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "crypt32" fn CryptExportPublicKeyInfoFromBCryptKeyHandle(
     hBCryptKey: BCRYPT_KEY_HANDLE,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pszPublicKeyObjId: ?PSTR,
     dwFlags: u32,
     pvAuxInfo: ?*anyopaque,
@@ -10705,7 +10735,7 @@ pub extern "crypt32" fn CryptFindOIDInfo(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptFormatObject(
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     dwFormatType: u32,
     dwFormatStrType: u32,
     pFormatStruct: ?*anyopaque,
@@ -10797,7 +10827,7 @@ pub extern "advapi32" fn CryptGetHashParam(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptGetKeyIdentifierProperty(
-    pKeyIdentifier: ?*const CRYPTOAPI_BLOB,
+    pKeyIdentifier: ?*const CRYPT_INTEGER_BLOB,
     dwPropId: u32,
     dwFlags: u32,
     pwszComputerName: ?[*:0]const u16,
@@ -10943,7 +10973,7 @@ pub extern "crypt32" fn CryptHashPublicKeyInfo(
     hCryptProv: HCRYPTPROV_LEGACY,
     Algid: u32,
     dwFlags: u32,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pInfo: ?*CERT_PUBLIC_KEY_INFO,
     // TODO: what to do with BytesParamIndex 6?
     pbComputedHash: ?*u8,
@@ -10960,7 +10990,7 @@ pub extern "advapi32" fn CryptHashSessionKey(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptHashToBeSigned(
     hCryptProv: HCRYPTPROV_LEGACY,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     // TODO: what to do with BytesParamIndex 3?
     pbEncoded: ?*const u8,
     cbEncoded: u32,
@@ -10991,7 +11021,7 @@ pub extern "crypt32" fn CryptImportPKCS8(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptImportPublicKeyInfo(
     hCryptProv: usize,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pInfo: ?*CERT_PUBLIC_KEY_INFO,
     phKey: ?*usize,
 ) callconv(.winapi) BOOL;
@@ -10999,7 +11029,7 @@ pub extern "crypt32" fn CryptImportPublicKeyInfo(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptImportPublicKeyInfoEx(
     hCryptProv: usize,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pInfo: ?*CERT_PUBLIC_KEY_INFO,
     aiKeyAlg: u32,
     dwFlags: u32,
@@ -11009,7 +11039,7 @@ pub extern "crypt32" fn CryptImportPublicKeyInfoEx(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "crypt32" fn CryptImportPublicKeyInfoEx2(
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pInfo: ?*CERT_PUBLIC_KEY_INFO,
     dwFlags: CRYPT_IMPORT_PUBLIC_KEY_FLAGS,
     pvAuxInfo: ?*anyopaque,
@@ -11218,13 +11248,13 @@ pub extern "crypt32" fn CryptMsgVerifyCountersignatureEncodedEx(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptProtectData(
-    pDataIn: ?*CRYPTOAPI_BLOB,
+    pDataIn: ?*CRYPT_INTEGER_BLOB,
     szDataDescr: ?[*:0]const u16,
-    pOptionalEntropy: ?*CRYPTOAPI_BLOB,
+    pOptionalEntropy: ?*CRYPT_INTEGER_BLOB,
     pvReserved: ?*anyopaque,
     pPromptStruct: ?*CRYPTPROTECT_PROMPTSTRUCT,
     dwFlags: u32,
-    pDataOut: ?*CRYPTOAPI_BLOB,
+    pDataOut: ?*CRYPT_INTEGER_BLOB,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -11336,7 +11366,7 @@ pub extern "advapi32" fn CryptSetHashParam(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptSetKeyIdentifierProperty(
-    pKeyIdentifier: ?*const CRYPTOAPI_BLOB,
+    pKeyIdentifier: ?*const CRYPT_INTEGER_BLOB,
     dwPropId: u32,
     dwFlags: u32,
     pwszComputerName: ?[*:0]const u16,
@@ -11422,7 +11452,7 @@ pub extern "crypt32" fn CryptSignAndEncryptMessage(
 pub extern "crypt32" fn CryptSignCertificate(
     hCryptProvOrNCryptKey: HCRYPTPROV_OR_NCRYPT_KEY_HANDLE,
     dwKeySpec: u32,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     // TODO: what to do with BytesParamIndex 4?
     pbEncodedToBeSigned: ?*const u8,
     cbEncodedToBeSigned: u32,
@@ -11516,13 +11546,13 @@ pub extern "crypt32" fn CryptUninstallDefaultContext(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptUnprotectData(
-    pDataIn: ?*CRYPTOAPI_BLOB,
+    pDataIn: ?*CRYPT_INTEGER_BLOB,
     ppszDataDescr: ?*?PWSTR,
-    pOptionalEntropy: ?*CRYPTOAPI_BLOB,
+    pOptionalEntropy: ?*CRYPT_INTEGER_BLOB,
     pvReserved: ?*anyopaque,
     pPromptStruct: ?*CRYPTPROTECT_PROMPTSTRUCT,
     dwFlags: u32,
-    pDataOut: ?*CRYPTOAPI_BLOB,
+    pDataOut: ?*CRYPT_INTEGER_BLOB,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -11563,7 +11593,7 @@ pub extern "crypt32" fn CryptUpdateProtectedState(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptVerifyCertificateSignature(
     hCryptProv: HCRYPTPROV_LEGACY,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     // TODO: what to do with BytesParamIndex 3?
     pbEncoded: ?*const u8,
     cbEncoded: u32,
@@ -11573,7 +11603,7 @@ pub extern "crypt32" fn CryptVerifyCertificateSignature(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptVerifyCertificateSignatureEx(
     hCryptProv: HCRYPTPROV_LEGACY,
-    dwCertEncodingType: u32,
+    dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     dwSubjectType: u32,
     pvSubject: ?*anyopaque,
     dwIssuerType: u32,
@@ -12296,7 +12326,7 @@ pub extern "ncrypt" fn NCryptVerifySignature(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn PFXExportCertStore(
     hStore: ?HCERTSTORE,
-    pPFX: ?*CRYPTOAPI_BLOB,
+    pPFX: ?*CRYPT_INTEGER_BLOB,
     szPassword: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(.winapi) BOOL;
@@ -12304,7 +12334,7 @@ pub extern "crypt32" fn PFXExportCertStore(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn PFXExportCertStoreEx(
     hStore: ?HCERTSTORE,
-    pPFX: ?*CRYPTOAPI_BLOB,
+    pPFX: ?*CRYPT_INTEGER_BLOB,
     szPassword: ?[*:0]const u16,
     pvPara: ?*anyopaque,
     dwFlags: u32,
@@ -12312,19 +12342,19 @@ pub extern "crypt32" fn PFXExportCertStoreEx(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn PFXImportCertStore(
-    pPFX: ?*CRYPTOAPI_BLOB,
+    pPFX: ?*CRYPT_INTEGER_BLOB,
     szPassword: ?[*:0]const u16,
     dwFlags: CRYPT_KEY_FLAGS,
 ) callconv(.winapi) ?HCERTSTORE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn PFXIsPFXBlob(
-    pPFX: ?*CRYPTOAPI_BLOB,
+    pPFX: ?*CRYPT_INTEGER_BLOB,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn PFXVerifyPassword(
-    pPFX: ?*CRYPTOAPI_BLOB,
+    pPFX: ?*CRYPT_INTEGER_BLOB,
     szPassword: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(.winapi) BOOL;
@@ -12503,7 +12533,7 @@ pub const CryptVerifySignature = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (22)
+// Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -12527,6 +12557,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const REG_VALUE_TYPE = @import("../system/registry.zig").REG_VALUE_TYPE;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

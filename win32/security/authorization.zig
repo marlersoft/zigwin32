@@ -1562,7 +1562,7 @@ pub const IAzApplication3 = extern union {
         ScopeExists: *const fn(
             self: *const IAzApplication3,
             bstrScopeName: ?BSTR,
-            pbExist: ?*i16,
+            pbExist: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         OpenScope2: *const fn(
             self: *const IAzApplication3,
@@ -1619,12 +1619,12 @@ pub const IAzApplication3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRulesEnabled: *const fn(
             self: *const IAzApplication3,
-            pbEnabled: ?*i16,
+            pbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRulesEnabled: *const fn(
             self: *const IAzApplication3,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1632,7 +1632,7 @@ pub const IAzApplication3 = extern union {
     IAzApplication: IAzApplication,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn ScopeExists(self: *const IAzApplication3, bstrScopeName: ?BSTR, pbExist: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn ScopeExists(self: *const IAzApplication3, bstrScopeName: ?BSTR, pbExist: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ScopeExists(self, bstrScopeName, pbExist);
     }
     pub fn OpenScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR, ppScope2: ?*?*IAzScope2) callconv(.@"inline") HRESULT {
@@ -1668,10 +1668,10 @@ pub const IAzApplication3 = extern union {
     pub fn DeleteRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteRoleAssignment(self, bstrRoleAssignmentName);
     }
-    pub fn get_BizRulesEnabled(self: *const IAzApplication3, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_BizRulesEnabled(self: *const IAzApplication3, pbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_BizRulesEnabled(self, pbEnabled);
     }
-    pub fn put_BizRulesEnabled(self: *const IAzApplication3, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_BizRulesEnabled(self: *const IAzApplication3, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_BizRulesEnabled(self, bEnabled);
     }
 };
@@ -1987,7 +1987,7 @@ pub const IAzApplicationGroup2 = extern union {
         RoleAssignments: *const fn(
             self: *const IAzApplicationGroup2,
             bstrScopeName: ?BSTR,
-            bRecursive: i16,
+            bRecursive: VARIANT_BOOL,
             ppRoleAssignments: ?*?*IAzRoleAssignments,
         ) callconv(.winapi) HRESULT,
     };
@@ -2013,7 +2013,7 @@ pub const IAzApplicationGroup2 = extern union {
     pub fn put_BizRuleImportedPath(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_BizRuleImportedPath(self, bstrProp);
     }
-    pub fn RoleAssignments(self: *const IAzApplicationGroup2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
+    pub fn RoleAssignments(self: *const IAzApplicationGroup2, bstrScopeName: ?BSTR, bRecursive: VARIANT_BOOL, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
         return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
     }
 };
@@ -2556,11 +2556,11 @@ pub const IAzAuthorizationStore3 = extern union {
         base: IAzAuthorizationStore2.VTable,
         IsUpdateNeeded: *const fn(
             self: *const IAzAuthorizationStore3,
-            pbIsUpdateNeeded: ?*i16,
+            pbIsUpdateNeeded: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         BizruleGroupSupported: *const fn(
             self: *const IAzAuthorizationStore3,
-            pbSupported: ?*i16,
+            pbSupported: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         UpgradeStoresFunctionalLevel: *const fn(
             self: *const IAzAuthorizationStore3,
@@ -2569,7 +2569,7 @@ pub const IAzAuthorizationStore3 = extern union {
         IsFunctionalLevelUpgradeSupported: *const fn(
             self: *const IAzAuthorizationStore3,
             lFunctionalLevel: i32,
-            pbSupported: ?*i16,
+            pbSupported: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetSchemaVersion: *const fn(
             self: *const IAzAuthorizationStore3,
@@ -2582,16 +2582,16 @@ pub const IAzAuthorizationStore3 = extern union {
     IAzAuthorizationStore: IAzAuthorizationStore,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn IsUpdateNeeded(self: *const IAzAuthorizationStore3, pbIsUpdateNeeded: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsUpdateNeeded(self: *const IAzAuthorizationStore3, pbIsUpdateNeeded: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsUpdateNeeded(self, pbIsUpdateNeeded);
     }
-    pub fn BizruleGroupSupported(self: *const IAzAuthorizationStore3, pbSupported: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn BizruleGroupSupported(self: *const IAzAuthorizationStore3, pbSupported: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.BizruleGroupSupported(self, pbSupported);
     }
     pub fn UpgradeStoresFunctionalLevel(self: *const IAzAuthorizationStore3, lFunctionalLevel: i32) callconv(.@"inline") HRESULT {
         return self.vtable.UpgradeStoresFunctionalLevel(self, lFunctionalLevel);
     }
-    pub fn IsFunctionalLevelUpgradeSupported(self: *const IAzAuthorizationStore3, lFunctionalLevel: i32, pbSupported: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsFunctionalLevelUpgradeSupported(self: *const IAzAuthorizationStore3, lFunctionalLevel: i32, pbSupported: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsFunctionalLevelUpgradeSupported(self, lFunctionalLevel, pbSupported);
     }
     pub fn GetSchemaVersion(self: *const IAzAuthorizationStore3, plMajorVersion: ?*i32, plMinorVersion: ?*i32) callconv(.@"inline") HRESULT {
@@ -2961,7 +2961,7 @@ pub const IAzClientContext3 = extern union {
             self: *const IAzClientContext3,
             bstrScopeName: ?BSTR,
             bstrRoleName: ?BSTR,
-            pbIsInRole: ?*i16,
+            pbIsInRole: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetOperations: *const fn(
             self: *const IAzClientContext3,
@@ -3003,7 +3003,7 @@ pub const IAzClientContext3 = extern union {
     pub fn AccessCheck2(self: *const IAzClientContext3, bstrObjectName: ?BSTR, bstrScopeName: ?BSTR, lOperation: i32, plResult: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.AccessCheck2(self, bstrObjectName, bstrScopeName, lOperation, plResult);
     }
-    pub fn IsInRoleAssignment(self: *const IAzClientContext3, bstrScopeName: ?BSTR, bstrRoleName: ?BSTR, pbIsInRole: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsInRoleAssignment(self: *const IAzClientContext3, bstrScopeName: ?BSTR, bstrRoleName: ?BSTR, pbIsInRole: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsInRoleAssignment(self, bstrScopeName, bstrRoleName, pbIsInRole);
     }
     pub fn GetOperations(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ppOperationCollection: ?*?*IAzOperations) callconv(.@"inline") HRESULT {
@@ -3206,7 +3206,7 @@ pub const IAzOperation2 = extern union {
         RoleAssignments: *const fn(
             self: *const IAzOperation2,
             bstrScopeName: ?BSTR,
-            bRecursive: i16,
+            bRecursive: VARIANT_BOOL,
             ppRoleAssignments: ?*?*IAzRoleAssignments,
         ) callconv(.winapi) HRESULT,
     };
@@ -3214,7 +3214,7 @@ pub const IAzOperation2 = extern union {
     IAzOperation: IAzOperation,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn RoleAssignments(self: *const IAzOperation2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
+    pub fn RoleAssignments(self: *const IAzOperation2, bstrScopeName: ?BSTR, bRecursive: VARIANT_BOOL, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
         return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
     }
 };
@@ -3603,7 +3603,7 @@ pub const IAzRoleDefinition = extern union {
         RoleAssignments: *const fn(
             self: *const IAzRoleDefinition,
             bstrScopeName: ?BSTR,
-            bRecursive: i16,
+            bRecursive: VARIANT_BOOL,
             ppRoleAssignments: ?*?*IAzRoleAssignments,
         ) callconv(.winapi) HRESULT,
         AddRoleDefinition: *const fn(
@@ -3624,7 +3624,7 @@ pub const IAzRoleDefinition = extern union {
     IAzTask: IAzTask,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn RoleAssignments(self: *const IAzRoleDefinition, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
+    pub fn RoleAssignments(self: *const IAzRoleDefinition, bstrScopeName: ?BSTR, bRecursive: VARIANT_BOOL, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
         return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
     }
     pub fn AddRoleDefinition(self: *const IAzRoleDefinition, bstrRoleDefinition: ?BSTR) callconv(.@"inline") HRESULT {
@@ -4380,7 +4380,7 @@ pub const IAzTask2 = extern union {
         RoleAssignments: *const fn(
             self: *const IAzTask2,
             bstrScopeName: ?BSTR,
-            bRecursive: i16,
+            bRecursive: VARIANT_BOOL,
             ppRoleAssignments: ?*?*IAzRoleAssignments,
         ) callconv(.winapi) HRESULT,
     };
@@ -4388,7 +4388,7 @@ pub const IAzTask2 = extern union {
     IAzTask: IAzTask,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn RoleAssignments(self: *const IAzTask2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
+    pub fn RoleAssignments(self: *const IAzTask2, bstrScopeName: ?BSTR, bRecursive: VARIANT_BOOL, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
         return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
     }
 };
@@ -5631,7 +5631,7 @@ pub const TreeSetNamedSecurityInfo = switch (@import("../zig.zig").unicode_mode)
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (27)
+// Section: Imports (28)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ACE_FLAGS = @import("../security.zig").ACE_FLAGS;
@@ -5659,6 +5659,7 @@ const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
 const SYSTEM_AUDIT_OBJECT_ACE_FLAGS = @import("../security.zig").SYSTEM_AUDIT_OBJECT_ACE_FLAGS;
 const TOKEN_GROUPS = @import("../security.zig").TOKEN_GROUPS;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
 
 test {

@@ -902,7 +902,7 @@ pub const ISdoCollection = extern union {
         IsNameUnique: *const fn(
             self: *const ISdoCollection,
             bstrName: ?BSTR,
-            pBool: ?*i16,
+            pBool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const ISdoCollection,
@@ -933,7 +933,7 @@ pub const ISdoCollection = extern union {
     pub fn Reload(self: *const ISdoCollection) callconv(.@"inline") HRESULT {
         return self.vtable.Reload(self);
     }
-    pub fn IsNameUnique(self: *const ISdoCollection, bstrName: ?BSTR, pBool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsNameUnique(self: *const ISdoCollection, bstrName: ?BSTR, pBool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsNameUnique(self, bstrName, pBool);
     }
     pub fn Item(self: *const ISdoCollection, Name: ?*VARIANT, pItem: ?*?*IDispatch) callconv(.@"inline") HRESULT {
@@ -1034,7 +1034,7 @@ pub const ISdoMachine = extern union {
         ) callconv(.winapi) HRESULT,
         IsDirectoryAvailable: *const fn(
             self: *const ISdoMachine,
-            boolDirectoryAvailable: ?*i16,
+            boolDirectoryAvailable: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetAttachedComputer: *const fn(
             self: *const ISdoMachine,
@@ -1066,7 +1066,7 @@ pub const ISdoMachine = extern union {
     pub fn GetDomainType(self: *const ISdoMachine, eDomainType: ?*IASDOMAINTYPE) callconv(.@"inline") HRESULT {
         return self.vtable.GetDomainType(self, eDomainType);
     }
-    pub fn IsDirectoryAvailable(self: *const ISdoMachine, boolDirectoryAvailable: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsDirectoryAvailable(self: *const ISdoMachine, boolDirectoryAvailable: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsDirectoryAvailable(self, boolDirectoryAvailable);
     }
     pub fn GetAttachedComputer(self: *const ISdoMachine, bstrComputerName: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -1095,7 +1095,7 @@ pub const ISdoMachine2 = extern union {
             bstrServiceName: ?BSTR,
             ppConfigRoot: ?*?*IUnknown,
             ppTemplatesRoot: ?*?*IUnknown,
-            bForcedSync: i16,
+            bForcedSync: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         ImportRemoteTemplates: *const fn(
             self: *const ISdoMachine2,
@@ -1116,7 +1116,7 @@ pub const ISdoMachine2 = extern union {
     pub fn EnableTemplates(self: *const ISdoMachine2) callconv(.@"inline") HRESULT {
         return self.vtable.EnableTemplates(self);
     }
-    pub fn SyncConfigAgainstTemplates(self: *const ISdoMachine2, bstrServiceName: ?BSTR, ppConfigRoot: ?*?*IUnknown, ppTemplatesRoot: ?*?*IUnknown, bForcedSync: i16) callconv(.@"inline") HRESULT {
+    pub fn SyncConfigAgainstTemplates(self: *const ISdoMachine2, bstrServiceName: ?BSTR, ppConfigRoot: ?*?*IUnknown, ppTemplatesRoot: ?*?*IUnknown, bForcedSync: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SyncConfigAgainstTemplates(self, bstrServiceName, ppConfigRoot, ppTemplatesRoot, bForcedSync);
     }
     pub fn ImportRemoteTemplates(self: *const ISdoMachine2, pLocalTemplatesRoot: ?*IUnknown, bstrRemoteMachineName: ?BSTR) callconv(.@"inline") HRESULT {
@@ -1772,7 +1772,7 @@ pub const PROPERTY_NAS_VENDOR_ID = VENDORPROPERTIES.D;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BSTR = @import("../foundation.zig").BSTR;
@@ -1780,6 +1780,7 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

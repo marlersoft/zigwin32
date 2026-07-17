@@ -6593,7 +6593,7 @@ pub const IDataSourceLocator = extern union {
         PromptEdit: *const fn(
             self: *const IDataSourceLocator,
             ppADOConnection: ?*?*IDispatch,
-            pbSuccess: ?*i16,
+            pbSuccess: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -6608,7 +6608,7 @@ pub const IDataSourceLocator = extern union {
     pub fn PromptNew(self: *const IDataSourceLocator, ppADOConnection: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.PromptNew(self, ppADOConnection);
     }
-    pub fn PromptEdit(self: *const IDataSourceLocator, ppADOConnection: ?*?*IDispatch, pbSuccess: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn PromptEdit(self: *const IDataSourceLocator, ppADOConnection: ?*?*IDispatch, pbSuccess: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.PromptEdit(self, ppADOConnection, pbSuccess);
     }
 };
@@ -12908,7 +12908,7 @@ pub const SSVARIANT = extern struct {
         cyMoneyVal: CY,
         NCharVal: _NCharVal,
         CharVal: _CharVal,
-        fBitVal: i16,
+        fBitVal: VARIANT_BOOL,
         rgbGuidVal: [16]u8,
         numNumericVal: DB_NUMERIC,
         BinaryVal: _BinaryVal,
@@ -15750,7 +15750,7 @@ pub const SQLLinkedCatalogs = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (46)
+// Section: Imports (47)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLOB = @import("../system/com.zig").BLOB;
@@ -15797,6 +15797,7 @@ const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const TRUSTEE_W = @import("../security/authorization.zig").TRUSTEE_W;
 const VARENUM = @import("../system/com.zig").VARENUM;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 const WORDREP_BREAK_TYPE = @import("../storage/index_server.zig").WORDREP_BREAK_TYPE;
 
 test {

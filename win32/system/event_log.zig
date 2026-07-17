@@ -10,7 +10,7 @@ pub const EVT_VARIANT_TYPE_MASK = @as(u32, 127);
 pub const EVT_WRITE_ACCESS = @as(u32, 2);
 
 //--------------------------------------------------------------------------------
-// Section: Types (34)
+// Section: Types (35)
 //--------------------------------------------------------------------------------
 pub const EVENTLOG_FULL_INFORMATION = extern struct {
     dwFull: u32,
@@ -113,7 +113,7 @@ pub const EvtChannelIsolationTypeApplication = EVT_CHANNEL_ISOLATION_TYPE.Applic
 pub const EvtChannelIsolationTypeSystem = EVT_CHANNEL_ISOLATION_TYPE.System;
 pub const EvtChannelIsolationTypeCustom = EVT_CHANNEL_ISOLATION_TYPE.Custom;
 
-pub const EVT_CHANNEL_REFERENCE_FLAGS = enum(i32) {
+pub const EVT_CHANNEL_REFERENCE_FLAGS = enum(u32) {
     d = 1,
 };
 pub const EvtChannelReferenceImported = EVT_CHANNEL_REFERENCE_FLAGS.d;
@@ -168,7 +168,7 @@ pub const EvtEventQueryIDs = EVT_EVENT_PROPERTY_ID.QueryIDs;
 pub const EvtEventPath = EVT_EVENT_PROPERTY_ID.Path;
 pub const EvtEventPropertyIdEND = EVT_EVENT_PROPERTY_ID.PropertyIdEND;
 
-pub const EVT_EXPORTLOG_FLAGS = enum(i32) {
+pub const EVT_EXPORTLOG_FLAGS = enum(u32) {
     ChannelPath = 1,
     FilePath = 2,
     TolerateQueryErrors = 4096,
@@ -179,7 +179,7 @@ pub const EvtExportLogFilePath = EVT_EXPORTLOG_FLAGS.FilePath;
 pub const EvtExportLogTolerateQueryErrors = EVT_EXPORTLOG_FLAGS.TolerateQueryErrors;
 pub const EvtExportLogOverwrite = EVT_EXPORTLOG_FLAGS.Overwrite;
 
-pub const EVT_FORMAT_MESSAGE_FLAGS = enum(i32) {
+pub const EVT_FORMAT_MESSAGE_FLAGS = enum(u32) {
     Event = 1,
     Level = 2,
     Task = 3,
@@ -199,6 +199,10 @@ pub const EvtFormatMessageChannel = EVT_FORMAT_MESSAGE_FLAGS.Channel;
 pub const EvtFormatMessageProvider = EVT_FORMAT_MESSAGE_FLAGS.Provider;
 pub const EvtFormatMessageId = EVT_FORMAT_MESSAGE_FLAGS.Id;
 pub const EvtFormatMessageXml = EVT_FORMAT_MESSAGE_FLAGS.Xml;
+
+// TODO: this type has a FreeFunc 'EvtClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const EVT_HANDLE = isize;
 
 pub const EVT_LOG_PROPERTY_ID = enum(i32) {
     CreationTime = 0,
@@ -224,7 +228,7 @@ pub const EVT_LOGIN_CLASS = enum(i32) {
 };
 pub const EvtRpcLogin = EVT_LOGIN_CLASS.n;
 
-pub const EVT_OPEN_LOG_FLAGS = enum(i32) {
+pub const EVT_OPEN_LOG_FLAGS = enum(u32) {
     ChannelPath = 1,
     FilePath = 2,
 };
@@ -294,7 +298,7 @@ pub const EvtPublisherMetadataKeywordValue = EVT_PUBLISHER_METADATA_PROPERTY_ID.
 pub const EvtPublisherMetadataKeywordMessageID = EVT_PUBLISHER_METADATA_PROPERTY_ID.KeywordMessageID;
 pub const EvtPublisherMetadataPropertyIdEND = EVT_PUBLISHER_METADATA_PROPERTY_ID.PropertyIdEND;
 
-pub const EVT_QUERY_FLAGS = enum(i32) {
+pub const EVT_QUERY_FLAGS = enum(u32) {
     ChannelPath = 1,
     FilePath = 2,
     ForwardDirection = 256,
@@ -316,7 +320,7 @@ pub const EvtQueryNames = EVT_QUERY_PROPERTY_ID.Names;
 pub const EvtQueryStatuses = EVT_QUERY_PROPERTY_ID.Statuses;
 pub const EvtQueryPropertyIdEND = EVT_QUERY_PROPERTY_ID.PropertyIdEND;
 
-pub const EVT_RENDER_CONTEXT_FLAGS = enum(i32) {
+pub const EVT_RENDER_CONTEXT_FLAGS = enum(u32) {
     Values = 0,
     System = 1,
     User = 2,
@@ -325,7 +329,7 @@ pub const EvtRenderContextValues = EVT_RENDER_CONTEXT_FLAGS.Values;
 pub const EvtRenderContextSystem = EVT_RENDER_CONTEXT_FLAGS.System;
 pub const EvtRenderContextUser = EVT_RENDER_CONTEXT_FLAGS.User;
 
-pub const EVT_RENDER_FLAGS = enum(i32) {
+pub const EVT_RENDER_FLAGS = enum(u32) {
     EventValues = 0,
     EventXml = 1,
     Bookmark = 2,
@@ -342,7 +346,7 @@ pub const EVT_RPC_LOGIN = extern struct {
     Flags: u32,
 };
 
-pub const EVT_RPC_LOGIN_FLAGS = enum(i32) {
+pub const EVT_RPC_LOGIN_FLAGS = enum(u32) {
     Default = 0,
     Negotiate = 1,
     Kerberos = 2,
@@ -353,7 +357,7 @@ pub const EvtRpcLoginAuthNegotiate = EVT_RPC_LOGIN_FLAGS.Negotiate;
 pub const EvtRpcLoginAuthKerberos = EVT_RPC_LOGIN_FLAGS.Kerberos;
 pub const EvtRpcLoginAuthNTLM = EVT_RPC_LOGIN_FLAGS.NTLM;
 
-pub const EVT_SEEK_FLAGS = enum(i32) {
+pub const EVT_SEEK_FLAGS = enum(u32) {
     RelativeToFirst = 1,
     RelativeToLast = 2,
     RelativeToCurrent = 3,
@@ -371,10 +375,10 @@ pub const EvtSeekStrict = EVT_SEEK_FLAGS.Strict;
 pub const EVT_SUBSCRIBE_CALLBACK = *const fn(
     Action: EVT_SUBSCRIBE_NOTIFY_ACTION,
     UserContext: ?*anyopaque,
-    Event: isize,
+    Event: EVT_HANDLE,
 ) callconv(.winapi) u32;
 
-pub const EVT_SUBSCRIBE_FLAGS = enum(i32) {
+pub const EVT_SUBSCRIBE_FLAGS = enum(u32) {
     ToFutureEvents = 1,
     StartAtOldestRecord = 2,
     StartAfterBookmark = 3,
@@ -476,7 +480,7 @@ pub const EVT_VARIANT = extern struct {
         AnsiStringArr: ?*?PSTR,
         SidArr: ?*?PSID,
         SizeTArr: ?*usize,
-        EvtHandleVal: isize,
+        EvtHandleVal: EVT_HANDLE,
         XmlVal: ?[*:0]const u16,
         XmlValArr: ?*?PWSTR,
     },
@@ -597,7 +601,7 @@ pub extern "advapi32" fn DeregisterEventSource(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtArchiveExportedLog(
-    Session: isize,
+    Session: EVT_HANDLE,
     LogFilePath: ?[*:0]const u16,
     Locale: u32,
     Flags: u32,
@@ -605,12 +609,12 @@ pub extern "wevtapi" fn EvtArchiveExportedLog(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtCancel(
-    Object: isize,
+    Object: EVT_HANDLE,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtClearLog(
-    Session: isize,
+    Session: EVT_HANDLE,
     ChannelPath: ?[*:0]const u16,
     TargetFilePath: ?[*:0]const u16,
     Flags: u32,
@@ -618,24 +622,24 @@ pub extern "wevtapi" fn EvtClearLog(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtClose(
-    Object: isize,
+    Object: EVT_HANDLE,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtCreateBookmark(
     BookmarkXml: ?[*:0]const u16,
-) callconv(.winapi) isize;
+) callconv(.winapi) EVT_HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtCreateRenderContext(
     ValuePathsCount: u32,
     ValuePaths: ?[*]?PWSTR,
     Flags: u32,
-) callconv(.winapi) isize;
+) callconv(.winapi) EVT_HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtExportLog(
-    Session: isize,
+    Session: EVT_HANDLE,
     Path: ?[*:0]const u16,
     Query: ?[*:0]const u16,
     TargetFilePath: ?[*:0]const u16,
@@ -644,8 +648,8 @@ pub extern "wevtapi" fn EvtExportLog(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtFormatMessage(
-    PublisherMetadata: isize,
-    Event: isize,
+    PublisherMetadata: EVT_HANDLE,
+    Event: EVT_HANDLE,
     MessageId: u32,
     ValueCount: u32,
     Values: ?[*]EVT_VARIANT,
@@ -657,7 +661,7 @@ pub extern "wevtapi" fn EvtFormatMessage(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtGetChannelConfigProperty(
-    ChannelConfig: isize,
+    ChannelConfig: EVT_HANDLE,
     PropertyId: EVT_CHANNEL_CONFIG_PROPERTY_ID,
     Flags: u32,
     PropertyValueBufferSize: u32,
@@ -668,7 +672,7 @@ pub extern "wevtapi" fn EvtGetChannelConfigProperty(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtGetEventInfo(
-    Event: isize,
+    Event: EVT_HANDLE,
     PropertyId: EVT_EVENT_PROPERTY_ID,
     PropertyValueBufferSize: u32,
     // TODO: what to do with BytesParamIndex 2?
@@ -678,7 +682,7 @@ pub extern "wevtapi" fn EvtGetEventInfo(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtGetEventMetadataProperty(
-    EventMetadata: isize,
+    EventMetadata: EVT_HANDLE,
     PropertyId: EVT_EVENT_METADATA_PROPERTY_ID,
     Flags: u32,
     EventMetadataPropertyBufferSize: u32,
@@ -696,7 +700,7 @@ pub extern "wevtapi" fn EvtGetExtendedStatus(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtGetLogInfo(
-    Log: isize,
+    Log: EVT_HANDLE,
     PropertyId: EVT_LOG_PROPERTY_ID,
     PropertyValueBufferSize: u32,
     // TODO: what to do with BytesParamIndex 2?
@@ -724,7 +728,7 @@ pub extern "wevtapi" fn EvtGetObjectArraySize(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtGetPublisherMetadataProperty(
-    PublisherMetadata: isize,
+    PublisherMetadata: EVT_HANDLE,
     PropertyId: EVT_PUBLISHER_METADATA_PROPERTY_ID,
     Flags: u32,
     PublisherMetadataPropertyBufferSize: u32,
@@ -735,7 +739,7 @@ pub extern "wevtapi" fn EvtGetPublisherMetadataProperty(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtGetQueryInfo(
-    QueryOrSubscription: isize,
+    QueryOrSubscription: EVT_HANDLE,
     PropertyId: EVT_QUERY_PROPERTY_ID,
     PropertyValueBufferSize: u32,
     // TODO: what to do with BytesParamIndex 2?
@@ -745,7 +749,7 @@ pub extern "wevtapi" fn EvtGetQueryInfo(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtNext(
-    ResultSet: isize,
+    ResultSet: EVT_HANDLE,
     EventsSize: u32,
     Events: [*]isize,
     Timeout: u32,
@@ -755,7 +759,7 @@ pub extern "wevtapi" fn EvtNext(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtNextChannelPath(
-    ChannelEnum: isize,
+    ChannelEnum: EVT_HANDLE,
     ChannelPathBufferSize: u32,
     ChannelPathBuffer: ?[*:0]u16,
     ChannelPathBufferUsed: ?*u32,
@@ -763,13 +767,13 @@ pub extern "wevtapi" fn EvtNextChannelPath(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtNextEventMetadata(
-    EventMetadataEnum: isize,
+    EventMetadataEnum: EVT_HANDLE,
     Flags: u32,
-) callconv(.winapi) isize;
+) callconv(.winapi) EVT_HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtNextPublisherId(
-    PublisherEnum: isize,
+    PublisherEnum: EVT_HANDLE,
     PublisherIdBufferSize: u32,
     PublisherIdBuffer: ?[*:0]u16,
     PublisherIdBufferUsed: ?*u32,
@@ -777,44 +781,44 @@ pub extern "wevtapi" fn EvtNextPublisherId(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenChannelConfig(
-    Session: isize,
+    Session: EVT_HANDLE,
     ChannelPath: ?[*:0]const u16,
     Flags: u32,
-) callconv(.winapi) isize;
+) callconv(.winapi) EVT_HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenChannelEnum(
-    Session: isize,
+    Session: EVT_HANDLE,
     Flags: u32,
-) callconv(.winapi) isize;
+) callconv(.winapi) EVT_HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenEventMetadataEnum(
-    PublisherMetadata: isize,
+    PublisherMetadata: EVT_HANDLE,
     Flags: u32,
-) callconv(.winapi) isize;
+) callconv(.winapi) EVT_HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenLog(
-    Session: isize,
+    Session: EVT_HANDLE,
     Path: ?[*:0]const u16,
     Flags: u32,
-) callconv(.winapi) isize;
+) callconv(.winapi) EVT_HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenPublisherEnum(
-    Session: isize,
+    Session: EVT_HANDLE,
     Flags: u32,
-) callconv(.winapi) isize;
+) callconv(.winapi) EVT_HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenPublisherMetadata(
-    Session: isize,
+    Session: EVT_HANDLE,
     PublisherId: ?[*:0]const u16,
     LogFilePath: ?[*:0]const u16,
     Locale: u32,
     Flags: u32,
-) callconv(.winapi) isize;
+) callconv(.winapi) EVT_HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenSession(
@@ -822,20 +826,20 @@ pub extern "wevtapi" fn EvtOpenSession(
     Login: ?*anyopaque,
     Timeout: u32,
     Flags: u32,
-) callconv(.winapi) isize;
+) callconv(.winapi) EVT_HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtQuery(
-    Session: isize,
+    Session: EVT_HANDLE,
     Path: ?[*:0]const u16,
     Query: ?[*:0]const u16,
     Flags: u32,
-) callconv(.winapi) isize;
+) callconv(.winapi) EVT_HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtRender(
-    Context: isize,
-    Fragment: isize,
+    Context: EVT_HANDLE,
+    Fragment: EVT_HANDLE,
     Flags: u32,
     BufferSize: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -846,22 +850,22 @@ pub extern "wevtapi" fn EvtRender(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtSaveChannelConfig(
-    ChannelConfig: isize,
+    ChannelConfig: EVT_HANDLE,
     Flags: u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtSeek(
-    ResultSet: isize,
+    ResultSet: EVT_HANDLE,
     Position: i64,
-    Bookmark: isize,
+    Bookmark: EVT_HANDLE,
     Timeout: u32,
     Flags: u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtSetChannelConfigProperty(
-    ChannelConfig: isize,
+    ChannelConfig: EVT_HANDLE,
     PropertyId: EVT_CHANNEL_CONFIG_PROPERTY_ID,
     Flags: u32,
     PropertyValue: ?*EVT_VARIANT,
@@ -869,20 +873,20 @@ pub extern "wevtapi" fn EvtSetChannelConfigProperty(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtSubscribe(
-    Session: isize,
+    Session: EVT_HANDLE,
     SignalEvent: ?HANDLE,
     ChannelPath: ?[*:0]const u16,
     Query: ?[*:0]const u16,
-    Bookmark: isize,
+    Bookmark: EVT_HANDLE,
     Context: ?*anyopaque,
     Callback: ?EVT_SUBSCRIBE_CALLBACK,
     Flags: u32,
-) callconv(.winapi) isize;
+) callconv(.winapi) EVT_HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtUpdateBookmark(
-    Bookmark: isize,
-    Event: isize,
+    Bookmark: EVT_HANDLE,
+    Event: EVT_HANDLE,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'

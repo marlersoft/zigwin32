@@ -293,7 +293,7 @@ pub const IMSMQApplication2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsDsEnabled: *const fn(
             self: *const IMSMQApplication2,
-            pfIsDsEnabled: ?*i16,
+            pfIsDsEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
@@ -320,7 +320,7 @@ pub const IMSMQApplication2 = extern union {
     pub fn get_MSMQVersionBuild(self: *const IMSMQApplication2, psMSMQVersionBuild: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_MSMQVersionBuild(self, psMSMQVersionBuild);
     }
-    pub fn get_IsDsEnabled(self: *const IMSMQApplication2, pfIsDsEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsDsEnabled(self: *const IMSMQApplication2, pfIsDsEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsDsEnabled(self, pfIsDsEnabled);
     }
     pub fn get_Properties(self: *const IMSMQApplication2, ppcolProperties: ?*?*IDispatch) callconv(.@"inline") HRESULT {
@@ -351,7 +351,7 @@ pub const IMSMQApplication3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsConnected: *const fn(
             self: *const IMSMQApplication3,
-            pfIsConnected: ?*i16,
+            pfIsConnected: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BytesInAllQueues: *const fn(
@@ -392,7 +392,7 @@ pub const IMSMQApplication3 = extern union {
     pub fn get_DirectoryServiceServer(self: *const IMSMQApplication3, pbstrDirectoryServiceServer: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_DirectoryServiceServer(self, pbstrDirectoryServiceServer);
     }
-    pub fn get_IsConnected(self: *const IMSMQApplication3, pfIsConnected: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsConnected(self: *const IMSMQApplication3, pfIsConnected: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsConnected(self, pfIsConnected);
     }
     pub fn get_BytesInAllQueues(self: *const IMSMQApplication3, pvBytesInAllQueues: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -533,7 +533,7 @@ pub const IMSMQDestination = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsOpen: *const fn(
             self: *const IMSMQDestination,
-            pfIsOpen: ?*i16,
+            pfIsOpen: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IADs: *const fn(
@@ -598,7 +598,7 @@ pub const IMSMQDestination = extern union {
     pub fn Close(self: *const IMSMQDestination) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
-    pub fn get_IsOpen(self: *const IMSMQDestination, pfIsOpen: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsOpen(self: *const IMSMQDestination, pfIsOpen: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsOpen(self, pfIsOpen);
     }
     pub fn get_IADs(self: *const IMSMQDestination, ppIADs: ?*?*IDispatch) callconv(.@"inline") HRESULT {
@@ -719,7 +719,7 @@ pub const IMSMQManagement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsLocal: *const fn(
             self: *const IMSMQManagement,
-            pfIsLocal: ?*i16,
+            pfIsLocal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TransactionalStatus: *const fn(
@@ -753,7 +753,7 @@ pub const IMSMQManagement = extern union {
     pub fn get_QueueType(self: *const IMSMQManagement, plQueueType: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_QueueType(self, plQueueType);
     }
-    pub fn get_IsLocal(self: *const IMSMQManagement, pfIsLocal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsLocal(self: *const IMSMQManagement, pfIsLocal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsLocal(self, pfIsLocal);
     }
     pub fn get_TransactionalStatus(self: *const IMSMQManagement, plTransactionalStatus: ?*i32) callconv(.@"inline") HRESULT {
@@ -2182,17 +2182,17 @@ pub const IMSMQMessage3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsAuthenticated2: *const fn(
             self: *const IMSMQMessage3,
-            pisAuthenticated: ?*i16,
+            pisAuthenticated: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsFirstInTransaction2: *const fn(
             self: *const IMSMQMessage3,
-            pisFirstInXact: ?*i16,
+            pisFirstInXact: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsLastInTransaction2: *const fn(
             self: *const IMSMQMessage3,
-            pisLastInXact: ?*i16,
+            pisLastInXact: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         AttachCurrentSecurityContext2: *const fn(
             self: *const IMSMQMessage3,
@@ -2470,13 +2470,13 @@ pub const IMSMQMessage3 = extern union {
     pub fn get_LookupId(self: *const IMSMQMessage3, pvarLookupId: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_LookupId(self, pvarLookupId);
     }
-    pub fn get_IsAuthenticated2(self: *const IMSMQMessage3, pisAuthenticated: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsAuthenticated2(self: *const IMSMQMessage3, pisAuthenticated: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsAuthenticated2(self, pisAuthenticated);
     }
-    pub fn get_IsFirstInTransaction2(self: *const IMSMQMessage3, pisFirstInXact: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsFirstInTransaction2(self: *const IMSMQMessage3, pisFirstInXact: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsFirstInTransaction2(self, pisFirstInXact);
     }
-    pub fn get_IsLastInTransaction2(self: *const IMSMQMessage3, pisLastInXact: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsLastInTransaction2(self: *const IMSMQMessage3, pisLastInXact: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsLastInTransaction2(self, pisLastInXact);
     }
     pub fn AttachCurrentSecurityContext2(self: *const IMSMQMessage3) callconv(.@"inline") HRESULT {
@@ -2910,17 +2910,17 @@ pub const IMSMQMessage4 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsAuthenticated2: *const fn(
             self: *const IMSMQMessage4,
-            pisAuthenticated: ?*i16,
+            pisAuthenticated: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsFirstInTransaction2: *const fn(
             self: *const IMSMQMessage4,
-            pisFirstInXact: ?*i16,
+            pisFirstInXact: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsLastInTransaction2: *const fn(
             self: *const IMSMQMessage4,
-            pisLastInXact: ?*i16,
+            pisLastInXact: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         AttachCurrentSecurityContext2: *const fn(
             self: *const IMSMQMessage4,
@@ -3198,13 +3198,13 @@ pub const IMSMQMessage4 = extern union {
     pub fn get_LookupId(self: *const IMSMQMessage4, pvarLookupId: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_LookupId(self, pvarLookupId);
     }
-    pub fn get_IsAuthenticated2(self: *const IMSMQMessage4, pisAuthenticated: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsAuthenticated2(self: *const IMSMQMessage4, pisAuthenticated: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsAuthenticated2(self, pisAuthenticated);
     }
-    pub fn get_IsFirstInTransaction2(self: *const IMSMQMessage4, pisFirstInXact: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsFirstInTransaction2(self: *const IMSMQMessage4, pisFirstInXact: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsFirstInTransaction2(self, pisFirstInXact);
     }
-    pub fn get_IsLastInTransaction2(self: *const IMSMQMessage4, pisLastInXact: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsLastInTransaction2(self: *const IMSMQMessage4, pisLastInXact: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsLastInTransaction2(self, pisLastInXact);
     }
     pub fn AttachCurrentSecurityContext2(self: *const IMSMQMessage4) callconv(.@"inline") HRESULT {
@@ -4039,7 +4039,7 @@ pub const IMSMQQueue3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsOpen2: *const fn(
             self: *const IMSMQQueue3,
-            pisOpen: ?*i16,
+            pisOpen: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -4138,7 +4138,7 @@ pub const IMSMQQueue3 = extern union {
     pub fn Purge(self: *const IMSMQQueue3) callconv(.@"inline") HRESULT {
         return self.vtable.Purge(self);
     }
-    pub fn get_IsOpen2(self: *const IMSMQQueue3, pisOpen: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsOpen2(self: *const IMSMQQueue3, pisOpen: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsOpen2(self, pisOpen);
     }
 };
@@ -4361,7 +4361,7 @@ pub const IMSMQQueue4 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsOpen2: *const fn(
             self: *const IMSMQQueue4,
-            pisOpen: ?*i16,
+            pisOpen: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         ReceiveByLookupIdAllowPeek: *const fn(
             self: *const IMSMQQueue4,
@@ -4469,7 +4469,7 @@ pub const IMSMQQueue4 = extern union {
     pub fn Purge(self: *const IMSMQQueue4) callconv(.@"inline") HRESULT {
         return self.vtable.Purge(self);
     }
-    pub fn get_IsOpen2(self: *const IMSMQQueue4, pisOpen: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsOpen2(self: *const IMSMQQueue4, pisOpen: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsOpen2(self, pisOpen);
     }
     pub fn ReceiveByLookupIdAllowPeek(self: *const IMSMQQueue4, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.@"inline") HRESULT {
@@ -5174,12 +5174,12 @@ pub const IMSMQQueueInfo3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsTransactional2: *const fn(
             self: *const IMSMQQueueInfo3,
-            pisTransactional: ?*i16,
+            pisTransactional: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsWorldReadable2: *const fn(
             self: *const IMSMQQueueInfo3,
-            pisWorldReadable: ?*i16,
+            pisWorldReadable: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MulticastAddress: *const fn(
@@ -5302,10 +5302,10 @@ pub const IMSMQQueueInfo3 = extern union {
     pub fn put_Security(self: *const IMSMQQueueInfo3, varSecurity: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.put_Security(self, varSecurity);
     }
-    pub fn get_IsTransactional2(self: *const IMSMQQueueInfo3, pisTransactional: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsTransactional2(self: *const IMSMQQueueInfo3, pisTransactional: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsTransactional2(self, pisTransactional);
     }
-    pub fn get_IsWorldReadable2(self: *const IMSMQQueueInfo3, pisWorldReadable: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsWorldReadable2(self: *const IMSMQQueueInfo3, pisWorldReadable: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsWorldReadable2(self, pisWorldReadable);
     }
     pub fn get_MulticastAddress(self: *const IMSMQQueueInfo3, pbstrMulticastAddress: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -5492,12 +5492,12 @@ pub const IMSMQQueueInfo4 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsTransactional2: *const fn(
             self: *const IMSMQQueueInfo4,
-            pisTransactional: ?*i16,
+            pisTransactional: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsWorldReadable2: *const fn(
             self: *const IMSMQQueueInfo4,
-            pisWorldReadable: ?*i16,
+            pisWorldReadable: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MulticastAddress: *const fn(
@@ -5620,10 +5620,10 @@ pub const IMSMQQueueInfo4 = extern union {
     pub fn put_Security(self: *const IMSMQQueueInfo4, varSecurity: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.put_Security(self, varSecurity);
     }
-    pub fn get_IsTransactional2(self: *const IMSMQQueueInfo4, pisTransactional: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsTransactional2(self: *const IMSMQQueueInfo4, pisTransactional: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsTransactional2(self, pisTransactional);
     }
-    pub fn get_IsWorldReadable2(self: *const IMSMQQueueInfo4, pisWorldReadable: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsWorldReadable2(self: *const IMSMQQueueInfo4, pisWorldReadable: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsWorldReadable2(self, pisWorldReadable);
     }
     pub fn get_MulticastAddress(self: *const IMSMQQueueInfo4, pbstrMulticastAddress: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -6656,7 +6656,7 @@ pub const MQ_XACT_STATUS_UNKNOWN = XACT_STATUS.UNKNOWN;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BSTR = @import("../foundation.zig").BSTR;
@@ -6664,6 +6664,7 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     @setEvalBranchQuota(

@@ -1673,7 +1673,7 @@ pub const ISpeechFileStream = extern union {
             self: *const ISpeechFileStream,
             FileName: ?BSTR,
             FileMode: SpeechStreamFileMode,
-            DoEvents: i16,
+            DoEvents: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const ISpeechFileStream,
@@ -1683,7 +1683,7 @@ pub const ISpeechFileStream = extern union {
     ISpeechBaseStream: ISpeechBaseStream,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Open(self: *const ISpeechFileStream, FileName: ?BSTR, FileMode: SpeechStreamFileMode, DoEvents: i16) callconv(.@"inline") HRESULT {
+    pub fn Open(self: *const ISpeechFileStream, FileName: ?BSTR, FileMode: SpeechStreamFileMode, DoEvents: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Open(self, FileName, FileMode, DoEvents);
     }
     pub fn Close(self: *const ISpeechFileStream) callconv(.@"inline") HRESULT {
@@ -1783,7 +1783,7 @@ pub const ISpeechGrammarRules = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Dynamic: *const fn(
             self: *const ISpeechGrammarRules,
-            Dynamic: ?*i16,
+            Dynamic: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const ISpeechGrammarRules,
@@ -1816,7 +1816,7 @@ pub const ISpeechGrammarRules = extern union {
     pub fn get__NewEnum(self: *const ISpeechGrammarRules, EnumVARIANT: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, EnumVARIANT);
     }
-    pub fn get_Dynamic(self: *const ISpeechGrammarRules, Dynamic: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Dynamic(self: *const ISpeechGrammarRules, Dynamic: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Dynamic(self, Dynamic);
     }
     pub fn Add(self: *const ISpeechGrammarRules, RuleName: ?BSTR, Attributes: SpeechRuleAttributes, RuleId: i32, Rule: ?*?*ISpeechGrammarRule) callconv(.@"inline") HRESULT {
@@ -2363,7 +2363,7 @@ pub const ISpeechObjectToken = extern union {
             self: *const ISpeechObjectToken,
             Id: ?BSTR,
             CategoryID: ?BSTR,
-            CreateIfNotExist: i16,
+            CreateIfNotExist: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetAttribute: *const fn(
             self: *const ISpeechObjectToken,
@@ -2392,14 +2392,14 @@ pub const ISpeechObjectToken = extern union {
             self: *const ISpeechObjectToken,
             ObjectStorageCLSID: ?BSTR,
             KeyName: ?BSTR,
-            DeleteFile: i16,
+            DeleteFile: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         IsUISupported: *const fn(
             self: *const ISpeechObjectToken,
             TypeOfUI: ?BSTR,
             ExtraData: ?*const VARIANT,
             Object: ?*IUnknown,
-            Supported: ?*i16,
+            Supported: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         DisplayUI: *const fn(
             self: *const ISpeechObjectToken,
@@ -2412,7 +2412,7 @@ pub const ISpeechObjectToken = extern union {
         MatchesAttributes: *const fn(
             self: *const ISpeechObjectToken,
             Attributes: ?BSTR,
-            Matches: ?*i16,
+            Matches: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -2430,7 +2430,7 @@ pub const ISpeechObjectToken = extern union {
     pub fn GetDescription(self: *const ISpeechObjectToken, Locale: i32, Description: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDescription(self, Locale, Description);
     }
-    pub fn SetId(self: *const ISpeechObjectToken, Id: ?BSTR, CategoryID: ?BSTR, CreateIfNotExist: i16) callconv(.@"inline") HRESULT {
+    pub fn SetId(self: *const ISpeechObjectToken, Id: ?BSTR, CategoryID: ?BSTR, CreateIfNotExist: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetId(self, Id, CategoryID, CreateIfNotExist);
     }
     pub fn GetAttribute(self: *const ISpeechObjectToken, AttributeName: ?BSTR, AttributeValue: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -2445,16 +2445,16 @@ pub const ISpeechObjectToken = extern union {
     pub fn GetStorageFileName(self: *const ISpeechObjectToken, ObjectStorageCLSID: ?BSTR, KeyName: ?BSTR, FileName: ?BSTR, Folder: SpeechTokenShellFolder, FilePath: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetStorageFileName(self, ObjectStorageCLSID, KeyName, FileName, Folder, FilePath);
     }
-    pub fn RemoveStorageFileName(self: *const ISpeechObjectToken, ObjectStorageCLSID: ?BSTR, KeyName: ?BSTR, DeleteFile: i16) callconv(.@"inline") HRESULT {
+    pub fn RemoveStorageFileName(self: *const ISpeechObjectToken, ObjectStorageCLSID: ?BSTR, KeyName: ?BSTR, DeleteFile: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveStorageFileName(self, ObjectStorageCLSID, KeyName, DeleteFile);
     }
-    pub fn IsUISupported(self: *const ISpeechObjectToken, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Object: ?*IUnknown, Supported: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsUISupported(self: *const ISpeechObjectToken, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Object: ?*IUnknown, Supported: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsUISupported(self, TypeOfUI, ExtraData, Object, Supported);
     }
     pub fn DisplayUI(self: *const ISpeechObjectToken, hWnd: i32, Title: ?BSTR, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Object: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.DisplayUI(self, hWnd, Title, TypeOfUI, ExtraData, Object);
     }
-    pub fn MatchesAttributes(self: *const ISpeechObjectToken, Attributes: ?BSTR, Matches: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn MatchesAttributes(self: *const ISpeechObjectToken, Attributes: ?BSTR, Matches: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MatchesAttributes(self, Attributes, Matches);
     }
 };
@@ -2482,7 +2482,7 @@ pub const ISpeechObjectTokenCategory = extern union {
         SetId: *const fn(
             self: *const ISpeechObjectTokenCategory,
             Id: ?BSTR,
-            CreateIfNotExist: i16,
+            CreateIfNotExist: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetDataKey: *const fn(
             self: *const ISpeechObjectTokenCategory,
@@ -2508,7 +2508,7 @@ pub const ISpeechObjectTokenCategory = extern union {
     pub fn get_Default(self: *const ISpeechObjectTokenCategory, TokenId: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Default(self, TokenId);
     }
-    pub fn SetId(self: *const ISpeechObjectTokenCategory, Id: ?BSTR, CreateIfNotExist: i16) callconv(.@"inline") HRESULT {
+    pub fn SetId(self: *const ISpeechObjectTokenCategory, Id: ?BSTR, CreateIfNotExist: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetId(self, Id, CreateIfNotExist);
     }
     pub fn GetDataKey(self: *const ISpeechObjectTokenCategory, Location: SpeechDataKeyLocation, DataKey: ?*?*ISpeechDataKey) callconv(.@"inline") HRESULT {
@@ -2909,14 +2909,14 @@ pub const ISpeechPhraseInfo = extern union {
             self: *const ISpeechPhraseInfo,
             StartElement: i32,
             Elements: i32,
-            UseReplacements: i16,
+            UseReplacements: VARIANT_BOOL,
             Text: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         GetDisplayAttributes: *const fn(
             self: *const ISpeechPhraseInfo,
             StartElement: i32,
             Elements: i32,
-            UseReplacements: i16,
+            UseReplacements: VARIANT_BOOL,
             DisplayAttributes: ?*SpeechDisplayAttributes,
         ) callconv(.winapi) HRESULT,
     };
@@ -2965,10 +2965,10 @@ pub const ISpeechPhraseInfo = extern union {
     pub fn SaveToMemory(self: *const ISpeechPhraseInfo, PhraseBlock: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SaveToMemory(self, PhraseBlock);
     }
-    pub fn GetText(self: *const ISpeechPhraseInfo, StartElement: i32, Elements: i32, UseReplacements: i16, Text: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn GetText(self: *const ISpeechPhraseInfo, StartElement: i32, Elements: i32, UseReplacements: VARIANT_BOOL, Text: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetText(self, StartElement, Elements, UseReplacements, Text);
     }
-    pub fn GetDisplayAttributes(self: *const ISpeechPhraseInfo, StartElement: i32, Elements: i32, UseReplacements: i16, DisplayAttributes: ?*SpeechDisplayAttributes) callconv(.@"inline") HRESULT {
+    pub fn GetDisplayAttributes(self: *const ISpeechPhraseInfo, StartElement: i32, Elements: i32, UseReplacements: VARIANT_BOOL, DisplayAttributes: ?*SpeechDisplayAttributes) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayAttributes(self, StartElement, Elements, UseReplacements, DisplayAttributes);
     }
 };
@@ -3330,12 +3330,12 @@ pub const ISpeechRecoContext = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowVoiceFormatMatchingOnNextSet: *const fn(
             self: *const ISpeechRecoContext,
-            Allow: i16,
+            Allow: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowVoiceFormatMatchingOnNextSet: *const fn(
             self: *const ISpeechRecoContext,
-            pAllow: ?*i16,
+            pAllow: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_VoicePurgeEvent: *const fn(
@@ -3441,10 +3441,10 @@ pub const ISpeechRecoContext = extern union {
     pub fn get_Voice(self: *const ISpeechRecoContext, Voice: ?*?*ISpeechVoice) callconv(.@"inline") HRESULT {
         return self.vtable.get_Voice(self, Voice);
     }
-    pub fn put_AllowVoiceFormatMatchingOnNextSet(self: *const ISpeechRecoContext, Allow: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AllowVoiceFormatMatchingOnNextSet(self: *const ISpeechRecoContext, Allow: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowVoiceFormatMatchingOnNextSet(self, Allow);
     }
-    pub fn get_AllowVoiceFormatMatchingOnNextSet(self: *const ISpeechRecoContext, pAllow: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AllowVoiceFormatMatchingOnNextSet(self: *const ISpeechRecoContext, pAllow: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowVoiceFormatMatchingOnNextSet(self, pAllow);
     }
     pub fn put_VoicePurgeEvent(self: *const ISpeechRecoContext, EventInterest: SpeechRecoEvents) callconv(.@"inline") HRESULT {
@@ -3520,12 +3520,12 @@ pub const ISpeechRecognizer = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowAudioInputFormatChangesOnNextSet: *const fn(
             self: *const ISpeechRecognizer,
-            Allow: i16,
+            Allow: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowAudioInputFormatChangesOnNextSet: *const fn(
             self: *const ISpeechRecognizer,
-            Allow: ?*i16,
+            Allow: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         putref_AudioInput: *const fn(
             self: *const ISpeechRecognizer,
@@ -3548,7 +3548,7 @@ pub const ISpeechRecognizer = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsShared: *const fn(
             self: *const ISpeechRecognizer,
-            Shared: ?*i16,
+            Shared: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_State: *const fn(
@@ -3593,31 +3593,31 @@ pub const ISpeechRecognizer = extern union {
             self: *const ISpeechRecognizer,
             Name: ?BSTR,
             Value: i32,
-            Supported: ?*i16,
+            Supported: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetPropertyNumber: *const fn(
             self: *const ISpeechRecognizer,
             Name: ?BSTR,
             Value: ?*i32,
-            Supported: ?*i16,
+            Supported: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SetPropertyString: *const fn(
             self: *const ISpeechRecognizer,
             Name: ?BSTR,
             Value: ?BSTR,
-            Supported: ?*i16,
+            Supported: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetPropertyString: *const fn(
             self: *const ISpeechRecognizer,
             Name: ?BSTR,
             Value: ?*?BSTR,
-            Supported: ?*i16,
+            Supported: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         IsUISupported: *const fn(
             self: *const ISpeechRecognizer,
             TypeOfUI: ?BSTR,
             ExtraData: ?*const VARIANT,
-            Supported: ?*i16,
+            Supported: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         DisplayUI: *const fn(
             self: *const ISpeechRecognizer,
@@ -3654,10 +3654,10 @@ pub const ISpeechRecognizer = extern union {
     pub fn get_Recognizer(self: *const ISpeechRecognizer, Recognizer: ?*?*ISpeechObjectToken) callconv(.@"inline") HRESULT {
         return self.vtable.get_Recognizer(self, Recognizer);
     }
-    pub fn put_AllowAudioInputFormatChangesOnNextSet(self: *const ISpeechRecognizer, Allow: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AllowAudioInputFormatChangesOnNextSet(self: *const ISpeechRecognizer, Allow: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowAudioInputFormatChangesOnNextSet(self, Allow);
     }
-    pub fn get_AllowAudioInputFormatChangesOnNextSet(self: *const ISpeechRecognizer, Allow: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AllowAudioInputFormatChangesOnNextSet(self: *const ISpeechRecognizer, Allow: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowAudioInputFormatChangesOnNextSet(self, Allow);
     }
     pub fn putref_AudioInput(self: *const ISpeechRecognizer, AudioInput: ?*ISpeechObjectToken) callconv(.@"inline") HRESULT {
@@ -3672,7 +3672,7 @@ pub const ISpeechRecognizer = extern union {
     pub fn get_AudioInputStream(self: *const ISpeechRecognizer, AudioInputStream: ?*?*ISpeechBaseStream) callconv(.@"inline") HRESULT {
         return self.vtable.get_AudioInputStream(self, AudioInputStream);
     }
-    pub fn get_IsShared(self: *const ISpeechRecognizer, Shared: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsShared(self: *const ISpeechRecognizer, Shared: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsShared(self, Shared);
     }
     pub fn put_State(self: *const ISpeechRecognizer, State: SpeechRecognizerState) callconv(.@"inline") HRESULT {
@@ -3699,19 +3699,19 @@ pub const ISpeechRecognizer = extern union {
     pub fn GetFormat(self: *const ISpeechRecognizer, Type: SpeechFormatType, Format: ?*?*ISpeechAudioFormat) callconv(.@"inline") HRESULT {
         return self.vtable.GetFormat(self, Type, Format);
     }
-    pub fn SetPropertyNumber(self: *const ISpeechRecognizer, Name: ?BSTR, Value: i32, Supported: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn SetPropertyNumber(self: *const ISpeechRecognizer, Name: ?BSTR, Value: i32, Supported: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetPropertyNumber(self, Name, Value, Supported);
     }
-    pub fn GetPropertyNumber(self: *const ISpeechRecognizer, Name: ?BSTR, Value: ?*i32, Supported: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn GetPropertyNumber(self: *const ISpeechRecognizer, Name: ?BSTR, Value: ?*i32, Supported: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyNumber(self, Name, Value, Supported);
     }
-    pub fn SetPropertyString(self: *const ISpeechRecognizer, Name: ?BSTR, Value: ?BSTR, Supported: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn SetPropertyString(self: *const ISpeechRecognizer, Name: ?BSTR, Value: ?BSTR, Supported: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetPropertyString(self, Name, Value, Supported);
     }
-    pub fn GetPropertyString(self: *const ISpeechRecognizer, Name: ?BSTR, Value: ?*?BSTR, Supported: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn GetPropertyString(self: *const ISpeechRecognizer, Name: ?BSTR, Value: ?*?BSTR, Supported: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyString(self, Name, Value, Supported);
     }
-    pub fn IsUISupported(self: *const ISpeechRecognizer, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Supported: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsUISupported(self: *const ISpeechRecognizer, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Supported: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsUISupported(self, TypeOfUI, ExtraData, Supported);
     }
     pub fn DisplayUI(self: *const ISpeechRecognizer, hWndParent: i32, Title: ?BSTR, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT) callconv(.@"inline") HRESULT {
@@ -4053,14 +4053,14 @@ pub const ISpeechRecoResult2 = extern union {
         SetTextFeedback: *const fn(
             self: *const ISpeechRecoResult2,
             Feedback: ?BSTR,
-            WasSuccessful: i16,
+            WasSuccessful: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpeechRecoResult: ISpeechRecoResult,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SetTextFeedback(self: *const ISpeechRecoResult2, Feedback: ?BSTR, WasSuccessful: i16) callconv(.@"inline") HRESULT {
+    pub fn SetTextFeedback(self: *const ISpeechRecoResult2, Feedback: ?BSTR, WasSuccessful: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetTextFeedback(self, Feedback, WasSuccessful);
     }
 };
@@ -4134,12 +4134,12 @@ pub const ISpeechRecoResultDispatch = extern union {
             Source: ?*?BSTR,
             Description: ?*?BSTR,
             ResultCode: ?*HRESULT,
-            IsError: ?*i16,
+            IsError: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SetTextFeedback: *const fn(
             self: *const ISpeechRecoResultDispatch,
             Feedback: ?BSTR,
-            WasSuccessful: i16,
+            WasSuccessful: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -4178,10 +4178,10 @@ pub const ISpeechRecoResultDispatch = extern union {
     pub fn GetXMLResult(self: *const ISpeechRecoResultDispatch, Options: SPXMLRESULTOPTIONS, pResult: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetXMLResult(self, Options, pResult);
     }
-    pub fn GetXMLErrorInfo(self: *const ISpeechRecoResultDispatch, LineNumber: ?*i32, ScriptLine: ?*?BSTR, Source: ?*?BSTR, Description: ?*?BSTR, ResultCode: ?*HRESULT, IsError: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn GetXMLErrorInfo(self: *const ISpeechRecoResultDispatch, LineNumber: ?*i32, ScriptLine: ?*?BSTR, Source: ?*?BSTR, Description: ?*?BSTR, ResultCode: ?*HRESULT, IsError: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetXMLErrorInfo(self, LineNumber, ScriptLine, Source, Description, ResultCode, IsError);
     }
-    pub fn SetTextFeedback(self: *const ISpeechRecoResultDispatch, Feedback: ?BSTR, WasSuccessful: i16) callconv(.@"inline") HRESULT {
+    pub fn SetTextFeedback(self: *const ISpeechRecoResultDispatch, Feedback: ?BSTR, WasSuccessful: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetTextFeedback(self, Feedback, WasSuccessful);
     }
 };
@@ -4237,10 +4237,10 @@ pub const ISpeechResourceLoader = extern union {
         LoadResource: *const fn(
             self: *const ISpeechResourceLoader,
             bstrResourceUri: ?BSTR,
-            fAlwaysReload: i16,
+            fAlwaysReload: VARIANT_BOOL,
             pStream: ?*?*IUnknown,
             pbstrMIMEType: ?*?BSTR,
-            pfModified: ?*i16,
+            pfModified: ?*VARIANT_BOOL,
             pbstrRedirectUrl: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         GetLocalCopy: *const fn(
@@ -4258,7 +4258,7 @@ pub const ISpeechResourceLoader = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn LoadResource(self: *const ISpeechResourceLoader, bstrResourceUri: ?BSTR, fAlwaysReload: i16, pStream: ?*?*IUnknown, pbstrMIMEType: ?*?BSTR, pfModified: ?*i16, pbstrRedirectUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn LoadResource(self: *const ISpeechResourceLoader, bstrResourceUri: ?BSTR, fAlwaysReload: VARIANT_BOOL, pStream: ?*?*IUnknown, pbstrMIMEType: ?*?BSTR, pfModified: ?*VARIANT_BOOL, pbstrRedirectUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.LoadResource(self, bstrResourceUri, fAlwaysReload, pStream, pbstrMIMEType, pfModified, pbstrRedirectUrl);
     }
     pub fn GetLocalCopy(self: *const ISpeechResourceLoader, bstrResourceUri: ?BSTR, pbstrLocalPath: ?*?BSTR, pbstrMIMEType: ?*?BSTR, pbstrRedirectUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -4404,12 +4404,12 @@ pub const ISpeechVoice = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowAudioOutputFormatChangesOnNextSet: *const fn(
             self: *const ISpeechVoice,
-            Allow: i16,
+            Allow: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowAudioOutputFormatChangesOnNextSet: *const fn(
             self: *const ISpeechVoice,
-            Allow: ?*i16,
+            Allow: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventInterests: *const fn(
@@ -4490,7 +4490,7 @@ pub const ISpeechVoice = extern union {
         WaitUntilDone: *const fn(
             self: *const ISpeechVoice,
             msTimeout: i32,
-            Done: ?*i16,
+            Done: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SpeakCompleteEvent: *const fn(
             self: *const ISpeechVoice,
@@ -4500,7 +4500,7 @@ pub const ISpeechVoice = extern union {
             self: *const ISpeechVoice,
             TypeOfUI: ?BSTR,
             ExtraData: ?*const VARIANT,
-            Supported: ?*i16,
+            Supported: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         DisplayUI: *const fn(
             self: *const ISpeechVoice,
@@ -4546,10 +4546,10 @@ pub const ISpeechVoice = extern union {
     pub fn put_Volume(self: *const ISpeechVoice, Volume: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Volume(self, Volume);
     }
-    pub fn put_AllowAudioOutputFormatChangesOnNextSet(self: *const ISpeechVoice, Allow: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AllowAudioOutputFormatChangesOnNextSet(self: *const ISpeechVoice, Allow: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowAudioOutputFormatChangesOnNextSet(self, Allow);
     }
-    pub fn get_AllowAudioOutputFormatChangesOnNextSet(self: *const ISpeechVoice, Allow: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AllowAudioOutputFormatChangesOnNextSet(self: *const ISpeechVoice, Allow: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowAudioOutputFormatChangesOnNextSet(self, Allow);
     }
     pub fn get_EventInterests(self: *const ISpeechVoice, EventInterestFlags: ?*SpeechVoiceEvents) callconv(.@"inline") HRESULT {
@@ -4597,13 +4597,13 @@ pub const ISpeechVoice = extern union {
     pub fn GetAudioOutputs(self: *const ISpeechVoice, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) callconv(.@"inline") HRESULT {
         return self.vtable.GetAudioOutputs(self, RequiredAttributes, OptionalAttributes, ObjectTokens);
     }
-    pub fn WaitUntilDone(self: *const ISpeechVoice, msTimeout: i32, Done: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn WaitUntilDone(self: *const ISpeechVoice, msTimeout: i32, Done: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.WaitUntilDone(self, msTimeout, Done);
     }
     pub fn SpeakCompleteEvent(self: *const ISpeechVoice, Handle: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SpeakCompleteEvent(self, Handle);
     }
-    pub fn IsUISupported(self: *const ISpeechVoice, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Supported: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsUISupported(self: *const ISpeechVoice, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Supported: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsUISupported(self, TypeOfUI, ExtraData, Supported);
     }
     pub fn DisplayUI(self: *const ISpeechVoice, hWndParent: i32, Title: ?BSTR, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT) callconv(.@"inline") HRESULT {
@@ -4858,7 +4858,7 @@ pub const ISpeechXMLRecoResult = extern union {
             Source: ?*?BSTR,
             Description: ?*?BSTR,
             ResultCode: ?*i32,
-            IsError: ?*i16,
+            IsError: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -4868,7 +4868,7 @@ pub const ISpeechXMLRecoResult = extern union {
     pub fn GetXMLResult(self: *const ISpeechXMLRecoResult, Options: SPXMLRESULTOPTIONS, pResult: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetXMLResult(self, Options, pResult);
     }
-    pub fn GetXMLErrorInfo(self: *const ISpeechXMLRecoResult, LineNumber: ?*i32, ScriptLine: ?*?BSTR, Source: ?*?BSTR, Description: ?*?BSTR, ResultCode: ?*i32, IsError: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn GetXMLErrorInfo(self: *const ISpeechXMLRecoResult, LineNumber: ?*i32, ScriptLine: ?*?BSTR, Source: ?*?BSTR, Description: ?*?BSTR, ResultCode: ?*i32, IsError: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetXMLErrorInfo(self, LineNumber, ScriptLine, Source, Description, ResultCode, IsError);
     }
 };
@@ -8914,7 +8914,7 @@ pub const SPXRO_Alternates_SML = SPXMLRESULTOPTIONS.Alternates_SML;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (20)
+// Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -8934,6 +8934,7 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const LPARAM = @import("../foundation.zig").LPARAM;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 const WAVEFORMATEX = @import("../media/audio.zig").WAVEFORMATEX;
 const WPARAM = @import("../foundation.zig").WPARAM;
 

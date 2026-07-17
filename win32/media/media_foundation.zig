@@ -17799,7 +17799,7 @@ pub const IMFNetResourceFilter = extern union {
         OnRedirect: *const fn(
             self: *const IMFNetResourceFilter,
             pszUrl: ?[*:0]const u16,
-            pvbCancel: ?*i16,
+            pvbCancel: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         OnSendingRequest: *const fn(
             self: *const IMFNetResourceFilter,
@@ -17808,7 +17808,7 @@ pub const IMFNetResourceFilter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnRedirect(self: *const IMFNetResourceFilter, pszUrl: ?[*:0]const u16, pvbCancel: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn OnRedirect(self: *const IMFNetResourceFilter, pszUrl: ?[*:0]const u16, pvbCancel: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnRedirect(self, pszUrl, pvbCancel);
     }
     pub fn OnSendingRequest(self: *const IMFNetResourceFilter, pszUrl: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -30256,7 +30256,7 @@ pub extern "opmxbox" fn OPMXboxGetHDCPStatusAndType(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (62)
+// Section: Imports (63)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const AudioObjectType = @import("../media/audio.zig").AudioObjectType;
@@ -30319,6 +30319,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const SIZE = @import("../foundation.zig").SIZE;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 const WAVEFORMATEX = @import("../media/audio.zig").WAVEFORMATEX;
 
 test {

@@ -4037,7 +4037,7 @@ pub const Folder2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HaveToShowWebViewBarricade: *const fn(
             self: *const Folder2,
-            pbHaveToShowWebViewBarricade: ?*i16,
+            pbHaveToShowWebViewBarricade: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         DismissedWebViewBarricade: *const fn(
             self: *const Folder2,
@@ -4056,7 +4056,7 @@ pub const Folder2 = extern union {
     pub fn Synchronize(self: *const Folder2) callconv(.@"inline") HRESULT {
         return self.vtable.Synchronize(self);
     }
-    pub fn get_HaveToShowWebViewBarricade(self: *const Folder2, pbHaveToShowWebViewBarricade: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_HaveToShowWebViewBarricade(self: *const Folder2, pbHaveToShowWebViewBarricade: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_HaveToShowWebViewBarricade(self, pbHaveToShowWebViewBarricade);
     }
     pub fn DismissedWebViewBarricade(self: *const Folder2) callconv(.@"inline") HRESULT {
@@ -4072,12 +4072,12 @@ pub const Folder3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShowWebViewBarricade: *const fn(
             self: *const Folder3,
-            pbShowWebViewBarricade: ?*i16,
+            pbShowWebViewBarricade: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ShowWebViewBarricade: *const fn(
             self: *const Folder3,
-            bShowWebViewBarricade: i16,
+            bShowWebViewBarricade: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -4085,10 +4085,10 @@ pub const Folder3 = extern union {
     Folder: Folder,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ShowWebViewBarricade(self: *const Folder3, pbShowWebViewBarricade: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_ShowWebViewBarricade(self: *const Folder3, pbShowWebViewBarricade: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ShowWebViewBarricade(self, pbShowWebViewBarricade);
     }
-    pub fn put_ShowWebViewBarricade(self: *const Folder3, bShowWebViewBarricade: i16) callconv(.@"inline") HRESULT {
+    pub fn put_ShowWebViewBarricade(self: *const Folder3, bShowWebViewBarricade: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_ShowWebViewBarricade(self, bShowWebViewBarricade);
     }
 };
@@ -4212,22 +4212,22 @@ pub const FolderItem = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsLink: *const fn(
             self: *const FolderItem,
-            pb: ?*i16,
+            pb: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsFolder: *const fn(
             self: *const FolderItem,
-            pb: ?*i16,
+            pb: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsFileSystem: *const fn(
             self: *const FolderItem,
-            pb: ?*i16,
+            pb: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsBrowsable: *const fn(
             self: *const FolderItem,
-            pb: ?*i16,
+            pb: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModifyDate: *const fn(
@@ -4282,16 +4282,16 @@ pub const FolderItem = extern union {
     pub fn get_GetFolder(self: *const FolderItem, ppid: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_GetFolder(self, ppid);
     }
-    pub fn get_IsLink(self: *const FolderItem, pb: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsLink(self: *const FolderItem, pb: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsLink(self, pb);
     }
-    pub fn get_IsFolder(self: *const FolderItem, pb: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsFolder(self: *const FolderItem, pb: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsFolder(self, pb);
     }
-    pub fn get_IsFileSystem(self: *const FolderItem, pb: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsFileSystem(self: *const FolderItem, pb: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsFileSystem(self, pb);
     }
-    pub fn get_IsBrowsable(self: *const FolderItem, pb: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsBrowsable(self: *const FolderItem, pb: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsBrowsable(self, pb);
     }
     pub fn get_ModifyDate(self: *const FolderItem, pdt: ?*f64) callconv(.@"inline") HRESULT {
@@ -9726,7 +9726,7 @@ pub const IExplorerBrowser = extern union {
         ) callconv(.winapi) HRESULT,
         SetRect: *const fn(
             self: *const IExplorerBrowser,
-            phdwp: ?*isize,
+            phdwp: ?*HDWP,
             rcBrowser: RECT,
         ) callconv(.winapi) HRESULT,
         SetPropertyBag: *const fn(
@@ -9790,7 +9790,7 @@ pub const IExplorerBrowser = extern union {
     pub fn Destroy(self: *const IExplorerBrowser) callconv(.@"inline") HRESULT {
         return self.vtable.Destroy(self);
     }
-    pub fn SetRect(self: *const IExplorerBrowser, phdwp: ?*isize, rcBrowser: RECT) callconv(.@"inline") HRESULT {
+    pub fn SetRect(self: *const IExplorerBrowser, phdwp: ?*HDWP, rcBrowser: RECT) callconv(.@"inline") HRESULT {
         return self.vtable.SetRect(self, phdwp, rcBrowser);
     }
     pub fn SetPropertyBag(self: *const IExplorerBrowser, pszPropertyBag: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -11162,7 +11162,7 @@ pub const IFileSearchBand = extern union {
         SetSearchParameters: *const fn(
             self: *const IFileSearchBand,
             pbstrSearchID: ?*?BSTR,
-            bNavToResults: i16,
+            bNavToResults: VARIANT_BOOL,
             pvarScope: ?*VARIANT,
             pvarQueryFile: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
@@ -11188,7 +11188,7 @@ pub const IFileSearchBand = extern union {
     pub fn SetFocus(self: *const IFileSearchBand) callconv(.@"inline") HRESULT {
         return self.vtable.SetFocus(self);
     }
-    pub fn SetSearchParameters(self: *const IFileSearchBand, pbstrSearchID: ?*?BSTR, bNavToResults: i16, pvarScope: ?*VARIANT, pvarQueryFile: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn SetSearchParameters(self: *const IFileSearchBand, pbstrSearchID: ?*?BSTR, bNavToResults: VARIANT_BOOL, pvarScope: ?*VARIANT, pvarQueryFile: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetSearchParameters(self, pbstrSearchID, bNavToResults, pvarScope, pvarQueryFile);
     }
     pub fn get_SearchID(self: *const IFileSearchBand, pbstrSearchID: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -14079,14 +14079,14 @@ pub const INewWDEvents = extern union {
         PassportAuthenticate: *const fn(
             self: *const INewWDEvents,
             bstrSignInUrl: ?BSTR,
-            pvfAuthenitcated: ?*i16,
+            pvfAuthenitcated: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWebWizardHost: IWebWizardHost,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn PassportAuthenticate(self: *const INewWDEvents, bstrSignInUrl: ?BSTR, pvfAuthenitcated: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn PassportAuthenticate(self: *const INewWDEvents, bstrSignInUrl: ?BSTR, pvfAuthenitcated: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.PassportAuthenticate(self, bstrSignInUrl, pvfAuthenitcated);
     }
 };
@@ -16417,7 +16417,7 @@ pub const IShellDispatch4 = extern union {
         GetSetting: *const fn(
             self: *const IShellDispatch4,
             lSetting: i32,
-            pResult: ?*i16,
+            pResult: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -16435,7 +16435,7 @@ pub const IShellDispatch4 = extern union {
     pub fn ExplorerPolicy(self: *const IShellDispatch4, bstrPolicyName: ?BSTR, pValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.ExplorerPolicy(self, bstrPolicyName, pValue);
     }
-    pub fn GetSetting(self: *const IShellDispatch4, lSetting: i32, pResult: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn GetSetting(self: *const IShellDispatch4, lSetting: i32, pResult: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetSetting(self, lSetting, pResult);
     }
 };
@@ -16539,15 +16539,15 @@ pub const IShellFavoritesNameSpace = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SubscriptionsEnabled: *const fn(
             self: *const IShellFavoritesNameSpace,
-            pBool: ?*i16,
+            pBool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         CreateSubscriptionForSelection: *const fn(
             self: *const IShellFavoritesNameSpace,
-            pBool: ?*i16,
+            pBool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         DeleteSubscriptionForSelection: *const fn(
             self: *const IShellFavoritesNameSpace,
-            pBool: ?*i16,
+            pBool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SetRoot: *const fn(
             self: *const IShellFavoritesNameSpace,
@@ -16584,13 +16584,13 @@ pub const IShellFavoritesNameSpace = extern union {
     pub fn MoveSelectionTo(self: *const IShellFavoritesNameSpace) callconv(.@"inline") HRESULT {
         return self.vtable.MoveSelectionTo(self);
     }
-    pub fn get_SubscriptionsEnabled(self: *const IShellFavoritesNameSpace, pBool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SubscriptionsEnabled(self: *const IShellFavoritesNameSpace, pBool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SubscriptionsEnabled(self, pBool);
     }
-    pub fn CreateSubscriptionForSelection(self: *const IShellFavoritesNameSpace, pBool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn CreateSubscriptionForSelection(self: *const IShellFavoritesNameSpace, pBool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSubscriptionForSelection(self, pBool);
     }
-    pub fn DeleteSubscriptionForSelection(self: *const IShellFavoritesNameSpace, pBool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn DeleteSubscriptionForSelection(self: *const IShellFavoritesNameSpace, pBool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteSubscriptionForSelection(self, pBool);
     }
     pub fn SetRoot(self: *const IShellFavoritesNameSpace, bstrFullPath: ?BSTR) callconv(.@"inline") HRESULT {
@@ -19126,7 +19126,7 @@ pub const IShellUIHelper = extern union {
         IsSubscribed: *const fn(
             self: *const IShellUIHelper,
             URL: ?BSTR,
-            pBool: ?*i16,
+            pBool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         NavigateAndFind: *const fn(
             self: *const IShellUIHelper,
@@ -19136,7 +19136,7 @@ pub const IShellUIHelper = extern union {
         ) callconv(.winapi) HRESULT,
         ImportExportFavorites: *const fn(
             self: *const IShellUIHelper,
-            fImport: i16,
+            fImport: VARIANT_BOOL,
             strImpExpPath: ?BSTR,
         ) callconv(.winapi) HRESULT,
         AutoCompleteSaveForm: *const fn(
@@ -19181,13 +19181,13 @@ pub const IShellUIHelper = extern union {
     pub fn AddDesktopComponent(self: *const IShellUIHelper, URL: ?BSTR, Type: ?BSTR, Left: ?*VARIANT, Top: ?*VARIANT, Width: ?*VARIANT, Height: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddDesktopComponent(self, URL, Type, Left, Top, Width, Height);
     }
-    pub fn IsSubscribed(self: *const IShellUIHelper, URL: ?BSTR, pBool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsSubscribed(self: *const IShellUIHelper, URL: ?BSTR, pBool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsSubscribed(self, URL, pBool);
     }
     pub fn NavigateAndFind(self: *const IShellUIHelper, URL: ?BSTR, strQuery: ?BSTR, varTargetFrame: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.NavigateAndFind(self, URL, strQuery, varTargetFrame);
     }
-    pub fn ImportExportFavorites(self: *const IShellUIHelper, fImport: i16, strImpExpPath: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn ImportExportFavorites(self: *const IShellUIHelper, fImport: VARIANT_BOOL, strImpExpPath: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ImportExportFavorites(self, fImport, strImpExpPath);
     }
     pub fn AutoCompleteSaveForm(self: *const IShellUIHelper, Form: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -19221,17 +19221,17 @@ pub const IShellUIHelper2 = extern union {
         ) callconv(.winapi) HRESULT,
         CustomizeSettings: *const fn(
             self: *const IShellUIHelper2,
-            fSQM: i16,
-            fPhishing: i16,
+            fSQM: VARIANT_BOOL,
+            fPhishing: VARIANT_BOOL,
             bstrLocale: ?BSTR,
         ) callconv(.winapi) HRESULT,
         SqmEnabled: *const fn(
             self: *const IShellUIHelper2,
-            pfEnabled: ?*i16,
+            pfEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         PhishingEnabled: *const fn(
             self: *const IShellUIHelper2,
-            pfEnabled: ?*i16,
+            pfEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         BrandImageUri: *const fn(
             self: *const IShellUIHelper2,
@@ -19245,7 +19245,7 @@ pub const IShellUIHelper2 = extern union {
         ) callconv(.winapi) HRESULT,
         CustomizeClearType: *const fn(
             self: *const IShellUIHelper2,
-            fSet: i16,
+            fSet: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         IsSearchProviderInstalled: *const fn(
             self: *const IShellUIHelper2,
@@ -19254,7 +19254,7 @@ pub const IShellUIHelper2 = extern union {
         ) callconv(.winapi) HRESULT,
         IsSearchMigrated: *const fn(
             self: *const IShellUIHelper2,
-            pfMigrated: ?*i16,
+            pfMigrated: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         DefaultSearchProvider: *const fn(
             self: *const IShellUIHelper2,
@@ -19262,11 +19262,11 @@ pub const IShellUIHelper2 = extern union {
         ) callconv(.winapi) HRESULT,
         RunOnceRequiredSettingsComplete: *const fn(
             self: *const IShellUIHelper2,
-            fComplete: i16,
+            fComplete: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         RunOnceHasShown: *const fn(
             self: *const IShellUIHelper2,
-            pfShown: ?*i16,
+            pfShown: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SearchGuideUrl: *const fn(
             self: *const IShellUIHelper2,
@@ -19286,13 +19286,13 @@ pub const IShellUIHelper2 = extern union {
     pub fn SkipRunOnce(self: *const IShellUIHelper2) callconv(.@"inline") HRESULT {
         return self.vtable.SkipRunOnce(self);
     }
-    pub fn CustomizeSettings(self: *const IShellUIHelper2, fSQM: i16, fPhishing: i16, bstrLocale: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn CustomizeSettings(self: *const IShellUIHelper2, fSQM: VARIANT_BOOL, fPhishing: VARIANT_BOOL, bstrLocale: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.CustomizeSettings(self, fSQM, fPhishing, bstrLocale);
     }
-    pub fn SqmEnabled(self: *const IShellUIHelper2, pfEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn SqmEnabled(self: *const IShellUIHelper2, pfEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SqmEnabled(self, pfEnabled);
     }
-    pub fn PhishingEnabled(self: *const IShellUIHelper2, pfEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn PhishingEnabled(self: *const IShellUIHelper2, pfEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.PhishingEnabled(self, pfEnabled);
     }
     pub fn BrandImageUri(self: *const IShellUIHelper2, pbstrUri: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -19304,22 +19304,22 @@ pub const IShellUIHelper2 = extern union {
     pub fn DiagnoseConnection(self: *const IShellUIHelper2) callconv(.@"inline") HRESULT {
         return self.vtable.DiagnoseConnection(self);
     }
-    pub fn CustomizeClearType(self: *const IShellUIHelper2, fSet: i16) callconv(.@"inline") HRESULT {
+    pub fn CustomizeClearType(self: *const IShellUIHelper2, fSet: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CustomizeClearType(self, fSet);
     }
     pub fn IsSearchProviderInstalled(self: *const IShellUIHelper2, URL: ?BSTR, pdwResult: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.IsSearchProviderInstalled(self, URL, pdwResult);
     }
-    pub fn IsSearchMigrated(self: *const IShellUIHelper2, pfMigrated: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsSearchMigrated(self: *const IShellUIHelper2, pfMigrated: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsSearchMigrated(self, pfMigrated);
     }
     pub fn DefaultSearchProvider(self: *const IShellUIHelper2, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DefaultSearchProvider(self, pbstrName);
     }
-    pub fn RunOnceRequiredSettingsComplete(self: *const IShellUIHelper2, fComplete: i16) callconv(.@"inline") HRESULT {
+    pub fn RunOnceRequiredSettingsComplete(self: *const IShellUIHelper2, fComplete: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.RunOnceRequiredSettingsComplete(self, fComplete);
     }
-    pub fn RunOnceHasShown(self: *const IShellUIHelper2, pfShown: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn RunOnceHasShown(self: *const IShellUIHelper2, pfShown: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.RunOnceHasShown(self, pfShown);
     }
     pub fn SearchGuideUrl(self: *const IShellUIHelper2, pbstrUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -19344,7 +19344,7 @@ pub const IShellUIHelper3 = extern union {
         ) callconv(.winapi) HRESULT,
         InPrivateFilteringEnabled: *const fn(
             self: *const IShellUIHelper3,
-            pfEnabled: ?*i16,
+            pfEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         AddToFavoritesBar: *const fn(
             self: *const IShellUIHelper3,
@@ -19357,22 +19357,22 @@ pub const IShellUIHelper3 = extern union {
         ) callconv(.winapi) HRESULT,
         SetRecentlyClosedVisible: *const fn(
             self: *const IShellUIHelper3,
-            fVisible: i16,
+            fVisible: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SetActivitiesVisible: *const fn(
             self: *const IShellUIHelper3,
-            fVisible: i16,
+            fVisible: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         ContentDiscoveryReset: *const fn(
             self: *const IShellUIHelper3,
         ) callconv(.winapi) HRESULT,
         IsSuggestedSitesEnabled: *const fn(
             self: *const IShellUIHelper3,
-            pfEnabled: ?*i16,
+            pfEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         EnableSuggestedSites: *const fn(
             self: *const IShellUIHelper3,
-            fEnable: i16,
+            fEnable: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         NavigateToSuggestedSites: *const fn(
             self: *const IShellUIHelper3,
@@ -19396,7 +19396,7 @@ pub const IShellUIHelper3 = extern union {
     pub fn IsServiceInstalled(self: *const IShellUIHelper3, URL: ?BSTR, Verb: ?BSTR, pdwResult: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.IsServiceInstalled(self, URL, Verb, pdwResult);
     }
-    pub fn InPrivateFilteringEnabled(self: *const IShellUIHelper3, pfEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn InPrivateFilteringEnabled(self: *const IShellUIHelper3, pfEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.InPrivateFilteringEnabled(self, pfEnabled);
     }
     pub fn AddToFavoritesBar(self: *const IShellUIHelper3, URL: ?BSTR, Title: ?BSTR, Type: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -19405,19 +19405,19 @@ pub const IShellUIHelper3 = extern union {
     pub fn BuildNewTabPage(self: *const IShellUIHelper3) callconv(.@"inline") HRESULT {
         return self.vtable.BuildNewTabPage(self);
     }
-    pub fn SetRecentlyClosedVisible(self: *const IShellUIHelper3, fVisible: i16) callconv(.@"inline") HRESULT {
+    pub fn SetRecentlyClosedVisible(self: *const IShellUIHelper3, fVisible: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetRecentlyClosedVisible(self, fVisible);
     }
-    pub fn SetActivitiesVisible(self: *const IShellUIHelper3, fVisible: i16) callconv(.@"inline") HRESULT {
+    pub fn SetActivitiesVisible(self: *const IShellUIHelper3, fVisible: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetActivitiesVisible(self, fVisible);
     }
     pub fn ContentDiscoveryReset(self: *const IShellUIHelper3) callconv(.@"inline") HRESULT {
         return self.vtable.ContentDiscoveryReset(self);
     }
-    pub fn IsSuggestedSitesEnabled(self: *const IShellUIHelper3, pfEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsSuggestedSitesEnabled(self: *const IShellUIHelper3, pfEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsSuggestedSitesEnabled(self, pfEnabled);
     }
-    pub fn EnableSuggestedSites(self: *const IShellUIHelper3, fEnable: i16) callconv(.@"inline") HRESULT {
+    pub fn EnableSuggestedSites(self: *const IShellUIHelper3, fEnable: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.EnableSuggestedSites(self, fEnable);
     }
     pub fn NavigateToSuggestedSites(self: *const IShellUIHelper3, bstrRelativeUrl: ?BSTR) callconv(.@"inline") HRESULT {
@@ -19438,7 +19438,7 @@ pub const IShellUIHelper4 = extern union {
         base: IShellUIHelper3.VTable,
         msIsSiteMode: *const fn(
             self: *const IShellUIHelper4,
-            pfSiteMode: ?*i16,
+            pfSiteMode: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         msSiteModeShowThumbBar: *const fn(
             self: *const IShellUIHelper4,
@@ -19452,8 +19452,8 @@ pub const IShellUIHelper4 = extern union {
         msSiteModeUpdateThumbBarButton: *const fn(
             self: *const IShellUIHelper4,
             ButtonID: VARIANT,
-            fEnabled: i16,
-            fVisible: i16,
+            fEnabled: VARIANT_BOOL,
+            fVisible: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         msSiteModeSetIconOverlay: *const fn(
             self: *const IShellUIHelper4,
@@ -19500,7 +19500,7 @@ pub const IShellUIHelper4 = extern union {
         ) callconv(.winapi) HRESULT,
         msIsSiteModeFirstRun: *const fn(
             self: *const IShellUIHelper4,
-            fPreserveState: i16,
+            fPreserveState: VARIANT_BOOL,
             puiFirstRun: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
         msAddTrackingProtectionList: *const fn(
@@ -19510,11 +19510,11 @@ pub const IShellUIHelper4 = extern union {
         ) callconv(.winapi) HRESULT,
         msTrackingProtectionEnabled: *const fn(
             self: *const IShellUIHelper4,
-            pfEnabled: ?*i16,
+            pfEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         msActiveXFilteringEnabled: *const fn(
             self: *const IShellUIHelper4,
-            pfEnabled: ?*i16,
+            pfEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -19523,7 +19523,7 @@ pub const IShellUIHelper4 = extern union {
     IShellUIHelper: IShellUIHelper,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn msIsSiteMode(self: *const IShellUIHelper4, pfSiteMode: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn msIsSiteMode(self: *const IShellUIHelper4, pfSiteMode: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.msIsSiteMode(self, pfSiteMode);
     }
     pub fn msSiteModeShowThumbBar(self: *const IShellUIHelper4) callconv(.@"inline") HRESULT {
@@ -19532,7 +19532,7 @@ pub const IShellUIHelper4 = extern union {
     pub fn msSiteModeAddThumbBarButton(self: *const IShellUIHelper4, bstrIconURL: ?BSTR, bstrTooltip: ?BSTR, pvarButtonID: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.msSiteModeAddThumbBarButton(self, bstrIconURL, bstrTooltip, pvarButtonID);
     }
-    pub fn msSiteModeUpdateThumbBarButton(self: *const IShellUIHelper4, ButtonID: VARIANT, fEnabled: i16, fVisible: i16) callconv(.@"inline") HRESULT {
+    pub fn msSiteModeUpdateThumbBarButton(self: *const IShellUIHelper4, ButtonID: VARIANT, fEnabled: VARIANT_BOOL, fVisible: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.msSiteModeUpdateThumbBarButton(self, ButtonID, fEnabled, fVisible);
     }
     pub fn msSiteModeSetIconOverlay(self: *const IShellUIHelper4, IconUrl: ?BSTR, pvarDescription: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -19565,16 +19565,16 @@ pub const IShellUIHelper4 = extern union {
     pub fn msSiteModeActivate(self: *const IShellUIHelper4) callconv(.@"inline") HRESULT {
         return self.vtable.msSiteModeActivate(self);
     }
-    pub fn msIsSiteModeFirstRun(self: *const IShellUIHelper4, fPreserveState: i16, puiFirstRun: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn msIsSiteModeFirstRun(self: *const IShellUIHelper4, fPreserveState: VARIANT_BOOL, puiFirstRun: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.msIsSiteModeFirstRun(self, fPreserveState, puiFirstRun);
     }
     pub fn msAddTrackingProtectionList(self: *const IShellUIHelper4, URL: ?BSTR, bstrFilterName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.msAddTrackingProtectionList(self, URL, bstrFilterName);
     }
-    pub fn msTrackingProtectionEnabled(self: *const IShellUIHelper4, pfEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn msTrackingProtectionEnabled(self: *const IShellUIHelper4, pfEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.msTrackingProtectionEnabled(self, pfEnabled);
     }
-    pub fn msActiveXFilteringEnabled(self: *const IShellUIHelper4, pfEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn msActiveXFilteringEnabled(self: *const IShellUIHelper4, pfEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.msActiveXFilteringEnabled(self, pfEnabled);
     }
 };
@@ -19606,7 +19606,7 @@ pub const IShellUIHelper5 = extern union {
         ) callconv(.winapi) HRESULT,
         msChangeDefaultBrowser: *const fn(
             self: *const IShellUIHelper5,
-            fChange: i16,
+            fChange: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -19634,7 +19634,7 @@ pub const IShellUIHelper5 = extern union {
     pub fn msLaunchNetworkClientHelp(self: *const IShellUIHelper5) callconv(.@"inline") HRESULT {
         return self.vtable.msLaunchNetworkClientHelp(self);
     }
-    pub fn msChangeDefaultBrowser(self: *const IShellUIHelper5, fChange: i16) callconv(.@"inline") HRESULT {
+    pub fn msChangeDefaultBrowser(self: *const IShellUIHelper5, fChange: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.msChangeDefaultBrowser(self, fChange);
     }
 };
@@ -19664,7 +19664,7 @@ pub const IShellUIHelper6 = extern union {
         ) callconv(.winapi) HRESULT,
         msEnableTileNotificationQueue: *const fn(
             self: *const IShellUIHelper6,
-            fChange: i16,
+            fChange: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         msPinnedSiteState: *const fn(
             self: *const IShellUIHelper6,
@@ -19672,15 +19672,15 @@ pub const IShellUIHelper6 = extern union {
         ) callconv(.winapi) HRESULT,
         msEnableTileNotificationQueueForSquare150x150: *const fn(
             self: *const IShellUIHelper6,
-            fChange: i16,
+            fChange: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         msEnableTileNotificationQueueForWide310x150: *const fn(
             self: *const IShellUIHelper6,
-            fChange: i16,
+            fChange: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         msEnableTileNotificationQueueForSquare310x310: *const fn(
             self: *const IShellUIHelper6,
-            fChange: i16,
+            fChange: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         msScheduledTileNotification: *const fn(
             self: *const IShellUIHelper6,
@@ -19727,19 +19727,19 @@ pub const IShellUIHelper6 = extern union {
     pub fn msClearTile(self: *const IShellUIHelper6) callconv(.@"inline") HRESULT {
         return self.vtable.msClearTile(self);
     }
-    pub fn msEnableTileNotificationQueue(self: *const IShellUIHelper6, fChange: i16) callconv(.@"inline") HRESULT {
+    pub fn msEnableTileNotificationQueue(self: *const IShellUIHelper6, fChange: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.msEnableTileNotificationQueue(self, fChange);
     }
     pub fn msPinnedSiteState(self: *const IShellUIHelper6, pvarSiteState: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.msPinnedSiteState(self, pvarSiteState);
     }
-    pub fn msEnableTileNotificationQueueForSquare150x150(self: *const IShellUIHelper6, fChange: i16) callconv(.@"inline") HRESULT {
+    pub fn msEnableTileNotificationQueueForSquare150x150(self: *const IShellUIHelper6, fChange: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.msEnableTileNotificationQueueForSquare150x150(self, fChange);
     }
-    pub fn msEnableTileNotificationQueueForWide310x150(self: *const IShellUIHelper6, fChange: i16) callconv(.@"inline") HRESULT {
+    pub fn msEnableTileNotificationQueueForWide310x150(self: *const IShellUIHelper6, fChange: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.msEnableTileNotificationQueueForWide310x150(self, fChange);
     }
-    pub fn msEnableTileNotificationQueueForSquare310x310(self: *const IShellUIHelper6, fChange: i16) callconv(.@"inline") HRESULT {
+    pub fn msEnableTileNotificationQueueForSquare310x310(self: *const IShellUIHelper6, fChange: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.msEnableTileNotificationQueueForSquare310x310(self, fChange);
     }
     pub fn msScheduledTileNotification(self: *const IShellUIHelper6, bstrNotificationXml: ?BSTR, bstrNotificationId: ?BSTR, bstrNotificationTag: ?BSTR, startTime: VARIANT, expirationTime: VARIANT) callconv(.@"inline") HRESULT {
@@ -19767,12 +19767,12 @@ pub const IShellUIHelper7 = extern union {
         SetExperimentalFlag: *const fn(
             self: *const IShellUIHelper7,
             bstrFlagString: ?BSTR,
-            vfFlag: i16,
+            vfFlag: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetExperimentalFlag: *const fn(
             self: *const IShellUIHelper7,
             bstrFlagString: ?BSTR,
-            vfFlag: ?*i16,
+            vfFlag: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SetExperimentalValue: *const fn(
             self: *const IShellUIHelper7,
@@ -19790,22 +19790,22 @@ pub const IShellUIHelper7 = extern union {
         GetNeedIEAutoLaunchFlag: *const fn(
             self: *const IShellUIHelper7,
             bstrUrl: ?BSTR,
-            flag: ?*i16,
+            flag: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SetNeedIEAutoLaunchFlag: *const fn(
             self: *const IShellUIHelper7,
             bstrUrl: ?BSTR,
-            flag: i16,
+            flag: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         HasNeedIEAutoLaunchFlag: *const fn(
             self: *const IShellUIHelper7,
             bstrUrl: ?BSTR,
-            exists: ?*i16,
+            exists: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         LaunchIE: *const fn(
             self: *const IShellUIHelper7,
             bstrUrl: ?BSTR,
-            automated: i16,
+            automated: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -19817,10 +19817,10 @@ pub const IShellUIHelper7 = extern union {
     IShellUIHelper: IShellUIHelper,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SetExperimentalFlag(self: *const IShellUIHelper7, bstrFlagString: ?BSTR, vfFlag: i16) callconv(.@"inline") HRESULT {
+    pub fn SetExperimentalFlag(self: *const IShellUIHelper7, bstrFlagString: ?BSTR, vfFlag: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetExperimentalFlag(self, bstrFlagString, vfFlag);
     }
-    pub fn GetExperimentalFlag(self: *const IShellUIHelper7, bstrFlagString: ?BSTR, vfFlag: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn GetExperimentalFlag(self: *const IShellUIHelper7, bstrFlagString: ?BSTR, vfFlag: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetExperimentalFlag(self, bstrFlagString, vfFlag);
     }
     pub fn SetExperimentalValue(self: *const IShellUIHelper7, bstrValueString: ?BSTR, dwValue: u32) callconv(.@"inline") HRESULT {
@@ -19832,16 +19832,16 @@ pub const IShellUIHelper7 = extern union {
     pub fn ResetAllExperimentalFlagsAndValues(self: *const IShellUIHelper7) callconv(.@"inline") HRESULT {
         return self.vtable.ResetAllExperimentalFlagsAndValues(self);
     }
-    pub fn GetNeedIEAutoLaunchFlag(self: *const IShellUIHelper7, bstrUrl: ?BSTR, flag: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn GetNeedIEAutoLaunchFlag(self: *const IShellUIHelper7, bstrUrl: ?BSTR, flag: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetNeedIEAutoLaunchFlag(self, bstrUrl, flag);
     }
-    pub fn SetNeedIEAutoLaunchFlag(self: *const IShellUIHelper7, bstrUrl: ?BSTR, flag: i16) callconv(.@"inline") HRESULT {
+    pub fn SetNeedIEAutoLaunchFlag(self: *const IShellUIHelper7, bstrUrl: ?BSTR, flag: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetNeedIEAutoLaunchFlag(self, bstrUrl, flag);
     }
-    pub fn HasNeedIEAutoLaunchFlag(self: *const IShellUIHelper7, bstrUrl: ?BSTR, exists: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn HasNeedIEAutoLaunchFlag(self: *const IShellUIHelper7, bstrUrl: ?BSTR, exists: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.HasNeedIEAutoLaunchFlag(self, bstrUrl, exists);
     }
-    pub fn LaunchIE(self: *const IShellUIHelper7, bstrUrl: ?BSTR, automated: i16) callconv(.@"inline") HRESULT {
+    pub fn LaunchIE(self: *const IShellUIHelper7, bstrUrl: ?BSTR, automated: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.LaunchIE(self, bstrUrl, automated);
     }
 };
@@ -20151,7 +20151,7 @@ pub const IShellWindows = extern union {
         OnActivated: *const fn(
             self: *const IShellWindows,
             lCookie: i32,
-            fActive: i16,
+            fActive: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         FindWindowSW: *const fn(
             self: *const IShellWindows,
@@ -20169,7 +20169,7 @@ pub const IShellWindows = extern union {
         ) callconv(.winapi) HRESULT,
         ProcessAttachDetach: *const fn(
             self: *const IShellWindows,
-            fAttach: i16,
+            fAttach: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -20196,7 +20196,7 @@ pub const IShellWindows = extern union {
     pub fn OnNavigate(self: *const IShellWindows, lCookie: i32, pvarLoc: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.OnNavigate(self, lCookie, pvarLoc);
     }
-    pub fn OnActivated(self: *const IShellWindows, lCookie: i32, fActive: i16) callconv(.@"inline") HRESULT {
+    pub fn OnActivated(self: *const IShellWindows, lCookie: i32, fActive: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnActivated(self, lCookie, fActive);
     }
     pub fn FindWindowSW(self: *const IShellWindows, pvarLoc: ?*VARIANT, pvarLocRoot: ?*VARIANT, swClass: i32, phwnd: ?*i32, swfwOptions: i32, ppdispOut: ?*?*IDispatch) callconv(.@"inline") HRESULT {
@@ -20205,7 +20205,7 @@ pub const IShellWindows = extern union {
     pub fn OnCreated(self: *const IShellWindows, lCookie: i32, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.OnCreated(self, lCookie, punk);
     }
-    pub fn ProcessAttachDetach(self: *const IShellWindows, fAttach: i16) callconv(.@"inline") HRESULT {
+    pub fn ProcessAttachDetach(self: *const IShellWindows, fAttach: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ProcessAttachDetach(self, fAttach);
     }
 };
@@ -23305,7 +23305,7 @@ pub const IWebBrowser = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TopLevelContainer: *const fn(
             self: *const IWebBrowser,
-            pBool: ?*i16,
+            pBool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: *const fn(
@@ -23365,7 +23365,7 @@ pub const IWebBrowser = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Busy: *const fn(
             self: *const IWebBrowser,
-            pBool: ?*i16,
+            pBool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -23407,7 +23407,7 @@ pub const IWebBrowser = extern union {
     pub fn get_Document(self: *const IWebBrowser, ppDisp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Document(self, ppDisp);
     }
-    pub fn get_TopLevelContainer(self: *const IWebBrowser, pBool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_TopLevelContainer(self: *const IWebBrowser, pBool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_TopLevelContainer(self, pBool);
     }
     pub fn get_Type(self: *const IWebBrowser, Type: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -23443,7 +23443,7 @@ pub const IWebBrowser = extern union {
     pub fn get_LocationURL(self: *const IWebBrowser, LocationURL: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LocationURL(self, LocationURL);
     }
-    pub fn get_Busy(self: *const IWebBrowser, pBool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Busy(self: *const IWebBrowser, pBool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Busy(self, pBool);
     }
 };
@@ -23488,72 +23488,72 @@ pub const IWebBrowser2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Offline: *const fn(
             self: *const IWebBrowser2,
-            pbOffline: ?*i16,
+            pbOffline: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Offline: *const fn(
             self: *const IWebBrowser2,
-            bOffline: i16,
+            bOffline: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Silent: *const fn(
             self: *const IWebBrowser2,
-            pbSilent: ?*i16,
+            pbSilent: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Silent: *const fn(
             self: *const IWebBrowser2,
-            bSilent: i16,
+            bSilent: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RegisterAsBrowser: *const fn(
             self: *const IWebBrowser2,
-            pbRegister: ?*i16,
+            pbRegister: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RegisterAsBrowser: *const fn(
             self: *const IWebBrowser2,
-            bRegister: i16,
+            bRegister: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RegisterAsDropTarget: *const fn(
             self: *const IWebBrowser2,
-            pbRegister: ?*i16,
+            pbRegister: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RegisterAsDropTarget: *const fn(
             self: *const IWebBrowser2,
-            bRegister: i16,
+            bRegister: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TheaterMode: *const fn(
             self: *const IWebBrowser2,
-            pbRegister: ?*i16,
+            pbRegister: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TheaterMode: *const fn(
             self: *const IWebBrowser2,
-            bRegister: i16,
+            bRegister: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AddressBar: *const fn(
             self: *const IWebBrowser2,
-            Value: ?*i16,
+            Value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AddressBar: *const fn(
             self: *const IWebBrowser2,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Resizable: *const fn(
             self: *const IWebBrowser2,
-            Value: ?*i16,
+            Value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Resizable: *const fn(
             self: *const IWebBrowser2,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -23576,46 +23576,46 @@ pub const IWebBrowser2 = extern union {
     pub fn get_ReadyState(self: *const IWebBrowser2, plReadyState: ?*READYSTATE) callconv(.@"inline") HRESULT {
         return self.vtable.get_ReadyState(self, plReadyState);
     }
-    pub fn get_Offline(self: *const IWebBrowser2, pbOffline: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Offline(self: *const IWebBrowser2, pbOffline: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Offline(self, pbOffline);
     }
-    pub fn put_Offline(self: *const IWebBrowser2, bOffline: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Offline(self: *const IWebBrowser2, bOffline: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Offline(self, bOffline);
     }
-    pub fn get_Silent(self: *const IWebBrowser2, pbSilent: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Silent(self: *const IWebBrowser2, pbSilent: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Silent(self, pbSilent);
     }
-    pub fn put_Silent(self: *const IWebBrowser2, bSilent: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Silent(self: *const IWebBrowser2, bSilent: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Silent(self, bSilent);
     }
-    pub fn get_RegisterAsBrowser(self: *const IWebBrowser2, pbRegister: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_RegisterAsBrowser(self: *const IWebBrowser2, pbRegister: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_RegisterAsBrowser(self, pbRegister);
     }
-    pub fn put_RegisterAsBrowser(self: *const IWebBrowser2, bRegister: i16) callconv(.@"inline") HRESULT {
+    pub fn put_RegisterAsBrowser(self: *const IWebBrowser2, bRegister: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_RegisterAsBrowser(self, bRegister);
     }
-    pub fn get_RegisterAsDropTarget(self: *const IWebBrowser2, pbRegister: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_RegisterAsDropTarget(self: *const IWebBrowser2, pbRegister: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_RegisterAsDropTarget(self, pbRegister);
     }
-    pub fn put_RegisterAsDropTarget(self: *const IWebBrowser2, bRegister: i16) callconv(.@"inline") HRESULT {
+    pub fn put_RegisterAsDropTarget(self: *const IWebBrowser2, bRegister: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_RegisterAsDropTarget(self, bRegister);
     }
-    pub fn get_TheaterMode(self: *const IWebBrowser2, pbRegister: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_TheaterMode(self: *const IWebBrowser2, pbRegister: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_TheaterMode(self, pbRegister);
     }
-    pub fn put_TheaterMode(self: *const IWebBrowser2, bRegister: i16) callconv(.@"inline") HRESULT {
+    pub fn put_TheaterMode(self: *const IWebBrowser2, bRegister: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_TheaterMode(self, bRegister);
     }
-    pub fn get_AddressBar(self: *const IWebBrowser2, Value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AddressBar(self: *const IWebBrowser2, Value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AddressBar(self, Value);
     }
-    pub fn put_AddressBar(self: *const IWebBrowser2, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AddressBar(self: *const IWebBrowser2, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AddressBar(self, Value);
     }
-    pub fn get_Resizable(self: *const IWebBrowser2, Value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Resizable(self: *const IWebBrowser2, Value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Resizable(self, Value);
     }
-    pub fn put_Resizable(self: *const IWebBrowser2, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Resizable(self: *const IWebBrowser2, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Resizable(self, Value);
     }
 };
@@ -23666,22 +23666,22 @@ pub const IWebBrowserApp = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Visible: *const fn(
             self: *const IWebBrowserApp,
-            pBool: ?*i16,
+            pBool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Visible: *const fn(
             self: *const IWebBrowserApp,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StatusBar: *const fn(
             self: *const IWebBrowserApp,
-            pBool: ?*i16,
+            pBool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StatusBar: *const fn(
             self: *const IWebBrowserApp,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StatusText: *const fn(
@@ -23706,22 +23706,22 @@ pub const IWebBrowserApp = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MenuBar: *const fn(
             self: *const IWebBrowserApp,
-            Value: ?*i16,
+            Value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MenuBar: *const fn(
             self: *const IWebBrowserApp,
-            Value: i16,
+            Value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FullScreen: *const fn(
             self: *const IWebBrowserApp,
-            pbFullScreen: ?*i16,
+            pbFullScreen: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FullScreen: *const fn(
             self: *const IWebBrowserApp,
-            bFullScreen: i16,
+            bFullScreen: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -23752,16 +23752,16 @@ pub const IWebBrowserApp = extern union {
     pub fn get_Path(self: *const IWebBrowserApp, Path: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Path(self, Path);
     }
-    pub fn get_Visible(self: *const IWebBrowserApp, pBool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Visible(self: *const IWebBrowserApp, pBool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Visible(self, pBool);
     }
-    pub fn put_Visible(self: *const IWebBrowserApp, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Visible(self: *const IWebBrowserApp, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Visible(self, Value);
     }
-    pub fn get_StatusBar(self: *const IWebBrowserApp, pBool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_StatusBar(self: *const IWebBrowserApp, pBool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_StatusBar(self, pBool);
     }
-    pub fn put_StatusBar(self: *const IWebBrowserApp, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_StatusBar(self: *const IWebBrowserApp, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_StatusBar(self, Value);
     }
     pub fn get_StatusText(self: *const IWebBrowserApp, StatusText: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -23776,16 +23776,16 @@ pub const IWebBrowserApp = extern union {
     pub fn put_ToolBar(self: *const IWebBrowserApp, Value: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_ToolBar(self, Value);
     }
-    pub fn get_MenuBar(self: *const IWebBrowserApp, Value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_MenuBar(self: *const IWebBrowserApp, Value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_MenuBar(self, Value);
     }
-    pub fn put_MenuBar(self: *const IWebBrowserApp, Value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_MenuBar(self: *const IWebBrowserApp, Value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_MenuBar(self, Value);
     }
-    pub fn get_FullScreen(self: *const IWebBrowserApp, pbFullScreen: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_FullScreen(self: *const IWebBrowserApp, pbFullScreen: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_FullScreen(self, pbFullScreen);
     }
-    pub fn put_FullScreen(self: *const IWebBrowserApp, bFullScreen: i16) callconv(.@"inline") HRESULT {
+    pub fn put_FullScreen(self: *const IWebBrowserApp, bFullScreen: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_FullScreen(self, bFullScreen);
     }
 };
@@ -23852,9 +23852,9 @@ pub const IWebWizardHost = extern union {
         ) callconv(.winapi) HRESULT,
         SetWizardButtons: *const fn(
             self: *const IWebWizardHost,
-            vfEnableBack: i16,
-            vfEnableNext: i16,
-            vfLastPage: i16,
+            vfEnableBack: VARIANT_BOOL,
+            vfEnableNext: VARIANT_BOOL,
+            vfLastPage: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SetHeaderText: *const fn(
             self: *const IWebWizardHost,
@@ -23886,7 +23886,7 @@ pub const IWebWizardHost = extern union {
     pub fn get_Property(self: *const IWebWizardHost, bstrPropertyName: ?BSTR, pvProperty: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Property(self, bstrPropertyName, pvProperty);
     }
-    pub fn SetWizardButtons(self: *const IWebWizardHost, vfEnableBack: i16, vfEnableNext: i16, vfLastPage: i16) callconv(.@"inline") HRESULT {
+    pub fn SetWizardButtons(self: *const IWebWizardHost, vfEnableBack: VARIANT_BOOL, vfEnableNext: VARIANT_BOOL, vfLastPage: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetWizardButtons(self, vfEnableBack, vfEnableNext, vfLastPage);
     }
     pub fn SetHeaderText(self: *const IWebWizardHost, bstrHeaderTitle: ?BSTR, bstrHeaderSubtitle: ?BSTR) callconv(.@"inline") HRESULT {
@@ -34940,7 +34940,7 @@ pub const wvnsprintf = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (111)
+// Section: Imports (113)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -34964,6 +34964,7 @@ const HACCEL = @import("../ui/windows_and_messaging.zig").HACCEL;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 const HDC = @import("../graphics/gdi.zig").HDC;
+const HDWP = @import("../ui/windows_and_messaging.zig").HDWP;
 const HICON = @import("../ui/windows_and_messaging.zig").HICON;
 const HIMAGELIST = @import("../ui/controls.zig").HIMAGELIST;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
@@ -35049,6 +35050,7 @@ const TBBUTTON = @import("../ui/controls.zig").TBBUTTON;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
 const VARENUM = @import("../system/com.zig").VARENUM;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
 const WIN32_FIND_DATAA = @import("../storage/file_system.zig").WIN32_FIND_DATAA;
 const WIN32_FIND_DATAW = @import("../storage/file_system.zig").WIN32_FIND_DATAW;

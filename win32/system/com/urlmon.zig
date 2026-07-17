@@ -795,12 +795,12 @@ pub const IBindCallbackRedirect = extern union {
         Redirect: *const fn(
             self: *const IBindCallbackRedirect,
             lpcUrl: ?[*:0]const u16,
-            vbCancel: ?*i16,
+            vbCancel: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Redirect(self: *const IBindCallbackRedirect, lpcUrl: ?[*:0]const u16, vbCancel: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn Redirect(self: *const IBindCallbackRedirect, lpcUrl: ?[*:0]const u16, vbCancel: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Redirect(self, lpcUrl, vbCancel);
     }
 };
@@ -3380,7 +3380,7 @@ pub const URLOpenStream = switch (@import("../../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (30)
+// Section: Imports (31)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BINDINFO = @import("../../system/com.zig").BINDINFO;
@@ -3412,6 +3412,7 @@ const STGMEDIUM = @import("../../system/com.zig").STGMEDIUM;
 const SYSTEMTIME = @import("../../foundation.zig").SYSTEMTIME;
 const uCLSSPEC = @import("../../system/com.zig").uCLSSPEC;
 const ULARGE_INTEGER = @import("../../foundation.zig").ULARGE_INTEGER;
+const VARIANT_BOOL = @import("../../foundation.zig").VARIANT_BOOL;
 
 test {
     @setEvalBranchQuota(

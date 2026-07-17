@@ -163,12 +163,12 @@ pub const INetwork = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsConnectedToInternet: *const fn(
             self: *const INetwork,
-            pbIsConnected: ?*i16,
+            pbIsConnected: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsConnected: *const fn(
             self: *const INetwork,
-            pbIsConnected: ?*i16,
+            pbIsConnected: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetConnectivity: *const fn(
             self: *const INetwork,
@@ -210,10 +210,10 @@ pub const INetwork = extern union {
     pub fn GetTimeCreatedAndConnected(self: *const INetwork, pdwLowDateTimeCreated: ?*u32, pdwHighDateTimeCreated: ?*u32, pdwLowDateTimeConnected: ?*u32, pdwHighDateTimeConnected: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetTimeCreatedAndConnected(self, pdwLowDateTimeCreated, pdwHighDateTimeCreated, pdwLowDateTimeConnected, pdwHighDateTimeConnected);
     }
-    pub fn get_IsConnectedToInternet(self: *const INetwork, pbIsConnected: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsConnectedToInternet(self: *const INetwork, pbIsConnected: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsConnectedToInternet(self, pbIsConnected);
     }
-    pub fn get_IsConnected(self: *const INetwork, pbIsConnected: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsConnected(self: *const INetwork, pbIsConnected: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsConnected(self, pbIsConnected);
     }
     pub fn GetConnectivity(self: *const INetwork, pConnectivity: ?*NLM_CONNECTIVITY) callconv(.@"inline") HRESULT {
@@ -240,12 +240,12 @@ pub const INetworkConnection = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsConnectedToInternet: *const fn(
             self: *const INetworkConnection,
-            pbIsConnected: ?*i16,
+            pbIsConnected: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsConnected: *const fn(
             self: *const INetworkConnection,
-            pbIsConnected: ?*i16,
+            pbIsConnected: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetConnectivity: *const fn(
             self: *const INetworkConnection,
@@ -270,10 +270,10 @@ pub const INetworkConnection = extern union {
     pub fn GetNetwork(self: *const INetworkConnection, ppNetwork: ?*?*INetwork) callconv(.@"inline") HRESULT {
         return self.vtable.GetNetwork(self, ppNetwork);
     }
-    pub fn get_IsConnectedToInternet(self: *const INetworkConnection, pbIsConnected: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsConnectedToInternet(self: *const INetworkConnection, pbIsConnected: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsConnectedToInternet(self, pbIsConnected);
     }
-    pub fn get_IsConnected(self: *const INetworkConnection, pbIsConnected: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsConnected(self: *const INetworkConnection, pbIsConnected: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsConnected(self, pbIsConnected);
     }
     pub fn GetConnectivity(self: *const INetworkConnection, pConnectivity: ?*NLM_CONNECTIVITY) callconv(.@"inline") HRESULT {
@@ -388,7 +388,7 @@ pub const INetworkCostManager = extern union {
             self: *const INetworkCostManager,
             length: u32,
             pDestIPAddrList: [*]NLM_SOCKADDR,
-            bAppend: i16,
+            bAppend: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -399,7 +399,7 @@ pub const INetworkCostManager = extern union {
     pub fn GetDataPlanStatus(self: *const INetworkCostManager, pDataPlanStatus: ?*NLM_DATAPLAN_STATUS, pDestIPAddr: ?*NLM_SOCKADDR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDataPlanStatus(self, pDataPlanStatus, pDestIPAddr);
     }
-    pub fn SetDestinationAddresses(self: *const INetworkCostManager, length: u32, pDestIPAddrList: [*]NLM_SOCKADDR, bAppend: i16) callconv(.@"inline") HRESULT {
+    pub fn SetDestinationAddresses(self: *const INetworkCostManager, length: u32, pDestIPAddrList: [*]NLM_SOCKADDR, bAppend: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetDestinationAddresses(self, length, pDestIPAddrList, bAppend);
     }
 };
@@ -499,12 +499,12 @@ pub const INetworkListManager = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsConnectedToInternet: *const fn(
             self: *const INetworkListManager,
-            pbIsConnected: ?*i16,
+            pbIsConnected: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsConnected: *const fn(
             self: *const INetworkListManager,
-            pbIsConnected: ?*i16,
+            pbIsConnected: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetConnectivity: *const fn(
             self: *const INetworkListManager,
@@ -533,10 +533,10 @@ pub const INetworkListManager = extern union {
     pub fn GetNetworkConnection(self: *const INetworkListManager, gdNetworkConnectionId: Guid, ppNetworkConnection: ?*?*INetworkConnection) callconv(.@"inline") HRESULT {
         return self.vtable.GetNetworkConnection(self, gdNetworkConnectionId, ppNetworkConnection);
     }
-    pub fn get_IsConnectedToInternet(self: *const INetworkListManager, pbIsConnected: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsConnectedToInternet(self: *const INetworkListManager, pbIsConnected: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsConnectedToInternet(self, pbIsConnected);
     }
-    pub fn get_IsConnected(self: *const INetworkListManager, pbIsConnected: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsConnected(self: *const INetworkListManager, pbIsConnected: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsConnected(self, pbIsConnected);
     }
     pub fn GetConnectivity(self: *const INetworkListManager, pConnectivity: ?*NLM_CONNECTIVITY) callconv(.@"inline") HRESULT {
@@ -710,7 +710,7 @@ pub const NLM_USAGE_DATA = extern struct {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BSTR = @import("../foundation.zig").BSTR;
@@ -719,6 +719,7 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IEnumVARIANT = @import("../system/ole.zig").IEnumVARIANT;
 const IUnknown = @import("../system/com.zig").IUnknown;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     @setEvalBranchQuota(

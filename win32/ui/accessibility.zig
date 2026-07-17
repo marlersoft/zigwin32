@@ -1456,7 +1456,7 @@ pub const IAnnotationProvider = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AnnotationTypeId: *const fn(
             self: *const IAnnotationProvider,
-            retVal: ?*i32,
+            retVal: ?*UIA_ANNOTATIONTYPE,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AnnotationTypeName: *const fn(
@@ -1481,7 +1481,7 @@ pub const IAnnotationProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_AnnotationTypeId(self: *const IAnnotationProvider, retVal: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_AnnotationTypeId(self: *const IAnnotationProvider, retVal: ?*UIA_ANNOTATIONTYPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_AnnotationTypeId(self, retVal);
     }
     pub fn get_AnnotationTypeName(self: *const IAnnotationProvider, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -1755,14 +1755,14 @@ pub const IItemContainerProvider = extern union {
         FindItemByProperty: *const fn(
             self: *const IItemContainerProvider,
             pStartAfter: ?*IRawElementProviderSimple,
-            propertyId: i32,
+            propertyId: UIA_PROPERTY_ID,
             value: VARIANT,
             pFound: ?*?*IRawElementProviderSimple,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FindItemByProperty(self: *const IItemContainerProvider, pStartAfter: ?*IRawElementProviderSimple, propertyId: i32, value: VARIANT, pFound: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
+    pub fn FindItemByProperty(self: *const IItemContainerProvider, pStartAfter: ?*IRawElementProviderSimple, propertyId: UIA_PROPERTY_ID, value: VARIANT, pFound: ?*?*IRawElementProviderSimple) callconv(.@"inline") HRESULT {
         return self.vtable.FindItemByProperty(self, pStartAfter, propertyId, value, pFound);
     }
 };
@@ -1974,13 +1974,13 @@ pub const IProxyProviderWinEventSink = extern union {
         AddAutomationPropertyChangedEvent: *const fn(
             self: *const IProxyProviderWinEventSink,
             pProvider: ?*IRawElementProviderSimple,
-            id: i32,
+            id: UIA_PROPERTY_ID,
             newValue: VARIANT,
         ) callconv(.winapi) HRESULT,
         AddAutomationEvent: *const fn(
             self: *const IProxyProviderWinEventSink,
             pProvider: ?*IRawElementProviderSimple,
-            id: i32,
+            id: UIA_EVENT_ID,
         ) callconv(.winapi) HRESULT,
         AddStructureChangedEvent: *const fn(
             self: *const IProxyProviderWinEventSink,
@@ -1991,10 +1991,10 @@ pub const IProxyProviderWinEventSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddAutomationPropertyChangedEvent(self: *const IProxyProviderWinEventSink, pProvider: ?*IRawElementProviderSimple, id: i32, newValue: VARIANT) callconv(.@"inline") HRESULT {
+    pub fn AddAutomationPropertyChangedEvent(self: *const IProxyProviderWinEventSink, pProvider: ?*IRawElementProviderSimple, id: UIA_PROPERTY_ID, newValue: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddAutomationPropertyChangedEvent(self, pProvider, id, newValue);
     }
-    pub fn AddAutomationEvent(self: *const IProxyProviderWinEventSink, pProvider: ?*IRawElementProviderSimple, id: i32) callconv(.@"inline") HRESULT {
+    pub fn AddAutomationEvent(self: *const IProxyProviderWinEventSink, pProvider: ?*IRawElementProviderSimple, id: UIA_EVENT_ID) callconv(.@"inline") HRESULT {
         return self.vtable.AddAutomationEvent(self, pProvider, id);
     }
     pub fn AddStructureChangedEvent(self: *const IProxyProviderWinEventSink, pProvider: ?*IRawElementProviderSimple, structureChangeType: StructureChangeType, runtimeId: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
@@ -2076,21 +2076,21 @@ pub const IRawElementProviderAdviseEvents = extern union {
         base: IUnknown.VTable,
         AdviseEventAdded: *const fn(
             self: *const IRawElementProviderAdviseEvents,
-            eventId: i32,
+            eventId: UIA_EVENT_ID,
             propertyIDs: ?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
         AdviseEventRemoved: *const fn(
             self: *const IRawElementProviderAdviseEvents,
-            eventId: i32,
+            eventId: UIA_EVENT_ID,
             propertyIDs: ?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AdviseEventAdded(self: *const IRawElementProviderAdviseEvents, eventId: i32, propertyIDs: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+    pub fn AdviseEventAdded(self: *const IRawElementProviderAdviseEvents, eventId: UIA_EVENT_ID, propertyIDs: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.AdviseEventAdded(self, eventId, propertyIDs);
     }
-    pub fn AdviseEventRemoved(self: *const IRawElementProviderAdviseEvents, eventId: i32, propertyIDs: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+    pub fn AdviseEventRemoved(self: *const IRawElementProviderAdviseEvents, eventId: UIA_EVENT_ID, propertyIDs: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.AdviseEventRemoved(self, eventId, propertyIDs);
     }
 };
@@ -2284,7 +2284,7 @@ pub const IRawElementProviderSimple3 = extern union {
         GetMetadataValue: *const fn(
             self: *const IRawElementProviderSimple3,
             targetId: i32,
-            metadataId: i32,
+            metadataId: UIA_METADATA_ID,
             returnVal: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
     };
@@ -2292,7 +2292,7 @@ pub const IRawElementProviderSimple3 = extern union {
     IRawElementProviderSimple2: IRawElementProviderSimple2,
     IRawElementProviderSimple: IRawElementProviderSimple,
     IUnknown: IUnknown,
-    pub fn GetMetadataValue(self: *const IRawElementProviderSimple3, targetId: i32, metadataId: i32, returnVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn GetMetadataValue(self: *const IRawElementProviderSimple3, targetId: i32, metadataId: UIA_METADATA_ID, returnVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetMetadataValue(self, targetId, metadataId, returnVal);
     }
 };
@@ -2638,7 +2638,7 @@ pub const IStylesProvider = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StyleId: *const fn(
             self: *const IStylesProvider,
-            retVal: ?*i32,
+            retVal: ?*UIA_STYLE_ID,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StyleName: *const fn(
@@ -2673,7 +2673,7 @@ pub const IStylesProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_StyleId(self: *const IStylesProvider, retVal: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_StyleId(self: *const IStylesProvider, retVal: ?*UIA_STYLE_ID) callconv(.@"inline") HRESULT {
         return self.vtable.get_StyleId(self, retVal);
     }
     pub fn get_StyleName(self: *const IStylesProvider, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -2944,7 +2944,7 @@ pub const ITextRangeProvider = extern union {
         ) callconv(.winapi) HRESULT,
         FindAttribute: *const fn(
             self: *const ITextRangeProvider,
-            attributeId: i32,
+            attributeId: UIA_TEXTATTRIBUTE_ID,
             val: VARIANT,
             backward: BOOL,
             pRetVal: ?*?*ITextRangeProvider,
@@ -2958,7 +2958,7 @@ pub const ITextRangeProvider = extern union {
         ) callconv(.winapi) HRESULT,
         GetAttributeValue: *const fn(
             self: *const ITextRangeProvider,
-            attributeId: i32,
+            attributeId: UIA_TEXTATTRIBUTE_ID,
             pRetVal: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
         GetBoundingRectangles: *const fn(
@@ -3025,13 +3025,13 @@ pub const ITextRangeProvider = extern union {
     pub fn ExpandToEnclosingUnit(self: *const ITextRangeProvider, unit: TextUnit) callconv(.@"inline") HRESULT {
         return self.vtable.ExpandToEnclosingUnit(self, unit);
     }
-    pub fn FindAttribute(self: *const ITextRangeProvider, attributeId: i32, val: VARIANT, backward: BOOL, pRetVal: ?*?*ITextRangeProvider) callconv(.@"inline") HRESULT {
+    pub fn FindAttribute(self: *const ITextRangeProvider, attributeId: UIA_TEXTATTRIBUTE_ID, val: VARIANT, backward: BOOL, pRetVal: ?*?*ITextRangeProvider) callconv(.@"inline") HRESULT {
         return self.vtable.FindAttribute(self, attributeId, val, backward, pRetVal);
     }
     pub fn FindText(self: *const ITextRangeProvider, text: ?BSTR, backward: BOOL, ignoreCase: BOOL, pRetVal: ?*?*ITextRangeProvider) callconv(.@"inline") HRESULT {
         return self.vtable.FindText(self, text, backward, ignoreCase, pRetVal);
     }
-    pub fn GetAttributeValue(self: *const ITextRangeProvider, attributeId: i32, pRetVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn GetAttributeValue(self: *const ITextRangeProvider, attributeId: UIA_TEXTATTRIBUTE_ID, pRetVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttributeValue(self, attributeId, pRetVal);
     }
     pub fn GetBoundingRectangles(self: *const ITextRangeProvider, pRetVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
@@ -3335,13 +3335,13 @@ pub const IUIAutomation = extern union {
         ) callconv(.winapi) HRESULT,
         CreatePropertyCondition: *const fn(
             self: *const IUIAutomation,
-            propertyId: i32,
+            propertyId: UIA_PROPERTY_ID,
             value: VARIANT,
             newCondition: ?*?*IUIAutomationCondition,
         ) callconv(.winapi) HRESULT,
         CreatePropertyConditionEx: *const fn(
             self: *const IUIAutomation,
-            propertyId: i32,
+            propertyId: UIA_PROPERTY_ID,
             value: VARIANT,
             flags: PropertyConditionFlags,
             newCondition: ?*?*IUIAutomationCondition,
@@ -3387,7 +3387,7 @@ pub const IUIAutomation = extern union {
         ) callconv(.winapi) HRESULT,
         AddAutomationEventHandler: *const fn(
             self: *const IUIAutomation,
-            eventId: i32,
+            eventId: UIA_EVENT_ID,
             element: ?*IUIAutomationElement,
             scope: TreeScope,
             cacheRequest: ?*IUIAutomationCacheRequest,
@@ -3395,7 +3395,7 @@ pub const IUIAutomation = extern union {
         ) callconv(.winapi) HRESULT,
         RemoveAutomationEventHandler: *const fn(
             self: *const IUIAutomation,
-            eventId: i32,
+            eventId: UIA_EVENT_ID,
             element: ?*IUIAutomationElement,
             handler: ?*IUIAutomationEventHandler,
         ) callconv(.winapi) HRESULT,
@@ -3405,7 +3405,7 @@ pub const IUIAutomation = extern union {
             scope: TreeScope,
             cacheRequest: ?*IUIAutomationCacheRequest,
             handler: ?*IUIAutomationPropertyChangedEventHandler,
-            propertyArray: [*]i32,
+            propertyArray: [*]UIA_PROPERTY_ID,
             propertyCount: i32,
         ) callconv(.winapi) HRESULT,
         AddPropertyChangedEventHandler: *const fn(
@@ -3485,12 +3485,12 @@ pub const IUIAutomation = extern union {
         ) callconv(.winapi) HRESULT,
         GetPropertyProgrammaticName: *const fn(
             self: *const IUIAutomation,
-            property: i32,
+            property: UIA_PROPERTY_ID,
             name: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         GetPatternProgrammaticName: *const fn(
             self: *const IUIAutomation,
-            pattern: i32,
+            pattern: UIA_PATTERN_ID,
             name: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         PollForPotentialSupportedPatterns: *const fn(
@@ -3596,10 +3596,10 @@ pub const IUIAutomation = extern union {
     pub fn CreateFalseCondition(self: *const IUIAutomation, newCondition: ?*?*IUIAutomationCondition) callconv(.@"inline") HRESULT {
         return self.vtable.CreateFalseCondition(self, newCondition);
     }
-    pub fn CreatePropertyCondition(self: *const IUIAutomation, propertyId: i32, value: VARIANT, newCondition: ?*?*IUIAutomationCondition) callconv(.@"inline") HRESULT {
+    pub fn CreatePropertyCondition(self: *const IUIAutomation, propertyId: UIA_PROPERTY_ID, value: VARIANT, newCondition: ?*?*IUIAutomationCondition) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePropertyCondition(self, propertyId, value, newCondition);
     }
-    pub fn CreatePropertyConditionEx(self: *const IUIAutomation, propertyId: i32, value: VARIANT, flags: PropertyConditionFlags, newCondition: ?*?*IUIAutomationCondition) callconv(.@"inline") HRESULT {
+    pub fn CreatePropertyConditionEx(self: *const IUIAutomation, propertyId: UIA_PROPERTY_ID, value: VARIANT, flags: PropertyConditionFlags, newCondition: ?*?*IUIAutomationCondition) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePropertyConditionEx(self, propertyId, value, flags, newCondition);
     }
     pub fn CreateAndCondition(self: *const IUIAutomation, condition1: ?*IUIAutomationCondition, condition2: ?*IUIAutomationCondition, newCondition: ?*?*IUIAutomationCondition) callconv(.@"inline") HRESULT {
@@ -3623,13 +3623,13 @@ pub const IUIAutomation = extern union {
     pub fn CreateNotCondition(self: *const IUIAutomation, condition: ?*IUIAutomationCondition, newCondition: ?*?*IUIAutomationCondition) callconv(.@"inline") HRESULT {
         return self.vtable.CreateNotCondition(self, condition, newCondition);
     }
-    pub fn AddAutomationEventHandler(self: *const IUIAutomation, eventId: i32, element: ?*IUIAutomationElement, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationEventHandler) callconv(.@"inline") HRESULT {
+    pub fn AddAutomationEventHandler(self: *const IUIAutomation, eventId: UIA_EVENT_ID, element: ?*IUIAutomationElement, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationEventHandler) callconv(.@"inline") HRESULT {
         return self.vtable.AddAutomationEventHandler(self, eventId, element, scope, cacheRequest, handler);
     }
-    pub fn RemoveAutomationEventHandler(self: *const IUIAutomation, eventId: i32, element: ?*IUIAutomationElement, handler: ?*IUIAutomationEventHandler) callconv(.@"inline") HRESULT {
+    pub fn RemoveAutomationEventHandler(self: *const IUIAutomation, eventId: UIA_EVENT_ID, element: ?*IUIAutomationElement, handler: ?*IUIAutomationEventHandler) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveAutomationEventHandler(self, eventId, element, handler);
     }
-    pub fn AddPropertyChangedEventHandlerNativeArray(self: *const IUIAutomation, element: ?*IUIAutomationElement, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationPropertyChangedEventHandler, propertyArray: [*]i32, propertyCount: i32) callconv(.@"inline") HRESULT {
+    pub fn AddPropertyChangedEventHandlerNativeArray(self: *const IUIAutomation, element: ?*IUIAutomationElement, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationPropertyChangedEventHandler, propertyArray: [*]UIA_PROPERTY_ID, propertyCount: i32) callconv(.@"inline") HRESULT {
         return self.vtable.AddPropertyChangedEventHandlerNativeArray(self, element, scope, cacheRequest, handler, propertyArray, propertyCount);
     }
     pub fn AddPropertyChangedEventHandler(self: *const IUIAutomation, element: ?*IUIAutomationElement, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationPropertyChangedEventHandler, propertyArray: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
@@ -3674,10 +3674,10 @@ pub const IUIAutomation = extern union {
     pub fn get_ProxyFactoryMapping(self: *const IUIAutomation, factoryMapping: ?*?*IUIAutomationProxyFactoryMapping) callconv(.@"inline") HRESULT {
         return self.vtable.get_ProxyFactoryMapping(self, factoryMapping);
     }
-    pub fn GetPropertyProgrammaticName(self: *const IUIAutomation, property: i32, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPropertyProgrammaticName(self: *const IUIAutomation, property: UIA_PROPERTY_ID, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyProgrammaticName(self, property, name);
     }
-    pub fn GetPatternProgrammaticName(self: *const IUIAutomation, pattern: i32, name: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPatternProgrammaticName(self: *const IUIAutomation, pattern: UIA_PATTERN_ID, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPatternProgrammaticName(self, pattern, name);
     }
     pub fn PollForPotentialSupportedPatterns(self: *const IUIAutomation, pElement: ?*IUIAutomationElement, patternIds: ?*?*SAFEARRAY, patternNames: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
@@ -4014,7 +4014,7 @@ pub const IUIAutomationAnnotationPattern = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAnnotationTypeId: *const fn(
             self: *const IUIAutomationAnnotationPattern,
-            retVal: ?*i32,
+            retVal: ?*UIA_ANNOTATIONTYPE,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAnnotationTypeName: *const fn(
@@ -4039,7 +4039,7 @@ pub const IUIAutomationAnnotationPattern = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAnnotationTypeId: *const fn(
             self: *const IUIAutomationAnnotationPattern,
-            retVal: ?*i32,
+            retVal: ?*UIA_ANNOTATIONTYPE,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAnnotationTypeName: *const fn(
@@ -4064,7 +4064,7 @@ pub const IUIAutomationAnnotationPattern = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_CurrentAnnotationTypeId(self: *const IUIAutomationAnnotationPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_CurrentAnnotationTypeId(self: *const IUIAutomationAnnotationPattern, retVal: ?*UIA_ANNOTATIONTYPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentAnnotationTypeId(self, retVal);
     }
     pub fn get_CurrentAnnotationTypeName(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -4079,7 +4079,7 @@ pub const IUIAutomationAnnotationPattern = extern union {
     pub fn get_CurrentTarget(self: *const IUIAutomationAnnotationPattern, retVal: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentTarget(self, retVal);
     }
-    pub fn get_CachedAnnotationTypeId(self: *const IUIAutomationAnnotationPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_CachedAnnotationTypeId(self: *const IUIAutomationAnnotationPattern, retVal: ?*UIA_ANNOTATIONTYPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_CachedAnnotationTypeId(self, retVal);
     }
     pub fn get_CachedAnnotationTypeName(self: *const IUIAutomationAnnotationPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -4124,11 +4124,11 @@ pub const IUIAutomationCacheRequest = extern union {
         base: IUnknown.VTable,
         AddProperty: *const fn(
             self: *const IUIAutomationCacheRequest,
-            propertyId: i32,
+            propertyId: UIA_PROPERTY_ID,
         ) callconv(.winapi) HRESULT,
         AddPattern: *const fn(
             self: *const IUIAutomationCacheRequest,
-            patternId: i32,
+            patternId: UIA_PATTERN_ID,
         ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IUIAutomationCacheRequest,
@@ -4167,10 +4167,10 @@ pub const IUIAutomationCacheRequest = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddProperty(self: *const IUIAutomationCacheRequest, propertyId: i32) callconv(.@"inline") HRESULT {
+    pub fn AddProperty(self: *const IUIAutomationCacheRequest, propertyId: UIA_PROPERTY_ID) callconv(.@"inline") HRESULT {
         return self.vtable.AddProperty(self, propertyId);
     }
-    pub fn AddPattern(self: *const IUIAutomationCacheRequest, patternId: i32) callconv(.@"inline") HRESULT {
+    pub fn AddPattern(self: *const IUIAutomationCacheRequest, patternId: UIA_PATTERN_ID) callconv(.@"inline") HRESULT {
         return self.vtable.AddPattern(self, patternId);
     }
     pub fn Clone(self: *const IUIAutomationCacheRequest, clonedRequest: ?*?*IUIAutomationCacheRequest) callconv(.@"inline") HRESULT {
@@ -4442,46 +4442,46 @@ pub const IUIAutomationElement = extern union {
         ) callconv(.winapi) HRESULT,
         GetCurrentPropertyValue: *const fn(
             self: *const IUIAutomationElement,
-            propertyId: i32,
+            propertyId: UIA_PROPERTY_ID,
             retVal: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
         GetCurrentPropertyValueEx: *const fn(
             self: *const IUIAutomationElement,
-            propertyId: i32,
+            propertyId: UIA_PROPERTY_ID,
             ignoreDefaultValue: BOOL,
             retVal: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
         GetCachedPropertyValue: *const fn(
             self: *const IUIAutomationElement,
-            propertyId: i32,
+            propertyId: UIA_PROPERTY_ID,
             retVal: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
         GetCachedPropertyValueEx: *const fn(
             self: *const IUIAutomationElement,
-            propertyId: i32,
+            propertyId: UIA_PROPERTY_ID,
             ignoreDefaultValue: BOOL,
             retVal: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
         GetCurrentPatternAs: *const fn(
             self: *const IUIAutomationElement,
-            patternId: i32,
+            patternId: UIA_PATTERN_ID,
             riid: ?*const Guid,
             patternObject: **anyopaque,
         ) callconv(.winapi) HRESULT,
         GetCachedPatternAs: *const fn(
             self: *const IUIAutomationElement,
-            patternId: i32,
+            patternId: UIA_PATTERN_ID,
             riid: ?*const Guid,
             patternObject: **anyopaque,
         ) callconv(.winapi) HRESULT,
         GetCurrentPattern: *const fn(
             self: *const IUIAutomationElement,
-            patternId: i32,
+            patternId: UIA_PATTERN_ID,
             patternObject: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
         GetCachedPattern: *const fn(
             self: *const IUIAutomationElement,
-            patternId: i32,
+            patternId: UIA_PATTERN_ID,
             patternObject: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
         GetCachedParent: *const fn(
@@ -4500,7 +4500,7 @@ pub const IUIAutomationElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentControlType: *const fn(
             self: *const IUIAutomationElement,
-            retVal: ?*i32,
+            retVal: ?*UIA_CONTROLTYPE_ID,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentLocalizedControlType: *const fn(
@@ -4660,7 +4660,7 @@ pub const IUIAutomationElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedControlType: *const fn(
             self: *const IUIAutomationElement,
-            retVal: ?*i32,
+            retVal: ?*UIA_CONTROLTYPE_ID,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedLocalizedControlType: *const fn(
@@ -4841,28 +4841,28 @@ pub const IUIAutomationElement = extern union {
     pub fn BuildUpdatedCache(self: *const IUIAutomationElement, cacheRequest: ?*IUIAutomationCacheRequest, updatedElement: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
         return self.vtable.BuildUpdatedCache(self, cacheRequest, updatedElement);
     }
-    pub fn GetCurrentPropertyValue(self: *const IUIAutomationElement, propertyId: i32, retVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn GetCurrentPropertyValue(self: *const IUIAutomationElement, propertyId: UIA_PROPERTY_ID, retVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentPropertyValue(self, propertyId, retVal);
     }
-    pub fn GetCurrentPropertyValueEx(self: *const IUIAutomationElement, propertyId: i32, ignoreDefaultValue: BOOL, retVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn GetCurrentPropertyValueEx(self: *const IUIAutomationElement, propertyId: UIA_PROPERTY_ID, ignoreDefaultValue: BOOL, retVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentPropertyValueEx(self, propertyId, ignoreDefaultValue, retVal);
     }
-    pub fn GetCachedPropertyValue(self: *const IUIAutomationElement, propertyId: i32, retVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn GetCachedPropertyValue(self: *const IUIAutomationElement, propertyId: UIA_PROPERTY_ID, retVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetCachedPropertyValue(self, propertyId, retVal);
     }
-    pub fn GetCachedPropertyValueEx(self: *const IUIAutomationElement, propertyId: i32, ignoreDefaultValue: BOOL, retVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn GetCachedPropertyValueEx(self: *const IUIAutomationElement, propertyId: UIA_PROPERTY_ID, ignoreDefaultValue: BOOL, retVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetCachedPropertyValueEx(self, propertyId, ignoreDefaultValue, retVal);
     }
-    pub fn GetCurrentPatternAs(self: *const IUIAutomationElement, patternId: i32, riid: ?*const Guid, patternObject: **anyopaque) callconv(.@"inline") HRESULT {
+    pub fn GetCurrentPatternAs(self: *const IUIAutomationElement, patternId: UIA_PATTERN_ID, riid: ?*const Guid, patternObject: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentPatternAs(self, patternId, riid, patternObject);
     }
-    pub fn GetCachedPatternAs(self: *const IUIAutomationElement, patternId: i32, riid: ?*const Guid, patternObject: **anyopaque) callconv(.@"inline") HRESULT {
+    pub fn GetCachedPatternAs(self: *const IUIAutomationElement, patternId: UIA_PATTERN_ID, riid: ?*const Guid, patternObject: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetCachedPatternAs(self, patternId, riid, patternObject);
     }
-    pub fn GetCurrentPattern(self: *const IUIAutomationElement, patternId: i32, patternObject: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+    pub fn GetCurrentPattern(self: *const IUIAutomationElement, patternId: UIA_PATTERN_ID, patternObject: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentPattern(self, patternId, patternObject);
     }
-    pub fn GetCachedPattern(self: *const IUIAutomationElement, patternId: i32, patternObject: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+    pub fn GetCachedPattern(self: *const IUIAutomationElement, patternId: UIA_PATTERN_ID, patternObject: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetCachedPattern(self, patternId, patternObject);
     }
     pub fn GetCachedParent(self: *const IUIAutomationElement, parent: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
@@ -4874,7 +4874,7 @@ pub const IUIAutomationElement = extern union {
     pub fn get_CurrentProcessId(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentProcessId(self, retVal);
     }
-    pub fn get_CurrentControlType(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_CurrentControlType(self: *const IUIAutomationElement, retVal: ?*UIA_CONTROLTYPE_ID) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentControlType(self, retVal);
     }
     pub fn get_CurrentLocalizedControlType(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -4970,7 +4970,7 @@ pub const IUIAutomationElement = extern union {
     pub fn get_CachedProcessId(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_CachedProcessId(self, retVal);
     }
-    pub fn get_CachedControlType(self: *const IUIAutomationElement, retVal: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_CachedControlType(self: *const IUIAutomationElement, retVal: ?*UIA_CONTROLTYPE_ID) callconv(.@"inline") HRESULT {
         return self.vtable.get_CachedControlType(self, retVal);
     }
     pub fn get_CachedLocalizedControlType(self: *const IUIAutomationElement, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -5266,7 +5266,7 @@ pub const IUIAutomationElement5 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentLandmarkType: *const fn(
             self: *const IUIAutomationElement5,
-            retVal: ?*i32,
+            retVal: ?*UIA_LANDMARKTYPE_ID,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentLocalizedLandmarkType: *const fn(
@@ -5276,7 +5276,7 @@ pub const IUIAutomationElement5 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedLandmarkType: *const fn(
             self: *const IUIAutomationElement5,
-            retVal: ?*i32,
+            retVal: ?*UIA_LANDMARKTYPE_ID,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedLocalizedLandmarkType: *const fn(
@@ -5290,13 +5290,13 @@ pub const IUIAutomationElement5 = extern union {
     IUIAutomationElement2: IUIAutomationElement2,
     IUIAutomationElement: IUIAutomationElement,
     IUnknown: IUnknown,
-    pub fn get_CurrentLandmarkType(self: *const IUIAutomationElement5, retVal: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_CurrentLandmarkType(self: *const IUIAutomationElement5, retVal: ?*UIA_LANDMARKTYPE_ID) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentLandmarkType(self, retVal);
     }
     pub fn get_CurrentLocalizedLandmarkType(self: *const IUIAutomationElement5, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentLocalizedLandmarkType(self, retVal);
     }
-    pub fn get_CachedLandmarkType(self: *const IUIAutomationElement5, retVal: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_CachedLandmarkType(self: *const IUIAutomationElement5, retVal: ?*UIA_LANDMARKTYPE_ID) callconv(.@"inline") HRESULT {
         return self.vtable.get_CachedLandmarkType(self, retVal);
     }
     pub fn get_CachedLocalizedLandmarkType(self: *const IUIAutomationElement5, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -5379,7 +5379,7 @@ pub const IUIAutomationElement7 = extern union {
         GetCurrentMetadataValue: *const fn(
             self: *const IUIAutomationElement7,
             targetId: i32,
-            metadataId: i32,
+            metadataId: UIA_METADATA_ID,
             returnVal: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
     };
@@ -5403,7 +5403,7 @@ pub const IUIAutomationElement7 = extern union {
     pub fn FindAllWithOptionsBuildCache(self: *const IUIAutomationElement7, scope: TreeScope, condition: ?*IUIAutomationCondition, cacheRequest: ?*IUIAutomationCacheRequest, traversalOptions: TreeTraversalOptions, root: ?*IUIAutomationElement, found: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
         return self.vtable.FindAllWithOptionsBuildCache(self, scope, condition, cacheRequest, traversalOptions, root, found);
     }
-    pub fn GetCurrentMetadataValue(self: *const IUIAutomationElement7, targetId: i32, metadataId: i32, returnVal: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn GetCurrentMetadataValue(self: *const IUIAutomationElement7, targetId: i32, metadataId: UIA_METADATA_ID, returnVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentMetadataValue(self, targetId, metadataId, returnVal);
     }
 };
@@ -5417,12 +5417,12 @@ pub const IUIAutomationElement8 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentHeadingLevel: *const fn(
             self: *const IUIAutomationElement8,
-            retVal: ?*i32,
+            retVal: ?*UIA_HEADINGLEVEL_ID,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedHeadingLevel: *const fn(
             self: *const IUIAutomationElement8,
-            retVal: ?*i32,
+            retVal: ?*UIA_HEADINGLEVEL_ID,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -5434,10 +5434,10 @@ pub const IUIAutomationElement8 = extern union {
     IUIAutomationElement2: IUIAutomationElement2,
     IUIAutomationElement: IUIAutomationElement,
     IUnknown: IUnknown,
-    pub fn get_CurrentHeadingLevel(self: *const IUIAutomationElement8, retVal: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_CurrentHeadingLevel(self: *const IUIAutomationElement8, retVal: ?*UIA_HEADINGLEVEL_ID) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentHeadingLevel(self, retVal);
     }
-    pub fn get_CachedHeadingLevel(self: *const IUIAutomationElement8, retVal: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_CachedHeadingLevel(self: *const IUIAutomationElement8, retVal: ?*UIA_HEADINGLEVEL_ID) callconv(.@"inline") HRESULT {
         return self.vtable.get_CachedHeadingLevel(self, retVal);
     }
 };
@@ -5513,12 +5513,12 @@ pub const IUIAutomationEventHandler = extern union {
         HandleAutomationEvent: *const fn(
             self: *const IUIAutomationEventHandler,
             sender: ?*IUIAutomationElement,
-            eventId: i32,
+            eventId: UIA_EVENT_ID,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn HandleAutomationEvent(self: *const IUIAutomationEventHandler, sender: ?*IUIAutomationElement, eventId: i32) callconv(.@"inline") HRESULT {
+    pub fn HandleAutomationEvent(self: *const IUIAutomationEventHandler, sender: ?*IUIAutomationElement, eventId: UIA_EVENT_ID) callconv(.@"inline") HRESULT {
         return self.vtable.HandleAutomationEvent(self, sender, eventId);
     }
 };
@@ -5537,7 +5537,7 @@ pub const IUIAutomationEventHandlerGroup = extern union {
         ) callconv(.winapi) HRESULT,
         AddAutomationEventHandler: *const fn(
             self: *const IUIAutomationEventHandlerGroup,
-            eventId: i32,
+            eventId: UIA_EVENT_ID,
             scope: TreeScope,
             cacheRequest: ?*IUIAutomationCacheRequest,
             handler: ?*IUIAutomationEventHandler,
@@ -5561,7 +5561,7 @@ pub const IUIAutomationEventHandlerGroup = extern union {
             scope: TreeScope,
             cacheRequest: ?*IUIAutomationCacheRequest,
             handler: ?*IUIAutomationPropertyChangedEventHandler,
-            propertyArray: [*]i32,
+            propertyArray: [*]UIA_PROPERTY_ID,
             propertyCount: i32,
         ) callconv(.winapi) HRESULT,
         AddStructureChangedEventHandler: *const fn(
@@ -5583,7 +5583,7 @@ pub const IUIAutomationEventHandlerGroup = extern union {
     pub fn AddActiveTextPositionChangedEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationActiveTextPositionChangedEventHandler) callconv(.@"inline") HRESULT {
         return self.vtable.AddActiveTextPositionChangedEventHandler(self, scope, cacheRequest, handler);
     }
-    pub fn AddAutomationEventHandler(self: *const IUIAutomationEventHandlerGroup, eventId: i32, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationEventHandler) callconv(.@"inline") HRESULT {
+    pub fn AddAutomationEventHandler(self: *const IUIAutomationEventHandlerGroup, eventId: UIA_EVENT_ID, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationEventHandler) callconv(.@"inline") HRESULT {
         return self.vtable.AddAutomationEventHandler(self, eventId, scope, cacheRequest, handler);
     }
     pub fn AddChangesEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, changeTypes: [*]i32, changesCount: i32, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationChangesEventHandler) callconv(.@"inline") HRESULT {
@@ -5592,7 +5592,7 @@ pub const IUIAutomationEventHandlerGroup = extern union {
     pub fn AddNotificationEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationNotificationEventHandler) callconv(.@"inline") HRESULT {
         return self.vtable.AddNotificationEventHandler(self, scope, cacheRequest, handler);
     }
-    pub fn AddPropertyChangedEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationPropertyChangedEventHandler, propertyArray: [*]i32, propertyCount: i32) callconv(.@"inline") HRESULT {
+    pub fn AddPropertyChangedEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationPropertyChangedEventHandler, propertyArray: [*]UIA_PROPERTY_ID, propertyCount: i32) callconv(.@"inline") HRESULT {
         return self.vtable.AddPropertyChangedEventHandler(self, scope, cacheRequest, handler, propertyArray, propertyCount);
     }
     pub fn AddStructureChangedEventHandler(self: *const IUIAutomationEventHandlerGroup, scope: TreeScope, cacheRequest: ?*IUIAutomationCacheRequest, handler: ?*IUIAutomationStructureChangedEventHandler) callconv(.@"inline") HRESULT {
@@ -5829,14 +5829,14 @@ pub const IUIAutomationItemContainerPattern = extern union {
         FindItemByProperty: *const fn(
             self: *const IUIAutomationItemContainerPattern,
             pStartAfter: ?*IUIAutomationElement,
-            propertyId: i32,
+            propertyId: UIA_PROPERTY_ID,
             value: VARIANT,
             pFound: ?*?*IUIAutomationElement,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FindItemByProperty(self: *const IUIAutomationItemContainerPattern, pStartAfter: ?*IUIAutomationElement, propertyId: i32, value: VARIANT, pFound: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
+    pub fn FindItemByProperty(self: *const IUIAutomationItemContainerPattern, pStartAfter: ?*IUIAutomationElement, propertyId: UIA_PROPERTY_ID, value: VARIANT, pFound: ?*?*IUIAutomationElement) callconv(.@"inline") HRESULT {
         return self.vtable.FindItemByProperty(self, pStartAfter, propertyId, value, pFound);
     }
 };
@@ -6255,13 +6255,13 @@ pub const IUIAutomationPropertyChangedEventHandler = extern union {
         HandlePropertyChangedEvent: *const fn(
             self: *const IUIAutomationPropertyChangedEventHandler,
             sender: ?*IUIAutomationElement,
-            propertyId: i32,
+            propertyId: UIA_PROPERTY_ID,
             newValue: VARIANT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn HandlePropertyChangedEvent(self: *const IUIAutomationPropertyChangedEventHandler, sender: ?*IUIAutomationElement, propertyId: i32, newValue: VARIANT) callconv(.@"inline") HRESULT {
+    pub fn HandlePropertyChangedEvent(self: *const IUIAutomationPropertyChangedEventHandler, sender: ?*IUIAutomationElement, propertyId: UIA_PROPERTY_ID, newValue: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.HandlePropertyChangedEvent(self, sender, propertyId, newValue);
     }
 };
@@ -6275,7 +6275,7 @@ pub const IUIAutomationPropertyCondition = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyId: *const fn(
             self: *const IUIAutomationPropertyCondition,
-            propertyId: ?*i32,
+            propertyId: ?*UIA_PROPERTY_ID,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyValue: *const fn(
@@ -6291,7 +6291,7 @@ pub const IUIAutomationPropertyCondition = extern union {
     vtable: *const VTable,
     IUIAutomationCondition: IUIAutomationCondition,
     IUnknown: IUnknown,
-    pub fn get_PropertyId(self: *const IUIAutomationPropertyCondition, propertyId: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_PropertyId(self: *const IUIAutomationPropertyCondition, propertyId: ?*UIA_PROPERTY_ID) callconv(.@"inline") HRESULT {
         return self.vtable.get_PropertyId(self, propertyId);
     }
     pub fn get_PropertyValue(self: *const IUIAutomationPropertyCondition, propertyValue: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -6394,14 +6394,14 @@ pub const IUIAutomationProxyFactoryEntry = extern union {
         ) callconv(.winapi) HRESULT,
         SetWinEventsForAutomationEvent: *const fn(
             self: *const IUIAutomationProxyFactoryEntry,
-            eventId: i32,
-            propertyId: i32,
+            eventId: UIA_EVENT_ID,
+            propertyId: UIA_PROPERTY_ID,
             winEvents: ?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
         GetWinEventsForAutomationEvent: *const fn(
             self: *const IUIAutomationProxyFactoryEntry,
-            eventId: i32,
-            propertyId: i32,
+            eventId: UIA_EVENT_ID,
+            propertyId: UIA_PROPERTY_ID,
             winEvents: ?*?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
     };
@@ -6440,10 +6440,10 @@ pub const IUIAutomationProxyFactoryEntry = extern union {
     pub fn put_NeedsAdviseEvents(self: *const IUIAutomationProxyFactoryEntry, adviseEvents: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_NeedsAdviseEvents(self, adviseEvents);
     }
-    pub fn SetWinEventsForAutomationEvent(self: *const IUIAutomationProxyFactoryEntry, eventId: i32, propertyId: i32, winEvents: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+    pub fn SetWinEventsForAutomationEvent(self: *const IUIAutomationProxyFactoryEntry, eventId: UIA_EVENT_ID, propertyId: UIA_PROPERTY_ID, winEvents: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.SetWinEventsForAutomationEvent(self, eventId, propertyId, winEvents);
     }
-    pub fn GetWinEventsForAutomationEvent(self: *const IUIAutomationProxyFactoryEntry, eventId: i32, propertyId: i32, winEvents: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+    pub fn GetWinEventsForAutomationEvent(self: *const IUIAutomationProxyFactoryEntry, eventId: UIA_EVENT_ID, propertyId: UIA_PROPERTY_ID, winEvents: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.GetWinEventsForAutomationEvent(self, eventId, propertyId, winEvents);
     }
 };
@@ -7115,7 +7115,7 @@ pub const IUIAutomationStylesPattern = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentStyleId: *const fn(
             self: *const IUIAutomationStylesPattern,
-            retVal: ?*i32,
+            retVal: ?*UIA_STYLE_ID,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentStyleName: *const fn(
@@ -7155,7 +7155,7 @@ pub const IUIAutomationStylesPattern = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedStyleId: *const fn(
             self: *const IUIAutomationStylesPattern,
-            retVal: ?*i32,
+            retVal: ?*UIA_STYLE_ID,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedStyleName: *const fn(
@@ -7195,7 +7195,7 @@ pub const IUIAutomationStylesPattern = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_CurrentStyleId(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_CurrentStyleId(self: *const IUIAutomationStylesPattern, retVal: ?*UIA_STYLE_ID) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentStyleId(self, retVal);
     }
     pub fn get_CurrentStyleName(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -7219,7 +7219,7 @@ pub const IUIAutomationStylesPattern = extern union {
     pub fn GetCurrentExtendedPropertiesAsArray(self: *const IUIAutomationStylesPattern, propertyArray: ?*?*ExtendedProperty, propertyCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentExtendedPropertiesAsArray(self, propertyArray, propertyCount);
     }
-    pub fn get_CachedStyleId(self: *const IUIAutomationStylesPattern, retVal: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_CachedStyleId(self: *const IUIAutomationStylesPattern, retVal: ?*UIA_STYLE_ID) callconv(.@"inline") HRESULT {
         return self.vtable.get_CachedStyleId(self, retVal);
     }
     pub fn get_CachedStyleName(self: *const IUIAutomationStylesPattern, retVal: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -7549,7 +7549,7 @@ pub const IUIAutomationTextRange = extern union {
         ) callconv(.winapi) HRESULT,
         FindAttribute: *const fn(
             self: *const IUIAutomationTextRange,
-            attr: i32,
+            attr: UIA_TEXTATTRIBUTE_ID,
             val: VARIANT,
             backward: BOOL,
             found: ?*?*IUIAutomationTextRange,
@@ -7563,7 +7563,7 @@ pub const IUIAutomationTextRange = extern union {
         ) callconv(.winapi) HRESULT,
         GetAttributeValue: *const fn(
             self: *const IUIAutomationTextRange,
-            attr: i32,
+            attr: UIA_TEXTATTRIBUTE_ID,
             value: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
         GetBoundingRectangles: *const fn(
@@ -7630,13 +7630,13 @@ pub const IUIAutomationTextRange = extern union {
     pub fn ExpandToEnclosingUnit(self: *const IUIAutomationTextRange, textUnit: TextUnit) callconv(.@"inline") HRESULT {
         return self.vtable.ExpandToEnclosingUnit(self, textUnit);
     }
-    pub fn FindAttribute(self: *const IUIAutomationTextRange, attr: i32, val: VARIANT, backward: BOOL, found: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
+    pub fn FindAttribute(self: *const IUIAutomationTextRange, attr: UIA_TEXTATTRIBUTE_ID, val: VARIANT, backward: BOOL, found: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
         return self.vtable.FindAttribute(self, attr, val, backward, found);
     }
     pub fn FindText(self: *const IUIAutomationTextRange, text: ?BSTR, backward: BOOL, ignoreCase: BOOL, found: ?*?*IUIAutomationTextRange) callconv(.@"inline") HRESULT {
         return self.vtable.FindText(self, text, backward, ignoreCase, found);
     }
-    pub fn GetAttributeValue(self: *const IUIAutomationTextRange, attr: i32, value: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn GetAttributeValue(self: *const IUIAutomationTextRange, attr: UIA_TEXTATTRIBUTE_ID, value: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttributeValue(self, attr, value);
     }
     pub fn GetBoundingRectangles(self: *const IUIAutomationTextRange, boundingRects: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
@@ -7710,7 +7710,7 @@ pub const IUIAutomationTextRange3 = extern union {
         ) callconv(.winapi) HRESULT,
         GetAttributeValues: *const fn(
             self: *const IUIAutomationTextRange3,
-            attributeIds: [*]const i32,
+            attributeIds: [*]const UIA_TEXTATTRIBUTE_ID,
             attributeIdCount: i32,
             attributeValues: ?*?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
@@ -7725,7 +7725,7 @@ pub const IUIAutomationTextRange3 = extern union {
     pub fn GetChildrenBuildCache(self: *const IUIAutomationTextRange3, cacheRequest: ?*IUIAutomationCacheRequest, children: ?*?*IUIAutomationElementArray) callconv(.@"inline") HRESULT {
         return self.vtable.GetChildrenBuildCache(self, cacheRequest, children);
     }
-    pub fn GetAttributeValues(self: *const IUIAutomationTextRange3, attributeIds: [*]const i32, attributeIdCount: i32, attributeValues: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+    pub fn GetAttributeValues(self: *const IUIAutomationTextRange3, attributeIds: [*]const UIA_TEXTATTRIBUTE_ID, attributeIdCount: i32, attributeValues: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttributeValues(self, attributeIds, attributeIdCount, attributeValues);
     }
 };

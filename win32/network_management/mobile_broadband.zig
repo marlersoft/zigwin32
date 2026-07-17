@@ -681,7 +681,7 @@ pub const IMbnInterface = extern union {
         ) callconv(.winapi) HRESULT,
         InEmergencyMode: *const fn(
             self: *const IMbnInterface,
-            emergencyMode: ?*i16,
+            emergencyMode: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetHomeProvider: *const fn(
             self: *const IMbnInterface,
@@ -724,7 +724,7 @@ pub const IMbnInterface = extern union {
     pub fn GetReadyState(self: *const IMbnInterface, readyState: ?*MBN_READY_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.GetReadyState(self, readyState);
     }
-    pub fn InEmergencyMode(self: *const IMbnInterface, emergencyMode: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn InEmergencyMode(self: *const IMbnInterface, emergencyMode: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.InEmergencyMode(self, emergencyMode);
     }
     pub fn GetHomeProvider(self: *const IMbnInterface, homeProvider: ?*MBN_PROVIDER) callconv(.@"inline") HRESULT {
@@ -1632,7 +1632,7 @@ pub const IMbnSmsEvents = extern union {
             sms: ?*IMbnSms,
             smsFormat: MBN_SMS_FORMAT,
             readMsgs: ?*SAFEARRAY,
-            moreMsgs: i16,
+            moreMsgs: VARIANT_BOOL,
             requestID: u32,
             status: HRESULT,
         ) callconv(.winapi) HRESULT,
@@ -1664,7 +1664,7 @@ pub const IMbnSmsEvents = extern union {
     pub fn OnSmsSendComplete(self: *const IMbnSmsEvents, sms: ?*IMbnSms, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.OnSmsSendComplete(self, sms, requestID, status);
     }
-    pub fn OnSmsReadComplete(self: *const IMbnSmsEvents, sms: ?*IMbnSms, smsFormat: MBN_SMS_FORMAT, readMsgs: ?*SAFEARRAY, moreMsgs: i16, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
+    pub fn OnSmsReadComplete(self: *const IMbnSmsEvents, sms: ?*IMbnSms, smsFormat: MBN_SMS_FORMAT, readMsgs: ?*SAFEARRAY, moreMsgs: VARIANT_BOOL, requestID: u32, status: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.OnSmsReadComplete(self, sms, smsFormat, readMsgs, moreMsgs, requestID, status);
     }
     pub fn OnSmsNewClass0Message(self: *const IMbnSmsEvents, sms: ?*IMbnSms, smsFormat: MBN_SMS_FORMAT, readMsgs: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
@@ -2066,8 +2066,8 @@ pub const MBN_DATA_CLASS_CUSTOM = MBN_DATA_CLASS.CUSTOM;
 
 pub const MBN_DEVICE_SERVICE = extern struct {
     deviceServiceID: ?BSTR,
-    dataWriteSupported: i16,
-    dataReadSupported: i16,
+    dataWriteSupported: VARIANT_BOOL,
+    dataReadSupported: VARIANT_BOOL,
 };
 
 pub const MBN_DEVICE_SERVICE_SESSIONS_STATE = enum(i32) {
@@ -2441,7 +2441,7 @@ pub const MBN_CDMA_SHORT_MSG_SIZE_MAX = WWAEXT_SMS_CONSTANTS.CDMA_SHORT_MSG_SIZE
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -2451,6 +2451,7 @@ const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     @setEvalBranchQuota(

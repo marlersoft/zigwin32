@@ -714,22 +714,22 @@ pub const IDiscFormat2 = extern union {
         IsRecorderSupported: *const fn(
             self: *const IDiscFormat2,
             recorder: ?*IDiscRecorder2,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         IsCurrentMediaSupported: *const fn(
             self: *const IDiscFormat2,
             recorder: ?*IDiscRecorder2,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MediaPhysicallyBlank: *const fn(
             self: *const IDiscFormat2,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MediaHeuristicallyBlank: *const fn(
             self: *const IDiscFormat2,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedMediaTypes: *const fn(
@@ -740,16 +740,16 @@ pub const IDiscFormat2 = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn IsRecorderSupported(self: *const IDiscFormat2, recorder: ?*IDiscRecorder2, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsRecorderSupported(self: *const IDiscFormat2, recorder: ?*IDiscRecorder2, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsRecorderSupported(self, recorder, value);
     }
-    pub fn IsCurrentMediaSupported(self: *const IDiscFormat2, recorder: ?*IDiscRecorder2, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsCurrentMediaSupported(self: *const IDiscFormat2, recorder: ?*IDiscRecorder2, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsCurrentMediaSupported(self, recorder, value);
     }
-    pub fn get_MediaPhysicallyBlank(self: *const IDiscFormat2, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_MediaPhysicallyBlank(self: *const IDiscFormat2, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_MediaPhysicallyBlank(self, value);
     }
-    pub fn get_MediaHeuristicallyBlank(self: *const IDiscFormat2, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_MediaHeuristicallyBlank(self: *const IDiscFormat2, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_MediaHeuristicallyBlank(self, value);
     }
     pub fn get_SupportedMediaTypes(self: *const IDiscFormat2, value: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
@@ -776,22 +776,22 @@ pub const IDiscFormat2Data = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BufferUnderrunFreeDisabled: *const fn(
             self: *const IDiscFormat2Data,
-            value: i16,
+            value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BufferUnderrunFreeDisabled: *const fn(
             self: *const IDiscFormat2Data,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PostgapAlreadyInImage: *const fn(
             self: *const IDiscFormat2Data,
-            value: i16,
+            value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PostgapAlreadyInImage: *const fn(
             self: *const IDiscFormat2Data,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentMediaStatus: *const fn(
@@ -831,22 +831,22 @@ pub const IDiscFormat2Data = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ForceMediaToBeClosed: *const fn(
             self: *const IDiscFormat2Data,
-            value: i16,
+            value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ForceMediaToBeClosed: *const fn(
             self: *const IDiscFormat2Data,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisableConsumerDvdCompatibilityMode: *const fn(
             self: *const IDiscFormat2Data,
-            value: i16,
+            value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisableConsumerDvdCompatibilityMode: *const fn(
             self: *const IDiscFormat2Data,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentPhysicalMediaType: *const fn(
@@ -871,7 +871,7 @@ pub const IDiscFormat2Data = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequestedRotationTypeIsPureCAV: *const fn(
             self: *const IDiscFormat2Data,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentWriteSpeed: *const fn(
@@ -881,7 +881,7 @@ pub const IDiscFormat2Data = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentRotationTypeIsPureCAV: *const fn(
             self: *const IDiscFormat2Data,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedWriteSpeeds: *const fn(
@@ -896,12 +896,12 @@ pub const IDiscFormat2Data = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ForceOverwrite: *const fn(
             self: *const IDiscFormat2Data,
-            value: i16,
+            value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ForceOverwrite: *const fn(
             self: *const IDiscFormat2Data,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MultisessionInterfaces: *const fn(
@@ -918,7 +918,7 @@ pub const IDiscFormat2Data = extern union {
         SetWriteSpeed: *const fn(
             self: *const IDiscFormat2Data,
             RequestedSectorsPerSecond: i32,
-            RotationTypeIsPureCAV: i16,
+            RotationTypeIsPureCAV: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -931,16 +931,16 @@ pub const IDiscFormat2Data = extern union {
     pub fn get_Recorder(self: *const IDiscFormat2Data, value: ?*?*IDiscRecorder2) callconv(.@"inline") HRESULT {
         return self.vtable.get_Recorder(self, value);
     }
-    pub fn put_BufferUnderrunFreeDisabled(self: *const IDiscFormat2Data, value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_BufferUnderrunFreeDisabled(self: *const IDiscFormat2Data, value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_BufferUnderrunFreeDisabled(self, value);
     }
-    pub fn get_BufferUnderrunFreeDisabled(self: *const IDiscFormat2Data, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_BufferUnderrunFreeDisabled(self: *const IDiscFormat2Data, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_BufferUnderrunFreeDisabled(self, value);
     }
-    pub fn put_PostgapAlreadyInImage(self: *const IDiscFormat2Data, value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_PostgapAlreadyInImage(self: *const IDiscFormat2Data, value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_PostgapAlreadyInImage(self, value);
     }
-    pub fn get_PostgapAlreadyInImage(self: *const IDiscFormat2Data, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_PostgapAlreadyInImage(self: *const IDiscFormat2Data, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_PostgapAlreadyInImage(self, value);
     }
     pub fn get_CurrentMediaStatus(self: *const IDiscFormat2Data, value: ?*IMAPI_FORMAT2_DATA_MEDIA_STATE) callconv(.@"inline") HRESULT {
@@ -964,16 +964,16 @@ pub const IDiscFormat2Data = extern union {
     pub fn get_LastWrittenAddressOfPreviousSession(self: *const IDiscFormat2Data, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_LastWrittenAddressOfPreviousSession(self, value);
     }
-    pub fn put_ForceMediaToBeClosed(self: *const IDiscFormat2Data, value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_ForceMediaToBeClosed(self: *const IDiscFormat2Data, value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_ForceMediaToBeClosed(self, value);
     }
-    pub fn get_ForceMediaToBeClosed(self: *const IDiscFormat2Data, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_ForceMediaToBeClosed(self: *const IDiscFormat2Data, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ForceMediaToBeClosed(self, value);
     }
-    pub fn put_DisableConsumerDvdCompatibilityMode(self: *const IDiscFormat2Data, value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_DisableConsumerDvdCompatibilityMode(self: *const IDiscFormat2Data, value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_DisableConsumerDvdCompatibilityMode(self, value);
     }
-    pub fn get_DisableConsumerDvdCompatibilityMode(self: *const IDiscFormat2Data, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_DisableConsumerDvdCompatibilityMode(self: *const IDiscFormat2Data, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_DisableConsumerDvdCompatibilityMode(self, value);
     }
     pub fn get_CurrentPhysicalMediaType(self: *const IDiscFormat2Data, value: ?*IMAPI_MEDIA_PHYSICAL_TYPE) callconv(.@"inline") HRESULT {
@@ -988,13 +988,13 @@ pub const IDiscFormat2Data = extern union {
     pub fn get_RequestedWriteSpeed(self: *const IDiscFormat2Data, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_RequestedWriteSpeed(self, value);
     }
-    pub fn get_RequestedRotationTypeIsPureCAV(self: *const IDiscFormat2Data, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_RequestedRotationTypeIsPureCAV(self: *const IDiscFormat2Data, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_RequestedRotationTypeIsPureCAV(self, value);
     }
     pub fn get_CurrentWriteSpeed(self: *const IDiscFormat2Data, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentWriteSpeed(self, value);
     }
-    pub fn get_CurrentRotationTypeIsPureCAV(self: *const IDiscFormat2Data, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_CurrentRotationTypeIsPureCAV(self: *const IDiscFormat2Data, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentRotationTypeIsPureCAV(self, value);
     }
     pub fn get_SupportedWriteSpeeds(self: *const IDiscFormat2Data, supportedSpeeds: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
@@ -1003,10 +1003,10 @@ pub const IDiscFormat2Data = extern union {
     pub fn get_SupportedWriteSpeedDescriptors(self: *const IDiscFormat2Data, supportedSpeedDescriptors: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_SupportedWriteSpeedDescriptors(self, supportedSpeedDescriptors);
     }
-    pub fn put_ForceOverwrite(self: *const IDiscFormat2Data, value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_ForceOverwrite(self: *const IDiscFormat2Data, value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_ForceOverwrite(self, value);
     }
-    pub fn get_ForceOverwrite(self: *const IDiscFormat2Data, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_ForceOverwrite(self: *const IDiscFormat2Data, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ForceOverwrite(self, value);
     }
     pub fn get_MultisessionInterfaces(self: *const IDiscFormat2Data, value: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
@@ -1018,7 +1018,7 @@ pub const IDiscFormat2Data = extern union {
     pub fn CancelWrite(self: *const IDiscFormat2Data) callconv(.@"inline") HRESULT {
         return self.vtable.CancelWrite(self);
     }
-    pub fn SetWriteSpeed(self: *const IDiscFormat2Data, RequestedSectorsPerSecond: i32, RotationTypeIsPureCAV: i16) callconv(.@"inline") HRESULT {
+    pub fn SetWriteSpeed(self: *const IDiscFormat2Data, RequestedSectorsPerSecond: i32, RotationTypeIsPureCAV: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetWriteSpeed(self, RequestedSectorsPerSecond, RotationTypeIsPureCAV);
     }
 };
@@ -1087,12 +1087,12 @@ pub const IDiscFormat2Erase = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FullErase: *const fn(
             self: *const IDiscFormat2Erase,
-            value: i16,
+            value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FullErase: *const fn(
             self: *const IDiscFormat2Erase,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentPhysicalMediaType: *const fn(
@@ -1123,10 +1123,10 @@ pub const IDiscFormat2Erase = extern union {
     pub fn get_Recorder(self: *const IDiscFormat2Erase, value: ?*?*IDiscRecorder2) callconv(.@"inline") HRESULT {
         return self.vtable.get_Recorder(self, value);
     }
-    pub fn put_FullErase(self: *const IDiscFormat2Erase, value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_FullErase(self: *const IDiscFormat2Erase, value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_FullErase(self, value);
     }
-    pub fn get_FullErase(self: *const IDiscFormat2Erase, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_FullErase(self: *const IDiscFormat2Erase, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_FullErase(self, value);
     }
     pub fn get_CurrentPhysicalMediaType(self: *const IDiscFormat2Erase, value: ?*IMAPI_MEDIA_PHYSICAL_TYPE) callconv(.@"inline") HRESULT {
@@ -1170,7 +1170,7 @@ pub const IDiscFormat2RawCD = extern union {
         SetWriteSpeed: *const fn(
             self: *const IDiscFormat2RawCD,
             RequestedSectorsPerSecond: i32,
-            RotationTypeIsPureCAV: i16,
+            RotationTypeIsPureCAV: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Recorder: *const fn(
@@ -1185,12 +1185,12 @@ pub const IDiscFormat2RawCD = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BufferUnderrunFreeDisabled: *const fn(
             self: *const IDiscFormat2RawCD,
-            value: i16,
+            value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BufferUnderrunFreeDisabled: *const fn(
             self: *const IDiscFormat2RawCD,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartOfNextSession: *const fn(
@@ -1240,7 +1240,7 @@ pub const IDiscFormat2RawCD = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequestedRotationTypeIsPureCAV: *const fn(
             self: *const IDiscFormat2RawCD,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentWriteSpeed: *const fn(
@@ -1250,7 +1250,7 @@ pub const IDiscFormat2RawCD = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentRotationTypeIsPureCAV: *const fn(
             self: *const IDiscFormat2RawCD,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedWriteSpeeds: *const fn(
@@ -1282,7 +1282,7 @@ pub const IDiscFormat2RawCD = extern union {
     pub fn ReleaseMedia(self: *const IDiscFormat2RawCD) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseMedia(self);
     }
-    pub fn SetWriteSpeed(self: *const IDiscFormat2RawCD, RequestedSectorsPerSecond: i32, RotationTypeIsPureCAV: i16) callconv(.@"inline") HRESULT {
+    pub fn SetWriteSpeed(self: *const IDiscFormat2RawCD, RequestedSectorsPerSecond: i32, RotationTypeIsPureCAV: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetWriteSpeed(self, RequestedSectorsPerSecond, RotationTypeIsPureCAV);
     }
     pub fn put_Recorder(self: *const IDiscFormat2RawCD, value: ?*IDiscRecorder2) callconv(.@"inline") HRESULT {
@@ -1291,10 +1291,10 @@ pub const IDiscFormat2RawCD = extern union {
     pub fn get_Recorder(self: *const IDiscFormat2RawCD, value: ?*?*IDiscRecorder2) callconv(.@"inline") HRESULT {
         return self.vtable.get_Recorder(self, value);
     }
-    pub fn put_BufferUnderrunFreeDisabled(self: *const IDiscFormat2RawCD, value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_BufferUnderrunFreeDisabled(self: *const IDiscFormat2RawCD, value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_BufferUnderrunFreeDisabled(self, value);
     }
-    pub fn get_BufferUnderrunFreeDisabled(self: *const IDiscFormat2RawCD, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_BufferUnderrunFreeDisabled(self: *const IDiscFormat2RawCD, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_BufferUnderrunFreeDisabled(self, value);
     }
     pub fn get_StartOfNextSession(self: *const IDiscFormat2RawCD, value: ?*i32) callconv(.@"inline") HRESULT {
@@ -1324,13 +1324,13 @@ pub const IDiscFormat2RawCD = extern union {
     pub fn get_RequestedWriteSpeed(self: *const IDiscFormat2RawCD, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_RequestedWriteSpeed(self, value);
     }
-    pub fn get_RequestedRotationTypeIsPureCAV(self: *const IDiscFormat2RawCD, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_RequestedRotationTypeIsPureCAV(self: *const IDiscFormat2RawCD, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_RequestedRotationTypeIsPureCAV(self, value);
     }
     pub fn get_CurrentWriteSpeed(self: *const IDiscFormat2RawCD, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentWriteSpeed(self, value);
     }
-    pub fn get_CurrentRotationTypeIsPureCAV(self: *const IDiscFormat2RawCD, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_CurrentRotationTypeIsPureCAV(self: *const IDiscFormat2RawCD, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentRotationTypeIsPureCAV(self, value);
     }
     pub fn get_SupportedWriteSpeeds(self: *const IDiscFormat2RawCD, supportedSpeeds: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
@@ -1400,7 +1400,7 @@ pub const IDiscFormat2TrackAtOnce = extern union {
         SetWriteSpeed: *const fn(
             self: *const IDiscFormat2TrackAtOnce,
             RequestedSectorsPerSecond: i32,
-            RotationTypeIsPureCAV: i16,
+            RotationTypeIsPureCAV: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Recorder: *const fn(
@@ -1415,12 +1415,12 @@ pub const IDiscFormat2TrackAtOnce = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BufferUnderrunFreeDisabled: *const fn(
             self: *const IDiscFormat2TrackAtOnce,
-            value: i16,
+            value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BufferUnderrunFreeDisabled: *const fn(
             self: *const IDiscFormat2TrackAtOnce,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NumberOfExistingTracks: *const fn(
@@ -1445,12 +1445,12 @@ pub const IDiscFormat2TrackAtOnce = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DoNotFinalizeMedia: *const fn(
             self: *const IDiscFormat2TrackAtOnce,
-            value: i16,
+            value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DoNotFinalizeMedia: *const fn(
             self: *const IDiscFormat2TrackAtOnce,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExpectedTableOfContents: *const fn(
@@ -1480,7 +1480,7 @@ pub const IDiscFormat2TrackAtOnce = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequestedRotationTypeIsPureCAV: *const fn(
             self: *const IDiscFormat2TrackAtOnce,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentWriteSpeed: *const fn(
@@ -1490,7 +1490,7 @@ pub const IDiscFormat2TrackAtOnce = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentRotationTypeIsPureCAV: *const fn(
             self: *const IDiscFormat2TrackAtOnce,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedWriteSpeeds: *const fn(
@@ -1519,7 +1519,7 @@ pub const IDiscFormat2TrackAtOnce = extern union {
     pub fn ReleaseMedia(self: *const IDiscFormat2TrackAtOnce) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseMedia(self);
     }
-    pub fn SetWriteSpeed(self: *const IDiscFormat2TrackAtOnce, RequestedSectorsPerSecond: i32, RotationTypeIsPureCAV: i16) callconv(.@"inline") HRESULT {
+    pub fn SetWriteSpeed(self: *const IDiscFormat2TrackAtOnce, RequestedSectorsPerSecond: i32, RotationTypeIsPureCAV: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetWriteSpeed(self, RequestedSectorsPerSecond, RotationTypeIsPureCAV);
     }
     pub fn put_Recorder(self: *const IDiscFormat2TrackAtOnce, value: ?*IDiscRecorder2) callconv(.@"inline") HRESULT {
@@ -1528,10 +1528,10 @@ pub const IDiscFormat2TrackAtOnce = extern union {
     pub fn get_Recorder(self: *const IDiscFormat2TrackAtOnce, value: ?*?*IDiscRecorder2) callconv(.@"inline") HRESULT {
         return self.vtable.get_Recorder(self, value);
     }
-    pub fn put_BufferUnderrunFreeDisabled(self: *const IDiscFormat2TrackAtOnce, value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_BufferUnderrunFreeDisabled(self: *const IDiscFormat2TrackAtOnce, value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_BufferUnderrunFreeDisabled(self, value);
     }
-    pub fn get_BufferUnderrunFreeDisabled(self: *const IDiscFormat2TrackAtOnce, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_BufferUnderrunFreeDisabled(self: *const IDiscFormat2TrackAtOnce, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_BufferUnderrunFreeDisabled(self, value);
     }
     pub fn get_NumberOfExistingTracks(self: *const IDiscFormat2TrackAtOnce, value: ?*i32) callconv(.@"inline") HRESULT {
@@ -1546,10 +1546,10 @@ pub const IDiscFormat2TrackAtOnce = extern union {
     pub fn get_UsedSectorsOnMedia(self: *const IDiscFormat2TrackAtOnce, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_UsedSectorsOnMedia(self, value);
     }
-    pub fn put_DoNotFinalizeMedia(self: *const IDiscFormat2TrackAtOnce, value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_DoNotFinalizeMedia(self: *const IDiscFormat2TrackAtOnce, value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_DoNotFinalizeMedia(self, value);
     }
-    pub fn get_DoNotFinalizeMedia(self: *const IDiscFormat2TrackAtOnce, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_DoNotFinalizeMedia(self: *const IDiscFormat2TrackAtOnce, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_DoNotFinalizeMedia(self, value);
     }
     pub fn get_ExpectedTableOfContents(self: *const IDiscFormat2TrackAtOnce, value: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
@@ -1567,13 +1567,13 @@ pub const IDiscFormat2TrackAtOnce = extern union {
     pub fn get_RequestedWriteSpeed(self: *const IDiscFormat2TrackAtOnce, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_RequestedWriteSpeed(self, value);
     }
-    pub fn get_RequestedRotationTypeIsPureCAV(self: *const IDiscFormat2TrackAtOnce, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_RequestedRotationTypeIsPureCAV(self: *const IDiscFormat2TrackAtOnce, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_RequestedRotationTypeIsPureCAV(self, value);
     }
     pub fn get_CurrentWriteSpeed(self: *const IDiscFormat2TrackAtOnce, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentWriteSpeed(self, value);
     }
-    pub fn get_CurrentRotationTypeIsPureCAV(self: *const IDiscFormat2TrackAtOnce, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_CurrentRotationTypeIsPureCAV(self: *const IDiscFormat2TrackAtOnce, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentRotationTypeIsPureCAV(self, value);
     }
     pub fn get_SupportedWriteSpeeds(self: *const IDiscFormat2TrackAtOnce, supportedSpeeds: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
@@ -1748,7 +1748,7 @@ pub const IDiscMaster2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsSupportedEnvironment: *const fn(
             self: *const IDiscMaster2,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1763,7 +1763,7 @@ pub const IDiscMaster2 = extern union {
     pub fn get_Count(self: *const IDiscMaster2, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, value);
     }
-    pub fn get_IsSupportedEnvironment(self: *const IDiscMaster2, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsSupportedEnvironment(self: *const IDiscMaster2, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsSupportedEnvironment(self, value);
     }
 };
@@ -1982,7 +1982,7 @@ pub const IDiscRecorder2 = extern union {
         ) callconv(.winapi) HRESULT,
         AcquireExclusiveAccess: *const fn(
             self: *const IDiscRecorder2,
-            force: i16,
+            force: VARIANT_BOOL,
             __MIDL__IDiscRecorder20000: ?BSTR,
         ) callconv(.winapi) HRESULT,
         ReleaseExclusiveAccess: *const fn(
@@ -2031,7 +2031,7 @@ pub const IDiscRecorder2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeviceCanLoadMedia: *const fn(
             self: *const IDiscRecorder2,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LegacyDeviceNumber: *const fn(
@@ -2078,7 +2078,7 @@ pub const IDiscRecorder2 = extern union {
     pub fn CloseTray(self: *const IDiscRecorder2) callconv(.@"inline") HRESULT {
         return self.vtable.CloseTray(self);
     }
-    pub fn AcquireExclusiveAccess(self: *const IDiscRecorder2, force: i16, __MIDL__IDiscRecorder20000: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn AcquireExclusiveAccess(self: *const IDiscRecorder2, force: VARIANT_BOOL, __MIDL__IDiscRecorder20000: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.AcquireExclusiveAccess(self, force, __MIDL__IDiscRecorder20000);
     }
     pub fn ReleaseExclusiveAccess(self: *const IDiscRecorder2) callconv(.@"inline") HRESULT {
@@ -2111,7 +2111,7 @@ pub const IDiscRecorder2 = extern union {
     pub fn get_VolumePathNames(self: *const IDiscRecorder2, value: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_VolumePathNames(self, value);
     }
-    pub fn get_DeviceCanLoadMedia(self: *const IDiscRecorder2, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_DeviceCanLoadMedia(self: *const IDiscRecorder2, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_DeviceCanLoadMedia(self, value);
     }
     pub fn get_LegacyDeviceNumber(self: *const IDiscRecorder2, legacyDeviceNumber: ?*i32) callconv(.@"inline") HRESULT {
@@ -2566,22 +2566,22 @@ pub const IFileSystemImage = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StrictFileSystemCompliance: *const fn(
             self: *const IFileSystemImage,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StrictFileSystemCompliance: *const fn(
             self: *const IFileSystemImage,
-            newVal: i16,
+            newVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseRestrictedCharacterSet: *const fn(
             self: *const IFileSystemImage,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseRestrictedCharacterSet: *const fn(
             self: *const IFileSystemImage,
-            newVal: i16,
+            newVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FileSystemsToCreate: *const fn(
@@ -2702,12 +2702,12 @@ pub const IFileSystemImage = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StageFiles: *const fn(
             self: *const IFileSystemImage,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StageFiles: *const fn(
             self: *const IFileSystemImage,
-            newVal: i16,
+            newVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MultisessionInterfaces: *const fn(
@@ -2774,16 +2774,16 @@ pub const IFileSystemImage = extern union {
     pub fn get_ChangePoint(self: *const IFileSystemImage, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_ChangePoint(self, pVal);
     }
-    pub fn get_StrictFileSystemCompliance(self: *const IFileSystemImage, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_StrictFileSystemCompliance(self: *const IFileSystemImage, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_StrictFileSystemCompliance(self, pVal);
     }
-    pub fn put_StrictFileSystemCompliance(self: *const IFileSystemImage, newVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_StrictFileSystemCompliance(self: *const IFileSystemImage, newVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_StrictFileSystemCompliance(self, newVal);
     }
-    pub fn get_UseRestrictedCharacterSet(self: *const IFileSystemImage, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_UseRestrictedCharacterSet(self: *const IFileSystemImage, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UseRestrictedCharacterSet(self, pVal);
     }
-    pub fn put_UseRestrictedCharacterSet(self: *const IFileSystemImage, newVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_UseRestrictedCharacterSet(self: *const IFileSystemImage, newVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_UseRestrictedCharacterSet(self, newVal);
     }
     pub fn get_FileSystemsToCreate(self: *const IFileSystemImage, pVal: ?*FsiFileSystems) callconv(.@"inline") HRESULT {
@@ -2861,10 +2861,10 @@ pub const IFileSystemImage = extern union {
     pub fn get_VolumeNameISO9660(self: *const IFileSystemImage, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_VolumeNameISO9660(self, pVal);
     }
-    pub fn get_StageFiles(self: *const IFileSystemImage, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_StageFiles(self: *const IFileSystemImage, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_StageFiles(self, pVal);
     }
-    pub fn put_StageFiles(self: *const IFileSystemImage, newVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_StageFiles(self: *const IFileSystemImage, newVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_StageFiles(self, newVal);
     }
     pub fn get_MultisessionInterfaces(self: *const IFileSystemImage, pVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
@@ -2913,17 +2913,17 @@ pub const IFileSystemImage3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CreateRedundantUdfMetadataFiles: *const fn(
             self: *const IFileSystemImage3,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CreateRedundantUdfMetadataFiles: *const fn(
             self: *const IFileSystemImage3,
-            newVal: i16,
+            newVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         ProbeSpecificFileSystem: *const fn(
             self: *const IFileSystemImage3,
             fileSystemToProbe: FsiFileSystems,
-            isAppendable: ?*i16,
+            isAppendable: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -2931,13 +2931,13 @@ pub const IFileSystemImage3 = extern union {
     IFileSystemImage: IFileSystemImage,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_CreateRedundantUdfMetadataFiles(self: *const IFileSystemImage3, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_CreateRedundantUdfMetadataFiles(self: *const IFileSystemImage3, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_CreateRedundantUdfMetadataFiles(self, pVal);
     }
-    pub fn put_CreateRedundantUdfMetadataFiles(self: *const IFileSystemImage3, newVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_CreateRedundantUdfMetadataFiles(self: *const IFileSystemImage3, newVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_CreateRedundantUdfMetadataFiles(self, newVal);
     }
-    pub fn ProbeSpecificFileSystem(self: *const IFileSystemImage3, fileSystemToProbe: FsiFileSystems, isAppendable: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn ProbeSpecificFileSystem(self: *const IFileSystemImage3, fileSystemToProbe: FsiFileSystems, isAppendable: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ProbeSpecificFileSystem(self, fileSystemToProbe, isAppendable);
     }
 };
@@ -3053,7 +3053,7 @@ pub const IFsiDirectoryItem = extern union {
         AddTree: *const fn(
             self: *const IFsiDirectoryItem,
             sourceDirectory: ?BSTR,
-            includeBaseDirectory: i16,
+            includeBaseDirectory: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IFsiDirectoryItem,
@@ -3090,7 +3090,7 @@ pub const IFsiDirectoryItem = extern union {
     pub fn AddFile(self: *const IFsiDirectoryItem, path: ?BSTR, fileData: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.AddFile(self, path, fileData);
     }
-    pub fn AddTree(self: *const IFsiDirectoryItem, sourceDirectory: ?BSTR, includeBaseDirectory: i16) callconv(.@"inline") HRESULT {
+    pub fn AddTree(self: *const IFsiDirectoryItem, sourceDirectory: ?BSTR, includeBaseDirectory: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.AddTree(self, sourceDirectory, includeBaseDirectory);
     }
     pub fn Add(self: *const IFsiDirectoryItem, item: ?*IFsiItem) callconv(.@"inline") HRESULT {
@@ -3113,7 +3113,7 @@ pub const IFsiDirectoryItem2 = extern union {
         AddTreeWithNamedStreams: *const fn(
             self: *const IFsiDirectoryItem2,
             sourceDirectory: ?BSTR,
-            includeBaseDirectory: i16,
+            includeBaseDirectory: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -3121,7 +3121,7 @@ pub const IFsiDirectoryItem2 = extern union {
     IFsiItem: IFsiItem,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn AddTreeWithNamedStreams(self: *const IFsiDirectoryItem2, sourceDirectory: ?BSTR, includeBaseDirectory: i16) callconv(.@"inline") HRESULT {
+    pub fn AddTreeWithNamedStreams(self: *const IFsiDirectoryItem2, sourceDirectory: ?BSTR, includeBaseDirectory: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.AddTreeWithNamedStreams(self, sourceDirectory, includeBaseDirectory);
     }
 };
@@ -3193,7 +3193,7 @@ pub const IFsiFileItem2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsNamedStream: *const fn(
             self: *const IFsiFileItem2,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         AddStream: *const fn(
             self: *const IFsiFileItem2,
@@ -3207,12 +3207,12 @@ pub const IFsiFileItem2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsRealTime: *const fn(
             self: *const IFsiFileItem2,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsRealTime: *const fn(
             self: *const IFsiFileItem2,
-            newVal: i16,
+            newVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -3223,7 +3223,7 @@ pub const IFsiFileItem2 = extern union {
     pub fn get_FsiNamedStreams(self: *const IFsiFileItem2, streams: ?*?*IFsiNamedStreams) callconv(.@"inline") HRESULT {
         return self.vtable.get_FsiNamedStreams(self, streams);
     }
-    pub fn get_IsNamedStream(self: *const IFsiFileItem2, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsNamedStream(self: *const IFsiFileItem2, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsNamedStream(self, pVal);
     }
     pub fn AddStream(self: *const IFsiFileItem2, name: ?BSTR, streamData: ?*IStream) callconv(.@"inline") HRESULT {
@@ -3232,10 +3232,10 @@ pub const IFsiFileItem2 = extern union {
     pub fn RemoveStream(self: *const IFsiFileItem2, name: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveStream(self, name);
     }
-    pub fn get_IsRealTime(self: *const IFsiFileItem2, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsRealTime(self: *const IFsiFileItem2, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsRealTime(self, pVal);
     }
-    pub fn put_IsRealTime(self: *const IFsiFileItem2, newVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_IsRealTime(self: *const IFsiFileItem2, newVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_IsRealTime(self, newVal);
     }
 };
@@ -3289,12 +3289,12 @@ pub const IFsiItem = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsHidden: *const fn(
             self: *const IFsiItem,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsHidden: *const fn(
             self: *const IFsiItem,
-            newVal: i16,
+            newVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         FileSystemName: *const fn(
             self: *const IFsiItem,
@@ -3334,10 +3334,10 @@ pub const IFsiItem = extern union {
     pub fn put_LastModifiedTime(self: *const IFsiItem, newVal: f64) callconv(.@"inline") HRESULT {
         return self.vtable.put_LastModifiedTime(self, newVal);
     }
-    pub fn get_IsHidden(self: *const IFsiItem, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsHidden(self: *const IFsiItem, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsHidden(self, pVal);
     }
-    pub fn put_IsHidden(self: *const IFsiItem, newVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_IsHidden(self: *const IFsiItem, newVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_IsHidden(self, newVal);
     }
     pub fn FileSystemName(self: *const IFsiItem, fileSystem: FsiFileSystems, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -4134,17 +4134,17 @@ pub const IMultisession = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsSupportedOnCurrentMediaState: *const fn(
             self: *const IMultisession,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InUse: *const fn(
             self: *const IMultisession,
-            value: i16,
+            value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InUse: *const fn(
             self: *const IMultisession,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ImportRecorder: *const fn(
@@ -4155,13 +4155,13 @@ pub const IMultisession = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_IsSupportedOnCurrentMediaState(self: *const IMultisession, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsSupportedOnCurrentMediaState(self: *const IMultisession, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsSupportedOnCurrentMediaState(self, value);
     }
-    pub fn put_InUse(self: *const IMultisession, value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_InUse(self: *const IMultisession, value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_InUse(self, value);
     }
-    pub fn get_InUse(self: *const IMultisession, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_InUse(self: *const IMultisession, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_InUse(self, value);
     }
     pub fn get_ImportRecorder(self: *const IMultisession, value: ?*?*IDiscRecorder2) callconv(.@"inline") HRESULT {
@@ -4215,7 +4215,7 @@ pub const IMultisessionSequential = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsFirstDataSession: *const fn(
             self: *const IMultisessionSequential,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartAddressOfPreviousSession: *const fn(
@@ -4242,7 +4242,7 @@ pub const IMultisessionSequential = extern union {
     IMultisession: IMultisession,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_IsFirstDataSession(self: *const IMultisessionSequential, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsFirstDataSession(self: *const IMultisessionSequential, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsFirstDataSession(self, value);
     }
     pub fn get_StartAddressOfPreviousSession(self: *const IMultisessionSequential, value: ?*i32) callconv(.@"inline") HRESULT {
@@ -4437,12 +4437,12 @@ pub const IRawCDImageCreator = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisableGaplessAudio: *const fn(
             self: *const IRawCDImageCreator,
-            value: i16,
+            value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisableGaplessAudio: *const fn(
             self: *const IRawCDImageCreator,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MediaCatalogNumber: *const fn(
@@ -4515,10 +4515,10 @@ pub const IRawCDImageCreator = extern union {
     pub fn get_StartOfLeadoutLimit(self: *const IRawCDImageCreator, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_StartOfLeadoutLimit(self, value);
     }
-    pub fn put_DisableGaplessAudio(self: *const IRawCDImageCreator, value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_DisableGaplessAudio(self: *const IRawCDImageCreator, value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_DisableGaplessAudio(self, value);
     }
-    pub fn get_DisableGaplessAudio(self: *const IRawCDImageCreator, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_DisableGaplessAudio(self: *const IRawCDImageCreator, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_DisableGaplessAudio(self, value);
     }
     pub fn put_MediaCatalogNumber(self: *const IRawCDImageCreator, value: ?BSTR) callconv(.@"inline") HRESULT {
@@ -4596,12 +4596,12 @@ pub const IRawCDImageTrackInfo = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioHasPreemphasis: *const fn(
             self: *const IRawCDImageTrackInfo,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AudioHasPreemphasis: *const fn(
             self: *const IRawCDImageTrackInfo,
-            value: i16,
+            value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TrackIndexes: *const fn(
@@ -4644,10 +4644,10 @@ pub const IRawCDImageTrackInfo = extern union {
     pub fn put_DigitalAudioCopySetting(self: *const IRawCDImageTrackInfo, value: IMAPI_CD_TRACK_DIGITAL_COPY_SETTING) callconv(.@"inline") HRESULT {
         return self.vtable.put_DigitalAudioCopySetting(self, value);
     }
-    pub fn get_AudioHasPreemphasis(self: *const IRawCDImageTrackInfo, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AudioHasPreemphasis(self: *const IRawCDImageTrackInfo, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AudioHasPreemphasis(self, value);
     }
-    pub fn put_AudioHasPreemphasis(self: *const IRawCDImageTrackInfo, value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AudioHasPreemphasis(self: *const IRawCDImageTrackInfo, value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AudioHasPreemphasis(self, value);
     }
     pub fn get_TrackIndexes(self: *const IRawCDImageTrackInfo, value: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
@@ -4867,12 +4867,12 @@ pub const IWriteEngine2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseStreamingWrite12: *const fn(
             self: *const IWriteEngine2,
-            value: i16,
+            value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseStreamingWrite12: *const fn(
             self: *const IWriteEngine2,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StartingSectorsPerSecond: *const fn(
@@ -4907,7 +4907,7 @@ pub const IWriteEngine2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WriteInProgress: *const fn(
             self: *const IWriteEngine2,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -4925,10 +4925,10 @@ pub const IWriteEngine2 = extern union {
     pub fn get_Recorder(self: *const IWriteEngine2, value: ?*?*IDiscRecorder2Ex) callconv(.@"inline") HRESULT {
         return self.vtable.get_Recorder(self, value);
     }
-    pub fn put_UseStreamingWrite12(self: *const IWriteEngine2, value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_UseStreamingWrite12(self: *const IWriteEngine2, value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_UseStreamingWrite12(self, value);
     }
-    pub fn get_UseStreamingWrite12(self: *const IWriteEngine2, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_UseStreamingWrite12(self: *const IWriteEngine2, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UseStreamingWrite12(self, value);
     }
     pub fn put_StartingSectorsPerSecond(self: *const IWriteEngine2, value: i32) callconv(.@"inline") HRESULT {
@@ -4949,7 +4949,7 @@ pub const IWriteEngine2 = extern union {
     pub fn get_BytesPerSector(self: *const IWriteEngine2, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_BytesPerSector(self, value);
     }
-    pub fn get_WriteInProgress(self: *const IWriteEngine2, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_WriteInProgress(self: *const IWriteEngine2, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_WriteInProgress(self, value);
     }
 };
@@ -5036,7 +5036,7 @@ pub const IWriteSpeedDescriptor = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RotationTypeIsPureCAV: *const fn(
             self: *const IWriteSpeedDescriptor,
-            value: ?*i16,
+            value: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WriteSpeed: *const fn(
@@ -5050,7 +5050,7 @@ pub const IWriteSpeedDescriptor = extern union {
     pub fn get_MediaType(self: *const IWriteSpeedDescriptor, value: ?*IMAPI_MEDIA_PHYSICAL_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_MediaType(self, value);
     }
-    pub fn get_RotationTypeIsPureCAV(self: *const IWriteSpeedDescriptor, value: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_RotationTypeIsPureCAV(self: *const IWriteSpeedDescriptor, value: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_RotationTypeIsPureCAV(self, value);
     }
     pub fn get_WriteSpeed(self: *const IWriteSpeedDescriptor, value: ?*i32) callconv(.@"inline") HRESULT {
@@ -5252,7 +5252,7 @@ pub extern "mapi32" fn SetAttribIMsgOnIStg(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (19)
+// Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
@@ -5273,6 +5273,7 @@ const LPFREEBUFFER = @import("../system/address_book.zig").LPFREEBUFFER;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const SPropProblemArray = @import("../system/address_book.zig").SPropProblemArray;
 const SPropTagArray = @import("../system/address_book.zig").SPropTagArray;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

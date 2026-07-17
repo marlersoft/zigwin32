@@ -143,7 +143,7 @@ pub const SIP_DISPATCH_INFO = extern struct {
 pub const SIP_INDIRECT_DATA = extern struct {
     Data: CRYPT_ATTRIBUTE_TYPE_VALUE,
     DigestAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    Digest: CRYPTOAPI_BLOB,
+    Digest: CRYPT_INTEGER_BLOB,
 };
 
 pub const SIP_SUBJECTINFO = extern struct {
@@ -269,7 +269,7 @@ const BOOL = @import("../../foundation.zig").BOOL;
 const CERT_QUERY_ENCODING_TYPE = @import("../../security/cryptography.zig").CERT_QUERY_ENCODING_TYPE;
 const CRYPT_ALGORITHM_IDENTIFIER = @import("../../security/cryptography.zig").CRYPT_ALGORITHM_IDENTIFIER;
 const CRYPT_ATTRIBUTE_TYPE_VALUE = @import("../../security/cryptography.zig").CRYPT_ATTRIBUTE_TYPE_VALUE;
-const CRYPTOAPI_BLOB = @import("../../security/cryptography.zig").CRYPTOAPI_BLOB;
+const CRYPT_INTEGER_BLOB = @import("../../security/cryptography.zig").CRYPT_INTEGER_BLOB;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const MS_ADDINFO_CATALOGMEMBER = @import("../../security/cryptography/catalog.zig").MS_ADDINFO_CATALOGMEMBER;
 const PWSTR = @import("../../foundation.zig").PWSTR;

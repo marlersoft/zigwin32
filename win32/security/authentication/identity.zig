@@ -5807,7 +5807,7 @@ pub const SecPkgContext_Flags = extern struct {
 };
 
 pub const SecPkgContext_IssuerListInfoEx = extern struct {
-    aIssuers: ?*CRYPTOAPI_BLOB,
+    aIssuers: ?*CRYPT_INTEGER_BLOB,
     cIssuers: u32,
 };
 
@@ -9066,7 +9066,7 @@ const CERT_CONTEXT = @import("../../security/cryptography.zig").CERT_CONTEXT;
 const CHAR = @import("../../foundation.zig").CHAR;
 const CREDENTIAL_TARGET_INFORMATIONW = @import("../../security/credentials.zig").CREDENTIAL_TARGET_INFORMATIONW;
 const CREDENTIALW = @import("../../security/credentials.zig").CREDENTIALW;
-const CRYPTOAPI_BLOB = @import("../../security/cryptography.zig").CRYPTOAPI_BLOB;
+const CRYPT_INTEGER_BLOB = @import("../../security/cryptography.zig").CRYPT_INTEGER_BLOB;
 const CYPHER_BLOCK = @import("../../system/password_management.zig").CYPHER_BLOCK;
 const FILETIME = @import("../../foundation.zig").FILETIME;
 const HANDLE = @import("../../foundation.zig").HANDLE;

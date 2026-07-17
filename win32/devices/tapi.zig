@@ -2940,22 +2940,22 @@ pub const ITAddress = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MessageWaiting: *const fn(
             self: *const ITAddress,
-            fMessageWaiting: i16,
+            fMessageWaiting: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MessageWaiting: *const fn(
             self: *const ITAddress,
-            pfMessageWaiting: ?*i16,
+            pfMessageWaiting: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DoNotDisturb: *const fn(
             self: *const ITAddress,
-            fDoNotDisturb: i16,
+            fDoNotDisturb: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DoNotDisturb: *const fn(
             self: *const ITAddress,
-            pfDoNotDisturb: ?*i16,
+            pfDoNotDisturb: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -2994,16 +2994,16 @@ pub const ITAddress = extern union {
     pub fn get_CurrentForwardInfo(self: *const ITAddress, ppForwardInfo: ?*?*ITForwardInformation) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentForwardInfo(self, ppForwardInfo);
     }
-    pub fn put_MessageWaiting(self: *const ITAddress, fMessageWaiting: i16) callconv(.@"inline") HRESULT {
+    pub fn put_MessageWaiting(self: *const ITAddress, fMessageWaiting: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_MessageWaiting(self, fMessageWaiting);
     }
-    pub fn get_MessageWaiting(self: *const ITAddress, pfMessageWaiting: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_MessageWaiting(self: *const ITAddress, pfMessageWaiting: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_MessageWaiting(self, pfMessageWaiting);
     }
-    pub fn put_DoNotDisturb(self: *const ITAddress, fDoNotDisturb: i16) callconv(.@"inline") HRESULT {
+    pub fn put_DoNotDisturb(self: *const ITAddress, fDoNotDisturb: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_DoNotDisturb(self, fDoNotDisturb);
     }
-    pub fn get_DoNotDisturb(self: *const ITAddress, pfDoNotDisturb: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_DoNotDisturb(self: *const ITAddress, pfDoNotDisturb: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_DoNotDisturb(self, pfDoNotDisturb);
     }
 };
@@ -3040,13 +3040,13 @@ pub const ITAddress2 = extern union {
             self: *const ITAddress2,
             TapiEvent: TAPI_EVENT,
             lSubEvent: i32,
-            pEnable: ?*i16,
+            pEnable: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         put_EventFilter: *const fn(
             self: *const ITAddress2,
             TapiEvent: TAPI_EVENT,
             lSubEvent: i32,
-            bEnable: i16,
+            bEnable: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         DeviceSpecific: *const fn(
             self: *const ITAddress2,
@@ -3085,10 +3085,10 @@ pub const ITAddress2 = extern union {
     pub fn EnumeratePreferredPhones(self: *const ITAddress2, ppEnumPhone: ?*?*IEnumPhone) callconv(.@"inline") HRESULT {
         return self.vtable.EnumeratePreferredPhones(self, ppEnumPhone);
     }
-    pub fn get_EventFilter(self: *const ITAddress2, TapiEvent: TAPI_EVENT, lSubEvent: i32, pEnable: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_EventFilter(self: *const ITAddress2, TapiEvent: TAPI_EVENT, lSubEvent: i32, pEnable: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_EventFilter(self, TapiEvent, lSubEvent, pEnable);
     }
-    pub fn put_EventFilter(self: *const ITAddress2, TapiEvent: TAPI_EVENT, lSubEvent: i32, bEnable: i16) callconv(.@"inline") HRESULT {
+    pub fn put_EventFilter(self: *const ITAddress2, TapiEvent: TAPI_EVENT, lSubEvent: i32, bEnable: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_EventFilter(self, TapiEvent, lSubEvent, bEnable);
     }
     pub fn DeviceSpecific(self: *const ITAddress2, pCall: ?*ITCallInfo, pParams: ?*u8, dwSize: u32) callconv(.@"inline") HRESULT {
@@ -3954,17 +3954,17 @@ pub const ITAutomatedPhoneControl = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Ringer: *const fn(
             self: *const ITAutomatedPhoneControl,
-            pfRinging: ?*i16,
+            pfRinging: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PhoneHandlingEnabled: *const fn(
             self: *const ITAutomatedPhoneControl,
-            fEnabled: i16,
+            fEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PhoneHandlingEnabled: *const fn(
             self: *const ITAutomatedPhoneControl,
-            pfEnabled: ?*i16,
+            pfEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoEndOfNumberTimeout: *const fn(
@@ -3979,42 +3979,42 @@ pub const ITAutomatedPhoneControl = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoDialtone: *const fn(
             self: *const ITAutomatedPhoneControl,
-            fEnabled: i16,
+            fEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoDialtone: *const fn(
             self: *const ITAutomatedPhoneControl,
-            pfEnabled: ?*i16,
+            pfEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoStopTonesOnOnHook: *const fn(
             self: *const ITAutomatedPhoneControl,
-            fEnabled: i16,
+            fEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoStopTonesOnOnHook: *const fn(
             self: *const ITAutomatedPhoneControl,
-            pfEnabled: ?*i16,
+            pfEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoStopRingOnOffHook: *const fn(
             self: *const ITAutomatedPhoneControl,
-            fEnabled: i16,
+            fEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoStopRingOnOffHook: *const fn(
             self: *const ITAutomatedPhoneControl,
-            pfEnabled: ?*i16,
+            pfEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoKeypadTones: *const fn(
             self: *const ITAutomatedPhoneControl,
-            fEnabled: i16,
+            fEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoKeypadTones: *const fn(
             self: *const ITAutomatedPhoneControl,
-            pfEnabled: ?*i16,
+            pfEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoKeypadTonesMinimumDuration: *const fn(
@@ -4029,12 +4029,12 @@ pub const ITAutomatedPhoneControl = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoVolumeControl: *const fn(
             self: *const ITAutomatedPhoneControl,
-            fEnabled: i16,
+            fEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoVolumeControl: *const fn(
             self: *const ITAutomatedPhoneControl,
-            fEnabled: ?*i16,
+            fEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoVolumeControlStep: *const fn(
@@ -4069,7 +4069,7 @@ pub const ITAutomatedPhoneControl = extern union {
         SelectCall: *const fn(
             self: *const ITAutomatedPhoneControl,
             pCall: ?*ITCallInfo,
-            fSelectDefaultTerminals: i16,
+            fSelectDefaultTerminals: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         UnselectCall: *const fn(
             self: *const ITAutomatedPhoneControl,
@@ -4103,13 +4103,13 @@ pub const ITAutomatedPhoneControl = extern union {
     pub fn StopRinger(self: *const ITAutomatedPhoneControl) callconv(.@"inline") HRESULT {
         return self.vtable.StopRinger(self);
     }
-    pub fn get_Ringer(self: *const ITAutomatedPhoneControl, pfRinging: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Ringer(self: *const ITAutomatedPhoneControl, pfRinging: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Ringer(self, pfRinging);
     }
-    pub fn put_PhoneHandlingEnabled(self: *const ITAutomatedPhoneControl, fEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_PhoneHandlingEnabled(self: *const ITAutomatedPhoneControl, fEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_PhoneHandlingEnabled(self, fEnabled);
     }
-    pub fn get_PhoneHandlingEnabled(self: *const ITAutomatedPhoneControl, pfEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_PhoneHandlingEnabled(self: *const ITAutomatedPhoneControl, pfEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_PhoneHandlingEnabled(self, pfEnabled);
     }
     pub fn put_AutoEndOfNumberTimeout(self: *const ITAutomatedPhoneControl, lTimeout: i32) callconv(.@"inline") HRESULT {
@@ -4118,28 +4118,28 @@ pub const ITAutomatedPhoneControl = extern union {
     pub fn get_AutoEndOfNumberTimeout(self: *const ITAutomatedPhoneControl, plTimeout: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_AutoEndOfNumberTimeout(self, plTimeout);
     }
-    pub fn put_AutoDialtone(self: *const ITAutomatedPhoneControl, fEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AutoDialtone(self: *const ITAutomatedPhoneControl, fEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AutoDialtone(self, fEnabled);
     }
-    pub fn get_AutoDialtone(self: *const ITAutomatedPhoneControl, pfEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AutoDialtone(self: *const ITAutomatedPhoneControl, pfEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AutoDialtone(self, pfEnabled);
     }
-    pub fn put_AutoStopTonesOnOnHook(self: *const ITAutomatedPhoneControl, fEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AutoStopTonesOnOnHook(self: *const ITAutomatedPhoneControl, fEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AutoStopTonesOnOnHook(self, fEnabled);
     }
-    pub fn get_AutoStopTonesOnOnHook(self: *const ITAutomatedPhoneControl, pfEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AutoStopTonesOnOnHook(self: *const ITAutomatedPhoneControl, pfEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AutoStopTonesOnOnHook(self, pfEnabled);
     }
-    pub fn put_AutoStopRingOnOffHook(self: *const ITAutomatedPhoneControl, fEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AutoStopRingOnOffHook(self: *const ITAutomatedPhoneControl, fEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AutoStopRingOnOffHook(self, fEnabled);
     }
-    pub fn get_AutoStopRingOnOffHook(self: *const ITAutomatedPhoneControl, pfEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AutoStopRingOnOffHook(self: *const ITAutomatedPhoneControl, pfEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AutoStopRingOnOffHook(self, pfEnabled);
     }
-    pub fn put_AutoKeypadTones(self: *const ITAutomatedPhoneControl, fEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AutoKeypadTones(self: *const ITAutomatedPhoneControl, fEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AutoKeypadTones(self, fEnabled);
     }
-    pub fn get_AutoKeypadTones(self: *const ITAutomatedPhoneControl, pfEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AutoKeypadTones(self: *const ITAutomatedPhoneControl, pfEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AutoKeypadTones(self, pfEnabled);
     }
     pub fn put_AutoKeypadTonesMinimumDuration(self: *const ITAutomatedPhoneControl, lDuration: i32) callconv(.@"inline") HRESULT {
@@ -4148,10 +4148,10 @@ pub const ITAutomatedPhoneControl = extern union {
     pub fn get_AutoKeypadTonesMinimumDuration(self: *const ITAutomatedPhoneControl, plDuration: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_AutoKeypadTonesMinimumDuration(self, plDuration);
     }
-    pub fn put_AutoVolumeControl(self: *const ITAutomatedPhoneControl, fEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AutoVolumeControl(self: *const ITAutomatedPhoneControl, fEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AutoVolumeControl(self, fEnabled);
     }
-    pub fn get_AutoVolumeControl(self: *const ITAutomatedPhoneControl, fEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AutoVolumeControl(self: *const ITAutomatedPhoneControl, fEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AutoVolumeControl(self, fEnabled);
     }
     pub fn put_AutoVolumeControlStep(self: *const ITAutomatedPhoneControl, lStepSize: i32) callconv(.@"inline") HRESULT {
@@ -4172,7 +4172,7 @@ pub const ITAutomatedPhoneControl = extern union {
     pub fn get_AutoVolumeControlRepeatPeriod(self: *const ITAutomatedPhoneControl, plPeriod: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_AutoVolumeControlRepeatPeriod(self, plPeriod);
     }
-    pub fn SelectCall(self: *const ITAutomatedPhoneControl, pCall: ?*ITCallInfo, fSelectDefaultTerminals: i16) callconv(.@"inline") HRESULT {
+    pub fn SelectCall(self: *const ITAutomatedPhoneControl, pCall: ?*ITCallInfo, fSelectDefaultTerminals: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SelectCall(self, pCall, fSelectDefaultTerminals);
     }
     pub fn UnselectCall(self: *const ITAutomatedPhoneControl, pCall: ?*ITCallInfo) callconv(.@"inline") HRESULT {
@@ -4236,7 +4236,7 @@ pub const ITBasicCallControl = extern union {
         base: IDispatch.VTable,
         Connect: *const fn(
             self: *const ITBasicCallControl,
-            fSync: i16,
+            fSync: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Answer: *const fn(
             self: *const ITBasicCallControl,
@@ -4247,7 +4247,7 @@ pub const ITBasicCallControl = extern union {
         ) callconv(.winapi) HRESULT,
         Hold: *const fn(
             self: *const ITBasicCallControl,
-            fHold: i16,
+            fHold: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         HandoffDirect: *const fn(
             self: *const ITBasicCallControl,
@@ -4260,12 +4260,12 @@ pub const ITBasicCallControl = extern union {
         Conference: *const fn(
             self: *const ITBasicCallControl,
             pCall: ?*ITBasicCallControl,
-            fSync: i16,
+            fSync: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Transfer: *const fn(
             self: *const ITBasicCallControl,
             pCall: ?*ITBasicCallControl,
-            fSync: i16,
+            fSync: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         BlindTransfer: *const fn(
             self: *const ITBasicCallControl,
@@ -4310,7 +4310,7 @@ pub const ITBasicCallControl = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Connect(self: *const ITBasicCallControl, fSync: i16) callconv(.@"inline") HRESULT {
+    pub fn Connect(self: *const ITBasicCallControl, fSync: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Connect(self, fSync);
     }
     pub fn Answer(self: *const ITBasicCallControl) callconv(.@"inline") HRESULT {
@@ -4319,7 +4319,7 @@ pub const ITBasicCallControl = extern union {
     pub fn Disconnect(self: *const ITBasicCallControl, code: DISCONNECT_CODE) callconv(.@"inline") HRESULT {
         return self.vtable.Disconnect(self, code);
     }
-    pub fn Hold(self: *const ITBasicCallControl, fHold: i16) callconv(.@"inline") HRESULT {
+    pub fn Hold(self: *const ITBasicCallControl, fHold: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Hold(self, fHold);
     }
     pub fn HandoffDirect(self: *const ITBasicCallControl, pApplicationName: ?BSTR) callconv(.@"inline") HRESULT {
@@ -4328,10 +4328,10 @@ pub const ITBasicCallControl = extern union {
     pub fn HandoffIndirect(self: *const ITBasicCallControl, lMediaType: i32) callconv(.@"inline") HRESULT {
         return self.vtable.HandoffIndirect(self, lMediaType);
     }
-    pub fn Conference(self: *const ITBasicCallControl, pCall: ?*ITBasicCallControl, fSync: i16) callconv(.@"inline") HRESULT {
+    pub fn Conference(self: *const ITBasicCallControl, pCall: ?*ITBasicCallControl, fSync: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Conference(self, pCall, fSync);
     }
-    pub fn Transfer(self: *const ITBasicCallControl, pCall: ?*ITBasicCallControl, fSync: i16) callconv(.@"inline") HRESULT {
+    pub fn Transfer(self: *const ITBasicCallControl, pCall: ?*ITBasicCallControl, fSync: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Transfer(self, pCall, fSync);
     }
     pub fn BlindTransfer(self: *const ITBasicCallControl, pDestAddress: ?BSTR) callconv(.@"inline") HRESULT {
@@ -4609,23 +4609,23 @@ pub const ITCallInfo2 = extern union {
             self: *const ITCallInfo2,
             TapiEvent: TAPI_EVENT,
             lSubEvent: i32,
-            pEnable: ?*i16,
+            pEnable: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         put_EventFilter: *const fn(
             self: *const ITCallInfo2,
             TapiEvent: TAPI_EVENT,
             lSubEvent: i32,
-            bEnable: i16,
+            bEnable: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITCallInfo: ITCallInfo,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_EventFilter(self: *const ITCallInfo2, TapiEvent: TAPI_EVENT, lSubEvent: i32, pEnable: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_EventFilter(self: *const ITCallInfo2, TapiEvent: TAPI_EVENT, lSubEvent: i32, pEnable: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_EventFilter(self, TapiEvent, lSubEvent, pEnable);
     }
-    pub fn put_EventFilter(self: *const ITCallInfo2, TapiEvent: TAPI_EVENT, lSubEvent: i32, bEnable: i16) callconv(.@"inline") HRESULT {
+    pub fn put_EventFilter(self: *const ITCallInfo2, TapiEvent: TAPI_EVENT, lSubEvent: i32, bEnable: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_EventFilter(self, TapiEvent, lSubEvent, bEnable);
     }
 };
@@ -5228,7 +5228,7 @@ pub const ITDirectory = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsDynamic: *const fn(
             self: *const ITDirectory,
-            pfDynamic: ?*i16,
+            pfDynamic: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DefaultObjectTTL: *const fn(
@@ -5242,11 +5242,11 @@ pub const ITDirectory = extern union {
         ) callconv(.winapi) HRESULT,
         EnableAutoRefresh: *const fn(
             self: *const ITDirectory,
-            fEnable: i16,
+            fEnable: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Connect: *const fn(
             self: *const ITDirectory,
-            fSecure: i16,
+            fSecure: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Bind: *const fn(
             self: *const ITDirectory,
@@ -5293,7 +5293,7 @@ pub const ITDirectory = extern union {
     pub fn get_DisplayName(self: *const ITDirectory, pName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_DisplayName(self, pName);
     }
-    pub fn get_IsDynamic(self: *const ITDirectory, pfDynamic: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsDynamic(self: *const ITDirectory, pfDynamic: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsDynamic(self, pfDynamic);
     }
     pub fn get_DefaultObjectTTL(self: *const ITDirectory, pTTL: ?*i32) callconv(.@"inline") HRESULT {
@@ -5302,10 +5302,10 @@ pub const ITDirectory = extern union {
     pub fn put_DefaultObjectTTL(self: *const ITDirectory, TTL: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_DefaultObjectTTL(self, TTL);
     }
-    pub fn EnableAutoRefresh(self: *const ITDirectory, fEnable: i16) callconv(.@"inline") HRESULT {
+    pub fn EnableAutoRefresh(self: *const ITDirectory, fEnable: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.EnableAutoRefresh(self, fEnable);
     }
-    pub fn Connect(self: *const ITDirectory, fSecure: i16) callconv(.@"inline") HRESULT {
+    pub fn Connect(self: *const ITDirectory, fSecure: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Connect(self, fSecure);
     }
     pub fn Bind(self: *const ITDirectory, pDomainName: ?BSTR, pUserName: ?BSTR, pPassword: ?BSTR, lFlags: i32) callconv(.@"inline") HRESULT {
@@ -5451,12 +5451,12 @@ pub const ITDirectoryObjectConference = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsEncrypted: *const fn(
             self: *const ITDirectoryObjectConference,
-            pfEncrypted: ?*i16,
+            pfEncrypted: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsEncrypted: *const fn(
             self: *const ITDirectoryObjectConference,
-            fEncrypted: i16,
+            fEncrypted: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartTime: *const fn(
@@ -5509,10 +5509,10 @@ pub const ITDirectoryObjectConference = extern union {
     pub fn put_Description(self: *const ITDirectoryObjectConference, pDescription: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Description(self, pDescription);
     }
-    pub fn get_IsEncrypted(self: *const ITDirectoryObjectConference, pfEncrypted: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsEncrypted(self: *const ITDirectoryObjectConference, pfEncrypted: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsEncrypted(self, pfEncrypted);
     }
-    pub fn put_IsEncrypted(self: *const ITDirectoryObjectConference, fEncrypted: i16) callconv(.@"inline") HRESULT {
+    pub fn put_IsEncrypted(self: *const ITDirectoryObjectConference, fEncrypted: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_IsEncrypted(self, fEncrypted);
     }
     pub fn get_StartTime(self: *const ITDirectoryObjectConference, pDate: ?*f64) callconv(.@"inline") HRESULT {
@@ -6270,7 +6270,7 @@ pub const ITMediaSupport = extern union {
         QueryMediaType: *const fn(
             self: *const ITMediaSupport,
             lMediaType: i32,
-            pfSupport: ?*i16,
+            pfSupport: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -6279,7 +6279,7 @@ pub const ITMediaSupport = extern union {
     pub fn get_MediaTypes(self: *const ITMediaSupport, plMediaTypes: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_MediaTypes(self, plMediaTypes);
     }
-    pub fn QueryMediaType(self: *const ITMediaSupport, lMediaType: i32, pfSupport: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn QueryMediaType(self: *const ITMediaSupport, lMediaType: i32, pfSupport: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.QueryMediaType(self, lMediaType, pfSupport);
     }
 };
@@ -7730,8 +7730,8 @@ pub const ITTAPI = extern union {
         RegisterCallNotifications: *const fn(
             self: *const ITTAPI,
             pAddress: ?*ITAddress,
-            fMonitor: i16,
-            fOwner: i16,
+            fMonitor: VARIANT_BOOL,
+            fOwner: VARIANT_BOOL,
             lMediaTypes: i32,
             lCallbackInstance: i32,
             plRegister: ?*i32,
@@ -7752,7 +7752,7 @@ pub const ITTAPI = extern union {
         SetCallHubTracking: *const fn(
             self: *const ITTAPI,
             pAddresses: VARIANT,
-            bTracking: i16,
+            bTracking: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         EnumeratePrivateTAPIObjects: *const fn(
             self: *const ITTAPI,
@@ -7767,18 +7767,18 @@ pub const ITTAPI = extern union {
             self: *const ITTAPI,
             lRegistrationInstance: i32,
             lRequestMode: i32,
-            fEnable: i16,
+            fEnable: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SetAssistedTelephonyPriority: *const fn(
             self: *const ITTAPI,
             pAppFilename: ?BSTR,
-            fPriority: i16,
+            fPriority: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SetApplicationPriority: *const fn(
             self: *const ITTAPI,
             pAppFilename: ?BSTR,
             lMediaType: i32,
-            fPriority: i16,
+            fPriority: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EventFilter: *const fn(
@@ -7806,7 +7806,7 @@ pub const ITTAPI = extern union {
     pub fn EnumerateAddresses(self: *const ITTAPI, ppEnumAddress: ?*?*IEnumAddress) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerateAddresses(self, ppEnumAddress);
     }
-    pub fn RegisterCallNotifications(self: *const ITTAPI, pAddress: ?*ITAddress, fMonitor: i16, fOwner: i16, lMediaTypes: i32, lCallbackInstance: i32, plRegister: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn RegisterCallNotifications(self: *const ITTAPI, pAddress: ?*ITAddress, fMonitor: VARIANT_BOOL, fOwner: VARIANT_BOOL, lMediaTypes: i32, lCallbackInstance: i32, plRegister: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterCallNotifications(self, pAddress, fMonitor, fOwner, lMediaTypes, lCallbackInstance, plRegister);
     }
     pub fn UnregisterNotifications(self: *const ITTAPI, lRegister: i32) callconv(.@"inline") HRESULT {
@@ -7818,7 +7818,7 @@ pub const ITTAPI = extern union {
     pub fn EnumerateCallHubs(self: *const ITTAPI, ppEnumCallHub: ?*?*IEnumCallHub) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerateCallHubs(self, ppEnumCallHub);
     }
-    pub fn SetCallHubTracking(self: *const ITTAPI, pAddresses: VARIANT, bTracking: i16) callconv(.@"inline") HRESULT {
+    pub fn SetCallHubTracking(self: *const ITTAPI, pAddresses: VARIANT, bTracking: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetCallHubTracking(self, pAddresses, bTracking);
     }
     pub fn EnumeratePrivateTAPIObjects(self: *const ITTAPI, ppEnumUnknown: ?*?*IEnumUnknown) callconv(.@"inline") HRESULT {
@@ -7827,13 +7827,13 @@ pub const ITTAPI = extern union {
     pub fn get_PrivateTAPIObjects(self: *const ITTAPI, pVariant: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_PrivateTAPIObjects(self, pVariant);
     }
-    pub fn RegisterRequestRecipient(self: *const ITTAPI, lRegistrationInstance: i32, lRequestMode: i32, fEnable: i16) callconv(.@"inline") HRESULT {
+    pub fn RegisterRequestRecipient(self: *const ITTAPI, lRegistrationInstance: i32, lRequestMode: i32, fEnable: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterRequestRecipient(self, lRegistrationInstance, lRequestMode, fEnable);
     }
-    pub fn SetAssistedTelephonyPriority(self: *const ITTAPI, pAppFilename: ?BSTR, fPriority: i16) callconv(.@"inline") HRESULT {
+    pub fn SetAssistedTelephonyPriority(self: *const ITTAPI, pAppFilename: ?BSTR, fPriority: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetAssistedTelephonyPriority(self, pAppFilename, fPriority);
     }
-    pub fn SetApplicationPriority(self: *const ITTAPI, pAppFilename: ?BSTR, lMediaType: i32, fPriority: i16) callconv(.@"inline") HRESULT {
+    pub fn SetApplicationPriority(self: *const ITTAPI, pAppFilename: ?BSTR, lMediaType: i32, fPriority: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetApplicationPriority(self, pAppFilename, lMediaType, fPriority);
     }
     pub fn put_EventFilter(self: *const ITTAPI, lFilterMask: i32) callconv(.@"inline") HRESULT {
@@ -11783,7 +11783,7 @@ pub const phoneInitializeEx = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (25)
+// Section: Imports (26)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ALLOCATOR_PROPERTIES = @import("../media/direct_show.zig").ALLOCATOR_PROPERTIES;
@@ -11809,6 +11809,7 @@ const SPropTagArray = @import("../system/address_book.zig").SPropTagArray;
 const SPropValue = @import("../system/address_book.zig").SPropValue;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {

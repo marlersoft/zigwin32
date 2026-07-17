@@ -36118,7 +36118,7 @@ pub const IWebAppDiagnosticsSetup = extern union {
         base: IUnknown.VTable,
         DiagnosticsSupported: *const fn(
             self: *const IWebAppDiagnosticsSetup,
-            pRetVal: ?*i16,
+            pRetVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         CreateObjectWithSiteAtWebApp: *const fn(
             self: *const IWebAppDiagnosticsSetup,
@@ -36130,7 +36130,7 @@ pub const IWebAppDiagnosticsSetup = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn DiagnosticsSupported(self: *const IWebAppDiagnosticsSetup, pRetVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn DiagnosticsSupported(self: *const IWebAppDiagnosticsSetup, pRetVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.DiagnosticsSupported(self, pRetVal);
     }
     pub fn CreateObjectWithSiteAtWebApp(self: *const IWebAppDiagnosticsSetup, rclsid: ?*const Guid, dwClsContext: u32, riid: ?*const Guid, hPassToObject: usize) callconv(.@"inline") HRESULT {
@@ -43636,7 +43636,7 @@ pub const OutputDebugString = switch (@import("../../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (41)
+// Section: Imports (42)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -43674,6 +43674,7 @@ const TIME_ZONE_INFORMATION = @import("../../system/time.zig").TIME_ZONE_INFORMA
 const TYPEDESC = @import("../../system/com.zig").TYPEDESC;
 const VARENUM = @import("../../system/com.zig").VARENUM;
 const VARIANT = @import("../../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../../foundation.zig").VARIANT_BOOL;
 const VIRTUAL_ALLOCATION_TYPE = @import("../../system/memory.zig").VIRTUAL_ALLOCATION_TYPE;
 const VS_FIXEDFILEINFO = @import("../../storage/file_system.zig").VS_FIXEDFILEINFO;
 const WIN_CERTIFICATE = @import("../../security/win_trust.zig").WIN_CERTIFICATE;

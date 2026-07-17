@@ -3592,7 +3592,7 @@ pub const View = extern union {
         Is: *const fn(
             self: *const View,
             View: ?*View,
-            TheSame: ?*i16,
+            TheSame: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Document: *const fn(
@@ -3769,7 +3769,7 @@ pub const View = extern union {
     pub fn SnapinSelectionObject(self: *const View, SelectionObject: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.SnapinSelectionObject(self, SelectionObject);
     }
-    pub fn Is(self: *const View, _param_View: ?*View, TheSame: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn Is(self: *const View, _param_View: ?*View, TheSame: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Is(self, _param_View, TheSame);
     }
     pub fn get_Document(self: *const View, _param_Document: ?*?*Document) callconv(.@"inline") HRESULT {
@@ -3931,7 +3931,7 @@ pub const Views = extern union {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (18)
+// Section: Imports (19)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -3951,6 +3951,7 @@ const LPARAM = @import("../foundation.zig").LPARAM;
 const LRESULT = @import("../foundation.zig").LRESULT;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     @setEvalBranchQuota(

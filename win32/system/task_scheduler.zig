@@ -640,12 +640,12 @@ pub const IExecAction2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HideAppWindow: *const fn(
             self: *const IExecAction2,
-            pHideAppWindow: ?*i16,
+            pHideAppWindow: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HideAppWindow: *const fn(
             self: *const IExecAction2,
-            hideAppWindow: i16,
+            hideAppWindow: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -653,10 +653,10 @@ pub const IExecAction2 = extern union {
     IAction: IAction,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_HideAppWindow(self: *const IExecAction2, pHideAppWindow: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_HideAppWindow(self: *const IExecAction2, pHideAppWindow: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_HideAppWindow(self, pHideAppWindow);
     }
-    pub fn put_HideAppWindow(self: *const IExecAction2, hideAppWindow: i16) callconv(.@"inline") HRESULT {
+    pub fn put_HideAppWindow(self: *const IExecAction2, hideAppWindow: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_HideAppWindow(self, hideAppWindow);
     }
 };
@@ -690,22 +690,22 @@ pub const IIdleSettings = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StopOnIdleEnd: *const fn(
             self: *const IIdleSettings,
-            pStop: ?*i16,
+            pStop: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StopOnIdleEnd: *const fn(
             self: *const IIdleSettings,
-            stop: i16,
+            stop: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RestartOnIdle: *const fn(
             self: *const IIdleSettings,
-            pRestart: ?*i16,
+            pRestart: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RestartOnIdle: *const fn(
             self: *const IIdleSettings,
-            restart: i16,
+            restart: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -723,16 +723,16 @@ pub const IIdleSettings = extern union {
     pub fn put_WaitTimeout(self: *const IIdleSettings, timeout: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_WaitTimeout(self, timeout);
     }
-    pub fn get_StopOnIdleEnd(self: *const IIdleSettings, pStop: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_StopOnIdleEnd(self: *const IIdleSettings, pStop: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_StopOnIdleEnd(self, pStop);
     }
-    pub fn put_StopOnIdleEnd(self: *const IIdleSettings, stop: i16) callconv(.@"inline") HRESULT {
+    pub fn put_StopOnIdleEnd(self: *const IIdleSettings, stop: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_StopOnIdleEnd(self, stop);
     }
-    pub fn get_RestartOnIdle(self: *const IIdleSettings, pRestart: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_RestartOnIdle(self: *const IIdleSettings, pRestart: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_RestartOnIdle(self, pRestart);
     }
-    pub fn put_RestartOnIdle(self: *const IIdleSettings, restart: i16) callconv(.@"inline") HRESULT {
+    pub fn put_RestartOnIdle(self: *const IIdleSettings, restart: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_RestartOnIdle(self, restart);
     }
 };
@@ -823,12 +823,12 @@ pub const IMaintenanceSettings = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Exclusive: *const fn(
             self: *const IMaintenanceSettings,
-            value: i16,
+            value: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Exclusive: *const fn(
             self: *const IMaintenanceSettings,
-            target: ?*i16,
+            target: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -846,10 +846,10 @@ pub const IMaintenanceSettings = extern union {
     pub fn get_Deadline(self: *const IMaintenanceSettings, target: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Deadline(self, target);
     }
-    pub fn put_Exclusive(self: *const IMaintenanceSettings, value: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Exclusive(self: *const IMaintenanceSettings, value: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Exclusive(self, value);
     }
-    pub fn get_Exclusive(self: *const IMaintenanceSettings, target: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Exclusive(self: *const IMaintenanceSettings, target: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Exclusive(self, target);
     }
 };
@@ -893,12 +893,12 @@ pub const IMonthlyDOWTrigger = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RunOnLastWeekOfMonth: *const fn(
             self: *const IMonthlyDOWTrigger,
-            pLastWeek: ?*i16,
+            pLastWeek: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RunOnLastWeekOfMonth: *const fn(
             self: *const IMonthlyDOWTrigger,
-            lastWeek: i16,
+            lastWeek: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RandomDelay: *const fn(
@@ -933,10 +933,10 @@ pub const IMonthlyDOWTrigger = extern union {
     pub fn put_MonthsOfYear(self: *const IMonthlyDOWTrigger, months: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_MonthsOfYear(self, months);
     }
-    pub fn get_RunOnLastWeekOfMonth(self: *const IMonthlyDOWTrigger, pLastWeek: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_RunOnLastWeekOfMonth(self: *const IMonthlyDOWTrigger, pLastWeek: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_RunOnLastWeekOfMonth(self, pLastWeek);
     }
-    pub fn put_RunOnLastWeekOfMonth(self: *const IMonthlyDOWTrigger, lastWeek: i16) callconv(.@"inline") HRESULT {
+    pub fn put_RunOnLastWeekOfMonth(self: *const IMonthlyDOWTrigger, lastWeek: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_RunOnLastWeekOfMonth(self, lastWeek);
     }
     pub fn get_RandomDelay(self: *const IMonthlyDOWTrigger, pRandomDelay: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -976,12 +976,12 @@ pub const IMonthlyTrigger = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RunOnLastDayOfMonth: *const fn(
             self: *const IMonthlyTrigger,
-            pLastDay: ?*i16,
+            pLastDay: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RunOnLastDayOfMonth: *const fn(
             self: *const IMonthlyTrigger,
-            lastDay: i16,
+            lastDay: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RandomDelay: *const fn(
@@ -1010,10 +1010,10 @@ pub const IMonthlyTrigger = extern union {
     pub fn put_MonthsOfYear(self: *const IMonthlyTrigger, months: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_MonthsOfYear(self, months);
     }
-    pub fn get_RunOnLastDayOfMonth(self: *const IMonthlyTrigger, pLastDay: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_RunOnLastDayOfMonth(self: *const IMonthlyTrigger, pLastDay: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_RunOnLastDayOfMonth(self, pLastDay);
     }
-    pub fn put_RunOnLastDayOfMonth(self: *const IMonthlyTrigger, lastDay: i16) callconv(.@"inline") HRESULT {
+    pub fn put_RunOnLastDayOfMonth(self: *const IMonthlyTrigger, lastDay: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_RunOnLastDayOfMonth(self, lastDay);
     }
     pub fn get_RandomDelay(self: *const IMonthlyTrigger, pRandomDelay: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -1271,12 +1271,12 @@ pub const IRegisteredTask = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IRegisteredTask,
-            pEnabled: ?*i16,
+            pEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IRegisteredTask,
-            enabled: i16,
+            enabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Run: *const fn(
             self: *const IRegisteredTask,
@@ -1360,10 +1360,10 @@ pub const IRegisteredTask = extern union {
     pub fn get_State(self: *const IRegisteredTask, pState: ?*TASK_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.get_State(self, pState);
     }
-    pub fn get_Enabled(self: *const IRegisteredTask, pEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const IRegisteredTask, pEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, pEnabled);
     }
-    pub fn put_Enabled(self: *const IRegisteredTask, enabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Enabled(self: *const IRegisteredTask, enabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
     pub fn Run(self: *const IRegisteredTask, params: VARIANT, ppRunningTask: ?*?*IRunningTask) callconv(.@"inline") HRESULT {
@@ -1657,12 +1657,12 @@ pub const IRepetitionPattern = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StopAtDurationEnd: *const fn(
             self: *const IRepetitionPattern,
-            pStop: ?*i16,
+            pStop: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StopAtDurationEnd: *const fn(
             self: *const IRepetitionPattern,
-            stop: i16,
+            stop: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1680,10 +1680,10 @@ pub const IRepetitionPattern = extern union {
     pub fn put_Duration(self: *const IRepetitionPattern, duration: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Duration(self, duration);
     }
-    pub fn get_StopAtDurationEnd(self: *const IRepetitionPattern, pStop: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_StopAtDurationEnd(self: *const IRepetitionPattern, pStop: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_StopAtDurationEnd(self, pStop);
     }
-    pub fn put_StopAtDurationEnd(self: *const IRepetitionPattern, stop: i16) callconv(.@"inline") HRESULT {
+    pub fn put_StopAtDurationEnd(self: *const IRepetitionPattern, stop: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_StopAtDurationEnd(self, stop);
     }
 };
@@ -2782,7 +2782,7 @@ pub const ITaskService = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Connected: *const fn(
             self: *const ITaskService,
-            pConnected: ?*i16,
+            pConnected: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TargetServer: *const fn(
@@ -2820,7 +2820,7 @@ pub const ITaskService = extern union {
     pub fn Connect(self: *const ITaskService, serverName: VARIANT, user: VARIANT, domain: VARIANT, password: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Connect(self, serverName, user, domain, password);
     }
-    pub fn get_Connected(self: *const ITaskService, pConnected: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Connected(self: *const ITaskService, pConnected: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Connected(self, pConnected);
     }
     pub fn get_TargetServer(self: *const ITaskService, pServer: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -2846,12 +2846,12 @@ pub const ITaskSettings = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowDemandStart: *const fn(
             self: *const ITaskSettings,
-            pAllowDemandStart: ?*i16,
+            pAllowDemandStart: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowDemandStart: *const fn(
             self: *const ITaskSettings,
-            allowDemandStart: i16,
+            allowDemandStart: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RestartInterval: *const fn(
@@ -2886,42 +2886,42 @@ pub const ITaskSettings = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StopIfGoingOnBatteries: *const fn(
             self: *const ITaskSettings,
-            pStopIfOnBatteries: ?*i16,
+            pStopIfOnBatteries: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StopIfGoingOnBatteries: *const fn(
             self: *const ITaskSettings,
-            stopIfOnBatteries: i16,
+            stopIfOnBatteries: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisallowStartIfOnBatteries: *const fn(
             self: *const ITaskSettings,
-            pDisallowStart: ?*i16,
+            pDisallowStart: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisallowStartIfOnBatteries: *const fn(
             self: *const ITaskSettings,
-            disallowStart: i16,
+            disallowStart: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowHardTerminate: *const fn(
             self: *const ITaskSettings,
-            pAllowHardTerminate: ?*i16,
+            pAllowHardTerminate: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowHardTerminate: *const fn(
             self: *const ITaskSettings,
-            allowHardTerminate: i16,
+            allowHardTerminate: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartWhenAvailable: *const fn(
             self: *const ITaskSettings,
-            pStartWhenAvailable: ?*i16,
+            pStartWhenAvailable: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StartWhenAvailable: *const fn(
             self: *const ITaskSettings,
-            startWhenAvailable: i16,
+            startWhenAvailable: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_XmlText: *const fn(
@@ -2936,12 +2936,12 @@ pub const ITaskSettings = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RunOnlyIfNetworkAvailable: *const fn(
             self: *const ITaskSettings,
-            pRunOnlyIfNetworkAvailable: ?*i16,
+            pRunOnlyIfNetworkAvailable: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RunOnlyIfNetworkAvailable: *const fn(
             self: *const ITaskSettings,
-            runOnlyIfNetworkAvailable: i16,
+            runOnlyIfNetworkAvailable: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExecutionTimeLimit: *const fn(
@@ -2956,12 +2956,12 @@ pub const ITaskSettings = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const ITaskSettings,
-            pEnabled: ?*i16,
+            pEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const ITaskSettings,
-            enabled: i16,
+            enabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeleteExpiredTaskAfter: *const fn(
@@ -2996,12 +2996,12 @@ pub const ITaskSettings = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Hidden: *const fn(
             self: *const ITaskSettings,
-            pHidden: ?*i16,
+            pHidden: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Hidden: *const fn(
             self: *const ITaskSettings,
-            hidden: i16,
+            hidden: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IdleSettings: *const fn(
@@ -3016,22 +3016,22 @@ pub const ITaskSettings = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RunOnlyIfIdle: *const fn(
             self: *const ITaskSettings,
-            pRunOnlyIfIdle: ?*i16,
+            pRunOnlyIfIdle: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RunOnlyIfIdle: *const fn(
             self: *const ITaskSettings,
-            runOnlyIfIdle: i16,
+            runOnlyIfIdle: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WakeToRun: *const fn(
             self: *const ITaskSettings,
-            pWake: ?*i16,
+            pWake: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_WakeToRun: *const fn(
             self: *const ITaskSettings,
-            wake: i16,
+            wake: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetworkSettings: *const fn(
@@ -3047,10 +3047,10 @@ pub const ITaskSettings = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_AllowDemandStart(self: *const ITaskSettings, pAllowDemandStart: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AllowDemandStart(self: *const ITaskSettings, pAllowDemandStart: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowDemandStart(self, pAllowDemandStart);
     }
-    pub fn put_AllowDemandStart(self: *const ITaskSettings, allowDemandStart: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AllowDemandStart(self: *const ITaskSettings, allowDemandStart: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowDemandStart(self, allowDemandStart);
     }
     pub fn get_RestartInterval(self: *const ITaskSettings, pRestartInterval: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -3071,28 +3071,28 @@ pub const ITaskSettings = extern union {
     pub fn put_MultipleInstances(self: *const ITaskSettings, policy: TASK_INSTANCES_POLICY) callconv(.@"inline") HRESULT {
         return self.vtable.put_MultipleInstances(self, policy);
     }
-    pub fn get_StopIfGoingOnBatteries(self: *const ITaskSettings, pStopIfOnBatteries: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_StopIfGoingOnBatteries(self: *const ITaskSettings, pStopIfOnBatteries: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_StopIfGoingOnBatteries(self, pStopIfOnBatteries);
     }
-    pub fn put_StopIfGoingOnBatteries(self: *const ITaskSettings, stopIfOnBatteries: i16) callconv(.@"inline") HRESULT {
+    pub fn put_StopIfGoingOnBatteries(self: *const ITaskSettings, stopIfOnBatteries: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_StopIfGoingOnBatteries(self, stopIfOnBatteries);
     }
-    pub fn get_DisallowStartIfOnBatteries(self: *const ITaskSettings, pDisallowStart: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_DisallowStartIfOnBatteries(self: *const ITaskSettings, pDisallowStart: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_DisallowStartIfOnBatteries(self, pDisallowStart);
     }
-    pub fn put_DisallowStartIfOnBatteries(self: *const ITaskSettings, disallowStart: i16) callconv(.@"inline") HRESULT {
+    pub fn put_DisallowStartIfOnBatteries(self: *const ITaskSettings, disallowStart: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_DisallowStartIfOnBatteries(self, disallowStart);
     }
-    pub fn get_AllowHardTerminate(self: *const ITaskSettings, pAllowHardTerminate: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AllowHardTerminate(self: *const ITaskSettings, pAllowHardTerminate: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowHardTerminate(self, pAllowHardTerminate);
     }
-    pub fn put_AllowHardTerminate(self: *const ITaskSettings, allowHardTerminate: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AllowHardTerminate(self: *const ITaskSettings, allowHardTerminate: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowHardTerminate(self, allowHardTerminate);
     }
-    pub fn get_StartWhenAvailable(self: *const ITaskSettings, pStartWhenAvailable: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_StartWhenAvailable(self: *const ITaskSettings, pStartWhenAvailable: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_StartWhenAvailable(self, pStartWhenAvailable);
     }
-    pub fn put_StartWhenAvailable(self: *const ITaskSettings, startWhenAvailable: i16) callconv(.@"inline") HRESULT {
+    pub fn put_StartWhenAvailable(self: *const ITaskSettings, startWhenAvailable: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_StartWhenAvailable(self, startWhenAvailable);
     }
     pub fn get_XmlText(self: *const ITaskSettings, pText: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -3101,10 +3101,10 @@ pub const ITaskSettings = extern union {
     pub fn put_XmlText(self: *const ITaskSettings, text: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_XmlText(self, text);
     }
-    pub fn get_RunOnlyIfNetworkAvailable(self: *const ITaskSettings, pRunOnlyIfNetworkAvailable: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_RunOnlyIfNetworkAvailable(self: *const ITaskSettings, pRunOnlyIfNetworkAvailable: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_RunOnlyIfNetworkAvailable(self, pRunOnlyIfNetworkAvailable);
     }
-    pub fn put_RunOnlyIfNetworkAvailable(self: *const ITaskSettings, runOnlyIfNetworkAvailable: i16) callconv(.@"inline") HRESULT {
+    pub fn put_RunOnlyIfNetworkAvailable(self: *const ITaskSettings, runOnlyIfNetworkAvailable: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_RunOnlyIfNetworkAvailable(self, runOnlyIfNetworkAvailable);
     }
     pub fn get_ExecutionTimeLimit(self: *const ITaskSettings, pExecutionTimeLimit: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -3113,10 +3113,10 @@ pub const ITaskSettings = extern union {
     pub fn put_ExecutionTimeLimit(self: *const ITaskSettings, executionTimeLimit: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ExecutionTimeLimit(self, executionTimeLimit);
     }
-    pub fn get_Enabled(self: *const ITaskSettings, pEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const ITaskSettings, pEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, pEnabled);
     }
-    pub fn put_Enabled(self: *const ITaskSettings, enabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Enabled(self: *const ITaskSettings, enabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
     pub fn get_DeleteExpiredTaskAfter(self: *const ITaskSettings, pExpirationDelay: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -3137,10 +3137,10 @@ pub const ITaskSettings = extern union {
     pub fn put_Compatibility(self: *const ITaskSettings, compatLevel: TASK_COMPATIBILITY) callconv(.@"inline") HRESULT {
         return self.vtable.put_Compatibility(self, compatLevel);
     }
-    pub fn get_Hidden(self: *const ITaskSettings, pHidden: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Hidden(self: *const ITaskSettings, pHidden: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Hidden(self, pHidden);
     }
-    pub fn put_Hidden(self: *const ITaskSettings, hidden: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Hidden(self: *const ITaskSettings, hidden: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Hidden(self, hidden);
     }
     pub fn get_IdleSettings(self: *const ITaskSettings, ppIdleSettings: ?*?*IIdleSettings) callconv(.@"inline") HRESULT {
@@ -3149,16 +3149,16 @@ pub const ITaskSettings = extern union {
     pub fn put_IdleSettings(self: *const ITaskSettings, pIdleSettings: ?*IIdleSettings) callconv(.@"inline") HRESULT {
         return self.vtable.put_IdleSettings(self, pIdleSettings);
     }
-    pub fn get_RunOnlyIfIdle(self: *const ITaskSettings, pRunOnlyIfIdle: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_RunOnlyIfIdle(self: *const ITaskSettings, pRunOnlyIfIdle: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_RunOnlyIfIdle(self, pRunOnlyIfIdle);
     }
-    pub fn put_RunOnlyIfIdle(self: *const ITaskSettings, runOnlyIfIdle: i16) callconv(.@"inline") HRESULT {
+    pub fn put_RunOnlyIfIdle(self: *const ITaskSettings, runOnlyIfIdle: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_RunOnlyIfIdle(self, runOnlyIfIdle);
     }
-    pub fn get_WakeToRun(self: *const ITaskSettings, pWake: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_WakeToRun(self: *const ITaskSettings, pWake: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_WakeToRun(self, pWake);
     }
-    pub fn put_WakeToRun(self: *const ITaskSettings, wake: i16) callconv(.@"inline") HRESULT {
+    pub fn put_WakeToRun(self: *const ITaskSettings, wake: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_WakeToRun(self, wake);
     }
     pub fn get_NetworkSettings(self: *const ITaskSettings, ppNetworkSettings: ?*?*INetworkSettings) callconv(.@"inline") HRESULT {
@@ -3178,37 +3178,37 @@ pub const ITaskSettings2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisallowStartOnRemoteAppSession: *const fn(
             self: *const ITaskSettings2,
-            pDisallowStart: ?*i16,
+            pDisallowStart: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisallowStartOnRemoteAppSession: *const fn(
             self: *const ITaskSettings2,
-            disallowStart: i16,
+            disallowStart: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseUnifiedSchedulingEngine: *const fn(
             self: *const ITaskSettings2,
-            pUseUnifiedEngine: ?*i16,
+            pUseUnifiedEngine: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseUnifiedSchedulingEngine: *const fn(
             self: *const ITaskSettings2,
-            useUnifiedEngine: i16,
+            useUnifiedEngine: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DisallowStartOnRemoteAppSession(self: *const ITaskSettings2, pDisallowStart: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_DisallowStartOnRemoteAppSession(self: *const ITaskSettings2, pDisallowStart: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_DisallowStartOnRemoteAppSession(self, pDisallowStart);
     }
-    pub fn put_DisallowStartOnRemoteAppSession(self: *const ITaskSettings2, disallowStart: i16) callconv(.@"inline") HRESULT {
+    pub fn put_DisallowStartOnRemoteAppSession(self: *const ITaskSettings2, disallowStart: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_DisallowStartOnRemoteAppSession(self, disallowStart);
     }
-    pub fn get_UseUnifiedSchedulingEngine(self: *const ITaskSettings2, pUseUnifiedEngine: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_UseUnifiedSchedulingEngine(self: *const ITaskSettings2, pUseUnifiedEngine: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UseUnifiedSchedulingEngine(self, pUseUnifiedEngine);
     }
-    pub fn put_UseUnifiedSchedulingEngine(self: *const ITaskSettings2, useUnifiedEngine: i16) callconv(.@"inline") HRESULT {
+    pub fn put_UseUnifiedSchedulingEngine(self: *const ITaskSettings2, useUnifiedEngine: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_UseUnifiedSchedulingEngine(self, useUnifiedEngine);
     }
 };
@@ -3221,22 +3221,22 @@ pub const ITaskSettings3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisallowStartOnRemoteAppSession: *const fn(
             self: *const ITaskSettings3,
-            pDisallowStart: ?*i16,
+            pDisallowStart: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisallowStartOnRemoteAppSession: *const fn(
             self: *const ITaskSettings3,
-            disallowStart: i16,
+            disallowStart: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseUnifiedSchedulingEngine: *const fn(
             self: *const ITaskSettings3,
-            pUseUnifiedEngine: ?*i16,
+            pUseUnifiedEngine: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseUnifiedSchedulingEngine: *const fn(
             self: *const ITaskSettings3,
-            useUnifiedEngine: i16,
+            useUnifiedEngine: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaintenanceSettings: *const fn(
@@ -3255,28 +3255,28 @@ pub const ITaskSettings3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Volatile: *const fn(
             self: *const ITaskSettings3,
-            pVolatile: ?*i16,
+            pVolatile: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Volatile: *const fn(
             self: *const ITaskSettings3,
-            Volatile: i16,
+            Volatile: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITaskSettings: ITaskSettings,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DisallowStartOnRemoteAppSession(self: *const ITaskSettings3, pDisallowStart: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_DisallowStartOnRemoteAppSession(self: *const ITaskSettings3, pDisallowStart: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_DisallowStartOnRemoteAppSession(self, pDisallowStart);
     }
-    pub fn put_DisallowStartOnRemoteAppSession(self: *const ITaskSettings3, disallowStart: i16) callconv(.@"inline") HRESULT {
+    pub fn put_DisallowStartOnRemoteAppSession(self: *const ITaskSettings3, disallowStart: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_DisallowStartOnRemoteAppSession(self, disallowStart);
     }
-    pub fn get_UseUnifiedSchedulingEngine(self: *const ITaskSettings3, pUseUnifiedEngine: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_UseUnifiedSchedulingEngine(self: *const ITaskSettings3, pUseUnifiedEngine: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UseUnifiedSchedulingEngine(self, pUseUnifiedEngine);
     }
-    pub fn put_UseUnifiedSchedulingEngine(self: *const ITaskSettings3, useUnifiedEngine: i16) callconv(.@"inline") HRESULT {
+    pub fn put_UseUnifiedSchedulingEngine(self: *const ITaskSettings3, useUnifiedEngine: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_UseUnifiedSchedulingEngine(self, useUnifiedEngine);
     }
     pub fn get_MaintenanceSettings(self: *const ITaskSettings3, ppMaintenanceSettings: ?*?*IMaintenanceSettings) callconv(.@"inline") HRESULT {
@@ -3288,10 +3288,10 @@ pub const ITaskSettings3 = extern union {
     pub fn CreateMaintenanceSettings(self: *const ITaskSettings3, ppMaintenanceSettings: ?*?*IMaintenanceSettings) callconv(.@"inline") HRESULT {
         return self.vtable.CreateMaintenanceSettings(self, ppMaintenanceSettings);
     }
-    pub fn get_Volatile(self: *const ITaskSettings3, pVolatile: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Volatile(self: *const ITaskSettings3, pVolatile: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Volatile(self, pVolatile);
     }
-    pub fn put_Volatile(self: *const ITaskSettings3, Volatile: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Volatile(self: *const ITaskSettings3, Volatile: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Volatile(self, Volatile);
     }
 };
@@ -3453,12 +3453,12 @@ pub const ITrigger = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const ITrigger,
-            pEnabled: ?*i16,
+            pEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const ITrigger,
-            enabled: i16,
+            enabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -3497,10 +3497,10 @@ pub const ITrigger = extern union {
     pub fn put_EndBoundary(self: *const ITrigger, end: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_EndBoundary(self, end);
     }
-    pub fn get_Enabled(self: *const ITrigger, pEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const ITrigger, pEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, pEnabled);
     }
-    pub fn put_Enabled(self: *const ITrigger, enabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Enabled(self: *const ITrigger, enabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
 };
@@ -3874,7 +3874,7 @@ pub const WEEKLY = extern struct {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (12)
+// Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -3888,6 +3888,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     @setEvalBranchQuota(

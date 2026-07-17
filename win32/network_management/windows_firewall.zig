@@ -155,7 +155,7 @@ pub const IDynamicPortMapping = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IDynamicPortMapping,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
@@ -178,7 +178,7 @@ pub const IDynamicPortMapping = extern union {
         ) callconv(.winapi) HRESULT,
         Enable: *const fn(
             self: *const IDynamicPortMapping,
-            vb: i16,
+            vb: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         EditDescription: *const fn(
             self: *const IDynamicPortMapping,
@@ -210,7 +210,7 @@ pub const IDynamicPortMapping = extern union {
     pub fn get_InternalClient(self: *const IDynamicPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_InternalClient(self, pVal);
     }
-    pub fn get_Enabled(self: *const IDynamicPortMapping, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const IDynamicPortMapping, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, pVal);
     }
     pub fn get_Description(self: *const IDynamicPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -225,7 +225,7 @@ pub const IDynamicPortMapping = extern union {
     pub fn EditInternalClient(self: *const IDynamicPortMapping, bstrInternalClient: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.EditInternalClient(self, bstrInternalClient);
     }
-    pub fn Enable(self: *const IDynamicPortMapping, vb: i16) callconv(.@"inline") HRESULT {
+    pub fn Enable(self: *const IDynamicPortMapping, vb: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Enable(self, vb);
     }
     pub fn EditDescription(self: *const IDynamicPortMapping, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
@@ -271,7 +271,7 @@ pub const IDynamicPortMappingCollection = extern union {
             bstrProtocol: ?BSTR,
             lInternalPort: i32,
             bstrInternalClient: ?BSTR,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
             bstrDescription: ?BSTR,
             lLeaseDuration: i32,
             ppDPM: ?*?*IDynamicPortMapping,
@@ -292,7 +292,7 @@ pub const IDynamicPortMappingCollection = extern union {
     pub fn Remove(self: *const IDynamicPortMappingCollection, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, bstrRemoteHost, lExternalPort, bstrProtocol);
     }
-    pub fn Add(self: *const IDynamicPortMappingCollection, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR, lInternalPort: i32, bstrInternalClient: ?BSTR, bEnabled: i16, bstrDescription: ?BSTR, lLeaseDuration: i32, ppDPM: ?*?*IDynamicPortMapping) callconv(.@"inline") HRESULT {
+    pub fn Add(self: *const IDynamicPortMappingCollection, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR, lInternalPort: i32, bstrInternalClient: ?BSTR, bEnabled: VARIANT_BOOL, bstrDescription: ?BSTR, lLeaseDuration: i32, ppDPM: ?*?*IDynamicPortMapping) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, bstrRemoteHost, lExternalPort, bstrProtocol, lInternalPort, bstrInternalClient, bEnabled, bstrDescription, lLeaseDuration, ppDPM);
     }
 };
@@ -844,12 +844,12 @@ pub const INetFwAuthorizedApplication = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const INetFwAuthorizedApplication,
-            enabled: ?*i16,
+            enabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const INetFwAuthorizedApplication,
-            enabled: i16,
+            enabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -885,10 +885,10 @@ pub const INetFwAuthorizedApplication = extern union {
     pub fn put_RemoteAddresses(self: *const INetFwAuthorizedApplication, remoteAddrs: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_RemoteAddresses(self, remoteAddrs);
     }
-    pub fn get_Enabled(self: *const INetFwAuthorizedApplication, enabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const INetFwAuthorizedApplication, enabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, enabled);
     }
-    pub fn put_Enabled(self: *const INetFwAuthorizedApplication, enabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Enabled(self: *const INetFwAuthorizedApplication, enabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
 };
@@ -952,165 +952,165 @@ pub const INetFwIcmpSettings = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowOutboundDestinationUnreachable: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: ?*i16,
+            allow: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowOutboundDestinationUnreachable: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: i16,
+            allow: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowRedirect: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: ?*i16,
+            allow: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowRedirect: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: i16,
+            allow: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowInboundEchoRequest: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: ?*i16,
+            allow: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowInboundEchoRequest: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: i16,
+            allow: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowOutboundTimeExceeded: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: ?*i16,
+            allow: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowOutboundTimeExceeded: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: i16,
+            allow: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowOutboundParameterProblem: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: ?*i16,
+            allow: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowOutboundParameterProblem: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: i16,
+            allow: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowOutboundSourceQuench: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: ?*i16,
+            allow: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowOutboundSourceQuench: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: i16,
+            allow: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowInboundRouterRequest: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: ?*i16,
+            allow: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowInboundRouterRequest: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: i16,
+            allow: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowInboundTimestampRequest: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: ?*i16,
+            allow: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowInboundTimestampRequest: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: i16,
+            allow: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowInboundMaskRequest: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: ?*i16,
+            allow: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowInboundMaskRequest: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: i16,
+            allow: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowOutboundPacketTooBig: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: ?*i16,
+            allow: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowOutboundPacketTooBig: *const fn(
             self: *const INetFwIcmpSettings,
-            allow: i16,
+            allow: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_AllowOutboundDestinationUnreachable(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AllowOutboundDestinationUnreachable(self: *const INetFwIcmpSettings, allow: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowOutboundDestinationUnreachable(self, allow);
     }
-    pub fn put_AllowOutboundDestinationUnreachable(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AllowOutboundDestinationUnreachable(self: *const INetFwIcmpSettings, allow: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowOutboundDestinationUnreachable(self, allow);
     }
-    pub fn get_AllowRedirect(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AllowRedirect(self: *const INetFwIcmpSettings, allow: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowRedirect(self, allow);
     }
-    pub fn put_AllowRedirect(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AllowRedirect(self: *const INetFwIcmpSettings, allow: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowRedirect(self, allow);
     }
-    pub fn get_AllowInboundEchoRequest(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AllowInboundEchoRequest(self: *const INetFwIcmpSettings, allow: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowInboundEchoRequest(self, allow);
     }
-    pub fn put_AllowInboundEchoRequest(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AllowInboundEchoRequest(self: *const INetFwIcmpSettings, allow: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowInboundEchoRequest(self, allow);
     }
-    pub fn get_AllowOutboundTimeExceeded(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AllowOutboundTimeExceeded(self: *const INetFwIcmpSettings, allow: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowOutboundTimeExceeded(self, allow);
     }
-    pub fn put_AllowOutboundTimeExceeded(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AllowOutboundTimeExceeded(self: *const INetFwIcmpSettings, allow: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowOutboundTimeExceeded(self, allow);
     }
-    pub fn get_AllowOutboundParameterProblem(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AllowOutboundParameterProblem(self: *const INetFwIcmpSettings, allow: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowOutboundParameterProblem(self, allow);
     }
-    pub fn put_AllowOutboundParameterProblem(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AllowOutboundParameterProblem(self: *const INetFwIcmpSettings, allow: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowOutboundParameterProblem(self, allow);
     }
-    pub fn get_AllowOutboundSourceQuench(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AllowOutboundSourceQuench(self: *const INetFwIcmpSettings, allow: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowOutboundSourceQuench(self, allow);
     }
-    pub fn put_AllowOutboundSourceQuench(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AllowOutboundSourceQuench(self: *const INetFwIcmpSettings, allow: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowOutboundSourceQuench(self, allow);
     }
-    pub fn get_AllowInboundRouterRequest(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AllowInboundRouterRequest(self: *const INetFwIcmpSettings, allow: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowInboundRouterRequest(self, allow);
     }
-    pub fn put_AllowInboundRouterRequest(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AllowInboundRouterRequest(self: *const INetFwIcmpSettings, allow: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowInboundRouterRequest(self, allow);
     }
-    pub fn get_AllowInboundTimestampRequest(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AllowInboundTimestampRequest(self: *const INetFwIcmpSettings, allow: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowInboundTimestampRequest(self, allow);
     }
-    pub fn put_AllowInboundTimestampRequest(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AllowInboundTimestampRequest(self: *const INetFwIcmpSettings, allow: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowInboundTimestampRequest(self, allow);
     }
-    pub fn get_AllowInboundMaskRequest(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AllowInboundMaskRequest(self: *const INetFwIcmpSettings, allow: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowInboundMaskRequest(self, allow);
     }
-    pub fn put_AllowInboundMaskRequest(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AllowInboundMaskRequest(self: *const INetFwIcmpSettings, allow: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowInboundMaskRequest(self, allow);
     }
-    pub fn get_AllowOutboundPacketTooBig(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AllowOutboundPacketTooBig(self: *const INetFwIcmpSettings, allow: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowOutboundPacketTooBig(self, allow);
     }
-    pub fn put_AllowOutboundPacketTooBig(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AllowOutboundPacketTooBig(self: *const INetFwIcmpSettings, allow: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowOutboundPacketTooBig(self, allow);
     }
 };
@@ -1242,17 +1242,17 @@ pub const INetFwOpenPort = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const INetFwOpenPort,
-            enabled: ?*i16,
+            enabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const INetFwOpenPort,
-            enabled: i16,
+            enabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BuiltIn: *const fn(
             self: *const INetFwOpenPort,
-            builtIn: ?*i16,
+            builtIn: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1294,13 +1294,13 @@ pub const INetFwOpenPort = extern union {
     pub fn put_RemoteAddresses(self: *const INetFwOpenPort, remoteAddrs: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_RemoteAddresses(self, remoteAddrs);
     }
-    pub fn get_Enabled(self: *const INetFwOpenPort, enabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const INetFwOpenPort, enabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, enabled);
     }
-    pub fn put_Enabled(self: *const INetFwOpenPort, enabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Enabled(self: *const INetFwOpenPort, enabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
-    pub fn get_BuiltIn(self: *const INetFwOpenPort, builtIn: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_BuiltIn(self: *const INetFwOpenPort, builtIn: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_BuiltIn(self, builtIn);
     }
 };
@@ -1399,12 +1399,12 @@ pub const INetFwPolicy2 = extern union {
         get_FirewallEnabled: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
-            enabled: ?*i16,
+            enabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         put_FirewallEnabled: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
-            enabled: i16,
+            enabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         get_ExcludedInterfaces: *const fn(
             self: *const INetFwPolicy2,
@@ -1419,32 +1419,32 @@ pub const INetFwPolicy2 = extern union {
         get_BlockAllInboundTraffic: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
-            Block: ?*i16,
+            Block: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         put_BlockAllInboundTraffic: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
-            Block: i16,
+            Block: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         get_NotificationsDisabled: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
-            disabled: ?*i16,
+            disabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         put_NotificationsDisabled: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
-            disabled: i16,
+            disabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         get_UnicastResponsesToMulticastBroadcastDisabled: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
-            disabled: ?*i16,
+            disabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         put_UnicastResponsesToMulticastBroadcastDisabled: *const fn(
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
-            disabled: i16,
+            disabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Rules: *const fn(
@@ -1460,13 +1460,13 @@ pub const INetFwPolicy2 = extern union {
             self: *const INetFwPolicy2,
             profileTypesBitmask: i32,
             group: ?BSTR,
-            enable: i16,
+            enable: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         IsRuleGroupEnabled: *const fn(
             self: *const INetFwPolicy2,
             profileTypesBitmask: i32,
             group: ?BSTR,
-            enabled: ?*i16,
+            enabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         RestoreLocalFirewallDefaults: *const fn(
             self: *const INetFwPolicy2,
@@ -1494,7 +1494,7 @@ pub const INetFwPolicy2 = extern union {
         get_IsRuleGroupCurrentlyEnabled: *const fn(
             self: *const INetFwPolicy2,
             group: ?BSTR,
-            enabled: ?*i16,
+            enabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LocalPolicyModifyState: *const fn(
@@ -1508,10 +1508,10 @@ pub const INetFwPolicy2 = extern union {
     pub fn get_CurrentProfileTypes(self: *const INetFwPolicy2, profileTypesBitmask: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentProfileTypes(self, profileTypesBitmask);
     }
-    pub fn get_FirewallEnabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, enabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_FirewallEnabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, enabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_FirewallEnabled(self, profileType, enabled);
     }
-    pub fn put_FirewallEnabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, enabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_FirewallEnabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, enabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_FirewallEnabled(self, profileType, enabled);
     }
     pub fn get_ExcludedInterfaces(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, interfaces: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -1520,22 +1520,22 @@ pub const INetFwPolicy2 = extern union {
     pub fn put_ExcludedInterfaces(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, interfaces: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.put_ExcludedInterfaces(self, profileType, interfaces);
     }
-    pub fn get_BlockAllInboundTraffic(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, Block: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_BlockAllInboundTraffic(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, Block: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_BlockAllInboundTraffic(self, profileType, Block);
     }
-    pub fn put_BlockAllInboundTraffic(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, Block: i16) callconv(.@"inline") HRESULT {
+    pub fn put_BlockAllInboundTraffic(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, Block: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_BlockAllInboundTraffic(self, profileType, Block);
     }
-    pub fn get_NotificationsDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_NotificationsDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_NotificationsDisabled(self, profileType, disabled);
     }
-    pub fn put_NotificationsDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_NotificationsDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_NotificationsDisabled(self, profileType, disabled);
     }
-    pub fn get_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UnicastResponsesToMulticastBroadcastDisabled(self, profileType, disabled);
     }
-    pub fn put_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_UnicastResponsesToMulticastBroadcastDisabled(self, profileType, disabled);
     }
     pub fn get_Rules(self: *const INetFwPolicy2, rules: ?*?*INetFwRules) callconv(.@"inline") HRESULT {
@@ -1544,10 +1544,10 @@ pub const INetFwPolicy2 = extern union {
     pub fn get_ServiceRestriction(self: *const INetFwPolicy2, ServiceRestriction: ?*?*INetFwServiceRestriction) callconv(.@"inline") HRESULT {
         return self.vtable.get_ServiceRestriction(self, ServiceRestriction);
     }
-    pub fn EnableRuleGroup(self: *const INetFwPolicy2, profileTypesBitmask: i32, group: ?BSTR, enable: i16) callconv(.@"inline") HRESULT {
+    pub fn EnableRuleGroup(self: *const INetFwPolicy2, profileTypesBitmask: i32, group: ?BSTR, enable: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.EnableRuleGroup(self, profileTypesBitmask, group, enable);
     }
-    pub fn IsRuleGroupEnabled(self: *const INetFwPolicy2, profileTypesBitmask: i32, group: ?BSTR, enabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsRuleGroupEnabled(self: *const INetFwPolicy2, profileTypesBitmask: i32, group: ?BSTR, enabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsRuleGroupEnabled(self, profileTypesBitmask, group, enabled);
     }
     pub fn RestoreLocalFirewallDefaults(self: *const INetFwPolicy2) callconv(.@"inline") HRESULT {
@@ -1565,7 +1565,7 @@ pub const INetFwPolicy2 = extern union {
     pub fn put_DefaultOutboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: NET_FW_ACTION) callconv(.@"inline") HRESULT {
         return self.vtable.put_DefaultOutboundAction(self, profileType, action);
     }
-    pub fn get_IsRuleGroupCurrentlyEnabled(self: *const INetFwPolicy2, group: ?BSTR, enabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsRuleGroupCurrentlyEnabled(self: *const INetFwPolicy2, group: ?BSTR, enabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsRuleGroupCurrentlyEnabled(self, group, enabled);
     }
     pub fn get_LocalPolicyModifyState(self: *const INetFwPolicy2, modifyState: ?*NET_FW_MODIFY_STATE) callconv(.@"inline") HRESULT {
@@ -1683,42 +1683,42 @@ pub const INetFwProfile = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FirewallEnabled: *const fn(
             self: *const INetFwProfile,
-            enabled: ?*i16,
+            enabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FirewallEnabled: *const fn(
             self: *const INetFwProfile,
-            enabled: i16,
+            enabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExceptionsNotAllowed: *const fn(
             self: *const INetFwProfile,
-            notAllowed: ?*i16,
+            notAllowed: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExceptionsNotAllowed: *const fn(
             self: *const INetFwProfile,
-            notAllowed: i16,
+            notAllowed: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NotificationsDisabled: *const fn(
             self: *const INetFwProfile,
-            disabled: ?*i16,
+            disabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NotificationsDisabled: *const fn(
             self: *const INetFwProfile,
-            disabled: i16,
+            disabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UnicastResponsesToMulticastBroadcastDisabled: *const fn(
             self: *const INetFwProfile,
-            disabled: ?*i16,
+            disabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UnicastResponsesToMulticastBroadcastDisabled: *const fn(
             self: *const INetFwProfile,
-            disabled: i16,
+            disabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteAdminSettings: *const fn(
@@ -1752,28 +1752,28 @@ pub const INetFwProfile = extern union {
     pub fn get_Type(self: *const INetFwProfile, @"type": ?*NET_FW_PROFILE_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_Type(self, @"type");
     }
-    pub fn get_FirewallEnabled(self: *const INetFwProfile, enabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_FirewallEnabled(self: *const INetFwProfile, enabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_FirewallEnabled(self, enabled);
     }
-    pub fn put_FirewallEnabled(self: *const INetFwProfile, enabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_FirewallEnabled(self: *const INetFwProfile, enabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_FirewallEnabled(self, enabled);
     }
-    pub fn get_ExceptionsNotAllowed(self: *const INetFwProfile, notAllowed: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_ExceptionsNotAllowed(self: *const INetFwProfile, notAllowed: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ExceptionsNotAllowed(self, notAllowed);
     }
-    pub fn put_ExceptionsNotAllowed(self: *const INetFwProfile, notAllowed: i16) callconv(.@"inline") HRESULT {
+    pub fn put_ExceptionsNotAllowed(self: *const INetFwProfile, notAllowed: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_ExceptionsNotAllowed(self, notAllowed);
     }
-    pub fn get_NotificationsDisabled(self: *const INetFwProfile, disabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_NotificationsDisabled(self: *const INetFwProfile, disabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_NotificationsDisabled(self, disabled);
     }
-    pub fn put_NotificationsDisabled(self: *const INetFwProfile, disabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_NotificationsDisabled(self: *const INetFwProfile, disabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_NotificationsDisabled(self, disabled);
     }
-    pub fn get_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwProfile, disabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwProfile, disabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UnicastResponsesToMulticastBroadcastDisabled(self, disabled);
     }
-    pub fn put_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwProfile, disabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwProfile, disabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_UnicastResponsesToMulticastBroadcastDisabled(self, disabled);
     }
     pub fn get_RemoteAdminSettings(self: *const INetFwProfile, remoteAdminSettings: ?*?*INetFwRemoteAdminSettings) callconv(.@"inline") HRESULT {
@@ -1832,12 +1832,12 @@ pub const INetFwRemoteAdminSettings = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const INetFwRemoteAdminSettings,
-            enabled: ?*i16,
+            enabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const INetFwRemoteAdminSettings,
-            enabled: i16,
+            enabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1861,10 +1861,10 @@ pub const INetFwRemoteAdminSettings = extern union {
     pub fn put_RemoteAddresses(self: *const INetFwRemoteAdminSettings, remoteAddrs: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_RemoteAddresses(self, remoteAddrs);
     }
-    pub fn get_Enabled(self: *const INetFwRemoteAdminSettings, enabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const INetFwRemoteAdminSettings, enabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, enabled);
     }
-    pub fn put_Enabled(self: *const INetFwRemoteAdminSettings, enabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Enabled(self: *const INetFwRemoteAdminSettings, enabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
 };
@@ -2008,12 +2008,12 @@ pub const INetFwRule = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const INetFwRule,
-            enabled: ?*i16,
+            enabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const INetFwRule,
-            enabled: i16,
+            enabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Grouping: *const fn(
@@ -2038,12 +2038,12 @@ pub const INetFwRule = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EdgeTraversal: *const fn(
             self: *const INetFwRule,
-            enabled: ?*i16,
+            enabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EdgeTraversal: *const fn(
             self: *const INetFwRule,
-            enabled: i16,
+            enabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Action: *const fn(
@@ -2137,10 +2137,10 @@ pub const INetFwRule = extern union {
     pub fn put_InterfaceTypes(self: *const INetFwRule, interfaceTypes: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_InterfaceTypes(self, interfaceTypes);
     }
-    pub fn get_Enabled(self: *const INetFwRule, enabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const INetFwRule, enabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, enabled);
     }
-    pub fn put_Enabled(self: *const INetFwRule, enabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Enabled(self: *const INetFwRule, enabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
     pub fn get_Grouping(self: *const INetFwRule, context: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -2155,10 +2155,10 @@ pub const INetFwRule = extern union {
     pub fn put_Profiles(self: *const INetFwRule, profileTypesBitmask: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Profiles(self, profileTypesBitmask);
     }
-    pub fn get_EdgeTraversal(self: *const INetFwRule, enabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_EdgeTraversal(self: *const INetFwRule, enabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_EdgeTraversal(self, enabled);
     }
-    pub fn put_EdgeTraversal(self: *const INetFwRule, enabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_EdgeTraversal(self: *const INetFwRule, enabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_EdgeTraversal(self, enabled);
     }
     pub fn get_Action(self: *const INetFwRule, action: ?*NET_FW_ACTION) callconv(.@"inline") HRESULT {
@@ -2377,7 +2377,7 @@ pub const INetFwService = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Customized: *const fn(
             self: *const INetFwService,
-            customized: ?*i16,
+            customized: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IpVersion: *const fn(
@@ -2412,12 +2412,12 @@ pub const INetFwService = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const INetFwService,
-            enabled: ?*i16,
+            enabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const INetFwService,
-            enabled: i16,
+            enabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GloballyOpenPorts: *const fn(
@@ -2434,7 +2434,7 @@ pub const INetFwService = extern union {
     pub fn get_Type(self: *const INetFwService, @"type": ?*NET_FW_SERVICE_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_Type(self, @"type");
     }
-    pub fn get_Customized(self: *const INetFwService, customized: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Customized(self: *const INetFwService, customized: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Customized(self, customized);
     }
     pub fn get_IpVersion(self: *const INetFwService, ipVersion: ?*NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
@@ -2455,10 +2455,10 @@ pub const INetFwService = extern union {
     pub fn put_RemoteAddresses(self: *const INetFwService, remoteAddrs: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_RemoteAddresses(self, remoteAddrs);
     }
-    pub fn get_Enabled(self: *const INetFwService, enabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const INetFwService, enabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, enabled);
     }
-    pub fn put_Enabled(self: *const INetFwService, enabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Enabled(self: *const INetFwService, enabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
     pub fn get_GloballyOpenPorts(self: *const INetFwService, openPorts: ?*?*INetFwOpenPorts) callconv(.@"inline") HRESULT {
@@ -2476,14 +2476,14 @@ pub const INetFwServiceRestriction = extern union {
             self: *const INetFwServiceRestriction,
             serviceName: ?BSTR,
             appName: ?BSTR,
-            restrictService: i16,
-            serviceSidRestricted: i16,
+            restrictService: VARIANT_BOOL,
+            serviceSidRestricted: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         ServiceRestricted: *const fn(
             self: *const INetFwServiceRestriction,
             serviceName: ?BSTR,
             appName: ?BSTR,
-            serviceRestricted: ?*i16,
+            serviceRestricted: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Rules: *const fn(
@@ -2494,10 +2494,10 @@ pub const INetFwServiceRestriction = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn RestrictService(self: *const INetFwServiceRestriction, serviceName: ?BSTR, appName: ?BSTR, restrictService: i16, serviceSidRestricted: i16) callconv(.@"inline") HRESULT {
+    pub fn RestrictService(self: *const INetFwServiceRestriction, serviceName: ?BSTR, appName: ?BSTR, restrictService: VARIANT_BOOL, serviceSidRestricted: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.RestrictService(self, serviceName, appName, restrictService, serviceSidRestricted);
     }
-    pub fn ServiceRestricted(self: *const INetFwServiceRestriction, serviceName: ?BSTR, appName: ?BSTR, serviceRestricted: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn ServiceRestricted(self: *const INetFwServiceRestriction, serviceName: ?BSTR, appName: ?BSTR, serviceRestricted: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ServiceRestricted(self, serviceName, appName, serviceRestricted);
     }
     pub fn get_Rules(self: *const INetFwServiceRestriction, rules: ?*?*INetFwRules) callconv(.@"inline") HRESULT {
@@ -2550,7 +2550,7 @@ pub const INetSharingConfiguration = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SharingEnabled: *const fn(
             self: *const INetSharingConfiguration,
-            pbEnabled: ?*i16,
+            pbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SharingConnectionType: *const fn(
@@ -2567,7 +2567,7 @@ pub const INetSharingConfiguration = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InternetFirewallEnabled: *const fn(
             self: *const INetSharingConfiguration,
-            pbEnabled: ?*i16,
+            pbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         DisableInternetFirewall: *const fn(
             self: *const INetSharingConfiguration,
@@ -2599,7 +2599,7 @@ pub const INetSharingConfiguration = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_SharingEnabled(self: *const INetSharingConfiguration, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SharingEnabled(self: *const INetSharingConfiguration, pbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SharingEnabled(self, pbEnabled);
     }
     pub fn get_SharingConnectionType(self: *const INetSharingConfiguration, pType: ?*SHARINGCONNECTIONTYPE) callconv(.@"inline") HRESULT {
@@ -2611,7 +2611,7 @@ pub const INetSharingConfiguration = extern union {
     pub fn EnableSharing(self: *const INetSharingConfiguration, Type: SHARINGCONNECTIONTYPE) callconv(.@"inline") HRESULT {
         return self.vtable.EnableSharing(self, Type);
     }
-    pub fn get_InternetFirewallEnabled(self: *const INetSharingConfiguration, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_InternetFirewallEnabled(self: *const INetSharingConfiguration, pbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_InternetFirewallEnabled(self, pbEnabled);
     }
     pub fn DisableInternetFirewall(self: *const INetSharingConfiguration) callconv(.@"inline") HRESULT {
@@ -2668,7 +2668,7 @@ pub const INetSharingManager = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SharingInstalled: *const fn(
             self: *const INetSharingManager,
-            pbInstalled: ?*i16,
+            pbInstalled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         get_EnumPublicConnections: *const fn(
             self: *const INetSharingManager,
@@ -2699,7 +2699,7 @@ pub const INetSharingManager = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_SharingInstalled(self: *const INetSharingManager, pbInstalled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SharingInstalled(self: *const INetSharingManager, pbInstalled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SharingInstalled(self, pbInstalled);
     }
     pub fn get_EnumPublicConnections(self: *const INetSharingManager, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPublicConnectionCollection) callconv(.@"inline") HRESULT {
@@ -2829,7 +2829,7 @@ pub const INetSharingPortMappingProps = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const INetSharingPortMappingProps,
-            pbool: ?*i16,
+            pbool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -2856,7 +2856,7 @@ pub const INetSharingPortMappingProps = extern union {
     pub fn get_TargetIPAddress(self: *const INetSharingPortMappingProps, pbstrTargetIPAddress: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TargetIPAddress(self, pbstrTargetIPAddress);
     }
-    pub fn get_Enabled(self: *const INetSharingPortMappingProps, pbool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const INetSharingPortMappingProps, pbool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, pbool);
     }
 };
@@ -2951,7 +2951,7 @@ pub const IStaticPortMapping = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IStaticPortMapping,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
@@ -2964,7 +2964,7 @@ pub const IStaticPortMapping = extern union {
         ) callconv(.winapi) HRESULT,
         Enable: *const fn(
             self: *const IStaticPortMapping,
-            vb: i16,
+            vb: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         EditDescription: *const fn(
             self: *const IStaticPortMapping,
@@ -2993,7 +2993,7 @@ pub const IStaticPortMapping = extern union {
     pub fn get_InternalClient(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_InternalClient(self, pVal);
     }
-    pub fn get_Enabled(self: *const IStaticPortMapping, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const IStaticPortMapping, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, pVal);
     }
     pub fn get_Description(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -3002,7 +3002,7 @@ pub const IStaticPortMapping = extern union {
     pub fn EditInternalClient(self: *const IStaticPortMapping, bstrInternalClient: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.EditInternalClient(self, bstrInternalClient);
     }
-    pub fn Enable(self: *const IStaticPortMapping, vb: i16) callconv(.@"inline") HRESULT {
+    pub fn Enable(self: *const IStaticPortMapping, vb: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Enable(self, vb);
     }
     pub fn EditDescription(self: *const IStaticPortMapping, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
@@ -3046,7 +3046,7 @@ pub const IStaticPortMappingCollection = extern union {
             bstrProtocol: ?BSTR,
             lInternalPort: i32,
             bstrInternalClient: ?BSTR,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
             bstrDescription: ?BSTR,
             ppSPM: ?*?*IStaticPortMapping,
         ) callconv(.winapi) HRESULT,
@@ -3066,7 +3066,7 @@ pub const IStaticPortMappingCollection = extern union {
     pub fn Remove(self: *const IStaticPortMappingCollection, lExternalPort: i32, bstrProtocol: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, lExternalPort, bstrProtocol);
     }
-    pub fn Add(self: *const IStaticPortMappingCollection, lExternalPort: i32, bstrProtocol: ?BSTR, lInternalPort: i32, bstrInternalClient: ?BSTR, bEnabled: i16, bstrDescription: ?BSTR, ppSPM: ?*?*IStaticPortMapping) callconv(.@"inline") HRESULT {
+    pub fn Add(self: *const IStaticPortMappingCollection, lExternalPort: i32, bstrProtocol: ?BSTR, lInternalPort: i32, bstrInternalClient: ?BSTR, bEnabled: VARIANT_BOOL, bstrDescription: ?BSTR, ppSPM: ?*?*IStaticPortMapping) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, lExternalPort, bstrProtocol, lInternalPort, bstrInternalClient, bEnabled, bstrDescription, ppSPM);
     }
 };
@@ -3558,7 +3558,7 @@ pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationUnregisterForApp
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (13)
+// Section: Imports (14)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -3573,6 +3573,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const SID = @import("../security.zig").SID;
 const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -2239,7 +2239,7 @@ pub const IDCompositionSurface = extern union {
             self: *const IDCompositionSurface,
             updateRect: ?*const RECT,
             iid: ?*const Guid,
-            updateObject: ?*?*anyopaque,
+            updateObject: **anyopaque,
             updateOffset: ?*POINT,
         ) callconv(.winapi) HRESULT,
         EndDraw: *const fn(
@@ -2261,7 +2261,7 @@ pub const IDCompositionSurface = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BeginDraw(self: *const IDCompositionSurface, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: ?*?*anyopaque, updateOffset: ?*POINT) callconv(.@"inline") HRESULT {
+    pub fn BeginDraw(self: *const IDCompositionSurface, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: **anyopaque, updateOffset: ?*POINT) callconv(.@"inline") HRESULT {
         return self.vtable.BeginDraw(self, updateRect, iid, updateObject, updateOffset);
     }
     pub fn EndDraw(self: *const IDCompositionSurface) callconv(.@"inline") HRESULT {
@@ -2988,20 +2988,20 @@ pub extern "dcomp" fn DCompositionBoostCompositorClock(
 pub extern "dcomp" fn DCompositionCreateDevice(
     dxgiDevice: ?*IDXGIDevice,
     iid: ?*const Guid,
-    dcompositionDevice: ?*?*anyopaque,
+    dcompositionDevice: **anyopaque,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "dcomp" fn DCompositionCreateDevice2(
     renderingDevice: ?*IUnknown,
     iid: ?*const Guid,
-    dcompositionDevice: ?*?*anyopaque,
+    dcompositionDevice: **anyopaque,
 ) callconv(.winapi) HRESULT;
 
 pub extern "dcomp" fn DCompositionCreateDevice3(
     renderingDevice: ?*IUnknown,
     iid: ?*const Guid,
-    dcompositionDevice: ?*?*anyopaque,
+    dcompositionDevice: **anyopaque,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'

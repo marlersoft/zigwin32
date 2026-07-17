@@ -190,7 +190,7 @@ pub const IUPnPDevice = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsRootDevice: *const fn(
             self: *const IUPnPDevice,
-            pvarb: ?*i16,
+            pvarb: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RootDevice: *const fn(
@@ -205,7 +205,7 @@ pub const IUPnPDevice = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HasChildren: *const fn(
             self: *const IUPnPDevice,
-            pvarb: ?*i16,
+            pvarb: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Children: *const fn(
@@ -289,7 +289,7 @@ pub const IUPnPDevice = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_IsRootDevice(self: *const IUPnPDevice, pvarb: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsRootDevice(self: *const IUPnPDevice, pvarb: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsRootDevice(self, pvarb);
     }
     pub fn get_RootDevice(self: *const IUPnPDevice, ppudRootDevice: ?*?*IUPnPDevice) callconv(.@"inline") HRESULT {
@@ -298,7 +298,7 @@ pub const IUPnPDevice = extern union {
     pub fn get_ParentDevice(self: *const IUPnPDevice, ppudDeviceParent: ?*?*IUPnPDevice) callconv(.@"inline") HRESULT {
         return self.vtable.get_ParentDevice(self, ppudDeviceParent);
     }
-    pub fn get_HasChildren(self: *const IUPnPDevice, pvarb: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_HasChildren(self: *const IUPnPDevice, pvarb: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_HasChildren(self, pvarb);
     }
     pub fn get_Children(self: *const IUPnPDevice, ppudChildren: ?*?*IUPnPDevices) callconv(.@"inline") HRESULT {
@@ -1207,7 +1207,7 @@ pub extern "cfgmgr32" fn SwMemFree(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -1219,6 +1219,7 @@ const IUnknown = @import("../../system/com.zig").IUnknown;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 const SECURITY_DESCRIPTOR = @import("../../security.zig").SECURITY_DESCRIPTOR;
 const VARIANT = @import("../../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../../foundation.zig").VARIANT_BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

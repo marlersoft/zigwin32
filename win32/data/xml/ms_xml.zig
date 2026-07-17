@@ -736,11 +736,11 @@ pub const IMXNamespaceManager = extern union {
         base: IUnknown.VTable,
         putAllowOverride: *const fn(
             self: *const IMXNamespaceManager,
-            fOverride: i16,
+            fOverride: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getAllowOverride: *const fn(
             self: *const IMXNamespaceManager,
-            fOverride: ?*i16,
+            fOverride: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         reset: *const fn(
             self: *const IMXNamespaceManager,
@@ -751,7 +751,7 @@ pub const IMXNamespaceManager = extern union {
         pushNodeContext: *const fn(
             self: *const IMXNamespaceManager,
             contextNode: ?*IXMLDOMNode,
-            fDeep: i16,
+            fDeep: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         popContext: *const fn(
             self: *const IMXNamespaceManager,
@@ -784,10 +784,10 @@ pub const IMXNamespaceManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn putAllowOverride(self: *const IMXNamespaceManager, fOverride: i16) callconv(.@"inline") HRESULT {
+    pub fn putAllowOverride(self: *const IMXNamespaceManager, fOverride: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.putAllowOverride(self, fOverride);
     }
-    pub fn getAllowOverride(self: *const IMXNamespaceManager, fOverride: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn getAllowOverride(self: *const IMXNamespaceManager, fOverride: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.getAllowOverride(self, fOverride);
     }
     pub fn reset(self: *const IMXNamespaceManager) callconv(.@"inline") HRESULT {
@@ -796,7 +796,7 @@ pub const IMXNamespaceManager = extern union {
     pub fn pushContext(self: *const IMXNamespaceManager) callconv(.@"inline") HRESULT {
         return self.vtable.pushContext(self);
     }
-    pub fn pushNodeContext(self: *const IMXNamespaceManager, contextNode: ?*IXMLDOMNode, fDeep: i16) callconv(.@"inline") HRESULT {
+    pub fn pushNodeContext(self: *const IMXNamespaceManager, contextNode: ?*IXMLDOMNode, fDeep: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.pushNodeContext(self, contextNode, fDeep);
     }
     pub fn popContext(self: *const IMXNamespaceManager) callconv(.@"inline") HRESULT {
@@ -926,42 +926,42 @@ pub const IMXWriter = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_byteOrderMark: *const fn(
             self: *const IMXWriter,
-            fWriteByteOrderMark: i16,
+            fWriteByteOrderMark: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_byteOrderMark: *const fn(
             self: *const IMXWriter,
-            fWriteByteOrderMark: ?*i16,
+            fWriteByteOrderMark: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_indent: *const fn(
             self: *const IMXWriter,
-            fIndentMode: i16,
+            fIndentMode: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_indent: *const fn(
             self: *const IMXWriter,
-            fIndentMode: ?*i16,
+            fIndentMode: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_standalone: *const fn(
             self: *const IMXWriter,
-            fValue: i16,
+            fValue: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_standalone: *const fn(
             self: *const IMXWriter,
-            fValue: ?*i16,
+            fValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_omitXMLDeclaration: *const fn(
             self: *const IMXWriter,
-            fValue: i16,
+            fValue: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_omitXMLDeclaration: *const fn(
             self: *const IMXWriter,
-            fValue: ?*i16,
+            fValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_version: *const fn(
@@ -976,12 +976,12 @@ pub const IMXWriter = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_disableOutputEscaping: *const fn(
             self: *const IMXWriter,
-            fValue: i16,
+            fValue: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_disableOutputEscaping: *const fn(
             self: *const IMXWriter,
-            fValue: ?*i16,
+            fValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         flush: *const fn(
             self: *const IMXWriter,
@@ -1002,28 +1002,28 @@ pub const IMXWriter = extern union {
     pub fn get_encoding(self: *const IMXWriter, strEncoding: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_encoding(self, strEncoding);
     }
-    pub fn put_byteOrderMark(self: *const IMXWriter, fWriteByteOrderMark: i16) callconv(.@"inline") HRESULT {
+    pub fn put_byteOrderMark(self: *const IMXWriter, fWriteByteOrderMark: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_byteOrderMark(self, fWriteByteOrderMark);
     }
-    pub fn get_byteOrderMark(self: *const IMXWriter, fWriteByteOrderMark: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_byteOrderMark(self: *const IMXWriter, fWriteByteOrderMark: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_byteOrderMark(self, fWriteByteOrderMark);
     }
-    pub fn put_indent(self: *const IMXWriter, fIndentMode: i16) callconv(.@"inline") HRESULT {
+    pub fn put_indent(self: *const IMXWriter, fIndentMode: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_indent(self, fIndentMode);
     }
-    pub fn get_indent(self: *const IMXWriter, fIndentMode: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_indent(self: *const IMXWriter, fIndentMode: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_indent(self, fIndentMode);
     }
-    pub fn put_standalone(self: *const IMXWriter, fValue: i16) callconv(.@"inline") HRESULT {
+    pub fn put_standalone(self: *const IMXWriter, fValue: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_standalone(self, fValue);
     }
-    pub fn get_standalone(self: *const IMXWriter, fValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_standalone(self: *const IMXWriter, fValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_standalone(self, fValue);
     }
-    pub fn put_omitXMLDeclaration(self: *const IMXWriter, fValue: i16) callconv(.@"inline") HRESULT {
+    pub fn put_omitXMLDeclaration(self: *const IMXWriter, fValue: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_omitXMLDeclaration(self, fValue);
     }
-    pub fn get_omitXMLDeclaration(self: *const IMXWriter, fValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_omitXMLDeclaration(self: *const IMXWriter, fValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_omitXMLDeclaration(self, fValue);
     }
     pub fn put_version(self: *const IMXWriter, strVersion: ?BSTR) callconv(.@"inline") HRESULT {
@@ -1032,10 +1032,10 @@ pub const IMXWriter = extern union {
     pub fn get_version(self: *const IMXWriter, strVersion: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_version(self, strVersion);
     }
-    pub fn put_disableOutputEscaping(self: *const IMXWriter, fValue: i16) callconv(.@"inline") HRESULT {
+    pub fn put_disableOutputEscaping(self: *const IMXWriter, fValue: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_disableOutputEscaping(self, fValue);
     }
-    pub fn get_disableOutputEscaping(self: *const IMXWriter, fValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_disableOutputEscaping(self: *const IMXWriter, fValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_disableOutputEscaping(self, fValue);
     }
     pub fn flush(self: *const IMXWriter) callconv(.@"inline") HRESULT {
@@ -1051,12 +1051,12 @@ pub const IMXXMLFilter = extern union {
         getFeature: *const fn(
             self: *const IMXXMLFilter,
             strName: ?BSTR,
-            fValue: ?*i16,
+            fValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         putFeature: *const fn(
             self: *const IMXXMLFilter,
             strName: ?BSTR,
-            fValue: i16,
+            fValue: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getProperty: *const fn(
             self: *const IMXXMLFilter,
@@ -1108,10 +1108,10 @@ pub const IMXXMLFilter = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn getFeature(self: *const IMXXMLFilter, strName: ?BSTR, fValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn getFeature(self: *const IMXXMLFilter, strName: ?BSTR, fValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.getFeature(self, strName, fValue);
     }
-    pub fn putFeature(self: *const IMXXMLFilter, strName: ?BSTR, fValue: i16) callconv(.@"inline") HRESULT {
+    pub fn putFeature(self: *const IMXXMLFilter, strName: ?BSTR, fValue: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.putFeature(self, strName, fValue);
     }
     pub fn getProperty(self: *const IMXXMLFilter, strName: ?BSTR, varValue: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -1676,12 +1676,12 @@ pub const ISAXXMLReader = extern union {
         getFeature: *const fn(
             self: *const ISAXXMLReader,
             pwchName: ?[*:0]const u16,
-            pvfValue: ?*i16,
+            pvfValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         putFeature: *const fn(
             self: *const ISAXXMLReader,
             pwchName: ?[*:0]const u16,
-            vfValue: i16,
+            vfValue: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getProperty: *const fn(
             self: *const ISAXXMLReader,
@@ -1752,10 +1752,10 @@ pub const ISAXXMLReader = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn getFeature(self: *const ISAXXMLReader, pwchName: ?[*:0]const u16, pvfValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn getFeature(self: *const ISAXXMLReader, pwchName: ?[*:0]const u16, pvfValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.getFeature(self, pwchName, pvfValue);
     }
-    pub fn putFeature(self: *const ISAXXMLReader, pwchName: ?[*:0]const u16, vfValue: i16) callconv(.@"inline") HRESULT {
+    pub fn putFeature(self: *const ISAXXMLReader, pwchName: ?[*:0]const u16, vfValue: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.putFeature(self, pwchName, vfValue);
     }
     pub fn getProperty(self: *const ISAXXMLReader, pwchName: ?[*:0]const u16, pvarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -1954,7 +1954,7 @@ pub const ISchemaAttribute = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isReference: *const fn(
             self: *const ISchemaAttribute,
-            reference: ?*i16,
+            reference: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1976,7 +1976,7 @@ pub const ISchemaAttribute = extern union {
     pub fn get_use(self: *const ISchemaAttribute, use: ?*SCHEMAUSE) callconv(.@"inline") HRESULT {
         return self.vtable.get_use(self, use);
     }
-    pub fn get_isReference(self: *const ISchemaAttribute, reference: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isReference(self: *const ISchemaAttribute, reference: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isReference(self, reference);
     }
 };
@@ -2017,7 +2017,7 @@ pub const ISchemaComplexType = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isAbstract: *const fn(
             self: *const ISchemaComplexType,
-            abstract: ?*i16,
+            abstract: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_anyAttribute: *const fn(
@@ -2050,7 +2050,7 @@ pub const ISchemaComplexType = extern union {
     ISchemaItem: ISchemaItem,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_isAbstract(self: *const ISchemaComplexType, abstract: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isAbstract(self: *const ISchemaComplexType, abstract: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isAbstract(self, abstract);
     }
     pub fn get_anyAttribute(self: *const ISchemaComplexType, anyAttribute: ?*?*ISchemaAny) callconv(.@"inline") HRESULT {
@@ -2098,7 +2098,7 @@ pub const ISchemaElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isNillable: *const fn(
             self: *const ISchemaElement,
-            nillable: ?*i16,
+            nillable: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_identityConstraints: *const fn(
@@ -2123,12 +2123,12 @@ pub const ISchemaElement = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isAbstract: *const fn(
             self: *const ISchemaElement,
-            abstract: ?*i16,
+            abstract: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isReference: *const fn(
             self: *const ISchemaElement,
-            reference: ?*i16,
+            reference: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -2148,7 +2148,7 @@ pub const ISchemaElement = extern union {
     pub fn get_fixedValue(self: *const ISchemaElement, fixedValue: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_fixedValue(self, fixedValue);
     }
-    pub fn get_isNillable(self: *const ISchemaElement, nillable: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isNillable(self: *const ISchemaElement, nillable: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isNillable(self, nillable);
     }
     pub fn get_identityConstraints(self: *const ISchemaElement, constraints: ?*?*ISchemaItemCollection) callconv(.@"inline") HRESULT {
@@ -2163,10 +2163,10 @@ pub const ISchemaElement = extern union {
     pub fn get_disallowedSubstitutions(self: *const ISchemaElement, disallowed: ?*SCHEMADERIVATIONMETHOD) callconv(.@"inline") HRESULT {
         return self.vtable.get_disallowedSubstitutions(self, disallowed);
     }
-    pub fn get_isAbstract(self: *const ISchemaElement, abstract: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isAbstract(self: *const ISchemaElement, abstract: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isAbstract(self, abstract);
     }
-    pub fn get_isReference(self: *const ISchemaElement, reference: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isReference(self: *const ISchemaElement, reference: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isReference(self, reference);
     }
 };
@@ -2245,7 +2245,7 @@ pub const ISchemaItem = extern union {
         writeAnnotation: *const fn(
             self: *const ISchemaItem,
             annotationSink: ?*IUnknown,
-            isWritten: ?*i16,
+            isWritten: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -2269,7 +2269,7 @@ pub const ISchemaItem = extern union {
     pub fn get_unhandledAttributes(self: *const ISchemaItem, attributes: ?*?*IVBSAXAttributes) callconv(.@"inline") HRESULT {
         return self.vtable.get_unhandledAttributes(self, attributes);
     }
-    pub fn writeAnnotation(self: *const ISchemaItem, annotationSink: ?*IUnknown, isWritten: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn writeAnnotation(self: *const ISchemaItem, annotationSink: ?*IUnknown, isWritten: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.writeAnnotation(self, annotationSink, isWritten);
     }
 };
@@ -2466,7 +2466,7 @@ pub const ISchemaType = extern union {
         isValid: *const fn(
             self: *const ISchemaType,
             data: ?BSTR,
-            valid: ?*i16,
+            valid: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_minExclusive: *const fn(
@@ -2545,7 +2545,7 @@ pub const ISchemaType = extern union {
     pub fn get_derivedBy(self: *const ISchemaType, derivedBy: ?*SCHEMADERIVATIONMETHOD) callconv(.@"inline") HRESULT {
         return self.vtable.get_derivedBy(self, derivedBy);
     }
-    pub fn isValid(self: *const ISchemaType, data: ?BSTR, valid: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isValid(self: *const ISchemaType, data: ?BSTR, valid: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isValid(self, data, valid);
     }
     pub fn get_minExclusive(self: *const ISchemaType, minExclusive: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -2601,7 +2601,7 @@ pub const IServerXMLHTTPRequest = extern union {
         waitForResponse: *const fn(
             self: *const IServerXMLHTTPRequest,
             timeoutInSeconds: VARIANT,
-            isSuccessful: ?*i16,
+            isSuccessful: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getOption: *const fn(
             self: *const IServerXMLHTTPRequest,
@@ -2621,7 +2621,7 @@ pub const IServerXMLHTTPRequest = extern union {
     pub fn setTimeouts(self: *const IServerXMLHTTPRequest, resolveTimeout: i32, connectTimeout: i32, sendTimeout: i32, receiveTimeout: i32) callconv(.@"inline") HRESULT {
         return self.vtable.setTimeouts(self, resolveTimeout, connectTimeout, sendTimeout, receiveTimeout);
     }
-    pub fn waitForResponse(self: *const IServerXMLHTTPRequest, timeoutInSeconds: VARIANT, isSuccessful: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn waitForResponse(self: *const IServerXMLHTTPRequest, timeoutInSeconds: VARIANT, isSuccessful: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.waitForResponse(self, timeoutInSeconds, isSuccessful);
     }
     pub fn getOption(self: *const IServerXMLHTTPRequest, option: SERVERXMLHTTP_OPTION, value: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -2670,12 +2670,12 @@ pub const IVBMXNamespaceManager = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_allowOverride: *const fn(
             self: *const IVBMXNamespaceManager,
-            fOverride: i16,
+            fOverride: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_allowOverride: *const fn(
             self: *const IVBMXNamespaceManager,
-            fOverride: ?*i16,
+            fOverride: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         reset: *const fn(
             self: *const IVBMXNamespaceManager,
@@ -2686,7 +2686,7 @@ pub const IVBMXNamespaceManager = extern union {
         pushNodeContext: *const fn(
             self: *const IVBMXNamespaceManager,
             contextNode: ?*IXMLDOMNode,
-            fDeep: i16,
+            fDeep: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         popContext: *const fn(
             self: *const IVBMXNamespaceManager,
@@ -2720,10 +2720,10 @@ pub const IVBMXNamespaceManager = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_allowOverride(self: *const IVBMXNamespaceManager, fOverride: i16) callconv(.@"inline") HRESULT {
+    pub fn put_allowOverride(self: *const IVBMXNamespaceManager, fOverride: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_allowOverride(self, fOverride);
     }
-    pub fn get_allowOverride(self: *const IVBMXNamespaceManager, fOverride: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_allowOverride(self: *const IVBMXNamespaceManager, fOverride: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_allowOverride(self, fOverride);
     }
     pub fn reset(self: *const IVBMXNamespaceManager) callconv(.@"inline") HRESULT {
@@ -2732,7 +2732,7 @@ pub const IVBMXNamespaceManager = extern union {
     pub fn pushContext(self: *const IVBMXNamespaceManager) callconv(.@"inline") HRESULT {
         return self.vtable.pushContext(self);
     }
-    pub fn pushNodeContext(self: *const IVBMXNamespaceManager, contextNode: ?*IXMLDOMNode, fDeep: i16) callconv(.@"inline") HRESULT {
+    pub fn pushNodeContext(self: *const IVBMXNamespaceManager, contextNode: ?*IXMLDOMNode, fDeep: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.pushNodeContext(self, contextNode, fDeep);
     }
     pub fn popContext(self: *const IVBMXNamespaceManager) callconv(.@"inline") HRESULT {
@@ -3229,12 +3229,12 @@ pub const IVBSAXXMLReader = extern union {
         getFeature: *const fn(
             self: *const IVBSAXXMLReader,
             strName: ?BSTR,
-            fValue: ?*i16,
+            fValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         putFeature: *const fn(
             self: *const IVBSAXXMLReader,
             strName: ?BSTR,
-            fValue: i16,
+            fValue: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getProperty: *const fn(
             self: *const IVBSAXXMLReader,
@@ -3314,10 +3314,10 @@ pub const IVBSAXXMLReader = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn getFeature(self: *const IVBSAXXMLReader, strName: ?BSTR, fValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn getFeature(self: *const IVBSAXXMLReader, strName: ?BSTR, fValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.getFeature(self, strName, fValue);
     }
-    pub fn putFeature(self: *const IVBSAXXMLReader, strName: ?BSTR, fValue: i16) callconv(.@"inline") HRESULT {
+    pub fn putFeature(self: *const IVBSAXXMLReader, strName: ?BSTR, fValue: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.putFeature(self, strName, fValue);
     }
     pub fn getProperty(self: *const IVBSAXXMLReader, strName: ?BSTR, varValue: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -3600,12 +3600,12 @@ pub const IXMLDocument2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_async: *const fn(
             self: *const IXMLDocument2,
-            pf: ?*i16,
+            pf: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_async: *const fn(
             self: *const IXMLDocument2,
-            f: i16,
+            f: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -3653,10 +3653,10 @@ pub const IXMLDocument2 = extern union {
     pub fn createElement(self: *const IXMLDocument2, vType: VARIANT, var1: VARIANT, ppElem: ?*?*IXMLElement2) callconv(.@"inline") HRESULT {
         return self.vtable.createElement(self, vType, var1, ppElem);
     }
-    pub fn get_async(self: *const IXMLDocument2, pf: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_async(self: *const IXMLDocument2, pf: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_async(self, pf);
     }
-    pub fn put_async(self: *const IXMLDocument2, f: i16) callconv(.@"inline") HRESULT {
+    pub fn put_async(self: *const IXMLDocument2, f: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_async(self, f);
     }
 };
@@ -3885,7 +3885,7 @@ pub const IXMLDOMDocument = extern union {
         load: *const fn(
             self: *const IXMLDOMDocument,
             xmlSource: VARIANT,
-            isSuccessful: ?*i16,
+            isSuccessful: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_readyState: *const fn(
@@ -3905,12 +3905,12 @@ pub const IXMLDOMDocument = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_async: *const fn(
             self: *const IXMLDOMDocument,
-            isAsync: ?*i16,
+            isAsync: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_async: *const fn(
             self: *const IXMLDOMDocument,
-            isAsync: i16,
+            isAsync: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         abort: *const fn(
             self: *const IXMLDOMDocument,
@@ -3918,7 +3918,7 @@ pub const IXMLDOMDocument = extern union {
         loadXML: *const fn(
             self: *const IXMLDOMDocument,
             bstrXML: ?BSTR,
-            isSuccessful: ?*i16,
+            isSuccessful: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         save: *const fn(
             self: *const IXMLDOMDocument,
@@ -3927,32 +3927,32 @@ pub const IXMLDOMDocument = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_validateOnParse: *const fn(
             self: *const IXMLDOMDocument,
-            isValidating: ?*i16,
+            isValidating: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_validateOnParse: *const fn(
             self: *const IXMLDOMDocument,
-            isValidating: i16,
+            isValidating: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_resolveExternals: *const fn(
             self: *const IXMLDOMDocument,
-            isResolving: ?*i16,
+            isResolving: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_resolveExternals: *const fn(
             self: *const IXMLDOMDocument,
-            isResolving: i16,
+            isResolving: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_preserveWhiteSpace: *const fn(
             self: *const IXMLDOMDocument,
-            isPreserving: ?*i16,
+            isPreserving: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_preserveWhiteSpace: *const fn(
             self: *const IXMLDOMDocument,
-            isPreserving: i16,
+            isPreserving: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_onreadystatechange: *const fn(
@@ -4019,7 +4019,7 @@ pub const IXMLDOMDocument = extern union {
     pub fn nodeFromID(self: *const IXMLDOMDocument, idString: ?BSTR, node: ?*?*IXMLDOMNode) callconv(.@"inline") HRESULT {
         return self.vtable.nodeFromID(self, idString, node);
     }
-    pub fn load(self: *const IXMLDOMDocument, xmlSource: VARIANT, isSuccessful: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn load(self: *const IXMLDOMDocument, xmlSource: VARIANT, isSuccessful: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.load(self, xmlSource, isSuccessful);
     }
     pub fn get_readyState(self: *const IXMLDOMDocument, value: ?*i32) callconv(.@"inline") HRESULT {
@@ -4031,37 +4031,37 @@ pub const IXMLDOMDocument = extern union {
     pub fn get_url(self: *const IXMLDOMDocument, urlString: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_url(self, urlString);
     }
-    pub fn get_async(self: *const IXMLDOMDocument, isAsync: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_async(self: *const IXMLDOMDocument, isAsync: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_async(self, isAsync);
     }
-    pub fn put_async(self: *const IXMLDOMDocument, isAsync: i16) callconv(.@"inline") HRESULT {
+    pub fn put_async(self: *const IXMLDOMDocument, isAsync: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_async(self, isAsync);
     }
     pub fn abort(self: *const IXMLDOMDocument) callconv(.@"inline") HRESULT {
         return self.vtable.abort(self);
     }
-    pub fn loadXML(self: *const IXMLDOMDocument, bstrXML: ?BSTR, isSuccessful: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn loadXML(self: *const IXMLDOMDocument, bstrXML: ?BSTR, isSuccessful: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.loadXML(self, bstrXML, isSuccessful);
     }
     pub fn save(self: *const IXMLDOMDocument, destination: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.save(self, destination);
     }
-    pub fn get_validateOnParse(self: *const IXMLDOMDocument, isValidating: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_validateOnParse(self: *const IXMLDOMDocument, isValidating: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_validateOnParse(self, isValidating);
     }
-    pub fn put_validateOnParse(self: *const IXMLDOMDocument, isValidating: i16) callconv(.@"inline") HRESULT {
+    pub fn put_validateOnParse(self: *const IXMLDOMDocument, isValidating: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_validateOnParse(self, isValidating);
     }
-    pub fn get_resolveExternals(self: *const IXMLDOMDocument, isResolving: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_resolveExternals(self: *const IXMLDOMDocument, isResolving: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_resolveExternals(self, isResolving);
     }
-    pub fn put_resolveExternals(self: *const IXMLDOMDocument, isResolving: i16) callconv(.@"inline") HRESULT {
+    pub fn put_resolveExternals(self: *const IXMLDOMDocument, isResolving: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_resolveExternals(self, isResolving);
     }
-    pub fn get_preserveWhiteSpace(self: *const IXMLDOMDocument, isPreserving: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_preserveWhiteSpace(self: *const IXMLDOMDocument, isPreserving: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_preserveWhiteSpace(self, isPreserving);
     }
-    pub fn put_preserveWhiteSpace(self: *const IXMLDOMDocument, isPreserving: i16) callconv(.@"inline") HRESULT {
+    pub fn put_preserveWhiteSpace(self: *const IXMLDOMDocument, isPreserving: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_preserveWhiteSpace(self, isPreserving);
     }
     pub fn put_onreadystatechange(self: *const IXMLDOMDocument, readystatechangeSink: VARIANT) callconv(.@"inline") HRESULT {
@@ -4147,7 +4147,7 @@ pub const IXMLDOMDocument3 = extern union {
         importNode: *const fn(
             self: *const IXMLDOMDocument3,
             node: ?*IXMLDOMNode,
-            deep: i16,
+            deep: VARIANT_BOOL,
             clone: ?*?*IXMLDOMNode,
         ) callconv(.winapi) HRESULT,
     };
@@ -4160,7 +4160,7 @@ pub const IXMLDOMDocument3 = extern union {
     pub fn validateNode(self: *const IXMLDOMDocument3, node: ?*IXMLDOMNode, errorObj: ?*?*IXMLDOMParseError) callconv(.@"inline") HRESULT {
         return self.vtable.validateNode(self, node, errorObj);
     }
-    pub fn importNode(self: *const IXMLDOMDocument3, node: ?*IXMLDOMNode, deep: i16, clone: ?*?*IXMLDOMNode) callconv(.@"inline") HRESULT {
+    pub fn importNode(self: *const IXMLDOMDocument3, node: ?*IXMLDOMNode, deep: VARIANT_BOOL, clone: ?*?*IXMLDOMNode) callconv(.@"inline") HRESULT {
         return self.vtable.importNode(self, node, deep, clone);
     }
 };
@@ -4351,13 +4351,13 @@ pub const IXMLDOMImplementation = extern union {
             self: *const IXMLDOMImplementation,
             feature: ?BSTR,
             version: ?BSTR,
-            hasFeature: ?*i16,
+            hasFeature: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn hasFeature(self: *const IXMLDOMImplementation, feature: ?BSTR, version: ?BSTR, _param_hasFeature: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn hasFeature(self: *const IXMLDOMImplementation, feature: ?BSTR, version: ?BSTR, _param_hasFeature: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.hasFeature(self, feature, version, _param_hasFeature);
     }
 };
@@ -4536,7 +4536,7 @@ pub const IXMLDOMNode = extern union {
         ) callconv(.winapi) HRESULT,
         hasChildNodes: *const fn(
             self: *const IXMLDOMNode,
-            hasChild: ?*i16,
+            hasChild: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ownerDocument: *const fn(
@@ -4545,7 +4545,7 @@ pub const IXMLDOMNode = extern union {
         ) callconv(.winapi) HRESULT,
         cloneNode: *const fn(
             self: *const IXMLDOMNode,
-            deep: i16,
+            deep: VARIANT_BOOL,
             cloneRoot: ?*?*IXMLDOMNode,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -4566,7 +4566,7 @@ pub const IXMLDOMNode = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_specified: *const fn(
             self: *const IXMLDOMNode,
-            isSpecified: ?*i16,
+            isSpecified: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_definition: *const fn(
@@ -4616,7 +4616,7 @@ pub const IXMLDOMNode = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_parsed: *const fn(
             self: *const IXMLDOMNode,
-            isParsed: ?*i16,
+            isParsed: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_namespaceURI: *const fn(
@@ -4687,13 +4687,13 @@ pub const IXMLDOMNode = extern union {
     pub fn appendChild(self: *const IXMLDOMNode, newChild: ?*IXMLDOMNode, outNewChild: ?*?*IXMLDOMNode) callconv(.@"inline") HRESULT {
         return self.vtable.appendChild(self, newChild, outNewChild);
     }
-    pub fn hasChildNodes(self: *const IXMLDOMNode, hasChild: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn hasChildNodes(self: *const IXMLDOMNode, hasChild: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.hasChildNodes(self, hasChild);
     }
     pub fn get_ownerDocument(self: *const IXMLDOMNode, XMLDOMDocument: ?*?*IXMLDOMDocument) callconv(.@"inline") HRESULT {
         return self.vtable.get_ownerDocument(self, XMLDOMDocument);
     }
-    pub fn cloneNode(self: *const IXMLDOMNode, deep: i16, cloneRoot: ?*?*IXMLDOMNode) callconv(.@"inline") HRESULT {
+    pub fn cloneNode(self: *const IXMLDOMNode, deep: VARIANT_BOOL, cloneRoot: ?*?*IXMLDOMNode) callconv(.@"inline") HRESULT {
         return self.vtable.cloneNode(self, deep, cloneRoot);
     }
     pub fn get_nodeTypeString(self: *const IXMLDOMNode, nodeType: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -4705,7 +4705,7 @@ pub const IXMLDOMNode = extern union {
     pub fn put_text(self: *const IXMLDOMNode, text: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_text(self, text);
     }
-    pub fn get_specified(self: *const IXMLDOMNode, isSpecified: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_specified(self: *const IXMLDOMNode, isSpecified: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_specified(self, isSpecified);
     }
     pub fn get_definition(self: *const IXMLDOMNode, definitionNode: ?*?*IXMLDOMNode) callconv(.@"inline") HRESULT {
@@ -4735,7 +4735,7 @@ pub const IXMLDOMNode = extern union {
     pub fn selectSingleNode(self: *const IXMLDOMNode, queryString: ?BSTR, resultNode: ?*?*IXMLDOMNode) callconv(.@"inline") HRESULT {
         return self.vtable.selectSingleNode(self, queryString, resultNode);
     }
-    pub fn get_parsed(self: *const IXMLDOMNode, isParsed: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_parsed(self: *const IXMLDOMNode, isParsed: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_parsed(self, isParsed);
     }
     pub fn get_namespaceURI(self: *const IXMLDOMNode, namespaceURI: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -5100,12 +5100,12 @@ pub const IXMLDOMSchemaCollection2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_validateOnLoad: *const fn(
             self: *const IXMLDOMSchemaCollection2,
-            validateOnLoad: i16,
+            validateOnLoad: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_validateOnLoad: *const fn(
             self: *const IXMLDOMSchemaCollection2,
-            validateOnLoad: ?*i16,
+            validateOnLoad: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getSchema: *const fn(
             self: *const IXMLDOMSchemaCollection2,
@@ -5125,10 +5125,10 @@ pub const IXMLDOMSchemaCollection2 = extern union {
     pub fn validate(self: *const IXMLDOMSchemaCollection2) callconv(.@"inline") HRESULT {
         return self.vtable.validate(self);
     }
-    pub fn put_validateOnLoad(self: *const IXMLDOMSchemaCollection2, validateOnLoad: i16) callconv(.@"inline") HRESULT {
+    pub fn put_validateOnLoad(self: *const IXMLDOMSchemaCollection2, validateOnLoad: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_validateOnLoad(self, validateOnLoad);
     }
-    pub fn get_validateOnLoad(self: *const IXMLDOMSchemaCollection2, validateOnLoad: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_validateOnLoad(self: *const IXMLDOMSchemaCollection2, validateOnLoad: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_validateOnLoad(self, validateOnLoad);
     }
     pub fn getSchema(self: *const IXMLDOMSchemaCollection2, namespaceURI: ?BSTR, schema: ?*?*ISchema) callconv(.@"inline") HRESULT {
@@ -6076,7 +6076,7 @@ pub const IXSLProcessor = extern union {
         ) callconv(.winapi) HRESULT,
         transform: *const fn(
             self: *const IXSLProcessor,
-            pDone: ?*i16,
+            pDone: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         reset: *const fn(
             self: *const IXSLProcessor,
@@ -6130,7 +6130,7 @@ pub const IXSLProcessor = extern union {
     pub fn get_output(self: *const IXSLProcessor, pOutput: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_output(self, pOutput);
     }
-    pub fn transform(self: *const IXSLProcessor, pDone: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn transform(self: *const IXSLProcessor, pDone: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.transform(self, pDone);
     }
     pub fn reset(self: *const IXSLProcessor) callconv(.@"inline") HRESULT {
@@ -6743,7 +6743,7 @@ pub const CLSID_XSLTemplate60 = &CLSID_XSLTemplate60_Value;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -6755,6 +6755,7 @@ const ISequentialStream = @import("../../system/com.zig").ISequentialStream;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 const VARIANT = @import("../../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../../foundation.zig").VARIANT_BOOL;
 
 test {
     @setEvalBranchQuota(

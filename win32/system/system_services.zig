@@ -3157,7 +3157,7 @@ pub const XSTATE_PASID = @as(u32, 10);
 pub const XSTATE_XFD_BIT = @as(u32, 2);
 
 //--------------------------------------------------------------------------------
-// Section: Types (265)
+// Section: Types (266)
 //--------------------------------------------------------------------------------
 pub const _DEV_BROADCAST_HEADER = extern struct {
     dbcd_size: u32,
@@ -3586,63 +3586,6 @@ pub const CFU_UNDERLINEWORD = CFE_UNDERLINE{ .UNDERLINEWORD = 1 };
 pub const CFU_UNDERLINE = CFE_UNDERLINE{ .UNDERLINE = 1 };
 pub const CFU_UNDERLINENONE = CFE_UNDERLINE{ };
 
-pub const CLIPBOARD_FORMATS = enum(u32) {
-    TEXT = 1,
-    BITMAP = 2,
-    METAFILEPICT = 3,
-    SYLK = 4,
-    DIF = 5,
-    TIFF = 6,
-    OEMTEXT = 7,
-    DIB = 8,
-    PALETTE = 9,
-    PENDATA = 10,
-    RIFF = 11,
-    WAVE = 12,
-    UNICODETEXT = 13,
-    ENHMETAFILE = 14,
-    HDROP = 15,
-    LOCALE = 16,
-    DIBV5 = 17,
-    MAX = 18,
-    OWNERDISPLAY = 128,
-    DSPTEXT = 129,
-    DSPBITMAP = 130,
-    DSPMETAFILEPICT = 131,
-    DSPENHMETAFILE = 142,
-    PRIVATEFIRST = 512,
-    PRIVATELAST = 767,
-    GDIOBJFIRST = 768,
-    GDIOBJLAST = 1023,
-};
-pub const CF_TEXT = CLIPBOARD_FORMATS.TEXT;
-pub const CF_BITMAP = CLIPBOARD_FORMATS.BITMAP;
-pub const CF_METAFILEPICT = CLIPBOARD_FORMATS.METAFILEPICT;
-pub const CF_SYLK = CLIPBOARD_FORMATS.SYLK;
-pub const CF_DIF = CLIPBOARD_FORMATS.DIF;
-pub const CF_TIFF = CLIPBOARD_FORMATS.TIFF;
-pub const CF_OEMTEXT = CLIPBOARD_FORMATS.OEMTEXT;
-pub const CF_DIB = CLIPBOARD_FORMATS.DIB;
-pub const CF_PALETTE = CLIPBOARD_FORMATS.PALETTE;
-pub const CF_PENDATA = CLIPBOARD_FORMATS.PENDATA;
-pub const CF_RIFF = CLIPBOARD_FORMATS.RIFF;
-pub const CF_WAVE = CLIPBOARD_FORMATS.WAVE;
-pub const CF_UNICODETEXT = CLIPBOARD_FORMATS.UNICODETEXT;
-pub const CF_ENHMETAFILE = CLIPBOARD_FORMATS.ENHMETAFILE;
-pub const CF_HDROP = CLIPBOARD_FORMATS.HDROP;
-pub const CF_LOCALE = CLIPBOARD_FORMATS.LOCALE;
-pub const CF_DIBV5 = CLIPBOARD_FORMATS.DIBV5;
-pub const CF_MAX = CLIPBOARD_FORMATS.MAX;
-pub const CF_OWNERDISPLAY = CLIPBOARD_FORMATS.OWNERDISPLAY;
-pub const CF_DSPTEXT = CLIPBOARD_FORMATS.DSPTEXT;
-pub const CF_DSPBITMAP = CLIPBOARD_FORMATS.DSPBITMAP;
-pub const CF_DSPMETAFILEPICT = CLIPBOARD_FORMATS.DSPMETAFILEPICT;
-pub const CF_DSPENHMETAFILE = CLIPBOARD_FORMATS.DSPENHMETAFILE;
-pub const CF_PRIVATEFIRST = CLIPBOARD_FORMATS.PRIVATEFIRST;
-pub const CF_PRIVATELAST = CLIPBOARD_FORMATS.PRIVATELAST;
-pub const CF_GDIOBJFIRST = CLIPBOARD_FORMATS.GDIOBJFIRST;
-pub const CF_GDIOBJLAST = CLIPBOARD_FORMATS.GDIOBJLAST;
-
 pub const COMPONENT_FILTER = extern struct {
     ComponentFlags: u32,
 };
@@ -3821,6 +3764,26 @@ pub const DEVICE_EVENT_RBC_DATA = extern struct {
     Reserved: u8,
     Information: u32,
 };
+
+pub const DEVMODE_DISPLAY_FIXED_OUTPUT = enum(u32) {
+    DEFAULT = 0,
+    STRETCH = 1,
+    CENTER = 2,
+};
+pub const DMDFO_DEFAULT = DEVMODE_DISPLAY_FIXED_OUTPUT.DEFAULT;
+pub const DMDFO_STRETCH = DEVMODE_DISPLAY_FIXED_OUTPUT.STRETCH;
+pub const DMDFO_CENTER = DEVMODE_DISPLAY_FIXED_OUTPUT.CENTER;
+
+pub const DEVMODE_DISPLAY_ORIENTATION = enum(u32) {
+    DEFAULT = 0,
+    @"90" = 1,
+    @"180" = 2,
+    @"270" = 3,
+};
+pub const DMDO_DEFAULT = DEVMODE_DISPLAY_ORIENTATION.DEFAULT;
+pub const DMDO_90 = DEVMODE_DISPLAY_ORIENTATION.@"90";
+pub const DMDO_180 = DEVMODE_DISPLAY_ORIENTATION.@"180";
+pub const DMDO_270 = DEVMODE_DISPLAY_ORIENTATION.@"270";
 
 pub const DISK_HEALTH_NOTIFICATION_DATA = extern struct {
     DeviceGuid: Guid,
@@ -5833,7 +5796,7 @@ pub const Win32ServiceShareProcess = SERVICE_NODE_TYPE.Win32ServiceShareProcess;
 pub const AdapterType = SERVICE_NODE_TYPE.AdapterType;
 pub const RecognizerType = SERVICE_NODE_TYPE.RecognizerType;
 
-pub const SFGAO_FLAGS = packed struct(u64) {
+pub const SFGAO_FLAGS = packed struct(u32) {
     CANCOPY: u1 = 0,
     CANMOVE: u1 = 0,
     CANLINK: u1 = 0,
@@ -5866,38 +5829,6 @@ pub const SFGAO_FLAGS = packed struct(u64) {
     FOLDER: u1 = 0,
     FILESYSTEM: u1 = 0,
     HASSUBFOLDER: u1 = 0,
-    _32: u1 = 0,
-    _33: u1 = 0,
-    _34: u1 = 0,
-    _35: u1 = 0,
-    _36: u1 = 0,
-    _37: u1 = 0,
-    _38: u1 = 0,
-    _39: u1 = 0,
-    _40: u1 = 0,
-    _41: u1 = 0,
-    _42: u1 = 0,
-    _43: u1 = 0,
-    _44: u1 = 0,
-    _45: u1 = 0,
-    _46: u1 = 0,
-    _47: u1 = 0,
-    _48: u1 = 0,
-    _49: u1 = 0,
-    _50: u1 = 0,
-    _51: u1 = 0,
-    _52: u1 = 0,
-    _53: u1 = 0,
-    _54: u1 = 0,
-    _55: u1 = 0,
-    _56: u1 = 0,
-    _57: u1 = 0,
-    _58: u1 = 0,
-    _59: u1 = 0,
-    _60: u1 = 0,
-    _61: u1 = 0,
-    _62: u1 = 0,
-    _63: u1 = 0,
     // CONTENTSMASK (bit index 31) conflicts with HASSUBFOLDER
     // HASSTORAGE (bit index 22) conflicts with CANMONIKER
     // STREAM (bit index 22) conflicts with CANMONIKER

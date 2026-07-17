@@ -1081,22 +1081,22 @@ pub const IRemoteDesktopClientTouchPointer = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IRemoteDesktopClientTouchPointer,
-            enabled: i16,
+            enabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IRemoteDesktopClientTouchPointer,
-            enabled: ?*i16,
+            enabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EventsEnabled: *const fn(
             self: *const IRemoteDesktopClientTouchPointer,
-            eventsEnabled: i16,
+            eventsEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventsEnabled: *const fn(
             self: *const IRemoteDesktopClientTouchPointer,
-            eventsEnabled: ?*i16,
+            eventsEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PointerSpeed: *const fn(
@@ -1112,16 +1112,16 @@ pub const IRemoteDesktopClientTouchPointer = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_Enabled(self: *const IRemoteDesktopClientTouchPointer, enabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Enabled(self: *const IRemoteDesktopClientTouchPointer, enabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
-    pub fn get_Enabled(self: *const IRemoteDesktopClientTouchPointer, enabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const IRemoteDesktopClientTouchPointer, enabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, enabled);
     }
-    pub fn put_EventsEnabled(self: *const IRemoteDesktopClientTouchPointer, eventsEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_EventsEnabled(self: *const IRemoteDesktopClientTouchPointer, eventsEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_EventsEnabled(self, eventsEnabled);
     }
-    pub fn get_EventsEnabled(self: *const IRemoteDesktopClientTouchPointer, eventsEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_EventsEnabled(self: *const IRemoteDesktopClientTouchPointer, eventsEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_EventsEnabled(self, eventsEnabled);
     }
     pub fn put_PointerSpeed(self: *const IRemoteDesktopClientTouchPointer, pointerSpeed: u32) callconv(.@"inline") HRESULT {
@@ -3151,7 +3151,7 @@ pub const IWorkspace2 = extern union {
             bstrWorkspaceId: ?BSTR,
             bstrRequestingAppId: ?BSTR,
             bstrRequestingAppFamilyName: ?BSTR,
-            bLaunchIntoImmersiveClient: i16,
+            bLaunchIntoImmersiveClient: VARIANT_BOOL,
             bstrImmersiveClientActivationContext: ?BSTR,
             psaParams: ?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
@@ -3159,7 +3159,7 @@ pub const IWorkspace2 = extern union {
     vtable: *const VTable,
     IWorkspace: IWorkspace,
     IUnknown: IUnknown,
-    pub fn StartRemoteApplicationEx(self: *const IWorkspace2, bstrWorkspaceId: ?BSTR, bstrRequestingAppId: ?BSTR, bstrRequestingAppFamilyName: ?BSTR, bLaunchIntoImmersiveClient: i16, bstrImmersiveClientActivationContext: ?BSTR, psaParams: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
+    pub fn StartRemoteApplicationEx(self: *const IWorkspace2, bstrWorkspaceId: ?BSTR, bstrRequestingAppId: ?BSTR, bstrRequestingAppFamilyName: ?BSTR, bLaunchIntoImmersiveClient: VARIANT_BOOL, bstrImmersiveClientActivationContext: ?BSTR, psaParams: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.StartRemoteApplicationEx(self, bstrWorkspaceId, bstrRequestingAppId, bstrRequestingAppFamilyName, bLaunchIntoImmersiveClient, bstrImmersiveClientActivationContext, psaParams);
     }
 };
@@ -3301,7 +3301,7 @@ pub const IWorkspaceReportMessage = extern union {
             dwErrorType: u32,
             bstrErrorMessageType: ?BSTR,
             dwErrorCode: u32,
-            pfErrorExist: ?*i16,
+            pfErrorExist: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         RegisterErrorEvent: *const fn(
             self: *const IWorkspaceReportMessage,
@@ -3316,7 +3316,7 @@ pub const IWorkspaceReportMessage = extern union {
     pub fn RegisterErrorLogMessage(self: *const IWorkspaceReportMessage, bstrMessage: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterErrorLogMessage(self, bstrMessage);
     }
-    pub fn IsErrorMessageRegistered(self: *const IWorkspaceReportMessage, bstrWkspId: ?BSTR, dwErrorType: u32, bstrErrorMessageType: ?BSTR, dwErrorCode: u32, pfErrorExist: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsErrorMessageRegistered(self: *const IWorkspaceReportMessage, bstrWkspId: ?BSTR, dwErrorType: u32, bstrErrorMessageType: ?BSTR, dwErrorCode: u32, pfErrorExist: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsErrorMessageRegistered(self, bstrWkspId, dwErrorType, bstrErrorMessageType, dwErrorCode, pfErrorExist);
     }
     pub fn RegisterErrorEvent(self: *const IWorkspaceReportMessage, bstrWkspId: ?BSTR, dwErrorType: u32, bstrErrorMessageType: ?BSTR, dwErrorCode: u32) callconv(.@"inline") HRESULT {
@@ -3332,29 +3332,29 @@ pub const IWorkspaceResTypeRegistry = extern union {
         base: IDispatch.VTable,
         AddResourceType: *const fn(
             self: *const IWorkspaceResTypeRegistry,
-            fMachineWide: i16,
+            fMachineWide: VARIANT_BOOL,
             bstrFileExtension: ?BSTR,
             bstrLauncher: ?BSTR,
         ) callconv(.winapi) HRESULT,
         DeleteResourceType: *const fn(
             self: *const IWorkspaceResTypeRegistry,
-            fMachineWide: i16,
+            fMachineWide: VARIANT_BOOL,
             bstrFileExtension: ?BSTR,
         ) callconv(.winapi) HRESULT,
         GetRegisteredFileExtensions: *const fn(
             self: *const IWorkspaceResTypeRegistry,
-            fMachineWide: i16,
+            fMachineWide: VARIANT_BOOL,
             psaFileExtensions: ?*?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
         GetResourceTypeInfo: *const fn(
             self: *const IWorkspaceResTypeRegistry,
-            fMachineWide: i16,
+            fMachineWide: VARIANT_BOOL,
             bstrFileExtension: ?BSTR,
             pbstrLauncher: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         ModifyResourceType: *const fn(
             self: *const IWorkspaceResTypeRegistry,
-            fMachineWide: i16,
+            fMachineWide: VARIANT_BOOL,
             bstrFileExtension: ?BSTR,
             bstrLauncher: ?BSTR,
         ) callconv(.winapi) HRESULT,
@@ -3362,19 +3362,19 @@ pub const IWorkspaceResTypeRegistry = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn AddResourceType(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, bstrFileExtension: ?BSTR, bstrLauncher: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn AddResourceType(self: *const IWorkspaceResTypeRegistry, fMachineWide: VARIANT_BOOL, bstrFileExtension: ?BSTR, bstrLauncher: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.AddResourceType(self, fMachineWide, bstrFileExtension, bstrLauncher);
     }
-    pub fn DeleteResourceType(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, bstrFileExtension: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn DeleteResourceType(self: *const IWorkspaceResTypeRegistry, fMachineWide: VARIANT_BOOL, bstrFileExtension: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteResourceType(self, fMachineWide, bstrFileExtension);
     }
-    pub fn GetRegisteredFileExtensions(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, psaFileExtensions: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+    pub fn GetRegisteredFileExtensions(self: *const IWorkspaceResTypeRegistry, fMachineWide: VARIANT_BOOL, psaFileExtensions: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.GetRegisteredFileExtensions(self, fMachineWide, psaFileExtensions);
     }
-    pub fn GetResourceTypeInfo(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, bstrFileExtension: ?BSTR, pbstrLauncher: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn GetResourceTypeInfo(self: *const IWorkspaceResTypeRegistry, fMachineWide: VARIANT_BOOL, bstrFileExtension: ?BSTR, pbstrLauncher: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetResourceTypeInfo(self, fMachineWide, bstrFileExtension, pbstrLauncher);
     }
-    pub fn ModifyResourceType(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, bstrFileExtension: ?BSTR, bstrLauncher: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn ModifyResourceType(self: *const IWorkspaceResTypeRegistry, fMachineWide: VARIANT_BOOL, bstrFileExtension: ?BSTR, bstrLauncher: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ModifyResourceType(self, fMachineWide, bstrFileExtension, bstrLauncher);
     }
 };
@@ -3401,12 +3401,12 @@ pub const IWorkspaceScriptable = extern union {
         IsWorkspaceCredentialSpecified: *const fn(
             self: *const IWorkspaceScriptable,
             bstrWorkspaceId: ?BSTR,
-            bCountUnauthenticatedCredentials: i16,
-            pbCredExist: ?*i16,
+            bCountUnauthenticatedCredentials: VARIANT_BOOL,
+            pbCredExist: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         IsWorkspaceSSOEnabled: *const fn(
             self: *const IWorkspaceScriptable,
-            pbSSOEnabled: ?*i16,
+            pbSSOEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         ClearWorkspaceCredential: *const fn(
             self: *const IWorkspaceScriptable,
@@ -3431,10 +3431,10 @@ pub const IWorkspaceScriptable = extern union {
     pub fn StartWorkspace(self: *const IWorkspaceScriptable, bstrWorkspaceId: ?BSTR, bstrUserName: ?BSTR, bstrPassword: ?BSTR, bstrWorkspaceParams: ?BSTR, lTimeout: i32, lFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.StartWorkspace(self, bstrWorkspaceId, bstrUserName, bstrPassword, bstrWorkspaceParams, lTimeout, lFlags);
     }
-    pub fn IsWorkspaceCredentialSpecified(self: *const IWorkspaceScriptable, bstrWorkspaceId: ?BSTR, bCountUnauthenticatedCredentials: i16, pbCredExist: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsWorkspaceCredentialSpecified(self: *const IWorkspaceScriptable, bstrWorkspaceId: ?BSTR, bCountUnauthenticatedCredentials: VARIANT_BOOL, pbCredExist: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsWorkspaceCredentialSpecified(self, bstrWorkspaceId, bCountUnauthenticatedCredentials, pbCredExist);
     }
-    pub fn IsWorkspaceSSOEnabled(self: *const IWorkspaceScriptable, pbSSOEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsWorkspaceSSOEnabled(self: *const IWorkspaceScriptable, pbSSOEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsWorkspaceSSOEnabled(self, pbSSOEnabled);
     }
     pub fn ClearWorkspaceCredential(self: *const IWorkspaceScriptable, bstrWorkspaceId: ?BSTR) callconv(.@"inline") HRESULT {
@@ -7419,7 +7419,7 @@ pub const WTSStartRemoteControlSession = switch (@import("../zig.zig").unicode_m
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (26)
+// Section: Imports (27)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const APO_CONNECTION_PROPERTY = @import("../media/audio/apo.zig").APO_CONNECTION_PROPERTY;
@@ -7446,6 +7446,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 const WAVEFORMATEX = @import("../media/audio.zig").WAVEFORMATEX;
 
 test {

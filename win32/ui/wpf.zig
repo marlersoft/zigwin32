@@ -124,7 +124,7 @@ pub const IMILBitmapEffectConnector = extern union {
         base: IMILBitmapEffectConnectorInfo.VTable,
         IsConnected: *const fn(
             self: *const IMILBitmapEffectConnector,
-            pfConnected: ?*i16,
+            pfConnected: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetBitmapEffect: *const fn(
             self: *const IMILBitmapEffectConnector,
@@ -134,7 +134,7 @@ pub const IMILBitmapEffectConnector = extern union {
     vtable: *const VTable,
     IMILBitmapEffectConnectorInfo: IMILBitmapEffectConnectorInfo,
     IUnknown: IUnknown,
-    pub fn IsConnected(self: *const IMILBitmapEffectConnector, pfConnected: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsConnected(self: *const IMILBitmapEffectConnector, pfConnected: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsConnected(self, pfConnected);
     }
     pub fn GetBitmapEffect(self: *const IMILBitmapEffectConnector, ppEffect: ?*?*IMILBitmapEffect) callconv(.@"inline") HRESULT {
@@ -317,7 +317,7 @@ pub const IMILBitmapEffectImpl = extern union {
         IsInPlaceModificationAllowed: *const fn(
             self: *const IMILBitmapEffectImpl,
             pOutputConnector: ?*IMILBitmapEffectOutputConnector,
-            pfModifyInPlace: ?*i16,
+            pfModifyInPlace: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SetParentEffect: *const fn(
             self: *const IMILBitmapEffectImpl,
@@ -337,14 +337,14 @@ pub const IMILBitmapEffectImpl = extern union {
             self: *const IMILBitmapEffectImpl,
             uiIndex: u32,
             pRenderContext: ?*IMILBitmapEffectRenderContext,
-            pfModifyInPlace: ?*i16,
+            pfModifyInPlace: ?*VARIANT_BOOL,
             ppBitmapSource: ?*?*IWICBitmapSource,
         ) callconv(.winapi) HRESULT,
         GetOutputBitmapSource: *const fn(
             self: *const IMILBitmapEffectImpl,
             uiIndex: u32,
             pRenderContext: ?*IMILBitmapEffectRenderContext,
-            pfModifyInPlace: ?*i16,
+            pfModifyInPlace: ?*VARIANT_BOOL,
             ppBitmapSource: ?*?*IWICBitmapSource,
         ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
@@ -354,7 +354,7 @@ pub const IMILBitmapEffectImpl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsInPlaceModificationAllowed(self: *const IMILBitmapEffectImpl, pOutputConnector: ?*IMILBitmapEffectOutputConnector, pfModifyInPlace: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsInPlaceModificationAllowed(self: *const IMILBitmapEffectImpl, pOutputConnector: ?*IMILBitmapEffectOutputConnector, pfModifyInPlace: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsInPlaceModificationAllowed(self, pOutputConnector, pfModifyInPlace);
     }
     pub fn SetParentEffect(self: *const IMILBitmapEffectImpl, pParentEffect: ?*IMILBitmapEffectGroup) callconv(.@"inline") HRESULT {
@@ -366,10 +366,10 @@ pub const IMILBitmapEffectImpl = extern union {
     pub fn GetInputSourceBounds(self: *const IMILBitmapEffectImpl, uiIndex: u32, pRect: ?*MilRectD) callconv(.@"inline") HRESULT {
         return self.vtable.GetInputSourceBounds(self, uiIndex, pRect);
     }
-    pub fn GetInputBitmapSource(self: *const IMILBitmapEffectImpl, uiIndex: u32, pRenderContext: ?*IMILBitmapEffectRenderContext, pfModifyInPlace: ?*i16, ppBitmapSource: ?*?*IWICBitmapSource) callconv(.@"inline") HRESULT {
+    pub fn GetInputBitmapSource(self: *const IMILBitmapEffectImpl, uiIndex: u32, pRenderContext: ?*IMILBitmapEffectRenderContext, pfModifyInPlace: ?*VARIANT_BOOL, ppBitmapSource: ?*?*IWICBitmapSource) callconv(.@"inline") HRESULT {
         return self.vtable.GetInputBitmapSource(self, uiIndex, pRenderContext, pfModifyInPlace, ppBitmapSource);
     }
-    pub fn GetOutputBitmapSource(self: *const IMILBitmapEffectImpl, uiIndex: u32, pRenderContext: ?*IMILBitmapEffectRenderContext, pfModifyInPlace: ?*i16, ppBitmapSource: ?*?*IWICBitmapSource) callconv(.@"inline") HRESULT {
+    pub fn GetOutputBitmapSource(self: *const IMILBitmapEffectImpl, uiIndex: u32, pRenderContext: ?*IMILBitmapEffectRenderContext, pfModifyInPlace: ?*VARIANT_BOOL, ppBitmapSource: ?*?*IWICBitmapSource) callconv(.@"inline") HRESULT {
         return self.vtable.GetOutputBitmapSource(self, uiIndex, pRenderContext, pfModifyInPlace, ppBitmapSource);
     }
     pub fn Initialize(self: *const IMILBitmapEffectImpl, pInner: ?*IUnknown) callconv(.@"inline") HRESULT {
@@ -503,33 +503,33 @@ pub const IMILBitmapEffectPrimitive = extern union {
             self: *const IMILBitmapEffectPrimitive,
             uiIndex: u32,
             pContext: ?*IMILBitmapEffectRenderContext,
-            pfModifyInPlace: ?*i16,
+            pfModifyInPlace: ?*VARIANT_BOOL,
             ppBitmapSource: ?*?*IWICBitmapSource,
         ) callconv(.winapi) HRESULT,
         TransformPoint: *const fn(
             self: *const IMILBitmapEffectPrimitive,
             uiIndex: u32,
             p: ?*MilPoint2D,
-            fForwardTransform: i16,
+            fForwardTransform: VARIANT_BOOL,
             pContext: ?*IMILBitmapEffectRenderContext,
-            pfPointTransformed: ?*i16,
+            pfPointTransformed: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         TransformRect: *const fn(
             self: *const IMILBitmapEffectPrimitive,
             uiIndex: u32,
             p: ?*MilRectD,
-            fForwardTransform: i16,
+            fForwardTransform: VARIANT_BOOL,
             pContext: ?*IMILBitmapEffectRenderContext,
         ) callconv(.winapi) HRESULT,
         HasAffineTransform: *const fn(
             self: *const IMILBitmapEffectPrimitive,
             uiIndex: u32,
-            pfAffine: ?*i16,
+            pfAffine: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         HasInverseTransform: *const fn(
             self: *const IMILBitmapEffectPrimitive,
             uiIndex: u32,
-            pfHasInverse: ?*i16,
+            pfHasInverse: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetAffineMatrix: *const fn(
             self: *const IMILBitmapEffectPrimitive,
@@ -539,19 +539,19 @@ pub const IMILBitmapEffectPrimitive = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetOutput(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, pContext: ?*IMILBitmapEffectRenderContext, pfModifyInPlace: ?*i16, ppBitmapSource: ?*?*IWICBitmapSource) callconv(.@"inline") HRESULT {
+    pub fn GetOutput(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, pContext: ?*IMILBitmapEffectRenderContext, pfModifyInPlace: ?*VARIANT_BOOL, ppBitmapSource: ?*?*IWICBitmapSource) callconv(.@"inline") HRESULT {
         return self.vtable.GetOutput(self, uiIndex, pContext, pfModifyInPlace, ppBitmapSource);
     }
-    pub fn TransformPoint(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, p: ?*MilPoint2D, fForwardTransform: i16, pContext: ?*IMILBitmapEffectRenderContext, pfPointTransformed: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn TransformPoint(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, p: ?*MilPoint2D, fForwardTransform: VARIANT_BOOL, pContext: ?*IMILBitmapEffectRenderContext, pfPointTransformed: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.TransformPoint(self, uiIndex, p, fForwardTransform, pContext, pfPointTransformed);
     }
-    pub fn TransformRect(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, p: ?*MilRectD, fForwardTransform: i16, pContext: ?*IMILBitmapEffectRenderContext) callconv(.@"inline") HRESULT {
+    pub fn TransformRect(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, p: ?*MilRectD, fForwardTransform: VARIANT_BOOL, pContext: ?*IMILBitmapEffectRenderContext) callconv(.@"inline") HRESULT {
         return self.vtable.TransformRect(self, uiIndex, p, fForwardTransform, pContext);
     }
-    pub fn HasAffineTransform(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, pfAffine: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn HasAffineTransform(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, pfAffine: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.HasAffineTransform(self, uiIndex, pfAffine);
     }
-    pub fn HasInverseTransform(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, pfHasInverse: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn HasInverseTransform(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, pfHasInverse: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.HasInverseTransform(self, uiIndex, pfHasInverse);
     }
     pub fn GetAffineMatrix(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, pMatrix: ?*MilMatrix3x2D) callconv(.@"inline") HRESULT {
@@ -568,20 +568,20 @@ pub const IMILBitmapEffectPrimitiveImpl = extern union {
         IsDirty: *const fn(
             self: *const IMILBitmapEffectPrimitiveImpl,
             uiOutputIndex: u32,
-            pfDirty: ?*i16,
+            pfDirty: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         IsVolatile: *const fn(
             self: *const IMILBitmapEffectPrimitiveImpl,
             uiOutputIndex: u32,
-            pfVolatile: ?*i16,
+            pfVolatile: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsDirty(self: *const IMILBitmapEffectPrimitiveImpl, uiOutputIndex: u32, pfDirty: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsDirty(self: *const IMILBitmapEffectPrimitiveImpl, uiOutputIndex: u32, pfDirty: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsDirty(self, uiOutputIndex, pfDirty);
     }
-    pub fn IsVolatile(self: *const IMILBitmapEffectPrimitiveImpl, uiOutputIndex: u32, pfVolatile: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsVolatile(self: *const IMILBitmapEffectPrimitiveImpl, uiOutputIndex: u32, pfVolatile: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsVolatile(self, uiOutputIndex, pfVolatile);
     }
 };
@@ -602,7 +602,7 @@ pub const IMILBitmapEffectRenderContext = extern union {
         ) callconv(.winapi) HRESULT,
         SetUseSoftwareRenderer: *const fn(
             self: *const IMILBitmapEffectRenderContext,
-            fSoftware: i16,
+            fSoftware: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SetInitialTransform: *const fn(
             self: *const IMILBitmapEffectRenderContext,
@@ -635,7 +635,7 @@ pub const IMILBitmapEffectRenderContext = extern union {
     pub fn GetOutputPixelFormat(self: *const IMILBitmapEffectRenderContext, pFormat: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetOutputPixelFormat(self, pFormat);
     }
-    pub fn SetUseSoftwareRenderer(self: *const IMILBitmapEffectRenderContext, fSoftware: i16) callconv(.@"inline") HRESULT {
+    pub fn SetUseSoftwareRenderer(self: *const IMILBitmapEffectRenderContext, fSoftware: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetUseSoftwareRenderer(self, fSoftware);
     }
     pub fn SetInitialTransform(self: *const IMILBitmapEffectRenderContext, pMatrix: ?*MILMatrixF) callconv(.@"inline") HRESULT {
@@ -663,7 +663,7 @@ pub const IMILBitmapEffectRenderContextImpl = extern union {
         base: IUnknown.VTable,
         GetUseSoftwareRenderer: *const fn(
             self: *const IMILBitmapEffectRenderContextImpl,
-            pfSoftware: ?*i16,
+            pfSoftware: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetTransform: *const fn(
             self: *const IMILBitmapEffectRenderContextImpl,
@@ -684,7 +684,7 @@ pub const IMILBitmapEffectRenderContextImpl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetUseSoftwareRenderer(self: *const IMILBitmapEffectRenderContextImpl, pfSoftware: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn GetUseSoftwareRenderer(self: *const IMILBitmapEffectRenderContextImpl, pfSoftware: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetUseSoftwareRenderer(self, pfSoftware);
     }
     pub fn GetTransform(self: *const IMILBitmapEffectRenderContextImpl, pMatrix: ?*MILMatrixF) callconv(.@"inline") HRESULT {
@@ -783,7 +783,7 @@ pub const MilRectD = extern struct {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BSTR = @import("../foundation.zig").BSTR;
@@ -791,6 +791,7 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const IWICBitmapSource = @import("../graphics/imaging.zig").IWICBitmapSource;
 const MilMatrix3x2D = @import("../graphics/dwm.zig").MilMatrix3x2D;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     @setEvalBranchQuota(

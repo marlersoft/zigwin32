@@ -268,337 +268,13 @@ pub const wcharREASSIGN_RECIPIENTS_DELIMITER = @as(u16, 59);
 pub const WIA_INCOMPAT_XP = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
-// Section: Types (274)
+// Section: Types (272)
 //--------------------------------------------------------------------------------
 pub const _ERROR_INFOW = extern struct {
     dwSize: u32,
     dwGenericError: u32,
     dwVendorError: u32,
     szExtendedErrorText: [255]u16,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID__IFaxAccountNotify_Value = Guid.initString("b9b3bc81-ac1b-46f3-b39d-0adc30e1b788");
-pub const IID__IFaxAccountNotify = &IID__IFaxAccountNotify_Value;
-pub const _IFaxAccountNotify = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        OnIncomingJobAdded: *const fn(
-            self: *const _IFaxAccountNotify,
-            pFaxAccount: ?*IFaxAccount,
-            bstrJobId: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        OnIncomingJobRemoved: *const fn(
-            self: *const _IFaxAccountNotify,
-            pFaxAccount: ?*IFaxAccount,
-            bstrJobId: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        OnIncomingJobChanged: *const fn(
-            self: *const _IFaxAccountNotify,
-            pFaxAccount: ?*IFaxAccount,
-            bstrJobId: ?BSTR,
-            pJobStatus: ?*IFaxJobStatus,
-        ) callconv(.winapi) HRESULT,
-        OnOutgoingJobAdded: *const fn(
-            self: *const _IFaxAccountNotify,
-            pFaxAccount: ?*IFaxAccount,
-            bstrJobId: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        OnOutgoingJobRemoved: *const fn(
-            self: *const _IFaxAccountNotify,
-            pFaxAccount: ?*IFaxAccount,
-            bstrJobId: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        OnOutgoingJobChanged: *const fn(
-            self: *const _IFaxAccountNotify,
-            pFaxAccount: ?*IFaxAccount,
-            bstrJobId: ?BSTR,
-            pJobStatus: ?*IFaxJobStatus,
-        ) callconv(.winapi) HRESULT,
-        OnIncomingMessageAdded: *const fn(
-            self: *const _IFaxAccountNotify,
-            pFaxAccount: ?*IFaxAccount,
-            bstrMessageId: ?BSTR,
-            fAddedToReceiveFolder: i16,
-        ) callconv(.winapi) HRESULT,
-        OnIncomingMessageRemoved: *const fn(
-            self: *const _IFaxAccountNotify,
-            pFaxAccount: ?*IFaxAccount,
-            bstrMessageId: ?BSTR,
-            fRemovedFromReceiveFolder: i16,
-        ) callconv(.winapi) HRESULT,
-        OnOutgoingMessageAdded: *const fn(
-            self: *const _IFaxAccountNotify,
-            pFaxAccount: ?*IFaxAccount,
-            bstrMessageId: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        OnOutgoingMessageRemoved: *const fn(
-            self: *const _IFaxAccountNotify,
-            pFaxAccount: ?*IFaxAccount,
-            bstrMessageId: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        OnServerShutDown: *const fn(
-            self: *const _IFaxAccountNotify,
-            pFaxServer: ?*IFaxServer2,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn OnIncomingJobAdded(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.OnIncomingJobAdded(self, pFaxAccount, bstrJobId);
-    }
-    pub fn OnIncomingJobRemoved(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.OnIncomingJobRemoved(self, pFaxAccount, bstrJobId);
-    }
-    pub fn OnIncomingJobChanged(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR, pJobStatus: ?*IFaxJobStatus) callconv(.@"inline") HRESULT {
-        return self.vtable.OnIncomingJobChanged(self, pFaxAccount, bstrJobId, pJobStatus);
-    }
-    pub fn OnOutgoingJobAdded(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.OnOutgoingJobAdded(self, pFaxAccount, bstrJobId);
-    }
-    pub fn OnOutgoingJobRemoved(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.OnOutgoingJobRemoved(self, pFaxAccount, bstrJobId);
-    }
-    pub fn OnOutgoingJobChanged(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR, pJobStatus: ?*IFaxJobStatus) callconv(.@"inline") HRESULT {
-        return self.vtable.OnOutgoingJobChanged(self, pFaxAccount, bstrJobId, pJobStatus);
-    }
-    pub fn OnIncomingMessageAdded(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrMessageId: ?BSTR, fAddedToReceiveFolder: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.OnIncomingMessageAdded(self, pFaxAccount, bstrMessageId, fAddedToReceiveFolder);
-    }
-    pub fn OnIncomingMessageRemoved(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrMessageId: ?BSTR, fRemovedFromReceiveFolder: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.OnIncomingMessageRemoved(self, pFaxAccount, bstrMessageId, fRemovedFromReceiveFolder);
-    }
-    pub fn OnOutgoingMessageAdded(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrMessageId: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.OnOutgoingMessageAdded(self, pFaxAccount, bstrMessageId);
-    }
-    pub fn OnOutgoingMessageRemoved(self: *const _IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrMessageId: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.OnOutgoingMessageRemoved(self, pFaxAccount, bstrMessageId);
-    }
-    pub fn OnServerShutDown(self: *const _IFaxAccountNotify, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
-        return self.vtable.OnServerShutDown(self, pFaxServer);
-    }
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID__IFaxServerNotify2_Value = Guid.initString("ec9c69b9-5fe7-4805-9467-82fcd96af903");
-pub const IID__IFaxServerNotify2 = &IID__IFaxServerNotify2_Value;
-pub const _IFaxServerNotify2 = extern union {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        OnIncomingJobAdded: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-            bstrJobId: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        OnIncomingJobRemoved: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-            bstrJobId: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        OnIncomingJobChanged: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-            bstrJobId: ?BSTR,
-            pJobStatus: ?*IFaxJobStatus,
-        ) callconv(.winapi) HRESULT,
-        OnOutgoingJobAdded: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-            bstrJobId: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        OnOutgoingJobRemoved: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-            bstrJobId: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        OnOutgoingJobChanged: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-            bstrJobId: ?BSTR,
-            pJobStatus: ?*IFaxJobStatus,
-        ) callconv(.winapi) HRESULT,
-        OnIncomingMessageAdded: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-            bstrMessageId: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        OnIncomingMessageRemoved: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-            bstrMessageId: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        OnOutgoingMessageAdded: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-            bstrMessageId: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        OnOutgoingMessageRemoved: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-            bstrMessageId: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        OnReceiptOptionsChange: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-        ) callconv(.winapi) HRESULT,
-        OnActivityLoggingConfigChange: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-        ) callconv(.winapi) HRESULT,
-        OnSecurityConfigChange: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-        ) callconv(.winapi) HRESULT,
-        OnEventLoggingConfigChange: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-        ) callconv(.winapi) HRESULT,
-        OnOutgoingQueueConfigChange: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-        ) callconv(.winapi) HRESULT,
-        OnOutgoingArchiveConfigChange: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-        ) callconv(.winapi) HRESULT,
-        OnIncomingArchiveConfigChange: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-        ) callconv(.winapi) HRESULT,
-        OnDevicesConfigChange: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-        ) callconv(.winapi) HRESULT,
-        OnOutboundRoutingGroupsConfigChange: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-        ) callconv(.winapi) HRESULT,
-        OnOutboundRoutingRulesConfigChange: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-        ) callconv(.winapi) HRESULT,
-        OnServerActivityChange: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-            lIncomingMessages: i32,
-            lRoutingMessages: i32,
-            lOutgoingMessages: i32,
-            lQueuedMessages: i32,
-        ) callconv(.winapi) HRESULT,
-        OnQueuesStatusChange: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-            bOutgoingQueueBlocked: i16,
-            bOutgoingQueuePaused: i16,
-            bIncomingQueueBlocked: i16,
-        ) callconv(.winapi) HRESULT,
-        OnNewCall: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-            lCallId: i32,
-            lDeviceId: i32,
-            bstrCallerId: ?BSTR,
-        ) callconv(.winapi) HRESULT,
-        OnServerShutDown: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-        ) callconv(.winapi) HRESULT,
-        OnDeviceStatusChange: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-            lDeviceId: i32,
-            bPoweredOff: i16,
-            bSending: i16,
-            bReceiving: i16,
-            bRinging: i16,
-        ) callconv(.winapi) HRESULT,
-        OnGeneralServerConfigChanged: *const fn(
-            self: *const _IFaxServerNotify2,
-            pFaxServer: ?*IFaxServer2,
-        ) callconv(.winapi) HRESULT,
-    };
-    vtable: *const VTable,
-    IDispatch: IDispatch,
-    IUnknown: IUnknown,
-    pub fn OnIncomingJobAdded(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.OnIncomingJobAdded(self, pFaxServer, bstrJobId);
-    }
-    pub fn OnIncomingJobRemoved(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.OnIncomingJobRemoved(self, pFaxServer, bstrJobId);
-    }
-    pub fn OnIncomingJobChanged(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR, pJobStatus: ?*IFaxJobStatus) callconv(.@"inline") HRESULT {
-        return self.vtable.OnIncomingJobChanged(self, pFaxServer, bstrJobId, pJobStatus);
-    }
-    pub fn OnOutgoingJobAdded(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.OnOutgoingJobAdded(self, pFaxServer, bstrJobId);
-    }
-    pub fn OnOutgoingJobRemoved(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.OnOutgoingJobRemoved(self, pFaxServer, bstrJobId);
-    }
-    pub fn OnOutgoingJobChanged(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR, pJobStatus: ?*IFaxJobStatus) callconv(.@"inline") HRESULT {
-        return self.vtable.OnOutgoingJobChanged(self, pFaxServer, bstrJobId, pJobStatus);
-    }
-    pub fn OnIncomingMessageAdded(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrMessageId: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.OnIncomingMessageAdded(self, pFaxServer, bstrMessageId);
-    }
-    pub fn OnIncomingMessageRemoved(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrMessageId: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.OnIncomingMessageRemoved(self, pFaxServer, bstrMessageId);
-    }
-    pub fn OnOutgoingMessageAdded(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrMessageId: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.OnOutgoingMessageAdded(self, pFaxServer, bstrMessageId);
-    }
-    pub fn OnOutgoingMessageRemoved(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrMessageId: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.OnOutgoingMessageRemoved(self, pFaxServer, bstrMessageId);
-    }
-    pub fn OnReceiptOptionsChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
-        return self.vtable.OnReceiptOptionsChange(self, pFaxServer);
-    }
-    pub fn OnActivityLoggingConfigChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
-        return self.vtable.OnActivityLoggingConfigChange(self, pFaxServer);
-    }
-    pub fn OnSecurityConfigChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
-        return self.vtable.OnSecurityConfigChange(self, pFaxServer);
-    }
-    pub fn OnEventLoggingConfigChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
-        return self.vtable.OnEventLoggingConfigChange(self, pFaxServer);
-    }
-    pub fn OnOutgoingQueueConfigChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
-        return self.vtable.OnOutgoingQueueConfigChange(self, pFaxServer);
-    }
-    pub fn OnOutgoingArchiveConfigChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
-        return self.vtable.OnOutgoingArchiveConfigChange(self, pFaxServer);
-    }
-    pub fn OnIncomingArchiveConfigChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
-        return self.vtable.OnIncomingArchiveConfigChange(self, pFaxServer);
-    }
-    pub fn OnDevicesConfigChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
-        return self.vtable.OnDevicesConfigChange(self, pFaxServer);
-    }
-    pub fn OnOutboundRoutingGroupsConfigChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
-        return self.vtable.OnOutboundRoutingGroupsConfigChange(self, pFaxServer);
-    }
-    pub fn OnOutboundRoutingRulesConfigChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
-        return self.vtable.OnOutboundRoutingRulesConfigChange(self, pFaxServer);
-    }
-    pub fn OnServerActivityChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, lIncomingMessages: i32, lRoutingMessages: i32, lOutgoingMessages: i32, lQueuedMessages: i32) callconv(.@"inline") HRESULT {
-        return self.vtable.OnServerActivityChange(self, pFaxServer, lIncomingMessages, lRoutingMessages, lOutgoingMessages, lQueuedMessages);
-    }
-    pub fn OnQueuesStatusChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bOutgoingQueueBlocked: i16, bOutgoingQueuePaused: i16, bIncomingQueueBlocked: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.OnQueuesStatusChange(self, pFaxServer, bOutgoingQueueBlocked, bOutgoingQueuePaused, bIncomingQueueBlocked);
-    }
-    pub fn OnNewCall(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, lCallId: i32, lDeviceId: i32, bstrCallerId: ?BSTR) callconv(.@"inline") HRESULT {
-        return self.vtable.OnNewCall(self, pFaxServer, lCallId, lDeviceId, bstrCallerId);
-    }
-    pub fn OnServerShutDown(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
-        return self.vtable.OnServerShutDown(self, pFaxServer);
-    }
-    pub fn OnDeviceStatusChange(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2, lDeviceId: i32, bPoweredOff: i16, bSending: i16, bReceiving: i16, bRinging: i16) callconv(.@"inline") HRESULT {
-        return self.vtable.OnDeviceStatusChange(self, pFaxServer, lDeviceId, bPoweredOff, bSending, bReceiving, bRinging);
-    }
-    pub fn OnGeneralServerConfigChanged(self: *const _IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
-        return self.vtable.OnGeneralServerConfigChanged(self, pFaxServer);
-    }
 };
 
 pub const FAX_ACCESS_RIGHTS_ENUM = enum(i32) {
@@ -1720,15 +1396,106 @@ pub const IFaxAccountIncomingQueue = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IFaxAccountNotify_Value = Guid.initString("0b5e5bd1-b8a9-47a0-a323-ef4a293ba06a");
+const IID_IFaxAccountNotify_Value = Guid.initString("b9b3bc81-ac1b-46f3-b39d-0adc30e1b788");
 pub const IID_IFaxAccountNotify = &IID_IFaxAccountNotify_Value;
 pub const IFaxAccountNotify = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        OnIncomingJobAdded: *const fn(
+            self: *const IFaxAccountNotify,
+            pFaxAccount: ?*IFaxAccount,
+            bstrJobId: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        OnIncomingJobRemoved: *const fn(
+            self: *const IFaxAccountNotify,
+            pFaxAccount: ?*IFaxAccount,
+            bstrJobId: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        OnIncomingJobChanged: *const fn(
+            self: *const IFaxAccountNotify,
+            pFaxAccount: ?*IFaxAccount,
+            bstrJobId: ?BSTR,
+            pJobStatus: ?*IFaxJobStatus,
+        ) callconv(.winapi) HRESULT,
+        OnOutgoingJobAdded: *const fn(
+            self: *const IFaxAccountNotify,
+            pFaxAccount: ?*IFaxAccount,
+            bstrJobId: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        OnOutgoingJobRemoved: *const fn(
+            self: *const IFaxAccountNotify,
+            pFaxAccount: ?*IFaxAccount,
+            bstrJobId: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        OnOutgoingJobChanged: *const fn(
+            self: *const IFaxAccountNotify,
+            pFaxAccount: ?*IFaxAccount,
+            bstrJobId: ?BSTR,
+            pJobStatus: ?*IFaxJobStatus,
+        ) callconv(.winapi) HRESULT,
+        OnIncomingMessageAdded: *const fn(
+            self: *const IFaxAccountNotify,
+            pFaxAccount: ?*IFaxAccount,
+            bstrMessageId: ?BSTR,
+            fAddedToReceiveFolder: VARIANT_BOOL,
+        ) callconv(.winapi) HRESULT,
+        OnIncomingMessageRemoved: *const fn(
+            self: *const IFaxAccountNotify,
+            pFaxAccount: ?*IFaxAccount,
+            bstrMessageId: ?BSTR,
+            fRemovedFromReceiveFolder: VARIANT_BOOL,
+        ) callconv(.winapi) HRESULT,
+        OnOutgoingMessageAdded: *const fn(
+            self: *const IFaxAccountNotify,
+            pFaxAccount: ?*IFaxAccount,
+            bstrMessageId: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        OnOutgoingMessageRemoved: *const fn(
+            self: *const IFaxAccountNotify,
+            pFaxAccount: ?*IFaxAccount,
+            bstrMessageId: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        OnServerShutDown: *const fn(
+            self: *const IFaxAccountNotify,
+            pFaxServer: ?*IFaxServer2,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
+    pub fn OnIncomingJobAdded(self: *const IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.OnIncomingJobAdded(self, pFaxAccount, bstrJobId);
+    }
+    pub fn OnIncomingJobRemoved(self: *const IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.OnIncomingJobRemoved(self, pFaxAccount, bstrJobId);
+    }
+    pub fn OnIncomingJobChanged(self: *const IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR, pJobStatus: ?*IFaxJobStatus) callconv(.@"inline") HRESULT {
+        return self.vtable.OnIncomingJobChanged(self, pFaxAccount, bstrJobId, pJobStatus);
+    }
+    pub fn OnOutgoingJobAdded(self: *const IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.OnOutgoingJobAdded(self, pFaxAccount, bstrJobId);
+    }
+    pub fn OnOutgoingJobRemoved(self: *const IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.OnOutgoingJobRemoved(self, pFaxAccount, bstrJobId);
+    }
+    pub fn OnOutgoingJobChanged(self: *const IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR, pJobStatus: ?*IFaxJobStatus) callconv(.@"inline") HRESULT {
+        return self.vtable.OnOutgoingJobChanged(self, pFaxAccount, bstrJobId, pJobStatus);
+    }
+    pub fn OnIncomingMessageAdded(self: *const IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrMessageId: ?BSTR, fAddedToReceiveFolder: VARIANT_BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnIncomingMessageAdded(self, pFaxAccount, bstrMessageId, fAddedToReceiveFolder);
+    }
+    pub fn OnIncomingMessageRemoved(self: *const IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrMessageId: ?BSTR, fRemovedFromReceiveFolder: VARIANT_BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnIncomingMessageRemoved(self, pFaxAccount, bstrMessageId, fRemovedFromReceiveFolder);
+    }
+    pub fn OnOutgoingMessageAdded(self: *const IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrMessageId: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.OnOutgoingMessageAdded(self, pFaxAccount, bstrMessageId);
+    }
+    pub fn OnOutgoingMessageRemoved(self: *const IFaxAccountNotify, pFaxAccount: ?*IFaxAccount, bstrMessageId: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.OnOutgoingMessageRemoved(self, pFaxAccount, bstrMessageId);
+    }
+    pub fn OnServerShutDown(self: *const IFaxAccountNotify, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
+        return self.vtable.OnServerShutDown(self, pFaxServer);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1945,22 +1712,22 @@ pub const IFaxActivityLogging = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogIncoming: *const fn(
             self: *const IFaxActivityLogging,
-            pbLogIncoming: ?*i16,
+            pbLogIncoming: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LogIncoming: *const fn(
             self: *const IFaxActivityLogging,
-            bLogIncoming: i16,
+            bLogIncoming: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogOutgoing: *const fn(
             self: *const IFaxActivityLogging,
-            pbLogOutgoing: ?*i16,
+            pbLogOutgoing: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LogOutgoing: *const fn(
             self: *const IFaxActivityLogging,
-            bLogOutgoing: i16,
+            bLogOutgoing: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DatabasePath: *const fn(
@@ -1982,16 +1749,16 @@ pub const IFaxActivityLogging = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_LogIncoming(self: *const IFaxActivityLogging, pbLogIncoming: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_LogIncoming(self: *const IFaxActivityLogging, pbLogIncoming: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_LogIncoming(self, pbLogIncoming);
     }
-    pub fn put_LogIncoming(self: *const IFaxActivityLogging, bLogIncoming: i16) callconv(.@"inline") HRESULT {
+    pub fn put_LogIncoming(self: *const IFaxActivityLogging, bLogIncoming: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_LogIncoming(self, bLogIncoming);
     }
-    pub fn get_LogOutgoing(self: *const IFaxActivityLogging, pbLogOutgoing: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_LogOutgoing(self: *const IFaxActivityLogging, pbLogOutgoing: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_LogOutgoing(self, pbLogOutgoing);
     }
-    pub fn put_LogOutgoing(self: *const IFaxActivityLogging, bLogOutgoing: i16) callconv(.@"inline") HRESULT {
+    pub fn put_LogOutgoing(self: *const IFaxActivityLogging, bLogOutgoing: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_LogOutgoing(self, bLogOutgoing);
     }
     pub fn get_DatabasePath(self: *const IFaxActivityLogging, pbstrDatabasePath: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -2017,12 +1784,12 @@ pub const IFaxConfiguration = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseArchive: *const fn(
             self: *const IFaxConfiguration,
-            pbUseArchive: ?*i16,
+            pbUseArchive: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseArchive: *const fn(
             self: *const IFaxConfiguration,
-            bUseArchive: i16,
+            bUseArchive: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ArchiveLocation: *const fn(
@@ -2037,12 +1804,12 @@ pub const IFaxConfiguration = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SizeQuotaWarning: *const fn(
             self: *const IFaxConfiguration,
-            pbSizeQuotaWarning: ?*i16,
+            pbSizeQuotaWarning: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SizeQuotaWarning: *const fn(
             self: *const IFaxConfiguration,
-            bSizeQuotaWarning: i16,
+            bSizeQuotaWarning: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HighQuotaWaterMark: *const fn(
@@ -2087,42 +1854,42 @@ pub const IFaxConfiguration = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OutgoingQueueBlocked: *const fn(
             self: *const IFaxConfiguration,
-            pbOutgoingBlocked: ?*i16,
+            pbOutgoingBlocked: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OutgoingQueueBlocked: *const fn(
             self: *const IFaxConfiguration,
-            bOutgoingBlocked: i16,
+            bOutgoingBlocked: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OutgoingQueuePaused: *const fn(
             self: *const IFaxConfiguration,
-            pbOutgoingPaused: ?*i16,
+            pbOutgoingPaused: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OutgoingQueuePaused: *const fn(
             self: *const IFaxConfiguration,
-            bOutgoingPaused: i16,
+            bOutgoingPaused: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowPersonalCoverPages: *const fn(
             self: *const IFaxConfiguration,
-            pbAllowPersonalCoverPages: ?*i16,
+            pbAllowPersonalCoverPages: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowPersonalCoverPages: *const fn(
             self: *const IFaxConfiguration,
-            bAllowPersonalCoverPages: i16,
+            bAllowPersonalCoverPages: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseDeviceTSID: *const fn(
             self: *const IFaxConfiguration,
-            pbUseDeviceTSID: ?*i16,
+            pbUseDeviceTSID: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseDeviceTSID: *const fn(
             self: *const IFaxConfiguration,
-            bUseDeviceTSID: i16,
+            bUseDeviceTSID: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Retries: *const fn(
@@ -2177,42 +1944,42 @@ pub const IFaxConfiguration = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Branding: *const fn(
             self: *const IFaxConfiguration,
-            pbBranding: ?*i16,
+            pbBranding: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Branding: *const fn(
             self: *const IFaxConfiguration,
-            bBranding: i16,
+            bBranding: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IncomingQueueBlocked: *const fn(
             self: *const IFaxConfiguration,
-            pbIncomingBlocked: ?*i16,
+            pbIncomingBlocked: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IncomingQueueBlocked: *const fn(
             self: *const IFaxConfiguration,
-            bIncomingBlocked: i16,
+            bIncomingBlocked: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoCreateAccountOnConnect: *const fn(
             self: *const IFaxConfiguration,
-            pbAutoCreateAccountOnConnect: ?*i16,
+            pbAutoCreateAccountOnConnect: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoCreateAccountOnConnect: *const fn(
             self: *const IFaxConfiguration,
-            bAutoCreateAccountOnConnect: i16,
+            bAutoCreateAccountOnConnect: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IncomingFaxesArePublic: *const fn(
             self: *const IFaxConfiguration,
-            pbIncomingFaxesArePublic: ?*i16,
+            pbIncomingFaxesArePublic: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IncomingFaxesArePublic: *const fn(
             self: *const IFaxConfiguration,
-            bIncomingFaxesArePublic: i16,
+            bIncomingFaxesArePublic: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const IFaxConfiguration,
@@ -2224,10 +1991,10 @@ pub const IFaxConfiguration = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_UseArchive(self: *const IFaxConfiguration, pbUseArchive: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_UseArchive(self: *const IFaxConfiguration, pbUseArchive: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UseArchive(self, pbUseArchive);
     }
-    pub fn put_UseArchive(self: *const IFaxConfiguration, bUseArchive: i16) callconv(.@"inline") HRESULT {
+    pub fn put_UseArchive(self: *const IFaxConfiguration, bUseArchive: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_UseArchive(self, bUseArchive);
     }
     pub fn get_ArchiveLocation(self: *const IFaxConfiguration, pbstrArchiveLocation: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -2236,10 +2003,10 @@ pub const IFaxConfiguration = extern union {
     pub fn put_ArchiveLocation(self: *const IFaxConfiguration, bstrArchiveLocation: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ArchiveLocation(self, bstrArchiveLocation);
     }
-    pub fn get_SizeQuotaWarning(self: *const IFaxConfiguration, pbSizeQuotaWarning: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SizeQuotaWarning(self: *const IFaxConfiguration, pbSizeQuotaWarning: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SizeQuotaWarning(self, pbSizeQuotaWarning);
     }
-    pub fn put_SizeQuotaWarning(self: *const IFaxConfiguration, bSizeQuotaWarning: i16) callconv(.@"inline") HRESULT {
+    pub fn put_SizeQuotaWarning(self: *const IFaxConfiguration, bSizeQuotaWarning: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_SizeQuotaWarning(self, bSizeQuotaWarning);
     }
     pub fn get_HighQuotaWaterMark(self: *const IFaxConfiguration, plHighQuotaWaterMark: ?*i32) callconv(.@"inline") HRESULT {
@@ -2266,28 +2033,28 @@ pub const IFaxConfiguration = extern union {
     pub fn get_ArchiveSizeHigh(self: *const IFaxConfiguration, plSizeHigh: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_ArchiveSizeHigh(self, plSizeHigh);
     }
-    pub fn get_OutgoingQueueBlocked(self: *const IFaxConfiguration, pbOutgoingBlocked: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_OutgoingQueueBlocked(self: *const IFaxConfiguration, pbOutgoingBlocked: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_OutgoingQueueBlocked(self, pbOutgoingBlocked);
     }
-    pub fn put_OutgoingQueueBlocked(self: *const IFaxConfiguration, bOutgoingBlocked: i16) callconv(.@"inline") HRESULT {
+    pub fn put_OutgoingQueueBlocked(self: *const IFaxConfiguration, bOutgoingBlocked: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_OutgoingQueueBlocked(self, bOutgoingBlocked);
     }
-    pub fn get_OutgoingQueuePaused(self: *const IFaxConfiguration, pbOutgoingPaused: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_OutgoingQueuePaused(self: *const IFaxConfiguration, pbOutgoingPaused: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_OutgoingQueuePaused(self, pbOutgoingPaused);
     }
-    pub fn put_OutgoingQueuePaused(self: *const IFaxConfiguration, bOutgoingPaused: i16) callconv(.@"inline") HRESULT {
+    pub fn put_OutgoingQueuePaused(self: *const IFaxConfiguration, bOutgoingPaused: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_OutgoingQueuePaused(self, bOutgoingPaused);
     }
-    pub fn get_AllowPersonalCoverPages(self: *const IFaxConfiguration, pbAllowPersonalCoverPages: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AllowPersonalCoverPages(self: *const IFaxConfiguration, pbAllowPersonalCoverPages: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowPersonalCoverPages(self, pbAllowPersonalCoverPages);
     }
-    pub fn put_AllowPersonalCoverPages(self: *const IFaxConfiguration, bAllowPersonalCoverPages: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AllowPersonalCoverPages(self: *const IFaxConfiguration, bAllowPersonalCoverPages: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowPersonalCoverPages(self, bAllowPersonalCoverPages);
     }
-    pub fn get_UseDeviceTSID(self: *const IFaxConfiguration, pbUseDeviceTSID: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_UseDeviceTSID(self: *const IFaxConfiguration, pbUseDeviceTSID: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UseDeviceTSID(self, pbUseDeviceTSID);
     }
-    pub fn put_UseDeviceTSID(self: *const IFaxConfiguration, bUseDeviceTSID: i16) callconv(.@"inline") HRESULT {
+    pub fn put_UseDeviceTSID(self: *const IFaxConfiguration, bUseDeviceTSID: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_UseDeviceTSID(self, bUseDeviceTSID);
     }
     pub fn get_Retries(self: *const IFaxConfiguration, plRetries: ?*i32) callconv(.@"inline") HRESULT {
@@ -2320,28 +2087,28 @@ pub const IFaxConfiguration = extern union {
     pub fn put_OutgoingQueueAgeLimit(self: *const IFaxConfiguration, lOutgoingQueueAgeLimit: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_OutgoingQueueAgeLimit(self, lOutgoingQueueAgeLimit);
     }
-    pub fn get_Branding(self: *const IFaxConfiguration, pbBranding: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Branding(self: *const IFaxConfiguration, pbBranding: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Branding(self, pbBranding);
     }
-    pub fn put_Branding(self: *const IFaxConfiguration, bBranding: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Branding(self: *const IFaxConfiguration, bBranding: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Branding(self, bBranding);
     }
-    pub fn get_IncomingQueueBlocked(self: *const IFaxConfiguration, pbIncomingBlocked: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IncomingQueueBlocked(self: *const IFaxConfiguration, pbIncomingBlocked: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IncomingQueueBlocked(self, pbIncomingBlocked);
     }
-    pub fn put_IncomingQueueBlocked(self: *const IFaxConfiguration, bIncomingBlocked: i16) callconv(.@"inline") HRESULT {
+    pub fn put_IncomingQueueBlocked(self: *const IFaxConfiguration, bIncomingBlocked: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_IncomingQueueBlocked(self, bIncomingBlocked);
     }
-    pub fn get_AutoCreateAccountOnConnect(self: *const IFaxConfiguration, pbAutoCreateAccountOnConnect: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AutoCreateAccountOnConnect(self: *const IFaxConfiguration, pbAutoCreateAccountOnConnect: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AutoCreateAccountOnConnect(self, pbAutoCreateAccountOnConnect);
     }
-    pub fn put_AutoCreateAccountOnConnect(self: *const IFaxConfiguration, bAutoCreateAccountOnConnect: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AutoCreateAccountOnConnect(self: *const IFaxConfiguration, bAutoCreateAccountOnConnect: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AutoCreateAccountOnConnect(self, bAutoCreateAccountOnConnect);
     }
-    pub fn get_IncomingFaxesArePublic(self: *const IFaxConfiguration, pbIncomingFaxesArePublic: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IncomingFaxesArePublic(self: *const IFaxConfiguration, pbIncomingFaxesArePublic: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IncomingFaxesArePublic(self, pbIncomingFaxesArePublic);
     }
-    pub fn put_IncomingFaxesArePublic(self: *const IFaxConfiguration, bIncomingFaxesArePublic: i16) callconv(.@"inline") HRESULT {
+    pub fn put_IncomingFaxesArePublic(self: *const IFaxConfiguration, bIncomingFaxesArePublic: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_IncomingFaxesArePublic(self, bIncomingFaxesArePublic);
     }
     pub fn Refresh(self: *const IFaxConfiguration) callconv(.@"inline") HRESULT {
@@ -2376,17 +2143,17 @@ pub const IFaxDevice = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PoweredOff: *const fn(
             self: *const IFaxDevice,
-            pbPoweredOff: ?*i16,
+            pbPoweredOff: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReceivingNow: *const fn(
             self: *const IFaxDevice,
-            pbReceivingNow: ?*i16,
+            pbReceivingNow: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SendingNow: *const fn(
             self: *const IFaxDevice,
-            pbSendingNow: ?*i16,
+            pbSendingNow: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UsedRoutingMethods: *const fn(
@@ -2406,12 +2173,12 @@ pub const IFaxDevice = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SendEnabled: *const fn(
             self: *const IFaxDevice,
-            pbSendEnabled: ?*i16,
+            pbSendEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SendEnabled: *const fn(
             self: *const IFaxDevice,
-            bSendEnabled: i16,
+            bSendEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReceiveMode: *const fn(
@@ -2472,12 +2239,12 @@ pub const IFaxDevice = extern union {
         UseRoutingMethod: *const fn(
             self: *const IFaxDevice,
             bstrMethodGUID: ?BSTR,
-            bUse: i16,
+            bUse: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RingingNow: *const fn(
             self: *const IFaxDevice,
-            pbRingingNow: ?*i16,
+            pbRingingNow: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         AnswerCall: *const fn(
             self: *const IFaxDevice,
@@ -2495,13 +2262,13 @@ pub const IFaxDevice = extern union {
     pub fn get_ProviderUniqueName(self: *const IFaxDevice, pbstrProviderUniqueName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ProviderUniqueName(self, pbstrProviderUniqueName);
     }
-    pub fn get_PoweredOff(self: *const IFaxDevice, pbPoweredOff: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_PoweredOff(self: *const IFaxDevice, pbPoweredOff: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_PoweredOff(self, pbPoweredOff);
     }
-    pub fn get_ReceivingNow(self: *const IFaxDevice, pbReceivingNow: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_ReceivingNow(self: *const IFaxDevice, pbReceivingNow: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ReceivingNow(self, pbReceivingNow);
     }
-    pub fn get_SendingNow(self: *const IFaxDevice, pbSendingNow: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SendingNow(self: *const IFaxDevice, pbSendingNow: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SendingNow(self, pbSendingNow);
     }
     pub fn get_UsedRoutingMethods(self: *const IFaxDevice, pvUsedRoutingMethods: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -2513,10 +2280,10 @@ pub const IFaxDevice = extern union {
     pub fn put_Description(self: *const IFaxDevice, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Description(self, bstrDescription);
     }
-    pub fn get_SendEnabled(self: *const IFaxDevice, pbSendEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SendEnabled(self: *const IFaxDevice, pbSendEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SendEnabled(self, pbSendEnabled);
     }
-    pub fn put_SendEnabled(self: *const IFaxDevice, bSendEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_SendEnabled(self: *const IFaxDevice, bSendEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_SendEnabled(self, bSendEnabled);
     }
     pub fn get_ReceiveMode(self: *const IFaxDevice, pReceiveMode: ?*FAX_DEVICE_RECEIVE_MODE_ENUM) callconv(.@"inline") HRESULT {
@@ -2555,10 +2322,10 @@ pub const IFaxDevice = extern union {
     pub fn SetExtensionProperty(self: *const IFaxDevice, bstrGUID: ?BSTR, vProperty: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetExtensionProperty(self, bstrGUID, vProperty);
     }
-    pub fn UseRoutingMethod(self: *const IFaxDevice, bstrMethodGUID: ?BSTR, bUse: i16) callconv(.@"inline") HRESULT {
+    pub fn UseRoutingMethod(self: *const IFaxDevice, bstrMethodGUID: ?BSTR, bUse: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.UseRoutingMethod(self, bstrMethodGUID, bUse);
     }
-    pub fn get_RingingNow(self: *const IFaxDevice, pbRingingNow: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_RingingNow(self: *const IFaxDevice, pbRingingNow: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_RingingNow(self, pbRingingNow);
     }
     pub fn AnswerCall(self: *const IFaxDevice) callconv(.@"inline") HRESULT {
@@ -2673,7 +2440,7 @@ pub const IFaxDeviceProvider = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Debug: *const fn(
             self: *const IFaxDeviceProvider,
-            pbDebug: ?*i16,
+            pbDebug: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: *const fn(
@@ -2718,7 +2485,7 @@ pub const IFaxDeviceProvider = extern union {
     pub fn get_MinorBuild(self: *const IFaxDeviceProvider, plMinorBuild: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_MinorBuild(self, plMinorBuild);
     }
-    pub fn get_Debug(self: *const IFaxDeviceProvider, pbDebug: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Debug(self: *const IFaxDeviceProvider, pbDebug: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Debug(self, pbDebug);
     }
     pub fn get_Status(self: *const IFaxDeviceProvider, pStatus: ?*FAX_PROVIDER_STATUS_ENUM) callconv(.@"inline") HRESULT {
@@ -2941,12 +2708,12 @@ pub const IFaxDocument = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GroupBroadcastReceipts: *const fn(
             self: *const IFaxDocument,
-            pbUseGrouping: ?*i16,
+            pbUseGrouping: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GroupBroadcastReceipts: *const fn(
             self: *const IFaxDocument,
-            bUseGrouping: i16,
+            bUseGrouping: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Priority: *const fn(
@@ -2980,12 +2747,12 @@ pub const IFaxDocument = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AttachFaxToReceipt: *const fn(
             self: *const IFaxDocument,
-            pbAttachFax: ?*i16,
+            pbAttachFax: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AttachFaxToReceipt: *const fn(
             self: *const IFaxDocument,
-            bAttachFax: i16,
+            bAttachFax: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -3063,10 +2830,10 @@ pub const IFaxDocument = extern union {
     pub fn put_ReceiptType(self: *const IFaxDocument, ReceiptType: FAX_RECEIPT_TYPE_ENUM) callconv(.@"inline") HRESULT {
         return self.vtable.put_ReceiptType(self, ReceiptType);
     }
-    pub fn get_GroupBroadcastReceipts(self: *const IFaxDocument, pbUseGrouping: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_GroupBroadcastReceipts(self: *const IFaxDocument, pbUseGrouping: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_GroupBroadcastReceipts(self, pbUseGrouping);
     }
-    pub fn put_GroupBroadcastReceipts(self: *const IFaxDocument, bUseGrouping: i16) callconv(.@"inline") HRESULT {
+    pub fn put_GroupBroadcastReceipts(self: *const IFaxDocument, bUseGrouping: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_GroupBroadcastReceipts(self, bUseGrouping);
     }
     pub fn get_Priority(self: *const IFaxDocument, pPriority: ?*FAX_PRIORITY_TYPE_ENUM) callconv(.@"inline") HRESULT {
@@ -3087,10 +2854,10 @@ pub const IFaxDocument = extern union {
     pub fn ConnectedSubmit(self: *const IFaxDocument, pFaxServer: ?*IFaxServer, pvFaxOutgoingJobIDs: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.ConnectedSubmit(self, pFaxServer, pvFaxOutgoingJobIDs);
     }
-    pub fn get_AttachFaxToReceipt(self: *const IFaxDocument, pbAttachFax: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AttachFaxToReceipt(self: *const IFaxDocument, pbAttachFax: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AttachFaxToReceipt(self, pbAttachFax);
     }
-    pub fn put_AttachFaxToReceipt(self: *const IFaxDocument, bAttachFax: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AttachFaxToReceipt(self: *const IFaxDocument, bAttachFax: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AttachFaxToReceipt(self, bAttachFax);
     }
 };
@@ -3352,7 +3119,7 @@ pub const IFaxInboundRoutingExtension = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Debug: *const fn(
             self: *const IFaxInboundRoutingExtension,
-            pbDebug: ?*i16,
+            pbDebug: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: *const fn(
@@ -3394,7 +3161,7 @@ pub const IFaxInboundRoutingExtension = extern union {
     pub fn get_MinorBuild(self: *const IFaxInboundRoutingExtension, plMinorBuild: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_MinorBuild(self, plMinorBuild);
     }
-    pub fn get_Debug(self: *const IFaxInboundRoutingExtension, pbDebug: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Debug(self: *const IFaxInboundRoutingExtension, pbDebug: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Debug(self, pbDebug);
     }
     pub fn get_Status(self: *const IFaxInboundRoutingExtension, pStatus: ?*FAX_PROVIDER_STATUS_ENUM) callconv(.@"inline") HRESULT {
@@ -3569,12 +3336,12 @@ pub const IFaxIncomingArchive = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseArchive: *const fn(
             self: *const IFaxIncomingArchive,
-            pbUseArchive: ?*i16,
+            pbUseArchive: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseArchive: *const fn(
             self: *const IFaxIncomingArchive,
-            bUseArchive: i16,
+            bUseArchive: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ArchiveFolder: *const fn(
@@ -3589,12 +3356,12 @@ pub const IFaxIncomingArchive = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SizeQuotaWarning: *const fn(
             self: *const IFaxIncomingArchive,
-            pbSizeQuotaWarning: ?*i16,
+            pbSizeQuotaWarning: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SizeQuotaWarning: *const fn(
             self: *const IFaxIncomingArchive,
-            bSizeQuotaWarning: i16,
+            bSizeQuotaWarning: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HighQuotaWaterMark: *const fn(
@@ -3656,10 +3423,10 @@ pub const IFaxIncomingArchive = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_UseArchive(self: *const IFaxIncomingArchive, pbUseArchive: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_UseArchive(self: *const IFaxIncomingArchive, pbUseArchive: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UseArchive(self, pbUseArchive);
     }
-    pub fn put_UseArchive(self: *const IFaxIncomingArchive, bUseArchive: i16) callconv(.@"inline") HRESULT {
+    pub fn put_UseArchive(self: *const IFaxIncomingArchive, bUseArchive: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_UseArchive(self, bUseArchive);
     }
     pub fn get_ArchiveFolder(self: *const IFaxIncomingArchive, pbstrArchiveFolder: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -3668,10 +3435,10 @@ pub const IFaxIncomingArchive = extern union {
     pub fn put_ArchiveFolder(self: *const IFaxIncomingArchive, bstrArchiveFolder: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ArchiveFolder(self, bstrArchiveFolder);
     }
-    pub fn get_SizeQuotaWarning(self: *const IFaxIncomingArchive, pbSizeQuotaWarning: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SizeQuotaWarning(self: *const IFaxIncomingArchive, pbSizeQuotaWarning: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SizeQuotaWarning(self, pbSizeQuotaWarning);
     }
-    pub fn put_SizeQuotaWarning(self: *const IFaxIncomingArchive, bSizeQuotaWarning: i16) callconv(.@"inline") HRESULT {
+    pub fn put_SizeQuotaWarning(self: *const IFaxIncomingArchive, bSizeQuotaWarning: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_SizeQuotaWarning(self, bSizeQuotaWarning);
     }
     pub fn get_HighQuotaWaterMark(self: *const IFaxIncomingArchive, plHighQuotaWaterMark: ?*i32) callconv(.@"inline") HRESULT {
@@ -4059,12 +3826,12 @@ pub const IFaxIncomingMessage2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HasCoverPage: *const fn(
             self: *const IFaxIncomingMessage2,
-            pbHasCoverPage: ?*i16,
+            pbHasCoverPage: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HasCoverPage: *const fn(
             self: *const IFaxIncomingMessage2,
-            bHasCoverPage: i16,
+            bHasCoverPage: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Recipients: *const fn(
@@ -4079,17 +3846,17 @@ pub const IFaxIncomingMessage2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WasReAssigned: *const fn(
             self: *const IFaxIncomingMessage2,
-            pbWasReAssigned: ?*i16,
+            pbWasReAssigned: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Read: *const fn(
             self: *const IFaxIncomingMessage2,
-            pbRead: ?*i16,
+            pbRead: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Read: *const fn(
             self: *const IFaxIncomingMessage2,
-            bRead: i16,
+            bRead: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         ReAssign: *const fn(
             self: *const IFaxIncomingMessage2,
@@ -4123,10 +3890,10 @@ pub const IFaxIncomingMessage2 = extern union {
     pub fn put_SenderFaxNumber(self: *const IFaxIncomingMessage2, bstrSenderFaxNumber: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_SenderFaxNumber(self, bstrSenderFaxNumber);
     }
-    pub fn get_HasCoverPage(self: *const IFaxIncomingMessage2, pbHasCoverPage: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_HasCoverPage(self: *const IFaxIncomingMessage2, pbHasCoverPage: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_HasCoverPage(self, pbHasCoverPage);
     }
-    pub fn put_HasCoverPage(self: *const IFaxIncomingMessage2, bHasCoverPage: i16) callconv(.@"inline") HRESULT {
+    pub fn put_HasCoverPage(self: *const IFaxIncomingMessage2, bHasCoverPage: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_HasCoverPage(self, bHasCoverPage);
     }
     pub fn get_Recipients(self: *const IFaxIncomingMessage2, pbstrRecipients: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -4135,13 +3902,13 @@ pub const IFaxIncomingMessage2 = extern union {
     pub fn put_Recipients(self: *const IFaxIncomingMessage2, bstrRecipients: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Recipients(self, bstrRecipients);
     }
-    pub fn get_WasReAssigned(self: *const IFaxIncomingMessage2, pbWasReAssigned: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_WasReAssigned(self: *const IFaxIncomingMessage2, pbWasReAssigned: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_WasReAssigned(self, pbWasReAssigned);
     }
-    pub fn get_Read(self: *const IFaxIncomingMessage2, pbRead: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Read(self: *const IFaxIncomingMessage2, pbRead: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Read(self, pbRead);
     }
-    pub fn put_Read(self: *const IFaxIncomingMessage2, bRead: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Read(self: *const IFaxIncomingMessage2, bRead: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Read(self, bRead);
     }
     pub fn ReAssign(self: *const IFaxIncomingMessage2) callconv(.@"inline") HRESULT {
@@ -4179,7 +3946,7 @@ pub const IFaxIncomingMessageIterator = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AtEOF: *const fn(
             self: *const IFaxIncomingMessageIterator,
-            pbEOF: ?*i16,
+            pbEOF: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         MoveFirst: *const fn(
             self: *const IFaxIncomingMessageIterator,
@@ -4200,7 +3967,7 @@ pub const IFaxIncomingMessageIterator = extern union {
     pub fn put_PrefetchSize(self: *const IFaxIncomingMessageIterator, lPrefetchSize: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_PrefetchSize(self, lPrefetchSize);
     }
-    pub fn get_AtEOF(self: *const IFaxIncomingMessageIterator, pbEOF: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AtEOF(self: *const IFaxIncomingMessageIterator, pbEOF: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AtEOF(self, pbEOF);
     }
     pub fn MoveFirst(self: *const IFaxIncomingMessageIterator) callconv(.@"inline") HRESULT {
@@ -4220,12 +3987,12 @@ pub const IFaxIncomingQueue = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Blocked: *const fn(
             self: *const IFaxIncomingQueue,
-            pbBlocked: ?*i16,
+            pbBlocked: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Blocked: *const fn(
             self: *const IFaxIncomingQueue,
-            bBlocked: i16,
+            bBlocked: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const IFaxIncomingQueue,
@@ -4246,10 +4013,10 @@ pub const IFaxIncomingQueue = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Blocked(self: *const IFaxIncomingQueue, pbBlocked: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Blocked(self: *const IFaxIncomingQueue, pbBlocked: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Blocked(self, pbBlocked);
     }
-    pub fn put_Blocked(self: *const IFaxIncomingQueue, bBlocked: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Blocked(self: *const IFaxIncomingQueue, bBlocked: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Blocked(self, bBlocked);
     }
     pub fn Refresh(self: *const IFaxIncomingQueue) callconv(.@"inline") HRESULT {
@@ -4579,12 +4346,12 @@ pub const IFaxOutboundRoutingRule = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseDevice: *const fn(
             self: *const IFaxOutboundRoutingRule,
-            pbUseDevice: ?*i16,
+            pbUseDevice: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseDevice: *const fn(
             self: *const IFaxOutboundRoutingRule,
-            bUseDevice: i16,
+            bUseDevice: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeviceId: *const fn(
@@ -4625,10 +4392,10 @@ pub const IFaxOutboundRoutingRule = extern union {
     pub fn get_Status(self: *const IFaxOutboundRoutingRule, pStatus: ?*FAX_RULE_STATUS_ENUM) callconv(.@"inline") HRESULT {
         return self.vtable.get_Status(self, pStatus);
     }
-    pub fn get_UseDevice(self: *const IFaxOutboundRoutingRule, pbUseDevice: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_UseDevice(self: *const IFaxOutboundRoutingRule, pbUseDevice: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UseDevice(self, pbUseDevice);
     }
-    pub fn put_UseDevice(self: *const IFaxOutboundRoutingRule, bUseDevice: i16) callconv(.@"inline") HRESULT {
+    pub fn put_UseDevice(self: *const IFaxOutboundRoutingRule, bUseDevice: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_UseDevice(self, bUseDevice);
     }
     pub fn get_DeviceId(self: *const IFaxOutboundRoutingRule, plDeviceId: ?*i32) callconv(.@"inline") HRESULT {
@@ -4691,7 +4458,7 @@ pub const IFaxOutboundRoutingRules = extern union {
             self: *const IFaxOutboundRoutingRules,
             lCountryCode: i32,
             lAreaCode: i32,
-            bUseDevice: i16,
+            bUseDevice: VARIANT_BOOL,
             bstrGroupName: ?BSTR,
             lDeviceId: i32,
             pFaxOutboundRoutingRule: ?*?*IFaxOutboundRoutingRule,
@@ -4718,7 +4485,7 @@ pub const IFaxOutboundRoutingRules = extern union {
     pub fn Remove(self: *const IFaxOutboundRoutingRules, lIndex: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, lIndex);
     }
-    pub fn Add(self: *const IFaxOutboundRoutingRules, lCountryCode: i32, lAreaCode: i32, bUseDevice: i16, bstrGroupName: ?BSTR, lDeviceId: i32, pFaxOutboundRoutingRule: ?*?*IFaxOutboundRoutingRule) callconv(.@"inline") HRESULT {
+    pub fn Add(self: *const IFaxOutboundRoutingRules, lCountryCode: i32, lAreaCode: i32, bUseDevice: VARIANT_BOOL, bstrGroupName: ?BSTR, lDeviceId: i32, pFaxOutboundRoutingRule: ?*?*IFaxOutboundRoutingRule) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, lCountryCode, lAreaCode, bUseDevice, bstrGroupName, lDeviceId, pFaxOutboundRoutingRule);
     }
 };
@@ -4732,12 +4499,12 @@ pub const IFaxOutgoingArchive = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseArchive: *const fn(
             self: *const IFaxOutgoingArchive,
-            pbUseArchive: ?*i16,
+            pbUseArchive: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseArchive: *const fn(
             self: *const IFaxOutgoingArchive,
-            bUseArchive: i16,
+            bUseArchive: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ArchiveFolder: *const fn(
@@ -4752,12 +4519,12 @@ pub const IFaxOutgoingArchive = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SizeQuotaWarning: *const fn(
             self: *const IFaxOutgoingArchive,
-            pbSizeQuotaWarning: ?*i16,
+            pbSizeQuotaWarning: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SizeQuotaWarning: *const fn(
             self: *const IFaxOutgoingArchive,
-            bSizeQuotaWarning: i16,
+            bSizeQuotaWarning: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HighQuotaWaterMark: *const fn(
@@ -4819,10 +4586,10 @@ pub const IFaxOutgoingArchive = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_UseArchive(self: *const IFaxOutgoingArchive, pbUseArchive: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_UseArchive(self: *const IFaxOutgoingArchive, pbUseArchive: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UseArchive(self, pbUseArchive);
     }
-    pub fn put_UseArchive(self: *const IFaxOutgoingArchive, bUseArchive: i16) callconv(.@"inline") HRESULT {
+    pub fn put_UseArchive(self: *const IFaxOutgoingArchive, bUseArchive: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_UseArchive(self, bUseArchive);
     }
     pub fn get_ArchiveFolder(self: *const IFaxOutgoingArchive, pbstrArchiveFolder: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -4831,10 +4598,10 @@ pub const IFaxOutgoingArchive = extern union {
     pub fn put_ArchiveFolder(self: *const IFaxOutgoingArchive, bstrArchiveFolder: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ArchiveFolder(self, bstrArchiveFolder);
     }
-    pub fn get_SizeQuotaWarning(self: *const IFaxOutgoingArchive, pbSizeQuotaWarning: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SizeQuotaWarning(self: *const IFaxOutgoingArchive, pbSizeQuotaWarning: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SizeQuotaWarning(self, pbSizeQuotaWarning);
     }
-    pub fn put_SizeQuotaWarning(self: *const IFaxOutgoingArchive, bSizeQuotaWarning: i16) callconv(.@"inline") HRESULT {
+    pub fn put_SizeQuotaWarning(self: *const IFaxOutgoingArchive, bSizeQuotaWarning: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_SizeQuotaWarning(self, bSizeQuotaWarning);
     }
     pub fn get_HighQuotaWaterMark(self: *const IFaxOutgoingArchive, plHighQuotaWaterMark: ?*i32) callconv(.@"inline") HRESULT {
@@ -5004,7 +4771,7 @@ pub const IFaxOutgoingJob = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GroupBroadcastReceipts: *const fn(
             self: *const IFaxOutgoingJob,
-            pbGroupBroadcastReceipts: ?*i16,
+            pbGroupBroadcastReceipts: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Pause: *const fn(
             self: *const IFaxOutgoingJob,
@@ -5101,7 +4868,7 @@ pub const IFaxOutgoingJob = extern union {
     pub fn get_TSID(self: *const IFaxOutgoingJob, pbstrTSID: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TSID(self, pbstrTSID);
     }
-    pub fn get_GroupBroadcastReceipts(self: *const IFaxOutgoingJob, pbGroupBroadcastReceipts: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_GroupBroadcastReceipts(self: *const IFaxOutgoingJob, pbGroupBroadcastReceipts: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_GroupBroadcastReceipts(self, pbGroupBroadcastReceipts);
     }
     pub fn Pause(self: *const IFaxOutgoingJob) callconv(.@"inline") HRESULT {
@@ -5133,7 +4900,7 @@ pub const IFaxOutgoingJob2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HasCoverPage: *const fn(
             self: *const IFaxOutgoingJob2,
-            pbHasCoverPage: ?*i16,
+            pbHasCoverPage: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReceiptAddress: *const fn(
@@ -5150,7 +4917,7 @@ pub const IFaxOutgoingJob2 = extern union {
     IFaxOutgoingJob: IFaxOutgoingJob,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_HasCoverPage(self: *const IFaxOutgoingJob2, pbHasCoverPage: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_HasCoverPage(self: *const IFaxOutgoingJob2, pbHasCoverPage: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_HasCoverPage(self, pbHasCoverPage);
     }
     pub fn get_ReceiptAddress(self: *const IFaxOutgoingJob2, pbstrReceiptAddress: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -5367,7 +5134,7 @@ pub const IFaxOutgoingMessage2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HasCoverPage: *const fn(
             self: *const IFaxOutgoingMessage2,
-            pbHasCoverPage: ?*i16,
+            pbHasCoverPage: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReceiptType: *const fn(
@@ -5382,12 +5149,12 @@ pub const IFaxOutgoingMessage2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Read: *const fn(
             self: *const IFaxOutgoingMessage2,
-            pbRead: ?*i16,
+            pbRead: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Read: *const fn(
             self: *const IFaxOutgoingMessage2,
-            bRead: i16,
+            bRead: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Save: *const fn(
             self: *const IFaxOutgoingMessage2,
@@ -5400,7 +5167,7 @@ pub const IFaxOutgoingMessage2 = extern union {
     IFaxOutgoingMessage: IFaxOutgoingMessage,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_HasCoverPage(self: *const IFaxOutgoingMessage2, pbHasCoverPage: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_HasCoverPage(self: *const IFaxOutgoingMessage2, pbHasCoverPage: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_HasCoverPage(self, pbHasCoverPage);
     }
     pub fn get_ReceiptType(self: *const IFaxOutgoingMessage2, pReceiptType: ?*FAX_RECEIPT_TYPE_ENUM) callconv(.@"inline") HRESULT {
@@ -5409,10 +5176,10 @@ pub const IFaxOutgoingMessage2 = extern union {
     pub fn get_ReceiptAddress(self: *const IFaxOutgoingMessage2, pbstrReceiptAddress: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ReceiptAddress(self, pbstrReceiptAddress);
     }
-    pub fn get_Read(self: *const IFaxOutgoingMessage2, pbRead: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Read(self: *const IFaxOutgoingMessage2, pbRead: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Read(self, pbRead);
     }
-    pub fn put_Read(self: *const IFaxOutgoingMessage2, bRead: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Read(self: *const IFaxOutgoingMessage2, bRead: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Read(self, bRead);
     }
     pub fn Save(self: *const IFaxOutgoingMessage2) callconv(.@"inline") HRESULT {
@@ -5437,7 +5204,7 @@ pub const IFaxOutgoingMessageIterator = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AtEOF: *const fn(
             self: *const IFaxOutgoingMessageIterator,
-            pbEOF: ?*i16,
+            pbEOF: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrefetchSize: *const fn(
@@ -5462,7 +5229,7 @@ pub const IFaxOutgoingMessageIterator = extern union {
     pub fn get_Message(self: *const IFaxOutgoingMessageIterator, pFaxOutgoingMessage: ?*?*IFaxOutgoingMessage) callconv(.@"inline") HRESULT {
         return self.vtable.get_Message(self, pFaxOutgoingMessage);
     }
-    pub fn get_AtEOF(self: *const IFaxOutgoingMessageIterator, pbEOF: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AtEOF(self: *const IFaxOutgoingMessageIterator, pbEOF: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AtEOF(self, pbEOF);
     }
     pub fn get_PrefetchSize(self: *const IFaxOutgoingMessageIterator, plPrefetchSize: ?*i32) callconv(.@"inline") HRESULT {
@@ -5488,42 +5255,42 @@ pub const IFaxOutgoingQueue = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Blocked: *const fn(
             self: *const IFaxOutgoingQueue,
-            pbBlocked: ?*i16,
+            pbBlocked: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Blocked: *const fn(
             self: *const IFaxOutgoingQueue,
-            bBlocked: i16,
+            bBlocked: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Paused: *const fn(
             self: *const IFaxOutgoingQueue,
-            pbPaused: ?*i16,
+            pbPaused: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Paused: *const fn(
             self: *const IFaxOutgoingQueue,
-            bPaused: i16,
+            bPaused: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowPersonalCoverPages: *const fn(
             self: *const IFaxOutgoingQueue,
-            pbAllowPersonalCoverPages: ?*i16,
+            pbAllowPersonalCoverPages: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowPersonalCoverPages: *const fn(
             self: *const IFaxOutgoingQueue,
-            bAllowPersonalCoverPages: i16,
+            bAllowPersonalCoverPages: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseDeviceTSID: *const fn(
             self: *const IFaxOutgoingQueue,
-            pbUseDeviceTSID: ?*i16,
+            pbUseDeviceTSID: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseDeviceTSID: *const fn(
             self: *const IFaxOutgoingQueue,
-            bUseDeviceTSID: i16,
+            bUseDeviceTSID: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Retries: *const fn(
@@ -5578,12 +5345,12 @@ pub const IFaxOutgoingQueue = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Branding: *const fn(
             self: *const IFaxOutgoingQueue,
-            pbBranding: ?*i16,
+            pbBranding: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Branding: *const fn(
             self: *const IFaxOutgoingQueue,
-            bBranding: i16,
+            bBranding: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const IFaxOutgoingQueue,
@@ -5604,28 +5371,28 @@ pub const IFaxOutgoingQueue = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Blocked(self: *const IFaxOutgoingQueue, pbBlocked: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Blocked(self: *const IFaxOutgoingQueue, pbBlocked: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Blocked(self, pbBlocked);
     }
-    pub fn put_Blocked(self: *const IFaxOutgoingQueue, bBlocked: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Blocked(self: *const IFaxOutgoingQueue, bBlocked: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Blocked(self, bBlocked);
     }
-    pub fn get_Paused(self: *const IFaxOutgoingQueue, pbPaused: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Paused(self: *const IFaxOutgoingQueue, pbPaused: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Paused(self, pbPaused);
     }
-    pub fn put_Paused(self: *const IFaxOutgoingQueue, bPaused: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Paused(self: *const IFaxOutgoingQueue, bPaused: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Paused(self, bPaused);
     }
-    pub fn get_AllowPersonalCoverPages(self: *const IFaxOutgoingQueue, pbAllowPersonalCoverPages: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AllowPersonalCoverPages(self: *const IFaxOutgoingQueue, pbAllowPersonalCoverPages: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowPersonalCoverPages(self, pbAllowPersonalCoverPages);
     }
-    pub fn put_AllowPersonalCoverPages(self: *const IFaxOutgoingQueue, bAllowPersonalCoverPages: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AllowPersonalCoverPages(self: *const IFaxOutgoingQueue, bAllowPersonalCoverPages: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowPersonalCoverPages(self, bAllowPersonalCoverPages);
     }
-    pub fn get_UseDeviceTSID(self: *const IFaxOutgoingQueue, pbUseDeviceTSID: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_UseDeviceTSID(self: *const IFaxOutgoingQueue, pbUseDeviceTSID: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UseDeviceTSID(self, pbUseDeviceTSID);
     }
-    pub fn put_UseDeviceTSID(self: *const IFaxOutgoingQueue, bUseDeviceTSID: i16) callconv(.@"inline") HRESULT {
+    pub fn put_UseDeviceTSID(self: *const IFaxOutgoingQueue, bUseDeviceTSID: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_UseDeviceTSID(self, bUseDeviceTSID);
     }
     pub fn get_Retries(self: *const IFaxOutgoingQueue, plRetries: ?*i32) callconv(.@"inline") HRESULT {
@@ -5658,10 +5425,10 @@ pub const IFaxOutgoingQueue = extern union {
     pub fn put_AgeLimit(self: *const IFaxOutgoingQueue, lAgeLimit: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_AgeLimit(self, lAgeLimit);
     }
-    pub fn get_Branding(self: *const IFaxOutgoingQueue, pbBranding: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Branding(self: *const IFaxOutgoingQueue, pbBranding: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Branding(self, pbBranding);
     }
-    pub fn put_Branding(self: *const IFaxOutgoingQueue, bBranding: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Branding(self: *const IFaxOutgoingQueue, bBranding: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Branding(self, bBranding);
     }
     pub fn Refresh(self: *const IFaxOutgoingQueue) callconv(.@"inline") HRESULT {
@@ -5763,12 +5530,12 @@ pub const IFaxReceiptOptions = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseForInboundRouting: *const fn(
             self: *const IFaxReceiptOptions,
-            pbUseForInboundRouting: ?*i16,
+            pbUseForInboundRouting: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseForInboundRouting: *const fn(
             self: *const IFaxReceiptOptions,
-            bUseForInboundRouting: i16,
+            bUseForInboundRouting: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -5822,10 +5589,10 @@ pub const IFaxReceiptOptions = extern union {
     pub fn Save(self: *const IFaxReceiptOptions) callconv(.@"inline") HRESULT {
         return self.vtable.Save(self);
     }
-    pub fn get_UseForInboundRouting(self: *const IFaxReceiptOptions, pbUseForInboundRouting: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_UseForInboundRouting(self: *const IFaxReceiptOptions, pbUseForInboundRouting: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UseForInboundRouting(self, pbUseForInboundRouting);
     }
-    pub fn put_UseForInboundRouting(self: *const IFaxReceiptOptions, bUseForInboundRouting: i16) callconv(.@"inline") HRESULT {
+    pub fn put_UseForInboundRouting(self: *const IFaxReceiptOptions, bUseForInboundRouting: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_UseForInboundRouting(self, bUseForInboundRouting);
     }
 };
@@ -6395,7 +6162,7 @@ pub const IFaxServer = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Debug: *const fn(
             self: *const IFaxServer,
-            pbDebug: ?*i16,
+            pbDebug: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Activity: *const fn(
@@ -6504,7 +6271,7 @@ pub const IFaxServer = extern union {
     pub fn get_MinorBuild(self: *const IFaxServer, plMinorBuild: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_MinorBuild(self, plMinorBuild);
     }
-    pub fn get_Debug(self: *const IFaxServer, pbDebug: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Debug(self: *const IFaxServer, pbDebug: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Debug(self, pbDebug);
     }
     pub fn get_Activity(self: *const IFaxServer, ppFaxActivity: ?*?*IFaxActivity) callconv(.@"inline") HRESULT {
@@ -6608,15 +6375,224 @@ pub const IFaxServerNotify = extern union {
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IFaxServerNotify2_Value = Guid.initString("616ca8d6-a77a-4062-abfd-0e471241c7aa");
+const IID_IFaxServerNotify2_Value = Guid.initString("ec9c69b9-5fe7-4805-9467-82fcd96af903");
 pub const IID_IFaxServerNotify2 = &IID_IFaxServerNotify2_Value;
 pub const IFaxServerNotify2 = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        OnIncomingJobAdded: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+            bstrJobId: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        OnIncomingJobRemoved: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+            bstrJobId: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        OnIncomingJobChanged: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+            bstrJobId: ?BSTR,
+            pJobStatus: ?*IFaxJobStatus,
+        ) callconv(.winapi) HRESULT,
+        OnOutgoingJobAdded: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+            bstrJobId: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        OnOutgoingJobRemoved: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+            bstrJobId: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        OnOutgoingJobChanged: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+            bstrJobId: ?BSTR,
+            pJobStatus: ?*IFaxJobStatus,
+        ) callconv(.winapi) HRESULT,
+        OnIncomingMessageAdded: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+            bstrMessageId: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        OnIncomingMessageRemoved: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+            bstrMessageId: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        OnOutgoingMessageAdded: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+            bstrMessageId: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        OnOutgoingMessageRemoved: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+            bstrMessageId: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        OnReceiptOptionsChange: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+        ) callconv(.winapi) HRESULT,
+        OnActivityLoggingConfigChange: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+        ) callconv(.winapi) HRESULT,
+        OnSecurityConfigChange: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+        ) callconv(.winapi) HRESULT,
+        OnEventLoggingConfigChange: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+        ) callconv(.winapi) HRESULT,
+        OnOutgoingQueueConfigChange: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+        ) callconv(.winapi) HRESULT,
+        OnOutgoingArchiveConfigChange: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+        ) callconv(.winapi) HRESULT,
+        OnIncomingArchiveConfigChange: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+        ) callconv(.winapi) HRESULT,
+        OnDevicesConfigChange: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+        ) callconv(.winapi) HRESULT,
+        OnOutboundRoutingGroupsConfigChange: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+        ) callconv(.winapi) HRESULT,
+        OnOutboundRoutingRulesConfigChange: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+        ) callconv(.winapi) HRESULT,
+        OnServerActivityChange: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+            lIncomingMessages: i32,
+            lRoutingMessages: i32,
+            lOutgoingMessages: i32,
+            lQueuedMessages: i32,
+        ) callconv(.winapi) HRESULT,
+        OnQueuesStatusChange: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+            bOutgoingQueueBlocked: VARIANT_BOOL,
+            bOutgoingQueuePaused: VARIANT_BOOL,
+            bIncomingQueueBlocked: VARIANT_BOOL,
+        ) callconv(.winapi) HRESULT,
+        OnNewCall: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+            lCallId: i32,
+            lDeviceId: i32,
+            bstrCallerId: ?BSTR,
+        ) callconv(.winapi) HRESULT,
+        OnServerShutDown: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+        ) callconv(.winapi) HRESULT,
+        OnDeviceStatusChange: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+            lDeviceId: i32,
+            bPoweredOff: VARIANT_BOOL,
+            bSending: VARIANT_BOOL,
+            bReceiving: VARIANT_BOOL,
+            bRinging: VARIANT_BOOL,
+        ) callconv(.winapi) HRESULT,
+        OnGeneralServerConfigChanged: *const fn(
+            self: *const IFaxServerNotify2,
+            pFaxServer: ?*IFaxServer2,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
+    pub fn OnIncomingJobAdded(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.OnIncomingJobAdded(self, pFaxServer, bstrJobId);
+    }
+    pub fn OnIncomingJobRemoved(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.OnIncomingJobRemoved(self, pFaxServer, bstrJobId);
+    }
+    pub fn OnIncomingJobChanged(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR, pJobStatus: ?*IFaxJobStatus) callconv(.@"inline") HRESULT {
+        return self.vtable.OnIncomingJobChanged(self, pFaxServer, bstrJobId, pJobStatus);
+    }
+    pub fn OnOutgoingJobAdded(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.OnOutgoingJobAdded(self, pFaxServer, bstrJobId);
+    }
+    pub fn OnOutgoingJobRemoved(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.OnOutgoingJobRemoved(self, pFaxServer, bstrJobId);
+    }
+    pub fn OnOutgoingJobChanged(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR, pJobStatus: ?*IFaxJobStatus) callconv(.@"inline") HRESULT {
+        return self.vtable.OnOutgoingJobChanged(self, pFaxServer, bstrJobId, pJobStatus);
+    }
+    pub fn OnIncomingMessageAdded(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrMessageId: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.OnIncomingMessageAdded(self, pFaxServer, bstrMessageId);
+    }
+    pub fn OnIncomingMessageRemoved(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrMessageId: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.OnIncomingMessageRemoved(self, pFaxServer, bstrMessageId);
+    }
+    pub fn OnOutgoingMessageAdded(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrMessageId: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.OnOutgoingMessageAdded(self, pFaxServer, bstrMessageId);
+    }
+    pub fn OnOutgoingMessageRemoved(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bstrMessageId: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.OnOutgoingMessageRemoved(self, pFaxServer, bstrMessageId);
+    }
+    pub fn OnReceiptOptionsChange(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
+        return self.vtable.OnReceiptOptionsChange(self, pFaxServer);
+    }
+    pub fn OnActivityLoggingConfigChange(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
+        return self.vtable.OnActivityLoggingConfigChange(self, pFaxServer);
+    }
+    pub fn OnSecurityConfigChange(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
+        return self.vtable.OnSecurityConfigChange(self, pFaxServer);
+    }
+    pub fn OnEventLoggingConfigChange(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
+        return self.vtable.OnEventLoggingConfigChange(self, pFaxServer);
+    }
+    pub fn OnOutgoingQueueConfigChange(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
+        return self.vtable.OnOutgoingQueueConfigChange(self, pFaxServer);
+    }
+    pub fn OnOutgoingArchiveConfigChange(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
+        return self.vtable.OnOutgoingArchiveConfigChange(self, pFaxServer);
+    }
+    pub fn OnIncomingArchiveConfigChange(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
+        return self.vtable.OnIncomingArchiveConfigChange(self, pFaxServer);
+    }
+    pub fn OnDevicesConfigChange(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
+        return self.vtable.OnDevicesConfigChange(self, pFaxServer);
+    }
+    pub fn OnOutboundRoutingGroupsConfigChange(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
+        return self.vtable.OnOutboundRoutingGroupsConfigChange(self, pFaxServer);
+    }
+    pub fn OnOutboundRoutingRulesConfigChange(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
+        return self.vtable.OnOutboundRoutingRulesConfigChange(self, pFaxServer);
+    }
+    pub fn OnServerActivityChange(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2, lIncomingMessages: i32, lRoutingMessages: i32, lOutgoingMessages: i32, lQueuedMessages: i32) callconv(.@"inline") HRESULT {
+        return self.vtable.OnServerActivityChange(self, pFaxServer, lIncomingMessages, lRoutingMessages, lOutgoingMessages, lQueuedMessages);
+    }
+    pub fn OnQueuesStatusChange(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2, bOutgoingQueueBlocked: VARIANT_BOOL, bOutgoingQueuePaused: VARIANT_BOOL, bIncomingQueueBlocked: VARIANT_BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnQueuesStatusChange(self, pFaxServer, bOutgoingQueueBlocked, bOutgoingQueuePaused, bIncomingQueueBlocked);
+    }
+    pub fn OnNewCall(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2, lCallId: i32, lDeviceId: i32, bstrCallerId: ?BSTR) callconv(.@"inline") HRESULT {
+        return self.vtable.OnNewCall(self, pFaxServer, lCallId, lDeviceId, bstrCallerId);
+    }
+    pub fn OnServerShutDown(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
+        return self.vtable.OnServerShutDown(self, pFaxServer);
+    }
+    pub fn OnDeviceStatusChange(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2, lDeviceId: i32, bPoweredOff: VARIANT_BOOL, bSending: VARIANT_BOOL, bReceiving: VARIANT_BOOL, bRinging: VARIANT_BOOL) callconv(.@"inline") HRESULT {
+        return self.vtable.OnDeviceStatusChange(self, pFaxServer, lDeviceId, bPoweredOff, bSending, bReceiving, bRinging);
+    }
+    pub fn OnGeneralServerConfigChanged(self: *const IFaxServerNotify2, pFaxServer: ?*IFaxServer2) callconv(.@"inline") HRESULT {
+        return self.vtable.OnGeneralServerConfigChanged(self, pFaxServer);
+    }
 };
 
 const IID_IStiDevice_Value = Guid.initString("6cfa5a80-2dc8-11d0-90ea-00aa0060f86c");
@@ -8630,7 +8606,7 @@ pub const FaxStartPrintJob = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (20)
+// Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -8652,6 +8628,7 @@ const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

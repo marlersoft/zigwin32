@@ -748,7 +748,7 @@ pub const IWSManEnumerator = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AtEndOfStream: *const fn(
             self: *const IWSManEnumerator,
-            eos: ?*i16,
+            eos: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Error: *const fn(
@@ -762,7 +762,7 @@ pub const IWSManEnumerator = extern union {
     pub fn ReadItem(self: *const IWSManEnumerator, resource: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ReadItem(self, resource);
     }
-    pub fn get_AtEndOfStream(self: *const IWSManEnumerator, eos: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AtEndOfStream(self: *const IWSManEnumerator, eos: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AtEndOfStream(self, eos);
     }
     pub fn get_Error(self: *const IWSManEnumerator, value: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -2100,7 +2100,7 @@ pub extern "wsmsvc" fn WSManSignalShell(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -2111,6 +2111,7 @@ const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

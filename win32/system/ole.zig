@@ -484,7 +484,7 @@ pub const VTDATEGRE_MIN = @as(i32, -657434);
 pub const WIN32 = @as(u32, 100);
 
 //--------------------------------------------------------------------------------
-// Section: Types (239)
+// Section: Types (241)
 //--------------------------------------------------------------------------------
 pub const _wireBRECORD = extern struct {
     fFlags: u32,
@@ -516,7 +516,7 @@ pub const _wireVARIANT = extern struct {
         iVal: i16,
         fltVal: f32,
         dblVal: f64,
-        boolVal: i16,
+        boolVal: VARIANT_BOOL,
         scode: i32,
         cyVal: CY,
         date: f64,
@@ -531,7 +531,7 @@ pub const _wireVARIANT = extern struct {
         pllVal: ?*i64,
         pfltVal: ?*f32,
         pdblVal: ?*f64,
-        pboolVal: ?*i16,
+        pboolVal: ?*VARIANT_BOOL,
         pscode: ?*i32,
         pcyVal: ?*CY,
         pdate: ?*f64,
@@ -771,6 +771,63 @@ pub const CLEANLOCALSTORAGE = extern struct {
     pStorage: ?*anyopaque,
     flags: u32,
 };
+
+pub const CLIPBOARD_FORMAT = enum(u16) {
+    TEXT = 1,
+    BITMAP = 2,
+    METAFILEPICT = 3,
+    SYLK = 4,
+    DIF = 5,
+    TIFF = 6,
+    OEMTEXT = 7,
+    DIB = 8,
+    PALETTE = 9,
+    PENDATA = 10,
+    RIFF = 11,
+    WAVE = 12,
+    UNICODETEXT = 13,
+    ENHMETAFILE = 14,
+    HDROP = 15,
+    LOCALE = 16,
+    DIBV5 = 17,
+    MAX = 18,
+    OWNERDISPLAY = 128,
+    DSPTEXT = 129,
+    DSPBITMAP = 130,
+    DSPMETAFILEPICT = 131,
+    DSPENHMETAFILE = 142,
+    PRIVATEFIRST = 512,
+    PRIVATELAST = 767,
+    GDIOBJFIRST = 768,
+    GDIOBJLAST = 1023,
+};
+pub const CF_TEXT = CLIPBOARD_FORMAT.TEXT;
+pub const CF_BITMAP = CLIPBOARD_FORMAT.BITMAP;
+pub const CF_METAFILEPICT = CLIPBOARD_FORMAT.METAFILEPICT;
+pub const CF_SYLK = CLIPBOARD_FORMAT.SYLK;
+pub const CF_DIF = CLIPBOARD_FORMAT.DIF;
+pub const CF_TIFF = CLIPBOARD_FORMAT.TIFF;
+pub const CF_OEMTEXT = CLIPBOARD_FORMAT.OEMTEXT;
+pub const CF_DIB = CLIPBOARD_FORMAT.DIB;
+pub const CF_PALETTE = CLIPBOARD_FORMAT.PALETTE;
+pub const CF_PENDATA = CLIPBOARD_FORMAT.PENDATA;
+pub const CF_RIFF = CLIPBOARD_FORMAT.RIFF;
+pub const CF_WAVE = CLIPBOARD_FORMAT.WAVE;
+pub const CF_UNICODETEXT = CLIPBOARD_FORMAT.UNICODETEXT;
+pub const CF_ENHMETAFILE = CLIPBOARD_FORMAT.ENHMETAFILE;
+pub const CF_HDROP = CLIPBOARD_FORMAT.HDROP;
+pub const CF_LOCALE = CLIPBOARD_FORMAT.LOCALE;
+pub const CF_DIBV5 = CLIPBOARD_FORMAT.DIBV5;
+pub const CF_MAX = CLIPBOARD_FORMAT.MAX;
+pub const CF_OWNERDISPLAY = CLIPBOARD_FORMAT.OWNERDISPLAY;
+pub const CF_DSPTEXT = CLIPBOARD_FORMAT.DSPTEXT;
+pub const CF_DSPBITMAP = CLIPBOARD_FORMAT.DSPBITMAP;
+pub const CF_DSPMETAFILEPICT = CLIPBOARD_FORMAT.DSPMETAFILEPICT;
+pub const CF_DSPENHMETAFILE = CLIPBOARD_FORMAT.DSPENHMETAFILE;
+pub const CF_PRIVATEFIRST = CLIPBOARD_FORMAT.PRIVATEFIRST;
+pub const CF_PRIVATELAST = CLIPBOARD_FORMAT.PRIVATELAST;
+pub const CF_GDIOBJFIRST = CLIPBOARD_FORMAT.GDIOBJFIRST;
+pub const CF_GDIOBJLAST = CLIPBOARD_FORMAT.GDIOBJLAST;
 
 pub const CONTROLINFO = extern struct {
     cb: u32,
@@ -4352,12 +4409,12 @@ pub const IPicture = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Handle: *const fn(
             self: *const IPicture,
-            pHandle: ?*u32,
+            pHandle: ?*OLE_HANDLE,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_hPal: *const fn(
             self: *const IPicture,
-            phPal: ?*u32,
+            phPal: ?*OLE_HANDLE,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: *const fn(
@@ -4389,7 +4446,7 @@ pub const IPicture = extern union {
         ) callconv(.winapi) HRESULT,
         set_hPal: *const fn(
             self: *const IPicture,
-            hPal: u32,
+            hPal: OLE_HANDLE,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurDC: *const fn(
@@ -4400,7 +4457,7 @@ pub const IPicture = extern union {
             self: *const IPicture,
             hDCIn: ?HDC,
             phDCOut: ?*?HDC,
-            phBmpOut: ?*u32,
+            phBmpOut: ?*OLE_HANDLE,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeepOriginalFormat: *const fn(
@@ -4429,10 +4486,10 @@ pub const IPicture = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Handle(self: *const IPicture, pHandle: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn get_Handle(self: *const IPicture, pHandle: ?*OLE_HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.get_Handle(self, pHandle);
     }
-    pub fn get_hPal(self: *const IPicture, phPal: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn get_hPal(self: *const IPicture, phPal: ?*OLE_HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.get_hPal(self, phPal);
     }
     pub fn get_Type(self: *const IPicture, pType: ?*i16) callconv(.@"inline") HRESULT {
@@ -4447,13 +4504,13 @@ pub const IPicture = extern union {
     pub fn Render(self: *const IPicture, hDC: ?HDC, x: i32, y: i32, cx: i32, cy: i32, xSrc: i32, ySrc: i32, cxSrc: i32, cySrc: i32, pRcWBounds: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.Render(self, hDC, x, y, cx, cy, xSrc, ySrc, cxSrc, cySrc, pRcWBounds);
     }
-    pub fn set_hPal(self: *const IPicture, hPal: u32) callconv(.@"inline") HRESULT {
+    pub fn set_hPal(self: *const IPicture, hPal: OLE_HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.set_hPal(self, hPal);
     }
     pub fn get_CurDC(self: *const IPicture, phDC: ?*?HDC) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurDC(self, phDC);
     }
-    pub fn SelectPicture(self: *const IPicture, hDCIn: ?HDC, phDCOut: ?*?HDC, phBmpOut: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn SelectPicture(self: *const IPicture, hDCIn: ?HDC, phDCOut: ?*?HDC, phBmpOut: ?*OLE_HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.SelectPicture(self, hDCIn, phDCOut, phBmpOut);
     }
     pub fn get_KeepOriginalFormat(self: *const IPicture, pKeep: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -4995,12 +5052,12 @@ pub const IProvideRuntimeContext = extern union {
         GetCurrentSourceContext: *const fn(
             self: *const IProvideRuntimeContext,
             pdwContext: ?*usize,
-            pfExecutingGlobalCode: ?*i16,
+            pfExecutingGlobalCode: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrentSourceContext(self: *const IProvideRuntimeContext, pdwContext: ?*usize, pfExecutingGlobalCode: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn GetCurrentSourceContext(self: *const IProvideRuntimeContext, pdwContext: ?*usize, pfExecutingGlobalCode: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentSourceContext(self, pdwContext, pfExecutingGlobalCode);
     }
 };
@@ -5834,6 +5891,9 @@ pub const OCPFIPARAMS = extern struct {
     lcid: u32,
     dispidInitialProperty: i32,
 };
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const OLE_HANDLE = u32;
 
 pub const OLE_TRISTATE = enum(i32) {
     Unchecked = 0,
@@ -7990,7 +8050,7 @@ pub extern "ole32" fn OleDraw(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn OleDuplicateData(
     hSrc: ?HANDLE,
-    cfFormat: u16,
+    cfFormat: CLIPBOARD_FORMAT,
     uiFlags: GLOBAL_ALLOC_FLAGS,
 ) callconv(.winapi) ?HANDLE;
 
@@ -8629,80 +8689,80 @@ pub extern "oleaut32" fn VarAnd(
 
 pub extern "oleaut32" fn VarBoolFromCy(
     cyIn: CY,
-    pboolOut: ?*i16,
+    pboolOut: ?*VARIANT_BOOL,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarBoolFromDate(
     dateIn: f64,
-    pboolOut: ?*i16,
+    pboolOut: ?*VARIANT_BOOL,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarBoolFromDec(
     pdecIn: ?*const DECIMAL,
-    pboolOut: ?*i16,
+    pboolOut: ?*VARIANT_BOOL,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarBoolFromDisp(
     pdispIn: ?*IDispatch,
     lcid: u32,
-    pboolOut: ?*i16,
+    pboolOut: ?*VARIANT_BOOL,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarBoolFromI1(
     cIn: CHAR,
-    pboolOut: ?*i16,
+    pboolOut: ?*VARIANT_BOOL,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarBoolFromI2(
     sIn: i16,
-    pboolOut: ?*i16,
+    pboolOut: ?*VARIANT_BOOL,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarBoolFromI4(
     lIn: i32,
-    pboolOut: ?*i16,
+    pboolOut: ?*VARIANT_BOOL,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarBoolFromI8(
     i64In: i64,
-    pboolOut: ?*i16,
+    pboolOut: ?*VARIANT_BOOL,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarBoolFromR4(
     fltIn: f32,
-    pboolOut: ?*i16,
+    pboolOut: ?*VARIANT_BOOL,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarBoolFromR8(
     dblIn: f64,
-    pboolOut: ?*i16,
+    pboolOut: ?*VARIANT_BOOL,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarBoolFromStr(
     strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
-    pboolOut: ?*i16,
+    pboolOut: ?*VARIANT_BOOL,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarBoolFromUI1(
     bIn: u8,
-    pboolOut: ?*i16,
+    pboolOut: ?*VARIANT_BOOL,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarBoolFromUI2(
     uiIn: u16,
-    pboolOut: ?*i16,
+    pboolOut: ?*VARIANT_BOOL,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarBoolFromUI4(
     ulIn: u32,
-    pboolOut: ?*i16,
+    pboolOut: ?*VARIANT_BOOL,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarBoolFromUI8(
     i64In: u64,
-    pboolOut: ?*i16,
+    pboolOut: ?*VARIANT_BOOL,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarBstrCat(
@@ -8719,7 +8779,7 @@ pub extern "oleaut32" fn VarBstrCmp(
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarBstrFromBool(
-    boolIn: i16,
+    boolIn: VARIANT_BOOL,
     lcid: u32,
     dwFlags: u32,
     pbstrOut: ?*?BSTR,
@@ -8863,7 +8923,7 @@ pub extern "oleaut32" fn VarCyFix(
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarCyFromBool(
-    boolIn: i16,
+    boolIn: VARIANT_BOOL,
     pcyOut: ?*CY,
 ) callconv(.winapi) HRESULT;
 
@@ -8981,7 +9041,7 @@ pub extern "oleaut32" fn VarCySub(
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarDateFromBool(
-    boolIn: i16,
+    boolIn: VARIANT_BOOL,
     pdateOut: ?*f64,
 ) callconv(.winapi) HRESULT;
 
@@ -9104,7 +9164,7 @@ pub extern "oleaut32" fn VarDecFix(
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarDecFromBool(
-    boolIn: i16,
+    boolIn: VARIANT_BOOL,
     pdecOut: ?*DECIMAL,
 ) callconv(.winapi) HRESULT;
 
@@ -9282,7 +9342,7 @@ pub extern "oleaut32" fn VarFormatPercent(
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarI1FromBool(
-    boolIn: i16,
+    boolIn: VARIANT_BOOL,
     pcOut: ?PSTR,
 ) callconv(.winapi) HRESULT;
 
@@ -9360,7 +9420,7 @@ pub extern "oleaut32" fn VarI1FromUI8(
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarI2FromBool(
-    boolIn: i16,
+    boolIn: VARIANT_BOOL,
     psOut: ?*i16,
 ) callconv(.winapi) HRESULT;
 
@@ -9438,7 +9498,7 @@ pub extern "oleaut32" fn VarI2FromUI8(
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarI4FromBool(
-    boolIn: i16,
+    boolIn: VARIANT_BOOL,
     plOut: ?*i32,
 ) callconv(.winapi) HRESULT;
 
@@ -9516,7 +9576,7 @@ pub extern "oleaut32" fn VarI4FromUI8(
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarI8FromBool(
-    boolIn: i16,
+    boolIn: VARIANT_BOOL,
     pi64Out: ?*i64,
 ) callconv(.winapi) HRESULT;
 
@@ -9711,7 +9771,7 @@ pub extern "oleaut32" fn VarR4CmpR8(
 ) callconv(.winapi) VARCMP;
 
 pub extern "oleaut32" fn VarR4FromBool(
-    boolIn: i16,
+    boolIn: VARIANT_BOOL,
     pfltOut: ?*f32,
 ) callconv(.winapi) HRESULT;
 
@@ -9789,7 +9849,7 @@ pub extern "oleaut32" fn VarR4FromUI8(
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarR8FromBool(
-    boolIn: i16,
+    boolIn: VARIANT_BOOL,
     pdblOut: ?*f64,
 ) callconv(.winapi) HRESULT;
 
@@ -9907,7 +9967,7 @@ pub extern "oleaut32" fn VarUdateFromDate(
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarUI1FromBool(
-    boolIn: i16,
+    boolIn: VARIANT_BOOL,
     pbOut: ?*u8,
 ) callconv(.winapi) HRESULT;
 
@@ -9985,7 +10045,7 @@ pub extern "oleaut32" fn VarUI1FromUI8(
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarUI2FromBool(
-    boolIn: i16,
+    boolIn: VARIANT_BOOL,
     puiOut: ?*u16,
 ) callconv(.winapi) HRESULT;
 
@@ -10063,7 +10123,7 @@ pub extern "oleaut32" fn VarUI2FromUI8(
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarUI4FromBool(
-    boolIn: i16,
+    boolIn: VARIANT_BOOL,
     pulOut: ?*u32,
 ) callconv(.winapi) HRESULT;
 
@@ -10141,7 +10201,7 @@ pub extern "oleaut32" fn VarUI4FromUI8(
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarUI8FromBool(
-    boolIn: i16,
+    boolIn: VARIANT_BOOL,
     pi64Out: ?*u64,
 ) callconv(.winapi) HRESULT;
 
@@ -10419,7 +10479,7 @@ pub const OleUIUpdateLinks = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (93)
+// Section: Imports (94)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ADVF = @import("../system/com.zig").ADVF;
@@ -10512,6 +10572,7 @@ const TYPEKIND = @import("../system/com.zig").TYPEKIND;
 const VARDESC = @import("../system/com.zig").VARDESC;
 const VARENUM = @import("../system/com.zig").VARENUM;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 const WORD_SIZEDARR = @import("../system/com.zig").WORD_SIZEDARR;
 const WPARAM = @import("../foundation.zig").WPARAM;
 

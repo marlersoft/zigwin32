@@ -6522,7 +6522,7 @@ pub const XENROLL_E_RESPONSE_KA_HASH_NOT_FOUND = @import("zig.zig").typedConst(H
 pub const XENROLL_E_RESPONSE_UNEXPECTED_KA_HASH = @import("zig.zig").typedConst(HRESULT, @as(i32, -2146873341));
 
 //--------------------------------------------------------------------------------
-// Section: Types (46)
+// Section: Types (47)
 //--------------------------------------------------------------------------------
 pub const APP_LOCAL_DEVICE_ID = extern struct {
     value: [32]u8,
@@ -6894,6 +6894,13 @@ pub const UNICODE_STRING = extern struct {
     MaximumLength: u16,
     Buffer: ?[*]u16,
 };
+
+pub const VARIANT_BOOL = enum(i16) {
+    TRUE = -1,
+    FALSE = 0,
+};
+pub const VARIANT_TRUE = VARIANT_BOOL.TRUE;
+pub const VARIANT_FALSE = VARIANT_BOOL.FALSE;
 
 pub const WIN32_ERROR = enum(u32) {
     NO_ERROR = 0,

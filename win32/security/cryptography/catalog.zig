@@ -136,8 +136,8 @@ pub const CRYPTCATMEMBER = extern struct {
     dwCertVersion: u32,
     dwReserved: u32,
     hReserved: ?HANDLE,
-    sEncodedIndirectData: CRYPTOAPI_BLOB,
-    sEncodedMemberInfo: CRYPTOAPI_BLOB,
+    sEncodedIndirectData: CRYPT_INTEGER_BLOB,
+    sEncodedMemberInfo: CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPTCATSTORE = extern struct {
@@ -415,7 +415,7 @@ pub extern "wintrust" fn IsCatalogFile(
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
 const CERT_STRONG_SIGN_PARA = @import("../../security/cryptography.zig").CERT_STRONG_SIGN_PARA;
-const CRYPTOAPI_BLOB = @import("../../security/cryptography.zig").CRYPTOAPI_BLOB;
+const CRYPT_INTEGER_BLOB = @import("../../security/cryptography.zig").CRYPT_INTEGER_BLOB;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 const SIP_INDIRECT_DATA = @import("../../security/cryptography/sip.zig").SIP_INDIRECT_DATA;

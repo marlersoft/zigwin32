@@ -79,7 +79,7 @@ pub const BSTRBLOB = extern struct {
 
 pub const CABOOL = extern struct {
     cElems: u32,
-    pElems: ?*i16,
+    pElems: ?*VARIANT_BOOL,
 };
 
 pub const CABSTR = extern struct {
@@ -1041,8 +1041,8 @@ pub const PROPVARIANT = extern struct {
                 uhVal: ULARGE_INTEGER,
                 fltVal: f32,
                 dblVal: f64,
-                boolVal: i16,
-                __OBSOLETE__VARIANT_BOOL: i16,
+                boolVal: VARIANT_BOOL,
+                __OBSOLETE__VARIANT_BOOL: VARIANT_BOOL,
                 scode: i32,
                 cyVal: CY,
                 date: f64,
@@ -1092,7 +1092,7 @@ pub const PROPVARIANT = extern struct {
                 puintVal: ?*u32,
                 pfltVal: ?*f32,
                 pdblVal: ?*f64,
-                pboolVal: ?*i16,
+                pboolVal: ?*VARIANT_BOOL,
                 pdecVal: ?*DECIMAL,
                 pscode: ?*i32,
                 pcyVal: ?*CY,
@@ -1520,7 +1520,7 @@ pub extern "ole32" fn WriteFmtUserTypeStg(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (34)
+// Section: Imports (35)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BLOB = @import("../../system/com.zig").BLOB;
@@ -1556,6 +1556,7 @@ const StorageLayout = @import("../../system/com.zig").StorageLayout;
 const ULARGE_INTEGER = @import("../../foundation.zig").ULARGE_INTEGER;
 const VARENUM = @import("../../system/com.zig").VARENUM;
 const VARIANT = @import("../../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../../foundation.zig").VARIANT_BOOL;
 
 test {
     @setEvalBranchQuota(

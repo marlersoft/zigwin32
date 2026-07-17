@@ -6599,7 +6599,7 @@ pub const IAMExtendedErrorInfo = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HasError: *const fn(
             self: *const IAMExtendedErrorInfo,
-            pHasError: ?*i16,
+            pHasError: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ErrorDescription: *const fn(
@@ -6615,7 +6615,7 @@ pub const IAMExtendedErrorInfo = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_HasError(self: *const IAMExtendedErrorInfo, pHasError: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_HasError(self: *const IAMExtendedErrorInfo, pHasError: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_HasError(self, pHasError);
     }
     pub fn get_ErrorDescription(self: *const IAMExtendedErrorInfo, pbstrErrorDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -7623,12 +7623,12 @@ pub const IAMNetShowConfig = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseFixedUDPPort: *const fn(
             self: *const IAMNetShowConfig,
-            pUseFixedUDPPort: ?*i16,
+            pUseFixedUDPPort: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseFixedUDPPort: *const fn(
             self: *const IAMNetShowConfig,
-            UseFixedUDPPort: i16,
+            UseFixedUDPPort: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FixedUDPPort: *const fn(
@@ -7643,22 +7643,22 @@ pub const IAMNetShowConfig = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseHTTPProxy: *const fn(
             self: *const IAMNetShowConfig,
-            pUseHTTPProxy: ?*i16,
+            pUseHTTPProxy: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseHTTPProxy: *const fn(
             self: *const IAMNetShowConfig,
-            UseHTTPProxy: i16,
+            UseHTTPProxy: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableAutoProxy: *const fn(
             self: *const IAMNetShowConfig,
-            pEnableAutoProxy: ?*i16,
+            pEnableAutoProxy: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableAutoProxy: *const fn(
             self: *const IAMNetShowConfig,
-            EnableAutoProxy: i16,
+            EnableAutoProxy: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HTTPProxyHost: *const fn(
@@ -7683,42 +7683,42 @@ pub const IAMNetShowConfig = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableMulticast: *const fn(
             self: *const IAMNetShowConfig,
-            pEnableMulticast: ?*i16,
+            pEnableMulticast: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableMulticast: *const fn(
             self: *const IAMNetShowConfig,
-            EnableMulticast: i16,
+            EnableMulticast: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableUDP: *const fn(
             self: *const IAMNetShowConfig,
-            pEnableUDP: ?*i16,
+            pEnableUDP: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableUDP: *const fn(
             self: *const IAMNetShowConfig,
-            EnableUDP: i16,
+            EnableUDP: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableTCP: *const fn(
             self: *const IAMNetShowConfig,
-            pEnableTCP: ?*i16,
+            pEnableTCP: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableTCP: *const fn(
             self: *const IAMNetShowConfig,
-            EnableTCP: i16,
+            EnableTCP: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableHTTP: *const fn(
             self: *const IAMNetShowConfig,
-            pEnableHTTP: ?*i16,
+            pEnableHTTP: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableHTTP: *const fn(
             self: *const IAMNetShowConfig,
-            EnableHTTP: i16,
+            EnableHTTP: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -7730,10 +7730,10 @@ pub const IAMNetShowConfig = extern union {
     pub fn put_BufferingTime(self: *const IAMNetShowConfig, BufferingTime: f64) callconv(.@"inline") HRESULT {
         return self.vtable.put_BufferingTime(self, BufferingTime);
     }
-    pub fn get_UseFixedUDPPort(self: *const IAMNetShowConfig, pUseFixedUDPPort: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_UseFixedUDPPort(self: *const IAMNetShowConfig, pUseFixedUDPPort: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UseFixedUDPPort(self, pUseFixedUDPPort);
     }
-    pub fn put_UseFixedUDPPort(self: *const IAMNetShowConfig, UseFixedUDPPort: i16) callconv(.@"inline") HRESULT {
+    pub fn put_UseFixedUDPPort(self: *const IAMNetShowConfig, UseFixedUDPPort: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_UseFixedUDPPort(self, UseFixedUDPPort);
     }
     pub fn get_FixedUDPPort(self: *const IAMNetShowConfig, pFixedUDPPort: ?*i32) callconv(.@"inline") HRESULT {
@@ -7742,16 +7742,16 @@ pub const IAMNetShowConfig = extern union {
     pub fn put_FixedUDPPort(self: *const IAMNetShowConfig, FixedUDPPort: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_FixedUDPPort(self, FixedUDPPort);
     }
-    pub fn get_UseHTTPProxy(self: *const IAMNetShowConfig, pUseHTTPProxy: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_UseHTTPProxy(self: *const IAMNetShowConfig, pUseHTTPProxy: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UseHTTPProxy(self, pUseHTTPProxy);
     }
-    pub fn put_UseHTTPProxy(self: *const IAMNetShowConfig, UseHTTPProxy: i16) callconv(.@"inline") HRESULT {
+    pub fn put_UseHTTPProxy(self: *const IAMNetShowConfig, UseHTTPProxy: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_UseHTTPProxy(self, UseHTTPProxy);
     }
-    pub fn get_EnableAutoProxy(self: *const IAMNetShowConfig, pEnableAutoProxy: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_EnableAutoProxy(self: *const IAMNetShowConfig, pEnableAutoProxy: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnableAutoProxy(self, pEnableAutoProxy);
     }
-    pub fn put_EnableAutoProxy(self: *const IAMNetShowConfig, EnableAutoProxy: i16) callconv(.@"inline") HRESULT {
+    pub fn put_EnableAutoProxy(self: *const IAMNetShowConfig, EnableAutoProxy: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_EnableAutoProxy(self, EnableAutoProxy);
     }
     pub fn get_HTTPProxyHost(self: *const IAMNetShowConfig, pbstrHTTPProxyHost: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -7766,28 +7766,28 @@ pub const IAMNetShowConfig = extern union {
     pub fn put_HTTPProxyPort(self: *const IAMNetShowConfig, HTTPProxyPort: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_HTTPProxyPort(self, HTTPProxyPort);
     }
-    pub fn get_EnableMulticast(self: *const IAMNetShowConfig, pEnableMulticast: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_EnableMulticast(self: *const IAMNetShowConfig, pEnableMulticast: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnableMulticast(self, pEnableMulticast);
     }
-    pub fn put_EnableMulticast(self: *const IAMNetShowConfig, EnableMulticast: i16) callconv(.@"inline") HRESULT {
+    pub fn put_EnableMulticast(self: *const IAMNetShowConfig, EnableMulticast: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_EnableMulticast(self, EnableMulticast);
     }
-    pub fn get_EnableUDP(self: *const IAMNetShowConfig, pEnableUDP: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_EnableUDP(self: *const IAMNetShowConfig, pEnableUDP: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnableUDP(self, pEnableUDP);
     }
-    pub fn put_EnableUDP(self: *const IAMNetShowConfig, EnableUDP: i16) callconv(.@"inline") HRESULT {
+    pub fn put_EnableUDP(self: *const IAMNetShowConfig, EnableUDP: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_EnableUDP(self, EnableUDP);
     }
-    pub fn get_EnableTCP(self: *const IAMNetShowConfig, pEnableTCP: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_EnableTCP(self: *const IAMNetShowConfig, pEnableTCP: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnableTCP(self, pEnableTCP);
     }
-    pub fn put_EnableTCP(self: *const IAMNetShowConfig, EnableTCP: i16) callconv(.@"inline") HRESULT {
+    pub fn put_EnableTCP(self: *const IAMNetShowConfig, EnableTCP: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_EnableTCP(self, EnableTCP);
     }
-    pub fn get_EnableHTTP(self: *const IAMNetShowConfig, pEnableHTTP: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_EnableHTTP(self: *const IAMNetShowConfig, pEnableHTTP: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnableHTTP(self, pEnableHTTP);
     }
-    pub fn put_EnableHTTP(self: *const IAMNetShowConfig, EnableHTTP: i16) callconv(.@"inline") HRESULT {
+    pub fn put_EnableHTTP(self: *const IAMNetShowConfig, EnableHTTP: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_EnableHTTP(self, EnableHTTP);
     }
 };
@@ -7821,7 +7821,7 @@ pub const IAMNetShowExProps = extern union {
         GetCodecInstalled: *const fn(
             self: *const IAMNetShowExProps,
             CodecNum: i32,
-            pCodecInstalled: ?*i16,
+            pCodecInstalled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetCodecDescription: *const fn(
             self: *const IAMNetShowExProps,
@@ -7859,7 +7859,7 @@ pub const IAMNetShowExProps = extern union {
     pub fn get_CodecCount(self: *const IAMNetShowExProps, pCodecCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_CodecCount(self, pCodecCount);
     }
-    pub fn GetCodecInstalled(self: *const IAMNetShowExProps, CodecNum: i32, pCodecInstalled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn GetCodecInstalled(self: *const IAMNetShowExProps, CodecNum: i32, pCodecInstalled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetCodecInstalled(self, CodecNum, pCodecInstalled);
     }
     pub fn GetCodecDescription(self: *const IAMNetShowExProps, CodecNum: i32, pbstrCodecDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -7885,21 +7885,21 @@ pub const IAMNetShowPreroll = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Preroll: *const fn(
             self: *const IAMNetShowPreroll,
-            fPreroll: i16,
+            fPreroll: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Preroll: *const fn(
             self: *const IAMNetShowPreroll,
-            pfPreroll: ?*i16,
+            pfPreroll: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_Preroll(self: *const IAMNetShowPreroll, fPreroll: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Preroll(self: *const IAMNetShowPreroll, fPreroll: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Preroll(self, fPreroll);
     }
-    pub fn get_Preroll(self: *const IAMNetShowPreroll, pfPreroll: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Preroll(self: *const IAMNetShowPreroll, pfPreroll: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Preroll(self, pfPreroll);
     }
 };
@@ -7938,7 +7938,7 @@ pub const IAMNetworkStatus = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsBroadcast: *const fn(
             self: *const IAMNetworkStatus,
-            pIsBroadcast: ?*i16,
+            pIsBroadcast: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BufferingProgress: *const fn(
@@ -7964,7 +7964,7 @@ pub const IAMNetworkStatus = extern union {
     pub fn get_BufferingCount(self: *const IAMNetworkStatus, pBufferingCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_BufferingCount(self, pBufferingCount);
     }
-    pub fn get_IsBroadcast(self: *const IAMNetworkStatus, pIsBroadcast: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsBroadcast(self: *const IAMNetworkStatus, pIsBroadcast: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsBroadcast(self, pIsBroadcast);
     }
     pub fn get_BufferingProgress(self: *const IAMNetworkStatus, pBufferingProgress: ?*i32) callconv(.@"inline") HRESULT {
@@ -11658,13 +11658,13 @@ pub const IBDA_ConditionalAccess = extern union {
             pCardStatus: ?*SmartCardStatusType,
             pCardAssociation: ?*SmartCardAssociationType,
             pbstrCardError: ?*?BSTR,
-            pfOOBLocked: ?*i16,
+            pfOOBLocked: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         get_SmartCardInfo: *const fn(
             self: *const IBDA_ConditionalAccess,
             pbstrCardName: ?*?BSTR,
             pbstrCardManufacturer: ?*?BSTR,
-            pfDaylightSavings: ?*i16,
+            pfDaylightSavings: ?*VARIANT_BOOL,
             pbyRatingRegion: ?*u8,
             plTimeZoneOffsetMinutes: ?*i32,
             pbstrLanguage: ?*?BSTR,
@@ -11710,10 +11710,10 @@ pub const IBDA_ConditionalAccess = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_SmartCardStatus(self: *const IBDA_ConditionalAccess, pCardStatus: ?*SmartCardStatusType, pCardAssociation: ?*SmartCardAssociationType, pbstrCardError: ?*?BSTR, pfOOBLocked: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SmartCardStatus(self: *const IBDA_ConditionalAccess, pCardStatus: ?*SmartCardStatusType, pCardAssociation: ?*SmartCardAssociationType, pbstrCardError: ?*?BSTR, pfOOBLocked: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SmartCardStatus(self, pCardStatus, pCardAssociation, pbstrCardError, pfOOBLocked);
     }
-    pub fn get_SmartCardInfo(self: *const IBDA_ConditionalAccess, pbstrCardName: ?*?BSTR, pbstrCardManufacturer: ?*?BSTR, pfDaylightSavings: ?*i16, pbyRatingRegion: ?*u8, plTimeZoneOffsetMinutes: ?*i32, pbstrLanguage: ?*?BSTR, pEALocationCode: ?*EALocationCodeType) callconv(.@"inline") HRESULT {
+    pub fn get_SmartCardInfo(self: *const IBDA_ConditionalAccess, pbstrCardName: ?*?BSTR, pbstrCardManufacturer: ?*?BSTR, pfDaylightSavings: ?*VARIANT_BOOL, pbyRatingRegion: ?*u8, plTimeZoneOffsetMinutes: ?*i32, pbstrLanguage: ?*?BSTR, pEALocationCode: ?*EALocationCodeType) callconv(.@"inline") HRESULT {
         return self.vtable.get_SmartCardInfo(self, pbstrCardName, pbstrCardManufacturer, pfDaylightSavings, pbyRatingRegion, plTimeZoneOffsetMinutes, pbstrLanguage, pEALocationCode);
     }
     pub fn get_SmartCardApplications(self: *const IBDA_ConditionalAccess, pulcApplications: ?*u32, ulcApplicationsMax: u32, rgApplications: [*]SmartCardApplication) callconv(.@"inline") HRESULT {
@@ -18587,12 +18587,12 @@ pub const IDVBSLocator = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WestPosition: *const fn(
             self: *const IDVBSLocator,
-            WestLongitude: ?*i16,
+            WestLongitude: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_WestPosition: *const fn(
             self: *const IDVBSLocator,
-            WestLongitude: i16,
+            WestLongitude: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OrbitalPosition: *const fn(
@@ -18636,10 +18636,10 @@ pub const IDVBSLocator = extern union {
     pub fn put_SignalPolarisation(self: *const IDVBSLocator, PolarisationVal: Polarisation) callconv(.@"inline") HRESULT {
         return self.vtable.put_SignalPolarisation(self, PolarisationVal);
     }
-    pub fn get_WestPosition(self: *const IDVBSLocator, WestLongitude: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_WestPosition(self: *const IDVBSLocator, WestLongitude: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_WestPosition(self, WestLongitude);
     }
-    pub fn put_WestPosition(self: *const IDVBSLocator, WestLongitude: i16) callconv(.@"inline") HRESULT {
+    pub fn put_WestPosition(self: *const IDVBSLocator, WestLongitude: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_WestPosition(self, WestLongitude);
     }
     pub fn get_OrbitalPosition(self: *const IDVBSLocator, longitude: ?*i32) callconv(.@"inline") HRESULT {
@@ -19269,12 +19269,12 @@ pub const IDVBTLocator = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OtherFrequencyInUse: *const fn(
             self: *const IDVBTLocator,
-            OtherFrequencyInUseVal: ?*i16,
+            OtherFrequencyInUseVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OtherFrequencyInUse: *const fn(
             self: *const IDVBTLocator,
-            OtherFrequencyInUseVal: i16,
+            OtherFrequencyInUseVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -19318,10 +19318,10 @@ pub const IDVBTLocator = extern union {
     pub fn put_Mode(self: *const IDVBTLocator, mode: TransmissionMode) callconv(.@"inline") HRESULT {
         return self.vtable.put_Mode(self, mode);
     }
-    pub fn get_OtherFrequencyInUse(self: *const IDVBTLocator, OtherFrequencyInUseVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_OtherFrequencyInUse(self: *const IDVBTLocator, OtherFrequencyInUseVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_OtherFrequencyInUse(self, OtherFrequencyInUseVal);
     }
-    pub fn put_OtherFrequencyInUse(self: *const IDVBTLocator, OtherFrequencyInUseVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_OtherFrequencyInUse(self: *const IDVBTLocator, OtherFrequencyInUseVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_OtherFrequencyInUse(self, OtherFrequencyInUseVal);
     }
 };
@@ -27431,18 +27431,18 @@ pub const IMSVidAnalogTuner = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SAP: *const fn(
             self: *const IMSVidAnalogTuner,
-            pfSapOn: ?*i16,
+            pfSapOn: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SAP: *const fn(
             self: *const IMSVidAnalogTuner,
-            fSapOn: i16,
+            fSapOn: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         ChannelAvailable: *const fn(
             self: *const IMSVidAnalogTuner,
             nChannel: i32,
             SignalStrength: ?*i32,
-            fSignalPresent: ?*i16,
+            fSignalPresent: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -27470,13 +27470,13 @@ pub const IMSVidAnalogTuner = extern union {
     pub fn put_CountryCode(self: *const IMSVidAnalogTuner, lcc: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_CountryCode(self, lcc);
     }
-    pub fn get_SAP(self: *const IMSVidAnalogTuner, pfSapOn: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SAP(self: *const IMSVidAnalogTuner, pfSapOn: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SAP(self, pfSapOn);
     }
-    pub fn put_SAP(self: *const IMSVidAnalogTuner, fSapOn: i16) callconv(.@"inline") HRESULT {
+    pub fn put_SAP(self: *const IMSVidAnalogTuner, fSapOn: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_SAP(self, fSapOn);
     }
-    pub fn ChannelAvailable(self: *const IMSVidAnalogTuner, nChannel: i32, SignalStrength: ?*i32, fSignalPresent: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn ChannelAvailable(self: *const IMSVidAnalogTuner, nChannel: i32, SignalStrength: ?*i32, fSignalPresent: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ChannelAvailable(self, nChannel, SignalStrength, fSignalPresent);
     }
 };
@@ -27715,12 +27715,12 @@ pub const IMSVidClosedCaptioning = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enable: *const fn(
             self: *const IMSVidClosedCaptioning,
-            On: ?*i16,
+            On: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enable: *const fn(
             self: *const IMSVidClosedCaptioning,
-            On: i16,
+            On: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -27728,10 +27728,10 @@ pub const IMSVidClosedCaptioning = extern union {
     IMSVidDevice: IMSVidDevice,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Enable(self: *const IMSVidClosedCaptioning, On: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enable(self: *const IMSVidClosedCaptioning, On: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enable(self, On);
     }
-    pub fn put_Enable(self: *const IMSVidClosedCaptioning, On: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Enable(self: *const IMSVidClosedCaptioning, On: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enable(self, On);
     }
 };
@@ -27835,12 +27835,12 @@ pub const IMSVidCtl = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoSize: *const fn(
             self: *const IMSVidCtl,
-            pbool: ?*i16,
+            pbool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoSize: *const fn(
             self: *const IMSVidCtl,
-            vbool: i16,
+            vbool: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BackColor: *const fn(
@@ -27855,22 +27855,22 @@ pub const IMSVidCtl = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IMSVidCtl,
-            pbool: ?*i16,
+            pbool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IMSVidCtl,
-            vbool: i16,
+            vbool: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TabStop: *const fn(
             self: *const IMSVidCtl,
-            pbool: ?*i16,
+            pbool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TabStop: *const fn(
             self: *const IMSVidCtl,
-            vbool: i16,
+            vbool: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Window: *const fn(
@@ -27893,12 +27893,12 @@ pub const IMSVidCtl = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaintainAspectRatio: *const fn(
             self: *const IMSVidCtl,
-            CurrentValue: ?*i16,
+            CurrentValue: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaintainAspectRatio: *const fn(
             self: *const IMSVidCtl,
-            NewValue: i16,
+            NewValue: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ColorKey: *const fn(
@@ -28033,10 +28033,10 @@ pub const IMSVidCtl = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_AutoSize(self: *const IMSVidCtl, pbool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AutoSize(self: *const IMSVidCtl, pbool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AutoSize(self, pbool);
     }
-    pub fn put_AutoSize(self: *const IMSVidCtl, vbool: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AutoSize(self: *const IMSVidCtl, vbool: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AutoSize(self, vbool);
     }
     pub fn get_BackColor(self: *const IMSVidCtl, backcolor: ?*u32) callconv(.@"inline") HRESULT {
@@ -28045,16 +28045,16 @@ pub const IMSVidCtl = extern union {
     pub fn put_BackColor(self: *const IMSVidCtl, backcolor: u32) callconv(.@"inline") HRESULT {
         return self.vtable.put_BackColor(self, backcolor);
     }
-    pub fn get_Enabled(self: *const IMSVidCtl, pbool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Enabled(self: *const IMSVidCtl, pbool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, pbool);
     }
-    pub fn put_Enabled(self: *const IMSVidCtl, vbool: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Enabled(self: *const IMSVidCtl, vbool: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, vbool);
     }
-    pub fn get_TabStop(self: *const IMSVidCtl, pbool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_TabStop(self: *const IMSVidCtl, pbool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_TabStop(self, pbool);
     }
-    pub fn put_TabStop(self: *const IMSVidCtl, vbool: i16) callconv(.@"inline") HRESULT {
+    pub fn put_TabStop(self: *const IMSVidCtl, vbool: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_TabStop(self, vbool);
     }
     pub fn get_Window(self: *const IMSVidCtl, phwnd: ?*?HWND) callconv(.@"inline") HRESULT {
@@ -28069,10 +28069,10 @@ pub const IMSVidCtl = extern union {
     pub fn put_DisplaySize(self: *const IMSVidCtl, NewValue: DisplaySizeList) callconv(.@"inline") HRESULT {
         return self.vtable.put_DisplaySize(self, NewValue);
     }
-    pub fn get_MaintainAspectRatio(self: *const IMSVidCtl, CurrentValue: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_MaintainAspectRatio(self: *const IMSVidCtl, CurrentValue: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_MaintainAspectRatio(self, CurrentValue);
     }
-    pub fn put_MaintainAspectRatio(self: *const IMSVidCtl, NewValue: i16) callconv(.@"inline") HRESULT {
+    pub fn put_MaintainAspectRatio(self: *const IMSVidCtl, NewValue: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_MaintainAspectRatio(self, NewValue);
     }
     pub fn get_ColorKey(self: *const IMSVidCtl, CurrentValue: ?*u32) callconv(.@"inline") HRESULT {
@@ -28209,12 +28209,12 @@ pub const IMSVidDevice = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Power: *const fn(
             self: *const IMSVidDevice,
-            Power: i16,
+            Power: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Power: *const fn(
             self: *const IMSVidDevice,
-            Power: ?*i16,
+            Power: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Category: *const fn(
@@ -28239,7 +28239,7 @@ pub const IMSVidDevice = extern union {
         IsEqualDevice: *const fn(
             self: *const IMSVidDevice,
             Device: ?*IMSVidDevice,
-            IsEqual: ?*i16,
+            IsEqual: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -28251,10 +28251,10 @@ pub const IMSVidDevice = extern union {
     pub fn get_Status(self: *const IMSVidDevice, Status: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Status(self, Status);
     }
-    pub fn put_Power(self: *const IMSVidDevice, Power: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Power(self: *const IMSVidDevice, Power: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Power(self, Power);
     }
-    pub fn get_Power(self: *const IMSVidDevice, Power: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Power(self: *const IMSVidDevice, Power: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Power(self, Power);
     }
     pub fn get_Category(self: *const IMSVidDevice, _param_Guid: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -28269,7 +28269,7 @@ pub const IMSVidDevice = extern union {
     pub fn get__ClassID(self: *const IMSVidDevice, Clsid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.get__ClassID(self, Clsid);
     }
-    pub fn IsEqualDevice(self: *const IMSVidDevice, Device: ?*IMSVidDevice, IsEqual: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsEqualDevice(self: *const IMSVidDevice, Device: ?*IMSVidDevice, IsEqual: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsEqualDevice(self, Device, IsEqual);
     }
 };
@@ -28361,12 +28361,12 @@ pub const IMSVidEVR = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SuppressEffects: *const fn(
             self: *const IMSVidEVR,
-            bSuppress: i16,
+            bSuppress: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SuppressEffects: *const fn(
             self: *const IMSVidEVR,
-            bSuppress: ?*i16,
+            bSuppress: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -28381,10 +28381,10 @@ pub const IMSVidEVR = extern union {
     pub fn put_Presenter(self: *const IMSVidEVR, pAllocPresent: ?*IMFVideoPresenter) callconv(.@"inline") HRESULT {
         return self.vtable.put_Presenter(self, pAllocPresent);
     }
-    pub fn put_SuppressEffects(self: *const IMSVidEVR, bSuppress: i16) callconv(.@"inline") HRESULT {
+    pub fn put_SuppressEffects(self: *const IMSVidEVR, bSuppress: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_SuppressEffects(self, bSuppress);
     }
-    pub fn get_SuppressEffects(self: *const IMSVidEVR, bSuppress: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SuppressEffects(self: *const IMSVidEVR, bSuppress: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SuppressEffects(self, bSuppress);
     }
 };
@@ -28917,7 +28917,7 @@ pub const IMSVidInputDevice = extern union {
         IsViewable: *const fn(
             self: *const IMSVidInputDevice,
             v: ?*VARIANT,
-            pfViewable: ?*i16,
+            pfViewable: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         View: *const fn(
             self: *const IMSVidInputDevice,
@@ -28928,7 +28928,7 @@ pub const IMSVidInputDevice = extern union {
     IMSVidDevice: IMSVidDevice,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn IsViewable(self: *const IMSVidInputDevice, v: ?*VARIANT, pfViewable: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsViewable(self: *const IMSVidInputDevice, v: ?*VARIANT, pfViewable: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsViewable(self, v, pfViewable);
     }
     pub fn View(self: *const IMSVidInputDevice, v: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -29081,12 +29081,12 @@ pub const IMSVidPlayback = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableResetOnStop: *const fn(
             self: *const IMSVidPlayback,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableResetOnStop: *const fn(
             self: *const IMSVidPlayback,
-            newVal: i16,
+            newVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Run: *const fn(
             self: *const IMSVidPlayback,
@@ -29099,8 +29099,8 @@ pub const IMSVidPlayback = extern union {
         ) callconv(.winapi) HRESULT,
         get_CanStep: *const fn(
             self: *const IMSVidPlayback,
-            fBackwards: i16,
-            pfCan: ?*i16,
+            fBackwards: VARIANT_BOOL,
+            pfCan: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Step: *const fn(
             self: *const IMSVidPlayback,
@@ -29147,10 +29147,10 @@ pub const IMSVidPlayback = extern union {
     IMSVidDevice: IMSVidDevice,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_EnableResetOnStop(self: *const IMSVidPlayback, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_EnableResetOnStop(self: *const IMSVidPlayback, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnableResetOnStop(self, pVal);
     }
-    pub fn put_EnableResetOnStop(self: *const IMSVidPlayback, newVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_EnableResetOnStop(self: *const IMSVidPlayback, newVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_EnableResetOnStop(self, newVal);
     }
     pub fn Run(self: *const IMSVidPlayback) callconv(.@"inline") HRESULT {
@@ -29162,7 +29162,7 @@ pub const IMSVidPlayback = extern union {
     pub fn Stop(self: *const IMSVidPlayback) callconv(.@"inline") HRESULT {
         return self.vtable.Stop(self);
     }
-    pub fn get_CanStep(self: *const IMSVidPlayback, fBackwards: i16, pfCan: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_CanStep(self: *const IMSVidPlayback, fBackwards: VARIANT_BOOL, pfCan: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_CanStep(self, fBackwards, pfCan);
     }
     pub fn Step(self: *const IMSVidPlayback, lStep: i32) callconv(.@"inline") HRESULT {
@@ -29339,12 +29339,12 @@ pub const IMSVidStreamBufferRecordingControl = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecordingStopped: *const fn(
             self: *const IMSVidStreamBufferRecordingControl,
-            phResult: ?*i16,
+            phResult: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecordingStarted: *const fn(
             self: *const IMSVidStreamBufferRecordingControl,
-            phResult: ?*i16,
+            phResult: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecordingType: *const fn(
@@ -29372,10 +29372,10 @@ pub const IMSVidStreamBufferRecordingControl = extern union {
     pub fn put_StopTime(self: *const IMSVidStreamBufferRecordingControl, rtStop: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_StopTime(self, rtStop);
     }
-    pub fn get_RecordingStopped(self: *const IMSVidStreamBufferRecordingControl, phResult: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_RecordingStopped(self: *const IMSVidStreamBufferRecordingControl, phResult: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_RecordingStopped(self, phResult);
     }
-    pub fn get_RecordingStarted(self: *const IMSVidStreamBufferRecordingControl, phResult: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_RecordingStarted(self: *const IMSVidStreamBufferRecordingControl, phResult: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_RecordingStarted(self, phResult);
     }
     pub fn get_RecordingType(self: *const IMSVidStreamBufferRecordingControl, dwType: ?*RecordingType) callconv(.@"inline") HRESULT {
@@ -29757,7 +29757,7 @@ pub const IMSVidStreamBufferSource = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BlockUnrated: *const fn(
             self: *const IMSVidStreamBufferSource,
-            bBlock: i16,
+            bBlock: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UnratedDelay: *const fn(
@@ -29789,7 +29789,7 @@ pub const IMSVidStreamBufferSource = extern union {
     pub fn MaxRatingsLevel(self: *const IMSVidStreamBufferSource, enSystem: EnTvRat_System, enRating: EnTvRat_GenericLevel, lbfEnAttr: i32) callconv(.@"inline") HRESULT {
         return self.vtable.MaxRatingsLevel(self, enSystem, enRating, lbfEnAttr);
     }
-    pub fn put_BlockUnrated(self: *const IMSVidStreamBufferSource, bBlock: i16) callconv(.@"inline") HRESULT {
+    pub fn put_BlockUnrated(self: *const IMSVidStreamBufferSource, bBlock: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_BlockUnrated(self, bBlock);
     }
     pub fn put_UnratedDelay(self: *const IMSVidStreamBufferSource, dwDelay: i32) callconv(.@"inline") HRESULT {
@@ -30290,12 +30290,12 @@ pub const IMSVidVideoRenderer = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UsingOverlay: *const fn(
             self: *const IMSVidVideoRenderer,
-            UseOverlayVal: ?*i16,
+            UseOverlayVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UsingOverlay: *const fn(
             self: *const IMSVidVideoRenderer,
-            UseOverlayVal: i16,
+            UseOverlayVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Capture: *const fn(
             self: *const IMSVidVideoRenderer,
@@ -30309,12 +30309,12 @@ pub const IMSVidVideoRenderer = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DecimateInput: *const fn(
             self: *const IMSVidVideoRenderer,
-            pDeci: ?*i16,
+            pDeci: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DecimateInput: *const fn(
             self: *const IMSVidVideoRenderer,
-            pDeci: i16,
+            pDeci: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -30394,10 +30394,10 @@ pub const IMSVidVideoRenderer = extern union {
     pub fn put_ClippedSourceRect(self: *const IMSVidVideoRenderer, pRect: ?*IMSVidRect) callconv(.@"inline") HRESULT {
         return self.vtable.put_ClippedSourceRect(self, pRect);
     }
-    pub fn get_UsingOverlay(self: *const IMSVidVideoRenderer, UseOverlayVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_UsingOverlay(self: *const IMSVidVideoRenderer, UseOverlayVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UsingOverlay(self, UseOverlayVal);
     }
-    pub fn put_UsingOverlay(self: *const IMSVidVideoRenderer, UseOverlayVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_UsingOverlay(self: *const IMSVidVideoRenderer, UseOverlayVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_UsingOverlay(self, UseOverlayVal);
     }
     pub fn Capture(self: *const IMSVidVideoRenderer, currentImage: ?*?*IPictureDisp) callconv(.@"inline") HRESULT {
@@ -30406,10 +30406,10 @@ pub const IMSVidVideoRenderer = extern union {
     pub fn get_FramesPerSecond(self: *const IMSVidVideoRenderer, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_FramesPerSecond(self, pVal);
     }
-    pub fn get_DecimateInput(self: *const IMSVidVideoRenderer, pDeci: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_DecimateInput(self: *const IMSVidVideoRenderer, pDeci: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_DecimateInput(self, pDeci);
     }
-    pub fn put_DecimateInput(self: *const IMSVidVideoRenderer, pDeci: i16) callconv(.@"inline") HRESULT {
+    pub fn put_DecimateInput(self: *const IMSVidVideoRenderer, pDeci: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_DecimateInput(self, pDeci);
     }
 };
@@ -30448,12 +30448,12 @@ pub const IMSVidVideoRenderer2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SuppressEffects: *const fn(
             self: *const IMSVidVideoRenderer2,
-            bSuppress: i16,
+            bSuppress: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SuppressEffects: *const fn(
             self: *const IMSVidVideoRenderer2,
-            bSuppress: ?*i16,
+            bSuppress: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -30477,10 +30477,10 @@ pub const IMSVidVideoRenderer2 = extern union {
     pub fn _SetAllocator2(self: *const IMSVidVideoRenderer2, AllocPresent: ?*IVMRSurfaceAllocator, ID: i32) callconv(.@"inline") HRESULT {
         return self.vtable._SetAllocator2(self, AllocPresent, ID);
     }
-    pub fn put_SuppressEffects(self: *const IMSVidVideoRenderer2, bSuppress: i16) callconv(.@"inline") HRESULT {
+    pub fn put_SuppressEffects(self: *const IMSVidVideoRenderer2, bSuppress: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_SuppressEffects(self, bSuppress);
     }
-    pub fn get_SuppressEffects(self: *const IMSVidVideoRenderer2, bSuppress: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SuppressEffects(self: *const IMSVidVideoRenderer2, bSuppress: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SuppressEffects(self, bSuppress);
     }
 };
@@ -30591,12 +30591,12 @@ pub const IMSVidVMR9 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SuppressEffects: *const fn(
             self: *const IMSVidVMR9,
-            bSuppress: i16,
+            bSuppress: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SuppressEffects: *const fn(
             self: *const IMSVidVMR9,
-            bSuppress: ?*i16,
+            bSuppress: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Allocator: *const fn(
@@ -30616,10 +30616,10 @@ pub const IMSVidVMR9 = extern union {
     pub fn SetAllocator(self: *const IMSVidVMR9, AllocPresent: ?*IUnknown, ID: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetAllocator(self, AllocPresent, ID);
     }
-    pub fn put_SuppressEffects(self: *const IMSVidVMR9, bSuppress: i16) callconv(.@"inline") HRESULT {
+    pub fn put_SuppressEffects(self: *const IMSVidVMR9, bSuppress: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_SuppressEffects(self, bSuppress);
     }
-    pub fn get_SuppressEffects(self: *const IMSVidVMR9, bSuppress: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SuppressEffects(self: *const IMSVidVMR9, bSuppress: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SuppressEffects(self, bSuppress);
     }
     pub fn get_Allocator(self: *const IMSVidVMR9, AllocPresent: ?*?*IUnknown) callconv(.@"inline") HRESULT {
@@ -30650,22 +30650,22 @@ pub const IMSVidVRGraphSegment = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseOverlay: *const fn(
             self: *const IMSVidVRGraphSegment,
-            UseOverlayVal: ?*i16,
+            UseOverlayVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseOverlay: *const fn(
             self: *const IMSVidVRGraphSegment,
-            UseOverlayVal: i16,
+            UseOverlayVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Visible: *const fn(
             self: *const IMSVidVRGraphSegment,
-            Visible: ?*i16,
+            Visible: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Visible: *const fn(
             self: *const IMSVidVRGraphSegment,
-            Visible: i16,
+            Visible: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ColorKey: *const fn(
@@ -30715,12 +30715,12 @@ pub const IMSVidVRGraphSegment = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaintainAspectRatio: *const fn(
             self: *const IMSVidVRGraphSegment,
-            fMaintain: ?*i16,
+            fMaintain: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaintainAspectRatio: *const fn(
             self: *const IMSVidVRGraphSegment,
-            fMaintain: i16,
+            fMaintain: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const IMSVidVRGraphSegment,
@@ -30746,16 +30746,16 @@ pub const IMSVidVRGraphSegment = extern union {
     pub fn get_Owner(self: *const IMSVidVRGraphSegment, Window: ?*?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.get_Owner(self, Window);
     }
-    pub fn get_UseOverlay(self: *const IMSVidVRGraphSegment, UseOverlayVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_UseOverlay(self: *const IMSVidVRGraphSegment, UseOverlayVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UseOverlay(self, UseOverlayVal);
     }
-    pub fn put_UseOverlay(self: *const IMSVidVRGraphSegment, UseOverlayVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_UseOverlay(self: *const IMSVidVRGraphSegment, UseOverlayVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_UseOverlay(self, UseOverlayVal);
     }
-    pub fn get_Visible(self: *const IMSVidVRGraphSegment, Visible: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Visible(self: *const IMSVidVRGraphSegment, Visible: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Visible(self, Visible);
     }
-    pub fn put_Visible(self: *const IMSVidVRGraphSegment, Visible: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Visible(self: *const IMSVidVRGraphSegment, Visible: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Visible(self, Visible);
     }
     pub fn get_ColorKey(self: *const IMSVidVRGraphSegment, ColorKey: ?*u32) callconv(.@"inline") HRESULT {
@@ -30785,10 +30785,10 @@ pub const IMSVidVRGraphSegment = extern union {
     pub fn put_BorderColor(self: *const IMSVidVRGraphSegment, color: u32) callconv(.@"inline") HRESULT {
         return self.vtable.put_BorderColor(self, color);
     }
-    pub fn get_MaintainAspectRatio(self: *const IMSVidVRGraphSegment, fMaintain: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_MaintainAspectRatio(self: *const IMSVidVRGraphSegment, fMaintain: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_MaintainAspectRatio(self, fMaintain);
     }
-    pub fn put_MaintainAspectRatio(self: *const IMSVidVRGraphSegment, fMaintain: i16) callconv(.@"inline") HRESULT {
+    pub fn put_MaintainAspectRatio(self: *const IMSVidVRGraphSegment, fMaintain: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_MaintainAspectRatio(self, fMaintain);
     }
     pub fn Refresh(self: *const IMSVidVRGraphSegment) callconv(.@"inline") HRESULT {
@@ -30862,7 +30862,7 @@ pub const IMSVidWebDVD = extern union {
         get_AudioLanguage: *const fn(
             self: *const IMSVidWebDVD,
             lStream: i32,
-            fFormat: i16,
+            fFormat: VARIANT_BOOL,
             strAudioLang: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         ShowMenu: *const fn(
@@ -30988,12 +30988,12 @@ pub const IMSVidWebDVD = extern union {
         IsSubpictureStreamEnabled: *const fn(
             self: *const IMSVidWebDVD,
             lstream: i32,
-            fEnabled: ?*i16,
+            fEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         IsAudioStreamEnabled: *const fn(
             self: *const IMSVidWebDVD,
             lstream: i32,
-            fEnabled: ?*i16,
+            fEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentSubpictureStream: *const fn(
@@ -31048,12 +31048,12 @@ pub const IMSVidWebDVD = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SubpictureOn: *const fn(
             self: *const IMSVidWebDVD,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SubpictureOn: *const fn(
             self: *const IMSVidWebDVD,
-            newVal: i16,
+            newVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DVDUniqueID: *const fn(
@@ -31062,13 +31062,13 @@ pub const IMSVidWebDVD = extern union {
         ) callconv(.winapi) HRESULT,
         AcceptParentalLevelChange: *const fn(
             self: *const IMSVidWebDVD,
-            fAccept: i16,
+            fAccept: VARIANT_BOOL,
             strUserName: ?BSTR,
             strPassword: ?BSTR,
         ) callconv(.winapi) HRESULT,
         NotifyParentalLevelChange: *const fn(
             self: *const IMSVidWebDVD,
-            newVal: i16,
+            newVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SelectParentalCountry: *const fn(
             self: *const IMSVidWebDVD,
@@ -31103,7 +31103,7 @@ pub const IMSVidWebDVD = extern union {
         UOPValid: *const fn(
             self: *const IMSVidWebDVD,
             lUOP: i32,
-            pfValid: ?*i16,
+            pfValid: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         get_SPRM: *const fn(
             self: *const IMSVidWebDVD,
@@ -31296,7 +31296,7 @@ pub const IMSVidWebDVD = extern union {
     pub fn StillOff(self: *const IMSVidWebDVD) callconv(.@"inline") HRESULT {
         return self.vtable.StillOff(self);
     }
-    pub fn get_AudioLanguage(self: *const IMSVidWebDVD, lStream: i32, fFormat: i16, strAudioLang: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn get_AudioLanguage(self: *const IMSVidWebDVD, lStream: i32, fFormat: VARIANT_BOOL, strAudioLang: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_AudioLanguage(self, lStream, fFormat, strAudioLang);
     }
     pub fn ShowMenu(self: *const IMSVidWebDVD, MenuID: DVDMenuIDConstants) callconv(.@"inline") HRESULT {
@@ -31380,10 +31380,10 @@ pub const IMSVidWebDVD = extern union {
     pub fn put_DVDDirectory(self: *const IMSVidWebDVD, newVal: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_DVDDirectory(self, newVal);
     }
-    pub fn IsSubpictureStreamEnabled(self: *const IMSVidWebDVD, lstream: i32, fEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsSubpictureStreamEnabled(self: *const IMSVidWebDVD, lstream: i32, fEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsSubpictureStreamEnabled(self, lstream, fEnabled);
     }
-    pub fn IsAudioStreamEnabled(self: *const IMSVidWebDVD, lstream: i32, fEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsAudioStreamEnabled(self: *const IMSVidWebDVD, lstream: i32, fEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsAudioStreamEnabled(self, lstream, fEnabled);
     }
     pub fn get_CurrentSubpictureStream(self: *const IMSVidWebDVD, pVal: ?*i32) callconv(.@"inline") HRESULT {
@@ -31416,19 +31416,19 @@ pub const IMSVidWebDVD = extern union {
     pub fn get_SubpictureStreamsAvailable(self: *const IMSVidWebDVD, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_SubpictureStreamsAvailable(self, pVal);
     }
-    pub fn get_SubpictureOn(self: *const IMSVidWebDVD, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SubpictureOn(self: *const IMSVidWebDVD, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SubpictureOn(self, pVal);
     }
-    pub fn put_SubpictureOn(self: *const IMSVidWebDVD, newVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_SubpictureOn(self: *const IMSVidWebDVD, newVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_SubpictureOn(self, newVal);
     }
     pub fn get_DVDUniqueID(self: *const IMSVidWebDVD, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_DVDUniqueID(self, pVal);
     }
-    pub fn AcceptParentalLevelChange(self: *const IMSVidWebDVD, fAccept: i16, strUserName: ?BSTR, strPassword: ?BSTR) callconv(.@"inline") HRESULT {
+    pub fn AcceptParentalLevelChange(self: *const IMSVidWebDVD, fAccept: VARIANT_BOOL, strUserName: ?BSTR, strPassword: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.AcceptParentalLevelChange(self, fAccept, strUserName, strPassword);
     }
-    pub fn NotifyParentalLevelChange(self: *const IMSVidWebDVD, newVal: i16) callconv(.@"inline") HRESULT {
+    pub fn NotifyParentalLevelChange(self: *const IMSVidWebDVD, newVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.NotifyParentalLevelChange(self, newVal);
     }
     pub fn SelectParentalCountry(self: *const IMSVidWebDVD, lCountry: i32, strUserName: ?BSTR, strPassword: ?BSTR) callconv(.@"inline") HRESULT {
@@ -31449,7 +31449,7 @@ pub const IMSVidWebDVD = extern union {
     pub fn Eject(self: *const IMSVidWebDVD) callconv(.@"inline") HRESULT {
         return self.vtable.Eject(self);
     }
-    pub fn UOPValid(self: *const IMSVidWebDVD, lUOP: i32, pfValid: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn UOPValid(self: *const IMSVidWebDVD, lUOP: i32, pfValid: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.UOPValid(self, lUOP, pfValid);
     }
     pub fn get_SPRM(self: *const IMSVidWebDVD, lIndex: i32, psSPRM: ?*i16) callconv(.@"inline") HRESULT {
@@ -31606,7 +31606,7 @@ pub const IMSVidWebDVDAdm = extern union {
             self: *const IMSVidWebDVDAdm,
             strUserName: ?BSTR,
             strPassword: ?BSTR,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetParentalLevel: *const fn(
             self: *const IMSVidWebDVDAdm,
@@ -31649,12 +31649,12 @@ pub const IMSVidWebDVDAdm = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BookmarkOnStop: *const fn(
             self: *const IMSVidWebDVDAdm,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BookmarkOnStop: *const fn(
             self: *const IMSVidWebDVDAdm,
-            newVal: i16,
+            newVal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -31669,7 +31669,7 @@ pub const IMSVidWebDVDAdm = extern union {
     pub fn SaveParentalCountry(self: *const IMSVidWebDVDAdm, country: i32, strUserName: ?BSTR, strPassword: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SaveParentalCountry(self, country, strUserName, strPassword);
     }
-    pub fn ConfirmPassword(self: *const IMSVidWebDVDAdm, strUserName: ?BSTR, strPassword: ?BSTR, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn ConfirmPassword(self: *const IMSVidWebDVDAdm, strUserName: ?BSTR, strPassword: ?BSTR, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ConfirmPassword(self, strUserName, strPassword, pVal);
     }
     pub fn GetParentalLevel(self: *const IMSVidWebDVDAdm, lLevel: ?*i32) callconv(.@"inline") HRESULT {
@@ -31696,10 +31696,10 @@ pub const IMSVidWebDVDAdm = extern union {
     pub fn put_DefaultMenuLCID(self: *const IMSVidWebDVDAdm, newVal: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_DefaultMenuLCID(self, newVal);
     }
-    pub fn get_BookmarkOnStop(self: *const IMSVidWebDVDAdm, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_BookmarkOnStop(self: *const IMSVidWebDVDAdm, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_BookmarkOnStop(self, pVal);
     }
-    pub fn put_BookmarkOnStop(self: *const IMSVidWebDVDAdm, newVal: i16) callconv(.@"inline") HRESULT {
+    pub fn put_BookmarkOnStop(self: *const IMSVidWebDVDAdm, newVal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_BookmarkOnStop(self, newVal);
     }
 };
@@ -31717,92 +31717,92 @@ pub const IMSVidWebDVDEvent = extern union {
         ) callconv(.winapi) HRESULT,
         PlayForwards: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         PlayBackwards: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         ShowMenu: *const fn(
             self: *const IMSVidWebDVDEvent,
             MenuID: DVDMenuIDConstants,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Resume: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SelectOrActivateButton: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         StillOff: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         PauseOn: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         ChangeCurrentAudioStream: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         ChangeCurrentSubpictureStream: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         ChangeCurrentAngle: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         PlayAtTimeInTitle: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         PlayAtTime: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         PlayChapterInTitle: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         PlayChapter: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         ReplayChapter: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         PlayNextChapter: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         ReturnFromSubmenu: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         PlayTitle: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         PlayPrevChapter: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         ChangeKaraokePresMode: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         ChangeVideoPresMode: *const fn(
             self: *const IMSVidWebDVDEvent,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -31813,70 +31813,70 @@ pub const IMSVidWebDVDEvent = extern union {
     pub fn DVDNotify(self: *const IMSVidWebDVDEvent, lEventCode: i32, lParam1: VARIANT, lParam2: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DVDNotify(self, lEventCode, lParam1, lParam2);
     }
-    pub fn PlayForwards(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn PlayForwards(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.PlayForwards(self, bEnabled);
     }
-    pub fn PlayBackwards(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn PlayBackwards(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.PlayBackwards(self, bEnabled);
     }
-    pub fn ShowMenu(self: *const IMSVidWebDVDEvent, MenuID: DVDMenuIDConstants, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn ShowMenu(self: *const IMSVidWebDVDEvent, MenuID: DVDMenuIDConstants, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ShowMenu(self, MenuID, bEnabled);
     }
-    pub fn Resume(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn Resume(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Resume(self, bEnabled);
     }
-    pub fn SelectOrActivateButton(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn SelectOrActivateButton(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SelectOrActivateButton(self, bEnabled);
     }
-    pub fn StillOff(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn StillOff(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.StillOff(self, bEnabled);
     }
-    pub fn PauseOn(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn PauseOn(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.PauseOn(self, bEnabled);
     }
-    pub fn ChangeCurrentAudioStream(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn ChangeCurrentAudioStream(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ChangeCurrentAudioStream(self, bEnabled);
     }
-    pub fn ChangeCurrentSubpictureStream(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn ChangeCurrentSubpictureStream(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ChangeCurrentSubpictureStream(self, bEnabled);
     }
-    pub fn ChangeCurrentAngle(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn ChangeCurrentAngle(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ChangeCurrentAngle(self, bEnabled);
     }
-    pub fn PlayAtTimeInTitle(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn PlayAtTimeInTitle(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.PlayAtTimeInTitle(self, bEnabled);
     }
-    pub fn PlayAtTime(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn PlayAtTime(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.PlayAtTime(self, bEnabled);
     }
-    pub fn PlayChapterInTitle(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn PlayChapterInTitle(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.PlayChapterInTitle(self, bEnabled);
     }
-    pub fn PlayChapter(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn PlayChapter(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.PlayChapter(self, bEnabled);
     }
-    pub fn ReplayChapter(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn ReplayChapter(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ReplayChapter(self, bEnabled);
     }
-    pub fn PlayNextChapter(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn PlayNextChapter(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.PlayNextChapter(self, bEnabled);
     }
-    pub fn Stop(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn Stop(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Stop(self, bEnabled);
     }
-    pub fn ReturnFromSubmenu(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn ReturnFromSubmenu(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ReturnFromSubmenu(self, bEnabled);
     }
-    pub fn PlayTitle(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn PlayTitle(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.PlayTitle(self, bEnabled);
     }
-    pub fn PlayPrevChapter(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn PlayPrevChapter(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.PlayPrevChapter(self, bEnabled);
     }
-    pub fn ChangeKaraokePresMode(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn ChangeKaraokePresMode(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ChangeKaraokePresMode(self, bEnabled);
     }
-    pub fn ChangeVideoPresMode(self: *const IMSVidWebDVDEvent, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn ChangeVideoPresMode(self: *const IMSVidWebDVDEvent, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ChangeVideoPresMode(self, bEnabled);
     }
 };
@@ -33677,7 +33677,7 @@ pub const IScanningTunerEx = extern union {
             self: *const IScanningTunerEx,
             dwLowerFreq: i32,
             dwHigherFreq: i32,
-            bFineTune: i16,
+            bFineTune: VARIANT_BOOL,
             hEvent: usize,
         ) callconv(.winapi) HRESULT,
         TerminateCurrentScan: *const fn(
@@ -33720,7 +33720,7 @@ pub const IScanningTunerEx = extern union {
     pub fn GetCurrentLocator(self: *const IScanningTunerEx, pILocator: ?*?*ILocator) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentLocator(self, pILocator);
     }
-    pub fn PerformExhaustiveScan(self: *const IScanningTunerEx, dwLowerFreq: i32, dwHigherFreq: i32, bFineTune: i16, hEvent: usize) callconv(.@"inline") HRESULT {
+    pub fn PerformExhaustiveScan(self: *const IScanningTunerEx, dwLowerFreq: i32, dwHigherFreq: i32, bFineTune: VARIANT_BOOL, hEvent: usize) callconv(.@"inline") HRESULT {
         return self.vtable.PerformExhaustiveScan(self, dwLowerFreq, dwHigherFreq, bFineTune, hEvent);
     }
     pub fn TerminateCurrentScan(self: *const IScanningTunerEx, pcurrentFreq: ?*i32) callconv(.@"inline") HRESULT {
@@ -34975,12 +34975,12 @@ pub const ITunerCapEx = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Has608_708Caption: *const fn(
             self: *const ITunerCapEx,
-            pbHasCaption: ?*i16,
+            pbHasCaption: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Has608_708Caption(self: *const ITunerCapEx, pbHasCaption: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Has608_708Caption(self: *const ITunerCapEx, pbHasCaption: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Has608_708Caption(self, pbHasCaption);
     }
 };
@@ -42209,7 +42209,7 @@ pub const AMGetErrorText = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (83)
+// Section: Imports (84)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const AM_MEDIA_TYPE = @import("../media/media_foundation.zig").AM_MEDIA_TYPE;
@@ -42293,6 +42293,7 @@ const SIZE = @import("../foundation.zig").SIZE;
 const TIMECODE = @import("../media.zig").TIMECODE;
 const TIMECODE_SAMPLE = @import("../media.zig").TIMECODE_SAMPLE;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 const WAVEFORMATEX = @import("../media/audio.zig").WAVEFORMATEX;
 
 test {

@@ -1032,12 +1032,12 @@ pub const IFeed = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DownloadEnclosuresAutomatically: *const fn(
             self: *const IFeed,
-            downloadEnclosuresAutomatically: ?*i16,
+            downloadEnclosuresAutomatically: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DownloadEnclosuresAutomatically: *const fn(
             self: *const IFeed,
-            downloadEnclosuresAutomatically: i16,
+            downloadEnclosuresAutomatically: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DownloadStatus: *const fn(
@@ -1062,7 +1062,7 @@ pub const IFeed = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsList: *const fn(
             self: *const IFeed,
-            isList: ?*i16,
+            isList: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         MarkAllItemsRead: *const fn(
             self: *const IFeed,
@@ -1186,10 +1186,10 @@ pub const IFeed = extern union {
     pub fn put_MaxItemCount(self: *const IFeed, count: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_MaxItemCount(self, count);
     }
-    pub fn get_DownloadEnclosuresAutomatically(self: *const IFeed, downloadEnclosuresAutomatically: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_DownloadEnclosuresAutomatically(self: *const IFeed, downloadEnclosuresAutomatically: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_DownloadEnclosuresAutomatically(self, downloadEnclosuresAutomatically);
     }
-    pub fn put_DownloadEnclosuresAutomatically(self: *const IFeed, downloadEnclosuresAutomatically: i16) callconv(.@"inline") HRESULT {
+    pub fn put_DownloadEnclosuresAutomatically(self: *const IFeed, downloadEnclosuresAutomatically: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_DownloadEnclosuresAutomatically(self, downloadEnclosuresAutomatically);
     }
     pub fn get_DownloadStatus(self: *const IFeed, status: ?*FEEDS_DOWNLOAD_STATUS) callconv(.@"inline") HRESULT {
@@ -1204,7 +1204,7 @@ pub const IFeed = extern union {
     pub fn get_DownloadUrl(self: *const IFeed, feedUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_DownloadUrl(self, feedUrl);
     }
-    pub fn get_IsList(self: *const IFeed, isList: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsList(self: *const IFeed, isList: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsList(self, isList);
     }
     pub fn MarkAllItemsRead(self: *const IFeed) callconv(.@"inline") HRESULT {
@@ -1489,7 +1489,7 @@ pub const IFeedFolder = extern union {
         ExistsFeed: *const fn(
             self: *const IFeedFolder,
             feedName: ?BSTR,
-            exists: ?*i16,
+            exists: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetFeed: *const fn(
             self: *const IFeedFolder,
@@ -1499,7 +1499,7 @@ pub const IFeedFolder = extern union {
         ExistsSubfolder: *const fn(
             self: *const IFeedFolder,
             folderName: ?BSTR,
-            exists: ?*i16,
+            exists: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetSubfolder: *const fn(
             self: *const IFeedFolder,
@@ -1535,7 +1535,7 @@ pub const IFeedFolder = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsRoot: *const fn(
             self: *const IFeedFolder,
-            isRoot: ?*i16,
+            isRoot: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TotalUnreadItemCount: *const fn(
@@ -1569,13 +1569,13 @@ pub const IFeedFolder = extern union {
     pub fn CreateSubfolder(self: *const IFeedFolder, folderName: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSubfolder(self, folderName, disp);
     }
-    pub fn ExistsFeed(self: *const IFeedFolder, feedName: ?BSTR, exists: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn ExistsFeed(self: *const IFeedFolder, feedName: ?BSTR, exists: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ExistsFeed(self, feedName, exists);
     }
     pub fn GetFeed(self: *const IFeedFolder, feedName: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.GetFeed(self, feedName, disp);
     }
-    pub fn ExistsSubfolder(self: *const IFeedFolder, folderName: ?BSTR, exists: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn ExistsSubfolder(self: *const IFeedFolder, folderName: ?BSTR, exists: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ExistsSubfolder(self, folderName, exists);
     }
     pub fn GetSubfolder(self: *const IFeedFolder, folderName: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
@@ -1599,7 +1599,7 @@ pub const IFeedFolder = extern union {
     pub fn get_Parent(self: *const IFeedFolder, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Parent(self, disp);
     }
-    pub fn get_IsRoot(self: *const IFeedFolder, isRoot: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsRoot(self: *const IFeedFolder, isRoot: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsRoot(self, isRoot);
     }
     pub fn get_TotalUnreadItemCount(self: *const IFeedFolder, count: ?*i32) callconv(.@"inline") HRESULT {
@@ -1797,12 +1797,12 @@ pub const IFeedItem = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsRead: *const fn(
             self: *const IFeedItem,
-            isRead: ?*i16,
+            isRead: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsRead: *const fn(
             self: *const IFeedItem,
-            isRead: i16,
+            isRead: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LocalId: *const fn(
@@ -1863,10 +1863,10 @@ pub const IFeedItem = extern union {
     pub fn get_Enclosure(self: *const IFeedItem, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enclosure(self, disp);
     }
-    pub fn get_IsRead(self: *const IFeedItem, isRead: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsRead(self: *const IFeedItem, isRead: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsRead(self, isRead);
     }
-    pub fn put_IsRead(self: *const IFeedItem, isRead: i16) callconv(.@"inline") HRESULT {
+    pub fn put_IsRead(self: *const IFeedItem, isRead: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_IsRead(self, isRead);
     }
     pub fn get_LocalId(self: *const IFeedItem, itemId: ?*i32) callconv(.@"inline") HRESULT {
@@ -1957,12 +1957,12 @@ pub const IFeedsManager = extern union {
         IsSubscribed: *const fn(
             self: *const IFeedsManager,
             feedUrl: ?BSTR,
-            subscribed: ?*i16,
+            subscribed: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         ExistsFeed: *const fn(
             self: *const IFeedsManager,
             feedPath: ?BSTR,
-            exists: ?*i16,
+            exists: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetFeed: *const fn(
             self: *const IFeedsManager,
@@ -1977,7 +1977,7 @@ pub const IFeedsManager = extern union {
         ExistsFolder: *const fn(
             self: *const IFeedsManager,
             folderPath: ?BSTR,
-            exists: ?*i16,
+            exists: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetFolder: *const fn(
             self: *const IFeedsManager,
@@ -2031,10 +2031,10 @@ pub const IFeedsManager = extern union {
     pub fn get_RootFolder(self: *const IFeedsManager, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_RootFolder(self, disp);
     }
-    pub fn IsSubscribed(self: *const IFeedsManager, feedUrl: ?BSTR, subscribed: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsSubscribed(self: *const IFeedsManager, feedUrl: ?BSTR, subscribed: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsSubscribed(self, feedUrl, subscribed);
     }
-    pub fn ExistsFeed(self: *const IFeedsManager, feedPath: ?BSTR, exists: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn ExistsFeed(self: *const IFeedsManager, feedPath: ?BSTR, exists: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ExistsFeed(self, feedPath, exists);
     }
     pub fn GetFeed(self: *const IFeedsManager, feedPath: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
@@ -2043,7 +2043,7 @@ pub const IFeedsManager = extern union {
     pub fn GetFeedByUrl(self: *const IFeedsManager, feedUrl: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.GetFeedByUrl(self, feedUrl, disp);
     }
-    pub fn ExistsFolder(self: *const IFeedsManager, folderPath: ?BSTR, exists: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn ExistsFolder(self: *const IFeedsManager, folderPath: ?BSTR, exists: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ExistsFolder(self, folderPath, exists);
     }
     pub fn GetFolder(self: *const IFeedsManager, folderPath: ?BSTR, disp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
@@ -2145,7 +2145,7 @@ pub const IWMPCdromBurn = extern union {
         isAvailable: *const fn(
             self: *const IWMPCdromBurn,
             bstrItem: ?BSTR,
-            pIsAvailable: ?*i16,
+            pIsAvailable: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getItemInfo: *const fn(
             self: *const IWMPCdromBurn,
@@ -2207,7 +2207,7 @@ pub const IWMPCdromBurn = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn isAvailable(self: *const IWMPCdromBurn, bstrItem: ?BSTR, pIsAvailable: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isAvailable(self: *const IWMPCdromBurn, bstrItem: ?BSTR, pIsAvailable: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isAvailable(self, bstrItem, pIsAvailable);
     }
     pub fn getItemInfo(self: *const IWMPCdromBurn, bstrItem: ?BSTR, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -2585,7 +2585,7 @@ pub const IWMPContentPartner = extern union {
             self: *const IWMPContentPartner,
             pInfo: ?*IWMPContentContainerList,
             pbstrTotalPrice: ?*?BSTR,
-            pSilentOK: ?*i16,
+            pSilentOK: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Buy: *const fn(
             self: *const IWMPContentPartner,
@@ -2612,7 +2612,7 @@ pub const IWMPContentPartner = extern union {
         RefreshLicense: *const fn(
             self: *const IWMPContentPartner,
             dwCookie: u32,
-            fLocal: i16,
+            fLocal: VARIANT_BOOL,
             bstrURL: ?BSTR,
             type: WMPStreamingType,
             contentID: u32,
@@ -2656,8 +2656,8 @@ pub const IWMPContentPartner = extern union {
             self: *const IWMPContentPartner,
             userInfo: BLOB,
             pwdInfo: BLOB,
-            fUsedCachedCreds: i16,
-            fOkToCache: i16,
+            fUsedCachedCreds: VARIANT_BOOL,
+            fOkToCache: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Authenticate: *const fn(
             self: *const IWMPContentPartner,
@@ -2713,7 +2713,7 @@ pub const IWMPContentPartner = extern union {
     pub fn InvokeCommand(self: *const IWMPContentPartner, dwCommandID: u32, location: ?BSTR, pLocationContext: ?*VARIANT, itemLocation: ?BSTR, cItemIDs: u32, rgItemIDs: [*]u32) callconv(.@"inline") HRESULT {
         return self.vtable.InvokeCommand(self, dwCommandID, location, pLocationContext, itemLocation, cItemIDs, rgItemIDs);
     }
-    pub fn CanBuySilent(self: *const IWMPContentPartner, pInfo: ?*IWMPContentContainerList, pbstrTotalPrice: ?*?BSTR, pSilentOK: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn CanBuySilent(self: *const IWMPContentPartner, pInfo: ?*IWMPContentContainerList, pbstrTotalPrice: ?*?BSTR, pSilentOK: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CanBuySilent(self, pInfo, pbstrTotalPrice, pSilentOK);
     }
     pub fn Buy(self: *const IWMPContentPartner, pInfo: ?*IWMPContentContainerList, cookie: u32) callconv(.@"inline") HRESULT {
@@ -2728,7 +2728,7 @@ pub const IWMPContentPartner = extern union {
     pub fn DownloadTrackComplete(self: *const IWMPContentPartner, hrResult: HRESULT, contentID: u32, downloadTrackParam: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DownloadTrackComplete(self, hrResult, contentID, downloadTrackParam);
     }
-    pub fn RefreshLicense(self: *const IWMPContentPartner, dwCookie: u32, fLocal: i16, bstrURL: ?BSTR, @"type": WMPStreamingType, contentID: u32, bstrRefreshReason: ?BSTR, pReasonContext: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn RefreshLicense(self: *const IWMPContentPartner, dwCookie: u32, fLocal: VARIANT_BOOL, bstrURL: ?BSTR, @"type": WMPStreamingType, contentID: u32, bstrRefreshReason: ?BSTR, pReasonContext: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.RefreshLicense(self, dwCookie, fLocal, bstrURL, @"type", contentID, bstrRefreshReason, pReasonContext);
     }
     pub fn GetCatalogURL(self: *const IWMPContentPartner, dwCatalogVersion: u32, dwCatalogSchemaVersion: u32, catalogLCID: u32, pdwNewCatalogVersion: ?*u32, pbstrCatalogURL: ?*?BSTR, pExpirationDate: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -2743,7 +2743,7 @@ pub const IWMPContentPartner = extern union {
     pub fn GetListContents(self: *const IWMPContentPartner, location: ?BSTR, pContext: ?*VARIANT, bstrListType: ?BSTR, bstrParams: ?BSTR, dwListCookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetListContents(self, location, pContext, bstrListType, bstrParams, dwListCookie);
     }
-    pub fn Login(self: *const IWMPContentPartner, userInfo: BLOB, pwdInfo: BLOB, fUsedCachedCreds: i16, fOkToCache: i16) callconv(.@"inline") HRESULT {
+    pub fn Login(self: *const IWMPContentPartner, userInfo: BLOB, pwdInfo: BLOB, fUsedCachedCreds: VARIANT_BOOL, fOkToCache: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Login(self, userInfo, pwdInfo, fUsedCachedCreds, fOkToCache);
     }
     pub fn Authenticate(self: *const IWMPContentPartner, userInfo: BLOB, pwdInfo: BLOB) callconv(.@"inline") HRESULT {
@@ -2896,7 +2896,7 @@ pub const IWMPControls = extern union {
         get_isAvailable: *const fn(
             self: *const IWMPControls,
             bstrItem: ?BSTR,
-            pIsAvailable: ?*i16,
+            pIsAvailable: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         play: *const fn(
             self: *const IWMPControls,
@@ -2962,7 +2962,7 @@ pub const IWMPControls = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_isAvailable(self: *const IWMPControls, bstrItem: ?BSTR, pIsAvailable: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isAvailable(self: *const IWMPControls, bstrItem: ?BSTR, pIsAvailable: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isAvailable(self, bstrItem, pIsAvailable);
     }
     pub fn play(self: *const IWMPControls) callconv(.@"inline") HRESULT {
@@ -3245,7 +3245,7 @@ pub const IWMPCore = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isOnline: *const fn(
             self: *const IWMPCore,
-            pfOnline: ?*i16,
+            pfOnline: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_error: *const fn(
@@ -3315,7 +3315,7 @@ pub const IWMPCore = extern union {
     pub fn get_closedCaption(self: *const IWMPCore, ppClosedCaption: ?*?*IWMPClosedCaption) callconv(.@"inline") HRESULT {
         return self.vtable.get_closedCaption(self, ppClosedCaption);
     }
-    pub fn get_isOnline(self: *const IWMPCore, pfOnline: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isOnline(self: *const IWMPCore, pfOnline: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isOnline(self, pfOnline);
     }
     pub fn get_error(self: *const IWMPCore, ppError: ?*?*IWMPError) callconv(.@"inline") HRESULT {
@@ -3556,7 +3556,7 @@ pub const IWMPDVD = extern union {
         get_isAvailable: *const fn(
             self: *const IWMPDVD,
             bstrItem: ?BSTR,
-            pIsAvailable: ?*i16,
+            pIsAvailable: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_domain: *const fn(
@@ -3579,7 +3579,7 @@ pub const IWMPDVD = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_isAvailable(self: *const IWMPDVD, bstrItem: ?BSTR, pIsAvailable: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isAvailable(self: *const IWMPDVD, bstrItem: ?BSTR, pIsAvailable: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isAvailable(self, bstrItem, pIsAvailable);
     }
     pub fn get_domain(self: *const IWMPDVD, strDomain: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -3891,7 +3891,7 @@ pub const IWMPEvents = extern union {
         ) callconv(.winapi) void,
         Buffering: *const fn(
             self: *const IWMPEvents,
-            Start: i16,
+            Start: VARIANT_BOOL,
         ) callconv(.winapi) void,
         Error: *const fn(
             self: *const IWMPEvents,
@@ -3981,12 +3981,12 @@ pub const IWMPEvents = extern union {
         PlaylistCollectionPlaylistSetAsDeleted: *const fn(
             self: *const IWMPEvents,
             bstrPlaylistName: ?BSTR,
-            varfIsDeleted: i16,
+            varfIsDeleted: VARIANT_BOOL,
         ) callconv(.winapi) void,
         ModeChange: *const fn(
             self: *const IWMPEvents,
             ModeName: ?BSTR,
-            NewValue: i16,
+            NewValue: VARIANT_BOOL,
         ) callconv(.winapi) void,
         MediaError: *const fn(
             self: *const IWMPEvents,
@@ -4085,7 +4085,7 @@ pub const IWMPEvents = extern union {
     pub fn Disconnect(self: *const IWMPEvents, Result: i32) callconv(.@"inline") void {
         return self.vtable.Disconnect(self, Result);
     }
-    pub fn Buffering(self: *const IWMPEvents, Start: i16) callconv(.@"inline") void {
+    pub fn Buffering(self: *const IWMPEvents, Start: VARIANT_BOOL) callconv(.@"inline") void {
         return self.vtable.Buffering(self, Start);
     }
     pub fn Error(self: *const IWMPEvents) callconv(.@"inline") void {
@@ -4148,10 +4148,10 @@ pub const IWMPEvents = extern union {
     pub fn PlaylistCollectionPlaylistRemoved(self: *const IWMPEvents, bstrPlaylistName: ?BSTR) callconv(.@"inline") void {
         return self.vtable.PlaylistCollectionPlaylistRemoved(self, bstrPlaylistName);
     }
-    pub fn PlaylistCollectionPlaylistSetAsDeleted(self: *const IWMPEvents, bstrPlaylistName: ?BSTR, varfIsDeleted: i16) callconv(.@"inline") void {
+    pub fn PlaylistCollectionPlaylistSetAsDeleted(self: *const IWMPEvents, bstrPlaylistName: ?BSTR, varfIsDeleted: VARIANT_BOOL) callconv(.@"inline") void {
         return self.vtable.PlaylistCollectionPlaylistSetAsDeleted(self, bstrPlaylistName, varfIsDeleted);
     }
-    pub fn ModeChange(self: *const IWMPEvents, ModeName: ?BSTR, NewValue: i16) callconv(.@"inline") void {
+    pub fn ModeChange(self: *const IWMPEvents, ModeName: ?BSTR, NewValue: VARIANT_BOOL) callconv(.@"inline") void {
         return self.vtable.ModeChange(self, ModeName, NewValue);
     }
     pub fn MediaError(self: *const IWMPEvents, pMediaObject: ?*IDispatch) callconv(.@"inline") void {
@@ -4524,7 +4524,7 @@ pub const IWMPLibrary = extern union {
         isIdentical: *const fn(
             self: *const IWMPLibrary,
             pIWMPLibrary: ?*IWMPLibrary,
-            pvbool: ?*i16,
+            pvbool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -4538,7 +4538,7 @@ pub const IWMPLibrary = extern union {
     pub fn get_mediaCollection(self: *const IWMPLibrary, ppIWMPMediaCollection: ?*?*IWMPMediaCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_mediaCollection(self, ppIWMPMediaCollection);
     }
-    pub fn isIdentical(self: *const IWMPLibrary, pIWMPLibrary: ?*IWMPLibrary, pvbool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isIdentical(self: *const IWMPLibrary, pIWMPLibrary: ?*IWMPLibrary, pvbool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isIdentical(self, pIWMPLibrary, pvbool);
     }
 };
@@ -4596,11 +4596,11 @@ pub const IWMPLibrarySharingServices = extern union {
         base: IUnknown.VTable,
         isLibraryShared: *const fn(
             self: *const IWMPLibrarySharingServices,
-            pvbShared: ?*i16,
+            pvbShared: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         isLibrarySharingEnabled: *const fn(
             self: *const IWMPLibrarySharingServices,
-            pvbEnabled: ?*i16,
+            pvbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         showLibrarySharing: *const fn(
             self: *const IWMPLibrarySharingServices,
@@ -4608,10 +4608,10 @@ pub const IWMPLibrarySharingServices = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn isLibraryShared(self: *const IWMPLibrarySharingServices, pvbShared: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isLibraryShared(self: *const IWMPLibrarySharingServices, pvbShared: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isLibraryShared(self, pvbShared);
     }
-    pub fn isLibrarySharingEnabled(self: *const IWMPLibrarySharingServices, pvbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isLibrarySharingEnabled(self: *const IWMPLibrarySharingServices, pvbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isLibrarySharingEnabled(self, pvbEnabled);
     }
     pub fn showLibrarySharing(self: *const IWMPLibrarySharingServices) callconv(.@"inline") HRESULT {
@@ -4627,7 +4627,7 @@ pub const IWMPMedia = extern union {
         get_isIdentical: *const fn(
             self: *const IWMPMedia,
             pIWMPMedia: ?*IWMPMedia,
-            pvbool: ?*i16,
+            pvbool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_sourceURL: *const fn(
@@ -4707,18 +4707,18 @@ pub const IWMPMedia = extern union {
         isMemberOf: *const fn(
             self: *const IWMPMedia,
             pPlaylist: ?*IWMPPlaylist,
-            pvarfIsMemberOf: ?*i16,
+            pvarfIsMemberOf: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         isReadOnlyItem: *const fn(
             self: *const IWMPMedia,
             bstrItemName: ?BSTR,
-            pvarfIsReadOnly: ?*i16,
+            pvarfIsReadOnly: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_isIdentical(self: *const IWMPMedia, pIWMPMedia: ?*IWMPMedia, pvbool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isIdentical(self: *const IWMPMedia, pIWMPMedia: ?*IWMPMedia, pvbool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isIdentical(self, pIWMPMedia, pvbool);
     }
     pub fn get_sourceURL(self: *const IWMPMedia, pbstrSourceURL: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -4766,10 +4766,10 @@ pub const IWMPMedia = extern union {
     pub fn getItemInfoByAtom(self: *const IWMPMedia, lAtom: i32, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.getItemInfoByAtom(self, lAtom, pbstrVal);
     }
-    pub fn isMemberOf(self: *const IWMPMedia, pPlaylist: ?*IWMPPlaylist, pvarfIsMemberOf: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isMemberOf(self: *const IWMPMedia, pPlaylist: ?*IWMPPlaylist, pvarfIsMemberOf: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isMemberOf(self, pPlaylist, pvarfIsMemberOf);
     }
-    pub fn isReadOnlyItem(self: *const IWMPMedia, bstrItemName: ?BSTR, pvarfIsReadOnly: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isReadOnlyItem(self: *const IWMPMedia, bstrItemName: ?BSTR, pvarfIsReadOnly: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isReadOnlyItem(self, bstrItemName, pvarfIsReadOnly);
     }
 };
@@ -4869,7 +4869,7 @@ pub const IWMPMediaCollection = extern union {
         remove: *const fn(
             self: *const IWMPMediaCollection,
             pItem: ?*IWMPMedia,
-            varfDeleteFile: i16,
+            varfDeleteFile: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getAttributeStringCollection: *const fn(
             self: *const IWMPMediaCollection,
@@ -4885,12 +4885,12 @@ pub const IWMPMediaCollection = extern union {
         setDeleted: *const fn(
             self: *const IWMPMediaCollection,
             pItem: ?*IWMPMedia,
-            varfIsDeleted: i16,
+            varfIsDeleted: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         isDeleted: *const fn(
             self: *const IWMPMediaCollection,
             pItem: ?*IWMPMedia,
-            pvarfIsDeleted: ?*i16,
+            pvarfIsDeleted: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -4917,7 +4917,7 @@ pub const IWMPMediaCollection = extern union {
     pub fn getByAttribute(self: *const IWMPMediaCollection, bstrAttribute: ?BSTR, bstrValue: ?BSTR, ppMediaItems: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
         return self.vtable.getByAttribute(self, bstrAttribute, bstrValue, ppMediaItems);
     }
-    pub fn remove(self: *const IWMPMediaCollection, pItem: ?*IWMPMedia, varfDeleteFile: i16) callconv(.@"inline") HRESULT {
+    pub fn remove(self: *const IWMPMediaCollection, pItem: ?*IWMPMedia, varfDeleteFile: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.remove(self, pItem, varfDeleteFile);
     }
     pub fn getAttributeStringCollection(self: *const IWMPMediaCollection, bstrAttribute: ?BSTR, bstrMediaType: ?BSTR, ppStringCollection: ?*?*IWMPStringCollection) callconv(.@"inline") HRESULT {
@@ -4926,10 +4926,10 @@ pub const IWMPMediaCollection = extern union {
     pub fn getMediaAtom(self: *const IWMPMediaCollection, bstrItemName: ?BSTR, plAtom: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.getMediaAtom(self, bstrItemName, plAtom);
     }
-    pub fn setDeleted(self: *const IWMPMediaCollection, pItem: ?*IWMPMedia, varfIsDeleted: i16) callconv(.@"inline") HRESULT {
+    pub fn setDeleted(self: *const IWMPMediaCollection, pItem: ?*IWMPMedia, varfIsDeleted: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.setDeleted(self, pItem, varfIsDeleted);
     }
-    pub fn isDeleted(self: *const IWMPMediaCollection, pItem: ?*IWMPMedia, pvarfIsDeleted: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isDeleted(self: *const IWMPMediaCollection, pItem: ?*IWMPMedia, pvarfIsDeleted: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isDeleted(self, pItem, pvarfIsDeleted);
     }
 };
@@ -4948,7 +4948,7 @@ pub const IWMPMediaCollection2 = extern union {
             pQuery: ?*IWMPQuery,
             bstrMediaType: ?BSTR,
             bstrSortAttribute: ?BSTR,
-            fSortAscending: i16,
+            fSortAscending: VARIANT_BOOL,
             ppPlaylist: ?*?*IWMPPlaylist,
         ) callconv(.winapi) HRESULT,
         getStringCollectionByQuery: *const fn(
@@ -4957,7 +4957,7 @@ pub const IWMPMediaCollection2 = extern union {
             pQuery: ?*IWMPQuery,
             bstrMediaType: ?BSTR,
             bstrSortAttribute: ?BSTR,
-            fSortAscending: i16,
+            fSortAscending: VARIANT_BOOL,
             ppStringCollection: ?*?*IWMPStringCollection,
         ) callconv(.winapi) HRESULT,
         getByAttributeAndMediaType: *const fn(
@@ -4975,10 +4975,10 @@ pub const IWMPMediaCollection2 = extern union {
     pub fn createQuery(self: *const IWMPMediaCollection2, ppQuery: ?*?*IWMPQuery) callconv(.@"inline") HRESULT {
         return self.vtable.createQuery(self, ppQuery);
     }
-    pub fn getPlaylistByQuery(self: *const IWMPMediaCollection2, pQuery: ?*IWMPQuery, bstrMediaType: ?BSTR, bstrSortAttribute: ?BSTR, fSortAscending: i16, ppPlaylist: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
+    pub fn getPlaylistByQuery(self: *const IWMPMediaCollection2, pQuery: ?*IWMPQuery, bstrMediaType: ?BSTR, bstrSortAttribute: ?BSTR, fSortAscending: VARIANT_BOOL, ppPlaylist: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
         return self.vtable.getPlaylistByQuery(self, pQuery, bstrMediaType, bstrSortAttribute, fSortAscending, ppPlaylist);
     }
-    pub fn getStringCollectionByQuery(self: *const IWMPMediaCollection2, bstrAttribute: ?BSTR, pQuery: ?*IWMPQuery, bstrMediaType: ?BSTR, bstrSortAttribute: ?BSTR, fSortAscending: i16, ppStringCollection: ?*?*IWMPStringCollection) callconv(.@"inline") HRESULT {
+    pub fn getStringCollectionByQuery(self: *const IWMPMediaCollection2, bstrAttribute: ?BSTR, pQuery: ?*IWMPQuery, bstrMediaType: ?BSTR, bstrSortAttribute: ?BSTR, fSortAscending: VARIANT_BOOL, ppStringCollection: ?*?*IWMPStringCollection) callconv(.@"inline") HRESULT {
         return self.vtable.getStringCollectionByQuery(self, bstrAttribute, pQuery, bstrMediaType, bstrSortAttribute, fSortAscending, ppStringCollection);
     }
     pub fn getByAttributeAndMediaType(self: *const IWMPMediaCollection2, bstrAttribute: ?BSTR, bstrValue: ?BSTR, bstrMediaType: ?BSTR, ppMediaItems: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
@@ -5201,12 +5201,12 @@ pub const IWMPNetwork = extern union {
         getProxyBypassForLocal: *const fn(
             self: *const IWMPNetwork,
             bstrProtocol: ?BSTR,
-            pfBypassForLocal: ?*i16,
+            pfBypassForLocal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         setProxyBypassForLocal: *const fn(
             self: *const IWMPNetwork,
             bstrProtocol: ?BSTR,
-            fBypassForLocal: i16,
+            fBypassForLocal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_maxBandwidth: *const fn(
@@ -5300,10 +5300,10 @@ pub const IWMPNetwork = extern union {
     pub fn setProxyExceptionList(self: *const IWMPNetwork, bstrProtocol: ?BSTR, pbstrExceptionList: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.setProxyExceptionList(self, bstrProtocol, pbstrExceptionList);
     }
-    pub fn getProxyBypassForLocal(self: *const IWMPNetwork, bstrProtocol: ?BSTR, pfBypassForLocal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn getProxyBypassForLocal(self: *const IWMPNetwork, bstrProtocol: ?BSTR, pfBypassForLocal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.getProxyBypassForLocal(self, bstrProtocol, pfBypassForLocal);
     }
-    pub fn setProxyBypassForLocal(self: *const IWMPNetwork, bstrProtocol: ?BSTR, fBypassForLocal: i16) callconv(.@"inline") HRESULT {
+    pub fn setProxyBypassForLocal(self: *const IWMPNetwork, bstrProtocol: ?BSTR, fBypassForLocal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.setProxyBypassForLocal(self, bstrProtocol, fBypassForLocal);
     }
     pub fn get_maxBandwidth(self: *const IWMPNetwork, lMaxBandwidth: ?*i32) callconv(.@"inline") HRESULT {
@@ -5500,32 +5500,32 @@ pub const IWMPPlayer = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_enabled: *const fn(
             self: *const IWMPPlayer,
-            pbEnabled: ?*i16,
+            pbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_enabled: *const fn(
             self: *const IWMPPlayer,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_fullScreen: *const fn(
             self: *const IWMPPlayer,
-            pbFullScreen: ?*i16,
+            pbFullScreen: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_fullScreen: *const fn(
             self: *const IWMPPlayer,
-            bFullScreen: i16,
+            bFullScreen: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_enableContextMenu: *const fn(
             self: *const IWMPPlayer,
-            pbEnableContextMenu: ?*i16,
+            pbEnableContextMenu: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_enableContextMenu: *const fn(
             self: *const IWMPPlayer,
-            bEnableContextMenu: i16,
+            bEnableContextMenu: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_uiMode: *const fn(
@@ -5542,22 +5542,22 @@ pub const IWMPPlayer = extern union {
     IWMPCore: IWMPCore,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_enabled(self: *const IWMPPlayer, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_enabled(self: *const IWMPPlayer, pbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_enabled(self, pbEnabled);
     }
-    pub fn put_enabled(self: *const IWMPPlayer, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_enabled(self: *const IWMPPlayer, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_enabled(self, bEnabled);
     }
-    pub fn get_fullScreen(self: *const IWMPPlayer, pbFullScreen: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_fullScreen(self: *const IWMPPlayer, pbFullScreen: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_fullScreen(self, pbFullScreen);
     }
-    pub fn put_fullScreen(self: *const IWMPPlayer, bFullScreen: i16) callconv(.@"inline") HRESULT {
+    pub fn put_fullScreen(self: *const IWMPPlayer, bFullScreen: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_fullScreen(self, bFullScreen);
     }
-    pub fn get_enableContextMenu(self: *const IWMPPlayer, pbEnableContextMenu: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_enableContextMenu(self: *const IWMPPlayer, pbEnableContextMenu: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_enableContextMenu(self, pbEnableContextMenu);
     }
-    pub fn put_enableContextMenu(self: *const IWMPPlayer, bEnableContextMenu: i16) callconv(.@"inline") HRESULT {
+    pub fn put_enableContextMenu(self: *const IWMPPlayer, bEnableContextMenu: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_enableContextMenu(self, bEnableContextMenu);
     }
     pub fn put_uiMode(self: *const IWMPPlayer, bstrMode: ?BSTR) callconv(.@"inline") HRESULT {
@@ -5576,32 +5576,32 @@ pub const IWMPPlayer2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_enabled: *const fn(
             self: *const IWMPPlayer2,
-            pbEnabled: ?*i16,
+            pbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_enabled: *const fn(
             self: *const IWMPPlayer2,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_fullScreen: *const fn(
             self: *const IWMPPlayer2,
-            pbFullScreen: ?*i16,
+            pbFullScreen: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_fullScreen: *const fn(
             self: *const IWMPPlayer2,
-            bFullScreen: i16,
+            bFullScreen: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_enableContextMenu: *const fn(
             self: *const IWMPPlayer2,
-            pbEnableContextMenu: ?*i16,
+            pbEnableContextMenu: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_enableContextMenu: *const fn(
             self: *const IWMPPlayer2,
-            bEnableContextMenu: i16,
+            bEnableContextMenu: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_uiMode: *const fn(
@@ -5616,44 +5616,44 @@ pub const IWMPPlayer2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_stretchToFit: *const fn(
             self: *const IWMPPlayer2,
-            pbEnabled: ?*i16,
+            pbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_stretchToFit: *const fn(
             self: *const IWMPPlayer2,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_windowlessVideo: *const fn(
             self: *const IWMPPlayer2,
-            pbEnabled: ?*i16,
+            pbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_windowlessVideo: *const fn(
             self: *const IWMPPlayer2,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMPCore: IWMPCore,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_enabled(self: *const IWMPPlayer2, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_enabled(self: *const IWMPPlayer2, pbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_enabled(self, pbEnabled);
     }
-    pub fn put_enabled(self: *const IWMPPlayer2, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_enabled(self: *const IWMPPlayer2, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_enabled(self, bEnabled);
     }
-    pub fn get_fullScreen(self: *const IWMPPlayer2, pbFullScreen: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_fullScreen(self: *const IWMPPlayer2, pbFullScreen: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_fullScreen(self, pbFullScreen);
     }
-    pub fn put_fullScreen(self: *const IWMPPlayer2, bFullScreen: i16) callconv(.@"inline") HRESULT {
+    pub fn put_fullScreen(self: *const IWMPPlayer2, bFullScreen: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_fullScreen(self, bFullScreen);
     }
-    pub fn get_enableContextMenu(self: *const IWMPPlayer2, pbEnableContextMenu: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_enableContextMenu(self: *const IWMPPlayer2, pbEnableContextMenu: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_enableContextMenu(self, pbEnableContextMenu);
     }
-    pub fn put_enableContextMenu(self: *const IWMPPlayer2, bEnableContextMenu: i16) callconv(.@"inline") HRESULT {
+    pub fn put_enableContextMenu(self: *const IWMPPlayer2, bEnableContextMenu: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_enableContextMenu(self, bEnableContextMenu);
     }
     pub fn put_uiMode(self: *const IWMPPlayer2, bstrMode: ?BSTR) callconv(.@"inline") HRESULT {
@@ -5662,16 +5662,16 @@ pub const IWMPPlayer2 = extern union {
     pub fn get_uiMode(self: *const IWMPPlayer2, pbstrMode: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_uiMode(self, pbstrMode);
     }
-    pub fn get_stretchToFit(self: *const IWMPPlayer2, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_stretchToFit(self: *const IWMPPlayer2, pbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_stretchToFit(self, pbEnabled);
     }
-    pub fn put_stretchToFit(self: *const IWMPPlayer2, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_stretchToFit(self: *const IWMPPlayer2, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_stretchToFit(self, bEnabled);
     }
-    pub fn get_windowlessVideo(self: *const IWMPPlayer2, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_windowlessVideo(self: *const IWMPPlayer2, pbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_windowlessVideo(self, pbEnabled);
     }
-    pub fn put_windowlessVideo(self: *const IWMPPlayer2, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_windowlessVideo(self: *const IWMPPlayer2, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_windowlessVideo(self, bEnabled);
     }
 };
@@ -5684,32 +5684,32 @@ pub const IWMPPlayer3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_enabled: *const fn(
             self: *const IWMPPlayer3,
-            pbEnabled: ?*i16,
+            pbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_enabled: *const fn(
             self: *const IWMPPlayer3,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_fullScreen: *const fn(
             self: *const IWMPPlayer3,
-            pbFullScreen: ?*i16,
+            pbFullScreen: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_fullScreen: *const fn(
             self: *const IWMPPlayer3,
-            bFullScreen: i16,
+            bFullScreen: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_enableContextMenu: *const fn(
             self: *const IWMPPlayer3,
-            pbEnableContextMenu: ?*i16,
+            pbEnableContextMenu: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_enableContextMenu: *const fn(
             self: *const IWMPPlayer3,
-            bEnableContextMenu: i16,
+            bEnableContextMenu: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_uiMode: *const fn(
@@ -5724,22 +5724,22 @@ pub const IWMPPlayer3 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_stretchToFit: *const fn(
             self: *const IWMPPlayer3,
-            pbEnabled: ?*i16,
+            pbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_stretchToFit: *const fn(
             self: *const IWMPPlayer3,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_windowlessVideo: *const fn(
             self: *const IWMPPlayer3,
-            pbEnabled: ?*i16,
+            pbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_windowlessVideo: *const fn(
             self: *const IWMPPlayer3,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -5747,22 +5747,22 @@ pub const IWMPPlayer3 = extern union {
     IWMPCore: IWMPCore,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_enabled(self: *const IWMPPlayer3, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_enabled(self: *const IWMPPlayer3, pbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_enabled(self, pbEnabled);
     }
-    pub fn put_enabled(self: *const IWMPPlayer3, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_enabled(self: *const IWMPPlayer3, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_enabled(self, bEnabled);
     }
-    pub fn get_fullScreen(self: *const IWMPPlayer3, pbFullScreen: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_fullScreen(self: *const IWMPPlayer3, pbFullScreen: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_fullScreen(self, pbFullScreen);
     }
-    pub fn put_fullScreen(self: *const IWMPPlayer3, bFullScreen: i16) callconv(.@"inline") HRESULT {
+    pub fn put_fullScreen(self: *const IWMPPlayer3, bFullScreen: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_fullScreen(self, bFullScreen);
     }
-    pub fn get_enableContextMenu(self: *const IWMPPlayer3, pbEnableContextMenu: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_enableContextMenu(self: *const IWMPPlayer3, pbEnableContextMenu: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_enableContextMenu(self, pbEnableContextMenu);
     }
-    pub fn put_enableContextMenu(self: *const IWMPPlayer3, bEnableContextMenu: i16) callconv(.@"inline") HRESULT {
+    pub fn put_enableContextMenu(self: *const IWMPPlayer3, bEnableContextMenu: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_enableContextMenu(self, bEnableContextMenu);
     }
     pub fn put_uiMode(self: *const IWMPPlayer3, bstrMode: ?BSTR) callconv(.@"inline") HRESULT {
@@ -5771,16 +5771,16 @@ pub const IWMPPlayer3 = extern union {
     pub fn get_uiMode(self: *const IWMPPlayer3, pbstrMode: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_uiMode(self, pbstrMode);
     }
-    pub fn get_stretchToFit(self: *const IWMPPlayer3, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_stretchToFit(self: *const IWMPPlayer3, pbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_stretchToFit(self, pbEnabled);
     }
-    pub fn put_stretchToFit(self: *const IWMPPlayer3, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_stretchToFit(self: *const IWMPPlayer3, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_stretchToFit(self, bEnabled);
     }
-    pub fn get_windowlessVideo(self: *const IWMPPlayer3, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_windowlessVideo(self: *const IWMPPlayer3, pbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_windowlessVideo(self, pbEnabled);
     }
-    pub fn put_windowlessVideo(self: *const IWMPPlayer3, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_windowlessVideo(self: *const IWMPPlayer3, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_windowlessVideo(self, bEnabled);
     }
 };
@@ -5793,32 +5793,32 @@ pub const IWMPPlayer4 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_enabled: *const fn(
             self: *const IWMPPlayer4,
-            pbEnabled: ?*i16,
+            pbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_enabled: *const fn(
             self: *const IWMPPlayer4,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_fullScreen: *const fn(
             self: *const IWMPPlayer4,
-            pbFullScreen: ?*i16,
+            pbFullScreen: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_fullScreen: *const fn(
             self: *const IWMPPlayer4,
-            bFullScreen: i16,
+            bFullScreen: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_enableContextMenu: *const fn(
             self: *const IWMPPlayer4,
-            pbEnableContextMenu: ?*i16,
+            pbEnableContextMenu: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_enableContextMenu: *const fn(
             self: *const IWMPPlayer4,
-            bEnableContextMenu: i16,
+            bEnableContextMenu: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_uiMode: *const fn(
@@ -5833,27 +5833,27 @@ pub const IWMPPlayer4 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_stretchToFit: *const fn(
             self: *const IWMPPlayer4,
-            pbEnabled: ?*i16,
+            pbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_stretchToFit: *const fn(
             self: *const IWMPPlayer4,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_windowlessVideo: *const fn(
             self: *const IWMPPlayer4,
-            pbEnabled: ?*i16,
+            pbEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_windowlessVideo: *const fn(
             self: *const IWMPPlayer4,
-            bEnabled: i16,
+            bEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isRemote: *const fn(
             self: *const IWMPPlayer4,
-            pvarfIsRemote: ?*i16,
+            pvarfIsRemote: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_playerApplication: *const fn(
@@ -5871,22 +5871,22 @@ pub const IWMPPlayer4 = extern union {
     IWMPCore: IWMPCore,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_enabled(self: *const IWMPPlayer4, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_enabled(self: *const IWMPPlayer4, pbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_enabled(self, pbEnabled);
     }
-    pub fn put_enabled(self: *const IWMPPlayer4, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_enabled(self: *const IWMPPlayer4, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_enabled(self, bEnabled);
     }
-    pub fn get_fullScreen(self: *const IWMPPlayer4, pbFullScreen: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_fullScreen(self: *const IWMPPlayer4, pbFullScreen: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_fullScreen(self, pbFullScreen);
     }
-    pub fn put_fullScreen(self: *const IWMPPlayer4, bFullScreen: i16) callconv(.@"inline") HRESULT {
+    pub fn put_fullScreen(self: *const IWMPPlayer4, bFullScreen: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_fullScreen(self, bFullScreen);
     }
-    pub fn get_enableContextMenu(self: *const IWMPPlayer4, pbEnableContextMenu: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_enableContextMenu(self: *const IWMPPlayer4, pbEnableContextMenu: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_enableContextMenu(self, pbEnableContextMenu);
     }
-    pub fn put_enableContextMenu(self: *const IWMPPlayer4, bEnableContextMenu: i16) callconv(.@"inline") HRESULT {
+    pub fn put_enableContextMenu(self: *const IWMPPlayer4, bEnableContextMenu: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_enableContextMenu(self, bEnableContextMenu);
     }
     pub fn put_uiMode(self: *const IWMPPlayer4, bstrMode: ?BSTR) callconv(.@"inline") HRESULT {
@@ -5895,19 +5895,19 @@ pub const IWMPPlayer4 = extern union {
     pub fn get_uiMode(self: *const IWMPPlayer4, pbstrMode: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_uiMode(self, pbstrMode);
     }
-    pub fn get_stretchToFit(self: *const IWMPPlayer4, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_stretchToFit(self: *const IWMPPlayer4, pbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_stretchToFit(self, pbEnabled);
     }
-    pub fn put_stretchToFit(self: *const IWMPPlayer4, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_stretchToFit(self: *const IWMPPlayer4, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_stretchToFit(self, bEnabled);
     }
-    pub fn get_windowlessVideo(self: *const IWMPPlayer4, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_windowlessVideo(self: *const IWMPPlayer4, pbEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_windowlessVideo(self, pbEnabled);
     }
-    pub fn put_windowlessVideo(self: *const IWMPPlayer4, bEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_windowlessVideo(self: *const IWMPPlayer4, bEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_windowlessVideo(self, bEnabled);
     }
-    pub fn get_isRemote(self: *const IWMPPlayer4, pvarfIsRemote: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isRemote(self: *const IWMPPlayer4, pvarfIsRemote: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isRemote(self, pvarfIsRemote);
     }
     pub fn get_playerApplication(self: *const IWMPPlayer4, ppIWMPPlayerApplication: ?*?*IWMPPlayerApplication) callconv(.@"inline") HRESULT {
@@ -5932,12 +5932,12 @@ pub const IWMPPlayerApplication = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_playerDocked: *const fn(
             self: *const IWMPPlayerApplication,
-            pbPlayerDocked: ?*i16,
+            pbPlayerDocked: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_hasDisplay: *const fn(
             self: *const IWMPPlayerApplication,
-            pbHasDisplay: ?*i16,
+            pbHasDisplay: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -5949,10 +5949,10 @@ pub const IWMPPlayerApplication = extern union {
     pub fn switchToControl(self: *const IWMPPlayerApplication) callconv(.@"inline") HRESULT {
         return self.vtable.switchToControl(self);
     }
-    pub fn get_playerDocked(self: *const IWMPPlayerApplication, pbPlayerDocked: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_playerDocked(self: *const IWMPPlayerApplication, pbPlayerDocked: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_playerDocked(self, pbPlayerDocked);
     }
-    pub fn get_hasDisplay(self: *const IWMPPlayerApplication, pbHasDisplay: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_hasDisplay(self: *const IWMPPlayerApplication, pbHasDisplay: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_hasDisplay(self, pbHasDisplay);
     }
 };
@@ -6056,7 +6056,7 @@ pub const IWMPPlaylist = extern union {
         get_isIdentical: *const fn(
             self: *const IWMPPlaylist,
             pIWMPPlaylist: ?*IWMPPlaylist,
-            pvbool: ?*i16,
+            pvbool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         clear: *const fn(
             self: *const IWMPPlaylist,
@@ -6107,7 +6107,7 @@ pub const IWMPPlaylist = extern union {
     pub fn setItemInfo(self: *const IWMPPlaylist, bstrName: ?BSTR, bstrValue: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.setItemInfo(self, bstrName, bstrValue);
     }
-    pub fn get_isIdentical(self: *const IWMPPlaylist, pIWMPPlaylist: ?*IWMPPlaylist, pvbool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isIdentical(self: *const IWMPPlaylist, pIWMPPlaylist: ?*IWMPPlaylist, pvbool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isIdentical(self, pIWMPPlaylist, pvbool);
     }
     pub fn clear(self: *const IWMPPlaylist) callconv(.@"inline") HRESULT {
@@ -6180,12 +6180,12 @@ pub const IWMPPlaylistCollection = extern union {
         setDeleted: *const fn(
             self: *const IWMPPlaylistCollection,
             pItem: ?*IWMPPlaylist,
-            varfIsDeleted: i16,
+            varfIsDeleted: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         isDeleted: *const fn(
             self: *const IWMPPlaylistCollection,
             pItem: ?*IWMPPlaylist,
-            pvarfIsDeleted: ?*i16,
+            pvarfIsDeleted: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         importPlaylist: *const fn(
             self: *const IWMPPlaylistCollection,
@@ -6208,10 +6208,10 @@ pub const IWMPPlaylistCollection = extern union {
     pub fn remove(self: *const IWMPPlaylistCollection, pItem: ?*IWMPPlaylist) callconv(.@"inline") HRESULT {
         return self.vtable.remove(self, pItem);
     }
-    pub fn setDeleted(self: *const IWMPPlaylistCollection, pItem: ?*IWMPPlaylist, varfIsDeleted: i16) callconv(.@"inline") HRESULT {
+    pub fn setDeleted(self: *const IWMPPlaylistCollection, pItem: ?*IWMPPlaylist, varfIsDeleted: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.setDeleted(self, pItem, varfIsDeleted);
     }
-    pub fn isDeleted(self: *const IWMPPlaylistCollection, pItem: ?*IWMPPlaylist, pvarfIsDeleted: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isDeleted(self: *const IWMPPlaylistCollection, pItem: ?*IWMPPlaylist, pvarfIsDeleted: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isDeleted(self, pItem, pvarfIsDeleted);
     }
     pub fn importPlaylist(self: *const IWMPPlaylistCollection, pItem: ?*IWMPPlaylist, ppImportedItem: ?*?*IWMPPlaylist) callconv(.@"inline") HRESULT {
@@ -6477,17 +6477,17 @@ pub const IWMPSettings = extern union {
         get_isAvailable: *const fn(
             self: *const IWMPSettings,
             bstrItem: ?BSTR,
-            pIsAvailable: ?*i16,
+            pIsAvailable: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_autoStart: *const fn(
             self: *const IWMPSettings,
-            pfAutoStart: ?*i16,
+            pfAutoStart: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_autoStart: *const fn(
             self: *const IWMPSettings,
-            fAutoStart: i16,
+            fAutoStart: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_baseURL: *const fn(
@@ -6512,22 +6512,22 @@ pub const IWMPSettings = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_invokeURLs: *const fn(
             self: *const IWMPSettings,
-            pfInvokeURLs: ?*i16,
+            pfInvokeURLs: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_invokeURLs: *const fn(
             self: *const IWMPSettings,
-            fInvokeURLs: i16,
+            fInvokeURLs: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_mute: *const fn(
             self: *const IWMPSettings,
-            pfMute: ?*i16,
+            pfMute: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_mute: *const fn(
             self: *const IWMPSettings,
-            fMute: i16,
+            fMute: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_playCount: *const fn(
@@ -6572,34 +6572,34 @@ pub const IWMPSettings = extern union {
         getMode: *const fn(
             self: *const IWMPSettings,
             bstrMode: ?BSTR,
-            pvarfMode: ?*i16,
+            pvarfMode: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         setMode: *const fn(
             self: *const IWMPSettings,
             bstrMode: ?BSTR,
-            varfMode: i16,
+            varfMode: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_enableErrorDialogs: *const fn(
             self: *const IWMPSettings,
-            pfEnableErrorDialogs: ?*i16,
+            pfEnableErrorDialogs: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_enableErrorDialogs: *const fn(
             self: *const IWMPSettings,
-            fEnableErrorDialogs: i16,
+            fEnableErrorDialogs: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_isAvailable(self: *const IWMPSettings, bstrItem: ?BSTR, pIsAvailable: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_isAvailable(self: *const IWMPSettings, bstrItem: ?BSTR, pIsAvailable: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_isAvailable(self, bstrItem, pIsAvailable);
     }
-    pub fn get_autoStart(self: *const IWMPSettings, pfAutoStart: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_autoStart(self: *const IWMPSettings, pfAutoStart: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_autoStart(self, pfAutoStart);
     }
-    pub fn put_autoStart(self: *const IWMPSettings, fAutoStart: i16) callconv(.@"inline") HRESULT {
+    pub fn put_autoStart(self: *const IWMPSettings, fAutoStart: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_autoStart(self, fAutoStart);
     }
     pub fn get_baseURL(self: *const IWMPSettings, pbstrBaseURL: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -6614,16 +6614,16 @@ pub const IWMPSettings = extern union {
     pub fn put_defaultFrame(self: *const IWMPSettings, bstrDefaultFrame: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_defaultFrame(self, bstrDefaultFrame);
     }
-    pub fn get_invokeURLs(self: *const IWMPSettings, pfInvokeURLs: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_invokeURLs(self: *const IWMPSettings, pfInvokeURLs: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_invokeURLs(self, pfInvokeURLs);
     }
-    pub fn put_invokeURLs(self: *const IWMPSettings, fInvokeURLs: i16) callconv(.@"inline") HRESULT {
+    pub fn put_invokeURLs(self: *const IWMPSettings, fInvokeURLs: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_invokeURLs(self, fInvokeURLs);
     }
-    pub fn get_mute(self: *const IWMPSettings, pfMute: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_mute(self: *const IWMPSettings, pfMute: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_mute(self, pfMute);
     }
-    pub fn put_mute(self: *const IWMPSettings, fMute: i16) callconv(.@"inline") HRESULT {
+    pub fn put_mute(self: *const IWMPSettings, fMute: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_mute(self, fMute);
     }
     pub fn get_playCount(self: *const IWMPSettings, plCount: ?*i32) callconv(.@"inline") HRESULT {
@@ -6650,16 +6650,16 @@ pub const IWMPSettings = extern union {
     pub fn put_volume(self: *const IWMPSettings, lVolume: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_volume(self, lVolume);
     }
-    pub fn getMode(self: *const IWMPSettings, bstrMode: ?BSTR, pvarfMode: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn getMode(self: *const IWMPSettings, bstrMode: ?BSTR, pvarfMode: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.getMode(self, bstrMode, pvarfMode);
     }
-    pub fn setMode(self: *const IWMPSettings, bstrMode: ?BSTR, varfMode: i16) callconv(.@"inline") HRESULT {
+    pub fn setMode(self: *const IWMPSettings, bstrMode: ?BSTR, varfMode: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.setMode(self, bstrMode, varfMode);
     }
-    pub fn get_enableErrorDialogs(self: *const IWMPSettings, pfEnableErrorDialogs: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_enableErrorDialogs(self: *const IWMPSettings, pfEnableErrorDialogs: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_enableErrorDialogs(self, pfEnableErrorDialogs);
     }
-    pub fn put_enableErrorDialogs(self: *const IWMPSettings, fEnableErrorDialogs: i16) callconv(.@"inline") HRESULT {
+    pub fn put_enableErrorDialogs(self: *const IWMPSettings, fEnableErrorDialogs: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_enableErrorDialogs(self, fEnableErrorDialogs);
     }
 };
@@ -6682,7 +6682,7 @@ pub const IWMPSettings2 = extern union {
         requestMediaAccessRights: *const fn(
             self: *const IWMPSettings2,
             bstrDesiredAccess: ?BSTR,
-            pvbAccepted: ?*i16,
+            pvbAccepted: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -6695,7 +6695,7 @@ pub const IWMPSettings2 = extern union {
     pub fn get_mediaAccessRights(self: *const IWMPSettings2, pbstrRights: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_mediaAccessRights(self, pbstrRights);
     }
-    pub fn requestMediaAccessRights(self: *const IWMPSettings2, bstrDesiredAccess: ?BSTR, pvbAccepted: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn requestMediaAccessRights(self: *const IWMPSettings2, bstrDesiredAccess: ?BSTR, pvbAccepted: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.requestMediaAccessRights(self, bstrDesiredAccess, pvbAccepted);
     }
 };
@@ -6752,7 +6752,7 @@ pub const IWMPStringCollection2 = extern union {
         isIdentical: *const fn(
             self: *const IWMPStringCollection2,
             pIWMPStringCollection2: ?*IWMPStringCollection2,
-            pvbool: ?*i16,
+            pvbool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getItemInfo: *const fn(
             self: *const IWMPStringCollection2,
@@ -6780,7 +6780,7 @@ pub const IWMPStringCollection2 = extern union {
     IWMPStringCollection: IWMPStringCollection,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn isIdentical(self: *const IWMPStringCollection2, pIWMPStringCollection2: ?*IWMPStringCollection2, pvbool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isIdentical(self: *const IWMPStringCollection2, pIWMPStringCollection2: ?*IWMPStringCollection2, pvbool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isIdentical(self, pIWMPStringCollection2, pvbool);
     }
     pub fn getItemInfo(self: *const IWMPStringCollection2, lCollectionIndex: i32, bstrItemName: ?BSTR, pbstrValue: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -6929,7 +6929,7 @@ pub const IWMPSyncDevice = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_connected: *const fn(
             self: *const IWMPSyncDevice,
-            pvbConnected: ?*i16,
+            pvbConnected: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_status: *const fn(
@@ -6953,7 +6953,7 @@ pub const IWMPSyncDevice = extern union {
         ) callconv(.winapi) HRESULT,
         createPartnership: *const fn(
             self: *const IWMPSyncDevice,
-            vbShowUI: i16,
+            vbShowUI: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         deletePartnership: *const fn(
             self: *const IWMPSyncDevice,
@@ -6970,7 +6970,7 @@ pub const IWMPSyncDevice = extern union {
         isIdentical: *const fn(
             self: *const IWMPSyncDevice,
             pDevice: ?*IWMPSyncDevice,
-            pvbool: ?*i16,
+            pvbool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -6990,7 +6990,7 @@ pub const IWMPSyncDevice = extern union {
     pub fn get_partnershipIndex(self: *const IWMPSyncDevice, plIndex: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_partnershipIndex(self, plIndex);
     }
-    pub fn get_connected(self: *const IWMPSyncDevice, pvbConnected: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_connected(self: *const IWMPSyncDevice, pvbConnected: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_connected(self, pvbConnected);
     }
     pub fn get_status(self: *const IWMPSyncDevice, pwmpds: ?*WMPDeviceStatus) callconv(.@"inline") HRESULT {
@@ -7005,7 +7005,7 @@ pub const IWMPSyncDevice = extern union {
     pub fn getItemInfo(self: *const IWMPSyncDevice, bstrItemName: ?BSTR, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.getItemInfo(self, bstrItemName, pbstrVal);
     }
-    pub fn createPartnership(self: *const IWMPSyncDevice, vbShowUI: i16) callconv(.@"inline") HRESULT {
+    pub fn createPartnership(self: *const IWMPSyncDevice, vbShowUI: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.createPartnership(self, vbShowUI);
     }
     pub fn deletePartnership(self: *const IWMPSyncDevice) callconv(.@"inline") HRESULT {
@@ -7020,7 +7020,7 @@ pub const IWMPSyncDevice = extern union {
     pub fn showSettings(self: *const IWMPSyncDevice) callconv(.@"inline") HRESULT {
         return self.vtable.showSettings(self);
     }
-    pub fn isIdentical(self: *const IWMPSyncDevice, pDevice: ?*IWMPSyncDevice, pvbool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn isIdentical(self: *const IWMPSyncDevice, pDevice: ?*IWMPSyncDevice, pvbool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.isIdentical(self, pDevice, pvbool);
     }
 };
@@ -7103,12 +7103,12 @@ pub const IWMPTranscodePolicy = extern union {
         base: IUnknown.VTable,
         allowTranscode: *const fn(
             self: *const IWMPTranscodePolicy,
-            pvbAllow: ?*i16,
+            pvbAllow: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn allowTranscode(self: *const IWMPTranscodePolicy, pvbAllow: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn allowTranscode(self: *const IWMPTranscodePolicy, pvbAllow: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.allowTranscode(self, pvbAllow);
     }
 };
@@ -8689,7 +8689,7 @@ pub const wmpttBuy = WMPTransactionType.Buy;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (21)
+// Section: Imports (22)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLOB = @import("../system/com.zig").BLOB;
@@ -8711,6 +8711,7 @@ const RECT = @import("../foundation.zig").RECT;
 const SIZE = @import("../foundation.zig").SIZE;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {

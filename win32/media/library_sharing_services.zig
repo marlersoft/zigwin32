@@ -163,12 +163,12 @@ pub const IWindowsMediaLibrarySharingServices = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_userHomeMediaSharingState: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
-            sharingEnabled: ?*i16,
+            sharingEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_userHomeMediaSharingState: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
-            sharingEnabled: i16,
+            sharingEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_userHomeMediaSharingLibraryName: *const fn(
@@ -183,32 +183,32 @@ pub const IWindowsMediaLibrarySharingServices = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_computerHomeMediaSharingAllowedState: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
-            sharingAllowed: ?*i16,
+            sharingAllowed: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_computerHomeMediaSharingAllowedState: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
-            sharingAllowed: i16,
+            sharingAllowed: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_userInternetMediaSharingState: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
-            sharingEnabled: ?*i16,
+            sharingEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_userInternetMediaSharingState: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
-            sharingEnabled: i16,
+            sharingEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_computerInternetMediaSharingAllowedState: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
-            sharingAllowed: ?*i16,
+            sharingAllowed: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_computerInternetMediaSharingAllowedState: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
-            sharingAllowed: i16,
+            sharingAllowed: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_internetMediaSharingSecurityGroup: *const fn(
@@ -223,23 +223,23 @@ pub const IWindowsMediaLibrarySharingServices = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_allowSharingToAllDevices: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
-            sharingEnabled: ?*i16,
+            sharingEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_allowSharingToAllDevices: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
-            sharingEnabled: i16,
+            sharingEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         setDefaultAuthorization: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             MACAddresses: ?BSTR,
             friendlyName: ?BSTR,
-            authorization: i16,
+            authorization: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         setAuthorizationState: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             MACAddress: ?BSTR,
-            authorizationState: i16,
+            authorizationState: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         getAllDevices: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
@@ -248,7 +248,7 @@ pub const IWindowsMediaLibrarySharingServices = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_customSettingsApplied: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
-            customSettingsApplied: ?*i16,
+            customSettingsApplied: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -257,10 +257,10 @@ pub const IWindowsMediaLibrarySharingServices = extern union {
     pub fn showShareMediaCPL(self: *const IWindowsMediaLibrarySharingServices, device: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.showShareMediaCPL(self, device);
     }
-    pub fn get_userHomeMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_userHomeMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_userHomeMediaSharingState(self, sharingEnabled);
     }
-    pub fn put_userHomeMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_userHomeMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_userHomeMediaSharingState(self, sharingEnabled);
     }
     pub fn get_userHomeMediaSharingLibraryName(self: *const IWindowsMediaLibrarySharingServices, libraryName: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -269,22 +269,22 @@ pub const IWindowsMediaLibrarySharingServices = extern union {
     pub fn put_userHomeMediaSharingLibraryName(self: *const IWindowsMediaLibrarySharingServices, libraryName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_userHomeMediaSharingLibraryName(self, libraryName);
     }
-    pub fn get_computerHomeMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_computerHomeMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_computerHomeMediaSharingAllowedState(self, sharingAllowed);
     }
-    pub fn put_computerHomeMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: i16) callconv(.@"inline") HRESULT {
+    pub fn put_computerHomeMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_computerHomeMediaSharingAllowedState(self, sharingAllowed);
     }
-    pub fn get_userInternetMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_userInternetMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_userInternetMediaSharingState(self, sharingEnabled);
     }
-    pub fn put_userInternetMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_userInternetMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_userInternetMediaSharingState(self, sharingEnabled);
     }
-    pub fn get_computerInternetMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_computerInternetMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_computerInternetMediaSharingAllowedState(self, sharingAllowed);
     }
-    pub fn put_computerInternetMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: i16) callconv(.@"inline") HRESULT {
+    pub fn put_computerInternetMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_computerInternetMediaSharingAllowedState(self, sharingAllowed);
     }
     pub fn get_internetMediaSharingSecurityGroup(self: *const IWindowsMediaLibrarySharingServices, securityGroup: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -293,22 +293,22 @@ pub const IWindowsMediaLibrarySharingServices = extern union {
     pub fn put_internetMediaSharingSecurityGroup(self: *const IWindowsMediaLibrarySharingServices, securityGroup: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_internetMediaSharingSecurityGroup(self, securityGroup);
     }
-    pub fn get_allowSharingToAllDevices(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_allowSharingToAllDevices(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_allowSharingToAllDevices(self, sharingEnabled);
     }
-    pub fn put_allowSharingToAllDevices(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_allowSharingToAllDevices(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_allowSharingToAllDevices(self, sharingEnabled);
     }
-    pub fn setDefaultAuthorization(self: *const IWindowsMediaLibrarySharingServices, MACAddresses: ?BSTR, friendlyName: ?BSTR, authorization: i16) callconv(.@"inline") HRESULT {
+    pub fn setDefaultAuthorization(self: *const IWindowsMediaLibrarySharingServices, MACAddresses: ?BSTR, friendlyName: ?BSTR, authorization: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.setDefaultAuthorization(self, MACAddresses, friendlyName, authorization);
     }
-    pub fn setAuthorizationState(self: *const IWindowsMediaLibrarySharingServices, MACAddress: ?BSTR, authorizationState: i16) callconv(.@"inline") HRESULT {
+    pub fn setAuthorizationState(self: *const IWindowsMediaLibrarySharingServices, MACAddress: ?BSTR, authorizationState: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.setAuthorizationState(self, MACAddress, authorizationState);
     }
     pub fn getAllDevices(self: *const IWindowsMediaLibrarySharingServices, devices: ?*?*IWindowsMediaLibrarySharingDevices) callconv(.@"inline") HRESULT {
         return self.vtable.getAllDevices(self, devices);
     }
-    pub fn get_customSettingsApplied(self: *const IWindowsMediaLibrarySharingServices, customSettingsApplied: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_customSettingsApplied(self: *const IWindowsMediaLibrarySharingServices, customSettingsApplied: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_customSettingsApplied(self, customSettingsApplied);
     }
 };
@@ -334,7 +334,7 @@ pub const CLSID_WindowsMediaLibrarySharingServices = &CLSID_WindowsMediaLibraryS
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BSTR = @import("../foundation.zig").BSTR;
@@ -342,6 +342,7 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     @setEvalBranchQuota(

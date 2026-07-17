@@ -11,14 +11,14 @@ pub const XUSER_MAX_COUNT = @as(u32, 4);
 //--------------------------------------------------------------------------------
 // Section: Types (16)
 //--------------------------------------------------------------------------------
-pub const BATTERY_DEVTYPE = enum(u32) {
+pub const BATTERY_DEVTYPE = enum(u8) {
     GAMEPAD = 0,
     HEADSET = 1,
 };
 pub const BATTERY_DEVTYPE_GAMEPAD = BATTERY_DEVTYPE.GAMEPAD;
 pub const BATTERY_DEVTYPE_HEADSET = BATTERY_DEVTYPE.HEADSET;
 
-pub const BATTERY_LEVEL = enum(u32) {
+pub const BATTERY_LEVEL = enum(u8) {
     EMPTY = 0,
     LOW = 1,
     MEDIUM = 2,
@@ -29,7 +29,7 @@ pub const BATTERY_LEVEL_LOW = BATTERY_LEVEL.LOW;
 pub const BATTERY_LEVEL_MEDIUM = BATTERY_LEVEL.MEDIUM;
 pub const BATTERY_LEVEL_FULL = BATTERY_LEVEL.FULL;
 
-pub const BATTERY_TYPE = enum(u32) {
+pub const BATTERY_TYPE = enum(u8) {
     DISCONNECTED = 0,
     WIRED = 1,
     ALKALINE = 2,
@@ -79,7 +79,7 @@ pub const XINPUT_CAPS_WIRELESS = XINPUT_CAPABILITIES_FLAGS{ .WIRELESS = 1 };
 pub const XINPUT_CAPS_PMD_SUPPORTED = XINPUT_CAPABILITIES_FLAGS{ .PMD_SUPPORTED = 1 };
 pub const XINPUT_CAPS_NO_NAVIGATION = XINPUT_CAPABILITIES_FLAGS{ .NO_NAVIGATION = 1 };
 
-pub const XINPUT_DEVSUBTYPE = enum(u32) {
+pub const XINPUT_DEVSUBTYPE = enum(u8) {
     GAMEPAD = 1,
     UNKNOWN = 0,
     WHEEL = 2,
@@ -104,7 +104,7 @@ pub const XINPUT_DEVSUBTYPE_DRUM_KIT = XINPUT_DEVSUBTYPE.DRUM_KIT;
 pub const XINPUT_DEVSUBTYPE_GUITAR_BASS = XINPUT_DEVSUBTYPE.GUITAR_BASS;
 pub const XINPUT_DEVSUBTYPE_ARCADE_PAD = XINPUT_DEVSUBTYPE.ARCADE_PAD;
 
-pub const XINPUT_DEVTYPE = enum(u32) {
+pub const XINPUT_DEVTYPE = enum(u8) {
     D = 1,
 };
 pub const XINPUT_DEVTYPE_GAMEPAD = XINPUT_DEVTYPE.D;

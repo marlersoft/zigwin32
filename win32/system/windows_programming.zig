@@ -1021,12 +1021,12 @@ pub const IContainerActivationHelper = extern union {
         base: IUnknown.VTable,
         CanActivateClientVM: *const fn(
             self: *const IContainerActivationHelper,
-            isAllowed: ?*i16,
+            isAllowed: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CanActivateClientVM(self: *const IContainerActivationHelper, isAllowed: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn CanActivateClientVM(self: *const IContainerActivationHelper, isAllowed: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CanActivateClientVM(self, isAllowed);
     }
 };
@@ -1071,7 +1071,7 @@ pub const IEditionUpgradeBroker = extern union {
         base: IUnknown.VTable,
         InitializeParentWindow: *const fn(
             self: *const IEditionUpgradeBroker,
-            parentHandle: u32,
+            parentHandle: OLE_HANDLE,
         ) callconv(.winapi) HRESULT,
         UpdateOperatingSystem: *const fn(
             self: *const IEditionUpgradeBroker,
@@ -1086,7 +1086,7 @@ pub const IEditionUpgradeBroker = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn InitializeParentWindow(self: *const IEditionUpgradeBroker, parentHandle: u32) callconv(.@"inline") HRESULT {
+    pub fn InitializeParentWindow(self: *const IEditionUpgradeBroker, parentHandle: OLE_HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeParentWindow(self, parentHandle);
     }
     pub fn UpdateOperatingSystem(self: *const IEditionUpgradeBroker, parameter: ?BSTR) callconv(.@"inline") HRESULT {
@@ -3746,7 +3746,7 @@ pub const WriteProfileString = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (28)
+// Section: Imports (30)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -3766,6 +3766,7 @@ const LIST_ENTRY = @import("../system/kernel.zig").LIST_ENTRY;
 const LPARAM = @import("../foundation.zig").LPARAM;
 const LRESULT = @import("../foundation.zig").LRESULT;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
+const OLE_HANDLE = @import("../system/ole.zig").OLE_HANDLE;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
@@ -3774,6 +3775,7 @@ const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const STRING = @import("../system/kernel.zig").STRING;
 const UNICODE_STRING = @import("../foundation.zig").UNICODE_STRING;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
 const WPARAM = @import("../foundation.zig").WPARAM;
 

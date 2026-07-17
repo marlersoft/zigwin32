@@ -749,7 +749,7 @@ pub const ContextInfo = extern union {
         base: IDispatch.VTable,
         IsInTransaction: *const fn(
             self: *const ContextInfo,
-            pbIsInTx: ?*i16,
+            pbIsInTx: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetTransaction: *const fn(
             self: *const ContextInfo,
@@ -771,7 +771,7 @@ pub const ContextInfo = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn IsInTransaction(self: *const ContextInfo, pbIsInTx: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsInTransaction(self: *const ContextInfo, pbIsInTx: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsInTransaction(self, pbIsInTx);
     }
     pub fn GetTransaction(self: *const ContextInfo, ppTx: ?*?*IUnknown) callconv(.@"inline") HRESULT {
@@ -1127,12 +1127,12 @@ pub const ICatalogCollection = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AddEnabled: *const fn(
             self: *const ICatalogCollection,
-            pVarBool: ?*i16,
+            pVarBool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoveEnabled: *const fn(
             self: *const ICatalogCollection,
-            pVarBool: ?*i16,
+            pVarBool: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetUtilInterface: *const fn(
             self: *const ICatalogCollection,
@@ -1188,10 +1188,10 @@ pub const ICatalogCollection = extern union {
     pub fn get_Name(self: *const ICatalogCollection, pVarNamel: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pVarNamel);
     }
-    pub fn get_AddEnabled(self: *const ICatalogCollection, pVarBool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AddEnabled(self: *const ICatalogCollection, pVarBool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AddEnabled(self, pVarBool);
     }
-    pub fn get_RemoveEnabled(self: *const ICatalogCollection, pVarBool: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_RemoveEnabled(self: *const ICatalogCollection, pVarBool: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_RemoveEnabled(self, pVarBool);
     }
     pub fn GetUtilInterface(self: *const ICatalogCollection, ppIDispatch: ?*?*IDispatch) callconv(.@"inline") HRESULT {
@@ -1240,17 +1240,17 @@ pub const ICatalogObject = extern union {
         IsPropertyReadOnly: *const fn(
             self: *const ICatalogObject,
             bstrPropName: ?BSTR,
-            pbRetVal: ?*i16,
+            pbRetVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Valid: *const fn(
             self: *const ICatalogObject,
-            pbRetVal: ?*i16,
+            pbRetVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         IsPropertyWriteOnly: *const fn(
             self: *const ICatalogObject,
             bstrPropName: ?BSTR,
-            pbRetVal: ?*i16,
+            pbRetVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1268,13 +1268,13 @@ pub const ICatalogObject = extern union {
     pub fn get_Name(self: *const ICatalogObject, pvarRetVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pvarRetVal);
     }
-    pub fn IsPropertyReadOnly(self: *const ICatalogObject, bstrPropName: ?BSTR, pbRetVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsPropertyReadOnly(self: *const ICatalogObject, bstrPropName: ?BSTR, pbRetVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsPropertyReadOnly(self, bstrPropName, pbRetVal);
     }
-    pub fn get_Valid(self: *const ICatalogObject, pbRetVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Valid(self: *const ICatalogObject, pbRetVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Valid(self, pbRetVal);
     }
-    pub fn IsPropertyWriteOnly(self: *const ICatalogObject, bstrPropName: ?BSTR, pbRetVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsPropertyWriteOnly(self: *const ICatalogObject, bstrPropName: ?BSTR, pbRetVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsPropertyWriteOnly(self, bstrPropName, pbRetVal);
     }
 };
@@ -1484,8 +1484,8 @@ pub const ICOMAdminCatalog = extern union {
             bstrApplicationFile: ?BSTR,
             pbstrApplicationName: ?*?BSTR,
             pbstrApplicationDescription: ?*?BSTR,
-            pbHasUsers: ?*i16,
-            pbIsProxy: ?*i16,
+            pbHasUsers: ?*VARIANT_BOOL,
+            pbIsProxy: ?*VARIANT_BOOL,
             ppsaVarFileNames: ?*?*SAFEARRAY,
         ) callconv(.winapi) HRESULT,
         StartApplication: *const fn(
@@ -1581,7 +1581,7 @@ pub const ICOMAdminCatalog = extern union {
     pub fn RestoreREGDB(self: *const ICOMAdminCatalog, bstrBackupFilePath: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.RestoreREGDB(self, bstrBackupFilePath);
     }
-    pub fn QueryApplicationFile(self: *const ICOMAdminCatalog, bstrApplicationFile: ?BSTR, pbstrApplicationName: ?*?BSTR, pbstrApplicationDescription: ?*?BSTR, pbHasUsers: ?*i16, pbIsProxy: ?*i16, ppsaVarFileNames: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
+    pub fn QueryApplicationFile(self: *const ICOMAdminCatalog, bstrApplicationFile: ?BSTR, pbstrApplicationName: ?*?BSTR, pbstrApplicationDescription: ?*?BSTR, pbHasUsers: ?*VARIANT_BOOL, pbIsProxy: ?*VARIANT_BOOL, ppsaVarFileNames: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.QueryApplicationFile(self, bstrApplicationFile, pbstrApplicationName, pbstrApplicationDescription, pbHasUsers, pbIsProxy, ppsaVarFileNames);
     }
     pub fn StartApplication(self: *const ICOMAdminCatalog, bstrApplIdOrName: ?BSTR) callconv(.@"inline") HRESULT {
@@ -1638,7 +1638,7 @@ pub const ICOMAdminCatalog2 = extern union {
         AreApplicationInstancesPaused: *const fn(
             self: *const ICOMAdminCatalog2,
             pVarApplicationInstanceID: ?*VARIANT,
-            pVarBoolPaused: ?*i16,
+            pVarBoolPaused: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         DumpApplicationInstance: *const fn(
             self: *const ICOMAdminCatalog2,
@@ -1650,7 +1650,7 @@ pub const ICOMAdminCatalog2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsApplicationInstanceDumpSupported: *const fn(
             self: *const ICOMAdminCatalog2,
-            pVarBoolDumpSupported: ?*i16,
+            pVarBoolDumpSupported: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         CreateServiceForApplication: *const fn(
             self: *const ICOMAdminCatalog2,
@@ -1661,7 +1661,7 @@ pub const ICOMAdminCatalog2 = extern union {
             bstrDependencies: ?BSTR,
             bstrRunAs: ?BSTR,
             bstrPassword: ?BSTR,
-            bDesktopOk: i16,
+            bDesktopOk: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         DeleteServiceForApplication: *const fn(
             self: *const ICOMAdminCatalog2,
@@ -1752,7 +1752,7 @@ pub const ICOMAdminCatalog2 = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Is64BitCatalogServer: *const fn(
             self: *const ICOMAdminCatalog2,
-            pbIs64Bit: ?*i16,
+            pbIs64Bit: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         ExportPartition: *const fn(
             self: *const ICOMAdminCatalog2,
@@ -1802,16 +1802,16 @@ pub const ICOMAdminCatalog2 = extern union {
     pub fn RecycleApplicationInstances(self: *const ICOMAdminCatalog2, pVarApplicationInstanceID: ?*VARIANT, lReasonCode: i32) callconv(.@"inline") HRESULT {
         return self.vtable.RecycleApplicationInstances(self, pVarApplicationInstanceID, lReasonCode);
     }
-    pub fn AreApplicationInstancesPaused(self: *const ICOMAdminCatalog2, pVarApplicationInstanceID: ?*VARIANT, pVarBoolPaused: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn AreApplicationInstancesPaused(self: *const ICOMAdminCatalog2, pVarApplicationInstanceID: ?*VARIANT, pVarBoolPaused: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.AreApplicationInstancesPaused(self, pVarApplicationInstanceID, pVarBoolPaused);
     }
     pub fn DumpApplicationInstance(self: *const ICOMAdminCatalog2, bstrApplicationInstanceID: ?BSTR, bstrDirectory: ?BSTR, lMaxImages: i32, pbstrDumpFile: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DumpApplicationInstance(self, bstrApplicationInstanceID, bstrDirectory, lMaxImages, pbstrDumpFile);
     }
-    pub fn get_IsApplicationInstanceDumpSupported(self: *const ICOMAdminCatalog2, pVarBoolDumpSupported: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsApplicationInstanceDumpSupported(self: *const ICOMAdminCatalog2, pVarBoolDumpSupported: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsApplicationInstanceDumpSupported(self, pVarBoolDumpSupported);
     }
-    pub fn CreateServiceForApplication(self: *const ICOMAdminCatalog2, bstrApplicationIDOrName: ?BSTR, bstrServiceName: ?BSTR, bstrStartType: ?BSTR, bstrErrorControl: ?BSTR, bstrDependencies: ?BSTR, bstrRunAs: ?BSTR, bstrPassword: ?BSTR, bDesktopOk: i16) callconv(.@"inline") HRESULT {
+    pub fn CreateServiceForApplication(self: *const ICOMAdminCatalog2, bstrApplicationIDOrName: ?BSTR, bstrServiceName: ?BSTR, bstrStartType: ?BSTR, bstrErrorControl: ?BSTR, bstrDependencies: ?BSTR, bstrRunAs: ?BSTR, bstrPassword: ?BSTR, bDesktopOk: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CreateServiceForApplication(self, bstrApplicationIDOrName, bstrServiceName, bstrStartType, bstrErrorControl, bstrDependencies, bstrRunAs, bstrPassword, bDesktopOk);
     }
     pub fn DeleteServiceForApplication(self: *const ICOMAdminCatalog2, bstrApplicationIDOrName: ?BSTR) callconv(.@"inline") HRESULT {
@@ -1862,7 +1862,7 @@ pub const ICOMAdminCatalog2 = extern union {
     pub fn ImportComponents(self: *const ICOMAdminCatalog2, bstrApplicationIDOrName: ?BSTR, pVarCLSIDOrProgID: ?*VARIANT, pVarComponentType: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.ImportComponents(self, bstrApplicationIDOrName, pVarCLSIDOrProgID, pVarComponentType);
     }
-    pub fn get_Is64BitCatalogServer(self: *const ICOMAdminCatalog2, pbIs64Bit: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Is64BitCatalogServer(self: *const ICOMAdminCatalog2, pbIs64Bit: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Is64BitCatalogServer(self, pbIs64Bit);
     }
     pub fn ExportPartition(self: *const ICOMAdminCatalog2, bstrPartitionIDOrName: ?BSTR, bstrPartitionFileName: ?BSTR, lOptions: COMAdminApplicationExportOptions) callconv(.@"inline") HRESULT {
@@ -3493,11 +3493,11 @@ pub const IContextState = extern union {
         base: IUnknown.VTable,
         SetDeactivateOnReturn: *const fn(
             self: *const IContextState,
-            bDeactivate: i16,
+            bDeactivate: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetDeactivateOnReturn: *const fn(
             self: *const IContextState,
-            pbDeactivate: ?*i16,
+            pbDeactivate: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SetMyTransactionVote: *const fn(
             self: *const IContextState,
@@ -3510,10 +3510,10 @@ pub const IContextState = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetDeactivateOnReturn(self: *const IContextState, bDeactivate: i16) callconv(.@"inline") HRESULT {
+    pub fn SetDeactivateOnReturn(self: *const IContextState, bDeactivate: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetDeactivateOnReturn(self, bDeactivate);
     }
-    pub fn GetDeactivateOnReturn(self: *const IContextState, pbDeactivate: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn GetDeactivateOnReturn(self: *const IContextState, pbDeactivate: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeactivateOnReturn(self, pbDeactivate);
     }
     pub fn SetMyTransactionVote(self: *const IContextState, txVote: TransactionVote) callconv(.@"inline") HRESULT {
@@ -3684,32 +3684,32 @@ pub const ICrmCompensatorVariants = extern union {
         PrepareRecordVariants: *const fn(
             self: *const ICrmCompensatorVariants,
             pLogRecord: ?*VARIANT,
-            pbForget: ?*i16,
+            pbForget: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         EndPrepareVariants: *const fn(
             self: *const ICrmCompensatorVariants,
-            pbOkToPrepare: ?*i16,
+            pbOkToPrepare: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         BeginCommitVariants: *const fn(
             self: *const ICrmCompensatorVariants,
-            bRecovery: i16,
+            bRecovery: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         CommitRecordVariants: *const fn(
             self: *const ICrmCompensatorVariants,
             pLogRecord: ?*VARIANT,
-            pbForget: ?*i16,
+            pbForget: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         EndCommitVariants: *const fn(
             self: *const ICrmCompensatorVariants,
         ) callconv(.winapi) HRESULT,
         BeginAbortVariants: *const fn(
             self: *const ICrmCompensatorVariants,
-            bRecovery: i16,
+            bRecovery: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         AbortRecordVariants: *const fn(
             self: *const ICrmCompensatorVariants,
             pLogRecord: ?*VARIANT,
-            pbForget: ?*i16,
+            pbForget: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         EndAbortVariants: *const fn(
             self: *const ICrmCompensatorVariants,
@@ -3723,25 +3723,25 @@ pub const ICrmCompensatorVariants = extern union {
     pub fn BeginPrepareVariants(self: *const ICrmCompensatorVariants) callconv(.@"inline") HRESULT {
         return self.vtable.BeginPrepareVariants(self);
     }
-    pub fn PrepareRecordVariants(self: *const ICrmCompensatorVariants, pLogRecord: ?*VARIANT, pbForget: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn PrepareRecordVariants(self: *const ICrmCompensatorVariants, pLogRecord: ?*VARIANT, pbForget: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.PrepareRecordVariants(self, pLogRecord, pbForget);
     }
-    pub fn EndPrepareVariants(self: *const ICrmCompensatorVariants, pbOkToPrepare: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn EndPrepareVariants(self: *const ICrmCompensatorVariants, pbOkToPrepare: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.EndPrepareVariants(self, pbOkToPrepare);
     }
-    pub fn BeginCommitVariants(self: *const ICrmCompensatorVariants, bRecovery: i16) callconv(.@"inline") HRESULT {
+    pub fn BeginCommitVariants(self: *const ICrmCompensatorVariants, bRecovery: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.BeginCommitVariants(self, bRecovery);
     }
-    pub fn CommitRecordVariants(self: *const ICrmCompensatorVariants, pLogRecord: ?*VARIANT, pbForget: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn CommitRecordVariants(self: *const ICrmCompensatorVariants, pLogRecord: ?*VARIANT, pbForget: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CommitRecordVariants(self, pLogRecord, pbForget);
     }
     pub fn EndCommitVariants(self: *const ICrmCompensatorVariants) callconv(.@"inline") HRESULT {
         return self.vtable.EndCommitVariants(self);
     }
-    pub fn BeginAbortVariants(self: *const ICrmCompensatorVariants, bRecovery: i16) callconv(.@"inline") HRESULT {
+    pub fn BeginAbortVariants(self: *const ICrmCompensatorVariants, bRecovery: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.BeginAbortVariants(self, bRecovery);
     }
-    pub fn AbortRecordVariants(self: *const ICrmCompensatorVariants, pLogRecord: ?*VARIANT, pbForget: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn AbortRecordVariants(self: *const ICrmCompensatorVariants, pLogRecord: ?*VARIANT, pbForget: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.AbortRecordVariants(self, pLogRecord, pbForget);
     }
     pub fn EndAbortVariants(self: *const ICrmCompensatorVariants) callconv(.@"inline") HRESULT {
@@ -3964,7 +3964,7 @@ pub const ICrmMonitorLogRecords = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StructuredRecords: *const fn(
             self: *const ICrmMonitorLogRecords,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetLogRecord: *const fn(
             self: *const ICrmMonitorLogRecords,
@@ -3985,7 +3985,7 @@ pub const ICrmMonitorLogRecords = extern union {
     pub fn get_TransactionState(self: *const ICrmMonitorLogRecords, pVal: ?*CrmTransactionState) callconv(.@"inline") HRESULT {
         return self.vtable.get_TransactionState(self, pVal);
     }
-    pub fn get_StructuredRecords(self: *const ICrmMonitorLogRecords, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_StructuredRecords(self: *const ICrmMonitorLogRecords, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_StructuredRecords(self, pVal);
     }
     pub fn GetLogRecord(self: *const ICrmMonitorLogRecords, dwIndex: u32, pCrmLogRec: ?*CrmLogRecordRead) callconv(.@"inline") HRESULT {
@@ -4706,7 +4706,7 @@ pub const IMtsEvents = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FireEvents: *const fn(
             self: *const IMtsEvents,
-            pVal: ?*i16,
+            pVal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetProcessID: *const fn(
             self: *const IMtsEvents,
@@ -4725,7 +4725,7 @@ pub const IMtsEvents = extern union {
     pub fn PostEvent(self: *const IMtsEvents, vEvent: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.PostEvent(self, vEvent);
     }
-    pub fn get_FireEvents(self: *const IMtsEvents, pVal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_FireEvents(self: *const IMtsEvents, pVal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_FireEvents(self, pVal);
     }
     pub fn GetProcessID(self: *const IMtsEvents, id: ?*i32) callconv(.@"inline") HRESULT {
@@ -5175,17 +5175,17 @@ pub const ISecurityCallContext = extern union {
         IsCallerInRole: *const fn(
             self: *const ISecurityCallContext,
             bstrRole: ?BSTR,
-            pfInRole: ?*i16,
+            pfInRole: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         IsSecurityEnabled: *const fn(
             self: *const ISecurityCallContext,
-            pfIsEnabled: ?*i16,
+            pfIsEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         IsUserInRole: *const fn(
             self: *const ISecurityCallContext,
             pUser: ?*VARIANT,
             bstrRole: ?BSTR,
-            pfInRole: ?*i16,
+            pfInRole: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -5200,13 +5200,13 @@ pub const ISecurityCallContext = extern union {
     pub fn get__NewEnum(self: *const ISecurityCallContext, ppEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, ppEnum);
     }
-    pub fn IsCallerInRole(self: *const ISecurityCallContext, bstrRole: ?BSTR, pfInRole: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsCallerInRole(self: *const ISecurityCallContext, bstrRole: ?BSTR, pfInRole: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsCallerInRole(self, bstrRole, pfInRole);
     }
-    pub fn IsSecurityEnabled(self: *const ISecurityCallContext, pfIsEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsSecurityEnabled(self: *const ISecurityCallContext, pfIsEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsSecurityEnabled(self, pfIsEnabled);
     }
-    pub fn IsUserInRole(self: *const ISecurityCallContext, pUser: ?*VARIANT, bstrRole: ?BSTR, pfInRole: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsUserInRole(self: *const ISecurityCallContext, pUser: ?*VARIANT, bstrRole: ?BSTR, pfInRole: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsUserInRole(self, pUser, bstrRole, pfInRole);
     }
 };
@@ -5857,7 +5857,7 @@ pub const ISharedPropertyGroup = extern union {
         CreatePropertyByPosition: *const fn(
             self: *const ISharedPropertyGroup,
             Index: i32,
-            fExists: ?*i16,
+            fExists: ?*VARIANT_BOOL,
             ppProp: ?*?*ISharedProperty,
         ) callconv(.winapi) HRESULT,
         get_PropertyByPosition: *const fn(
@@ -5868,7 +5868,7 @@ pub const ISharedPropertyGroup = extern union {
         CreateProperty: *const fn(
             self: *const ISharedPropertyGroup,
             Name: ?BSTR,
-            fExists: ?*i16,
+            fExists: ?*VARIANT_BOOL,
             ppProp: ?*?*ISharedProperty,
         ) callconv(.winapi) HRESULT,
         get_Property: *const fn(
@@ -5880,13 +5880,13 @@ pub const ISharedPropertyGroup = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn CreatePropertyByPosition(self: *const ISharedPropertyGroup, Index: i32, fExists: ?*i16, ppProp: ?*?*ISharedProperty) callconv(.@"inline") HRESULT {
+    pub fn CreatePropertyByPosition(self: *const ISharedPropertyGroup, Index: i32, fExists: ?*VARIANT_BOOL, ppProp: ?*?*ISharedProperty) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePropertyByPosition(self, Index, fExists, ppProp);
     }
     pub fn get_PropertyByPosition(self: *const ISharedPropertyGroup, Index: i32, ppProperty: ?*?*ISharedProperty) callconv(.@"inline") HRESULT {
         return self.vtable.get_PropertyByPosition(self, Index, ppProperty);
     }
-    pub fn CreateProperty(self: *const ISharedPropertyGroup, Name: ?BSTR, fExists: ?*i16, ppProp: ?*?*ISharedProperty) callconv(.@"inline") HRESULT {
+    pub fn CreateProperty(self: *const ISharedPropertyGroup, Name: ?BSTR, fExists: ?*VARIANT_BOOL, ppProp: ?*?*ISharedProperty) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProperty(self, Name, fExists, ppProp);
     }
     pub fn get_Property(self: *const ISharedPropertyGroup, Name: ?BSTR, ppProperty: ?*?*ISharedProperty) callconv(.@"inline") HRESULT {
@@ -5905,7 +5905,7 @@ pub const ISharedPropertyGroupManager = extern union {
             Name: ?BSTR,
             dwIsoMode: ?*i32,
             dwRelMode: ?*i32,
-            fExists: ?*i16,
+            fExists: ?*VARIANT_BOOL,
             ppGroup: ?*?*ISharedPropertyGroup,
         ) callconv(.winapi) HRESULT,
         get_Group: *const fn(
@@ -5922,7 +5922,7 @@ pub const ISharedPropertyGroupManager = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn CreatePropertyGroup(self: *const ISharedPropertyGroupManager, Name: ?BSTR, dwIsoMode: ?*i32, dwRelMode: ?*i32, fExists: ?*i16, ppGroup: ?*?*ISharedPropertyGroup) callconv(.@"inline") HRESULT {
+    pub fn CreatePropertyGroup(self: *const ISharedPropertyGroupManager, Name: ?BSTR, dwIsoMode: ?*i32, dwRelMode: ?*i32, fExists: ?*VARIANT_BOOL, ppGroup: ?*?*ISharedPropertyGroup) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePropertyGroup(self, Name, dwIsoMode, dwRelMode, fExists, ppGroup);
     }
     pub fn get_Group(self: *const ISharedPropertyGroupManager, Name: ?BSTR, ppGroup: ?*?*ISharedPropertyGroup) callconv(.@"inline") HRESULT {
@@ -6397,16 +6397,16 @@ pub const ObjectContext = extern union {
         ) callconv(.winapi) HRESULT,
         IsInTransaction: *const fn(
             self: *const ObjectContext,
-            pbIsInTx: ?*i16,
+            pbIsInTx: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         IsSecurityEnabled: *const fn(
             self: *const ObjectContext,
-            pbIsEnabled: ?*i16,
+            pbIsEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         IsCallerInRole: *const fn(
             self: *const ObjectContext,
             bstrRole: ?BSTR,
-            pbInRole: ?*i16,
+            pbInRole: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
@@ -6452,13 +6452,13 @@ pub const ObjectContext = extern union {
     pub fn DisableCommit(self: *const ObjectContext) callconv(.@"inline") HRESULT {
         return self.vtable.DisableCommit(self);
     }
-    pub fn IsInTransaction(self: *const ObjectContext, pbIsInTx: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsInTransaction(self: *const ObjectContext, pbIsInTx: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsInTransaction(self, pbIsInTx);
     }
-    pub fn IsSecurityEnabled(self: *const ObjectContext, pbIsEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsSecurityEnabled(self: *const ObjectContext, pbIsEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsSecurityEnabled(self, pbIsEnabled);
     }
-    pub fn IsCallerInRole(self: *const ObjectContext, bstrRole: ?BSTR, pbInRole: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsCallerInRole(self: *const ObjectContext, bstrRole: ?BSTR, pbInRole: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsCallerInRole(self, bstrRole, pbInRole);
     }
     pub fn get_Count(self: *const ObjectContext, plCount: ?*i32) callconv(.@"inline") HRESULT {
@@ -6492,7 +6492,7 @@ pub const ObjectControl = extern union {
         ) callconv(.winapi) HRESULT,
         CanBePooled: *const fn(
             self: *const ObjectControl,
-            pbPoolable: ?*i16,
+            pbPoolable: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -6503,7 +6503,7 @@ pub const ObjectControl = extern union {
     pub fn Deactivate(self: *const ObjectControl) callconv(.@"inline") HRESULT {
         return self.vtable.Deactivate(self);
     }
-    pub fn CanBePooled(self: *const ObjectControl, pbPoolable: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn CanBePooled(self: *const ObjectControl, pbPoolable: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CanBePooled(self, pbPoolable);
     }
 };
@@ -6675,7 +6675,7 @@ pub extern "comsvcs" fn SafeRef(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (17)
+// Section: Imports (18)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const APTTYPE = @import("../system/com.zig").APTTYPE;
@@ -6694,6 +6694,7 @@ const PSID = @import("../foundation.zig").PSID;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     @setEvalBranchQuota(

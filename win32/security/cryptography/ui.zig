@@ -205,7 +205,7 @@ pub const CERT_VERIFY_CERTIFICATE_TRUST = extern struct {
     pcChain: ?*u32,
     prgChain: ?*?*?*CERT_CONTEXT,
     prgdwErrors: ?*?*u32,
-    prgpbTrustInfo: ?*?*CRYPTOAPI_BLOB,
+    prgpbTrustInfo: ?*?*CRYPT_INTEGER_BLOB,
 };
 
 pub const CERT_VIEWPROPERTIES_STRUCT_A = extern struct {
@@ -824,10 +824,10 @@ const CERT_CHAIN_CONTEXT = @import("../../security/cryptography.zig").CERT_CHAIN
 const CERT_CONTEXT = @import("../../security/cryptography.zig").CERT_CONTEXT;
 const CRL_CONTEXT = @import("../../security/cryptography.zig").CRL_CONTEXT;
 const CRYPT_ATTRIBUTES = @import("../../security/cryptography.zig").CRYPT_ATTRIBUTES;
+const CRYPT_INTEGER_BLOB = @import("../../security/cryptography.zig").CRYPT_INTEGER_BLOB;
 const CRYPT_KEY_FLAGS = @import("../../security/cryptography.zig").CRYPT_KEY_FLAGS;
 const CRYPT_KEY_PROV_INFO = @import("../../security/cryptography.zig").CRYPT_KEY_PROV_INFO;
 const CRYPT_PROVIDER_DATA = @import("../../security/win_trust.zig").CRYPT_PROVIDER_DATA;
-const CRYPTOAPI_BLOB = @import("../../security/cryptography.zig").CRYPTOAPI_BLOB;
 const CTL_CONTEXT = @import("../../security/cryptography.zig").CTL_CONTEXT;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const HCERTSTORE = @import("../../security/cryptography.zig").HCERTSTORE;

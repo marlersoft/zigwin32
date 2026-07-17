@@ -247,12 +247,12 @@ pub const ISWbemDateTime = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_YearSpecified: *const fn(
             self: *const ISWbemDateTime,
-            bYearSpecified: ?*i16,
+            bYearSpecified: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_YearSpecified: *const fn(
             self: *const ISWbemDateTime,
-            bYearSpecified: i16,
+            bYearSpecified: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Month: *const fn(
@@ -267,12 +267,12 @@ pub const ISWbemDateTime = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MonthSpecified: *const fn(
             self: *const ISWbemDateTime,
-            bMonthSpecified: ?*i16,
+            bMonthSpecified: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MonthSpecified: *const fn(
             self: *const ISWbemDateTime,
-            bMonthSpecified: i16,
+            bMonthSpecified: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Day: *const fn(
@@ -287,12 +287,12 @@ pub const ISWbemDateTime = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DaySpecified: *const fn(
             self: *const ISWbemDateTime,
-            bDaySpecified: ?*i16,
+            bDaySpecified: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DaySpecified: *const fn(
             self: *const ISWbemDateTime,
-            bDaySpecified: i16,
+            bDaySpecified: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Hours: *const fn(
@@ -307,12 +307,12 @@ pub const ISWbemDateTime = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HoursSpecified: *const fn(
             self: *const ISWbemDateTime,
-            bHoursSpecified: ?*i16,
+            bHoursSpecified: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HoursSpecified: *const fn(
             self: *const ISWbemDateTime,
-            bHoursSpecified: i16,
+            bHoursSpecified: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Minutes: *const fn(
@@ -327,12 +327,12 @@ pub const ISWbemDateTime = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MinutesSpecified: *const fn(
             self: *const ISWbemDateTime,
-            bMinutesSpecified: ?*i16,
+            bMinutesSpecified: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MinutesSpecified: *const fn(
             self: *const ISWbemDateTime,
-            bMinutesSpecified: i16,
+            bMinutesSpecified: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Seconds: *const fn(
@@ -347,12 +347,12 @@ pub const ISWbemDateTime = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SecondsSpecified: *const fn(
             self: *const ISWbemDateTime,
-            bSecondsSpecified: ?*i16,
+            bSecondsSpecified: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SecondsSpecified: *const fn(
             self: *const ISWbemDateTime,
-            bSecondsSpecified: i16,
+            bSecondsSpecified: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Microseconds: *const fn(
@@ -367,12 +367,12 @@ pub const ISWbemDateTime = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MicrosecondsSpecified: *const fn(
             self: *const ISWbemDateTime,
-            bMicrosecondsSpecified: ?*i16,
+            bMicrosecondsSpecified: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MicrosecondsSpecified: *const fn(
             self: *const ISWbemDateTime,
-            bMicrosecondsSpecified: i16,
+            bMicrosecondsSpecified: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UTC: *const fn(
@@ -387,42 +387,42 @@ pub const ISWbemDateTime = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UTCSpecified: *const fn(
             self: *const ISWbemDateTime,
-            bUTCSpecified: ?*i16,
+            bUTCSpecified: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UTCSpecified: *const fn(
             self: *const ISWbemDateTime,
-            bUTCSpecified: i16,
+            bUTCSpecified: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsInterval: *const fn(
             self: *const ISWbemDateTime,
-            bIsInterval: ?*i16,
+            bIsInterval: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsInterval: *const fn(
             self: *const ISWbemDateTime,
-            bIsInterval: i16,
+            bIsInterval: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetVarDate: *const fn(
             self: *const ISWbemDateTime,
-            bIsLocal: i16,
+            bIsLocal: VARIANT_BOOL,
             dVarDate: ?*f64,
         ) callconv(.winapi) HRESULT,
         SetVarDate: *const fn(
             self: *const ISWbemDateTime,
             dVarDate: f64,
-            bIsLocal: i16,
+            bIsLocal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetFileTime: *const fn(
             self: *const ISWbemDateTime,
-            bIsLocal: i16,
+            bIsLocal: VARIANT_BOOL,
             strFileTime: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         SetFileTime: *const fn(
             self: *const ISWbemDateTime,
             strFileTime: ?BSTR,
-            bIsLocal: i16,
+            bIsLocal: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -440,10 +440,10 @@ pub const ISWbemDateTime = extern union {
     pub fn put_Year(self: *const ISWbemDateTime, iYear: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Year(self, iYear);
     }
-    pub fn get_YearSpecified(self: *const ISWbemDateTime, bYearSpecified: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_YearSpecified(self: *const ISWbemDateTime, bYearSpecified: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_YearSpecified(self, bYearSpecified);
     }
-    pub fn put_YearSpecified(self: *const ISWbemDateTime, bYearSpecified: i16) callconv(.@"inline") HRESULT {
+    pub fn put_YearSpecified(self: *const ISWbemDateTime, bYearSpecified: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_YearSpecified(self, bYearSpecified);
     }
     pub fn get_Month(self: *const ISWbemDateTime, iMonth: ?*i32) callconv(.@"inline") HRESULT {
@@ -452,10 +452,10 @@ pub const ISWbemDateTime = extern union {
     pub fn put_Month(self: *const ISWbemDateTime, iMonth: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Month(self, iMonth);
     }
-    pub fn get_MonthSpecified(self: *const ISWbemDateTime, bMonthSpecified: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_MonthSpecified(self: *const ISWbemDateTime, bMonthSpecified: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_MonthSpecified(self, bMonthSpecified);
     }
-    pub fn put_MonthSpecified(self: *const ISWbemDateTime, bMonthSpecified: i16) callconv(.@"inline") HRESULT {
+    pub fn put_MonthSpecified(self: *const ISWbemDateTime, bMonthSpecified: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_MonthSpecified(self, bMonthSpecified);
     }
     pub fn get_Day(self: *const ISWbemDateTime, iDay: ?*i32) callconv(.@"inline") HRESULT {
@@ -464,10 +464,10 @@ pub const ISWbemDateTime = extern union {
     pub fn put_Day(self: *const ISWbemDateTime, iDay: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Day(self, iDay);
     }
-    pub fn get_DaySpecified(self: *const ISWbemDateTime, bDaySpecified: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_DaySpecified(self: *const ISWbemDateTime, bDaySpecified: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_DaySpecified(self, bDaySpecified);
     }
-    pub fn put_DaySpecified(self: *const ISWbemDateTime, bDaySpecified: i16) callconv(.@"inline") HRESULT {
+    pub fn put_DaySpecified(self: *const ISWbemDateTime, bDaySpecified: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_DaySpecified(self, bDaySpecified);
     }
     pub fn get_Hours(self: *const ISWbemDateTime, iHours: ?*i32) callconv(.@"inline") HRESULT {
@@ -476,10 +476,10 @@ pub const ISWbemDateTime = extern union {
     pub fn put_Hours(self: *const ISWbemDateTime, iHours: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Hours(self, iHours);
     }
-    pub fn get_HoursSpecified(self: *const ISWbemDateTime, bHoursSpecified: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_HoursSpecified(self: *const ISWbemDateTime, bHoursSpecified: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_HoursSpecified(self, bHoursSpecified);
     }
-    pub fn put_HoursSpecified(self: *const ISWbemDateTime, bHoursSpecified: i16) callconv(.@"inline") HRESULT {
+    pub fn put_HoursSpecified(self: *const ISWbemDateTime, bHoursSpecified: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_HoursSpecified(self, bHoursSpecified);
     }
     pub fn get_Minutes(self: *const ISWbemDateTime, iMinutes: ?*i32) callconv(.@"inline") HRESULT {
@@ -488,10 +488,10 @@ pub const ISWbemDateTime = extern union {
     pub fn put_Minutes(self: *const ISWbemDateTime, iMinutes: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Minutes(self, iMinutes);
     }
-    pub fn get_MinutesSpecified(self: *const ISWbemDateTime, bMinutesSpecified: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_MinutesSpecified(self: *const ISWbemDateTime, bMinutesSpecified: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_MinutesSpecified(self, bMinutesSpecified);
     }
-    pub fn put_MinutesSpecified(self: *const ISWbemDateTime, bMinutesSpecified: i16) callconv(.@"inline") HRESULT {
+    pub fn put_MinutesSpecified(self: *const ISWbemDateTime, bMinutesSpecified: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_MinutesSpecified(self, bMinutesSpecified);
     }
     pub fn get_Seconds(self: *const ISWbemDateTime, iSeconds: ?*i32) callconv(.@"inline") HRESULT {
@@ -500,10 +500,10 @@ pub const ISWbemDateTime = extern union {
     pub fn put_Seconds(self: *const ISWbemDateTime, iSeconds: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Seconds(self, iSeconds);
     }
-    pub fn get_SecondsSpecified(self: *const ISWbemDateTime, bSecondsSpecified: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SecondsSpecified(self: *const ISWbemDateTime, bSecondsSpecified: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SecondsSpecified(self, bSecondsSpecified);
     }
-    pub fn put_SecondsSpecified(self: *const ISWbemDateTime, bSecondsSpecified: i16) callconv(.@"inline") HRESULT {
+    pub fn put_SecondsSpecified(self: *const ISWbemDateTime, bSecondsSpecified: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_SecondsSpecified(self, bSecondsSpecified);
     }
     pub fn get_Microseconds(self: *const ISWbemDateTime, iMicroseconds: ?*i32) callconv(.@"inline") HRESULT {
@@ -512,10 +512,10 @@ pub const ISWbemDateTime = extern union {
     pub fn put_Microseconds(self: *const ISWbemDateTime, iMicroseconds: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Microseconds(self, iMicroseconds);
     }
-    pub fn get_MicrosecondsSpecified(self: *const ISWbemDateTime, bMicrosecondsSpecified: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_MicrosecondsSpecified(self: *const ISWbemDateTime, bMicrosecondsSpecified: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_MicrosecondsSpecified(self, bMicrosecondsSpecified);
     }
-    pub fn put_MicrosecondsSpecified(self: *const ISWbemDateTime, bMicrosecondsSpecified: i16) callconv(.@"inline") HRESULT {
+    pub fn put_MicrosecondsSpecified(self: *const ISWbemDateTime, bMicrosecondsSpecified: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_MicrosecondsSpecified(self, bMicrosecondsSpecified);
     }
     pub fn get_UTC(self: *const ISWbemDateTime, iUTC: ?*i32) callconv(.@"inline") HRESULT {
@@ -524,28 +524,28 @@ pub const ISWbemDateTime = extern union {
     pub fn put_UTC(self: *const ISWbemDateTime, iUTC: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_UTC(self, iUTC);
     }
-    pub fn get_UTCSpecified(self: *const ISWbemDateTime, bUTCSpecified: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_UTCSpecified(self: *const ISWbemDateTime, bUTCSpecified: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UTCSpecified(self, bUTCSpecified);
     }
-    pub fn put_UTCSpecified(self: *const ISWbemDateTime, bUTCSpecified: i16) callconv(.@"inline") HRESULT {
+    pub fn put_UTCSpecified(self: *const ISWbemDateTime, bUTCSpecified: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_UTCSpecified(self, bUTCSpecified);
     }
-    pub fn get_IsInterval(self: *const ISWbemDateTime, bIsInterval: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsInterval(self: *const ISWbemDateTime, bIsInterval: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsInterval(self, bIsInterval);
     }
-    pub fn put_IsInterval(self: *const ISWbemDateTime, bIsInterval: i16) callconv(.@"inline") HRESULT {
+    pub fn put_IsInterval(self: *const ISWbemDateTime, bIsInterval: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_IsInterval(self, bIsInterval);
     }
-    pub fn GetVarDate(self: *const ISWbemDateTime, bIsLocal: i16, dVarDate: ?*f64) callconv(.@"inline") HRESULT {
+    pub fn GetVarDate(self: *const ISWbemDateTime, bIsLocal: VARIANT_BOOL, dVarDate: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetVarDate(self, bIsLocal, dVarDate);
     }
-    pub fn SetVarDate(self: *const ISWbemDateTime, dVarDate: f64, bIsLocal: i16) callconv(.@"inline") HRESULT {
+    pub fn SetVarDate(self: *const ISWbemDateTime, dVarDate: f64, bIsLocal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetVarDate(self, dVarDate, bIsLocal);
     }
-    pub fn GetFileTime(self: *const ISWbemDateTime, bIsLocal: i16, strFileTime: ?*?BSTR) callconv(.@"inline") HRESULT {
+    pub fn GetFileTime(self: *const ISWbemDateTime, bIsLocal: VARIANT_BOOL, strFileTime: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileTime(self, bIsLocal, strFileTime);
     }
-    pub fn SetFileTime(self: *const ISWbemDateTime, strFileTime: ?BSTR, bIsLocal: i16) callconv(.@"inline") HRESULT {
+    pub fn SetFileTime(self: *const ISWbemDateTime, strFileTime: ?BSTR, bIsLocal: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetFileTime(self, strFileTime, bIsLocal);
     }
 };
@@ -874,8 +874,8 @@ pub const ISWbemObject = extern union {
             strResultClass: ?BSTR,
             strResultRole: ?BSTR,
             strRole: ?BSTR,
-            bClassesOnly: i16,
-            bSchemaOnly: i16,
+            bClassesOnly: VARIANT_BOOL,
+            bSchemaOnly: VARIANT_BOOL,
             strRequiredAssocQualifier: ?BSTR,
             strRequiredQualifier: ?BSTR,
             iFlags: i32,
@@ -889,8 +889,8 @@ pub const ISWbemObject = extern union {
             strResultClass: ?BSTR,
             strResultRole: ?BSTR,
             strRole: ?BSTR,
-            bClassesOnly: i16,
-            bSchemaOnly: i16,
+            bClassesOnly: VARIANT_BOOL,
+            bSchemaOnly: VARIANT_BOOL,
             strRequiredAssocQualifier: ?BSTR,
             strRequiredQualifier: ?BSTR,
             iFlags: i32,
@@ -901,8 +901,8 @@ pub const ISWbemObject = extern union {
             self: *const ISWbemObject,
             strResultClass: ?BSTR,
             strRole: ?BSTR,
-            bClassesOnly: i16,
-            bSchemaOnly: i16,
+            bClassesOnly: VARIANT_BOOL,
+            bSchemaOnly: VARIANT_BOOL,
             strRequiredQualifier: ?BSTR,
             iFlags: i32,
             objWbemNamedValueSet: ?*IDispatch,
@@ -913,8 +913,8 @@ pub const ISWbemObject = extern union {
             objWbemSink: ?*IDispatch,
             strResultClass: ?BSTR,
             strRole: ?BSTR,
-            bClassesOnly: i16,
-            bSchemaOnly: i16,
+            bClassesOnly: VARIANT_BOOL,
+            bSchemaOnly: VARIANT_BOOL,
             strRequiredQualifier: ?BSTR,
             iFlags: i32,
             objWbemNamedValueSet: ?*IDispatch,
@@ -960,7 +960,7 @@ pub const ISWbemObject = extern union {
             self: *const ISWbemObject,
             objWbemObject: ?*IDispatch,
             iFlags: i32,
-            bResult: ?*i16,
+            bResult: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Qualifiers_: *const fn(
@@ -1020,16 +1020,16 @@ pub const ISWbemObject = extern union {
     pub fn SubclassesAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.SubclassesAsync_(self, objWbemSink, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn Associators_(self: *const ISWbemObject, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.@"inline") HRESULT {
+    pub fn Associators_(self: *const ISWbemObject, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: VARIANT_BOOL, bSchemaOnly: VARIANT_BOOL, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.@"inline") HRESULT {
         return self.vtable.Associators_(self, strAssocClass, strResultClass, strResultRole, strRole, bClassesOnly, bSchemaOnly, strRequiredAssocQualifier, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemObjectSet);
     }
-    pub fn AssociatorsAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
+    pub fn AssociatorsAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: VARIANT_BOOL, bSchemaOnly: VARIANT_BOOL, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.AssociatorsAsync_(self, objWbemSink, strAssocClass, strResultClass, strResultRole, strRole, bClassesOnly, bSchemaOnly, strRequiredAssocQualifier, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn References_(self: *const ISWbemObject, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.@"inline") HRESULT {
+    pub fn References_(self: *const ISWbemObject, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: VARIANT_BOOL, bSchemaOnly: VARIANT_BOOL, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.@"inline") HRESULT {
         return self.vtable.References_(self, strResultClass, strRole, bClassesOnly, bSchemaOnly, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemObjectSet);
     }
-    pub fn ReferencesAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
+    pub fn ReferencesAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: VARIANT_BOOL, bSchemaOnly: VARIANT_BOOL, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.ReferencesAsync_(self, objWbemSink, strResultClass, strRole, bClassesOnly, bSchemaOnly, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
     pub fn ExecMethod_(self: *const ISWbemObject, strMethodName: ?BSTR, objWbemInParameters: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemOutParameters: ?*?*ISWbemObject) callconv(.@"inline") HRESULT {
@@ -1050,7 +1050,7 @@ pub const ISWbemObject = extern union {
     pub fn SpawnInstance_(self: *const ISWbemObject, iFlags: i32, objWbemObject: ?*?*ISWbemObject) callconv(.@"inline") HRESULT {
         return self.vtable.SpawnInstance_(self, iFlags, objWbemObject);
     }
-    pub fn CompareTo_(self: *const ISWbemObject, objWbemObject: ?*IDispatch, iFlags: i32, bResult: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn CompareTo_(self: *const ISWbemObject, objWbemObject: ?*IDispatch, iFlags: i32, bResult: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CompareTo_(self, objWbemObject, iFlags, bResult);
     }
     pub fn get_Qualifiers_(self: *const ISWbemObject, objWbemQualifierSet: ?*?*ISWbemQualifierSet) callconv(.@"inline") HRESULT {
@@ -1194,7 +1194,7 @@ pub const ISWbemObjectPath = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsClass: *const fn(
             self: *const ISWbemObjectPath,
-            bIsClass: ?*i16,
+            bIsClass: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SetAsClass: *const fn(
             self: *const ISWbemObjectPath,
@@ -1202,7 +1202,7 @@ pub const ISWbemObjectPath = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsSingleton: *const fn(
             self: *const ISWbemObjectPath,
-            bIsSingleton: ?*i16,
+            bIsSingleton: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         SetAsSingleton: *const fn(
             self: *const ISWbemObjectPath,
@@ -1280,13 +1280,13 @@ pub const ISWbemObjectPath = extern union {
     pub fn put_Class(self: *const ISWbemObjectPath, strClass: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Class(self, strClass);
     }
-    pub fn get_IsClass(self: *const ISWbemObjectPath, bIsClass: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsClass(self: *const ISWbemObjectPath, bIsClass: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsClass(self, bIsClass);
     }
     pub fn SetAsClass(self: *const ISWbemObjectPath) callconv(.@"inline") HRESULT {
         return self.vtable.SetAsClass(self);
     }
-    pub fn get_IsSingleton(self: *const ISWbemObjectPath, bIsSingleton: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsSingleton(self: *const ISWbemObjectPath, bIsSingleton: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsSingleton(self, bIsSingleton);
     }
     pub fn SetAsSingleton(self: *const ISWbemObjectPath) callconv(.@"inline") HRESULT {
@@ -1372,12 +1372,12 @@ pub const ISWbemPrivilege = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsEnabled: *const fn(
             self: *const ISWbemPrivilege,
-            bIsEnabled: ?*i16,
+            bIsEnabled: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsEnabled: *const fn(
             self: *const ISWbemPrivilege,
-            bIsEnabled: i16,
+            bIsEnabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
@@ -1398,10 +1398,10 @@ pub const ISWbemPrivilege = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_IsEnabled(self: *const ISWbemPrivilege, bIsEnabled: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsEnabled(self: *const ISWbemPrivilege, bIsEnabled: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsEnabled(self, bIsEnabled);
     }
-    pub fn put_IsEnabled(self: *const ISWbemPrivilege, bIsEnabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_IsEnabled(self: *const ISWbemPrivilege, bIsEnabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_IsEnabled(self, bIsEnabled);
     }
     pub fn get_Name(self: *const ISWbemPrivilege, strDisplayName: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -1438,7 +1438,7 @@ pub const ISWbemPrivilegeSet = extern union {
         Add: *const fn(
             self: *const ISWbemPrivilegeSet,
             iPrivilege: WbemPrivilegeEnum,
-            bIsEnabled: i16,
+            bIsEnabled: VARIANT_BOOL,
             objWbemPrivilege: ?*?*ISWbemPrivilege,
         ) callconv(.winapi) HRESULT,
         Remove: *const fn(
@@ -1451,7 +1451,7 @@ pub const ISWbemPrivilegeSet = extern union {
         AddAsString: *const fn(
             self: *const ISWbemPrivilegeSet,
             strPrivilege: ?BSTR,
-            bIsEnabled: i16,
+            bIsEnabled: VARIANT_BOOL,
             objWbemPrivilege: ?*?*ISWbemPrivilege,
         ) callconv(.winapi) HRESULT,
     };
@@ -1467,7 +1467,7 @@ pub const ISWbemPrivilegeSet = extern union {
     pub fn get_Count(self: *const ISWbemPrivilegeSet, iCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, iCount);
     }
-    pub fn Add(self: *const ISWbemPrivilegeSet, iPrivilege: WbemPrivilegeEnum, bIsEnabled: i16, objWbemPrivilege: ?*?*ISWbemPrivilege) callconv(.@"inline") HRESULT {
+    pub fn Add(self: *const ISWbemPrivilegeSet, iPrivilege: WbemPrivilegeEnum, bIsEnabled: VARIANT_BOOL, objWbemPrivilege: ?*?*ISWbemPrivilege) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, iPrivilege, bIsEnabled, objWbemPrivilege);
     }
     pub fn Remove(self: *const ISWbemPrivilegeSet, iPrivilege: WbemPrivilegeEnum) callconv(.@"inline") HRESULT {
@@ -1476,7 +1476,7 @@ pub const ISWbemPrivilegeSet = extern union {
     pub fn DeleteAll(self: *const ISWbemPrivilegeSet) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteAll(self);
     }
-    pub fn AddAsString(self: *const ISWbemPrivilegeSet, strPrivilege: ?BSTR, bIsEnabled: i16, objWbemPrivilege: ?*?*ISWbemPrivilege) callconv(.@"inline") HRESULT {
+    pub fn AddAsString(self: *const ISWbemPrivilegeSet, strPrivilege: ?BSTR, bIsEnabled: VARIANT_BOOL, objWbemPrivilege: ?*?*ISWbemPrivilege) callconv(.@"inline") HRESULT {
         return self.vtable.AddAsString(self, strPrivilege, bIsEnabled, objWbemPrivilege);
     }
 };
@@ -1504,7 +1504,7 @@ pub const ISWbemProperty = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsLocal: *const fn(
             self: *const ISWbemProperty,
-            bIsLocal: ?*i16,
+            bIsLocal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Origin: *const fn(
@@ -1524,7 +1524,7 @@ pub const ISWbemProperty = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsArray: *const fn(
             self: *const ISWbemProperty,
-            bIsArray: ?*i16,
+            bIsArray: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1539,7 +1539,7 @@ pub const ISWbemProperty = extern union {
     pub fn get_Name(self: *const ISWbemProperty, strName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, strName);
     }
-    pub fn get_IsLocal(self: *const ISWbemProperty, bIsLocal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsLocal(self: *const ISWbemProperty, bIsLocal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsLocal(self, bIsLocal);
     }
     pub fn get_Origin(self: *const ISWbemProperty, strOrigin: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -1551,7 +1551,7 @@ pub const ISWbemProperty = extern union {
     pub fn get_Qualifiers_(self: *const ISWbemProperty, objWbemQualifierSet: ?*?*ISWbemQualifierSet) callconv(.@"inline") HRESULT {
         return self.vtable.get_Qualifiers_(self, objWbemQualifierSet);
     }
-    pub fn get_IsArray(self: *const ISWbemProperty, bIsArray: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsArray(self: *const ISWbemProperty, bIsArray: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsArray(self, bIsArray);
     }
 };
@@ -1581,7 +1581,7 @@ pub const ISWbemPropertySet = extern union {
             self: *const ISWbemPropertySet,
             strName: ?BSTR,
             iCIMType: WbemCimtypeEnum,
-            bIsArray: i16,
+            bIsArray: VARIANT_BOOL,
             iFlags: i32,
             objWbemProperty: ?*?*ISWbemProperty,
         ) callconv(.winapi) HRESULT,
@@ -1603,7 +1603,7 @@ pub const ISWbemPropertySet = extern union {
     pub fn get_Count(self: *const ISWbemPropertySet, iCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, iCount);
     }
-    pub fn Add(self: *const ISWbemPropertySet, strName: ?BSTR, iCIMType: WbemCimtypeEnum, bIsArray: i16, iFlags: i32, objWbemProperty: ?*?*ISWbemProperty) callconv(.@"inline") HRESULT {
+    pub fn Add(self: *const ISWbemPropertySet, strName: ?BSTR, iCIMType: WbemCimtypeEnum, bIsArray: VARIANT_BOOL, iFlags: i32, objWbemProperty: ?*?*ISWbemProperty) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, strName, iCIMType, bIsArray, iFlags, objWbemProperty);
     }
     pub fn Remove(self: *const ISWbemPropertySet, strName: ?BSTR, iFlags: i32) callconv(.@"inline") HRESULT {
@@ -1634,42 +1634,42 @@ pub const ISWbemQualifier = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsLocal: *const fn(
             self: *const ISWbemQualifier,
-            bIsLocal: ?*i16,
+            bIsLocal: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropagatesToSubclass: *const fn(
             self: *const ISWbemQualifier,
-            bPropagatesToSubclass: ?*i16,
+            bPropagatesToSubclass: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PropagatesToSubclass: *const fn(
             self: *const ISWbemQualifier,
-            bPropagatesToSubclass: i16,
+            bPropagatesToSubclass: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropagatesToInstance: *const fn(
             self: *const ISWbemQualifier,
-            bPropagatesToInstance: ?*i16,
+            bPropagatesToInstance: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PropagatesToInstance: *const fn(
             self: *const ISWbemQualifier,
-            bPropagatesToInstance: i16,
+            bPropagatesToInstance: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsOverridable: *const fn(
             self: *const ISWbemQualifier,
-            bIsOverridable: ?*i16,
+            bIsOverridable: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsOverridable: *const fn(
             self: *const ISWbemQualifier,
-            bIsOverridable: i16,
+            bIsOverridable: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsAmended: *const fn(
             self: *const ISWbemQualifier,
-            bIsAmended: ?*i16,
+            bIsAmended: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1684,28 +1684,28 @@ pub const ISWbemQualifier = extern union {
     pub fn get_Name(self: *const ISWbemQualifier, strName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, strName);
     }
-    pub fn get_IsLocal(self: *const ISWbemQualifier, bIsLocal: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsLocal(self: *const ISWbemQualifier, bIsLocal: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsLocal(self, bIsLocal);
     }
-    pub fn get_PropagatesToSubclass(self: *const ISWbemQualifier, bPropagatesToSubclass: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_PropagatesToSubclass(self: *const ISWbemQualifier, bPropagatesToSubclass: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_PropagatesToSubclass(self, bPropagatesToSubclass);
     }
-    pub fn put_PropagatesToSubclass(self: *const ISWbemQualifier, bPropagatesToSubclass: i16) callconv(.@"inline") HRESULT {
+    pub fn put_PropagatesToSubclass(self: *const ISWbemQualifier, bPropagatesToSubclass: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_PropagatesToSubclass(self, bPropagatesToSubclass);
     }
-    pub fn get_PropagatesToInstance(self: *const ISWbemQualifier, bPropagatesToInstance: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_PropagatesToInstance(self: *const ISWbemQualifier, bPropagatesToInstance: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_PropagatesToInstance(self, bPropagatesToInstance);
     }
-    pub fn put_PropagatesToInstance(self: *const ISWbemQualifier, bPropagatesToInstance: i16) callconv(.@"inline") HRESULT {
+    pub fn put_PropagatesToInstance(self: *const ISWbemQualifier, bPropagatesToInstance: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_PropagatesToInstance(self, bPropagatesToInstance);
     }
-    pub fn get_IsOverridable(self: *const ISWbemQualifier, bIsOverridable: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsOverridable(self: *const ISWbemQualifier, bIsOverridable: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsOverridable(self, bIsOverridable);
     }
-    pub fn put_IsOverridable(self: *const ISWbemQualifier, bIsOverridable: i16) callconv(.@"inline") HRESULT {
+    pub fn put_IsOverridable(self: *const ISWbemQualifier, bIsOverridable: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_IsOverridable(self, bIsOverridable);
     }
-    pub fn get_IsAmended(self: *const ISWbemQualifier, bIsAmended: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsAmended(self: *const ISWbemQualifier, bIsAmended: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsAmended(self, bIsAmended);
     }
 };
@@ -1735,9 +1735,9 @@ pub const ISWbemQualifierSet = extern union {
             self: *const ISWbemQualifierSet,
             strName: ?BSTR,
             varVal: ?*VARIANT,
-            bPropagatesToSubclass: i16,
-            bPropagatesToInstance: i16,
-            bIsOverridable: i16,
+            bPropagatesToSubclass: VARIANT_BOOL,
+            bPropagatesToInstance: VARIANT_BOOL,
+            bIsOverridable: VARIANT_BOOL,
             iFlags: i32,
             objWbemQualifier: ?*?*ISWbemQualifier,
         ) callconv(.winapi) HRESULT,
@@ -1759,7 +1759,7 @@ pub const ISWbemQualifierSet = extern union {
     pub fn get_Count(self: *const ISWbemQualifierSet, iCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, iCount);
     }
-    pub fn Add(self: *const ISWbemQualifierSet, strName: ?BSTR, varVal: ?*VARIANT, bPropagatesToSubclass: i16, bPropagatesToInstance: i16, bIsOverridable: i16, iFlags: i32, objWbemQualifier: ?*?*ISWbemQualifier) callconv(.@"inline") HRESULT {
+    pub fn Add(self: *const ISWbemQualifierSet, strName: ?BSTR, varVal: ?*VARIANT, bPropagatesToSubclass: VARIANT_BOOL, bPropagatesToInstance: VARIANT_BOOL, bIsOverridable: VARIANT_BOOL, iFlags: i32, objWbemQualifier: ?*?*ISWbemQualifier) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, strName, varVal, bPropagatesToSubclass, bPropagatesToInstance, bIsOverridable, iFlags, objWbemQualifier);
     }
     pub fn Remove(self: *const ISWbemQualifierSet, strName: ?BSTR, iFlags: i32) callconv(.@"inline") HRESULT {
@@ -1785,7 +1785,7 @@ pub const ISWbemRefreshableItem = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsSet: *const fn(
             self: *const ISWbemRefreshableItem,
-            bIsSet: ?*i16,
+            bIsSet: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Object: *const fn(
@@ -1811,7 +1811,7 @@ pub const ISWbemRefreshableItem = extern union {
     pub fn get_Refresher(self: *const ISWbemRefreshableItem, objWbemRefresher: ?*?*ISWbemRefresher) callconv(.@"inline") HRESULT {
         return self.vtable.get_Refresher(self, objWbemRefresher);
     }
-    pub fn get_IsSet(self: *const ISWbemRefreshableItem, bIsSet: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsSet(self: *const ISWbemRefreshableItem, bIsSet: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsSet(self, bIsSet);
     }
     pub fn get_Object(self: *const ISWbemRefreshableItem, objWbemObject: ?*?*ISWbemObjectEx) callconv(.@"inline") HRESULT {
@@ -1873,12 +1873,12 @@ pub const ISWbemRefresher = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoReconnect: *const fn(
             self: *const ISWbemRefresher,
-            bCount: ?*i16,
+            bCount: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoReconnect: *const fn(
             self: *const ISWbemRefresher,
-            bCount: i16,
+            bCount: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         DeleteAll: *const fn(
             self: *const ISWbemRefresher,
@@ -1908,10 +1908,10 @@ pub const ISWbemRefresher = extern union {
     pub fn Refresh(self: *const ISWbemRefresher, iFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Refresh(self, iFlags);
     }
-    pub fn get_AutoReconnect(self: *const ISWbemRefresher, bCount: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AutoReconnect(self: *const ISWbemRefresher, bCount: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AutoReconnect(self, bCount);
     }
-    pub fn put_AutoReconnect(self: *const ISWbemRefresher, bCount: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AutoReconnect(self: *const ISWbemRefresher, bCount: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AutoReconnect(self, bCount);
     }
     pub fn DeleteAll(self: *const ISWbemRefresher) callconv(.@"inline") HRESULT {
@@ -2058,8 +2058,8 @@ pub const ISWbemServices = extern union {
             strResultClass: ?BSTR,
             strResultRole: ?BSTR,
             strRole: ?BSTR,
-            bClassesOnly: i16,
-            bSchemaOnly: i16,
+            bClassesOnly: VARIANT_BOOL,
+            bSchemaOnly: VARIANT_BOOL,
             strRequiredAssocQualifier: ?BSTR,
             strRequiredQualifier: ?BSTR,
             iFlags: i32,
@@ -2074,8 +2074,8 @@ pub const ISWbemServices = extern union {
             strResultClass: ?BSTR,
             strResultRole: ?BSTR,
             strRole: ?BSTR,
-            bClassesOnly: i16,
-            bSchemaOnly: i16,
+            bClassesOnly: VARIANT_BOOL,
+            bSchemaOnly: VARIANT_BOOL,
             strRequiredAssocQualifier: ?BSTR,
             strRequiredQualifier: ?BSTR,
             iFlags: i32,
@@ -2087,8 +2087,8 @@ pub const ISWbemServices = extern union {
             strObjectPath: ?BSTR,
             strResultClass: ?BSTR,
             strRole: ?BSTR,
-            bClassesOnly: i16,
-            bSchemaOnly: i16,
+            bClassesOnly: VARIANT_BOOL,
+            bSchemaOnly: VARIANT_BOOL,
             strRequiredQualifier: ?BSTR,
             iFlags: i32,
             objWbemNamedValueSet: ?*IDispatch,
@@ -2100,8 +2100,8 @@ pub const ISWbemServices = extern union {
             strObjectPath: ?BSTR,
             strResultClass: ?BSTR,
             strRole: ?BSTR,
-            bClassesOnly: i16,
-            bSchemaOnly: i16,
+            bClassesOnly: VARIANT_BOOL,
+            bSchemaOnly: VARIANT_BOOL,
             strRequiredQualifier: ?BSTR,
             iFlags: i32,
             objWbemNamedValueSet: ?*IDispatch,
@@ -2182,16 +2182,16 @@ pub const ISWbemServices = extern union {
     pub fn ExecQueryAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strQuery: ?BSTR, strQueryLanguage: ?BSTR, lFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.ExecQueryAsync(self, objWbemSink, strQuery, strQueryLanguage, lFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn AssociatorsOf(self: *const ISWbemServices, strObjectPath: ?BSTR, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.@"inline") HRESULT {
+    pub fn AssociatorsOf(self: *const ISWbemServices, strObjectPath: ?BSTR, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: VARIANT_BOOL, bSchemaOnly: VARIANT_BOOL, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.@"inline") HRESULT {
         return self.vtable.AssociatorsOf(self, strObjectPath, strAssocClass, strResultClass, strResultRole, strRole, bClassesOnly, bSchemaOnly, strRequiredAssocQualifier, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemObjectSet);
     }
-    pub fn AssociatorsOfAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
+    pub fn AssociatorsOfAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: VARIANT_BOOL, bSchemaOnly: VARIANT_BOOL, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.AssociatorsOfAsync(self, objWbemSink, strObjectPath, strAssocClass, strResultClass, strResultRole, strRole, bClassesOnly, bSchemaOnly, strRequiredAssocQualifier, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn ReferencesTo(self: *const ISWbemServices, strObjectPath: ?BSTR, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.@"inline") HRESULT {
+    pub fn ReferencesTo(self: *const ISWbemServices, strObjectPath: ?BSTR, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: VARIANT_BOOL, bSchemaOnly: VARIANT_BOOL, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.@"inline") HRESULT {
         return self.vtable.ReferencesTo(self, strObjectPath, strResultClass, strRole, bClassesOnly, bSchemaOnly, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemObjectSet);
     }
-    pub fn ReferencesToAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
+    pub fn ReferencesToAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: VARIANT_BOOL, bSchemaOnly: VARIANT_BOOL, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.ReferencesToAsync(self, objWbemSink, strObjectPath, strResultClass, strRole, bClassesOnly, bSchemaOnly, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
     pub fn ExecNotificationQuery(self: *const ISWbemServices, strQuery: ?BSTR, strQueryLanguage: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemEventSource: ?*?*ISWbemEventSource) callconv(.@"inline") HRESULT {
@@ -7861,7 +7861,7 @@ pub extern "mi" fn MI_Application_InitializeV1(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -7872,6 +7872,7 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

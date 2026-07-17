@@ -2909,7 +2909,7 @@ pub const IADsADSystemInfo = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsNativeMode: *const fn(
             self: *const IADsADSystemInfo,
-            retval: ?*i16,
+            retval: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         GetAnyDCName: *const fn(
             self: *const IADsADSystemInfo,
@@ -2955,7 +2955,7 @@ pub const IADsADSystemInfo = extern union {
     pub fn get_SchemaRoleOwner(self: *const IADsADSystemInfo, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_SchemaRoleOwner(self, retval);
     }
-    pub fn get_IsNativeMode(self: *const IADsADSystemInfo, retval: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsNativeMode(self: *const IADsADSystemInfo, retval: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsNativeMode(self, retval);
     }
     pub fn GetAnyDCName(self: *const IADsADSystemInfo, pszDCName: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -3138,22 +3138,22 @@ pub const IADsClass = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Abstract: *const fn(
             self: *const IADsClass,
-            retval: ?*i16,
+            retval: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Abstract: *const fn(
             self: *const IADsClass,
-            fAbstract: i16,
+            fAbstract: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Auxiliary: *const fn(
             self: *const IADsClass,
-            retval: ?*i16,
+            retval: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Auxiliary: *const fn(
             self: *const IADsClass,
-            fAuxiliary: i16,
+            fAuxiliary: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MandatoryProperties: *const fn(
@@ -3228,12 +3228,12 @@ pub const IADsClass = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Container: *const fn(
             self: *const IADsClass,
-            retval: ?*i16,
+            retval: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Container: *const fn(
             self: *const IADsClass,
-            fContainer: i16,
+            fContainer: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HelpFileName: *const fn(
@@ -3279,16 +3279,16 @@ pub const IADsClass = extern union {
     pub fn put_OID(self: *const IADsClass, bstrOID: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_OID(self, bstrOID);
     }
-    pub fn get_Abstract(self: *const IADsClass, retval: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Abstract(self: *const IADsClass, retval: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Abstract(self, retval);
     }
-    pub fn put_Abstract(self: *const IADsClass, fAbstract: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Abstract(self: *const IADsClass, fAbstract: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Abstract(self, fAbstract);
     }
-    pub fn get_Auxiliary(self: *const IADsClass, retval: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Auxiliary(self: *const IADsClass, retval: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Auxiliary(self, retval);
     }
-    pub fn put_Auxiliary(self: *const IADsClass, fAuxiliary: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Auxiliary(self: *const IADsClass, fAuxiliary: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Auxiliary(self, fAuxiliary);
     }
     pub fn get_MandatoryProperties(self: *const IADsClass, retval: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -3333,10 +3333,10 @@ pub const IADsClass = extern union {
     pub fn put_Containment(self: *const IADsClass, vContainment: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.put_Containment(self, vContainment);
     }
-    pub fn get_Container(self: *const IADsClass, retval: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_Container(self: *const IADsClass, retval: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Container(self, retval);
     }
-    pub fn put_Container(self: *const IADsClass, fContainer: i16) callconv(.@"inline") HRESULT {
+    pub fn put_Container(self: *const IADsClass, fContainer: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Container(self, fContainer);
     }
     pub fn get_HelpFileName(self: *const IADsClass, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -3680,7 +3680,7 @@ pub const IADsComputerOperations = extern union {
         ) callconv(.winapi) HRESULT,
         Shutdown: *const fn(
             self: *const IADsComputerOperations,
-            bReboot: i16,
+            bReboot: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -3690,7 +3690,7 @@ pub const IADsComputerOperations = extern union {
     pub fn Status(self: *const IADsComputerOperations, ppObject: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.Status(self, ppObject);
     }
-    pub fn Shutdown(self: *const IADsComputerOperations, bReboot: i16) callconv(.@"inline") HRESULT {
+    pub fn Shutdown(self: *const IADsComputerOperations, bReboot: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Shutdown(self, bReboot);
     }
 };
@@ -3915,7 +3915,7 @@ pub const IADsDomain = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsWorkgroup: *const fn(
             self: *const IADsDomain,
-            retval: ?*i16,
+            retval: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MinPasswordLength: *const fn(
@@ -4002,7 +4002,7 @@ pub const IADsDomain = extern union {
     IADs: IADs,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_IsWorkgroup(self: *const IADsDomain, retval: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsWorkgroup(self: *const IADsDomain, retval: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsWorkgroup(self, retval);
     }
     pub fn get_MinPasswordLength(self: *const IADsDomain, retval: ?*i32) callconv(.@"inline") HRESULT {
@@ -4371,7 +4371,7 @@ pub const IADsGroup = extern union {
         IsMember: *const fn(
             self: *const IADsGroup,
             bstrMember: ?BSTR,
-            bMember: ?*i16,
+            bMember: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IADsGroup,
@@ -4395,7 +4395,7 @@ pub const IADsGroup = extern union {
     pub fn Members(self: *const IADsGroup, ppMembers: ?*?*IADsMembers) callconv(.@"inline") HRESULT {
         return self.vtable.Members(self, ppMembers);
     }
-    pub fn IsMember(self: *const IADsGroup, bstrMember: ?BSTR, bMember: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn IsMember(self: *const IADsGroup, bstrMember: ?BSTR, bMember: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsMember(self, bstrMember, bMember);
     }
     pub fn Add(self: *const IADsGroup, bstrNewItem: ?BSTR) callconv(.@"inline") HRESULT {
@@ -5793,12 +5793,12 @@ pub const IADsProperty = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MultiValued: *const fn(
             self: *const IADsProperty,
-            retval: ?*i16,
+            retval: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MultiValued: *const fn(
             self: *const IADsProperty,
-            fMultiValued: i16,
+            fMultiValued: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         Qualifiers: *const fn(
             self: *const IADsProperty,
@@ -5833,10 +5833,10 @@ pub const IADsProperty = extern union {
     pub fn put_MinRange(self: *const IADsProperty, lnMinRange: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_MinRange(self, lnMinRange);
     }
-    pub fn get_MultiValued(self: *const IADsProperty, retval: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_MultiValued(self: *const IADsProperty, retval: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_MultiValued(self, retval);
     }
-    pub fn put_MultiValued(self: *const IADsProperty, fMultiValued: i16) callconv(.@"inline") HRESULT {
+    pub fn put_MultiValued(self: *const IADsProperty, fMultiValued: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_MultiValued(self, fMultiValued);
     }
     pub fn Qualifiers(self: *const IADsProperty, ppQualifiers: ?*?*IADsCollection) callconv(.@"inline") HRESULT {
@@ -6417,12 +6417,12 @@ pub const IADsSecurityDescriptor = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OwnerDefaulted: *const fn(
             self: *const IADsSecurityDescriptor,
-            retval: ?*i16,
+            retval: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OwnerDefaulted: *const fn(
             self: *const IADsSecurityDescriptor,
-            fOwnerDefaulted: i16,
+            fOwnerDefaulted: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Group: *const fn(
@@ -6437,12 +6437,12 @@ pub const IADsSecurityDescriptor = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GroupDefaulted: *const fn(
             self: *const IADsSecurityDescriptor,
-            retval: ?*i16,
+            retval: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GroupDefaulted: *const fn(
             self: *const IADsSecurityDescriptor,
-            fGroupDefaulted: i16,
+            fGroupDefaulted: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DiscretionaryAcl: *const fn(
@@ -6457,12 +6457,12 @@ pub const IADsSecurityDescriptor = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DaclDefaulted: *const fn(
             self: *const IADsSecurityDescriptor,
-            retval: ?*i16,
+            retval: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DaclDefaulted: *const fn(
             self: *const IADsSecurityDescriptor,
-            fDaclDefaulted: i16,
+            fDaclDefaulted: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SystemAcl: *const fn(
@@ -6477,12 +6477,12 @@ pub const IADsSecurityDescriptor = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SaclDefaulted: *const fn(
             self: *const IADsSecurityDescriptor,
-            retval: ?*i16,
+            retval: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SaclDefaulted: *const fn(
             self: *const IADsSecurityDescriptor,
-            fSaclDefaulted: i16,
+            fSaclDefaulted: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         CopySecurityDescriptor: *const fn(
             self: *const IADsSecurityDescriptor,
@@ -6510,10 +6510,10 @@ pub const IADsSecurityDescriptor = extern union {
     pub fn put_Owner(self: *const IADsSecurityDescriptor, bstrOwner: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Owner(self, bstrOwner);
     }
-    pub fn get_OwnerDefaulted(self: *const IADsSecurityDescriptor, retval: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_OwnerDefaulted(self: *const IADsSecurityDescriptor, retval: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_OwnerDefaulted(self, retval);
     }
-    pub fn put_OwnerDefaulted(self: *const IADsSecurityDescriptor, fOwnerDefaulted: i16) callconv(.@"inline") HRESULT {
+    pub fn put_OwnerDefaulted(self: *const IADsSecurityDescriptor, fOwnerDefaulted: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_OwnerDefaulted(self, fOwnerDefaulted);
     }
     pub fn get_Group(self: *const IADsSecurityDescriptor, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -6522,10 +6522,10 @@ pub const IADsSecurityDescriptor = extern union {
     pub fn put_Group(self: *const IADsSecurityDescriptor, bstrGroup: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Group(self, bstrGroup);
     }
-    pub fn get_GroupDefaulted(self: *const IADsSecurityDescriptor, retval: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_GroupDefaulted(self: *const IADsSecurityDescriptor, retval: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_GroupDefaulted(self, retval);
     }
-    pub fn put_GroupDefaulted(self: *const IADsSecurityDescriptor, fGroupDefaulted: i16) callconv(.@"inline") HRESULT {
+    pub fn put_GroupDefaulted(self: *const IADsSecurityDescriptor, fGroupDefaulted: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_GroupDefaulted(self, fGroupDefaulted);
     }
     pub fn get_DiscretionaryAcl(self: *const IADsSecurityDescriptor, retval: ?*?*IDispatch) callconv(.@"inline") HRESULT {
@@ -6534,10 +6534,10 @@ pub const IADsSecurityDescriptor = extern union {
     pub fn put_DiscretionaryAcl(self: *const IADsSecurityDescriptor, pDiscretionaryAcl: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.put_DiscretionaryAcl(self, pDiscretionaryAcl);
     }
-    pub fn get_DaclDefaulted(self: *const IADsSecurityDescriptor, retval: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_DaclDefaulted(self: *const IADsSecurityDescriptor, retval: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_DaclDefaulted(self, retval);
     }
-    pub fn put_DaclDefaulted(self: *const IADsSecurityDescriptor, fDaclDefaulted: i16) callconv(.@"inline") HRESULT {
+    pub fn put_DaclDefaulted(self: *const IADsSecurityDescriptor, fDaclDefaulted: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_DaclDefaulted(self, fDaclDefaulted);
     }
     pub fn get_SystemAcl(self: *const IADsSecurityDescriptor, retval: ?*?*IDispatch) callconv(.@"inline") HRESULT {
@@ -6546,10 +6546,10 @@ pub const IADsSecurityDescriptor = extern union {
     pub fn put_SystemAcl(self: *const IADsSecurityDescriptor, pSystemAcl: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.put_SystemAcl(self, pSystemAcl);
     }
-    pub fn get_SaclDefaulted(self: *const IADsSecurityDescriptor, retval: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_SaclDefaulted(self: *const IADsSecurityDescriptor, retval: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SaclDefaulted(self, retval);
     }
-    pub fn put_SaclDefaulted(self: *const IADsSecurityDescriptor, fSaclDefaulted: i16) callconv(.@"inline") HRESULT {
+    pub fn put_SaclDefaulted(self: *const IADsSecurityDescriptor, fSaclDefaulted: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_SaclDefaulted(self, fSaclDefaulted);
     }
     pub fn CopySecurityDescriptor(self: *const IADsSecurityDescriptor, ppSecurityDescriptor: ?*?*IDispatch) callconv(.@"inline") HRESULT {
@@ -7315,12 +7315,12 @@ pub const IADsUser = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AccountDisabled: *const fn(
             self: *const IADsUser,
-            retval: ?*i16,
+            retval: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AccountDisabled: *const fn(
             self: *const IADsUser,
-            fAccountDisabled: i16,
+            fAccountDisabled: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AccountExpirationDate: *const fn(
@@ -7355,12 +7355,12 @@ pub const IADsUser = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsAccountLocked: *const fn(
             self: *const IADsUser,
-            retval: ?*i16,
+            retval: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsAccountLocked: *const fn(
             self: *const IADsUser,
-            fIsAccountLocked: i16,
+            fIsAccountLocked: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LoginHours: *const fn(
@@ -7425,22 +7425,22 @@ pub const IADsUser = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PasswordRequired: *const fn(
             self: *const IADsUser,
-            retval: ?*i16,
+            retval: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PasswordRequired: *const fn(
             self: *const IADsUser,
-            fPasswordRequired: i16,
+            fPasswordRequired: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequireUniquePassword: *const fn(
             self: *const IADsUser,
-            retval: ?*i16,
+            retval: ?*VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RequireUniquePassword: *const fn(
             self: *const IADsUser,
-            fRequireUniquePassword: i16,
+            fRequireUniquePassword: VARIANT_BOOL,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EmailAddress: *const fn(
@@ -7674,10 +7674,10 @@ pub const IADsUser = extern union {
     pub fn put_SeeAlso(self: *const IADsUser, vSeeAlso: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.put_SeeAlso(self, vSeeAlso);
     }
-    pub fn get_AccountDisabled(self: *const IADsUser, retval: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_AccountDisabled(self: *const IADsUser, retval: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_AccountDisabled(self, retval);
     }
-    pub fn put_AccountDisabled(self: *const IADsUser, fAccountDisabled: i16) callconv(.@"inline") HRESULT {
+    pub fn put_AccountDisabled(self: *const IADsUser, fAccountDisabled: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_AccountDisabled(self, fAccountDisabled);
     }
     pub fn get_AccountExpirationDate(self: *const IADsUser, retval: ?*f64) callconv(.@"inline") HRESULT {
@@ -7698,10 +7698,10 @@ pub const IADsUser = extern union {
     pub fn put_GraceLoginsRemaining(self: *const IADsUser, lnGraceLoginsRemaining: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_GraceLoginsRemaining(self, lnGraceLoginsRemaining);
     }
-    pub fn get_IsAccountLocked(self: *const IADsUser, retval: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_IsAccountLocked(self: *const IADsUser, retval: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsAccountLocked(self, retval);
     }
-    pub fn put_IsAccountLocked(self: *const IADsUser, fIsAccountLocked: i16) callconv(.@"inline") HRESULT {
+    pub fn put_IsAccountLocked(self: *const IADsUser, fIsAccountLocked: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_IsAccountLocked(self, fIsAccountLocked);
     }
     pub fn get_LoginHours(self: *const IADsUser, retval: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -7740,16 +7740,16 @@ pub const IADsUser = extern union {
     pub fn put_PasswordMinimumLength(self: *const IADsUser, lnPasswordMinimumLength: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_PasswordMinimumLength(self, lnPasswordMinimumLength);
     }
-    pub fn get_PasswordRequired(self: *const IADsUser, retval: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_PasswordRequired(self: *const IADsUser, retval: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_PasswordRequired(self, retval);
     }
-    pub fn put_PasswordRequired(self: *const IADsUser, fPasswordRequired: i16) callconv(.@"inline") HRESULT {
+    pub fn put_PasswordRequired(self: *const IADsUser, fPasswordRequired: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_PasswordRequired(self, fPasswordRequired);
     }
-    pub fn get_RequireUniquePassword(self: *const IADsUser, retval: ?*i16) callconv(.@"inline") HRESULT {
+    pub fn get_RequireUniquePassword(self: *const IADsUser, retval: ?*VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_RequireUniquePassword(self, retval);
     }
-    pub fn put_RequireUniquePassword(self: *const IADsUser, fRequireUniquePassword: i16) callconv(.@"inline") HRESULT {
+    pub fn put_RequireUniquePassword(self: *const IADsUser, fRequireUniquePassword: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_RequireUniquePassword(self, fRequireUniquePassword);
     }
     pub fn get_EmailAddress(self: *const IADsUser, retval: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -10516,7 +10516,7 @@ pub const DsWriteAccountSpn = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (35)
+// Section: Imports (36)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BFFCALLBACK = @import("../ui/shell.zig").BFFCALLBACK;
@@ -10552,6 +10552,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const SOCKET_ADDRESS = @import("../networking/win_sock.zig").SOCKET_ADDRESS;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {

@@ -1220,12 +1220,33 @@ pub const ITWW_OPEN_CONNECT = WORD_WHEEL_OPEN_FLAGS{ };
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (0)
+// Section: Functions (2)
 //--------------------------------------------------------------------------------
+pub extern "htmlhelp" fn HtmlHelpA(
+    hwndCaller: ?HWND,
+    pszFile: ?[*:0]const u8,
+    uCommand: u32,
+    dwData: usize,
+) callconv(.winapi) ?HWND;
+
+pub extern "htmlhelp" fn HtmlHelpW(
+    hwndCaller: ?HWND,
+    pszFile: ?[*:0]const u16,
+    uCommand: u32,
+    dwData: usize,
+) callconv(.winapi) ?HWND;
+
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (0)
+// Section: Unicode Aliases (1)
 //--------------------------------------------------------------------------------
+pub const HtmlHelp = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().HtmlHelpA,
+    .wide => @This().HtmlHelpW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'HtmlHelp' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 //--------------------------------------------------------------------------------
 // Section: Imports (17)
 //--------------------------------------------------------------------------------

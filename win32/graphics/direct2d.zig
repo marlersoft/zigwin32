@@ -73,7 +73,7 @@ pub const D2D1_SCENE_REFERRED_SDR_WHITE_LEVEL = @as(f32, 80.0);
 pub const FACILITY_D2D = @as(u32, 2201);
 
 //--------------------------------------------------------------------------------
-// Section: Types (330)
+// Section: Types (327)
 //--------------------------------------------------------------------------------
 pub const D2D1_2DAFFINETRANSFORM_PROP = enum(u32) {
     INTERPOLATION_MODE = 0,
@@ -9386,18 +9386,6 @@ pub const ID2D1VertexBuffer = extern union {
     }
 };
 
-pub const Matrix4x3F = extern struct {
-    Base: D2D_MATRIX_4X3_F,
-};
-
-pub const Matrix4x4F = extern struct {
-    Base: D2D_MATRIX_4X4_F,
-};
-
-pub const Matrix5x4F = extern struct {
-    Base: D2D_MATRIX_5X4_F,
-};
-
 pub const PD2D1_EFFECT_FACTORY = *const fn(
     effectImpl: ?*?*IUnknown,
 ) callconv(.winapi) HRESULT;
@@ -9518,7 +9506,7 @@ pub extern "d2d1" fn D2D1Vec3Length(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (47)
+// Section: Imports (45)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -9530,9 +9518,7 @@ const D2D1_FILL_MODE = @import("../graphics/direct2d/common.zig").D2D1_FILL_MODE
 const D2D1_PIXEL_FORMAT = @import("../graphics/direct2d/common.zig").D2D1_PIXEL_FORMAT;
 const D2D_COLOR_F = @import("../graphics/direct2d/common.zig").D2D_COLOR_F;
 const D2D_MATRIX_3X2_F = @import("../graphics/direct2d/common.zig").D2D_MATRIX_3X2_F;
-const D2D_MATRIX_4X3_F = @import("../graphics/direct2d/common.zig").D2D_MATRIX_4X3_F;
 const D2D_MATRIX_4X4_F = @import("../graphics/direct2d/common.zig").D2D_MATRIX_4X4_F;
-const D2D_MATRIX_5X4_F = @import("../graphics/direct2d/common.zig").D2D_MATRIX_5X4_F;
 const D2D_POINT_2F = @import("../graphics/direct2d/common.zig").D2D_POINT_2F;
 const D2D_POINT_2U = @import("../graphics/direct2d/common.zig").D2D_POINT_2U;
 const D2D_RECT_F = @import("../graphics/direct2d/common.zig").D2D_RECT_F;

@@ -2199,7 +2199,7 @@ pub extern "advapi32" fn InitializeAcl(
     // TODO: what to do with BytesParamIndex 1?
     pAcl: ?*ACL,
     nAclLength: u32,
-    dwAclRevision: u32,
+    dwAclRevision: ACE_REVISION,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'

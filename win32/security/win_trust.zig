@@ -178,13 +178,13 @@ pub const CAT_MEMBERINFO2 = extern struct {
 pub const CAT_NAMEVALUE = extern struct {
     pwszTag: ?PWSTR,
     fdwFlags: u32,
-    Value: CRYPTOAPI_BLOB,
+    Value: CRYPT_INTEGER_BLOB,
 };
 
 pub const CONFIG_CI_PROV_INFO = extern struct {
     cbSize: u32,
     dwPolicies: u32,
-    pPolicies: ?*CRYPTOAPI_BLOB,
+    pPolicies: ?*CRYPT_INTEGER_BLOB,
     result: CONFIG_CI_PROV_INFO_RESULT,
     dwScenario: u32,
 };
@@ -463,13 +463,13 @@ pub const SEALING_SIGNATURE_ATTRIBUTE = extern struct {
     version: u32,
     signerIndex: u32,
     signatureAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    encryptedDigest: CRYPTOAPI_BLOB,
+    encryptedDigest: CRYPT_INTEGER_BLOB,
 };
 
 pub const SEALING_TIMESTAMP_ATTRIBUTE = extern struct {
     version: u32,
     signerIndex: u32,
-    sealTimeStampToken: CRYPTOAPI_BLOB,
+    sealTimeStampToken: CRYPT_INTEGER_BLOB,
 };
 
 pub const SPC_FINANCIAL_CRITERIA = extern struct {
@@ -479,16 +479,16 @@ pub const SPC_FINANCIAL_CRITERIA = extern struct {
 
 pub const SPC_IMAGE = extern struct {
     pImageLink: ?*SPC_LINK,
-    Bitmap: CRYPTOAPI_BLOB,
-    Metafile: CRYPTOAPI_BLOB,
-    EnhancedMetafile: CRYPTOAPI_BLOB,
-    GifFile: CRYPTOAPI_BLOB,
+    Bitmap: CRYPT_INTEGER_BLOB,
+    Metafile: CRYPT_INTEGER_BLOB,
+    EnhancedMetafile: CRYPT_INTEGER_BLOB,
+    GifFile: CRYPT_INTEGER_BLOB,
 };
 
 pub const SPC_INDIRECT_DATA_CONTENT = extern struct {
     Data: CRYPT_ATTRIBUTE_TYPE_VALUE,
     DigestAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    Digest: CRYPTOAPI_BLOB,
+    Digest: CRYPT_INTEGER_BLOB,
 };
 
 pub const SPC_LINK = extern struct {
@@ -507,7 +507,7 @@ pub const SPC_PE_IMAGE_DATA = extern struct {
 
 pub const SPC_SERIALIZED_OBJECT = extern struct {
     ClassId: [16]u8,
-    SerializedData: CRYPTOAPI_BLOB,
+    SerializedData: CRYPT_INTEGER_BLOB,
 };
 
 pub const SPC_SIGINFO = extern struct {
@@ -979,7 +979,7 @@ const CMSG_SIGNER_INFO = @import("../security/cryptography.zig").CMSG_SIGNER_INF
 const CRYPT_ALGORITHM_IDENTIFIER = @import("../security/cryptography.zig").CRYPT_ALGORITHM_IDENTIFIER;
 const CRYPT_ATTRIBUTE_TYPE_VALUE = @import("../security/cryptography.zig").CRYPT_ATTRIBUTE_TYPE_VALUE;
 const CRYPT_BIT_BLOB = @import("../security/cryptography.zig").CRYPT_BIT_BLOB;
-const CRYPTOAPI_BLOB = @import("../security/cryptography.zig").CRYPTOAPI_BLOB;
+const CRYPT_INTEGER_BLOB = @import("../security/cryptography.zig").CRYPT_INTEGER_BLOB;
 const CTL_CONTEXT = @import("../security/cryptography.zig").CTL_CONTEXT;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;

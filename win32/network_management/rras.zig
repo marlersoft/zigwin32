@@ -823,8 +823,8 @@ pub const IKEV2_TUNNEL_CONFIG_PARAMS2 = extern struct {
     dwSaDataSizeForRenegotiation: u32,
     dwConfigOptions: u32,
     dwTotalCertificates: u32,
-    certificateNames: ?*CRYPTOAPI_BLOB,
-    machineCertificateName: CRYPTOAPI_BLOB,
+    certificateNames: ?*CRYPT_INTEGER_BLOB,
+    machineCertificateName: CRYPT_INTEGER_BLOB,
     dwEncryptionType: u32,
     customPolicy: ?*ROUTER_CUSTOM_IKEv2_POLICY0,
 };
@@ -836,13 +836,13 @@ pub const IKEV2_TUNNEL_CONFIG_PARAMS3 = extern struct {
     dwSaDataSizeForRenegotiation: u32,
     dwConfigOptions: u32,
     dwTotalCertificates: u32,
-    certificateNames: ?*CRYPTOAPI_BLOB,
-    machineCertificateName: CRYPTOAPI_BLOB,
+    certificateNames: ?*CRYPT_INTEGER_BLOB,
+    machineCertificateName: CRYPT_INTEGER_BLOB,
     dwEncryptionType: u32,
     customPolicy: ?*ROUTER_CUSTOM_IKEv2_POLICY0,
     dwTotalEkus: u32,
     certificateEKUs: ?*MPR_CERT_EKU,
-    machineCertificateHash: CRYPTOAPI_BLOB,
+    machineCertificateHash: CRYPT_INTEGER_BLOB,
 };
 
 pub const IKEV2_TUNNEL_CONFIG_PARAMS4 = extern struct {
@@ -852,13 +852,13 @@ pub const IKEV2_TUNNEL_CONFIG_PARAMS4 = extern struct {
     dwSaDataSizeForRenegotiation: u32,
     dwConfigOptions: u32,
     dwTotalCertificates: u32,
-    certificateNames: ?*CRYPTOAPI_BLOB,
-    machineCertificateName: CRYPTOAPI_BLOB,
+    certificateNames: ?*CRYPT_INTEGER_BLOB,
+    machineCertificateName: CRYPT_INTEGER_BLOB,
     dwEncryptionType: u32,
     customPolicy: ?*ROUTER_CUSTOM_IKEv2_POLICY0,
     dwTotalEkus: u32,
     certificateEKUs: ?*MPR_CERT_EKU,
-    machineCertificateHash: CRYPTOAPI_BLOB,
+    machineCertificateHash: CRYPT_INTEGER_BLOB,
     dwMmSaLifeTime: u32,
 };
 
@@ -2850,24 +2850,24 @@ pub const ROUTER_CUSTOM_IKEv2_POLICY0 = extern struct {
 pub const ROUTER_IKEv2_IF_CUSTOM_CONFIG0 = extern struct {
     dwSaLifeTime: u32,
     dwSaDataSize: u32,
-    certificateName: CRYPTOAPI_BLOB,
+    certificateName: CRYPT_INTEGER_BLOB,
     customPolicy: ?*ROUTER_CUSTOM_IKEv2_POLICY0,
 };
 
 pub const ROUTER_IKEv2_IF_CUSTOM_CONFIG1 = extern struct {
     dwSaLifeTime: u32,
     dwSaDataSize: u32,
-    certificateName: CRYPTOAPI_BLOB,
+    certificateName: CRYPT_INTEGER_BLOB,
     customPolicy: ?*ROUTER_CUSTOM_IKEv2_POLICY0,
-    certificateHash: CRYPTOAPI_BLOB,
+    certificateHash: CRYPT_INTEGER_BLOB,
 };
 
 pub const ROUTER_IKEv2_IF_CUSTOM_CONFIG2 = extern struct {
     dwSaLifeTime: u32,
     dwSaDataSize: u32,
-    certificateName: CRYPTOAPI_BLOB,
+    certificateName: CRYPT_INTEGER_BLOB,
     customPolicy: ?*ROUTER_CUSTOM_IKEv2_POLICY0,
-    certificateHash: CRYPTOAPI_BLOB,
+    certificateHash: CRYPT_INTEGER_BLOB,
     dwMmSaLifeTime: u32,
     vpnTrafficSelectors: MPR_VPN_TRAFFIC_SELECTORS,
 };
@@ -3053,7 +3053,7 @@ pub const SOURCE_GROUP_ENTRY = extern struct {
 
 pub const SSTP_CERT_INFO = extern struct {
     isDefault: BOOL,
-    certBlob: CRYPTOAPI_BLOB,
+    certBlob: CRYPT_INTEGER_BLOB,
 };
 
 pub const SSTP_CONFIG_PARAMS = extern struct {
@@ -5642,7 +5642,7 @@ pub const RasValidateEntryName = switch (@import("../zig.zig").unicode_mode) {
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const CHAR = @import("../foundation.zig").CHAR;
-const CRYPTOAPI_BLOB = @import("../security/cryptography.zig").CRYPTOAPI_BLOB;
+const CRYPT_INTEGER_BLOB = @import("../security/cryptography.zig").CRYPT_INTEGER_BLOB;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
