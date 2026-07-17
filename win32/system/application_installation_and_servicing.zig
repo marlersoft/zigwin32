@@ -1940,18 +1940,22 @@ pub const IPMApplicationInfo = extern union {
             self: *const IPMApplicationInfo,
             pMinorVer: ?*u8,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_UpdateAvailable: *const fn(
             self: *const IPMApplicationInfo,
             IsUpdateAvailable: BOOL,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_NotificationState: *const fn(
             self: *const IPMApplicationInfo,
             IsNotified: BOOL,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_IconPath: *const fn(
             self: *const IPMApplicationInfo,
             AppIconPath: ?BSTR,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_UninstallableState: *const fn(
             self: *const IPMApplicationInfo,
             IsUninstallable: BOOL,
@@ -1981,10 +1985,12 @@ pub const IPMApplicationInfo = extern union {
             self: *const IPMApplicationInfo,
             pIsOptoutBackupRestore: ?*BOOL,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_EnterpriseDisabled: *const fn(
             self: *const IPMApplicationInfo,
             IsDisabled: BOOL,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_EnterpriseUninstallable: *const fn(
             self: *const IPMApplicationInfo,
             IsUninstallable: BOOL,
@@ -2049,10 +2055,12 @@ pub const IPMApplicationInfo = extern union {
             self: *const IPMApplicationInfo,
             pfIsFullyPreInstall: ?*BOOL,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_IsMdilMaintenanceNeeded: *const fn(
             self: *const IPMApplicationInfo,
             fIsMdilMaintenanceNeeded: BOOL,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_Title: *const fn(
             self: *const IPMApplicationInfo,
             AppTitle: ?BSTR,
@@ -2310,10 +2318,12 @@ pub const IPMBackgroundServiceAgentInfo = extern union {
             self: *const IPMBackgroundServiceAgentInfo,
             pLaunchOnBoot: ?*BOOL,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_IsScheduled: *const fn(
             self: *const IPMBackgroundServiceAgentInfo,
             IsScheduled: BOOL,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_IsScheduleAllowed: *const fn(
             self: *const IPMBackgroundServiceAgentInfo,
             IsScheduleAllowed: BOOL,
@@ -3224,6 +3234,7 @@ pub const IPMLiveTileJobInfo = extern union {
             self: *const IPMLiveTileJobInfo,
             pNextSchedule: ?*FILETIME,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_NextSchedule: *const fn(
             self: *const IPMLiveTileJobInfo,
             ftNextSchedule: FILETIME,
@@ -3233,6 +3244,7 @@ pub const IPMLiveTileJobInfo = extern union {
             self: *const IPMLiveTileJobInfo,
             pStartSchedule: ?*FILETIME,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_StartSchedule: *const fn(
             self: *const IPMLiveTileJobInfo,
             ftStartSchedule: FILETIME,
@@ -3242,6 +3254,7 @@ pub const IPMLiveTileJobInfo = extern union {
             self: *const IPMLiveTileJobInfo,
             pIntervalDuration: ?*u32,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_IntervalDuration: *const fn(
             self: *const IPMLiveTileJobInfo,
             ulIntervalDuration: u32,
@@ -3251,6 +3264,7 @@ pub const IPMLiveTileJobInfo = extern union {
             self: *const IPMLiveTileJobInfo,
             IsRunForever: ?*BOOL,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_RunForever: *const fn(
             self: *const IPMLiveTileJobInfo,
             fRunForever: BOOL,
@@ -3260,6 +3274,7 @@ pub const IPMLiveTileJobInfo = extern union {
             self: *const IPMLiveTileJobInfo,
             pMaxRunCount: ?*u32,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_MaxRunCount: *const fn(
             self: *const IPMLiveTileJobInfo,
             ulMaxRunCount: u32,
@@ -3269,6 +3284,7 @@ pub const IPMLiveTileJobInfo = extern union {
             self: *const IPMLiveTileJobInfo,
             pRunCount: ?*u32,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_RunCount: *const fn(
             self: *const IPMLiveTileJobInfo,
             ulRunCount: u32,
@@ -3278,6 +3294,7 @@ pub const IPMLiveTileJobInfo = extern union {
             self: *const IPMLiveTileJobInfo,
             pRecurrenceType: ?*u32,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_RecurrenceType: *const fn(
             self: *const IPMLiveTileJobInfo,
             ulRecurrenceType: u32,
@@ -3307,6 +3324,7 @@ pub const IPMLiveTileJobInfo = extern union {
             self: *const IPMLiveTileJobInfo,
             pAttemptCount: ?*u32,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_AttemptCount: *const fn(
             self: *const IPMLiveTileJobInfo,
             ulAttemptCount: u32,
@@ -3316,6 +3334,7 @@ pub const IPMLiveTileJobInfo = extern union {
             self: *const IPMLiveTileJobInfo,
             pDownloadState: ?*u32,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_DownloadState: *const fn(
             self: *const IPMLiveTileJobInfo,
             ulDownloadState: u32,
@@ -3691,6 +3710,7 @@ pub const IPMTileInfo = extern union {
             HubType: PM_TILE_HUBTYPE,
             Position: u32,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_NotifiedState: *const fn(
             self: *const IPMTileInfo,
             Notified: BOOL,
@@ -3725,10 +3745,12 @@ pub const IPMTileInfo = extern union {
             self: *const IPMTileInfo,
             pIsAutoRestoreDisabled: ?*BOOL,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_IsRestoring: *const fn(
             self: *const IPMTileInfo,
             Restoring: BOOL,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_IsAutoRestoreDisabled: *const fn(
             self: *const IPMTileInfo,
             AutoRestoreDisabled: BOOL,
@@ -3861,6 +3883,7 @@ pub const IPMTilePropertyInfo = extern union {
             self: *const IPMTilePropertyInfo,
             pPropValue: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_Property: *const fn(
             self: *const IPMTilePropertyInfo,
             PropValue: ?BSTR,

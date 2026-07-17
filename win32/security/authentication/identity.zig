@@ -7030,7 +7030,7 @@ pub const X509Certificate = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (211)
+// Section: Functions (212)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "secur32" fn AcceptSecurityContext(
@@ -7966,6 +7966,11 @@ pub extern "secur32" fn SaslSetContextOption(
     Value: ?*anyopaque,
     Size: u32,
 ) callconv(.winapi) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "sas" fn SendSAS(
+    AsUser: BOOL,
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn SetContextAttributesA(

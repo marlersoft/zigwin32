@@ -1066,7 +1066,7 @@ pub extern "gdi32" fn ChoosePixelFormat(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn DescribePixelFormat(
     hdc: ?HDC,
-    iPixelFormat: PFD_PIXEL_TYPE,
+    iPixelFormat: i32,
     nBytes: u32,
     // TODO: what to do with BytesParamIndex 2?
     ppfd: ?*PIXELFORMATDESCRIPTOR,

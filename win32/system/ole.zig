@@ -4437,6 +4437,7 @@ pub const IPicture = extern union {
             cySrc: i32,
             pRcWBounds: ?*RECT,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_hPal: *const fn(
             self: *const IPicture,
             hPal: OLE_HANDLE,
@@ -4566,6 +4567,7 @@ pub const IPicture2 = extern union {
             cySrc: i32,
             pRcWBounds: ?*RECT,
         ) callconv(.winapi) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         set_hPal: *const fn(
             self: *const IPicture2,
             hPal: usize,
@@ -8004,7 +8006,7 @@ pub extern "oleaut32" fn OleCreatePictureIndirect(
     lpPictDesc: ?*PICTDESC,
     riid: ?*const Guid,
     fOwn: BOOL,
-    lplpvObj: ?*?*anyopaque,
+    lplpvObj: **anyopaque,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'

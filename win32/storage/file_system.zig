@@ -284,7 +284,7 @@ pub const WOF_PROVIDER_FILE = @as(u32, 2);
 pub const WOF_PROVIDER_WIM = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
-// Section: Types (336)
+// Section: Types (338)
 //--------------------------------------------------------------------------------
 pub const BY_HANDLE_FILE_INFORMATION = extern struct {
     dwFileAttributes: u32,
@@ -632,6 +632,21 @@ pub const CLS_WRITE_ENTRY = extern struct {
     Buffer: ?*anyopaque,
     ByteLength: u32,
 };
+
+pub const COMPRESSION_FORMAT = enum(u16) {
+    NONE = 0,
+    DEFAULT = 1,
+    LZNT1 = 2,
+    XPRESS = 3,
+    XPRESS_HUFF = 4,
+    XP10 = 5,
+};
+pub const COMPRESSION_FORMAT_NONE = COMPRESSION_FORMAT.NONE;
+pub const COMPRESSION_FORMAT_DEFAULT = COMPRESSION_FORMAT.DEFAULT;
+pub const COMPRESSION_FORMAT_LZNT1 = COMPRESSION_FORMAT.LZNT1;
+pub const COMPRESSION_FORMAT_XPRESS = COMPRESSION_FORMAT.XPRESS;
+pub const COMPRESSION_FORMAT_XPRESS_HUFF = COMPRESSION_FORMAT.XPRESS_HUFF;
+pub const COMPRESSION_FORMAT_XP10 = COMPRESSION_FORMAT.XP10;
 
 pub const CONNECTION_INFO_0 = extern struct {
     coni0_id: u32,
@@ -1165,7 +1180,7 @@ pub const FILE_BASIC_INFO = extern struct {
 
 pub const FILE_COMPRESSION_INFO = extern struct {
     CompressedFileSize: LARGE_INTEGER,
-    CompressionFormat: u16,
+    CompressionFormat: COMPRESSION_FORMAT,
     CompressionUnitShift: u8,
     ChunkShift: u8,
     ClusterShift: u8,
@@ -1684,6 +1699,19 @@ pub const FILE_STREAM_INFO = extern struct {
     StreamAllocationSize: LARGE_INTEGER,
     StreamName: [1]u16,
 };
+
+pub const FILE_TYPE = enum(u32) {
+    UNKNOWN = 0,
+    DISK = 1,
+    CHAR = 2,
+    PIPE = 3,
+    REMOTE = 32768,
+};
+pub const FILE_TYPE_UNKNOWN = FILE_TYPE.UNKNOWN;
+pub const FILE_TYPE_DISK = FILE_TYPE.DISK;
+pub const FILE_TYPE_CHAR = FILE_TYPE.CHAR;
+pub const FILE_TYPE_PIPE = FILE_TYPE.PIPE;
+pub const FILE_TYPE_REMOTE = FILE_TYPE.REMOTE;
 
 pub const FIND_FIRST_EX_FLAGS = packed struct(u32) {
     CASE_SENSITIVE: u1 = 0,
@@ -5940,7 +5968,7 @@ pub extern "kernel32" fn GetFileTime(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn GetFileType(
     hFile: ?HANDLE,
-) callconv(.winapi) u32;
+) callconv(.winapi) FILE_TYPE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "version" fn GetFileVersionInfoA(

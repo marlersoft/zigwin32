@@ -1237,7 +1237,7 @@ pub extern "user32" fn mouse_event(
     dwFlags: MOUSE_EVENT_FLAGS,
     dx: i32,
     dy: i32,
-    dwData: u32,
+    dwData: i32,
     dwExtraInfo: usize,
 ) callconv(.winapi) void;
 

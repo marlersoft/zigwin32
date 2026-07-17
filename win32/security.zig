@@ -30,7 +30,7 @@ pub const wszRBRACE = "}";
 pub const wszRPAREN = ")";
 
 //--------------------------------------------------------------------------------
-// Section: Types (106)
+// Section: Types (108)
 //--------------------------------------------------------------------------------
 pub const ACCESS_ALLOWED_ACE = extern struct {
     Header: ACE_HEADER,
@@ -639,11 +639,54 @@ pub const SECURITY_CAPABILITIES = extern struct {
 pub const SECURITY_DESCRIPTOR = extern struct {
     Revision: u8,
     Sbz1: u8,
-    Control: u16,
+    Control: SECURITY_DESCRIPTOR_CONTROL,
     Owner: ?PSID,
     Group: ?PSID,
     Sacl: ?*ACL,
     Dacl: ?*ACL,
+};
+
+pub const SECURITY_DESCRIPTOR_CONTROL = packed struct(u16) {
+    OWNER_DEFAULTED: u1 = 0,
+    GROUP_DEFAULTED: u1 = 0,
+    DACL_PRESENT: u1 = 0,
+    DACL_DEFAULTED: u1 = 0,
+    SACL_PRESENT: u1 = 0,
+    SACL_DEFAULTED: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    DACL_AUTO_INHERIT_REQ: u1 = 0,
+    SACL_AUTO_INHERIT_REQ: u1 = 0,
+    DACL_AUTO_INHERITED: u1 = 0,
+    SACL_AUTO_INHERITED: u1 = 0,
+    DACL_PROTECTED: u1 = 0,
+    SACL_PROTECTED: u1 = 0,
+    RM_CONTROL_VALID: u1 = 0,
+    SELF_RELATIVE: u1 = 0,
+};
+pub const SE_OWNER_DEFAULTED = SECURITY_DESCRIPTOR_CONTROL{ .OWNER_DEFAULTED = 1 };
+pub const SE_GROUP_DEFAULTED = SECURITY_DESCRIPTOR_CONTROL{ .GROUP_DEFAULTED = 1 };
+pub const SE_DACL_PRESENT = SECURITY_DESCRIPTOR_CONTROL{ .DACL_PRESENT = 1 };
+pub const SE_DACL_DEFAULTED = SECURITY_DESCRIPTOR_CONTROL{ .DACL_DEFAULTED = 1 };
+pub const SE_SACL_PRESENT = SECURITY_DESCRIPTOR_CONTROL{ .SACL_PRESENT = 1 };
+pub const SE_SACL_DEFAULTED = SECURITY_DESCRIPTOR_CONTROL{ .SACL_DEFAULTED = 1 };
+pub const SE_DACL_AUTO_INHERIT_REQ = SECURITY_DESCRIPTOR_CONTROL{ .DACL_AUTO_INHERIT_REQ = 1 };
+pub const SE_SACL_AUTO_INHERIT_REQ = SECURITY_DESCRIPTOR_CONTROL{ .SACL_AUTO_INHERIT_REQ = 1 };
+pub const SE_DACL_AUTO_INHERITED = SECURITY_DESCRIPTOR_CONTROL{ .DACL_AUTO_INHERITED = 1 };
+pub const SE_SACL_AUTO_INHERITED = SECURITY_DESCRIPTOR_CONTROL{ .SACL_AUTO_INHERITED = 1 };
+pub const SE_DACL_PROTECTED = SECURITY_DESCRIPTOR_CONTROL{ .DACL_PROTECTED = 1 };
+pub const SE_SACL_PROTECTED = SECURITY_DESCRIPTOR_CONTROL{ .SACL_PROTECTED = 1 };
+pub const SE_RM_CONTROL_VALID = SECURITY_DESCRIPTOR_CONTROL{ .RM_CONTROL_VALID = 1 };
+pub const SE_SELF_RELATIVE = SECURITY_DESCRIPTOR_CONTROL{ .SELF_RELATIVE = 1 };
+
+pub const SECURITY_DESCRIPTOR_RELATIVE = extern struct {
+    Revision: u8,
+    Sbz1: u8,
+    Control: SECURITY_DESCRIPTOR_CONTROL,
+    Owner: u32,
+    Group: u32,
+    Sacl: u32,
+    Dacl: u32,
 };
 
 pub const SECURITY_IMPERSONATION_LEVEL = enum(i32) {
@@ -1452,7 +1495,7 @@ pub const WinBuiltinDeviceOwnersSid = WELL_KNOWN_SID_TYPE.BuiltinDeviceOwnersSid
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (137)
+// Section: Functions (133)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn AccessCheck(
@@ -2303,26 +2346,6 @@ pub extern "advapi32" fn LookupAccountNameA(
     peUse: ?*SID_NAME_USE,
 ) callconv(.winapi) BOOL;
 
-pub extern "advapi32" fn LookupAccountNameLocalA(
-    lpAccountName: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 2?
-    Sid: ?PSID,
-    cbSid: ?*u32,
-    ReferencedDomainName: ?[*:0]u8,
-    cchReferencedDomainName: ?*u32,
-    peUse: ?*SID_NAME_USE,
-) callconv(.winapi) BOOL;
-
-pub extern "advapi32" fn LookupAccountNameLocalW(
-    lpAccountName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 2?
-    Sid: ?PSID,
-    cbSid: ?*u32,
-    ReferencedDomainName: ?[*:0]u16,
-    cchReferencedDomainName: ?*u32,
-    peUse: ?*SID_NAME_USE,
-) callconv(.winapi) BOOL;
-
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LookupAccountNameW(
     lpSystemName: ?[*:0]const u16,
@@ -2342,26 +2365,6 @@ pub extern "advapi32" fn LookupAccountSidA(
     Name: ?[*:0]u8,
     cchName: ?*u32,
     ReferencedDomainName: ?[*:0]u8,
-    cchReferencedDomainName: ?*u32,
-    peUse: ?*SID_NAME_USE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn LookupAccountSidLocalA(
-    Sid: ?PSID,
-    Name: ?[*:0]u8,
-    cchName: ?*u32,
-    ReferencedDomainName: ?[*:0]u8,
-    cchReferencedDomainName: ?*u32,
-    peUse: ?*SID_NAME_USE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn LookupAccountSidLocalW(
-    Sid: ?PSID,
-    Name: ?[*:0]u16,
-    cchName: ?*u32,
-    ReferencedDomainName: ?[*:0]u16,
     cchReferencedDomainName: ?*u32,
     peUse: ?*SID_NAME_USE,
 ) callconv(.winapi) BOOL;
@@ -2706,7 +2709,7 @@ pub extern "user32" fn SetUserObjectSecurity(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (20)
+// Section: Unicode Aliases (18)
 //--------------------------------------------------------------------------------
 pub const AccessCheckAndAuditAlarm = switch (@import("zig.zig").unicode_mode) {
     .ansi => @This().AccessCheckAndAuditAlarmA,
@@ -2764,25 +2767,11 @@ pub const LookupAccountName = switch (@import("zig.zig").unicode_mode) {
         "'LookupAccountName' requires that UNICODE be set to true or false in the root module",
     ),
 };
-pub const LookupAccountNameLocal = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().LookupAccountNameLocalA,
-    .wide => @This().LookupAccountNameLocalW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LookupAccountNameLocal' requires that UNICODE be set to true or false in the root module",
-    ),
-};
 pub const LookupAccountSid = switch (@import("zig.zig").unicode_mode) {
     .ansi => @This().LookupAccountSidA,
     .wide => @This().LookupAccountSidW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'LookupAccountSid' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const LookupAccountSidLocal = switch (@import("zig.zig").unicode_mode) {
-    .ansi => @This().LookupAccountSidLocalA,
-    .wide => @This().LookupAccountSidLocalW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LookupAccountSidLocal' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const LookupPrivilegeDisplayName = switch (@import("zig.zig").unicode_mode) {

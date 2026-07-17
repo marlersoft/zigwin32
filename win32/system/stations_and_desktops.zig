@@ -4,7 +4,7 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (12)
+// Section: Types (13)
 //--------------------------------------------------------------------------------
 pub const BROADCAST_SYSTEM_MESSAGE_FLAGS = packed struct(u32) {
     QUERY: u1 = 0,
@@ -96,6 +96,37 @@ pub const BSMINFO = extern struct {
     hwnd: ?HWND,
     luid: LUID,
 };
+
+pub const DESKTOP_ACCESS_FLAGS = enum(u32) {
+    DELETE = 65536,
+    READ_CONTROL = 131072,
+    WRITE_DAC = 262144,
+    WRITE_OWNER = 524288,
+    SYNCHRONIZE = 1048576,
+    READOBJECTS = 1,
+    CREATEWINDOW = 2,
+    CREATEMENU = 4,
+    HOOKCONTROL = 8,
+    JOURNALRECORD = 16,
+    JOURNALPLAYBACK = 32,
+    ENUMERATE = 64,
+    WRITEOBJECTS = 128,
+    SWITCHDESKTOP = 256,
+};
+pub const DESKTOP_DELETE = DESKTOP_ACCESS_FLAGS.DELETE;
+pub const DESKTOP_READ_CONTROL = DESKTOP_ACCESS_FLAGS.READ_CONTROL;
+pub const DESKTOP_WRITE_DAC = DESKTOP_ACCESS_FLAGS.WRITE_DAC;
+pub const DESKTOP_WRITE_OWNER = DESKTOP_ACCESS_FLAGS.WRITE_OWNER;
+pub const DESKTOP_SYNCHRONIZE = DESKTOP_ACCESS_FLAGS.SYNCHRONIZE;
+pub const DESKTOP_READOBJECTS = DESKTOP_ACCESS_FLAGS.READOBJECTS;
+pub const DESKTOP_CREATEWINDOW = DESKTOP_ACCESS_FLAGS.CREATEWINDOW;
+pub const DESKTOP_CREATEMENU = DESKTOP_ACCESS_FLAGS.CREATEMENU;
+pub const DESKTOP_HOOKCONTROL = DESKTOP_ACCESS_FLAGS.HOOKCONTROL;
+pub const DESKTOP_JOURNALRECORD = DESKTOP_ACCESS_FLAGS.JOURNALRECORD;
+pub const DESKTOP_JOURNALPLAYBACK = DESKTOP_ACCESS_FLAGS.JOURNALPLAYBACK;
+pub const DESKTOP_ENUMERATE = DESKTOP_ACCESS_FLAGS.ENUMERATE;
+pub const DESKTOP_WRITEOBJECTS = DESKTOP_ACCESS_FLAGS.WRITEOBJECTS;
+pub const DESKTOP_SWITCHDESKTOP = DESKTOP_ACCESS_FLAGS.SWITCHDESKTOP;
 
 pub const DESKTOP_CONTROL_FLAGS = enum(u32) {
     K = 1,
@@ -344,7 +375,7 @@ pub extern "user32" fn OpenDesktopW(
 pub extern "user32" fn OpenInputDesktop(
     dwFlags: DESKTOP_CONTROL_FLAGS,
     fInherit: BOOL,
-    dwDesiredAccess: u32,
+    dwDesiredAccess: DESKTOP_ACCESS_FLAGS,
 ) callconv(.winapi) ?HDESK;
 
 // TODO: this type is limited to platform 'windows5.0'
