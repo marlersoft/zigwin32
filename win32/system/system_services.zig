@@ -3157,7 +3157,7 @@ pub const XSTATE_PASID = @as(u32, 10);
 pub const XSTATE_XFD_BIT = @as(u32, 2);
 
 //--------------------------------------------------------------------------------
-// Section: Types (266)
+// Section: Types (264)
 //--------------------------------------------------------------------------------
 pub const _DEV_BROADCAST_HEADER = extern struct {
     dbcd_size: u32,
@@ -3764,26 +3764,6 @@ pub const DEVICE_EVENT_RBC_DATA = extern struct {
     Reserved: u8,
     Information: u32,
 };
-
-pub const DEVMODE_DISPLAY_FIXED_OUTPUT = enum(u32) {
-    DEFAULT = 0,
-    STRETCH = 1,
-    CENTER = 2,
-};
-pub const DMDFO_DEFAULT = DEVMODE_DISPLAY_FIXED_OUTPUT.DEFAULT;
-pub const DMDFO_STRETCH = DEVMODE_DISPLAY_FIXED_OUTPUT.STRETCH;
-pub const DMDFO_CENTER = DEVMODE_DISPLAY_FIXED_OUTPUT.CENTER;
-
-pub const DEVMODE_DISPLAY_ORIENTATION = enum(u32) {
-    DEFAULT = 0,
-    @"90" = 1,
-    @"180" = 2,
-    @"270" = 3,
-};
-pub const DMDO_DEFAULT = DEVMODE_DISPLAY_ORIENTATION.DEFAULT;
-pub const DMDO_90 = DEVMODE_DISPLAY_ORIENTATION.@"90";
-pub const DMDO_180 = DEVMODE_DISPLAY_ORIENTATION.@"180";
-pub const DMDO_270 = DEVMODE_DISPLAY_ORIENTATION.@"270";
 
 pub const DISK_HEALTH_NOTIFICATION_DATA = extern struct {
     DeviceGuid: Guid,

@@ -1452,7 +1452,7 @@ pub const WinBuiltinDeviceOwnersSid = WELL_KNOWN_SID_TYPE.BuiltinDeviceOwnersSid
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (133)
+// Section: Functions (137)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn AccessCheck(
@@ -2303,6 +2303,26 @@ pub extern "advapi32" fn LookupAccountNameA(
     peUse: ?*SID_NAME_USE,
 ) callconv(.winapi) BOOL;
 
+pub extern "advapi32" fn LookupAccountNameLocalA(
+    lpAccountName: ?[*:0]const u8,
+    // TODO: what to do with BytesParamIndex 2?
+    Sid: ?PSID,
+    cbSid: ?*u32,
+    ReferencedDomainName: ?[*:0]u8,
+    cchReferencedDomainName: ?*u32,
+    peUse: ?*SID_NAME_USE,
+) callconv(.winapi) BOOL;
+
+pub extern "advapi32" fn LookupAccountNameLocalW(
+    lpAccountName: ?[*:0]const u16,
+    // TODO: what to do with BytesParamIndex 2?
+    Sid: ?PSID,
+    cbSid: ?*u32,
+    ReferencedDomainName: ?[*:0]u16,
+    cchReferencedDomainName: ?*u32,
+    peUse: ?*SID_NAME_USE,
+) callconv(.winapi) BOOL;
+
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LookupAccountNameW(
     lpSystemName: ?[*:0]const u16,
@@ -2322,6 +2342,26 @@ pub extern "advapi32" fn LookupAccountSidA(
     Name: ?[*:0]u8,
     cchName: ?*u32,
     ReferencedDomainName: ?[*:0]u8,
+    cchReferencedDomainName: ?*u32,
+    peUse: ?*SID_NAME_USE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn LookupAccountSidLocalA(
+    Sid: ?PSID,
+    Name: ?[*:0]u8,
+    cchName: ?*u32,
+    ReferencedDomainName: ?[*:0]u8,
+    cchReferencedDomainName: ?*u32,
+    peUse: ?*SID_NAME_USE,
+) callconv(.winapi) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "advapi32" fn LookupAccountSidLocalW(
+    Sid: ?PSID,
+    Name: ?[*:0]u16,
+    cchName: ?*u32,
+    ReferencedDomainName: ?[*:0]u16,
     cchReferencedDomainName: ?*u32,
     peUse: ?*SID_NAME_USE,
 ) callconv(.winapi) BOOL;
@@ -2666,7 +2706,7 @@ pub extern "user32" fn SetUserObjectSecurity(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (18)
+// Section: Unicode Aliases (20)
 //--------------------------------------------------------------------------------
 pub const AccessCheckAndAuditAlarm = switch (@import("zig.zig").unicode_mode) {
     .ansi => @This().AccessCheckAndAuditAlarmA,
@@ -2724,11 +2764,25 @@ pub const LookupAccountName = switch (@import("zig.zig").unicode_mode) {
         "'LookupAccountName' requires that UNICODE be set to true or false in the root module",
     ),
 };
+pub const LookupAccountNameLocal = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LookupAccountNameLocalA,
+    .wide => @This().LookupAccountNameLocalW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LookupAccountNameLocal' requires that UNICODE be set to true or false in the root module",
+    ),
+};
 pub const LookupAccountSid = switch (@import("zig.zig").unicode_mode) {
     .ansi => @This().LookupAccountSidA,
     .wide => @This().LookupAccountSidW,
     .unspecified => if (@import("builtin").is_test) void else @compileError(
         "'LookupAccountSid' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LookupAccountSidLocal = switch (@import("zig.zig").unicode_mode) {
+    .ansi => @This().LookupAccountSidLocalA,
+    .wide => @This().LookupAccountSidLocalW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LookupAccountSidLocal' requires that UNICODE be set to true or false in the root module",
     ),
 };
 pub const LookupPrivilegeDisplayName = switch (@import("zig.zig").unicode_mode) {

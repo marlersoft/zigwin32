@@ -475,9 +475,9 @@ pub const IAudioProcessingObjectConfiguration = extern union {
         LockForProcess: *const fn(
             self: *const IAudioProcessingObjectConfiguration,
             u32NumInputConnections: u32,
-            ppInputConnections: ?*?*APO_CONNECTION_DESCRIPTOR,
+            ppInputConnections: [*]?*APO_CONNECTION_DESCRIPTOR,
             u32NumOutputConnections: u32,
-            ppOutputConnections: ?*?*APO_CONNECTION_DESCRIPTOR,
+            ppOutputConnections: [*]?*APO_CONNECTION_DESCRIPTOR,
         ) callconv(.winapi) HRESULT,
         UnlockForProcess: *const fn(
             self: *const IAudioProcessingObjectConfiguration,
@@ -485,7 +485,7 @@ pub const IAudioProcessingObjectConfiguration = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn LockForProcess(self: *const IAudioProcessingObjectConfiguration, u32NumInputConnections: u32, ppInputConnections: ?*?*APO_CONNECTION_DESCRIPTOR, u32NumOutputConnections: u32, ppOutputConnections: ?*?*APO_CONNECTION_DESCRIPTOR) callconv(.@"inline") HRESULT {
+    pub fn LockForProcess(self: *const IAudioProcessingObjectConfiguration, u32NumInputConnections: u32, ppInputConnections: [*]?*APO_CONNECTION_DESCRIPTOR, u32NumOutputConnections: u32, ppOutputConnections: [*]?*APO_CONNECTION_DESCRIPTOR) callconv(.@"inline") HRESULT {
         return self.vtable.LockForProcess(self, u32NumInputConnections, ppInputConnections, u32NumOutputConnections, ppOutputConnections);
     }
     pub fn UnlockForProcess(self: *const IAudioProcessingObjectConfiguration) callconv(.@"inline") HRESULT {

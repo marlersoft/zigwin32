@@ -7839,7 +7839,10 @@ pub const NCRYPT_KEY_BLOB_HEADER = extern struct {
 
 // TODO: this type has a FreeFunc 'NCryptFreeObject', what can Zig do with this information?
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const NCRYPT_KEY_HANDLE = usize;
+//TODO: type 'NCRYPT_KEY_HANDLE' is "AlsoUsableFor" 'NCRYPT_HANDLE' which means this type is implicitly
+//      convertible to 'NCRYPT_HANDLE' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const NCRYPT_KEY_HANDLE = NCRYPT_HANDLE;
 
 pub const NCRYPT_OPERATION = packed struct(u32) {
     CIPHER_OPERATION: u1 = 0,
@@ -7927,7 +7930,10 @@ pub const NCRYPT_PROTECT_STREAM_INFO_EX = extern struct {
 
 // TODO: this type has a FreeFunc 'NCryptFreeObject', what can Zig do with this information?
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const NCRYPT_PROV_HANDLE = usize;
+//TODO: type 'NCRYPT_PROV_HANDLE' is "AlsoUsableFor" 'NCRYPT_HANDLE' which means this type is implicitly
+//      convertible to 'NCRYPT_HANDLE' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const NCRYPT_PROV_HANDLE = NCRYPT_HANDLE;
 
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const NCRYPT_SECRET_HANDLE = usize;

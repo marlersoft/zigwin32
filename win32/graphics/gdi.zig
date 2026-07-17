@@ -864,7 +864,7 @@ pub const WGL_SWAP_UNDERLAY9 = @as(u32, 16777216);
 pub const WGL_SWAPMULTIPLE_MAX = @as(u32, 16);
 
 //--------------------------------------------------------------------------------
-// Section: Types (259)
+// Section: Types (261)
 //--------------------------------------------------------------------------------
 pub const ABC = extern struct {
     abcA: i32,
@@ -1239,6 +1239,26 @@ pub const DEVMODE_COLOR = enum(u16) {
 };
 pub const DMCOLOR_MONOCHROME = DEVMODE_COLOR.MONOCHROME;
 pub const DMCOLOR_COLOR = DEVMODE_COLOR.COLOR;
+
+pub const DEVMODE_DISPLAY_FIXED_OUTPUT = enum(u32) {
+    DEFAULT = 0,
+    STRETCH = 1,
+    CENTER = 2,
+};
+pub const DMDFO_DEFAULT = DEVMODE_DISPLAY_FIXED_OUTPUT.DEFAULT;
+pub const DMDFO_STRETCH = DEVMODE_DISPLAY_FIXED_OUTPUT.STRETCH;
+pub const DMDFO_CENTER = DEVMODE_DISPLAY_FIXED_OUTPUT.CENTER;
+
+pub const DEVMODE_DISPLAY_ORIENTATION = enum(u32) {
+    DEFAULT = 0,
+    @"90" = 1,
+    @"180" = 2,
+    @"270" = 3,
+};
+pub const DMDO_DEFAULT = DEVMODE_DISPLAY_ORIENTATION.DEFAULT;
+pub const DMDO_90 = DEVMODE_DISPLAY_ORIENTATION.@"90";
+pub const DMDO_180 = DEVMODE_DISPLAY_ORIENTATION.@"180";
+pub const DMDO_270 = DEVMODE_DISPLAY_ORIENTATION.@"270";
 
 pub const DEVMODE_DUPLEX = enum(u16) {
     SIMPLEX = 1,
@@ -8495,13 +8515,11 @@ pub const TextOut = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (18)
+// Section: Imports (16)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const CHAR = @import("../foundation.zig").CHAR;
 const COLORREF = @import("../foundation.zig").COLORREF;
-const DEVMODE_DISPLAY_FIXED_OUTPUT = @import("../system/system_services.zig").DEVMODE_DISPLAY_FIXED_OUTPUT;
-const DEVMODE_DISPLAY_ORIENTATION = @import("../system/system_services.zig").DEVMODE_DISPLAY_ORIENTATION;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const HWND = @import("../foundation.zig").HWND;

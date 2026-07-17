@@ -3007,6 +3007,10 @@ pub const ForestTrustTopLevelNameEx = LSA_FOREST_TRUST_RECORD_TYPE.TopLevelNameE
 pub const ForestTrustDomainInfo = LSA_FOREST_TRUST_RECORD_TYPE.DomainInfo;
 pub const ForestTrustRecordTypeLast = LSA_FOREST_TRUST_RECORD_TYPE.DomainInfo;
 
+// TODO: this type has a FreeFunc 'LsaClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const LSA_HANDLE = isize;
+
 pub const LSA_LAST_INTER_LOGON_INFO = extern struct {
     LastSuccessfulLogon: LARGE_INTEGER,
     LastFailedLogon: LARGE_INTEGER,
@@ -3153,10 +3157,6 @@ pub const LSA_TRUST_INFORMATION = extern struct {
     Name: UNICODE_STRING,
     Sid: ?PSID,
 };
-
-// TODO: this type has a FreeFunc 'LsaDeregisterLogonProcess', what can Zig do with this information?
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const LsaHandle = isize;
 
 pub const MAKE_SIGNATURE_FN = *const fn(
     param0: ?*SecHandle,
@@ -7448,7 +7448,7 @@ pub extern "secur32" fn InitSecurityInterfaceW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaAddAccountRights(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     AccountSid: ?PSID,
     UserRights: [*]UNICODE_STRING,
     CountOfRights: u32,
@@ -7468,7 +7468,7 @@ pub extern "secur32" fn LsaCallAuthenticationPackage(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaClose(
-    ObjectHandle: ?*anyopaque,
+    ObjectHandle: LSA_HANDLE,
 ) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7478,27 +7478,27 @@ pub extern "secur32" fn LsaConnectUntrusted(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaCreateTrustedDomainEx(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     TrustedDomainInformation: ?*TRUSTED_DOMAIN_INFORMATION_EX,
     AuthenticationInformation: ?*TRUSTED_DOMAIN_AUTH_INFORMATION,
     DesiredAccess: u32,
-    TrustedDomainHandle: ?*?*anyopaque,
+    TrustedDomainHandle: ?*LSA_HANDLE,
 ) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaDeleteTrustedDomain(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     TrustedDomainSid: ?PSID,
 ) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn LsaDeregisterLogonProcess(
-    LsaHandle: LsaHandle,
+    LsaHandle: ?HANDLE,
 ) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaEnumerateAccountRights(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     AccountSid: ?PSID,
     UserRights: ?*?*UNICODE_STRING,
     CountOfRights: ?*u32,
@@ -7506,7 +7506,7 @@ pub extern "advapi32" fn LsaEnumerateAccountRights(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaEnumerateAccountsWithUserRight(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     UserRight: ?*UNICODE_STRING,
     Buffer: ?*?*anyopaque,
     CountReturned: ?*u32,
@@ -7520,7 +7520,7 @@ pub extern "secur32" fn LsaEnumerateLogonSessions(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaEnumerateTrustedDomains(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     EnumerationContext: ?*u32,
     Buffer: ?*?*anyopaque,
     PreferedMaximumLength: u32,
@@ -7529,7 +7529,7 @@ pub extern "advapi32" fn LsaEnumerateTrustedDomains(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaEnumerateTrustedDomainsEx(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     EnumerationContext: ?*u32,
     Buffer: ?*?*anyopaque,
     PreferedMaximumLength: u32,
@@ -7587,7 +7587,7 @@ pub extern "secur32" fn LsaLookupAuthenticationPackage(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaLookupNames(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     Count: u32,
     Names: ?*UNICODE_STRING,
     ReferencedDomains: ?*?*LSA_REFERENCED_DOMAIN_LIST,
@@ -7596,7 +7596,7 @@ pub extern "advapi32" fn LsaLookupNames(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaLookupNames2(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     Flags: u32,
     Count: u32,
     Names: ?*UNICODE_STRING,
@@ -7606,7 +7606,7 @@ pub extern "advapi32" fn LsaLookupNames2(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaLookupSids(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     Count: u32,
     Sids: ?*?PSID,
     ReferencedDomains: ?*?*LSA_REFERENCED_DOMAIN_LIST,
@@ -7615,7 +7615,7 @@ pub extern "advapi32" fn LsaLookupSids(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "advapi32" fn LsaLookupSids2(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     LookupOptions: u32,
     Count: u32,
     Sids: ?*?PSID,
@@ -7633,15 +7633,15 @@ pub extern "advapi32" fn LsaOpenPolicy(
     SystemName: ?*UNICODE_STRING,
     ObjectAttributes: ?*OBJECT_ATTRIBUTES,
     DesiredAccess: u32,
-    PolicyHandle: ?*?*anyopaque,
+    PolicyHandle: ?*LSA_HANDLE,
 ) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaOpenTrustedDomainByName(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     TrustedDomainName: ?*UNICODE_STRING,
     DesiredAccess: u32,
-    TrustedDomainHandle: ?*?*anyopaque,
+    TrustedDomainHandle: ?*LSA_HANDLE,
 ) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -7654,28 +7654,28 @@ pub extern "advapi32" fn LsaQueryCAPs(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaQueryDomainInformationPolicy(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     InformationClass: POLICY_DOMAIN_INFORMATION_CLASS,
     Buffer: ?*?*anyopaque,
 ) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "advapi32" fn LsaQueryForestTrustInformation(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     TrustedDomainName: ?*UNICODE_STRING,
     ForestTrustInfo: ?*?*LSA_FOREST_TRUST_INFORMATION,
 ) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaQueryInformationPolicy(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     InformationClass: POLICY_INFORMATION_CLASS,
     Buffer: ?*?*anyopaque,
 ) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaQueryTrustedDomainInfo(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     TrustedDomainSid: ?PSID,
     InformationClass: TRUSTED_INFORMATION_CLASS,
     Buffer: ?*?*anyopaque,
@@ -7683,7 +7683,7 @@ pub extern "advapi32" fn LsaQueryTrustedDomainInfo(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaQueryTrustedDomainInfoByName(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     TrustedDomainName: ?*UNICODE_STRING,
     InformationClass: TRUSTED_INFORMATION_CLASS,
     Buffer: ?*?*anyopaque,
@@ -7692,7 +7692,7 @@ pub extern "advapi32" fn LsaQueryTrustedDomainInfoByName(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn LsaRegisterLogonProcess(
     LogonProcessName: ?*STRING,
-    LsaHandle: ?*LsaHandle,
+    LsaHandle: ?*?HANDLE,
     SecurityMode: ?*u32,
 ) callconv(.winapi) NTSTATUS;
 
@@ -7704,7 +7704,7 @@ pub extern "secur32" fn LsaRegisterPolicyChangeNotification(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaRemoveAccountRights(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     AccountSid: ?PSID,
     AllRights: BOOLEAN,
     UserRights: ?[*]UNICODE_STRING,
@@ -7713,7 +7713,7 @@ pub extern "advapi32" fn LsaRemoveAccountRights(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaRetrievePrivateData(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     KeyName: ?*UNICODE_STRING,
     PrivateData: ?*?*UNICODE_STRING,
 ) callconv(.winapi) NTSTATUS;
@@ -7726,14 +7726,14 @@ pub extern "advapi32" fn LsaSetCAPs(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaSetDomainInformationPolicy(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     InformationClass: POLICY_DOMAIN_INFORMATION_CLASS,
     Buffer: ?*anyopaque,
 ) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "advapi32" fn LsaSetForestTrustInformation(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     TrustedDomainName: ?*UNICODE_STRING,
     ForestTrustInfo: ?*LSA_FOREST_TRUST_INFORMATION,
     CheckOnly: BOOLEAN,
@@ -7742,14 +7742,14 @@ pub extern "advapi32" fn LsaSetForestTrustInformation(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaSetInformationPolicy(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     InformationClass: POLICY_INFORMATION_CLASS,
     Buffer: ?*anyopaque,
 ) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaSetTrustedDomainInfoByName(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     TrustedDomainName: ?*UNICODE_STRING,
     InformationClass: TRUSTED_INFORMATION_CLASS,
     Buffer: ?*anyopaque,
@@ -7757,7 +7757,7 @@ pub extern "advapi32" fn LsaSetTrustedDomainInfoByName(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaSetTrustedDomainInformation(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     TrustedDomainSid: ?PSID,
     InformationClass: TRUSTED_INFORMATION_CLASS,
     Buffer: ?*anyopaque,
@@ -7765,7 +7765,7 @@ pub extern "advapi32" fn LsaSetTrustedDomainInformation(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LsaStorePrivateData(
-    PolicyHandle: ?*anyopaque,
+    PolicyHandle: LSA_HANDLE,
     KeyName: ?*UNICODE_STRING,
     PrivateData: ?*UNICODE_STRING,
 ) callconv(.winapi) NTSTATUS;

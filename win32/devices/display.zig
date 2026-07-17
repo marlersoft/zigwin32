@@ -3689,13 +3689,13 @@ pub extern "dxva2" fn DegaussMonitor(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn DestroyPhysicalMonitor(
     hMonitor: ?HANDLE,
-) callconv(.winapi) i32;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn DestroyPhysicalMonitors(
     dwPhysicalMonitorArraySize: u32,
     pPhysicalMonitorArray: [*]PHYSICAL_MONITOR,
-) callconv(.winapi) i32;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn DisplayConfigGetDeviceInfo(
@@ -4239,7 +4239,7 @@ pub extern "dxva2" fn GetMonitorTechnologyType(
 pub extern "dxva2" fn GetNumberOfPhysicalMonitorsFromHMONITOR(
     hMonitor: ?HMONITOR,
     pdwNumberOfPhysicalMonitors: ?*u32,
-) callconv(.winapi) i32;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetNumberOfPhysicalMonitorsFromIDirect3DDevice9(
@@ -4252,7 +4252,7 @@ pub extern "dxva2" fn GetPhysicalMonitorsFromHMONITOR(
     hMonitor: ?HMONITOR,
     dwPhysicalMonitorArraySize: u32,
     pPhysicalMonitorArray: [*]PHYSICAL_MONITOR,
-) callconv(.winapi) i32;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetPhysicalMonitorsFromIDirect3DDevice9(
