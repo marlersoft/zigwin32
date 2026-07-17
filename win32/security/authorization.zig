@@ -4945,7 +4945,7 @@ pub extern "advapi32" fn BuildSecurityDescriptorA(
     pOldSD: ?PSECURITY_DESCRIPTOR,
     pSizeNewSD: ?*u32,
     pNewSD: ?*?PSECURITY_DESCRIPTOR,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildSecurityDescriptorW(
@@ -4958,7 +4958,7 @@ pub extern "advapi32" fn BuildSecurityDescriptorW(
     pOldSD: ?PSECURITY_DESCRIPTOR,
     pSizeNewSD: ?*u32,
     pNewSD: ?*?PSECURITY_DESCRIPTOR,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildTrusteeWithNameA(
@@ -5073,7 +5073,7 @@ pub extern "advapi32" fn FreeInheritedFromArray(
     pInheritArray: [*]INHERITED_FROMW,
     AceCnt: u16,
     pfnArray: ?*FN_OBJECT_MGR_FUNCTS,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetAuditedPermissionsFromAclA(
@@ -5081,7 +5081,7 @@ pub extern "advapi32" fn GetAuditedPermissionsFromAclA(
     pTrustee: ?*TRUSTEE_A,
     pSuccessfulAuditedRights: ?*u32,
     pFailedAuditRights: ?*u32,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetAuditedPermissionsFromAclW(
@@ -5089,35 +5089,35 @@ pub extern "advapi32" fn GetAuditedPermissionsFromAclW(
     pTrustee: ?*TRUSTEE_W,
     pSuccessfulAuditedRights: ?*u32,
     pFailedAuditRights: ?*u32,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetEffectiveRightsFromAclA(
     pacl: ?*ACL,
     pTrustee: ?*TRUSTEE_A,
     pAccessRights: ?*u32,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetEffectiveRightsFromAclW(
     pacl: ?*ACL,
     pTrustee: ?*TRUSTEE_W,
     pAccessRights: ?*u32,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetExplicitEntriesFromAclA(
     pacl: ?*ACL,
     pcCountOfExplicitEntries: ?*u32,
     pListOfExplicitEntries: ?*?*EXPLICIT_ACCESS_A,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetExplicitEntriesFromAclW(
     pacl: ?*ACL,
     pcCountOfExplicitEntries: ?*u32,
     pListOfExplicitEntries: ?*?*EXPLICIT_ACCESS_W,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetInheritanceSourceA(
@@ -5131,7 +5131,7 @@ pub extern "advapi32" fn GetInheritanceSourceA(
     pfnArray: ?*FN_OBJECT_MGR_FUNCTS,
     pGenericMapping: ?*GENERIC_MAPPING,
     pInheritArray: ?*INHERITED_FROMA,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetInheritanceSourceW(
@@ -5145,7 +5145,7 @@ pub extern "advapi32" fn GetInheritanceSourceW(
     pfnArray: ?*FN_OBJECT_MGR_FUNCTS,
     pGenericMapping: ?*GENERIC_MAPPING,
     pInheritArray: ?*INHERITED_FROMW,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 pub extern "advapi32" fn GetMultipleTrusteeA(
     pTrustee: ?*TRUSTEE_A,
@@ -5238,7 +5238,7 @@ pub extern "advapi32" fn LookupSecurityDescriptorPartsA(
     pcCountOfAuditEntries: ?*u32,
     ppListOfAuditEntries: ?*?*EXPLICIT_ACCESS_A,
     pSD: ?PSECURITY_DESCRIPTOR,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LookupSecurityDescriptorPartsW(
@@ -5249,7 +5249,7 @@ pub extern "advapi32" fn LookupSecurityDescriptorPartsW(
     pcCountOfAuditEntries: ?*u32,
     ppListOfAuditEntries: ?*?*EXPLICIT_ACCESS_W,
     pSD: ?PSECURITY_DESCRIPTOR,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetEntriesInAclA(
@@ -5257,7 +5257,7 @@ pub extern "advapi32" fn SetEntriesInAclA(
     pListOfExplicitEntries: ?[*]EXPLICIT_ACCESS_A,
     OldAcl: ?*ACL,
     NewAcl: ?*?*ACL,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetEntriesInAclW(
@@ -5265,7 +5265,7 @@ pub extern "advapi32" fn SetEntriesInAclW(
     pListOfExplicitEntries: ?[*]EXPLICIT_ACCESS_W,
     OldAcl: ?*ACL,
     NewAcl: ?*?*ACL,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetNamedSecurityInfoA(
@@ -5276,7 +5276,7 @@ pub extern "advapi32" fn SetNamedSecurityInfoA(
     psidGroup: ?PSID,
     pDacl: ?*ACL,
     pSacl: ?*ACL,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetNamedSecurityInfoW(
@@ -5287,7 +5287,7 @@ pub extern "advapi32" fn SetNamedSecurityInfoW(
     psidGroup: ?PSID,
     pDacl: ?*ACL,
     pSacl: ?*ACL,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetSecurityInfo(
@@ -5298,7 +5298,7 @@ pub extern "advapi32" fn SetSecurityInfo(
     psidGroup: ?PSID,
     pDacl: ?*ACL,
     pSacl: ?*ACL,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn TreeResetNamedSecurityInfoA(
@@ -5313,7 +5313,7 @@ pub extern "advapi32" fn TreeResetNamedSecurityInfoA(
     fnProgress: ?FN_PROGRESS,
     ProgressInvokeSetting: PROG_INVOKE_SETTING,
     Args: ?*anyopaque,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn TreeResetNamedSecurityInfoW(
@@ -5328,7 +5328,7 @@ pub extern "advapi32" fn TreeResetNamedSecurityInfoW(
     fnProgress: ?FN_PROGRESS,
     ProgressInvokeSetting: PROG_INVOKE_SETTING,
     Args: ?*anyopaque,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn TreeSetNamedSecurityInfoA(
@@ -5343,7 +5343,7 @@ pub extern "advapi32" fn TreeSetNamedSecurityInfoA(
     fnProgress: ?FN_PROGRESS,
     ProgressInvokeSetting: PROG_INVOKE_SETTING,
     Args: ?*anyopaque,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn TreeSetNamedSecurityInfoW(
@@ -5358,7 +5358,7 @@ pub extern "advapi32" fn TreeSetNamedSecurityInfoW(
     fnProgress: ?FN_PROGRESS,
     ProgressInvokeSetting: PROG_INVOKE_SETTING,
     Args: ?*anyopaque,
-) callconv(.winapi) u32;
+) callconv(.winapi) WIN32_ERROR;
 
 
 //--------------------------------------------------------------------------------
