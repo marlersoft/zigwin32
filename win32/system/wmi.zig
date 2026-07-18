@@ -4407,7 +4407,7 @@ pub const IWbemUnboundObjectSink = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWbemUnsecuredApartment_Value = Guid.initString("31739d04-3471-4cf4-9a7c-57a44ae71956");
 pub const IID_IWbemUnsecuredApartment = &IID_IWbemUnsecuredApartment_Value;
 pub const IWbemUnsecuredApartment = extern union {

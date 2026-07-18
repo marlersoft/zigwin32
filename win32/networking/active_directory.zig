@@ -8458,7 +8458,7 @@ pub const IDsObjectPicker = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IDsObjectPickerCredentials_Value = Guid.initString("e2d3ec9b-d041-445a-8f16-4748de8fb1cf");
 pub const IID_IDsObjectPickerCredentials = &IID_IDsObjectPickerCredentials_Value;
 pub const IDsObjectPickerCredentials = extern union {

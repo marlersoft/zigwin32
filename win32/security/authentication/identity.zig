@@ -7659,7 +7659,7 @@ pub extern "advapi32" fn LsaQueryDomainInformationPolicy(
     Buffer: ?*?*anyopaque,
 ) callconv(.winapi) NTSTATUS;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "advapi32" fn LsaQueryForestTrustInformation(
     PolicyHandle: LSA_HANDLE,
     TrustedDomainName: ?*UNICODE_STRING,
@@ -7731,7 +7731,7 @@ pub extern "advapi32" fn LsaSetDomainInformationPolicy(
     Buffer: ?*anyopaque,
 ) callconv(.winapi) NTSTATUS;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "advapi32" fn LsaSetForestTrustInformation(
     PolicyHandle: LSA_HANDLE,
     TrustedDomainName: ?*UNICODE_STRING,
@@ -7869,7 +7869,7 @@ pub extern "secur32" fn RevertSecurityContext(
     phContext: ?*SecHandle,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "secur32" fn SaslAcceptSecurityContext(
     phCredential: ?*SecHandle,
     phContext: ?*SecHandle,
@@ -7882,19 +7882,19 @@ pub extern "secur32" fn SaslAcceptSecurityContext(
     ptsExpiry: ?*LARGE_INTEGER,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "secur32" fn SaslEnumerateProfilesA(
     ProfileList: ?*?PSTR,
     ProfileCount: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "secur32" fn SaslEnumerateProfilesW(
     ProfileList: ?*?PWSTR,
     ProfileCount: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "secur32" fn SaslGetContextOption(
     ContextHandle: ?*SecHandle,
     Option: u32,
@@ -7903,31 +7903,31 @@ pub extern "secur32" fn SaslGetContextOption(
     Needed: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "secur32" fn SaslGetProfilePackageA(
     ProfileName: ?PSTR,
     PackageInfo: ?*?*SecPkgInfoA,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "secur32" fn SaslGetProfilePackageW(
     ProfileName: ?PWSTR,
     PackageInfo: ?*?*SecPkgInfoW,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "secur32" fn SaslIdentifyPackageA(
     pInput: ?*SecBufferDesc,
     PackageInfo: ?*?*SecPkgInfoA,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "secur32" fn SaslIdentifyPackageW(
     pInput: ?*SecBufferDesc,
     PackageInfo: ?*?*SecPkgInfoW,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "secur32" fn SaslInitializeSecurityContextA(
     phCredential: ?*SecHandle,
     phContext: ?*SecHandle,
@@ -7943,7 +7943,7 @@ pub extern "secur32" fn SaslInitializeSecurityContextA(
     ptsExpiry: ?*LARGE_INTEGER,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "secur32" fn SaslInitializeSecurityContextW(
     phCredential: ?*SecHandle,
     phContext: ?*SecHandle,
@@ -7959,7 +7959,7 @@ pub extern "secur32" fn SaslInitializeSecurityContextW(
     ptsExpiry: ?*LARGE_INTEGER,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "secur32" fn SaslSetContextOption(
     ContextHandle: ?*SecHandle,
     Option: u32,

@@ -6704,7 +6704,7 @@ pub extern "netapi32" fn NetValidateName(
     NameType: NETSETUP_NAME_TYPE,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "netapi32" fn NetValidatePasswordPolicy(
     ServerName: ?[*:0]const u16,
     Qualifier: ?*anyopaque,
@@ -6713,7 +6713,7 @@ pub extern "netapi32" fn NetValidatePasswordPolicy(
     OutputArg: ?*?*anyopaque,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "netapi32" fn NetValidatePasswordPolicyFree(
     OutputArg: ?*?*anyopaque,
 ) callconv(.winapi) u32;

@@ -5308,14 +5308,14 @@ pub extern "setupapi" fn SetupCommitFileQueueW(
     Context: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "setupapi" fn SetupConfigureWmiFromInfSectionA(
     InfHandle: ?*anyopaque,
     SectionName: ?[*:0]const u8,
     Flags: u32,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "setupapi" fn SetupConfigureWmiFromInfSectionW(
     InfHandle: ?*anyopaque,
     SectionName: ?[*:0]const u16,

@@ -1192,7 +1192,7 @@ pub const IVssFileShareSnapshotProvider = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_IVssHardwareSnapshotProvider_Value = Guid.initString("9593a157-44e9-4344-bbeb-44fbf9b06b10");
 pub const IID_IVssHardwareSnapshotProvider = &IID_IVssHardwareSnapshotProvider_Value;
 pub const IVssHardwareSnapshotProvider = extern union {
@@ -1261,7 +1261,7 @@ pub const IVssHardwareSnapshotProvider = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IVssHardwareSnapshotProviderEx_Value = Guid.initString("7f5ba925-cdb1-4d11-a71f-339eb7e709fd");
 pub const IID_IVssHardwareSnapshotProviderEx = &IID_IVssHardwareSnapshotProviderEx_Value;
 pub const IVssHardwareSnapshotProviderEx = extern union {

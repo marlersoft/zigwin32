@@ -7217,7 +7217,7 @@ pub const ICertificateEnrollmentServerSetup = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_ICertSrvSetup_Value = Guid.initString("b760a1bb-4784-44c0-8f12-555f0780ff25");
 pub const IID_ICertSrvSetup = &IID_ICertSrvSetup_Value;
 pub const ICertSrvSetup = extern union {
@@ -7385,7 +7385,7 @@ pub const ICertSrvSetup = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_ICertSrvSetupKeyInformation_Value = Guid.initString("6ba73778-36da-4c39-8a85-bcfa7d000793");
 pub const IID_ICertSrvSetupKeyInformation = &IID_ICertSrvSetupKeyInformation_Value;
 pub const ICertSrvSetupKeyInformation = extern union {
@@ -7493,7 +7493,7 @@ pub const ICertSrvSetupKeyInformation = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_ICertSrvSetupKeyInformationCollection_Value = Guid.initString("e65c8b00-e58f-41f9-a9ec-a28d7427c844");
 pub const IID_ICertSrvSetupKeyInformationCollection = &IID_ICertSrvSetupKeyInformationCollection_Value;
 pub const ICertSrvSetupKeyInformationCollection = extern union {
@@ -7536,7 +7536,7 @@ pub const ICertSrvSetupKeyInformationCollection = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IMSCEPSetup_Value = Guid.initString("4f7761bb-9f3b-4592-9ee0-9a73259c313e");
 pub const IID_IMSCEPSetup = &IID_IMSCEPSetup_Value;
 pub const IMSCEPSetup = extern union {

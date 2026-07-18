@@ -2517,7 +2517,7 @@ pub const IAzAuthorizationStore = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IAzAuthorizationStore2_Value = Guid.initString("b11e5584-d577-4273-b6c5-0973e0f8e80d");
 pub const IID_IAzAuthorizationStore2 = &IID_IAzAuthorizationStore2_Value;
 pub const IAzAuthorizationStore2 = extern union {
@@ -2883,7 +2883,7 @@ pub const IAzClientContext = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IAzClientContext2_Value = Guid.initString("2b0c92b8-208a-488a-8f81-e4edb22111cd");
 pub const IID_IAzClientContext2 = &IID_IAzClientContext2_Value;
 pub const IAzClientContext2 = extern union {
@@ -4656,7 +4656,7 @@ pub extern "authz" fn AuthzCachedAccessCheck(
     pReply: ?*AUTHZ_ACCESS_REPLY,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "authz" fn AuthzEnumerateSecurityEventSources(
     dwFlags: u32,
     Buffer: ?*AUTHZ_SOURCE_SCHEMA_REGISTRATION,
@@ -4757,7 +4757,7 @@ pub extern "authz" fn AuthzInitializeObjectAccessAuditEvent(
     dwAdditionalParameterCount: u32,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "authz" fn AuthzInitializeObjectAccessAuditEvent2(
     Flags: u32,
     hAuditEventType: AUTHZ_AUDIT_EVENT_TYPE_HANDLE,
@@ -4790,7 +4790,7 @@ pub extern "authz" fn AuthzInitializeResourceManager(
 // This function from dll 'AUTHZ.dll' is being skipped because it has some sort of issue
 pub fn AuthzInitializeResourceManagerEx() void { @panic("this function is not working"); }
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "authz" fn AuthzInstallSecurityEventSource(
     dwFlags: u32,
     pRegistration: ?*AUTHZ_SOURCE_SCHEMA_REGISTRATION,
@@ -4838,14 +4838,14 @@ pub extern "authz" fn AuthzRegisterCapChangeNotification(
     pCallbackContext: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "authz" fn AuthzRegisterSecurityEventSource(
     dwFlags: u32,
     szEventSourceName: ?[*:0]const u16,
     phEventProvider: ?*isize,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "authz" fn AuthzReportSecurityEvent(
     dwFlags: u32,
     hEventProvider: AUTHZ_SECURITY_EVENT_PROVIDER_HANDLE,
@@ -4854,7 +4854,7 @@ pub extern "authz" fn AuthzReportSecurityEvent(
     dwCount: u32,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "authz" fn AuthzReportSecurityEventFromParams(
     dwFlags: u32,
     hEventProvider: AUTHZ_SECURITY_EVENT_PROVIDER_HANDLE,
@@ -4871,7 +4871,7 @@ pub extern "authz" fn AuthzSetAppContainerInformation(
     pCapabilitySids: ?[*]SID_AND_ATTRIBUTES,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "authz" fn AuthzUninstallSecurityEventSource(
     dwFlags: u32,
     szEventSourceName: ?[*:0]const u16,
@@ -4882,7 +4882,7 @@ pub extern "authz" fn AuthzUnregisterCapChangeNotification(
     hCapChangeSubscription: ?*AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE__,
 ) callconv(.winapi) BOOL;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "authz" fn AuthzUnregisterSecurityEventSource(
     dwFlags: u32,
     phEventProvider: ?*isize,

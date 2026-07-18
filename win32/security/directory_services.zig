@@ -75,7 +75,7 @@ pub const PFNWRITEOBJECTSECURITY = *const fn(
 //--------------------------------------------------------------------------------
 // Section: Functions (4)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dssec" fn DSCreateISecurityInfoObject(
     pwszObjectPath: ?[*:0]const u16,
     pwszObjectClass: ?[*:0]const u16,
@@ -86,7 +86,7 @@ pub extern "dssec" fn DSCreateISecurityInfoObject(
     lpContext: LPARAM,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dssec" fn DSCreateISecurityInfoObjectEx(
     pwszObjectPath: ?[*:0]const u16,
     pwszObjectClass: ?[*:0]const u16,
@@ -100,7 +100,7 @@ pub extern "dssec" fn DSCreateISecurityInfoObjectEx(
     lpContext: LPARAM,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "dssec" fn DSCreateSecurityPage(
     pwszObjectPath: ?[*:0]const u16,
     pwszObjectClass: ?[*:0]const u16,
@@ -111,7 +111,7 @@ pub extern "dssec" fn DSCreateSecurityPage(
     lpContext: LPARAM,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dssec" fn DSEditSecurity(
     hwndOwner: ?HWND,
     pwszObjectPath: ?[*:0]const u16,

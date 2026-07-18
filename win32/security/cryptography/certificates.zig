@@ -4249,7 +4249,7 @@ pub const ICEnroll4 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertAdmin_Value = Guid.initString("34df6950-7fb6-11d0-8817-00a0c903b83c");
 pub const IID_ICertAdmin = &IID_ICertAdmin_Value;
 pub const ICertAdmin = extern union {
@@ -4352,7 +4352,7 @@ pub const ICertAdmin = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertAdmin2_Value = Guid.initString("f7c3ac41-b8ce-4fb4-aa58-3d1dc0e36b39");
 pub const IID_ICertAdmin2 = &IID_ICertAdmin2_Value;
 pub const ICertAdmin2 = extern union {
@@ -4476,7 +4476,7 @@ pub const ICertAdmin2 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertConfig_Value = Guid.initString("372fce34-4324-11d0-8810-00a0c903b83c");
 pub const IID_ICertConfig = &IID_ICertConfig_Value;
 pub const ICertConfig = extern union {
@@ -4519,7 +4519,7 @@ pub const ICertConfig = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertConfig2_Value = Guid.initString("7a18edde-7e78-4163-8ded-78e2c9cee924");
 pub const IID_ICertConfig2 = &IID_ICertConfig2_Value;
 pub const ICertConfig2 = extern union {
@@ -4539,7 +4539,7 @@ pub const ICertConfig2 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertEncodeAltName_Value = Guid.initString("1c9a8c70-1271-11d1-9bd4-00c04fb683fa");
 pub const IID_ICertEncodeAltName = &IID_ICertEncodeAltName_Value;
 pub const ICertEncodeAltName = extern union {
@@ -4651,7 +4651,7 @@ pub const ICertEncodeAltName2 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertEncodeBitString_Value = Guid.initString("6db525be-1278-11d1-9bd4-00c04fb683fa");
 pub const IID_ICertEncodeBitString = &IID_ICertEncodeBitString_Value;
 pub const ICertEncodeBitString = extern union {
@@ -4732,7 +4732,7 @@ pub const ICertEncodeBitString2 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertEncodeCRLDistInfo_Value = Guid.initString("01958640-bbff-11d0-8825-00a0c903b83c");
 pub const IID_ICertEncodeCRLDistInfo = &IID_ICertEncodeCRLDistInfo_Value;
 pub const ICertEncodeCRLDistInfo = extern union {
@@ -4844,7 +4844,7 @@ pub const ICertEncodeCRLDistInfo2 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertEncodeDateArray_Value = Guid.initString("2f9469a0-a470-11d0-8821-00a0c903b83c");
 pub const IID_ICertEncodeDateArray = &IID_ICertEncodeDateArray_Value;
 pub const ICertEncodeDateArray = extern union {
@@ -4928,7 +4928,7 @@ pub const ICertEncodeDateArray2 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertEncodeLongArray_Value = Guid.initString("15e2f230-a0a2-11d0-8821-00a0c903b83c");
 pub const IID_ICertEncodeLongArray = &IID_ICertEncodeLongArray_Value;
 pub const ICertEncodeLongArray = extern union {
@@ -5012,7 +5012,7 @@ pub const ICertEncodeLongArray2 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertEncodeStringArray_Value = Guid.initString("12a88820-7494-11d0-8816-00a0c903b83c");
 pub const IID_ICertEncodeStringArray = &IID_ICertEncodeStringArray_Value;
 pub const ICertEncodeStringArray = extern union {
@@ -5104,7 +5104,7 @@ pub const ICertEncodeStringArray2 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertExit_Value = Guid.initString("e19ae1a0-7364-11d0-8816-00a0c903b83c");
 pub const IID_ICertExit = &IID_ICertExit_Value;
 pub const ICertExit = extern union {
@@ -5139,7 +5139,7 @@ pub const ICertExit = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertExit2_Value = Guid.initString("0abf484b-d049-464d-a7ed-552e7529b0ff");
 pub const IID_ICertExit2 = &IID_ICertExit2_Value;
 pub const ICertExit2 = extern union {
@@ -5159,7 +5159,7 @@ pub const ICertExit2 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertGetConfig_Value = Guid.initString("c7ea09c0-ce17-11d0-8833-00a0c903b83c");
 pub const IID_ICertGetConfig = &IID_ICertGetConfig_Value;
 pub const ICertGetConfig = extern union {
@@ -5423,7 +5423,7 @@ pub const ICertificationAuthority = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertManageModule_Value = Guid.initString("e7d7ad42-bd3d-11d1-9a4d-00c04fc297eb");
 pub const IID_ICertManageModule = &IID_ICertManageModule_Value;
 pub const ICertManageModule = extern union {
@@ -5466,7 +5466,7 @@ pub const ICertManageModule = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertPolicy_Value = Guid.initString("38bb5a00-7636-11d0-b413-00a0c91bbf8c");
 pub const IID_ICertPolicy = &IID_ICertPolicy_Value;
 pub const ICertPolicy = extern union {
@@ -5509,7 +5509,7 @@ pub const ICertPolicy = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertPolicy2_Value = Guid.initString("3db4910e-8001-4bf1-aa1b-f43a808317a0");
 pub const IID_ICertPolicy2 = &IID_ICertPolicy2_Value;
 pub const ICertPolicy2 = extern union {
@@ -6404,7 +6404,7 @@ pub const ICertRequestD2 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertServerExit_Value = Guid.initString("4ba9eb90-732c-11d0-8816-00a0c903b83c");
 pub const IID_ICertServerExit = &IID_ICertServerExit_Value;
 pub const ICertServerExit = extern union {
@@ -6505,7 +6505,7 @@ pub const ICertServerExit = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertServerPolicy_Value = Guid.initString("aa000922-ffbe-11cf-8800-00a0c903b83c");
 pub const IID_ICertServerPolicy = &IID_ICertServerPolicy_Value;
 pub const ICertServerPolicy = extern union {
@@ -6625,7 +6625,7 @@ pub const ICertServerPolicy = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertView_Value = Guid.initString("c3fac344-1e84-11d1-9bd6-00c04fb683fa");
 pub const IID_ICertView = &IID_ICertView_Value;
 pub const ICertView = extern union {
@@ -6700,7 +6700,7 @@ pub const ICertView = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_ICertView2_Value = Guid.initString("d594b282-8851-4b61-9c66-3edadf848863");
 pub const IID_ICertView2 = &IID_ICertView2_Value;
 pub const ICertView2 = extern union {
@@ -8399,7 +8399,7 @@ pub const IEnroll4 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_IEnumCERTVIEWATTRIBUTE_Value = Guid.initString("e77db656-7653-11d1-9bde-00c04fb683fa");
 pub const IID_IEnumCERTVIEWATTRIBUTE = &IID_IEnumCERTVIEWATTRIBUTE_Value;
 pub const IEnumCERTVIEWATTRIBUTE = extern union {
@@ -8452,7 +8452,7 @@ pub const IEnumCERTVIEWATTRIBUTE = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_IEnumCERTVIEWCOLUMN_Value = Guid.initString("9c735be2-57a5-11d1-9bdb-00c04fb683fa");
 pub const IID_IEnumCERTVIEWCOLUMN = &IID_IEnumCERTVIEWCOLUMN_Value;
 pub const IEnumCERTVIEWCOLUMN = extern union {
@@ -8534,7 +8534,7 @@ pub const IEnumCERTVIEWCOLUMN = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_IEnumCERTVIEWEXTENSION_Value = Guid.initString("e7dd1466-7653-11d1-9bde-00c04fb683fa");
 pub const IID_IEnumCERTVIEWEXTENSION = &IID_IEnumCERTVIEWEXTENSION_Value;
 pub const IEnumCERTVIEWEXTENSION = extern union {
@@ -8596,7 +8596,7 @@ pub const IEnumCERTVIEWEXTENSION = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 const IID_IEnumCERTVIEWROW_Value = Guid.initString("d1157f4c-5af2-11d1-9bdc-00c04fb683fa");
 pub const IID_IEnumCERTVIEWROW = &IID_IEnumCERTVIEWROW_Value;
 pub const IEnumCERTVIEWROW = extern union {
@@ -8905,7 +8905,7 @@ pub const IObjectIds = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IOCSPAdmin_Value = Guid.initString("322e830d-67db-4fe9-9577-4596d9f09294");
 pub const IID_IOCSPAdmin = &IID_IOCSPAdmin_Value;
 pub const IOCSPAdmin = extern union {
@@ -8998,7 +8998,7 @@ pub const IOCSPAdmin = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IOCSPCAConfiguration_Value = Guid.initString("aec92b40-3d46-433f-87d1-b84d5c1e790d");
 pub const IID_IOCSPCAConfiguration = &IID_IOCSPCAConfiguration_Value;
 pub const IOCSPCAConfiguration = extern union {
@@ -9202,7 +9202,7 @@ pub const IOCSPCAConfiguration = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IOCSPCAConfigurationCollection_Value = Guid.initString("2bebea0b-5ece-4f28-a91c-86b4bb20f0d3");
 pub const IID_IOCSPCAConfigurationCollection = &IID_IOCSPCAConfigurationCollection_Value;
 pub const IOCSPCAConfigurationCollection = extern union {
@@ -9262,7 +9262,7 @@ pub const IOCSPCAConfigurationCollection = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IOCSPProperty_Value = Guid.initString("66fb7839-5f04-4c25-ad18-9ff1a8376ee0");
 pub const IID_IOCSPProperty = &IID_IOCSPProperty_Value;
 pub const IOCSPProperty = extern union {
@@ -9306,7 +9306,7 @@ pub const IOCSPProperty = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IOCSPPropertyCollection_Value = Guid.initString("2597c18d-54e6-4b74-9fa9-a6bfda99cbbe");
 pub const IID_IOCSPPropertyCollection = &IID_IOCSPPropertyCollection_Value;
 pub const IOCSPPropertyCollection = extern union {
@@ -15282,43 +15282,43 @@ pub const XEKL_KEYSPEC_SIG = XEKL_KEYSPEC.SIG;
 //--------------------------------------------------------------------------------
 // Section: Functions (26)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvBackupClose(
     hbc: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvBackupEnd(
     hbc: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvBackupFree(
     pv: ?*anyopaque,
 ) callconv(.winapi) void;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvBackupGetBackupLogsW(
     hbc: ?*anyopaque,
     ppwszzBackupLogFiles: ?*?PWSTR,
     pcbSize: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvBackupGetDatabaseNamesW(
     hbc: ?*anyopaque,
     ppwszzAttachmentInformation: ?*?PWSTR,
     pcbSize: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvBackupGetDynamicFileListW(
     hbc: ?*anyopaque,
     ppwszzFileList: ?*?PWSTR,
     pcbSize: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvBackupOpenFileW(
     hbc: ?*anyopaque,
     pwszAttachmentName: ?[*:0]const u16,
@@ -15326,7 +15326,7 @@ pub extern "certadm" fn CertSrvBackupOpenFileW(
     pliFileSize: ?*LARGE_INTEGER,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvBackupPrepareW(
     pwszServerName: ?[*:0]const u16,
     grbitJet: u32,
@@ -15334,7 +15334,7 @@ pub extern "certadm" fn CertSrvBackupPrepareW(
     phbc: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvBackupRead(
     hbc: ?*anyopaque,
     pvBuffer: ?*anyopaque,
@@ -15342,43 +15342,43 @@ pub extern "certadm" fn CertSrvBackupRead(
     pcbRead: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvBackupTruncateLogs(
     hbc: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvIsServerOnlineW(
     pwszServerName: ?[*:0]const u16,
     pfServerOnline: ?*BOOL,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvRestoreEnd(
     hbc: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvRestoreGetDatabaseLocationsW(
     hbc: ?*anyopaque,
     ppwszzDatabaseLocationList: ?*?PWSTR,
     pcbSize: ?*u32,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvRestorePrepareW(
     pwszServerName: ?[*:0]const u16,
     dwRestoreFlags: u32,
     phbc: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvRestoreRegisterComplete(
     hbc: ?*anyopaque,
     hrRestoreState: HRESULT,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvRestoreRegisterThroughFile(
     hbc: ?*anyopaque,
     pwszCheckPointFilePath: ?[*:0]const u16,
@@ -15390,7 +15390,7 @@ pub extern "certadm" fn CertSrvRestoreRegisterThroughFile(
     genHigh: u32,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvRestoreRegisterW(
     hbc: ?*anyopaque,
     pwszCheckPointFilePath: ?[*:0]const u16,
@@ -15402,7 +15402,7 @@ pub extern "certadm" fn CertSrvRestoreRegisterW(
     genHigh: u32,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2003'
+// TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvServerControlW(
     pwszServerName: ?[*:0]const u16,
     dwControlFlags: u32,

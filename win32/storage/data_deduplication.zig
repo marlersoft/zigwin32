@@ -144,7 +144,7 @@ pub const DedupStreamEntry = extern struct {
     Offset: u64,
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_IDedupBackupSupport_Value = Guid.initString("c719d963-2b2d-415e-acf7-7eb7ca596ff4");
 pub const IID_IDedupBackupSupport = &IID_IDedupBackupSupport_Value;
 pub const IDedupBackupSupport = extern union {
@@ -421,7 +421,7 @@ pub const IDedupIterateChunksHash32 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_IDedupReadFileCallback_Value = Guid.initString("7bacc67a-2f1d-42d0-897e-6ff62dd533bb");
 pub const IID_IDedupReadFileCallback = &IID_IDedupReadFileCallback_Value;
 pub const IDedupReadFileCallback = extern union {

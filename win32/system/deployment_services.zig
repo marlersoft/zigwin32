@@ -212,7 +212,7 @@ pub const CPU_ARCHITECTURE_AMD64 = CPU_ARCHITECTURE.AMD64;
 pub const CPU_ARCHITECTURE_IA64 = CPU_ARCHITECTURE.IA64;
 pub const CPU_ARCHITECTURE_INTEL = CPU_ARCHITECTURE.INTEL;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWdsTransportCacheable_Value = Guid.initString("46ad894b-0bab-47dc-84b2-7b553f1d8f80");
 pub const IID_IWdsTransportCacheable = &IID_IWdsTransportCacheable_Value;
 pub const IWdsTransportCacheable = extern union {
@@ -250,7 +250,7 @@ pub const IWdsTransportCacheable = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWdsTransportClient_Value = Guid.initString("b5dbc93a-cabe-46ca-837f-3e44e93c6545");
 pub const IID_IWdsTransportClient = &IID_IWdsTransportClient_Value;
 pub const IWdsTransportClient = extern union {
@@ -357,7 +357,7 @@ pub const IWdsTransportClient = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWdsTransportCollection_Value = Guid.initString("b8ba4b1a-2ff4-43ab-996c-b2b10a91a6eb");
 pub const IID_IWdsTransportCollection = &IID_IWdsTransportCollection_Value;
 pub const IWdsTransportCollection = extern union {
@@ -393,7 +393,7 @@ pub const IWdsTransportCollection = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWdsTransportConfigurationManager_Value = Guid.initString("84cc4779-42dd-4792-891e-1321d6d74b44");
 pub const IID_IWdsTransportConfigurationManager = &IID_IWdsTransportConfigurationManager_Value;
 pub const IWdsTransportConfigurationManager = extern union {
@@ -466,7 +466,7 @@ pub const IWdsTransportConfigurationManager = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWdsTransportConfigurationManager2_Value = Guid.initString("d0d85caf-a153-4f1d-a9dd-96f431c50717");
 pub const IID_IWdsTransportConfigurationManager2 = &IID_IWdsTransportConfigurationManager2_Value;
 pub const IWdsTransportConfigurationManager2 = extern union {
@@ -487,7 +487,7 @@ pub const IWdsTransportConfigurationManager2 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWdsTransportContent_Value = Guid.initString("d405d711-0296-4ab4-a860-ac7d32e65798");
 pub const IID_IWdsTransportContent = &IID_IWdsTransportContent_Value;
 pub const IWdsTransportContent = extern union {
@@ -536,7 +536,7 @@ pub const IWdsTransportContent = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_IWdsTransportContentProvider_Value = Guid.initString("b9489f24-f219-4acf-aad7-265c7c08a6ae");
 pub const IID_IWdsTransportContentProvider = &IID_IWdsTransportContentProvider_Value;
 pub const IWdsTransportContentProvider = extern union {
@@ -580,7 +580,7 @@ pub const IWdsTransportContentProvider = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWdsTransportDiagnosticsPolicy_Value = Guid.initString("13b33efc-7856-4f61-9a59-8de67b6b87b6");
 pub const IID_IWdsTransportDiagnosticsPolicy = &IID_IWdsTransportDiagnosticsPolicy_Value;
 pub const IWdsTransportDiagnosticsPolicy = extern union {
@@ -625,7 +625,7 @@ pub const IWdsTransportDiagnosticsPolicy = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWdsTransportManager_Value = Guid.initString("5b0d35f5-1b13-4afd-b878-6526dc340b5d");
 pub const IID_IWdsTransportManager = &IID_IWdsTransportManager_Value;
 pub const IWdsTransportManager = extern union {
@@ -645,7 +645,7 @@ pub const IWdsTransportManager = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWdsTransportMulticastSessionPolicy_Value = Guid.initString("4e5753cf-68ec-4504-a951-4a003266606b");
 pub const IID_IWdsTransportMulticastSessionPolicy = &IID_IWdsTransportMulticastSessionPolicy_Value;
 pub const IWdsTransportMulticastSessionPolicy = extern union {
@@ -722,7 +722,7 @@ pub const IWdsTransportMulticastSessionPolicy = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWdsTransportNamespace_Value = Guid.initString("fa561f57-fbef-4ed3-b056-127cb1b33b84");
 pub const IID_IWdsTransportNamespace = &IID_IWdsTransportNamespace_Value;
 pub const IWdsTransportNamespace = extern union {
@@ -895,7 +895,7 @@ pub const IWdsTransportNamespace = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWdsTransportNamespaceAutoCast_Value = Guid.initString("ad931a72-c4bd-4c41-8fbc-59c9c748df9e");
 pub const IID_IWdsTransportNamespaceAutoCast = &IID_IWdsTransportNamespaceAutoCast_Value;
 pub const IWdsTransportNamespaceAutoCast = extern union {
@@ -908,7 +908,7 @@ pub const IWdsTransportNamespaceAutoCast = extern union {
     IUnknown: IUnknown,
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWdsTransportNamespaceManager_Value = Guid.initString("3e22d9f6-3777-4d98-83e1-f98696717ba3");
 pub const IID_IWdsTransportNamespaceManager = &IID_IWdsTransportNamespaceManager_Value;
 pub const IWdsTransportNamespaceManager = extern union {
@@ -949,7 +949,7 @@ pub const IWdsTransportNamespaceManager = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWdsTransportNamespaceScheduledCast_Value = Guid.initString("3840cecf-d76c-416e-a4cc-31c741d2874b");
 pub const IID_IWdsTransportNamespaceScheduledCast = &IID_IWdsTransportNamespaceScheduledCast_Value;
 pub const IWdsTransportNamespaceScheduledCast = extern union {
@@ -968,7 +968,7 @@ pub const IWdsTransportNamespaceScheduledCast = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWdsTransportNamespaceScheduledCastAutoStart_Value = Guid.initString("d606af3d-ea9c-4219-961e-7491d618d9b9");
 pub const IID_IWdsTransportNamespaceScheduledCastAutoStart = &IID_IWdsTransportNamespaceScheduledCastAutoStart_Value;
 pub const IWdsTransportNamespaceScheduledCastAutoStart = extern union {
@@ -1014,7 +1014,7 @@ pub const IWdsTransportNamespaceScheduledCastAutoStart = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWdsTransportNamespaceScheduledCastManualStart_Value = Guid.initString("013e6e4c-e6a7-4fb5-b7ff-d9f5da805c31");
 pub const IID_IWdsTransportNamespaceScheduledCastManualStart = &IID_IWdsTransportNamespaceScheduledCastManualStart_Value;
 pub const IWdsTransportNamespaceScheduledCastManualStart = extern union {
@@ -1028,7 +1028,7 @@ pub const IWdsTransportNamespaceScheduledCastManualStart = extern union {
     IUnknown: IUnknown,
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWdsTransportServer_Value = Guid.initString("09ccd093-830d-4344-a30a-73ae8e8fca90");
 pub const IID_IWdsTransportServer = &IID_IWdsTransportServer_Value;
 pub const IWdsTransportServer = extern union {
@@ -1080,7 +1080,7 @@ pub const IWdsTransportServer = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_IWdsTransportServer2_Value = Guid.initString("256e999f-6df4-4538-81b9-857b9ab8fb47");
 pub const IID_IWdsTransportServer2 = &IID_IWdsTransportServer2_Value;
 pub const IWdsTransportServer2 = extern union {
@@ -1101,7 +1101,7 @@ pub const IWdsTransportServer2 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWdsTransportServicePolicy_Value = Guid.initString("b9468578-9f2b-48cc-b27a-a60799c2750c");
 pub const IID_IWdsTransportServicePolicy = &IID_IWdsTransportServicePolicy_Value;
 pub const IWdsTransportServicePolicy = extern union {
@@ -1210,7 +1210,7 @@ pub const IWdsTransportServicePolicy = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_IWdsTransportServicePolicy2_Value = Guid.initString("65c19e5c-aa7e-4b91-8944-91e0e5572797");
 pub const IID_IWdsTransportServicePolicy2 = &IID_IWdsTransportServicePolicy2_Value;
 pub const IWdsTransportServicePolicy2 = extern union {
@@ -1272,7 +1272,7 @@ pub const IWdsTransportServicePolicy2 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWdsTransportSession_Value = Guid.initString("f4efea88-65b1-4f30-a4b9-2793987796fb");
 pub const IID_IWdsTransportSession = &IID_IWdsTransportSession_Value;
 pub const IWdsTransportSession = extern union {
@@ -1345,7 +1345,7 @@ pub const IWdsTransportSession = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWdsTransportSetupManager_Value = Guid.initString("f7238425-efa8-40a4-aef9-c98d969c0b75");
 pub const IID_IWdsTransportSetupManager = &IID_IWdsTransportSetupManager_Value;
 pub const IWdsTransportSetupManager = extern union {
@@ -1398,7 +1398,7 @@ pub const IWdsTransportSetupManager = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_IWdsTransportSetupManager2_Value = Guid.initString("02be79da-7e9e-4366-8b6e-2aa9a91be47f");
 pub const IID_IWdsTransportSetupManager2 = &IID_IWdsTransportSetupManager2_Value;
 pub const IWdsTransportSetupManager2 = extern union {
@@ -1427,7 +1427,7 @@ pub const IWdsTransportSetupManager2 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_IWdsTransportTftpClient_Value = Guid.initString("b022d3ae-884d-4d85-b146-53320e76ef62");
 pub const IID_IWdsTransportTftpClient = &IID_IWdsTransportTftpClient_Value;
 pub const IWdsTransportTftpClient = extern union {
@@ -1495,7 +1495,7 @@ pub const IWdsTransportTftpClient = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_IWdsTransportTftpManager_Value = Guid.initString("1327a7c8-ae8a-4fb3-8150-136227c37e9a");
 pub const IID_IWdsTransportTftpManager = &IID_IWdsTransportTftpManager_Value;
 pub const IWdsTransportTftpManager = extern union {
@@ -1961,13 +1961,13 @@ pub const CLSID_WdsTransportTftpManager = &CLSID_WdsTransportTftpManager_Value;
 //--------------------------------------------------------------------------------
 // Section: Functions (94)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeAsyncRecvDone(
     hClientRequest: ?HANDLE,
     Action: u32,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeDhcpAppendOption(
     // TODO: what to do with BytesParamIndex 1?
     pReplyPacket: ?*anyopaque,
@@ -1979,7 +1979,7 @@ pub extern "wdspxe" fn PxeDhcpAppendOption(
     pValue: ?*anyopaque,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeDhcpAppendOptionRaw(
     // TODO: what to do with BytesParamIndex 1?
     pReplyPacket: ?*anyopaque,
@@ -1990,7 +1990,7 @@ pub extern "wdspxe" fn PxeDhcpAppendOptionRaw(
     pBuffer: ?*anyopaque,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeDhcpGetOptionValue(
     // TODO: what to do with BytesParamIndex 1?
     pPacket: ?*anyopaque,
@@ -2001,7 +2001,7 @@ pub extern "wdspxe" fn PxeDhcpGetOptionValue(
     ppOptionValue: ?*?*anyopaque,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeDhcpGetVendorOptionValue(
     // TODO: what to do with BytesParamIndex 1?
     pPacket: ?*anyopaque,
@@ -2012,7 +2012,7 @@ pub extern "wdspxe" fn PxeDhcpGetVendorOptionValue(
     ppOptionValue: ?*?*anyopaque,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeDhcpInitialize(
     // TODO: what to do with BytesParamIndex 1?
     pRecvPacket: ?*anyopaque,
@@ -2023,7 +2023,7 @@ pub extern "wdspxe" fn PxeDhcpInitialize(
     puReplyPacketLen: ?*u32,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeDhcpIsValid(
     // TODO: what to do with BytesParamIndex 1?
     pPacket: ?*anyopaque,
@@ -2123,7 +2123,7 @@ pub extern "wdspxe" fn PxeDhcpv6ParseRelayForw(
     pcbInnerPacket: ?*u32,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeGetServerInfo(
     uInfoType: u32,
     // TODO: what to do with BytesParamIndex 2?
@@ -2140,48 +2140,48 @@ pub extern "wdspxe" fn PxeGetServerInfoEx(
     puBufferUsed: ?*u32,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxePacketAllocate(
     hProvider: ?HANDLE,
     hClientRequest: ?HANDLE,
     uSize: u32,
 ) callconv(.winapi) ?*anyopaque;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxePacketFree(
     hProvider: ?HANDLE,
     hClientRequest: ?HANDLE,
     pPacket: ?*anyopaque,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeProviderEnumClose(
     hEnum: ?HANDLE,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeProviderEnumFirst(
     phEnum: ?*?HANDLE,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeProviderEnumNext(
     hEnum: ?HANDLE,
     ppProvider: ?*?*PXE_PROVIDER,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeProviderFreeInfo(
     pProvider: ?*PXE_PROVIDER,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeProviderQueryIndex(
     pszProviderName: ?[*:0]const u16,
     puIndex: ?*u32,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeProviderRegister(
     pszProviderName: ?[*:0]const u16,
     pszModulePath: ?[*:0]const u16,
@@ -2190,7 +2190,7 @@ pub extern "wdspxe" fn PxeProviderRegister(
     phProviderKey: ?*?HKEY,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeProviderSetAttribute(
     hProvider: ?HANDLE,
     Attribute: u32,
@@ -2199,12 +2199,12 @@ pub extern "wdspxe" fn PxeProviderSetAttribute(
     uParamLen: u32,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeProviderUnRegister(
     pszProviderName: ?[*:0]const u16,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeRegisterCallback(
     hProvider: ?HANDLE,
     CallbackType: u32,
@@ -2212,7 +2212,7 @@ pub extern "wdspxe" fn PxeRegisterCallback(
     pContext: ?*anyopaque,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeSendReply(
     hClientRequest: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
@@ -2221,7 +2221,7 @@ pub extern "wdspxe" fn PxeSendReply(
     pAddress: ?*PXE_ADDRESS,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeTrace(
     hProvider: ?HANDLE,
     Severity: u32,
@@ -2602,13 +2602,13 @@ pub extern "wdstptc" fn WdsTransportClientWaitForCompletion(
     uTimeout: u32,
 ) callconv(.winapi) u32;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdsmc" fn WdsTransportServerAllocateBuffer(
     hProvider: ?HANDLE,
     ulBufferSize: u32,
 ) callconv(.winapi) ?*anyopaque;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdsmc" fn WdsTransportServerCompleteRead(
     hProvider: ?HANDLE,
     ulBytesRead: u32,
@@ -2616,27 +2616,27 @@ pub extern "wdsmc" fn WdsTransportServerCompleteRead(
     hReadResult: HRESULT,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdsmc" fn WdsTransportServerFreeBuffer(
     hProvider: ?HANDLE,
     pvBuffer: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdsmc" fn WdsTransportServerRegisterCallback(
     hProvider: ?HANDLE,
     CallbackId: TRANSPORTPROVIDER_CALLBACK_ID,
     pfnCallback: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdsmc" fn WdsTransportServerTrace(
     hProvider: ?HANDLE,
     Severity: u32,
     pwszFormat: ?[*:0]const u16,
 ) callconv(.winapi) HRESULT;
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdsmc" fn WdsTransportServerTraceV(
     hProvider: ?HANDLE,
     Severity: u32,

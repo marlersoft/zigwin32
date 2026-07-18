@@ -106,11 +106,11 @@ pub const WNV_REDIRECT_PARAM = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (2)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 pub extern "wnvapi" fn WnvOpen(
 ) callconv(.winapi) ?HANDLE;
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 pub extern "wnvapi" fn WnvRequestNotification(
     WnvHandle: ?HANDLE,
     NotificationParam: ?*WNV_NOTIFICATION_PARAM,

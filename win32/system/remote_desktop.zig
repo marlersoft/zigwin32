@@ -1353,7 +1353,7 @@ pub const ITSGPolicyEngine = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_ItsPubPlugin_Value = Guid.initString("70c04b05-f347-412b-822f-36c99c54ca45");
 pub const IID_ItsPubPlugin = &IID_ItsPubPlugin_Value;
 pub const ItsPubPlugin = extern union {
@@ -1466,7 +1466,7 @@ pub const ItsPubPlugin2 = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbBaseNotifySink_Value = Guid.initString("808a6537-1282-4989-9e09-f43938b71722");
 pub const IID_ITsSbBaseNotifySink = &IID_ITsSbBaseNotifySink_Value;
 pub const ITsSbBaseNotifySink = extern union {
@@ -1492,7 +1492,7 @@ pub const ITsSbBaseNotifySink = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbClientConnection_Value = Guid.initString("18857499-ad61-4b1b-b7df-cbcd41fb8338");
 pub const IID_ITsSbClientConnection = &IID_ITsSbClientConnection_Value;
 pub const ITsSbClientConnection = extern union {
@@ -1621,7 +1621,7 @@ pub const ITsSbClientConnection = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbClientConnectionPropertySet_Value = Guid.initString("e51995b0-46d6-11dd-aa21-cedc55d89593");
 pub const IID_ITsSbClientConnectionPropertySet = &IID_ITsSbClientConnectionPropertySet_Value;
 pub const ITsSbClientConnectionPropertySet = extern union {
@@ -1634,7 +1634,7 @@ pub const ITsSbClientConnectionPropertySet = extern union {
     IUnknown: IUnknown,
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbEnvironment_Value = Guid.initString("8c87f7f7-bf51-4a5c-87bf-8e94fb6e2256");
 pub const IID_ITsSbEnvironment = &IID_ITsSbEnvironment_Value;
 pub const ITsSbEnvironment = extern union {
@@ -1677,7 +1677,7 @@ pub const ITsSbEnvironment = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbEnvironmentPropertySet_Value = Guid.initString("d0d1bf7e-7acf-11dd-a243-e51156d89593");
 pub const IID_ITsSbEnvironmentPropertySet = &IID_ITsSbEnvironmentPropertySet_Value;
 pub const ITsSbEnvironmentPropertySet = extern union {
@@ -1690,7 +1690,7 @@ pub const ITsSbEnvironmentPropertySet = extern union {
     IUnknown: IUnknown,
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbFilterPluginStore_Value = Guid.initString("85b44b0f-ed78-413f-9702-fa6d3b5ee755");
 pub const IID_ITsSbFilterPluginStore = &IID_ITsSbFilterPluginStore_Value;
 pub const ITsSbFilterPluginStore = extern union {
@@ -1722,7 +1722,7 @@ pub const ITsSbFilterPluginStore = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2016'
+// TODO: this type is limited to platform 'windowsserver2016'
 const IID_ITsSbGenericNotifySink_Value = Guid.initString("4c4c8c4f-300b-46ad-9164-8468a7e7568c");
 pub const IID_ITsSbGenericNotifySink = &IID_ITsSbGenericNotifySink_Value;
 pub const ITsSbGenericNotifySink = extern union {
@@ -1747,7 +1747,7 @@ pub const ITsSbGenericNotifySink = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbGlobalStore_Value = Guid.initString("9ab60f7b-bd72-4d9f-8a3a-a0ea5574e635");
 pub const IID_ITsSbGlobalStore = &IID_ITsSbGlobalStore_Value;
 pub const ITsSbGlobalStore = extern union {
@@ -1831,7 +1831,7 @@ pub const ITsSbGlobalStore = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbLoadBalanceResult_Value = Guid.initString("24fdb7ac-fea6-11dc-9672-9a8956d89593");
 pub const IID_ITsSbLoadBalanceResult = &IID_ITsSbLoadBalanceResult_Value;
 pub const ITsSbLoadBalanceResult = extern union {
@@ -1850,7 +1850,7 @@ pub const ITsSbLoadBalanceResult = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbLoadBalancing_Value = Guid.initString("24329274-9eb7-11dc-ae98-f2b456d89593");
 pub const IID_ITsSbLoadBalancing = &IID_ITsSbLoadBalancing_Value;
 pub const ITsSbLoadBalancing = extern union {
@@ -1870,7 +1870,7 @@ pub const ITsSbLoadBalancing = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbLoadBalancingNotifySink_Value = Guid.initString("5f8a8297-3244-4e6a-958a-27c822c1e141");
 pub const IID_ITsSbLoadBalancingNotifySink = &IID_ITsSbLoadBalancingNotifySink_Value;
 pub const ITsSbLoadBalancingNotifySink = extern union {
@@ -1890,7 +1890,7 @@ pub const ITsSbLoadBalancingNotifySink = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbOrchestration_Value = Guid.initString("64fc1172-9eb7-11dc-8b00-3aba56d89593");
 pub const IID_ITsSbOrchestration = &IID_ITsSbOrchestration_Value;
 pub const ITsSbOrchestration = extern union {
@@ -1910,7 +1910,7 @@ pub const ITsSbOrchestration = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbOrchestrationNotifySink_Value = Guid.initString("36c37d61-926b-442f-bca5-118c6d50dcf2");
 pub const IID_ITsSbOrchestrationNotifySink = &IID_ITsSbOrchestrationNotifySink_Value;
 pub const ITsSbOrchestrationNotifySink = extern union {
@@ -1929,7 +1929,7 @@ pub const ITsSbOrchestrationNotifySink = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbPlacement_Value = Guid.initString("daadee5f-6d32-480e-9e36-ddab2329f06d");
 pub const IID_ITsSbPlacement = &IID_ITsSbPlacement_Value;
 pub const ITsSbPlacement = extern union {
@@ -1949,7 +1949,7 @@ pub const ITsSbPlacement = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbPlacementNotifySink_Value = Guid.initString("68a0c487-2b4f-46c2-94a1-6ce685183634");
 pub const IID_ITsSbPlacementNotifySink = &IID_ITsSbPlacementNotifySink_Value;
 pub const ITsSbPlacementNotifySink = extern union {
@@ -1968,7 +1968,7 @@ pub const ITsSbPlacementNotifySink = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbPlugin_Value = Guid.initString("48cd7406-caab-465f-a5d6-baa863b9ea4f");
 pub const IID_ITsSbPlugin = &IID_ITsSbPlugin_Value;
 pub const ITsSbPlugin = extern union {
@@ -1995,7 +1995,7 @@ pub const ITsSbPlugin = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbPluginNotifySink_Value = Guid.initString("44dfe30b-c3be-40f5-bf82-7a95bb795adf");
 pub const IID_ITsSbPluginNotifySink = &IID_ITsSbPluginNotifySink_Value;
 pub const ITsSbPluginNotifySink = extern union {
@@ -2020,7 +2020,7 @@ pub const ITsSbPluginNotifySink = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbPluginPropertySet_Value = Guid.initString("95006e34-7eff-4b6c-bb40-49a4fda7cea6");
 pub const IID_ITsSbPluginPropertySet = &IID_ITsSbPluginPropertySet_Value;
 pub const ITsSbPluginPropertySet = extern union {
@@ -2033,7 +2033,7 @@ pub const ITsSbPluginPropertySet = extern union {
     IUnknown: IUnknown,
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbPropertySet_Value = Guid.initString("5c025171-bb1e-4baf-a212-6d5e9774b33b");
 pub const IID_ITsSbPropertySet = &IID_ITsSbPropertySet_Value;
 pub const ITsSbPropertySet = extern union {
@@ -2045,7 +2045,7 @@ pub const ITsSbPropertySet = extern union {
     IUnknown: IUnknown,
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbProvider_Value = Guid.initString("87a4098f-6d7b-44dd-bc17-8ce44e370d52");
 pub const IID_ITsSbProvider = &IID_ITsSbProvider_Value;
 pub const ITsSbProvider = extern union {
@@ -2152,7 +2152,7 @@ pub const ITsSbProvider = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbProvisioning_Value = Guid.initString("2f6f0dbb-9e4f-462b-9c3f-fccc3dcb6232");
 pub const IID_ITsSbProvisioning = &IID_ITsSbProvisioning_Value;
 pub const ITsSbProvisioning = extern union {
@@ -2199,7 +2199,7 @@ pub const ITsSbProvisioning = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbProvisioningPluginNotifySink_Value = Guid.initString("aca87a8e-818b-4581-a032-49c3dfb9c701");
 pub const IID_ITsSbProvisioningPluginNotifySink = &IID_ITsSbProvisioningPluginNotifySink_Value;
 pub const ITsSbProvisioningPluginNotifySink = extern union {
@@ -2258,7 +2258,7 @@ pub const ITsSbProvisioningPluginNotifySink = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbResourceNotification_Value = Guid.initString("65d3e85a-c39b-11dc-b92d-3cd255d89593");
 pub const IID_ITsSbResourceNotification = &IID_ITsSbResourceNotification_Value;
 pub const ITsSbResourceNotification = extern union {
@@ -2293,7 +2293,7 @@ pub const ITsSbResourceNotification = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbResourceNotificationEx_Value = Guid.initString("a8a47fde-ca91-44d2-b897-3aa28a43b2b7");
 pub const IID_ITsSbResourceNotificationEx = &IID_ITsSbResourceNotificationEx_Value;
 pub const ITsSbResourceNotificationEx = extern union {
@@ -2335,7 +2335,7 @@ pub const ITsSbResourceNotificationEx = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbResourcePlugin_Value = Guid.initString("ea8db42c-98ed-4535-a88b-2a164f35490f");
 pub const IID_ITsSbResourcePlugin = &IID_ITsSbResourcePlugin_Value;
 pub const ITsSbResourcePlugin = extern union {
@@ -2347,7 +2347,7 @@ pub const ITsSbResourcePlugin = extern union {
     IUnknown: IUnknown,
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbResourcePluginStore_Value = Guid.initString("5c38f65f-bcf1-4036-a6bf-9e3cccae0b63");
 pub const IID_ITsSbResourcePluginStore = &IID_ITsSbResourcePluginStore_Value;
 pub const ITsSbResourcePluginStore = extern union {
@@ -2599,7 +2599,7 @@ pub const ITsSbResourcePluginStore = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbServiceNotification_Value = Guid.initString("86cb68ae-86e0-4f57-8a64-bb7406bc5550");
 pub const IID_ITsSbServiceNotification = &IID_ITsSbServiceNotification_Value;
 pub const ITsSbServiceNotification = extern union {
@@ -2622,7 +2622,7 @@ pub const ITsSbServiceNotification = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbSession_Value = Guid.initString("d453aac7-b1d8-4c5e-ba34-9afb4c8c5510");
 pub const IID_ITsSbSession = &IID_ITsSbSession_Value;
 pub const ITsSbSession = extern union {
@@ -2769,7 +2769,7 @@ pub const ITsSbSession = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbTarget_Value = Guid.initString("16616ecc-272d-411d-b324-126893033856");
 pub const IID_ITsSbTarget = &IID_ITsSbTarget_Value;
 pub const ITsSbTarget = extern union {
@@ -2932,7 +2932,7 @@ pub const ITsSbTarget = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbTargetPropertySet_Value = Guid.initString("f7bda5d6-994c-4e11-a079-2763b61830ac");
 pub const IID_ITsSbTargetPropertySet = &IID_ITsSbTargetPropertySet_Value;
 pub const ITsSbTargetPropertySet = extern union {
@@ -2945,7 +2945,7 @@ pub const ITsSbTargetPropertySet = extern union {
     IUnknown: IUnknown,
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbTaskInfo_Value = Guid.initString("523d1083-89be-48dd-99ea-04e82ffa7265");
 pub const IID_ITsSbTaskInfo = &IID_ITsSbTaskInfo_Value;
 pub const ITsSbTaskInfo = extern union {
@@ -3028,7 +3028,7 @@ pub const ITsSbTaskInfo = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbTaskPlugin_Value = Guid.initString("fa22ef0f-8705-41be-93bc-44bdbcf1c9c4");
 pub const IID_ITsSbTaskPlugin = &IID_ITsSbTaskPlugin_Value;
 pub const ITsSbTaskPlugin = extern union {
@@ -3056,7 +3056,7 @@ pub const ITsSbTaskPlugin = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_ITsSbTaskPluginNotifySink_Value = Guid.initString("6aaf899e-c2ec-45ee-aa37-45e60895261a");
 pub const IID_ITsSbTaskPluginNotifySink = &IID_ITsSbTaskPluginNotifySink_Value;
 pub const ITsSbTaskPluginNotifySink = extern union {
@@ -3640,7 +3640,7 @@ pub const IWRdsGraphicsChannelManager = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_IWRdsProtocolConnection_Value = Guid.initString("324ed94f-fdaf-4ff6-81a8-42abe755830b");
 pub const IID_IWRdsProtocolConnection = &IID_IWRdsProtocolConnection_Value;
 pub const IWRdsProtocolConnection = extern union {
@@ -3837,7 +3837,7 @@ pub const IWRdsProtocolConnection = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_IWRdsProtocolConnectionCallback_Value = Guid.initString("f1d70332-d070-4ef1-a088-78313536c2d6");
 pub const IID_IWRdsProtocolConnectionCallback = &IID_IWRdsProtocolConnectionCallback_Value;
 pub const IWRdsProtocolConnectionCallback = extern union {
@@ -3908,7 +3908,7 @@ pub const IWRdsProtocolConnectionSettings = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_IWRdsProtocolLicenseConnection_Value = Guid.initString("1d6a145f-d095-4424-957a-407fae822d84");
 pub const IID_IWRdsProtocolLicenseConnection = &IID_IWRdsProtocolLicenseConnection_Value;
 pub const IWRdsProtocolLicenseConnection = extern union {
@@ -3952,7 +3952,7 @@ pub const IWRdsProtocolLicenseConnection = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_IWRdsProtocolListener_Value = Guid.initString("fcbc131b-c686-451d-a773-e279e230f540");
 pub const IID_IWRdsProtocolListener = &IID_IWRdsProtocolListener_Value;
 pub const IWRdsProtocolListener = extern union {
@@ -3984,7 +3984,7 @@ pub const IWRdsProtocolListener = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_IWRdsProtocolListenerCallback_Value = Guid.initString("3ab27e5b-4449-4dc1-b74a-91621d4fe984");
 pub const IID_IWRdsProtocolListenerCallback = &IID_IWRdsProtocolListenerCallback_Value;
 pub const IWRdsProtocolListenerCallback = extern union {
@@ -4004,7 +4004,7 @@ pub const IWRdsProtocolListenerCallback = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_IWRdsProtocolLogonErrorRedirector_Value = Guid.initString("519fe83b-142a-4120-a3d5-a405d315281a");
 pub const IID_IWRdsProtocolLogonErrorRedirector = &IID_IWRdsProtocolLogonErrorRedirector_Value;
 pub const IWRdsProtocolLogonErrorRedirector = extern union {
@@ -4051,7 +4051,7 @@ pub const IWRdsProtocolLogonErrorRedirector = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_IWRdsProtocolManager_Value = Guid.initString("dc796967-3abb-40cd-a446-105276b58950");
 pub const IID_IWRdsProtocolManager = &IID_IWRdsProtocolManager_Value;
 pub const IWRdsProtocolManager = extern union {
@@ -4120,7 +4120,7 @@ pub const IWRdsProtocolManager = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_IWRdsProtocolSettings_Value = Guid.initString("654a5a6a-2550-47eb-b6f7-ebd637475265");
 pub const IID_IWRdsProtocolSettings = &IID_IWRdsProtocolSettings_Value;
 pub const IWRdsProtocolSettings = extern union {
@@ -4149,7 +4149,7 @@ pub const IWRdsProtocolSettings = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_IWRdsProtocolShadowCallback_Value = Guid.initString("e0667ce0-0372-40d6-adb2-a0f3322674d6");
 pub const IID_IWRdsProtocolShadowCallback = &IID_IWRdsProtocolShadowCallback_Value;
 pub const IWRdsProtocolShadowCallback = extern union {
@@ -4183,7 +4183,7 @@ pub const IWRdsProtocolShadowCallback = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2012'
+// TODO: this type is limited to platform 'windowsserver2012'
 const IID_IWRdsProtocolShadowConnection_Value = Guid.initString("9ae85ce6-cade-4548-8feb-99016597f60a");
 pub const IID_IWRdsProtocolShadowConnection = &IID_IWRdsProtocolShadowConnection_Value;
 pub const IWRdsProtocolShadowConnection = extern union {
@@ -4435,7 +4435,7 @@ pub const IWTSPluginServiceProvider = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWTSProtocolConnection_Value = Guid.initString("23083765-9095-4648-98bf-ef81c914032d");
 pub const IID_IWTSProtocolConnection = &IID_IWTSProtocolConnection_Value;
 pub const IWTSProtocolConnection = extern union {
@@ -4625,7 +4625,7 @@ pub const IWTSProtocolConnection = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWTSProtocolConnectionCallback_Value = Guid.initString("23083765-75eb-41fe-b4fb-e086242afa0f");
 pub const IID_IWTSProtocolConnectionCallback = &IID_IWTSProtocolConnectionCallback_Value;
 pub const IWTSProtocolConnectionCallback = extern union {
@@ -4670,7 +4670,7 @@ pub const IWTSProtocolConnectionCallback = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWTSProtocolLicenseConnection_Value = Guid.initString("23083765-178c-4079-8e4a-fea6496a4d70");
 pub const IID_IWTSProtocolLicenseConnection = &IID_IWTSProtocolLicenseConnection_Value;
 pub const IWTSProtocolLicenseConnection = extern union {
@@ -4714,7 +4714,7 @@ pub const IWTSProtocolLicenseConnection = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWTSProtocolListener_Value = Guid.initString("23083765-45f0-4394-8f69-32b2bc0ef4ca");
 pub const IID_IWTSProtocolListener = &IID_IWTSProtocolListener_Value;
 pub const IWTSProtocolListener = extern union {
@@ -4738,7 +4738,7 @@ pub const IWTSProtocolListener = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWTSProtocolListenerCallback_Value = Guid.initString("23083765-1a2d-4de2-97de-4a35f260f0b3");
 pub const IID_IWTSProtocolListenerCallback = &IID_IWTSProtocolListenerCallback_Value;
 pub const IWTSProtocolListenerCallback = extern union {
@@ -4757,7 +4757,7 @@ pub const IWTSProtocolListenerCallback = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWTSProtocolLogonErrorRedirector_Value = Guid.initString("fd9b61a7-2916-4627-8dee-4328711ad6cb");
 pub const IID_IWTSProtocolLogonErrorRedirector = &IID_IWTSProtocolLogonErrorRedirector_Value;
 pub const IWTSProtocolLogonErrorRedirector = extern union {
@@ -4804,7 +4804,7 @@ pub const IWTSProtocolLogonErrorRedirector = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWTSProtocolManager_Value = Guid.initString("f9eaf6cc-ed79-4f01-821d-1f881b9f66cc");
 pub const IID_IWTSProtocolManager = &IID_IWTSProtocolManager_Value;
 pub const IWTSProtocolManager = extern union {
@@ -4852,7 +4852,7 @@ pub const IWTSProtocolManager = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWTSProtocolShadowCallback_Value = Guid.initString("503a2504-aae5-4ab1-93e0-6d1c4bc6f71a");
 pub const IID_IWTSProtocolShadowCallback = &IID_IWTSProtocolShadowCallback_Value;
 pub const IWTSProtocolShadowCallback = extern union {
@@ -4886,7 +4886,7 @@ pub const IWTSProtocolShadowCallback = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWTSProtocolShadowConnection_Value = Guid.initString("ee3b0c14-37fb-456b-bab3-6d6cd51e13bf");
 pub const IID_IWTSProtocolShadowConnection = &IID_IWTSProtocolShadowConnection_Value;
 pub const IWTSProtocolShadowConnection = extern union {
@@ -4929,7 +4929,7 @@ pub const IWTSProtocolShadowConnection = extern union {
     }
 };
 
-// TODO: this type is limited to platform 'windowsServer2008'
+// TODO: this type is limited to platform 'windowsserver2008'
 const IID_IWTSSBPlugin_Value = Guid.initString("dc44be78-b18d-4399-b210-641bf67a002c");
 pub const IID_IWTSSBPlugin = &IID_IWTSSBPlugin_Value;
 pub const IWTSSBPlugin = extern union {
