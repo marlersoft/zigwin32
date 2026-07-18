@@ -2229,7 +2229,7 @@ pub extern "kernel32" fn GetProcessIdOfThread(
 pub extern "kernel32" fn GetProcessInformation(
     hProcess: ?HANDLE,
     ProcessInformationClass: PROCESS_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ProcessInformationSize" is the size in bytes
     ProcessInformation: ?*anyopaque,
     ProcessInformationSize: u32,
 ) callconv(.winapi) BOOL;
@@ -2244,7 +2244,7 @@ pub extern "kernel32" fn GetProcessIoCounters(
 pub extern "kernel32" fn GetProcessMitigationPolicy(
     hProcess: ?HANDLE,
     MitigationPolicy: PROCESS_MITIGATION_POLICY,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwLength" is the size in bytes
     lpBuffer: ?*anyopaque,
     dwLength: usize,
 ) callconv(.winapi) BOOL;
@@ -2325,7 +2325,7 @@ pub extern "kernel32" fn GetThreadIdealProcessorEx(
 pub extern "kernel32" fn GetThreadInformation(
     hThread: ?HANDLE,
     ThreadInformationClass: THREAD_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ThreadInformationSize" is the size in bytes
     ThreadInformation: ?*anyopaque,
     ThreadInformationSize: u32,
 ) callconv(.winapi) BOOL;
@@ -2407,7 +2407,7 @@ pub extern "kernel32" fn InitializeCriticalSectionEx(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn InitializeProcThreadAttributeList(
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpSize" is the size in bytes
     lpAttributeList: ?LPPROC_THREAD_ATTRIBUTE_LIST,
     dwAttributeCount: u32,
     dwFlags: u32,
@@ -2551,7 +2551,7 @@ pub extern "ntdll" fn NtQueryInformationThread(
 pub extern "ntdll" fn NtSetInformationThread(
     ThreadHandle: ?HANDLE,
     ThreadInformationClass: THREADINFOCLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ThreadInformationLength" is the size in bytes
     ThreadInformation: ?*anyopaque,
     ThreadInformationLength: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -2679,7 +2679,7 @@ pub extern "kernel32" fn QueryThreadpoolStackInformation(
 pub extern "kernel32" fn QueryUmsThreadInformation(
     UmsThread: ?*anyopaque,
     UmsThreadInfoClass: RTL_UMS_THREAD_INFO_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "UmsThreadInformationLength" is the size in bytes
     UmsThreadInformation: ?*anyopaque,
     UmsThreadInformationLength: u32,
     ReturnLength: ?*u32,
@@ -2829,7 +2829,7 @@ pub extern "kernel32" fn SetProcessDynamicEnforcedCetCompatibleRanges(
 pub extern "kernel32" fn SetProcessInformation(
     hProcess: ?HANDLE,
     ProcessInformationClass: PROCESS_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ProcessInformationSize" is the size in bytes
     ProcessInformation: ?*anyopaque,
     ProcessInformationSize: u32,
 ) callconv(.winapi) BOOL;
@@ -2837,7 +2837,7 @@ pub extern "kernel32" fn SetProcessInformation(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn SetProcessMitigationPolicy(
     MitigationPolicy: PROCESS_MITIGATION_POLICY,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwLength" is the size in bytes
     lpBuffer: ?*anyopaque,
     dwLength: usize,
 ) callconv(.winapi) BOOL;
@@ -2909,7 +2909,7 @@ pub extern "kernel32" fn SetThreadIdealProcessorEx(
 pub extern "kernel32" fn SetThreadInformation(
     hThread: ?HANDLE,
     ThreadInformationClass: THREAD_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ThreadInformationSize" is the size in bytes
     ThreadInformation: ?*anyopaque,
     ThreadInformationSize: u32,
 ) callconv(.winapi) BOOL;
@@ -3161,10 +3161,10 @@ pub extern "kernel32" fn UpdateProcThreadAttribute(
     lpAttributeList: ?LPPROC_THREAD_ATTRIBUTE_LIST,
     dwFlags: u32,
     Attribute: usize,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbSize" is the size in bytes
     lpValue: ?*anyopaque,
     cbSize: usize,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbSize" is the size in bytes
     lpPreviousValue: ?*anyopaque,
     lpReturnSize: ?*usize,
 ) callconv(.winapi) BOOL;
@@ -3231,9 +3231,9 @@ pub extern "kernel32" fn WaitForThreadpoolWorkCallbacks(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-synch-l1-2-0" fn WaitOnAddress(
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "AddressSize" is the size in bytes
     Address: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "AddressSize" is the size in bytes
     CompareAddress: ?*anyopaque,
     AddressSize: usize,
     dwMilliseconds: u32,

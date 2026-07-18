@@ -1068,7 +1068,7 @@ pub extern "gdi32" fn DescribePixelFormat(
     hdc: ?HDC,
     iPixelFormat: i32,
     nBytes: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "nBytes" is the size in bytes
     ppfd: ?*PIXELFORMATDESCRIPTOR,
 ) callconv(.winapi) i32;
 
@@ -1076,7 +1076,7 @@ pub extern "gdi32" fn DescribePixelFormat(
 pub extern "gdi32" fn GetEnhMetaFilePixelFormat(
     hemf: ?HENHMETAFILE,
     cbBuffer: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbBuffer" is the size in bytes
     ppfd: ?*PIXELFORMATDESCRIPTOR,
 ) callconv(.winapi) u32;
 

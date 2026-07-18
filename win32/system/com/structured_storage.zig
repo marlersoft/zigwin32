@@ -351,7 +351,7 @@ pub const IFillLockBytes = extern union {
         base: IUnknown.VTable,
         FillAppend: *const fn(
             self: *const IFillLockBytes,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cb" is the size in bytes
             pv: ?*const anyopaque,
             cb: u32,
             pcbWritten: ?*u32,
@@ -359,7 +359,7 @@ pub const IFillLockBytes = extern union {
         FillAt: *const fn(
             self: *const IFillLockBytes,
             ulOffset: ULARGE_INTEGER,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "cb" is the size in bytes
             pv: ?*const anyopaque,
             cb: u32,
             pcbWritten: ?*u32,
@@ -444,7 +444,7 @@ pub const ILockBytes = extern union {
         ReadAt: *const fn(
             self: *const ILockBytes,
             ulOffset: ULARGE_INTEGER,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "cb" is the size in bytes
             pv: ?*anyopaque,
             cb: u32,
             pcbRead: ?*u32,
@@ -452,7 +452,7 @@ pub const ILockBytes = extern union {
         WriteAt: *const fn(
             self: *const ILockBytes,
             ulOffset: ULARGE_INTEGER,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "cb" is the size in bytes
             pv: ?*const anyopaque,
             cb: u32,
             pcbWritten: ?*u32,
@@ -1337,7 +1337,7 @@ pub extern "ole32" fn StgConvertPropertyToVariant(
 pub extern "ole32" fn StgConvertVariantToProperty(
     pvar: ?*const PROPVARIANT,
     CodePage: u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcb" is the size in bytes
     pprop: ?*SERIALIZEDPROPERTYVALUE,
     pcb: ?*u32,
     pid: u32,
@@ -1474,7 +1474,7 @@ pub extern "ole32" fn StgOpenStorageOnILockBytes(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StgPropertyLengthAsVariant(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbProp" is the size in bytes
     pProp: ?*const SERIALIZEDPROPERTYVALUE,
     cbProp: u32,
     CodePage: u16,

@@ -6509,7 +6509,7 @@ pub const ID3D11AuthenticatedChannel = extern union {
         GetCertificate: *const fn(
             self: *const ID3D11AuthenticatedChannel,
             CertificateSize: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "CertificateSize" is the size in bytes
             pCertificate: ?*u8,
         ) callconv(.winapi) HRESULT,
         GetChannelHandle: *const fn(
@@ -6745,7 +6745,7 @@ pub const ID3D11CryptoSession = extern union {
         GetCertificate: *const fn(
             self: *const ID3D11CryptoSession,
             CertificateSize: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "CertificateSize" is the size in bytes
             pCertificate: ?*u8,
         ) callconv(.winapi) HRESULT,
         GetCryptoSessionHandle: *const fn(
@@ -7084,7 +7084,7 @@ pub const ID3D11Device = extern union {
         CheckFeatureSupport: *const fn(
             self: *const ID3D11Device,
             Feature: D3D11_FEATURE,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "FeatureSupportDataSize" is the size in bytes
             pFeatureSupportData: ?*anyopaque,
             FeatureSupportDataSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -7092,14 +7092,14 @@ pub const ID3D11Device = extern union {
             self: *const ID3D11Device,
             guid: ?*const Guid,
             pDataSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pDataSize" is the size in bytes
             pData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         SetPrivateData: *const fn(
             self: *const ID3D11Device,
             guid: ?*const Guid,
             DataSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*const anyopaque,
         ) callconv(.winapi) HRESULT,
         SetPrivateDataInterface: *const fn(
@@ -7575,14 +7575,14 @@ pub const ID3D11DeviceChild = extern union {
             self: *const ID3D11DeviceChild,
             guid: ?*const Guid,
             pDataSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pDataSize" is the size in bytes
             pData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         SetPrivateData: *const fn(
             self: *const ID3D11DeviceChild,
             guid: ?*const Guid,
             DataSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*const anyopaque,
         ) callconv(.winapi) HRESULT,
         SetPrivateDataInterface: *const fn(
@@ -7746,7 +7746,7 @@ pub const ID3D11DeviceContext = extern union {
         GetData: *const fn(
             self: *const ID3D11DeviceContext,
             pAsync: ?*ID3D11Asynchronous,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*anyopaque,
             DataSize: u32,
             GetDataFlags: u32,
@@ -9212,7 +9212,7 @@ pub const ID3D11InfoQueue = extern union {
         GetMessage: *const fn(
             self: *const ID3D11InfoQueue,
             MessageIndex: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "pMessageByteLength" is the size in bytes
             pMessage: ?*D3D11_MESSAGE,
             pMessageByteLength: ?*usize,
         ) callconv(.winapi) HRESULT,
@@ -9240,7 +9240,7 @@ pub const ID3D11InfoQueue = extern union {
         ) callconv(.winapi) HRESULT,
         GetStorageFilter: *const fn(
             self: *const ID3D11InfoQueue,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pFilterByteLength" is the size in bytes
             pFilter: ?*D3D11_INFO_QUEUE_FILTER,
             pFilterByteLength: ?*usize,
         ) callconv(.winapi) HRESULT,
@@ -9269,7 +9269,7 @@ pub const ID3D11InfoQueue = extern union {
         ) callconv(.winapi) HRESULT,
         GetRetrievalFilter: *const fn(
             self: *const ID3D11InfoQueue,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pFilterByteLength" is the size in bytes
             pFilter: ?*D3D11_INFO_QUEUE_FILTER,
             pFilterByteLength: ?*usize,
         ) callconv(.winapi) HRESULT,
@@ -10631,7 +10631,7 @@ pub const ID3D11VideoContext = extern union {
             pDecoder: ?*ID3D11VideoDecoder,
             pView: ?*ID3D11VideoDecoderOutputView,
             ContentKeySize: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "ContentKeySize" is the size in bytes
             pContentKey: ?*const anyopaque,
         ) callconv(.winapi) HRESULT,
         DecoderEndFrame: *const fn(
@@ -10729,7 +10729,7 @@ pub const ID3D11VideoContext = extern union {
             pVideoProcessor: ?*ID3D11VideoProcessor,
             pExtensionGuid: ?*const Guid,
             DataSize: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*anyopaque,
         ) callconv(.winapi) i32,
         VideoProcessorSetStreamFrameFormat: *const fn(
@@ -10924,7 +10924,7 @@ pub const ID3D11VideoContext = extern union {
             StreamIndex: u32,
             pExtensionGuid: ?*const Guid,
             DataSize: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*anyopaque,
         ) callconv(.winapi) i32,
         VideoProcessorBlt: *const fn(
@@ -10939,7 +10939,7 @@ pub const ID3D11VideoContext = extern union {
             self: *const ID3D11VideoContext,
             pCryptoSession: ?*ID3D11CryptoSession,
             DataSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         EncryptionBlt: *const fn(
@@ -10948,7 +10948,7 @@ pub const ID3D11VideoContext = extern union {
             pSrcSurface: ?*ID3D11Texture2D,
             pDstSurface: ?*ID3D11Texture2D,
             IVSize: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "IVSize" is the size in bytes
             pIV: ?*anyopaque,
         ) callconv(.winapi) void,
         DecryptionBlt: *const fn(
@@ -10958,17 +10958,17 @@ pub const ID3D11VideoContext = extern union {
             pDstSurface: ?*ID3D11Texture2D,
             pEncryptedBlockInfo: ?*D3D11_ENCRYPTED_BLOCK_INFO,
             ContentKeySize: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "ContentKeySize" is the size in bytes
             pContentKey: ?*const anyopaque,
             IVSize: u32,
-            // TODO: what to do with BytesParamIndex 6?
+            /// parameter "IVSize" is the size in bytes
             pIV: ?*anyopaque,
         ) callconv(.winapi) void,
         StartSessionKeyRefresh: *const fn(
             self: *const ID3D11VideoContext,
             pCryptoSession: ?*ID3D11CryptoSession,
             RandomNumberSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "RandomNumberSize" is the size in bytes
             pRandomNumber: ?*anyopaque,
         ) callconv(.winapi) void,
         FinishSessionKeyRefresh: *const fn(
@@ -10979,31 +10979,31 @@ pub const ID3D11VideoContext = extern union {
             self: *const ID3D11VideoContext,
             pCryptoSession: ?*ID3D11CryptoSession,
             KeySize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "KeySize" is the size in bytes
             pReadbackKey: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         NegotiateAuthenticatedChannelKeyExchange: *const fn(
             self: *const ID3D11VideoContext,
             pChannel: ?*ID3D11AuthenticatedChannel,
             DataSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         QueryAuthenticatedChannel: *const fn(
             self: *const ID3D11VideoContext,
             pChannel: ?*ID3D11AuthenticatedChannel,
             InputSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "InputSize" is the size in bytes
             pInput: ?*const anyopaque,
             OutputSize: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "OutputSize" is the size in bytes
             pOutput: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         ConfigureAuthenticatedChannel: *const fn(
             self: *const ID3D11VideoContext,
             pChannel: ?*ID3D11AuthenticatedChannel,
             InputSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "InputSize" is the size in bytes
             pInput: ?*const anyopaque,
             pOutput: ?*D3D11_AUTHENTICATED_CONFIGURE_OUTPUT,
         ) callconv(.winapi) HRESULT,
@@ -11357,7 +11357,7 @@ pub const ID3D11VideoContext2 = extern union {
             pVideoProcessor: ?*ID3D11VideoProcessor,
             Type: DXGI_HDR_METADATA_TYPE,
             Size: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "Size" is the size in bytes
             pHDRMetaData: ?*const anyopaque,
         ) callconv(.winapi) void,
         VideoProcessorGetOutputHDRMetaData: *const fn(
@@ -11365,7 +11365,7 @@ pub const ID3D11VideoContext2 = extern union {
             pVideoProcessor: ?*ID3D11VideoProcessor,
             pType: ?*DXGI_HDR_METADATA_TYPE,
             Size: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "Size" is the size in bytes
             pMetaData: ?*anyopaque,
         ) callconv(.winapi) void,
         VideoProcessorSetStreamHDRMetaData: *const fn(
@@ -11374,7 +11374,7 @@ pub const ID3D11VideoContext2 = extern union {
             StreamIndex: u32,
             Type: DXGI_HDR_METADATA_TYPE,
             Size: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "Size" is the size in bytes
             pHDRMetaData: ?*const anyopaque,
         ) callconv(.winapi) void,
         VideoProcessorGetStreamHDRMetaData: *const fn(
@@ -11383,7 +11383,7 @@ pub const ID3D11VideoContext2 = extern union {
             StreamIndex: u32,
             pType: ?*DXGI_HDR_METADATA_TYPE,
             Size: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "Size" is the size in bytes
             pMetaData: ?*anyopaque,
         ) callconv(.winapi) void,
     };
@@ -11417,7 +11417,7 @@ pub const ID3D11VideoContext3 = extern union {
             pDecoder: ?*ID3D11VideoDecoder,
             pView: ?*ID3D11VideoDecoderOutputView,
             ContentKeySize: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "ContentKeySize" is the size in bytes
             pContentKey: ?*const anyopaque,
             NumComponentHistograms: u32,
             pHistogramOffsets: ?[*]const u32,
@@ -11591,7 +11591,7 @@ pub const ID3D11VideoDevice = extern union {
             self: *const ID3D11VideoDevice,
             guid: ?*const Guid,
             DataSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*const anyopaque,
         ) callconv(.winapi) HRESULT,
         SetPrivateDataInterface: *const fn(
@@ -11725,7 +11725,7 @@ pub const ID3D11VideoDevice2 = extern union {
         CheckFeatureSupport: *const fn(
             self: *const ID3D11VideoDevice2,
             Feature: D3D11_FEATURE_VIDEO,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "FeatureSupportDataSize" is the size in bytes
             pFeatureSupportData: ?*anyopaque,
             FeatureSupportDataSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -11734,7 +11734,7 @@ pub const ID3D11VideoDevice2 = extern union {
             pCryptoSession: ?*ID3D11CryptoSession,
             flags: D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAGS,
             DataSize: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
     };
@@ -12172,7 +12172,7 @@ pub extern "d3d11" fn D3D11CreateDeviceAndSwapChain(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "d3dcompiler_47" fn D3DDisassemble11Trace(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSize" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     pTrace: ?*ID3D11ShaderTrace,

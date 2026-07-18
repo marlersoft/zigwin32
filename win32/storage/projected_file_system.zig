@@ -566,7 +566,7 @@ pub fn PrjUpdateFileIfNeeded() void { @panic("this function is not working"); }
 pub extern "projectedfslib" fn PrjWriteFileData(
     namespaceVirtualizationContext: PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
     dataStreamId: ?*const Guid,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "length" is the size in bytes
     buffer: ?*anyopaque,
     byteOffset: u64,
     length: u32,
@@ -576,7 +576,7 @@ pub extern "projectedfslib" fn PrjWriteFileData(
 pub extern "projectedfslib" fn PrjWritePlaceholderInfo(
     namespaceVirtualizationContext: PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
     destinationFileName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "placeholderInfoSize" is the size in bytes
     placeholderInfo: ?*const PRJ_PLACEHOLDER_INFO,
     placeholderInfoSize: u32,
 ) callconv(.winapi) HRESULT;
@@ -585,7 +585,7 @@ pub extern "projectedfslib" fn PrjWritePlaceholderInfo(
 pub extern "projectedfslib" fn PrjWritePlaceholderInfo2(
     namespaceVirtualizationContext: PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT,
     destinationFileName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "placeholderInfoSize" is the size in bytes
     placeholderInfo: ?*const PRJ_PLACEHOLDER_INFO,
     placeholderInfoSize: u32,
     ExtendedInfo: ?*const PRJ_EXTENDED_INFO,

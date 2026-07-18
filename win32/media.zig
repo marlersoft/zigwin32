@@ -328,14 +328,14 @@ pub extern "winmm" fn timeEndPeriod(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn timeGetDevCaps(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbtc" is the size in bytes
     ptc: ?*TIMECAPS,
     cbtc: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn timeGetSystemTime(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbmmt" is the size in bytes
     pmmt: ?*MMTIME,
     cbmmt: u32,
 ) callconv(.winapi) u32;

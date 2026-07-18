@@ -3766,7 +3766,7 @@ pub const PLSA_ALLOCATE_SHARED_MEMORY = *const fn(
 
 pub const PLSA_AP_CALL_PACKAGE = *const fn(
     ClientRequest: ?*?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "SubmitBufferLength" is the size in bytes
     ProtocolSubmitBuffer: ?*anyopaque,
     ClientBufferBase: ?*anyopaque,
     SubmitBufferLength: u32,
@@ -3777,7 +3777,7 @@ pub const PLSA_AP_CALL_PACKAGE = *const fn(
 
 pub const PLSA_AP_CALL_PACKAGE_PASSTHROUGH = *const fn(
     ClientRequest: ?*?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "SubmitBufferLength" is the size in bytes
     ProtocolSubmitBuffer: ?*anyopaque,
     ClientBufferBase: ?*anyopaque,
     SubmitBufferLength: u32,
@@ -3801,7 +3801,7 @@ pub const PLSA_AP_LOGON_TERMINATED = *const fn(
 pub const PLSA_AP_LOGON_USER = *const fn(
     ClientRequest: ?*?*anyopaque,
     LogonType: SECURITY_LOGON_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "AuthenticationInformationLength" is the size in bytes
     AuthenticationInformation: ?*anyopaque,
     ClientAuthenticationBase: ?*anyopaque,
     AuthenticationInformationLength: u32,
@@ -3818,7 +3818,7 @@ pub const PLSA_AP_LOGON_USER = *const fn(
 pub const PLSA_AP_LOGON_USER_EX = *const fn(
     ClientRequest: ?*?*anyopaque,
     LogonType: SECURITY_LOGON_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "AuthenticationInformationLength" is the size in bytes
     AuthenticationInformation: ?*anyopaque,
     ClientAuthenticationBase: ?*anyopaque,
     AuthenticationInformationLength: u32,
@@ -3836,7 +3836,7 @@ pub const PLSA_AP_LOGON_USER_EX = *const fn(
 pub const PLSA_AP_LOGON_USER_EX2 = *const fn(
     ClientRequest: ?*?*anyopaque,
     LogonType: SECURITY_LOGON_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "SubmitBufferSize" is the size in bytes
     ProtocolSubmitBuffer: ?*anyopaque,
     ClientBufferBase: ?*anyopaque,
     SubmitBufferSize: u32,
@@ -3856,7 +3856,7 @@ pub const PLSA_AP_LOGON_USER_EX2 = *const fn(
 pub const PLSA_AP_LOGON_USER_EX3 = *const fn(
     ClientRequest: ?*?*anyopaque,
     LogonType: SECURITY_LOGON_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "SubmitBufferSize" is the size in bytes
     ProtocolSubmitBuffer: ?*anyopaque,
     ClientBufferBase: ?*anyopaque,
     SubmitBufferSize: u32,
@@ -3877,12 +3877,12 @@ pub const PLSA_AP_LOGON_USER_EX3 = *const fn(
 pub const PLSA_AP_POST_LOGON_USER_SURROGATE = *const fn(
     ClientRequest: ?*?*anyopaque,
     LogonType: SECURITY_LOGON_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "SubmitBufferSize" is the size in bytes
     ProtocolSubmitBuffer: ?*anyopaque,
     ClientBufferBase: ?*anyopaque,
     SubmitBufferSize: u32,
     SurrogateLogon: ?*SECPKG_SURROGATE_LOGON,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "ProfileBufferSize" is the size in bytes
     ProfileBuffer: ?*anyopaque,
     ProfileBufferSize: u32,
     LogonId: ?*LUID,
@@ -3900,7 +3900,7 @@ pub const PLSA_AP_POST_LOGON_USER_SURROGATE = *const fn(
 pub const PLSA_AP_PRE_LOGON_USER_SURROGATE = *const fn(
     ClientRequest: ?*?*anyopaque,
     LogonType: SECURITY_LOGON_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "SubmitBufferSize" is the size in bytes
     ProtocolSubmitBuffer: ?*anyopaque,
     ClientBufferBase: ?*anyopaque,
     SubmitBufferSize: u32,
@@ -3944,7 +3944,7 @@ pub const PLSA_AUDIT_LOGON_EX = *const fn(
 
 pub const PLSA_CALL_PACKAGE = *const fn(
     AuthenticationPackage: ?*UNICODE_STRING,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "SubmitBufferLength" is the size in bytes
     ProtocolSubmitBuffer: ?*anyopaque,
     SubmitBufferLength: u32,
     ProtocolReturnBuffer: ?*?*anyopaque,
@@ -3955,7 +3955,7 @@ pub const PLSA_CALL_PACKAGE = *const fn(
 pub const PLSA_CALL_PACKAGE_PASSTHROUGH = *const fn(
     AuthenticationPackage: ?*UNICODE_STRING,
     ClientBufferBase: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "SubmitBufferLength" is the size in bytes
     ProtocolSubmitBuffer: ?*anyopaque,
     SubmitBufferLength: u32,
     ProtocolReturnBuffer: ?*?*anyopaque,
@@ -3966,7 +3966,7 @@ pub const PLSA_CALL_PACKAGE_PASSTHROUGH = *const fn(
 pub const PLSA_CALL_PACKAGEEX = *const fn(
     AuthenticationPackage: ?*UNICODE_STRING,
     ClientBufferBase: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "SubmitBufferLength" is the size in bytes
     ProtocolSubmitBuffer: ?*anyopaque,
     SubmitBufferLength: u32,
     ProtocolReturnBuffer: ?*?*anyopaque,
@@ -4018,18 +4018,18 @@ pub const PLSA_CONVERT_AUTH_DATA_TO_TOKEN = *const fn(
 pub const PLSA_COPY_FROM_CLIENT_BUFFER = *const fn(
     ClientRequest: ?*?*anyopaque,
     Length: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "Length" is the size in bytes
     BufferToCopy: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "Length" is the size in bytes
     ClientBaseAddress: ?*anyopaque,
 ) callconv(.winapi) NTSTATUS;
 
 pub const PLSA_COPY_TO_CLIENT_BUFFER = *const fn(
     ClientRequest: ?*?*anyopaque,
     Length: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "Length" is the size in bytes
     ClientBaseAddress: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "Length" is the size in bytes
     BufferToCopy: ?*anyopaque,
 ) callconv(.winapi) NTSTATUS;
 
@@ -4114,7 +4114,7 @@ pub const PLSA_DUPLICATE_HANDLE = *const fn(
 ) callconv(.winapi) NTSTATUS;
 
 pub const PLSA_EXPAND_AUTH_DATA_FOR_DOMAIN = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "UserAuthDataSize" is the size in bytes
     UserAuthData: ?*u8,
     UserAuthDataSize: u32,
     Reserved: ?*anyopaque,
@@ -4230,7 +4230,7 @@ pub const PLSA_OPEN_TOKEN_BY_LOGON_ID = *const fn(
 ) callconv(.winapi) NTSTATUS;
 
 pub const PLSA_PROTECT_MEMORY = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*anyopaque,
     BufferSize: u32,
 ) callconv(.winapi) void;
@@ -4289,7 +4289,7 @@ pub const PLSA_REGISTER_NOTIFICATION = *const fn(
 pub const PLSA_SAVE_SUPPLEMENTAL_CREDENTIALS = *const fn(
     LogonId: ?*LUID,
     SupplementalCredSize: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SupplementalCredSize" is the size in bytes
     SupplementalCreds: ?*anyopaque,
     Synchronous: BOOLEAN,
 ) callconv(.winapi) NTSTATUS;
@@ -4505,7 +4505,7 @@ pub const PSAM_CREDENTIAL_UPDATE_FREE_ROUTINE = *const fn(
 
 pub const PSAM_CREDENTIAL_UPDATE_NOTIFY_ROUTINE = *const fn(
     ClearPassword: ?*UNICODE_STRING,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "OldCredentialSize" is the size in bytes
     OldCredentials: ?*anyopaque,
     OldCredentialSize: u32,
     UserAccountControl: u32,
@@ -6485,7 +6485,7 @@ pub const SpExchangeMetaDataFn = *const fn(
     TargetName: ?*UNICODE_STRING,
     ContextRequirements: u32,
     MetaDataLength: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "MetaDataLength" is the size in bytes
     MetaData: ?*u8,
     ContextHandle: ?*usize,
 ) callconv(.winapi) NTSTATUS;
@@ -6621,7 +6621,7 @@ pub const SpMarshalAttributeDataFn = *const fn(
     AttributeInfo: u32,
     Attribute: u32,
     AttributeDataSize: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "AttributeDataSize" is the size in bytes
     AttributeData: ?*u8,
     MarshaledAttributeDataSize: ?*u32,
     MarshaledAttributeData: ?*?*u8,
@@ -6629,7 +6629,7 @@ pub const SpMarshalAttributeDataFn = *const fn(
 
 pub const SpMarshallSupplementalCredsFn = *const fn(
     CredentialSize: u32,
-    // TODO: what to do with BytesParamIndex 0?
+    /// parameter "CredentialSize" is the size in bytes
     Credentials: ?*u8,
     MarshalledCredSize: ?*u32,
     MarshalledCreds: ?*?*anyopaque,
@@ -6671,7 +6671,7 @@ pub const SpSealMessageFn = *const fn(
 pub const SpSetContextAttributesFn = *const fn(
     ContextHandle: usize,
     ContextAttribute: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*anyopaque,
     BufferSize: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -6679,7 +6679,7 @@ pub const SpSetContextAttributesFn = *const fn(
 pub const SpSetCredentialsAttributesFn = *const fn(
     CredentialHandle: usize,
     CredentialAttribute: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*anyopaque,
     BufferSize: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -6703,7 +6703,7 @@ pub const SpUpdateCredentialsFn = *const fn(
     ContextHandle: usize,
     CredType: ?*Guid,
     FlatCredUIContextLength: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "FlatCredUIContextLength" is the size in bytes
     FlatCredUIContext: ?*u8,
 ) callconv(.winapi) NTSTATUS;
 
@@ -6716,7 +6716,7 @@ pub const SpUserModeInitializeFn = *const fn(
 
 pub const SpValidateTargetInfoFn = *const fn(
     ClientRequest: ?*?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "SubmitBufferLength" is the size in bytes
     ProtocolSubmitBuffer: ?*anyopaque,
     ClientBufferBase: ?*anyopaque,
     SubmitBufferLength: u32,
@@ -6774,7 +6774,7 @@ pub const SslGetExtensionsFn = *const fn(
 ) callconv(.winapi) HRESULT;
 
 pub const SslGetServerIdentityFn = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "ClientHelloSize" is the size in bytes
     ClientHello: ?*u8,
     ClientHelloSize: u32,
     ServerIdentity: ?*?*u8,
@@ -7289,7 +7289,7 @@ pub extern "secur32" fn CredMarshalTargetInfo(
 ) callconv(.winapi) NTSTATUS;
 
 pub extern "secur32" fn CredUnmarshalTargetInfo(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u16,
     BufferSize: u32,
     RetTargetInfo: ?*?*CREDENTIAL_TARGET_INFORMATIONW,
@@ -7458,7 +7458,7 @@ pub extern "advapi32" fn LsaAddAccountRights(
 pub extern "secur32" fn LsaCallAuthenticationPackage(
     LsaHandle: ?HANDLE,
     AuthenticationPackage: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "SubmitBufferLength" is the size in bytes
     ProtocolSubmitBuffer: ?*anyopaque,
     SubmitBufferLength: u32,
     ProtocolReturnBuffer: ?*?*anyopaque,
@@ -7565,7 +7565,7 @@ pub extern "secur32" fn LsaLogonUser(
     OriginName: ?*STRING,
     LogonType: SECURITY_LOGON_TYPE,
     AuthenticationPackage: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "AuthenticationInformationLength" is the size in bytes
     AuthenticationInformation: ?*anyopaque,
     AuthenticationInformationLength: u32,
     LocalGroups: ?*TOKEN_GROUPS,
@@ -7795,7 +7795,7 @@ pub extern "secur32" fn QueryContextAttributesA(
 pub extern "sspicli" fn QueryContextAttributesExA(
     phContext: ?*SecHandle,
     ulAttribute: SECPKG_ATTR,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBuffer" is the size in bytes
     pBuffer: ?*anyopaque,
     cbBuffer: u32,
 ) callconv(.winapi) HRESULT;
@@ -7804,7 +7804,7 @@ pub extern "sspicli" fn QueryContextAttributesExA(
 pub extern "sspicli" fn QueryContextAttributesExW(
     phContext: ?*SecHandle,
     ulAttribute: SECPKG_ATTR,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBuffer" is the size in bytes
     pBuffer: ?*anyopaque,
     cbBuffer: u32,
 ) callconv(.winapi) HRESULT;
@@ -7826,7 +7826,7 @@ pub extern "secur32" fn QueryCredentialsAttributesA(
 pub extern "sspicli" fn QueryCredentialsAttributesExA(
     phCredential: ?*SecHandle,
     ulAttribute: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBuffer" is the size in bytes
     pBuffer: ?*anyopaque,
     cbBuffer: u32,
 ) callconv(.winapi) HRESULT;
@@ -7834,7 +7834,7 @@ pub extern "sspicli" fn QueryCredentialsAttributesExA(
 pub extern "sspicli" fn QueryCredentialsAttributesExW(
     phCredential: ?*SecHandle,
     ulAttribute: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBuffer" is the size in bytes
     pBuffer: ?*anyopaque,
     cbBuffer: u32,
 ) callconv(.winapi) HRESULT;
@@ -7976,7 +7976,7 @@ pub extern "sas" fn SendSAS(
 pub extern "secur32" fn SetContextAttributesA(
     phContext: ?*SecHandle,
     ulAttribute: SECPKG_ATTR,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBuffer" is the size in bytes
     pBuffer: ?*anyopaque,
     cbBuffer: u32,
 ) callconv(.winapi) HRESULT;
@@ -7985,7 +7985,7 @@ pub extern "secur32" fn SetContextAttributesA(
 pub extern "secur32" fn SetContextAttributesW(
     phContext: ?*SecHandle,
     ulAttribute: SECPKG_ATTR,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBuffer" is the size in bytes
     pBuffer: ?*anyopaque,
     cbBuffer: u32,
 ) callconv(.winapi) HRESULT;
@@ -7994,7 +7994,7 @@ pub extern "secur32" fn SetContextAttributesW(
 pub extern "secur32" fn SetCredentialsAttributesA(
     phCredential: ?*SecHandle,
     ulAttribute: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBuffer" is the size in bytes
     pBuffer: ?*anyopaque,
     cbBuffer: u32,
 ) callconv(.winapi) HRESULT;
@@ -8003,7 +8003,7 @@ pub extern "secur32" fn SetCredentialsAttributesA(
 pub extern "secur32" fn SetCredentialsAttributesW(
     phCredential: ?*SecHandle,
     ulAttribute: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBuffer" is the size in bytes
     pBuffer: ?*anyopaque,
     cbBuffer: u32,
 ) callconv(.winapi) HRESULT;
@@ -8120,7 +8120,7 @@ pub extern "slc" fn SLGetLicense(
 pub extern "slc" fn SLGetLicenseFileId(
     hSLC: ?*anyopaque,
     cbLicenseBlob: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbLicenseBlob" is the size in bytes
     pbLicenseBlob: ?*const u8,
     pLicenseFileId: ?*Guid,
 ) callconv(.winapi) HRESULT;
@@ -8151,7 +8151,7 @@ pub extern "slc" fn SLGetPKeyId(
     pwszPKeyAlgorithm: ?[*:0]const u16,
     pwszPKeyString: ?[*:0]const u16,
     cbPKeySpecificData: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbPKeySpecificData" is the size in bytes
     pbPKeySpecificData: ?*const u8,
     pPKeyId: ?*Guid,
 ) callconv(.winapi) HRESULT;
@@ -8247,7 +8247,7 @@ pub extern "slc" fn SLGetWindowsInformationDWORD(
 pub extern "slc" fn SLInstallLicense(
     hSLC: ?*anyopaque,
     cbLicenseBlob: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbLicenseBlob" is the size in bytes
     pbLicenseBlob: ?*const u8,
     pLicenseFileId: ?*Guid,
 ) callconv(.winapi) HRESULT;
@@ -8258,7 +8258,7 @@ pub extern "slc" fn SLInstallProofOfPurchase(
     pwszPKeyAlgorithm: ?[*:0]const u16,
     pwszPKeyString: ?[*:0]const u16,
     cbPKeySpecificData: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbPKeySpecificData" is the size in bytes
     pbPKeySpecificData: ?*u8,
     pPkeyId: ?*Guid,
 ) callconv(.winapi) HRESULT;
@@ -8279,7 +8279,7 @@ pub extern "slc" fn SLOpen(
 pub extern "api-ms-win-core-slapi-l1-1-0" fn SLQueryLicenseValueFromApp(
     valueName: ?[*:0]const u16,
     valueType: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dataSize" is the size in bytes
     dataBuffer: ?*anyopaque,
     dataSize: u32,
     resultDataSize: ?*u32,
@@ -8306,7 +8306,7 @@ pub extern "slc" fn SLSetGenuineInformation(
     pwszValueName: ?[*:0]const u16,
     eDataType: SLDATATYPE,
     cbValue: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbValue" is the size in bytes
     pbValue: ?*const u8,
 ) callconv(.winapi) HRESULT;
 
@@ -8375,7 +8375,7 @@ pub extern "schannel" fn SslGetMaximumKeySize(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "schannel" fn SslGetServerIdentity(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "ClientHelloSize" is the size in bytes
     ClientHello: ?*u8,
     ClientHelloSize: u32,
     ServerIdentity: ?*?*u8,
@@ -8521,7 +8521,7 @@ pub extern "credui" fn SspiPromptForCredentialsW(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn SspiUnmarshalAuthIdentity(
     AuthIdentityLength: u32,
-    // TODO: what to do with BytesParamIndex 0?
+    /// parameter "AuthIdentityLength" is the size in bytes
     AuthIdentityByteArray: ?PSTR,
     ppAuthIdentity: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
@@ -8537,20 +8537,20 @@ pub extern "secur32" fn SspiZeroAuthIdentity(
 ) callconv(.winapi) void;
 
 pub extern "advapi32" fn SystemFunction036(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "RandomBufferLength" is the size in bytes
     RandomBuffer: ?*anyopaque,
     RandomBufferLength: u32,
 ) callconv(.winapi) BOOLEAN;
 
 pub extern "advapi32" fn SystemFunction040(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "MemorySize" is the size in bytes
     Memory: ?*anyopaque,
     MemorySize: u32,
     OptionFlags: u32,
 ) callconv(.winapi) NTSTATUS;
 
 pub extern "advapi32" fn SystemFunction041(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "MemorySize" is the size in bytes
     Memory: ?*anyopaque,
     MemorySize: u32,
     OptionFlags: u32,
@@ -8570,7 +8570,7 @@ pub extern "tokenbinding" fn TokenBindingGenerateBinding(
     keyType: TOKENBINDING_KEY_PARAMETERS_TYPE,
     targetURL: ?[*:0]const u16,
     bindingType: TOKENBINDING_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "tlsEKMSize" is the size in bytes
     tlsEKM: ?*const anyopaque,
     tlsEKMSize: u32,
     extensionFormat: TOKENBINDING_EXTENSION_FORMAT,
@@ -8583,7 +8583,7 @@ pub extern "tokenbinding" fn TokenBindingGenerateBinding(
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "tokenbinding" fn TokenBindingGenerateID(
     keyType: TOKENBINDING_KEY_PARAMETERS_TYPE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "publicKeySize" is the size in bytes
     publicKey: ?*const anyopaque,
     publicKeySize: u32,
     resultData: ?*?*TOKENBINDING_RESULT_DATA,
@@ -8621,11 +8621,11 @@ pub extern "tokenbinding" fn TokenBindingGetKeyTypesServer(
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "tokenbinding" fn TokenBindingVerifyMessage(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "tokenBindingMessageSize" is the size in bytes
     tokenBindingMessage: ?*const anyopaque,
     tokenBindingMessageSize: u32,
     keyType: TOKENBINDING_KEY_PARAMETERS_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "tlsEKMSize" is the size in bytes
     tlsEKM: ?*const anyopaque,
     tlsEKMSize: u32,
     resultList: ?*?*TOKENBINDING_RESULT_LIST,

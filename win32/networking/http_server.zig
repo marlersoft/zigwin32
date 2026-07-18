@@ -1484,7 +1484,7 @@ pub extern "httpapi" fn HttpDelegateRequestEx(
 pub extern "httpapi" fn HttpDeleteServiceConfiguration(
     ServiceHandle: ?HANDLE,
     ConfigId: HTTP_SERVICE_CONFIG_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ConfigInformationLength" is the size in bytes
     pConfigInformation: ?*anyopaque,
     ConfigInformationLength: u32,
     pOverlapped: ?*OVERLAPPED,
@@ -1534,7 +1534,7 @@ pub extern "httpapi" fn HttpPrepareUrl(
 pub extern "httpapi" fn HttpQueryRequestQueueProperty(
     RequestQueueHandle: ?HANDLE,
     Property: HTTP_SERVER_PROPERTY,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "PropertyInformationLength" is the size in bytes
     PropertyInformation: ?*anyopaque,
     PropertyInformationLength: u32,
     Reserved1: u32,
@@ -1546,7 +1546,7 @@ pub extern "httpapi" fn HttpQueryRequestQueueProperty(
 pub extern "httpapi" fn HttpQueryServerSessionProperty(
     ServerSessionId: u64,
     Property: HTTP_SERVER_PROPERTY,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "PropertyInformationLength" is the size in bytes
     PropertyInformation: ?*anyopaque,
     PropertyInformationLength: u32,
     ReturnLength: ?*u32,
@@ -1556,10 +1556,10 @@ pub extern "httpapi" fn HttpQueryServerSessionProperty(
 pub extern "httpapi" fn HttpQueryServiceConfiguration(
     ServiceHandle: ?HANDLE,
     ConfigId: HTTP_SERVICE_CONFIG_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "InputLength" is the size in bytes
     pInput: ?*anyopaque,
     InputLength: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "OutputLength" is the size in bytes
     pOutput: ?*anyopaque,
     OutputLength: u32,
     pReturnLength: ?*u32,
@@ -1570,7 +1570,7 @@ pub extern "httpapi" fn HttpQueryServiceConfiguration(
 pub extern "httpapi" fn HttpQueryUrlGroupProperty(
     UrlGroupId: u64,
     Property: HTTP_SERVER_PROPERTY,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "PropertyInformationLength" is the size in bytes
     PropertyInformation: ?*anyopaque,
     PropertyInformationLength: u32,
     ReturnLength: ?*u32,
@@ -1581,7 +1581,7 @@ pub extern "httpapi" fn HttpReadFragmentFromCache(
     RequestQueueHandle: ?HANDLE,
     UrlPrefix: ?[*:0]const u16,
     ByteRange: ?*HTTP_BYTE_RANGE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "BufferLength" is the size in bytes
     Buffer: ?*anyopaque,
     BufferLength: u32,
     BytesRead: ?*u32,
@@ -1593,7 +1593,7 @@ pub extern "httpapi" fn HttpReceiveClientCertificate(
     RequestQueueHandle: ?HANDLE,
     ConnectionId: u64,
     Flags: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "SslClientCertInfoSize" is the size in bytes
     SslClientCertInfo: ?*HTTP_SSL_CLIENT_CERT_INFO,
     SslClientCertInfoSize: u32,
     BytesReceived: ?*u32,
@@ -1605,7 +1605,7 @@ pub extern "httpapi" fn HttpReceiveHttpRequest(
     RequestQueueHandle: ?HANDLE,
     RequestId: u64,
     Flags: HTTP_RECEIVE_HTTP_REQUEST_FLAGS,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "RequestBufferLength" is the size in bytes
     RequestBuffer: ?*HTTP_REQUEST_V2,
     RequestBufferLength: u32,
     BytesReturned: ?*u32,
@@ -1617,7 +1617,7 @@ pub extern "httpapi" fn HttpReceiveRequestEntityBody(
     RequestQueueHandle: ?HANDLE,
     RequestId: u64,
     Flags: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "EntityBufferLength" is the size in bytes
     EntityBuffer: ?*anyopaque,
     EntityBufferLength: u32,
     BytesReturned: ?*u32,
@@ -1669,7 +1669,7 @@ pub extern "httpapi" fn HttpSetRequestProperty(
     RequestQueueHandle: ?HANDLE,
     Id: u64,
     PropertyId: HTTP_REQUEST_PROPERTY,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "InputPropertySize" is the size in bytes
     Input: ?*anyopaque,
     InputPropertySize: u32,
     Overlapped: ?*OVERLAPPED,
@@ -1679,7 +1679,7 @@ pub extern "httpapi" fn HttpSetRequestProperty(
 pub extern "httpapi" fn HttpSetRequestQueueProperty(
     RequestQueueHandle: ?HANDLE,
     Property: HTTP_SERVER_PROPERTY,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "PropertyInformationLength" is the size in bytes
     PropertyInformation: ?*anyopaque,
     PropertyInformationLength: u32,
     Reserved1: u32,
@@ -1690,7 +1690,7 @@ pub extern "httpapi" fn HttpSetRequestQueueProperty(
 pub extern "httpapi" fn HttpSetServerSessionProperty(
     ServerSessionId: u64,
     Property: HTTP_SERVER_PROPERTY,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "PropertyInformationLength" is the size in bytes
     PropertyInformation: ?*anyopaque,
     PropertyInformationLength: u32,
 ) callconv(.winapi) u32;
@@ -1699,7 +1699,7 @@ pub extern "httpapi" fn HttpSetServerSessionProperty(
 pub extern "httpapi" fn HttpSetServiceConfiguration(
     ServiceHandle: ?HANDLE,
     ConfigId: HTTP_SERVICE_CONFIG_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ConfigInformationLength" is the size in bytes
     pConfigInformation: ?*anyopaque,
     ConfigInformationLength: u32,
     pOverlapped: ?*OVERLAPPED,
@@ -1709,7 +1709,7 @@ pub extern "httpapi" fn HttpSetServiceConfiguration(
 pub extern "httpapi" fn HttpSetUrlGroupProperty(
     UrlGroupId: u64,
     Property: HTTP_SERVER_PROPERTY,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "PropertyInformationLength" is the size in bytes
     PropertyInformation: ?*anyopaque,
     PropertyInformationLength: u32,
 ) callconv(.winapi) u32;
@@ -1729,7 +1729,7 @@ pub extern "httpapi" fn HttpTerminate(
 pub extern "httpapi" fn HttpUpdateServiceConfiguration(
     Handle: ?HANDLE,
     ConfigId: HTTP_SERVICE_CONFIG_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ConfigInfoLength" is the size in bytes
     ConfigInfo: ?*anyopaque,
     ConfigInfoLength: u32,
     Overlapped: ?*OVERLAPPED,

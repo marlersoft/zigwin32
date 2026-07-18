@@ -930,10 +930,10 @@ pub const PROCESSOR_POWER_POLICY_INFO = extern struct {
 pub const PWRSCHEMESENUMPROC = *const fn(
     Index: u32,
     NameSize: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "NameSize" is the size in bytes
     Name: ?PWSTR,
     DescriptionSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "DescriptionSize" is the size in bytes
     Description: ?PWSTR,
     Policy: ?*POWER_POLICY,
     Context: LPARAM,
@@ -942,10 +942,10 @@ pub const PWRSCHEMESENUMPROC = *const fn(
 pub const PWRSCHEMESENUMPROC_V1 = *const fn(
     Index: u32,
     NameSize: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "NameSize" is the size in bytes
     Name: ?*i8,
     DescriptionSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "DescriptionSize" is the size in bytes
     Description: ?*i8,
     Policy: ?*POWER_POLICY,
     Context: LPARAM,
@@ -1181,10 +1181,10 @@ pub const WAKE_ALARM_INFORMATION = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "powrprof" fn CallNtPowerInformation(
     InformationLevel: POWER_INFORMATION_LEVEL,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "InputBufferLength" is the size in bytes
     InputBuffer: ?*anyopaque,
     InputBufferLength: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "OutputBufferLength" is the size in bytes
     OutputBuffer: ?*anyopaque,
     OutputBufferLength: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -1207,7 +1207,7 @@ pub extern "powrprof" fn DevicePowerEnumDevices(
     QueryIndex: u32,
     QueryInterpretationFlags: u32,
     QueryFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pBufferSize" is the size in bytes
     pReturnBuffer: ?*u8,
     pBufferSize: ?*u32,
 ) callconv(.winapi) BOOLEAN;
@@ -1343,7 +1343,7 @@ pub extern "powrprof" fn PowerEnumerate(
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     AccessFlags: POWER_DATA_ACCESSOR,
     Index: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
     BufferSize: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1395,7 +1395,7 @@ pub extern "powrprof" fn PowerReadACValue(
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     Type: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
     BufferSize: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1425,7 +1425,7 @@ pub extern "powrprof" fn PowerReadDCValue(
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     Type: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
     BufferSize: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1445,7 +1445,7 @@ pub extern "powrprof" fn PowerReadDescription(
     SchemeGuid: ?*const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
     BufferSize: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1456,7 +1456,7 @@ pub extern "powrprof" fn PowerReadFriendlyName(
     SchemeGuid: ?*const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
     BufferSize: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1467,7 +1467,7 @@ pub extern "powrprof" fn PowerReadIconResourceSpecifier(
     SchemeGuid: ?*const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
     BufferSize: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1478,7 +1478,7 @@ pub extern "powrprof" fn PowerReadPossibleDescription(
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     PossibleSettingIndex: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
     BufferSize: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1489,7 +1489,7 @@ pub extern "powrprof" fn PowerReadPossibleFriendlyName(
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     PossibleSettingIndex: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
     BufferSize: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1501,7 +1501,7 @@ pub extern "powrprof" fn PowerReadPossibleValue(
     PowerSettingGuid: ?*const Guid,
     Type: ?*u32,
     PossibleSettingIndex: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
     BufferSize: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1541,7 +1541,7 @@ pub extern "powrprof" fn PowerReadValueUnitsSpecifier(
     RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
     BufferSize: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1675,7 +1675,7 @@ pub extern "powrprof" fn PowerWriteDescription(
     SchemeGuid: ?*const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
     BufferSize: u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1686,7 +1686,7 @@ pub extern "powrprof" fn PowerWriteFriendlyName(
     SchemeGuid: ?*const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
     BufferSize: u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1697,7 +1697,7 @@ pub extern "powrprof" fn PowerWriteIconResourceSpecifier(
     SchemeGuid: ?*const Guid,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
     BufferSize: u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1708,7 +1708,7 @@ pub extern "powrprof" fn PowerWritePossibleDescription(
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     PossibleSettingIndex: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
     BufferSize: u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1719,7 +1719,7 @@ pub extern "powrprof" fn PowerWritePossibleFriendlyName(
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
     PossibleSettingIndex: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
     BufferSize: u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1731,7 +1731,7 @@ pub extern "powrprof" fn PowerWritePossibleValue(
     PowerSettingGuid: ?*const Guid,
     Type: u32,
     PossibleSettingIndex: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
     BufferSize: u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1772,7 +1772,7 @@ pub extern "powrprof" fn PowerWriteValueUnitsSpecifier(
     RootPowerKey: ?HKEY,
     SubGroupOfPowerSettingsGuid: ?*const Guid,
     PowerSettingGuid: ?*const Guid,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
     BufferSize: u32,
 ) callconv(.winapi) WIN32_ERROR;

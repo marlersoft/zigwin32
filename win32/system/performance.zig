@@ -5678,7 +5678,7 @@ pub const PM_CLOSE_PROC = *const fn(
 
 pub const PM_COLLECT_PROC = *const fn(
     pValueName: ?PWSTR,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "pcbTotalBytes" is the size in bytes
     ppData: ?*?*anyopaque,
     pcbTotalBytes: ?*u32,
     pNumObjectTypes: ?*u32,
@@ -6660,7 +6660,7 @@ pub extern "pdh" fn PdhVerifySQLDBW(
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "advapi32" fn PerfAddCounters(
     hQuery: PerfQueryHandle,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbCounters" is the size in bytes
     pCounters: ?*PERF_COUNTER_IDENTIFIER,
     cbCounters: u32,
 ) callconv(.winapi) u32;
@@ -6697,7 +6697,7 @@ pub extern "advapi32" fn PerfDecrementULongLongCounterValue(
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "advapi32" fn PerfDeleteCounters(
     hQuery: PerfQueryHandle,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbCounters" is the size in bytes
     pCounters: ?*PERF_COUNTER_IDENTIFIER,
     cbCounters: u32,
 ) callconv(.winapi) u32;
@@ -6720,7 +6720,7 @@ pub extern "advapi32" fn PerfEnumerateCounterSet(
 pub extern "advapi32" fn PerfEnumerateCounterSetInstances(
     szMachine: ?[*:0]const u16,
     pCounterSetId: ?*const Guid,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbInstances" is the size in bytes
     pInstances: ?*PERF_INSTANCE_HEADER,
     cbInstances: u32,
     pcbInstancesActual: ?*u32,
@@ -6751,7 +6751,7 @@ pub extern "advapi32" fn PerfOpenQueryHandle(
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "advapi32" fn PerfQueryCounterData(
     hQuery: PerfQueryHandle,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbCounterBlock" is the size in bytes
     pCounterBlock: ?*PERF_DATA_HEADER,
     cbCounterBlock: u32,
     pcbCounterBlockActual: ?*u32,
@@ -6760,7 +6760,7 @@ pub extern "advapi32" fn PerfQueryCounterData(
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "advapi32" fn PerfQueryCounterInfo(
     hQuery: PerfQueryHandle,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbCounters" is the size in bytes
     pCounters: ?*PERF_COUNTER_IDENTIFIER,
     cbCounters: u32,
     pcbCountersActual: ?*u32,
@@ -6772,7 +6772,7 @@ pub extern "advapi32" fn PerfQueryCounterSetRegistrationInfo(
     pCounterSetId: ?*const Guid,
     requestCode: PerfRegInfoType,
     requestLangId: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbRegInfo" is the size in bytes
     pbRegInfo: ?*u8,
     cbRegInfo: u32,
     pcbRegInfoActual: ?*u32,
@@ -6797,7 +6797,7 @@ pub extern "advapi32" fn PerfSetCounterRefValue(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn PerfSetCounterSetInfo(
     ProviderHandle: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "TemplateSize" is the size in bytes
     Template: ?*PERF_COUNTERSET_INFO,
     TemplateSize: u32,
 ) callconv(.winapi) u32;

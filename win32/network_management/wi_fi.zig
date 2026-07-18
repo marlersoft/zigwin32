@@ -3206,10 +3206,10 @@ pub const DOT11EXT_IHV_UI_REQUEST = extern struct {
 pub const DOT11EXT_NIC_SPECIFIC_EXTENSION = *const fn(
     hDot11SvcHandle: ?HANDLE,
     dwInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "dwInBufferSize" is the size in bytes
     pvInBuffer: ?*anyopaque,
     pdwOutBufferSize: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pdwOutBufferSize" is the size in bytes
     pvOutBuffer: ?*anyopaque,
 ) callconv(.winapi) u32;
 
@@ -3240,7 +3240,7 @@ pub const DOT11EXT_PRE_ASSOCIATE_COMPLETION = *const fn(
 pub const DOT11EXT_PROCESS_ONEX_PACKET = *const fn(
     hDot11SvcHandle: ?HANDLE,
     dwInPacketSize: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "dwInPacketSize" is the size in bytes
     pvInPacket: ?*anyopaque,
 ) callconv(.winapi) u32;
 
@@ -3269,7 +3269,7 @@ pub const DOT11EXT_SEND_NOTIFICATION = *const fn(
 pub const DOT11EXT_SEND_PACKET = *const fn(
     hDot11SvcHandle: ?HANDLE,
     uPacketLen: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "uPacketLen" is the size in bytes
     pvPacket: ?*anyopaque,
     hSendCompletion: ?HANDLE,
 ) callconv(.winapi) u32;
@@ -3331,7 +3331,7 @@ pub const DOT11EXT_SET_PROFILE_CUSTOM_USER_DATA = *const fn(
     hConnectSession: ?HANDLE,
     dwSessionID: u32,
     dwDataSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwDataSize" is the size in bytes
     pvData: ?*anyopaque,
 ) callconv(.winapi) u32;
 
@@ -3371,10 +3371,10 @@ pub const DOT11EXTIHV_ADAPTER_RESET = *const fn(
 pub const DOT11EXTIHV_CONTROL = *const fn(
     hIhvExtAdapter: ?HANDLE,
     dwInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "dwInBufferSize" is the size in bytes
     pInBuffer: ?*u8,
     dwOutBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwOutBufferSize" is the size in bytes
     pOutBuffer: ?*u8,
     pdwBytesReturned: ?*u32,
 ) callconv(.winapi) u32;
@@ -3442,7 +3442,7 @@ pub const DOT11EXTIHV_PERFORM_POST_ASSOCIATE = *const fn(
     hSecuritySessionID: ?HANDLE,
     pPortState: ?*DOT11_PORT_STATE,
     uDot11AssocParamsBytes: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "uDot11AssocParamsBytes" is the size in bytes
     pDot11AssocParams: ?*DOT11_ASSOCIATION_COMPLETION_PARAMETERS,
 ) callconv(.winapi) u32;
 
@@ -3464,7 +3464,7 @@ pub const DOT11EXTIHV_PROCESS_SESSION_CHANGE = *const fn(
 pub const DOT11EXTIHV_PROCESS_UI_RESPONSE = *const fn(
     guidUIRequest: Guid,
     dwByteCount: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "dwByteCount" is the size in bytes
     pvResponseBuffer: ?*anyopaque,
 ) callconv(.winapi) u32;
 
@@ -3478,14 +3478,14 @@ pub const DOT11EXTIHV_RECEIVE_INDICATION = *const fn(
     hIhvExtAdapter: ?HANDLE,
     indicationType: DOT11EXT_IHV_INDICATION_TYPE,
     uBufferLength: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "uBufferLength" is the size in bytes
     pvBuffer: ?*anyopaque,
 ) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_RECEIVE_PACKET = *const fn(
     hIhvExtAdapter: ?HANDLE,
     dwInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "dwInBufferSize" is the size in bytes
     pvInBuffer: ?*anyopaque,
 ) callconv(.winapi) u32;
 
@@ -5041,10 +5041,10 @@ pub extern "wlanapi" fn WlanDeviceServiceCommand(
     pDeviceServiceGuid: ?*Guid,
     dwOpCode: u32,
     dwInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "dwInBufferSize" is the size in bytes
     pInBuffer: ?*anyopaque,
     dwOutBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "dwOutBufferSize" is the size in bytes
     pOutBuffer: ?*anyopaque,
     pdwBytesReturned: ?*u32,
 ) callconv(.winapi) u32;
@@ -5067,7 +5067,7 @@ pub extern "wlanapi" fn WlanEnumInterfaces(
 pub extern "wlanapi" fn WlanExtractPsdIEDataList(
     hClientHandle: ?HANDLE,
     dwIeDataSize: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "dwIeDataSize" is the size in bytes
     pRawIeData: ?*const u8,
     strFormat: ?[*:0]const u16,
     pReserved: ?*anyopaque,
@@ -5228,7 +5228,7 @@ pub extern "wlanapi" fn WlanHostedNetworkSetProperty(
     hClientHandle: ?HANDLE,
     OpCode: WLAN_HOSTED_NETWORK_OPCODE,
     dwDataSize: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwDataSize" is the size in bytes
     pvData: ?*anyopaque,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
     pvReserved: ?*anyopaque,
@@ -5238,7 +5238,7 @@ pub extern "wlanapi" fn WlanHostedNetworkSetProperty(
 pub extern "wlanapi" fn WlanHostedNetworkSetSecondaryKey(
     hClientHandle: ?HANDLE,
     dwKeyLength: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "dwKeyLength" is the size in bytes
     pucKeyData: ?*u8,
     bIsPassPhrase: BOOL,
     bPersistent: BOOL,
@@ -5266,10 +5266,10 @@ pub extern "wlanapi" fn WlanIhvControl(
     pInterfaceGuid: ?*const Guid,
     Type: WLAN_IHV_CONTROL_TYPE,
     dwInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwInBufferSize" is the size in bytes
     pInBuffer: ?*anyopaque,
     dwOutBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "dwOutBufferSize" is the size in bytes
     pOutBuffer: ?*anyopaque,
     pdwBytesReturned: ?*u32,
 ) callconv(.winapi) u32;
@@ -5368,7 +5368,7 @@ pub extern "wlanapi" fn WlanSetAutoConfigParameter(
     hClientHandle: ?HANDLE,
     OpCode: WLAN_AUTOCONF_OPCODE,
     dwDataSize: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwDataSize" is the size in bytes
     pData: ?*const anyopaque,
     pReserved: ?*anyopaque,
 ) callconv(.winapi) u32;
@@ -5387,7 +5387,7 @@ pub extern "wlanapi" fn WlanSetInterface(
     pInterfaceGuid: ?*const Guid,
     OpCode: WLAN_INTF_OPCODE,
     dwDataSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwDataSize" is the size in bytes
     pData: ?*const anyopaque,
     pReserved: ?*anyopaque,
 ) callconv(.winapi) u32;
@@ -5410,7 +5410,7 @@ pub extern "wlanapi" fn WlanSetProfileCustomUserData(
     pInterfaceGuid: ?*const Guid,
     strProfileName: ?[*:0]const u16,
     dwDataSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwDataSize" is the size in bytes
     pData: ?*const u8,
     pReserved: ?*anyopaque,
 ) callconv(.winapi) u32;
@@ -5423,7 +5423,7 @@ pub extern "wlanapi" fn WlanSetProfileEapUserData(
     eapType: EAP_METHOD_TYPE,
     dwFlags: WLAN_SET_EAPHOST_FLAGS,
     dwEapUserDataSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "dwEapUserDataSize" is the size in bytes
     pbEapUserData: ?*const u8,
     pReserved: ?*anyopaque,
 ) callconv(.winapi) u32;

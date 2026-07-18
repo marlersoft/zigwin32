@@ -813,7 +813,7 @@ pub extern "mscms" fn CheckColors(
 pub extern "gdi32" fn CheckColorsInGamut(
     hdc: ?HDC,
     lpRGBTriple: [*]RGBTRIPLE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nCount" is the size in bytes
     dlpBuffer: ?*anyopaque,
     nCount: u32,
 ) callconv(.winapi) BOOL;
@@ -833,7 +833,7 @@ pub extern "icm32" fn CMCheckColors(
 pub extern "icm32" fn CMCheckColorsInGamut(
     hcmTransform: isize,
     lpaRGBTriple: [*]RGBTRIPLE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nCount" is the size in bytes
     lpaResult: ?*u8,
     nCount: u32,
 ) callconv(.winapi) BOOL;
@@ -1132,7 +1132,7 @@ pub extern "mscms" fn DisassociateColorProfileFromDeviceW(
 pub extern "mscms" fn EnumColorProfilesA(
     pMachineName: ?[*:0]const u8,
     pEnumRecord: ?*ENUMTYPEA,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pdwSizeOfEnumerationBuffer" is the size in bytes
     pEnumerationBuffer: ?*u8,
     pdwSizeOfEnumerationBuffer: ?*u32,
     pnProfiles: ?*u32,
@@ -1141,7 +1141,7 @@ pub extern "mscms" fn EnumColorProfilesA(
 pub extern "mscms" fn EnumColorProfilesW(
     pMachineName: ?[*:0]const u16,
     pEnumRecord: ?*ENUMTYPEW,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pdwSizeOfEnumerationBuffer" is the size in bytes
     pEnumerationBuffer: ?*u8,
     pdwSizeOfEnumerationBuffer: ?*u32,
     pnProfiles: ?*u32,
@@ -1168,14 +1168,14 @@ pub extern "mscms" fn GetCMMInfo(
 
 pub extern "mscms" fn GetColorDirectoryA(
     pMachineName: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "pdwSize" is the size in bytes
     pBuffer: ?PSTR,
     pdwSize: ?*u32,
 ) callconv(.winapi) BOOL;
 
 pub extern "mscms" fn GetColorDirectoryW(
     pMachineName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "pdwSize" is the size in bytes
     pBuffer: ?PWSTR,
     pdwSize: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -1185,7 +1185,7 @@ pub extern "mscms" fn GetColorProfileElement(
     tag: u32,
     dwOffset: u32,
     pcbElement: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbElement" is the size in bytes
     pElement: ?*anyopaque,
     pbReference: ?*BOOL,
 ) callconv(.winapi) BOOL;
@@ -1198,7 +1198,7 @@ pub extern "mscms" fn GetColorProfileElementTag(
 
 pub extern "mscms" fn GetColorProfileFromHandle(
     hProfile: isize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "pcbProfile" is the size in bytes
     pProfile: ?*u8,
     pcbProfile: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -1241,7 +1241,7 @@ pub extern "gdi32" fn GetICMProfileW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn GetLogColorSpaceA(
     hColorSpace: ?HCOLORSPACE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "nSize" is the size in bytes
     lpBuffer: ?*LOGCOLORSPACEA,
     nSize: u32,
 ) callconv(.winapi) BOOL;
@@ -1249,7 +1249,7 @@ pub extern "gdi32" fn GetLogColorSpaceA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn GetLogColorSpaceW(
     hColorSpace: ?HCOLORSPACE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "nSize" is the size in bytes
     lpBuffer: ?*LOGCOLORSPACEW,
     nSize: u32,
 ) callconv(.winapi) BOOL;
@@ -1262,7 +1262,7 @@ pub extern "mscms" fn GetNamedProfileInfo(
 pub extern "mscms" fn GetPS2ColorRenderingDictionary(
     hProfile: isize,
     dwIntent: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbPS2ColorRenderingDictionary" is the size in bytes
     pPS2ColorRenderingDictionary: ?*u8,
     pcbPS2ColorRenderingDictionary: ?*u32,
     pbBinary: ?*BOOL,
@@ -1271,7 +1271,7 @@ pub extern "mscms" fn GetPS2ColorRenderingDictionary(
 pub extern "mscms" fn GetPS2ColorRenderingIntent(
     hProfile: isize,
     dwIntent: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbPS2ColorRenderingIntent" is the size in bytes
     pBuffer: ?*u8,
     pcbPS2ColorRenderingIntent: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -1280,7 +1280,7 @@ pub extern "mscms" fn GetPS2ColorSpaceArray(
     hProfile: isize,
     dwIntent: u32,
     dwCSAType: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbPS2ColorSpaceArray" is the size in bytes
     pPS2ColorSpaceArray: ?*u8,
     pcbPS2ColorSpaceArray: ?*u32,
     pbBinary: ?*BOOL,
@@ -1289,7 +1289,7 @@ pub extern "mscms" fn GetPS2ColorSpaceArray(
 pub extern "mscms" fn GetStandardColorSpaceProfileA(
     pMachineName: ?[*:0]const u8,
     dwSCS: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbSize" is the size in bytes
     pBuffer: ?PSTR,
     pcbSize: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -1297,7 +1297,7 @@ pub extern "mscms" fn GetStandardColorSpaceProfileA(
 pub extern "mscms" fn GetStandardColorSpaceProfileW(
     pMachineName: ?[*:0]const u16,
     dwSCS: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbSize" is the size in bytes
     pBuffer: ?PWSTR,
     pcbSize: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -1501,7 +1501,7 @@ pub extern "mscms" fn WcsCheckColors(
     nInputChannels: u32,
     cdtInput: COLORDATATYPE,
     cbInput: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbInput" is the size in bytes
     pInputData: ?*anyopaque,
     paResult: [*:0]u8,
 ) callconv(.winapi) BOOL;
@@ -1520,7 +1520,7 @@ pub extern "mscms" fn WcsDisassociateColorProfileFromDevice(
 pub extern "mscms" fn WcsEnumColorProfiles(
     scope: WCS_PROFILE_MANAGEMENT_SCOPE,
     pEnumRecord: ?*ENUMTYPEW,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwSize" is the size in bytes
     pBuffer: ?*u8,
     dwSize: u32,
     pnProfiles: ?*u32,
@@ -1543,7 +1543,7 @@ pub extern "mscms" fn WcsGetDefaultColorProfile(
     cpstColorProfileSubType: COLORPROFILESUBTYPE,
     dwProfileID: u32,
     cbProfileName: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbProfileName" is the size in bytes
     pProfileName: ?PWSTR,
 ) callconv(.winapi) BOOL;
 
@@ -1617,12 +1617,12 @@ pub extern "mscms" fn WcsTranslateColors(
     nInputChannels: u32,
     cdtInput: COLORDATATYPE,
     cbInput: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbInput" is the size in bytes
     pInputData: ?*anyopaque,
     nOutputChannels: u32,
     cdtOutput: COLORDATATYPE,
     cbOutput: u32,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "cbOutput" is the size in bytes
     pOutputData: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 

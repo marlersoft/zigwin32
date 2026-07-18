@@ -71,10 +71,10 @@ pub extern "kernel32" fn CreateIoCompletionPort(
 pub extern "kernel32" fn DeviceIoControl(
     hDevice: ?HANDLE,
     dwIoControlCode: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "nOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,

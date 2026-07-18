@@ -1386,7 +1386,7 @@ pub extern "virtdisk" fn ForkVirtualDisk(
 
 pub extern "virtdisk" fn GetAllAttachedVirtualDiskPhysicalPaths(
     PathsBufferSizeInBytes: ?*u32,
-    // TODO: what to do with BytesParamIndex 0?
+    /// parameter "PathsBufferSizeInBytes" is the size in bytes
     PathsBuffer: ?PWSTR,
 ) callconv(.winapi) WIN32_ERROR;
 
@@ -1403,7 +1403,7 @@ pub extern "virtdisk" fn GetStorageDependencyInformation(
 pub extern "virtdisk" fn GetVirtualDiskInformation(
     VirtualDiskHandle: ?HANDLE,
     VirtualDiskInfoSize: ?*u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "VirtualDiskInfoSize" is the size in bytes
     VirtualDiskInfo: ?*GET_VIRTUAL_DISK_INFO,
     SizeUsed: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1413,7 +1413,7 @@ pub extern "virtdisk" fn GetVirtualDiskMetadata(
     VirtualDiskHandle: ?HANDLE,
     Item: ?*const Guid,
     MetaDataSize: ?*u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "MetaDataSize" is the size in bytes
     MetaData: ?*anyopaque,
 ) callconv(.winapi) WIN32_ERROR;
 
@@ -1428,7 +1428,7 @@ pub extern "virtdisk" fn GetVirtualDiskOperationProgress(
 pub extern "virtdisk" fn GetVirtualDiskPhysicalPath(
     VirtualDiskHandle: ?HANDLE,
     DiskPathSizeInBytes: ?*u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "DiskPathSizeInBytes" is the size in bytes
     DiskPath: ?PWSTR,
 ) callconv(.winapi) WIN32_ERROR;
 
@@ -1504,7 +1504,7 @@ pub extern "virtdisk" fn SetVirtualDiskMetadata(
     VirtualDiskHandle: ?HANDLE,
     Item: ?*const Guid,
     MetaDataSize: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "MetaDataSize" is the size in bytes
     MetaData: ?*const anyopaque,
 ) callconv(.winapi) WIN32_ERROR;
 

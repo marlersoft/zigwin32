@@ -936,7 +936,7 @@ pub const IDirectSoundBuffer = extern union {
         ) callconv(.winapi) HRESULT,
         GetFormat: *const fn(
             self: *const IDirectSoundBuffer,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "dwSizeAllocated" is the size in bytes
             pwfxFormat: ?*WAVEFORMATEX,
             dwSizeAllocated: u32,
             pdwSizeWritten: ?*u32,
@@ -1003,10 +1003,10 @@ pub const IDirectSoundBuffer = extern union {
         ) callconv(.winapi) HRESULT,
         Unlock: *const fn(
             self: *const IDirectSoundBuffer,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "dwAudioBytes1" is the size in bytes
             pvAudioPtr1: ?*anyopaque,
             dwAudioBytes1: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "dwAudioBytes2" is the size in bytes
             pvAudioPtr2: ?*anyopaque,
             dwAudioBytes2: u32,
         ) callconv(.winapi) HRESULT,
@@ -1160,7 +1160,7 @@ pub const IDirectSoundCaptureBuffer = extern union {
         ) callconv(.winapi) HRESULT,
         GetFormat: *const fn(
             self: *const IDirectSoundCaptureBuffer,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "dwSizeAllocated" is the size in bytes
             pwfxFormat: ?*WAVEFORMATEX,
             dwSizeAllocated: u32,
             pdwSizeWritten: ?*u32,
@@ -1193,10 +1193,10 @@ pub const IDirectSoundCaptureBuffer = extern union {
         ) callconv(.winapi) HRESULT,
         Unlock: *const fn(
             self: *const IDirectSoundCaptureBuffer,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "dwAudioBytes1" is the size in bytes
             pvAudioPtr1: ?*anyopaque,
             dwAudioBytes1: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "dwAudioBytes2" is the size in bytes
             pvAudioPtr2: ?*anyopaque,
             dwAudioBytes2: u32,
         ) callconv(.winapi) HRESULT,

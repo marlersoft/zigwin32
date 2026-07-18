@@ -940,7 +940,7 @@ pub extern "kernel32" fn DnsHostnameToComputerNameExW(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn EnumSystemFirmwareTables(
     FirmwareTableProviderSignature: FIRMWARE_TABLE_PROVIDER,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BufferSize" is the size in bytes
     pFirmwareTableEnumBuffer: ?*FIRMWARE_TABLE_ID,
     BufferSize: u32,
 ) callconv(.winapi) u32;
@@ -976,7 +976,7 @@ pub extern "kernel32" fn GetLocalTime(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn GetLogicalProcessorInformation(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "ReturnedLength" is the size in bytes
     Buffer: ?*SYSTEM_LOGICAL_PROCESSOR_INFORMATION,
     ReturnedLength: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -984,7 +984,7 @@ pub extern "kernel32" fn GetLogicalProcessorInformation(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "kernel32" fn GetLogicalProcessorInformationEx(
     RelationshipType: LOGICAL_PROCESSOR_RELATIONSHIP,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "ReturnedLength" is the size in bytes
     Buffer: ?*SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX,
     ReturnedLength: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -1010,7 +1010,7 @@ pub extern "kernel32" fn GetPhysicallyInstalledSystemMemory(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "kernel32" fn GetProcessorSystemCycleTime(
     Group: u16,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "ReturnedLength" is the size in bytes
     Buffer: ?*SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION,
     ReturnedLength: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -1025,7 +1025,7 @@ pub extern "kernel32" fn GetProductInfo(
 ) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn GetSystemCpuSetInformation(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "BufferLength" is the size in bytes
     Information: ?*SYSTEM_CPU_SET_INFORMATION,
     BufferLength: u32,
     ReturnedLength: ?*u32,
@@ -1053,7 +1053,7 @@ pub extern "kernel32" fn GetSystemDirectoryW(
 pub extern "kernel32" fn GetSystemFirmwareTable(
     FirmwareTableProviderSignature: FIRMWARE_TABLE_PROVIDER,
     FirmwareTableID: FIRMWARE_TABLE_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferSize" is the size in bytes
     pFirmwareTableBuffer: ?*anyopaque,
     BufferSize: u32,
 ) callconv(.winapi) u32;
@@ -1192,9 +1192,9 @@ pub extern "kernel32" fn IsWow64GuestMachineSupported(
 pub extern "ntdll" fn RtlConvertDeviceFamilyInfoToString(
     pulDeviceFamilyBufferSize: ?*u32,
     pulDeviceFormBufferSize: ?*u32,
-    // TODO: what to do with BytesParamIndex 0?
+    /// parameter "pulDeviceFamilyBufferSize" is the size in bytes
     DeviceFamily: ?PWSTR,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "pulDeviceFormBufferSize" is the size in bytes
     DeviceForm: ?PWSTR,
 ) callconv(.winapi) u32;
 

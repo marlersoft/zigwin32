@@ -1417,16 +1417,16 @@ pub const IMLangConvertCharset = extern union {
         ) callconv(.winapi) HRESULT,
         DoConversion: *const fn(
             self: *const IMLangConvertCharset,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pcSrcSize" is the size in bytes
             pSrcStr: ?*u8,
             pcSrcSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "pcDstSize" is the size in bytes
             pDstStr: ?*u8,
             pcDstSize: ?*u32,
         ) callconv(.winapi) HRESULT,
         DoConversionToUnicode: *const fn(
             self: *const IMLangConvertCharset,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pcSrcSize" is the size in bytes
             pSrcStr: ?PSTR,
             pcSrcSize: ?*u32,
             pDstStr: [*:0]u16,
@@ -1436,7 +1436,7 @@ pub const IMLangConvertCharset = extern union {
             self: *const IMLangConvertCharset,
             pSrcStr: [*:0]u16,
             pcSrcSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "pcDstSize" is the size in bytes
             pDstStr: ?PSTR,
             pcDstSize: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -2028,10 +2028,10 @@ pub const IMultiLanguage = extern union {
             pdwMode: ?*u32,
             dwSrcEncoding: u32,
             dwDstEncoding: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "pcSrcSize" is the size in bytes
             pSrcStr: ?*u8,
             pcSrcSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 6?
+            /// parameter "pcDstSize" is the size in bytes
             pDstStr: ?*u8,
             pcDstSize: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -2039,7 +2039,7 @@ pub const IMultiLanguage = extern union {
             self: *const IMultiLanguage,
             pdwMode: ?*u32,
             dwEncoding: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "pcSrcSize" is the size in bytes
             pSrcStr: ?PSTR,
             pcSrcSize: ?*u32,
             pDstStr: ?[*:0]u16,
@@ -2051,7 +2051,7 @@ pub const IMultiLanguage = extern union {
             dwEncoding: u32,
             pSrcStr: ?[*:0]u16,
             pcSrcSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "pcDstSize" is the size in bytes
             pDstStr: ?PSTR,
             pcDstSize: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -2175,10 +2175,10 @@ pub const IMultiLanguage2 = extern union {
             pdwMode: ?*u32,
             dwSrcEncoding: u32,
             dwDstEncoding: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "pcSrcSize" is the size in bytes
             pSrcStr: ?*u8,
             pcSrcSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 6?
+            /// parameter "pcDstSize" is the size in bytes
             pDstStr: ?*u8,
             pcDstSize: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -2186,7 +2186,7 @@ pub const IMultiLanguage2 = extern union {
             self: *const IMultiLanguage2,
             pdwMode: ?*u32,
             dwEncoding: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "pcSrcSize" is the size in bytes
             pSrcStr: ?PSTR,
             pcSrcSize: ?*u32,
             pDstStr: ?[*:0]u16,
@@ -2198,7 +2198,7 @@ pub const IMultiLanguage2 = extern union {
             dwEncoding: u32,
             pSrcStr: ?[*:0]u16,
             pcSrcSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "pcDstSize" is the size in bytes
             pDstStr: ?PSTR,
             pcDstSize: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -2247,7 +2247,7 @@ pub const IMultiLanguage2 = extern union {
             self: *const IMultiLanguage2,
             pdwMode: ?*u32,
             dwEncoding: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "pcSrcSize" is the size in bytes
             pSrcStr: ?PSTR,
             pcSrcSize: ?*u32,
             pDstStr: [*:0]u16,
@@ -2261,7 +2261,7 @@ pub const IMultiLanguage2 = extern union {
             dwEncoding: u32,
             pSrcStr: [*:0]u16,
             pcSrcSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "pcDstSize" is the size in bytes
             pDstStr: ?PSTR,
             pcDstSize: ?*u32,
             dwFlag: u32,
@@ -2279,7 +2279,7 @@ pub const IMultiLanguage2 = extern union {
             self: *const IMultiLanguage2,
             dwFlag: u32,
             dwPrefWinCodePage: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "pcSrcSize" is the size in bytes
             pSrcStr: ?PSTR,
             pcSrcSize: ?*i32,
             lpEncoding: ?*DetectEncodingInfo,
@@ -8943,7 +8943,7 @@ pub extern "kernel32" fn GetDurationFormatEx(
 pub extern "kernel32" fn GetFileMUIInfo(
     dwFlags: u32,
     pcwszFilePath: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbFileMUIInfo" is the size in bytes
     pFileMUIInfo: ?*FILEMUIINFO,
     pcbFileMUIInfo: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -9294,7 +9294,7 @@ pub extern "kernel32" fn IsNormalizedString(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn IsTextUnicode(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "iSize" is the size in bytes
     lpv: ?*const anyopaque,
     iSize: i32,
     lpiResult: ?*IS_TEXT_UNICODE_RESULT,
@@ -16278,7 +16278,7 @@ pub extern "kernel32" fn WideCharToMultiByte(
     dwFlags: u32,
     lpWideCharStr: [*:0]const u16,
     cchWideChar: i32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbMultiByte" is the size in bytes
     lpMultiByteStr: ?PSTR,
     cbMultiByte: i32,
     lpDefaultChar: ?[*]const u8,

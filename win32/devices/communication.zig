@@ -634,7 +634,7 @@ pub extern "kernel32" fn EscapeCommFunction(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn GetCommConfig(
     hCommDev: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpdwSize" is the size in bytes
     lpCC: ?*COMMCONFIG,
     lpdwSize: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -679,7 +679,7 @@ pub extern "kernel32" fn GetCommTimeouts(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn GetDefaultCommConfigA(
     lpszName: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpdwSize" is the size in bytes
     lpCC: ?*COMMCONFIG,
     lpdwSize: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -687,7 +687,7 @@ pub extern "kernel32" fn GetDefaultCommConfigA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn GetDefaultCommConfigW(
     lpszName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpdwSize" is the size in bytes
     lpCC: ?*COMMCONFIG,
     lpdwSize: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -713,7 +713,7 @@ pub extern "kernel32" fn SetCommBreak(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn SetCommConfig(
     hCommDev: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwSize" is the size in bytes
     lpCC: ?*COMMCONFIG,
     dwSize: u32,
 ) callconv(.winapi) BOOL;
@@ -739,7 +739,7 @@ pub extern "kernel32" fn SetCommTimeouts(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn SetDefaultCommConfigA(
     lpszName: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwSize" is the size in bytes
     lpCC: ?*COMMCONFIG,
     dwSize: u32,
 ) callconv(.winapi) BOOL;
@@ -747,7 +747,7 @@ pub extern "kernel32" fn SetDefaultCommConfigA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn SetDefaultCommConfigW(
     lpszName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwSize" is the size in bytes
     lpCC: ?*COMMCONFIG,
     dwSize: u32,
 ) callconv(.winapi) BOOL;

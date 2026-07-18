@@ -11295,7 +11295,7 @@ pub extern "uxtheme" fn GetThemeAnimationProperty(
     iStoryboardId: i32,
     iTargetId: i32,
     eProperty: TA_PROPERTY,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbSize" is the size in bytes
     pvProperty: ?*anyopaque,
     cbSize: u32,
     pcbSizeOut: ?*u32,
@@ -11307,7 +11307,7 @@ pub extern "uxtheme" fn GetThemeAnimationTransform(
     iStoryboardId: i32,
     iTargetId: i32,
     dwTransformIndex: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbSize" is the size in bytes
     pTransform: ?*TA_TRANSFORM,
     cbSize: u32,
     pcbSizeOut: ?*u32,
@@ -11582,7 +11582,7 @@ pub extern "uxtheme" fn GetThemeTextMetrics(
 pub extern "uxtheme" fn GetThemeTimingFunction(
     hTheme: HTHEME,
     iTimingFunctionId: i32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbSize" is the size in bytes
     pTimingFunction: ?*TA_TIMINGFUNCTION,
     cbSize: u32,
     pcbSizeOut: ?*u32,
@@ -11604,7 +11604,7 @@ pub extern "user32" fn GetWindowFeedbackSetting(
     feedback: FEEDBACK_TYPE,
     dwFlags: u32,
     pSize: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pSize" is the size in bytes
     config: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -12074,7 +12074,7 @@ pub extern "user32" fn SetWindowFeedbackSetting(
     feedback: FEEDBACK_TYPE,
     dwFlags: u32,
     size: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "size" is the size in bytes
     configuration: ?*const anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -12089,7 +12089,7 @@ pub extern "uxtheme" fn SetWindowTheme(
 pub extern "uxtheme" fn SetWindowThemeAttribute(
     hwnd: ?HWND,
     eAttribute: WINDOWTHEMEATTRIBUTETYPE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbAttribute" is the size in bytes
     pvAttribute: ?*anyopaque,
     cbAttribute: u32,
 ) callconv(.winapi) HRESULT;

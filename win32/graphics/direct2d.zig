@@ -5845,7 +5845,7 @@ pub const ID2D1EffectContext = extern union {
         CheckFeatureSupport: *const fn(
             self: *const ID2D1EffectContext,
             feature: D2D1_FEATURE,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "featureSupportDataSize" is the size in bytes
             featureSupportData: ?*anyopaque,
             featureSupportDataSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -8701,7 +8701,7 @@ pub const ID2D1SvgElement = extern union {
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
             type: D2D1_SVG_ATTRIBUTE_POD_TYPE,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "valueSizeInBytes" is the size in bytes
             value: ?*const anyopaque,
             valueSizeInBytes: u32,
         ) callconv(.winapi) HRESULT,
@@ -8721,7 +8721,7 @@ pub const ID2D1SvgElement = extern union {
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
             type: D2D1_SVG_ATTRIBUTE_POD_TYPE,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "valueSizeInBytes" is the size in bytes
             value: ?*anyopaque,
             valueSizeInBytes: u32,
         ) callconv(.winapi) HRESULT,

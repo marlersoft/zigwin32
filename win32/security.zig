@@ -540,7 +540,7 @@ pub const OBJECT_TYPE_LIST = extern struct {
 
 pub const PLSA_AP_CALL_PACKAGE_UNTRUSTED = *const fn(
     ClientRequest: ?*?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "SubmitBufferLength" is the size in bytes
     ProtocolSubmitBuffer: ?*anyopaque,
     ClientBufferBase: ?*anyopaque,
     SubmitBufferLength: u32,
@@ -1542,7 +1542,7 @@ pub extern "advapi32" fn AccessCheck(
     ClientToken: ?HANDLE,
     DesiredAccess: u32,
     GenericMapping: ?*GENERIC_MAPPING,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "PrivilegeSetLength" is the size in bytes
     PrivilegeSet: ?*PRIVILEGE_SET,
     PrivilegeSetLength: ?*u32,
     GrantedAccess: ?*u32,
@@ -1587,7 +1587,7 @@ pub extern "advapi32" fn AccessCheckByType(
     ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
     ObjectTypeListLength: u32,
     GenericMapping: ?*GENERIC_MAPPING,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "PrivilegeSetLength" is the size in bytes
     PrivilegeSet: ?*PRIVILEGE_SET,
     PrivilegeSetLength: ?*u32,
     GrantedAccess: ?*u32,
@@ -1642,7 +1642,7 @@ pub extern "advapi32" fn AccessCheckByTypeResultList(
     ObjectTypeList: ?[*]OBJECT_TYPE_LIST,
     ObjectTypeListLength: u32,
     GenericMapping: ?*GENERIC_MAPPING,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "PrivilegeSetLength" is the size in bytes
     PrivilegeSet: ?*PRIVILEGE_SET,
     PrivilegeSetLength: ?*u32,
     GrantedAccessList: [*]u32,
@@ -1790,7 +1790,7 @@ pub extern "advapi32" fn AddAce(
     pAcl: ?*ACL,
     dwAceRevision: ACE_REVISION,
     dwStartingAceIndex: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "nAceListLength" is the size in bytes
     pAceList: ?*anyopaque,
     nAceListLength: u32,
 ) callconv(.winapi) BOOL;
@@ -1876,7 +1876,7 @@ pub extern "advapi32" fn AdjustTokenGroups(
     ResetToDefault: BOOL,
     NewState: ?*TOKEN_GROUPS,
     BufferLength: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferLength" is the size in bytes
     PreviousState: ?*TOKEN_GROUPS,
     ReturnLength: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -1887,7 +1887,7 @@ pub extern "advapi32" fn AdjustTokenPrivileges(
     DisableAllPrivileges: BOOL,
     NewState: ?*TOKEN_PRIVILEGES,
     BufferLength: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferLength" is the size in bytes
     PreviousState: ?*TOKEN_PRIVILEGES,
     ReturnLength: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -1959,7 +1959,7 @@ pub extern "advapi32" fn ConvertToAutoInheritPrivateObjectSecurity(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn CopySid(
     nDestinationSidLength: u32,
-    // TODO: what to do with BytesParamIndex 0?
+    /// parameter "nDestinationSidLength" is the size in bytes
     pDestinationSid: ?PSID,
     pSourceSid: ?PSID,
 ) callconv(.winapi) BOOL;
@@ -2016,7 +2016,7 @@ pub extern "advapi32" fn CreateRestrictedToken(
 pub extern "advapi32" fn CreateWellKnownSid(
     WellKnownSidType: WELL_KNOWN_SID_TYPE,
     DomainSid: ?PSID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbSid" is the size in bytes
     pSid: ?PSID,
     cbSid: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -2097,7 +2097,7 @@ pub extern "advapi32" fn GetAce(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetAclInformation(
     pAcl: ?*ACL,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "nAclInformationLength" is the size in bytes
     pAclInformation: ?*anyopaque,
     nAclInformationLength: u32,
     dwAclInformationClass: ACL_INFORMATION_CLASS,
@@ -2114,7 +2114,7 @@ pub extern "kernel32" fn GetCachedSigningLevel(
     File: ?HANDLE,
     Flags: ?*u32,
     SigningLevel: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "ThumbprintSize" is the size in bytes
     Thumbprint: ?*u8,
     ThumbprintSize: ?*u32,
     ThumbprintAlgorithm: ?*u32,
@@ -2124,7 +2124,7 @@ pub extern "kernel32" fn GetCachedSigningLevel(
 pub extern "advapi32" fn GetFileSecurityA(
     lpFileName: ?[*:0]const u8,
     RequestedInformation: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nLength" is the size in bytes
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     nLength: u32,
     lpnLengthNeeded: ?*u32,
@@ -2133,7 +2133,7 @@ pub extern "advapi32" fn GetFileSecurityA(
 pub extern "advapi32" fn GetFileSecurityW(
     lpFileName: ?[*:0]const u16,
     RequestedInformation: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nLength" is the size in bytes
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     nLength: u32,
     lpnLengthNeeded: ?*u32,
@@ -2143,7 +2143,7 @@ pub extern "advapi32" fn GetFileSecurityW(
 pub extern "advapi32" fn GetKernelObjectSecurity(
     Handle: ?HANDLE,
     RequestedInformation: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nLength" is the size in bytes
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     nLength: u32,
     lpnLengthNeeded: ?*u32,
@@ -2158,7 +2158,7 @@ pub extern "advapi32" fn GetLengthSid(
 pub extern "advapi32" fn GetPrivateObjectSecurity(
     ObjectDescriptor: ?PSECURITY_DESCRIPTOR,
     SecurityInformation: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "DescriptorLength" is the size in bytes
     ResultantDescriptor: ?PSECURITY_DESCRIPTOR,
     DescriptorLength: u32,
     ReturnLength: ?*u32,
@@ -2237,7 +2237,7 @@ pub extern "advapi32" fn GetSidSubAuthorityCount(
 pub extern "advapi32" fn GetTokenInformation(
     TokenHandle: ?HANDLE,
     TokenInformationClass: TOKEN_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "TokenInformationLength" is the size in bytes
     TokenInformation: ?*anyopaque,
     TokenInformationLength: u32,
     ReturnLength: ?*u32,
@@ -2247,7 +2247,7 @@ pub extern "advapi32" fn GetTokenInformation(
 pub extern "user32" fn GetUserObjectSecurity(
     hObj: ?HANDLE,
     pSIRequested: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nLength" is the size in bytes
     pSID: ?PSECURITY_DESCRIPTOR,
     nLength: u32,
     lpnLengthNeeded: ?*u32,
@@ -2256,7 +2256,7 @@ pub extern "user32" fn GetUserObjectSecurity(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetWindowsAccountDomainSid(
     pSid: ?PSID,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbDomainSid" is the size in bytes
     pDomainSid: ?PSID,
     cbDomainSid: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -2278,7 +2278,7 @@ pub extern "advapi32" fn ImpersonateSelf(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn InitializeAcl(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "nAclLength" is the size in bytes
     pAcl: ?*ACL,
     nAclLength: u32,
     dwAclRevision: ACE_REVISION,
@@ -2342,7 +2342,7 @@ pub extern "advapi32" fn LogonUserExA(
     dwLogonProvider: LOGON32_PROVIDER,
     phToken: ?*?HANDLE,
     ppLogonSid: ?*?PSID,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "pdwProfileLength" is the size in bytes
     ppProfileBuffer: ?*?*anyopaque,
     pdwProfileLength: ?*u32,
     pQuotaLimits: ?*QUOTA_LIMITS,
@@ -2357,7 +2357,7 @@ pub extern "advapi32" fn LogonUserExW(
     dwLogonProvider: LOGON32_PROVIDER,
     phToken: ?*?HANDLE,
     ppLogonSid: ?*?PSID,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "pdwProfileLength" is the size in bytes
     ppProfileBuffer: ?*?*anyopaque,
     pdwProfileLength: ?*u32,
     pQuotaLimits: ?*QUOTA_LIMITS,
@@ -2377,7 +2377,7 @@ pub extern "advapi32" fn LogonUserW(
 pub extern "advapi32" fn LookupAccountNameA(
     lpSystemName: ?[*:0]const u8,
     lpAccountName: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbSid" is the size in bytes
     Sid: ?PSID,
     cbSid: ?*u32,
     ReferencedDomainName: ?[*:0]u8,
@@ -2389,7 +2389,7 @@ pub extern "advapi32" fn LookupAccountNameA(
 pub extern "advapi32" fn LookupAccountNameW(
     lpSystemName: ?[*:0]const u16,
     lpAccountName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbSid" is the size in bytes
     Sid: ?PSID,
     cbSid: ?*u32,
     ReferencedDomainName: ?[*:0]u16,
@@ -2470,19 +2470,19 @@ pub extern "advapi32" fn LookupPrivilegeValueW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn MakeAbsoluteSD(
     pSelfRelativeSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpdwAbsoluteSecurityDescriptorSize" is the size in bytes
     pAbsoluteSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     lpdwAbsoluteSecurityDescriptorSize: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "lpdwDaclSize" is the size in bytes
     pDacl: ?*ACL,
     lpdwDaclSize: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "lpdwSaclSize" is the size in bytes
     pSacl: ?*ACL,
     lpdwSaclSize: ?*u32,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "lpdwOwnerSize" is the size in bytes
     pOwner: ?PSID,
     lpdwOwnerSize: ?*u32,
-    // TODO: what to do with BytesParamIndex 10?
+    /// parameter "lpdwPrimaryGroupSize" is the size in bytes
     pPrimaryGroup: ?PSID,
     lpdwPrimaryGroupSize: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -2490,7 +2490,7 @@ pub extern "advapi32" fn MakeAbsoluteSD(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn MakeSelfRelativeSD(
     pAbsoluteSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpdwBufferLength" is the size in bytes
     pSelfRelativeSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     lpdwBufferLength: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -2629,7 +2629,7 @@ pub extern "ntdll" fn RtlNormalizeSecurityDescriptor(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetAclInformation(
     pAcl: ?*ACL,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "nAclInformationLength" is the size in bytes
     pAclInformation: ?*anyopaque,
     nAclInformationLength: u32,
     dwAclInformationClass: ACL_INFORMATION_CLASS,
@@ -2734,7 +2734,7 @@ pub extern "advapi32" fn SetSecurityDescriptorSacl(
 pub extern "advapi32" fn SetTokenInformation(
     TokenHandle: ?HANDLE,
     TokenInformationClass: TOKEN_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "TokenInformationLength" is the size in bytes
     TokenInformation: ?*anyopaque,
     TokenInformationLength: u32,
 ) callconv(.winapi) BOOL;

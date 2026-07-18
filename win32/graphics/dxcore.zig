@@ -124,7 +124,7 @@ pub const IDXCoreAdapter = extern union {
             self: *const IDXCoreAdapter,
             property: DXCoreAdapterProperty,
             bufferSize: usize,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "bufferSize" is the size in bytes
             propertyData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         GetPropertySize: *const fn(
@@ -140,10 +140,10 @@ pub const IDXCoreAdapter = extern union {
             self: *const IDXCoreAdapter,
             state: DXCoreAdapterState,
             inputStateDetailsSize: usize,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "inputStateDetailsSize" is the size in bytes
             inputStateDetails: ?*const anyopaque,
             outputBufferSize: usize,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "outputBufferSize" is the size in bytes
             outputBuffer: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         IsSetStateSupported: *const fn(
@@ -154,10 +154,10 @@ pub const IDXCoreAdapter = extern union {
             self: *const IDXCoreAdapter,
             state: DXCoreAdapterState,
             inputStateDetailsSize: usize,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "inputStateDetailsSize" is the size in bytes
             inputStateDetails: ?*const anyopaque,
             inputDataSize: usize,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "inputDataSize" is the size in bytes
             inputData: ?*const anyopaque,
         ) callconv(.winapi) HRESULT,
         GetFactory: *const fn(

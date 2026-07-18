@@ -255,7 +255,7 @@ pub extern "advapi32" fn SaferCreateLevel(
 pub extern "advapi32" fn SaferGetLevelInformation(
     LevelHandle: SAFER_LEVEL_HANDLE,
     dwInfoType: SAFER_OBJECT_INFO_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwInBufferSize" is the size in bytes
     lpQueryBuffer: ?*anyopaque,
     dwInBufferSize: u32,
     lpdwOutBufferSize: ?*u32,
@@ -266,7 +266,7 @@ pub extern "advapi32" fn SaferGetPolicyInformation(
     dwScopeId: u32,
     SaferPolicyInfoClass: SAFER_POLICY_INFO_CLASS,
     InfoBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "InfoBufferSize" is the size in bytes
     InfoBuffer: ?*anyopaque,
     InfoBufferRetSize: ?*u32,
     lpReserved: ?*anyopaque,
@@ -297,7 +297,7 @@ pub extern "advapi32" fn SaferRecordEventLogEntry(
 pub extern "advapi32" fn SaferSetLevelInformation(
     LevelHandle: SAFER_LEVEL_HANDLE,
     dwInfoType: SAFER_OBJECT_INFO_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwInBufferSize" is the size in bytes
     lpQueryBuffer: ?*anyopaque,
     dwInBufferSize: u32,
 ) callconv(.winapi) BOOL;
@@ -307,7 +307,7 @@ pub extern "advapi32" fn SaferSetPolicyInformation(
     dwScopeId: u32,
     SaferPolicyInfoClass: SAFER_POLICY_INFO_CLASS,
     InfoBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "InfoBufferSize" is the size in bytes
     InfoBuffer: ?*anyopaque,
     lpReserved: ?*anyopaque,
 ) callconv(.winapi) BOOL;

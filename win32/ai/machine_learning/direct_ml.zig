@@ -2019,10 +2019,10 @@ pub const IDMLDevice = extern union {
             self: *const IDMLDevice,
             feature: DML_FEATURE,
             featureQueryDataSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "featureQueryDataSize" is the size in bytes
             featureQueryData: ?*const anyopaque,
             featureSupportDataSize: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "featureSupportDataSize" is the size in bytes
             featureSupportData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         CreateOperator: *const fn(
@@ -2182,14 +2182,14 @@ pub const IDMLObject = extern union {
             self: *const IDMLObject,
             guid: ?*const Guid,
             dataSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "dataSize" is the size in bytes
             data: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         SetPrivateData: *const fn(
             self: *const IDMLObject,
             guid: ?*const Guid,
             dataSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "dataSize" is the size in bytes
             data: ?*const anyopaque,
         ) callconv(.winapi) HRESULT,
         SetPrivateDataInterface: *const fn(

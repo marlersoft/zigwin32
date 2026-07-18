@@ -5618,7 +5618,7 @@ pub extern "gdi32" fn Escape(
     hdc: ?HDC,
     iEscape: i32,
     cjIn: i32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cjIn" is the size in bytes
     pvIn: ?[*:0]const u8,
     pvOut: ?*anyopaque,
 ) callconv(.winapi) i32;
@@ -5628,10 +5628,10 @@ pub extern "gdi32" fn ExtEscape(
     hdc: ?HDC,
     iEscape: i32,
     cjInput: i32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cjInput" is the size in bytes
     lpInData: ?[*:0]const u8,
     cjOutput: i32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cjOutput" is the size in bytes
     lpOutData: ?PSTR,
 ) callconv(.winapi) i32;
 

@@ -90,7 +90,7 @@ pub const TPM_WNF_PROVISIONING = extern struct {
 // Section: Functions (13)
 //--------------------------------------------------------------------------------
 pub extern "tbs" fn GetDeviceID(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbWindowsAIK" is the size in bytes
     pbWindowsAIK: ?*u8,
     cbWindowsAIK: u32,
     pcbResult: ?*u32,
@@ -118,7 +118,7 @@ pub extern "tbs" fn Tbsi_Create_Windows_Key(
 pub extern "tbs" fn Tbsi_Get_OwnerAuth(
     hContext: ?*anyopaque,
     ownerauthType: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pOutputBufLen" is the size in bytes
     pOutputBuf: ?*u8,
     pOutputBufLen: ?*u32,
 ) callconv(.winapi) u32;
@@ -126,7 +126,7 @@ pub extern "tbs" fn Tbsi_Get_OwnerAuth(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsi_Get_TCG_Log(
     hContext: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "pOutputBufLen" is the size in bytes
     pOutputBuf: ?*u8,
     pOutputBufLen: ?*u32,
 ) callconv(.winapi) u32;
@@ -134,7 +134,7 @@ pub extern "tbs" fn Tbsi_Get_TCG_Log(
 // TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "tbs" fn Tbsi_Get_TCG_Log_Ex(
     logType: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "pcbOutput" is the size in bytes
     pbOutput: ?*u8,
     pcbOutput: ?*u32,
 ) callconv(.winapi) u32;
@@ -142,17 +142,17 @@ pub extern "tbs" fn Tbsi_Get_TCG_Log_Ex(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "tbs" fn Tbsi_GetDeviceInfo(
     Size: u32,
-    // TODO: what to do with BytesParamIndex 0?
+    /// parameter "Size" is the size in bytes
     Info: ?*anyopaque,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsi_Physical_Presence_Command(
     hContext: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbInput" is the size in bytes
     pabInput: ?*u8,
     cbInput: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbOutput" is the size in bytes
     pabOutput: ?*u8,
     pcbOutput: ?*u32,
 ) callconv(.winapi) u32;
@@ -176,10 +176,10 @@ pub extern "tbs" fn Tbsip_Submit_Command(
     hContext: ?*anyopaque,
     Locality: TBS_COMMAND_LOCALITY,
     Priority: TBS_COMMAND_PRIORITY,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbCommand" is the size in bytes
     pabCommand: ?*u8,
     cbCommand: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbResult" is the size in bytes
     pabResult: ?*u8,
     pcbResult: ?*u32,
 ) callconv(.winapi) u32;

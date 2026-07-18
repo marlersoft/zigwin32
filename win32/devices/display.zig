@@ -2672,7 +2672,7 @@ pub const PFN_DrvRenderHint = *const fn(
     dhpdev: DHPDEV,
     NotifyCode: u32,
     Length: usize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "Length" is the size in bytes
     Data: ?*anyopaque,
 ) callconv(.winapi) i32;
 
@@ -4022,11 +4022,11 @@ pub extern "gdi32" fn EngMarkBandingSurface(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn EngMultiByteToUnicodeN(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "MaxBytesInUnicodeString" is the size in bytes
     UnicodeString: ?PWSTR,
     MaxBytesInUnicodeString: u32,
     BytesInUnicodeString: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "BytesInMultiByteString" is the size in bytes
     MultiByteString: ?[*]u8,
     BytesInMultiByteString: u32,
 ) callconv(.winapi) void;
@@ -4034,10 +4034,10 @@ pub extern "gdi32" fn EngMultiByteToUnicodeN(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn EngMultiByteToWideChar(
     CodePage: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BytesInWideCharString" is the size in bytes
     WideCharString: ?PWSTR,
     BytesInWideCharString: i32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "BytesInMultiByteString" is the size in bytes
     MultiByteString: ?PSTR,
     BytesInMultiByteString: i32,
 ) callconv(.winapi) i32;
@@ -4167,11 +4167,11 @@ pub extern "gdi32" fn EngTransparentBlt(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn EngUnicodeToMultiByteN(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "MaxBytesInMultiByteString" is the size in bytes
     MultiByteString: ?[*]u8,
     MaxBytesInMultiByteString: u32,
     BytesInMultiByteString: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "BytesInUnicodeString" is the size in bytes
     UnicodeString: ?PWSTR,
     BytesInUnicodeString: u32,
 ) callconv(.winapi) void;
@@ -4184,10 +4184,10 @@ pub extern "gdi32" fn EngUnlockSurface(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn EngWideCharToMultiByte(
     CodePage: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BytesInWideCharString" is the size in bytes
     WideCharString: ?PWSTR,
     BytesInWideCharString: i32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "BytesInMultiByteString" is the size in bytes
     MultiByteString: ?PSTR,
     BytesInMultiByteString: i32,
 ) callconv(.winapi) i32;

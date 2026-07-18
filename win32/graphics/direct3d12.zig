@@ -8072,14 +8072,14 @@ pub const ID3D12CommandQueue = extern union {
         SetMarker: *const fn(
             self: *const ID3D12CommandQueue,
             Metadata: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "Size" is the size in bytes
             pData: ?*const anyopaque,
             Size: u32,
         ) callconv(.winapi) void,
         BeginEvent: *const fn(
             self: *const ID3D12CommandQueue,
             Metadata: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "Size" is the size in bytes
             pData: ?*const anyopaque,
             Size: u32,
         ) callconv(.winapi) void,
@@ -8375,14 +8375,14 @@ pub const ID3D12DebugCommandList1 = extern union {
         SetDebugParameter: *const fn(
             self: *const ID3D12DebugCommandList1,
             Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*const anyopaque,
             DataSize: u32,
         ) callconv(.winapi) HRESULT,
         GetDebugParameter: *const fn(
             self: *const ID3D12DebugCommandList1,
             Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*anyopaque,
             DataSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -8409,14 +8409,14 @@ pub const ID3D12DebugCommandList2 = extern union {
         SetDebugParameter: *const fn(
             self: *const ID3D12DebugCommandList2,
             Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*const anyopaque,
             DataSize: u32,
         ) callconv(.winapi) HRESULT,
         GetDebugParameter: *const fn(
             self: *const ID3D12DebugCommandList2,
             Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*anyopaque,
             DataSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -8553,14 +8553,14 @@ pub const ID3D12DebugDevice1 = extern union {
         SetDebugParameter: *const fn(
             self: *const ID3D12DebugDevice1,
             Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*const anyopaque,
             DataSize: u32,
         ) callconv(.winapi) HRESULT,
         GetDebugParameter: *const fn(
             self: *const ID3D12DebugDevice1,
             Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*anyopaque,
             DataSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -8591,14 +8591,14 @@ pub const ID3D12DebugDevice2 = extern union {
         SetDebugParameter: *const fn(
             self: *const ID3D12DebugDevice2,
             Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*const anyopaque,
             DataSize: u32,
         ) callconv(.winapi) HRESULT,
         GetDebugParameter: *const fn(
             self: *const ID3D12DebugDevice2,
             Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*anyopaque,
             DataSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -8700,7 +8700,7 @@ pub const ID3D12Device = extern union {
         CheckFeatureSupport: *const fn(
             self: *const ID3D12Device,
             Feature: D3D12_FEATURE,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "FeatureSupportDataSize" is the size in bytes
             pFeatureSupportData: ?*anyopaque,
             FeatureSupportDataSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -9352,7 +9352,7 @@ pub const ID3D12Device5 = extern union {
             self: *const ID3D12Device5,
             CommandId: ?*const Guid,
             NodeMask: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "CreationParametersDataSizeInBytes" is the size in bytes
             pCreationParametersData: ?*const anyopaque,
             CreationParametersDataSizeInBytes: usize,
             riid: ?*const Guid,
@@ -9649,7 +9649,7 @@ pub const ID3D12DeviceConfiguration = extern union {
         ) callconv(.winapi) HRESULT,
         CreateVersionedRootSignatureDeserializer: *const fn(
             self: *const ID3D12DeviceConfiguration,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "Size" is the size in bytes
             pBlob: ?*const anyopaque,
             Size: usize,
             riid: ?*const Guid,
@@ -10303,14 +10303,14 @@ pub const ID3D12GraphicsCommandList = extern union {
         SetMarker: *const fn(
             self: *const ID3D12GraphicsCommandList,
             Metadata: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "Size" is the size in bytes
             pData: ?*const anyopaque,
             Size: u32,
         ) callconv(.winapi) void,
         BeginEvent: *const fn(
             self: *const ID3D12GraphicsCommandList,
             Metadata: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "Size" is the size in bytes
             pData: ?*const anyopaque,
             Size: u32,
         ) callconv(.winapi) void,
@@ -10635,14 +10635,14 @@ pub const ID3D12GraphicsCommandList4 = extern union {
         InitializeMetaCommand: *const fn(
             self: *const ID3D12GraphicsCommandList4,
             pMetaCommand: ?*ID3D12MetaCommand,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "InitializationParametersDataSizeInBytes" is the size in bytes
             pInitializationParametersData: ?*const anyopaque,
             InitializationParametersDataSizeInBytes: usize,
         ) callconv(.winapi) void,
         ExecuteMetaCommand: *const fn(
             self: *const ID3D12GraphicsCommandList4,
             pMetaCommand: ?*ID3D12MetaCommand,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "ExecutionParametersDataSizeInBytes" is the size in bytes
             pExecutionParametersData: ?*const anyopaque,
             ExecutionParametersDataSizeInBytes: usize,
         ) callconv(.winapi) void,
@@ -10934,7 +10934,7 @@ pub const ID3D12InfoQueue = extern union {
         GetMessage: *const fn(
             self: *const ID3D12InfoQueue,
             MessageIndex: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "pMessageByteLength" is the size in bytes
             pMessage: ?*D3D12_MESSAGE,
             pMessageByteLength: ?*usize,
         ) callconv(.winapi) HRESULT,
@@ -10962,7 +10962,7 @@ pub const ID3D12InfoQueue = extern union {
         ) callconv(.winapi) HRESULT,
         GetStorageFilter: *const fn(
             self: *const ID3D12InfoQueue,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pFilterByteLength" is the size in bytes
             pFilter: ?*D3D12_INFO_QUEUE_FILTER,
             pFilterByteLength: ?*usize,
         ) callconv(.winapi) HRESULT,
@@ -10991,7 +10991,7 @@ pub const ID3D12InfoQueue = extern union {
         ) callconv(.winapi) HRESULT,
         GetRetrievalFilter: *const fn(
             self: *const ID3D12InfoQueue,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pFilterByteLength" is the size in bytes
             pFilter: ?*D3D12_INFO_QUEUE_FILTER,
             pFilterByteLength: ?*usize,
         ) callconv(.winapi) HRESULT,
@@ -11294,14 +11294,14 @@ pub const ID3D12Object = extern union {
             self: *const ID3D12Object,
             guid: ?*const Guid,
             pDataSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pDataSize" is the size in bytes
             pData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         SetPrivateData: *const fn(
             self: *const ID3D12Object,
             guid: ?*const Guid,
             DataSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*const anyopaque,
         ) callconv(.winapi) HRESULT,
         SetPrivateDataInterface: *const fn(
@@ -11740,19 +11740,19 @@ pub const ID3D12ShaderCacheSession = extern union {
         base: ID3D12DeviceChild.VTable,
         FindValue: *const fn(
             self: *const ID3D12ShaderCacheSession,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "KeySize" is the size in bytes
             pKey: ?*const anyopaque,
             KeySize: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "pValueSize" is the size in bytes
             pValue: ?*anyopaque,
             pValueSize: ?*u32,
         ) callconv(.winapi) HRESULT,
         StoreValue: *const fn(
             self: *const ID3D12ShaderCacheSession,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "KeySize" is the size in bytes
             pKey: ?*const anyopaque,
             KeySize: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ValueSize" is the size in bytes
             pValue: ?*const anyopaque,
             ValueSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -12298,7 +12298,7 @@ pub const PFN_D3D12_CREATE_DEVICE = *const fn(
 ) callconv(.winapi) HRESULT;
 
 pub const PFN_D3D12_CREATE_ROOT_SIGNATURE_DESERIALIZER = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSizeInBytes" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSizeInBytes: usize,
     pRootSignatureDeserializerInterface: ?*const Guid,
@@ -12306,7 +12306,7 @@ pub const PFN_D3D12_CREATE_ROOT_SIGNATURE_DESERIALIZER = *const fn(
 ) callconv(.winapi) HRESULT;
 
 pub const PFN_D3D12_CREATE_VERSIONED_ROOT_SIGNATURE_DESERIALIZER = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSizeInBytes" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSizeInBytes: usize,
     pRootSignatureDeserializerInterface: ?*const Guid,
@@ -12349,7 +12349,7 @@ pub extern "d3d12" fn D3D12CreateDevice(
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3d12" fn D3D12CreateRootSignatureDeserializer(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSizeInBytes" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSizeInBytes: usize,
     pRootSignatureDeserializerInterface: ?*const Guid,
@@ -12357,7 +12357,7 @@ pub extern "d3d12" fn D3D12CreateRootSignatureDeserializer(
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3d12" fn D3D12CreateVersionedRootSignatureDeserializer(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSizeInBytes" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSizeInBytes: usize,
     pRootSignatureDeserializerInterface: ?*const Guid,

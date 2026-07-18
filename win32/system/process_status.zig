@@ -137,7 +137,7 @@ pub extern "kernel32" fn K32EmptyWorkingSet(
 ) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn K32EnumDeviceDrivers(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cb" is the size in bytes
     lpImageBase: ?*?*anyopaque,
     cb: u32,
     lpcbNeeded: ?*u32,
@@ -154,7 +154,7 @@ pub extern "kernel32" fn K32EnumPageFilesW(
 ) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn K32EnumProcesses(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cb" is the size in bytes
     lpidProcess: ?*u32,
     cb: u32,
     lpcbNeeded: ?*u32,
@@ -162,7 +162,7 @@ pub extern "kernel32" fn K32EnumProcesses(
 
 pub extern "kernel32" fn K32EnumProcessModules(
     hProcess: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cb" is the size in bytes
     lphModule: ?*?HINSTANCE,
     cb: u32,
     lpcbNeeded: ?*u32,
@@ -170,7 +170,7 @@ pub extern "kernel32" fn K32EnumProcessModules(
 
 pub extern "kernel32" fn K32EnumProcessModulesEx(
     hProcess: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cb" is the size in bytes
     lphModule: ?*?HINSTANCE,
     cb: u32,
     lpcbNeeded: ?*u32,
@@ -275,14 +275,14 @@ pub extern "kernel32" fn K32GetProcessMemoryInfo(
 
 pub extern "kernel32" fn K32GetWsChanges(
     hProcess: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cb" is the size in bytes
     lpWatchInfo: ?*PSAPI_WS_WATCH_INFORMATION,
     cb: u32,
 ) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn K32GetWsChangesEx(
     hProcess: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cb" is the size in bytes
     lpWatchInfoEx: ?*PSAPI_WS_WATCH_INFORMATION_EX,
     cb: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -293,14 +293,14 @@ pub extern "kernel32" fn K32InitializeProcessForWsWatch(
 
 pub extern "kernel32" fn K32QueryWorkingSet(
     hProcess: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cb" is the size in bytes
     pv: ?*anyopaque,
     cb: u32,
 ) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn K32QueryWorkingSetEx(
     hProcess: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cb" is the size in bytes
     pv: ?*anyopaque,
     cb: u32,
 ) callconv(.winapi) BOOL;

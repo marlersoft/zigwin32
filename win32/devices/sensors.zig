@@ -930,7 +930,7 @@ pub extern "sensorsutilsv2" fn CollectionsListCopyAndMarshall(
 
 pub extern "sensorsutilsv2" fn CollectionsListDeserializeFromBuffer(
     SourceBufferSizeInBytes: u32,
-    // TODO: what to do with BytesParamIndex 0?
+    /// parameter "SourceBufferSizeInBytes" is the size in bytes
     SourceBuffer: ?*const u8,
     TargetCollection: ?*SENSOR_COLLECTION_LIST,
 ) callconv(.winapi) NTSTATUS;
@@ -958,7 +958,7 @@ pub extern "sensorsutilsv2" fn CollectionsListMarshall(
 pub extern "sensorsutilsv2" fn CollectionsListSerializeToBuffer(
     SourceCollection: ?*const SENSOR_COLLECTION_LIST,
     TargetBufferSizeInBytes: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "TargetBufferSizeInBytes" is the size in bytes
     TargetBuffer: ?*u8,
 ) callconv(.winapi) NTSTATUS;
 

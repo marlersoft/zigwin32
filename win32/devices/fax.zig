@@ -6626,10 +6626,10 @@ pub const IStiDevice = extern union {
         Escape: *const fn(
             self: *const IStiDevice,
             EscapeFunction: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "cbInDataSize" is the size in bytes
             lpInData: ?*anyopaque,
             cbInDataSize: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "dwOutDataSize" is the size in bytes
             pOutData: ?*anyopaque,
             dwOutDataSize: u32,
             pdwActualData: ?*u32,
@@ -6647,28 +6647,28 @@ pub const IStiDevice = extern union {
         ) callconv(.winapi) HRESULT,
         RawReadData: *const fn(
             self: *const IStiDevice,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "lpdwNumberOfBytes" is the size in bytes
             lpBuffer: ?*anyopaque,
             lpdwNumberOfBytes: ?*u32,
             lpOverlapped: ?*OVERLAPPED,
         ) callconv(.winapi) HRESULT,
         RawWriteData: *const fn(
             self: *const IStiDevice,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "nNumberOfBytes" is the size in bytes
             lpBuffer: ?*anyopaque,
             nNumberOfBytes: u32,
             lpOverlapped: ?*OVERLAPPED,
         ) callconv(.winapi) HRESULT,
         RawReadCommand: *const fn(
             self: *const IStiDevice,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "lpdwNumberOfBytes" is the size in bytes
             lpBuffer: ?*anyopaque,
             lpdwNumberOfBytes: ?*u32,
             lpOverlapped: ?*OVERLAPPED,
         ) callconv(.winapi) HRESULT,
         RawWriteCommand: *const fn(
             self: *const IStiDevice,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "nNumberOfBytes" is the size in bytes
             lpBuffer: ?*anyopaque,
             nNumberOfBytes: u32,
             lpOverlapped: ?*OVERLAPPED,
@@ -6884,7 +6884,7 @@ pub const IStillImageW = extern union {
             pwszDeviceName: ?PWSTR,
             pValueName: ?PWSTR,
             pType: ?*u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "cbData" is the size in bytes
             pData: ?*u8,
             cbData: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -6893,7 +6893,7 @@ pub const IStillImageW = extern union {
             pwszDeviceName: ?PWSTR,
             pValueName: ?PWSTR,
             Type: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "cbData" is the size in bytes
             pData: ?*u8,
             cbData: u32,
         ) callconv(.winapi) HRESULT,
@@ -7020,10 +7020,10 @@ pub const IStiUSD = extern union {
         Escape: *const fn(
             self: *const IStiUSD,
             EscapeFunction: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "cbInDataSize" is the size in bytes
             lpInData: ?*anyopaque,
             cbInDataSize: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "cbOutDataSize" is the size in bytes
             pOutData: ?*anyopaque,
             cbOutDataSize: u32,
             pdwActualData: ?*u32,
@@ -7040,28 +7040,28 @@ pub const IStiUSD = extern union {
         ) callconv(.winapi) HRESULT,
         RawReadData: *const fn(
             self: *const IStiUSD,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "lpdwNumberOfBytes" is the size in bytes
             lpBuffer: ?*anyopaque,
             lpdwNumberOfBytes: ?*u32,
             lpOverlapped: ?*OVERLAPPED,
         ) callconv(.winapi) HRESULT,
         RawWriteData: *const fn(
             self: *const IStiUSD,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "nNumberOfBytes" is the size in bytes
             lpBuffer: ?*anyopaque,
             nNumberOfBytes: u32,
             lpOverlapped: ?*OVERLAPPED,
         ) callconv(.winapi) HRESULT,
         RawReadCommand: *const fn(
             self: *const IStiUSD,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "lpdwNumberOfBytes" is the size in bytes
             lpBuffer: ?*anyopaque,
             lpdwNumberOfBytes: ?*u32,
             lpOverlapped: ?*OVERLAPPED,
         ) callconv(.winapi) HRESULT,
         RawWriteCommand: *const fn(
             self: *const IStiUSD,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "nNumberOfBytes" is the size in bytes
             lpBuffer: ?*anyopaque,
             nNumberOfBytes: u32,
             lpOverlapped: ?*OVERLAPPED,
@@ -7542,7 +7542,7 @@ pub const PFAXROUTEENUMFILES = *const fn(
 pub const PFAXROUTEGETFILE = *const fn(
     JobId: u32,
     Index: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "RequiredSize" is the size in bytes
     FileNameBuffer: ?PWSTR,
     RequiredSize: ?*u32,
 ) callconv(.winapi) BOOL;

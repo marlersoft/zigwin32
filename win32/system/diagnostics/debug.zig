@@ -6432,13 +6432,13 @@ pub const IDebugAdvanced = extern union {
         base: IUnknown.VTable,
         GetThreadContext: *const fn(
             self: *const IDebugAdvanced,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
         SetThreadContext: *const fn(
             self: *const IDebugAdvanced,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -6460,23 +6460,23 @@ pub const IDebugAdvanced2 = extern union {
         base: IUnknown.VTable,
         GetThreadContext: *const fn(
             self: *const IDebugAdvanced2,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
         SetThreadContext: *const fn(
             self: *const IDebugAdvanced2,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
         Request: *const fn(
             self: *const IDebugAdvanced2,
             Request: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "InBufferSize" is the size in bytes
             InBuffer: ?*anyopaque,
             InBufferSize: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "OutBufferSize" is the size in bytes
             OutBuffer: ?*anyopaque,
             OutBufferSize: u32,
             OutSize: ?*u32,
@@ -6487,7 +6487,7 @@ pub const IDebugAdvanced2 = extern union {
             SourceFile: ?PSTR,
             Arg64: u64,
             Arg32: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
@@ -6498,7 +6498,7 @@ pub const IDebugAdvanced2 = extern union {
             ModAddr: u64,
             File: ?[*:0]const u8,
             Flags: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "FileTokenSize" is the size in bytes
             FileToken: ?*anyopaque,
             FileTokenSize: u32,
             FoundElement: ?*u32,
@@ -6511,7 +6511,7 @@ pub const IDebugAdvanced2 = extern union {
             Which: u32,
             Arg64: u64,
             Arg32: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
@@ -6524,7 +6524,7 @@ pub const IDebugAdvanced2 = extern union {
             Which: u32,
             Arg64: u64,
             Arg32: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
@@ -6562,23 +6562,23 @@ pub const IDebugAdvanced3 = extern union {
         base: IUnknown.VTable,
         GetThreadContext: *const fn(
             self: *const IDebugAdvanced3,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
         SetThreadContext: *const fn(
             self: *const IDebugAdvanced3,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
         Request: *const fn(
             self: *const IDebugAdvanced3,
             Request: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "InBufferSize" is the size in bytes
             InBuffer: ?*anyopaque,
             InBufferSize: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "OutBufferSize" is the size in bytes
             OutBuffer: ?*anyopaque,
             OutBufferSize: u32,
             OutSize: ?*u32,
@@ -6589,7 +6589,7 @@ pub const IDebugAdvanced3 = extern union {
             SourceFile: ?PSTR,
             Arg64: u64,
             Arg32: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
@@ -6600,7 +6600,7 @@ pub const IDebugAdvanced3 = extern union {
             ModAddr: u64,
             File: ?[*:0]const u8,
             Flags: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "FileTokenSize" is the size in bytes
             FileToken: ?*anyopaque,
             FileTokenSize: u32,
             FoundElement: ?*u32,
@@ -6613,7 +6613,7 @@ pub const IDebugAdvanced3 = extern union {
             Which: u32,
             Arg64: u64,
             Arg32: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
@@ -6626,7 +6626,7 @@ pub const IDebugAdvanced3 = extern union {
             Which: u32,
             Arg64: u64,
             Arg32: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
@@ -6637,7 +6637,7 @@ pub const IDebugAdvanced3 = extern union {
             SourceFile: ?PWSTR,
             Arg64: u64,
             Arg32: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
@@ -6648,7 +6648,7 @@ pub const IDebugAdvanced3 = extern union {
             ModAddr: u64,
             File: ?[*:0]const u16,
             Flags: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "FileTokenSize" is the size in bytes
             FileToken: ?*anyopaque,
             FileTokenSize: u32,
             FoundElement: ?*u32,
@@ -6661,7 +6661,7 @@ pub const IDebugAdvanced3 = extern union {
             Which: u32,
             Arg64: u64,
             Arg32: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
@@ -6711,23 +6711,23 @@ pub const IDebugAdvanced4 = extern union {
         base: IUnknown.VTable,
         GetThreadContext: *const fn(
             self: *const IDebugAdvanced4,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
         SetThreadContext: *const fn(
             self: *const IDebugAdvanced4,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
         Request: *const fn(
             self: *const IDebugAdvanced4,
             Request: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "InBufferSize" is the size in bytes
             InBuffer: ?*anyopaque,
             InBufferSize: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "OutBufferSize" is the size in bytes
             OutBuffer: ?*anyopaque,
             OutBufferSize: u32,
             OutSize: ?*u32,
@@ -6738,7 +6738,7 @@ pub const IDebugAdvanced4 = extern union {
             SourceFile: ?PSTR,
             Arg64: u64,
             Arg32: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
@@ -6749,7 +6749,7 @@ pub const IDebugAdvanced4 = extern union {
             ModAddr: u64,
             File: ?[*:0]const u8,
             Flags: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "FileTokenSize" is the size in bytes
             FileToken: ?*anyopaque,
             FileTokenSize: u32,
             FoundElement: ?*u32,
@@ -6762,7 +6762,7 @@ pub const IDebugAdvanced4 = extern union {
             Which: u32,
             Arg64: u64,
             Arg32: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
@@ -6775,7 +6775,7 @@ pub const IDebugAdvanced4 = extern union {
             Which: u32,
             Arg64: u64,
             Arg32: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
@@ -6786,7 +6786,7 @@ pub const IDebugAdvanced4 = extern union {
             SourceFile: ?PWSTR,
             Arg64: u64,
             Arg32: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
@@ -6797,7 +6797,7 @@ pub const IDebugAdvanced4 = extern union {
             ModAddr: u64,
             File: ?[*:0]const u16,
             Flags: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "FileTokenSize" is the size in bytes
             FileToken: ?*anyopaque,
             FileTokenSize: u32,
             FoundElement: ?*u32,
@@ -6810,7 +6810,7 @@ pub const IDebugAdvanced4 = extern union {
             Which: u32,
             Arg64: u64,
             Arg32: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
@@ -6823,7 +6823,7 @@ pub const IDebugAdvanced4 = extern union {
             Which: u32,
             Arg64: u64,
             Arg32: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
@@ -10367,7 +10367,7 @@ pub const IDebugClient5 = extern union {
             self: *const IDebugClient5,
             Server: u64,
             CommandLine: ?PSTR,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u8,
@@ -10377,7 +10377,7 @@ pub const IDebugClient5 = extern union {
             self: *const IDebugClient5,
             Server: u64,
             CommandLine: ?PWSTR,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u16,
@@ -10387,7 +10387,7 @@ pub const IDebugClient5 = extern union {
             self: *const IDebugClient5,
             Server: u64,
             CommandLine: ?PSTR,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u8,
@@ -10399,7 +10399,7 @@ pub const IDebugClient5 = extern union {
             self: *const IDebugClient5,
             Server: u64,
             CommandLine: ?PWSTR,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u16,
@@ -11141,7 +11141,7 @@ pub const IDebugClient6 = extern union {
             self: *const IDebugClient6,
             Server: u64,
             CommandLine: ?PSTR,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u8,
@@ -11151,7 +11151,7 @@ pub const IDebugClient6 = extern union {
             self: *const IDebugClient6,
             Server: u64,
             CommandLine: ?PWSTR,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u16,
@@ -11161,7 +11161,7 @@ pub const IDebugClient6 = extern union {
             self: *const IDebugClient6,
             Server: u64,
             CommandLine: ?PSTR,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u8,
@@ -11173,7 +11173,7 @@ pub const IDebugClient6 = extern union {
             self: *const IDebugClient6,
             Server: u64,
             CommandLine: ?PWSTR,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u16,
@@ -11922,7 +11922,7 @@ pub const IDebugClient7 = extern union {
             self: *const IDebugClient7,
             Server: u64,
             CommandLine: ?PSTR,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u8,
@@ -11932,7 +11932,7 @@ pub const IDebugClient7 = extern union {
             self: *const IDebugClient7,
             Server: u64,
             CommandLine: ?PWSTR,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u16,
@@ -11942,7 +11942,7 @@ pub const IDebugClient7 = extern union {
             self: *const IDebugClient7,
             Server: u64,
             CommandLine: ?PSTR,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u8,
@@ -11954,7 +11954,7 @@ pub const IDebugClient7 = extern union {
             self: *const IDebugClient7,
             Server: u64,
             CommandLine: ?PWSTR,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u16,
@@ -12015,7 +12015,7 @@ pub const IDebugClient7 = extern union {
         ) callconv(.winapi) HRESULT,
         SetClientContext: *const fn(
             self: *const IDebugClient7,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -12712,7 +12712,7 @@ pub const IDebugClient8 = extern union {
             self: *const IDebugClient8,
             Server: u64,
             CommandLine: ?PSTR,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u8,
@@ -12722,7 +12722,7 @@ pub const IDebugClient8 = extern union {
             self: *const IDebugClient8,
             Server: u64,
             CommandLine: ?PWSTR,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u16,
@@ -12732,7 +12732,7 @@ pub const IDebugClient8 = extern union {
             self: *const IDebugClient8,
             Server: u64,
             CommandLine: ?PSTR,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u8,
@@ -12744,7 +12744,7 @@ pub const IDebugClient8 = extern union {
             self: *const IDebugClient8,
             Server: u64,
             CommandLine: ?PWSTR,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u16,
@@ -12805,7 +12805,7 @@ pub const IDebugClient8 = extern union {
         ) callconv(.winapi) HRESULT,
         SetClientContext: *const fn(
             self: *const IDebugClient8,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -13630,7 +13630,7 @@ pub const IDebugControl = extern union {
             Type: ?*u32,
             ProcessId: ?*u32,
             ThreadId: ?*u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "ExtraInformationSize" is the size in bytes
             ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
@@ -14420,7 +14420,7 @@ pub const IDebugControl2 = extern union {
             Type: ?*u32,
             ProcessId: ?*u32,
             ThreadId: ?*u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "ExtraInformationSize" is the size in bytes
             ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
@@ -15274,7 +15274,7 @@ pub const IDebugControl3 = extern union {
             Type: ?*u32,
             ProcessId: ?*u32,
             ThreadId: ?*u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "ExtraInformationSize" is the size in bytes
             ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
@@ -16231,7 +16231,7 @@ pub const IDebugControl4 = extern union {
             Type: ?*u32,
             ProcessId: ?*u32,
             ThreadId: ?*u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "ExtraInformationSize" is the size in bytes
             ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
@@ -16553,7 +16553,7 @@ pub const IDebugControl4 = extern union {
             Type: ?*u32,
             ProcessId: ?*u32,
             ThreadId: ?*u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "ExtraInformationSize" is the size in bytes
             ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
@@ -16647,12 +16647,12 @@ pub const IDebugControl4 = extern union {
         ) callconv(.winapi) HRESULT,
         GetContextStackTrace: *const fn(
             self: *const IDebugControl4,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "StartContextSize" is the size in bytes
             StartContext: ?*anyopaque,
             StartContextSize: u32,
             Frames: ?[*]DEBUG_STACK_FRAME,
             FramesSize: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "FrameContextsSize" is the size in bytes
             FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
@@ -16663,7 +16663,7 @@ pub const IDebugControl4 = extern union {
             OutputControl: u32,
             Frames: [*]DEBUG_STACK_FRAME,
             FramesSize: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "FrameContextsSize" is the size in bytes
             FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
@@ -16674,11 +16674,11 @@ pub const IDebugControl4 = extern union {
             Type: ?*u32,
             ProcessId: ?*u32,
             ThreadId: ?*u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
             ContextUsed: ?*u32,
-            // TODO: what to do with BytesParamIndex 7?
+            /// parameter "ExtraInformationSize" is the size in bytes
             ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
@@ -17707,7 +17707,7 @@ pub const IDebugControl5 = extern union {
             Type: ?*u32,
             ProcessId: ?*u32,
             ThreadId: ?*u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "ExtraInformationSize" is the size in bytes
             ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
@@ -18029,7 +18029,7 @@ pub const IDebugControl5 = extern union {
             Type: ?*u32,
             ProcessId: ?*u32,
             ThreadId: ?*u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "ExtraInformationSize" is the size in bytes
             ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
@@ -18123,12 +18123,12 @@ pub const IDebugControl5 = extern union {
         ) callconv(.winapi) HRESULT,
         GetContextStackTrace: *const fn(
             self: *const IDebugControl5,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "StartContextSize" is the size in bytes
             StartContext: ?*anyopaque,
             StartContextSize: u32,
             Frames: ?[*]DEBUG_STACK_FRAME,
             FramesSize: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "FrameContextsSize" is the size in bytes
             FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
@@ -18139,7 +18139,7 @@ pub const IDebugControl5 = extern union {
             OutputControl: u32,
             Frames: [*]DEBUG_STACK_FRAME,
             FramesSize: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "FrameContextsSize" is the size in bytes
             FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
@@ -18150,11 +18150,11 @@ pub const IDebugControl5 = extern union {
             Type: ?*u32,
             ProcessId: ?*u32,
             ThreadId: ?*u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
             ContextUsed: ?*u32,
-            // TODO: what to do with BytesParamIndex 7?
+            /// parameter "ExtraInformationSize" is the size in bytes
             ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
@@ -18197,12 +18197,12 @@ pub const IDebugControl5 = extern union {
         ) callconv(.winapi) HRESULT,
         GetContextStackTraceEx: *const fn(
             self: *const IDebugControl5,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "StartContextSize" is the size in bytes
             StartContext: ?*anyopaque,
             StartContextSize: u32,
             Frames: ?[*]DEBUG_STACK_FRAME_EX,
             FramesSize: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "FrameContextsSize" is the size in bytes
             FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
@@ -18213,7 +18213,7 @@ pub const IDebugControl5 = extern union {
             OutputControl: u32,
             Frames: [*]DEBUG_STACK_FRAME_EX,
             FramesSize: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "FrameContextsSize" is the size in bytes
             FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
@@ -19243,7 +19243,7 @@ pub const IDebugControl6 = extern union {
             Type: ?*u32,
             ProcessId: ?*u32,
             ThreadId: ?*u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "ExtraInformationSize" is the size in bytes
             ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
@@ -19565,7 +19565,7 @@ pub const IDebugControl6 = extern union {
             Type: ?*u32,
             ProcessId: ?*u32,
             ThreadId: ?*u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "ExtraInformationSize" is the size in bytes
             ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
@@ -19659,12 +19659,12 @@ pub const IDebugControl6 = extern union {
         ) callconv(.winapi) HRESULT,
         GetContextStackTrace: *const fn(
             self: *const IDebugControl6,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "StartContextSize" is the size in bytes
             StartContext: ?*anyopaque,
             StartContextSize: u32,
             Frames: ?[*]DEBUG_STACK_FRAME,
             FramesSize: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "FrameContextsSize" is the size in bytes
             FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
@@ -19675,7 +19675,7 @@ pub const IDebugControl6 = extern union {
             OutputControl: u32,
             Frames: [*]DEBUG_STACK_FRAME,
             FramesSize: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "FrameContextsSize" is the size in bytes
             FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
@@ -19686,11 +19686,11 @@ pub const IDebugControl6 = extern union {
             Type: ?*u32,
             ProcessId: ?*u32,
             ThreadId: ?*u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
             ContextUsed: ?*u32,
-            // TODO: what to do with BytesParamIndex 7?
+            /// parameter "ExtraInformationSize" is the size in bytes
             ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
@@ -19733,12 +19733,12 @@ pub const IDebugControl6 = extern union {
         ) callconv(.winapi) HRESULT,
         GetContextStackTraceEx: *const fn(
             self: *const IDebugControl6,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "StartContextSize" is the size in bytes
             StartContext: ?*anyopaque,
             StartContextSize: u32,
             Frames: ?[*]DEBUG_STACK_FRAME_EX,
             FramesSize: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "FrameContextsSize" is the size in bytes
             FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
@@ -19749,7 +19749,7 @@ pub const IDebugControl6 = extern union {
             OutputControl: u32,
             Frames: [*]DEBUG_STACK_FRAME_EX,
             FramesSize: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "FrameContextsSize" is the size in bytes
             FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
@@ -20794,7 +20794,7 @@ pub const IDebugControl7 = extern union {
             Type: ?*u32,
             ProcessId: ?*u32,
             ThreadId: ?*u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "ExtraInformationSize" is the size in bytes
             ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
@@ -21116,7 +21116,7 @@ pub const IDebugControl7 = extern union {
             Type: ?*u32,
             ProcessId: ?*u32,
             ThreadId: ?*u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "ExtraInformationSize" is the size in bytes
             ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
@@ -21210,12 +21210,12 @@ pub const IDebugControl7 = extern union {
         ) callconv(.winapi) HRESULT,
         GetContextStackTrace: *const fn(
             self: *const IDebugControl7,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "StartContextSize" is the size in bytes
             StartContext: ?*anyopaque,
             StartContextSize: u32,
             Frames: ?[*]DEBUG_STACK_FRAME,
             FramesSize: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "FrameContextsSize" is the size in bytes
             FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
@@ -21226,7 +21226,7 @@ pub const IDebugControl7 = extern union {
             OutputControl: u32,
             Frames: [*]DEBUG_STACK_FRAME,
             FramesSize: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "FrameContextsSize" is the size in bytes
             FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
@@ -21237,11 +21237,11 @@ pub const IDebugControl7 = extern union {
             Type: ?*u32,
             ProcessId: ?*u32,
             ThreadId: ?*u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
             ContextUsed: ?*u32,
-            // TODO: what to do with BytesParamIndex 7?
+            /// parameter "ExtraInformationSize" is the size in bytes
             ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
@@ -21284,12 +21284,12 @@ pub const IDebugControl7 = extern union {
         ) callconv(.winapi) HRESULT,
         GetContextStackTraceEx: *const fn(
             self: *const IDebugControl7,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "StartContextSize" is the size in bytes
             StartContext: ?*anyopaque,
             StartContextSize: u32,
             Frames: ?[*]DEBUG_STACK_FRAME_EX,
             FramesSize: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "FrameContextsSize" is the size in bytes
             FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
@@ -21300,7 +21300,7 @@ pub const IDebugControl7 = extern union {
             OutputControl: u32,
             Frames: [*]DEBUG_STACK_FRAME_EX,
             FramesSize: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "FrameContextsSize" is the size in bytes
             FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
@@ -21878,7 +21878,7 @@ pub const IDebugDataSpaces = extern union {
         ReadVirtual: *const fn(
             self: *const IDebugDataSpaces,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -21886,7 +21886,7 @@ pub const IDebugDataSpaces = extern union {
         WriteVirtual: *const fn(
             self: *const IDebugDataSpaces,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -21895,7 +21895,7 @@ pub const IDebugDataSpaces = extern union {
             self: *const IDebugDataSpaces,
             Offset: u64,
             Length: u64,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "PatternSize" is the size in bytes
             Pattern: ?*anyopaque,
             PatternSize: u32,
             PatternGranularity: u32,
@@ -21904,7 +21904,7 @@ pub const IDebugDataSpaces = extern union {
         ReadVirtualUncached: *const fn(
             self: *const IDebugDataSpaces,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -21912,7 +21912,7 @@ pub const IDebugDataSpaces = extern union {
         WriteVirtualUncached: *const fn(
             self: *const IDebugDataSpaces,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -21932,7 +21932,7 @@ pub const IDebugDataSpaces = extern union {
         ReadPhysical: *const fn(
             self: *const IDebugDataSpaces,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -21940,7 +21940,7 @@ pub const IDebugDataSpaces = extern union {
         WritePhysical: *const fn(
             self: *const IDebugDataSpaces,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -21949,7 +21949,7 @@ pub const IDebugDataSpaces = extern union {
             self: *const IDebugDataSpaces,
             Processor: u32,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -21958,7 +21958,7 @@ pub const IDebugDataSpaces = extern union {
             self: *const IDebugDataSpaces,
             Processor: u32,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -21969,7 +21969,7 @@ pub const IDebugDataSpaces = extern union {
             BusNumber: u32,
             AddressSpace: u32,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -21980,7 +21980,7 @@ pub const IDebugDataSpaces = extern union {
             BusNumber: u32,
             AddressSpace: u32,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22001,7 +22001,7 @@ pub const IDebugDataSpaces = extern union {
             BusNumber: u32,
             SlotNumber: u32,
             Offset: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -22012,7 +22012,7 @@ pub const IDebugDataSpaces = extern union {
             BusNumber: u32,
             SlotNumber: u32,
             Offset: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22023,7 +22023,7 @@ pub const IDebugDataSpaces = extern union {
         ReadDebuggerData: *const fn(
             self: *const IDebugDataSpaces,
             Index: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
@@ -22032,7 +22032,7 @@ pub const IDebugDataSpaces = extern union {
             self: *const IDebugDataSpaces,
             Processor: u32,
             Index: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
@@ -22110,7 +22110,7 @@ pub const IDebugDataSpaces2 = extern union {
         ReadVirtual: *const fn(
             self: *const IDebugDataSpaces2,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -22118,7 +22118,7 @@ pub const IDebugDataSpaces2 = extern union {
         WriteVirtual: *const fn(
             self: *const IDebugDataSpaces2,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22127,7 +22127,7 @@ pub const IDebugDataSpaces2 = extern union {
             self: *const IDebugDataSpaces2,
             Offset: u64,
             Length: u64,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "PatternSize" is the size in bytes
             Pattern: ?*anyopaque,
             PatternSize: u32,
             PatternGranularity: u32,
@@ -22136,7 +22136,7 @@ pub const IDebugDataSpaces2 = extern union {
         ReadVirtualUncached: *const fn(
             self: *const IDebugDataSpaces2,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -22144,7 +22144,7 @@ pub const IDebugDataSpaces2 = extern union {
         WriteVirtualUncached: *const fn(
             self: *const IDebugDataSpaces2,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22164,7 +22164,7 @@ pub const IDebugDataSpaces2 = extern union {
         ReadPhysical: *const fn(
             self: *const IDebugDataSpaces2,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -22172,7 +22172,7 @@ pub const IDebugDataSpaces2 = extern union {
         WritePhysical: *const fn(
             self: *const IDebugDataSpaces2,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22181,7 +22181,7 @@ pub const IDebugDataSpaces2 = extern union {
             self: *const IDebugDataSpaces2,
             Processor: u32,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -22190,7 +22190,7 @@ pub const IDebugDataSpaces2 = extern union {
             self: *const IDebugDataSpaces2,
             Processor: u32,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22201,7 +22201,7 @@ pub const IDebugDataSpaces2 = extern union {
             BusNumber: u32,
             AddressSpace: u32,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -22212,7 +22212,7 @@ pub const IDebugDataSpaces2 = extern union {
             BusNumber: u32,
             AddressSpace: u32,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22233,7 +22233,7 @@ pub const IDebugDataSpaces2 = extern union {
             BusNumber: u32,
             SlotNumber: u32,
             Offset: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -22244,7 +22244,7 @@ pub const IDebugDataSpaces2 = extern union {
             BusNumber: u32,
             SlotNumber: u32,
             Offset: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22255,7 +22255,7 @@ pub const IDebugDataSpaces2 = extern union {
         ReadDebuggerData: *const fn(
             self: *const IDebugDataSpaces2,
             Index: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
@@ -22264,7 +22264,7 @@ pub const IDebugDataSpaces2 = extern union {
             self: *const IDebugDataSpaces2,
             Processor: u32,
             Index: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
@@ -22285,7 +22285,7 @@ pub const IDebugDataSpaces2 = extern union {
             self: *const IDebugDataSpaces2,
             Handle: u64,
             DataType: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
@@ -22294,7 +22294,7 @@ pub const IDebugDataSpaces2 = extern union {
             self: *const IDebugDataSpaces2,
             Start: u64,
             Size: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "PatternSize" is the size in bytes
             Pattern: ?*anyopaque,
             PatternSize: u32,
             Filled: ?*u32,
@@ -22303,7 +22303,7 @@ pub const IDebugDataSpaces2 = extern union {
             self: *const IDebugDataSpaces2,
             Start: u64,
             Size: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "PatternSize" is the size in bytes
             Pattern: ?*anyopaque,
             PatternSize: u32,
             Filled: ?*u32,
@@ -22404,7 +22404,7 @@ pub const IDebugDataSpaces3 = extern union {
         ReadVirtual: *const fn(
             self: *const IDebugDataSpaces3,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -22412,7 +22412,7 @@ pub const IDebugDataSpaces3 = extern union {
         WriteVirtual: *const fn(
             self: *const IDebugDataSpaces3,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22421,7 +22421,7 @@ pub const IDebugDataSpaces3 = extern union {
             self: *const IDebugDataSpaces3,
             Offset: u64,
             Length: u64,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "PatternSize" is the size in bytes
             Pattern: ?*anyopaque,
             PatternSize: u32,
             PatternGranularity: u32,
@@ -22430,7 +22430,7 @@ pub const IDebugDataSpaces3 = extern union {
         ReadVirtualUncached: *const fn(
             self: *const IDebugDataSpaces3,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -22438,7 +22438,7 @@ pub const IDebugDataSpaces3 = extern union {
         WriteVirtualUncached: *const fn(
             self: *const IDebugDataSpaces3,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22458,7 +22458,7 @@ pub const IDebugDataSpaces3 = extern union {
         ReadPhysical: *const fn(
             self: *const IDebugDataSpaces3,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -22466,7 +22466,7 @@ pub const IDebugDataSpaces3 = extern union {
         WritePhysical: *const fn(
             self: *const IDebugDataSpaces3,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22475,7 +22475,7 @@ pub const IDebugDataSpaces3 = extern union {
             self: *const IDebugDataSpaces3,
             Processor: u32,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -22484,7 +22484,7 @@ pub const IDebugDataSpaces3 = extern union {
             self: *const IDebugDataSpaces3,
             Processor: u32,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22495,7 +22495,7 @@ pub const IDebugDataSpaces3 = extern union {
             BusNumber: u32,
             AddressSpace: u32,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -22506,7 +22506,7 @@ pub const IDebugDataSpaces3 = extern union {
             BusNumber: u32,
             AddressSpace: u32,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22527,7 +22527,7 @@ pub const IDebugDataSpaces3 = extern union {
             BusNumber: u32,
             SlotNumber: u32,
             Offset: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -22538,7 +22538,7 @@ pub const IDebugDataSpaces3 = extern union {
             BusNumber: u32,
             SlotNumber: u32,
             Offset: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22549,7 +22549,7 @@ pub const IDebugDataSpaces3 = extern union {
         ReadDebuggerData: *const fn(
             self: *const IDebugDataSpaces3,
             Index: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
@@ -22558,7 +22558,7 @@ pub const IDebugDataSpaces3 = extern union {
             self: *const IDebugDataSpaces3,
             Processor: u32,
             Index: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
@@ -22579,7 +22579,7 @@ pub const IDebugDataSpaces3 = extern union {
             self: *const IDebugDataSpaces3,
             Handle: u64,
             DataType: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
@@ -22588,7 +22588,7 @@ pub const IDebugDataSpaces3 = extern union {
             self: *const IDebugDataSpaces3,
             Start: u64,
             Size: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "PatternSize" is the size in bytes
             Pattern: ?*anyopaque,
             PatternSize: u32,
             Filled: ?*u32,
@@ -22597,7 +22597,7 @@ pub const IDebugDataSpaces3 = extern union {
             self: *const IDebugDataSpaces3,
             Start: u64,
             Size: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "PatternSize" is the size in bytes
             Pattern: ?*anyopaque,
             PatternSize: u32,
             Filled: ?*u32,
@@ -22616,7 +22616,7 @@ pub const IDebugDataSpaces3 = extern union {
             self: *const IDebugDataSpaces3,
             Tag: ?*Guid,
             Offset: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             TotalSize: ?*u32,
@@ -22741,7 +22741,7 @@ pub const IDebugDataSpaces4 = extern union {
         ReadVirtual: *const fn(
             self: *const IDebugDataSpaces4,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -22749,7 +22749,7 @@ pub const IDebugDataSpaces4 = extern union {
         WriteVirtual: *const fn(
             self: *const IDebugDataSpaces4,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22758,7 +22758,7 @@ pub const IDebugDataSpaces4 = extern union {
             self: *const IDebugDataSpaces4,
             Offset: u64,
             Length: u64,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "PatternSize" is the size in bytes
             Pattern: ?*anyopaque,
             PatternSize: u32,
             PatternGranularity: u32,
@@ -22767,7 +22767,7 @@ pub const IDebugDataSpaces4 = extern union {
         ReadVirtualUncached: *const fn(
             self: *const IDebugDataSpaces4,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -22775,7 +22775,7 @@ pub const IDebugDataSpaces4 = extern union {
         WriteVirtualUncached: *const fn(
             self: *const IDebugDataSpaces4,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22795,7 +22795,7 @@ pub const IDebugDataSpaces4 = extern union {
         ReadPhysical: *const fn(
             self: *const IDebugDataSpaces4,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -22803,7 +22803,7 @@ pub const IDebugDataSpaces4 = extern union {
         WritePhysical: *const fn(
             self: *const IDebugDataSpaces4,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22812,7 +22812,7 @@ pub const IDebugDataSpaces4 = extern union {
             self: *const IDebugDataSpaces4,
             Processor: u32,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -22821,7 +22821,7 @@ pub const IDebugDataSpaces4 = extern union {
             self: *const IDebugDataSpaces4,
             Processor: u32,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22832,7 +22832,7 @@ pub const IDebugDataSpaces4 = extern union {
             BusNumber: u32,
             AddressSpace: u32,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -22843,7 +22843,7 @@ pub const IDebugDataSpaces4 = extern union {
             BusNumber: u32,
             AddressSpace: u32,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22864,7 +22864,7 @@ pub const IDebugDataSpaces4 = extern union {
             BusNumber: u32,
             SlotNumber: u32,
             Offset: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -22875,7 +22875,7 @@ pub const IDebugDataSpaces4 = extern union {
             BusNumber: u32,
             SlotNumber: u32,
             Offset: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -22886,7 +22886,7 @@ pub const IDebugDataSpaces4 = extern union {
         ReadDebuggerData: *const fn(
             self: *const IDebugDataSpaces4,
             Index: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
@@ -22895,7 +22895,7 @@ pub const IDebugDataSpaces4 = extern union {
             self: *const IDebugDataSpaces4,
             Processor: u32,
             Index: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
@@ -22916,7 +22916,7 @@ pub const IDebugDataSpaces4 = extern union {
             self: *const IDebugDataSpaces4,
             Handle: u64,
             DataType: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
@@ -22925,7 +22925,7 @@ pub const IDebugDataSpaces4 = extern union {
             self: *const IDebugDataSpaces4,
             Start: u64,
             Size: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "PatternSize" is the size in bytes
             Pattern: ?*anyopaque,
             PatternSize: u32,
             Filled: ?*u32,
@@ -22934,7 +22934,7 @@ pub const IDebugDataSpaces4 = extern union {
             self: *const IDebugDataSpaces4,
             Start: u64,
             Size: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "PatternSize" is the size in bytes
             Pattern: ?*anyopaque,
             PatternSize: u32,
             Filled: ?*u32,
@@ -22953,7 +22953,7 @@ pub const IDebugDataSpaces4 = extern union {
             self: *const IDebugDataSpaces4,
             Tag: ?*Guid,
             Offset: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             TotalSize: ?*u32,
@@ -22977,7 +22977,7 @@ pub const IDebugDataSpaces4 = extern union {
             Space: u32,
             Which: u32,
             Offset: u64,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
@@ -22999,7 +22999,7 @@ pub const IDebugDataSpaces4 = extern union {
             Offset: u64,
             Length: u64,
             Flags: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "PatternSize" is the size in bytes
             Pattern: ?*anyopaque,
             PatternSize: u32,
             PatternGranularity: u32,
@@ -23043,7 +23043,7 @@ pub const IDebugDataSpaces4 = extern union {
             self: *const IDebugDataSpaces4,
             Offset: u64,
             Flags: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -23052,7 +23052,7 @@ pub const IDebugDataSpaces4 = extern union {
             self: *const IDebugDataSpaces4,
             Offset: u64,
             Flags: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -24095,7 +24095,7 @@ pub const IDebugEventContextCallbacks = extern union {
         Breakpoint: *const fn(
             self: *const IDebugEventContextCallbacks,
             Bp: ?*IDebugBreakpoint2,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -24103,7 +24103,7 @@ pub const IDebugEventContextCallbacks = extern union {
             self: *const IDebugEventContextCallbacks,
             Exception: ?*EXCEPTION_RECORD64,
             FirstChance: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -24112,14 +24112,14 @@ pub const IDebugEventContextCallbacks = extern union {
             Handle: u64,
             DataOffset: u64,
             StartOffset: u64,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
         ExitThread: *const fn(
             self: *const IDebugEventContextCallbacks,
             ExitCode: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -24136,14 +24136,14 @@ pub const IDebugEventContextCallbacks = extern union {
             InitialThreadHandle: u64,
             ThreadDataOffset: u64,
             StartOffset: u64,
-            // TODO: what to do with BytesParamIndex 12?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
         ExitProcess: *const fn(
             self: *const IDebugEventContextCallbacks,
             ExitCode: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -24156,7 +24156,7 @@ pub const IDebugEventContextCallbacks = extern union {
             ImageName: ?[*:0]const u16,
             CheckSum: u32,
             TimeDateStamp: u32,
-            // TODO: what to do with BytesParamIndex 8?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -24164,7 +24164,7 @@ pub const IDebugEventContextCallbacks = extern union {
             self: *const IDebugEventContextCallbacks,
             ImageBaseName: ?[*:0]const u16,
             BaseOffset: u64,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -24172,7 +24172,7 @@ pub const IDebugEventContextCallbacks = extern union {
             self: *const IDebugEventContextCallbacks,
             Error: u32,
             Level: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -24184,7 +24184,7 @@ pub const IDebugEventContextCallbacks = extern union {
             self: *const IDebugEventContextCallbacks,
             Flags: u32,
             Argument: u64,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -24192,7 +24192,7 @@ pub const IDebugEventContextCallbacks = extern union {
             self: *const IDebugEventContextCallbacks,
             Flags: u32,
             Argument: u64,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ContextSize" is the size in bytes
             Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -24704,7 +24704,7 @@ pub const IDebugHostMemory = extern union {
             self: *const IDebugHostMemory,
             context: ?*IDebugHostContext,
             location: Location,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "bufferSize" is the size in bytes
             buffer: ?*anyopaque,
             bufferSize: u64,
             bytesRead: ?*u64,
@@ -24713,7 +24713,7 @@ pub const IDebugHostMemory = extern union {
             self: *const IDebugHostMemory,
             context: ?*IDebugHostContext,
             location: Location,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "bufferSize" is the size in bytes
             buffer: ?*anyopaque,
             bufferSize: u64,
             bytesWritten: ?*u64,
@@ -26682,7 +26682,7 @@ pub const IDebugSymbols = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -26692,7 +26692,7 @@ pub const IDebugSymbols = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -26710,7 +26710,7 @@ pub const IDebugSymbols = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -26720,7 +26720,7 @@ pub const IDebugSymbols = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -26737,7 +26737,7 @@ pub const IDebugSymbols = extern union {
             self: *const IDebugSymbols,
             InstructionOffset: ?*u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ScopeContextSize" is the size in bytes
             ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -26745,7 +26745,7 @@ pub const IDebugSymbols = extern union {
             self: *const IDebugSymbols,
             InstructionOffset: u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ScopeContextSize" is the size in bytes
             ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -27153,7 +27153,7 @@ pub const IDebugSymbols2 = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -27163,7 +27163,7 @@ pub const IDebugSymbols2 = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -27181,7 +27181,7 @@ pub const IDebugSymbols2 = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -27191,7 +27191,7 @@ pub const IDebugSymbols2 = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -27208,7 +27208,7 @@ pub const IDebugSymbols2 = extern union {
             self: *const IDebugSymbols2,
             InstructionOffset: ?*u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ScopeContextSize" is the size in bytes
             ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -27216,7 +27216,7 @@ pub const IDebugSymbols2 = extern union {
             self: *const IDebugSymbols2,
             InstructionOffset: u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ScopeContextSize" is the size in bytes
             ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -27325,7 +27325,7 @@ pub const IDebugSymbols2 = extern union {
             Index: u32,
             Base: u64,
             Item: ?[*:0]const u8,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             VerInfoSize: ?*u32,
@@ -27701,7 +27701,7 @@ pub const IDebugSymbols3 = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -27711,7 +27711,7 @@ pub const IDebugSymbols3 = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -27729,7 +27729,7 @@ pub const IDebugSymbols3 = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -27739,7 +27739,7 @@ pub const IDebugSymbols3 = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -27756,7 +27756,7 @@ pub const IDebugSymbols3 = extern union {
             self: *const IDebugSymbols3,
             InstructionOffset: ?*u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ScopeContextSize" is the size in bytes
             ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -27764,7 +27764,7 @@ pub const IDebugSymbols3 = extern union {
             self: *const IDebugSymbols3,
             InstructionOffset: u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ScopeContextSize" is the size in bytes
             ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -27873,7 +27873,7 @@ pub const IDebugSymbols3 = extern union {
             Index: u32,
             Base: u64,
             Item: ?[*:0]const u8,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             VerInfoSize: ?*u32,
@@ -28095,7 +28095,7 @@ pub const IDebugSymbols3 = extern union {
             Index: u32,
             Base: u64,
             Item: ?[*:0]const u16,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             VerInfoSize: ?*u32,
@@ -28202,7 +28202,7 @@ pub const IDebugSymbols3 = extern union {
             self: *const IDebugSymbols3,
             Offset: u64,
             Flags: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BufferNeeded: ?*u32,
@@ -28891,7 +28891,7 @@ pub const IDebugSymbols4 = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -28901,7 +28901,7 @@ pub const IDebugSymbols4 = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -28919,7 +28919,7 @@ pub const IDebugSymbols4 = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -28929,7 +28929,7 @@ pub const IDebugSymbols4 = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -28946,7 +28946,7 @@ pub const IDebugSymbols4 = extern union {
             self: *const IDebugSymbols4,
             InstructionOffset: ?*u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ScopeContextSize" is the size in bytes
             ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -28954,7 +28954,7 @@ pub const IDebugSymbols4 = extern union {
             self: *const IDebugSymbols4,
             InstructionOffset: u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ScopeContextSize" is the size in bytes
             ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -29063,7 +29063,7 @@ pub const IDebugSymbols4 = extern union {
             Index: u32,
             Base: u64,
             Item: ?[*:0]const u8,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             VerInfoSize: ?*u32,
@@ -29285,7 +29285,7 @@ pub const IDebugSymbols4 = extern union {
             Index: u32,
             Base: u64,
             Item: ?[*:0]const u16,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             VerInfoSize: ?*u32,
@@ -29392,7 +29392,7 @@ pub const IDebugSymbols4 = extern union {
             self: *const IDebugSymbols4,
             Offset: u64,
             Flags: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BufferNeeded: ?*u32,
@@ -29559,7 +29559,7 @@ pub const IDebugSymbols4 = extern union {
             self: *const IDebugSymbols4,
             InstructionOffset: ?*u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME_EX,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ScopeContextSize" is the size in bytes
             ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -29567,7 +29567,7 @@ pub const IDebugSymbols4 = extern union {
             self: *const IDebugSymbols4,
             InstructionOffset: u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME_EX,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ScopeContextSize" is the size in bytes
             ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -30163,7 +30163,7 @@ pub const IDebugSymbols5 = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -30173,7 +30173,7 @@ pub const IDebugSymbols5 = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -30191,7 +30191,7 @@ pub const IDebugSymbols5 = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
@@ -30201,7 +30201,7 @@ pub const IDebugSymbols5 = extern union {
             Offset: u64,
             Module: u64,
             TypeId: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
@@ -30218,7 +30218,7 @@ pub const IDebugSymbols5 = extern union {
             self: *const IDebugSymbols5,
             InstructionOffset: ?*u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ScopeContextSize" is the size in bytes
             ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -30226,7 +30226,7 @@ pub const IDebugSymbols5 = extern union {
             self: *const IDebugSymbols5,
             InstructionOffset: u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ScopeContextSize" is the size in bytes
             ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -30335,7 +30335,7 @@ pub const IDebugSymbols5 = extern union {
             Index: u32,
             Base: u64,
             Item: ?[*:0]const u8,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             VerInfoSize: ?*u32,
@@ -30557,7 +30557,7 @@ pub const IDebugSymbols5 = extern union {
             Index: u32,
             Base: u64,
             Item: ?[*:0]const u16,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             VerInfoSize: ?*u32,
@@ -30664,7 +30664,7 @@ pub const IDebugSymbols5 = extern union {
             self: *const IDebugSymbols5,
             Offset: u64,
             Flags: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "BufferSize" is the size in bytes
             Buffer: ?*anyopaque,
             BufferSize: u32,
             BufferNeeded: ?*u32,
@@ -30831,7 +30831,7 @@ pub const IDebugSymbols5 = extern union {
             self: *const IDebugSymbols5,
             InstructionOffset: ?*u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME_EX,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ScopeContextSize" is the size in bytes
             ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -30839,7 +30839,7 @@ pub const IDebugSymbols5 = extern union {
             self: *const IDebugSymbols5,
             InstructionOffset: u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME_EX,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "ScopeContextSize" is the size in bytes
             ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -37913,7 +37913,7 @@ pub const PointerManagedReference = PointerKind.ManagedReference;
 pub const PREAD_PROCESS_MEMORY_ROUTINE64 = *const fn(
     hProcess: ?HANDLE,
     qwBaseAddress: u64,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     nSize: u32,
     lpNumberOfBytesRead: ?*u32,
@@ -40870,7 +40870,7 @@ pub const PREAD_PROCESS_MEMORY_ROUTINE = switch(@import("../../zig.zig").arch) {
     .X86 => *const fn(
         hProcess: ?HANDLE,
         lpBaseAddress: u32,
-        // TODO: what to do with BytesParamIndex 3?
+        /// parameter "nSize" is the size in bytes
         lpBuffer: ?*anyopaque,
         nSize: u32,
         lpNumberOfBytesRead: ?*u32,
@@ -41336,7 +41336,7 @@ pub extern "dbghelp" fn FindFileInSearchPath(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn FlushInstructionCache(
     hProcess: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwSize" is the size in bytes
     lpBaseAddress: ?*const anyopaque,
     dwSize: usize,
 ) callconv(.winapi) BOOL;
@@ -41594,7 +41594,7 @@ pub extern "imagehlp" fn ImageUnload(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "kernel32" fn InitializeContext(
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ContextLength" is the size in bytes
     Buffer: ?*anyopaque,
     ContextFlags: u32,
     Context: ?*?*CONTEXT,
@@ -41602,7 +41602,7 @@ pub extern "kernel32" fn InitializeContext(
 ) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn InitializeContext2(
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ContextLength" is the size in bytes
     Buffer: ?*anyopaque,
     ContextFlags: u32,
     Context: ?*?*CONTEXT,
@@ -41712,7 +41712,7 @@ pub extern "kernel32" fn RaiseFailFastException(
 pub extern "dbghelp" fn RangeMapAddPeImageSections(
     RmapHandle: ?*anyopaque,
     ImageName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "MappingBytes" is the size in bytes
     MappedImage: ?*anyopaque,
     MappingBytes: u32,
     ImageBase: u64,
@@ -41730,7 +41730,7 @@ pub extern "dbghelp" fn RangeMapFree(
 pub extern "dbghelp" fn RangeMapRead(
     RmapHandle: ?*anyopaque,
     Offset: u64,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "RequestBytes" is the size in bytes
     Buffer: ?*anyopaque,
     RequestBytes: u32,
     Flags: u32,
@@ -41745,7 +41745,7 @@ pub extern "dbghelp" fn RangeMapRemove(
 pub extern "dbghelp" fn RangeMapWrite(
     RmapHandle: ?*anyopaque,
     Offset: u64,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "RequestBytes" is the size in bytes
     Buffer: ?*anyopaque,
     RequestBytes: u32,
     Flags: u32,
@@ -41756,7 +41756,7 @@ pub extern "dbghelp" fn RangeMapWrite(
 pub extern "kernel32" fn ReadProcessMemory(
     hProcess: ?HANDLE,
     lpBaseAddress: ?*const anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     nSize: usize,
     lpNumberOfBytesRead: ?*usize,
@@ -42186,7 +42186,7 @@ pub extern "dbghelp" fn SymAddSourceStream(
     hProcess: ?HANDLE,
     Base: u64,
     StreamFile: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "Size" is the size in bytes
     Buffer: ?*u8,
     Size: usize,
 ) callconv(.winapi) BOOL;
@@ -42195,7 +42195,7 @@ pub extern "dbghelp" fn SymAddSourceStreamA(
     hProcess: ?HANDLE,
     Base: u64,
     StreamFile: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "Size" is the size in bytes
     Buffer: ?*u8,
     Size: usize,
 ) callconv(.winapi) BOOL;
@@ -42204,7 +42204,7 @@ pub extern "dbghelp" fn SymAddSourceStreamW(
     hProcess: ?HANDLE,
     Base: u64,
     FileSpec: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "Size" is the size in bytes
     Buffer: ?*u8,
     Size: usize,
 ) callconv(.winapi) BOOL;
@@ -43121,7 +43121,7 @@ pub extern "dbghelp" fn SymGetTypeInfoEx(
 pub extern "dbghelp" fn SymGetUnwindInfo(
     hProcess: ?HANDLE,
     Address: u64,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "Size" is the size in bytes
     Buffer: ?*anyopaque,
     Size: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -43597,7 +43597,7 @@ pub extern "kernel32" fn Wow64SetThreadContext(
 pub extern "kernel32" fn WriteProcessMemory(
     hProcess: ?HANDLE,
     lpBaseAddress: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nSize" is the size in bytes
     lpBuffer: ?*const anyopaque,
     nSize: usize,
     lpNumberOfBytesWritten: ?*usize,

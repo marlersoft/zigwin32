@@ -6102,7 +6102,7 @@ pub extern "user32" fn CreateIcon(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateIconFromResource(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "dwResSize" is the size in bytes
     presbits: ?*u8,
     dwResSize: u32,
     fIcon: BOOL,
@@ -6111,7 +6111,7 @@ pub extern "user32" fn CreateIconFromResource(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateIconFromResourceEx(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "dwResSize" is the size in bytes
     presbits: ?*u8,
     dwResSize: u32,
     fIcon: BOOL,
@@ -7542,7 +7542,7 @@ pub extern "mrmsupport" fn MrmCreateResourceIndexerFromPreviousPriData(
     projectRoot: ?[*:0]const u16,
     platformVersion: MrmPlatformVersion,
     defaultQualifiers: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "priSize" is the size in bytes
     priData: ?*u8,
     priSize: u32,
     indexer: ?*MrmResourceIndexerHandle,
@@ -7560,7 +7560,7 @@ pub extern "mrmsupport" fn MrmCreateResourceIndexerFromPreviousSchemaData(
     projectRoot: ?[*:0]const u16,
     platformVersion: MrmPlatformVersion,
     defaultQualifiers: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "schemaXmlSize" is the size in bytes
     schemaXmlData: ?*u8,
     schemaXmlSize: u32,
     indexer: ?*MrmResourceIndexerHandle,
@@ -7588,10 +7588,10 @@ pub extern "mrmsupport" fn MrmDestroyIndexerAndMessages(
 ) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmDumpPriDataInMemory(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "inputPriSize" is the size in bytes
     inputPriData: ?*u8,
     inputPriSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "schemaPriSize" is the size in bytes
     schemaPriData: ?*u8,
     schemaPriSize: u32,
     dumpType: MrmDumpType,
@@ -7626,7 +7626,7 @@ pub extern "mrmsupport" fn MrmGetPriFileContentChecksum(
 pub extern "mrmsupport" fn MrmIndexEmbeddedData(
     indexer: MrmResourceIndexerHandle,
     resourceUri: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "embeddedDataSize" is the size in bytes
     embeddedData: ?*const u8,
     embeddedDataSize: u32,
     qualifiers: ?[*:0]const u16,

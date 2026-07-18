@@ -372,7 +372,7 @@ pub const IXAPO = extern union {
         ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IXAPO,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "DataByteSize" is the size in bytes
             pData: ?*const anyopaque,
             DataByteSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -486,13 +486,13 @@ pub const IXAPOParameters = extern union {
         base: IUnknown.VTable,
         SetParameters: *const fn(
             self: *const IXAPOParameters,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "ParameterByteSize" is the size in bytes
             pParameters: ?*const anyopaque,
             ParameterByteSize: u32,
         ) callconv(.winapi) void,
         GetParameters: *const fn(
             self: *const IXAPOParameters,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "ParameterByteSize" is the size in bytes
             pParameters: ?*anyopaque,
             ParameterByteSize: u32,
         ) callconv(.winapi) void,
@@ -790,7 +790,7 @@ pub const IXAudio2Voice = extern union {
         SetEffectParameters: *const fn(
             self: *const IXAudio2Voice,
             EffectIndex: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "ParametersByteSize" is the size in bytes
             pParameters: ?*const anyopaque,
             ParametersByteSize: u32,
             OperationSet: u32,
@@ -798,7 +798,7 @@ pub const IXAudio2Voice = extern union {
         GetEffectParameters: *const fn(
             self: *const IXAudio2Voice,
             EffectIndex: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "ParametersByteSize" is the size in bytes
             pParameters: ?*anyopaque,
             ParametersByteSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -1168,7 +1168,7 @@ pub extern "xaudio2_8" fn CreateAudioVolumeMeter(
 pub extern "xaudio2_8" fn CreateFX(
     clsid: ?*const Guid,
     pEffect: ?*?*IUnknown,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "InitDataByteSize" is the size in bytes
     pInitDat: ?*const anyopaque,
     InitDataByteSize: u32,
 ) callconv(.winapi) HRESULT;

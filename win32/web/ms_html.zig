@@ -73359,7 +73359,7 @@ pub extern "msrating" fn RatingAccessDeniedDialogW(
 pub extern "msrating" fn RatingAddToApprovedSites(
     hDlg: ?HWND,
     cbPasswordBlob: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbPasswordBlob" is the size in bytes
     pbPasswordBlob: ?*u8,
     lpszUrl: ?[*:0]const u16,
     fAlwaysNever: BOOL,
@@ -73371,7 +73371,7 @@ pub extern "msrating" fn RatingCheckUserAccess(
     pszUsername: ?[*:0]const u8,
     pszURL: ?[*:0]const u8,
     pszRatingInfo: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbData" is the size in bytes
     pData: ?*u8,
     cbData: u32,
     ppRatingDetails: ?*?*anyopaque,
@@ -73381,7 +73381,7 @@ pub extern "msrating" fn RatingCheckUserAccessW(
     pszUsername: ?[*:0]const u16,
     pszURL: ?[*:0]const u16,
     pszRatingInfo: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbData" is the size in bytes
     pData: ?*u8,
     cbData: u32,
     ppRatingDetails: ?*?*anyopaque,

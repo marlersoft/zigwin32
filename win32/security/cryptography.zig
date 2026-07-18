@@ -6831,7 +6831,7 @@ pub const CryptXmlDllCreateKey = *const fn(
 
 pub const CryptXmlDllDigestData = *const fn(
     hDigest: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbData" is the size in bytes
     pbData: ?*const u8,
     cbData: u32,
 ) callconv(.winapi) HRESULT;
@@ -6852,7 +6852,7 @@ pub const CryptXmlDllEncodeKeyValue = *const fn(
 
 pub const CryptXmlDllFinalizeDigest = *const fn(
     hDigest: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbDigest" is the size in bytes
     pbDigest: ?*u8,
     cbDigest: u32,
 ) callconv(.winapi) HRESULT;
@@ -6872,10 +6872,10 @@ pub const CryptXmlDllSignData = *const fn(
     pSignatureMethod: ?*const CRYPT_XML_ALGORITHM,
     hCryptProvOrNCryptKey: HCRYPTPROV_OR_NCRYPT_KEY_HANDLE,
     dwKeySpec: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbInput" is the size in bytes
     pbInput: ?*const u8,
     cbInput: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbOutput" is the size in bytes
     pbOutput: ?*u8,
     cbOutput: u32,
     pcbResult: ?*u32,
@@ -6884,10 +6884,10 @@ pub const CryptXmlDllSignData = *const fn(
 pub const CryptXmlDllVerifySignature = *const fn(
     pSignatureMethod: ?*const CRYPT_XML_ALGORITHM,
     hKey: BCRYPT_KEY_HANDLE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbInput" is the size in bytes
     pbInput: ?*const u8,
     cbInput: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbSignature" is the size in bytes
     pbSignature: ?*const u8,
     cbSignature: u32,
 ) callconv(.winapi) HRESULT;
@@ -8094,7 +8094,7 @@ pub const PaddingMode = enum(i32) {
 pub const PCRYPT_DECRYPT_PRIVATE_KEY_FUNC = *const fn(
     Algorithm: CRYPT_ALGORITHM_IDENTIFIER,
     EncryptedPrivateKey: CRYPT_INTEGER_BLOB,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbClearTextKey" is the size in bytes
     pbClearTextKey: ?*u8,
     pcbClearTextKey: ?*u32,
     pVoidDecryptFunc: ?*anyopaque,
@@ -8103,7 +8103,7 @@ pub const PCRYPT_DECRYPT_PRIVATE_KEY_FUNC = *const fn(
 pub const PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC = *const fn(
     pAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
     pClearTextPrivateKey: ?*CRYPT_INTEGER_BLOB,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbEncryptedKey" is the size in bytes
     pbEncryptedKey: ?*u8,
     pcbEncryptedKey: ?*u32,
     pVoidEncryptFunc: ?*anyopaque,
@@ -8266,7 +8266,7 @@ pub const PFN_CERT_STORE_PROV_GET_CERT_PROPERTY = *const fn(
     pCertContext: ?*const CERT_CONTEXT,
     dwPropId: u32,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -8276,7 +8276,7 @@ pub const PFN_CERT_STORE_PROV_GET_CRL_PROPERTY = *const fn(
     pCrlContext: ?*CRL_CONTEXT,
     dwPropId: u32,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -8286,7 +8286,7 @@ pub const PFN_CERT_STORE_PROV_GET_CTL_PROPERTY = *const fn(
     pCtlContext: ?*CTL_CONTEXT,
     dwPropId: u32,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -8382,7 +8382,7 @@ pub const PFN_CMSG_EXPORT_ENCRYPT_KEY = *const fn(
     hCryptProv: usize,
     hEncryptKey: usize,
     pPublicKeyInfo: ?*CERT_PUBLIC_KEY_INFO,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbData" is the size in bytes
     pbData: ?*u8,
     pcbData: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -8437,7 +8437,7 @@ pub const PFN_CMSG_IMPORT_ENCRYPT_KEY = *const fn(
     dwKeySpec: u32,
     paiEncrypt: ?*CRYPT_ALGORITHM_IDENTIFIER,
     paiPubKey: ?*CRYPT_ALGORITHM_IDENTIFIER,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbEncodedKey" is the size in bytes
     pbEncodedKey: ?*u8,
     cbEncodedKey: u32,
     phEncryptKey: ?*usize,
@@ -8469,7 +8469,7 @@ pub const PFN_CMSG_IMPORT_MAIL_LIST = *const fn(
 
 pub const PFN_CMSG_STREAM_OUTPUT = *const fn(
     pvArg: ?*const anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbData" is the size in bytes
     pbData: ?*u8,
     cbData: u32,
     fFinal: BOOL,
@@ -8531,7 +8531,7 @@ pub const PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC = *const fn(
     pszPublicKeyObjId: ?PSTR,
     dwFlags: u32,
     pvAuxInfo: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbInfo" is the size in bytes
     pInfo: ?*CERT_PUBLIC_KEY_INFO,
     pcbInfo: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -8542,7 +8542,7 @@ pub const PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC = *const fn(
     pszPublicKeyObjId: ?PSTR,
     dwFlags: u32,
     pvAuxInfo: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbInfo" is the size in bytes
     pInfo: ?*CERT_PUBLIC_KEY_INFO,
     pcbInfo: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -8617,10 +8617,10 @@ pub const PFN_CRYPT_SIGN_AND_ENCODE_HASH_FUNC = *const fn(
     pvDecodedSignPara: ?*anyopaque,
     pwszCNGPubKeyAlgid: ?[*:0]const u16,
     pwszCNGHashAlgid: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "cbComputedHash" is the size in bytes
     pbComputedHash: ?*u8,
     cbComputedHash: u32,
-    // TODO: what to do with BytesParamIndex 9?
+    /// parameter "pcbSignature" is the size in bytes
     pbSignature: ?*u8,
     pcbSignature: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -8632,10 +8632,10 @@ pub const PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC = *const fn(
     pvDecodedSignPara: ?*anyopaque,
     pwszCNGPubKeyAlgid: ?[*:0]const u16,
     pwszCNGHashAlgid: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "cbComputedHash" is the size in bytes
     pbComputedHash: ?*u8,
     cbComputedHash: u32,
-    // TODO: what to do with BytesParamIndex 9?
+    /// parameter "cbSignature" is the size in bytes
     pbSignature: ?*u8,
     cbSignature: u32,
 ) callconv(.winapi) BOOL;
@@ -8652,7 +8652,7 @@ pub const PFN_CRYPT_XML_DATA_PROVIDER_CLOSE = *const fn(
 
 pub const PFN_CRYPT_XML_DATA_PROVIDER_READ = *const fn(
     pvCallbackState: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbData" is the size in bytes
     pbData: ?*u8,
     cbData: u32,
     pcbRead: ?*u32,
@@ -8665,7 +8665,7 @@ pub const PFN_CRYPT_XML_ENUM_ALG_INFO = *const fn(
 
 pub const PFN_CRYPT_XML_WRITE_CALLBACK = *const fn(
     pvCallbackState: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbData" is the size in bytes
     pbData: ?*const u8,
     cbData: u32,
 ) callconv(.winapi) HRESULT;
@@ -8676,7 +8676,7 @@ pub const PFN_EXPORT_PRIV_KEY_FUNC = *const fn(
     pszPrivateKeyObjId: ?PSTR,
     dwFlags: u32,
     pvAuxInfo: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbPrivateKeyInfo" is the size in bytes
     pPrivateKeyInfo: ?*CRYPT_PRIVATE_KEY_INFO,
     pcbPrivateKeyInfo: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -8712,7 +8712,7 @@ pub const PFN_NCRYPT_FREE = *const fn(
 
 pub const PFNCryptStreamOutputCallback = *const fn(
     pvCallbackCtxt: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbData" is the size in bytes
     pbData: ?*const u8,
     cbData: usize,
     fFinal: BOOL,
@@ -8720,7 +8720,7 @@ pub const PFNCryptStreamOutputCallback = *const fn(
 
 pub const PFNCryptStreamOutputCallbackEx = *const fn(
     pvCallbackCtxt: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbData" is the size in bytes
     pbData: ?*const u8,
     cbData: usize,
     hDescriptor: NCRYPT_DESCRIPTOR_HANDLE,
@@ -8907,10 +8907,10 @@ pub extern "bcrypt" fn BCryptCreateContext(
 pub extern "bcrypt" fn BCryptCreateHash(
     hAlgorithm: BCRYPT_ALG_HANDLE,
     phHash: ?*BCRYPT_HASH_HANDLE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbHashObject" is the size in bytes
     pbHashObject: ?*u8,
     cbHashObject: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbSecret" is the size in bytes
     pbSecret: ?*u8,
     cbSecret: u32,
     dwFlags: u32,
@@ -8921,10 +8921,10 @@ pub extern "bcrypt" fn BCryptCreateMultiHash(
     hAlgorithm: BCRYPT_ALG_HANDLE,
     phHash: ?*BCRYPT_HASH_HANDLE,
     nHashes: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbHashObject" is the size in bytes
     pbHashObject: ?*u8,
     cbHashObject: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbSecret" is the size in bytes
     pbSecret: ?*u8,
     cbSecret: u32,
     dwFlags: u32,
@@ -8933,14 +8933,14 @@ pub extern "bcrypt" fn BCryptCreateMultiHash(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptDecrypt(
     hKey: BCRYPT_KEY_HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbInput" is the size in bytes
     pbInput: ?*u8,
     cbInput: u32,
     pPaddingInfo: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbIV" is the size in bytes
     pbIV: ?*u8,
     cbIV: u32,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "cbOutput" is the size in bytes
     pbOutput: ?*u8,
     cbOutput: u32,
     pcbResult: ?*u32,
@@ -8958,7 +8958,7 @@ pub extern "bcrypt" fn BCryptDeriveKey(
     hSharedSecret: BCRYPT_SECRET_HANDLE,
     pwszKDF: ?[*:0]const u16,
     pParameterList: ?*BCryptBufferDesc,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbDerivedKey" is the size in bytes
     pbDerivedKey: ?*u8,
     cbDerivedKey: u32,
     pcbResult: ?*u32,
@@ -8969,7 +8969,7 @@ pub extern "bcrypt" fn BCryptDeriveKey(
 pub extern "bcrypt" fn BCryptDeriveKeyCapi(
     hHash: BCRYPT_HASH_HANDLE,
     hTargetAlg: BCRYPT_ALG_HANDLE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbDerivedKey" is the size in bytes
     pbDerivedKey: ?*u8,
     cbDerivedKey: u32,
     dwFlags: u32,
@@ -8978,14 +8978,14 @@ pub extern "bcrypt" fn BCryptDeriveKeyCapi(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "bcrypt" fn BCryptDeriveKeyPBKDF2(
     hPrf: BCRYPT_ALG_HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbPassword" is the size in bytes
     pbPassword: ?*u8,
     cbPassword: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbSalt" is the size in bytes
     pbSalt: ?*u8,
     cbSalt: u32,
     cIterations: u64,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "cbDerivedKey" is the size in bytes
     pbDerivedKey: ?*u8,
     cbDerivedKey: u32,
     dwFlags: u32,
@@ -9010,7 +9010,7 @@ pub extern "bcrypt" fn BCryptDestroySecret(
 pub extern "bcrypt" fn BCryptDuplicateHash(
     hHash: BCRYPT_HASH_HANDLE,
     phNewHash: ?*BCRYPT_HASH_HANDLE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbHashObject" is the size in bytes
     pbHashObject: ?*u8,
     cbHashObject: u32,
     dwFlags: u32,
@@ -9020,7 +9020,7 @@ pub extern "bcrypt" fn BCryptDuplicateHash(
 pub extern "bcrypt" fn BCryptDuplicateKey(
     hKey: BCRYPT_KEY_HANDLE,
     phNewKey: ?*BCRYPT_KEY_HANDLE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbKeyObject" is the size in bytes
     pbKeyObject: ?*u8,
     cbKeyObject: u32,
     dwFlags: u32,
@@ -9029,14 +9029,14 @@ pub extern "bcrypt" fn BCryptDuplicateKey(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptEncrypt(
     hKey: BCRYPT_KEY_HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbInput" is the size in bytes
     pbInput: ?*u8,
     cbInput: u32,
     pPaddingInfo: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbIV" is the size in bytes
     pbIV: ?*u8,
     cbIV: u32,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "cbOutput" is the size in bytes
     pbOutput: ?*u8,
     cbOutput: u32,
     pcbResult: ?*u32,
@@ -9058,7 +9058,7 @@ pub extern "bcrypt" fn BCryptEnumContextFunctionProviders(
     dwInterface: BCRYPT_INTERFACE,
     pszFunction: ?[*:0]const u16,
     pcbBuffer: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbBuffer" is the size in bytes
     ppBuffer: ?*?*CRYPT_CONTEXT_FUNCTION_PROVIDERS,
 ) callconv(.winapi) NTSTATUS;
 
@@ -9068,7 +9068,7 @@ pub extern "bcrypt" fn BCryptEnumContextFunctions(
     pszContext: ?[*:0]const u16,
     dwInterface: BCRYPT_INTERFACE,
     pcbBuffer: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbBuffer" is the size in bytes
     ppBuffer: ?*?*CRYPT_CONTEXT_FUNCTIONS,
 ) callconv(.winapi) NTSTATUS;
 
@@ -9076,7 +9076,7 @@ pub extern "bcrypt" fn BCryptEnumContextFunctions(
 pub extern "bcrypt" fn BCryptEnumContexts(
     dwTable: BCRYPT_TABLE,
     pcbBuffer: ?*u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "pcbBuffer" is the size in bytes
     ppBuffer: ?*?*CRYPT_CONTEXTS,
 ) callconv(.winapi) NTSTATUS;
 
@@ -9091,7 +9091,7 @@ pub extern "bcrypt" fn BCryptEnumProviders(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptEnumRegisteredProviders(
     pcbBuffer: ?*u32,
-    // TODO: what to do with BytesParamIndex 0?
+    /// parameter "pcbBuffer" is the size in bytes
     ppBuffer: ?*?*CRYPT_PROVIDERS,
 ) callconv(.winapi) NTSTATUS;
 
@@ -9100,7 +9100,7 @@ pub extern "bcrypt" fn BCryptExportKey(
     hKey: BCRYPT_KEY_HANDLE,
     hExportKey: BCRYPT_KEY_HANDLE,
     pszBlobType: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbOutput" is the size in bytes
     pbOutput: ?*u8,
     cbOutput: u32,
     pcbResult: ?*u32,
@@ -9116,7 +9116,7 @@ pub extern "bcrypt" fn BCryptFinalizeKeyPair(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptFinishHash(
     hHash: BCRYPT_HASH_HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbOutput" is the size in bytes
     pbOutput: ?*u8,
     cbOutput: u32,
     dwFlags: u32,
@@ -9139,10 +9139,10 @@ pub extern "bcrypt" fn BCryptGenerateKeyPair(
 pub extern "bcrypt" fn BCryptGenerateSymmetricKey(
     hAlgorithm: BCRYPT_ALG_HANDLE,
     phKey: ?*BCRYPT_KEY_HANDLE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbKeyObject" is the size in bytes
     pbKeyObject: ?*u8,
     cbKeyObject: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbSecret" is the size in bytes
     pbSecret: ?*u8,
     cbSecret: u32,
     dwFlags: u32,
@@ -9151,7 +9151,7 @@ pub extern "bcrypt" fn BCryptGenerateSymmetricKey(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptGenRandom(
     hAlgorithm: BCRYPT_ALG_HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbBuffer" is the size in bytes
     pbBuffer: ?*u8,
     cbBuffer: u32,
     dwFlags: u32,
@@ -9166,7 +9166,7 @@ pub extern "bcrypt" fn BCryptGetFipsAlgorithmMode(
 pub extern "bcrypt" fn BCryptGetProperty(
     hObject: BCRYPT_HANDLE,
     pszProperty: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbOutput" is the size in bytes
     pbOutput: ?*u8,
     cbOutput: u32,
     pcbResult: ?*u32,
@@ -9176,13 +9176,13 @@ pub extern "bcrypt" fn BCryptGetProperty(
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "bcrypt" fn BCryptHash(
     hAlgorithm: BCRYPT_ALG_HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbSecret" is the size in bytes
     pbSecret: ?*u8,
     cbSecret: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbInput" is the size in bytes
     pbInput: ?*u8,
     cbInput: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbOutput" is the size in bytes
     pbOutput: ?*u8,
     cbOutput: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -9190,7 +9190,7 @@ pub extern "bcrypt" fn BCryptHash(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptHashData(
     hHash: BCRYPT_HASH_HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbInput" is the size in bytes
     pbInput: ?*u8,
     cbInput: u32,
     dwFlags: u32,
@@ -9202,10 +9202,10 @@ pub extern "bcrypt" fn BCryptImportKey(
     hImportKey: BCRYPT_KEY_HANDLE,
     pszBlobType: ?[*:0]const u16,
     phKey: ?*BCRYPT_KEY_HANDLE,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbKeyObject" is the size in bytes
     pbKeyObject: ?*u8,
     cbKeyObject: u32,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "cbInput" is the size in bytes
     pbInput: ?*u8,
     cbInput: u32,
     dwFlags: u32,
@@ -9217,7 +9217,7 @@ pub extern "bcrypt" fn BCryptImportKeyPair(
     hImportKey: BCRYPT_KEY_HANDLE,
     pszBlobType: ?[*:0]const u16,
     phKey: ?*BCRYPT_KEY_HANDLE,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbInput" is the size in bytes
     pbInput: ?*u8,
     cbInput: u32,
     dwFlags: u32,
@@ -9227,7 +9227,7 @@ pub extern "bcrypt" fn BCryptImportKeyPair(
 pub extern "bcrypt" fn BCryptKeyDerivation(
     hKey: BCRYPT_KEY_HANDLE,
     pParameterList: ?*BCryptBufferDesc,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbDerivedKey" is the size in bytes
     pbDerivedKey: ?*u8,
     cbDerivedKey: u32,
     pcbResult: ?*u32,
@@ -9246,7 +9246,7 @@ pub extern "bcrypt" fn BCryptOpenAlgorithmProvider(
 pub extern "bcrypt" fn BCryptProcessMultiOperations(
     hObject: BCRYPT_HANDLE,
     operationType: BCRYPT_MULTI_OPERATION_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbOperations" is the size in bytes
     pOperations: ?*anyopaque,
     cbOperations: u32,
     dwFlags: u32,
@@ -9257,7 +9257,7 @@ pub extern "bcrypt" fn BCryptQueryContextConfiguration(
     dwTable: BCRYPT_TABLE,
     pszContext: ?[*:0]const u16,
     pcbBuffer: ?*u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "pcbBuffer" is the size in bytes
     ppBuffer: ?*?*CRYPT_CONTEXT_CONFIG,
 ) callconv(.winapi) NTSTATUS;
 
@@ -9268,7 +9268,7 @@ pub extern "bcrypt" fn BCryptQueryContextFunctionConfiguration(
     dwInterface: BCRYPT_INTERFACE,
     pszFunction: ?[*:0]const u16,
     pcbBuffer: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbBuffer" is the size in bytes
     ppBuffer: ?*?*CRYPT_CONTEXT_FUNCTION_CONFIG,
 ) callconv(.winapi) NTSTATUS;
 
@@ -9280,7 +9280,7 @@ pub extern "bcrypt" fn BCryptQueryContextFunctionProperty(
     pszFunction: ?[*:0]const u16,
     pszProperty: ?[*:0]const u16,
     pcbValue: ?*u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbValue" is the size in bytes
     ppbValue: ?*?*u8,
 ) callconv(.winapi) NTSTATUS;
 
@@ -9290,7 +9290,7 @@ pub extern "bcrypt" fn BCryptQueryProviderRegistration(
     dwMode: BCRYPT_QUERY_PROVIDER_MODE,
     dwInterface: BCRYPT_INTERFACE,
     pcbBuffer: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbBuffer" is the size in bytes
     ppBuffer: ?*?*CRYPT_PROVIDER_REG,
 ) callconv(.winapi) NTSTATUS;
 
@@ -9316,7 +9316,7 @@ pub extern "bcrypt" fn BCryptResolveProviders(
     dwMode: BCRYPT_QUERY_PROVIDER_MODE,
     dwFlags: BCRYPT_RESOLVE_PROVIDERS_FLAGS,
     pcbBuffer: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbBuffer" is the size in bytes
     ppBuffer: ?*?*CRYPT_PROVIDER_REFS,
 ) callconv(.winapi) NTSTATUS;
 
@@ -9336,7 +9336,7 @@ pub extern "bcrypt" fn BCryptSetContextFunctionProperty(
     pszFunction: ?[*:0]const u16,
     pszProperty: ?[*:0]const u16,
     cbValue: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbValue" is the size in bytes
     pbValue: ?*u8,
 ) callconv(.winapi) NTSTATUS;
 
@@ -9344,7 +9344,7 @@ pub extern "bcrypt" fn BCryptSetContextFunctionProperty(
 pub extern "bcrypt" fn BCryptSetProperty(
     hObject: BCRYPT_HANDLE,
     pszProperty: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbInput" is the size in bytes
     pbInput: ?*u8,
     cbInput: u32,
     dwFlags: u32,
@@ -9354,10 +9354,10 @@ pub extern "bcrypt" fn BCryptSetProperty(
 pub extern "bcrypt" fn BCryptSignHash(
     hKey: BCRYPT_KEY_HANDLE,
     pPaddingInfo: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbInput" is the size in bytes
     pbInput: ?*u8,
     cbInput: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbOutput" is the size in bytes
     pbOutput: ?*u8,
     cbOutput: u32,
     pcbResult: ?*u32,
@@ -9373,10 +9373,10 @@ pub extern "bcrypt" fn BCryptUnregisterConfigChangeNotify(
 pub extern "bcrypt" fn BCryptVerifySignature(
     hKey: BCRYPT_KEY_HANDLE,
     pPaddingInfo: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbHash" is the size in bytes
     pbHash: ?*u8,
     cbHash: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbSignature" is the size in bytes
     pbSignature: ?*u8,
     cbSignature: u32,
     dwFlags: NCRYPT_FLAGS,
@@ -9434,7 +9434,7 @@ pub extern "crypt32" fn CertAddCTLLinkToStore(
 pub extern "crypt32" fn CertAddEncodedCertificateToStore(
     hCertStore: ?HCERTSTORE,
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbCertEncoded" is the size in bytes
     pbCertEncoded: ?*const u8,
     cbCertEncoded: u32,
     dwAddDisposition: u32,
@@ -9444,7 +9444,7 @@ pub extern "crypt32" fn CertAddEncodedCertificateToStore(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertAddEncodedCertificateToSystemStoreA(
     szCertStoreName: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbCertEncoded" is the size in bytes
     pbCertEncoded: ?*const u8,
     cbCertEncoded: u32,
 ) callconv(.winapi) BOOL;
@@ -9452,7 +9452,7 @@ pub extern "crypt32" fn CertAddEncodedCertificateToSystemStoreA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertAddEncodedCertificateToSystemStoreW(
     szCertStoreName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbCertEncoded" is the size in bytes
     pbCertEncoded: ?*const u8,
     cbCertEncoded: u32,
 ) callconv(.winapi) BOOL;
@@ -9461,7 +9461,7 @@ pub extern "crypt32" fn CertAddEncodedCertificateToSystemStoreW(
 pub extern "crypt32" fn CertAddEncodedCRLToStore(
     hCertStore: ?HCERTSTORE,
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbCrlEncoded" is the size in bytes
     pbCrlEncoded: ?*const u8,
     cbCrlEncoded: u32,
     dwAddDisposition: u32,
@@ -9472,7 +9472,7 @@ pub extern "crypt32" fn CertAddEncodedCRLToStore(
 pub extern "crypt32" fn CertAddEncodedCTLToStore(
     hCertStore: ?HCERTSTORE,
     dwMsgAndCertEncodingType: CERT_QUERY_ENCODING_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbCtlEncoded" is the size in bytes
     pbCtlEncoded: ?*const u8,
     cbCtlEncoded: u32,
     dwAddDisposition: u32,
@@ -9498,7 +9498,7 @@ pub extern "crypt32" fn CertAddRefServerOcspResponseContext(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertAddSerializedElementToStore(
     hCertStore: ?HCERTSTORE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbElement" is the size in bytes
     pbElement: ?*const u8,
     cbElement: u32,
     dwAddDisposition: u32,
@@ -9577,7 +9577,7 @@ pub extern "crypt32" fn CertCreateCertificateChainEngine(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertCreateCertificateContext(
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbCertEncoded" is the size in bytes
     pbCertEncoded: ?*const u8,
     cbCertEncoded: u32,
 ) callconv(.winapi) ?*CERT_CONTEXT;
@@ -9586,7 +9586,7 @@ pub extern "crypt32" fn CertCreateCertificateContext(
 pub extern "crypt32" fn CertCreateContext(
     dwContextType: u32,
     dwEncodingType: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbEncoded" is the size in bytes
     pbEncoded: ?*const u8,
     cbEncoded: u32,
     dwFlags: u32,
@@ -9596,7 +9596,7 @@ pub extern "crypt32" fn CertCreateContext(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertCreateCRLContext(
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbCrlEncoded" is the size in bytes
     pbCrlEncoded: ?*const u8,
     cbCrlEncoded: u32,
 ) callconv(.winapi) ?*CRL_CONTEXT;
@@ -9604,7 +9604,7 @@ pub extern "crypt32" fn CertCreateCRLContext(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertCreateCTLContext(
     dwMsgAndCertEncodingType: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbCtlEncoded" is the size in bytes
     pbCtlEncoded: ?*const u8,
     cbCtlEncoded: u32,
 ) callconv(.winapi) ?*CTL_CONTEXT;
@@ -9616,7 +9616,7 @@ pub extern "crypt32" fn CertCreateCTLEntryFromCertificateContextProperties(
     rgOptAttr: ?[*]CRYPT_ATTRIBUTE,
     dwFlags: u32,
     pvReserved: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbCtlEntry" is the size in bytes
     pCtlEntry: ?*CTL_ENTRY,
     pcbCtlEntry: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -9878,7 +9878,7 @@ pub extern "crypt32" fn CertGetCertificateChain(
 pub extern "crypt32" fn CertGetCertificateContextProperty(
     pCertContext: ?*const CERT_CONTEXT,
     dwPropId: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -9887,7 +9887,7 @@ pub extern "crypt32" fn CertGetCertificateContextProperty(
 pub extern "crypt32" fn CertGetCRLContextProperty(
     pCrlContext: ?*CRL_CONTEXT,
     dwPropId: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -9904,7 +9904,7 @@ pub extern "crypt32" fn CertGetCRLFromStore(
 pub extern "crypt32" fn CertGetCTLContextProperty(
     pCtlContext: ?*CTL_CONTEXT,
     dwPropId: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -9913,7 +9913,7 @@ pub extern "crypt32" fn CertGetCTLContextProperty(
 pub extern "crypt32" fn CertGetEnhancedKeyUsage(
     pCertContext: ?*const CERT_CONTEXT,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbUsage" is the size in bytes
     pUsage: ?*CTL_USAGE,
     pcbUsage: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -9922,7 +9922,7 @@ pub extern "crypt32" fn CertGetEnhancedKeyUsage(
 pub extern "crypt32" fn CertGetIntendedKeyUsage(
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pCertInfo: ?*CERT_INFO,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbKeyUsage" is the size in bytes
     pbKeyUsage: ?*u8,
     cbKeyUsage: u32,
 ) callconv(.winapi) BOOL;
@@ -9972,7 +9972,7 @@ pub extern "crypt32" fn CertGetServerOcspResponseContext(
 pub extern "crypt32" fn CertGetStoreProperty(
     hCertStore: ?HCERTSTORE,
     dwPropId: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -9989,7 +9989,7 @@ pub extern "crypt32" fn CertGetValidUsages(
     cCerts: u32,
     rghCerts: [*]?*CERT_CONTEXT,
     cNumOIDs: ?*i32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbOIDs" is the size in bytes
     rghOIDs: ?*?PSTR,
     pcbOIDs: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10166,7 +10166,7 @@ pub extern "crypt32" fn CertSelectCertificateChains(
 pub extern "crypt32" fn CertSerializeCertificateStoreElement(
     pCertContext: ?*const CERT_CONTEXT,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbElement" is the size in bytes
     pbElement: ?*u8,
     pcbElement: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10175,7 +10175,7 @@ pub extern "crypt32" fn CertSerializeCertificateStoreElement(
 pub extern "crypt32" fn CertSerializeCRLStoreElement(
     pCrlContext: ?*CRL_CONTEXT,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbElement" is the size in bytes
     pbElement: ?*u8,
     pcbElement: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10184,7 +10184,7 @@ pub extern "crypt32" fn CertSerializeCRLStoreElement(
 pub extern "crypt32" fn CertSerializeCTLStoreElement(
     pCtlContext: ?*CTL_CONTEXT,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbElement" is the size in bytes
     pbElement: ?*u8,
     pcbElement: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10240,7 +10240,7 @@ pub extern "crypt32" fn CertStrToNameA(
     pszX500: ?[*:0]const u8,
     dwStrType: CERT_STRING_TYPE,
     pvReserved: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbEncoded" is the size in bytes
     pbEncoded: ?*u8,
     pcbEncoded: ?*u32,
     ppszError: ?*?PSTR,
@@ -10252,7 +10252,7 @@ pub extern "crypt32" fn CertStrToNameW(
     pszX500: ?[*:0]const u16,
     dwStrType: CERT_STRING_TYPE,
     pvReserved: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbEncoded" is the size in bytes
     pbEncoded: ?*u8,
     pcbEncoded: ?*u32,
     ppszError: ?*?PWSTR,
@@ -10368,7 +10368,7 @@ pub extern "advapi32" fn CryptAcquireContextW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptBinaryToStringA(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbBinary" is the size in bytes
     pbBinary: ?*const u8,
     cbBinary: u32,
     dwFlags: CRYPT_STRING,
@@ -10378,7 +10378,7 @@ pub extern "crypt32" fn CryptBinaryToStringA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptBinaryToStringW(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbBinary" is the size in bytes
     pbBinary: ?*const u8,
     cbBinary: u32,
     dwFlags: CRYPT_STRING,
@@ -10415,12 +10415,12 @@ pub extern "advapi32" fn CryptCreateHash(
 pub extern "crypt32" fn CryptCreateKeyIdentifierFromCSP(
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pszPubKeyOID: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbPubKeyStruc" is the size in bytes
     pPubKeyStruc: ?*const PUBLICKEYSTRUC,
     cbPubKeyStruc: u32,
     dwFlags: u32,
     pvReserved: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "pcbHash" is the size in bytes
     pbHash: ?*u8,
     pcbHash: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10431,13 +10431,13 @@ pub extern "crypt32" fn CryptDecodeMessage(
     pDecryptPara: ?*CRYPT_DECRYPT_MESSAGE_PARA,
     pVerifyPara: ?*CRYPT_VERIFY_MESSAGE_PARA,
     dwSignerIndex: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbEncodedBlob" is the size in bytes
     pbEncodedBlob: ?*const u8,
     cbEncodedBlob: u32,
     dwPrevInnerContentType: u32,
     pdwMsgType: ?*u32,
     pdwInnerContentType: ?*u32,
-    // TODO: what to do with BytesParamIndex 10?
+    /// parameter "pcbDecoded" is the size in bytes
     pbDecoded: ?*u8,
     pcbDecoded: ?*u32,
     ppXchgCert: ?*?*CERT_CONTEXT,
@@ -10448,11 +10448,11 @@ pub extern "crypt32" fn CryptDecodeMessage(
 pub extern "crypt32" fn CryptDecodeObject(
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     lpszStructType: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbEncoded" is the size in bytes
     pbEncoded: ?*const u8,
     cbEncoded: u32,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbStructInfo" is the size in bytes
     pvStructInfo: ?*anyopaque,
     pcbStructInfo: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10461,7 +10461,7 @@ pub extern "crypt32" fn CryptDecodeObject(
 pub extern "crypt32" fn CryptDecodeObjectEx(
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     lpszStructType: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbEncoded" is the size in bytes
     pbEncoded: ?*const u8,
     cbEncoded: u32,
     dwFlags: u32,
@@ -10476,7 +10476,7 @@ pub extern "advapi32" fn CryptDecrypt(
     hHash: usize,
     Final: BOOL,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pdwDataLen" is the size in bytes
     pbData: ?*u8,
     pdwDataLen: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10486,10 +10486,10 @@ pub extern "crypt32" fn CryptDecryptAndVerifyMessageSignature(
     pDecryptPara: ?*CRYPT_DECRYPT_MESSAGE_PARA,
     pVerifyPara: ?*CRYPT_VERIFY_MESSAGE_PARA,
     dwSignerIndex: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbEncryptedBlob" is the size in bytes
     pbEncryptedBlob: ?*const u8,
     cbEncryptedBlob: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbDecrypted" is the size in bytes
     pbDecrypted: ?*u8,
     pcbDecrypted: ?*u32,
     ppXchgCert: ?*?*CERT_CONTEXT,
@@ -10499,10 +10499,10 @@ pub extern "crypt32" fn CryptDecryptAndVerifyMessageSignature(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptDecryptMessage(
     pDecryptPara: ?*CRYPT_DECRYPT_MESSAGE_PARA,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbEncryptedBlob" is the size in bytes
     pbEncryptedBlob: ?*const u8,
     cbEncryptedBlob: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbDecrypted" is the size in bytes
     pbDecrypted: ?*u8,
     pcbDecrypted: ?*u32,
     ppXchgCert: ?*?*CERT_CONTEXT,
@@ -10548,7 +10548,7 @@ pub extern "crypt32" fn CryptEncodeObject(
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     lpszStructType: ?[*:0]const u8,
     pvStructInfo: ?*const anyopaque,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbEncoded" is the size in bytes
     pbEncoded: ?*u8,
     pcbEncoded: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10570,7 +10570,7 @@ pub extern "advapi32" fn CryptEncrypt(
     hHash: usize,
     Final: BOOL,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "dwBufLen" is the size in bytes
     pbData: ?*u8,
     pdwDataLen: ?*u32,
     dwBufLen: u32,
@@ -10581,10 +10581,10 @@ pub extern "crypt32" fn CryptEncryptMessage(
     pEncryptPara: ?*CRYPT_ENCRYPT_MESSAGE_PARA,
     cRecipientCert: u32,
     rgpRecipientCert: [*]?*CERT_CONTEXT,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbToBeEncrypted" is the size in bytes
     pbToBeEncrypted: ?*const u8,
     cbToBeEncrypted: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbEncryptedBlob" is the size in bytes
     pbEncryptedBlob: ?*u8,
     pcbEncryptedBlob: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10624,7 +10624,7 @@ pub extern "advapi32" fn CryptEnumProvidersA(
     pdwReserved: ?*u32,
     dwFlags: u32,
     pdwProvType: ?*u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbProvName" is the size in bytes
     szProvName: ?PSTR,
     pcbProvName: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10635,7 +10635,7 @@ pub extern "advapi32" fn CryptEnumProvidersW(
     pdwReserved: ?*u32,
     dwFlags: u32,
     pdwProvType: ?*u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbProvName" is the size in bytes
     szProvName: ?PWSTR,
     pcbProvName: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10646,7 +10646,7 @@ pub extern "advapi32" fn CryptEnumProviderTypesA(
     pdwReserved: ?*u32,
     dwFlags: u32,
     pdwProvType: ?*u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbTypeName" is the size in bytes
     szTypeName: ?PSTR,
     pcbTypeName: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10657,7 +10657,7 @@ pub extern "advapi32" fn CryptEnumProviderTypesW(
     pdwReserved: ?*u32,
     dwFlags: u32,
     pdwProvType: ?*u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbTypeName" is the size in bytes
     szTypeName: ?PWSTR,
     pcbTypeName: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10668,7 +10668,7 @@ pub extern "advapi32" fn CryptExportKey(
     hExpKey: usize,
     dwBlobType: u32,
     dwFlags: CRYPT_KEY_FLAGS,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pdwDataLen" is the size in bytes
     pbData: ?*u8,
     pdwDataLen: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10680,7 +10680,7 @@ pub extern "crypt32" fn CryptExportPKCS8(
     pszPrivateKeyObjId: ?PSTR,
     dwFlags: u32,
     pvAuxInfo: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbPrivateKeyBlob" is the size in bytes
     pbPrivateKeyBlob: ?*u8,
     pcbPrivateKeyBlob: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10690,7 +10690,7 @@ pub extern "crypt32" fn CryptExportPublicKeyInfo(
     hCryptProvOrNCryptKey: HCRYPTPROV_OR_NCRYPT_KEY_HANDLE,
     dwKeySpec: u32,
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbInfo" is the size in bytes
     pInfo: ?*CERT_PUBLIC_KEY_INFO,
     pcbInfo: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10703,7 +10703,7 @@ pub extern "crypt32" fn CryptExportPublicKeyInfoEx(
     pszPublicKeyObjId: ?PSTR,
     dwFlags: u32,
     pvAuxInfo: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "pcbInfo" is the size in bytes
     pInfo: ?*CERT_PUBLIC_KEY_INFO,
     pcbInfo: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10715,7 +10715,7 @@ pub extern "crypt32" fn CryptExportPublicKeyInfoFromBCryptKeyHandle(
     pszPublicKeyObjId: ?PSTR,
     dwFlags: u32,
     pvAuxInfo: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbInfo" is the size in bytes
     pInfo: ?*CERT_PUBLIC_KEY_INFO,
     pcbInfo: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10746,10 +10746,10 @@ pub extern "crypt32" fn CryptFormatObject(
     dwFormatStrType: u32,
     pFormatStruct: ?*anyopaque,
     lpszStructType: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbEncoded" is the size in bytes
     pbEncoded: ?*const u8,
     cbEncoded: u32,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "pcbFormat" is the size in bytes
     pbFormat: ?*anyopaque,
     pcbFormat: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10772,7 +10772,7 @@ pub extern "advapi32" fn CryptGenKey(
 pub extern "advapi32" fn CryptGenRandom(
     hProv: usize,
     dwLen: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "dwLen" is the size in bytes
     pbBuffer: ?*u8,
 ) callconv(.winapi) BOOL;
 
@@ -10806,7 +10806,7 @@ pub extern "advapi32" fn CryptGetDefaultProviderA(
     dwProvType: u32,
     pdwReserved: ?*u32,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbProvName" is the size in bytes
     pszProvName: ?PSTR,
     pcbProvName: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10816,7 +10816,7 @@ pub extern "advapi32" fn CryptGetDefaultProviderW(
     dwProvType: u32,
     pdwReserved: ?*u32,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbProvName" is the size in bytes
     pszProvName: ?PWSTR,
     pcbProvName: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10825,7 +10825,7 @@ pub extern "advapi32" fn CryptGetDefaultProviderW(
 pub extern "advapi32" fn CryptGetHashParam(
     hHash: usize,
     dwParam: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pdwDataLen" is the size in bytes
     pbData: ?*u8,
     pdwDataLen: ?*u32,
     dwFlags: u32,
@@ -10838,7 +10838,7 @@ pub extern "crypt32" fn CryptGetKeyIdentifierProperty(
     dwFlags: u32,
     pwszComputerName: ?[*:0]const u16,
     pvReserved: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10847,7 +10847,7 @@ pub extern "crypt32" fn CryptGetKeyIdentifierProperty(
 pub extern "advapi32" fn CryptGetKeyParam(
     hKey: usize,
     dwParam: CRYPT_KEY_PARAM_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pdwDataLen" is the size in bytes
     pbData: ?*u8,
     pdwDataLen: ?*u32,
     dwFlags: u32,
@@ -10858,7 +10858,7 @@ pub extern "crypt32" fn CryptGetMessageCertificates(
     dwMsgAndCertEncodingType: u32,
     hCryptProv: HCRYPTPROV_LEGACY,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbSignedBlob" is the size in bytes
     pbSignedBlob: ?*const u8,
     cbSignedBlob: u32,
 ) callconv(.winapi) ?HCERTSTORE;
@@ -10866,7 +10866,7 @@ pub extern "crypt32" fn CryptGetMessageCertificates(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptGetMessageSignerCount(
     dwMsgEncodingType: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbSignedBlob" is the size in bytes
     pbSignedBlob: ?*const u8,
     cbSignedBlob: u32,
 ) callconv(.winapi) i32;
@@ -10876,10 +10876,10 @@ pub extern "cryptnet" fn CryptGetObjectUrl(
     pszUrlOid: ?[*:0]const u8,
     pvPara: ?*anyopaque,
     dwFlags: CRYPT_GET_URL_FLAGS,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbUrlArray" is the size in bytes
     pUrlArray: ?*CRYPT_URL_ARRAY,
     pcbUrlArray: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbUrlInfo" is the size in bytes
     pUrlInfo: ?*CRYPT_URL_INFO,
     pcbUrlInfo: ?*u32,
     pvReserved: ?*anyopaque,
@@ -10902,7 +10902,7 @@ pub extern "crypt32" fn CryptGetOIDFunctionValue(
     pszOID: ?[*:0]const u8,
     pwszValueName: ?[*:0]const u16,
     pdwValueType: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbValueData" is the size in bytes
     pbValueData: ?*u8,
     pcbValueData: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10911,7 +10911,7 @@ pub extern "crypt32" fn CryptGetOIDFunctionValue(
 pub extern "advapi32" fn CryptGetProvParam(
     hProv: usize,
     dwParam: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pdwDataLen" is the size in bytes
     pbData: ?*u8,
     pdwDataLen: ?*u32,
     dwFlags: u32,
@@ -10929,10 +10929,10 @@ pub extern "crypt32" fn CryptHashCertificate(
     hCryptProv: HCRYPTPROV_LEGACY,
     Algid: u32,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbEncoded" is the size in bytes
     pbEncoded: ?*const u8,
     cbEncoded: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbComputedHash" is the size in bytes
     pbComputedHash: ?*u8,
     pcbComputedHash: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10942,10 +10942,10 @@ pub extern "crypt32" fn CryptHashCertificate2(
     pwszCNGHashAlgid: ?[*:0]const u16,
     dwFlags: u32,
     pvReserved: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbEncoded" is the size in bytes
     pbEncoded: ?*const u8,
     cbEncoded: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbComputedHash" is the size in bytes
     pbComputedHash: ?*u8,
     pcbComputedHash: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10953,7 +10953,7 @@ pub extern "crypt32" fn CryptHashCertificate2(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn CryptHashData(
     hHash: usize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwDataLen" is the size in bytes
     pbData: ?*const u8,
     dwDataLen: u32,
     dwFlags: u32,
@@ -10966,10 +10966,10 @@ pub extern "crypt32" fn CryptHashMessage(
     cToBeHashed: u32,
     rgpbToBeHashed: [*]const ?*const u8,
     rgcbToBeHashed: [*]u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbHashedBlob" is the size in bytes
     pbHashedBlob: ?*u8,
     pcbHashedBlob: ?*u32,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "pcbComputedHash" is the size in bytes
     pbComputedHash: ?*u8,
     pcbComputedHash: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10981,7 +10981,7 @@ pub extern "crypt32" fn CryptHashPublicKeyInfo(
     dwFlags: u32,
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pInfo: ?*CERT_PUBLIC_KEY_INFO,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbComputedHash" is the size in bytes
     pbComputedHash: ?*u8,
     pcbComputedHash: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -10997,10 +10997,10 @@ pub extern "advapi32" fn CryptHashSessionKey(
 pub extern "crypt32" fn CryptHashToBeSigned(
     hCryptProv: HCRYPTPROV_LEGACY,
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbEncoded" is the size in bytes
     pbEncoded: ?*const u8,
     cbEncoded: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbComputedHash" is the size in bytes
     pbComputedHash: ?*u8,
     pcbComputedHash: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -11008,7 +11008,7 @@ pub extern "crypt32" fn CryptHashToBeSigned(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn CryptImportKey(
     hProv: usize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwDataLen" is the size in bytes
     pbData: ?*const u8,
     dwDataLen: u32,
     hPubKey: usize,
@@ -11135,12 +11135,12 @@ pub extern "crypt32" fn CryptMsgCountersign(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptMsgCountersignEncoded(
     dwEncodingType: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbSignerInfo" is the size in bytes
     pbSignerInfo: ?*u8,
     cbSignerInfo: u32,
     cCountersigners: u32,
     rgCountersigners: [*]CMSG_SIGNER_ENCODE_INFO,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbCountersignature" is the size in bytes
     pbCountersignature: ?*u8,
     pcbCountersignature: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -11156,7 +11156,7 @@ pub extern "crypt32" fn CryptMsgEncodeAndSignCTL(
     pCtlInfo: ?*CTL_INFO,
     pSignInfo: ?*CMSG_SIGNED_ENCODE_INFO,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbEncoded" is the size in bytes
     pbEncoded: ?*u8,
     pcbEncoded: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -11176,7 +11176,7 @@ pub extern "crypt32" fn CryptMsgGetParam(
     hCryptMsg: ?*anyopaque,
     dwParamType: u32,
     dwIndex: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -11204,12 +11204,12 @@ pub extern "crypt32" fn CryptMsgOpenToEncode(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptMsgSignCTL(
     dwMsgEncodingType: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbCtlContent" is the size in bytes
     pbCtlContent: ?*u8,
     cbCtlContent: u32,
     pSignInfo: ?*CMSG_SIGNED_ENCODE_INFO,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbEncoded" is the size in bytes
     pbEncoded: ?*u8,
     pcbEncoded: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -11217,7 +11217,7 @@ pub extern "crypt32" fn CryptMsgSignCTL(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptMsgUpdate(
     hCryptMsg: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbData" is the size in bytes
     pbData: ?*const u8,
     cbData: u32,
     fFinal: BOOL,
@@ -11227,10 +11227,10 @@ pub extern "crypt32" fn CryptMsgUpdate(
 pub extern "crypt32" fn CryptMsgVerifyCountersignatureEncoded(
     hCryptProv: HCRYPTPROV_LEGACY,
     dwEncodingType: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbSignerInfo" is the size in bytes
     pbSignerInfo: ?*u8,
     cbSignerInfo: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbSignerInfoCountersignature" is the size in bytes
     pbSignerInfoCountersignature: ?*u8,
     cbSignerInfoCountersignature: u32,
     pciCountersigner: ?*CERT_INFO,
@@ -11240,10 +11240,10 @@ pub extern "crypt32" fn CryptMsgVerifyCountersignatureEncoded(
 pub extern "crypt32" fn CryptMsgVerifyCountersignatureEncodedEx(
     hCryptProv: HCRYPTPROV_LEGACY,
     dwEncodingType: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbSignerInfo" is the size in bytes
     pbSignerInfo: ?*u8,
     cbSignerInfo: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbSignerInfoCountersignature" is the size in bytes
     pbSignerInfoCountersignature: ?*u8,
     cbSignerInfoCountersignature: u32,
     dwSignerType: u32,
@@ -11347,7 +11347,7 @@ pub extern "crypt32" fn CryptRetrieveTimeStamp(
     dwTimeout: u32,
     pszHashId: ?[*:0]const u8,
     pPara: ?*const CRYPT_TIMESTAMP_PARA,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbData" is the size in bytes
     pbData: ?*const u8,
     cbData: u32,
     ppTsContext: ?*?*CRYPT_TIMESTAMP_CONTEXT,
@@ -11395,7 +11395,7 @@ pub extern "crypt32" fn CryptSetOIDFunctionValue(
     pszOID: ?[*:0]const u8,
     pwszValueName: ?[*:0]const u16,
     dwValueType: REG_VALUE_TYPE,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbValueData" is the size in bytes
     pbValueData: ?*const u8,
     cbValueData: u32,
 ) callconv(.winapi) BOOL;
@@ -11446,10 +11446,10 @@ pub extern "crypt32" fn CryptSignAndEncryptMessage(
     pEncryptPara: ?*CRYPT_ENCRYPT_MESSAGE_PARA,
     cRecipientCert: u32,
     rgpRecipientCert: [*]?*CERT_CONTEXT,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbToBeSignedAndEncrypted" is the size in bytes
     pbToBeSignedAndEncrypted: ?*const u8,
     cbToBeSignedAndEncrypted: u32,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "pcbSignedAndEncryptedBlob" is the size in bytes
     pbSignedAndEncryptedBlob: ?*u8,
     pcbSignedAndEncryptedBlob: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -11459,12 +11459,12 @@ pub extern "crypt32" fn CryptSignCertificate(
     hCryptProvOrNCryptKey: HCRYPTPROV_OR_NCRYPT_KEY_HANDLE,
     dwKeySpec: u32,
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbEncodedToBeSigned" is the size in bytes
     pbEncodedToBeSigned: ?*const u8,
     cbEncodedToBeSigned: u32,
     pSignatureAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
     pvHashAuxInfo: ?*const anyopaque,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "pcbSignature" is the size in bytes
     pbSignature: ?*u8,
     pcbSignature: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -11475,7 +11475,7 @@ pub extern "advapi32" fn CryptSignHashA(
     dwKeySpec: u32,
     szDescription: ?[*:0]const u8,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pdwSigLen" is the size in bytes
     pbSignature: ?*u8,
     pdwSigLen: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -11486,7 +11486,7 @@ pub extern "advapi32" fn CryptSignHashW(
     dwKeySpec: u32,
     szDescription: ?[*:0]const u16,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pdwSigLen" is the size in bytes
     pbSignature: ?*u8,
     pdwSigLen: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -11498,7 +11498,7 @@ pub extern "crypt32" fn CryptSignMessage(
     cToBeSigned: u32,
     rgpbToBeSigned: ?[*]const ?*const u8,
     rgcbToBeSigned: [*]u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbSignedBlob" is the size in bytes
     pbSignedBlob: ?*u8,
     pcbSignedBlob: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -11506,10 +11506,10 @@ pub extern "crypt32" fn CryptSignMessage(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptSignMessageWithKey(
     pSignPara: ?*CRYPT_KEY_SIGN_MESSAGE_PARA,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbToBeSigned" is the size in bytes
     pbToBeSigned: ?*const u8,
     cbToBeSigned: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbSignedBlob" is the size in bytes
     pbSignedBlob: ?*u8,
     pcbSignedBlob: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -11519,7 +11519,7 @@ pub extern "crypt32" fn CryptStringToBinaryA(
     pszString: [*:0]const u8,
     cchString: u32,
     dwFlags: CRYPT_STRING,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbBinary" is the size in bytes
     pbBinary: ?*u8,
     pcbBinary: ?*u32,
     pdwSkip: ?*u32,
@@ -11531,7 +11531,7 @@ pub extern "crypt32" fn CryptStringToBinaryW(
     pszString: [*:0]const u16,
     cchString: u32,
     dwFlags: CRYPT_STRING,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbBinary" is the size in bytes
     pbBinary: ?*u8,
     pcbBinary: ?*u32,
     pdwSkip: ?*u32,
@@ -11600,7 +11600,7 @@ pub extern "crypt32" fn CryptUpdateProtectedState(
 pub extern "crypt32" fn CryptVerifyCertificateSignature(
     hCryptProv: HCRYPTPROV_LEGACY,
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbEncoded" is the size in bytes
     pbEncoded: ?*const u8,
     cbEncoded: u32,
     pPublicKey: ?*CERT_PUBLIC_KEY_INFO,
@@ -11621,13 +11621,13 @@ pub extern "crypt32" fn CryptVerifyCertificateSignatureEx(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptVerifyDetachedMessageHash(
     pHashPara: ?*CRYPT_HASH_MESSAGE_PARA,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbDetachedHashBlob" is the size in bytes
     pbDetachedHashBlob: ?*u8,
     cbDetachedHashBlob: u32,
     cToBeHashed: u32,
     rgpbToBeHashed: [*]const ?*const u8,
     rgcbToBeHashed: [*]u32,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "pcbComputedHash" is the size in bytes
     pbComputedHash: ?*u8,
     pcbComputedHash: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -11636,7 +11636,7 @@ pub extern "crypt32" fn CryptVerifyDetachedMessageHash(
 pub extern "crypt32" fn CryptVerifyDetachedMessageSignature(
     pVerifyPara: ?*CRYPT_VERIFY_MESSAGE_PARA,
     dwSignerIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbDetachedSignBlob" is the size in bytes
     pbDetachedSignBlob: ?*const u8,
     cbDetachedSignBlob: u32,
     cToBeSigned: u32,
@@ -11648,13 +11648,13 @@ pub extern "crypt32" fn CryptVerifyDetachedMessageSignature(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptVerifyMessageHash(
     pHashPara: ?*CRYPT_HASH_MESSAGE_PARA,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbHashedBlob" is the size in bytes
     pbHashedBlob: ?*u8,
     cbHashedBlob: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbToBeHashed" is the size in bytes
     pbToBeHashed: ?*u8,
     pcbToBeHashed: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbComputedHash" is the size in bytes
     pbComputedHash: ?*u8,
     pcbComputedHash: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -11663,10 +11663,10 @@ pub extern "crypt32" fn CryptVerifyMessageHash(
 pub extern "crypt32" fn CryptVerifyMessageSignature(
     pVerifyPara: ?*CRYPT_VERIFY_MESSAGE_PARA,
     dwSignerIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbSignedBlob" is the size in bytes
     pbSignedBlob: ?*const u8,
     cbSignedBlob: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbDecoded" is the size in bytes
     pbDecoded: ?*u8,
     pcbDecoded: ?*u32,
     ppSignerCert: ?*?*CERT_CONTEXT,
@@ -11676,10 +11676,10 @@ pub extern "crypt32" fn CryptVerifyMessageSignature(
 pub extern "crypt32" fn CryptVerifyMessageSignatureWithKey(
     pVerifyPara: ?*CRYPT_KEY_VERIFY_MESSAGE_PARA,
     pPublicKeyInfo: ?*CERT_PUBLIC_KEY_INFO,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbSignedBlob" is the size in bytes
     pbSignedBlob: ?*const u8,
     cbSignedBlob: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbDecoded" is the size in bytes
     pbDecoded: ?*u8,
     pcbDecoded: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -11687,7 +11687,7 @@ pub extern "crypt32" fn CryptVerifyMessageSignatureWithKey(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn CryptVerifySignatureA(
     hHash: usize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwSigLen" is the size in bytes
     pbSignature: ?*const u8,
     dwSigLen: u32,
     hPubKey: usize,
@@ -11698,7 +11698,7 @@ pub extern "advapi32" fn CryptVerifySignatureA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn CryptVerifySignatureW(
     hHash: usize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwSigLen" is the size in bytes
     pbSignature: ?*const u8,
     dwSigLen: u32,
     hPubKey: usize,
@@ -11708,10 +11708,10 @@ pub extern "advapi32" fn CryptVerifySignatureW(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "crypt32" fn CryptVerifyTimeStampSignature(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbTSContentInfo" is the size in bytes
     pbTSContentInfo: ?*const u8,
     cbTSContentInfo: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbData" is the size in bytes
     pbData: ?*const u8,
     cbData: u32,
     hAdditionalStore: ?HCERTSTORE,
@@ -11846,7 +11846,7 @@ pub extern "cryptxml" fn CryptXmlOpenToEncode(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "cryptxml" fn CryptXmlSetHMACSecret(
     hSignature: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbSecret" is the size in bytes
     pbSecret: ?*const u8,
     cbSecret: u32,
 ) callconv(.winapi) HRESULT;
@@ -11874,10 +11874,10 @@ pub extern "infocardapi" fn Decrypt(
     hCrypto: ?*INFORMATIONCARD_CRYPTO_HANDLE,
     fOAEP: BOOL,
     cbInData: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbInData" is the size in bytes
     pInData: ?*u8,
     pcbOutData: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbOutData" is the size in bytes
     ppOutData: ?*?*u8,
 ) callconv(.winapi) HRESULT;
 
@@ -11885,19 +11885,19 @@ pub extern "infocardapi" fn Encrypt(
     hCrypto: ?*INFORMATIONCARD_CRYPTO_HANDLE,
     fOAEP: BOOL,
     cbInData: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbInData" is the size in bytes
     pInData: ?*u8,
     pcbOutData: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbOutData" is the size in bytes
     ppOutData: ?*?*u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "wintrust" fn FindCertsByIssuer(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "pcbCertChains" is the size in bytes
     pCertChains: ?*CERT_CHAIN,
     pcbCertChains: ?*u32,
     pcCertChains: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbEncodedIssuerName" is the size in bytes
     pbEncodedIssuerName: ?*u8,
     cbEncodedIssuerName: u32,
     pwszPurpose: ?[*:0]const u16,
@@ -11911,16 +11911,16 @@ pub extern "infocardapi" fn FreeToken(
 pub extern "infocardapi" fn GenerateDerivedKey(
     hCrypto: ?*INFORMATIONCARD_CRYPTO_HANDLE,
     cbLabel: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbLabel" is the size in bytes
     pLabel: ?*u8,
     cbNonce: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbNonce" is the size in bytes
     pNonce: ?*u8,
     derivedKeyLength: u32,
     offset: u32,
     algId: ?[*:0]const u16,
     pcbKey: ?*u32,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "pcbKey" is the size in bytes
     ppKey: ?*?*u8,
 ) callconv(.winapi) HRESULT;
 
@@ -11928,7 +11928,7 @@ pub extern "infocardapi" fn GetBrowserToken(
     dwParamType: u32,
     pParam: ?*anyopaque,
     pcbToken: ?*u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "pcbToken" is the size in bytes
     ppToken: ?*?*u8,
 ) callconv(.winapi) HRESULT;
 
@@ -11939,7 +11939,7 @@ pub extern "infocardapi" fn GetCryptoTransform(
     feedbackSize: u32,
     direction: Direction,
     cbIV: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbIV" is the size in bytes
     pIV: ?*u8,
     pphTransform: ?*?*INFORMATIONCARD_CRYPTO_HANDLE,
 ) callconv(.winapi) HRESULT;
@@ -11959,17 +11959,17 @@ pub extern "infocardapi" fn GetToken(
 pub extern "infocardapi" fn HashCore(
     hCrypto: ?*INFORMATIONCARD_CRYPTO_HANDLE,
     cbInData: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbInData" is the size in bytes
     pInData: ?*u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "infocardapi" fn HashFinal(
     hCrypto: ?*INFORMATIONCARD_CRYPTO_HANDLE,
     cbInData: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbInData" is the size in bytes
     pInData: ?*u8,
     pcbOutData: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbOutData" is the size in bytes
     ppOutData: ?*?*u8,
 ) callconv(.winapi) HRESULT;
 
@@ -11991,7 +11991,7 @@ pub extern "ncrypt" fn NCryptCreateClaim(
     hAuthorityKey: NCRYPT_KEY_HANDLE,
     dwClaimType: u32,
     pParameterList: ?*BCryptBufferDesc,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbClaimBlob" is the size in bytes
     pbClaimBlob: ?*u8,
     cbClaimBlob: u32,
     pcbResult: ?*u32,
@@ -12018,11 +12018,11 @@ pub extern "ncrypt" fn NCryptCreateProtectionDescriptor(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptDecrypt(
     hKey: NCRYPT_KEY_HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbInput" is the size in bytes
     pbInput: ?*u8,
     cbInput: u32,
     pPaddingInfo: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbOutput" is the size in bytes
     pbOutput: ?*u8,
     cbOutput: u32,
     pcbResult: ?*u32,
@@ -12040,7 +12040,7 @@ pub extern "ncrypt" fn NCryptDeriveKey(
     hSharedSecret: NCRYPT_SECRET_HANDLE,
     pwszKDF: ?[*:0]const u16,
     pParameterList: ?*BCryptBufferDesc,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbDerivedKey" is the size in bytes
     pbDerivedKey: ?*u8,
     cbDerivedKey: u32,
     pcbResult: ?*u32,
@@ -12050,11 +12050,11 @@ pub extern "ncrypt" fn NCryptDeriveKey(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptEncrypt(
     hKey: NCRYPT_KEY_HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbInput" is the size in bytes
     pbInput: ?*u8,
     cbInput: u32,
     pPaddingInfo: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbOutput" is the size in bytes
     pbOutput: ?*u8,
     cbOutput: u32,
     pcbResult: ?*u32,
@@ -12092,7 +12092,7 @@ pub extern "ncrypt" fn NCryptExportKey(
     hExportKey: NCRYPT_KEY_HANDLE,
     pszBlobType: ?[*:0]const u16,
     pParameterList: ?*BCryptBufferDesc,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbOutput" is the size in bytes
     pbOutput: ?*u8,
     cbOutput: u32,
     pcbResult: ?*u32,
@@ -12119,7 +12119,7 @@ pub extern "ncrypt" fn NCryptFreeObject(
 pub extern "ncrypt" fn NCryptGetProperty(
     hObject: NCRYPT_HANDLE,
     pszProperty: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbOutput" is the size in bytes
     pbOutput: ?*u8,
     cbOutput: u32,
     pcbResult: ?*u32,
@@ -12141,7 +12141,7 @@ pub extern "ncrypt" fn NCryptImportKey(
     pszBlobType: ?[*:0]const u16,
     pParameterList: ?*BCryptBufferDesc,
     phKey: ?*NCRYPT_KEY_HANDLE,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbData" is the size in bytes
     pbData: ?*u8,
     cbData: u32,
     dwFlags: NCRYPT_FLAGS,
@@ -12163,7 +12163,7 @@ pub extern "ncrypt" fn NCryptIsKeyHandle(
 pub extern "ncrypt" fn NCryptKeyDerivation(
     hKey: NCRYPT_KEY_HANDLE,
     pParameterList: ?*BCryptBufferDesc,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbDerivedKey" is the size in bytes
     pbDerivedKey: ?*u8,
     cbDerivedKey: u32,
     pcbResult: ?*u32,
@@ -12192,7 +12192,7 @@ pub extern "ncrypt" fn NCryptOpenStorageProvider(
 pub extern "ncrypt" fn NCryptProtectSecret(
     hDescriptor: NCRYPT_DESCRIPTOR_HANDLE,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbData" is the size in bytes
     pbData: ?*const u8,
     cbData: u32,
     pMemPara: ?*const NCRYPT_ALLOC_PARA,
@@ -12228,7 +12228,7 @@ pub extern "ncrypt" fn NCryptSecretAgreement(
 pub extern "ncrypt" fn NCryptSetProperty(
     hObject: NCRYPT_HANDLE,
     pszProperty: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbInput" is the size in bytes
     pbInput: ?*u8,
     cbInput: u32,
     dwFlags: NCRYPT_FLAGS,
@@ -12238,10 +12238,10 @@ pub extern "ncrypt" fn NCryptSetProperty(
 pub extern "ncrypt" fn NCryptSignHash(
     hKey: NCRYPT_KEY_HANDLE,
     pPaddingInfo: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbHashValue" is the size in bytes
     pbHashValue: ?*u8,
     cbHashValue: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbSignature" is the size in bytes
     pbSignature: ?*u8,
     cbSignature: u32,
     pcbResult: ?*u32,
@@ -12280,7 +12280,7 @@ pub extern "ncrypt" fn NCryptStreamOpenToUnprotectEx(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ncrypt" fn NCryptStreamUpdate(
     hStream: NCRYPT_STREAM_HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbData" is the size in bytes
     pbData: ?*const u8,
     cbData: usize,
     fFinal: BOOL,
@@ -12294,7 +12294,7 @@ pub fn NCryptTranslateHandle() void { @panic("this function is not working"); }
 pub extern "ncrypt" fn NCryptUnprotectSecret(
     phDescriptor: ?*NCRYPT_DESCRIPTOR_HANDLE,
     dwFlags: NCRYPT_FLAGS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbProtectedBlob" is the size in bytes
     pbProtectedBlob: ?*const u8,
     cbProtectedBlob: u32,
     pMemPara: ?*const NCRYPT_ALLOC_PARA,
@@ -12309,7 +12309,7 @@ pub extern "ncrypt" fn NCryptVerifyClaim(
     hAuthorityKey: NCRYPT_KEY_HANDLE,
     dwClaimType: u32,
     pParameterList: ?*BCryptBufferDesc,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbClaimBlob" is the size in bytes
     pbClaimBlob: ?*u8,
     cbClaimBlob: u32,
     pOutput: ?*BCryptBufferDesc,
@@ -12320,10 +12320,10 @@ pub extern "ncrypt" fn NCryptVerifyClaim(
 pub extern "ncrypt" fn NCryptVerifySignature(
     hKey: NCRYPT_KEY_HANDLE,
     pPaddingInfo: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbHashValue" is the size in bytes
     pbHashValue: ?*u8,
     cbHashValue: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbSignature" is the size in bytes
     pbSignature: ?*u8,
     cbSignature: u32,
     dwFlags: NCRYPT_FLAGS,
@@ -12368,42 +12368,42 @@ pub extern "crypt32" fn PFXVerifyPassword(
 pub extern "infocardapi" fn SignHash(
     hCrypto: ?*INFORMATIONCARD_CRYPTO_HANDLE,
     cbHash: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbHash" is the size in bytes
     pHash: ?*u8,
     hashAlgOid: ?[*:0]const u16,
     pcbSig: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbSig" is the size in bytes
     ppSig: ?*?*u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "infocardapi" fn TransformBlock(
     hCrypto: ?*INFORMATIONCARD_CRYPTO_HANDLE,
     cbInData: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbInData" is the size in bytes
     pInData: ?*u8,
     pcbOutData: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbOutData" is the size in bytes
     ppOutData: ?*?*u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "infocardapi" fn TransformFinalBlock(
     hCrypto: ?*INFORMATIONCARD_CRYPTO_HANDLE,
     cbInData: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbInData" is the size in bytes
     pInData: ?*u8,
     pcbOutData: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbOutData" is the size in bytes
     ppOutData: ?*?*u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "infocardapi" fn VerifyHash(
     hCrypto: ?*INFORMATIONCARD_CRYPTO_HANDLE,
     cbHash: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbHash" is the size in bytes
     pHash: ?*u8,
     hashAlgOid: ?[*:0]const u16,
     cbSig: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbSig" is the size in bytes
     pSig: ?*u8,
     pfVerified: ?*BOOL,
 ) callconv(.winapi) HRESULT;

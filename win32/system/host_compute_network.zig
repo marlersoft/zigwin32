@@ -172,7 +172,7 @@ pub extern "computenetwork" fn HcnEnumerateEndpoints(
 
 pub extern "computenetwork" fn HcnEnumerateGuestNetworkPortReservations(
     ReturnCount: ?*u32,
-    // TODO: what to do with BytesParamIndex 0?
+    /// parameter "ReturnCount" is the size in bytes
     PortEntries: ?*?*HCN_PORT_RANGE_ENTRY,
 ) callconv(.winapi) HRESULT;
 

@@ -88,7 +88,7 @@ pub const VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_KEY = *const fn(
 ) callconv(.winapi) i32;
 
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_RANDOM_DATA = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "NumberOfBytes" is the size in bytes
     Buffer: ?*u8,
     NumberOfBytes: u32,
     Generation: ?*u64,
@@ -96,7 +96,7 @@ pub const VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_RANDOM_DATA = *const fn(
 
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_REPORT = *const fn(
     EnclaveData: ?*const u8,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BufferSize" is the size in bytes
     Report: ?*anyopaque,
     BufferSize: u32,
     OutputSize: ?*u32,
@@ -123,7 +123,7 @@ pub const VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_ENCLAVE = *const fn(
 
 
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_VERIFY_REPORT = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "ReportSize" is the size in bytes
     Report: ?*const anyopaque,
     ReportSize: u32,
 ) callconv(.winapi) i32;
@@ -255,7 +255,7 @@ pub extern "kernel32" fn CreateEnclave(
     dwSize: usize,
     dwInitialCommitment: usize,
     flEnclaveType: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "dwInfoLength" is the size in bytes
     lpEnclaveInformation: ?*const anyopaque,
     dwInfoLength: u32,
     lpEnclaveError: ?*u32,
@@ -281,7 +281,7 @@ pub extern "userenv" fn DestroyEnvironmentBlock(
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "vertdll" fn EnclaveGetAttestationReport(
     EnclaveData: ?*const u8,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BufferSize" is the size in bytes
     Report: ?*anyopaque,
     BufferSize: u32,
     OutputSize: ?*u32,
@@ -290,18 +290,18 @@ pub extern "vertdll" fn EnclaveGetAttestationReport(
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "vertdll" fn EnclaveGetEnclaveInformation(
     InformationSize: u32,
-    // TODO: what to do with BytesParamIndex 0?
+    /// parameter "InformationSize" is the size in bytes
     EnclaveInformation: ?*ENCLAVE_INFORMATION,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "vertdll" fn EnclaveSealData(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "DataToEncryptSize" is the size in bytes
     DataToEncrypt: ?*const anyopaque,
     DataToEncryptSize: u32,
     IdentityPolicy: ENCLAVE_SEALING_IDENTITY_POLICY,
     RuntimePolicy: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "BufferSize" is the size in bytes
     ProtectedBlob: ?*anyopaque,
     BufferSize: u32,
     ProtectedBlobSize: ?*u32,
@@ -309,10 +309,10 @@ pub extern "vertdll" fn EnclaveSealData(
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "vertdll" fn EnclaveUnsealData(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "ProtectedBlobSize" is the size in bytes
     ProtectedBlob: ?*const anyopaque,
     ProtectedBlobSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferSize" is the size in bytes
     DecryptedData: ?*anyopaque,
     BufferSize: u32,
     DecryptedDataSize: ?*u32,
@@ -323,7 +323,7 @@ pub extern "vertdll" fn EnclaveUnsealData(
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "vertdll" fn EnclaveVerifyAttestationReport(
     EnclaveType: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "ReportSize" is the size in bytes
     Report: ?*const anyopaque,
     ReportSize: u32,
 ) callconv(.winapi) HRESULT;
@@ -412,7 +412,7 @@ pub extern "kernel32" fn GetEnvironmentVariableW(
 pub extern "kernel32" fn InitializeEnclave(
     hProcess: ?HANDLE,
     lpAddress: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwInfoLength" is the size in bytes
     lpEnclaveInformation: ?*const anyopaque,
     dwInfoLength: u32,
     lpEnclaveError: ?*u32,
@@ -427,11 +427,11 @@ pub extern "kernel32" fn IsEnclaveTypeSupported(
 pub extern "kernel32" fn LoadEnclaveData(
     hProcess: ?HANDLE,
     lpAddress: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nSize" is the size in bytes
     lpBuffer: ?*const anyopaque,
     nSize: usize,
     flProtect: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "dwInfoLength" is the size in bytes
     lpPageInformation: ?*const anyopaque,
     dwInfoLength: u32,
     lpNumberOfBytesWritten: ?*usize,

@@ -524,7 +524,7 @@ pub extern "user32" fn DdeAccessData(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DdeAddData(
     hData: ?HDDEDATA,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cb" is the size in bytes
     pSrc: ?*u8,
     cb: u32,
     cbOff: u32,
@@ -568,7 +568,7 @@ pub extern "user32" fn DdeConnectList(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DdeCreateDataHandle(
     idInst: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cb" is the size in bytes
     pSrc: ?*u8,
     cb: u32,
     cbOff: u32,
@@ -622,7 +622,7 @@ pub extern "user32" fn DdeFreeStringHandle(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DdeGetData(
     hData: ?HDDEDATA,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbMax" is the size in bytes
     pDst: ?*u8,
     cbMax: u32,
     cbOff: u32,
@@ -942,7 +942,7 @@ pub extern "user32" fn SetClipboardViewer(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn SetWinMetaFileBits(
     nSize: u32,
-    // TODO: what to do with BytesParamIndex 0?
+    /// parameter "nSize" is the size in bytes
     lpMeta16Data: ?*const u8,
     hdcRef: ?HDC,
     lpMFP: ?*const METAFILEPICT,

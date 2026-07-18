@@ -2008,7 +2008,7 @@ pub const PCM_NOTIFY_CALLBACK = *const fn(
     hNotify: ?HCMNOTIFICATION,
     Context: ?*anyopaque,
     Action: CM_NOTIFY_ACTION,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "EventDataSize" is the size in bytes
     EventData: ?*CM_NOTIFY_EVENT_DATA,
     EventDataSize: u32,
 ) callconv(.winapi) u32;
@@ -3313,7 +3313,7 @@ pub extern "cfgmgr32" fn CM_Add_Res_Des(
     prdResDes: ?*usize,
     lcLogConf: usize,
     ResourceID: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "ResourceLen" is the size in bytes
     ResourceData: ?*anyopaque,
     ResourceLen: u32,
     ulFlags: u32,
@@ -3324,7 +3324,7 @@ pub extern "cfgmgr32" fn CM_Add_Res_Des_Ex(
     prdResDes: ?*usize,
     lcLogConf: usize,
     ResourceID: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "ResourceLen" is the size in bytes
     ResourceData: ?*anyopaque,
     ResourceLen: u32,
     ulFlags: u32,
@@ -3438,7 +3438,7 @@ pub extern "cfgmgr32" fn CM_Delete_Range(
 pub extern "cfgmgr32" fn CM_Detect_Resource_Conflict(
     dnDevInst: u32,
     ResourceID: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ResourceLen" is the size in bytes
     ResourceData: ?*anyopaque,
     ResourceLen: u32,
     pbConflictDetected: ?*BOOL,
@@ -3448,7 +3448,7 @@ pub extern "cfgmgr32" fn CM_Detect_Resource_Conflict(
 pub extern "cfgmgr32" fn CM_Detect_Resource_Conflict_Ex(
     dnDevInst: u32,
     ResourceID: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ResourceLen" is the size in bytes
     ResourceData: ?*anyopaque,
     ResourceLen: u32,
     pbConflictDetected: ?*BOOL,
@@ -3684,7 +3684,7 @@ pub extern "cfgmgr32" fn CM_Get_Class_Property_ExW(
     ClassGUID: ?*const Guid,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: ?*u32,
     ulFlags: u32,
@@ -3713,7 +3713,7 @@ pub extern "cfgmgr32" fn CM_Get_Class_PropertyW(
     ClassGUID: ?*const Guid,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: ?*u32,
     ulFlags: u32,
@@ -3723,7 +3723,7 @@ pub extern "cfgmgr32" fn CM_Get_Class_Registry_PropertyA(
     ClassGuid: ?*Guid,
     ulProperty: u32,
     pulRegDataType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pulLength" is the size in bytes
     Buffer: ?*anyopaque,
     pulLength: ?*u32,
     ulFlags: u32,
@@ -3735,7 +3735,7 @@ pub extern "cfgmgr32" fn CM_Get_Class_Registry_PropertyW(
     ClassGuid: ?*Guid,
     ulProperty: u32,
     pulRegDataType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pulLength" is the size in bytes
     Buffer: ?*anyopaque,
     pulLength: ?*u32,
     ulFlags: u32,
@@ -3974,7 +3974,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_Property_ExW(
     pszDeviceInterface: ?[*:0]const u16,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: ?*u32,
     ulFlags: u32,
@@ -4003,7 +4003,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_PropertyW(
     pszDeviceInterface: ?[*:0]const u16,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: ?*u32,
     ulFlags: u32,
@@ -4013,7 +4013,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Custom_Property_ExA(
     dnDevInst: u32,
     pszCustomPropertyName: ?[*:0]const u8,
     pulRegDataType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pulLength" is the size in bytes
     Buffer: ?*anyopaque,
     pulLength: ?*u32,
     ulFlags: u32,
@@ -4024,7 +4024,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Custom_Property_ExW(
     dnDevInst: u32,
     pszCustomPropertyName: ?[*:0]const u16,
     pulRegDataType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pulLength" is the size in bytes
     Buffer: ?*anyopaque,
     pulLength: ?*u32,
     ulFlags: u32,
@@ -4035,7 +4035,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Custom_PropertyA(
     dnDevInst: u32,
     pszCustomPropertyName: ?[*:0]const u8,
     pulRegDataType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pulLength" is the size in bytes
     Buffer: ?*anyopaque,
     pulLength: ?*u32,
     ulFlags: u32,
@@ -4045,7 +4045,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Custom_PropertyW(
     dnDevInst: u32,
     pszCustomPropertyName: ?[*:0]const u16,
     pulRegDataType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pulLength" is the size in bytes
     Buffer: ?*anyopaque,
     pulLength: ?*u32,
     ulFlags: u32,
@@ -4056,7 +4056,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Property_ExW(
     dnDevInst: u32,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: ?*u32,
     ulFlags: u32,
@@ -4085,7 +4085,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_PropertyW(
     dnDevInst: u32,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: ?*u32,
     ulFlags: u32,
@@ -4095,7 +4095,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Registry_Property_ExA(
     dnDevInst: u32,
     ulProperty: u32,
     pulRegDataType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pulLength" is the size in bytes
     Buffer: ?*anyopaque,
     pulLength: ?*u32,
     ulFlags: u32,
@@ -4106,7 +4106,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Registry_Property_ExW(
     dnDevInst: u32,
     ulProperty: u32,
     pulRegDataType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pulLength" is the size in bytes
     Buffer: ?*anyopaque,
     pulLength: ?*u32,
     ulFlags: u32,
@@ -4117,7 +4117,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Registry_PropertyA(
     dnDevInst: u32,
     ulProperty: u32,
     pulRegDataType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pulLength" is the size in bytes
     Buffer: ?*anyopaque,
     pulLength: ?*u32,
     ulFlags: u32,
@@ -4128,7 +4128,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Registry_PropertyW(
     dnDevInst: u32,
     ulProperty: u32,
     pulRegDataType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pulLength" is the size in bytes
     Buffer: ?*anyopaque,
     pulLength: ?*u32,
     ulFlags: u32,
@@ -4304,7 +4304,7 @@ pub extern "cfgmgr32" fn CM_Get_Parent_Ex(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Res_Des_Data(
     rdResDes: usize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BufferLen" is the size in bytes
     Buffer: ?*anyopaque,
     BufferLen: u32,
     ulFlags: u32,
@@ -4313,7 +4313,7 @@ pub extern "cfgmgr32" fn CM_Get_Res_Des_Data(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Res_Des_Data_Ex(
     rdResDes: usize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BufferLen" is the size in bytes
     Buffer: ?*anyopaque,
     BufferLen: u32,
     ulFlags: u32,
@@ -4461,7 +4461,7 @@ pub extern "cfgmgr32" fn CM_Modify_Res_Des(
     prdResDes: ?*usize,
     rdResDes: usize,
     ResourceID: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "ResourceLen" is the size in bytes
     ResourceData: ?*anyopaque,
     ResourceLen: u32,
     ulFlags: u32,
@@ -4472,7 +4472,7 @@ pub extern "cfgmgr32" fn CM_Modify_Res_Des_Ex(
     prdResDes: ?*usize,
     rdResDes: usize,
     ResourceID: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "ResourceLen" is the size in bytes
     ResourceData: ?*anyopaque,
     ResourceLen: u32,
     ulFlags: u32,
@@ -4633,7 +4633,7 @@ pub extern "cfgmgr32" fn CM_Query_And_Remove_SubTreeW(
 ) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Query_Arbitrator_Free_Data(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "DataLen" is the size in bytes
     pData: ?*anyopaque,
     DataLen: u32,
     dnDevInst: u32,
@@ -4642,7 +4642,7 @@ pub extern "cfgmgr32" fn CM_Query_Arbitrator_Free_Data(
 ) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Query_Arbitrator_Free_Data_Ex(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "DataLen" is the size in bytes
     pData: ?*anyopaque,
     DataLen: u32,
     dnDevInst: u32,
@@ -4682,7 +4682,7 @@ pub extern "cfgmgr32" fn CM_Query_Resource_Conflict_List(
     pclConflictList: ?*usize,
     dnDevInst: u32,
     ResourceID: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "ResourceLen" is the size in bytes
     ResourceData: ?*anyopaque,
     ResourceLen: u32,
     ulFlags: u32,
@@ -4829,7 +4829,7 @@ pub extern "cfgmgr32" fn CM_Set_Class_Property_ExW(
     ClassGUID: ?*const Guid,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
     ulFlags: u32,
@@ -4841,7 +4841,7 @@ pub extern "cfgmgr32" fn CM_Set_Class_PropertyW(
     ClassGUID: ?*const Guid,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
     ulFlags: u32,
@@ -4850,7 +4850,7 @@ pub extern "cfgmgr32" fn CM_Set_Class_PropertyW(
 pub extern "cfgmgr32" fn CM_Set_Class_Registry_PropertyA(
     ClassGuid: ?*Guid,
     ulProperty: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ulLength" is the size in bytes
     Buffer: ?*anyopaque,
     ulLength: u32,
     ulFlags: u32,
@@ -4861,7 +4861,7 @@ pub extern "cfgmgr32" fn CM_Set_Class_Registry_PropertyA(
 pub extern "cfgmgr32" fn CM_Set_Class_Registry_PropertyW(
     ClassGuid: ?*Guid,
     ulProperty: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ulLength" is the size in bytes
     Buffer: ?*anyopaque,
     ulLength: u32,
     ulFlags: u32,
@@ -4873,7 +4873,7 @@ pub extern "cfgmgr32" fn CM_Set_Device_Interface_Property_ExW(
     pszDeviceInterface: ?[*:0]const u16,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
     ulFlags: u32,
@@ -4885,7 +4885,7 @@ pub extern "cfgmgr32" fn CM_Set_Device_Interface_PropertyW(
     pszDeviceInterface: ?[*:0]const u16,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
     ulFlags: u32,
@@ -4911,7 +4911,7 @@ pub extern "cfgmgr32" fn CM_Set_DevNode_Property_ExW(
     dnDevInst: u32,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
     ulFlags: u32,
@@ -4923,7 +4923,7 @@ pub extern "cfgmgr32" fn CM_Set_DevNode_PropertyW(
     dnDevInst: u32,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
     ulFlags: u32,
@@ -4932,7 +4932,7 @@ pub extern "cfgmgr32" fn CM_Set_DevNode_PropertyW(
 pub extern "cfgmgr32" fn CM_Set_DevNode_Registry_Property_ExA(
     dnDevInst: u32,
     ulProperty: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ulLength" is the size in bytes
     Buffer: ?*anyopaque,
     ulLength: u32,
     ulFlags: u32,
@@ -4942,7 +4942,7 @@ pub extern "cfgmgr32" fn CM_Set_DevNode_Registry_Property_ExA(
 pub extern "cfgmgr32" fn CM_Set_DevNode_Registry_Property_ExW(
     dnDevInst: u32,
     ulProperty: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ulLength" is the size in bytes
     Buffer: ?*anyopaque,
     ulLength: u32,
     ulFlags: u32,
@@ -4952,7 +4952,7 @@ pub extern "cfgmgr32" fn CM_Set_DevNode_Registry_Property_ExW(
 pub extern "cfgmgr32" fn CM_Set_DevNode_Registry_PropertyA(
     dnDevInst: u32,
     ulProperty: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ulLength" is the size in bytes
     Buffer: ?*anyopaque,
     ulLength: u32,
     ulFlags: u32,
@@ -4962,7 +4962,7 @@ pub extern "cfgmgr32" fn CM_Set_DevNode_Registry_PropertyA(
 pub extern "cfgmgr32" fn CM_Set_DevNode_Registry_PropertyW(
     dnDevInst: u32,
     ulProperty: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ulLength" is the size in bytes
     Buffer: ?*anyopaque,
     ulLength: u32,
     ulFlags: u32,
@@ -5959,7 +5959,7 @@ pub extern "setupapi" fn SetupDiGetClassImageListExW(
 pub extern "setupapi" fn SetupDiGetClassInstallParamsA(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ClassInstallParamsSize" is the size in bytes
     ClassInstallParams: ?*SP_CLASSINSTALL_HEADER,
     ClassInstallParamsSize: u32,
     RequiredSize: ?*u32,
@@ -5969,7 +5969,7 @@ pub extern "setupapi" fn SetupDiGetClassInstallParamsA(
 pub extern "setupapi" fn SetupDiGetClassInstallParamsW(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ClassInstallParamsSize" is the size in bytes
     ClassInstallParams: ?*SP_CLASSINSTALL_HEADER,
     ClassInstallParamsSize: u32,
     RequiredSize: ?*u32,
@@ -5980,7 +5980,7 @@ pub extern "setupapi" fn SetupDiGetClassPropertyExW(
     ClassGuid: ?*const Guid,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: u32,
     RequiredSize: ?*u32,
@@ -6014,7 +6014,7 @@ pub extern "setupapi" fn SetupDiGetClassPropertyW(
     ClassGuid: ?*const Guid,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: u32,
     RequiredSize: ?*u32,
@@ -6026,7 +6026,7 @@ pub extern "setupapi" fn SetupDiGetClassRegistryPropertyA(
     ClassGuid: ?*const Guid,
     Property: u32,
     PropertyRegDataType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: u32,
     RequiredSize: ?*u32,
@@ -6039,7 +6039,7 @@ pub extern "setupapi" fn SetupDiGetClassRegistryPropertyW(
     ClassGuid: ?*const Guid,
     Property: u32,
     PropertyRegDataType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: u32,
     RequiredSize: ?*u32,
@@ -6054,7 +6054,7 @@ pub extern "setupapi" fn SetupDiGetCustomDevicePropertyA(
     CustomPropertyName: ?[*:0]const u8,
     Flags: u32,
     PropertyRegDataType: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: u32,
     RequiredSize: ?*u32,
@@ -6067,7 +6067,7 @@ pub extern "setupapi" fn SetupDiGetCustomDevicePropertyW(
     CustomPropertyName: ?[*:0]const u16,
     Flags: u32,
     PropertyRegDataType: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: u32,
     RequiredSize: ?*u32,
@@ -6135,7 +6135,7 @@ pub extern "setupapi" fn SetupDiGetDeviceInterfaceAlias(
 pub extern "setupapi" fn SetupDiGetDeviceInterfaceDetailA(
     DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "DeviceInterfaceDetailDataSize" is the size in bytes
     DeviceInterfaceDetailData: ?*SP_DEVICE_INTERFACE_DETAIL_DATA_A,
     DeviceInterfaceDetailDataSize: u32,
     RequiredSize: ?*u32,
@@ -6146,7 +6146,7 @@ pub extern "setupapi" fn SetupDiGetDeviceInterfaceDetailA(
 pub extern "setupapi" fn SetupDiGetDeviceInterfaceDetailW(
     DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "DeviceInterfaceDetailDataSize" is the size in bytes
     DeviceInterfaceDetailData: ?*SP_DEVICE_INTERFACE_DETAIL_DATA_W,
     DeviceInterfaceDetailDataSize: u32,
     RequiredSize: ?*u32,
@@ -6169,7 +6169,7 @@ pub extern "setupapi" fn SetupDiGetDeviceInterfacePropertyW(
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: ?*u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: u32,
     RequiredSize: ?*u32,
@@ -6192,7 +6192,7 @@ pub extern "setupapi" fn SetupDiGetDevicePropertyW(
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: ?*u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: u32,
     RequiredSize: ?*u32,
@@ -6205,7 +6205,7 @@ pub extern "setupapi" fn SetupDiGetDeviceRegistryPropertyA(
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Property: u32,
     PropertyRegDataType: ?*u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: u32,
     RequiredSize: ?*u32,
@@ -6217,7 +6217,7 @@ pub extern "setupapi" fn SetupDiGetDeviceRegistryPropertyW(
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Property: u32,
     PropertyRegDataType: ?*u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: u32,
     RequiredSize: ?*u32,
@@ -6228,7 +6228,7 @@ pub extern "setupapi" fn SetupDiGetDriverInfoDetailA(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_A,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "DriverInfoDetailDataSize" is the size in bytes
     DriverInfoDetailData: ?*SP_DRVINFO_DETAIL_DATA_A,
     DriverInfoDetailDataSize: u32,
     RequiredSize: ?*u32,
@@ -6239,7 +6239,7 @@ pub extern "setupapi" fn SetupDiGetDriverInfoDetailW(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_W,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "DriverInfoDetailDataSize" is the size in bytes
     DriverInfoDetailData: ?*SP_DRVINFO_DETAIL_DATA_W,
     DriverInfoDetailDataSize: u32,
     RequiredSize: ?*u32,
@@ -6576,7 +6576,7 @@ pub extern "setupapi" fn SetupDiSelectOEMDrv(
 pub extern "setupapi" fn SetupDiSetClassInstallParamsA(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ClassInstallParamsSize" is the size in bytes
     ClassInstallParams: ?*SP_CLASSINSTALL_HEADER,
     ClassInstallParamsSize: u32,
 ) callconv(.winapi) BOOL;
@@ -6585,7 +6585,7 @@ pub extern "setupapi" fn SetupDiSetClassInstallParamsA(
 pub extern "setupapi" fn SetupDiSetClassInstallParamsW(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ClassInstallParamsSize" is the size in bytes
     ClassInstallParams: ?*SP_CLASSINSTALL_HEADER,
     ClassInstallParamsSize: u32,
 ) callconv(.winapi) BOOL;
@@ -6595,7 +6595,7 @@ pub extern "setupapi" fn SetupDiSetClassPropertyExW(
     ClassGuid: ?*const Guid,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
     Flags: u32,
@@ -6608,7 +6608,7 @@ pub extern "setupapi" fn SetupDiSetClassPropertyW(
     ClassGuid: ?*const Guid,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
     Flags: u32,
@@ -6618,7 +6618,7 @@ pub extern "setupapi" fn SetupDiSetClassPropertyW(
 pub extern "setupapi" fn SetupDiSetClassRegistryPropertyA(
     ClassGuid: ?*const Guid,
     Property: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
     MachineName: ?[*:0]const u8,
@@ -6629,7 +6629,7 @@ pub extern "setupapi" fn SetupDiSetClassRegistryPropertyA(
 pub extern "setupapi" fn SetupDiSetClassRegistryPropertyW(
     ClassGuid: ?*const Guid,
     Property: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
     MachineName: ?[*:0]const u16,
@@ -6664,7 +6664,7 @@ pub extern "setupapi" fn SetupDiSetDeviceInterfacePropertyW(
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
     Flags: u32,
@@ -6676,7 +6676,7 @@ pub extern "setupapi" fn SetupDiSetDevicePropertyW(
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
     Flags: u32,
@@ -6687,7 +6687,7 @@ pub extern "setupapi" fn SetupDiSetDeviceRegistryPropertyA(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Property: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
 ) callconv(.winapi) BOOL;
@@ -6697,7 +6697,7 @@ pub extern "setupapi" fn SetupDiSetDeviceRegistryPropertyW(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Property: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
 ) callconv(.winapi) BOOL;
@@ -6840,7 +6840,7 @@ pub extern "setupapi" fn SetupGetBackupInformationW(
 pub extern "setupapi" fn SetupGetBinaryField(
     Context: ?*INFCONTEXT,
     FieldIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ReturnBufferSize" is the size in bytes
     ReturnBuffer: ?*u8,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
@@ -6946,7 +6946,7 @@ pub extern "setupapi" fn SetupGetInfFileListW(
 pub extern "setupapi" fn SetupGetInfInformationA(
     InfSpec: ?*const anyopaque,
     SearchControl: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ReturnBufferSize" is the size in bytes
     ReturnBuffer: ?*SP_INF_INFORMATION,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
@@ -6956,7 +6956,7 @@ pub extern "setupapi" fn SetupGetInfInformationA(
 pub extern "setupapi" fn SetupGetInfInformationW(
     InfSpec: ?*const anyopaque,
     SearchControl: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ReturnBufferSize" is the size in bytes
     ReturnBuffer: ?*SP_INF_INFORMATION,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,

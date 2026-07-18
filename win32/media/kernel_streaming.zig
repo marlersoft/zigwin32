@@ -1192,10 +1192,10 @@ pub const IKsPropertySet = extern union {
             self: *const IKsPropertySet,
             PropSet: ?*const Guid,
             Id: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "InstanceLength" is the size in bytes
             InstanceData: ?*anyopaque,
             InstanceLength: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "DataLength" is the size in bytes
             PropertyData: ?*anyopaque,
             DataLength: u32,
         ) callconv(.winapi) HRESULT,
@@ -1203,10 +1203,10 @@ pub const IKsPropertySet = extern union {
             self: *const IKsPropertySet,
             PropSet: ?*const Guid,
             Id: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "InstanceLength" is the size in bytes
             InstanceData: ?*anyopaque,
             InstanceLength: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "DataLength" is the size in bytes
             PropertyData: ?*anyopaque,
             DataLength: u32,
             BytesReturned: ?*u32,

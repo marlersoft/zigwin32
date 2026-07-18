@@ -2520,7 +2520,7 @@ pub extern "dhcpsapi" fn DhcpHlprAddV4PolicyCondition(
     SubOptionID: u32,
     VendorName: ?PWSTR,
     Operator: DHCP_POL_COMPARATOR,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "ValueLength" is the size in bytes
     Value: ?*u8,
     ValueLength: u32,
     ConditionIndex: ?*u32,
@@ -2739,7 +2739,7 @@ pub extern "dhcpcsvc" fn DhcpRequestParams(
     ClassId: ?*DHCPCAPI_CLASSID,
     SendParams: DHCPCAPI_PARAMS_ARRAY,
     RecdParams: DHCPCAPI_PARAMS_ARRAY,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "pSize" is the size in bytes
     Buffer: ?*u8,
     pSize: ?*u32,
     RequestIdStr: ?PWSTR,

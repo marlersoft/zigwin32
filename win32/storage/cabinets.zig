@@ -251,7 +251,7 @@ pub const PFNFCIGETOPENINFO = *const fn(
 ) callconv(.winapi) isize;
 
 pub const PFNFCIGETTEMPFILE = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbTempName" is the size in bytes
     pszTempName: ?PSTR,
     cbTempName: i32,
     pv: ?*anyopaque,
@@ -317,7 +317,7 @@ pub const PFNOPEN = *const fn(
 
 pub const PFNREAD = *const fn(
     hf: isize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cb" is the size in bytes
     pv: ?*anyopaque,
     cb: u32,
 ) callconv(.winapi) u32;
@@ -330,7 +330,7 @@ pub const PFNSEEK = *const fn(
 
 pub const PFNWRITE = *const fn(
     hf: isize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cb" is the size in bytes
     pv: ?*anyopaque,
     cb: u32,
 ) callconv(.winapi) u32;

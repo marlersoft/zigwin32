@@ -1406,19 +1406,19 @@ pub const IWSDSignatureProperty = extern union {
         ) callconv(.winapi) HRESULT,
         GetKeyInfo: *const fn(
             self: *const IWSDSignatureProperty,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pdwKeyInfoSize" is the size in bytes
             pbKeyInfo: ?*u8,
             pdwKeyInfoSize: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetSignature: *const fn(
             self: *const IWSDSignatureProperty,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pdwSignatureSize" is the size in bytes
             pbSignature: ?*u8,
             pdwSignatureSize: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetSignedInfoHash: *const fn(
             self: *const IWSDSignatureProperty,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pdwHashSize" is the size in bytes
             pbSignedInfoHash: ?*u8,
             pdwHashSize: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -2438,7 +2438,7 @@ pub extern "wsdapi" fn WSDGenerateFaultEx(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDGetConfigurationOption(
     dwOption: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbOutBuffer" is the size in bytes
     pVoid: ?*anyopaque,
     cbOutBuffer: u32,
 ) callconv(.winapi) HRESULT;
@@ -2446,7 +2446,7 @@ pub extern "wsdapi" fn WSDGetConfigurationOption(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDSetConfigurationOption(
     dwOption: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbInBuffer" is the size in bytes
     pVoid: ?*anyopaque,
     cbInBuffer: u32,
 ) callconv(.winapi) HRESULT;

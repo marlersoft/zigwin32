@@ -483,7 +483,7 @@ pub const PROCESS_HEAP_ENTRY = extern struct {
 };
 
 pub const PSECURE_MEMORY_CACHE_CALLBACK = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "Range" is the size in bytes
     Addr: ?*anyopaque,
     Range: usize,
 ) callconv(.winapi) BOOLEAN;
@@ -865,7 +865,7 @@ pub extern "kernel32" fn HeapLock(
 pub extern "kernel32" fn HeapQueryInformation(
     HeapHandle: ?HeapHandle,
     HeapInformationClass: HEAP_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "HeapInformationLength" is the size in bytes
     HeapInformation: ?*anyopaque,
     HeapInformationLength: usize,
     ReturnLength: ?*usize,
@@ -883,7 +883,7 @@ pub extern "kernel32" fn HeapReAlloc(
 pub extern "kernel32" fn HeapSetInformation(
     HeapHandle: ?HeapHandle,
     HeapInformationClass: HEAP_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "HeapInformationLength" is the size in bytes
     HeapInformation: ?*anyopaque,
     HeapInformationLength: usize,
 ) callconv(.winapi) BOOL;
@@ -1133,7 +1133,7 @@ pub extern "kernel32" fn QueryMemoryResourceNotification(
 pub extern "api-ms-win-core-memory-l1-1-8" fn QueryPartitionInformation(
     Partition: ?HANDLE,
     PartitionInformationClass: WIN32_MEMORY_PARTITION_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "PartitionInformationLength" is the size in bytes
     PartitionInformation: ?*anyopaque,
     PartitionInformationLength: u32,
 ) callconv(.winapi) BOOL;
@@ -1143,7 +1143,7 @@ pub extern "api-ms-win-core-memory-l1-1-4" fn QueryVirtualMemoryInformation(
     Process: ?HANDLE,
     VirtualAddress: ?*const anyopaque,
     MemoryInformationClass: WIN32_MEMORY_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "MemoryInformationSize" is the size in bytes
     MemoryInformation: ?*anyopaque,
     MemoryInformationSize: usize,
     ReturnSize: ?*usize,
@@ -1178,14 +1178,14 @@ pub extern "kernel32" fn RtlCompareMemory(
 ) callconv(.winapi) usize;
 
 pub extern "ntdll" fn RtlCrc32(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "Size" is the size in bytes
     Buffer: ?*const anyopaque,
     Size: usize,
     InitialCrc: u32,
 ) callconv(.winapi) u32;
 
 pub extern "ntdll" fn RtlCrc64(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "Size" is the size in bytes
     Buffer: ?*const anyopaque,
     Size: usize,
     InitialCrc: u64,
@@ -1359,7 +1359,7 @@ pub extern "api-ms-win-core-memory-l1-1-3" fn VirtualProtectFromApp(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn VirtualQuery(
     lpAddress: ?*const anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwLength" is the size in bytes
     lpBuffer: ?*MEMORY_BASIC_INFORMATION,
     dwLength: usize,
 ) callconv(.winapi) usize;
@@ -1368,7 +1368,7 @@ pub extern "kernel32" fn VirtualQuery(
 pub extern "kernel32" fn VirtualQueryEx(
     hProcess: ?HANDLE,
     lpAddress: ?*const anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwLength" is the size in bytes
     lpBuffer: ?*MEMORY_BASIC_INFORMATION,
     dwLength: usize,
 ) callconv(.winapi) usize;

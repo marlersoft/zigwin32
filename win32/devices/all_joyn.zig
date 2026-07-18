@@ -4384,7 +4384,7 @@ pub extern "msajapi" fn AllJoynEventSelect(
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "msajapi" fn AllJoynReceiveFromBus(
     connectedBusHandle: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "bytesToRead" is the size in bytes
     buffer: ?*anyopaque,
     bytesToRead: u32,
     bytesTransferred: ?*u32,
@@ -4394,7 +4394,7 @@ pub extern "msajapi" fn AllJoynReceiveFromBus(
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "msajapi" fn AllJoynSendToBus(
     connectedBusHandle: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "bytesToWrite" is the size in bytes
     buffer: ?*const anyopaque,
     bytesToWrite: u32,
     bytesTransferred: ?*u32,

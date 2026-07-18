@@ -2719,7 +2719,7 @@ pub const ID3D10Asynchronous = extern union {
         ) callconv(.winapi) void,
         GetData: *const fn(
             self: *const ID3D10Asynchronous,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*anyopaque,
             DataSize: u32,
             GetDataFlags: u32,
@@ -3293,14 +3293,14 @@ pub const ID3D10Device = extern union {
             self: *const ID3D10Device,
             guid: ?*const Guid,
             pDataSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pDataSize" is the size in bytes
             pData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         SetPrivateData: *const fn(
             self: *const ID3D10Device,
             guid: ?*const Guid,
             DataSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*const anyopaque,
         ) callconv(.winapi) HRESULT,
         SetPrivateDataInterface: *const fn(
@@ -3811,14 +3811,14 @@ pub const ID3D10DeviceChild = extern union {
             self: *const ID3D10DeviceChild,
             guid: ?*const Guid,
             pDataSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pDataSize" is the size in bytes
             pData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         SetPrivateData: *const fn(
             self: *const ID3D10DeviceChild,
             guid: ?*const Guid,
             DataSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*const anyopaque,
         ) callconv(.winapi) HRESULT,
         SetPrivateDataInterface: *const fn(
@@ -4772,14 +4772,14 @@ pub const ID3D10EffectVariable = extern union {
         ) callconv(.winapi) ?*ID3D10EffectSamplerVariable,
         SetRawValue: *const fn(
             self: *const ID3D10EffectVariable,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "ByteCount" is the size in bytes
             pData: ?*anyopaque,
             Offset: u32,
             ByteCount: u32,
         ) callconv(.winapi) HRESULT,
         GetRawValue: *const fn(
             self: *const ID3D10EffectVariable,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "ByteCount" is the size in bytes
             pData: ?*anyopaque,
             Offset: u32,
             ByteCount: u32,
@@ -4998,7 +4998,7 @@ pub const ID3D10InfoQueue = extern union {
         GetMessage: *const fn(
             self: *const ID3D10InfoQueue,
             MessageIndex: u64,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "pMessageByteLength" is the size in bytes
             pMessage: ?*D3D10_MESSAGE,
             pMessageByteLength: ?*usize,
         ) callconv(.winapi) HRESULT,
@@ -5026,7 +5026,7 @@ pub const ID3D10InfoQueue = extern union {
         ) callconv(.winapi) HRESULT,
         GetStorageFilter: *const fn(
             self: *const ID3D10InfoQueue,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pFilterByteLength" is the size in bytes
             pFilter: ?*D3D10_INFO_QUEUE_FILTER,
             pFilterByteLength: ?*usize,
         ) callconv(.winapi) HRESULT,
@@ -5055,7 +5055,7 @@ pub const ID3D10InfoQueue = extern union {
         ) callconv(.winapi) HRESULT,
         GetRetrievalFilter: *const fn(
             self: *const ID3D10InfoQueue,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pFilterByteLength" is the size in bytes
             pFilter: ?*D3D10_INFO_QUEUE_FILTER,
             pFilterByteLength: ?*usize,
         ) callconv(.winapi) HRESULT,
@@ -5953,7 +5953,7 @@ pub const PFN_D3D10_CREATE_DEVICE_AND_SWAP_CHAIN1 = *const fn(
 // Section: Functions (29)
 //--------------------------------------------------------------------------------
 pub extern "d3d10" fn D3D10CompileEffectFromMemory(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "DataLength" is the size in bytes
     pData: ?*anyopaque,
     DataLength: usize,
     pSrcFileName: ?[*:0]const u8,
@@ -5966,7 +5966,7 @@ pub extern "d3d10" fn D3D10CompileEffectFromMemory(
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10CompileShader(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSize" is the size in bytes
     pSrcData: ?[*:0]const u8,
     SrcDataSize: usize,
     pFileName: ?[*:0]const u8,
@@ -6027,7 +6027,7 @@ pub extern "d3d10_1" fn D3D10CreateDeviceAndSwapChain1(
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10CreateEffectFromMemory(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "DataLength" is the size in bytes
     pData: ?*anyopaque,
     DataLength: usize,
     FXFlags: u32,
@@ -6037,7 +6037,7 @@ pub extern "d3d10" fn D3D10CreateEffectFromMemory(
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10CreateEffectPoolFromMemory(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "DataLength" is the size in bytes
     pData: ?*anyopaque,
     DataLength: usize,
     FXFlags: u32,
@@ -6058,7 +6058,7 @@ pub extern "d3d10" fn D3D10DisassembleEffect(
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10DisassembleShader(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "BytecodeLength" is the size in bytes
     pShader: ?*const anyopaque,
     BytecodeLength: usize,
     EnableColorCode: BOOL,
@@ -6071,21 +6071,21 @@ pub extern "d3d10" fn D3D10GetGeometryShaderProfile(
 ) callconv(.winapi) ?PSTR;
 
 pub extern "d3d10" fn D3D10GetInputAndOutputSignatureBlob(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "BytecodeLength" is the size in bytes
     pShaderBytecode: ?*const anyopaque,
     BytecodeLength: usize,
     ppSignatureBlob: ?*?*ID3DBlob,
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10GetInputSignatureBlob(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "BytecodeLength" is the size in bytes
     pShaderBytecode: ?*const anyopaque,
     BytecodeLength: usize,
     ppSignatureBlob: ?*?*ID3DBlob,
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10GetOutputSignatureBlob(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "BytecodeLength" is the size in bytes
     pShaderBytecode: ?*const anyopaque,
     BytecodeLength: usize,
     ppSignatureBlob: ?*?*ID3DBlob,
@@ -6096,7 +6096,7 @@ pub extern "d3d10" fn D3D10GetPixelShaderProfile(
 ) callconv(.winapi) ?PSTR;
 
 pub extern "d3d10" fn D3D10GetShaderDebugInfo(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "BytecodeLength" is the size in bytes
     pShaderBytecode: ?*const anyopaque,
     BytecodeLength: usize,
     ppDebugInfo: ?*?*ID3DBlob,
@@ -6107,7 +6107,7 @@ pub extern "d3d10" fn D3D10GetVertexShaderProfile(
 ) callconv(.winapi) ?PSTR;
 
 pub extern "d3d10" fn D3D10PreprocessShader(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSize" is the size in bytes
     pSrcData: ?[*:0]const u8,
     SrcDataSize: usize,
     pFileName: ?[*:0]const u8,
@@ -6118,7 +6118,7 @@ pub extern "d3d10" fn D3D10PreprocessShader(
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3d10" fn D3D10ReflectShader(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "BytecodeLength" is the size in bytes
     pShaderBytecode: ?*const anyopaque,
     BytecodeLength: usize,
     ppReflector: ?*?*ID3D10ShaderReflection,

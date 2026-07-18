@@ -2229,7 +2229,7 @@ pub const IDXGIFactory5 = extern union {
         CheckFeatureSupport: *const fn(
             self: *const IDXGIFactory5,
             Feature: DXGI_FEATURE,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "FeatureSupportDataSize" is the size in bytes
             pFeatureSupportData: ?*anyopaque,
             FeatureSupportDataSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -2362,7 +2362,7 @@ pub const IDXGIInfoQueue = extern union {
             self: *const IDXGIInfoQueue,
             Producer: Guid,
             MessageIndex: u64,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "pMessageByteLength" is the size in bytes
             pMessage: ?*DXGI_INFO_QUEUE_MESSAGE,
             pMessageByteLength: ?*usize,
         ) callconv(.winapi) HRESULT,
@@ -2398,7 +2398,7 @@ pub const IDXGIInfoQueue = extern union {
         GetStorageFilter: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "pFilterByteLength" is the size in bytes
             pFilter: ?*DXGI_INFO_QUEUE_FILTER,
             pFilterByteLength: ?*usize,
         ) callconv(.winapi) HRESULT,
@@ -2439,7 +2439,7 @@ pub const IDXGIInfoQueue = extern union {
         GetRetrievalFilter: *const fn(
             self: *const IDXGIInfoQueue,
             Producer: Guid,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "pFilterByteLength" is the size in bytes
             pFilter: ?*DXGI_INFO_QUEUE_FILTER,
             pFilterByteLength: ?*usize,
         ) callconv(.winapi) HRESULT,
@@ -2679,7 +2679,7 @@ pub const IDXGIObject = extern union {
             self: *const IDXGIObject,
             Name: ?*const Guid,
             DataSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*const anyopaque,
         ) callconv(.winapi) HRESULT,
         SetPrivateDataInterface: *const fn(
@@ -2691,7 +2691,7 @@ pub const IDXGIObject = extern union {
             self: *const IDXGIObject,
             Name: ?*const Guid,
             pDataSize: ?*u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pDataSize" is the size in bytes
             pData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         GetParent: *const fn(
@@ -3011,21 +3011,21 @@ pub const IDXGIOutputDuplication = extern union {
         GetFrameDirtyRects: *const fn(
             self: *const IDXGIOutputDuplication,
             DirtyRectsBufferSize: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "DirtyRectsBufferSize" is the size in bytes
             pDirtyRectsBuffer: ?*RECT,
             pDirtyRectsBufferSizeRequired: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetFrameMoveRects: *const fn(
             self: *const IDXGIOutputDuplication,
             MoveRectsBufferSize: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "MoveRectsBufferSize" is the size in bytes
             pMoveRectBuffer: ?*DXGI_OUTDUPL_MOVE_RECT,
             pMoveRectsBufferSizeRequired: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetFramePointerShape: *const fn(
             self: *const IDXGIOutputDuplication,
             PointerShapeBufferSize: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "PointerShapeBufferSize" is the size in bytes
             pPointerShapeBuffer: ?*anyopaque,
             pPointerShapeBufferSizeRequired: ?*u32,
             pPointerShapeInfo: ?*DXGI_OUTDUPL_POINTER_SHAPE_INFO,

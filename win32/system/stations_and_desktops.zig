@@ -339,7 +339,7 @@ pub extern "user32" fn GetThreadDesktop(
 pub extern "user32" fn GetUserObjectInformationA(
     hObj: ?HANDLE,
     nIndex: USER_OBJECT_INFORMATION_INDEX,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nLength" is the size in bytes
     pvInfo: ?*anyopaque,
     nLength: u32,
     lpnLengthNeeded: ?*u32,
@@ -349,7 +349,7 @@ pub extern "user32" fn GetUserObjectInformationA(
 pub extern "user32" fn GetUserObjectInformationW(
     hObj: ?HANDLE,
     nIndex: USER_OBJECT_INFORMATION_INDEX,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nLength" is the size in bytes
     pvInfo: ?*anyopaque,
     nLength: u32,
     lpnLengthNeeded: ?*u32,
@@ -406,7 +406,7 @@ pub extern "user32" fn SetThreadDesktop(
 pub extern "user32" fn SetUserObjectInformationA(
     hObj: ?HANDLE,
     nIndex: i32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nLength" is the size in bytes
     pvInfo: ?*anyopaque,
     nLength: u32,
 ) callconv(.winapi) BOOL;
@@ -415,7 +415,7 @@ pub extern "user32" fn SetUserObjectInformationA(
 pub extern "user32" fn SetUserObjectInformationW(
     hObj: ?HANDLE,
     nIndex: i32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nLength" is the size in bytes
     pvInfo: ?*anyopaque,
     nLength: u32,
 ) callconv(.winapi) BOOL;

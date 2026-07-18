@@ -8907,14 +8907,14 @@ pub const ID3D12VideoDecodeCommandList = extern union {
         SetMarker: *const fn(
             self: *const ID3D12VideoDecodeCommandList,
             Metadata: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "Size" is the size in bytes
             pData: ?*const anyopaque,
             Size: u32,
         ) callconv(.winapi) void,
         BeginEvent: *const fn(
             self: *const ID3D12VideoDecodeCommandList,
             Metadata: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "Size" is the size in bytes
             pData: ?*const anyopaque,
             Size: u32,
         ) callconv(.winapi) void,
@@ -9020,14 +9020,14 @@ pub const ID3D12VideoDecodeCommandList2 = extern union {
         InitializeExtensionCommand: *const fn(
             self: *const ID3D12VideoDecodeCommandList2,
             pExtensionCommand: ?*ID3D12VideoExtensionCommand,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "InitializationParametersSizeInBytes" is the size in bytes
             pInitializationParameters: ?*const anyopaque,
             InitializationParametersSizeInBytes: usize,
         ) callconv(.winapi) void,
         ExecuteExtensionCommand: *const fn(
             self: *const ID3D12VideoDecodeCommandList2,
             pExtensionCommand: ?*ID3D12VideoExtensionCommand,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "ExecutionParametersSizeInBytes" is the size in bytes
             pExecutionParameters: ?*const anyopaque,
             ExecutionParametersSizeInBytes: usize,
         ) callconv(.winapi) void,
@@ -9177,7 +9177,7 @@ pub const ID3D12VideoDevice = extern union {
         CheckFeatureSupport: *const fn(
             self: *const ID3D12VideoDevice,
             FeatureVideo: D3D12_FEATURE_VIDEO,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "FeatureSupportDataSize" is the size in bytes
             pFeatureSupportData: ?*anyopaque,
             FeatureSupportDataSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -9284,7 +9284,7 @@ pub const ID3D12VideoDevice2 = extern union {
         CreateVideoExtensionCommand: *const fn(
             self: *const ID3D12VideoDevice2,
             pDesc: ?*const D3D12_VIDEO_EXTENSION_COMMAND_DESC,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "CreationParametersDataSizeInBytes" is the size in bytes
             pCreationParameters: ?*const anyopaque,
             CreationParametersDataSizeInBytes: usize,
             pProtectedResourceSession: ?*ID3D12ProtectedResourceSession,
@@ -9294,10 +9294,10 @@ pub const ID3D12VideoDevice2 = extern union {
         ExecuteExtensionCommand: *const fn(
             self: *const ID3D12VideoDevice2,
             pExtensionCommand: ?*ID3D12VideoExtensionCommand,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "ExecutionParametersSizeInBytes" is the size in bytes
             pExecutionParameters: ?*const anyopaque,
             ExecutionParametersSizeInBytes: usize,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "OutputDataSizeInBytes" is the size in bytes
             pOutputData: ?*anyopaque,
             OutputDataSizeInBytes: usize,
         ) callconv(.winapi) HRESULT,
@@ -9412,14 +9412,14 @@ pub const ID3D12VideoEncodeCommandList = extern union {
         SetMarker: *const fn(
             self: *const ID3D12VideoEncodeCommandList,
             Metadata: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "Size" is the size in bytes
             pData: ?*const anyopaque,
             Size: u32,
         ) callconv(.winapi) void,
         BeginEvent: *const fn(
             self: *const ID3D12VideoEncodeCommandList,
             Metadata: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "Size" is the size in bytes
             pData: ?*const anyopaque,
             Size: u32,
         ) callconv(.winapi) void,
@@ -9512,14 +9512,14 @@ pub const ID3D12VideoEncodeCommandList1 = extern union {
         InitializeExtensionCommand: *const fn(
             self: *const ID3D12VideoEncodeCommandList1,
             pExtensionCommand: ?*ID3D12VideoExtensionCommand,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "InitializationParametersSizeInBytes" is the size in bytes
             pInitializationParameters: ?*const anyopaque,
             InitializationParametersSizeInBytes: usize,
         ) callconv(.winapi) void,
         ExecuteExtensionCommand: *const fn(
             self: *const ID3D12VideoEncodeCommandList1,
             pExtensionCommand: ?*ID3D12VideoExtensionCommand,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "ExecutionParametersSizeInBytes" is the size in bytes
             pExecutionParameters: ?*const anyopaque,
             ExecutionParametersSizeInBytes: usize,
         ) callconv(.winapi) void,
@@ -9867,14 +9867,14 @@ pub const ID3D12VideoProcessCommandList = extern union {
         SetMarker: *const fn(
             self: *const ID3D12VideoProcessCommandList,
             Metadata: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "Size" is the size in bytes
             pData: ?*const anyopaque,
             Size: u32,
         ) callconv(.winapi) void,
         BeginEvent: *const fn(
             self: *const ID3D12VideoProcessCommandList,
             Metadata: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "Size" is the size in bytes
             pData: ?*const anyopaque,
             Size: u32,
         ) callconv(.winapi) void,
@@ -9982,14 +9982,14 @@ pub const ID3D12VideoProcessCommandList2 = extern union {
         InitializeExtensionCommand: *const fn(
             self: *const ID3D12VideoProcessCommandList2,
             pExtensionCommand: ?*ID3D12VideoExtensionCommand,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "InitializationParametersSizeInBytes" is the size in bytes
             pInitializationParameters: ?*const anyopaque,
             InitializationParametersSizeInBytes: usize,
         ) callconv(.winapi) void,
         ExecuteExtensionCommand: *const fn(
             self: *const ID3D12VideoProcessCommandList2,
             pExtensionCommand: ?*ID3D12VideoExtensionCommand,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "ExecutionParametersSizeInBytes" is the size in bytes
             pExecutionParameters: ?*const anyopaque,
             ExecutionParametersSizeInBytes: usize,
         ) callconv(.winapi) void,
@@ -10789,14 +10789,14 @@ pub const IDXVAHD_VideoProcessor = extern union {
             self: *const IDXVAHD_VideoProcessor,
             State: DXVAHD_BLT_STATE,
             DataSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*const anyopaque,
         ) callconv(.winapi) HRESULT,
         GetVideoProcessBltState: *const fn(
             self: *const IDXVAHD_VideoProcessor,
             State: DXVAHD_BLT_STATE,
             DataSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         SetVideoProcessStreamState: *const fn(
@@ -10804,7 +10804,7 @@ pub const IDXVAHD_VideoProcessor = extern union {
             StreamNumber: u32,
             State: DXVAHD_STREAM_STATE,
             DataSize: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*const anyopaque,
         ) callconv(.winapi) HRESULT,
         GetVideoProcessStreamState: *const fn(
@@ -10812,7 +10812,7 @@ pub const IDXVAHD_VideoProcessor = extern union {
             StreamNumber: u32,
             State: DXVAHD_STREAM_STATE,
             DataSize: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "DataSize" is the size in bytes
             pData: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
         VideoProcessBltHD: *const fn(
@@ -11105,13 +11105,13 @@ pub const IMF2DBuffer = extern union {
         ) callconv(.winapi) HRESULT,
         ContiguousCopyTo: *const fn(
             self: *const IMF2DBuffer,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cbDestBuffer" is the size in bytes
             pbDestBuffer: ?*u8,
             cbDestBuffer: u32,
         ) callconv(.winapi) HRESULT,
         ContiguousCopyFrom: *const fn(
             self: *const IMF2DBuffer,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cbSrcBuffer" is the size in bytes
             pbSrcBuffer: ?*const u8,
             cbSrcBuffer: u32,
         ) callconv(.winapi) HRESULT,
@@ -12532,7 +12532,7 @@ pub const IMFByteStream = extern union {
         ) callconv(.winapi) HRESULT,
         BeginRead: *const fn(
             self: *const IMFByteStream,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cb" is the size in bytes
             pb: ?*u8,
             cb: u32,
             pCallback: ?*IMFAsyncCallback,
@@ -12551,7 +12551,7 @@ pub const IMFByteStream = extern union {
         ) callconv(.winapi) HRESULT,
         BeginWrite: *const fn(
             self: *const IMFByteStream,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cb" is the size in bytes
             pb: ?*const u8,
             cb: u32,
             pCallback: ?*IMFAsyncCallback,
@@ -13950,10 +13950,10 @@ pub const IMFContentProtectionDevice = extern union {
             self: *const IMFContentProtectionDevice,
             FunctionId: u32,
             InputBufferByteCount: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "InputBufferByteCount" is the size in bytes
             InputBuffer: ?*const u8,
             OutputBufferByteCount: ?*u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "OutputBufferByteCount" is the size in bytes
             OutputBuffer: ?*u8,
         ) callconv(.winapi) HRESULT,
         GetPrivateDataByteCount: *const fn(
@@ -14578,7 +14578,7 @@ pub const IMFExtendedCameraIntrinsics = extern union {
         base: IUnknown.VTable,
         InitializeFromBuffer: *const fn(
             self: *const IMFExtendedCameraIntrinsics,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "dwBufferSize" is the size in bytes
             pbBuffer: ?*u8,
             dwBufferSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -14588,7 +14588,7 @@ pub const IMFExtendedCameraIntrinsics = extern union {
         ) callconv(.winapi) HRESULT,
         SerializeToBuffer: *const fn(
             self: *const IMFExtendedCameraIntrinsics,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pdwBufferSize" is the size in bytes
             pbBuffer: ?*u8,
             pdwBufferSize: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -15108,7 +15108,7 @@ pub const IMFMediaBuffer = extern union {
         base: IUnknown.VTable,
         Lock: *const fn(
             self: *const IMFMediaBuffer,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "pcbCurrentLength" is the size in bytes
             ppbBuffer: ?*?*u8,
             pcbMaxLength: ?*u32,
             pcbCurrentLength: ?*u32,
@@ -15628,7 +15628,7 @@ pub const IMFMediaEngineEMENotify = extern union {
         base: IUnknown.VTable,
         Encrypted: *const fn(
             self: *const IMFMediaEngineEMENotify,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cb" is the size in bytes
             pbInitData: ?*const u8,
             cb: u32,
             bstrInitDataType: ?BSTR,
@@ -15980,7 +15980,7 @@ pub const IMFMediaEngineNeedKeyNotify = extern union {
         base: IUnknown.VTable,
         NeedKey: *const fn(
             self: *const IMFMediaEngineNeedKeyNotify,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cb" is the size in bytes
             initData: ?*const u8,
             cb: u32,
         ) callconv(.winapi) void,
@@ -16063,7 +16063,7 @@ pub const IMFMediaEngineProtectedContent = extern union {
         ) callconv(.winapi) HRESULT,
         SetApplicationCertificate: *const fn(
             self: *const IMFMediaEngineProtectedContent,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cbBlob" is the size in bytes
             pbBlob: ?*const u8,
             cbBlob: u32,
         ) callconv(.winapi) HRESULT,
@@ -16458,10 +16458,10 @@ pub const IMFMediaKeys = extern union {
         CreateSession: *const fn(
             self: *const IMFMediaKeys,
             mimeType: ?BSTR,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "cb" is the size in bytes
             initData: ?*const u8,
             cb: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "cbCustomData" is the size in bytes
             customData: ?*const u8,
             cbCustomData: u32,
             notify: ?*IMFMediaKeySessionNotify,
@@ -16509,7 +16509,7 @@ pub const IMFMediaKeys2 = extern union {
         ) callconv(.winapi) HRESULT,
         SetServerCertificate: *const fn(
             self: *const IMFMediaKeys2,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cb" is the size in bytes
             pbServerCertificate: ?*const u8,
             cb: u32,
         ) callconv(.winapi) HRESULT,
@@ -16556,7 +16556,7 @@ pub const IMFMediaKeySession = extern union {
         ) callconv(.winapi) HRESULT,
         Update: *const fn(
             self: *const IMFMediaKeySession,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cb" is the size in bytes
             key: ?*const u8,
             cb: u32,
         ) callconv(.winapi) HRESULT,
@@ -16601,7 +16601,7 @@ pub const IMFMediaKeySession2 = extern union {
         GenerateRequest: *const fn(
             self: *const IMFMediaKeySession2,
             initDataType: ?BSTR,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "cb" is the size in bytes
             pbInitData: ?*const u8,
             cb: u32,
         ) callconv(.winapi) HRESULT,
@@ -16649,7 +16649,7 @@ pub const IMFMediaKeySessionNotify = extern union {
         KeyMessage: *const fn(
             self: *const IMFMediaKeySessionNotify,
             destinationURL: ?BSTR,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "cb" is the size in bytes
             message: ?*const u8,
             cb: u32,
         ) callconv(.winapi) void,
@@ -16684,7 +16684,7 @@ pub const IMFMediaKeySessionNotify2 = extern union {
             self: *const IMFMediaKeySessionNotify2,
             eMessageType: MF_MEDIAKEYSESSION_MESSAGETYPE,
             destinationURL: ?BSTR,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "cbMessage" is the size in bytes
             pbMessage: ?*const u8,
             cbMessage: u32,
         ) callconv(.winapi) void,
@@ -17670,14 +17670,14 @@ pub const IMFNetCredential = extern union {
         base: IUnknown.VTable,
         SetUser: *const fn(
             self: *const IMFNetCredential,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cbData" is the size in bytes
             pbData: ?*u8,
             cbData: u32,
             fDataIsEncrypted: BOOL,
         ) callconv(.winapi) HRESULT,
         SetPassword: *const fn(
             self: *const IMFNetCredential,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cbData" is the size in bytes
             pbData: ?*u8,
             cbData: u32,
             fDataIsEncrypted: BOOL,
@@ -18882,10 +18882,10 @@ pub const IMFProtectedEnvironmentAccess = extern union {
         Call: *const fn(
             self: *const IMFProtectedEnvironmentAccess,
             inputLength: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "inputLength" is the size in bytes
             input: ?*const u8,
             outputLength: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "outputLength" is the size in bytes
             output: ?*u8,
         ) callconv(.winapi) HRESULT,
         ReadGRL: *const fn(
@@ -19526,7 +19526,7 @@ pub const IMFSampleGrabberSinkCallback = extern union {
             dwSampleFlags: u32,
             llSampleTime: i64,
             llSampleDuration: i64,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "dwSampleSize" is the size in bytes
             pSampleBuffer: ?*const u8,
             dwSampleSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -19560,7 +19560,7 @@ pub const IMFSampleGrabberSinkCallback2 = extern union {
             dwSampleFlags: u32,
             llSampleTime: i64,
             llSampleDuration: i64,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "dwSampleSize" is the size in bytes
             pSampleBuffer: ?*const u8,
             dwSampleSize: u32,
             pAttributes: ?*IMFAttributes,
@@ -19773,7 +19773,7 @@ pub const IMFSecureChannel = extern union {
         ) callconv(.winapi) HRESULT,
         SetupSession: *const fn(
             self: *const IMFSecureChannel,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cbSessionKey" is the size in bytes
             pbEncryptedSessionKey: ?*u8,
             cbSessionKey: u32,
         ) callconv(.winapi) HRESULT,
@@ -20686,7 +20686,7 @@ pub const IMFSourceBuffer = extern union {
         ) callconv(.winapi) HRESULT,
         Append: *const fn(
             self: *const IMFSourceBuffer,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "len" is the size in bytes
             pData: ?*const u8,
             len: u32,
         ) callconv(.winapi) HRESULT,
@@ -21257,7 +21257,7 @@ pub const IMFSSLCertificateManager = extern union {
         OnServerCertificate: *const fn(
             self: *const IMFSSLCertificateManager,
             pszURL: ?[*:0]const u16,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "cbData" is the size in bytes
             pbData: ?*u8,
             cbData: u32,
             pfIsGood: ?*BOOL,
@@ -21397,7 +21397,7 @@ pub const IMFSystemId = extern union {
             self: *const IMFSystemId,
             stage: u32,
             cbIn: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cbIn" is the size in bytes
             pbIn: ?*const u8,
             pcbOut: ?*u32,
             ppbOut: ?*?*u8,
@@ -21747,7 +21747,7 @@ pub const IMFTimedTextCueList = extern union {
             self: *const IMFTimedTextCueList,
             start: f64,
             duration: f64,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "dataSize" is the size in bytes
             data: ?*const u8,
             dataSize: u32,
             cue: ?**IMFTimedTextCue,
@@ -23755,7 +23755,7 @@ pub const IMFVirtualCamera = extern union {
             self: *const IMFVirtualCamera,
             pKey: ?*const DEVPROPKEY,
             Type: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "cbData" is the size in bytes
             pbData: ?*const u8,
             cbData: u32,
         ) callconv(.winapi) HRESULT,
@@ -23764,7 +23764,7 @@ pub const IMFVirtualCamera = extern union {
             EntryName: ?[*:0]const u16,
             SubkeyPath: ?[*:0]const u16,
             dwRegType: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "cbData" is the size in bytes
             pbData: ?*const u8,
             cbData: u32,
         ) callconv(.winapi) HRESULT,
@@ -23787,10 +23787,10 @@ pub const IMFVirtualCamera = extern union {
             propertySet: ?*const Guid,
             propertyId: u32,
             propertyFlags: u32,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "propertyPayloadLength" is the size in bytes
             propertyPayload: ?*anyopaque,
             propertyPayloadLength: u32,
-            // TODO: what to do with BytesParamIndex 6?
+            /// parameter "dataLength" is the size in bytes
             data: ?*anyopaque,
             dataLength: u32,
             dataWritten: ?*u32,
@@ -24034,7 +24034,7 @@ pub const IOPMVideoOutput = extern union {
             self: *const IOPMVideoOutput,
             pParameters: ?*const OPM_CONFIGURE_PARAMETERS,
             ulAdditionalParametersSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "ulAdditionalParametersSize" is the size in bytes
             pbAdditionalParameters: ?*const u8,
         ) callconv(.winapi) HRESULT,
     };
@@ -28495,7 +28495,7 @@ pub const PDXVAHDSW_GetVideoProcessStreamStatePrivate = *const fn(
 
 pub const PDXVAHDSW_Plugin = *const fn(
     Size: u32,
-    // TODO: what to do with BytesParamIndex 0?
+    /// parameter "Size" is the size in bytes
     pCallbacks: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
@@ -28508,7 +28508,7 @@ pub const PDXVAHDSW_SetVideoProcessBltState = *const fn(
     hVideoProcessor: ?HANDLE,
     State: DXVAHD_BLT_STATE,
     DataSize: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "DataSize" is the size in bytes
     pData: ?*const anyopaque,
 ) callconv(.winapi) HRESULT;
 
@@ -28517,7 +28517,7 @@ pub const PDXVAHDSW_SetVideoProcessStreamState = *const fn(
     StreamNumber: u32,
     State: DXVAHD_STREAM_STATE,
     DataSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "DataSize" is the size in bytes
     pData: ?*const anyopaque,
 ) callconv(.winapi) HRESULT;
 
@@ -28829,7 +28829,7 @@ pub extern "mfplat" fn MFBeginUnregisterWorkQueueWithMMCSS(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFCalculateBitmapImageSize(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbBufSize" is the size in bytes
     pBMIH: ?*const BITMAPINFOHEADER,
     cbBufSize: u32,
     pcbImageSize: ?*u32,
@@ -29600,7 +29600,7 @@ pub extern "mfplat" fn MFCreateVideoMediaTypeFromBitMapInfoHeader(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mfplat" fn MFCreateVideoMediaTypeFromBitMapInfoHeaderEx(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbBitMapInfoHeader" is the size in bytes
     pbmihBitMapInfoHeader: ?*const BITMAPINFOHEADER,
     cbBitMapInfoHeader: u32,
     dwPixelAspectRatioX: u32,
@@ -29764,7 +29764,7 @@ pub extern "mfplat" fn MFFrameRateToAverageTimePerFrame(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFGetAttributesAsBlob(
     pAttributes: ?*IMFAttributes,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbBufSize" is the size in bytes
     pBuf: ?*u8,
     cbBufSize: u32,
 ) callconv(.winapi) HRESULT;
@@ -29783,7 +29783,7 @@ pub extern "mfplat" fn MFGetContentProtectionSystemCLSID(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "mf" fn MFGetLocalId(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "size" is the size in bytes
     verifier: ?*const u8,
     size: u32,
     id: ?*?PWSTR,
@@ -29793,7 +29793,7 @@ pub extern "mf" fn MFGetLocalId(
 pub extern "mfplat" fn MFGetMFTMerit(
     pMFT: ?*IUnknown,
     cbVerifier: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbVerifier" is the size in bytes
     verifier: ?*const u8,
     merit: ?*u32,
 ) callconv(.winapi) HRESULT;
@@ -29906,7 +29906,7 @@ pub extern "mfplat" fn MFInitAMMediaTypeFromMFMediaType(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFInitAttributesFromBlob(
     pAttributes: ?*IMFAttributes,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbBufSize" is the size in bytes
     pBuf: ?*const u8,
     cbBufSize: u32,
 ) callconv(.winapi) HRESULT;
@@ -29920,7 +29920,7 @@ pub extern "mfplat" fn MFInitMediaTypeFromAMMediaType(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFInitMediaTypeFromMFVideoFormat(
     pMFType: ?*IMFMediaType,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbBufSize" is the size in bytes
     pMFVF: ?*const MFVIDEOFORMAT,
     cbBufSize: u32,
 ) callconv(.winapi) HRESULT;
@@ -29928,7 +29928,7 @@ pub extern "mfplat" fn MFInitMediaTypeFromMFVideoFormat(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFInitMediaTypeFromMPEG1VideoInfo(
     pMFType: ?*IMFMediaType,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbBufSize" is the size in bytes
     pMP1VI: ?*const MPEG1VIDEOINFO,
     cbBufSize: u32,
     pSubtype: ?*const Guid,
@@ -29937,7 +29937,7 @@ pub extern "mfplat" fn MFInitMediaTypeFromMPEG1VideoInfo(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFInitMediaTypeFromMPEG2VideoInfo(
     pMFType: ?*IMFMediaType,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbBufSize" is the size in bytes
     pMP2VI: ?*const MPEG2VIDEOINFO,
     cbBufSize: u32,
     pSubtype: ?*const Guid,
@@ -29946,7 +29946,7 @@ pub extern "mfplat" fn MFInitMediaTypeFromMPEG2VideoInfo(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFInitMediaTypeFromVideoInfoHeader(
     pMFType: ?*IMFMediaType,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbBufSize" is the size in bytes
     pVIH: ?*const VIDEOINFOHEADER,
     cbBufSize: u32,
     pSubtype: ?*const Guid,
@@ -29955,7 +29955,7 @@ pub extern "mfplat" fn MFInitMediaTypeFromVideoInfoHeader(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFInitMediaTypeFromVideoInfoHeader2(
     pMFType: ?*IMFMediaType,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbBufSize" is the size in bytes
     pVIH2: ?*const VIDEOINFOHEADER2,
     cbBufSize: u32,
     pSubtype: ?*const Guid,
@@ -29964,7 +29964,7 @@ pub extern "mfplat" fn MFInitMediaTypeFromVideoInfoHeader2(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFInitMediaTypeFromWaveFormatEx(
     pMFType: ?*IMFMediaType,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbBufSize" is the size in bytes
     pWaveFormat: ?*const WAVEFORMATEX,
     cbBufSize: u32,
 ) callconv(.winapi) HRESULT;
@@ -30147,7 +30147,7 @@ pub extern "mfplat" fn MFSerializeAttributesToStream(
 pub extern "mfplat" fn MFSerializePresentationDescriptor(
     pPD: ?*IMFPresentationDescriptor,
     pcbData: ?*u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "pcbData" is the size in bytes
     ppbData: ?*?*u8,
 ) callconv(.winapi) HRESULT;
 
@@ -30303,7 +30303,7 @@ pub extern "mfplat" fn MFUnwrapMediaType(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFValidateMediaTypeSize(
     FormatType: Guid,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbSize" is the size in bytes
     pBlock: ?*u8,
     cbSize: u32,
 ) callconv(.winapi) HRESULT;

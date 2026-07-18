@@ -1669,7 +1669,7 @@ pub extern "dnsapi" fn DnsQueryConfig(
     Flag: u32,
     pwsAdapterName: ?[*:0]const u16,
     pReserved: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pBufLen" is the size in bytes
     pBuffer: ?*anyopaque,
     pBufLen: ?*u32,
 ) callconv(.winapi) i32;

@@ -2939,7 +2939,7 @@ pub extern "rpcrt4" fn MesBufferHandleReset(
     Handle: ?*anyopaque,
     HandleStyle: u32,
     Operation: MIDL_ES_CODE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "BufferSize" is the size in bytes
     pBuffer: ?*?*i8,
     BufferSize: u32,
     pEncodedSize: ?*u32,
@@ -2947,7 +2947,7 @@ pub extern "rpcrt4" fn MesBufferHandleReset(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rpcrt4" fn MesDecodeBufferHandleCreate(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?PSTR,
     BufferSize: u32,
     pHandle: ?*?*anyopaque,
@@ -2969,7 +2969,7 @@ pub extern "rpcrt4" fn MesEncodeDynBufferHandleCreate(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rpcrt4" fn MesEncodeFixedBufferHandleCreate(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "BufferSize" is the size in bytes
     pBuffer: ?PSTR,
     BufferSize: u32,
     pEncodedSize: ?*u32,
@@ -4153,7 +4153,7 @@ pub extern "rpcrt4" fn RpcAsyncGetCallStatus(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rpcrt4" fn RpcAsyncInitializeHandle(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "Size" is the size in bytes
     pAsync: ?*RPC_ASYNC_STATE,
     Size: u32,
 ) callconv(.winapi) RPC_STATUS;
@@ -4500,7 +4500,7 @@ pub extern "rpcrt4" fn RpcErrorGetNumberOfRecords(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "rpcrt4" fn RpcErrorLoadErrorInfo(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "BlobSize" is the size in bytes
     ErrorBlob: ?*anyopaque,
     BlobSize: usize,
     EnumHandle: ?*RPC_ERROR_ENUM_HANDLE,

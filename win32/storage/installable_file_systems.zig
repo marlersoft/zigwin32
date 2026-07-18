@@ -348,7 +348,7 @@ pub extern "fltlib" fn FilterAttach(
     lpVolumeName: ?[*:0]const u16,
     lpInstanceName: ?[*:0]const u16,
     dwCreatedInstanceNameLength: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwCreatedInstanceNameLength" is the size in bytes
     lpCreatedInstanceName: ?PWSTR,
 ) callconv(.winapi) HRESULT;
 
@@ -358,7 +358,7 @@ pub extern "fltlib" fn FilterAttachAtAltitude(
     lpAltitude: ?[*:0]const u16,
     lpInstanceName: ?[*:0]const u16,
     dwCreatedInstanceNameLength: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "dwCreatedInstanceNameLength" is the size in bytes
     lpCreatedInstanceName: ?PWSTR,
 ) callconv(.winapi) HRESULT;
 
@@ -369,7 +369,7 @@ pub extern "fltlib" fn FilterClose(
 pub extern "fltlib" fn FilterConnectCommunicationPort(
     lpPortName: ?[*:0]const u16,
     dwOptions: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "wSizeOfContext" is the size in bytes
     lpContext: ?*const anyopaque,
     wSizeOfContext: u16,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
@@ -393,7 +393,7 @@ pub extern "fltlib" fn FilterFindClose(
 
 pub extern "fltlib" fn FilterFindFirst(
     dwInformationClass: FILTER_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     dwBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -403,7 +403,7 @@ pub extern "fltlib" fn FilterFindFirst(
 pub extern "fltlib" fn FilterFindNext(
     hFilterFind: ?HANDLE,
     dwInformationClass: FILTER_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     dwBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -418,7 +418,7 @@ pub extern "fltlib" fn FilterGetDosName(
 pub extern "fltlib" fn FilterGetInformation(
     hFilter: ?HFILTER,
     dwInformationClass: FILTER_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     dwBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -426,7 +426,7 @@ pub extern "fltlib" fn FilterGetInformation(
 
 pub extern "fltlib" fn FilterGetMessage(
     hPort: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwMessageBufferSize" is the size in bytes
     lpMessageBuffer: ?*FILTER_MESSAGE_HEADER,
     dwMessageBufferSize: u32,
     lpOverlapped: ?*OVERLAPPED,
@@ -450,7 +450,7 @@ pub extern "fltlib" fn FilterInstanceFindClose(
 pub extern "fltlib" fn FilterInstanceFindFirst(
     lpFilterName: ?[*:0]const u16,
     dwInformationClass: INSTANCE_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     dwBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -460,7 +460,7 @@ pub extern "fltlib" fn FilterInstanceFindFirst(
 pub extern "fltlib" fn FilterInstanceFindNext(
     hFilterInstanceFind: ?HANDLE,
     dwInformationClass: INSTANCE_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     dwBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -469,7 +469,7 @@ pub extern "fltlib" fn FilterInstanceFindNext(
 pub extern "fltlib" fn FilterInstanceGetInformation(
     hInstance: HFILTER_INSTANCE,
     dwInformationClass: INSTANCE_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     dwBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -482,17 +482,17 @@ pub extern "fltlib" fn FilterLoad(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "fltlib" fn FilterReplyMessage(
     hPort: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwReplyBufferSize" is the size in bytes
     lpReplyBuffer: ?*FILTER_REPLY_HEADER,
     dwReplyBufferSize: u32,
 ) callconv(.winapi) HRESULT;
 
 pub extern "fltlib" fn FilterSendMessage(
     hPort: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     dwInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "dwOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     dwOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -508,7 +508,7 @@ pub extern "fltlib" fn FilterVolumeFindClose(
 
 pub extern "fltlib" fn FilterVolumeFindFirst(
     dwInformationClass: FILTER_VOLUME_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     dwBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -518,7 +518,7 @@ pub extern "fltlib" fn FilterVolumeFindFirst(
 pub extern "fltlib" fn FilterVolumeFindNext(
     hVolumeFind: ?HANDLE,
     dwInformationClass: FILTER_VOLUME_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     dwBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -531,7 +531,7 @@ pub extern "fltlib" fn FilterVolumeInstanceFindClose(
 pub extern "fltlib" fn FilterVolumeInstanceFindFirst(
     lpVolumeName: ?[*:0]const u16,
     dwInformationClass: INSTANCE_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     dwBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -541,7 +541,7 @@ pub extern "fltlib" fn FilterVolumeInstanceFindFirst(
 pub extern "fltlib" fn FilterVolumeInstanceFindNext(
     hVolumeInstanceFind: ?HANDLE,
     dwInformationClass: INSTANCE_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     dwBufferSize: u32,
     lpBytesReturned: ?*u32,

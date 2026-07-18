@@ -229,7 +229,7 @@ pub extern "user32" fn GetCurrentInputMessageSource(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn GetRawInputBuffer(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "pcbSize" is the size in bytes
     pData: ?*RAWINPUT,
     pcbSize: ?*u32,
     cbSizeHeader: u32,
@@ -239,7 +239,7 @@ pub extern "user32" fn GetRawInputBuffer(
 pub extern "user32" fn GetRawInputData(
     hRawInput: ?HRAWINPUT,
     uiCommand: RAW_INPUT_DATA_COMMAND_FLAGS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbSize" is the size in bytes
     pData: ?*anyopaque,
     pcbSize: ?*u32,
     cbSizeHeader: u32,
@@ -249,7 +249,7 @@ pub extern "user32" fn GetRawInputData(
 pub extern "user32" fn GetRawInputDeviceInfoA(
     hDevice: ?HANDLE,
     uiCommand: RAW_INPUT_DEVICE_INFO_COMMAND,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbSize" is the size in bytes
     pData: ?*anyopaque,
     pcbSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -258,7 +258,7 @@ pub extern "user32" fn GetRawInputDeviceInfoA(
 pub extern "user32" fn GetRawInputDeviceInfoW(
     hDevice: ?HANDLE,
     uiCommand: RAW_INPUT_DEVICE_INFO_COMMAND,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbSize" is the size in bytes
     pData: ?*anyopaque,
     pcbSize: ?*u32,
 ) callconv(.winapi) u32;

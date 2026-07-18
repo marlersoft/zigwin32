@@ -5353,7 +5353,7 @@ pub const ITypeMarshal = extern union {
             dwDestContext: u32,
             pvDestContext: ?*anyopaque,
             cbBufferLength: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "cbBufferLength" is the size in bytes
             pBuffer: ?*u8,
             pcbWritten: ?*u32,
         ) callconv(.winapi) HRESULT,

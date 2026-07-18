@@ -1650,7 +1650,7 @@ pub extern "eappprxy" fn EapHostPeerGetDataToUnplumbCredentials(
 
 pub extern "eappprxy" fn EapHostPeerGetEncryptedPassword(
     dwSizeofPassword: u32,
-    // TODO: what to do with BytesParamIndex 0?
+    /// parameter "dwSizeofPassword" is the size in bytes
     szPassword: ?PWSTR,
     ppszEncPassword: ?*?PWSTR,
 ) callconv(.winapi) u32;

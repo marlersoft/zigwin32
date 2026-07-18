@@ -473,7 +473,7 @@ pub const IMediaObjectInPlace = extern union {
         Process: *const fn(
             self: *const IMediaObjectInPlace,
             ulSize: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "ulSize" is the size in bytes
             pData: ?*u8,
             refTimeStart: i64,
             dwFlags: u32,

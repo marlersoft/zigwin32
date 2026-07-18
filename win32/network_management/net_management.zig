@@ -3250,7 +3250,7 @@ pub const INetCfgPnpReconfigCallback = extern union {
             Layer: NCPNP_RECONFIG_LAYER,
             pszwUpper: ?[*:0]const u16,
             pszwLower: ?[*:0]const u16,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "dwSizeOfData" is the size in bytes
             pvData: ?*anyopaque,
             dwSizeOfData: u32,
         ) callconv(.winapi) HRESULT,
@@ -6381,7 +6381,7 @@ pub extern "netapi32" fn NetReplSetInfo(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "netapi32" fn NetRequestOfflineDomainJoin(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbProvisionBinDataSize" is the size in bytes
     pProvisionBinData: ?*u8,
     cbProvisionBinDataSize: u32,
     dwOptions: NET_REQUEST_PROVISION_OPTIONS,
@@ -6390,7 +6390,7 @@ pub extern "netapi32" fn NetRequestOfflineDomainJoin(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "netapi32" fn NetRequestProvisioningPackageInstall(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "dwPackageBinDataSize" is the size in bytes
     pPackageBinData: ?*u8,
     dwPackageBinDataSize: u32,
     dwProvisionOptions: NET_REQUEST_PROVISION_OPTIONS,

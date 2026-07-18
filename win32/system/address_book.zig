@@ -460,7 +460,7 @@ pub const IABContainer = extern union {
         CreateEntry: *const fn(
             self: *const IABContainer,
             cbEntryID: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "cbEntryID" is the size in bytes
             lpEntryID: ?*ENTRYID,
             ulCreateFlags: u32,
             lppMAPIPropEntry: ?*?*IMAPIProp,
@@ -707,7 +707,7 @@ pub const IDistList = extern union {
         CreateEntry: *const fn(
             self: *const IDistList,
             cbEntryID: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "cbEntryID" is the size in bytes
             lpEntryID: ?*ENTRYID,
             ulCreateFlags: u32,
             lppMAPIPropEntry: ?*?*IMAPIProp,
@@ -792,7 +792,7 @@ pub const IMAPIContainer = extern union {
         OpenEntry: *const fn(
             self: *const IMAPIContainer,
             cbEntryID: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "cbEntryID" is the size in bytes
             lpEntryID: ?*ENTRYID,
             lpInterface: ?*Guid,
             ulFlags: u32,
@@ -903,7 +903,7 @@ pub const IMAPIFolder = extern union {
         CopyFolder: *const fn(
             self: *const IMAPIFolder,
             cbEntryID: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "cbEntryID" is the size in bytes
             lpEntryID: ?*ENTRYID,
             lpInterface: ?*Guid,
             lpDestFolder: ?*anyopaque,
@@ -915,7 +915,7 @@ pub const IMAPIFolder = extern union {
         DeleteFolder: *const fn(
             self: *const IMAPIFolder,
             cbEntryID: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "cbEntryID" is the size in bytes
             lpEntryID: ?*ENTRYID,
             ulUIParam: usize,
             lpProgress: ?*IMAPIProgress,
@@ -931,7 +931,7 @@ pub const IMAPIFolder = extern union {
         GetMessageStatus: *const fn(
             self: *const IMAPIFolder,
             cbEntryID: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "cbEntryID" is the size in bytes
             lpEntryID: ?*ENTRYID,
             ulFlags: u32,
             lpulMessageStatus: ?*u32,
@@ -939,7 +939,7 @@ pub const IMAPIFolder = extern union {
         SetMessageStatus: *const fn(
             self: *const IMAPIFolder,
             cbEntryID: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "cbEntryID" is the size in bytes
             lpEntryID: ?*ENTRYID,
             ulNewStatus: u32,
             ulNewStatusMask: u32,
@@ -1494,7 +1494,7 @@ pub const IMsgStore = extern union {
         Advise: *const fn(
             self: *const IMsgStore,
             cbEntryID: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "cbEntryID" is the size in bytes
             lpEntryID: ?*ENTRYID,
             ulEventMask: u32,
             lpAdviseSink: ?*IMAPIAdviseSink,
@@ -1507,10 +1507,10 @@ pub const IMsgStore = extern union {
         CompareEntryIDs: *const fn(
             self: *const IMsgStore,
             cbEntryID1: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "cbEntryID1" is the size in bytes
             lpEntryID1: ?*ENTRYID,
             cbEntryID2: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "cbEntryID2" is the size in bytes
             lpEntryID2: ?*ENTRYID,
             ulFlags: u32,
             lpulResult: ?*u32,
@@ -1518,7 +1518,7 @@ pub const IMsgStore = extern union {
         OpenEntry: *const fn(
             self: *const IMsgStore,
             cbEntryID: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "cbEntryID" is the size in bytes
             lpEntryID: ?*ENTRYID,
             lpInterface: ?*Guid,
             ulFlags: u32,
@@ -1530,7 +1530,7 @@ pub const IMsgStore = extern union {
             lpszMessageClass: ?*i8,
             ulFlags: u32,
             cbEntryID: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "cbEntryID" is the size in bytes
             lpEntryID: ?*ENTRYID,
         ) callconv(.winapi) HRESULT,
         GetReceiveFolder: *const fn(
@@ -1553,7 +1553,7 @@ pub const IMsgStore = extern union {
         AbortSubmit: *const fn(
             self: *const IMsgStore,
             cbEntryID: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "cbEntryID" is the size in bytes
             lpEntryID: ?*ENTRYID,
             ulFlags: u32,
         ) callconv(.winapi) HRESULT,
@@ -1571,7 +1571,7 @@ pub const IMsgStore = extern union {
             self: *const IMsgStore,
             ulFlags: u32,
             cbEntryID: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cbEntryID" is the size in bytes
             lpEntryID: ?*ENTRYID,
         ) callconv(.winapi) HRESULT,
         NotifyNewMail: *const fn(
@@ -2691,10 +2691,10 @@ pub extern "mapi32" fn WrapStoreEntryID(
     ulFlags: u32,
     lpszDLLName: ?*i8,
     cbOrigEntry: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbOrigEntry" is the size in bytes
     lpOrigEntry: ?*ENTRYID,
     lpcbWrappedEntry: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "lpcbWrappedEntry" is the size in bytes
     lppWrappedEntry: ?*?*ENTRYID,
 ) callconv(.winapi) HRESULT;
 

@@ -3871,7 +3871,7 @@ pub extern "imm32" fn ImmGenerateMessage(
 pub extern "imm32" fn ImmGetCandidateListA(
     param0: ?HIMC,
     deIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufLen" is the size in bytes
     lpCandList: ?*CANDIDATELIST,
     dwBufLen: u32,
 ) callconv(.winapi) u32;
@@ -3892,7 +3892,7 @@ pub extern "imm32" fn ImmGetCandidateListCountW(
 pub extern "imm32" fn ImmGetCandidateListW(
     param0: ?HIMC,
     deIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufLen" is the size in bytes
     lpCandList: ?*CANDIDATELIST,
     dwBufLen: u32,
 ) callconv(.winapi) u32;
@@ -3920,7 +3920,7 @@ pub extern "imm32" fn ImmGetCompositionFontW(
 pub extern "imm32" fn ImmGetCompositionStringA(
     param0: ?HIMC,
     param1: IME_COMPOSITION_STRING,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufLen" is the size in bytes
     lpBuf: ?*anyopaque,
     dwBufLen: u32,
 ) callconv(.winapi) i32;
@@ -3929,7 +3929,7 @@ pub extern "imm32" fn ImmGetCompositionStringA(
 pub extern "imm32" fn ImmGetCompositionStringW(
     param0: ?HIMC,
     param1: IME_COMPOSITION_STRING,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufLen" is the size in bytes
     lpBuf: ?*anyopaque,
     dwBufLen: u32,
 ) callconv(.winapi) i32;
@@ -3950,7 +3950,7 @@ pub extern "imm32" fn ImmGetConversionListA(
     param0: ?HKL,
     param1: ?HIMC,
     lpSrc: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "dwBufLen" is the size in bytes
     lpDst: ?*CANDIDATELIST,
     dwBufLen: u32,
     uFlag: GET_CONVERSION_LIST_FLAG,
@@ -3961,7 +3961,7 @@ pub extern "imm32" fn ImmGetConversionListW(
     param0: ?HKL,
     param1: ?HIMC,
     lpSrc: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "dwBufLen" is the size in bytes
     lpDst: ?*CANDIDATELIST,
     dwBufLen: u32,
     uFlag: GET_CONVERSION_LIST_FLAG,
@@ -3997,7 +3997,7 @@ pub extern "imm32" fn ImmGetDescriptionW(
 pub extern "imm32" fn ImmGetGuideLineA(
     param0: ?HIMC,
     dwIndex: GET_GUIDE_LINE_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufLen" is the size in bytes
     lpBuf: ?PSTR,
     dwBufLen: u32,
 ) callconv(.winapi) u32;
@@ -4006,7 +4006,7 @@ pub extern "imm32" fn ImmGetGuideLineA(
 pub extern "imm32" fn ImmGetGuideLineW(
     param0: ?HIMC,
     dwIndex: GET_GUIDE_LINE_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufLen" is the size in bytes
     lpBuf: ?PWSTR,
     dwBufLen: u32,
 ) callconv(.winapi) u32;
@@ -4050,7 +4050,7 @@ pub extern "imm32" fn ImmGetImeMenuItemsA(
     param1: u32,
     param2: u32,
     lpImeParentMenu: ?*IMEMENUITEMINFOA,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "dwSize" is the size in bytes
     lpImeMenu: ?*IMEMENUITEMINFOA,
     dwSize: u32,
 ) callconv(.winapi) u32;
@@ -4061,7 +4061,7 @@ pub extern "imm32" fn ImmGetImeMenuItemsW(
     param1: u32,
     param2: u32,
     lpImeParentMenu: ?*IMEMENUITEMINFOW,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "dwSize" is the size in bytes
     lpImeMenu: ?*IMEMENUITEMINFOW,
     dwSize: u32,
 ) callconv(.winapi) u32;
@@ -4214,10 +4214,10 @@ pub extern "imm32" fn ImmSetCompositionFontW(
 pub extern "imm32" fn ImmSetCompositionStringA(
     param0: ?HIMC,
     dwIndex: SET_COMPOSITION_STRING_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwCompLen" is the size in bytes
     lpComp: ?*anyopaque,
     dwCompLen: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "dwReadLen" is the size in bytes
     lpRead: ?*anyopaque,
     dwReadLen: u32,
 ) callconv(.winapi) BOOL;
@@ -4226,10 +4226,10 @@ pub extern "imm32" fn ImmSetCompositionStringA(
 pub extern "imm32" fn ImmSetCompositionStringW(
     param0: ?HIMC,
     dwIndex: SET_COMPOSITION_STRING_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwCompLen" is the size in bytes
     lpComp: ?*anyopaque,
     dwCompLen: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "dwReadLen" is the size in bytes
     lpRead: ?*anyopaque,
     dwReadLen: u32,
 ) callconv(.winapi) BOOL;

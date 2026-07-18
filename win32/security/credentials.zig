@@ -1053,7 +1053,7 @@ pub extern "credui" fn CredPackAuthenticationBufferA(
     dwFlags: CRED_PACK_FLAGS,
     pszUserName: ?PSTR,
     pszPassword: ?PSTR,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbPackedCredentials" is the size in bytes
     pPackedCredentials: ?*u8,
     pcbPackedCredentials: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -1063,7 +1063,7 @@ pub extern "credui" fn CredPackAuthenticationBufferW(
     dwFlags: CRED_PACK_FLAGS,
     pszUserName: ?PWSTR,
     pszPassword: ?PWSTR,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbPackedCredentials" is the size in bytes
     pPackedCredentials: ?*u8,
     pcbPackedCredentials: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -1225,10 +1225,10 @@ pub extern "credui" fn CredUIPromptForWindowsCredentialsA(
     pUiInfo: ?*CREDUI_INFOA,
     dwAuthError: u32,
     pulAuthPackage: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "ulInAuthBufferSize" is the size in bytes
     pvInAuthBuffer: ?*const anyopaque,
     ulInAuthBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pulOutAuthBufferSize" is the size in bytes
     ppvOutAuthBuffer: ?*?*anyopaque,
     pulOutAuthBufferSize: ?*u32,
     pfSave: ?*BOOL,
@@ -1240,10 +1240,10 @@ pub extern "credui" fn CredUIPromptForWindowsCredentialsW(
     pUiInfo: ?*CREDUI_INFOW,
     dwAuthError: u32,
     pulAuthPackage: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "ulInAuthBufferSize" is the size in bytes
     pvInAuthBuffer: ?*const anyopaque,
     ulInAuthBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pulOutAuthBufferSize" is the size in bytes
     ppvOutAuthBuffer: ?*?*anyopaque,
     pulOutAuthBufferSize: ?*u32,
     pfSave: ?*BOOL,
@@ -1281,7 +1281,7 @@ pub extern "advapi32" fn CredUnmarshalCredentialW(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "credui" fn CredUnPackAuthenticationBufferA(
     dwFlags: CRED_PACK_FLAGS,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbAuthBuffer" is the size in bytes
     pAuthBuffer: ?*anyopaque,
     cbAuthBuffer: u32,
     pszUserName: ?[*:0]u8,
@@ -1295,7 +1295,7 @@ pub extern "credui" fn CredUnPackAuthenticationBufferA(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "credui" fn CredUnPackAuthenticationBufferW(
     dwFlags: CRED_PACK_FLAGS,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbAuthBuffer" is the size in bytes
     pAuthBuffer: ?*anyopaque,
     cbAuthBuffer: u32,
     pszUserName: ?[*:0]u16,
@@ -1437,10 +1437,10 @@ pub extern "winscard" fn SCardConnectW(
 pub extern "winscard" fn SCardControl(
     hCard: usize,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbInBufferSize" is the size in bytes
     lpInBuffer: ?*const anyopaque,
     cbInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     cbOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -1515,7 +1515,7 @@ pub extern "winscard" fn SCardFreeMemory(
 pub extern "winscard" fn SCardGetAttrib(
     hCard: usize,
     dwAttrId: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbAttrLen" is the size in bytes
     pbAttr: ?*u8,
     pcbAttrLen: ?*u32,
 ) callconv(.winapi) i32;
@@ -1586,7 +1586,7 @@ pub extern "winscard" fn SCardGetReaderDeviceInstanceIdW(
 pub extern "winscard" fn SCardGetReaderIconA(
     hContext: usize,
     szReaderName: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbIcon" is the size in bytes
     pbIcon: ?*u8,
     pcbIcon: ?*u32,
 ) callconv(.winapi) i32;
@@ -1595,7 +1595,7 @@ pub extern "winscard" fn SCardGetReaderIconA(
 pub extern "winscard" fn SCardGetReaderIconW(
     hContext: usize,
     szReaderName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbIcon" is the size in bytes
     pbIcon: ?*u8,
     pcbIcon: ?*u32,
 ) callconv(.winapi) i32;
@@ -1799,7 +1799,7 @@ pub extern "winscard" fn SCardReadCacheA(
     CardIdentifier: ?*Guid,
     FreshnessCounter: u32,
     LookupName: ?PSTR,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "DataLen" is the size in bytes
     Data: ?*u8,
     DataLen: ?*u32,
 ) callconv(.winapi) i32;
@@ -1810,7 +1810,7 @@ pub extern "winscard" fn SCardReadCacheW(
     CardIdentifier: ?*Guid,
     FreshnessCounter: u32,
     LookupName: ?PWSTR,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "DataLen" is the size in bytes
     Data: ?*u8,
     DataLen: ?*u32,
 ) callconv(.winapi) i32;
@@ -1851,7 +1851,7 @@ pub extern "winscard" fn SCardRemoveReaderFromGroupW(
 pub extern "winscard" fn SCardSetAttrib(
     hCard: usize,
     dwAttrId: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbAttrLen" is the size in bytes
     pbAttr: ?*u8,
     cbAttrLen: u32,
 ) callconv(.winapi) i32;
@@ -1876,7 +1876,7 @@ pub extern "winscard" fn SCardState(
     hCard: usize,
     pdwState: ?*u32,
     pdwProtocol: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbAtrLen" is the size in bytes
     pbAtr: ?*u8,
     pcbAtrLen: ?*u32,
 ) callconv(.winapi) i32;
@@ -1907,11 +1907,11 @@ pub extern "winscard" fn SCardStatusW(
 pub extern "winscard" fn SCardTransmit(
     hCard: usize,
     pioSendPci: ?*SCARD_IO_REQUEST,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbSendLength" is the size in bytes
     pbSendBuffer: ?*u8,
     cbSendLength: u32,
     pioRecvPci: ?*SCARD_IO_REQUEST,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbRecvLength" is the size in bytes
     pbRecvBuffer: ?*u8,
     pcbRecvLength: ?*u32,
 ) callconv(.winapi) i32;
@@ -1932,7 +1932,7 @@ pub extern "winscard" fn SCardWriteCacheA(
     CardIdentifier: ?*Guid,
     FreshnessCounter: u32,
     LookupName: ?PSTR,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "DataLen" is the size in bytes
     Data: ?*u8,
     DataLen: u32,
 ) callconv(.winapi) i32;
@@ -1943,7 +1943,7 @@ pub extern "winscard" fn SCardWriteCacheW(
     CardIdentifier: ?*Guid,
     FreshnessCounter: u32,
     LookupName: ?PWSTR,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "DataLen" is the size in bytes
     Data: ?*u8,
     DataLen: u32,
 ) callconv(.winapi) i32;

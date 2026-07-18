@@ -9101,13 +9101,13 @@ pub const IAMVfwCompressDialogs = extern union {
         ) callconv(.winapi) HRESULT,
         GetState: *const fn(
             self: *const IAMVfwCompressDialogs,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pcbState" is the size in bytes
             pState: ?*anyopaque,
             pcbState: ?*i32,
         ) callconv(.winapi) HRESULT,
         SetState: *const fn(
             self: *const IAMVfwCompressDialogs,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cbState" is the size in bytes
             pState: ?*anyopaque,
             cbState: i32,
         ) callconv(.winapi) HRESULT,
@@ -9335,10 +9335,10 @@ pub const IAMVideoCompression = extern union {
         ) callconv(.winapi) HRESULT,
         GetInfo: *const fn(
             self: *const IAMVideoCompression,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "pcbVersion" is the size in bytes
             pszVersion: ?PWSTR,
             pcbVersion: ?*i32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "pcbDescription" is the size in bytes
             pszDescription: ?PWSTR,
             pcbDescription: ?*i32,
             pDefaultKeyFrameRate: ?*i32,
@@ -9953,7 +9953,7 @@ pub const IAsyncReader = extern union {
             self: *const IAsyncReader,
             llPosition: i64,
             lLength: i32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "lLength" is the size in bytes
             pBuffer: ?*u8,
         ) callconv(.winapi) HRESULT,
         Length: *const fn(
@@ -20206,7 +20206,7 @@ pub const IDvdInfo = extern union {
         ) callconv(.winapi) HRESULT,
         GetDVDTextInfo: *const fn(
             self: *const IDvdInfo,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "ulBufSize" is the size in bytes
             pTextManager: ?*u8,
             ulBufSize: u32,
             pulActualSize: ?*u32,
@@ -25202,7 +25202,7 @@ pub const IKsTopologyInfo = extern union {
         get_NodeName: *const fn(
             self: *const IKsTopologyInfo,
             dwNodeId: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "dwBufSize" is the size in bytes
             pwchNodeName: ?PWSTR,
             dwBufSize: u32,
             pdwNameLen: ?*u32,
@@ -26030,13 +26030,13 @@ pub const IMediaSample2 = extern union {
         GetProperties: *const fn(
             self: *const IMediaSample2,
             cbProperties: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "cbProperties" is the size in bytes
             pbProperties: ?*u8,
         ) callconv(.winapi) HRESULT,
         SetProperties: *const fn(
             self: *const IMediaSample2,
             cbProperties: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "cbProperties" is the size in bytes
             pbProperties: ?*const u8,
         ) callconv(.winapi) HRESULT,
     };

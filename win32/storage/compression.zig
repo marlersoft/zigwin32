@@ -67,10 +67,10 @@ pub extern "cabinet" fn CloseDecompressor(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cabinet" fn Compress(
     CompressorHandle: COMPRESSOR_HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "UncompressedDataSize" is the size in bytes
     UncompressedData: ?*const anyopaque,
     UncompressedDataSize: usize,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "CompressedBufferSize" is the size in bytes
     CompressedBuffer: ?*anyopaque,
     CompressedBufferSize: usize,
     CompressedDataSize: ?*usize,
@@ -93,10 +93,10 @@ pub extern "cabinet" fn CreateDecompressor(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cabinet" fn Decompress(
     DecompressorHandle: isize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "CompressedDataSize" is the size in bytes
     CompressedData: ?*const anyopaque,
     CompressedDataSize: usize,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "UncompressedBufferSize" is the size in bytes
     UncompressedBuffer: ?*anyopaque,
     UncompressedBufferSize: usize,
     UncompressedDataSize: ?*usize,
@@ -106,7 +106,7 @@ pub extern "cabinet" fn Decompress(
 pub extern "cabinet" fn QueryCompressorInformation(
     CompressorHandle: COMPRESSOR_HANDLE,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "CompressInformationSize" is the size in bytes
     CompressInformation: ?*anyopaque,
     CompressInformationSize: usize,
 ) callconv(.winapi) BOOL;
@@ -115,7 +115,7 @@ pub extern "cabinet" fn QueryCompressorInformation(
 pub extern "cabinet" fn QueryDecompressorInformation(
     DecompressorHandle: isize,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "CompressInformationSize" is the size in bytes
     CompressInformation: ?*anyopaque,
     CompressInformationSize: usize,
 ) callconv(.winapi) BOOL;
@@ -134,7 +134,7 @@ pub extern "cabinet" fn ResetDecompressor(
 pub extern "cabinet" fn SetCompressorInformation(
     CompressorHandle: COMPRESSOR_HANDLE,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "CompressInformationSize" is the size in bytes
     CompressInformation: ?*const anyopaque,
     CompressInformationSize: usize,
 ) callconv(.winapi) BOOL;
@@ -143,7 +143,7 @@ pub extern "cabinet" fn SetCompressorInformation(
 pub extern "cabinet" fn SetDecompressorInformation(
     DecompressorHandle: isize,
     CompressInformationClass: COMPRESS_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "CompressInformationSize" is the size in bytes
     CompressInformation: ?*const anyopaque,
     CompressInformationSize: usize,
 ) callconv(.winapi) BOOL;

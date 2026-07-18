@@ -424,7 +424,7 @@ pub extern "kernel32" fn GetConsoleAliasW(
 ) callconv(.winapi) u32;
 
 pub extern "kernel32" fn GetConsoleCommandHistoryA(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "CommandBufferLength" is the size in bytes
     Commands: ?PSTR,
     CommandBufferLength: u32,
     ExeName: ?PSTR,
@@ -439,7 +439,7 @@ pub extern "kernel32" fn GetConsoleCommandHistoryLengthW(
 ) callconv(.winapi) u32;
 
 pub extern "kernel32" fn GetConsoleCommandHistoryW(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "CommandBufferLength" is the size in bytes
     Commands: ?PWSTR,
     CommandBufferLength: u32,
     ExeName: ?PWSTR,

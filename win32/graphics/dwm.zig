@@ -446,7 +446,7 @@ pub extern "dwmapi" fn DwmGetUnmetTabRequirements(
 pub extern "dwmapi" fn DwmGetWindowAttribute(
     hwnd: ?HWND,
     dwAttribute: DWMWINDOWATTRIBUTE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbAttribute" is the size in bytes
     pvAttribute: ?*anyopaque,
     cbAttribute: u32,
 ) callconv(.winapi) HRESULT;
@@ -520,7 +520,7 @@ pub extern "dwmapi" fn DwmSetPresentParameters(
 pub extern "dwmapi" fn DwmSetWindowAttribute(
     hwnd: ?HWND,
     dwAttribute: DWMWINDOWATTRIBUTE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbAttribute" is the size in bytes
     pvAttribute: ?*const anyopaque,
     cbAttribute: u32,
 ) callconv(.winapi) HRESULT;

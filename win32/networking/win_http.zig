@@ -1113,7 +1113,7 @@ pub extern "winhttp" fn WinHttpGetProxyForUrlEx2(
     pcwszUrl: ?[*:0]const u16,
     pAutoProxyOptions: ?*WINHTTP_AUTOPROXY_OPTIONS,
     cbInterfaceSelectionContext: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbInterfaceSelectionContext" is the size in bytes
     pInterfaceSelectionContext: ?*u8,
     pContext: usize,
 ) callconv(.winapi) u32;
@@ -1180,7 +1180,7 @@ pub extern "winhttp" fn WinHttpQueryHeaders(
     hRequest: ?*anyopaque,
     dwInfoLevel: u32,
     pwszName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "lpdwBufferLength" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpdwBufferLength: ?*u32,
     lpdwIndex: ?*u32,
@@ -1193,7 +1193,7 @@ pub extern "winhttp" fn WinHttpQueryHeadersEx(
     uiCodePage: u32,
     pdwIndex: ?*u32,
     pHeaderName: ?*WINHTTP_HEADER_NAME,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "pdwBufferLength" is the size in bytes
     pBuffer: ?*anyopaque,
     pdwBufferLength: ?*u32,
     ppHeaders: ?[*]?*WINHTTP_EXTENDED_HEADER,
@@ -1204,7 +1204,7 @@ pub extern "winhttp" fn WinHttpQueryHeadersEx(
 pub extern "winhttp" fn WinHttpQueryOption(
     hInternet: ?*anyopaque,
     dwOption: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpdwBufferLength" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpdwBufferLength: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -1212,7 +1212,7 @@ pub extern "winhttp" fn WinHttpQueryOption(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "winhttp" fn WinHttpReadData(
     hRequest: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwNumberOfBytesToRead" is the size in bytes
     lpBuffer: ?*anyopaque,
     dwNumberOfBytesToRead: u32,
     lpdwNumberOfBytesRead: ?*u32,
@@ -1220,13 +1220,13 @@ pub extern "winhttp" fn WinHttpReadData(
 
 pub extern "winhttp" fn WinHttpReadDataEx(
     hRequest: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwNumberOfBytesToRead" is the size in bytes
     lpBuffer: ?*anyopaque,
     dwNumberOfBytesToRead: u32,
     lpdwNumberOfBytesRead: ?*u32,
     ullFlags: u64,
     cbProperty: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbProperty" is the size in bytes
     pvProperty: ?*anyopaque,
 ) callconv(.winapi) u32;
 
@@ -1257,7 +1257,7 @@ pub extern "winhttp" fn WinHttpSendRequest(
     hRequest: ?*anyopaque,
     lpszHeaders: ?[*:0]const u16,
     dwHeadersLength: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "dwOptionalLength" is the size in bytes
     lpOptional: ?*anyopaque,
     dwOptionalLength: u32,
     dwTotalLength: u32,
@@ -1324,7 +1324,7 @@ pub extern "winhttp" fn WinHttpTimeToSystemTime(
 pub extern "winhttp" fn WinHttpWebSocketClose(
     hWebSocket: ?*anyopaque,
     usStatus: u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwReasonLength" is the size in bytes
     pvReason: ?*anyopaque,
     dwReasonLength: u32,
 ) callconv(.winapi) u32;
@@ -1339,7 +1339,7 @@ pub extern "winhttp" fn WinHttpWebSocketCompleteUpgrade(
 pub extern "winhttp" fn WinHttpWebSocketQueryCloseStatus(
     hWebSocket: ?*anyopaque,
     pusStatus: ?*u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwReasonLength" is the size in bytes
     pvReason: ?*anyopaque,
     dwReasonLength: u32,
     pdwReasonLengthConsumed: ?*u32,
@@ -1348,7 +1348,7 @@ pub extern "winhttp" fn WinHttpWebSocketQueryCloseStatus(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "winhttp" fn WinHttpWebSocketReceive(
     hWebSocket: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwBufferLength" is the size in bytes
     pvBuffer: ?*anyopaque,
     dwBufferLength: u32,
     pdwBytesRead: ?*u32,
@@ -1367,7 +1367,7 @@ pub extern "winhttp" fn WinHttpWebSocketSend(
 pub extern "winhttp" fn WinHttpWebSocketShutdown(
     hWebSocket: ?*anyopaque,
     usStatus: u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwReasonLength" is the size in bytes
     pvReason: ?*anyopaque,
     dwReasonLength: u32,
 ) callconv(.winapi) u32;
@@ -1375,7 +1375,7 @@ pub extern "winhttp" fn WinHttpWebSocketShutdown(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "winhttp" fn WinHttpWriteData(
     hRequest: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwNumberOfBytesToWrite" is the size in bytes
     lpBuffer: ?*const anyopaque,
     dwNumberOfBytesToWrite: u32,
     lpdwNumberOfBytesWritten: ?*u32,

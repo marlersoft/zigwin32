@@ -490,7 +490,7 @@ pub const PWINBIO_CAPTURE_CALLBACK = *const fn(
     CaptureCallbackContext: ?*anyopaque,
     OperationStatus: HRESULT,
     UnitId: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "SampleSize" is the size in bytes
     Sample: ?*WINBIO_BIR,
     SampleSize: usize,
     RejectDetail: u32,
@@ -1499,10 +1499,10 @@ pub extern "winbio" fn WinBioControlUnit(
     UnitId: u32,
     Component: WINBIO_COMPONENT,
     ControlCode: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "SendBufferSize" is the size in bytes
     SendBuffer: ?*u8,
     SendBufferSize: usize,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "ReceiveBufferSize" is the size in bytes
     ReceiveBuffer: ?*u8,
     ReceiveBufferSize: usize,
     ReceiveDataSize: ?*usize,
@@ -1515,10 +1515,10 @@ pub extern "winbio" fn WinBioControlUnitPrivileged(
     UnitId: u32,
     Component: WINBIO_COMPONENT,
     ControlCode: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "SendBufferSize" is the size in bytes
     SendBuffer: ?*u8,
     SendBufferSize: usize,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "ReceiveBufferSize" is the size in bytes
     ReceiveBuffer: ?*u8,
     ReceiveBufferSize: usize,
     ReceiveDataSize: ?*usize,
@@ -1744,7 +1744,7 @@ pub extern "winbio" fn WinBioRemoveCredential(
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "winbio" fn WinBioSetCredential(
     Type: WINBIO_CREDENTIAL_TYPE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "CredentialSize" is the size in bytes
     Credential: ?*u8,
     CredentialSize: usize,
     Format: WINBIO_CREDENTIAL_FORMAT,
@@ -1758,7 +1758,7 @@ pub extern "winbio" fn WinBioSetProperty(
     UnitId: u32,
     Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*anyopaque,
     PropertyBufferSize: usize,
 ) callconv(.winapi) HRESULT;

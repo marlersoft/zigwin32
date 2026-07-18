@@ -1167,7 +1167,7 @@ pub const PFN_AUTHENTICATION_CALLBACK_EX = *const fn(
 
 pub const PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK = *const fn(
     uAttribId: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbStreamSize" is the size in bytes
     pValueStream: ?*u8,
     cbStreamSize: u32,
     pvParam: ?*anyopaque,
@@ -1597,7 +1597,7 @@ pub extern "bluetoothapis" fn BluetoothRemoveDevice(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bluetoothapis" fn BluetoothSdpEnumAttributes(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbStreamSize" is the size in bytes
     pSDPStream: ?*u8,
     cbStreamSize: u32,
     pfnCallback: ?PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK,
@@ -1606,7 +1606,7 @@ pub extern "bluetoothapis" fn BluetoothSdpEnumAttributes(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bluetoothapis" fn BluetoothSdpGetAttributeValue(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbRecordLength" is the size in bytes
     pRecordStream: ?*u8,
     cbRecordLength: u32,
     usAttributeId: u16,
@@ -1615,7 +1615,7 @@ pub extern "bluetoothapis" fn BluetoothSdpGetAttributeValue(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bluetoothapis" fn BluetoothSdpGetContainerElementData(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbContainerLength" is the size in bytes
     pContainerStream: ?*u8,
     cbContainerLength: u32,
     pElement: ?*isize,
@@ -1624,7 +1624,7 @@ pub extern "bluetoothapis" fn BluetoothSdpGetContainerElementData(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bluetoothapis" fn BluetoothSdpGetElementData(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbSdpStreamLength" is the size in bytes
     pSdpStream: ?*u8,
     cbSdpStreamLength: u32,
     pData: ?*SDP_ELEMENT_DATA,
@@ -1632,7 +1632,7 @@ pub extern "bluetoothapis" fn BluetoothSdpGetElementData(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bluetoothapis" fn BluetoothSdpGetString(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbRecordLength" is the size in bytes
     pRecordStream: ?*u8,
     cbRecordLength: u32,
     pStringData: ?*const SDP_STRING_TYPE_DATA,

@@ -287,7 +287,7 @@ pub const IPersistSerializedPropStorage = extern union {
         ) callconv(.winapi) HRESULT,
         SetPropertyStorage: *const fn(
             self: *const IPersistSerializedPropStorage,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cb" is the size in bytes
             psps: ?*SERIALIZEDPROPSTORAGE,
             cb: u32,
         ) callconv(.winapi) HRESULT,
@@ -322,7 +322,7 @@ pub const IPersistSerializedPropStorage2 = extern union {
         ) callconv(.winapi) HRESULT,
         GetPropertyStorageBuffer: *const fn(
             self: *const IPersistSerializedPropStorage2,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cb" is the size in bytes
             psps: ?*SERIALIZEDPROPSTORAGE,
             cb: u32,
             pcbWritten: ?*u32,
@@ -2058,7 +2058,7 @@ pub extern "propsys" fn InitPropVariantFromBooleanVector(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "propsys" fn InitPropVariantFromBuffer(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cb" is the size in bytes
     pv: ?*const anyopaque,
     cb: u32,
     ppropvar: ?*PROPVARIANT,
@@ -2187,7 +2187,7 @@ pub extern "propsys" fn InitVariantFromBooleanArray(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "propsys" fn InitVariantFromBuffer(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cb" is the size in bytes
     pv: ?*const anyopaque,
     cb: u32,
     pvar: ?*VARIANT,
@@ -2299,7 +2299,7 @@ pub extern "shell32" fn PifMgr_CloseProperties(
 pub extern "shell32" fn PifMgr_GetProperties(
     hProps: ?HANDLE,
     pszGroup: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbProps" is the size in bytes
     lpProps: ?*anyopaque,
     cbProps: i32,
     flOpt: u32,
@@ -2317,7 +2317,7 @@ pub extern "shell32" fn PifMgr_OpenProperties(
 pub extern "shell32" fn PifMgr_SetProperties(
     hProps: ?HANDLE,
     pszGroup: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbProps" is the size in bytes
     lpProps: ?*const anyopaque,
     cbProps: i32,
     flOpt: u32,
@@ -2450,7 +2450,7 @@ pub extern "propsys" fn PropVariantToBSTR(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "propsys" fn PropVariantToBuffer(
     propvar: ?*const PROPVARIANT,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cb" is the size in bytes
     pv: ?*anyopaque,
     cb: u32,
 ) callconv(.winapi) HRESULT;
@@ -2855,7 +2855,7 @@ pub extern "propsys" fn PSGetItemPropertyHandlerWithCreateObject(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "propsys" fn PSGetNamedPropertyFromPropertyStorage(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cb" is the size in bytes
     psps: ?*SERIALIZEDPROPSTORAGE,
     cb: u32,
     pszName: ?[*:0]const u16,
@@ -2891,7 +2891,7 @@ pub extern "propsys" fn PSGetPropertyDescriptionListFromString(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "propsys" fn PSGetPropertyFromPropertyStorage(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cb" is the size in bytes
     psps: ?*SERIALIZEDPROPSTORAGE,
     cb: u32,
     rpkey: ?*const PROPERTYKEY,
@@ -3355,7 +3355,7 @@ pub extern "propsys" fn VariantToBooleanWithDefault(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "propsys" fn VariantToBuffer(
     varIn: ?*const VARIANT,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cb" is the size in bytes
     pv: ?*anyopaque,
     cb: u32,
 ) callconv(.winapi) HRESULT;

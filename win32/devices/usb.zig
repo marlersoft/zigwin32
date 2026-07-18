@@ -2048,7 +2048,7 @@ pub extern "winusb" fn WinUsb_AbortPipe(
 pub extern "winusb" fn WinUsb_ControlTransfer(
     InterfaceHandle: WINUSB_INTERFACE_HANDLE,
     SetupPacket: WINUSB_SETUP_PACKET,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferLength" is the size in bytes
     Buffer: ?*u8,
     BufferLength: u32,
     LengthTransferred: ?*u32,
@@ -2099,7 +2099,7 @@ pub extern "winusb" fn WinUsb_GetDescriptor(
     DescriptorType: u8,
     Index: u8,
     LanguageID: u16,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "BufferLength" is the size in bytes
     Buffer: ?*u8,
     BufferLength: u32,
     LengthTransferred: ?*u32,
@@ -2117,7 +2117,7 @@ pub extern "winusb" fn WinUsb_GetPipePolicy(
     PipeID: u8,
     PolicyType: WINUSB_PIPE_POLICY,
     ValueLength: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ValueLength" is the size in bytes
     Value: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -2125,7 +2125,7 @@ pub extern "winusb" fn WinUsb_GetPowerPolicy(
     InterfaceHandle: WINUSB_INTERFACE_HANDLE,
     PolicyType: WINUSB_POWER_POLICY,
     ValueLength: ?*u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "ValueLength" is the size in bytes
     Value: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -2145,7 +2145,7 @@ pub extern "winusb" fn WinUsb_ParseConfigurationDescriptor(
 ) callconv(.winapi) ?*USB_INTERFACE_DESCRIPTOR;
 
 pub extern "winusb" fn WinUsb_ParseDescriptors(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "TotalLength" is the size in bytes
     DescriptorBuffer: ?*anyopaque,
     TotalLength: u32,
     StartPosition: ?*anyopaque,
@@ -2156,7 +2156,7 @@ pub extern "winusb" fn WinUsb_QueryDeviceInformation(
     InterfaceHandle: WINUSB_INTERFACE_HANDLE,
     InformationType: u32,
     BufferLength: ?*u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BufferLength" is the size in bytes
     Buffer: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -2205,7 +2205,7 @@ pub extern "winusb" fn WinUsb_ReadIsochPipeAsap(
 pub extern "winusb" fn WinUsb_ReadPipe(
     InterfaceHandle: WINUSB_INTERFACE_HANDLE,
     PipeID: u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferLength" is the size in bytes
     Buffer: ?*u8,
     BufferLength: u32,
     LengthTransferred: ?*u32,
@@ -2216,7 +2216,7 @@ pub extern "winusb" fn WinUsb_ReadPipe(
 pub extern "winusb" fn WinUsb_RegisterIsochBuffer(
     InterfaceHandle: WINUSB_INTERFACE_HANDLE,
     PipeID: u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferLength" is the size in bytes
     Buffer: ?*u8,
     BufferLength: u32,
     IsochBufferHandle: ?*?*anyopaque,
@@ -2237,7 +2237,7 @@ pub extern "winusb" fn WinUsb_SetPipePolicy(
     PipeID: u8,
     PolicyType: WINUSB_PIPE_POLICY,
     ValueLength: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ValueLength" is the size in bytes
     Value: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -2245,7 +2245,7 @@ pub extern "winusb" fn WinUsb_SetPowerPolicy(
     InterfaceHandle: WINUSB_INTERFACE_HANDLE,
     PolicyType: WINUSB_POWER_POLICY,
     ValueLength: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "ValueLength" is the size in bytes
     Value: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -2287,7 +2287,7 @@ pub extern "winusb" fn WinUsb_WriteIsochPipeAsap(
 pub extern "winusb" fn WinUsb_WritePipe(
     InterfaceHandle: WINUSB_INTERFACE_HANDLE,
     PipeID: u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferLength" is the size in bytes
     Buffer: ?*u8,
     BufferLength: u32,
     LengthTransferred: ?*u32,

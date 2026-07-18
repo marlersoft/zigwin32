@@ -543,7 +543,7 @@ pub const IDxcLibrary = extern union {
         ) callconv(.winapi) HRESULT,
         CreateBlobWithEncodingFromPinned: *const fn(
             self: *const IDxcLibrary,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "size" is the size in bytes
             pText: ?*const anyopaque,
             size: u32,
             codePage: DXC_CP,
@@ -551,7 +551,7 @@ pub const IDxcLibrary = extern union {
         ) callconv(.winapi) HRESULT,
         CreateBlobWithEncodingOnHeapCopy: *const fn(
             self: *const IDxcLibrary,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "size" is the size in bytes
             pText: ?*const anyopaque,
             size: u32,
             codePage: DXC_CP,
@@ -559,7 +559,7 @@ pub const IDxcLibrary = extern union {
         ) callconv(.winapi) HRESULT,
         CreateBlobWithEncodingOnMalloc: *const fn(
             self: *const IDxcLibrary,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "size" is the size in bytes
             pText: ?*const anyopaque,
             pIMalloc: ?*IMalloc,
             size: u32,
@@ -1011,7 +1011,7 @@ pub const IDxcUtils = extern union {
         ) callconv(.winapi) HRESULT,
         CreateBlobFromPinned: *const fn(
             self: *const IDxcUtils,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "size" is the size in bytes
             pData: ?*const anyopaque,
             size: u32,
             codePage: DXC_CP,
@@ -1019,7 +1019,7 @@ pub const IDxcUtils = extern union {
         ) callconv(.winapi) HRESULT,
         MoveToBlob: *const fn(
             self: *const IDxcUtils,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "size" is the size in bytes
             pData: ?*const anyopaque,
             pIMalloc: ?*IMalloc,
             size: u32,
@@ -1028,7 +1028,7 @@ pub const IDxcUtils = extern union {
         ) callconv(.winapi) HRESULT,
         CreateBlob: *const fn(
             self: *const IDxcUtils,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "size" is the size in bytes
             pData: ?*const anyopaque,
             size: u32,
             codePage: DXC_CP,

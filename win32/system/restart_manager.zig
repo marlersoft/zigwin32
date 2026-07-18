@@ -147,7 +147,7 @@ pub extern "rstrtmgr" fn RmEndSession(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmGetFilterList(
     dwSessionHandle: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbFilterBuf" is the size in bytes
     pbFilterBuf: ?*u8,
     cbFilterBuf: u32,
     cbFilterBufNeeded: ?*u32,

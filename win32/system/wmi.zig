@@ -184,7 +184,7 @@ pub const IMofCompiler = extern union {
         CompileBuffer: *const fn(
             self: *const IMofCompiler,
             BuffSize: i32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "BuffSize" is the size in bytes
             pBuffer: ?*u8,
             ServerAndNamespace: ?PWSTR,
             User: ?PWSTR,
@@ -2787,7 +2787,7 @@ pub const IWbemConstructClassObject = extern union {
         SetInheritanceChain: *const fn(
             self: *const IWbemConstructClassObject,
             lNumAntecedents: i32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "lNumAntecedents" is the size in bytes
             awszAntecedents: ?*?PWSTR,
         ) callconv(.winapi) HRESULT,
         SetPropertyOrigin: *const fn(

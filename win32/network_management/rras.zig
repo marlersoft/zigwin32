@@ -3751,7 +3751,7 @@ pub extern "mprapi" fn MprConfigFilterSetInfo(
 pub extern "mprapi" fn MprConfigGetFriendlyName(
     hMprConfig: ?HANDLE,
     pszGuidName: ?PWSTR,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufferSize" is the size in bytes
     pszBuffer: ?[*]u16,
     dwBufferSize: u32,
 ) callconv(.winapi) u32;
@@ -3760,7 +3760,7 @@ pub extern "mprapi" fn MprConfigGetFriendlyName(
 pub extern "mprapi" fn MprConfigGetGuidName(
     hMprConfig: ?HANDLE,
     pszFriendlyName: ?PWSTR,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufferSize" is the size in bytes
     pszBuffer: ?[*]u16,
     dwBufferSize: u32,
 ) callconv(.winapi) u32;
@@ -3834,7 +3834,7 @@ pub extern "mprapi" fn MprConfigInterfaceTransportAdd(
     hRouterInterface: ?HANDLE,
     dwTransportId: u32,
     lpwsTransportName: ?PWSTR,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "dwInterfaceInfoSize" is the size in bytes
     pInterfaceInfo: ?*u8,
     dwInterfaceInfoSize: u32,
     phRouterIfTransport: ?*?HANDLE,
@@ -3881,7 +3881,7 @@ pub extern "mprapi" fn MprConfigInterfaceTransportSetInfo(
     hMprConfig: ?HANDLE,
     hRouterInterface: ?HANDLE,
     hRouterIfTransport: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "dwInterfaceInfoSize" is the size in bytes
     pInterfaceInfo: ?*u8,
     dwInterfaceInfoSize: u32,
 ) callconv(.winapi) u32;
@@ -3950,10 +3950,10 @@ pub extern "mprapi" fn MprConfigTransportCreate(
     hMprConfig: ?HANDLE,
     dwTransportId: u32,
     lpwsTransportName: ?PWSTR,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "dwGlobalInfoSize" is the size in bytes
     pGlobalInfo: ?*u8,
     dwGlobalInfoSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "dwClientInterfaceInfoSize" is the size in bytes
     pClientInterfaceInfo: ?*u8,
     dwClientInterfaceInfoSize: u32,
     lpwsDLLPath: ?PWSTR,
@@ -3999,10 +3999,10 @@ pub extern "mprapi" fn MprConfigTransportGetInfo(
 pub extern "mprapi" fn MprConfigTransportSetInfo(
     hMprConfig: ?HANDLE,
     hRouterTransport: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwGlobalInfoSize" is the size in bytes
     pGlobalInfo: ?*u8,
     dwGlobalInfoSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "dwClientInterfaceInfoSize" is the size in bytes
     pClientInterfaceInfo: ?*u8,
     dwClientInterfaceInfoSize: u32,
     lpwsDLLPath: ?PWSTR,
@@ -4201,7 +4201,7 @@ pub extern "rasdlg" fn RasEntryDlgW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rasapi32" fn RasEnumAutodialAddressesA(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "lpdwcbRasAutodialAddresses" is the size in bytes
     lppRasAutodialAddresses: ?*?PSTR,
     lpdwcbRasAutodialAddresses: ?*u32,
     lpdwcRasAutodialAddresses: ?*u32,
@@ -4209,7 +4209,7 @@ pub extern "rasapi32" fn RasEnumAutodialAddressesA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rasapi32" fn RasEnumAutodialAddressesW(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "lpdwcbRasAutodialAddresses" is the size in bytes
     lppRasAutodialAddresses: ?*?PWSTR,
     lpdwcbRasAutodialAddresses: ?*u32,
     lpdwcRasAutodialAddresses: ?*u32,
@@ -4363,7 +4363,7 @@ pub extern "rasapi32" fn RasGetCredentialsW(
 pub extern "rasapi32" fn RasGetCustomAuthDataA(
     pszPhonebook: ?[*:0]const u8,
     pszEntry: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pdwSizeofCustomAuthData" is the size in bytes
     pbCustomAuthData: ?*u8,
     pdwSizeofCustomAuthData: ?*u32,
 ) callconv(.winapi) u32;
@@ -4372,7 +4372,7 @@ pub extern "rasapi32" fn RasGetCustomAuthDataA(
 pub extern "rasapi32" fn RasGetCustomAuthDataW(
     pszPhonebook: ?[*:0]const u16,
     pszEntry: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pdwSizeofCustomAuthData" is the size in bytes
     pbCustomAuthData: ?*u8,
     pdwSizeofCustomAuthData: ?*u32,
 ) callconv(.winapi) u32;
@@ -4641,7 +4641,7 @@ pub extern "rasapi32" fn RasSetCredentialsW(
 pub extern "rasapi32" fn RasSetCustomAuthDataA(
     pszPhonebook: ?[*:0]const u8,
     pszEntry: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwSizeofCustomAuthData" is the size in bytes
     pbCustomAuthData: ?*u8,
     dwSizeofCustomAuthData: u32,
 ) callconv(.winapi) u32;
@@ -4650,7 +4650,7 @@ pub extern "rasapi32" fn RasSetCustomAuthDataA(
 pub extern "rasapi32" fn RasSetCustomAuthDataW(
     pszPhonebook: ?[*:0]const u16,
     pszEntry: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwSizeofCustomAuthData" is the size in bytes
     pbCustomAuthData: ?*u8,
     dwSizeofCustomAuthData: u32,
 ) callconv(.winapi) u32;

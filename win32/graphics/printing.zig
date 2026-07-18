@@ -3197,7 +3197,7 @@ pub const IPrintCoreHelper = extern union {
         base: IUnknown.VTable,
         GetOption: *const fn(
             self: *const IPrintCoreHelper,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cbSize" is the size in bytes
             pDevmode: ?*const DEVMODEA,
             cbSize: u32,
             pszFeatureRequested: ?[*:0]const u8,
@@ -3223,7 +3223,7 @@ pub const IPrintCoreHelper = extern union {
         ) callconv(.winapi) HRESULT,
         WhyConstrained: *const fn(
             self: *const IPrintCoreHelper,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cbSize" is the size in bytes
             pDevmode: ?*const DEVMODEA,
             cbSize: u32,
             pszFeatureKeyword: ?[*:0]const u8,
@@ -3372,7 +3372,7 @@ pub const IPrintCoreHelperUni2 = extern union {
         base: IPrintCoreHelperUni.VTable,
         GetNamedCommand: *const fn(
             self: *const IPrintCoreHelperUni2,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cbSize" is the size in bytes
             pDevmode: ?*DEVMODEA,
             cbSize: u32,
             pszCommandName: ?[*:0]const u16,
@@ -3398,10 +3398,10 @@ pub const IPrintCoreUI2 = extern union {
             self: *const IPrintCoreUI2,
             poemuiobj: ?*OEMUIOBJ,
             dwFlags: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "cbIn" is the size in bytes
             pmszFeaturesRequested: ?*i8,
             cbIn: u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "cbSize" is the size in bytes
             pmszFeatureOptionBuf: ?[*]u8,
             cbSize: u32,
             pcbNeeded: ?*u32,
@@ -3410,7 +3410,7 @@ pub const IPrintCoreUI2 = extern union {
             self: *const IPrintCoreUI2,
             poemuiobj: ?*OEMUIOBJ,
             dwFlags: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "cbIn" is the size in bytes
             pmszFeatureOptionBuf: ?*i8,
             cbIn: u32,
             pdwResult: ?*u32,
@@ -3420,7 +3420,7 @@ pub const IPrintCoreUI2 = extern union {
             poemuiobj: ?*OEMUIOBJ,
             dwFlags: u32,
             pszFeatureKeyword: ?[*:0]const u8,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "cbSize" is the size in bytes
             pmszConstrainedOptionList: ?[*]u8,
             cbSize: u32,
             pcbNeeded: ?*u32,
@@ -3431,7 +3431,7 @@ pub const IPrintCoreUI2 = extern union {
             dwFlags: u32,
             pszFeatureKeyword: ?[*:0]const u8,
             pszOptionKeyword: ?[*:0]const u8,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "cbSize" is the size in bytes
             pmszReasonList: ?[*]u8,
             cbSize: u32,
             pcbNeeded: ?*u32,
@@ -3442,7 +3442,7 @@ pub const IPrintCoreUI2 = extern union {
             dwFlags: u32,
             pszAttribute: ?[*:0]const u8,
             pdwDataType: ?*u32,
-            // TODO: what to do with BytesParamIndex 5?
+            /// parameter "cbSize" is the size in bytes
             pbData: ?*u8,
             cbSize: u32,
             pcbNeeded: ?*u32,
@@ -3454,7 +3454,7 @@ pub const IPrintCoreUI2 = extern union {
             pszFeatureKeyword: ?[*:0]const u8,
             pszAttribute: ?[*:0]const u8,
             pdwDataType: ?*u32,
-            // TODO: what to do with BytesParamIndex 6?
+            /// parameter "cbSize" is the size in bytes
             pbData: ?*u8,
             cbSize: u32,
             pcbNeeded: ?*u32,
@@ -3467,7 +3467,7 @@ pub const IPrintCoreUI2 = extern union {
             pszOptionKeyword: ?[*:0]const u8,
             pszAttribute: ?[*:0]const u8,
             pdwDataType: ?*u32,
-            // TODO: what to do with BytesParamIndex 7?
+            /// parameter "cbSize" is the size in bytes
             pbData: ?*u8,
             cbSize: u32,
             pcbNeeded: ?*u32,
@@ -3476,7 +3476,7 @@ pub const IPrintCoreUI2 = extern union {
             self: *const IPrintCoreUI2,
             poemuiobj: ?*OEMUIOBJ,
             dwFlags: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "cbSize" is the size in bytes
             pmszFeatureList: ?[*]u8,
             cbSize: u32,
             pcbNeeded: ?*u32,
@@ -3486,7 +3486,7 @@ pub const IPrintCoreUI2 = extern union {
             poemuiobj: ?*OEMUIOBJ,
             dwFlags: u32,
             pszFeatureKeyword: ?[*:0]const u8,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "cbSize" is the size in bytes
             pmszOptionList: ?[*]u8,
             cbSize: u32,
             pcbNeeded: ?*u32,
@@ -3495,7 +3495,7 @@ pub const IPrintCoreUI2 = extern union {
             self: *const IPrintCoreUI2,
             hPrinter: ?HANDLE,
             dwLevel: u32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "cbSize" is the size in bytes
             pCaps: ?*u8,
             cbSize: u32,
             pcbNeeded: ?*u32,
@@ -4326,7 +4326,7 @@ pub const IPrintOemCommon = extern union {
         GetInfo: *const fn(
             self: *const IPrintOemCommon,
             dwMode: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "cbSize" is the size in bytes
             pBuffer: ?*anyopaque,
             cbSize: u32,
             pcbNeeded: ?*u32,
@@ -4757,7 +4757,7 @@ pub const IPrintReadStream = extern union {
         ) callconv(.winapi) HRESULT,
         ReadBytes: *const fn(
             self: *const IPrintReadStream,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cbRequested" is the size in bytes
             pvBuffer: ?*anyopaque,
             cbRequested: u32,
             pcbRead: ?*u32,
@@ -5518,7 +5518,7 @@ pub const IPrintWriteStream = extern union {
         base: IUnknown.VTable,
         WriteBytes: *const fn(
             self: *const IPrintWriteStream,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cbBuffer" is the size in bytes
             pvBuffer: ?*const anyopaque,
             cbBuffer: u32,
             pcbWritten: ?*u32,
@@ -6328,7 +6328,7 @@ pub const IntermediatePageCount = PageCountType.IntermediatePageCount;
 pub const PFN_DrvGetDriverSetting = *const fn(
     pdriverobj: ?*anyopaque,
     Feature: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbSize" is the size in bytes
     pOutput: ?*anyopaque,
     cbSize: u32,
     pcbNeeded: ?*u32,
@@ -7460,7 +7460,7 @@ pub extern "winspool.drv" fn AddFormW(
 pub extern "winspool.drv" fn AddJobA(
     hPrinter: ?HANDLE,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBuf" is the size in bytes
     pData: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -7469,7 +7469,7 @@ pub extern "winspool.drv" fn AddJobA(
 pub extern "winspool.drv" fn AddJobW(
     hPrinter: ?HANDLE,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBuf" is the size in bytes
     pData: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -7878,7 +7878,7 @@ pub extern "winspool.drv" fn EndPagePrinter(
 pub extern "winspool.drv" fn EnumFormsA(
     hPrinter: ?HANDLE,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBuf" is the size in bytes
     pForm: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -7888,7 +7888,7 @@ pub extern "winspool.drv" fn EnumFormsA(
 pub extern "winspool.drv" fn EnumFormsW(
     hPrinter: ?HANDLE,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBuf" is the size in bytes
     pForm: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -7907,7 +7907,7 @@ pub extern "winspool.drv" fn EnumJobsA(
     FirstJob: u32,
     NoJobs: u32,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbBuf" is the size in bytes
     pJob: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -7919,7 +7919,7 @@ pub extern "winspool.drv" fn EnumJobsW(
     FirstJob: u32,
     NoJobs: u32,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbBuf" is the size in bytes
     pJob: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -7929,7 +7929,7 @@ pub extern "winspool.drv" fn EnumJobsW(
 pub extern "winspool.drv" fn EnumMonitorsA(
     pName: ?PSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBuf" is the size in bytes
     pMonitor: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -7939,7 +7939,7 @@ pub extern "winspool.drv" fn EnumMonitorsA(
 pub extern "winspool.drv" fn EnumMonitorsW(
     pName: ?PWSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBuf" is the size in bytes
     pMonitor: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -7949,7 +7949,7 @@ pub extern "winspool.drv" fn EnumMonitorsW(
 pub extern "winspool.drv" fn EnumPortsA(
     pName: ?PSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBuf" is the size in bytes
     pPort: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -7959,7 +7959,7 @@ pub extern "winspool.drv" fn EnumPortsA(
 pub extern "winspool.drv" fn EnumPortsW(
     pName: ?PWSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBuf" is the size in bytes
     pPort: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -7969,7 +7969,7 @@ pub extern "winspool.drv" fn EnumPortsW(
 pub extern "winspool.drv" fn EnumPrinterDataA(
     hPrinter: ?HANDLE,
     dwIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbValueName" is the size in bytes
     pValueName: ?PSTR,
     cbValueName: u32,
     pcbValueName: ?*u32,
@@ -7982,7 +7982,7 @@ pub extern "winspool.drv" fn EnumPrinterDataA(
 pub extern "winspool.drv" fn EnumPrinterDataExA(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbEnumValues" is the size in bytes
     pEnumValues: ?*u8,
     cbEnumValues: u32,
     pcbEnumValues: ?*u32,
@@ -7992,7 +7992,7 @@ pub extern "winspool.drv" fn EnumPrinterDataExA(
 pub extern "winspool.drv" fn EnumPrinterDataExW(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbEnumValues" is the size in bytes
     pEnumValues: ?*u8,
     cbEnumValues: u32,
     pcbEnumValues: ?*u32,
@@ -8002,7 +8002,7 @@ pub extern "winspool.drv" fn EnumPrinterDataExW(
 pub extern "winspool.drv" fn EnumPrinterDataW(
     hPrinter: ?HANDLE,
     dwIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbValueName" is the size in bytes
     pValueName: ?PWSTR,
     cbValueName: u32,
     pcbValueName: ?*u32,
@@ -8016,7 +8016,7 @@ pub extern "winspool.drv" fn EnumPrinterDriversA(
     pName: ?PSTR,
     pEnvironment: ?PSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuf" is the size in bytes
     pDriverInfo: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8027,7 +8027,7 @@ pub extern "winspool.drv" fn EnumPrinterDriversW(
     pName: ?PWSTR,
     pEnvironment: ?PWSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuf" is the size in bytes
     pDriverInfo: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8037,7 +8037,7 @@ pub extern "winspool.drv" fn EnumPrinterDriversW(
 pub extern "winspool.drv" fn EnumPrinterKeyA(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbSubkey" is the size in bytes
     pSubkey: ?PSTR,
     cbSubkey: u32,
     pcbSubkey: ?*u32,
@@ -8046,7 +8046,7 @@ pub extern "winspool.drv" fn EnumPrinterKeyA(
 pub extern "winspool.drv" fn EnumPrinterKeyW(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbSubkey" is the size in bytes
     pSubkey: ?PWSTR,
     cbSubkey: u32,
     pcbSubkey: ?*u32,
@@ -8056,7 +8056,7 @@ pub extern "winspool.drv" fn EnumPrintersA(
     Flags: u32,
     Name: ?PSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuf" is the size in bytes
     pPrinterEnum: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8067,7 +8067,7 @@ pub extern "winspool.drv" fn EnumPrintersW(
     Flags: u32,
     Name: ?PWSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuf" is the size in bytes
     pPrinterEnum: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8078,7 +8078,7 @@ pub extern "winspool.drv" fn EnumPrintProcessorDatatypesA(
     pName: ?PSTR,
     pPrintProcessorName: ?PSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuf" is the size in bytes
     pDatatypes: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8089,7 +8089,7 @@ pub extern "winspool.drv" fn EnumPrintProcessorDatatypesW(
     pName: ?PWSTR,
     pPrintProcessorName: ?PWSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuf" is the size in bytes
     pDatatypes: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8100,7 +8100,7 @@ pub extern "winspool.drv" fn EnumPrintProcessorsA(
     pName: ?PSTR,
     pEnvironment: ?PSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuf" is the size in bytes
     pPrintProcessorInfo: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8111,7 +8111,7 @@ pub extern "winspool.drv" fn EnumPrintProcessorsW(
     pName: ?PWSTR,
     pEnvironment: ?PWSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuf" is the size in bytes
     pPrintProcessorInfo: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8149,7 +8149,7 @@ pub extern "winspool.drv" fn FindNextPrinterChangeNotification(
 
 pub extern "winspool.drv" fn FlushPrinter(
     hPrinter: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbBuf" is the size in bytes
     pBuf: ?*anyopaque,
     cbBuf: u32,
     pcWritten: ?*u32,
@@ -8277,7 +8277,7 @@ pub extern "winspool.drv" fn GetFormA(
     hPrinter: ?HANDLE,
     pFormName: ?PSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuf" is the size in bytes
     pForm: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8287,7 +8287,7 @@ pub extern "winspool.drv" fn GetFormW(
     hPrinter: ?HANDLE,
     pFormName: ?PWSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuf" is the size in bytes
     pForm: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8297,7 +8297,7 @@ pub extern "winspool.drv" fn GetJobA(
     hPrinter: ?HANDLE,
     JobId: u32,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuf" is the size in bytes
     pJob: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8313,7 +8313,7 @@ pub extern "spoolss" fn GetJobAttributesEx(
     pPrinterName: ?PWSTR,
     pDevmode: ?*DEVMODEW,
     dwLevel: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "nSize" is the size in bytes
     pAttributeInfo: ?*u8,
     nSize: u32,
     dwFlags: u32,
@@ -8330,7 +8330,7 @@ pub extern "winspool.drv" fn GetJobW(
     hPrinter: ?HANDLE,
     JobId: u32,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuf" is the size in bytes
     pJob: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8339,7 +8339,7 @@ pub extern "winspool.drv" fn GetJobW(
 pub extern "winspool.drv" fn GetPrinterA(
     hPrinter: ?HANDLE,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBuf" is the size in bytes
     pPrinter: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8349,7 +8349,7 @@ pub extern "winspool.drv" fn GetPrinterDataA(
     hPrinter: ?HANDLE,
     pValueName: ?PSTR,
     pType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "nSize" is the size in bytes
     pData: ?*u8,
     nSize: u32,
     pcbNeeded: ?*u32,
@@ -8360,7 +8360,7 @@ pub extern "winspool.drv" fn GetPrinterDataExA(
     pKeyName: ?[*:0]const u8,
     pValueName: ?[*:0]const u8,
     pType: ?*u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "nSize" is the size in bytes
     pData: ?*u8,
     nSize: u32,
     pcbNeeded: ?*u32,
@@ -8371,7 +8371,7 @@ pub extern "winspool.drv" fn GetPrinterDataExW(
     pKeyName: ?[*:0]const u16,
     pValueName: ?[*:0]const u16,
     pType: ?*u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "nSize" is the size in bytes
     pData: ?*u8,
     nSize: u32,
     pcbNeeded: ?*u32,
@@ -8381,7 +8381,7 @@ pub extern "winspool.drv" fn GetPrinterDataW(
     hPrinter: ?HANDLE,
     pValueName: ?PWSTR,
     pType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "nSize" is the size in bytes
     pData: ?*u8,
     nSize: u32,
     pcbNeeded: ?*u32,
@@ -8392,7 +8392,7 @@ pub extern "winspool.drv" fn GetPrinterDriver2A(
     hPrinter: ?HANDLE,
     pEnvironment: ?PSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbBuf" is the size in bytes
     pDriverInfo: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8403,7 +8403,7 @@ pub extern "winspool.drv" fn GetPrinterDriver2W(
     hPrinter: ?HANDLE,
     pEnvironment: ?PWSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbBuf" is the size in bytes
     pDriverInfo: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8413,7 +8413,7 @@ pub extern "winspool.drv" fn GetPrinterDriverA(
     hPrinter: ?HANDLE,
     pEnvironment: ?PSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuf" is the size in bytes
     pDriverInfo: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8423,7 +8423,7 @@ pub extern "winspool.drv" fn GetPrinterDriverDirectoryA(
     pName: ?PSTR,
     pEnvironment: ?PSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuf" is the size in bytes
     pDriverDirectory: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8433,7 +8433,7 @@ pub extern "winspool.drv" fn GetPrinterDriverDirectoryW(
     pName: ?PWSTR,
     pEnvironment: ?PWSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuf" is the size in bytes
     pDriverDirectory: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8463,7 +8463,7 @@ pub extern "winspool.drv" fn GetPrinterDriverW(
     hPrinter: ?HANDLE,
     pEnvironment: ?PWSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuf" is the size in bytes
     pDriverInfo: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8472,7 +8472,7 @@ pub extern "winspool.drv" fn GetPrinterDriverW(
 pub extern "winspool.drv" fn GetPrinterW(
     hPrinter: ?HANDLE,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBuf" is the size in bytes
     pPrinter: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8493,7 +8493,7 @@ pub extern "winspool.drv" fn GetPrintProcessorDirectoryA(
     pName: ?PSTR,
     pEnvironment: ?PSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuf" is the size in bytes
     pPrintProcessorInfo: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8503,7 +8503,7 @@ pub extern "winspool.drv" fn GetPrintProcessorDirectoryW(
     pName: ?PWSTR,
     pEnvironment: ?PWSTR,
     Level: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuf" is the size in bytes
     pPrintProcessorInfo: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
@@ -8576,10 +8576,10 @@ pub extern "spoolss" fn PartialReplyPrinterChangeNotification(
 
 pub extern "winspool.drv" fn PlayGdiScriptOnPrinterIC(
     hPrinterIC: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cIn" is the size in bytes
     pIn: ?*u8,
     cIn: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cOut" is the size in bytes
     pOut: ?*u8,
     cOut: u32,
     ul: u32,
@@ -8623,7 +8623,7 @@ pub extern "spoolss" fn ProvidorFindFirstPrinterChangeNotification(
 
 pub extern "winspool.drv" fn ReadPrinter(
     hPrinter: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbBuf" is the size in bytes
     pBuf: ?*anyopaque,
     cbBuf: u32,
     pNoBytesRead: ?*u32,
@@ -8781,7 +8781,7 @@ pub extern "winspool.drv" fn SetPrinterDataA(
     hPrinter: ?HANDLE,
     pValueName: ?PSTR,
     Type: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbData" is the size in bytes
     pData: ?*u8,
     cbData: u32,
 ) callconv(.winapi) u32;
@@ -8791,7 +8791,7 @@ pub extern "winspool.drv" fn SetPrinterDataExA(
     pKeyName: ?[*:0]const u8,
     pValueName: ?[*:0]const u8,
     Type: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbData" is the size in bytes
     pData: ?*u8,
     cbData: u32,
 ) callconv(.winapi) u32;
@@ -8801,7 +8801,7 @@ pub extern "winspool.drv" fn SetPrinterDataExW(
     pKeyName: ?[*:0]const u16,
     pValueName: ?[*:0]const u16,
     Type: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbData" is the size in bytes
     pData: ?*u8,
     cbData: u32,
 ) callconv(.winapi) u32;
@@ -8810,7 +8810,7 @@ pub extern "winspool.drv" fn SetPrinterDataW(
     hPrinter: ?HANDLE,
     pValueName: ?PWSTR,
     Type: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbData" is the size in bytes
     pData: ?*u8,
     cbData: u32,
 ) callconv(.winapi) u32;
@@ -8927,7 +8927,7 @@ pub extern "winspool.drv" fn WaitForPrinterChange(
 
 pub extern "winspool.drv" fn WritePrinter(
     hPrinter: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbBuf" is the size in bytes
     pBuf: ?*anyopaque,
     cbBuf: u32,
     pcWritten: ?*u32,
@@ -8936,10 +8936,10 @@ pub extern "winspool.drv" fn WritePrinter(
 pub extern "winspool.drv" fn XcvDataW(
     hXcv: ?HANDLE,
     pszDataName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbInputData" is the size in bytes
     pInputData: ?*u8,
     cbInputData: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbOutputData" is the size in bytes
     pOutputData: ?*u8,
     cbOutputData: u32,
     pcbOutputNeeded: ?*u32,

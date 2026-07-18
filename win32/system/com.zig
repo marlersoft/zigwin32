@@ -4263,14 +4263,14 @@ pub const ISequentialStream = extern union {
         base: IUnknown.VTable,
         Read: *const fn(
             self: *const ISequentialStream,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cb" is the size in bytes
             pv: ?*anyopaque,
             cb: u32,
             pcbRead: ?*u32,
         ) callconv(.winapi) HRESULT,
         Write: *const fn(
             self: *const ISequentialStream,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cb" is the size in bytes
             pv: ?*const anyopaque,
             cb: u32,
             pcbWritten: ?*u32,

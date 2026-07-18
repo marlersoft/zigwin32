@@ -15262,7 +15262,7 @@ pub const IQueryAssociations = extern union {
             flags: ASSOCF,
             data: ASSOCDATA,
             pszExtra: ?[*:0]const u16,
-            // TODO: what to do with BytesParamIndex 4?
+            /// parameter "pcbOut" is the size in bytes
             pvOut: ?*anyopaque,
             pcbOut: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -20431,7 +20431,7 @@ pub const IStreamAsync = extern union {
         base: IStream.VTable,
         ReadAsync: *const fn(
             self: *const IStreamAsync,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cb" is the size in bytes
             pv: ?*anyopaque,
             cb: u32,
             pcbRead: ?*u32,
@@ -20439,7 +20439,7 @@ pub const IStreamAsync = extern union {
         ) callconv(.winapi) HRESULT,
         WriteAsync: *const fn(
             self: *const IStreamAsync,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cb" is the size in bytes
             lpBuffer: ?*const anyopaque,
             cb: u32,
             pcbWritten: ?*u32,
@@ -29285,10 +29285,10 @@ pub extern "comctl32" fn GetWindowSubclass(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "shlwapi" fn HashData(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbData" is the size in bytes
     pbData: ?*u8,
     cbData: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbHash" is the size in bytes
     pbHash: ?*u8,
     cbHash: u32,
 ) callconv(.winapi) HRESULT;
@@ -29712,7 +29712,7 @@ pub extern "shlwapi" fn IStream_Copy(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "shlwapi" fn IStream_Read(
     pstm: ?*IStream,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cb" is the size in bytes
     pv: ?*anyopaque,
     cb: u32,
 ) callconv(.winapi) HRESULT;
@@ -29743,7 +29743,7 @@ pub extern "shlwapi" fn IStream_Size(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "shlwapi" fn IStream_Write(
     pstm: ?*IStream,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cb" is the size in bytes
     pv: ?*const anyopaque,
     cb: u32,
 ) callconv(.winapi) HRESULT;
@@ -30707,7 +30707,7 @@ pub extern "shlwapi" fn QISearch(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "shell32" fn ReadCabinetState(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cLength" is the size in bytes
     pcs: ?*CABINETSTATE,
     cLength: i32,
 ) callconv(.winapi) BOOL;
@@ -30817,7 +30817,7 @@ pub extern "shell32" fn SHAlloc(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "shlwapi" fn SHAllocShared(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "dwSize" is the size in bytes
     pvData: ?*const anyopaque,
     dwSize: u32,
     dwProcessId: u32,
@@ -31095,7 +31095,7 @@ pub extern "shell32" fn SHCreateItemWithParent(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "shlwapi" fn SHCreateMemStream(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbInit" is the size in bytes
     pInit: ?*const u8,
     cbInit: u32,
 ) callconv(.winapi) ?*IStream;
@@ -31462,7 +31462,7 @@ pub extern "shlwapi" fn SHEnumValueA(
     pszValueName: ?[*:0]u8,
     pcchValueName: ?*u32,
     pdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -31474,7 +31474,7 @@ pub extern "shlwapi" fn SHEnumValueW(
     pszValueName: ?[*:0]u16,
     pcchValueName: ?*u32,
     pdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -31568,7 +31568,7 @@ pub extern "shell32" fn SHGetDataFromIDListA(
     psf: ?*IShellFolder,
     pidl: ?*ITEMIDLIST,
     nFormat: SHGDFIL_FORMAT,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cb" is the size in bytes
     pv: ?*anyopaque,
     cb: i32,
 ) callconv(.winapi) HRESULT;
@@ -31578,7 +31578,7 @@ pub extern "shell32" fn SHGetDataFromIDListW(
     psf: ?*IShellFolder,
     pidl: ?*ITEMIDLIST,
     nFormat: SHGDFIL_FORMAT,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cb" is the size in bytes
     pv: ?*anyopaque,
     cb: i32,
 ) callconv(.winapi) HRESULT;
@@ -31614,7 +31614,7 @@ pub extern "shell32" fn SHGetDriveMedia(
 pub extern "shell32" fn SHGetFileInfoA(
     pszPath: ?[*:0]const u8,
     dwFileAttributes: FILE_FLAGS_AND_ATTRIBUTES,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbFileInfo" is the size in bytes
     psfi: ?*SHFILEINFOA,
     cbFileInfo: u32,
     uFlags: SHGFI_FLAGS,
@@ -31624,7 +31624,7 @@ pub extern "shell32" fn SHGetFileInfoA(
 pub extern "shell32" fn SHGetFileInfoW(
     pszPath: ?[*:0]const u16,
     dwFileAttributes: FILE_FLAGS_AND_ATTRIBUTES,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbFileInfo" is the size in bytes
     psfi: ?*SHFILEINFOW,
     cbFileInfo: u32,
     uFlags: SHGFI_FLAGS,
@@ -31709,7 +31709,7 @@ pub extern "shell32" fn SHGetInstanceExplorer(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "shlwapi" fn SHGetInverseCMAP(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbMap" is the size in bytes
     pbMap: ?*u8,
     cbMap: u32,
 ) callconv(.winapi) HRESULT;
@@ -31897,7 +31897,7 @@ pub extern "shlwapi" fn SHGetValueA(
     pszSubKey: ?[*:0]const u8,
     pszValue: ?[*:0]const u8,
     pdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -31908,7 +31908,7 @@ pub extern "shlwapi" fn SHGetValueW(
     pszSubKey: ?[*:0]const u16,
     pszValue: ?[*:0]const u16,
     pdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -32171,7 +32171,7 @@ pub extern "shlwapi" fn SHQueryValueExA(
     pszValue: ?[*:0]const u8,
     pdwReserved: ?*u32,
     pdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -32182,7 +32182,7 @@ pub extern "shlwapi" fn SHQueryValueExW(
     pszValue: ?[*:0]const u16,
     pdwReserved: ?*u32,
     pdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -32268,7 +32268,7 @@ pub extern "shlwapi" fn SHRegEnumUSValueA(
     pszValueName: [*:0]u8,
     pcchValueName: ?*u32,
     pdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
     enumRegFlags: SHREGENUM_FLAGS,
@@ -32281,7 +32281,7 @@ pub extern "shlwapi" fn SHRegEnumUSValueW(
     pszValueName: [*:0]u16,
     pcchValueName: ?*u32,
     pdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
     enumRegFlags: SHREGENUM_FLAGS,
@@ -32333,11 +32333,11 @@ pub extern "shlwapi" fn SHRegGetUSValueA(
     pszSubKey: ?[*:0]const u8,
     pszValue: ?[*:0]const u8,
     pdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
     fIgnoreHKCU: BOOL,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "dwDefaultDataSize" is the size in bytes
     pvDefaultData: ?*anyopaque,
     dwDefaultDataSize: u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -32347,11 +32347,11 @@ pub extern "shlwapi" fn SHRegGetUSValueW(
     pszSubKey: ?[*:0]const u16,
     pszValue: ?[*:0]const u16,
     pdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
     fIgnoreHKCU: BOOL,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "dwDefaultDataSize" is the size in bytes
     pvDefaultData: ?*anyopaque,
     dwDefaultDataSize: u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -32363,7 +32363,7 @@ pub extern "shlwapi" fn SHRegGetValueA(
     pszValue: ?[*:0]const u8,
     srrfFlags: i32,
     pdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -32374,7 +32374,7 @@ pub extern "shlwapi" fn SHRegGetValueFromHKCUHKLM(
     pwszValue: ?[*:0]const u16,
     srrfFlags: i32,
     pdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -32386,7 +32386,7 @@ pub extern "shlwapi" fn SHRegGetValueW(
     pszValue: ?[*:0]const u16,
     srrfFlags: i32,
     pdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -32434,11 +32434,11 @@ pub extern "shlwapi" fn SHRegQueryUSValueA(
     hUSKey: isize,
     pszValue: ?[*:0]const u8,
     pdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
     fIgnoreHKCU: BOOL,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "dwDefaultDataSize" is the size in bytes
     pvDefaultData: ?*anyopaque,
     dwDefaultDataSize: u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -32448,11 +32448,11 @@ pub extern "shlwapi" fn SHRegQueryUSValueW(
     hUSKey: isize,
     pszValue: ?[*:0]const u16,
     pdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
     fIgnoreHKCU: BOOL,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "dwDefaultDataSize" is the size in bytes
     pvDefaultData: ?*anyopaque,
     dwDefaultDataSize: u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -32480,7 +32480,7 @@ pub extern "shlwapi" fn SHRegSetUSValueA(
     pszSubKey: ?[*:0]const u8,
     pszValue: ?[*:0]const u8,
     dwType: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbData" is the size in bytes
     pvData: ?*const anyopaque,
     cbData: u32,
     dwFlags: u32,
@@ -32491,7 +32491,7 @@ pub extern "shlwapi" fn SHRegSetUSValueW(
     pwzSubKey: ?[*:0]const u16,
     pwzValue: ?[*:0]const u16,
     dwType: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbData" is the size in bytes
     pvData: ?*const anyopaque,
     cbData: u32,
     dwFlags: u32,
@@ -32502,7 +32502,7 @@ pub extern "shlwapi" fn SHRegWriteUSValueA(
     hUSKey: isize,
     pszValue: ?[*:0]const u8,
     dwType: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbData" is the size in bytes
     pvData: ?*const anyopaque,
     cbData: u32,
     dwFlags: u32,
@@ -32513,7 +32513,7 @@ pub extern "shlwapi" fn SHRegWriteUSValueW(
     hUSKey: isize,
     pwzValue: ?[*:0]const u16,
     dwType: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbData" is the size in bytes
     pvData: ?*const anyopaque,
     cbData: u32,
     dwFlags: u32,
@@ -32629,7 +32629,7 @@ pub extern "shlwapi" fn SHSetValueA(
     pszSubKey: ?[*:0]const u8,
     pszValue: ?[*:0]const u8,
     dwType: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbData" is the size in bytes
     pvData: ?*const anyopaque,
     cbData: u32,
 ) callconv(.winapi) i32;
@@ -32640,7 +32640,7 @@ pub extern "shlwapi" fn SHSetValueW(
     pszSubKey: ?[*:0]const u16,
     pszValue: ?[*:0]const u16,
     dwType: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbData" is the size in bytes
     pvData: ?*const anyopaque,
     cbData: u32,
 ) callconv(.winapi) i32;
@@ -33415,7 +33415,7 @@ pub extern "shlwapi" fn UrlGetPartW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "shlwapi" fn UrlHashA(
     pszUrl: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbHash" is the size in bytes
     pbHash: ?*u8,
     cbHash: u32,
 ) callconv(.winapi) HRESULT;
@@ -33423,7 +33423,7 @@ pub extern "shlwapi" fn UrlHashA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "shlwapi" fn UrlHashW(
     pszUrl: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbHash" is the size in bytes
     pbHash: ?*u8,
     cbHash: u32,
 ) callconv(.winapi) HRESULT;

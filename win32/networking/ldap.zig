@@ -1320,30 +1320,30 @@ pub extern "wldap32" fn ldap_err2stringW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_escape_filter_element(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "sourceLength" is the size in bytes
     sourceFilterElement: ?[*]u8,
     sourceLength: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "destLength" is the size in bytes
     destFilterElement: ?[*]u8,
     destLength: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_escape_filter_elementA(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "sourceLength" is the size in bytes
     sourceFilterElement: ?[*]u8,
     sourceLength: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "destLength" is the size in bytes
     destFilterElement: ?[*]u8,
     destLength: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_escape_filter_elementW(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "sourceLength" is the size in bytes
     sourceFilterElement: ?[*]u8,
     sourceLength: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "destLength" is the size in bytes
     destFilterElement: ?[*]u16,
     destLength: u32,
 ) callconv(.winapi) u32;

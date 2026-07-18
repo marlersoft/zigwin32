@@ -1537,7 +1537,7 @@ pub const PFN_WdsCliTraceFunction = *const fn(
 pub const PFN_WdsTransportClientReceiveContents = *const fn(
     hSessionKey: ?HANDLE,
     pCallerData: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ulSize" is the size in bytes
     pContents: ?*anyopaque,
     ulSize: u32,
     pullContentOffset: ?*ULARGE_INTEGER,
@@ -1546,7 +1546,7 @@ pub const PFN_WdsTransportClientReceiveContents = *const fn(
 pub const PFN_WdsTransportClientReceiveMetadata = *const fn(
     hSessionKey: ?HANDLE,
     pCallerData: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ulSize" is the size in bytes
     pMetadata: ?*anyopaque,
     ulSize: u32,
 ) callconv(.winapi) void;
@@ -1969,30 +1969,30 @@ pub extern "wdspxe" fn PxeAsyncRecvDone(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeDhcpAppendOption(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "uMaxReplyPacketLen" is the size in bytes
     pReplyPacket: ?*anyopaque,
     uMaxReplyPacketLen: u32,
     puReplyPacketLen: ?*u32,
     bOption: u8,
     bOptionLen: u8,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "bOptionLen" is the size in bytes
     pValue: ?*anyopaque,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeDhcpAppendOptionRaw(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "uMaxReplyPacketLen" is the size in bytes
     pReplyPacket: ?*anyopaque,
     uMaxReplyPacketLen: u32,
     puReplyPacketLen: ?*u32,
     uBufferLen: u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "uBufferLen" is the size in bytes
     pBuffer: ?*anyopaque,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeDhcpGetOptionValue(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "uPacketLen" is the size in bytes
     pPacket: ?*anyopaque,
     uPacketLen: u32,
     uInstance: u32,
@@ -2003,7 +2003,7 @@ pub extern "wdspxe" fn PxeDhcpGetOptionValue(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeDhcpGetVendorOptionValue(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "uPacketLen" is the size in bytes
     pPacket: ?*anyopaque,
     uPacketLen: u32,
     bOption: u8,
@@ -2014,10 +2014,10 @@ pub extern "wdspxe" fn PxeDhcpGetVendorOptionValue(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeDhcpInitialize(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "uRecvPacketLen" is the size in bytes
     pRecvPacket: ?*anyopaque,
     uRecvPacketLen: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "uMaxReplyPacketLen" is the size in bytes
     pReplyPacket: ?*anyopaque,
     uMaxReplyPacketLen: u32,
     puReplyPacketLen: ?*u32,
@@ -2025,7 +2025,7 @@ pub extern "wdspxe" fn PxeDhcpInitialize(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeDhcpIsValid(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "uPacketLen" is the size in bytes
     pPacket: ?*anyopaque,
     uPacketLen: u32,
     bRequestPacket: BOOL,
@@ -2034,24 +2034,24 @@ pub extern "wdspxe" fn PxeDhcpIsValid(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdspxe" fn PxeDhcpv6AppendOption(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbReply" is the size in bytes
     pReply: ?*anyopaque,
     cbReply: u32,
     pcbReplyUsed: ?*u32,
     wOptionType: u16,
     cbOption: u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbOption" is the size in bytes
     pOption: ?*anyopaque,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdspxe" fn PxeDhcpv6AppendOptionRaw(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbReply" is the size in bytes
     pReply: ?*anyopaque,
     cbReply: u32,
     pcbReplyUsed: ?*u32,
     cbBuffer: u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBuffer" is the size in bytes
     pBuffer: ?*anyopaque,
 ) callconv(.winapi) u32;
 
@@ -2059,10 +2059,10 @@ pub extern "wdspxe" fn PxeDhcpv6AppendOptionRaw(
 pub extern "wdspxe" fn PxeDhcpv6CreateRelayRepl(
     pRelayMessages: [*]PXE_DHCPV6_NESTED_RELAY_MESSAGE,
     nRelayMessages: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbInnerPacket" is the size in bytes
     pInnerPacket: ?*u8,
     cbInnerPacket: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbReplyBuffer" is the size in bytes
     pReplyBuffer: ?*anyopaque,
     cbReplyBuffer: u32,
     pcbReplyBuffer: ?*u32,
@@ -2070,7 +2070,7 @@ pub extern "wdspxe" fn PxeDhcpv6CreateRelayRepl(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdspxe" fn PxeDhcpv6GetOptionValue(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "uPacketLen" is the size in bytes
     pPacket: ?*anyopaque,
     uPacketLen: u32,
     uInstance: u32,
@@ -2081,7 +2081,7 @@ pub extern "wdspxe" fn PxeDhcpv6GetOptionValue(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdspxe" fn PxeDhcpv6GetVendorOptionValue(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "uPacketLen" is the size in bytes
     pPacket: ?*anyopaque,
     uPacketLen: u32,
     dwEnterpriseNumber: u32,
@@ -2093,10 +2093,10 @@ pub extern "wdspxe" fn PxeDhcpv6GetVendorOptionValue(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdspxe" fn PxeDhcpv6Initialize(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbRequest" is the size in bytes
     pRequest: ?*anyopaque,
     cbRequest: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbReply" is the size in bytes
     pReply: ?*anyopaque,
     cbReply: u32,
     pcbReplyUsed: ?*u32,
@@ -2104,7 +2104,7 @@ pub extern "wdspxe" fn PxeDhcpv6Initialize(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdspxe" fn PxeDhcpv6IsValid(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "uPacketLen" is the size in bytes
     pPacket: ?*anyopaque,
     uPacketLen: u32,
     bRequestPacket: BOOL,
@@ -2113,7 +2113,7 @@ pub extern "wdspxe" fn PxeDhcpv6IsValid(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdspxe" fn PxeDhcpv6ParseRelayForw(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "uRelayForwPacketLen" is the size in bytes
     pRelayForwPacket: ?*anyopaque,
     uRelayForwPacketLen: u32,
     pRelayMessages: [*]PXE_DHCPV6_NESTED_RELAY_MESSAGE,
@@ -2126,7 +2126,7 @@ pub extern "wdspxe" fn PxeDhcpv6ParseRelayForw(
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeGetServerInfo(
     uInfoType: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "uBufferLen" is the size in bytes
     pBuffer: ?*anyopaque,
     uBufferLen: u32,
 ) callconv(.winapi) u32;
@@ -2134,7 +2134,7 @@ pub extern "wdspxe" fn PxeGetServerInfo(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdspxe" fn PxeGetServerInfoEx(
     uInfoType: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "uBufferLen" is the size in bytes
     pBuffer: ?*anyopaque,
     uBufferLen: u32,
     puBufferUsed: ?*u32,
@@ -2194,7 +2194,7 @@ pub extern "wdspxe" fn PxeProviderRegister(
 pub extern "wdspxe" fn PxeProviderSetAttribute(
     hProvider: ?HANDLE,
     Attribute: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "uParamLen" is the size in bytes
     pParameterBuffer: ?*anyopaque,
     uParamLen: u32,
 ) callconv(.winapi) u32;
@@ -2215,7 +2215,7 @@ pub extern "wdspxe" fn PxeRegisterCallback(
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "wdspxe" fn PxeSendReply(
     hClientRequest: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "uPacketLen" is the size in bytes
     pPacket: ?*anyopaque,
     uPacketLen: u32,
     pAddress: ?*PXE_ADDRESS,
@@ -2240,7 +2240,7 @@ pub extern "wdsbp" fn WdsBpAddOption(
     hHandle: ?HANDLE,
     uOption: u32,
     uValueLen: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "uValueLen" is the size in bytes
     pValue: ?*anyopaque,
 ) callconv(.winapi) u32;
 
@@ -2253,7 +2253,7 @@ pub extern "wdsbp" fn WdsBpCloseHandle(
 pub extern "wdsbp" fn WdsBpGetOptionBuffer(
     hHandle: ?HANDLE,
     uBufferLen: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "uBufferLen" is the size in bytes
     pBuffer: ?*anyopaque,
     puBytes: ?*u32,
 ) callconv(.winapi) u32;
@@ -2266,7 +2266,7 @@ pub extern "wdsbp" fn WdsBpInitialize(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsbp" fn WdsBpParseInitialize(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "uPacketLen" is the size in bytes
     pPacket: ?*anyopaque,
     uPacketLen: u32,
     pbPacketType: ?*u8,
@@ -2275,7 +2275,7 @@ pub extern "wdsbp" fn WdsBpParseInitialize(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdsbp" fn WdsBpParseInitializev6(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "uPacketLen" is the size in bytes
     pPacket: ?*anyopaque,
     uPacketLen: u32,
     pbPacketType: ?*u8,
@@ -2287,7 +2287,7 @@ pub extern "wdsbp" fn WdsBpQueryOption(
     hHandle: ?HANDLE,
     uOption: u32,
     uValueLen: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "uValueLen" is the size in bytes
     pValue: ?*anyopaque,
     puBytes: ?*u32,
 ) callconv(.winapi) u32;
@@ -2426,7 +2426,7 @@ pub extern "wdsclientapi" fn WdsCliGetImageNamespace(
 pub extern "wdsclientapi" fn WdsCliGetImageParameter(
     hIfh: ?HANDLE,
     ParamType: WDS_CLI_IMAGE_PARAM_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "uResponseLen" is the size in bytes
     pResponse: ?*anyopaque,
     uResponseLen: u32,
 ) callconv(.winapi) HRESULT;

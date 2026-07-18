@@ -2844,14 +2844,14 @@ pub extern "iphlpapi" fn GetAdaptersAddresses(
     Family: u32,
     Flags: GET_ADAPTERS_ADDRESSES_FLAGS,
     Reserved: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "SizePointer" is the size in bytes
     AdapterAddresses: ?*IP_ADAPTER_ADDRESSES_LH,
     SizePointer: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "iphlpapi" fn GetAdaptersInfo(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SizePointer" is the size in bytes
     AdapterInfo: ?*IP_ADAPTER_INFO,
     SizePointer: ?*u32,
 ) callconv(.winapi) u32;
@@ -2915,7 +2915,7 @@ pub extern "iphlpapi" fn GetDnsSettings(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn GetExtendedTcpTable(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "pdwSize" is the size in bytes
     pTcpTable: ?*anyopaque,
     pdwSize: ?*u32,
     bOrder: BOOL,
@@ -2926,7 +2926,7 @@ pub extern "iphlpapi" fn GetExtendedTcpTable(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn GetExtendedUdpTable(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "pdwSize" is the size in bytes
     pUdpTable: ?*anyopaque,
     pdwSize: ?*u32,
     bOrder: BOOL,
@@ -2974,7 +2974,7 @@ pub extern "iphlpapi" fn GetIfStackTable(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "iphlpapi" fn GetIfTable(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "pdwSize" is the size in bytes
     pIfTable: ?*MIB_IFTABLE,
     pdwSize: ?*u32,
     bOrder: BOOL,
@@ -3003,7 +3003,7 @@ pub extern "iphlpapi" fn GetInterfaceDnsSettings(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "iphlpapi" fn GetInterfaceInfo(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "dwOutBufLen" is the size in bytes
     pIfTable: ?*IP_INTERFACE_INFO,
     dwOutBufLen: ?*u32,
 ) callconv(.winapi) u32;
@@ -3020,7 +3020,7 @@ pub extern "iphlpapi" fn GetInvertedIfStackTable(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "iphlpapi" fn GetIpAddrTable(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "pdwSize" is the size in bytes
     pIpAddrTable: ?*MIB_IPADDRTABLE,
     pdwSize: ?*u32,
     bOrder: BOOL,
@@ -3040,7 +3040,7 @@ pub extern "iphlpapi" fn GetIpForwardEntry2(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "iphlpapi" fn GetIpForwardTable(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "pdwSize" is the size in bytes
     pIpForwardTable: ?*MIB_IPFORWARDTABLE,
     pdwSize: ?*u32,
     bOrder: BOOL,
@@ -3070,7 +3070,7 @@ pub extern "iphlpapi" fn GetIpNetEntry2(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "iphlpapi" fn GetIpNetTable(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SizePointer" is the size in bytes
     IpNetTable: ?*MIB_IPNETTABLE,
     SizePointer: ?*u32,
     Order: BOOL,
@@ -3147,7 +3147,7 @@ pub extern "iphlpapi" fn GetNetworkInformation(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "iphlpapi" fn GetNetworkParams(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "pOutBufLen" is the size in bytes
     pFixedInfo: ?*FIXED_INFO_W2KSP1,
     pOutBufLen: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -3161,7 +3161,7 @@ pub extern "iphlpapi" fn GetOwnerModuleFromPidAndInfo(
     ulPid: u32,
     pInfo: ?*u64,
     Class: TCPIP_OWNER_MODULE_INFO_CLASS,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pdwSize" is the size in bytes
     pBuffer: ?*anyopaque,
     pdwSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -3170,7 +3170,7 @@ pub extern "iphlpapi" fn GetOwnerModuleFromPidAndInfo(
 pub extern "iphlpapi" fn GetOwnerModuleFromTcp6Entry(
     pTcpEntry: ?*MIB_TCP6ROW_OWNER_MODULE,
     Class: TCPIP_OWNER_MODULE_INFO_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pdwSize" is the size in bytes
     pBuffer: ?*anyopaque,
     pdwSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -3179,7 +3179,7 @@ pub extern "iphlpapi" fn GetOwnerModuleFromTcp6Entry(
 pub extern "iphlpapi" fn GetOwnerModuleFromTcpEntry(
     pTcpEntry: ?*MIB_TCPROW_OWNER_MODULE,
     Class: TCPIP_OWNER_MODULE_INFO_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pdwSize" is the size in bytes
     pBuffer: ?*anyopaque,
     pdwSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -3188,7 +3188,7 @@ pub extern "iphlpapi" fn GetOwnerModuleFromTcpEntry(
 pub extern "iphlpapi" fn GetOwnerModuleFromUdp6Entry(
     pUdpEntry: ?*MIB_UDP6ROW_OWNER_MODULE,
     Class: TCPIP_OWNER_MODULE_INFO_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pdwSize" is the size in bytes
     pBuffer: ?*anyopaque,
     pdwSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -3197,7 +3197,7 @@ pub extern "iphlpapi" fn GetOwnerModuleFromUdp6Entry(
 pub extern "iphlpapi" fn GetOwnerModuleFromUdpEntry(
     pUdpEntry: ?*MIB_UDPROW_OWNER_MODULE,
     Class: TCPIP_OWNER_MODULE_INFO_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pdwSize" is the size in bytes
     pBuffer: ?*anyopaque,
     pdwSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -3205,7 +3205,7 @@ pub extern "iphlpapi" fn GetOwnerModuleFromUdpEntry(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "iphlpapi" fn GetPerAdapterInfo(
     IfIndex: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "pOutBufLen" is the size in bytes
     pPerAdapterInfo: ?*IP_PER_ADAPTER_INFO_W2KSP1,
     pOutBufLen: ?*u32,
 ) callconv(.winapi) u32;
@@ -3214,15 +3214,15 @@ pub extern "iphlpapi" fn GetPerAdapterInfo(
 pub extern "iphlpapi" fn GetPerTcp6ConnectionEStats(
     Row: ?*MIB_TCP6ROW,
     EstatsType: TCP_ESTATS_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "RwSize" is the size in bytes
     Rw: ?*u8,
     RwVersion: u32,
     RwSize: u32,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "RosSize" is the size in bytes
     Ros: ?*u8,
     RosVersion: u32,
     RosSize: u32,
-    // TODO: what to do with BytesParamIndex 10?
+    /// parameter "RodSize" is the size in bytes
     Rod: ?*u8,
     RodVersion: u32,
     RodSize: u32,
@@ -3232,15 +3232,15 @@ pub extern "iphlpapi" fn GetPerTcp6ConnectionEStats(
 pub extern "iphlpapi" fn GetPerTcpConnectionEStats(
     Row: ?*MIB_TCPROW_LH,
     EstatsType: TCP_ESTATS_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "RwSize" is the size in bytes
     Rw: ?*u8,
     RwVersion: u32,
     RwSize: u32,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "RosSize" is the size in bytes
     Ros: ?*u8,
     RosVersion: u32,
     RosSize: u32,
-    // TODO: what to do with BytesParamIndex 10?
+    /// parameter "RodSize" is the size in bytes
     Rod: ?*u8,
     RodVersion: u32,
     RodSize: u32,
@@ -3260,7 +3260,7 @@ pub extern "iphlpapi" fn GetSessionCompartmentId(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn GetTcp6Table(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SizePointer" is the size in bytes
     TcpTable: ?*MIB_TCP6TABLE,
     SizePointer: ?*u32,
     Order: BOOL,
@@ -3268,7 +3268,7 @@ pub extern "iphlpapi" fn GetTcp6Table(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn GetTcp6Table2(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SizePointer" is the size in bytes
     TcpTable: ?*MIB_TCP6TABLE2,
     SizePointer: ?*u32,
     Order: BOOL,
@@ -3293,7 +3293,7 @@ pub extern "iphlpapi" fn GetTcpStatisticsEx2(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "iphlpapi" fn GetTcpTable(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SizePointer" is the size in bytes
     TcpTable: ?*MIB_TCPTABLE,
     SizePointer: ?*u32,
     Order: BOOL,
@@ -3301,7 +3301,7 @@ pub extern "iphlpapi" fn GetTcpTable(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn GetTcpTable2(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SizePointer" is the size in bytes
     TcpTable: ?*MIB_TCPTABLE2,
     SizePointer: ?*u32,
     Order: BOOL,
@@ -3314,7 +3314,7 @@ pub extern "iphlpapi" fn GetTeredoPort(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn GetUdp6Table(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SizePointer" is the size in bytes
     Udp6Table: ?*MIB_UDP6TABLE,
     SizePointer: ?*u32,
     Order: BOOL,
@@ -3339,7 +3339,7 @@ pub extern "iphlpapi" fn GetUdpStatisticsEx2(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "iphlpapi" fn GetUdpTable(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SizePointer" is the size in bytes
     UdpTable: ?*MIB_UDPTABLE,
     SizePointer: ?*u32,
     Order: BOOL,
@@ -3357,7 +3357,7 @@ pub extern "iphlpapi" fn GetUnicastIpAddressTable(
 ) callconv(.winapi) NTSTATUS;
 
 pub extern "iphlpapi" fn GetUniDirectionalAdapterInfo(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "dwOutBufLen" is the size in bytes
     pIPIfInfo: ?*IP_UNIDIRECTIONAL_ADAPTER_ADDRESS,
     dwOutBufLen: ?*u32,
 ) callconv(.winapi) u32;
@@ -3368,7 +3368,7 @@ pub extern "iphlpapi" fn Icmp6CreateFile(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "iphlpapi" fn Icmp6ParseReplies(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "ReplySize" is the size in bytes
     ReplyBuffer: ?*anyopaque,
     ReplySize: u32,
 ) callconv(.winapi) u32;
@@ -3381,11 +3381,11 @@ pub extern "iphlpapi" fn Icmp6SendEcho2(
     ApcContext: ?*anyopaque,
     SourceAddress: ?*SOCKADDR_IN6,
     DestinationAddress: ?*SOCKADDR_IN6,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "RequestSize" is the size in bytes
     RequestData: ?*anyopaque,
     RequestSize: u16,
     RequestOptions: ?*IP_OPTION_INFORMATION,
-    // TODO: what to do with BytesParamIndex 10?
+    /// parameter "ReplySize" is the size in bytes
     ReplyBuffer: ?*anyopaque,
     ReplySize: u32,
     Timeout: u32,
@@ -3402,7 +3402,7 @@ pub extern "iphlpapi" fn IcmpCreateFile(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "iphlpapi" fn IcmpParseReplies(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "ReplySize" is the size in bytes
     ReplyBuffer: ?*anyopaque,
     ReplySize: u32,
 ) callconv(.winapi) u32;
@@ -3411,11 +3411,11 @@ pub extern "iphlpapi" fn IcmpParseReplies(
 pub extern "iphlpapi" fn IcmpSendEcho(
     IcmpHandle: IcmpHandle,
     DestinationAddress: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "RequestSize" is the size in bytes
     RequestData: ?*anyopaque,
     RequestSize: u16,
     RequestOptions: ?*IP_OPTION_INFORMATION,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "ReplySize" is the size in bytes
     ReplyBuffer: ?*anyopaque,
     ReplySize: u32,
     Timeout: u32,
@@ -3428,11 +3428,11 @@ pub extern "iphlpapi" fn IcmpSendEcho2(
     ApcRoutine: ?PIO_APC_ROUTINE,
     ApcContext: ?*anyopaque,
     DestinationAddress: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "RequestSize" is the size in bytes
     RequestData: ?*anyopaque,
     RequestSize: u16,
     RequestOptions: ?*IP_OPTION_INFORMATION,
-    // TODO: what to do with BytesParamIndex 9?
+    /// parameter "ReplySize" is the size in bytes
     ReplyBuffer: ?*anyopaque,
     ReplySize: u32,
     Timeout: u32,
@@ -3446,11 +3446,11 @@ pub extern "iphlpapi" fn IcmpSendEcho2Ex(
     ApcContext: ?*anyopaque,
     SourceAddress: u32,
     DestinationAddress: u32,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "RequestSize" is the size in bytes
     RequestData: ?*anyopaque,
     RequestSize: u16,
     RequestOptions: ?*IP_OPTION_INFORMATION,
-    // TODO: what to do with BytesParamIndex 10?
+    /// parameter "ReplySize" is the size in bytes
     ReplyBuffer: ?*anyopaque,
     ReplySize: u32,
     Timeout: u32,
@@ -3694,7 +3694,7 @@ pub extern "iphlpapi" fn ResolveIpNetEntry2(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "iphlpapi" fn ResolveNeighbor(
     NetworkAddress: ?*SOCKADDR,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "PhysicalAddressLength" is the size in bytes
     PhysicalAddress: ?*anyopaque,
     PhysicalAddressLength: ?*u32,
 ) callconv(.winapi) u32;
@@ -3709,7 +3709,7 @@ pub extern "iphlpapi" fn RestoreMediaSense(
 pub extern "iphlpapi" fn SendARP(
     DestIP: u32,
     SrcIP: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "PhyAddrLen" is the size in bytes
     pMacAddr: ?*anyopaque,
     PhyAddrLen: ?*u32,
 ) callconv(.winapi) u32;
@@ -3792,7 +3792,7 @@ pub extern "iphlpapi" fn SetNetworkInformation(
 pub extern "iphlpapi" fn SetPerTcp6ConnectionEStats(
     Row: ?*MIB_TCP6ROW,
     EstatsType: TCP_ESTATS_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "RwSize" is the size in bytes
     Rw: ?*u8,
     RwVersion: u32,
     RwSize: u32,
@@ -3803,7 +3803,7 @@ pub extern "iphlpapi" fn SetPerTcp6ConnectionEStats(
 pub extern "iphlpapi" fn SetPerTcpConnectionEStats(
     Row: ?*MIB_TCPROW_LH,
     EstatsType: TCP_ESTATS_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "RwSize" is the size in bytes
     Rw: ?*u8,
     RwVersion: u32,
     RwSize: u32,

@@ -66,7 +66,7 @@ pub extern "netapi32" fn DavAddConnection(
     RemoteName: ?[*:0]const u16,
     UserName: ?[*:0]const u16,
     Password: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "CertSize" is the size in bytes
     ClientCert: ?*u8,
     CertSize: u32,
 ) callconv(.winapi) u32;
@@ -105,7 +105,7 @@ pub extern "netapi32" fn DavGetHTTPFromUNCPath(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "davclnt" fn DavGetTheLockOwnerOfTheFile(
     FileName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "LockOwnerNameLengthInBytes" is the size in bytes
     LockOwnerName: ?PWSTR,
     LockOwnerNameLengthInBytes: ?*u32,
 ) callconv(.winapi) u32;

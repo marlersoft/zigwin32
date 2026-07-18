@@ -5554,7 +5554,7 @@ pub extern "msdelta" fn ApplyDeltaProvidedB(
     ApplyFlags: i64,
     Source: DELTA_INPUT,
     Delta: DELTA_INPUT,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "uTargetSize" is the size in bytes
     lpTarget: ?*anyopaque,
     uTargetSize: usize,
 ) callconv(.winapi) BOOL;
@@ -5574,13 +5574,13 @@ pub extern "mspatcha" fn ApplyPatchToFileA(
 ) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn ApplyPatchToFileByBuffers(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "PatchFileSize" is the size in bytes
     PatchFileMapped: ?*u8,
     PatchFileSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "OldFileSize" is the size in bytes
     OldFileMapped: ?*u8,
     OldFileSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "NewFileBufferSize" is the size in bytes
     NewFileBuffer: ?*?*u8,
     NewFileBufferSize: u32,
     NewFileActualSize: ?*u32,
@@ -5754,7 +5754,7 @@ pub extern "msdelta" fn DeltaNormalizeProvidedB(
     FileTypeSet: i64,
     NormalizeFlags: i64,
     NormalizeOptions: DELTA_INPUT,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "uSourceSize" is the size in bytes
     lpSource: ?*anyopaque,
     uSourceSize: usize,
 ) callconv(.winapi) BOOL;
@@ -5851,12 +5851,12 @@ pub extern "mspatcha" fn GetFilePatchSignatureA(
     RetainRangeCount: u32,
     RetainRangeArray: ?[*]PATCH_RETAIN_RANGE,
     SignatureBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "SignatureBufferSize" is the size in bytes
     SignatureBuffer: ?PSTR,
 ) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn GetFilePatchSignatureByBuffer(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "FileSize" is the size in bytes
     FileBufferWritable: ?*u8,
     FileSize: u32,
     OptionFlags: u32,
@@ -5866,7 +5866,7 @@ pub extern "mspatcha" fn GetFilePatchSignatureByBuffer(
     RetainRangeCount: u32,
     RetainRangeArray: ?[*]PATCH_RETAIN_RANGE,
     SignatureBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "SignatureBufferSize" is the size in bytes
     SignatureBuffer: ?PSTR,
 ) callconv(.winapi) BOOL;
 
@@ -5879,7 +5879,7 @@ pub extern "mspatcha" fn GetFilePatchSignatureByHandle(
     RetainRangeCount: u32,
     RetainRangeArray: ?[*]PATCH_RETAIN_RANGE,
     SignatureBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "SignatureBufferSize" is the size in bytes
     SignatureBuffer: ?PSTR,
 ) callconv(.winapi) BOOL;
 
@@ -5892,7 +5892,7 @@ pub extern "mspatcha" fn GetFilePatchSignatureW(
     RetainRangeCount: u32,
     RetainRangeArray: ?[*]PATCH_RETAIN_RANGE,
     SignatureBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "SignatureBufferSize" is the size in bytes
     SignatureBuffer: ?PWSTR,
 ) callconv(.winapi) BOOL;
 
@@ -6699,7 +6699,7 @@ pub extern "msi" fn MsiGetFileSignatureInformationA(
     szSignedObjectPath: ?[*:0]const u8,
     dwFlags: u32,
     ppcCertContext: ?*?*CERT_CONTEXT,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbHashData" is the size in bytes
     pbHashData: ?*u8,
     pcbHashData: ?*u32,
 ) callconv(.winapi) HRESULT;
@@ -6709,7 +6709,7 @@ pub extern "msi" fn MsiGetFileSignatureInformationW(
     szSignedObjectPath: ?[*:0]const u16,
     dwFlags: u32,
     ppcCertContext: ?*?*CERT_CONTEXT,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbHashData" is the size in bytes
     pbHashData: ?*u8,
     pcbHashData: ?*u32,
 ) callconv(.winapi) HRESULT;
@@ -7365,7 +7365,7 @@ pub extern "msi" fn MsiRecordIsNull(
 pub extern "msi" fn MsiRecordReadStream(
     hRecord: MSIHANDLE,
     iField: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbDataBuf" is the size in bytes
     szDataBuf: ?PSTR,
     pcbDataBuf: ?*u32,
 ) callconv(.winapi) u32;
@@ -7960,7 +7960,7 @@ pub extern "msi" fn MsiViewModify(
 ) callconv(.winapi) u32;
 
 pub extern "mspatcha" fn NormalizeFileForPatchSignature(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "FileSize" is the size in bytes
     FileBuffer: ?*anyopaque,
     FileSize: u32,
     OptionFlags: u32,
@@ -7979,7 +7979,7 @@ pub extern "kernel32" fn QueryActCtxSettingsW(
     hActCtx: ?HANDLE,
     settingsNameSpace: ?[*:0]const u16,
     settingName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "dwBuffer" is the size in bytes
     pvBuffer: ?PWSTR,
     dwBuffer: usize,
     pdwWrittenOrRequired: ?*usize,
@@ -7991,7 +7991,7 @@ pub extern "kernel32" fn QueryActCtxW(
     hActCtx: ?HANDLE,
     pvSubInstance: ?*anyopaque,
     ulInfoClass: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbBuffer" is the size in bytes
     pvBuffer: ?*anyopaque,
     cbBuffer: usize,
     pcbWrittenOrRequired: ?*usize,
@@ -8034,10 +8034,10 @@ pub extern "mspatcha" fn TestApplyPatchToFileA(
 ) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn TestApplyPatchToFileByBuffers(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "PatchFileSize" is the size in bytes
     PatchFileBuffer: ?*u8,
     PatchFileSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "OldFileSize" is the size in bytes
     OldFileBuffer: ?*u8,
     OldFileSize: u32,
     NewFileSize: ?*u32,

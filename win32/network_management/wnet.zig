@@ -446,11 +446,11 @@ pub const PF_NPAddConnection3 = *const fn(
 pub const PF_NPAddConnection4 = *const fn(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEW,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbAuthBuffer" is the size in bytes
     lpAuthBuffer: ?*anyopaque,
     cbAuthBuffer: u32,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbUseOptions" is the size in bytes
     lpUseOptions: ?*u8,
     cbUseOptions: u32,
 ) callconv(.winapi) u32;
@@ -483,7 +483,7 @@ pub const PF_NPDirectoryNotify = *const fn(
 pub const PF_NPEnumResource = *const fn(
     hEnum: ?HANDLE,
     lpcCount: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -528,7 +528,7 @@ pub const PF_NPGetConnection = *const fn(
 pub const PF_NPGetConnection3 = *const fn(
     lpLocalName: ?[*:0]const u16,
     dwLevel: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -546,10 +546,10 @@ pub const PF_NPGetDirectoryType = *const fn(
 
 pub const PF_NPGetPersistentUseOptionsForConnection = *const fn(
     lpRemotePath: ?PWSTR,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbReadUseOptions" is the size in bytes
     lpReadUseOptions: ?*u8,
     cbReadUseOptions: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "lpSizeWriteUseOptions" is the size in bytes
     lpWriteUseOptions: ?*u8,
     lpSizeWriteUseOptions: ?*u32,
 ) callconv(.winapi) u32;
@@ -565,7 +565,7 @@ pub const PF_NPGetPropertyText = *const fn(
 
 pub const PF_NPGetResourceInformation = *const fn(
     lpNetResource: ?*NETRESOURCEW,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
     lplpSystem: ?*?PWSTR,
@@ -573,7 +573,7 @@ pub const PF_NPGetResourceInformation = *const fn(
 
 pub const PF_NPGetResourceParent = *const fn(
     lpNetResource: ?*NETRESOURCEW,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -581,7 +581,7 @@ pub const PF_NPGetResourceParent = *const fn(
 pub const PF_NPGetUniversalName = *const fn(
     lpLocalPath: ?[*:0]const u16,
     dwInfoLevel: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpnBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpnBufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -752,11 +752,11 @@ pub extern "davclnt" fn NPAddConnection3(
 pub extern "ntlanman" fn NPAddConnection4(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEW,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbAuthBuffer" is the size in bytes
     lpAuthBuffer: ?*anyopaque,
     cbAuthBuffer: u32,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbUseOptions" is the size in bytes
     lpUseOptions: ?*u8,
     cbUseOptions: u32,
 ) callconv(.winapi) u32;
@@ -782,7 +782,7 @@ pub extern "davclnt" fn NPCloseEnum(
 pub extern "davclnt" fn NPEnumResource(
     hEnum: ?HANDLE,
     lpcCount: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -812,7 +812,7 @@ pub extern "davclnt" fn NPGetConnection(
 pub extern "ntlanman" fn NPGetConnection3(
     lpLocalName: ?[*:0]const u16,
     dwLevel: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -825,10 +825,10 @@ pub extern "ntlanman" fn NPGetConnectionPerformance(
 
 pub extern "ntlanman" fn NPGetPersistentUseOptionsForConnection(
     lpRemotePath: ?PWSTR,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbReadUseOptions" is the size in bytes
     lpReadUseOptions: ?*u8,
     cbReadUseOptions: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "lpSizeWriteUseOptions" is the size in bytes
     lpWriteUseOptions: ?*u8,
     lpSizeWriteUseOptions: ?*u32,
 ) callconv(.winapi) u32;
@@ -836,7 +836,7 @@ pub extern "ntlanman" fn NPGetPersistentUseOptionsForConnection(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "davclnt" fn NPGetResourceInformation(
     lpNetResource: ?*NETRESOURCEW,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
     lplpSystem: ?*?PWSTR,
@@ -845,7 +845,7 @@ pub extern "davclnt" fn NPGetResourceInformation(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "davclnt" fn NPGetResourceParent(
     lpNetResource: ?*NETRESOURCEW,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -854,7 +854,7 @@ pub extern "davclnt" fn NPGetResourceParent(
 pub extern "davclnt" fn NPGetUniversalName(
     lpLocalPath: ?[*:0]const u16,
     dwInfoLevel: UNC_INFO_LEVEL,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -912,11 +912,11 @@ pub extern "mpr" fn WNetAddConnection3W(
 pub extern "mpr" fn WNetAddConnection4A(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEA,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbAuthBuffer" is the size in bytes
     pAuthBuffer: ?*anyopaque,
     cbAuthBuffer: u32,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbUseOptions" is the size in bytes
     lpUseOptions: ?*u8,
     cbUseOptions: u32,
 ) callconv(.winapi) u32;
@@ -924,11 +924,11 @@ pub extern "mpr" fn WNetAddConnection4A(
 pub extern "mpr" fn WNetAddConnection4W(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEW,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbAuthBuffer" is the size in bytes
     pAuthBuffer: ?*anyopaque,
     cbAuthBuffer: u32,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbUseOptions" is the size in bytes
     lpUseOptions: ?*u8,
     cbUseOptions: u32,
 ) callconv(.winapi) u32;
@@ -1014,7 +1014,7 @@ pub extern "mpr" fn WNetDisconnectDialog1W(
 pub extern "mpr" fn WNetEnumResourceA(
     hEnum: ?HANDLE,
     lpcCount: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -1023,7 +1023,7 @@ pub extern "mpr" fn WNetEnumResourceA(
 pub extern "mpr" fn WNetEnumResourceW(
     hEnum: ?HANDLE,
     lpcCount: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -1089,7 +1089,7 @@ pub extern "mpr" fn WNetGetProviderNameW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "mpr" fn WNetGetResourceInformationA(
     lpNetResource: ?*NETRESOURCEA,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbBuffer" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpcbBuffer: ?*u32,
     lplpSystem: ?*?PSTR,
@@ -1098,7 +1098,7 @@ pub extern "mpr" fn WNetGetResourceInformationA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "mpr" fn WNetGetResourceInformationW(
     lpNetResource: ?*NETRESOURCEW,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbBuffer" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpcbBuffer: ?*u32,
     lplpSystem: ?*?PWSTR,
@@ -1107,7 +1107,7 @@ pub extern "mpr" fn WNetGetResourceInformationW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "mpr" fn WNetGetResourceParentA(
     lpNetResource: ?*NETRESOURCEA,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbBuffer" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpcbBuffer: ?*u32,
 ) callconv(.winapi) u32;
@@ -1115,7 +1115,7 @@ pub extern "mpr" fn WNetGetResourceParentA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "mpr" fn WNetGetResourceParentW(
     lpNetResource: ?*NETRESOURCEW,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbBuffer" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpcbBuffer: ?*u32,
 ) callconv(.winapi) u32;
@@ -1124,7 +1124,7 @@ pub extern "mpr" fn WNetGetResourceParentW(
 pub extern "mpr" fn WNetGetUniversalNameA(
     lpLocalPath: ?[*:0]const u8,
     dwInfoLevel: UNC_INFO_LEVEL,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -1133,7 +1133,7 @@ pub extern "mpr" fn WNetGetUniversalNameA(
 pub extern "mpr" fn WNetGetUniversalNameW(
     lpLocalPath: ?[*:0]const u16,
     dwInfoLevel: UNC_INFO_LEVEL,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -1186,11 +1186,11 @@ pub extern "mpr" fn WNetSetLastErrorW(
 pub extern "mpr" fn WNetUseConnection4A(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEA,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbAuthBuffer" is the size in bytes
     pAuthBuffer: ?*anyopaque,
     cbAuthBuffer: u32,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbUseOptions" is the size in bytes
     lpUseOptions: ?*u8,
     cbUseOptions: u32,
     lpAccessName: ?[*:0]u8,
@@ -1201,11 +1201,11 @@ pub extern "mpr" fn WNetUseConnection4A(
 pub extern "mpr" fn WNetUseConnection4W(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEW,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbAuthBuffer" is the size in bytes
     pAuthBuffer: ?*anyopaque,
     cbAuthBuffer: u32,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbUseOptions" is the size in bytes
     lpUseOptions: ?*u8,
     cbUseOptions: u32,
     lpAccessName: ?[*:0]u16,

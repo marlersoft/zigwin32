@@ -1194,7 +1194,7 @@ pub extern "drt" fn DrtEndSearch(
 pub extern "drt" fn DrtGetEventData(
     hDrt: ?*anyopaque,
     ulEventDataLen: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "ulEventDataLen" is the size in bytes
     pEventData: ?*DRT_EVENT_DATA,
 ) callconv(.winapi) HRESULT;
 
@@ -1208,7 +1208,7 @@ pub extern "drt" fn DrtGetEventDataSize(
 pub extern "drt" fn DrtGetInstanceName(
     hDrt: ?*anyopaque,
     ulcbInstanceNameSize: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "ulcbInstanceNameSize" is the size in bytes
     pwzDrtInstanceName: ?PWSTR,
 ) callconv(.winapi) HRESULT;
 
@@ -1222,7 +1222,7 @@ pub extern "drt" fn DrtGetInstanceNameSize(
 pub extern "drt" fn DrtGetSearchPath(
     hSearchContext: ?*anyopaque,
     ulSearchPathSize: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "ulSearchPathSize" is the size in bytes
     pSearchPath: ?*DRT_ADDRESS_LIST,
 ) callconv(.winapi) HRESULT;
 
@@ -1236,7 +1236,7 @@ pub extern "drt" fn DrtGetSearchPathSize(
 pub extern "drt" fn DrtGetSearchResult(
     hSearchContext: ?*anyopaque,
     ulSearchResultSize: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "ulSearchResultSize" is the size in bytes
     pSearchResult: ?*DRT_SEARCH_RESULT,
 ) callconv(.winapi) HRESULT;
 
@@ -1539,7 +1539,7 @@ pub extern "peerdist" fn PeerDistClientAddContentInformation(
     hPeerDist: isize,
     hContentHandle: isize,
     cbNumberOfBytes: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbNumberOfBytes" is the size in bytes
     pBuffer: ?*u8,
     lpOverlapped: ?*OVERLAPPED,
 ) callconv(.winapi) u32;
@@ -1549,7 +1549,7 @@ pub extern "peerdist" fn PeerDistClientAddData(
     hPeerDist: isize,
     hContentHandle: isize,
     cbNumberOfBytes: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbNumberOfBytes" is the size in bytes
     pBuffer: ?*u8,
     lpOverlapped: ?*OVERLAPPED,
 ) callconv(.winapi) u32;
@@ -1559,7 +1559,7 @@ pub extern "peerdist" fn PeerDistClientBlockRead(
     hPeerDist: isize,
     hContentHandle: isize,
     cbMaxNumberOfBytes: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbMaxNumberOfBytes" is the size in bytes
     pBuffer: ?*u8,
     dwTimeoutInMilliseconds: u32,
     lpOverlapped: ?*OVERLAPPED,
@@ -1600,7 +1600,7 @@ pub extern "peerdist" fn PeerDistClientGetInformationByHandle(
     hContentHandle: isize,
     PeerDistClientInfoClass: PEERDIST_CLIENT_INFO_BY_HANDLE_CLASS,
     dwBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufferSize" is the size in bytes
     lpInformation: ?*anyopaque,
 ) callconv(.winapi) u32;
 
@@ -1618,7 +1618,7 @@ pub extern "peerdist" fn PeerDistClientStreamRead(
     hPeerDist: isize,
     hContentHandle: isize,
     cbMaxNumberOfBytes: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbMaxNumberOfBytes" is the size in bytes
     pBuffer: ?*u8,
     dwTimeoutInMilliseconds: u32,
     lpOverlapped: ?*OVERLAPPED,
@@ -1665,7 +1665,7 @@ pub extern "peerdist" fn PeerDistRegisterForStatusChangeNotificationEx(
 pub extern "peerdist" fn PeerDistServerCancelAsyncOperation(
     hPeerDist: isize,
     cbContentIdentifier: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbContentIdentifier" is the size in bytes
     pContentIdentifier: ?*u8,
     pOverlapped: ?*OVERLAPPED,
 ) callconv(.winapi) u32;
@@ -1686,7 +1686,7 @@ pub extern "peerdist" fn PeerDistServerCloseStreamHandle(
 pub extern "peerdist" fn PeerDistServerOpenContentInformation(
     hPeerDist: isize,
     cbContentIdentifier: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbContentIdentifier" is the size in bytes
     pContentIdentifier: ?*u8,
     ullContentOffset: u64,
     cbContentLength: u64,
@@ -1699,7 +1699,7 @@ pub extern "peerdist" fn PeerDistServerOpenContentInformation(
 pub extern "peerdist" fn PeerDistServerOpenContentInformationEx(
     hPeerDist: isize,
     cbContentIdentifier: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbContentIdentifier" is the size in bytes
     pContentIdentifier: ?*u8,
     ullContentOffset: u64,
     cbContentLength: u64,
@@ -1714,7 +1714,7 @@ pub extern "peerdist" fn PeerDistServerPublishAddToStream(
     hPeerDist: isize,
     hStream: isize,
     cbNumberOfBytes: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbNumberOfBytes" is the size in bytes
     pBuffer: ?*u8,
     lpOverlapped: ?*OVERLAPPED,
 ) callconv(.winapi) u32;
@@ -1730,7 +1730,7 @@ pub extern "peerdist" fn PeerDistServerPublishCompleteStream(
 pub extern "peerdist" fn PeerDistServerPublishStream(
     hPeerDist: isize,
     cbContentIdentifier: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbContentIdentifier" is the size in bytes
     pContentIdentifier: ?*u8,
     cbContentLength: u64,
     pPublishOptions: ?*PEERDIST_PUBLICATION_OPTIONS,
@@ -1744,7 +1744,7 @@ pub extern "peerdist" fn PeerDistServerRetrieveContentInformation(
     hPeerDist: isize,
     hContentInfo: isize,
     cbMaxNumberOfBytes: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbMaxNumberOfBytes" is the size in bytes
     pBuffer: ?*u8,
     lpOverlapped: ?*OVERLAPPED,
 ) callconv(.winapi) u32;
@@ -1753,7 +1753,7 @@ pub extern "peerdist" fn PeerDistServerRetrieveContentInformation(
 pub extern "peerdist" fn PeerDistServerUnpublish(
     hPeerDist: isize,
     cbContentIdentifier: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbContentIdentifier" is the size in bytes
     pContentIdentifier: ?*u8,
 ) callconv(.winapi) u32;
 
@@ -2001,7 +2001,7 @@ pub extern "p2pgraph" fn PeerGraphSendData(
     ullConnectionId: u64,
     pType: ?*const Guid,
     cbData: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbData" is the size in bytes
     pvData: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
@@ -2279,7 +2279,7 @@ pub extern "p2p" fn PeerGroupSendData(
     ullConnectionId: u64,
     pType: ?*const Guid,
     cbData: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbData" is the size in bytes
     pvData: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 

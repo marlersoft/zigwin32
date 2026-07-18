@@ -63,10 +63,10 @@ pub const PIPE_REJECT_REMOTE_CLIENTS = NAMED_PIPE_MODE{ .REJECT_REMOTE_CLIENTS =
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn CallNamedPipeA(
     lpNamedPipeName: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "nInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "nOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesRead: ?*u32,
@@ -75,10 +75,10 @@ pub extern "kernel32" fn CallNamedPipeA(
 
 pub extern "kernel32" fn CallNamedPipeW(
     lpNamedPipeName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "nInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "nOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesRead: ?*u32,
@@ -130,14 +130,14 @@ pub extern "kernel32" fn DisconnectNamedPipe(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn GetNamedPipeClientComputerNameA(
     Pipe: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "ClientComputerNameLength" is the size in bytes
     ClientComputerName: ?PSTR,
     ClientComputerNameLength: u32,
 ) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn GetNamedPipeClientComputerNameW(
     Pipe: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "ClientComputerNameLength" is the size in bytes
     ClientComputerName: ?PWSTR,
     ClientComputerNameLength: u32,
 ) callconv(.winapi) BOOL;
@@ -204,7 +204,7 @@ pub extern "advapi32" fn ImpersonateNamedPipeClient(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn PeekNamedPipe(
     hNamedPipe: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "nBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     nBufferSize: u32,
     lpBytesRead: ?*u32,
@@ -223,10 +223,10 @@ pub extern "kernel32" fn SetNamedPipeHandleState(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn TransactNamedPipe(
     hNamedPipe: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "nInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "nOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesRead: ?*u32,

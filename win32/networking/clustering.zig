@@ -7407,10 +7407,10 @@ pub const PCLUSAPI_CLUSTER_AFFINITY_RULE_CONTROL = *const fn(
     affinityRuleName: ?[*:0]const u16,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     cbInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "cbOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     cbOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -7428,10 +7428,10 @@ pub const PCLUSAPI_CLUSTER_CONTROL = *const fn(
     hCluster: ?*_HCLUSTER,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "nInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "nOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -7478,10 +7478,10 @@ pub const PCLUSAPI_CLUSTER_GROUP_CONTROL = *const fn(
     hGroup: ?*_HGROUP,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "nInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "nOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -7514,10 +7514,10 @@ pub const PCLUSAPI_CLUSTER_GROUP_GROUPSET_CONTROL = *const fn(
     hGroupSet: ?*_HGROUPSET,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     cbInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     cbOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -7530,10 +7530,10 @@ pub const PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM = *const fn(
 
 pub const PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM_EX = *const fn(
     hCluster: ?*_HCLUSTER,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbProperties" is the size in bytes
     lpszProperties: ?[*:0]const u16,
     cbProperties: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbRoProperties" is the size in bytes
     lpszRoProperties: ?[*:0]const u16,
     cbRoProperties: u32,
     dwFlags: u32,
@@ -7543,10 +7543,10 @@ pub const PCLUSAPI_CLUSTER_NET_INTERFACE_CONTROL = *const fn(
     hNetInterface: ?*_HNETINTERFACE,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "nInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "nOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -7560,10 +7560,10 @@ pub const PCLUSAPI_CLUSTER_NETWORK_CONTROL = *const fn(
     hNetwork: ?*_HNETWORK,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "nInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "nOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -7598,10 +7598,10 @@ pub const PCLUSAPI_CLUSTER_NODE_CONTROL = *const fn(
     hNode: ?*_HNODE,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "nInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "nOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -7695,7 +7695,7 @@ pub const PCLUSAPI_CLUSTER_REG_ENUM_VALUE = *const fn(
     lpszValueName: [*:0]u16,
     lpcchValueName: ?*u32,
     lpdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "lpcbData" is the size in bytes
     lpData: ?*u8,
     lpcbData: ?*u32,
 ) callconv(.winapi) u32;
@@ -7703,7 +7703,7 @@ pub const PCLUSAPI_CLUSTER_REG_ENUM_VALUE = *const fn(
 pub const PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY = *const fn(
     hKey: ?HKEY,
     RequestedInformation: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpcbSecurityDescriptor" is the size in bytes
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     lpcbSecurityDescriptor: ?*u32,
 ) callconv(.winapi) i32;
@@ -7730,7 +7730,7 @@ pub const PCLUSAPI_CLUSTER_REG_QUERY_VALUE = *const fn(
     hKey: ?HKEY,
     lpszValueName: ?[*:0]const u16,
     lpdwValueType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "lpcbData" is the size in bytes
     lpData: ?*u8,
     lpcbData: ?*u32,
 ) callconv(.winapi) i32;
@@ -7782,10 +7782,10 @@ pub const PCLUSAPI_CLUSTER_RESOURCE_CONTROL = *const fn(
     hResource: ?*_HRESOURCE,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     cbInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     cbOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -7821,10 +7821,10 @@ pub const PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM = *const fn(
 
 pub const PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM_EX = *const fn(
     hCluster: ?*_HCLUSTER,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbProperties" is the size in bytes
     lpszProperties: ?[*:0]const u16,
     cbProperties: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbRoProperties" is the size in bytes
     lpszRoProperties: ?[*:0]const u16,
     cbRoProperties: u32,
     dwFlags: u32,
@@ -7839,10 +7839,10 @@ pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_CONTROL = *const fn(
     lpszResourceTypeName: ?[*:0]const u16,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "nInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "nOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -8396,7 +8396,7 @@ pub const PCLUSAPI_SET_CLUSTER_SERVICE_ACCOUNT_PASSWORD = *const fn(
     lpszClusterName: ?[*:0]const u16,
     lpszNewPassword: ?[*:0]const u16,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "lpcbReturnStatusBufferSize" is the size in bytes
     lpReturnStatusBuffer: ?*CLUSTER_SET_PASSWORD_STATUS,
     lpcbReturnStatusBufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -8470,7 +8470,7 @@ pub const PCLUSTER_REG_BATCH_ADD_COMMAND = *const fn(
     dwCommand: CLUSTER_REG_COMMAND,
     wzName: ?PWSTR,
     dwOptions: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbData" is the size in bytes
     lpData: ?*const anyopaque,
     cbData: u32,
 ) callconv(.winapi) i32;
@@ -8632,7 +8632,7 @@ pub const POFFLINE_V2_ROUTINE = *const fn(
     Resource: ?*anyopaque,
     DestinationNodeName: ?[*:0]const u16,
     OfflineFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "InBufferSize" is the size in bytes
     InBuffer: ?*u8,
     InBufferSize: u32,
     Reserved: u32,
@@ -8647,7 +8647,7 @@ pub const PONLINE_V2_ROUTINE = *const fn(
     Resource: ?*anyopaque,
     EventHandle: ?*?HANDLE,
     OnlineFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "InBufferSize" is the size in bytes
     InBuffer: ?*u8,
     InBufferSize: u32,
     Reserved: u32,
@@ -8702,7 +8702,7 @@ pub const PQUORUM_RESOURCE_LOST = *const fn(
 
 pub const PRAISE_RES_TYPE_NOTIFICATION = *const fn(
     ResourceType: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "payloadSize" is the size in bytes
     pPayload: ?*const u8,
     payloadSize: u32,
 ) callconv(.winapi) u32;
@@ -8783,7 +8783,7 @@ pub const PRESUTIL_DUP_STRING = *const fn(
 
 pub const PRESUTIL_ENUM_PRIVATE_PROPERTIES = *const fn(
     hkeyClusterKey: ?HKEY,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbOutPropertiesSize" is the size in bytes
     pszOutProperties: ?PWSTR,
     cbOutPropertiesSize: u32,
     pcbBytesReturned: ?*u32,
@@ -8792,7 +8792,7 @@ pub const PRESUTIL_ENUM_PRIVATE_PROPERTIES = *const fn(
 
 pub const PRESUTIL_ENUM_PROPERTIES = *const fn(
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbOutPropertiesSize" is the size in bytes
     pszOutProperties: ?PWSTR,
     cbOutPropertiesSize: u32,
     pcbBytesReturned: ?*u32,
@@ -8828,11 +8828,11 @@ pub const PRESUTIL_EXPAND_ENVIRONMENT_STRINGS = *const fn(
 ) callconv(.winapi) ?PWSTR;
 
 pub const PRESUTIL_FIND_BINARY_PROPERTY = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbPropertyListSize" is the size in bytes
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbPropertyValueSize" is the size in bytes
     pbPropertyValue: ?*?*u8,
     pcbPropertyValueSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -8845,7 +8845,7 @@ pub const PRESUTIL_FIND_DEPENDENT_DISK_RESOURCE_DRIVE_LETTER = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_DWORD_PROPERTY = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbPropertyListSize" is the size in bytes
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
@@ -8853,7 +8853,7 @@ pub const PRESUTIL_FIND_DWORD_PROPERTY = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_EXPAND_SZ_PROPERTY = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbPropertyListSize" is the size in bytes
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
@@ -8861,7 +8861,7 @@ pub const PRESUTIL_FIND_EXPAND_SZ_PROPERTY = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_EXPANDED_SZ_PROPERTY = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbPropertyListSize" is the size in bytes
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
@@ -8869,7 +8869,7 @@ pub const PRESUTIL_FIND_EXPANDED_SZ_PROPERTY = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_FILETIME_PROPERTY = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbPropertyListSize" is the size in bytes
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
@@ -8877,7 +8877,7 @@ pub const PRESUTIL_FIND_FILETIME_PROPERTY = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_LONG_PROPERTY = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbPropertyListSize" is the size in bytes
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
@@ -8885,17 +8885,17 @@ pub const PRESUTIL_FIND_LONG_PROPERTY = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_MULTI_SZ_PROPERTY = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbPropertyListSize" is the size in bytes
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbPropertyValueSize" is the size in bytes
     pszPropertyValue: ?*?PWSTR,
     pcbPropertyValueSize: ?*u32,
 ) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_SZ_PROPERTY = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbPropertyListSize" is the size in bytes
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
@@ -8903,7 +8903,7 @@ pub const PRESUTIL_FIND_SZ_PROPERTY = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_ULARGEINTEGER_PROPERTY = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbPropertyListSize" is the size in bytes
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
@@ -8923,7 +8923,7 @@ pub const PRESUTIL_FREE_PARAMETER_BLOCK = *const fn(
 pub const PRESUTIL_GET_ALL_PROPERTIES = *const fn(
     hkeyClusterKey: ?HKEY,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbOutPropertyListSize" is the size in bytes
     pOutPropertyList: ?*anyopaque,
     cbOutPropertyListSize: u32,
     pcbBytesReturned: ?*u32,
@@ -8934,10 +8934,10 @@ pub const PRESUTIL_GET_BINARY_PROPERTY = *const fn(
     ppbOutValue: ?*?*u8,
     pcbOutValueSize: ?*u32,
     pValueStruct: ?*const CLUSPROP_BINARY,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbOldValueSize" is the size in bytes
     pbOldValue: ?*const u8,
     cbOldValueSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbPropertyListSize" is the size in bytes
     ppPropertyList: ?*?*u8,
     pcbPropertyListSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -8945,7 +8945,7 @@ pub const PRESUTIL_GET_BINARY_PROPERTY = *const fn(
 pub const PRESUTIL_GET_BINARY_VALUE = *const fn(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbOutValueSize" is the size in bytes
     ppbOutValue: ?*?*u8,
     pcbOutValueSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -9016,17 +9016,17 @@ pub const PRESUTIL_GET_MULTI_SZ_PROPERTY = *const fn(
     ppszOutValue: ?*?PWSTR,
     pcbOutValueSize: ?*u32,
     pValueStruct: ?*const CLUSPROP_SZ,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbOldValueSize" is the size in bytes
     pszOldValue: ?[*:0]const u16,
     cbOldValueSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbPropertyListSize" is the size in bytes
     ppPropertyList: ?*?*u8,
     pcbPropertyListSize: ?*u32,
 ) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_PRIVATE_PROPERTIES = *const fn(
     hkeyClusterKey: ?HKEY,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbOutPropertyListSize" is the size in bytes
     pOutPropertyList: ?*anyopaque,
     cbOutPropertyListSize: u32,
     pcbBytesReturned: ?*u32,
@@ -9036,7 +9036,7 @@ pub const PRESUTIL_GET_PRIVATE_PROPERTIES = *const fn(
 pub const PRESUTIL_GET_PROPERTIES = *const fn(
     hkeyClusterKey: ?HKEY,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbOutPropertyListSize" is the size in bytes
     pOutPropertyList: ?*anyopaque,
     cbOutPropertyListSize: u32,
     pcbBytesReturned: ?*u32,
@@ -9054,14 +9054,14 @@ pub const PRESUTIL_GET_PROPERTIES_TO_PARAMETER_BLOCK = *const fn(
 pub const PRESUTIL_GET_PROPERTY = *const fn(
     hkeyClusterKey: ?HKEY,
     pPropertyTableItem: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbOutPropertyItemSize" is the size in bytes
     pOutPropertyItem: ?*?*anyopaque,
     pcbOutPropertyItemSize: ?*u32,
 ) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_PROPERTY_FORMATS = *const fn(
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbPropertyFormatListSize" is the size in bytes
     pOutPropertyFormatList: ?*anyopaque,
     cbPropertyFormatListSize: u32,
     pcbBytesReturned: ?*u32,
@@ -9154,7 +9154,7 @@ pub const PRESUTIL_GET_SZ_PROPERTY = *const fn(
     ppszOutValue: ?*?PWSTR,
     pValueStruct: ?*const CLUSPROP_SZ,
     pszOldValue: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbPropertyListSize" is the size in bytes
     ppPropertyList: ?*?*u8,
     pcbPropertyListSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -9175,7 +9175,7 @@ pub const PRESUTIL_IS_RESOURCE_CLASS_EQUAL = *const fn(
 
 pub const PRESUTIL_PROPERTY_LIST_FROM_PARAMETER_BLOCK = *const fn(
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "pcbOutPropertyListSize" is the size in bytes
     pOutPropertyList: ?*anyopaque,
     pcbOutPropertyListSize: ?*u32,
     pInParams: ?*const u8,
@@ -9202,10 +9202,10 @@ pub const PRESUTIL_RESOURCES_EQUAL = *const fn(
 pub const PRESUTIL_SET_BINARY_VALUE = *const fn(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbNewValueSize" is the size in bytes
     pbNewValue: ?*const u8,
     cbNewValueSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbOutValueSize" is the size in bytes
     ppbOutValue: ?*?*u8,
     pcbOutValueSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -9227,17 +9227,17 @@ pub const PRESUTIL_SET_EXPAND_SZ_VALUE = *const fn(
 pub const PRESUTIL_SET_MULTI_SZ_VALUE = *const fn(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbNewValueSize" is the size in bytes
     pszNewValue: ?[*:0]const u16,
     cbNewValueSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbOutValueSize" is the size in bytes
     ppszOutValue: ?*?PWSTR,
     pcbOutValueSize: ?*u32,
 ) callconv(.winapi) u32;
 
 pub const PRESUTIL_SET_PRIVATE_PROPERTY_LIST = *const fn(
     hkeyClusterKey: ?HKEY,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbInPropertyListSize" is the size in bytes
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
 ) callconv(.winapi) u32;
@@ -9268,7 +9268,7 @@ pub const PRESUTIL_SET_PROPERTY_TABLE = *const fn(
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     Reserved: ?*anyopaque,
     bAllowUnknownProperties: BOOL,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbInPropertyListSize" is the size in bytes
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
     pOutParams: ?*u8,
@@ -9326,7 +9326,7 @@ pub const PRESUTIL_SET_SZ_VALUE = *const fn(
 pub const PRESUTIL_SET_UNKNOWN_PROPERTIES = *const fn(
     hkeyClusterKey: ?HKEY,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbInPropertyListSize" is the size in bytes
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
 ) callconv(.winapi) u32;
@@ -9353,7 +9353,7 @@ pub const PRESUTIL_TERMINATE_SERVICE_PROCESS_FROM_RES_DLL = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PRESUTIL_VERIFY_PRIVATE_PROPERTY_LIST = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbInPropertyListSize" is the size in bytes
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
 ) callconv(.winapi) u32;
@@ -9362,7 +9362,7 @@ pub const PRESUTIL_VERIFY_PROPERTY_TABLE = *const fn(
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     Reserved: ?*anyopaque,
     bAllowUnknownProperties: BOOL,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbInPropertyListSize" is the size in bytes
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
     pOutParams: ?*u8,
@@ -9911,10 +9911,10 @@ pub extern "clusapi" fn ClusterAffinityRuleControl(
     affinityRuleName: ?[*:0]const u16,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     cbInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "cbOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     cbOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -9940,10 +9940,10 @@ pub extern "clusapi" fn ClusterControl(
     hCluster: ?*_HCLUSTER,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "nInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "nOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -10029,10 +10029,10 @@ pub extern "clusapi" fn ClusterGroupControl(
     hGroup: ?*_HGROUP,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "nInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "nOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -10074,10 +10074,10 @@ pub extern "clusapi" fn ClusterGroupOpenEnum(
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "clusapi" fn ClusterGroupOpenEnumEx(
     hCluster: ?*_HCLUSTER,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbProperties" is the size in bytes
     lpszProperties: ?[*:0]const u16,
     cbProperties: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbRoProperties" is the size in bytes
     lpszRoProperties: ?[*:0]const u16,
     cbRoProperties: u32,
     dwFlags: u32,
@@ -10093,10 +10093,10 @@ pub extern "clusapi" fn ClusterGroupSetControl(
     hGroupSet: ?*_HGROUPSET,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     cbInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     cbOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -10135,10 +10135,10 @@ pub extern "clusapi" fn ClusterNetInterfaceControl(
     hNetInterface: ?*_HNETINTERFACE,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "nInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "nOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -10169,10 +10169,10 @@ pub extern "clusapi" fn ClusterNetworkControl(
     hNetwork: ?*_HNETWORK,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "nInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "nOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -10213,10 +10213,10 @@ pub extern "clusapi" fn ClusterNodeControl(
     hNode: ?*_HNODE,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "nInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "nOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -10296,7 +10296,7 @@ pub extern "clusapi" fn ClusterRegBatchAddCommand(
     dwCommand: CLUSTER_REG_COMMAND,
     wzName: ?[*:0]const u16,
     dwOptions: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbData" is the size in bytes
     lpData: ?*const anyopaque,
     cbData: u32,
 ) callconv(.winapi) i32;
@@ -10411,7 +10411,7 @@ pub extern "clusapi" fn ClusterRegEnumValue(
     lpszValueName: [*:0]u16,
     lpcchValueName: ?*u32,
     lpdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "lpcbData" is the size in bytes
     lpData: ?*u8,
     lpcbData: ?*u32,
 ) callconv(.winapi) u32;
@@ -10426,7 +10426,7 @@ pub extern "clusapi" fn ClusterRegGetBatchNotification(
 pub extern "clusapi" fn ClusterRegGetKeySecurity(
     hKey: ?HKEY,
     RequestedInformation: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpcbSecurityDescriptor" is the size in bytes
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     lpcbSecurityDescriptor: ?*u32,
 ) callconv(.winapi) i32;
@@ -10456,7 +10456,7 @@ pub extern "clusapi" fn ClusterRegQueryValue(
     hKey: ?HKEY,
     lpszValueName: ?[*:0]const u16,
     lpdwValueType: ?*u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "lpcbData" is the size in bytes
     lpData: ?*u8,
     lpcbData: ?*u32,
 ) callconv(.winapi) i32;
@@ -10527,10 +10527,10 @@ pub extern "clusapi" fn ClusterResourceControl(
     hResource: ?*_HRESOURCE,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     cbInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     cbOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -10541,10 +10541,10 @@ pub extern "clusapi" fn ClusterResourceControlAsUser(
     hResource: ?*_HRESOURCE,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     cbInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     cbOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -10586,10 +10586,10 @@ pub extern "clusapi" fn ClusterResourceOpenEnum(
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "clusapi" fn ClusterResourceOpenEnumEx(
     hCluster: ?*_HCLUSTER,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbProperties" is the size in bytes
     lpszProperties: ?[*:0]const u16,
     cbProperties: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbRoProperties" is the size in bytes
     lpszRoProperties: ?[*:0]const u16,
     cbRoProperties: u32,
     dwFlags: u32,
@@ -10606,10 +10606,10 @@ pub extern "clusapi" fn ClusterResourceTypeControl(
     lpszResourceTypeName: ?[*:0]const u16,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "nInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "nOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -10621,10 +10621,10 @@ pub extern "clusapi" fn ClusterResourceTypeControlAsUser(
     lpszResourceTypeName: ?[*:0]const u16,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "nInBufferSize" is the size in bytes
     lpInBuffer: ?*anyopaque,
     nInBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "nOutBufferSize" is the size in bytes
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
@@ -10991,7 +10991,7 @@ pub extern "clusapi" fn GetClusterNotifyV2(
     hChange: ?*_HCHANGE,
     lpdwNotifyKey: ?*usize,
     pFilterAndType: ?*NOTIFY_FILTER_AND_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "lpbBufferSize" is the size in bytes
     buffer: ?*u8,
     lpbBufferSize: ?*u32,
     lpszObjectId: ?[*:0]u16,
@@ -11095,7 +11095,7 @@ pub extern "clusapi" fn MoveClusterGroupEx(
     hGroup: ?*_HGROUP,
     hDestinationNode: ?*_HNODE,
     dwMoveFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbInBufferSize" is the size in bytes
     lpInBuffer: ?*u8,
     cbInBufferSize: u32,
 ) callconv(.winapi) u32;
@@ -11109,7 +11109,7 @@ pub extern "clusapi" fn OfflineClusterGroup(
 pub extern "clusapi" fn OfflineClusterGroupEx(
     hGroup: ?*_HGROUP,
     dwOfflineFlags: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbInBufferSize" is the size in bytes
     lpInBuffer: ?*u8,
     cbInBufferSize: u32,
 ) callconv(.winapi) u32;
@@ -11123,7 +11123,7 @@ pub extern "clusapi" fn OfflineClusterResource(
 pub extern "clusapi" fn OfflineClusterResourceEx(
     hResource: ?*_HRESOURCE,
     dwOfflineFlags: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbInBufferSize" is the size in bytes
     lpInBuffer: ?*u8,
     cbInBufferSize: u32,
 ) callconv(.winapi) u32;
@@ -11139,7 +11139,7 @@ pub extern "clusapi" fn OnlineClusterGroupEx(
     hGroup: ?*_HGROUP,
     hDestinationNode: ?*_HNODE,
     dwOnlineFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbInBufferSize" is the size in bytes
     lpInBuffer: ?*u8,
     cbInBufferSize: u32,
 ) callconv(.winapi) u32;
@@ -11153,7 +11153,7 @@ pub extern "clusapi" fn OnlineClusterResource(
 pub extern "clusapi" fn OnlineClusterResourceEx(
     hResource: ?*_HRESOURCE,
     dwOnlineFlags: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbInBufferSize" is the size in bytes
     lpInBuffer: ?*u8,
     cbInBufferSize: u32,
 ) callconv(.winapi) u32;
@@ -11461,7 +11461,7 @@ pub extern "resutils" fn ResUtilEnumGroupsEx(
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilEnumPrivateProperties(
     hkeyClusterKey: ?HKEY,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbOutPropertiesSize" is the size in bytes
     pszOutProperties: ?PWSTR,
     cbOutPropertiesSize: u32,
     pcbBytesReturned: ?*u32,
@@ -11471,7 +11471,7 @@ pub extern "resutils" fn ResUtilEnumPrivateProperties(
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilEnumProperties(
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbOutPropertiesSize" is the size in bytes
     pszOutProperties: ?PWSTR,
     cbOutPropertiesSize: u32,
     pcbBytesReturned: ?*u32,
@@ -11512,11 +11512,11 @@ pub extern "resutils" fn ResUtilExpandEnvironmentStrings(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilFindBinaryProperty(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbPropertyListSize" is the size in bytes
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbPropertyValueSize" is the size in bytes
     pbPropertyValue: ?*?*u8,
     pcbPropertyValueSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -11531,7 +11531,7 @@ pub extern "resutils" fn ResUtilFindDependentDiskResourceDriveLetter(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilFindDwordProperty(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbPropertyListSize" is the size in bytes
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
@@ -11540,7 +11540,7 @@ pub extern "resutils" fn ResUtilFindDwordProperty(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilFindExpandedSzProperty(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbPropertyListSize" is the size in bytes
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
@@ -11549,7 +11549,7 @@ pub extern "resutils" fn ResUtilFindExpandedSzProperty(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilFindExpandSzProperty(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbPropertyListSize" is the size in bytes
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
@@ -11558,7 +11558,7 @@ pub extern "resutils" fn ResUtilFindExpandSzProperty(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilFindFileTimeProperty(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbPropertyListSize" is the size in bytes
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
@@ -11567,7 +11567,7 @@ pub extern "resutils" fn ResUtilFindFileTimeProperty(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilFindLongProperty(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbPropertyListSize" is the size in bytes
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
@@ -11576,18 +11576,18 @@ pub extern "resutils" fn ResUtilFindLongProperty(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilFindMultiSzProperty(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbPropertyListSize" is the size in bytes
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbPropertyValueSize" is the size in bytes
     pszPropertyValue: ?*?PWSTR,
     pcbPropertyValueSize: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilFindSzProperty(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbPropertyListSize" is the size in bytes
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
@@ -11596,7 +11596,7 @@ pub extern "resutils" fn ResUtilFindSzProperty(
 
 // TODO: this type is limited to platform 'windowsserver2016'
 pub extern "resutils" fn ResUtilFindULargeIntegerProperty(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbPropertyListSize" is the size in bytes
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
@@ -11619,7 +11619,7 @@ pub extern "resutils" fn ResUtilFreeParameterBlock(
 pub extern "resutils" fn ResUtilGetAllProperties(
     hkeyClusterKey: ?HKEY,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbOutPropertyListSize" is the size in bytes
     pOutPropertyList: ?*anyopaque,
     cbOutPropertyListSize: u32,
     pcbBytesReturned: ?*u32,
@@ -11631,10 +11631,10 @@ pub extern "resutils" fn ResUtilGetBinaryProperty(
     ppbOutValue: ?*?*u8,
     pcbOutValueSize: ?*u32,
     pValueStruct: ?*const CLUSPROP_BINARY,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbOldValueSize" is the size in bytes
     pbOldValue: ?*const u8,
     cbOldValueSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbPropertyListSize" is the size in bytes
     ppPropertyList: ?*?*u8,
     pcbPropertyListSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -11643,7 +11643,7 @@ pub extern "resutils" fn ResUtilGetBinaryProperty(
 pub extern "resutils" fn ResUtilGetBinaryValue(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbOutValueSize" is the size in bytes
     ppbOutValue: ?*?*u8,
     pcbOutValueSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -11735,10 +11735,10 @@ pub extern "resutils" fn ResUtilGetMultiSzProperty(
     ppszOutValue: ?*?PWSTR,
     pcbOutValueSize: ?*u32,
     pValueStruct: ?*const CLUSPROP_SZ,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbOldValueSize" is the size in bytes
     pszOldValue: ?[*:0]const u16,
     cbOldValueSize: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbPropertyListSize" is the size in bytes
     ppPropertyList: ?*?*u8,
     pcbPropertyListSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -11746,7 +11746,7 @@ pub extern "resutils" fn ResUtilGetMultiSzProperty(
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilGetPrivateProperties(
     hkeyClusterKey: ?HKEY,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbOutPropertyListSize" is the size in bytes
     pOutPropertyList: ?*anyopaque,
     cbOutPropertyListSize: u32,
     pcbBytesReturned: ?*u32,
@@ -11757,7 +11757,7 @@ pub extern "resutils" fn ResUtilGetPrivateProperties(
 pub extern "resutils" fn ResUtilGetProperties(
     hkeyClusterKey: ?HKEY,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbOutPropertyListSize" is the size in bytes
     pOutPropertyList: ?*anyopaque,
     cbOutPropertyListSize: u32,
     pcbBytesReturned: ?*u32,
@@ -11777,7 +11777,7 @@ pub extern "resutils" fn ResUtilGetPropertiesToParameterBlock(
 pub extern "resutils" fn ResUtilGetProperty(
     hkeyClusterKey: ?HKEY,
     pPropertyTableItem: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pcbOutPropertyItemSize" is the size in bytes
     pOutPropertyItem: ?*?*anyopaque,
     pcbOutPropertyItemSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -11785,7 +11785,7 @@ pub extern "resutils" fn ResUtilGetProperty(
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilGetPropertyFormats(
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbPropertyFormatListSize" is the size in bytes
     pOutPropertyFormatList: ?*anyopaque,
     cbPropertyFormatListSize: u32,
     pcbBytesReturned: ?*u32,
@@ -11891,7 +11891,7 @@ pub extern "resutils" fn ResUtilGetSzProperty(
     ppszOutValue: ?*?PWSTR,
     pValueStruct: ?*const CLUSPROP_SZ,
     pszOldValue: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pcbPropertyListSize" is the size in bytes
     ppPropertyList: ?*?*u8,
     pcbPropertyListSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -11940,7 +11940,7 @@ pub extern "resutils" fn ResUtilPaxosComparer(
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilPropertyListFromParameterBlock(
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "pcbOutPropertyListSize" is the size in bytes
     pOutPropertyList: ?*anyopaque,
     pcbOutPropertyListSize: ?*u32,
     pInParams: ?*const u8,
@@ -11984,10 +11984,10 @@ pub extern "resutils" fn ResUtilsDeleteKeyTree(
 pub extern "resutils" fn ResUtilSetBinaryValue(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbNewValueSize" is the size in bytes
     pbNewValue: ?*const u8,
     cbNewValueSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbOutValueSize" is the size in bytes
     ppbOutValue: ?*?*u8,
     pcbOutValueSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -12012,10 +12012,10 @@ pub extern "resutils" fn ResUtilSetExpandSzValue(
 pub extern "resutils" fn ResUtilSetMultiSzValue(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbNewValueSize" is the size in bytes
     pszNewValue: ?[*:0]const u16,
     cbNewValueSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "pcbOutValueSize" is the size in bytes
     ppszOutValue: ?*?PWSTR,
     pcbOutValueSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -12023,7 +12023,7 @@ pub extern "resutils" fn ResUtilSetMultiSzValue(
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilSetPrivatePropertyList(
     hkeyClusterKey: ?HKEY,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbInPropertyListSize" is the size in bytes
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
 ) callconv(.winapi) u32;
@@ -12057,7 +12057,7 @@ pub extern "resutils" fn ResUtilSetPropertyTable(
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     Reserved: ?*anyopaque,
     bAllowUnknownProperties: BOOL,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbInPropertyListSize" is the size in bytes
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
     pOutParams: ?*u8,
@@ -12122,7 +12122,7 @@ pub extern "resutils" fn ResUtilSetSzValue(
 pub extern "resutils" fn ResUtilSetUnknownProperties(
     hkeyClusterKey: ?HKEY,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbInPropertyListSize" is the size in bytes
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
 ) callconv(.winapi) u32;
@@ -12132,7 +12132,7 @@ pub extern "resutils" fn ResUtilSetValueEx(
     hkeyClusterKey: ?HKEY,
     valueName: ?[*:0]const u16,
     valueType: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "valueSize" is the size in bytes
     valueData: ?*const u8,
     valueSize: u32,
     flags: u32,
@@ -12165,7 +12165,7 @@ pub extern "resutils" fn ResUtilTerminateServiceProcessFromResDll(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilVerifyPrivatePropertyList(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbInPropertyListSize" is the size in bytes
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
 ) callconv(.winapi) u32;
@@ -12175,7 +12175,7 @@ pub extern "resutils" fn ResUtilVerifyPropertyTable(
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     Reserved: ?*anyopaque,
     bAllowUnknownProperties: BOOL,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbInPropertyListSize" is the size in bytes
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
     pOutParams: ?*u8,
@@ -12266,7 +12266,7 @@ pub extern "clusapi" fn SetClusterServiceAccountPassword(
     lpszClusterName: ?[*:0]const u16,
     lpszNewPassword: ?[*:0]const u16,
     dwFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "lpcbReturnStatusBufferSize" is the size in bytes
     lpReturnStatusBuffer: ?*CLUSTER_SET_PASSWORD_STATUS,
     lpcbReturnStatusBufferSize: ?*u32,
 ) callconv(.winapi) u32;

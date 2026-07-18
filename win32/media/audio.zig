@@ -3516,13 +3516,13 @@ pub const ISpatialAudioMetadataItemsBuffer = extern union {
         base: IUnknown.VTable,
         AttachToBuffer: *const fn(
             self: *const ISpatialAudioMetadataItemsBuffer,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "bufferLength" is the size in bytes
             buffer: ?*u8,
             bufferLength: u32,
         ) callconv(.winapi) HRESULT,
         AttachToPopulatedBuffer: *const fn(
             self: *const ISpatialAudioMetadataItemsBuffer,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "bufferLength" is the size in bytes
             buffer: ?*u8,
             bufferLength: u32,
         ) callconv(.winapi) HRESULT,
@@ -3561,7 +3561,7 @@ pub const ISpatialAudioMetadataReader = extern union {
         ReadNextItemCommand: *const fn(
             self: *const ISpatialAudioMetadataReader,
             commandID: ?*u8,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "maxValueBufferLength" is the size in bytes
             valueBuffer: ?*anyopaque,
             maxValueBufferLength: u32,
             valueBufferLength: ?*u32,
@@ -3603,7 +3603,7 @@ pub const ISpatialAudioMetadataWriter = extern union {
         WriteNextItemCommand: *const fn(
             self: *const ISpatialAudioMetadataWriter,
             commandID: u8,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "valueBufferLength" is the size in bytes
             valueBuffer: ?*const anyopaque,
             valueBufferLength: u32,
         ) callconv(.winapi) HRESULT,
@@ -3760,7 +3760,7 @@ pub const ISpatialAudioObjectForMetadataCommands = extern union {
         WriteNextMetadataCommand: *const fn(
             self: *const ISpatialAudioObjectForMetadataCommands,
             commandID: u8,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "valueBufferLength" is the size in bytes
             valueBuffer: ?*anyopaque,
             valueBufferLength: u32,
         ) callconv(.winapi) HRESULT,
@@ -5209,7 +5209,7 @@ pub extern "mmdevapi" fn ActivateAudioInterfaceAsync(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn auxGetDevCapsA(
     uDeviceID: usize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbac" is the size in bytes
     pac: ?*AUXCAPSA,
     cbac: u32,
 ) callconv(.winapi) u32;
@@ -5217,7 +5217,7 @@ pub extern "winmm" fn auxGetDevCapsA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn auxGetDevCapsW(
     uDeviceID: usize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbac" is the size in bytes
     pac: ?*AUXCAPSW,
     cbac: u32,
 ) callconv(.winapi) u32;
@@ -5311,7 +5311,7 @@ pub extern "winmm" fn midiDisconnect(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInAddBuffer(
     hmi: ?HMIDIIN,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbmh" is the size in bytes
     pmh: ?*MIDIHDR,
     cbmh: u32,
 ) callconv(.winapi) u32;
@@ -5324,7 +5324,7 @@ pub extern "winmm" fn midiInClose(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInGetDevCapsA(
     uDeviceID: usize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbmic" is the size in bytes
     pmic: ?*MIDIINCAPSA,
     cbmic: u32,
 ) callconv(.winapi) u32;
@@ -5332,7 +5332,7 @@ pub extern "winmm" fn midiInGetDevCapsA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInGetDevCapsW(
     uDeviceID: usize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbmic" is the size in bytes
     pmic: ?*MIDIINCAPSW,
     cbmic: u32,
 ) callconv(.winapi) u32;
@@ -5381,7 +5381,7 @@ pub extern "winmm" fn midiInOpen(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInPrepareHeader(
     hmi: ?HMIDIIN,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbmh" is the size in bytes
     pmh: ?*MIDIHDR,
     cbmh: u32,
 ) callconv(.winapi) u32;
@@ -5404,7 +5404,7 @@ pub extern "winmm" fn midiInStop(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInUnprepareHeader(
     hmi: ?HMIDIIN,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbmh" is the size in bytes
     pmh: ?*MIDIHDR,
     cbmh: u32,
 ) callconv(.winapi) u32;
@@ -5433,7 +5433,7 @@ pub extern "winmm" fn midiOutClose(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutGetDevCapsA(
     uDeviceID: usize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbmoc" is the size in bytes
     pmoc: ?*MIDIOUTCAPSA,
     cbmoc: u32,
 ) callconv(.winapi) u32;
@@ -5441,7 +5441,7 @@ pub extern "winmm" fn midiOutGetDevCapsA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutGetDevCapsW(
     uDeviceID: usize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbmoc" is the size in bytes
     pmoc: ?*MIDIOUTCAPSW,
     cbmoc: u32,
 ) callconv(.winapi) u32;
@@ -5479,7 +5479,7 @@ pub extern "winmm" fn midiOutGetVolume(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutLongMsg(
     hmo: ?HMIDIOUT,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbmh" is the size in bytes
     pmh: ?*MIDIHDR,
     cbmh: u32,
 ) callconv(.winapi) u32;
@@ -5504,7 +5504,7 @@ pub extern "winmm" fn midiOutOpen(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutPrepareHeader(
     hmo: ?HMIDIOUT,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbmh" is the size in bytes
     pmh: ?*MIDIHDR,
     cbmh: u32,
 ) callconv(.winapi) u32;
@@ -5529,7 +5529,7 @@ pub extern "winmm" fn midiOutShortMsg(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiOutUnprepareHeader(
     hmo: ?HMIDIOUT,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbmh" is the size in bytes
     pmh: ?*MIDIHDR,
     cbmh: u32,
 ) callconv(.winapi) u32;
@@ -5552,7 +5552,7 @@ pub extern "winmm" fn midiStreamOpen(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiStreamOut(
     hms: ?HMIDISTRM,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbmh" is the size in bytes
     pmh: ?*MIDIHDR,
     cbmh: u32,
 ) callconv(.winapi) u32;
@@ -5565,7 +5565,7 @@ pub extern "winmm" fn midiStreamPause(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiStreamPosition(
     hms: ?HMIDISTRM,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbmmt" is the size in bytes
     lpmmt: ?*MMTIME,
     cbmmt: u32,
 ) callconv(.winapi) u32;
@@ -5609,7 +5609,7 @@ pub extern "winmm" fn mixerGetControlDetailsW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mixerGetDevCapsA(
     uMxId: usize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbmxcaps" is the size in bytes
     pmxcaps: ?*MIXERCAPSA,
     cbmxcaps: u32,
 ) callconv(.winapi) u32;
@@ -5617,7 +5617,7 @@ pub extern "winmm" fn mixerGetDevCapsA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mixerGetDevCapsW(
     uMxId: usize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbmxcaps" is the size in bytes
     pmxcaps: ?*MIXERCAPSW,
     cbmxcaps: u32,
 ) callconv(.winapi) u32;
@@ -5710,7 +5710,7 @@ pub extern "winmm" fn sndPlaySoundW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveInAddBuffer(
     hwi: ?HWAVEIN,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbwh" is the size in bytes
     pwh: ?*WAVEHDR,
     cbwh: u32,
 ) callconv(.winapi) u32;
@@ -5722,14 +5722,14 @@ pub extern "winmm" fn waveInClose(
 
 pub extern "winmm" fn waveInGetDevCapsA(
     uDeviceID: usize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbwic" is the size in bytes
     pwic: ?*WAVEINCAPSA,
     cbwic: u32,
 ) callconv(.winapi) u32;
 
 pub extern "winmm" fn waveInGetDevCapsW(
     uDeviceID: usize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbwic" is the size in bytes
     pwic: ?*WAVEINCAPSW,
     cbwic: u32,
 ) callconv(.winapi) u32;
@@ -5759,7 +5759,7 @@ pub extern "winmm" fn waveInGetNumDevs(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveInGetPosition(
     hwi: ?HWAVEIN,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbmmt" is the size in bytes
     pmmt: ?*MMTIME,
     cbmmt: u32,
 ) callconv(.winapi) u32;
@@ -5785,7 +5785,7 @@ pub extern "winmm" fn waveInOpen(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveInPrepareHeader(
     hwi: ?HWAVEIN,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbwh" is the size in bytes
     pwh: ?*WAVEHDR,
     cbwh: u32,
 ) callconv(.winapi) u32;
@@ -5808,7 +5808,7 @@ pub extern "winmm" fn waveInStop(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveInUnprepareHeader(
     hwi: ?HWAVEIN,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbwh" is the size in bytes
     pwh: ?*WAVEHDR,
     cbwh: u32,
 ) callconv(.winapi) u32;
@@ -5872,7 +5872,7 @@ pub extern "winmm" fn waveOutGetPlaybackRate(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutGetPosition(
     hwo: ?HWAVEOUT,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbmmt" is the size in bytes
     pmmt: ?*MMTIME,
     cbmmt: u32,
 ) callconv(.winapi) u32;
@@ -5909,7 +5909,7 @@ pub extern "winmm" fn waveOutPause(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutPrepareHeader(
     hwo: ?HWAVEOUT,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbwh" is the size in bytes
     pwh: ?*WAVEHDR,
     cbwh: u32,
 ) callconv(.winapi) u32;
@@ -5945,7 +5945,7 @@ pub extern "winmm" fn waveOutSetVolume(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutUnprepareHeader(
     hwo: ?HWAVEOUT,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbwh" is the size in bytes
     pwh: ?*WAVEHDR,
     cbwh: u32,
 ) callconv(.winapi) u32;
@@ -5953,7 +5953,7 @@ pub extern "winmm" fn waveOutUnprepareHeader(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn waveOutWrite(
     hwo: ?HWAVEOUT,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbwh" is the size in bytes
     pwh: ?*WAVEHDR,
     cbwh: u32,
 ) callconv(.winapi) u32;

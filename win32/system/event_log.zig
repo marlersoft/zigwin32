@@ -665,7 +665,7 @@ pub extern "wevtapi" fn EvtGetChannelConfigProperty(
     PropertyId: EVT_CHANNEL_CONFIG_PROPERTY_ID,
     Flags: u32,
     PropertyValueBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "PropertyValueBufferSize" is the size in bytes
     PropertyValueBuffer: ?*EVT_VARIANT,
     PropertyValueBufferUsed: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -675,7 +675,7 @@ pub extern "wevtapi" fn EvtGetEventInfo(
     Event: EVT_HANDLE,
     PropertyId: EVT_EVENT_PROPERTY_ID,
     PropertyValueBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "PropertyValueBufferSize" is the size in bytes
     PropertyValueBuffer: ?*EVT_VARIANT,
     PropertyValueBufferUsed: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -686,7 +686,7 @@ pub extern "wevtapi" fn EvtGetEventMetadataProperty(
     PropertyId: EVT_EVENT_METADATA_PROPERTY_ID,
     Flags: u32,
     EventMetadataPropertyBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "EventMetadataPropertyBufferSize" is the size in bytes
     EventMetadataPropertyBuffer: ?*EVT_VARIANT,
     EventMetadataPropertyBufferUsed: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -703,7 +703,7 @@ pub extern "wevtapi" fn EvtGetLogInfo(
     Log: EVT_HANDLE,
     PropertyId: EVT_LOG_PROPERTY_ID,
     PropertyValueBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "PropertyValueBufferSize" is the size in bytes
     PropertyValueBuffer: ?*EVT_VARIANT,
     PropertyValueBufferUsed: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -715,7 +715,7 @@ pub extern "wevtapi" fn EvtGetObjectArrayProperty(
     ArrayIndex: u32,
     Flags: u32,
     PropertyValueBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyValueBufferSize" is the size in bytes
     PropertyValueBuffer: ?*EVT_VARIANT,
     PropertyValueBufferUsed: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -732,7 +732,7 @@ pub extern "wevtapi" fn EvtGetPublisherMetadataProperty(
     PropertyId: EVT_PUBLISHER_METADATA_PROPERTY_ID,
     Flags: u32,
     PublisherMetadataPropertyBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "PublisherMetadataPropertyBufferSize" is the size in bytes
     PublisherMetadataPropertyBuffer: ?*EVT_VARIANT,
     PublisherMetadataPropertyBufferUsed: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -742,7 +742,7 @@ pub extern "wevtapi" fn EvtGetQueryInfo(
     QueryOrSubscription: EVT_HANDLE,
     PropertyId: EVT_QUERY_PROPERTY_ID,
     PropertyValueBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "PropertyValueBufferSize" is the size in bytes
     PropertyValueBuffer: ?*EVT_VARIANT,
     PropertyValueBufferUsed: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -842,7 +842,7 @@ pub extern "wevtapi" fn EvtRender(
     Fragment: EVT_HANDLE,
     Flags: u32,
     BufferSize: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*anyopaque,
     BufferUsed: ?*u32,
     PropertyCount: ?*u32,
@@ -893,7 +893,7 @@ pub extern "wevtapi" fn EvtUpdateBookmark(
 pub extern "advapi32" fn GetEventLogInformation(
     hEventLog: EventLogHandle,
     dwInfoLevel: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBufSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     cbBufSize: u32,
     pcbBytesNeeded: ?*u32,
@@ -946,7 +946,7 @@ pub extern "advapi32" fn ReadEventLogA(
     hEventLog: EventLogHandle,
     dwReadFlags: READ_EVENT_LOG_READ_FLAGS,
     dwRecordOffset: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "nNumberOfBytesToRead" is the size in bytes
     lpBuffer: ?*anyopaque,
     nNumberOfBytesToRead: u32,
     pnBytesRead: ?*u32,
@@ -958,7 +958,7 @@ pub extern "advapi32" fn ReadEventLogW(
     hEventLog: EventLogHandle,
     dwReadFlags: READ_EVENT_LOG_READ_FLAGS,
     dwRecordOffset: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "nNumberOfBytesToRead" is the size in bytes
     lpBuffer: ?*anyopaque,
     nNumberOfBytesToRead: u32,
     pnBytesRead: ?*u32,
@@ -987,7 +987,7 @@ pub extern "advapi32" fn ReportEventA(
     wNumStrings: u16,
     dwDataSize: u32,
     lpStrings: ?[*]?PSTR,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "dwDataSize" is the size in bytes
     lpRawData: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -1001,7 +1001,7 @@ pub extern "advapi32" fn ReportEventW(
     wNumStrings: u16,
     dwDataSize: u32,
     lpStrings: ?[*]?PWSTR,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "dwDataSize" is the size in bytes
     lpRawData: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 

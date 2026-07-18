@@ -789,7 +789,7 @@ pub const WS_AUTO_COOKIE_MODE = WS_COOKIE_MODE.AUTO_COOKIE_MODE;
 
 pub const WS_CREATE_CHANNEL_CALLBACK = *const fn(
     channelType: WS_CHANNEL_TYPE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "channelParametersSize" is the size in bytes
     channelParameters: ?*const anyopaque,
     channelParametersSize: u32,
     channelInstance: ?*?*anyopaque,
@@ -798,7 +798,7 @@ pub const WS_CREATE_CHANNEL_CALLBACK = *const fn(
 
 pub const WS_CREATE_CHANNEL_FOR_LISTENER_CALLBACK = *const fn(
     listenerInstance: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "channelParametersSize" is the size in bytes
     channelParameters: ?*const anyopaque,
     channelParametersSize: u32,
     channelInstance: ?*?*anyopaque,
@@ -823,7 +823,7 @@ pub const WS_CREATE_ENCODER_CALLBACK = *const fn(
 
 pub const WS_CREATE_LISTENER_CALLBACK = *const fn(
     channelType: WS_CHANNEL_TYPE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "listenerParametersSize" is the size in bytes
     listenerParameters: ?*const anyopaque,
     listenerParametersSize: u32,
     listenerInstance: ?*?*anyopaque,
@@ -908,7 +908,7 @@ pub const WS_DECIMAL_DESCRIPTION = extern struct {
 
 pub const WS_DECODER_DECODE_CALLBACK = *const fn(
     encoderContext: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "maxLength" is the size in bytes
     buffer: ?*anyopaque,
     maxLength: u32,
     length: ?*u32,
@@ -1276,7 +1276,7 @@ pub const WS_GET_CERT_CALLBACK = *const fn(
 pub const WS_GET_CHANNEL_PROPERTY_CALLBACK = *const fn(
     channelInstance: ?*anyopaque,
     id: WS_CHANNEL_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -1285,7 +1285,7 @@ pub const WS_GET_CHANNEL_PROPERTY_CALLBACK = *const fn(
 pub const WS_GET_LISTENER_PROPERTY_CALLBACK = *const fn(
     listenerInstance: ?*anyopaque,
     id: WS_LISTENER_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -1559,9 +1559,9 @@ pub const WS_IP_VERSION_AUTO = WS_IP_VERSION.AUTO;
 
 pub const WS_IS_DEFAULT_VALUE_CALLBACK = *const fn(
     descriptionData: ?*const anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*const anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     defaultValue: ?*const anyopaque,
     valueSize: u32,
     isDefault: ?*BOOL,
@@ -2081,7 +2081,7 @@ pub const WS_PROXY_FAULT_LANG_ID = WS_PROXY_PROPERTY_ID.FAULT_LANG_ID;
 
 pub const WS_PULL_BYTES_CALLBACK = *const fn(
     callbackState: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "maxSize" is the size in bytes
     bytes: ?*anyopaque,
     maxSize: u32,
     actualSize: ?*u32,
@@ -2104,7 +2104,7 @@ pub const WS_RAW_SYMMETRIC_SECURITY_KEY_HANDLE = extern struct {
 
 pub const WS_READ_CALLBACK = *const fn(
     callbackState: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "maxSize" is the size in bytes
     bytes: ?*anyopaque,
     maxSize: u32,
     actualSize: ?*u32,
@@ -2144,7 +2144,7 @@ pub const WS_READ_TYPE_CALLBACK = *const fn(
     typeMapping: WS_TYPE_MAPPING,
     descriptionData: ?*const anyopaque,
     heap: ?*WS_HEAP,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -2887,7 +2887,7 @@ pub const WS_SERVICE_STUB_CALLBACK = *const fn(
 pub const WS_SET_CHANNEL_PROPERTY_CALLBACK = *const fn(
     channelInstance: ?*anyopaque,
     id: WS_CHANNEL_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*const anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -2896,7 +2896,7 @@ pub const WS_SET_CHANNEL_PROPERTY_CALLBACK = *const fn(
 pub const WS_SET_LISTENER_PROPERTY_CALLBACK = *const fn(
     listenerInstance: ?*anyopaque,
     id: WS_LISTENER_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*const anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -3821,7 +3821,7 @@ pub const WS_WRITE_TYPE_CALLBACK = *const fn(
     writer: ?*WS_XML_WRITER,
     typeMapping: WS_TYPE_MAPPING,
     descriptionData: ?*const anyopaque,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "valueSize" is the size in bytes
     value: ?*const anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -4446,7 +4446,7 @@ pub extern "webservices" fn WsAddCustomHeader(
     message: ?*WS_MESSAGE,
     headerDescription: ?*const WS_ELEMENT_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "valueSize" is the size in bytes
     value: ?*const anyopaque,
     valueSize: u32,
     headerAttributes: u32,
@@ -4465,7 +4465,7 @@ pub extern "webservices" fn WsAddMappedHeader(
     headerName: ?*const WS_XML_STRING,
     valueType: WS_TYPE,
     writeOption: WS_WRITE_OPTION,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "valueSize" is the size in bytes
     value: ?*const anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -4667,7 +4667,7 @@ pub extern "webservices" fn WsCreateServiceEndpointFromTemplate(
     authorizationCallback: ?WS_SERVICE_SECURITY_CALLBACK,
     heap: ?*WS_HEAP,
     templateType: WS_BINDING_TEMPLATE_TYPE,
-    // TODO: what to do with BytesParamIndex 9?
+    /// parameter "templateSize" is the size in bytes
     templateValue: ?*anyopaque,
     templateSize: u32,
     templateDescription: ?*const anyopaque,
@@ -4705,7 +4705,7 @@ pub extern "webservices" fn WsCreateServiceProxyFromTemplate(
     properties: ?[*]const WS_PROXY_PROPERTY,
     propertyCount: u32,
     templateType: WS_BINDING_TEMPLATE_TYPE,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "templateSize" is the size in bytes
     templateValue: ?*anyopaque,
     templateSize: u32,
     templateDescription: ?*const anyopaque,
@@ -4886,7 +4886,7 @@ pub extern "webservices" fn WsFreeWriter(
 pub extern "webservices" fn WsGetChannelProperty(
     channel: ?*WS_CHANNEL,
     id: WS_CHANNEL_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -4900,7 +4900,7 @@ pub extern "webservices" fn WsGetCustomHeader(
     headerIndex: u32,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     headerAttributes: ?*u32,
@@ -4918,7 +4918,7 @@ pub extern "webservices" fn WsGetDictionary(
 pub extern "webservices" fn WsGetErrorProperty(
     @"error": ?*WS_ERROR,
     id: WS_ERROR_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "bufferSize" is the size in bytes
     buffer: ?*anyopaque,
     bufferSize: u32,
 ) callconv(.winapi) HRESULT;
@@ -4936,7 +4936,7 @@ pub extern "webservices" fn WsGetFaultErrorDetail(
     faultDetailDescription: ?*const WS_FAULT_DETAIL_DESCRIPTION,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
 ) callconv(.winapi) HRESULT;
@@ -4945,7 +4945,7 @@ pub extern "webservices" fn WsGetFaultErrorDetail(
 pub extern "webservices" fn WsGetFaultErrorProperty(
     @"error": ?*WS_ERROR,
     id: WS_FAULT_ERROR_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "bufferSize" is the size in bytes
     buffer: ?*anyopaque,
     bufferSize: u32,
 ) callconv(.winapi) HRESULT;
@@ -4957,7 +4957,7 @@ pub extern "webservices" fn WsGetHeader(
     valueType: WS_TYPE,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -4975,7 +4975,7 @@ pub extern "webservices" fn WsGetHeaderAttributes(
 pub extern "webservices" fn WsGetHeapProperty(
     heap: ?*WS_HEAP,
     id: WS_HEAP_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -4985,7 +4985,7 @@ pub extern "webservices" fn WsGetHeapProperty(
 pub extern "webservices" fn WsGetListenerProperty(
     listener: ?*WS_LISTENER,
     id: WS_LISTENER_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5000,7 +5000,7 @@ pub extern "webservices" fn WsGetMappedHeader(
     valueType: WS_TYPE,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5010,7 +5010,7 @@ pub extern "webservices" fn WsGetMappedHeader(
 pub extern "webservices" fn WsGetMessageProperty(
     message: ?*WS_MESSAGE,
     id: WS_MESSAGE_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5027,7 +5027,7 @@ pub extern "webservices" fn WsGetMetadataEndpoints(
 pub extern "webservices" fn WsGetMetadataProperty(
     metadata: ?*WS_METADATA,
     id: WS_METADATA_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5053,7 +5053,7 @@ pub extern "webservices" fn WsGetNamespaceFromPrefix(
 pub extern "webservices" fn WsGetOperationContextProperty(
     context: ?*const WS_OPERATION_CONTEXT,
     id: WS_OPERATION_CONTEXT_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5070,7 +5070,7 @@ pub extern "webservices" fn WsGetPolicyAlternativeCount(
 pub extern "webservices" fn WsGetPolicyProperty(
     policy: ?*WS_POLICY,
     id: WS_POLICY_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5103,7 +5103,7 @@ pub extern "webservices" fn WsGetReaderPosition(
 pub extern "webservices" fn WsGetReaderProperty(
     reader: ?*WS_XML_READER,
     id: WS_XML_READER_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5113,7 +5113,7 @@ pub extern "webservices" fn WsGetReaderProperty(
 pub extern "webservices" fn WsGetSecurityContextProperty(
     securityContext: ?*WS_SECURITY_CONTEXT,
     id: WS_SECURITY_CONTEXT_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5123,7 +5123,7 @@ pub extern "webservices" fn WsGetSecurityContextProperty(
 pub extern "webservices" fn WsGetSecurityTokenProperty(
     securityToken: ?*WS_SECURITY_TOKEN,
     id: WS_SECURITY_TOKEN_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     heap: ?*WS_HEAP,
@@ -5134,7 +5134,7 @@ pub extern "webservices" fn WsGetSecurityTokenProperty(
 pub extern "webservices" fn WsGetServiceHostProperty(
     serviceHost: ?*WS_SERVICE_HOST,
     id: WS_SERVICE_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5144,7 +5144,7 @@ pub extern "webservices" fn WsGetServiceHostProperty(
 pub extern "webservices" fn WsGetServiceProxyProperty(
     serviceProxy: ?*WS_SERVICE_PROXY,
     id: WS_PROXY_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5161,7 +5161,7 @@ pub extern "webservices" fn WsGetWriterPosition(
 pub extern "webservices" fn WsGetWriterProperty(
     writer: ?*WS_XML_WRITER,
     id: WS_XML_WRITER_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5271,7 +5271,7 @@ pub extern "webservices" fn WsReadArray(
     localName: ?*const WS_XML_STRING,
     ns: ?*const WS_XML_STRING,
     valueType: WS_VALUE_TYPE,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "arraySize" is the size in bytes
     array: ?*anyopaque,
     arraySize: u32,
     itemOffset: u32,
@@ -5286,7 +5286,7 @@ pub extern "webservices" fn WsReadAttribute(
     attributeDescription: ?*const WS_ATTRIBUTE_DESCRIPTION,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5298,7 +5298,7 @@ pub extern "webservices" fn WsReadBody(
     bodyDescription: ?*const WS_ELEMENT_DESCRIPTION,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5307,7 +5307,7 @@ pub extern "webservices" fn WsReadBody(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsReadBytes(
     reader: ?*WS_XML_READER,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "maxByteCount" is the size in bytes
     bytes: ?*anyopaque,
     maxByteCount: u32,
     actualByteCount: ?*u32,
@@ -5338,7 +5338,7 @@ pub extern "webservices" fn WsReadElement(
     elementDescription: ?*const WS_ELEMENT_DESCRIPTION,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5363,7 +5363,7 @@ pub extern "webservices" fn WsReadEndpointAddressExtension(
     extensionType: WS_ENDPOINT_ADDRESS_EXTENSION_TYPE,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5454,7 +5454,7 @@ pub extern "webservices" fn WsReadType(
     typeDescription: ?*const anyopaque,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5464,7 +5464,7 @@ pub extern "webservices" fn WsReadType(
 pub extern "webservices" fn WsReadValue(
     reader: ?*WS_XML_READER,
     valueType: WS_VALUE_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5484,7 +5484,7 @@ pub extern "webservices" fn WsReadXmlBufferFromBytes(
     encoding: ?*const WS_XML_READER_ENCODING,
     properties: ?[*]const WS_XML_READER_PROPERTY,
     propertyCount: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "byteCount" is the size in bytes
     bytes: ?*const anyopaque,
     byteCount: u32,
     heap: ?*WS_HEAP,
@@ -5501,7 +5501,7 @@ pub extern "webservices" fn WsReceiveMessage(
     receiveOption: WS_RECEIVE_OPTION,
     readBodyOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     index: ?*u32,
@@ -5552,14 +5552,14 @@ pub extern "webservices" fn WsRequestReply(
     requestMessage: ?*WS_MESSAGE,
     requestMessageDescription: ?*const WS_MESSAGE_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "requestBodyValueSize" is the size in bytes
     requestBodyValue: ?*const anyopaque,
     requestBodyValueSize: u32,
     replyMessage: ?*WS_MESSAGE,
     replyMessageDescription: ?*const WS_MESSAGE_DESCRIPTION,
     readOption: WS_READ_OPTION,
     heap: ?*WS_HEAP,
-    // TODO: what to do with BytesParamIndex 11?
+    /// parameter "valueSize" is the size in bytes
     value: ?*anyopaque,
     valueSize: u32,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
@@ -5647,7 +5647,7 @@ pub extern "webservices" fn WsSendMessage(
     message: ?*WS_MESSAGE,
     messageDescription: ?*const WS_MESSAGE_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "bodyValueSize" is the size in bytes
     bodyValue: ?*const anyopaque,
     bodyValueSize: u32,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
@@ -5660,7 +5660,7 @@ pub extern "webservices" fn WsSendReplyMessage(
     replyMessage: ?*WS_MESSAGE,
     replyMessageDescription: ?*const WS_MESSAGE_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "replyBodyValueSize" is the size in bytes
     replyBodyValue: ?*const anyopaque,
     replyBodyValueSize: u32,
     requestMessage: ?*WS_MESSAGE,
@@ -5672,7 +5672,7 @@ pub extern "webservices" fn WsSendReplyMessage(
 pub extern "webservices" fn WsSetChannelProperty(
     channel: ?*WS_CHANNEL,
     id: WS_CHANNEL_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*const anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5682,7 +5682,7 @@ pub extern "webservices" fn WsSetChannelProperty(
 pub extern "webservices" fn WsSetErrorProperty(
     @"error": ?*WS_ERROR,
     id: WS_ERROR_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*const anyopaque,
     valueSize: u32,
 ) callconv(.winapi) HRESULT;
@@ -5692,7 +5692,7 @@ pub extern "webservices" fn WsSetFaultErrorDetail(
     @"error": ?*WS_ERROR,
     faultDetailDescription: ?*const WS_FAULT_DETAIL_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "valueSize" is the size in bytes
     value: ?*const anyopaque,
     valueSize: u32,
 ) callconv(.winapi) HRESULT;
@@ -5701,7 +5701,7 @@ pub extern "webservices" fn WsSetFaultErrorDetail(
 pub extern "webservices" fn WsSetFaultErrorProperty(
     @"error": ?*WS_ERROR,
     id: WS_FAULT_ERROR_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*const anyopaque,
     valueSize: u32,
 ) callconv(.winapi) HRESULT;
@@ -5712,7 +5712,7 @@ pub extern "webservices" fn WsSetHeader(
     headerType: WS_HEADER_TYPE,
     valueType: WS_TYPE,
     writeOption: WS_WRITE_OPTION,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "valueSize" is the size in bytes
     value: ?*const anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5741,7 +5741,7 @@ pub extern "webservices" fn WsSetInputToBuffer(
 pub extern "webservices" fn WsSetListenerProperty(
     listener: ?*WS_LISTENER,
     id: WS_LISTENER_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*const anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5751,7 +5751,7 @@ pub extern "webservices" fn WsSetListenerProperty(
 pub extern "webservices" fn WsSetMessageProperty(
     message: ?*WS_MESSAGE,
     id: WS_MESSAGE_PROPERTY_ID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*const anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5845,7 +5845,7 @@ pub extern "webservices" fn WsWriteArray(
     localName: ?*const WS_XML_STRING,
     ns: ?*const WS_XML_STRING,
     valueType: WS_VALUE_TYPE,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "arraySize" is the size in bytes
     array: ?*const anyopaque,
     arraySize: u32,
     itemOffset: u32,
@@ -5858,7 +5858,7 @@ pub extern "webservices" fn WsWriteAttribute(
     writer: ?*WS_XML_WRITER,
     attributeDescription: ?*const WS_ATTRIBUTE_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "valueSize" is the size in bytes
     value: ?*const anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5869,7 +5869,7 @@ pub extern "webservices" fn WsWriteBody(
     message: ?*WS_MESSAGE,
     bodyDescription: ?*const WS_ELEMENT_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "valueSize" is the size in bytes
     value: ?*const anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -5878,7 +5878,7 @@ pub extern "webservices" fn WsWriteBody(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "webservices" fn WsWriteBytes(
     writer: ?*WS_XML_WRITER,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "byteCount" is the size in bytes
     bytes: ?*const anyopaque,
     byteCount: u32,
     @"error": ?*WS_ERROR,
@@ -5905,7 +5905,7 @@ pub extern "webservices" fn WsWriteElement(
     writer: ?*WS_XML_WRITER,
     elementDescription: ?*const WS_ELEMENT_DESCRIPTION,
     writeOption: WS_WRITE_OPTION,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "valueSize" is the size in bytes
     value: ?*const anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -6021,7 +6021,7 @@ pub extern "webservices" fn WsWriteType(
     type: WS_TYPE,
     typeDescription: ?*const anyopaque,
     writeOption: WS_WRITE_OPTION,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "valueSize" is the size in bytes
     value: ?*const anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,
@@ -6031,7 +6031,7 @@ pub extern "webservices" fn WsWriteType(
 pub extern "webservices" fn WsWriteValue(
     writer: ?*WS_XML_WRITER,
     valueType: WS_VALUE_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "valueSize" is the size in bytes
     value: ?*const anyopaque,
     valueSize: u32,
     @"error": ?*WS_ERROR,

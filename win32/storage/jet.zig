@@ -2165,7 +2165,7 @@ pub extern "esent" fn JetAddColumnA(
     tableid: JET_TABLEID,
     szColumnName: ?*i8,
     pcolumndef: ?*const JET_COLUMNDEF,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbDefault" is the size in bytes
     pvDefault: ?*const anyopaque,
     cbDefault: u32,
     pcolumnid: ?*u32,
@@ -2176,7 +2176,7 @@ pub extern "esent" fn JetAddColumnW(
     tableid: JET_TABLEID,
     szColumnName: ?*u16,
     pcolumndef: ?*const JET_COLUMNDEF,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbDefault" is the size in bytes
     pvDefault: ?*const anyopaque,
     cbDefault: u32,
     pcolumnid: ?*u32,
@@ -2410,7 +2410,7 @@ pub extern "esent" fn JetCreateIndexA(
     tableid: JET_TABLEID,
     szIndexName: ?*i8,
     grbit: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbKey" is the size in bytes
     szKey: ?[*:0]const u8,
     cbKey: u32,
     lDensity: u32,
@@ -2421,7 +2421,7 @@ pub extern "esent" fn JetCreateIndexW(
     tableid: JET_TABLEID,
     szIndexName: ?*u16,
     grbit: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbKey" is the size in bytes
     szKey: ?[*:0]const u16,
     cbKey: u32,
     lDensity: u32,
@@ -2712,10 +2712,10 @@ pub extern "esent" fn JetEscrowUpdate(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     columnid: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbMax" is the size in bytes
     pv: ?*anyopaque,
     cbMax: u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbOldMax" is the size in bytes
     pvOld: ?*anyopaque,
     cbOldMax: u32,
     pcbOldActual: ?*u32,
@@ -2775,7 +2775,7 @@ pub extern "esent" fn JetFreeBuffer(
 ) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetAttachInfoA(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbMax" is the size in bytes
     szzDatabases: ?*i8,
     cbMax: u32,
     pcbActual: ?*u32,
@@ -2783,7 +2783,7 @@ pub extern "esent" fn JetGetAttachInfoA(
 
 pub extern "esent" fn JetGetAttachInfoInstanceA(
     instance: JET_INSTANCE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbMax" is the size in bytes
     szzDatabases: ?*i8,
     cbMax: u32,
     pcbActual: ?*u32,
@@ -2791,14 +2791,14 @@ pub extern "esent" fn JetGetAttachInfoInstanceA(
 
 pub extern "esent" fn JetGetAttachInfoInstanceW(
     instance: JET_INSTANCE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbMax" is the size in bytes
     szzDatabases: ?*u16,
     cbMax: u32,
     pcbActual: ?*u32,
 ) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetAttachInfoW(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbMax" is the size in bytes
     wszzDatabases: ?*u16,
     cbMax: u32,
     pcbActual: ?*u32,
@@ -2807,7 +2807,7 @@ pub extern "esent" fn JetGetAttachInfoW(
 pub extern "esent" fn JetGetBookmark(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbMax" is the size in bytes
     pvBookmark: ?*anyopaque,
     cbMax: u32,
     pcbActual: ?*u32,
@@ -2818,7 +2818,7 @@ pub extern "esent" fn JetGetColumnInfoA(
     dbid: u32,
     szTableName: ?*i8,
     pColumnNameOrId: ?*i8,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbMax" is the size in bytes
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
@@ -2829,7 +2829,7 @@ pub extern "esent" fn JetGetColumnInfoW(
     dbid: u32,
     szTableName: ?*u16,
     pwColumnNameOrId: ?*u16,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbMax" is the size in bytes
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
@@ -2838,7 +2838,7 @@ pub extern "esent" fn JetGetColumnInfoW(
 pub extern "esent" fn JetGetCurrentIndexA(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbIndexName" is the size in bytes
     szIndexName: ?*i8,
     cbIndexName: u32,
 ) callconv(.winapi) i32;
@@ -2846,7 +2846,7 @@ pub extern "esent" fn JetGetCurrentIndexA(
 pub extern "esent" fn JetGetCurrentIndexW(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbIndexName" is the size in bytes
     szIndexName: ?*u16,
     cbIndexName: u32,
 ) callconv(.winapi) i32;
@@ -2854,7 +2854,7 @@ pub extern "esent" fn JetGetCurrentIndexW(
 pub extern "esent" fn JetGetCursorInfo(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbMax" is the size in bytes
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
@@ -2862,7 +2862,7 @@ pub extern "esent" fn JetGetCursorInfo(
 
 pub extern "esent" fn JetGetDatabaseFileInfoA(
     szDatabaseName: ?*i8,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbMax" is the size in bytes
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
@@ -2870,7 +2870,7 @@ pub extern "esent" fn JetGetDatabaseFileInfoA(
 
 pub extern "esent" fn JetGetDatabaseFileInfoW(
     szDatabaseName: ?*u16,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbMax" is the size in bytes
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
@@ -2879,7 +2879,7 @@ pub extern "esent" fn JetGetDatabaseFileInfoW(
 pub extern "esent" fn JetGetDatabaseInfoA(
     sesid: ?JET_SESID,
     dbid: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbMax" is the size in bytes
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
@@ -2888,7 +2888,7 @@ pub extern "esent" fn JetGetDatabaseInfoA(
 pub extern "esent" fn JetGetDatabaseInfoW(
     sesid: ?JET_SESID,
     dbid: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbMax" is the size in bytes
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
@@ -2896,7 +2896,7 @@ pub extern "esent" fn JetGetDatabaseInfoW(
 
 pub extern "esent" fn JetGetErrorInfoW(
     pvContext: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbMax" is the size in bytes
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
@@ -2908,7 +2908,7 @@ pub extern "esent" fn JetGetIndexInfoA(
     dbid: u32,
     szTableName: ?*i8,
     szIndexName: ?*i8,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbResult" is the size in bytes
     pvResult: ?*anyopaque,
     cbResult: u32,
     InfoLevel: u32,
@@ -2919,7 +2919,7 @@ pub extern "esent" fn JetGetIndexInfoW(
     dbid: u32,
     szTableName: ?*u16,
     szIndexName: ?*u16,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbResult" is the size in bytes
     pvResult: ?*anyopaque,
     cbResult: u32,
     InfoLevel: u32,
@@ -2937,7 +2937,7 @@ pub extern "esent" fn JetGetInstanceInfoW(
 
 pub extern "esent" fn JetGetInstanceMiscInfo(
     instance: JET_INSTANCE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbMax" is the size in bytes
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
@@ -2950,7 +2950,7 @@ pub extern "esent" fn JetGetLock(
 ) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetLogInfoA(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbMax" is the size in bytes
     szzLogs: ?*i8,
     cbMax: u32,
     pcbActual: ?*u32,
@@ -2958,7 +2958,7 @@ pub extern "esent" fn JetGetLogInfoA(
 
 pub extern "esent" fn JetGetLogInfoInstance2A(
     instance: JET_INSTANCE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbMax" is the size in bytes
     szzLogs: ?*i8,
     cbMax: u32,
     pcbActual: ?*u32,
@@ -2967,7 +2967,7 @@ pub extern "esent" fn JetGetLogInfoInstance2A(
 
 pub extern "esent" fn JetGetLogInfoInstance2W(
     instance: JET_INSTANCE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbMax" is the size in bytes
     wszzLogs: ?*u16,
     cbMax: u32,
     pcbActual: ?*u32,
@@ -2976,7 +2976,7 @@ pub extern "esent" fn JetGetLogInfoInstance2W(
 
 pub extern "esent" fn JetGetLogInfoInstanceA(
     instance: JET_INSTANCE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbMax" is the size in bytes
     szzLogs: ?*i8,
     cbMax: u32,
     pcbActual: ?*u32,
@@ -2984,14 +2984,14 @@ pub extern "esent" fn JetGetLogInfoInstanceA(
 
 pub extern "esent" fn JetGetLogInfoInstanceW(
     instance: JET_INSTANCE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbMax" is the size in bytes
     wszzLogs: ?*u16,
     cbMax: u32,
     pcbActual: ?*u32,
 ) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetLogInfoW(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbMax" is the size in bytes
     szzLogs: ?*u16,
     cbMax: u32,
     pcbActual: ?*u32,
@@ -3010,7 +3010,7 @@ pub extern "esent" fn JetGetObjectInfoA(
     objtyp: u32,
     szContainerName: ?*i8,
     szObjectName: ?*i8,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbMax" is the size in bytes
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
@@ -3022,7 +3022,7 @@ pub extern "esent" fn JetGetObjectInfoW(
     objtyp: u32,
     szContainerName: ?*u16,
     szObjectName: ?*u16,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbMax" is the size in bytes
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
@@ -3031,7 +3031,7 @@ pub extern "esent" fn JetGetObjectInfoW(
 pub extern "esent" fn JetGetRecordPosition(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbRecpos" is the size in bytes
     precpos: ?*JET_RECPOS,
     cbRecpos: u32,
 ) callconv(.winapi) i32;
@@ -3053,11 +3053,11 @@ pub extern "esent" fn JetGetRecordSize2(
 pub extern "esent" fn JetGetSecondaryIndexBookmark(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbSecondaryKeyMax" is the size in bytes
     pvSecondaryKey: ?*anyopaque,
     cbSecondaryKeyMax: u32,
     pcbSecondaryKeyActual: ?*u32,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "cbPrimaryBookmarkMax" is the size in bytes
     pvPrimaryBookmark: ?*anyopaque,
     cbPrimaryBookmarkMax: u32,
     pcbPrimaryBookmarkActual: ?*u32,
@@ -3077,7 +3077,7 @@ pub extern "esent" fn JetGetSystemParameterA(
     sesid: ?JET_SESID,
     paramid: u32,
     plParam: ?*JET_API_PTR,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbMax" is the size in bytes
     szParam: ?*i8,
     cbMax: u32,
 ) callconv(.winapi) i32;
@@ -3087,7 +3087,7 @@ pub extern "esent" fn JetGetSystemParameterW(
     sesid: ?JET_SESID,
     paramid: u32,
     plParam: ?*JET_API_PTR,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbMax" is the size in bytes
     szParam: ?*u16,
     cbMax: u32,
 ) callconv(.winapi) i32;
@@ -3096,7 +3096,7 @@ pub extern "esent" fn JetGetTableColumnInfoA(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     szColumnName: ?*i8,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbMax" is the size in bytes
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
@@ -3106,7 +3106,7 @@ pub extern "esent" fn JetGetTableColumnInfoW(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     szColumnName: ?*u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbMax" is the size in bytes
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
@@ -3116,7 +3116,7 @@ pub extern "esent" fn JetGetTableIndexInfoA(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     szIndexName: ?*i8,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbResult" is the size in bytes
     pvResult: ?*anyopaque,
     cbResult: u32,
     InfoLevel: u32,
@@ -3126,7 +3126,7 @@ pub extern "esent" fn JetGetTableIndexInfoW(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     szIndexName: ?*u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbResult" is the size in bytes
     pvResult: ?*anyopaque,
     cbResult: u32,
     InfoLevel: u32,
@@ -3135,7 +3135,7 @@ pub extern "esent" fn JetGetTableIndexInfoW(
 pub extern "esent" fn JetGetTableInfoA(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbMax" is the size in bytes
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
@@ -3144,21 +3144,21 @@ pub extern "esent" fn JetGetTableInfoA(
 pub extern "esent" fn JetGetTableInfoW(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbMax" is the size in bytes
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
 ) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetThreadStats(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbMax" is the size in bytes
     pvResult: ?*anyopaque,
     cbMax: u32,
 ) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetTruncateLogInfoInstanceA(
     instance: JET_INSTANCE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbMax" is the size in bytes
     szzLogs: ?*i8,
     cbMax: u32,
     pcbActual: ?*u32,
@@ -3166,7 +3166,7 @@ pub extern "esent" fn JetGetTruncateLogInfoInstanceA(
 
 pub extern "esent" fn JetGetTruncateLogInfoInstanceW(
     instance: JET_INSTANCE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbMax" is the size in bytes
     wszzLogs: ?*u16,
     cbMax: u32,
     pcbActual: ?*u32,
@@ -3180,7 +3180,7 @@ pub extern "esent" fn JetGetVersion(
 pub extern "esent" fn JetGotoBookmark(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBookmark" is the size in bytes
     pvBookmark: ?*anyopaque,
     cbBookmark: u32,
 ) callconv(.winapi) i32;
@@ -3194,10 +3194,10 @@ pub extern "esent" fn JetGotoPosition(
 pub extern "esent" fn JetGotoSecondaryIndexBookmark(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbSecondaryKey" is the size in bytes
     pvSecondaryKey: ?*anyopaque,
     cbSecondaryKey: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbPrimaryBookmark" is the size in bytes
     pvPrimaryBookmark: ?*anyopaque,
     cbPrimaryBookmark: u32,
     grbit: u32,
@@ -3254,7 +3254,7 @@ pub extern "esent" fn JetIntersectIndexes(
 pub extern "esent" fn JetMakeKey(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbData" is the size in bytes
     pvData: ?*const anyopaque,
     cbData: u32,
     grbit: u32,
@@ -3317,7 +3317,7 @@ pub extern "esent" fn JetOpenTableA(
     sesid: ?JET_SESID,
     dbid: u32,
     szTableName: ?*i8,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbParameters" is the size in bytes
     pvParameters: ?*const anyopaque,
     cbParameters: u32,
     grbit: u32,
@@ -3328,7 +3328,7 @@ pub extern "esent" fn JetOpenTableW(
     sesid: ?JET_SESID,
     dbid: u32,
     szTableName: ?*u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbParameters" is the size in bytes
     pvParameters: ?*const anyopaque,
     cbParameters: u32,
     grbit: u32,
@@ -3468,7 +3468,7 @@ pub extern "esent" fn JetPrereadKeys(
 
 pub extern "esent" fn JetReadFile(
     hfFile: JET_HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cb" is the size in bytes
     pv: ?*anyopaque,
     cb: u32,
     pcbActual: ?*u32,
@@ -3477,7 +3477,7 @@ pub extern "esent" fn JetReadFile(
 pub extern "esent" fn JetReadFileInstance(
     instance: JET_INSTANCE,
     hfFile: JET_HANDLE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cb" is the size in bytes
     pv: ?*anyopaque,
     cb: u32,
     pcbActual: ?*u32,
@@ -3580,7 +3580,7 @@ pub extern "esent" fn JetRetrieveColumn(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     columnid: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbData" is the size in bytes
     pvData: ?*anyopaque,
     cbData: u32,
     pcbActual: ?*u32,
@@ -3598,7 +3598,7 @@ pub extern "esent" fn JetRetrieveColumns(
 pub extern "esent" fn JetRetrieveKey(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbMax" is the size in bytes
     pvKey: ?*anyopaque,
     cbMax: u32,
     pcbActual: ?*u32,
@@ -3620,7 +3620,7 @@ pub extern "esent" fn JetSetColumn(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     columnid: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbData" is the size in bytes
     pvData: ?*const anyopaque,
     cbData: u32,
     grbit: u32,
@@ -3632,7 +3632,7 @@ pub extern "esent" fn JetSetColumnDefaultValueA(
     dbid: u32,
     szTableName: ?*i8,
     szColumnName: ?*i8,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbData" is the size in bytes
     pvData: ?*const anyopaque,
     cbData: u32,
     grbit: u32,
@@ -3643,7 +3643,7 @@ pub extern "esent" fn JetSetColumnDefaultValueW(
     dbid: u32,
     szTableName: ?*u16,
     szColumnName: ?*u16,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbData" is the size in bytes
     pvData: ?*const anyopaque,
     cbData: u32,
     grbit: u32,
@@ -3759,7 +3759,7 @@ pub extern "esent" fn JetSetSessionContext(
 pub extern "esent" fn JetSetSessionParameter(
     sesid: ?JET_SESID,
     sesparamid: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbParam" is the size in bytes
     pvParam: ?*anyopaque,
     cbParam: u32,
 ) callconv(.winapi) i32;
@@ -3821,7 +3821,7 @@ pub extern "esent" fn JetUnregisterCallback(
 pub extern "esent" fn JetUpdate(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBookmark" is the size in bytes
     pvBookmark: ?*anyopaque,
     cbBookmark: u32,
     pcbActual: ?*u32,
@@ -3830,7 +3830,7 @@ pub extern "esent" fn JetUpdate(
 pub extern "esent" fn JetUpdate2(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBookmark" is the size in bytes
     pvBookmark: ?*anyopaque,
     cbBookmark: u32,
     pcbActual: ?*u32,

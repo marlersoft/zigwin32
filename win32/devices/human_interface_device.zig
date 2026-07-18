@@ -5326,7 +5326,7 @@ pub const PFN_HidP_GetVersionInternal = *const fn(
 
 pub const PHIDP_INSERT_SCANCODES = *const fn(
     Context: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "Length" is the size in bytes
     NewScanCodes: ?[*]u8,
     Length: u32,
 ) callconv(.winapi) BOOLEAN;
@@ -5363,14 +5363,14 @@ pub extern "hid" fn HidD_GetAttributes(
 
 pub extern "hid" fn HidD_GetConfiguration(
     HidDeviceObject: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "ConfigurationLength" is the size in bytes
     Configuration: ?*HIDD_CONFIGURATION,
     ConfigurationLength: u32,
 ) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_GetFeature(
     HidDeviceObject: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "ReportBufferLength" is the size in bytes
     ReportBuffer: ?*anyopaque,
     ReportBufferLength: u32,
 ) callconv(.winapi) BOOLEAN;
@@ -5382,28 +5382,28 @@ pub extern "hid" fn HidD_GetHidGuid(
 pub extern "hid" fn HidD_GetIndexedString(
     HidDeviceObject: ?HANDLE,
     StringIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferLength" is the size in bytes
     Buffer: ?*anyopaque,
     BufferLength: u32,
 ) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_GetInputReport(
     HidDeviceObject: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "ReportBufferLength" is the size in bytes
     ReportBuffer: ?*anyopaque,
     ReportBufferLength: u32,
 ) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_GetManufacturerString(
     HidDeviceObject: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BufferLength" is the size in bytes
     Buffer: ?*anyopaque,
     BufferLength: u32,
 ) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_GetMsGenreDescriptor(
     HidDeviceObject: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BufferLength" is the size in bytes
     Buffer: ?*anyopaque,
     BufferLength: u32,
 ) callconv(.winapi) BOOLEAN;
@@ -5415,7 +5415,7 @@ pub extern "hid" fn HidD_GetNumInputBuffers(
 
 pub extern "hid" fn HidD_GetPhysicalDescriptor(
     HidDeviceObject: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BufferLength" is the size in bytes
     Buffer: ?*anyopaque,
     BufferLength: u32,
 ) callconv(.winapi) BOOLEAN;
@@ -5427,28 +5427,28 @@ pub extern "hid" fn HidD_GetPreparsedData(
 
 pub extern "hid" fn HidD_GetProductString(
     HidDeviceObject: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BufferLength" is the size in bytes
     Buffer: ?*anyopaque,
     BufferLength: u32,
 ) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_GetSerialNumberString(
     HidDeviceObject: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BufferLength" is the size in bytes
     Buffer: ?*anyopaque,
     BufferLength: u32,
 ) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_SetConfiguration(
     HidDeviceObject: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "ConfigurationLength" is the size in bytes
     Configuration: ?*HIDD_CONFIGURATION,
     ConfigurationLength: u32,
 ) callconv(.winapi) BOOLEAN;
 
 pub extern "hid" fn HidD_SetFeature(
     HidDeviceObject: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "ReportBufferLength" is the size in bytes
     ReportBuffer: ?*anyopaque,
     ReportBufferLength: u32,
 ) callconv(.winapi) BOOLEAN;
@@ -5460,7 +5460,7 @@ pub extern "hid" fn HidD_SetNumInputBuffers(
 
 pub extern "hid" fn HidD_SetOutputReport(
     HidDeviceObject: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "ReportBufferLength" is the size in bytes
     ReportBuffer: ?*anyopaque,
     ReportBufferLength: u32,
 ) callconv(.winapi) BOOLEAN;
@@ -5473,7 +5473,7 @@ pub extern "hid" fn HidP_GetButtonArray(
     ButtonData: [*]HIDP_BUTTON_ARRAY_DATA,
     ButtonDataLength: ?*u16,
     PreparsedData: isize,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "ReportLength" is the size in bytes
     Report: ?[*]u8,
     ReportLength: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -5495,7 +5495,7 @@ pub extern "hid" fn HidP_GetData(
     DataList: [*]HIDP_DATA,
     DataLength: ?*u32,
     PreparsedData: isize,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "ReportLength" is the size in bytes
     Report: ?[*]u8,
     ReportLength: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -5521,7 +5521,7 @@ pub extern "hid" fn HidP_GetScaledUsageValue(
     Usage: u16,
     UsageValue: ?*i32,
     PreparsedData: isize,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "ReportLength" is the size in bytes
     Report: ?[*]u8,
     ReportLength: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -5553,7 +5553,7 @@ pub extern "hid" fn HidP_GetUsages(
     UsageList: [*:0]u16,
     UsageLength: ?*u32,
     PreparsedData: isize,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "ReportLength" is the size in bytes
     Report: ?[*]u8,
     ReportLength: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -5564,7 +5564,7 @@ pub extern "hid" fn HidP_GetUsagesEx(
     ButtonList: [*]USAGE_AND_PAGE,
     UsageLength: ?*u32,
     PreparsedData: isize,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "ReportLength" is the size in bytes
     Report: ?[*]u8,
     ReportLength: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -5576,7 +5576,7 @@ pub extern "hid" fn HidP_GetUsageValue(
     Usage: u16,
     UsageValue: ?*u32,
     PreparsedData: isize,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "ReportLength" is the size in bytes
     Report: ?[*]u8,
     ReportLength: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -5586,11 +5586,11 @@ pub extern "hid" fn HidP_GetUsageValueArray(
     UsagePage: u16,
     LinkCollection: u16,
     Usage: u16,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "UsageValueByteLength" is the size in bytes
     UsageValue: ?[*]u8,
     UsageValueByteLength: u16,
     PreparsedData: isize,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "ReportLength" is the size in bytes
     Report: ?[*]u8,
     ReportLength: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -5606,7 +5606,7 @@ pub extern "hid" fn HidP_InitializeReportForID(
     ReportType: HIDP_REPORT_TYPE,
     ReportID: u8,
     PreparsedData: isize,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "ReportLength" is the size in bytes
     Report: ?[*]u8,
     ReportLength: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -5630,7 +5630,7 @@ pub extern "hid" fn HidP_SetButtonArray(
     ButtonData: [*]HIDP_BUTTON_ARRAY_DATA,
     ButtonDataLength: u16,
     PreparsedData: isize,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "ReportLength" is the size in bytes
     Report: ?[*]u8,
     ReportLength: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -5640,7 +5640,7 @@ pub extern "hid" fn HidP_SetData(
     DataList: [*]HIDP_DATA,
     DataLength: ?*u32,
     PreparsedData: isize,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "ReportLength" is the size in bytes
     Report: ?[*]u8,
     ReportLength: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -5652,7 +5652,7 @@ pub extern "hid" fn HidP_SetScaledUsageValue(
     Usage: u16,
     UsageValue: i32,
     PreparsedData: isize,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "ReportLength" is the size in bytes
     Report: ?[*]u8,
     ReportLength: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -5664,7 +5664,7 @@ pub extern "hid" fn HidP_SetUsages(
     UsageList: [*:0]u16,
     UsageLength: ?*u32,
     PreparsedData: isize,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "ReportLength" is the size in bytes
     Report: ?[*]u8,
     ReportLength: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -5676,7 +5676,7 @@ pub extern "hid" fn HidP_SetUsageValue(
     Usage: u16,
     UsageValue: u32,
     PreparsedData: isize,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "ReportLength" is the size in bytes
     Report: ?[*]u8,
     ReportLength: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -5686,11 +5686,11 @@ pub extern "hid" fn HidP_SetUsageValueArray(
     UsagePage: u16,
     LinkCollection: u16,
     Usage: u16,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "UsageValueByteLength" is the size in bytes
     UsageValue: ?[*]u8,
     UsageValueByteLength: u16,
     PreparsedData: isize,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "ReportLength" is the size in bytes
     Report: ?[*]u8,
     ReportLength: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -5711,7 +5711,7 @@ pub extern "hid" fn HidP_UnsetUsages(
     UsageList: [*:0]u16,
     UsageLength: ?*u32,
     PreparsedData: isize,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "ReportLength" is the size in bytes
     Report: ?[*]u8,
     ReportLength: u32,
 ) callconv(.winapi) NTSTATUS;

@@ -197,7 +197,7 @@ pub extern "wintrust" fn CryptCATAdminAddCatalog(
 pub extern "wintrust" fn CryptCATAdminCalcHashFromFileHandle(
     hFile: ?HANDLE,
     pcbHash: ?*u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "pcbHash" is the size in bytes
     pbHash: ?*u8,
     dwFlags: u32,
 ) callconv(.winapi) BOOL;
@@ -207,7 +207,7 @@ pub extern "wintrust" fn CryptCATAdminCalcHashFromFileHandle2(
     hCatAdmin: isize,
     hFile: ?HANDLE,
     pcbHash: ?*u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "pcbHash" is the size in bytes
     pbHash: ?*u8,
     dwFlags: u32,
 ) callconv(.winapi) BOOL;
@@ -215,7 +215,7 @@ pub extern "wintrust" fn CryptCATAdminCalcHashFromFileHandle2(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn CryptCATAdminEnumCatalogFromHash(
     hCatAdmin: isize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbHash" is the size in bytes
     pbHash: ?*u8,
     cbHash: u32,
     dwFlags: u32,

@@ -7061,10 +7061,10 @@ pub extern "wtsapi32" fn WTSRegisterSessionNotificationEx(
 pub extern "wtsapi32" fn WTSSendMessageA(
     hServer: ?HANDLE,
     SessionId: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "TitleLength" is the size in bytes
     pTitle: ?PSTR,
     TitleLength: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "MessageLength" is the size in bytes
     pMessage: ?PSTR,
     MessageLength: u32,
     Style: MESSAGEBOX_STYLE,
@@ -7077,10 +7077,10 @@ pub extern "wtsapi32" fn WTSSendMessageA(
 pub extern "wtsapi32" fn WTSSendMessageW(
     hServer: ?HANDLE,
     SessionId: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "TitleLength" is the size in bytes
     pTitle: ?PWSTR,
     TitleLength: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "MessageLength" is the size in bytes
     pMessage: ?PWSTR,
     MessageLength: u32,
     Style: MESSAGEBOX_STYLE,
@@ -7115,7 +7115,7 @@ pub extern "wtsapi32" fn WTSSetRenderHint(
     hwndOwner: ?HWND,
     renderHintType: u32,
     cbHintDataLength: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbHintDataLength" is the size in bytes
     pHintData: ?*u8,
 ) callconv(.winapi) HRESULT;
 
@@ -7124,7 +7124,7 @@ pub extern "wtsapi32" fn WTSSetUserConfigA(
     pServerName: ?PSTR,
     pUserName: ?PSTR,
     WTSConfigClass: WTS_CONFIG_CLASS,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "DataLength" is the size in bytes
     pBuffer: ?PSTR,
     DataLength: u32,
 ) callconv(.winapi) BOOL;
@@ -7134,7 +7134,7 @@ pub extern "wtsapi32" fn WTSSetUserConfigW(
     pServerName: ?PWSTR,
     pUserName: ?PWSTR,
     WTSConfigClass: WTS_CONFIG_CLASS,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "DataLength" is the size in bytes
     pBuffer: ?PWSTR,
     DataLength: u32,
 ) callconv(.winapi) BOOL;
@@ -7225,7 +7225,7 @@ pub extern "wtsapi32" fn WTSVirtualChannelQuery(
 pub extern "wtsapi32" fn WTSVirtualChannelRead(
     hChannelHandle: ?HANDLE,
     TimeOut: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?[*]u8,
     BufferSize: u32,
     pBytesRead: ?*u32,
@@ -7234,7 +7234,7 @@ pub extern "wtsapi32" fn WTSVirtualChannelRead(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wtsapi32" fn WTSVirtualChannelWrite(
     hChannelHandle: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "Length" is the size in bytes
     Buffer: ?[*]u8,
     Length: u32,
     pBytesWritten: ?*u32,

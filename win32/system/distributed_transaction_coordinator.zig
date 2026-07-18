@@ -2596,7 +2596,7 @@ pub extern "xolehlp" fn DtcGetTransactionManager(
     i_riid: ?*const Guid,
     i_dwReserved1: u32,
     i_wcbReserved2: u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "i_wcbReserved2" is the size in bytes
     i_pvReserved2: ?*anyopaque,
     o_ppvObject: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
@@ -2607,7 +2607,7 @@ pub extern "xolehlp" fn DtcGetTransactionManagerC(
     i_riid: ?*const Guid,
     i_dwReserved1: u32,
     i_wcbReserved2: u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "i_wcbReserved2" is the size in bytes
     i_pvReserved2: ?*anyopaque,
     o_ppvObject: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;

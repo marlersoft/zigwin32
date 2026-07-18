@@ -3186,7 +3186,7 @@ pub extern "kernel32" fn GetCurrentPackageFullName(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetCurrentPackageId(
     bufferLength: ?*u32,
-    // TODO: what to do with BytesParamIndex 0?
+    /// parameter "bufferLength" is the size in bytes
     buffer: ?*u8,
 ) callconv(.winapi) WIN32_ERROR;
 
@@ -3194,7 +3194,7 @@ pub extern "kernel32" fn GetCurrentPackageId(
 pub extern "kernel32" fn GetCurrentPackageInfo(
     flags: u32,
     bufferLength: ?*u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "bufferLength" is the size in bytes
     buffer: ?*u8,
     count: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -3204,7 +3204,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetCurrentPackageInfo2(
     flags: u32,
     packagePathType: PackagePathType,
     bufferLength: ?*u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "bufferLength" is the size in bytes
     buffer: ?*u8,
     count: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -3234,7 +3234,7 @@ pub extern "kernelbase" fn GetIdForPackageDependencyContext(
 pub extern "kernel32" fn GetPackageApplicationIds(
     packageInfoReference: ?*_PACKAGE_INFO_REFERENCE,
     bufferLength: ?*u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "bufferLength" is the size in bytes
     buffer: ?*u8,
     count: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -3271,7 +3271,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetPackageFullNameFromToken(
 pub extern "kernel32" fn GetPackageId(
     hProcess: ?HANDLE,
     bufferLength: ?*u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "bufferLength" is the size in bytes
     buffer: ?*u8,
 ) callconv(.winapi) WIN32_ERROR;
 
@@ -3280,7 +3280,7 @@ pub extern "kernel32" fn GetPackageInfo(
     packageInfoReference: ?*_PACKAGE_INFO_REFERENCE,
     flags: u32,
     bufferLength: ?*u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "bufferLength" is the size in bytes
     buffer: ?*u8,
     count: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -3291,7 +3291,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackageInfo2(
     flags: u32,
     packagePathType: PackagePathType,
     bufferLength: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "bufferLength" is the size in bytes
     buffer: ?*u8,
     count: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -3400,7 +3400,7 @@ pub extern "kernel32" fn PackageIdFromFullName(
     packageFullName: ?[*:0]const u16,
     flags: u32,
     bufferLength: ?*u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "bufferLength" is the size in bytes
     buffer: ?*u8,
 ) callconv(.winapi) WIN32_ERROR;
 

@@ -3697,14 +3697,14 @@ pub const PCOPYFILE2_PROGRESS_ROUTINE = *const fn(
 ) callconv(.winapi) COPYFILE2_MESSAGE_ACTION;
 
 pub const PFE_EXPORT_FUNC = *const fn(
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "ulLength" is the size in bytes
     pbData: ?*u8,
     pvCallbackContext: ?*anyopaque,
     ulLength: u32,
 ) callconv(.winapi) u32;
 
 pub const PFE_IMPORT_FUNC = *const fn(
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "ulLength" is the size in bytes
     pbData: ?*u8,
     pvCallbackContext: ?*anyopaque,
     ulLength: ?*u32,
@@ -4896,7 +4896,7 @@ pub extern "kernel32" fn AreShortNamesEnabled(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn BackupRead(
     hFile: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "nNumberOfBytesToRead" is the size in bytes
     lpBuffer: ?*u8,
     nNumberOfBytesToRead: u32,
     lpNumberOfBytesRead: ?*u32,
@@ -4918,7 +4918,7 @@ pub extern "kernel32" fn BackupSeek(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn BackupWrite(
     hFile: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "nNumberOfBytesToWrite" is the size in bytes
     lpBuffer: ?*u8,
     nNumberOfBytesToWrite: u32,
     lpNumberOfBytesWritten: ?*u32,
@@ -5941,7 +5941,7 @@ pub extern "kernel32" fn GetFileInformationByHandle(
 pub extern "kernel32" fn GetFileInformationByHandleEx(
     hFile: ?HANDLE,
     FileInformationClass: FILE_INFO_BY_HANDLE_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufferSize" is the size in bytes
     lpFileInformation: ?*anyopaque,
     dwBufferSize: u32,
 ) callconv(.winapi) BOOL;
@@ -5976,7 +5976,7 @@ pub extern "version" fn GetFileVersionInfoA(
     lptstrFilename: ?[*:0]const u8,
     dwHandle: u32,
     dwLen: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwLen" is the size in bytes
     lpData: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -5986,7 +5986,7 @@ pub extern "version" fn GetFileVersionInfoExA(
     lpwstrFilename: ?[*:0]const u8,
     dwHandle: u32,
     dwLen: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwLen" is the size in bytes
     lpData: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -5996,7 +5996,7 @@ pub extern "version" fn GetFileVersionInfoExW(
     lpwstrFilename: ?[*:0]const u16,
     dwHandle: u32,
     dwLen: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwLen" is the size in bytes
     lpData: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -6031,7 +6031,7 @@ pub extern "version" fn GetFileVersionInfoW(
     lptstrFilename: ?[*:0]const u16,
     dwHandle: u32,
     dwLen: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwLen" is the size in bytes
     lpData: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -6213,7 +6213,7 @@ pub extern "kernel32" fn GetTapeParameters(
     hDevice: ?HANDLE,
     dwOperation: GET_TAPE_DRIVE_PARAMETERS_OPERATION,
     lpdwSize: ?*u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpdwSize" is the size in bytes
     lpTapeInformation: ?*anyopaque,
 ) callconv(.winapi) u32;
 
@@ -6504,7 +6504,7 @@ pub extern "kernel32" fn LZOpenFileW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn LZRead(
     hFile: i32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbRead" is the size in bytes
     lpBuffer: ?PSTR,
     cbRead: i32,
 ) callconv(.winapi) i32;
@@ -6932,7 +6932,7 @@ pub extern "advapi32" fn QueryUsersOnEncryptedFile(
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "kernel32" fn ReadDirectoryChangesExW(
     hDirectory: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "nBufferLength" is the size in bytes
     lpBuffer: ?*anyopaque,
     nBufferLength: u32,
     bWatchSubtree: BOOL,
@@ -6946,7 +6946,7 @@ pub extern "kernel32" fn ReadDirectoryChangesExW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn ReadDirectoryChangesW(
     hDirectory: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "nBufferLength" is the size in bytes
     lpBuffer: ?*anyopaque,
     nBufferLength: u32,
     bWatchSubtree: BOOL,
@@ -6966,7 +6966,7 @@ pub extern "advapi32" fn ReadEncryptedFileRaw(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn ReadFile(
     hFile: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "nNumberOfBytesToRead" is the size in bytes
     lpBuffer: ?*anyopaque,
     nNumberOfBytesToRead: u32,
     lpNumberOfBytesRead: ?*u32,
@@ -6976,7 +6976,7 @@ pub extern "kernel32" fn ReadFile(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn ReadFileEx(
     hFile: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "nNumberOfBytesToRead" is the size in bytes
     lpBuffer: ?*anyopaque,
     nNumberOfBytesToRead: u32,
     lpOverlapped: ?*OVERLAPPED,
@@ -7358,7 +7358,7 @@ pub extern "kernel32" fn SetFileCompletionNotificationModes(
 pub extern "kernel32" fn SetFileInformationByHandle(
     hFile: ?HANDLE,
     FileInformationClass: FILE_INFO_BY_HANDLE_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufferSize" is the size in bytes
     lpFileInformation: ?*anyopaque,
     dwBufferSize: u32,
 ) callconv(.winapi) BOOL;
@@ -7573,17 +7573,17 @@ pub extern "txfw32" fn TxfLogDestroyReadContext(
 pub extern "txfw32" fn TxfLogReadRecords(
     TxfLogContext: ?*anyopaque,
     BufferLength: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "BufferLength" is the size in bytes
     Buffer: ?*anyopaque,
     BytesUsed: ?*u32,
     RecordCount: ?*u32,
 ) callconv(.winapi) BOOL;
 
 pub extern "txfw32" fn TxfLogRecordGetFileName(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "RecordBufferLengthInBytes" is the size in bytes
     RecordBuffer: ?*anyopaque,
     RecordBufferLengthInBytes: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "NameBufferLengthInBytes" is the size in bytes
     NameBuffer: ?PWSTR,
     NameBufferLengthInBytes: ?*u32,
     TxfId: ?*TXF_ID,
@@ -7808,7 +7808,7 @@ pub extern "advapi32" fn WriteEncryptedFileRaw(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn WriteFile(
     hFile: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "nNumberOfBytesToWrite" is the size in bytes
     lpBuffer: ?*const anyopaque,
     nNumberOfBytesToWrite: u32,
     lpNumberOfBytesWritten: ?*u32,
@@ -7818,7 +7818,7 @@ pub extern "kernel32" fn WriteFile(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn WriteFileEx(
     hFile: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "nNumberOfBytesToWrite" is the size in bytes
     lpBuffer: ?*const anyopaque,
     nNumberOfBytesToWrite: u32,
     lpOverlapped: ?*OVERLAPPED,

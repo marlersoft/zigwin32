@@ -1985,7 +1985,7 @@ pub extern "cldapi" fn CfConnectSyncRoot(
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfConvertToPlaceholder(
     FileHandle: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "FileIdentityLength" is the size in bytes
     FileIdentity: ?*const anyopaque,
     FileIdentityLength: u32,
     ConvertFlags: CF_CONVERT_FLAGS,
@@ -2031,7 +2031,7 @@ pub extern "cldapi" fn CfGetCorrelationVector(
 pub extern "cldapi" fn CfGetPlaceholderInfo(
     FileHandle: ?HANDLE,
     InfoClass: CF_PLACEHOLDER_INFO_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "InfoBufferLength" is the size in bytes
     InfoBuffer: ?*anyopaque,
     InfoBufferLength: u32,
     ReturnedLength: ?*u32,
@@ -2043,7 +2043,7 @@ pub extern "cldapi" fn CfGetPlaceholderRangeInfo(
     InfoClass: CF_PLACEHOLDER_RANGE_INFO_CLASS,
     StartingOffset: LARGE_INTEGER,
     Length: LARGE_INTEGER,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "InfoBufferLength" is the size in bytes
     InfoBuffer: ?*anyopaque,
     InfoBufferLength: u32,
     ReturnedLength: ?*u32,
@@ -2207,7 +2207,7 @@ pub extern "cldapi" fn CfUnregisterSyncRoot(
 pub extern "cldapi" fn CfUpdatePlaceholder(
     FileHandle: ?HANDLE,
     FsMetadata: ?*const CF_FS_METADATA,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "FileIdentityLength" is the size in bytes
     FileIdentity: ?*const anyopaque,
     FileIdentityLength: u32,
     DehydrateRangeArray: ?[*]const CF_FILE_RANGE,

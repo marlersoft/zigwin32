@@ -155,7 +155,7 @@ pub extern "ondemandconnroutehelper" fn GetInterfaceContextTableForHostName(
     HostName: ?[*:0]const u16,
     ProxyName: ?[*:0]const u16,
     Flags: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "ConnectionProfileFilterRawDataSize" is the size in bytes
     ConnectionProfileFilterRawData: ?*u8,
     ConnectionProfileFilterRawDataSize: u32,
     InterfaceContextTable: ?*?*NET_INTERFACE_CONTEXT_TABLE,

@@ -3057,7 +3057,7 @@ pub const FNCERTSRVSERVERCONTROLW = *const fn(
 
 pub const FNIMPORTPFXTOPROVIDER = *const fn(
     hWndParent: ?HWND,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbPFX" is the size in bytes
     pbPFX: ?*const u8,
     cbPFX: u32,
     ImportFlags: ImportPFXFlags,

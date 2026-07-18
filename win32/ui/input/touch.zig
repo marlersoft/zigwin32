@@ -877,7 +877,7 @@ pub extern "user32" fn GetGestureConfig(
 pub extern "user32" fn GetGestureExtraArgs(
     hGestureInfo: ?HGESTUREINFO,
     cbExtraArgs: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbExtraArgs" is the size in bytes
     pExtraArgs: ?*u8,
 ) callconv(.winapi) BOOL;
 

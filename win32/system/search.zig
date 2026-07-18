@@ -6479,7 +6479,7 @@ pub const IDataConvert = extern union {
             wDstType: u16,
             cbSrcLength: usize,
             pcbDstLength: ?*usize,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "cbSrcLength" is the size in bytes
             pSrc: ?*anyopaque,
             pDst: ?*anyopaque,
             cbDstMaxLength: usize,
@@ -6500,7 +6500,7 @@ pub const IDataConvert = extern union {
             wDstType: u16,
             pcbSrcLength: ?*usize,
             pcbDstLength: ?*usize,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "pcbSrcLength" is the size in bytes
             pSrc: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
     };
@@ -8492,7 +8492,7 @@ pub const IRowsetBookmark = extern union {
             self: *const IRowsetBookmark,
             hChapter: usize,
             cbBookmark: usize,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cbBookmark" is the size in bytes
             pBookmark: ?*const u8,
         ) callconv(.winapi) HRESULT,
     };
@@ -13982,7 +13982,7 @@ pub extern "odbc32" fn SQLColAttribute(
     StatementHandle: ?*anyopaque,
     ColumnNumber: u16,
     FieldIdentifier: u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "BufferLength" is the size in bytes
     CharacterAttribute: ?*anyopaque,
     BufferLength: i16,
     StringLength: ?*i16,
@@ -13996,7 +13996,7 @@ pub extern "odbc32" fn SQLColAttribute(
     StatementHandle: ?*anyopaque,
     ColumnNumber: u16,
     FieldIdentifier: u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "BufferLength" is the size in bytes
     CharacterAttribute: ?*anyopaque,
     BufferLength: i16,
     StringLength: ?*i16,
@@ -14013,7 +14013,7 @@ pub extern "odbc32" fn SQLColAttributeA(
     hstmt: ?*anyopaque,
     iCol: i16,
     iField: i16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbCharAttrMax" is the size in bytes
     pCharAttr: ?*anyopaque,
     cbCharAttrMax: i16,
     pcbCharAttr: ?*i16,
@@ -14027,7 +14027,7 @@ pub extern "odbc32" fn SQLColAttributeA(
     hstmt: ?*anyopaque,
     iCol: i16,
     iField: i16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbCharAttrMax" is the size in bytes
     pCharAttr: ?*anyopaque,
     cbCharAttrMax: i16,
     pcbCharAttr: ?*i16,
@@ -14073,7 +14073,7 @@ pub extern "odbc32" fn SQLColAttributesA(
     hstmt: ?*anyopaque,
     icol: u16,
     fDescType: u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbDescMax" is the size in bytes
     rgbDesc: ?*anyopaque,
     cbDescMax: i16,
     pcbDesc: ?*i16,
@@ -14087,7 +14087,7 @@ pub extern "odbc32" fn SQLColAttributesA(
     hstmt: ?*anyopaque,
     icol: u16,
     fDescType: u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbDescMax" is the size in bytes
     rgbDesc: ?*anyopaque,
     cbDescMax: i16,
     pcbDesc: ?*i16,
@@ -14104,7 +14104,7 @@ pub extern "odbc32" fn SQLColAttributesW(
     hstmt: ?*anyopaque,
     icol: u16,
     fDescType: u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbDescMax" is the size in bytes
     rgbDesc: ?*anyopaque,
     cbDescMax: i16,
     pcbDesc: ?*i16,
@@ -14118,7 +14118,7 @@ pub extern "odbc32" fn SQLColAttributesW(
     hstmt: ?*anyopaque,
     icol: u16,
     fDescType: u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbDescMax" is the size in bytes
     rgbDesc: ?*anyopaque,
     cbDescMax: i16,
     pcbDesc: ?*i16,
@@ -14135,7 +14135,7 @@ pub extern "odbc32" fn SQLColAttributeW(
     hstmt: ?*anyopaque,
     iCol: u16,
     iField: u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbDescMax" is the size in bytes
     pCharAttr: ?*anyopaque,
     cbDescMax: i16,
     pcbCharAttr: ?*i16,
@@ -14149,7 +14149,7 @@ pub extern "odbc32" fn SQLColAttributeW(
     hstmt: ?*anyopaque,
     iCol: u16,
     iField: u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbDescMax" is the size in bytes
     pCharAttr: ?*anyopaque,
     cbDescMax: i16,
     pcbCharAttr: ?*i16,
@@ -14986,7 +14986,7 @@ pub extern "odbc32" fn SQLGetFunctions(
 pub extern "odbc32" fn SQLGetInfo(
     ConnectionHandle: ?*anyopaque,
     InfoType: u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferLength" is the size in bytes
     InfoValue: ?*anyopaque,
     BufferLength: i16,
     StringLengthPtr: ?*i16,
@@ -14995,7 +14995,7 @@ pub extern "odbc32" fn SQLGetInfo(
 pub extern "odbc32" fn SQLGetInfoA(
     hdbc: ?*anyopaque,
     fInfoType: u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbInfoValueMax" is the size in bytes
     rgbInfoValue: ?*anyopaque,
     cbInfoValueMax: i16,
     pcbInfoValue: ?*i16,
@@ -15004,7 +15004,7 @@ pub extern "odbc32" fn SQLGetInfoA(
 pub extern "odbc32" fn SQLGetInfoW(
     hdbc: ?*anyopaque,
     fInfoType: u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbInfoValueMax" is the size in bytes
     rgbInfoValue: ?*anyopaque,
     cbInfoValueMax: i16,
     pcbInfoValue: ?*i16,
@@ -15306,7 +15306,7 @@ pub extern "odbc32" fn SQLRowCount(
 pub extern "odbc32" fn SQLSetConnectAttr(
     ConnectionHandle: ?*anyopaque,
     Attribute: i32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "StringLength" is the size in bytes
     Value: ?*anyopaque,
     StringLength: i32,
 ) callconv(.winapi) i16;
@@ -15314,7 +15314,7 @@ pub extern "odbc32" fn SQLSetConnectAttr(
 pub extern "odbc32" fn SQLSetConnectAttrA(
     hdbc: ?*anyopaque,
     fAttribute: i32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbValue" is the size in bytes
     rgbValue: ?*anyopaque,
     cbValue: i32,
 ) callconv(.winapi) i16;
@@ -15322,7 +15322,7 @@ pub extern "odbc32" fn SQLSetConnectAttrA(
 pub extern "odbc32" fn SQLSetConnectAttrW(
     hdbc: ?*anyopaque,
     fAttribute: i32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbValue" is the size in bytes
     rgbValue: ?*anyopaque,
     cbValue: i32,
 ) callconv(.winapi) i16;
@@ -15435,7 +15435,7 @@ pub extern "odbc32" fn SQLSetDescRec(
     Length: i32,
     Precision: i16,
     Scale: i16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "Length" is the size in bytes
     Data: ?*anyopaque,
     StringLength: ?*i32,
     Indicator: ?*i32,
@@ -15452,7 +15452,7 @@ pub extern "odbc32" fn SQLSetDescRec(
     Length: i64,
     Precision: i16,
     Scale: i16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "Length" is the size in bytes
     Data: ?*anyopaque,
     StringLength: ?*i64,
     Indicator: ?*i64,
@@ -15464,7 +15464,7 @@ pub extern "odbc32" fn SQLSetDescRec(
 pub extern "odbc32" fn SQLSetEnvAttr(
     EnvironmentHandle: ?*anyopaque,
     Attribute: i32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "StringLength" is the size in bytes
     Value: ?*anyopaque,
     StringLength: i32,
 ) callconv(.winapi) i16;

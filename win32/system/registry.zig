@@ -1276,7 +1276,7 @@ pub extern "api-ms-win-core-state-helpers-l1-1-0" fn GetRegistryValueWithFallbac
     pwszValue: ?[*:0]const u16,
     dwFlags: u32,
     pdwType: ?*u32,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "cbDataIn" is the size in bytes
     pvData: ?*anyopaque,
     cbDataIn: u32,
     pcbDataOut: ?*u32,
@@ -1551,7 +1551,7 @@ pub extern "advapi32" fn RegEnumValueA(
     lpcchValueName: ?*u32,
     lpReserved: ?*u32,
     lpType: ?*u32,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "lpcbData" is the size in bytes
     lpData: ?*u8,
     lpcbData: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1564,7 +1564,7 @@ pub extern "advapi32" fn RegEnumValueW(
     lpcchValueName: ?*u32,
     lpReserved: ?*u32,
     lpType: ?*u32,
-    // TODO: what to do with BytesParamIndex 7?
+    /// parameter "lpcbData" is the size in bytes
     lpData: ?*u8,
     lpcbData: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1578,7 +1578,7 @@ pub extern "advapi32" fn RegFlushKey(
 pub extern "advapi32" fn RegGetKeySecurity(
     hKey: ?HKEY,
     SecurityInformation: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpcbSecurityDescriptor" is the size in bytes
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     lpcbSecurityDescriptor: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1590,7 +1590,7 @@ pub extern "advapi32" fn RegGetValueA(
     lpValue: ?[*:0]const u8,
     dwFlags: REG_ROUTINE_FLAGS,
     pdwType: ?*REG_VALUE_TYPE,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1602,7 +1602,7 @@ pub extern "advapi32" fn RegGetValueW(
     lpValue: ?[*:0]const u16,
     dwFlags: REG_ROUTINE_FLAGS,
     pdwType: ?*REG_VALUE_TYPE,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "pcbData" is the size in bytes
     pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1643,7 +1643,7 @@ pub extern "advapi32" fn RegLoadKeyW(
 pub extern "advapi32" fn RegLoadMUIStringA(
     hKey: ?HKEY,
     pszValue: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbOutBuf" is the size in bytes
     pszOutBuf: ?PSTR,
     cbOutBuf: u32,
     pcbData: ?*u32,
@@ -1655,7 +1655,7 @@ pub extern "advapi32" fn RegLoadMUIStringA(
 pub extern "advapi32" fn RegLoadMUIStringW(
     hKey: ?HKEY,
     pszValue: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbOutBuf" is the size in bytes
     pszOutBuf: ?PWSTR,
     cbOutBuf: u32,
     pcbData: ?*u32,
@@ -1783,7 +1783,7 @@ pub extern "advapi32" fn RegQueryMultipleValuesA(
     hKey: ?HKEY,
     val_list: [*]VALENTA,
     num_vals: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "ldwTotsize" is the size in bytes
     lpValueBuf: ?PSTR,
     ldwTotsize: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1793,7 +1793,7 @@ pub extern "advapi32" fn RegQueryMultipleValuesW(
     hKey: ?HKEY,
     val_list: [*]VALENTW,
     num_vals: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "ldwTotsize" is the size in bytes
     lpValueBuf: ?PWSTR,
     ldwTotsize: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1808,7 +1808,7 @@ pub extern "advapi32" fn RegQueryReflectionKey(
 pub extern "advapi32" fn RegQueryValueA(
     hKey: ?HKEY,
     lpSubKey: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpcbData" is the size in bytes
     lpData: ?PSTR,
     lpcbData: ?*i32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1819,7 +1819,7 @@ pub extern "advapi32" fn RegQueryValueExA(
     lpValueName: ?[*:0]const u8,
     lpReserved: ?*u32,
     lpType: ?*REG_VALUE_TYPE,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "lpcbData" is the size in bytes
     lpData: ?*u8,
     lpcbData: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1830,7 +1830,7 @@ pub extern "advapi32" fn RegQueryValueExW(
     lpValueName: ?[*:0]const u16,
     lpReserved: ?*u32,
     lpType: ?*REG_VALUE_TYPE,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "lpcbData" is the size in bytes
     lpData: ?*u8,
     lpcbData: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1839,7 +1839,7 @@ pub extern "advapi32" fn RegQueryValueExW(
 pub extern "advapi32" fn RegQueryValueW(
     hKey: ?HKEY,
     lpSubKey: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpcbData" is the size in bytes
     lpData: ?PWSTR,
     lpcbData: ?*i32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1923,7 +1923,7 @@ pub extern "advapi32" fn RegSetKeyValueA(
     lpSubKey: ?[*:0]const u8,
     lpValueName: ?[*:0]const u8,
     dwType: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbData" is the size in bytes
     lpData: ?*const anyopaque,
     cbData: u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1934,7 +1934,7 @@ pub extern "advapi32" fn RegSetKeyValueW(
     lpSubKey: ?[*:0]const u16,
     lpValueName: ?[*:0]const u16,
     dwType: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbData" is the size in bytes
     lpData: ?*const anyopaque,
     cbData: u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1944,7 +1944,7 @@ pub extern "advapi32" fn RegSetValueA(
     hKey: ?HKEY,
     lpSubKey: ?[*:0]const u8,
     dwType: REG_VALUE_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbData" is the size in bytes
     lpData: ?[*:0]const u8,
     cbData: u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1955,7 +1955,7 @@ pub extern "advapi32" fn RegSetValueExA(
     lpValueName: ?[*:0]const u8,
     Reserved: u32,
     dwType: REG_VALUE_TYPE,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbData" is the size in bytes
     lpData: ?*const u8,
     cbData: u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1966,7 +1966,7 @@ pub extern "advapi32" fn RegSetValueExW(
     lpValueName: ?[*:0]const u16,
     Reserved: u32,
     dwType: REG_VALUE_TYPE,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbData" is the size in bytes
     lpData: ?*const u8,
     cbData: u32,
 ) callconv(.winapi) WIN32_ERROR;
@@ -1976,7 +1976,7 @@ pub extern "advapi32" fn RegSetValueW(
     hKey: ?HKEY,
     lpSubKey: ?[*:0]const u16,
     dwType: REG_VALUE_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbData" is the size in bytes
     lpData: ?[*:0]const u16,
     cbData: u32,
 ) callconv(.winapi) WIN32_ERROR;

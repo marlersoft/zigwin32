@@ -5077,7 +5077,7 @@ pub extern "gdi32" fn AbortPath(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn AddFontMemResourceEx(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cjSize" is the size in bytes
     pFileView: ?*anyopaque,
     cjSize: u32,
     pvResrved: ?*anyopaque,
@@ -5671,7 +5671,7 @@ pub extern "gdi32" fn DrawEscape(
     hdc: ?HDC,
     iEscape: i32,
     cjIn: i32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cjIn" is the size in bytes
     lpIn: ?[*:0]const u8,
 ) callconv(.winapi) i32;
 
@@ -5944,7 +5944,7 @@ pub extern "gdi32" fn ExtCreatePen(
 pub extern "gdi32" fn ExtCreateRegion(
     lpx: ?*const XFORM,
     nCount: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "nCount" is the size in bytes
     lpData: ?*const RGNDATA,
 ) callconv(.winapi) ?HRGN;
 
@@ -6062,7 +6062,7 @@ pub extern "gdi32" fn GdiAlphaBlend(
 pub extern "gdi32" fn GdiComment(
     hdc: ?HDC,
     nSize: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "nSize" is the size in bytes
     lpData: ?*const u8,
 ) callconv(.winapi) BOOL;
 
@@ -6119,7 +6119,7 @@ pub extern "gdi32" fn GetAspectRatioFilterEx(
 pub extern "gdi32" fn GetBitmapBits(
     hbit: ?HBITMAP,
     cb: i32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cb" is the size in bytes
     lpvBits: ?*anyopaque,
 ) callconv(.winapi) i32;
 
@@ -6362,7 +6362,7 @@ pub extern "gdi32" fn GetEnhMetaFileA(
 pub extern "gdi32" fn GetEnhMetaFileBits(
     hEMF: ?HENHMETAFILE,
     nSize: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "nSize" is the size in bytes
     lpData: ?*u8,
 ) callconv(.winapi) u32;
 
@@ -6384,7 +6384,7 @@ pub extern "gdi32" fn GetEnhMetaFileDescriptionW(
 pub extern "gdi32" fn GetEnhMetaFileHeader(
     hemf: ?HENHMETAFILE,
     nSize: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "nSize" is the size in bytes
     lpEnhMetaHeader: ?*ENHMETAHEADER,
 ) callconv(.winapi) u32;
 
@@ -6405,7 +6405,7 @@ pub extern "gdi32" fn GetFontData(
     hdc: ?HDC,
     dwTable: u32,
     dwOffset: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cjBuffer" is the size in bytes
     pvBuffer: ?*anyopaque,
     cjBuffer: u32,
 ) callconv(.winapi) u32;
@@ -6446,7 +6446,7 @@ pub extern "gdi32" fn GetGlyphOutlineA(
     fuFormat: GET_GLYPH_OUTLINE_FORMAT,
     lpgm: ?*GLYPHMETRICS,
     cjBuffer: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cjBuffer" is the size in bytes
     pvBuffer: ?*anyopaque,
     lpmat2: ?*const MAT2,
 ) callconv(.winapi) u32;
@@ -6458,7 +6458,7 @@ pub extern "gdi32" fn GetGlyphOutlineW(
     fuFormat: GET_GLYPH_OUTLINE_FORMAT,
     lpgm: ?*GLYPHMETRICS,
     cjBuffer: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cjBuffer" is the size in bytes
     pvBuffer: ?*anyopaque,
     lpmat2: ?*const MAT2,
 ) callconv(.winapi) u32;
@@ -6500,7 +6500,7 @@ pub extern "gdi32" fn GetMetaFileA(
 pub extern "gdi32" fn GetMetaFileBitsEx(
     hMF: ?HMETAFILE,
     cbBuffer: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbBuffer" is the size in bytes
     lpData: ?*anyopaque,
 ) callconv(.winapi) u32;
 
@@ -6547,7 +6547,7 @@ pub extern "gdi32" fn GetNearestPaletteIndex(
 pub extern "gdi32" fn GetObjectA(
     h: ?HGDIOBJ,
     c: i32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "c" is the size in bytes
     pv: ?*anyopaque,
 ) callconv(.winapi) i32;
 
@@ -6560,7 +6560,7 @@ pub extern "gdi32" fn GetObjectType(
 pub extern "gdi32" fn GetObjectW(
     h: ?HGDIOBJ,
     c: i32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "c" is the size in bytes
     pv: ?*anyopaque,
 ) callconv(.winapi) i32;
 
@@ -6568,7 +6568,7 @@ pub extern "gdi32" fn GetObjectW(
 pub extern "gdi32" fn GetOutlineTextMetricsA(
     hdc: ?HDC,
     cjCopy: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cjCopy" is the size in bytes
     potm: ?*OUTLINETEXTMETRICA,
 ) callconv(.winapi) u32;
 
@@ -6576,7 +6576,7 @@ pub extern "gdi32" fn GetOutlineTextMetricsA(
 pub extern "gdi32" fn GetOutlineTextMetricsW(
     hdc: ?HDC,
     cjCopy: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cjCopy" is the size in bytes
     potm: ?*OUTLINETEXTMETRICW,
 ) callconv(.winapi) u32;
 
@@ -6617,7 +6617,7 @@ pub extern "gdi32" fn GetRandomRgn(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn GetRasterizerCaps(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cjBytes" is the size in bytes
     lpraststat: ?*RASTERIZER_STATUS,
     cjBytes: u32,
 ) callconv(.winapi) BOOL;
@@ -6626,7 +6626,7 @@ pub extern "gdi32" fn GetRasterizerCaps(
 pub extern "gdi32" fn GetRegionData(
     hrgn: ?HRGN,
     nCount: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "nCount" is the size in bytes
     lpRgnData: ?*RGNDATA,
 ) callconv(.winapi) u32;
 
@@ -6865,7 +6865,7 @@ pub extern "user32" fn GetWindowRgnBox(
 pub extern "gdi32" fn GetWinMetaFileBits(
     hemf: ?HENHMETAFILE,
     cbData16: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbData16" is the size in bytes
     pData16: ?*u8,
     iMapMode: i32,
     hdcRef: ?HDC,
@@ -7463,7 +7463,7 @@ pub extern "gdi32" fn SetArcDirection(
 pub extern "gdi32" fn SetBitmapBits(
     hbm: ?HBITMAP,
     cb: u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cb" is the size in bytes
     pvBits: ?*const anyopaque,
 ) callconv(.winapi) i32;
 
@@ -7558,7 +7558,7 @@ pub extern "gdi32" fn SetDIBitsToDevice(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn SetEnhMetaFileBits(
     nSize: u32,
-    // TODO: what to do with BytesParamIndex 0?
+    /// parameter "nSize" is the size in bytes
     pb: ?*const u8,
 ) callconv(.winapi) ?HENHMETAFILE;
 
@@ -7589,7 +7589,7 @@ pub extern "gdi32" fn SetMapperFlags(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn SetMetaFileBitsEx(
     cbBuffer: u32,
-    // TODO: what to do with BytesParamIndex 0?
+    /// parameter "cbBuffer" is the size in bytes
     lpData: ?*const u8,
 ) callconv(.winapi) ?HMETAFILE;
 

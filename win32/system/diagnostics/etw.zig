@@ -2236,10 +2236,10 @@ pub extern "advapi32" fn EnumerateTraceGuids(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn EnumerateTraceGuidsEx(
     TraceQueryInfoClass: TRACE_QUERY_INFO_CLASS,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "InBufferSize" is the size in bytes
     InBuffer: ?*anyopaque,
     InBufferSize: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "OutBufferSize" is the size in bytes
     OutBuffer: ?*anyopaque,
     OutBufferSize: u32,
     ReturnLength: ?*u32,
@@ -2257,7 +2257,7 @@ pub extern "advapi32" fn EventAccessControl(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn EventAccessQuery(
     Guid: ?*Guid,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?PSECURITY_DESCRIPTOR,
     BufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -2298,7 +2298,7 @@ pub extern "advapi32" fn EventRegister(
 pub extern "advapi32" fn EventSetInformation(
     RegHandle: u64,
     InformationClass: EVENT_INFO_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "InformationLength" is the size in bytes
     EventInformation: ?*anyopaque,
     InformationLength: u32,
 ) callconv(.winapi) u32;
@@ -2531,7 +2531,7 @@ pub extern "tdh" fn TdhDeletePayloadFilter(
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "tdh" fn TdhEnumerateManifestProviderEvents(
     ProviderGuid: ?*Guid,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*PROVIDER_EVENT_INFO,
     BufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -2540,7 +2540,7 @@ pub extern "tdh" fn TdhEnumerateManifestProviderEvents(
 pub extern "tdh" fn TdhEnumerateProviderFieldInformation(
     pGuid: ?*Guid,
     EventFieldType: EVENT_FIELD_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pBufferSize" is the size in bytes
     pBuffer: ?*PROVIDER_FIELD_INFOARRAY,
     pBufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -2551,21 +2551,21 @@ pub extern "tdh" fn TdhEnumerateProviderFilters(
     TdhContextCount: u32,
     TdhContext: ?[*]TDH_CONTEXT,
     FilterCount: ?*u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*?*PROVIDER_FILTER_INFO,
     BufferSize: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tdh" fn TdhEnumerateProviders(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "pBufferSize" is the size in bytes
     pBuffer: ?*PROVIDER_ENUMERATION_INFO,
     pBufferSize: ?*u32,
 ) callconv(.winapi) u32;
 
 pub extern "tdh" fn TdhEnumerateProvidersForDecodingSource(
     filter: DECODING_SOURCE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "bufferSize" is the size in bytes
     buffer: ?*PROVIDER_ENUMERATION_INFO,
     bufferSize: u32,
     bufferRequired: ?*u32,
@@ -2580,10 +2580,10 @@ pub extern "tdh" fn TdhFormatProperty(
     PropertyOutType: u16,
     PropertyLength: u16,
     UserDataLength: u16,
-    // TODO: what to do with BytesParamIndex 6?
+    /// parameter "UserDataLength" is the size in bytes
     UserData: ?*u8,
     BufferSize: ?*u32,
-    // TODO: what to do with BytesParamIndex 8?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?[*]u16,
     UserDataConsumed: ?*u16,
 ) callconv(.winapi) u32;
@@ -2599,7 +2599,7 @@ pub extern "tdh" fn TdhGetEventInformation(
     Event: ?*EVENT_RECORD,
     TdhContextCount: u32,
     TdhContext: ?[*]TDH_CONTEXT,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*TRACE_EVENT_INFO,
     BufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -2608,7 +2608,7 @@ pub extern "tdh" fn TdhGetEventInformation(
 pub extern "tdh" fn TdhGetEventMapInformation(
     pEvent: ?*EVENT_RECORD,
     pMapName: ?PWSTR,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pBufferSize" is the size in bytes
     pBuffer: ?*EVENT_MAP_INFO,
     pBufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -2617,7 +2617,7 @@ pub extern "tdh" fn TdhGetEventMapInformation(
 pub extern "tdh" fn TdhGetManifestEventInformation(
     ProviderGuid: ?*Guid,
     EventDescriptor: ?*EVENT_DESCRIPTOR,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*TRACE_EVENT_INFO,
     BufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -2630,7 +2630,7 @@ pub extern "tdh" fn TdhGetProperty(
     PropertyDataCount: u32,
     pPropertyData: [*]PROPERTY_DATA_DESCRIPTOR,
     BufferSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "BufferSize" is the size in bytes
     pBuffer: ?*u8,
 ) callconv(.winapi) u32;
 
@@ -2649,7 +2649,7 @@ pub extern "tdh" fn TdhGetWppMessage(
     Handle: TDH_HANDLE,
     EventRecord: ?*EVENT_RECORD,
     BufferSize: ?*u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
 ) callconv(.winapi) u32;
 
@@ -2659,7 +2659,7 @@ pub extern "tdh" fn TdhGetWppProperty(
     EventRecord: ?*EVENT_RECORD,
     PropertyName: ?PWSTR,
     BufferSize: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
 ) callconv(.winapi) u32;
 
@@ -2674,7 +2674,7 @@ pub extern "tdh" fn TdhLoadManifestFromBinary(
 ) callconv(.winapi) u32;
 
 pub extern "tdh" fn TdhLoadManifestFromMemory(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbData" is the size in bytes
     pData: ?*const anyopaque,
     cbData: u32,
 ) callconv(.winapi) u32;
@@ -2689,7 +2689,7 @@ pub extern "tdh" fn TdhQueryProviderFieldInformation(
     pGuid: ?*Guid,
     EventFieldValue: u64,
     EventFieldType: EVENT_FIELD_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "pBufferSize" is the size in bytes
     pBuffer: ?*PROVIDER_FIELD_INFOARRAY,
     pBufferSize: ?*u32,
 ) callconv(.winapi) u32;
@@ -2706,7 +2706,7 @@ pub extern "tdh" fn TdhUnloadManifest(
 ) callconv(.winapi) u32;
 
 pub extern "tdh" fn TdhUnloadManifestFromMemory(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbData" is the size in bytes
     pData: ?*const anyopaque,
     cbData: u32,
 ) callconv(.winapi) u32;
@@ -2746,7 +2746,7 @@ pub extern "advapi32" fn TraceMessageVa(
 pub extern "advapi32" fn TraceQueryInformation(
     SessionHandle: CONTROLTRACE_HANDLE,
     InformationClass: TRACE_QUERY_INFO_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "InformationLength" is the size in bytes
     TraceInformation: ?*anyopaque,
     InformationLength: u32,
     ReturnLength: ?*u32,
@@ -2756,7 +2756,7 @@ pub extern "advapi32" fn TraceQueryInformation(
 pub extern "advapi32" fn TraceSetInformation(
     SessionHandle: CONTROLTRACE_HANDLE,
     InformationClass: TRACE_QUERY_INFO_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "InformationLength" is the size in bytes
     TraceInformation: ?*anyopaque,
     InformationLength: u32,
 ) callconv(.winapi) WIN32_ERROR;

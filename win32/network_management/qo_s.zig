@@ -1305,7 +1305,7 @@ pub const TCI_NOTIFY_HANDLER = *const fn(
     Event: u32,
     SubCode: ?HANDLE,
     BufSize: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "BufSize" is the size in bytes
     Buffer: ?*anyopaque,
 ) callconv(.winapi) void;
 
@@ -1364,7 +1364,7 @@ pub extern "qwave" fn QOSCreateHandle(
 pub extern "qwave" fn QOSEnumerateFlows(
     QOSHandle: ?HANDLE,
     Size: ?*u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "Size" is the size in bytes
     Buffer: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -1374,7 +1374,7 @@ pub extern "qwave" fn QOSNotifyFlow(
     FlowId: u32,
     Operation: QOS_NOTIFY_FLOW,
     Size: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "Size" is the size in bytes
     Buffer: ?*anyopaque,
     Flags: u32,
     Overlapped: ?*OVERLAPPED,
@@ -1386,7 +1386,7 @@ pub extern "qwave" fn QOSQueryFlow(
     FlowId: u32,
     Operation: QOS_QUERY_FLOW,
     Size: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "Size" is the size in bytes
     Buffer: ?*anyopaque,
     Flags: u32,
     Overlapped: ?*OVERLAPPED,
@@ -1402,7 +1402,7 @@ pub extern "qwave" fn QOSSetFlow(
     FlowId: u32,
     Operation: QOS_SET_FLOW,
     Size: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "Size" is the size in bytes
     Buffer: ?*anyopaque,
     Flags: u32,
     Overlapped: ?*OVERLAPPED,
@@ -1515,7 +1515,7 @@ pub extern "traffic" fn TcQueryFlowA(
     pFlowName: ?PSTR,
     pGuidParam: ?*Guid,
     pBufferSize: ?*u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "pBufferSize" is the size in bytes
     Buffer: ?*anyopaque,
 ) callconv(.winapi) u32;
 
@@ -1524,7 +1524,7 @@ pub extern "traffic" fn TcQueryFlowW(
     pFlowName: ?PWSTR,
     pGuidParam: ?*Guid,
     pBufferSize: ?*u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "pBufferSize" is the size in bytes
     Buffer: ?*anyopaque,
 ) callconv(.winapi) u32;
 
@@ -1534,7 +1534,7 @@ pub extern "traffic" fn TcQueryInterface(
     pGuidParam: ?*Guid,
     NotifyChange: BOOLEAN,
     pBufferSize: ?*u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "pBufferSize" is the size in bytes
     Buffer: ?*anyopaque,
 ) callconv(.winapi) u32;
 
@@ -1551,7 +1551,7 @@ pub extern "traffic" fn TcSetFlowA(
     pFlowName: ?PSTR,
     pGuidParam: ?*Guid,
     BufferSize: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*anyopaque,
 ) callconv(.winapi) u32;
 
@@ -1560,7 +1560,7 @@ pub extern "traffic" fn TcSetFlowW(
     pFlowName: ?PWSTR,
     pGuidParam: ?*Guid,
     BufferSize: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*anyopaque,
 ) callconv(.winapi) u32;
 
@@ -1569,7 +1569,7 @@ pub extern "traffic" fn TcSetInterface(
     IfcHandle: ?HANDLE,
     pGuidParam: ?*Guid,
     BufferSize: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*anyopaque,
 ) callconv(.winapi) u32;
 

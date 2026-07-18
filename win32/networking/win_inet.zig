@@ -2260,10 +2260,10 @@ pub const WPAD_CACHE_DELETE_ALL = WPAD_CACHE_DELETE.ALL;
 pub extern "wininet" fn AppCacheCheckManifest(
     pwszMasterUrl: ?[*:0]const u16,
     pwszManifestUrl: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwManifestDataSize" is the size in bytes
     pbManifestData: ?*const u8,
     dwManifestDataSize: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "dwManifestResponseHeadersSize" is the size in bytes
     pbManifestResponseHeaders: ?*const u8,
     dwManifestResponseHeadersSize: u32,
     peState: ?*APP_CACHE_STATE,
@@ -2278,7 +2278,7 @@ pub extern "wininet" fn AppCacheCreateAndCommitFile(
     hAppCache: ?*anyopaque,
     pwszSourceFilePath: ?[*:0]const u16,
     pwszUrl: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "dwResponseHeadersSize" is the size in bytes
     pbResponseHeaders: ?*const u8,
     dwResponseHeadersSize: u32,
 ) callconv(.winapi) u32;
@@ -2298,7 +2298,7 @@ pub extern "wininet" fn AppCacheDuplicateHandle(
 
 pub extern "wininet" fn AppCacheFinalize(
     hAppCache: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwManifestDataSize" is the size in bytes
     pbManifestData: ?*const u8,
     dwManifestDataSize: u32,
     peState: ?*APP_CACHE_FINALIZE_STATE,
@@ -2527,7 +2527,7 @@ pub extern "wininet" fn FindCloseUrlCache(
 
 pub extern "wininet" fn FindFirstUrlCacheContainerA(
     pdwModified: ?*u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbContainerInfo" is the size in bytes
     lpContainerInfo: ?*INTERNET_CACHE_CONTAINER_INFOA,
     lpcbContainerInfo: ?*u32,
     dwOptions: u32,
@@ -2535,7 +2535,7 @@ pub extern "wininet" fn FindFirstUrlCacheContainerA(
 
 pub extern "wininet" fn FindFirstUrlCacheContainerW(
     pdwModified: ?*u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbContainerInfo" is the size in bytes
     lpContainerInfo: ?*INTERNET_CACHE_CONTAINER_INFOW,
     lpcbContainerInfo: ?*u32,
     dwOptions: u32,
@@ -2544,7 +2544,7 @@ pub extern "wininet" fn FindFirstUrlCacheContainerW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn FindFirstUrlCacheEntryA(
     lpszUrlSearchPattern: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbCacheEntryInfo" is the size in bytes
     lpFirstCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOA,
     lpcbCacheEntryInfo: ?*u32,
 ) callconv(.winapi) ?HANDLE;
@@ -2555,7 +2555,7 @@ pub extern "wininet" fn FindFirstUrlCacheEntryExA(
     dwFlags: u32,
     dwFilter: u32,
     GroupId: i64,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "lpcbCacheEntryInfo" is the size in bytes
     lpFirstCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOA,
     lpcbCacheEntryInfo: ?*u32,
     lpGroupAttributes: ?*anyopaque,
@@ -2569,7 +2569,7 @@ pub extern "wininet" fn FindFirstUrlCacheEntryExW(
     dwFlags: u32,
     dwFilter: u32,
     GroupId: i64,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "lpcbCacheEntryInfo" is the size in bytes
     lpFirstCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOW,
     lpcbCacheEntryInfo: ?*u32,
     lpGroupAttributes: ?*anyopaque,
@@ -2580,7 +2580,7 @@ pub extern "wininet" fn FindFirstUrlCacheEntryExW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn FindFirstUrlCacheEntryW(
     lpszUrlSearchPattern: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbCacheEntryInfo" is the size in bytes
     lpFirstCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOW,
     lpcbCacheEntryInfo: ?*u32,
 ) callconv(.winapi) ?HANDLE;
@@ -2597,14 +2597,14 @@ pub extern "wininet" fn FindFirstUrlCacheGroup(
 
 pub extern "wininet" fn FindNextUrlCacheContainerA(
     hEnumHandle: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbContainerInfo" is the size in bytes
     lpContainerInfo: ?*INTERNET_CACHE_CONTAINER_INFOA,
     lpcbContainerInfo: ?*u32,
 ) callconv(.winapi) BOOL;
 
 pub extern "wininet" fn FindNextUrlCacheContainerW(
     hEnumHandle: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbContainerInfo" is the size in bytes
     lpContainerInfo: ?*INTERNET_CACHE_CONTAINER_INFOW,
     lpcbContainerInfo: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -2612,7 +2612,7 @@ pub extern "wininet" fn FindNextUrlCacheContainerW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn FindNextUrlCacheEntryA(
     hEnumHandle: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbCacheEntryInfo" is the size in bytes
     lpNextCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOA,
     lpcbCacheEntryInfo: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -2620,7 +2620,7 @@ pub extern "wininet" fn FindNextUrlCacheEntryA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn FindNextUrlCacheEntryExA(
     hEnumHandle: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbCacheEntryInfo" is the size in bytes
     lpNextCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOA,
     lpcbCacheEntryInfo: ?*u32,
     lpGroupAttributes: ?*anyopaque,
@@ -2631,7 +2631,7 @@ pub extern "wininet" fn FindNextUrlCacheEntryExA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn FindNextUrlCacheEntryExW(
     hEnumHandle: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbCacheEntryInfo" is the size in bytes
     lpNextCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOW,
     lpcbCacheEntryInfo: ?*u32,
     lpGroupAttributes: ?*anyopaque,
@@ -2642,7 +2642,7 @@ pub extern "wininet" fn FindNextUrlCacheEntryExW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn FindNextUrlCacheEntryW(
     hEnumHandle: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbCacheEntryInfo" is the size in bytes
     lpNextCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOW,
     lpcbCacheEntryInfo: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -2902,7 +2902,7 @@ pub extern "wininet" fn GetUrlCacheEntryBinaryBlob(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn GetUrlCacheEntryInfoA(
     lpszUrlName: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbCacheEntryInfo" is the size in bytes
     lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOA,
     lpcbCacheEntryInfo: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -2910,7 +2910,7 @@ pub extern "wininet" fn GetUrlCacheEntryInfoA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn GetUrlCacheEntryInfoExA(
     lpszUrl: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbCacheEntryInfo" is the size in bytes
     lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOA,
     lpcbCacheEntryInfo: ?*u32,
     lpszRedirectUrl: ?PSTR,
@@ -2922,7 +2922,7 @@ pub extern "wininet" fn GetUrlCacheEntryInfoExA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn GetUrlCacheEntryInfoExW(
     lpszUrl: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbCacheEntryInfo" is the size in bytes
     lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOW,
     lpcbCacheEntryInfo: ?*u32,
     lpszRedirectUrl: ?PWSTR,
@@ -2934,7 +2934,7 @@ pub extern "wininet" fn GetUrlCacheEntryInfoExW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn GetUrlCacheEntryInfoW(
     lpszUrlName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbCacheEntryInfo" is the size in bytes
     lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOW,
     lpcbCacheEntryInfo: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -2944,7 +2944,7 @@ pub extern "wininet" fn GetUrlCacheGroupAttributeA(
     gid: i64,
     dwFlags: u32,
     dwAttributes: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "lpcbGroupInfo" is the size in bytes
     lpGroupInfo: ?*INTERNET_CACHE_GROUP_INFOA,
     lpcbGroupInfo: ?*u32,
     lpReserved: ?*anyopaque,
@@ -2955,7 +2955,7 @@ pub extern "wininet" fn GetUrlCacheGroupAttributeW(
     gid: i64,
     dwFlags: u32,
     dwAttributes: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "lpcbGroupInfo" is the size in bytes
     lpGroupInfo: ?*INTERNET_CACHE_GROUP_INFOW,
     lpcbGroupInfo: ?*u32,
     lpReserved: ?*anyopaque,
@@ -3184,7 +3184,7 @@ pub extern "wininet" fn HttpPushWait(
 pub extern "wininet" fn HttpQueryInfoA(
     hRequest: ?*anyopaque,
     dwInfoLevel: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpdwBufferLength" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpdwBufferLength: ?*u32,
     lpdwIndex: ?*u32,
@@ -3194,7 +3194,7 @@ pub extern "wininet" fn HttpQueryInfoA(
 pub extern "wininet" fn HttpQueryInfoW(
     hRequest: ?*anyopaque,
     dwInfoLevel: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpdwBufferLength" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpdwBufferLength: ?*u32,
     lpdwIndex: ?*u32,
@@ -3205,7 +3205,7 @@ pub extern "wininet" fn HttpSendRequestA(
     hRequest: ?*anyopaque,
     lpszHeaders: ?[*:0]const u8,
     dwHeadersLength: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "dwOptionalLength" is the size in bytes
     lpOptional: ?*anyopaque,
     dwOptionalLength: u32,
 ) callconv(.winapi) BOOL;
@@ -3233,7 +3233,7 @@ pub extern "wininet" fn HttpSendRequestW(
     hRequest: ?*anyopaque,
     lpszHeaders: ?[*:0]const u16,
     dwHeadersLength: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "dwOptionalLength" is the size in bytes
     lpOptional: ?*anyopaque,
     dwOptionalLength: u32,
 ) callconv(.winapi) BOOL;
@@ -3241,7 +3241,7 @@ pub extern "wininet" fn HttpSendRequestW(
 pub extern "wininet" fn HttpWebSocketClose(
     hWebSocket: ?*anyopaque,
     usStatus: u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwReasonLength" is the size in bytes
     pvReason: ?*anyopaque,
     dwReasonLength: u32,
 ) callconv(.winapi) BOOL;
@@ -3254,7 +3254,7 @@ pub extern "wininet" fn HttpWebSocketCompleteUpgrade(
 pub extern "wininet" fn HttpWebSocketQueryCloseStatus(
     hWebSocket: ?*anyopaque,
     pusStatus: ?*u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwReasonLength" is the size in bytes
     pvReason: ?*anyopaque,
     dwReasonLength: u32,
     pdwReasonLengthConsumed: ?*u32,
@@ -3262,7 +3262,7 @@ pub extern "wininet" fn HttpWebSocketQueryCloseStatus(
 
 pub extern "wininet" fn HttpWebSocketReceive(
     hWebSocket: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwBufferLength" is the size in bytes
     pvBuffer: ?*anyopaque,
     dwBufferLength: u32,
     pdwBytesRead: ?*u32,
@@ -3272,7 +3272,7 @@ pub extern "wininet" fn HttpWebSocketReceive(
 pub extern "wininet" fn HttpWebSocketSend(
     hWebSocket: ?*anyopaque,
     BufferType: HTTP_WEB_SOCKET_BUFFER_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwBufferLength" is the size in bytes
     pvBuffer: ?*anyopaque,
     dwBufferLength: u32,
 ) callconv(.winapi) BOOL;
@@ -3280,7 +3280,7 @@ pub extern "wininet" fn HttpWebSocketSend(
 pub extern "wininet" fn HttpWebSocketShutdown(
     hWebSocket: ?*anyopaque,
     usStatus: u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "dwReasonLength" is the size in bytes
     pvReason: ?*anyopaque,
     dwReasonLength: u32,
 ) callconv(.winapi) BOOL;
@@ -3778,7 +3778,7 @@ pub extern "wininet" fn InternetQueryFortezzaStatus(
 pub extern "wininet" fn InternetQueryOptionA(
     hInternet: ?*anyopaque,
     dwOption: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpdwBufferLength" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpdwBufferLength: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -3787,7 +3787,7 @@ pub extern "wininet" fn InternetQueryOptionA(
 pub extern "wininet" fn InternetQueryOptionW(
     hInternet: ?*anyopaque,
     dwOption: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpdwBufferLength" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpdwBufferLength: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -3795,7 +3795,7 @@ pub extern "wininet" fn InternetQueryOptionW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn InternetReadFile(
     hFile: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwNumberOfBytesToRead" is the size in bytes
     lpBuffer: ?*anyopaque,
     dwNumberOfBytesToRead: u32,
     lpdwNumberOfBytesRead: ?*u32,
@@ -3979,7 +3979,7 @@ pub extern "wininet" fn InternetShowSecurityInfoByURLW(
 pub extern "wininet" fn InternetTimeFromSystemTime(
     pst: ?*const SYSTEMTIME,
     dwRFC: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbTime" is the size in bytes
     lpszTime: ?PSTR,
     cbTime: u32,
 ) callconv(.winapi) BOOL;
@@ -3988,7 +3988,7 @@ pub extern "wininet" fn InternetTimeFromSystemTime(
 pub extern "wininet" fn InternetTimeFromSystemTimeA(
     pst: ?*const SYSTEMTIME,
     dwRFC: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbTime" is the size in bytes
     lpszTime: ?PSTR,
     cbTime: u32,
 ) callconv(.winapi) BOOL;
@@ -3997,7 +3997,7 @@ pub extern "wininet" fn InternetTimeFromSystemTimeA(
 pub extern "wininet" fn InternetTimeFromSystemTimeW(
     pst: ?*const SYSTEMTIME,
     dwRFC: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbTime" is the size in bytes
     lpszTime: ?PWSTR,
     cbTime: u32,
 ) callconv(.winapi) BOOL;
@@ -4031,7 +4031,7 @@ pub extern "wininet" fn InternetUnlockRequestFile(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn InternetWriteFile(
     hFile: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwNumberOfBytesToWrite" is the size in bytes
     lpBuffer: ?*const anyopaque,
     dwNumberOfBytesToWrite: u32,
     lpdwNumberOfBytesWritten: ?*u32,
@@ -4086,7 +4086,7 @@ pub extern "wininet" fn LoadUrlCacheContent(
 ) callconv(.winapi) BOOL;
 
 pub extern "wininet" fn ParseX509EncodedCertificateForListBoxEntry(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "cbCert" is the size in bytes
     lpCert: ?*u8,
     cbCert: u32,
     lpszListBoxEntry: ?[*:0]u8,
@@ -4135,7 +4135,7 @@ pub extern "wininet" fn ReadGuidsForConnectedNetworks(
 pub extern "wininet" fn ReadUrlCacheEntryStream(
     hUrlCacheStream: ?HANDLE,
     dwLocation: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpdwLen" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpdwLen: ?*u32,
     Reserved: u32,
@@ -4144,7 +4144,7 @@ pub extern "wininet" fn ReadUrlCacheEntryStream(
 pub extern "wininet" fn ReadUrlCacheEntryStreamEx(
     hUrlCacheStream: ?HANDLE,
     qwLocation: u64,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpdwLen" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpdwLen: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -4166,7 +4166,7 @@ pub extern "wininet" fn ResumeSuspendedDownload(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn RetrieveUrlCacheEntryFileA(
     lpszUrlName: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbCacheEntryInfo" is the size in bytes
     lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOA,
     lpcbCacheEntryInfo: ?*u32,
     dwReserved: u32,
@@ -4175,7 +4175,7 @@ pub extern "wininet" fn RetrieveUrlCacheEntryFileA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn RetrieveUrlCacheEntryFileW(
     lpszUrlName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbCacheEntryInfo" is the size in bytes
     lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOW,
     lpcbCacheEntryInfo: ?*u32,
     dwReserved: u32,
@@ -4184,7 +4184,7 @@ pub extern "wininet" fn RetrieveUrlCacheEntryFileW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn RetrieveUrlCacheEntryStreamA(
     lpszUrlName: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbCacheEntryInfo" is the size in bytes
     lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOA,
     lpcbCacheEntryInfo: ?*u32,
     fRandomRead: BOOL,
@@ -4194,7 +4194,7 @@ pub extern "wininet" fn RetrieveUrlCacheEntryStreamA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn RetrieveUrlCacheEntryStreamW(
     lpszUrlName: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lpcbCacheEntryInfo" is the size in bytes
     lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOW,
     lpcbCacheEntryInfo: ?*u32,
     fRandomRead: BOOL,
@@ -4296,7 +4296,7 @@ pub extern "wininet" fn ShowSecurityInfo(
 
 pub extern "wininet" fn ShowX509EncodedCertificate(
     hWndParent: ?HWND,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbCert" is the size in bytes
     lpCert: ?*u8,
     cbCert: u32,
 ) callconv(.winapi) u32;
@@ -4434,7 +4434,7 @@ pub extern "wininet" fn UrlCacheSetGlobalLimit(
 pub extern "wininet" fn UrlCacheUpdateEntryExtraData(
     hAppCache: ?*anyopaque,
     pcwszUrl: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbExtraData" is the size in bytes
     pbExtraData: ?*const u8,
     cbExtraData: u32,
 ) callconv(.winapi) u32;

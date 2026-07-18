@@ -594,7 +594,7 @@ pub const IWICBitmapDecoderInfo = extern union {
         GetPatterns: *const fn(
             self: *const IWICBitmapDecoderInfo,
             cbSizePatterns: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "cbSizePatterns" is the size in bytes
             pPatterns: ?*WICBitmapPattern,
             pcPatterns: ?*u32,
             pcbPatternsActual: ?*u32,
@@ -1482,13 +1482,13 @@ pub const IWICDevelopRaw = extern union {
         SetToneCurve: *const fn(
             self: *const IWICDevelopRaw,
             cbToneCurveSize: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "cbToneCurveSize" is the size in bytes
             pToneCurve: ?*const WICRawToneCurve,
         ) callconv(.winapi) HRESULT,
         GetToneCurve: *const fn(
             self: *const IWICDevelopRaw,
             cbToneCurveBufferSize: u32,
-            // TODO: what to do with BytesParamIndex 0?
+            /// parameter "cbToneCurveBufferSize" is the size in bytes
             pToneCurve: ?*WICRawToneCurve,
             pcbActualToneCurveBufferSize: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -2424,7 +2424,7 @@ pub const IWICMetadataReaderInfo = extern union {
             self: *const IWICMetadataReaderInfo,
             guidContainerFormat: ?*const Guid,
             cbSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cbSize" is the size in bytes
             pPattern: ?*WICMetadataPattern,
             pcCount: ?*u32,
             pcbActual: ?*u32,
@@ -2511,7 +2511,7 @@ pub const IWICMetadataWriterInfo = extern union {
             self: *const IWICMetadataWriterInfo,
             guidContainerFormat: ?*const Guid,
             cbSize: u32,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cbSize" is the size in bytes
             pHeader: ?*WICMetadataHeader,
             pcbActual: ?*u32,
         ) callconv(.winapi) HRESULT,

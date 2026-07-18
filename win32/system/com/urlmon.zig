@@ -2964,7 +2964,7 @@ pub extern "urlmon" fn CoInternetQueryInfo(
     pwzUrl: ?[*:0]const u16,
     QueryOptions: QUERYOPTION,
     dwQueryFlags: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuffer" is the size in bytes
     pvBuffer: ?*anyopaque,
     cbBuffer: u32,
     pcbBuffer: ?*u32,
@@ -3067,7 +3067,7 @@ pub extern "urlmon" fn FindMediaTypeClass(
 pub extern "urlmon" fn FindMimeFromData(
     pBC: ?*IBindCtx,
     pwzUrl: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbSize" is the size in bytes
     pBuffer: ?*anyopaque,
     cbSize: u32,
     pwzMimeProposed: ?[*:0]const u16,
@@ -3079,7 +3079,7 @@ pub extern "urlmon" fn FindMimeFromData(
 pub extern "urlmon" fn GetClassFileOrMime(
     pBC: ?*IBindCtx,
     szFilename: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbSize" is the size in bytes
     pBuffer: ?*anyopaque,
     cbSize: u32,
     szMime: ?[*:0]const u16,
@@ -3270,7 +3270,7 @@ pub extern "urlmon" fn URLDownloadToFileW(
 
 pub extern "urlmon" fn UrlMkGetSessionOption(
     dwOption: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwBufferLength" is the size in bytes
     pBuffer: ?*anyopaque,
     dwBufferLength: u32,
     pdwBufferLengthOut: ?*u32,
@@ -3279,7 +3279,7 @@ pub extern "urlmon" fn UrlMkGetSessionOption(
 
 pub extern "urlmon" fn UrlMkSetSessionOption(
     dwOption: u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "dwBufferLength" is the size in bytes
     pBuffer: ?*anyopaque,
     dwBufferLength: u32,
     dwReserved: u32,

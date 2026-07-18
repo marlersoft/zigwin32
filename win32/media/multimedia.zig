@@ -5101,7 +5101,7 @@ pub const IAVIEditStream = extern union {
         ) callconv(.winapi) HRESULT,
         SetInfo: *const fn(
             self: *const IAVIEditStream,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cbInfo" is the size in bytes
             lpInfo: ?*AVISTREAMINFOW,
             cbInfo: i32,
         ) callconv(.winapi) HRESULT,
@@ -5133,7 +5133,7 @@ pub const IAVIFile = extern union {
         base: IUnknown.VTable,
         Info: *const fn(
             self: *const IAVIFile,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "lSize" is the size in bytes
             pfi: ?*AVIFILEINFOW,
             lSize: i32,
         ) callconv(.winapi) HRESULT,
@@ -5151,14 +5151,14 @@ pub const IAVIFile = extern union {
         WriteData: *const fn(
             self: *const IAVIFile,
             ckid: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "cbData" is the size in bytes
             lpData: ?*anyopaque,
             cbData: i32,
         ) callconv(.winapi) HRESULT,
         ReadData: *const fn(
             self: *const IAVIFile,
             ckid: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "lpcbData" is the size in bytes
             lpData: ?*anyopaque,
             lpcbData: ?*i32,
         ) callconv(.winapi) HRESULT,
@@ -5227,7 +5227,7 @@ pub const IAVIStream = extern union {
         ) callconv(.winapi) HRESULT,
         Info: *const fn(
             self: *const IAVIStream,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "lSize" is the size in bytes
             psi: ?*AVISTREAMINFOW,
             lSize: i32,
         ) callconv(.winapi) HRESULT,
@@ -5239,14 +5239,14 @@ pub const IAVIStream = extern union {
         ReadFormat: *const fn(
             self: *const IAVIStream,
             lPos: i32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "lpcbFormat" is the size in bytes
             lpFormat: ?*anyopaque,
             lpcbFormat: ?*i32,
         ) callconv(.winapi) HRESULT,
         SetFormat: *const fn(
             self: *const IAVIStream,
             lPos: i32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "cbFormat" is the size in bytes
             lpFormat: ?*anyopaque,
             cbFormat: i32,
         ) callconv(.winapi) HRESULT,
@@ -5254,7 +5254,7 @@ pub const IAVIStream = extern union {
             self: *const IAVIStream,
             lStart: i32,
             lSamples: i32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "cbBuffer" is the size in bytes
             lpBuffer: ?*anyopaque,
             cbBuffer: i32,
             plBytes: ?*i32,
@@ -5264,7 +5264,7 @@ pub const IAVIStream = extern union {
             self: *const IAVIStream,
             lStart: i32,
             lSamples: i32,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "cbBuffer" is the size in bytes
             lpBuffer: ?*anyopaque,
             cbBuffer: i32,
             dwFlags: u32,
@@ -5279,20 +5279,20 @@ pub const IAVIStream = extern union {
         ReadData: *const fn(
             self: *const IAVIStream,
             fcc: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "lpcb" is the size in bytes
             lp: ?*anyopaque,
             lpcb: ?*i32,
         ) callconv(.winapi) HRESULT,
         WriteData: *const fn(
             self: *const IAVIStream,
             fcc: u32,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "cb" is the size in bytes
             lp: ?*anyopaque,
             cb: i32,
         ) callconv(.winapi) HRESULT,
         SetInfo: *const fn(
             self: *const IAVIStream,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "cbInfo" is the size in bytes
             lpInfo: ?*AVISTREAMINFOW,
             cbInfo: i32,
         ) callconv(.winapi) HRESULT,
@@ -6522,7 +6522,7 @@ pub extern "avifil32" fn AVIFileGetStream(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "avifil32" fn AVIFileInfoA(
     pfile: ?*IAVIFile,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lSize" is the size in bytes
     pfi: ?*AVIFILEINFOA,
     lSize: i32,
 ) callconv(.winapi) HRESULT;
@@ -6530,7 +6530,7 @@ pub extern "avifil32" fn AVIFileInfoA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "avifil32" fn AVIFileInfoW(
     pfile: ?*IAVIFile,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lSize" is the size in bytes
     pfi: ?*AVIFILEINFOW,
     lSize: i32,
 ) callconv(.winapi) HRESULT;
@@ -6559,7 +6559,7 @@ pub extern "avifil32" fn AVIFileOpenW(
 pub extern "avifil32" fn AVIFileReadData(
     pfile: ?*IAVIFile,
     ckid: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpcbData" is the size in bytes
     lpData: ?*anyopaque,
     lpcbData: ?*i32,
 ) callconv(.winapi) HRESULT;
@@ -6573,7 +6573,7 @@ pub extern "avifil32" fn AVIFileRelease(
 pub extern "avifil32" fn AVIFileWriteData(
     pfile: ?*IAVIFile,
     ckid: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbData" is the size in bytes
     lpData: ?*anyopaque,
     cbData: i32,
 ) callconv(.winapi) HRESULT;
@@ -6718,7 +6718,7 @@ pub extern "avifil32" fn AVIStreamGetFrameOpen(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "avifil32" fn AVIStreamInfoA(
     pavi: ?*IAVIStream,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lSize" is the size in bytes
     psi: ?*AVISTREAMINFOA,
     lSize: i32,
 ) callconv(.winapi) HRESULT;
@@ -6726,7 +6726,7 @@ pub extern "avifil32" fn AVIStreamInfoA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "avifil32" fn AVIStreamInfoW(
     pavi: ?*IAVIStream,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lSize" is the size in bytes
     psi: ?*AVISTREAMINFOW,
     lSize: i32,
 ) callconv(.winapi) HRESULT;
@@ -6761,7 +6761,7 @@ pub extern "avifil32" fn AVIStreamRead(
     pavi: ?*IAVIStream,
     lStart: i32,
     lSamples: i32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuffer" is the size in bytes
     lpBuffer: ?*anyopaque,
     cbBuffer: i32,
     plBytes: ?*i32,
@@ -6772,7 +6772,7 @@ pub extern "avifil32" fn AVIStreamRead(
 pub extern "avifil32" fn AVIStreamReadData(
     pavi: ?*IAVIStream,
     fcc: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpcb" is the size in bytes
     lp: ?*anyopaque,
     lpcb: ?*i32,
 ) callconv(.winapi) HRESULT;
@@ -6781,7 +6781,7 @@ pub extern "avifil32" fn AVIStreamReadData(
 pub extern "avifil32" fn AVIStreamReadFormat(
     pavi: ?*IAVIStream,
     lPos: i32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "lpcbFormat" is the size in bytes
     lpFormat: ?*anyopaque,
     lpcbFormat: ?*i32,
 ) callconv(.winapi) HRESULT;
@@ -6801,7 +6801,7 @@ pub extern "avifil32" fn AVIStreamSampleToTime(
 pub extern "avifil32" fn AVIStreamSetFormat(
     pavi: ?*IAVIStream,
     lPos: i32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbFormat" is the size in bytes
     lpFormat: ?*anyopaque,
     cbFormat: i32,
 ) callconv(.winapi) HRESULT;
@@ -6822,7 +6822,7 @@ pub extern "avifil32" fn AVIStreamWrite(
     pavi: ?*IAVIStream,
     lStart: i32,
     lSamples: i32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBuffer" is the size in bytes
     lpBuffer: ?*anyopaque,
     cbBuffer: i32,
     dwFlags: u32,
@@ -6834,7 +6834,7 @@ pub extern "avifil32" fn AVIStreamWrite(
 pub extern "avifil32" fn AVIStreamWriteData(
     pavi: ?*IAVIStream,
     fcc: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cb" is the size in bytes
     lp: ?*anyopaque,
     cb: i32,
 ) callconv(.winapi) HRESULT;
@@ -7053,7 +7053,7 @@ pub extern "avifil32" fn EditStreamPaste(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "avifil32" fn EditStreamSetInfoA(
     pavi: ?*IAVIStream,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbInfo" is the size in bytes
     lpInfo: ?*AVISTREAMINFOA,
     cbInfo: i32,
 ) callconv(.winapi) HRESULT;
@@ -7061,7 +7061,7 @@ pub extern "avifil32" fn EditStreamSetInfoA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "avifil32" fn EditStreamSetInfoW(
     pavi: ?*IAVIStream,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbInfo" is the size in bytes
     lpInfo: ?*AVISTREAMINFOW,
     cbInfo: i32,
 ) callconv(.winapi) HRESULT;
@@ -7155,7 +7155,7 @@ pub extern "msvfw32" fn ICDraw(
     hic: ?HIC,
     dwFlags: u32,
     lpFormat: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbData" is the size in bytes
     lpData: ?*anyopaque,
     cbData: u32,
     lTime: i32,
@@ -7194,7 +7194,7 @@ pub extern "msvfw32" fn ICGetDisplayFormat(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msvfw32" fn ICGetInfo(
     hic: ?HIC,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cb" is the size in bytes
     picinfo: ?*ICINFO,
     cb: u32,
 ) callconv(.winapi) LRESULT;
@@ -7296,7 +7296,7 @@ pub extern "msvfw32" fn ICSeqCompressFrameStart(
 
 pub extern "winmm" fn joyGetDevCapsA(
     uJoyID: usize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbjc" is the size in bytes
     pjc: ?*JOYCAPSA,
     cbjc: u32,
 ) callconv(.winapi) u32;
@@ -7304,7 +7304,7 @@ pub extern "winmm" fn joyGetDevCapsA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn joyGetDevCapsW(
     uJoyID: usize,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbjc" is the size in bytes
     pjc: ?*JOYCAPSW,
     cbjc: u32,
 ) callconv(.winapi) u32;
@@ -7561,7 +7561,7 @@ pub extern "winmm" fn mmioOpenW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mmioRead(
     hmmio: ?HMMIO,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cch" is the size in bytes
     pch: ?*i8,
     cch: i32,
 ) callconv(.winapi) i32;
@@ -7627,7 +7627,7 @@ pub extern "winmm" fn mmioStringToFOURCCW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mmioWrite(
     hmmio: ?HMMIO,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cch" is the size in bytes
     pch: ?[*:0]const u8,
     cch: i32,
 ) callconv(.winapi) i32;

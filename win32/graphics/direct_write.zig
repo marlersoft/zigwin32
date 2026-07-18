@@ -2047,7 +2047,7 @@ pub const IDWriteFactory = extern union {
         CreateCustomFontCollection: *const fn(
             self: *const IDWriteFactory,
             collectionLoader: ?*IDWriteFontCollectionLoader,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "collectionKeySize" is the size in bytes
             collectionKey: ?*const anyopaque,
             collectionKeySize: u32,
             fontCollection: **IDWriteFontCollection,
@@ -2068,7 +2068,7 @@ pub const IDWriteFactory = extern union {
         ) callconv(.winapi) HRESULT,
         CreateCustomFontFileReference: *const fn(
             self: *const IDWriteFactory,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "fontFileReferenceKeySize" is the size in bytes
             fontFileReferenceKey: ?*const anyopaque,
             fontFileReferenceKeySize: u32,
             fontFileLoader: ?*IDWriteFontFileLoader,
@@ -2525,14 +2525,14 @@ pub const IDWriteFactory5 = extern union {
         ) callconv(.winapi) HRESULT,
         AnalyzeContainerType: *const fn(
             self: *const IDWriteFactory5,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "fileDataSize" is the size in bytes
             fileData: ?*const anyopaque,
             fileDataSize: u32,
         ) callconv(.winapi) DWRITE_CONTAINER_TYPE,
         UnpackFontFile: *const fn(
             self: *const IDWriteFactory5,
             containerType: DWRITE_CONTAINER_TYPE,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "fileDataSize" is the size in bytes
             fileData: ?*const anyopaque,
             fileDataSize: u32,
             unpackedFontStream: **IDWriteFontFileStream,
@@ -3024,7 +3024,7 @@ pub const IDWriteFontCollectionLoader = extern union {
         CreateEnumeratorFromKey: *const fn(
             self: *const IDWriteFontCollectionLoader,
             factory: ?*IDWriteFactory,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "collectionKeySize" is the size in bytes
             collectionKey: ?*const anyopaque,
             collectionKeySize: u32,
             fontFileEnumerator: **IDWriteFontFileEnumerator,
@@ -4108,7 +4108,7 @@ pub const IDWriteFontFileLoader = extern union {
         base: IUnknown.VTable,
         CreateStreamFromKey: *const fn(
             self: *const IDWriteFontFileLoader,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "fontFileReferenceKeySize" is the size in bytes
             fontFileReferenceKey: ?*const anyopaque,
             fontFileReferenceKeySize: u32,
             fontFileStream: **IDWriteFontFileStream,
@@ -4863,7 +4863,7 @@ pub const IDWriteGlyphRunAnalysis = extern union {
             self: *const IDWriteGlyphRunAnalysis,
             textureType: DWRITE_TEXTURE_TYPE,
             textureBounds: ?*const RECT,
-            // TODO: what to do with BytesParamIndex 3?
+            /// parameter "bufferSize" is the size in bytes
             alphaValues: ?*u8,
             bufferSize: u32,
         ) callconv(.winapi) HRESULT,
@@ -4944,7 +4944,7 @@ pub const IDWriteInMemoryFontFileLoader = extern union {
         CreateInMemoryFontFileReference: *const fn(
             self: *const IDWriteInMemoryFontFileLoader,
             factory: ?*IDWriteFactory,
-            // TODO: what to do with BytesParamIndex 2?
+            /// parameter "fontDataSize" is the size in bytes
             fontData: ?*const anyopaque,
             fontDataSize: u32,
             ownerObject: ?*IUnknown,
@@ -4973,14 +4973,14 @@ pub const IDWriteLocalFontFileLoader = extern union {
         base: IDWriteFontFileLoader.VTable,
         GetFilePathLengthFromKey: *const fn(
             self: *const IDWriteLocalFontFileLoader,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "fontFileReferenceKeySize" is the size in bytes
             fontFileReferenceKey: ?*const anyopaque,
             fontFileReferenceKeySize: u32,
             filePathLength: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetFilePathFromKey: *const fn(
             self: *const IDWriteLocalFontFileLoader,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "fontFileReferenceKeySize" is the size in bytes
             fontFileReferenceKey: ?*const anyopaque,
             fontFileReferenceKeySize: u32,
             filePath: [*:0]u16,
@@ -4988,7 +4988,7 @@ pub const IDWriteLocalFontFileLoader = extern union {
         ) callconv(.winapi) HRESULT,
         GetLastWriteTimeFromKey: *const fn(
             self: *const IDWriteLocalFontFileLoader,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "fontFileReferenceKeySize" is the size in bytes
             fontFileReferenceKey: ?*const anyopaque,
             fontFileReferenceKeySize: u32,
             lastWriteTime: ?*FILETIME,
@@ -5124,14 +5124,14 @@ pub const IDWriteRemoteFontFileLoader = extern union {
         base: IDWriteFontFileLoader.VTable,
         CreateRemoteStreamFromKey: *const fn(
             self: *const IDWriteRemoteFontFileLoader,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "fontFileReferenceKeySize" is the size in bytes
             fontFileReferenceKey: ?*const anyopaque,
             fontFileReferenceKeySize: u32,
             fontFileStream: **IDWriteRemoteFontFileStream,
         ) callconv(.winapi) HRESULT,
         GetLocalityFromKey: *const fn(
             self: *const IDWriteRemoteFontFileLoader,
-            // TODO: what to do with BytesParamIndex 1?
+            /// parameter "fontFileReferenceKeySize" is the size in bytes
             fontFileReferenceKey: ?*const anyopaque,
             fontFileReferenceKeySize: u32,
             locality: ?*DWRITE_LOCALITY,

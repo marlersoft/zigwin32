@@ -124,7 +124,7 @@ pub const pD3DCompile = *const fn(
 ) callconv(.winapi) HRESULT;
 
 pub const pD3DDisassemble = *const fn(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSize" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     Flags: u32,
@@ -147,7 +147,7 @@ pub const pD3DPreprocess = *const fn(
 // Section: Functions (25)
 //--------------------------------------------------------------------------------
 pub extern "d3dcompiler_47" fn D3DCompile(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSize" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     pSourceName: ?[*:0]const u8,
@@ -162,7 +162,7 @@ pub extern "d3dcompiler_47" fn D3DCompile(
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DCompile2(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSize" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     pSourceName: ?[*:0]const u8,
@@ -173,7 +173,7 @@ pub extern "d3dcompiler_47" fn D3DCompile2(
     Flags1: u32,
     Flags2: u32,
     SecondaryDataFlags: u32,
-    // TODO: what to do with BytesParamIndex 11?
+    /// parameter "SecondaryDataSize" is the size in bytes
     pSecondaryData: ?*const anyopaque,
     SecondaryDataSize: usize,
     ppCode: ?*?*ID3DBlob,
@@ -214,7 +214,7 @@ pub extern "d3dcompiler_47" fn D3DCreateLinker(
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DDecompressShaders(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSize" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     uNumShaders: u32,
@@ -226,7 +226,7 @@ pub extern "d3dcompiler_47" fn D3DDecompressShaders(
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DDisassemble(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSize" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     Flags: u32,
@@ -241,7 +241,7 @@ pub extern "d3dcompiler_47" fn D3DDisassemble10Effect(
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DDisassembleRegion(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSize" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     Flags: u32,
@@ -253,7 +253,7 @@ pub extern "d3dcompiler_47" fn D3DDisassembleRegion(
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DGetBlobPart(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSize" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     Part: D3D_BLOB_PART,
@@ -262,35 +262,35 @@ pub extern "d3dcompiler_47" fn D3DGetBlobPart(
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DGetDebugInfo(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSize" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     ppDebugInfo: ?*?*ID3DBlob,
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DGetInputAndOutputSignatureBlob(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSize" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     ppSignatureBlob: ?*?*ID3DBlob,
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DGetInputSignatureBlob(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSize" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     ppSignatureBlob: ?*?*ID3DBlob,
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DGetOutputSignatureBlob(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSize" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     ppSignatureBlob: ?*?*ID3DBlob,
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DGetTraceInstructionOffsets(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSize" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     Flags: u32,
@@ -307,7 +307,7 @@ pub extern "d3dcompiler_47" fn D3DLoadModule(
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DPreprocess(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSize" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     pSourceName: ?[*:0]const u8,
@@ -323,7 +323,7 @@ pub extern "d3dcompiler_47" fn D3DReadFileToBlob(
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DReflect(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSize" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     pInterface: ?*const Guid,
@@ -331,7 +331,7 @@ pub extern "d3dcompiler_47" fn D3DReflect(
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DReflectLibrary(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSize" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     riid: ?*const Guid,
@@ -339,19 +339,19 @@ pub extern "d3dcompiler_47" fn D3DReflectLibrary(
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DSetBlobPart(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "SrcDataSize" is the size in bytes
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     Part: D3D_BLOB_PART,
     Flags: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "PartSize" is the size in bytes
     pPart: ?*const anyopaque,
     PartSize: usize,
     ppNewShader: ?*?*ID3DBlob,
 ) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DStripShader(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "BytecodeLength" is the size in bytes
     pShaderBytecode: ?*const anyopaque,
     BytecodeLength: usize,
     uStripFlags: u32,

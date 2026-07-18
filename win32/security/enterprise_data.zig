@@ -302,7 +302,7 @@ pub extern "srpapi" fn SrpEnablePermissiveModeFileEncryption(
 pub extern "srpapi" fn SrpGetEnterpriseIds(
     tokenHandle: ?HANDLE,
     numberOfBytes: ?*u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "numberOfBytes" is the size in bytes
     enterpriseIds: ?*?PWSTR,
     enterpriseIdCount: ?*u32,
 ) callconv(.winapi) HRESULT;

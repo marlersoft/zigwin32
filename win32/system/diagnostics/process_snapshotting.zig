@@ -478,7 +478,7 @@ pub extern "kernel32" fn PssFreeSnapshot(
 pub extern "kernel32" fn PssQuerySnapshot(
     SnapshotHandle: ?HPSS,
     InformationClass: PSS_QUERY_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferLength" is the size in bytes
     Buffer: ?*anyopaque,
     BufferLength: u32,
 ) callconv(.winapi) u32;

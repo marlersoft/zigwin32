@@ -465,7 +465,7 @@ pub extern "kernel32" fn UpdateResourceA(
     lpType: ?[*:0]const u8,
     lpName: ?[*:0]const u8,
     wLanguage: u16,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cb" is the size in bytes
     lpData: ?*anyopaque,
     cb: u32,
 ) callconv(.winapi) BOOL;
@@ -476,7 +476,7 @@ pub extern "kernel32" fn UpdateResourceW(
     lpType: ?[*:0]align(1) const u16,
     lpName: ?[*:0]align(1) const u16,
     wLanguage: u16,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cb" is the size in bytes
     lpData: ?*anyopaque,
     cb: u32,
 ) callconv(.winapi) BOOL;

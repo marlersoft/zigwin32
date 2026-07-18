@@ -829,7 +829,7 @@ pub extern "advapi32" fn DeleteService(
 pub extern "advapi32" fn EnumDependentServicesA(
     hService: SC_HANDLE,
     dwServiceState: ENUM_SERVICE_STATE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBufSize" is the size in bytes
     lpServices: ?*ENUM_SERVICE_STATUSA,
     cbBufSize: u32,
     pcbBytesNeeded: ?*u32,
@@ -840,7 +840,7 @@ pub extern "advapi32" fn EnumDependentServicesA(
 pub extern "advapi32" fn EnumDependentServicesW(
     hService: SC_HANDLE,
     dwServiceState: ENUM_SERVICE_STATE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBufSize" is the size in bytes
     lpServices: ?*ENUM_SERVICE_STATUSW,
     cbBufSize: u32,
     pcbBytesNeeded: ?*u32,
@@ -852,7 +852,7 @@ pub extern "advapi32" fn EnumServicesStatusA(
     hSCManager: SC_HANDLE,
     dwServiceType: ENUM_SERVICE_TYPE,
     dwServiceState: ENUM_SERVICE_STATE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBufSize" is the size in bytes
     lpServices: ?*ENUM_SERVICE_STATUSA,
     cbBufSize: u32,
     pcbBytesNeeded: ?*u32,
@@ -866,7 +866,7 @@ pub extern "advapi32" fn EnumServicesStatusExA(
     InfoLevel: SC_ENUM_TYPE,
     dwServiceType: ENUM_SERVICE_TYPE,
     dwServiceState: ENUM_SERVICE_STATE,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbBufSize" is the size in bytes
     lpServices: ?*u8,
     cbBufSize: u32,
     pcbBytesNeeded: ?*u32,
@@ -881,7 +881,7 @@ pub extern "advapi32" fn EnumServicesStatusExW(
     InfoLevel: SC_ENUM_TYPE,
     dwServiceType: ENUM_SERVICE_TYPE,
     dwServiceState: ENUM_SERVICE_STATE,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbBufSize" is the size in bytes
     lpServices: ?*u8,
     cbBufSize: u32,
     pcbBytesNeeded: ?*u32,
@@ -895,7 +895,7 @@ pub extern "advapi32" fn EnumServicesStatusW(
     hSCManager: SC_HANDLE,
     dwServiceType: ENUM_SERVICE_TYPE,
     dwServiceState: ENUM_SERVICE_STATE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "cbBufSize" is the size in bytes
     lpServices: ?*ENUM_SERVICE_STATUSW,
     cbBufSize: u32,
     pcbBytesNeeded: ?*u32,
@@ -1023,7 +1023,7 @@ pub extern "advapi32" fn OpenServiceW(
 pub extern "advapi32" fn QueryServiceConfig2A(
     hService: SC_HANDLE,
     dwInfoLevel: SERVICE_CONFIG,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBufSize" is the size in bytes
     lpBuffer: ?*u8,
     cbBufSize: u32,
     pcbBytesNeeded: ?*u32,
@@ -1033,7 +1033,7 @@ pub extern "advapi32" fn QueryServiceConfig2A(
 pub extern "advapi32" fn QueryServiceConfig2W(
     hService: SC_HANDLE,
     dwInfoLevel: SERVICE_CONFIG,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBufSize" is the size in bytes
     lpBuffer: ?*u8,
     cbBufSize: u32,
     pcbBytesNeeded: ?*u32,
@@ -1042,7 +1042,7 @@ pub extern "advapi32" fn QueryServiceConfig2W(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn QueryServiceConfigA(
     hService: SC_HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbBufSize" is the size in bytes
     lpServiceConfig: ?*QUERY_SERVICE_CONFIGA,
     cbBufSize: u32,
     pcbBytesNeeded: ?*u32,
@@ -1051,7 +1051,7 @@ pub extern "advapi32" fn QueryServiceConfigA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn QueryServiceConfigW(
     hService: SC_HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbBufSize" is the size in bytes
     lpServiceConfig: ?*QUERY_SERVICE_CONFIGW,
     cbBufSize: u32,
     pcbBytesNeeded: ?*u32,
@@ -1067,7 +1067,7 @@ pub extern "advapi32" fn QueryServiceDynamicInformation(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn QueryServiceLockStatusA(
     hSCManager: SC_HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbBufSize" is the size in bytes
     lpLockStatus: ?*QUERY_SERVICE_LOCK_STATUSA,
     cbBufSize: u32,
     pcbBytesNeeded: ?*u32,
@@ -1076,7 +1076,7 @@ pub extern "advapi32" fn QueryServiceLockStatusA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn QueryServiceLockStatusW(
     hSCManager: SC_HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "cbBufSize" is the size in bytes
     lpLockStatus: ?*QUERY_SERVICE_LOCK_STATUSW,
     cbBufSize: u32,
     pcbBytesNeeded: ?*u32,
@@ -1086,7 +1086,7 @@ pub extern "advapi32" fn QueryServiceLockStatusW(
 pub extern "advapi32" fn QueryServiceObjectSecurity(
     hService: SC_HANDLE,
     dwSecurityInformation: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBufSize" is the size in bytes
     lpSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     cbBufSize: u32,
     pcbBytesNeeded: ?*u32,
@@ -1102,7 +1102,7 @@ pub extern "advapi32" fn QueryServiceStatus(
 pub extern "advapi32" fn QueryServiceStatusEx(
     hService: SC_HANDLE,
     InfoLevel: SC_STATUS_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbBufSize" is the size in bytes
     lpBuffer: ?*u8,
     cbBufSize: u32,
     pcbBytesNeeded: ?*u32,

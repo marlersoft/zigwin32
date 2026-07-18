@@ -31,7 +31,7 @@ pub const RtlFillNonVolatileMemory = switch (@import("../../zig.zig").arch) {
 
 pub extern "ntdll" fn RtlFillNonVolatileMemory(
     NvToken: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "Size" is the size in bytes
     NvDestination: ?*anyopaque,
     Size: usize,
     Value: u8,
@@ -47,7 +47,7 @@ pub const RtlFlushNonVolatileMemory = switch (@import("../../zig.zig").arch) {
 
 pub extern "ntdll" fn RtlFlushNonVolatileMemory(
     NvToken: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "Size" is the size in bytes
     NvBuffer: ?*anyopaque,
     Size: usize,
     Flags: u32,
@@ -86,7 +86,7 @@ pub const RtlGetNonVolatileToken = switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => (struct {
 
 pub extern "ntdll" fn RtlGetNonVolatileToken(
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "Size" is the size in bytes
     NvBuffer: ?*anyopaque,
     Size: usize,
     NvToken: ?*?*anyopaque,
@@ -101,9 +101,9 @@ pub const RtlWriteNonVolatileMemory = switch (@import("../../zig.zig").arch) {
 
 pub extern "ntdll" fn RtlWriteNonVolatileMemory(
     NvToken: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "Size" is the size in bytes
     NvDestination: ?*anyopaque,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "Size" is the size in bytes
     Source: ?*const anyopaque,
     Size: usize,
     Flags: u32,

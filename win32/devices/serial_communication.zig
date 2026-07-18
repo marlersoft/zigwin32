@@ -35,7 +35,7 @@ pub extern "msports" fn ComDBClose(
 
 pub extern "msports" fn ComDBGetCurrentPortUsage(
     HComDB: ?HCOMDB,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
     BufferSize: u32,
     ReportType: u32,

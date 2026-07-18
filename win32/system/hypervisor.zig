@@ -2924,7 +2924,7 @@ pub extern "vmsavedstatedumpprovider" fn LocateSavedStateFiles(
 pub extern "vmsavedstatedumpprovider" fn ReadGuestPhysicalAddress(
     vmSavedStateDumpHandle: ?*anyopaque,
     physicalAddress: u64,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "bufferSize" is the size in bytes
     buffer: ?*anyopaque,
     bufferSize: u32,
     bytesRead: ?*u32,
@@ -2933,7 +2933,7 @@ pub extern "vmsavedstatedumpprovider" fn ReadGuestPhysicalAddress(
 pub extern "vmsavedstatedumpprovider" fn ReadGuestRawSavedMemory(
     vmSavedStateDumpHandle: ?*anyopaque,
     rawSavedMemoryOffset: u64,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "bufferSize" is the size in bytes
     buffer: ?*anyopaque,
     bufferSize: u32,
     bytesRead: ?*u32,
@@ -2994,7 +2994,7 @@ pub extern "winhvplatform" fn WHvAdviseGpaRange(
     GpaRanges: [*]const WHV_MEMORY_RANGE_ENTRY,
     GpaRangesCount: u32,
     Advice: WHV_ADVISE_GPA_RANGE_CODE,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "AdviceBufferSizeInBytes" is the size in bytes
     AdviceBuffer: ?*const anyopaque,
     AdviceBufferSizeInBytes: u32,
 ) callconv(.winapi) HRESULT;
@@ -3111,7 +3111,7 @@ pub extern "winhvemulation" fn WHvEmulatorTryMmioEmulation(
 
 pub extern "winhvplatform" fn WHvGetCapability(
     CapabilityCode: WHV_CAPABILITY_CODE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "CapabilityBufferSizeInBytes" is the size in bytes
     CapabilityBuffer: ?*anyopaque,
     CapabilityBufferSizeInBytes: u32,
     WrittenSizeInBytes: ?*u32,
@@ -3129,7 +3129,7 @@ pub extern "winhvplatform" fn WHvGetInterruptTargetVpSet(
 pub extern "winhvplatform" fn WHvGetPartitionCounters(
     Partition: WHV_PARTITION_HANDLE,
     CounterSet: WHV_PARTITION_COUNTER_SET,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferSizeInBytes" is the size in bytes
     Buffer: ?*anyopaque,
     BufferSizeInBytes: u32,
     BytesWritten: ?*u32,
@@ -3138,7 +3138,7 @@ pub extern "winhvplatform" fn WHvGetPartitionCounters(
 pub extern "winhvplatform" fn WHvGetPartitionProperty(
     Partition: WHV_PARTITION_HANDLE,
     PropertyCode: WHV_PARTITION_PROPERTY_CODE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "PropertyBufferSizeInBytes" is the size in bytes
     PropertyBuffer: ?*anyopaque,
     PropertyBufferSizeInBytes: u32,
     WrittenSizeInBytes: ?*u32,
@@ -3148,7 +3148,7 @@ pub extern "winhvplatform" fn WHvGetVirtualProcessorCounters(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
     CounterSet: WHV_PROCESSOR_COUNTER_SET,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "BufferSizeInBytes" is the size in bytes
     Buffer: ?*anyopaque,
     BufferSizeInBytes: u32,
     BytesWritten: ?*u32,
@@ -3165,7 +3165,7 @@ pub extern "winhvplatform" fn WHvGetVirtualProcessorCpuidOutput(
 pub extern "winhvplatform" fn WHvGetVirtualProcessorInterruptControllerState(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "StateSize" is the size in bytes
     State: ?*anyopaque,
     StateSize: u32,
     WrittenSize: ?*u32,
@@ -3174,7 +3174,7 @@ pub extern "winhvplatform" fn WHvGetVirtualProcessorInterruptControllerState(
 pub extern "winhvplatform" fn WHvGetVirtualProcessorInterruptControllerState2(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "StateSize" is the size in bytes
     State: ?*anyopaque,
     StateSize: u32,
     WrittenSize: ?*u32,
@@ -3192,7 +3192,7 @@ pub extern "winhvplatform" fn WHvGetVirtualProcessorState(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
     StateType: WHV_VIRTUAL_PROCESSOR_STATE_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "BufferSizeInBytes" is the size in bytes
     Buffer: ?*anyopaque,
     BufferSizeInBytes: u32,
     BytesWritten: ?*u32,
@@ -3201,7 +3201,7 @@ pub extern "winhvplatform" fn WHvGetVirtualProcessorState(
 pub extern "winhvplatform" fn WHvGetVirtualProcessorXsaveState(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferSizeInBytes" is the size in bytes
     Buffer: ?*anyopaque,
     BufferSizeInBytes: u32,
     BytesWritten: ?*u32,
@@ -3212,7 +3212,7 @@ pub extern "winhvplatform" fn WHvGetVpciDeviceInterruptTarget(
     LogicalDeviceId: u64,
     Index: u32,
     MultiMessageNumber: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "TargetSizeInBytes" is the size in bytes
     Target: ?*WHV_VPCI_INTERRUPT_TARGET,
     TargetSizeInBytes: u32,
     BytesWritten: ?*u32,
@@ -3221,7 +3221,7 @@ pub extern "winhvplatform" fn WHvGetVpciDeviceInterruptTarget(
 pub extern "winhvplatform" fn WHvGetVpciDeviceNotification(
     Partition: WHV_PARTITION_HANDLE,
     LogicalDeviceId: u64,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "NotificationSizeInBytes" is the size in bytes
     Notification: ?*WHV_VPCI_DEVICE_NOTIFICATION,
     NotificationSizeInBytes: u32,
 ) callconv(.winapi) HRESULT;
@@ -3230,7 +3230,7 @@ pub extern "winhvplatform" fn WHvGetVpciDeviceProperty(
     Partition: WHV_PARTITION_HANDLE,
     LogicalDeviceId: u64,
     PropertyCode: WHV_VPCI_DEVICE_PROPERTY_CODE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "PropertyBufferSizeInBytes" is the size in bytes
     PropertyBuffer: ?*anyopaque,
     PropertyBufferSizeInBytes: u32,
     WrittenSizeInBytes: ?*u32,
@@ -3274,7 +3274,7 @@ pub extern "winhvplatform" fn WHvPostVirtualProcessorSynicMessage(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
     SintIndex: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "MessageSizeInBytes" is the size in bytes
     Message: ?*const anyopaque,
     MessageSizeInBytes: u32,
 ) callconv(.winapi) HRESULT;
@@ -3283,7 +3283,7 @@ pub extern "winhvplatform" fn WHvQueryGpaRangeDirtyBitmap(
     Partition: WHV_PARTITION_HANDLE,
     GuestAddress: u64,
     RangeSizeInBytes: u64,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "BitmapSizeInBytes" is the size in bytes
     Bitmap: ?*u64,
     BitmapSizeInBytes: u32,
 ) callconv(.winapi) HRESULT;
@@ -3293,7 +3293,7 @@ pub extern "winhvplatform" fn WHvReadGpaRange(
     VpIndex: u32,
     GuestAddress: u64,
     Controls: WHV_ACCESS_GPA_CONTROLS,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "DataSizeInBytes" is the size in bytes
     Data: ?*anyopaque,
     DataSizeInBytes: u32,
 ) callconv(.winapi) HRESULT;
@@ -3343,7 +3343,7 @@ pub extern "winhvplatform" fn WHvRetargetVpciDeviceInterrupt(
 pub extern "winhvplatform" fn WHvRunVirtualProcessor(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ExitContextSizeInBytes" is the size in bytes
     ExitContext: ?*anyopaque,
     ExitContextSizeInBytes: u32,
 ) callconv(.winapi) HRESULT;
@@ -3358,7 +3358,7 @@ pub extern "winhvplatform" fn WHvSetNotificationPortProperty(
 pub extern "winhvplatform" fn WHvSetPartitionProperty(
     Partition: WHV_PARTITION_HANDLE,
     PropertyCode: WHV_PARTITION_PROPERTY_CODE,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "PropertyBufferSizeInBytes" is the size in bytes
     PropertyBuffer: ?*const anyopaque,
     PropertyBufferSizeInBytes: u32,
 ) callconv(.winapi) HRESULT;
@@ -3370,7 +3370,7 @@ pub extern "winhvplatform" fn WHvSetupPartition(
 pub extern "winhvplatform" fn WHvSetVirtualProcessorInterruptControllerState(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "StateSize" is the size in bytes
     State: ?*const anyopaque,
     StateSize: u32,
 ) callconv(.winapi) HRESULT;
@@ -3378,7 +3378,7 @@ pub extern "winhvplatform" fn WHvSetVirtualProcessorInterruptControllerState(
 pub extern "winhvplatform" fn WHvSetVirtualProcessorInterruptControllerState2(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "StateSize" is the size in bytes
     State: ?*const anyopaque,
     StateSize: u32,
 ) callconv(.winapi) HRESULT;
@@ -3395,7 +3395,7 @@ pub extern "winhvplatform" fn WHvSetVirtualProcessorState(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
     StateType: WHV_VIRTUAL_PROCESSOR_STATE_TYPE,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "BufferSizeInBytes" is the size in bytes
     Buffer: ?*const anyopaque,
     BufferSizeInBytes: u32,
 ) callconv(.winapi) HRESULT;
@@ -3403,7 +3403,7 @@ pub extern "winhvplatform" fn WHvSetVirtualProcessorState(
 pub extern "winhvplatform" fn WHvSetVirtualProcessorXsaveState(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "BufferSizeInBytes" is the size in bytes
     Buffer: ?*const anyopaque,
     BufferSizeInBytes: u32,
 ) callconv(.winapi) HRESULT;
@@ -3471,7 +3471,7 @@ pub extern "winhvplatform" fn WHvWriteGpaRange(
     VpIndex: u32,
     GuestAddress: u64,
     Controls: WHV_ACCESS_GPA_CONTROLS,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "DataSizeInBytes" is the size in bytes
     Data: ?*const anyopaque,
     DataSizeInBytes: u32,
 ) callconv(.winapi) HRESULT;

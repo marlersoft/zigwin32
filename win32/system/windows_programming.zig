@@ -1407,7 +1407,7 @@ pub const PQUERYACTCTXW_FUNC = *const fn(
     hActCtx: ?HANDLE,
     pvSubInstance: ?*anyopaque,
     ulInfoClass: u32,
-    // TODO: what to do with BytesParamIndex 5?
+    /// parameter "cbBuffer" is the size in bytes
     pvBuffer: ?*anyopaque,
     cbBuffer: usize,
     pcbWrittenOrRequired: ?*usize,
@@ -1460,7 +1460,7 @@ pub const PWLDP_QUERYDEVICESECURITYINFORMATION_API = *const fn(
 
 pub const PWLDP_QUERYDYNAMICODETRUST_API = *const fn(
     fileHandle: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "imageSize" is the size in bytes
     baseImage: ?*anyopaque,
     imageSize: u32,
 ) callconv(.winapi) HRESULT;
@@ -1879,14 +1879,14 @@ pub const TCP_REQUEST_QUERY_INFORMATION_EX32_XP = switch(@import("../zig.zig").a
 //--------------------------------------------------------------------------------
 pub extern "kernel32" fn _hread(
     hFile: i32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lBytes" is the size in bytes
     lpBuffer: ?*anyopaque,
     lBytes: i32,
 ) callconv(.winapi) i32;
 
 pub extern "kernel32" fn _hwrite(
     hFile: i32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "lBytes" is the size in bytes
     lpBuffer: ?[*]const u8,
     lBytes: i32,
 ) callconv(.winapi) i32;
@@ -1913,14 +1913,14 @@ pub extern "kernel32" fn _lopen(
 
 pub extern "kernel32" fn _lread(
     hFile: i32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "uBytes" is the size in bytes
     lpBuffer: ?*anyopaque,
     uBytes: u32,
 ) callconv(.winapi) u32;
 
 pub extern "kernel32" fn _lwrite(
     hFile: i32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "uBytes" is the size in bytes
     lpBuffer: ?[*]const u8,
     uBytes: u32,
 ) callconv(.winapi) u32;
@@ -2261,7 +2261,7 @@ pub extern "api-ms-win-core-featurestaging-l1-1-1" fn GetFeatureVariant(
 pub extern "kernel32" fn GetFirmwareEnvironmentVariableA(
     lpName: ?[*:0]const u8,
     lpGuid: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nSize" is the size in bytes
     pBuffer: ?*anyopaque,
     nSize: u32,
 ) callconv(.winapi) u32;
@@ -2270,7 +2270,7 @@ pub extern "kernel32" fn GetFirmwareEnvironmentVariableA(
 pub extern "kernel32" fn GetFirmwareEnvironmentVariableExA(
     lpName: ?[*:0]const u8,
     lpGuid: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nSize" is the size in bytes
     pBuffer: ?*anyopaque,
     nSize: u32,
     pdwAttribubutes: ?*u32,
@@ -2280,7 +2280,7 @@ pub extern "kernel32" fn GetFirmwareEnvironmentVariableExA(
 pub extern "kernel32" fn GetFirmwareEnvironmentVariableExW(
     lpName: ?[*:0]const u16,
     lpGuid: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nSize" is the size in bytes
     pBuffer: ?*anyopaque,
     nSize: u32,
     pdwAttribubutes: ?*u32,
@@ -2290,7 +2290,7 @@ pub extern "kernel32" fn GetFirmwareEnvironmentVariableExW(
 pub extern "kernel32" fn GetFirmwareEnvironmentVariableW(
     lpName: ?[*:0]const u16,
     lpGuid: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nSize" is the size in bytes
     pBuffer: ?*anyopaque,
     nSize: u32,
 ) callconv(.winapi) u32;
@@ -2365,7 +2365,7 @@ pub extern "kernel32" fn GetPrivateProfileStringW(
 pub extern "kernel32" fn GetPrivateProfileStructA(
     lpszSection: ?[*:0]const u8,
     lpszKey: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "uSizeStruct" is the size in bytes
     lpStruct: ?*anyopaque,
     uSizeStruct: u32,
     szFile: ?[*:0]const u8,
@@ -2375,7 +2375,7 @@ pub extern "kernel32" fn GetPrivateProfileStructA(
 pub extern "kernel32" fn GetPrivateProfileStructW(
     lpszSection: ?[*:0]const u16,
     lpszKey: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "uSizeStruct" is the size in bytes
     lpStruct: ?*anyopaque,
     uSizeStruct: u32,
     szFile: ?[*:0]const u16,
@@ -2631,7 +2631,7 @@ pub extern "ntdll" fn NtNotifyChangeMultipleKeys(
     IoStatusBlock: ?*IO_STATUS_BLOCK,
     CompletionFilter: u32,
     WatchTree: BOOLEAN,
-    // TODO: what to do with BytesParamIndex 10?
+    /// parameter "BufferSize" is the size in bytes
     Buffer: ?*anyopaque,
     BufferSize: u32,
     Asynchronous: BOOLEAN,
@@ -2650,7 +2650,7 @@ pub extern "ntdll" fn NtQueryMultipleValueKey(
     KeyHandle: ?HANDLE,
     ValueEntries: [*]KEY_VALUE_ENTRY,
     EntryCount: u32,
-    // TODO: what to do with BytesParamIndex 4?
+    /// parameter "BufferLength" is the size in bytes
     ValueBuffer: ?*anyopaque,
     BufferLength: ?*u32,
     RequiredBufferLength: ?*u32,
@@ -2659,7 +2659,7 @@ pub extern "ntdll" fn NtQueryMultipleValueKey(
 pub extern "ntdll" fn NtQueryObject(
     Handle: ?HANDLE,
     ObjectInformationClass: OBJECT_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "ObjectInformationLength" is the size in bytes
     ObjectInformation: ?*anyopaque,
     ObjectInformationLength: u32,
     ReturnLength: ?*u32,
@@ -2690,7 +2690,7 @@ pub extern "ntdll" fn NtRenameKey(
 pub extern "ntdll" fn NtSetInformationKey(
     KeyHandle: ?HANDLE,
     KeySetInformationClass: KEY_SET_INFORMATION_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "KeySetInformationLength" is the size in bytes
     KeySetInformation: ?*anyopaque,
     KeySetInformationLength: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -2744,7 +2744,7 @@ pub extern "api-ms-win-core-realtime-l1-1-2" fn QueryAuxiliaryCounterFrequency(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn QueryIdleProcessorCycleTime(
     BufferLength: ?*u32,
-    // TODO: what to do with BytesParamIndex 0?
+    /// parameter "BufferLength" is the size in bytes
     ProcessorIdleCycleTime: ?*u64,
 ) callconv(.winapi) BOOL;
 
@@ -2752,7 +2752,7 @@ pub extern "kernel32" fn QueryIdleProcessorCycleTime(
 pub extern "kernel32" fn QueryIdleProcessorCycleTimeEx(
     Group: u16,
     BufferLength: ?*u32,
-    // TODO: what to do with BytesParamIndex 1?
+    /// parameter "BufferLength" is the size in bytes
     ProcessorIdleCycleTime: ?*u64,
 ) callconv(.winapi) BOOL;
 
@@ -2989,7 +2989,7 @@ pub extern "ntdll" fn RtlUnicodeStringToOemString(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn RtlUnicodeToMultiByteSize(
     BytesInMultiByteString: ?*u32,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "BytesInUnicodeString" is the size in bytes
     UnicodeString: ?[*]u16,
     BytesInUnicodeString: u32,
 ) callconv(.winapi) NTSTATUS;
@@ -3040,7 +3040,7 @@ pub extern "kernel32" fn SetEnvironmentStringsA(
 pub extern "kernel32" fn SetFirmwareEnvironmentVariableA(
     lpName: ?[*:0]const u8,
     lpGuid: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nSize" is the size in bytes
     pValue: ?*anyopaque,
     nSize: u32,
 ) callconv(.winapi) BOOL;
@@ -3049,7 +3049,7 @@ pub extern "kernel32" fn SetFirmwareEnvironmentVariableA(
 pub extern "kernel32" fn SetFirmwareEnvironmentVariableExA(
     lpName: ?[*:0]const u8,
     lpGuid: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nSize" is the size in bytes
     pValue: ?*anyopaque,
     nSize: u32,
     dwAttributes: u32,
@@ -3059,7 +3059,7 @@ pub extern "kernel32" fn SetFirmwareEnvironmentVariableExA(
 pub extern "kernel32" fn SetFirmwareEnvironmentVariableExW(
     lpName: ?[*:0]const u16,
     lpGuid: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nSize" is the size in bytes
     pValue: ?*anyopaque,
     nSize: u32,
     dwAttributes: u32,
@@ -3069,7 +3069,7 @@ pub extern "kernel32" fn SetFirmwareEnvironmentVariableExW(
 pub extern "kernel32" fn SetFirmwareEnvironmentVariableW(
     lpName: ?[*:0]const u16,
     lpGuid: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "nSize" is the size in bytes
     pValue: ?*anyopaque,
     nSize: u32,
 ) callconv(.winapi) BOOL;
@@ -3339,7 +3339,7 @@ pub extern "wldp" fn WldpQueryDeviceSecurityInformation(
 
 pub extern "wldp" fn WldpQueryDynamicCodeTrust(
     fileHandle: ?HANDLE,
-    // TODO: what to do with BytesParamIndex 2?
+    /// parameter "imageSize" is the size in bytes
     baseImage: ?*anyopaque,
     imageSize: u32,
 ) callconv(.winapi) HRESULT;
@@ -3382,7 +3382,7 @@ pub extern "kernel32" fn WritePrivateProfileStringW(
 pub extern "kernel32" fn WritePrivateProfileStructA(
     lpszSection: ?[*:0]const u8,
     lpszKey: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "uSizeStruct" is the size in bytes
     lpStruct: ?*anyopaque,
     uSizeStruct: u32,
     szFile: ?[*:0]const u8,
@@ -3392,7 +3392,7 @@ pub extern "kernel32" fn WritePrivateProfileStructA(
 pub extern "kernel32" fn WritePrivateProfileStructW(
     lpszSection: ?[*:0]const u16,
     lpszKey: ?[*:0]const u16,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "uSizeStruct" is the size in bytes
     lpStruct: ?*anyopaque,
     uSizeStruct: u32,
     szFile: ?[*:0]const u16,

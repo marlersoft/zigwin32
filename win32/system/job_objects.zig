@@ -735,7 +735,7 @@ pub extern "kernel32" fn OpenJobObjectW(
 pub extern "kernel32" fn QueryInformationJobObject(
     hJob: ?HANDLE,
     JobObjectInformationClass: JOBOBJECTINFOCLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbJobObjectInformationLength" is the size in bytes
     lpJobObjectInformation: ?*anyopaque,
     cbJobObjectInformationLength: u32,
     lpReturnLength: ?*u32,
@@ -753,7 +753,7 @@ pub extern "kernel32" fn QueryIoRateControlInformationJobObject(
 pub extern "kernel32" fn SetInformationJobObject(
     hJob: ?HANDLE,
     JobObjectInformationClass: JOBOBJECTINFOCLASS,
-    // TODO: what to do with BytesParamIndex 3?
+    /// parameter "cbJobObjectInformationLength" is the size in bytes
     lpJobObjectInformation: ?*anyopaque,
     cbJobObjectInformationLength: u32,
 ) callconv(.winapi) BOOL;
