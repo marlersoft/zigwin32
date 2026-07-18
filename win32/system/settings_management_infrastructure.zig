@@ -245,7 +245,7 @@ pub const ISettingsEngine = extern union {
         ApplySettingsContext: *const fn(
             self: *const ISettingsEngine,
             SettingsContext: ?*ISettingsContext,
-            pppwzIdentities: ?*?*?PWSTR,
+            pppwzIdentities: ?*?*?[*:0]u16,
             pcIdentities: ?*usize,
         ) callconv(.winapi) HRESULT,
         GetSettingsContext: *const fn(
@@ -297,7 +297,7 @@ pub const ISettingsEngine = extern union {
     pub fn SetSettingsContext(self: *const ISettingsEngine, SettingsContext: ?*ISettingsContext) callconv(.@"inline") HRESULT {
         return self.vtable.SetSettingsContext(self, SettingsContext);
     }
-    pub fn ApplySettingsContext(self: *const ISettingsEngine, SettingsContext: ?*ISettingsContext, pppwzIdentities: ?*?*?PWSTR, pcIdentities: ?*usize) callconv(.@"inline") HRESULT {
+    pub fn ApplySettingsContext(self: *const ISettingsEngine, SettingsContext: ?*ISettingsContext, pppwzIdentities: ?*?*?[*:0]u16, pcIdentities: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.ApplySettingsContext(self, SettingsContext, pppwzIdentities, pcIdentities);
     }
     pub fn GetSettingsContext(self: *const ISettingsEngine, SettingsContext: ?*?*ISettingsContext) callconv(.@"inline") HRESULT {
@@ -904,7 +904,7 @@ pub const UserUnloaded = WcmUserStatus.serUnloaded;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -913,7 +913,6 @@ const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {

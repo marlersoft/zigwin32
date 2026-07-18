@@ -61,7 +61,7 @@ pub const ApplicationProcessSummary = extern struct {
     ApplicationInstanceId: Guid,
     ProcessId: u32,
     Type: COMPLUS_APPTYPE,
-    ProcessExeName: ?PWSTR,
+    ProcessExeName: ?[*:0]u16,
     IsService: BOOL,
     IsPaused: BOOL,
     IsRecycled: BOOL,
@@ -72,7 +72,7 @@ pub const ApplicationSummary = extern struct {
     PartitionId: Guid,
     ApplicationId: Guid,
     Type: COMPLUS_APPTYPE,
-    ApplicationName: ?PWSTR,
+    ApplicationName: ?[*:0]u16,
     NumTrackedComponents: u32,
     NumComponentInstances: u32,
 };
@@ -160,8 +160,8 @@ pub const CLSIDDATA2 = extern struct {
     m_clsid: Guid,
     m_appid: Guid,
     m_partid: Guid,
-    m_pwszAppName: ?PWSTR,
-    m_pwszCtxName: ?PWSTR,
+    m_pwszAppName: ?[*:0]u16,
+    m_pwszCtxName: ?[*:0]u16,
     m_eAppType: COMPLUS_APPTYPE,
     m_cReferences: u32,
     m_cBound: u32,
@@ -718,8 +718,8 @@ pub const ComponentSummary = extern struct {
     PartitionId: Guid,
     ApplicationId: Guid,
     Clsid: Guid,
-    ClassName: ?PWSTR,
-    ApplicationName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    ApplicationName: ?[*:0]u16,
 };
 
 const CLSID_ComServiceEvents_Value = Guid.initString("ecabb0c3-7f19-11d2-978e-0000f8757e2a");
@@ -732,7 +732,7 @@ pub const COMSVCSEVENTINFO = extern struct {
     lMicroTime: i32,
     perfCount: i64,
     guidApp: Guid,
-    sMachineName: ?PWSTR,
+    sMachineName: ?[*:0]u16,
 };
 
 const CLSID_ComSystemAppEventData_Value = Guid.initString("ecabb0c6-7f19-11d2-978e-0000f8757e2a");
@@ -3264,13 +3264,13 @@ pub const IComTrackingInfoObject = extern union {
         base: IUnknown.VTable,
         GetValue: *const fn(
             self: *const IComTrackingInfoObject,
-            szPropertyName: ?PWSTR,
+            szPropertyName: ?[*:0]u16,
             pvarOut: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetValue(self: *const IComTrackingInfoObject, szPropertyName: ?PWSTR, pvarOut: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn GetValue(self: *const IComTrackingInfoObject, szPropertyName: ?[*:0]u16, pvarOut: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetValue(self, szPropertyName, pvarOut);
     }
 };
@@ -3288,7 +3288,7 @@ pub const IComTrackingInfoProperties = extern union {
         GetPropName: *const fn(
             self: *const IComTrackingInfoProperties,
             ulIndex: u32,
-            ppszPropName: ?*?PWSTR,
+            ppszPropName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -3296,7 +3296,7 @@ pub const IComTrackingInfoProperties = extern union {
     pub fn PropCount(self: *const IComTrackingInfoProperties, pCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.PropCount(self, pCount);
     }
-    pub fn GetPropName(self: *const IComTrackingInfoProperties, ulIndex: u32, ppszPropName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPropName(self: *const IComTrackingInfoProperties, ulIndex: u32, ppszPropName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropName(self, ulIndex, ppszPropName);
     }
 };
@@ -6675,7 +6675,7 @@ pub extern "comsvcs" fn SafeRef(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (18)
+// Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const APTTYPE = @import("../system/com.zig").APTTYPE;
@@ -6691,7 +6691,6 @@ const ITransactionVoterBallotAsync2 = @import("../system/distributed_transaction
 const ITransactionVoterNotifyAsync2 = @import("../system/distributed_transaction_coordinator.zig").ITransactionVoterNotifyAsync2;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PSID = @import("../foundation.zig").PSID;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const VARIANT = @import("../system/com.zig").VARIANT;
 const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;

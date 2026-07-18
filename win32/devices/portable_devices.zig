@@ -1314,7 +1314,7 @@ pub const IEnumPortableDeviceObjectIDs = extern union {
         Next: *const fn(
             self: *const IEnumPortableDeviceObjectIDs,
             cObjects: u32,
-            pObjIDs: [*]?PWSTR,
+            pObjIDs: [*]?[*:0]u16,
             pcFetched: ?*u32,
         ) callconv(.winapi) HRESULT,
         Skip: *const fn(
@@ -1334,7 +1334,7 @@ pub const IEnumPortableDeviceObjectIDs = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumPortableDeviceObjectIDs, cObjects: u32, pObjIDs: [*]?PWSTR, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn Next(self: *const IEnumPortableDeviceObjectIDs, cObjects: u32, pObjIDs: [*]?[*:0]u16, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, cObjects, pObjIDs, pcFetched);
     }
     pub fn Skip(self: *const IEnumPortableDeviceObjectIDs, cObjects: u32) callconv(.@"inline") HRESULT {
@@ -1443,7 +1443,7 @@ pub const IPortableDevice = extern union {
             dwFlags: u32,
             pCallback: ?*IPortableDeviceEventCallback,
             pParameters: ?*IPortableDeviceValues,
-            ppszCookie: ?*?PWSTR,
+            ppszCookie: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Unadvise: *const fn(
             self: *const IPortableDevice,
@@ -1451,7 +1451,7 @@ pub const IPortableDevice = extern union {
         ) callconv(.winapi) HRESULT,
         GetPnPDeviceID: *const fn(
             self: *const IPortableDevice,
-            ppszPnPDeviceID: ?*?PWSTR,
+            ppszPnPDeviceID: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1474,13 +1474,13 @@ pub const IPortableDevice = extern union {
     pub fn Close(self: *const IPortableDevice) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
-    pub fn Advise(self: *const IPortableDevice, dwFlags: u32, pCallback: ?*IPortableDeviceEventCallback, pParameters: ?*IPortableDeviceValues, ppszCookie: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Advise(self: *const IPortableDevice, dwFlags: u32, pCallback: ?*IPortableDeviceEventCallback, pParameters: ?*IPortableDeviceValues, ppszCookie: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Advise(self, dwFlags, pCallback, pParameters, ppszCookie);
     }
     pub fn Unadvise(self: *const IPortableDevice, pszCookie: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Unadvise(self, pszCookie);
     }
-    pub fn GetPnPDeviceID(self: *const IPortableDevice, ppszPnPDeviceID: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPnPDeviceID(self: *const IPortableDevice, ppszPnPDeviceID: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPnPDeviceID(self, ppszPnPDeviceID);
     }
 };
@@ -1613,7 +1613,7 @@ pub const IPortableDeviceConnector = extern union {
         ) callconv(.winapi) HRESULT,
         GetPnPID: *const fn(
             self: *const IPortableDeviceConnector,
-            ppwszPnPID: ?*?PWSTR,
+            ppwszPnPID: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1633,7 +1633,7 @@ pub const IPortableDeviceConnector = extern union {
     pub fn SetProperty(self: *const IPortableDeviceConnector, pPropertyKey: ?*const DEVPROPKEY, PropertyType: DEVPROPTYPE, pData: [*:0]const u8, cbData: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperty(self, pPropertyKey, PropertyType, pData, cbData);
     }
-    pub fn GetPnPID(self: *const IPortableDeviceConnector, ppwszPnPID: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPnPID(self: *const IPortableDeviceConnector, ppwszPnPID: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPnPID(self, ppwszPnPID);
     }
 };
@@ -1661,14 +1661,14 @@ pub const IPortableDeviceContent = extern union {
         CreateObjectWithPropertiesOnly: *const fn(
             self: *const IPortableDeviceContent,
             pValues: ?*IPortableDeviceValues,
-            ppszObjectID: ?*?PWSTR,
+            ppszObjectID: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         CreateObjectWithPropertiesAndData: *const fn(
             self: *const IPortableDeviceContent,
             pValues: ?*IPortableDeviceValues,
             ppData: ?*?*IStream,
             pdwOptimalWriteBufferSize: ?*u32,
-            ppszCookie: ?*?PWSTR,
+            ppszCookie: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IPortableDeviceContent,
@@ -1708,10 +1708,10 @@ pub const IPortableDeviceContent = extern union {
     pub fn Transfer(self: *const IPortableDeviceContent, ppResources: ?*?*IPortableDeviceResources) callconv(.@"inline") HRESULT {
         return self.vtable.Transfer(self, ppResources);
     }
-    pub fn CreateObjectWithPropertiesOnly(self: *const IPortableDeviceContent, pValues: ?*IPortableDeviceValues, ppszObjectID: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn CreateObjectWithPropertiesOnly(self: *const IPortableDeviceContent, pValues: ?*IPortableDeviceValues, ppszObjectID: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.CreateObjectWithPropertiesOnly(self, pValues, ppszObjectID);
     }
-    pub fn CreateObjectWithPropertiesAndData(self: *const IPortableDeviceContent, pValues: ?*IPortableDeviceValues, ppData: ?*?*IStream, pdwOptimalWriteBufferSize: ?*u32, ppszCookie: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn CreateObjectWithPropertiesAndData(self: *const IPortableDeviceContent, pValues: ?*IPortableDeviceValues, ppData: ?*?*IStream, pdwOptimalWriteBufferSize: ?*u32, ppszCookie: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.CreateObjectWithPropertiesAndData(self, pValues, ppData, pdwOptimalWriteBufferSize, ppszCookie);
     }
     pub fn Delete(self: *const IPortableDeviceContent, dwOptions: u32, pObjectIDs: ?*IPortableDevicePropVariantCollection, ppResults: ?*?*IPortableDevicePropVariantCollection) callconv(.@"inline") HRESULT {
@@ -1760,7 +1760,7 @@ pub const IPortableDeviceDataStream = extern union {
         base: IStream.VTable,
         GetObjectID: *const fn(
             self: *const IPortableDeviceDataStream,
-            ppszObjectID: ?*?PWSTR,
+            ppszObjectID: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Cancel: *const fn(
             self: *const IPortableDeviceDataStream,
@@ -1770,7 +1770,7 @@ pub const IPortableDeviceDataStream = extern union {
     IStream: IStream,
     ISequentialStream: ISequentialStream,
     IUnknown: IUnknown,
-    pub fn GetObjectID(self: *const IPortableDeviceDataStream, ppszObjectID: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetObjectID(self: *const IPortableDeviceDataStream, ppszObjectID: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetObjectID(self, ppszObjectID);
     }
     pub fn Cancel(self: *const IPortableDeviceDataStream) callconv(.@"inline") HRESULT {
@@ -1866,7 +1866,7 @@ pub const IPortableDeviceManager = extern union {
         base: IUnknown.VTable,
         GetDevices: *const fn(
             self: *const IPortableDeviceManager,
-            pPnPDeviceIDs: ?*?PWSTR,
+            pPnPDeviceIDs: ?*?[*:0]u16,
             pcPnPDeviceIDs: ?*u32,
         ) callconv(.winapi) HRESULT,
         RefreshDeviceList: *const fn(
@@ -1875,19 +1875,19 @@ pub const IPortableDeviceManager = extern union {
         GetDeviceFriendlyName: *const fn(
             self: *const IPortableDeviceManager,
             pszPnPDeviceID: ?[*:0]const u16,
-            pDeviceFriendlyName: ?PWSTR,
+            pDeviceFriendlyName: ?[*:0]u16,
             pcchDeviceFriendlyName: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetDeviceDescription: *const fn(
             self: *const IPortableDeviceManager,
             pszPnPDeviceID: ?[*:0]const u16,
-            pDeviceDescription: ?PWSTR,
+            pDeviceDescription: ?[*:0]u16,
             pcchDeviceDescription: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetDeviceManufacturer: *const fn(
             self: *const IPortableDeviceManager,
             pszPnPDeviceID: ?[*:0]const u16,
-            pDeviceManufacturer: ?PWSTR,
+            pDeviceManufacturer: ?[*:0]u16,
             pcchDeviceManufacturer: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetDeviceProperty: *const fn(
@@ -1900,31 +1900,31 @@ pub const IPortableDeviceManager = extern union {
         ) callconv(.winapi) HRESULT,
         GetPrivateDevices: *const fn(
             self: *const IPortableDeviceManager,
-            pPnPDeviceIDs: ?*?PWSTR,
+            pPnPDeviceIDs: ?*?[*:0]u16,
             pcPnPDeviceIDs: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDevices(self: *const IPortableDeviceManager, pPnPDeviceIDs: ?*?PWSTR, pcPnPDeviceIDs: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetDevices(self: *const IPortableDeviceManager, pPnPDeviceIDs: ?*?[*:0]u16, pcPnPDeviceIDs: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevices(self, pPnPDeviceIDs, pcPnPDeviceIDs);
     }
     pub fn RefreshDeviceList(self: *const IPortableDeviceManager) callconv(.@"inline") HRESULT {
         return self.vtable.RefreshDeviceList(self);
     }
-    pub fn GetDeviceFriendlyName(self: *const IPortableDeviceManager, pszPnPDeviceID: ?[*:0]const u16, pDeviceFriendlyName: ?PWSTR, pcchDeviceFriendlyName: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetDeviceFriendlyName(self: *const IPortableDeviceManager, pszPnPDeviceID: ?[*:0]const u16, pDeviceFriendlyName: ?[*:0]u16, pcchDeviceFriendlyName: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceFriendlyName(self, pszPnPDeviceID, pDeviceFriendlyName, pcchDeviceFriendlyName);
     }
-    pub fn GetDeviceDescription(self: *const IPortableDeviceManager, pszPnPDeviceID: ?[*:0]const u16, pDeviceDescription: ?PWSTR, pcchDeviceDescription: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetDeviceDescription(self: *const IPortableDeviceManager, pszPnPDeviceID: ?[*:0]const u16, pDeviceDescription: ?[*:0]u16, pcchDeviceDescription: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceDescription(self, pszPnPDeviceID, pDeviceDescription, pcchDeviceDescription);
     }
-    pub fn GetDeviceManufacturer(self: *const IPortableDeviceManager, pszPnPDeviceID: ?[*:0]const u16, pDeviceManufacturer: ?PWSTR, pcchDeviceManufacturer: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetDeviceManufacturer(self: *const IPortableDeviceManager, pszPnPDeviceID: ?[*:0]const u16, pDeviceManufacturer: ?[*:0]u16, pcchDeviceManufacturer: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceManufacturer(self, pszPnPDeviceID, pDeviceManufacturer, pcchDeviceManufacturer);
     }
     pub fn GetDeviceProperty(self: *const IPortableDeviceManager, pszPnPDeviceID: ?[*:0]const u16, pszDevicePropertyName: ?[*:0]const u16, pData: ?*u8, pcbData: ?*u32, pdwType: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceProperty(self, pszPnPDeviceID, pszDevicePropertyName, pData, pcbData, pdwType);
     }
-    pub fn GetPrivateDevices(self: *const IPortableDeviceManager, pPnPDeviceIDs: ?*?PWSTR, pcPnPDeviceIDs: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetPrivateDevices(self: *const IPortableDeviceManager, pPnPDeviceIDs: ?*?[*:0]u16, pcPnPDeviceIDs: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrivateDevices(self, pPnPDeviceIDs, pcPnPDeviceIDs);
     }
 };
@@ -2172,7 +2172,7 @@ pub const IPortableDeviceResources = extern union {
             pResourceAttributes: ?*IPortableDeviceValues,
             ppData: ?*?*IStream,
             pdwOptimalWriteBufferSize: ?*u32,
-            ppszCookie: ?*?PWSTR,
+            ppszCookie: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -2192,7 +2192,7 @@ pub const IPortableDeviceResources = extern union {
     pub fn Cancel(self: *const IPortableDeviceResources) callconv(.@"inline") HRESULT {
         return self.vtable.Cancel(self);
     }
-    pub fn CreateResource(self: *const IPortableDeviceResources, pResourceAttributes: ?*IPortableDeviceValues, ppData: ?*?*IStream, pdwOptimalWriteBufferSize: ?*u32, ppszCookie: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn CreateResource(self: *const IPortableDeviceResources, pResourceAttributes: ?*IPortableDeviceValues, ppData: ?*?*IStream, pdwOptimalWriteBufferSize: ?*u32, ppszCookie: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.CreateResource(self, pResourceAttributes, ppData, pdwOptimalWriteBufferSize, ppszCookie);
     }
 };
@@ -2228,18 +2228,18 @@ pub const IPortableDeviceService = extern union {
         ) callconv(.winapi) HRESULT,
         GetServiceObjectID: *const fn(
             self: *const IPortableDeviceService,
-            ppszServiceObjectID: ?*?PWSTR,
+            ppszServiceObjectID: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetPnPServiceID: *const fn(
             self: *const IPortableDeviceService,
-            ppszPnPServiceID: ?*?PWSTR,
+            ppszPnPServiceID: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Advise: *const fn(
             self: *const IPortableDeviceService,
             dwFlags: u32,
             pCallback: ?*IPortableDeviceEventCallback,
             pParameters: ?*IPortableDeviceValues,
-            ppszCookie: ?*?PWSTR,
+            ppszCookie: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Unadvise: *const fn(
             self: *const IPortableDeviceService,
@@ -2272,13 +2272,13 @@ pub const IPortableDeviceService = extern union {
     pub fn Close(self: *const IPortableDeviceService) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
-    pub fn GetServiceObjectID(self: *const IPortableDeviceService, ppszServiceObjectID: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetServiceObjectID(self: *const IPortableDeviceService, ppszServiceObjectID: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetServiceObjectID(self, ppszServiceObjectID);
     }
-    pub fn GetPnPServiceID(self: *const IPortableDeviceService, ppszPnPServiceID: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPnPServiceID(self: *const IPortableDeviceService, ppszPnPServiceID: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPnPServiceID(self, ppszPnPServiceID);
     }
-    pub fn Advise(self: *const IPortableDeviceService, dwFlags: u32, pCallback: ?*IPortableDeviceEventCallback, pParameters: ?*IPortableDeviceValues, ppszCookie: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Advise(self: *const IPortableDeviceService, dwFlags: u32, pCallback: ?*IPortableDeviceEventCallback, pParameters: ?*IPortableDeviceValues, ppszCookie: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Advise(self, dwFlags, pCallback, pParameters, ppszCookie);
     }
     pub fn Unadvise(self: *const IPortableDeviceService, pszCookie: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -2460,21 +2460,21 @@ pub const IPortableDeviceServiceManager = extern union {
             self: *const IPortableDeviceServiceManager,
             pszPnPDeviceID: ?[*:0]const u16,
             guidServiceCategory: ?*const Guid,
-            pServices: ?*?PWSTR,
+            pServices: ?*?[*:0]u16,
             pcServices: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetDeviceForService: *const fn(
             self: *const IPortableDeviceServiceManager,
             pszPnPServiceID: ?[*:0]const u16,
-            ppszPnPDeviceID: ?*?PWSTR,
+            ppszPnPDeviceID: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDeviceServices(self: *const IPortableDeviceServiceManager, pszPnPDeviceID: ?[*:0]const u16, guidServiceCategory: ?*const Guid, pServices: ?*?PWSTR, pcServices: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetDeviceServices(self: *const IPortableDeviceServiceManager, pszPnPDeviceID: ?[*:0]const u16, guidServiceCategory: ?*const Guid, pServices: ?*?[*:0]u16, pcServices: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceServices(self, pszPnPDeviceID, guidServiceCategory, pServices, pcServices);
     }
-    pub fn GetDeviceForService(self: *const IPortableDeviceServiceManager, pszPnPServiceID: ?[*:0]const u16, ppszPnPDeviceID: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDeviceForService(self: *const IPortableDeviceServiceManager, pszPnPServiceID: ?[*:0]const u16, ppszPnPDeviceID: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceForService(self, pszPnPServiceID, ppszPnPDeviceID);
     }
 };
@@ -2611,7 +2611,7 @@ pub const IPortableDeviceValues = extern union {
         GetStringValue: *const fn(
             self: *const IPortableDeviceValues,
             key: ?*const PROPERTYKEY,
-            pValue: ?*?PWSTR,
+            pValue: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetUnsignedIntegerValue: *const fn(
             self: *const IPortableDeviceValues,
@@ -2798,7 +2798,7 @@ pub const IPortableDeviceValues = extern union {
     pub fn SetStringValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, Value: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetStringValue(self, key, Value);
     }
-    pub fn GetStringValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetStringValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, pValue: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetStringValue(self, key, pValue);
     }
     pub fn SetUnsignedIntegerValue(self: *const IPortableDeviceValues, key: ?*const PROPERTYKEY, Value: u32) callconv(.@"inline") HRESULT {
@@ -3535,7 +3535,7 @@ pub const CLSID_WpdSerializer = &CLSID_WpdSerializer_Value;
 //--------------------------------------------------------------------------------
 pub extern "dmprocessxmlfiltered" fn DMProcessConfigXMLFiltered(
     pszXmlIn: ?[*:0]const u16,
-    rgszAllowedCspNodes: [*]?PWSTR,
+    rgszAllowedCspNodes: [*]?[*:0]u16,
     dwNumAllowedCspNodes: u32,
     pbstrXmlOut: ?*?BSTR,
 ) callconv(.winapi) HRESULT;
@@ -3545,7 +3545,7 @@ pub extern "dmprocessxmlfiltered" fn DMProcessConfigXMLFiltered(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (16)
+// Section: Imports (15)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -3561,7 +3561,6 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const PROPERTYKEY = @import("../ui/shell/properties_system.zig").PROPERTYKEY;
 const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
 
 test {

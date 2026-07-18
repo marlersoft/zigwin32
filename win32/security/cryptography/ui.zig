@@ -192,7 +192,7 @@ pub const CERT_VERIFY_CERTIFICATE_TRUST = extern struct {
     dwFlags: u32,
     dwIgnoreErr: u32,
     pdwErrors: ?*u32,
-    pszUsageOid: ?PSTR,
+    pszUsageOid: ?[*:0]u8,
     hprov: usize,
     cRootStores: u32,
     rghstoreRoots: ?*?HCERTSTORE,
@@ -215,7 +215,7 @@ pub const CERT_VIEWPROPERTIES_STRUCT_A = extern struct {
     dwFlags: CERT_VIEWPROPERTIES_STRUCT_FLAGS,
     szTitle: ?[*:0]const u8,
     pCertContext: ?*const CERT_CONTEXT,
-    arrayPurposes: ?*?PSTR,
+    arrayPurposes: ?*?[*:0]u8,
     cArrayPurposes: u32,
     cRootStores: u32,
     rghstoreRoots: ?*?HCERTSTORE,
@@ -285,7 +285,7 @@ pub const CERT_VIEWPROPERTIES_STRUCT_W = extern struct {
     dwFlags: CERT_VIEWPROPERTIES_STRUCT_FLAGS,
     szTitle: ?[*:0]const u16,
     pCertContext: ?*const CERT_CONTEXT,
-    arrayPurposes: ?*?PSTR,
+    arrayPurposes: ?*?[*:0]u8,
     cArrayPurposes: u32,
     cRootStores: u32,
     rghstoreRoots: ?*?HCERTSTORE,
@@ -378,7 +378,7 @@ pub const CRYPTUI_VIEWCERTIFICATE_STRUCTA = extern struct {
     dwFlags: CRYPTUI_VIEWCERTIFICATE_FLAGS,
     szTitle: ?[*:0]const u8,
     pCertContext: ?*const CERT_CONTEXT,
-    rgszPurposes: ?*?PSTR,
+    rgszPurposes: ?*?[*:0]u8,
     cPurposes: u32,
     Anonymous: extern union {
         pCryptProviderData: ?*const CRYPT_PROVIDER_DATA,
@@ -402,7 +402,7 @@ pub const CRYPTUI_VIEWCERTIFICATE_STRUCTW = extern struct {
     dwFlags: CRYPTUI_VIEWCERTIFICATE_FLAGS,
     szTitle: ?[*:0]const u16,
     pCertContext: ?*const CERT_CONTEXT,
-    rgszPurposes: ?*?PSTR,
+    rgszPurposes: ?*?[*:0]u8,
     cPurposes: u32,
     Anonymous: extern union {
         pCryptProviderData: ?*const CRYPT_PROVIDER_DATA,
@@ -450,7 +450,7 @@ pub const CRYPTUI_WIZ_DIGITAL_SIGN_BLOB_INFO = extern struct {
 
 pub const CRYPTUI_WIZ_DIGITAL_SIGN_CERT_PVK_INFO = extern struct {
     dwSize: u32,
-    pwszSigningCertFileName: ?PWSTR,
+    pwszSigningCertFileName: ?[*:0]u16,
     dwPvkChoice: CRYPTUI_WIZ_DIGITAL_SIGN_PVK_OPTION,
     Anonymous: extern union {
         pPvkFileInfo: ?*CRYPTUI_WIZ_DIGITAL_SIGN_PVK_FILE_INFO,
@@ -496,8 +496,8 @@ pub const CRYPTUI_WIZ_DIGITAL_SIGN_INFO = extern struct {
 
 pub const CRYPTUI_WIZ_DIGITAL_SIGN_PVK_FILE_INFO = extern struct {
     dwSize: u32,
-    pwszPvkFileName: ?PWSTR,
-    pwszProvName: ?PWSTR,
+    pwszPvkFileName: ?[*:0]u16,
+    pwszProvName: ?[*:0]u16,
     dwProvType: u32,
 };
 
@@ -816,7 +816,7 @@ pub const CryptUIDlgViewCertificate = switch (@import("../../zig.zig").unicode_m
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (22)
+// Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -837,8 +837,6 @@ const HWND = @import("../../foundation.zig").HWND;
 const LPARAM = @import("../../foundation.zig").LPARAM;
 const PROPSHEETPAGEA = @import("../../ui/controls.zig").PROPSHEETPAGEA;
 const PROPSHEETPAGEW = @import("../../ui/controls.zig").PROPSHEETPAGEW;
-const PSTR = @import("../../foundation.zig").PSTR;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const WPARAM = @import("../../foundation.zig").WPARAM;
 
 test {

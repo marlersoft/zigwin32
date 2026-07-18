@@ -886,28 +886,28 @@ pub const WC_SEPCHARS = @as(u32, 32);
 // Section: Types (359)
 //--------------------------------------------------------------------------------
 pub const CALINFO_ENUMPROCA = *const fn(
-    param0: ?PSTR,
+    param0: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub const CALINFO_ENUMPROCEXA = *const fn(
-    param0: ?PSTR,
+    param0: ?[*:0]u8,
     param1: u32,
 ) callconv(.winapi) BOOL;
 
 pub const CALINFO_ENUMPROCEXEX = *const fn(
-    param0: ?PWSTR,
+    param0: ?[*:0]u16,
     param1: u32,
-    param2: ?PWSTR,
+    param2: ?[*:0]u16,
     param3: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const CALINFO_ENUMPROCEXW = *const fn(
-    param0: ?PWSTR,
+    param0: ?[*:0]u16,
     param1: u32,
 ) callconv(.winapi) BOOL;
 
 pub const CALINFO_ENUMPROCW = *const fn(
-    param0: ?PWSTR,
+    param0: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub const CHARSETINFO = extern struct {
@@ -926,11 +926,11 @@ const CLSID_CMultiLanguage_Value = Guid.initString("275c23e2-3747-11d0-9fea-00aa
 pub const CLSID_CMultiLanguage = &CLSID_CMultiLanguage_Value;
 
 pub const CODEPAGE_ENUMPROCA = *const fn(
-    param0: ?PSTR,
+    param0: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub const CODEPAGE_ENUMPROCW = *const fn(
-    param0: ?PWSTR,
+    param0: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub const COMPARE_STRING_FLAGS = packed struct(u32) {
@@ -1017,46 +1017,46 @@ pub const CURRENCYFMTA = extern struct {
     NumDigits: u32,
     LeadingZero: u32,
     Grouping: u32,
-    lpDecimalSep: ?PSTR,
-    lpThousandSep: ?PSTR,
+    lpDecimalSep: ?[*:0]u8,
+    lpThousandSep: ?[*:0]u8,
     NegativeOrder: u32,
     PositiveOrder: u32,
-    lpCurrencySymbol: ?PSTR,
+    lpCurrencySymbol: ?[*:0]u8,
 };
 
 pub const CURRENCYFMTW = extern struct {
     NumDigits: u32,
     LeadingZero: u32,
     Grouping: u32,
-    lpDecimalSep: ?PWSTR,
-    lpThousandSep: ?PWSTR,
+    lpDecimalSep: ?[*:0]u16,
+    lpThousandSep: ?[*:0]u16,
     NegativeOrder: u32,
     PositiveOrder: u32,
-    lpCurrencySymbol: ?PWSTR,
+    lpCurrencySymbol: ?[*:0]u16,
 };
 
 pub const DATEFMT_ENUMPROCA = *const fn(
-    param0: ?PSTR,
+    param0: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub const DATEFMT_ENUMPROCEXA = *const fn(
-    param0: ?PSTR,
+    param0: ?[*:0]u8,
     param1: u32,
 ) callconv(.winapi) BOOL;
 
 pub const DATEFMT_ENUMPROCEXEX = *const fn(
-    param0: ?PWSTR,
+    param0: ?[*:0]u16,
     param1: u32,
     param2: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const DATEFMT_ENUMPROCEXW = *const fn(
-    param0: ?PWSTR,
+    param0: ?[*:0]u16,
     param1: u32,
 ) callconv(.winapi) BOOL;
 
 pub const DATEFMT_ENUMPROCW = *const fn(
-    param0: ?PWSTR,
+    param0: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub const DetectEncodingInfo = extern struct {
@@ -1171,7 +1171,7 @@ pub const FONTSIGNATURE = extern struct {
 };
 
 pub const GEO_ENUMNAMEPROC = *const fn(
-    param0: ?PWSTR,
+    param0: ?[*:0]u16,
     param1: LPARAM,
 ) callconv(.winapi) BOOL;
 
@@ -1427,7 +1427,7 @@ pub const IMLangConvertCharset = extern union {
         DoConversionToUnicode: *const fn(
             self: *const IMLangConvertCharset,
             /// parameter "pcSrcSize" is the size in bytes
-            pSrcStr: ?PSTR,
+            pSrcStr: ?[*:0]u8,
             pcSrcSize: ?*u32,
             pDstStr: [*:0]u16,
             pcDstSize: ?*u32,
@@ -1437,7 +1437,7 @@ pub const IMLangConvertCharset = extern union {
             pSrcStr: [*:0]u16,
             pcSrcSize: ?*u32,
             /// parameter "pcDstSize" is the size in bytes
-            pDstStr: ?PSTR,
+            pDstStr: ?[*:0]u8,
             pcDstSize: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
@@ -1458,10 +1458,10 @@ pub const IMLangConvertCharset = extern union {
     pub fn DoConversion(self: *const IMLangConvertCharset, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.DoConversion(self, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
     }
-    pub fn DoConversionToUnicode(self: *const IMLangConvertCharset, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: [*:0]u16, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn DoConversionToUnicode(self: *const IMLangConvertCharset, pSrcStr: ?[*:0]u8, pcSrcSize: ?*u32, pDstStr: [*:0]u16, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.DoConversionToUnicode(self, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
     }
-    pub fn DoConversionFromUnicode(self: *const IMLangConvertCharset, pSrcStr: [*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn DoConversionFromUnicode(self: *const IMLangConvertCharset, pSrcStr: [*:0]u16, pcSrcSize: ?*u32, pDstStr: ?[*:0]u8, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.DoConversionFromUnicode(self, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
     }
 };
@@ -1727,7 +1727,7 @@ pub const IMLangStringAStr = extern union {
             uCodePageIn: u32,
             cchRequest: i32,
             puCodePageOut: ?*u32,
-            ppszDest: ?*?PSTR,
+            ppszDest: ?*?[*:0]u8,
             pcchDest: ?*i32,
             plDestLen: ?*i32,
         ) callconv(.winapi) HRESULT,
@@ -1768,7 +1768,7 @@ pub const IMLangStringAStr = extern union {
     pub fn GetStrBufA(self: *const IMLangStringAStr, lSrcPos: i32, lSrcMaxLen: i32, puDestCodePage: ?*u32, ppDestBuf: ?*?*IMLangStringBufA, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStrBufA(self, lSrcPos, lSrcMaxLen, puDestCodePage, ppDestBuf, plDestLen);
     }
-    pub fn LockAStr(self: *const IMLangStringAStr, lSrcPos: i32, lSrcLen: i32, lFlags: i32, uCodePageIn: u32, cchRequest: i32, puCodePageOut: ?*u32, ppszDest: ?*?PSTR, pcchDest: ?*i32, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn LockAStr(self: *const IMLangStringAStr, lSrcPos: i32, lSrcLen: i32, lFlags: i32, uCodePageIn: u32, cchRequest: i32, puCodePageOut: ?*u32, ppszDest: ?*?[*:0]u8, pcchDest: ?*i32, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.LockAStr(self, lSrcPos, lSrcLen, lFlags, uCodePageIn, cchRequest, puCodePageOut, ppszDest, pcchDest, plDestLen);
     }
     pub fn UnlockAStr(self: *const IMLangStringAStr, pszSrc: [*:0]const u8, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
@@ -1934,7 +1934,7 @@ pub const IMLangStringWStr = extern union {
             lSrcLen: i32,
             lFlags: i32,
             cchRequest: i32,
-            ppszDest: ?*?PWSTR,
+            ppszDest: ?*?[*:0]u16,
             pcchDest: ?*i32,
             plDestLen: ?*i32,
         ) callconv(.winapi) HRESULT,
@@ -1975,7 +1975,7 @@ pub const IMLangStringWStr = extern union {
     pub fn GetStrBufW(self: *const IMLangStringWStr, lSrcPos: i32, lSrcMaxLen: i32, ppDestBuf: ?*?*IMLangStringBufW, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStrBufW(self, lSrcPos, lSrcMaxLen, ppDestBuf, plDestLen);
     }
-    pub fn LockWStr(self: *const IMLangStringWStr, lSrcPos: i32, lSrcLen: i32, lFlags: i32, cchRequest: i32, ppszDest: ?*?PWSTR, pcchDest: ?*i32, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn LockWStr(self: *const IMLangStringWStr, lSrcPos: i32, lSrcLen: i32, lFlags: i32, cchRequest: i32, ppszDest: ?*?[*:0]u16, pcchDest: ?*i32, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.LockWStr(self, lSrcPos, lSrcLen, lFlags, cchRequest, ppszDest, pcchDest, plDestLen);
     }
     pub fn UnlockWStr(self: *const IMLangStringWStr, pszSrc: [*:0]const u16, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
@@ -2040,7 +2040,7 @@ pub const IMultiLanguage = extern union {
             pdwMode: ?*u32,
             dwEncoding: u32,
             /// parameter "pcSrcSize" is the size in bytes
-            pSrcStr: ?PSTR,
+            pSrcStr: ?[*:0]u8,
             pcSrcSize: ?*u32,
             pDstStr: ?[*:0]u16,
             pcDstSize: ?*u32,
@@ -2052,7 +2052,7 @@ pub const IMultiLanguage = extern union {
             pSrcStr: ?[*:0]u16,
             pcSrcSize: ?*u32,
             /// parameter "pcDstSize" is the size in bytes
-            pDstStr: ?PSTR,
+            pDstStr: ?[*:0]u8,
             pcDstSize: ?*u32,
         ) callconv(.winapi) HRESULT,
         ConvertStringReset: *const fn(
@@ -2108,10 +2108,10 @@ pub const IMultiLanguage = extern union {
     pub fn ConvertString(self: *const IMultiLanguage, pdwMode: ?*u32, dwSrcEncoding: u32, dwDstEncoding: u32, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertString(self, pdwMode, dwSrcEncoding, dwDstEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
     }
-    pub fn ConvertStringToUnicode(self: *const IMultiLanguage, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: ?[*:0]u16, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn ConvertStringToUnicode(self: *const IMultiLanguage, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?[*:0]u8, pcSrcSize: ?*u32, pDstStr: ?[*:0]u16, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertStringToUnicode(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
     }
-    pub fn ConvertStringFromUnicode(self: *const IMultiLanguage, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?[*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn ConvertStringFromUnicode(self: *const IMultiLanguage, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?[*:0]u16, pcSrcSize: ?*u32, pDstStr: ?[*:0]u8, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertStringFromUnicode(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
     }
     pub fn ConvertStringReset(self: *const IMultiLanguage) callconv(.@"inline") HRESULT {
@@ -2187,7 +2187,7 @@ pub const IMultiLanguage2 = extern union {
             pdwMode: ?*u32,
             dwEncoding: u32,
             /// parameter "pcSrcSize" is the size in bytes
-            pSrcStr: ?PSTR,
+            pSrcStr: ?[*:0]u8,
             pcSrcSize: ?*u32,
             pDstStr: ?[*:0]u16,
             pcDstSize: ?*u32,
@@ -2199,7 +2199,7 @@ pub const IMultiLanguage2 = extern union {
             pSrcStr: ?[*:0]u16,
             pcSrcSize: ?*u32,
             /// parameter "pcDstSize" is the size in bytes
-            pDstStr: ?PSTR,
+            pDstStr: ?[*:0]u8,
             pcDstSize: ?*u32,
         ) callconv(.winapi) HRESULT,
         ConvertStringReset: *const fn(
@@ -2237,7 +2237,7 @@ pub const IMultiLanguage2 = extern union {
             self: *const IMultiLanguage2,
             pdwMode: ?*u32,
             dwFlag: u32,
-            lpFallBack: ?PWSTR,
+            lpFallBack: ?[*:0]u16,
             dwSrcEncoding: u32,
             dwDstEncoding: u32,
             pstmIn: ?*IStream,
@@ -2248,12 +2248,12 @@ pub const IMultiLanguage2 = extern union {
             pdwMode: ?*u32,
             dwEncoding: u32,
             /// parameter "pcSrcSize" is the size in bytes
-            pSrcStr: ?PSTR,
+            pSrcStr: ?[*:0]u8,
             pcSrcSize: ?*u32,
             pDstStr: [*:0]u16,
             pcDstSize: ?*u32,
             dwFlag: u32,
-            lpFallBack: ?PWSTR,
+            lpFallBack: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         ConvertStringFromUnicodeEx: *const fn(
             self: *const IMultiLanguage2,
@@ -2262,10 +2262,10 @@ pub const IMultiLanguage2 = extern union {
             pSrcStr: [*:0]u16,
             pcSrcSize: ?*u32,
             /// parameter "pcDstSize" is the size in bytes
-            pDstStr: ?PSTR,
+            pDstStr: ?[*:0]u8,
             pcDstSize: ?*u32,
             dwFlag: u32,
-            lpFallBack: ?PWSTR,
+            lpFallBack: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         DetectCodepageInIStream: *const fn(
             self: *const IMultiLanguage2,
@@ -2280,7 +2280,7 @@ pub const IMultiLanguage2 = extern union {
             dwFlag: u32,
             dwPrefWinCodePage: u32,
             /// parameter "pcSrcSize" is the size in bytes
-            pSrcStr: ?PSTR,
+            pSrcStr: ?[*:0]u8,
             pcSrcSize: ?*i32,
             lpEncoding: ?*DetectEncodingInfo,
             pnScores: ?*i32,
@@ -2345,10 +2345,10 @@ pub const IMultiLanguage2 = extern union {
     pub fn ConvertString(self: *const IMultiLanguage2, pdwMode: ?*u32, dwSrcEncoding: u32, dwDstEncoding: u32, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertString(self, pdwMode, dwSrcEncoding, dwDstEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
     }
-    pub fn ConvertStringToUnicode(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: ?[*:0]u16, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn ConvertStringToUnicode(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?[*:0]u8, pcSrcSize: ?*u32, pDstStr: ?[*:0]u16, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertStringToUnicode(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
     }
-    pub fn ConvertStringFromUnicode(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?[*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn ConvertStringFromUnicode(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?[*:0]u16, pcSrcSize: ?*u32, pDstStr: ?[*:0]u8, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertStringFromUnicode(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
     }
     pub fn ConvertStringReset(self: *const IMultiLanguage2) callconv(.@"inline") HRESULT {
@@ -2369,19 +2369,19 @@ pub const IMultiLanguage2 = extern union {
     pub fn CreateConvertCharset(self: *const IMultiLanguage2, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32, ppMLangConvertCharset: ?*?*IMLangConvertCharset) callconv(.@"inline") HRESULT {
         return self.vtable.CreateConvertCharset(self, uiSrcCodePage, uiDstCodePage, dwProperty, ppMLangConvertCharset);
     }
-    pub fn ConvertStringInIStream(self: *const IMultiLanguage2, pdwMode: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR, dwSrcEncoding: u32, dwDstEncoding: u32, pstmIn: ?*IStream, pstmOut: ?*IStream) callconv(.@"inline") HRESULT {
+    pub fn ConvertStringInIStream(self: *const IMultiLanguage2, pdwMode: ?*u32, dwFlag: u32, lpFallBack: ?[*:0]u16, dwSrcEncoding: u32, dwDstEncoding: u32, pstmIn: ?*IStream, pstmOut: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertStringInIStream(self, pdwMode, dwFlag, lpFallBack, dwSrcEncoding, dwDstEncoding, pstmIn, pstmOut);
     }
-    pub fn ConvertStringToUnicodeEx(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: [*:0]u16, pcDstSize: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn ConvertStringToUnicodeEx(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?[*:0]u8, pcSrcSize: ?*u32, pDstStr: [*:0]u16, pcDstSize: ?*u32, dwFlag: u32, lpFallBack: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertStringToUnicodeEx(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize, dwFlag, lpFallBack);
     }
-    pub fn ConvertStringFromUnicodeEx(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: [*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn ConvertStringFromUnicodeEx(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: [*:0]u16, pcSrcSize: ?*u32, pDstStr: ?[*:0]u8, pcDstSize: ?*u32, dwFlag: u32, lpFallBack: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertStringFromUnicodeEx(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize, dwFlag, lpFallBack);
     }
     pub fn DetectCodepageInIStream(self: *const IMultiLanguage2, dwFlag: u32, dwPrefWinCodePage: u32, pstmIn: ?*IStream, lpEncoding: ?*DetectEncodingInfo, pnScores: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.DetectCodepageInIStream(self, dwFlag, dwPrefWinCodePage, pstmIn, lpEncoding, pnScores);
     }
-    pub fn DetectInputCodepage(self: *const IMultiLanguage2, dwFlag: u32, dwPrefWinCodePage: u32, pSrcStr: ?PSTR, pcSrcSize: ?*i32, lpEncoding: ?*DetectEncodingInfo, pnScores: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn DetectInputCodepage(self: *const IMultiLanguage2, dwFlag: u32, dwPrefWinCodePage: u32, pSrcStr: ?[*:0]u8, pcSrcSize: ?*i32, lpEncoding: ?*DetectEncodingInfo, pnScores: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.DetectInputCodepage(self, dwFlag, dwPrefWinCodePage, pSrcStr, pcSrcSize, lpEncoding, pnScores);
     }
     pub fn ValidateCodePage(self: *const IMultiLanguage2, uiCodePage: u32, hwnd: ?HWND) callconv(.@"inline") HRESULT {
@@ -2454,17 +2454,17 @@ pub const IOptionDescription = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IOptionDescription,
-            value: ?*?PWSTR,
+            value: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Heading: *const fn(
             self: *const IOptionDescription,
-            value: ?*?PWSTR,
+            value: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IOptionDescription,
-            value: ?*?PWSTR,
+            value: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Labels: *const fn(
@@ -2474,13 +2474,13 @@ pub const IOptionDescription = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Id(self: *const IOptionDescription, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Id(self: *const IOptionDescription, value: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Id(self, value);
     }
-    pub fn get_Heading(self: *const IOptionDescription, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Heading(self: *const IOptionDescription, value: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Heading(self, value);
     }
-    pub fn get_Description(self: *const IOptionDescription, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Description(self: *const IOptionDescription, value: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Description(self, value);
     }
     pub fn get_Labels(self: *const IOptionDescription, value: ?*?*IEnumString) callconv(.@"inline") HRESULT {
@@ -2574,7 +2574,7 @@ pub const ISpellChecker = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LanguageTag: *const fn(
             self: *const ISpellChecker,
-            value: ?*?PWSTR,
+            value: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Check: *const fn(
             self: *const ISpellChecker,
@@ -2612,12 +2612,12 @@ pub const ISpellChecker = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const ISpellChecker,
-            value: ?*?PWSTR,
+            value: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LocalizedName: *const fn(
             self: *const ISpellChecker,
-            value: ?*?PWSTR,
+            value: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         add_SpellCheckerChanged: *const fn(
             self: *const ISpellChecker,
@@ -2641,7 +2641,7 @@ pub const ISpellChecker = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_LanguageTag(self: *const ISpellChecker, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_LanguageTag(self: *const ISpellChecker, value: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_LanguageTag(self, value);
     }
     pub fn Check(self: *const ISpellChecker, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.@"inline") HRESULT {
@@ -2665,10 +2665,10 @@ pub const ISpellChecker = extern union {
     pub fn get_OptionIds(self: *const ISpellChecker, value: ?*?*IEnumString) callconv(.@"inline") HRESULT {
         return self.vtable.get_OptionIds(self, value);
     }
-    pub fn get_Id(self: *const ISpellChecker, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Id(self: *const ISpellChecker, value: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Id(self, value);
     }
-    pub fn get_LocalizedName(self: *const ISpellChecker, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_LocalizedName(self: *const ISpellChecker, value: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_LocalizedName(self, value);
     }
     pub fn add_SpellCheckerChanged(self: *const ISpellChecker, handler: ?*ISpellCheckerChangedEventHandler, eventCookie: ?*u32) callconv(.@"inline") HRESULT {
@@ -2766,7 +2766,7 @@ pub const ISpellCheckProvider = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LanguageTag: *const fn(
             self: *const ISpellCheckProvider,
-            value: ?*?PWSTR,
+            value: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Check: *const fn(
             self: *const ISpellCheckProvider,
@@ -2796,12 +2796,12 @@ pub const ISpellCheckProvider = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const ISpellCheckProvider,
-            value: ?*?PWSTR,
+            value: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LocalizedName: *const fn(
             self: *const ISpellCheckProvider,
-            value: ?*?PWSTR,
+            value: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetOptionDescription: *const fn(
             self: *const ISpellCheckProvider,
@@ -2816,7 +2816,7 @@ pub const ISpellCheckProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_LanguageTag(self: *const ISpellCheckProvider, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_LanguageTag(self: *const ISpellCheckProvider, value: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_LanguageTag(self, value);
     }
     pub fn Check(self: *const ISpellCheckProvider, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.@"inline") HRESULT {
@@ -2834,10 +2834,10 @@ pub const ISpellCheckProvider = extern union {
     pub fn get_OptionIds(self: *const ISpellCheckProvider, value: ?*?*IEnumString) callconv(.@"inline") HRESULT {
         return self.vtable.get_OptionIds(self, value);
     }
-    pub fn get_Id(self: *const ISpellCheckProvider, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Id(self: *const ISpellCheckProvider, value: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Id(self, value);
     }
-    pub fn get_LocalizedName(self: *const ISpellCheckProvider, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_LocalizedName(self: *const ISpellCheckProvider, value: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_LocalizedName(self, value);
     }
     pub fn GetOptionDescription(self: *const ISpellCheckProvider, optionId: ?[*:0]const u16, value: ?*?*IOptionDescription) callconv(.@"inline") HRESULT {
@@ -2907,7 +2907,7 @@ pub const ISpellingError = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Replacement: *const fn(
             self: *const ISpellingError,
-            value: ?*?PWSTR,
+            value: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -2921,7 +2921,7 @@ pub const ISpellingError = extern union {
     pub fn get_CorrectiveAction(self: *const ISpellingError, value: ?*CORRECTIVE_ACTION) callconv(.@"inline") HRESULT {
         return self.vtable.get_CorrectiveAction(self, value);
     }
-    pub fn get_Replacement(self: *const ISpellingError, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Replacement(self: *const ISpellingError, value: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Replacement(self, value);
     }
 };
@@ -2956,45 +2956,45 @@ pub const IUserDictionariesRegistrar = extern union {
 pub const LANGGROUPLOCALE_ENUMPROCA = *const fn(
     param0: u32,
     param1: u32,
-    param2: ?PSTR,
+    param2: ?[*:0]u8,
     param3: isize,
 ) callconv(.winapi) BOOL;
 
 pub const LANGGROUPLOCALE_ENUMPROCW = *const fn(
     param0: u32,
     param1: u32,
-    param2: ?PWSTR,
+    param2: ?[*:0]u16,
     param3: isize,
 ) callconv(.winapi) BOOL;
 
 pub const LANGUAGEGROUP_ENUMPROCA = *const fn(
     param0: u32,
-    param1: ?PSTR,
-    param2: ?PSTR,
+    param1: ?[*:0]u8,
+    param2: ?[*:0]u8,
     param3: u32,
     param4: isize,
 ) callconv(.winapi) BOOL;
 
 pub const LANGUAGEGROUP_ENUMPROCW = *const fn(
     param0: u32,
-    param1: ?PWSTR,
-    param2: ?PWSTR,
+    param1: ?[*:0]u16,
+    param2: ?[*:0]u16,
     param3: u32,
     param4: isize,
 ) callconv(.winapi) BOOL;
 
 pub const LOCALE_ENUMPROCA = *const fn(
-    param0: ?PSTR,
+    param0: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub const LOCALE_ENUMPROCEX = *const fn(
-    param0: ?PWSTR,
+    param0: ?[*:0]u16,
     param1: u32,
     param2: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const LOCALE_ENUMPROCW = *const fn(
-    param0: ?PWSTR,
+    param0: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub const LOCALESIGNATURE = extern struct {
@@ -3006,38 +3006,38 @@ pub const LOCALESIGNATURE = extern struct {
 pub const MAPPING_DATA_RANGE = extern struct {
     dwStartIndex: u32,
     dwEndIndex: u32,
-    pszDescription: ?PWSTR,
+    pszDescription: ?[*:0]u16,
     dwDescriptionLength: u32,
     pData: ?*anyopaque,
     dwDataSize: u32,
-    pszContentType: ?PWSTR,
-    prgActionIds: ?*?PWSTR,
+    pszContentType: ?[*:0]u16,
+    prgActionIds: ?*?[*:0]u16,
     dwActionsCount: u32,
-    prgActionDisplayNames: ?*?PWSTR,
+    prgActionDisplayNames: ?*?[*:0]u16,
 };
 
 pub const MAPPING_ENUM_OPTIONS = extern struct {
     Size: usize,
-    pszCategory: ?PWSTR,
-    pszInputLanguage: ?PWSTR,
-    pszOutputLanguage: ?PWSTR,
-    pszInputScript: ?PWSTR,
-    pszOutputScript: ?PWSTR,
-    pszInputContentType: ?PWSTR,
-    pszOutputContentType: ?PWSTR,
+    pszCategory: ?[*:0]u16,
+    pszInputLanguage: ?[*:0]u16,
+    pszOutputLanguage: ?[*:0]u16,
+    pszInputScript: ?[*:0]u16,
+    pszOutputScript: ?[*:0]u16,
+    pszInputContentType: ?[*:0]u16,
+    pszOutputContentType: ?[*:0]u16,
     pGuid: ?*Guid,
     _bitfield: u32,
 };
 
 pub const MAPPING_OPTIONS = extern struct {
     Size: usize,
-    pszInputLanguage: ?PWSTR,
-    pszOutputLanguage: ?PWSTR,
-    pszInputScript: ?PWSTR,
-    pszOutputScript: ?PWSTR,
-    pszInputContentType: ?PWSTR,
-    pszOutputContentType: ?PWSTR,
-    pszUILanguage: ?PWSTR,
+    pszInputLanguage: ?[*:0]u16,
+    pszOutputLanguage: ?[*:0]u16,
+    pszInputScript: ?[*:0]u16,
+    pszOutputScript: ?[*:0]u16,
+    pszInputContentType: ?[*:0]u16,
+    pszOutputContentType: ?[*:0]u16,
+    pszUILanguage: ?[*:0]u16,
     pfnRecognizeCallback: ?PFN_MAPPINGCALLBACKPROC,
     pRecognizeCallerData: ?*anyopaque,
     dwRecognizeCallerDataSize: u32,
@@ -3061,26 +3061,26 @@ pub const MAPPING_PROPERTY_BAG = extern struct {
 
 pub const MAPPING_SERVICE_INFO = extern struct {
     Size: usize,
-    pszCopyright: ?PWSTR,
+    pszCopyright: ?[*:0]u16,
     wMajorVersion: u16,
     wMinorVersion: u16,
     wBuildVersion: u16,
     wStepVersion: u16,
     dwInputContentTypesCount: u32,
-    prgInputContentTypes: ?*?PWSTR,
+    prgInputContentTypes: ?*?[*:0]u16,
     dwOutputContentTypesCount: u32,
-    prgOutputContentTypes: ?*?PWSTR,
+    prgOutputContentTypes: ?*?[*:0]u16,
     dwInputLanguagesCount: u32,
-    prgInputLanguages: ?*?PWSTR,
+    prgInputLanguages: ?*?[*:0]u16,
     dwOutputLanguagesCount: u32,
-    prgOutputLanguages: ?*?PWSTR,
+    prgOutputLanguages: ?*?[*:0]u16,
     dwInputScriptsCount: u32,
-    prgInputScripts: ?*?PWSTR,
+    prgInputScripts: ?*?[*:0]u16,
     dwOutputScriptsCount: u32,
-    prgOutputScripts: ?*?PWSTR,
+    prgOutputScripts: ?*?[*:0]u16,
     guid: Guid,
-    pszCategory: ?PWSTR,
-    pszDescription: ?PWSTR,
+    pszCategory: ?[*:0]u16,
+    pszDescription: ?[*:0]u16,
     dwPrivateDataSize: u32,
     pPrivateData: ?*anyopaque,
     pContext: ?*anyopaque,
@@ -3275,8 +3275,8 @@ pub const NUMBERFMTA = extern struct {
     NumDigits: u32,
     LeadingZero: u32,
     Grouping: u32,
-    lpDecimalSep: ?PSTR,
-    lpThousandSep: ?PSTR,
+    lpDecimalSep: ?[*:0]u8,
+    lpThousandSep: ?[*:0]u8,
     NegativeOrder: u32,
 };
 
@@ -3284,8 +3284,8 @@ pub const NUMBERFMTW = extern struct {
     NumDigits: u32,
     LeadingZero: u32,
     Grouping: u32,
-    lpDecimalSep: ?PWSTR,
-    lpThousandSep: ?PWSTR,
+    lpDecimalSep: ?[*:0]u16,
+    lpThousandSep: ?[*:0]u16,
     NegativeOrder: u32,
 };
 
@@ -3631,16 +3631,16 @@ pub const TIME_NOTIMEMARKER = TIME_FORMAT_FLAGS{ .NOTIMEMARKER = 1 };
 pub const TIME_FORCE24HOURFORMAT = TIME_FORMAT_FLAGS{ .FORCE24HOURFORMAT = 1 };
 
 pub const TIMEFMT_ENUMPROCA = *const fn(
-    param0: ?PSTR,
+    param0: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub const TIMEFMT_ENUMPROCEX = *const fn(
-    param0: ?PWSTR,
+    param0: ?[*:0]u16,
     param1: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const TIMEFMT_ENUMPROCW = *const fn(
-    param0: ?PWSTR,
+    param0: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub const TRANSLATE_CHARSET_INFO_FLAGS = enum(u32) {
@@ -4918,7 +4918,7 @@ pub const UConverterFromUnicodeArgs = extern struct {
     converter: ?*UConverter,
     source: ?*const u16,
     sourceLimit: ?*const u16,
-    target: ?PSTR,
+    target: ?[*:0]u8,
     targetLimit: ?[*:0]const u8,
     offsets: ?*i32,
 };
@@ -6053,12 +6053,12 @@ pub const UIDNAInfo = extern struct {
 };
 
 pub const UILANGUAGE_ENUMPROCA = *const fn(
-    param0: ?PSTR,
+    param0: ?[*:0]u8,
     param1: isize,
 ) callconv(.winapi) BOOL;
 
 pub const UILANGUAGE_ENUMPROCW = *const fn(
-    param0: ?PWSTR,
+    param0: ?[*:0]u16,
     param1: isize,
 ) callconv(.winapi) BOOL;
 
@@ -8970,7 +8970,7 @@ pub extern "kernel32" fn GetGeoInfoA(
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "kernel32" fn GetGeoInfoEx(
-    location: ?PWSTR,
+    location: ?[*:0]u16,
     geoType: u32,
     geoData: ?[*:0]u16,
     geoDataCount: i32,
@@ -9347,7 +9347,7 @@ pub extern "kernel32" fn LCMapStringA(
     dwMapFlags: u32,
     lpSrcStr: [*:0]const u8,
     cchSrc: i32,
-    lpDestStr: ?PSTR,
+    lpDestStr: ?[*:0]u8,
     cchDest: i32,
 ) callconv(.winapi) i32;
 
@@ -9370,7 +9370,7 @@ pub extern "kernel32" fn LCMapStringW(
     dwMapFlags: u32,
     lpSrcStr: [*:0]const u16,
     cchSrc: i32,
-    lpDestStr: ?PWSTR,
+    lpDestStr: ?[*:0]u16,
     cchDest: i32,
 ) callconv(.winapi) i32;
 
@@ -9382,15 +9382,15 @@ pub extern "kernel32" fn LocaleNameToLCID(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn lstrcatA(
-    lpString1: ?PSTR,
+    lpString1: ?[*:0]u8,
     lpString2: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn lstrcatW(
-    lpString1: ?PWSTR,
+    lpString1: ?[*:0]u16,
     lpString2: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn lstrcmpA(
@@ -9418,29 +9418,29 @@ pub extern "kernel32" fn lstrcmpW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn lstrcpyA(
-    lpString1: ?PSTR,
+    lpString1: ?[*:0]u8,
     lpString2: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn lstrcpynA(
     lpString1: [*:0]u8,
     lpString2: ?[*:0]const u8,
     iMaxLength: i32,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn lstrcpynW(
     lpString1: [*:0]u16,
     lpString2: ?[*:0]const u16,
     iMaxLength: i32,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn lstrcpyW(
-    lpString1: ?PWSTR,
+    lpString1: ?[*:0]u16,
     lpString2: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn lstrlenA(
@@ -10000,7 +10000,7 @@ pub extern "kernel32" fn SetUserGeoID(
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "kernel32" fn SetUserGeoName(
-    geoName: ?PWSTR,
+    geoName: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -10011,15 +10011,15 @@ pub extern "gdi32" fn TranslateCharsetInfo(
 ) callconv(.winapi) BOOL;
 
 pub extern "icu" fn u_austrcpy(
-    dst: ?PSTR,
+    dst: ?[*:0]u8,
     src: ?*const u16,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn u_austrncpy(
-    dst: ?PSTR,
+    dst: ?[*:0]u8,
     src: ?*const u16,
     n: i32,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn u_catclose(
     catd: ?*UResourceBundle,
@@ -10066,7 +10066,7 @@ pub extern "icu" fn u_charMirror(
 pub extern "icu" fn u_charName(
     code: i32,
     nameChoice: UCharNameChoice,
-    buffer: ?PSTR,
+    buffer: ?[*:0]u8,
     bufferLength: i32,
     pErrorCode: ?*UErrorCode,
 ) callconv(.winapi) i32;
@@ -10110,7 +10110,7 @@ pub extern "icu" fn u_enumCharTypes(
 
 pub extern "icu" fn u_errorName(
     code: UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn u_foldCase(
     c: i32,
@@ -10195,7 +10195,7 @@ pub extern "icu" fn u_getPropertyEnum(
 pub extern "icu" fn u_getPropertyName(
     property: UProperty,
     nameChoice: UPropertyNameChoice,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn u_getPropertyValueEnum(
     property: UProperty,
@@ -10206,7 +10206,7 @@ pub extern "icu" fn u_getPropertyValueName(
     property: UProperty,
     value: i32,
     nameChoice: UPropertyNameChoice,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn u_getUnicodeVersion(
     versionArray: ?*u8,
@@ -10662,13 +10662,13 @@ pub extern "icu" fn u_strstr(
 ) callconv(.winapi) ?*u16;
 
 pub extern "icu" fn u_strToJavaModifiedUTF8(
-    dest: ?PSTR,
+    dest: ?[*:0]u8,
     destCapacity: i32,
     pDestLength: ?*i32,
     src: ?*const u16,
     srcLength: i32,
     pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn u_strtok_r(
     src: ?*u16,
@@ -10725,16 +10725,16 @@ pub extern "icu" fn u_strToUTF32WithSub(
 ) callconv(.winapi) ?*i32;
 
 pub extern "icu" fn u_strToUTF8(
-    dest: ?PSTR,
+    dest: ?[*:0]u8,
     destCapacity: i32,
     pDestLength: ?*i32,
     src: ?*const u16,
     srcLength: i32,
     pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn u_strToUTF8WithSub(
-    dest: ?PSTR,
+    dest: ?[*:0]u8,
     destCapacity: i32,
     pDestLength: ?*i32,
     src: ?*const u16,
@@ -10742,16 +10742,16 @@ pub extern "icu" fn u_strToUTF8WithSub(
     subchar: i32,
     pNumSubstitutions: ?*i32,
     pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn u_strToWCS(
-    dest: ?PWSTR,
+    dest: ?[*:0]u16,
     destCapacity: i32,
     pDestLength: ?*i32,
     src: ?*const u16,
     srcLength: i32,
     pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 pub extern "icu" fn u_tolower(
     c: i32,
@@ -10778,7 +10778,7 @@ pub extern "icu" fn u_uastrncpy(
 
 pub extern "icu" fn u_UCharsToChars(
     us: ?*const u16,
-    cs: ?PSTR,
+    cs: ?[*:0]u8,
     length: i32,
 ) callconv(.winapi) void;
 
@@ -10807,7 +10807,7 @@ pub extern "icu" fn u_versionFromUString(
 
 pub extern "icu" fn u_versionToString(
     versionArray: ?*const u8,
-    versionString: ?PSTR,
+    versionString: ?[*:0]u8,
 ) callconv(.winapi) void;
 
 pub extern "icu" fn u_vformatMessage(
@@ -11135,7 +11135,7 @@ pub extern "icu" fn ubrk_following(
 
 pub extern "icu" fn ubrk_getAvailable(
     index: i32,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ubrk_getBinaryRules(
     bi: ?*UBreakIterator,
@@ -11148,7 +11148,7 @@ pub extern "icu" fn ubrk_getLocaleByType(
     bi: ?*const UBreakIterator,
     type: ULocDataLocaleType,
     status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ubrk_getRuleStatus(
     bi: ?*UBreakIterator,
@@ -11280,7 +11280,7 @@ pub extern "icu" fn ucal_getAttribute(
 
 pub extern "icu" fn ucal_getAvailable(
     localeIndex: i32,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ucal_getCanonicalTimeZoneID(
     id: ?*const u16,
@@ -11344,7 +11344,7 @@ pub extern "icu" fn ucal_getLocaleByType(
     cal: ?*const ?*anyopaque,
     type: ULocDataLocaleType,
     status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ucal_getMillis(
     cal: ?*const ?*anyopaque,
@@ -11389,11 +11389,11 @@ pub extern "icu" fn ucal_getTimeZoneTransitionDate(
 pub extern "icu" fn ucal_getType(
     cal: ?*const ?*anyopaque,
     status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ucal_getTZDataVersion(
     status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ucal_getWeekendTransition(
     cal: ?*const ?*anyopaque,
@@ -11521,7 +11521,7 @@ pub extern "icu" fn ucasemap_getBreakIterator(
 
 pub extern "icu" fn ucasemap_getLocale(
     csm: ?*const UCaseMap,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ucasemap_getOptions(
     csm: ?*const UCaseMap,
@@ -11562,7 +11562,7 @@ pub extern "icu" fn ucasemap_toTitle(
 
 pub extern "icu" fn ucasemap_utf8FoldCase(
     csm: ?*const UCaseMap,
-    dest: ?PSTR,
+    dest: ?[*:0]u8,
     destCapacity: i32,
     src: ?[*:0]const u8,
     srcLength: i32,
@@ -11571,7 +11571,7 @@ pub extern "icu" fn ucasemap_utf8FoldCase(
 
 pub extern "icu" fn ucasemap_utf8ToLower(
     csm: ?*const UCaseMap,
-    dest: ?PSTR,
+    dest: ?[*:0]u8,
     destCapacity: i32,
     src: ?[*:0]const u8,
     srcLength: i32,
@@ -11580,7 +11580,7 @@ pub extern "icu" fn ucasemap_utf8ToLower(
 
 pub extern "icu" fn ucasemap_utf8ToTitle(
     csm: ?*UCaseMap,
-    dest: ?PSTR,
+    dest: ?[*:0]u8,
     destCapacity: i32,
     src: ?[*:0]const u8,
     srcLength: i32,
@@ -11589,7 +11589,7 @@ pub extern "icu" fn ucasemap_utf8ToTitle(
 
 pub extern "icu" fn ucasemap_utf8ToUpper(
     csm: ?*const UCaseMap,
-    dest: ?PSTR,
+    dest: ?[*:0]u8,
     destCapacity: i32,
     src: ?[*:0]const u8,
     srcLength: i32,
@@ -11714,7 +11714,7 @@ pub extern "icu" fn ucnv_compareNames(
 pub extern "icu" fn ucnv_convert(
     toConverterName: ?[*:0]const u8,
     fromConverterName: ?[*:0]const u8,
-    target: ?PSTR,
+    target: ?[*:0]u8,
     targetCapacity: i32,
     source: ?[*:0]const u8,
     sourceLength: i32,
@@ -11753,7 +11753,7 @@ pub extern "icu" fn ucnv_detectUnicodeSignature(
     sourceLength: i32,
     signatureLength: ?*i32,
     pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ucnv_fixFileSeparator(
     cnv: ?*const UConverter,
@@ -11807,7 +11807,7 @@ pub extern "icu" fn UCNV_FROM_U_CALLBACK_SUBSTITUTE(
 pub extern "icu" fn ucnv_fromAlgorithmic(
     cnv: ?*UConverter,
     algorithmicType: UConverterType,
-    target: ?PSTR,
+    target: ?[*:0]u8,
     targetCapacity: i32,
     source: ?[*:0]const u8,
     sourceLength: i32,
@@ -11816,7 +11816,7 @@ pub extern "icu" fn ucnv_fromAlgorithmic(
 
 pub extern "icu" fn ucnv_fromUChars(
     cnv: ?*UConverter,
-    dest: ?PSTR,
+    dest: ?[*:0]u8,
     destCapacity: i32,
     src: ?*const u16,
     srcLength: i32,
@@ -11843,7 +11843,7 @@ pub extern "icu" fn ucnv_getAlias(
     alias: ?[*:0]const u8,
     n: u16,
     pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ucnv_getAliases(
     alias: ?[*:0]const u8,
@@ -11853,13 +11853,13 @@ pub extern "icu" fn ucnv_getAliases(
 
 pub extern "icu" fn ucnv_getAvailableName(
     n: i32,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ucnv_getCanonicalName(
     alias: ?[*:0]const u8,
     standard: ?[*:0]const u8,
     pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ucnv_getCCSID(
     converter: ?*const UConverter,
@@ -11867,7 +11867,7 @@ pub extern "icu" fn ucnv_getCCSID(
 ) callconv(.winapi) i32;
 
 pub extern "icu" fn ucnv_getDefaultName(
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ucnv_getDisplayName(
     converter: ?*const UConverter,
@@ -11885,7 +11885,7 @@ pub extern "icu" fn ucnv_getFromUCallBack(
 
 pub extern "icu" fn ucnv_getInvalidChars(
     converter: ?*const UConverter,
-    errBytes: ?PSTR,
+    errBytes: ?[*:0]u8,
     len: ?*i8,
     err: ?*UErrorCode,
 ) callconv(.winapi) void;
@@ -11908,7 +11908,7 @@ pub extern "icu" fn ucnv_getMinCharSize(
 pub extern "icu" fn ucnv_getName(
     converter: ?*const UConverter,
     err: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ucnv_getNextUChar(
     converter: ?*UConverter,
@@ -11925,13 +11925,13 @@ pub extern "icu" fn ucnv_getPlatform(
 pub extern "icu" fn ucnv_getStandard(
     n: u16,
     pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ucnv_getStandardName(
     name: ?[*:0]const u8,
     standard: ?[*:0]const u8,
     pErrorCode: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ucnv_getStarters(
     converter: ?*const UConverter,
@@ -11941,7 +11941,7 @@ pub extern "icu" fn ucnv_getStarters(
 
 pub extern "icu" fn ucnv_getSubstChars(
     converter: ?*const UConverter,
-    subChars: ?PSTR,
+    subChars: ?[*:0]u8,
     len: ?*i8,
     err: ?*UErrorCode,
 ) callconv(.winapi) void;
@@ -12103,7 +12103,7 @@ pub extern "icu" fn UCNV_TO_U_CALLBACK_SUBSTITUTE(
 pub extern "icu" fn ucnv_toAlgorithmic(
     algorithmicType: UConverterType,
     cnv: ?*UConverter,
-    target: ?PSTR,
+    target: ?[*:0]u8,
     targetCapacity: i32,
     source: ?[*:0]const u8,
     sourceLength: i32,
@@ -12212,7 +12212,7 @@ pub extern "icu" fn ucol_getAttribute(
 
 pub extern "icu" fn ucol_getAvailable(
     localeIndex: i32,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ucol_getBound(
     source: ?*const u8,
@@ -12248,7 +12248,7 @@ pub extern "icu" fn ucol_getEquivalentReorderCodes(
 ) callconv(.winapi) i32;
 
 pub extern "icu" fn ucol_getFunctionalEquivalent(
-    result: ?PSTR,
+    result: ?[*:0]u8,
     resultCapacity: i32,
     keyword: ?[*:0]const u8,
     locale: ?[*:0]const u8,
@@ -12276,7 +12276,7 @@ pub extern "icu" fn ucol_getLocaleByType(
     coll: ?*const UCollator,
     type: ULocDataLocaleType,
     status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ucol_getMaxExpansion(
     elems: ?*const UCollationElements,
@@ -12618,12 +12618,12 @@ pub extern "icu" fn ucsdet_getConfidence(
 pub extern "icu" fn ucsdet_getLanguage(
     ucsm: ?*const UCharsetMatch,
     status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ucsdet_getName(
     ucsm: ?*const UCharsetMatch,
     status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ucsdet_getUChars(
     ucsm: ?*const UCharsetMatch,
@@ -12829,7 +12829,7 @@ pub extern "icu" fn udat_get2DigitYearStart(
 
 pub extern "icu" fn udat_getAvailable(
     localeIndex: i32,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn udat_getBooleanAttribute(
     fmt: ?*const ?*anyopaque,
@@ -12851,7 +12851,7 @@ pub extern "icu" fn udat_getLocaleByType(
     fmt: ?*const ?*anyopaque,
     type: ULocDataLocaleType,
     status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn udat_getNumberFormat(
     fmt: ?*const ?*anyopaque,
@@ -13170,7 +13170,7 @@ pub extern "icu" fn uenum_next(
     en: ?*UEnumeration,
     resultLength: ?*i32,
     status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn uenum_openCharStringsEnumeration(
     strings: ?*const ?*i8,
@@ -13233,7 +13233,7 @@ pub extern "icu" fn ufmt_getDecNumChars(
     fmt: ?*?*anyopaque,
     len: ?*i32,
     status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ufmt_getDouble(
     fmt: ?*?*anyopaque,
@@ -13316,7 +13316,7 @@ pub extern "icu" fn uidna_labelToASCII_UTF8(
     idna: ?*const UIDNA,
     label: ?[*:0]const u8,
     length: i32,
-    dest: ?PSTR,
+    dest: ?[*:0]u8,
     capacity: i32,
     pInfo: ?*UIDNAInfo,
     pErrorCode: ?*UErrorCode,
@@ -13336,7 +13336,7 @@ pub extern "icu" fn uidna_labelToUnicodeUTF8(
     idna: ?*const UIDNA,
     label: ?[*:0]const u8,
     length: i32,
-    dest: ?PSTR,
+    dest: ?[*:0]u8,
     capacity: i32,
     pInfo: ?*UIDNAInfo,
     pErrorCode: ?*UErrorCode,
@@ -13356,7 +13356,7 @@ pub extern "icu" fn uidna_nameToASCII_UTF8(
     idna: ?*const UIDNA,
     name: ?[*:0]const u8,
     length: i32,
-    dest: ?PSTR,
+    dest: ?[*:0]u8,
     capacity: i32,
     pInfo: ?*UIDNAInfo,
     pErrorCode: ?*UErrorCode,
@@ -13376,7 +13376,7 @@ pub extern "icu" fn uidna_nameToUnicodeUTF8(
     idna: ?*const UIDNA,
     name: ?[*:0]const u8,
     length: i32,
-    dest: ?PSTR,
+    dest: ?[*:0]u8,
     capacity: i32,
     pInfo: ?*UIDNAInfo,
     pErrorCode: ?*UErrorCode,
@@ -13443,7 +13443,7 @@ pub extern "icu" fn uldn_getDialectHandling(
 
 pub extern "icu" fn uldn_getLocale(
     ldn: ?*const ULocaleDisplayNames,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn uldn_keyDisplayName(
     ldn: ?*const ULocaleDisplayNames,
@@ -13572,7 +13572,7 @@ pub extern "icu" fn ulistfmt_resultAsValue(
 ) callconv(.winapi) ?*UFormattedValue;
 
 pub extern "icu" fn uloc_acceptLanguage(
-    result: ?PSTR,
+    result: ?[*:0]u8,
     resultAvailable: i32,
     outResult: ?*UAcceptResult,
     acceptList: ?*const ?*i8,
@@ -13582,7 +13582,7 @@ pub extern "icu" fn uloc_acceptLanguage(
 ) callconv(.winapi) i32;
 
 pub extern "icu" fn uloc_acceptLanguageFromHTTP(
-    result: ?PSTR,
+    result: ?[*:0]u8,
     resultAvailable: i32,
     outResult: ?*UAcceptResult,
     httpAcceptLanguage: ?[*:0]const u8,
@@ -13592,14 +13592,14 @@ pub extern "icu" fn uloc_acceptLanguageFromHTTP(
 
 pub extern "icu" fn uloc_addLikelySubtags(
     localeID: ?[*:0]const u8,
-    maximizedLocaleID: ?PSTR,
+    maximizedLocaleID: ?[*:0]u8,
     maximizedLocaleIDCapacity: i32,
     err: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
 pub extern "icu" fn uloc_canonicalize(
     localeID: ?[*:0]const u8,
-    name: ?PSTR,
+    name: ?[*:0]u8,
     nameCapacity: i32,
     err: ?*UErrorCode,
 ) callconv(.winapi) i32;
@@ -13609,7 +13609,7 @@ pub extern "icu" fn uloc_countAvailable(
 
 pub extern "icu" fn uloc_forLanguageTag(
     langtag: ?[*:0]const u8,
-    localeID: ?PSTR,
+    localeID: ?[*:0]u8,
     localeIDCapacity: i32,
     parsedLength: ?*i32,
     err: ?*UErrorCode,
@@ -13617,11 +13617,11 @@ pub extern "icu" fn uloc_forLanguageTag(
 
 pub extern "icu" fn uloc_getAvailable(
     n: i32,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn uloc_getBaseName(
     localeID: ?[*:0]const u8,
-    name: ?PSTR,
+    name: ?[*:0]u8,
     nameCapacity: i32,
     err: ?*UErrorCode,
 ) callconv(.winapi) i32;
@@ -13633,13 +13633,13 @@ pub extern "icu" fn uloc_getCharacterOrientation(
 
 pub extern "icu" fn uloc_getCountry(
     localeID: ?[*:0]const u8,
-    country: ?PSTR,
+    country: ?[*:0]u8,
     countryCapacity: i32,
     err: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
 pub extern "icu" fn uloc_getDefault(
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn uloc_getDisplayCountry(
     locale: ?[*:0]const u8,
@@ -13700,11 +13700,11 @@ pub extern "icu" fn uloc_getDisplayVariant(
 
 pub extern "icu" fn uloc_getISO3Country(
     localeID: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn uloc_getISO3Language(
     localeID: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn uloc_getISOCountries(
 ) callconv(.winapi) ?*?*i8;
@@ -13715,14 +13715,14 @@ pub extern "icu" fn uloc_getISOLanguages(
 pub extern "icu" fn uloc_getKeywordValue(
     localeID: ?[*:0]const u8,
     keywordName: ?[*:0]const u8,
-    buffer: ?PSTR,
+    buffer: ?[*:0]u8,
     bufferCapacity: i32,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
 pub extern "icu" fn uloc_getLanguage(
     localeID: ?[*:0]const u8,
-    language: ?PSTR,
+    language: ?[*:0]u8,
     languageCapacity: i32,
     err: ?*UErrorCode,
 ) callconv(.winapi) i32;
@@ -13738,35 +13738,35 @@ pub extern "icu" fn uloc_getLineOrientation(
 
 pub extern "icu" fn uloc_getLocaleForLCID(
     hostID: u32,
-    locale: ?PSTR,
+    locale: ?[*:0]u8,
     localeCapacity: i32,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
 pub extern "icu" fn uloc_getName(
     localeID: ?[*:0]const u8,
-    name: ?PSTR,
+    name: ?[*:0]u8,
     nameCapacity: i32,
     err: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
 pub extern "icu" fn uloc_getParent(
     localeID: ?[*:0]const u8,
-    parent: ?PSTR,
+    parent: ?[*:0]u8,
     parentCapacity: i32,
     err: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
 pub extern "icu" fn uloc_getScript(
     localeID: ?[*:0]const u8,
-    script: ?PSTR,
+    script: ?[*:0]u8,
     scriptCapacity: i32,
     err: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
 pub extern "icu" fn uloc_getVariant(
     localeID: ?[*:0]const u8,
-    variant: ?PSTR,
+    variant: ?[*:0]u8,
     variantCapacity: i32,
     err: ?*UErrorCode,
 ) callconv(.winapi) i32;
@@ -13777,7 +13777,7 @@ pub extern "icu" fn uloc_isRightToLeft(
 
 pub extern "icu" fn uloc_minimizeSubtags(
     localeID: ?[*:0]const u8,
-    minimizedLocaleID: ?PSTR,
+    minimizedLocaleID: ?[*:0]u8,
     minimizedLocaleIDCapacity: i32,
     err: ?*UErrorCode,
 ) callconv(.winapi) i32;
@@ -13800,14 +13800,14 @@ pub extern "icu" fn uloc_setDefault(
 pub extern "icu" fn uloc_setKeywordValue(
     keywordName: ?[*:0]const u8,
     keywordValue: ?[*:0]const u8,
-    buffer: ?PSTR,
+    buffer: ?[*:0]u8,
     bufferCapacity: i32,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
 
 pub extern "icu" fn uloc_toLanguageTag(
     localeID: ?[*:0]const u8,
-    langtag: ?PSTR,
+    langtag: ?[*:0]u8,
     langtagCapacity: i32,
     strict: i8,
     err: ?*UErrorCode,
@@ -13815,21 +13815,21 @@ pub extern "icu" fn uloc_toLanguageTag(
 
 pub extern "icu" fn uloc_toLegacyKey(
     keyword: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn uloc_toLegacyType(
     keyword: ?[*:0]const u8,
     value: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn uloc_toUnicodeLocaleKey(
     keyword: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn uloc_toUnicodeLocaleType(
     keyword: ?[*:0]const u8,
     value: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ulocdata_close(
     uld: ?*ULocaleData,
@@ -13930,7 +13930,7 @@ pub extern "icu" fn umsg_format(
 
 pub extern "icu" fn umsg_getLocale(
     fmt: ?*const ?*anyopaque,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn umsg_open(
     pattern: ?*const u16,
@@ -14270,7 +14270,7 @@ pub extern "icu" fn unum_getAttribute(
 
 pub extern "icu" fn unum_getAvailable(
     localeIndex: i32,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn unum_getContext(
     fmt: ?*const ?*anyopaque,
@@ -14287,7 +14287,7 @@ pub extern "icu" fn unum_getLocaleByType(
     fmt: ?*const ?*anyopaque,
     type: ULocDataLocaleType,
     status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn unum_getSymbol(
     fmt: ?*const ?*anyopaque,
@@ -14327,7 +14327,7 @@ pub extern "icu" fn unum_parseDecimal(
     text: ?*const u16,
     textLength: i32,
     parsePos: ?*i32,
-    outBuf: ?PSTR,
+    outBuf: ?[*:0]u8,
     outBufLength: i32,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
@@ -14494,7 +14494,7 @@ pub extern "icu" fn unumsys_getDescription(
 
 pub extern "icu" fn unumsys_getName(
     unumsys: ?*const UNumberingSystem,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn unumsys_getRadix(
     unumsys: ?*const UNumberingSystem,
@@ -14992,7 +14992,7 @@ pub extern "icu" fn uregion_getPreferredValues(
 
 pub extern "icu" fn uregion_getRegionCode(
     uregion: ?*const URegion,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn uregion_getRegionFromCode(
     regionCode: ?[*:0]const u8,
@@ -15115,13 +15115,13 @@ pub extern "icu" fn ures_getIntVector(
 
 pub extern "icu" fn ures_getKey(
     resourceBundle: ?*const UResourceBundle,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ures_getLocaleByType(
     resourceBundle: ?*const UResourceBundle,
     type: ULocDataLocaleType,
     status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ures_getNextResource(
     resourceBundle: ?*UResourceBundle,
@@ -15171,29 +15171,29 @@ pub extern "icu" fn ures_getUInt(
 
 pub extern "icu" fn ures_getUTF8String(
     resB: ?*const UResourceBundle,
-    dest: ?PSTR,
+    dest: ?[*:0]u8,
     length: ?*i32,
     forceCopy: i8,
     status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ures_getUTF8StringByIndex(
     resB: ?*const UResourceBundle,
     stringIndex: i32,
-    dest: ?PSTR,
+    dest: ?[*:0]u8,
     pLength: ?*i32,
     forceCopy: i8,
     status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ures_getUTF8StringByKey(
     resB: ?*const UResourceBundle,
     key: ?[*:0]const u8,
-    dest: ?PSTR,
+    dest: ?[*:0]u8,
     pLength: ?*i32,
     forceCopy: i8,
     status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn ures_getVersion(
     resB: ?*const UResourceBundle,
@@ -15244,7 +15244,7 @@ pub extern "icu" fn uscript_getCode(
 
 pub extern "icu" fn uscript_getName(
     scriptCode: UScriptCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn uscript_getSampleString(
     script: UScriptCode,
@@ -15267,7 +15267,7 @@ pub extern "icu" fn uscript_getScriptExtensions(
 
 pub extern "icu" fn uscript_getShortName(
     scriptCode: UScriptCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn uscript_getUsage(
     script: UScriptCode,
@@ -15807,7 +15807,7 @@ pub extern "icu" fn uspoof_getAllowedChars(
 pub extern "icu" fn uspoof_getAllowedLocales(
     sc: ?*USpoofChecker,
     status: ?*UErrorCode,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn uspoof_getCheckResultChecks(
     checkResult: ?*const USpoofCheckResult,
@@ -15856,7 +15856,7 @@ pub extern "icu" fn uspoof_getSkeletonUTF8(
     type: u32,
     id: ?[*:0]const u8,
     length: i32,
-    dest: ?PSTR,
+    dest: ?[*:0]u8,
     destCapacity: i32,
     status: ?*UErrorCode,
 ) callconv(.winapi) i32;
@@ -16120,7 +16120,7 @@ pub extern "icu" fn utmscale_toInt64(
 ) callconv(.winapi) i64;
 
 pub extern "icu" fn utrace_format(
-    outBuf: ?PSTR,
+    outBuf: ?[*:0]u8,
     capacity: i32,
     indent: i32,
     fmt: ?[*:0]const u8,
@@ -16128,7 +16128,7 @@ pub extern "icu" fn utrace_format(
 
 pub extern "icu" fn utrace_functionName(
     fnNumber: i32,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "icu" fn utrace_getFunctions(
     context: ?*const ?*anyopaque,
@@ -16152,7 +16152,7 @@ pub extern "icu" fn utrace_setLevel(
 ) callconv(.winapi) void;
 
 pub extern "icu" fn utrace_vformat(
-    outBuf: ?PSTR,
+    outBuf: ?[*:0]u8,
     capacity: i32,
     indent: i32,
     fmt: ?[*:0]const u8,
@@ -16279,7 +16279,7 @@ pub extern "kernel32" fn WideCharToMultiByte(
     lpWideCharStr: [*:0]const u16,
     cchWideChar: i32,
     /// parameter "cbMultiByte" is the size in bytes
-    lpMultiByteStr: ?PSTR,
+    lpMultiByteStr: ?[*:0]u8,
     cbMultiByte: i32,
     lpDefaultChar: ?[*]const u8,
     lpUsedDefaultChar: ?*i32,
@@ -16619,7 +16619,7 @@ pub const SetLocaleInfo = switch (@import("zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (23)
+// Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("zig.zig").Guid;
 const ABC = @import("graphics/gdi.zig").ABC;
@@ -16639,8 +16639,6 @@ const IUnknown = @import("system/com.zig").IUnknown;
 const LPARAM = @import("foundation.zig").LPARAM;
 const NEWTEXTMETRICA = @import("graphics/gdi.zig").NEWTEXTMETRICA;
 const NEWTEXTMETRICW = @import("graphics/gdi.zig").NEWTEXTMETRICW;
-const PSTR = @import("foundation.zig").PSTR;
-const PWSTR = @import("foundation.zig").PWSTR;
 const RECT = @import("foundation.zig").RECT;
 const SIZE = @import("foundation.zig").SIZE;
 const SYSTEMTIME = @import("foundation.zig").SYSTEMTIME;

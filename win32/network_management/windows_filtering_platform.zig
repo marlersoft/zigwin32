@@ -649,7 +649,7 @@ pub const FWP_CONDITION_VALUE0 = extern struct {
         sd: ?*FWP_BYTE_BLOB,
         tokenInformation: ?*FWP_TOKEN_INFORMATION,
         tokenAccessInformation: ?*FWP_BYTE_BLOB,
-        unicodeString: ?PWSTR,
+        unicodeString: ?[*:0]u16,
         byteArray6: ?*FWP_BYTE_ARRAY6,
         v4AddrMask: ?*FWP_V4_ADDR_AND_MASK,
         v6AddrMask: ?*FWP_V6_ADDR_AND_MASK,
@@ -818,7 +818,7 @@ pub const FWP_VALUE0 = extern struct {
         sd: ?*FWP_BYTE_BLOB,
         tokenInformation: ?*FWP_TOKEN_INFORMATION,
         tokenAccessInformation: ?*FWP_BYTE_BLOB,
-        unicodeString: ?PWSTR,
+        unicodeString: ?[*:0]u16,
         byteArray6: ?*FWP_BYTE_ARRAY6,
     },
 };
@@ -952,8 +952,8 @@ pub const FWPM_CONNECTION_SUBSCRIPTION0 = extern struct {
 };
 
 pub const FWPM_DISPLAY_DATA0 = extern struct {
-    name: ?PWSTR,
-    description: ?PWSTR,
+    name: ?[*:0]u16,
+    description: ?[*:0]u16,
 };
 
 pub const FWPM_DYNAMIC_KEYWORD_CALLBACK0 = *const fn(
@@ -1415,7 +1415,7 @@ pub const FWPM_NET_EVENT_HEADER3 = extern struct {
     userId: ?*SID,
     addressFamily: FWP_AF,
     packageSid: ?*SID,
-    enterpriseId: ?PWSTR,
+    enterpriseId: ?[*:0]u16,
     policyFlags: u64,
     effectiveName: FWP_BYTE_BLOB,
 };
@@ -1442,12 +1442,12 @@ pub const FWPM_NET_EVENT_IKEEXT_EM_FAILURE1 = extern struct {
     endCertHash: [20]u8,
     mmId: u64,
     qmFilterId: u64,
-    localPrincipalNameForAuth: ?PWSTR,
-    remotePrincipalNameForAuth: ?PWSTR,
+    localPrincipalNameForAuth: ?[*:0]u16,
+    remotePrincipalNameForAuth: ?[*:0]u16,
     numLocalPrincipalGroupSids: u32,
-    localPrincipalGroupSids: ?*?PWSTR,
+    localPrincipalGroupSids: ?*?[*:0]u16,
     numRemotePrincipalGroupSids: u32,
-    remotePrincipalGroupSids: ?*?PWSTR,
+    remotePrincipalGroupSids: ?*?[*:0]u16,
     saTrafficType: IPSEC_TRAFFIC_TYPE,
 };
 
@@ -1475,12 +1475,12 @@ pub const FWPM_NET_EVENT_IKEEXT_MM_FAILURE1 = extern struct {
     endCertHash: [20]u8,
     mmId: u64,
     mmFilterId: u64,
-    localPrincipalNameForAuth: ?PWSTR,
-    remotePrincipalNameForAuth: ?PWSTR,
+    localPrincipalNameForAuth: ?[*:0]u16,
+    remotePrincipalNameForAuth: ?[*:0]u16,
     numLocalPrincipalGroupSids: u32,
-    localPrincipalGroupSids: ?*?PWSTR,
+    localPrincipalGroupSids: ?*?[*:0]u16,
     numRemotePrincipalGroupSids: u32,
-    remotePrincipalGroupSids: ?*?PWSTR,
+    remotePrincipalGroupSids: ?*?[*:0]u16,
 };
 
 pub const FWPM_NET_EVENT_IKEEXT_MM_FAILURE2 = extern struct {
@@ -1494,12 +1494,12 @@ pub const FWPM_NET_EVENT_IKEEXT_MM_FAILURE2 = extern struct {
     endCertHash: [20]u8,
     mmId: u64,
     mmFilterId: u64,
-    localPrincipalNameForAuth: ?PWSTR,
-    remotePrincipalNameForAuth: ?PWSTR,
+    localPrincipalNameForAuth: ?[*:0]u16,
+    remotePrincipalNameForAuth: ?[*:0]u16,
     numLocalPrincipalGroupSids: u32,
-    localPrincipalGroupSids: ?*?PWSTR,
+    localPrincipalGroupSids: ?*?[*:0]u16,
     numRemotePrincipalGroupSids: u32,
-    remotePrincipalGroupSids: ?*?PWSTR,
+    remotePrincipalGroupSids: ?*?[*:0]u16,
     providerContextKey: ?*Guid,
 };
 
@@ -1601,7 +1601,7 @@ pub const FWPM_PROVIDER0 = extern struct {
     displayData: FWPM_DISPLAY_DATA0,
     flags: u32,
     providerData: FWP_BYTE_BLOB,
-    serviceName: ?PWSTR,
+    serviceName: ?[*:0]u16,
 };
 
 pub const FWPM_PROVIDER_CHANGE0 = extern struct {
@@ -1792,7 +1792,7 @@ pub const FWPM_SESSION0 = extern struct {
     txnWaitTimeoutInMSec: u32,
     processId: u32,
     sid: ?*SID,
-    username: ?PWSTR,
+    username: ?[*:0]u16,
     kernelMode: BOOL,
 };
 
@@ -1906,16 +1906,16 @@ pub const FWPM_SYSTEM_PORTS_CALLBACK0 = *const fn(
 
 pub const FWPM_VSWITCH_EVENT0 = extern struct {
     eventType: FWPM_VSWITCH_EVENT_TYPE,
-    vSwitchId: ?PWSTR,
+    vSwitchId: ?[*:0]u16,
     Anonymous: extern union {
         positionInfo: extern struct {
             numvSwitchFilterExtensions: u32,
-            vSwitchFilterExtensions: ?*?PWSTR,
+            vSwitchFilterExtensions: ?*?[*:0]u16,
         },
         reorderInfo: extern struct {
             inRequiredPosition: BOOL,
             numvSwitchFilterExtensions: u32,
-            vSwitchFilterExtensions: ?*?PWSTR,
+            vSwitchFilterExtensions: ?*?[*:0]u16,
         },
     },
 };
@@ -2098,7 +2098,7 @@ pub const IKEEXT_CERT_CRITERIA_NAME_TYPE_MAX = IKEEXT_CERT_CRITERIA_NAME_TYPE.NA
 
 pub const IKEEXT_CERT_EKUS0 = extern struct {
     numEku: u32,
-    eku: ?*?PSTR,
+    eku: ?*?[*:0]u8,
 };
 
 pub const IKEEXT_CERT_FLAGS = packed struct(u32) {
@@ -2147,7 +2147,7 @@ pub const IKEEXT_CERT_FLAG_FOLLOW_RENEWAL_CERTIFICATE = IKEEXT_CERT_FLAGS{ .FOLL
 
 pub const IKEEXT_CERT_NAME0 = extern struct {
     nameType: IKEEXT_CERT_CRITERIA_NAME_TYPE,
-    certName: ?PWSTR,
+    certName: ?[*:0]u16,
 };
 
 pub const IKEEXT_CERT_ROOT_CONFIG0 = extern struct {
@@ -2529,8 +2529,8 @@ pub const IKEEXT_IP_VERSION_SPECIFIC_KEYMODULE_STATISTICS1 = extern struct {
 };
 
 pub const IKEEXT_IPV6_CGA_AUTHENTICATION0 = extern struct {
-    keyContainerName: ?PWSTR,
-    cspName: ?PWSTR,
+    keyContainerName: ?[*:0]u16,
+    cspName: ?[*:0]u16,
     cspType: u32,
     cgaModifier: FWP_BYTE_ARRAY16,
     cgaCollisionCount: u8,
@@ -2542,7 +2542,7 @@ pub const IKEEXT_KERBEROS_AUTHENTICATION0 = extern struct {
 
 pub const IKEEXT_KERBEROS_AUTHENTICATION1 = extern struct {
     flags: IKEEXT_KERBEROS_AUTHENTICATION_FLAGS,
-    proxyServer: ?PWSTR,
+    proxyServer: ?[*:0]u16,
 };
 
 pub const IKEEXT_KERBEROS_AUTHENTICATION_FLAGS = packed struct(u32) {
@@ -2629,7 +2629,7 @@ pub const IKEEXT_MM_SA_STATE_COMPLETE = IKEEXT_MM_SA_STATE.COMPLETE;
 pub const IKEEXT_MM_SA_STATE_MAX = IKEEXT_MM_SA_STATE.MAX;
 
 pub const IKEEXT_NAME_CREDENTIAL0 = extern struct {
-    principalName: ?PWSTR,
+    principalName: ?[*:0]u16,
 };
 
 pub const IKEEXT_NTLM_V2_AUTHENTICATION0 = extern struct {
@@ -3149,8 +3149,8 @@ pub const IPSEC_GETSPI1 = extern struct {
 };
 
 pub const IPSEC_ID0 = extern struct {
-    mmTargetName: ?PWSTR,
-    emTargetName: ?PWSTR,
+    mmTargetName: ?[*:0]u16,
+    emTargetName: ?[*:0]u16,
     numTokens: u32,
     tokens: ?*IPSEC_TOKEN0,
     explicitCredentials: u64,
@@ -3715,7 +3715,7 @@ pub const IPSEC_TUNNEL_ENDPOINTS2 = extern struct {
         remoteV6Address: [16]u8,
     },
     localIfLuid: u64,
-    remoteFqdn: ?PWSTR,
+    remoteFqdn: ?[*:0]u16,
     numAddresses: u32,
     remoteAddresses: ?*IPSEC_TUNNEL_ENDPOINT0,
 };
@@ -5244,7 +5244,7 @@ pub extern "fwpuclnt" fn IPsecSaEnum1(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (12)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ACL = @import("../security.zig").ACL;
@@ -5253,8 +5253,6 @@ const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PSID = @import("../foundation.zig").PSID;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SEC_WINNT_AUTH_IDENTITY_W = @import("../system/rpc.zig").SEC_WINNT_AUTH_IDENTITY_W;
 const SID = @import("../security.zig").SID;
 const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;

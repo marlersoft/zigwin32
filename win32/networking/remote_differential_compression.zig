@@ -403,7 +403,7 @@ pub const ISimilarity = extern union {
         base: IUnknown.VTable,
         CreateTable: *const fn(
             self: *const ISimilarity,
-            path: ?PWSTR,
+            path: ?[*:0]u16,
             truncate: BOOL,
             securityDescriptor: ?*u8,
             recordSize: u32,
@@ -445,7 +445,7 @@ pub const ISimilarity = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateTable(self: *const ISimilarity, path: ?PWSTR, truncate: BOOL, securityDescriptor: ?*u8, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.@"inline") HRESULT {
+    pub fn CreateTable(self: *const ISimilarity, path: ?[*:0]u16, truncate: BOOL, securityDescriptor: ?*u8, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTable(self, path, truncate, securityDescriptor, recordSize, isNew);
     }
     pub fn CreateTableIndirect(self: *const ISimilarity, mapping: ?*ISimilarityTraitsMapping, fileIdFile: ?*IRdcFileWriter, truncate: BOOL, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.@"inline") HRESULT {
@@ -476,7 +476,7 @@ pub const ISimilarityFileIdTable = extern union {
         base: IUnknown.VTable,
         CreateTable: *const fn(
             self: *const ISimilarityFileIdTable,
-            path: ?PWSTR,
+            path: ?[*:0]u16,
             truncate: BOOL,
             securityDescriptor: ?*u8,
             recordSize: u32,
@@ -514,7 +514,7 @@ pub const ISimilarityFileIdTable = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateTable(self: *const ISimilarityFileIdTable, path: ?PWSTR, truncate: BOOL, securityDescriptor: ?*u8, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.@"inline") HRESULT {
+    pub fn CreateTable(self: *const ISimilarityFileIdTable, path: ?[*:0]u16, truncate: BOOL, securityDescriptor: ?*u8, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTable(self, path, truncate, securityDescriptor, recordSize, isNew);
     }
     pub fn CreateTableIndirect(self: *const ISimilarityFileIdTable, fileIdFile: ?*IRdcFileWriter, truncate: BOOL, recordSize: u32, isNew: ?*RdcCreatedTables) callconv(.@"inline") HRESULT {
@@ -692,7 +692,7 @@ pub const ISimilarityTraitsTable = extern union {
         base: IUnknown.VTable,
         CreateTable: *const fn(
             self: *const ISimilarityTraitsTable,
-            path: ?PWSTR,
+            path: ?[*:0]u16,
             truncate: BOOL,
             securityDescriptor: ?*u8,
             isNew: ?*RdcCreatedTables,
@@ -731,7 +731,7 @@ pub const ISimilarityTraitsTable = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateTable(self: *const ISimilarityTraitsTable, path: ?PWSTR, truncate: BOOL, securityDescriptor: ?*u8, isNew: ?*RdcCreatedTables) callconv(.@"inline") HRESULT {
+    pub fn CreateTable(self: *const ISimilarityTraitsTable, path: ?[*:0]u16, truncate: BOOL, securityDescriptor: ?*u8, isNew: ?*RdcCreatedTables) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTable(self, path, truncate, securityDescriptor, isNew);
     }
     pub fn CreateTableIndirect(self: *const ISimilarityTraitsTable, mapping: ?*ISimilarityTraitsMapping, truncate: BOOL, isNew: ?*RdcCreatedTables) callconv(.@"inline") HRESULT {
@@ -909,13 +909,12 @@ pub const CLSID_SimilarityTraitsTable = &CLSID_SimilarityTraitsTable_Value;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

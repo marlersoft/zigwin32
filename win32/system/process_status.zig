@@ -366,13 +366,11 @@ pub const K32GetProcessImageFileName = switch (@import("../zig.zig").unicode_mod
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

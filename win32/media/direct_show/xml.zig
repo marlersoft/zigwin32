@@ -52,7 +52,7 @@ pub const IXMLGraphBuilder = extern union {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BSTR = @import("../../foundation.zig").BSTR;
@@ -60,7 +60,6 @@ const HRESULT = @import("../../foundation.zig").HRESULT;
 const IGraphBuilder = @import("../../media/direct_show.zig").IGraphBuilder;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const IXMLElement = @import("../../data/xml/ms_xml.zig").IXMLElement;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

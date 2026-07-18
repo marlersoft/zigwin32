@@ -2106,7 +2106,7 @@ pub const D3D12_DXIL_LIBRARY_DESC = extern struct {
 pub const D3D12_DXIL_SUBOBJECT_TO_EXPORTS_ASSOCIATION = extern struct {
     SubobjectToAssociate: ?[*:0]const u16,
     NumExports: u32,
-    pExports: ?*?PWSTR,
+    pExports: ?*?[*:0]u16,
 };
 
 pub const D3D12_ELEMENTS_LAYOUT = enum(i32) {
@@ -7381,7 +7381,7 @@ pub const D3D12_STREAM_OUTPUT_DESC = extern struct {
 pub const D3D12_SUBOBJECT_TO_EXPORTS_ASSOCIATION = extern struct {
     pSubobjectToAssociate: ?*const D3D12_STATE_SUBOBJECT,
     NumExports: u32,
-    pExports: ?*?PWSTR,
+    pExports: ?*?[*:0]u16,
 };
 
 pub const D3D12_SUBRESOURCE_DATA = extern struct {
@@ -11977,7 +11977,7 @@ pub const ID3D12ShaderReflectionType = extern union {
         GetMemberTypeName: *const fn(
             self: *const ID3D12ShaderReflectionType,
             Index: u32,
-        ) callconv(.winapi) ?PSTR,
+        ) callconv(.winapi) ?[*:0]u8,
         IsEqual: *const fn(
             self: *const ID3D12ShaderReflectionType,
             pType: ?*ID3D12ShaderReflectionType,
@@ -12014,7 +12014,7 @@ pub const ID3D12ShaderReflectionType = extern union {
     pub fn GetMemberTypeByName(self: *const ID3D12ShaderReflectionType, Name: ?[*:0]const u8) callconv(.@"inline") ?*ID3D12ShaderReflectionType {
         return self.vtable.GetMemberTypeByName(self, Name);
     }
-    pub fn GetMemberTypeName(self: *const ID3D12ShaderReflectionType, Index: u32) callconv(.@"inline") ?PSTR {
+    pub fn GetMemberTypeName(self: *const ID3D12ShaderReflectionType, Index: u32) callconv(.@"inline") ?[*:0]u8 {
         return self.vtable.GetMemberTypeName(self, Index);
     }
     pub fn IsEqual(self: *const ID3D12ShaderReflectionType, pType: ?*ID3D12ShaderReflectionType) callconv(.@"inline") HRESULT {
@@ -12400,7 +12400,7 @@ pub extern "d3d12" fn D3D12SerializeVersionedRootSignature(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (31)
+// Section: Imports (29)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -12429,8 +12429,6 @@ const HWND = @import("../foundation.zig").HWND;
 const ID3DBlob = @import("../graphics/direct3d.zig").ID3DBlob;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LUID = @import("../foundation.zig").LUID;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 

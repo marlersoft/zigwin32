@@ -2228,7 +2228,7 @@ pub extern "cldapi" fn CfUpdateSyncProviderStatus(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (12)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
@@ -2240,7 +2240,6 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const WIN32_FIND_DATAA = @import("../storage/file_system.zig").WIN32_FIND_DATAA;
 
 test {

@@ -1027,7 +1027,7 @@ pub const JET_COLUMNBASE_W = extern struct {
 
 pub const JET_COLUMNCREATE_A = extern struct {
     cbStruct: u32,
-    szColumnName: ?PSTR,
+    szColumnName: ?[*:0]u8,
     coltyp: u32,
     cbMax: u32,
     grbit: u32,
@@ -1040,7 +1040,7 @@ pub const JET_COLUMNCREATE_A = extern struct {
 
 pub const JET_COLUMNCREATE_W = extern struct {
     cbStruct: u32,
-    szColumnName: ?PWSTR,
+    szColumnName: ?[*:0]u16,
     coltyp: u32,
     cbMax: u32,
     grbit: u32,
@@ -1087,18 +1087,18 @@ pub const JET_COLUMNLIST = extern struct {
 
 pub const JET_CONDITIONALCOLUMN_A = extern struct {
     cbStruct: u32,
-    szColumnName: ?PSTR,
+    szColumnName: ?[*:0]u8,
     grbit: u32,
 };
 
 pub const JET_CONDITIONALCOLUMN_W = extern struct {
     cbStruct: u32,
-    szColumnName: ?PWSTR,
+    szColumnName: ?[*:0]u16,
     grbit: u32,
 };
 
 pub const JET_CONVERT_A = extern struct {
-    szOldDll: ?PSTR,
+    szOldDll: ?[*:0]u8,
     Anonymous: extern union {
         fFlags: u32,
         Anonymous: extern struct {
@@ -1108,7 +1108,7 @@ pub const JET_CONVERT_A = extern struct {
 };
 
 pub const JET_CONVERT_W = extern struct {
-    szOldDll: ?PWSTR,
+    szOldDll: ?[*:0]u16,
     Anonymous: extern union {
         fFlags: u32,
         Anonymous: extern struct {
@@ -1381,8 +1381,8 @@ pub const JET_IndexCheckingMax = JET_INDEXCHECKING.Max;
 
 pub const JET_INDEXCREATE2_A = extern struct {
     cbStruct: u32,
-    szIndexName: ?PSTR,
-    szKey: ?PSTR,
+    szIndexName: ?[*:0]u8,
+    szKey: ?[*:0]u8,
     cbKey: u32,
     grbit: u32,
     ulDensity: u32,
@@ -1403,8 +1403,8 @@ pub const JET_INDEXCREATE2_A = extern struct {
 
 pub const JET_INDEXCREATE2_W = extern struct {
     cbStruct: u32,
-    szIndexName: ?PWSTR,
-    szKey: ?PWSTR,
+    szIndexName: ?[*:0]u16,
+    szKey: ?[*:0]u16,
     cbKey: u32,
     grbit: u32,
     ulDensity: u32,
@@ -1425,8 +1425,8 @@ pub const JET_INDEXCREATE2_W = extern struct {
 
 pub const JET_INDEXCREATE3_A = extern struct {
     cbStruct: u32,
-    szIndexName: ?PSTR,
-    szKey: ?PSTR,
+    szIndexName: ?[*:0]u8,
+    szKey: ?[*:0]u8,
     cbKey: u32,
     grbit: u32,
     ulDensity: u32,
@@ -1444,8 +1444,8 @@ pub const JET_INDEXCREATE3_A = extern struct {
 
 pub const JET_INDEXCREATE3_W = extern struct {
     cbStruct: u32,
-    szIndexName: ?PWSTR,
-    szKey: ?PWSTR,
+    szIndexName: ?[*:0]u16,
+    szKey: ?[*:0]u16,
     cbKey: u32,
     grbit: u32,
     ulDensity: u32,
@@ -1463,8 +1463,8 @@ pub const JET_INDEXCREATE3_W = extern struct {
 
 pub const JET_INDEXCREATE_A = extern struct {
     cbStruct: u32,
-    szIndexName: ?PSTR,
-    szKey: ?PSTR,
+    szIndexName: ?[*:0]u8,
+    szKey: ?[*:0]u8,
     cbKey: u32,
     grbit: u32,
     ulDensity: u32,
@@ -1484,8 +1484,8 @@ pub const JET_INDEXCREATE_A = extern struct {
 
 pub const JET_INDEXCREATE_W = extern struct {
     cbStruct: u32,
-    szIndexName: ?PWSTR,
-    szKey: ?PWSTR,
+    szIndexName: ?[*:0]u16,
+    szKey: ?[*:0]u16,
     cbKey: u32,
     grbit: u32,
     ulDensity: u32,
@@ -1535,7 +1535,7 @@ pub const JET_INDEXRANGE = extern struct {
 
 pub const JET_INSTANCE_INFO_A = extern struct {
     hInstanceId: JET_INSTANCE,
-    szInstanceName: ?PSTR,
+    szInstanceName: ?[*:0]u8,
     cDatabases: JET_API_PTR,
     szDatabaseFileName: ?*?*i8,
     szDatabaseDisplayName: ?*?*i8,
@@ -1544,7 +1544,7 @@ pub const JET_INSTANCE_INFO_A = extern struct {
 
 pub const JET_INSTANCE_INFO_W = extern struct {
     hInstanceId: JET_INSTANCE,
-    szInstanceName: ?PWSTR,
+    szInstanceName: ?[*:0]u16,
     cDatabases: JET_API_PTR,
     szDatabaseFileName: ?*?*u16,
     szDatabaseDisplayName: ?*?*u16,
@@ -1747,13 +1747,13 @@ pub const JET_RSTINFO_W = extern struct {
 };
 
 pub const JET_RSTMAP_A = extern struct {
-    szDatabaseName: ?PSTR,
-    szNewDatabaseName: ?PSTR,
+    szDatabaseName: ?[*:0]u8,
+    szNewDatabaseName: ?[*:0]u8,
 };
 
 pub const JET_RSTMAP_W = extern struct {
-    szDatabaseName: ?PWSTR,
-    szNewDatabaseName: ?PWSTR,
+    szDatabaseName: ?[*:0]u16,
+    szNewDatabaseName: ?[*:0]u16,
 };
 
 pub const JET_SETCOLUMN = extern struct {
@@ -1811,15 +1811,15 @@ pub const JET_SPACEHINTS = extern struct {
 
 pub const JET_TABLECREATE2_A = extern struct {
     cbStruct: u32,
-    szTableName: ?PSTR,
-    szTemplateTableName: ?PSTR,
+    szTableName: ?[*:0]u8,
+    szTemplateTableName: ?[*:0]u8,
     ulPages: u32,
     ulDensity: u32,
     rgcolumncreate: ?*JET_COLUMNCREATE_A,
     cColumns: u32,
     rgindexcreate: ?*JET_INDEXCREATE_A,
     cIndexes: u32,
-    szCallback: ?PSTR,
+    szCallback: ?[*:0]u8,
     cbtyp: u32,
     grbit: u32,
     tableid: JET_TABLEID,
@@ -1828,15 +1828,15 @@ pub const JET_TABLECREATE2_A = extern struct {
 
 pub const JET_TABLECREATE2_W = extern struct {
     cbStruct: u32,
-    szTableName: ?PWSTR,
-    szTemplateTableName: ?PWSTR,
+    szTableName: ?[*:0]u16,
+    szTemplateTableName: ?[*:0]u16,
     ulPages: u32,
     ulDensity: u32,
     rgcolumncreate: ?*JET_COLUMNCREATE_W,
     cColumns: u32,
     rgindexcreate: ?*JET_INDEXCREATE_W,
     cIndexes: u32,
-    szCallback: ?PWSTR,
+    szCallback: ?[*:0]u16,
     cbtyp: u32,
     grbit: u32,
     tableid: JET_TABLEID,
@@ -1845,15 +1845,15 @@ pub const JET_TABLECREATE2_W = extern struct {
 
 pub const JET_TABLECREATE3_A = extern struct {
     cbStruct: u32,
-    szTableName: ?PSTR,
-    szTemplateTableName: ?PSTR,
+    szTableName: ?[*:0]u8,
+    szTemplateTableName: ?[*:0]u8,
     ulPages: u32,
     ulDensity: u32,
     rgcolumncreate: ?*JET_COLUMNCREATE_A,
     cColumns: u32,
     rgindexcreate: ?*JET_INDEXCREATE2_A,
     cIndexes: u32,
-    szCallback: ?PSTR,
+    szCallback: ?[*:0]u8,
     cbtyp: u32,
     grbit: u32,
     pSeqSpacehints: ?*JET_SPACEHINTS,
@@ -1865,15 +1865,15 @@ pub const JET_TABLECREATE3_A = extern struct {
 
 pub const JET_TABLECREATE3_W = extern struct {
     cbStruct: u32,
-    szTableName: ?PWSTR,
-    szTemplateTableName: ?PWSTR,
+    szTableName: ?[*:0]u16,
+    szTemplateTableName: ?[*:0]u16,
     ulPages: u32,
     ulDensity: u32,
     rgcolumncreate: ?*JET_COLUMNCREATE_W,
     cColumns: u32,
     rgindexcreate: ?*JET_INDEXCREATE2_W,
     cIndexes: u32,
-    szCallback: ?PWSTR,
+    szCallback: ?[*:0]u16,
     cbtyp: u32,
     grbit: u32,
     pSeqSpacehints: ?*JET_SPACEHINTS,
@@ -1885,15 +1885,15 @@ pub const JET_TABLECREATE3_W = extern struct {
 
 pub const JET_TABLECREATE4_A = extern struct {
     cbStruct: u32,
-    szTableName: ?PSTR,
-    szTemplateTableName: ?PSTR,
+    szTableName: ?[*:0]u8,
+    szTemplateTableName: ?[*:0]u8,
     ulPages: u32,
     ulDensity: u32,
     rgcolumncreate: ?*JET_COLUMNCREATE_A,
     cColumns: u32,
     rgindexcreate: ?*JET_INDEXCREATE3_A,
     cIndexes: u32,
-    szCallback: ?PSTR,
+    szCallback: ?[*:0]u8,
     cbtyp: u32,
     grbit: u32,
     pSeqSpacehints: ?*JET_SPACEHINTS,
@@ -1905,15 +1905,15 @@ pub const JET_TABLECREATE4_A = extern struct {
 
 pub const JET_TABLECREATE4_W = extern struct {
     cbStruct: u32,
-    szTableName: ?PWSTR,
-    szTemplateTableName: ?PWSTR,
+    szTableName: ?[*:0]u16,
+    szTemplateTableName: ?[*:0]u16,
     ulPages: u32,
     ulDensity: u32,
     rgcolumncreate: ?*JET_COLUMNCREATE_W,
     cColumns: u32,
     rgindexcreate: ?*JET_INDEXCREATE3_W,
     cIndexes: u32,
-    szCallback: ?PWSTR,
+    szCallback: ?[*:0]u16,
     cbtyp: u32,
     grbit: u32,
     pSeqSpacehints: ?*JET_SPACEHINTS,
@@ -1925,8 +1925,8 @@ pub const JET_TABLECREATE4_W = extern struct {
 
 pub const JET_TABLECREATE_A = extern struct {
     cbStruct: u32,
-    szTableName: ?PSTR,
-    szTemplateTableName: ?PSTR,
+    szTableName: ?[*:0]u8,
+    szTemplateTableName: ?[*:0]u8,
     ulPages: u32,
     ulDensity: u32,
     rgcolumncreate: ?*JET_COLUMNCREATE_A,
@@ -1940,8 +1940,8 @@ pub const JET_TABLECREATE_A = extern struct {
 
 pub const JET_TABLECREATE_W = extern struct {
     cbStruct: u32,
-    szTableName: ?PWSTR,
-    szTemplateTableName: ?PWSTR,
+    szTableName: ?[*:0]u16,
+    szTemplateTableName: ?[*:0]u16,
     ulPages: u32,
     ulDensity: u32,
     rgcolumncreate: ?*JET_COLUMNCREATE_W,
@@ -1980,22 +1980,22 @@ pub const JET_UNICODEINDEX = extern struct {
 };
 
 pub const JET_UNICODEINDEX2 = extern struct {
-    szLocaleName: ?PWSTR,
+    szLocaleName: ?[*:0]u16,
     dwMapFlags: u32,
 };
 
 pub const JET_USERDEFINEDDEFAULT_A = extern struct {
-    szCallback: ?PSTR,
+    szCallback: ?[*:0]u8,
     pbUserData: ?*u8,
     cbUserData: u32,
-    szDependantColumns: ?PSTR,
+    szDependantColumns: ?[*:0]u8,
 };
 
 pub const JET_USERDEFINEDDEFAULT_W = extern struct {
-    szCallback: ?PWSTR,
+    szCallback: ?[*:0]u16,
     pbUserData: ?*u8,
     cbUserData: u32,
-    szDependantColumns: ?PWSTR,
+    szDependantColumns: ?[*:0]u16,
 };
 
 pub const JET_COMMIT_ID = switch(@import("../zig.zig").arch) {
@@ -2771,7 +2771,7 @@ pub extern "esent" fn JetExternalRestoreW(
 ) callconv(.winapi) i32;
 
 pub extern "esent" fn JetFreeBuffer(
-    pbBuf: ?PSTR,
+    pbBuf: ?[*:0]u8,
 ) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetAttachInfoA(
@@ -4437,7 +4437,7 @@ pub const JetSetSystemParameter = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const CHAR = @import("../foundation.zig").CHAR;
 const JET_API_PTR = @import("../storage/structured_storage.zig").JET_API_PTR;
@@ -4445,8 +4445,6 @@ const JET_HANDLE = @import("../storage/structured_storage.zig").JET_HANDLE;
 const JET_INSTANCE = @import("../storage/structured_storage.zig").JET_INSTANCE;
 const JET_SESID = @import("../storage/structured_storage.zig").JET_SESID;
 const JET_TABLEID = @import("../storage/structured_storage.zig").JET_TABLEID;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

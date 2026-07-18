@@ -2494,7 +2494,7 @@ pub const IWiaMiniDrv = extern union {
             self: *const IWiaMiniDrv,
             __MIDL__IWiaMiniDrv0039: i32,
             __MIDL__IWiaMiniDrv0040: i32,
-            __MIDL__IWiaMiniDrv0041: ?*?PWSTR,
+            __MIDL__IWiaMiniDrv0041: ?*?[*:0]u16,
             __MIDL__IWiaMiniDrv0042: ?*i32,
         ) callconv(.winapi) HRESULT,
         drvDeviceCommand: *const fn(
@@ -2573,7 +2573,7 @@ pub const IWiaMiniDrv = extern union {
     pub fn drvAnalyzeItem(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0036: ?*u8, __MIDL__IWiaMiniDrv0037: i32, __MIDL__IWiaMiniDrv0038: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.drvAnalyzeItem(self, __MIDL__IWiaMiniDrv0036, __MIDL__IWiaMiniDrv0037, __MIDL__IWiaMiniDrv0038);
     }
-    pub fn drvGetDeviceErrorStr(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0039: i32, __MIDL__IWiaMiniDrv0040: i32, __MIDL__IWiaMiniDrv0041: ?*?PWSTR, __MIDL__IWiaMiniDrv0042: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn drvGetDeviceErrorStr(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0039: i32, __MIDL__IWiaMiniDrv0040: i32, __MIDL__IWiaMiniDrv0041: ?*?[*:0]u16, __MIDL__IWiaMiniDrv0042: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.drvGetDeviceErrorStr(self, __MIDL__IWiaMiniDrv0039, __MIDL__IWiaMiniDrv0040, __MIDL__IWiaMiniDrv0041, __MIDL__IWiaMiniDrv0042);
     }
     pub fn drvDeviceCommand(self: *const IWiaMiniDrv, __MIDL__IWiaMiniDrv0043: ?*u8, __MIDL__IWiaMiniDrv0044: i32, __MIDL__IWiaMiniDrv0045: ?*const Guid, __MIDL__IWiaMiniDrv0046: ?*?*IWiaDrvItem, __MIDL__IWiaMiniDrv0047: ?*i32) callconv(.@"inline") HRESULT {
@@ -2736,7 +2736,7 @@ pub const IWiaPropertyStorage = extern union {
             self: *const IWiaPropertyStorage,
             cpropid: u32,
             rgpropid: [*]const u32,
-            rglpwstrName: [*]?PWSTR,
+            rglpwstrName: [*]?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         WritePropertyNames: *const fn(
             self: *const IWiaPropertyStorage,
@@ -2807,7 +2807,7 @@ pub const IWiaPropertyStorage = extern union {
     pub fn DeleteMultiple(self: *const IWiaPropertyStorage, cpspec: u32, rgpspec: [*]const PROPSPEC) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteMultiple(self, cpspec, rgpspec);
     }
-    pub fn ReadPropertyNames(self: *const IWiaPropertyStorage, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn ReadPropertyNames(self: *const IWiaPropertyStorage, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.ReadPropertyNames(self, cpropid, rgpropid, rglpwstrName);
     }
     pub fn WritePropertyNames(self: *const IWiaPropertyStorage, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]const ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -3263,9 +3263,9 @@ pub const WIA_DEV_CAP = extern struct {
 pub const WIA_DEV_CAP_DRV = extern struct {
     guid: ?*Guid,
     ulFlags: u32,
-    wszName: ?PWSTR,
-    wszDescription: ?PWSTR,
-    wszIcon: ?PWSTR,
+    wszName: ?[*:0]u16,
+    wszDescription: ?[*:0]u16,
+    wszIcon: ?[*:0]u16,
 };
 
 pub const WIA_DITHER_PATTERN_DATA = extern struct {
@@ -3373,7 +3373,7 @@ pub const WIA_PROPERTY_INFO = extern struct {
 
 pub const WIA_PROPID_TO_NAME = extern struct {
     propid: u32,
-    pszName: ?PWSTR,
+    pszName: ?[*:0]u16,
 };
 
 pub const WIA_RAW_HEADER = extern struct {
@@ -3446,8 +3446,8 @@ pub const WIAS_ENDORSER_INFO = extern struct {
 };
 
 pub const WIAS_ENDORSER_VALUE = extern struct {
-    wszTokenName: ?PWSTR,
-    wszValue: ?PWSTR,
+    wszTokenName: ?[*:0]u16,
+    wszValue: ?[*:0]u16,
 };
 
 pub const WiaTransferParams = extern struct {
@@ -3484,7 +3484,7 @@ pub const WIAVIDEO_DESTROYING_VIDEO = WIAVIDEO_STATE.DESTROYING_VIDEO;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (20)
+// Section: Imports (19)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -3501,7 +3501,6 @@ const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PROPSPEC = @import("../system/com/structured_storage.zig").PROPSPEC;
 const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const STATPROPSETSTG = @import("../system/com/structured_storage.zig").STATPROPSETSTG;
 const STGMEDIUM = @import("../system/com.zig").STGMEDIUM;

@@ -555,8 +555,8 @@ pub const IWinMLModel = extern union {
         EnumerateMetadata: *const fn(
             self: *const IWinMLModel,
             Index: u32,
-            pKey: ?*?PWSTR,
-            pValue: ?*?PWSTR,
+            pKey: ?*?[*:0]u16,
+            pValue: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         EnumerateModelInputs: *const fn(
             self: *const IWinMLModel,
@@ -574,7 +574,7 @@ pub const IWinMLModel = extern union {
     pub fn GetDescription(self: *const IWinMLModel, ppDescription: ?*?*WINML_MODEL_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDescription(self, ppDescription);
     }
-    pub fn EnumerateMetadata(self: *const IWinMLModel, Index: u32, pKey: ?*?PWSTR, pValue: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn EnumerateMetadata(self: *const IWinMLModel, Index: u32, pKey: ?*?[*:0]u16, pValue: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerateMetadata(self, Index, pKey, pValue);
     }
     pub fn EnumerateModelInputs(self: *const IWinMLModel, Index: u32, ppInputDescriptor: ?*?*WINML_VARIABLE_DESC) callconv(.@"inline") HRESULT {
@@ -893,12 +893,12 @@ pub const WINML_MAP_BINDING_DESC = extern struct {
     ElementCount: u32,
     KeyType: WINML_TENSOR_DATA_TYPE,
     Anonymous1: extern union {
-        pStringKeys: ?*?PWSTR,
+        pStringKeys: ?*?[*:0]u16,
         pIntKeys: ?*i64,
     },
     Fields: WINML_TENSOR_DATA_TYPE,
     Anonymous2: extern union {
-        pStringFields: ?*?PWSTR,
+        pStringFields: ?*?[*:0]u16,
         pIntFields: ?*i64,
         pFloatFields: ?*f32,
         pDoubleFields: ?*f64,
@@ -911,10 +911,10 @@ pub const WINML_MAP_VARIABLE_DESC = extern struct {
 };
 
 pub const WINML_MODEL_DESC = extern struct {
-    Author: ?PWSTR,
-    Name: ?PWSTR,
-    Domain: ?PWSTR,
-    Description: ?PWSTR,
+    Author: ?[*:0]u16,
+    Name: ?[*:0]u16,
+    Domain: ?[*:0]u16,
+    Description: ?[*:0]u16,
     Version: usize,
 };
 
@@ -934,7 +934,7 @@ pub const WINML_SEQUENCE_BINDING_DESC = extern struct {
     ElementCount: u32,
     ElementType: WINML_TENSOR_DATA_TYPE,
     Anonymous: extern union {
-        pStrings: ?*?PWSTR,
+        pStrings: ?*?[*:0]u16,
         pInts: ?*i64,
         pFloats: ?*f32,
         pDoubles: ?*f64,
@@ -995,8 +995,8 @@ pub const WINML_TENSOR_VARIABLE_DESC = extern struct {
 };
 
 pub const WINML_VARIABLE_DESC = extern struct {
-    Name: ?PWSTR,
-    Description: ?PWSTR,
+    Name: ?[*:0]u16,
+    Description: ?[*:0]u16,
     FeatureType: WINML_FEATURE_TYPE,
     Required: BOOL,
     Anonymous: extern union {
@@ -1024,7 +1024,7 @@ pub extern "winml" fn WinMLCreateRuntime(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -1032,8 +1032,6 @@ const HRESULT = @import("../../foundation.zig").HRESULT;
 const ID3D12Device = @import("../../graphics/direct3d12.zig").ID3D12Device;
 const ID3D12Resource = @import("../../graphics/direct3d12.zig").ID3D12Resource;
 const IUnknown = @import("../../system/com.zig").IUnknown;
-const PSTR = @import("../../foundation.zig").PSTR;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

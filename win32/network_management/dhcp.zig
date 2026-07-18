@@ -346,8 +346,8 @@ pub const DHCP_ALL_OPTION_VALUES = extern struct {
     Flags: u32,
     NumElements: u32,
     Options: ?*extern struct {
-        ClassName: ?PWSTR,
-        VendorName: ?PWSTR,
+        ClassName: ?[*:0]u16,
+        VendorName: ?[*:0]u16,
         IsVendor: BOOL,
         OptionsArray: ?*DHCP_OPTION_VALUE_ARRAY,
     },
@@ -357,8 +357,8 @@ pub const DHCP_ALL_OPTION_VALUES_PB = extern struct {
     Flags: u32,
     NumElements: u32,
     Options: ?*extern struct {
-        PolicyName: ?PWSTR,
-        VendorName: ?PWSTR,
+        PolicyName: ?[*:0]u16,
+        VendorName: ?[*:0]u16,
         IsVendor: BOOL,
         OptionsArray: ?*DHCP_OPTION_VALUE_ARRAY,
     },
@@ -370,8 +370,8 @@ pub const DHCP_ALL_OPTIONS = extern struct {
     NumVendorOptions: u32,
     VendorOptions: ?*extern struct {
         Option: DHCP_OPTION,
-        VendorName: ?PWSTR,
-        ClassName: ?PWSTR,
+        VendorName: ?[*:0]u16,
+        ClassName: ?[*:0]u16,
     },
 };
 
@@ -399,7 +399,7 @@ pub const DHCP_BIND_ELEMENT = extern struct {
     fBoundToDHCPServer: BOOL,
     AdapterPrimaryAddress: u32,
     AdapterSubnetAddress: u32,
-    IfDescription: ?PWSTR,
+    IfDescription: ?[*:0]u16,
     IfIdSize: u32,
     IfId: ?*u8,
 };
@@ -430,8 +430,8 @@ pub const DHCP_CALLOUT_TABLE = extern struct {
 };
 
 pub const DHCP_CLASS_INFO = extern struct {
-    ClassName: ?PWSTR,
-    ClassComment: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    ClassComment: ?[*:0]u16,
     ClassDataLength: u32,
     IsVendor: BOOL,
     Flags: u32,
@@ -449,8 +449,8 @@ pub const DHCP_CLASS_INFO_ARRAY_V6 = extern struct {
 };
 
 pub const DHCP_CLASS_INFO_V6 = extern struct {
-    ClassName: ?PWSTR,
-    ClassComment: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    ClassComment: ?[*:0]u16,
     ClassDataLength: u32,
     IsVendor: BOOL,
     EnterpriseNumber: u32,
@@ -462,8 +462,8 @@ pub const DHCP_CLIENT_FILTER_STATUS_INFO = extern struct {
     ClientIpAddress: u32,
     SubnetMask: u32,
     ClientHardwareAddress: DHCP_BINARY_DATA,
-    ClientName: ?PWSTR,
-    ClientComment: ?PWSTR,
+    ClientName: ?[*:0]u16,
+    ClientComment: ?[*:0]u16,
     ClientLeaseExpires: DATE_TIME,
     OwnerHost: DHCP_HOST_INFO,
     bClientType: u8,
@@ -483,8 +483,8 @@ pub const DHCP_CLIENT_INFO = extern struct {
     ClientIpAddress: u32,
     SubnetMask: u32,
     ClientHardwareAddress: DHCP_BINARY_DATA,
-    ClientName: ?PWSTR,
-    ClientComment: ?PWSTR,
+    ClientName: ?[*:0]u16,
+    ClientComment: ?[*:0]u16,
     ClientLeaseExpires: DATE_TIME,
     OwnerHost: DHCP_HOST_INFO,
 };
@@ -518,8 +518,8 @@ pub const DHCP_CLIENT_INFO_EX = extern struct {
     ClientIpAddress: u32,
     SubnetMask: u32,
     ClientHardwareAddress: DHCP_BINARY_DATA,
-    ClientName: ?PWSTR,
-    ClientComment: ?PWSTR,
+    ClientName: ?[*:0]u16,
+    ClientComment: ?[*:0]u16,
     ClientLeaseExpires: DATE_TIME,
     OwnerHost: DHCP_HOST_INFO,
     bClientType: u8,
@@ -528,7 +528,7 @@ pub const DHCP_CLIENT_INFO_EX = extern struct {
     ProbationEnds: DATE_TIME,
     QuarantineCapable: BOOL,
     FilterStatus: u32,
-    PolicyName: ?PWSTR,
+    PolicyName: ?[*:0]u16,
     Properties: ?*DHCP_PROPERTY_ARRAY,
 };
 
@@ -541,8 +541,8 @@ pub const DHCP_CLIENT_INFO_PB = extern struct {
     ClientIpAddress: u32,
     SubnetMask: u32,
     ClientHardwareAddress: DHCP_BINARY_DATA,
-    ClientName: ?PWSTR,
-    ClientComment: ?PWSTR,
+    ClientName: ?[*:0]u16,
+    ClientComment: ?[*:0]u16,
     ClientLeaseExpires: DATE_TIME,
     OwnerHost: DHCP_HOST_INFO,
     bClientType: u8,
@@ -551,7 +551,7 @@ pub const DHCP_CLIENT_INFO_PB = extern struct {
     ProbationEnds: DATE_TIME,
     QuarantineCapable: BOOL,
     FilterStatus: u32,
-    PolicyName: ?PWSTR,
+    PolicyName: ?[*:0]u16,
 };
 
 pub const DHCP_CLIENT_INFO_PB_ARRAY = extern struct {
@@ -563,8 +563,8 @@ pub const DHCP_CLIENT_INFO_V4 = extern struct {
     ClientIpAddress: u32,
     SubnetMask: u32,
     ClientHardwareAddress: DHCP_BINARY_DATA,
-    ClientName: ?PWSTR,
-    ClientComment: ?PWSTR,
+    ClientName: ?[*:0]u16,
+    ClientComment: ?[*:0]u16,
     ClientLeaseExpires: DATE_TIME,
     OwnerHost: DHCP_HOST_INFO,
     bClientType: u8,
@@ -574,8 +574,8 @@ pub const DHCP_CLIENT_INFO_V5 = extern struct {
     ClientIpAddress: u32,
     SubnetMask: u32,
     ClientHardwareAddress: DHCP_BINARY_DATA,
-    ClientName: ?PWSTR,
-    ClientComment: ?PWSTR,
+    ClientName: ?[*:0]u16,
+    ClientComment: ?[*:0]u16,
     ClientLeaseExpires: DATE_TIME,
     OwnerHost: DHCP_HOST_INFO,
     bClientType: u8,
@@ -587,8 +587,8 @@ pub const DHCP_CLIENT_INFO_V6 = extern struct {
     ClientDUID: DHCP_BINARY_DATA,
     AddressType: u32,
     IAID: u32,
-    ClientName: ?PWSTR,
-    ClientComment: ?PWSTR,
+    ClientName: ?[*:0]u16,
+    ClientComment: ?[*:0]u16,
     ClientValidLeaseExpires: DATE_TIME,
     ClientPrefLeaseExpires: DATE_TIME,
     OwnerHost: DHCP_HOST_INFO_V6,
@@ -598,8 +598,8 @@ pub const DHCP_CLIENT_INFO_VQ = extern struct {
     ClientIpAddress: u32,
     SubnetMask: u32,
     ClientHardwareAddress: DHCP_BINARY_DATA,
-    ClientName: ?PWSTR,
-    ClientComment: ?PWSTR,
+    ClientName: ?[*:0]u16,
+    ClientComment: ?[*:0]u16,
     ClientLeaseExpires: DATE_TIME,
     OwnerHost: DHCP_HOST_INFO,
     bClientType: u8,
@@ -628,12 +628,12 @@ pub const DHCP_FAILOVER_RELATIONSHIP = extern struct {
     PrevState: FSM_STATE,
     Mclt: u32,
     SafePeriod: u32,
-    RelationshipName: ?PWSTR,
-    PrimaryServerName: ?PWSTR,
-    SecondaryServerName: ?PWSTR,
+    RelationshipName: ?[*:0]u16,
+    PrimaryServerName: ?[*:0]u16,
+    SecondaryServerName: ?[*:0]u16,
     pScopes: ?*DHCP_IP_ARRAY,
     Percentage: u8,
-    SharedSecret: ?PWSTR,
+    SharedSecret: ?[*:0]u16,
 };
 
 pub const DHCP_FAILOVER_RELATIONSHIP_ARRAY = extern struct {
@@ -660,7 +660,7 @@ pub const DHCP_FAILOVER_STATISTICS = extern struct {
 
 pub const DHCP_FILTER_ADD_INFO = extern struct {
     AddrPatt: DHCP_ADDR_PATTERN,
-    Comment: ?PWSTR,
+    Comment: ?[*:0]u16,
     ListType: DHCP_FILTER_LIST_TYPE,
 };
 
@@ -683,7 +683,7 @@ pub const Allow = DHCP_FILTER_LIST_TYPE.Allow;
 
 pub const DHCP_FILTER_RECORD = extern struct {
     AddrPatt: DHCP_ADDR_PATTERN,
-    Comment: ?PWSTR,
+    Comment: ?[*:0]u16,
 };
 
 pub const DHCP_FORCE_FLAG = enum(i32) {
@@ -697,14 +697,14 @@ pub const DhcpFailoverForce = DHCP_FORCE_FLAG.FailoverForce;
 
 pub const DHCP_HOST_INFO = extern struct {
     IpAddress: u32,
-    NetBiosName: ?PWSTR,
-    HostName: ?PWSTR,
+    NetBiosName: ?[*:0]u16,
+    HostName: ?[*:0]u16,
 };
 
 pub const DHCP_HOST_INFO_V6 = extern struct {
     IpAddress: DHCP_IPV6_ADDRESS,
-    NetBiosName: ?PWSTR,
-    HostName: ?PWSTR,
+    NetBiosName: ?[*:0]u16,
+    HostName: ?[*:0]u16,
 };
 
 pub const DHCP_IP_ARRAY = extern struct {
@@ -740,8 +740,8 @@ pub const DHCP_IP_RESERVATION = extern struct {
 pub const DHCP_IP_RESERVATION_INFO = extern struct {
     ReservedIpAddress: u32,
     ReservedForClient: DHCP_BINARY_DATA,
-    ReservedClientName: ?PWSTR,
-    ReservedClientDesc: ?PWSTR,
+    ReservedClientName: ?[*:0]u16,
+    ReservedClientDesc: ?[*:0]u16,
     bAllowedClientTypes: u8,
     fOptionsPresent: u8,
 };
@@ -836,8 +836,8 @@ pub const DHCP_MIB_INFO_VQ = extern struct {
 
 pub const DHCP_OPTION = extern struct {
     OptionID: u32,
-    OptionName: ?PWSTR,
-    OptionComment: ?PWSTR,
+    OptionName: ?[*:0]u16,
+    OptionComment: ?[*:0]u16,
     DefaultValue: DHCP_OPTION_DATA,
     OptionType: DHCP_OPTION_TYPE,
 };
@@ -859,10 +859,10 @@ pub const DHCP_OPTION_DATA_ELEMENT = extern struct {
         DWordOption: u32,
         DWordDWordOption: DWORD_DWORD,
         IpAddressOption: u32,
-        StringDataOption: ?PWSTR,
+        StringDataOption: ?[*:0]u16,
         BinaryDataOption: DHCP_BINARY_DATA,
         EncapsulatedDataOption: DHCP_BINARY_DATA,
-        Ipv6AddressDataOption: ?PWSTR,
+        Ipv6AddressDataOption: ?[*:0]u16,
     };
     OptionType: DHCP_OPTION_DATA_TYPE,
     Element: DHCP_OPTION_ELEMENT_UNION,
@@ -903,7 +903,7 @@ pub const DHCP_OPTION_SCOPE_INFO = extern struct {
         GlobalScopeInfo: ?*anyopaque,
         SubnetScopeInfo: u32,
         ReservedScopeInfo: DHCP_RESERVED_SCOPE,
-        MScopeInfo: ?PWSTR,
+        MScopeInfo: ?[*:0]u16,
     };
     ScopeType: DHCP_OPTION_SCOPE_TYPE,
     ScopeInfo: _DHCP_OPTION_SCOPE_UNION,
@@ -1018,7 +1018,7 @@ pub const DHCP_POL_COND = extern struct {
     Type: DHCP_POL_ATTR_TYPE,
     OptionID: u32,
     SubOptionID: u32,
-    VendorName: ?PWSTR,
+    VendorName: ?[*:0]u16,
     Operator: DHCP_POL_COMPARATOR,
     Value: ?*u8,
     ValueLength: u32,
@@ -1047,14 +1047,14 @@ pub const DhcpLogicalOr = DHCP_POL_LOGIC_OPER.Or;
 pub const DhcpLogicalAnd = DHCP_POL_LOGIC_OPER.And;
 
 pub const DHCP_POLICY = extern struct {
-    PolicyName: ?PWSTR,
+    PolicyName: ?[*:0]u16,
     IsGlobalPolicy: BOOL,
     Subnet: u32,
     ProcessingOrder: u32,
     Conditions: ?*DHCP_POL_COND_ARRAY,
     Expressions: ?*DHCP_POL_EXPR_ARRAY,
     Ranges: ?*DHCP_IP_RANGE_ARRAY,
-    Description: ?PWSTR,
+    Description: ?[*:0]u16,
     Enabled: BOOL,
 };
 
@@ -1064,14 +1064,14 @@ pub const DHCP_POLICY_ARRAY = extern struct {
 };
 
 pub const DHCP_POLICY_EX = extern struct {
-    PolicyName: ?PWSTR,
+    PolicyName: ?[*:0]u16,
     IsGlobalPolicy: BOOL,
     Subnet: u32,
     ProcessingOrder: u32,
     Conditions: ?*DHCP_POL_COND_ARRAY,
     Expressions: ?*DHCP_POL_EXPR_ARRAY,
     Ranges: ?*DHCP_IP_RANGE_ARRAY,
-    Description: ?PWSTR,
+    Description: ?[*:0]u16,
     Enabled: BOOL,
     Properties: ?*DHCP_PROPERTY_ARRAY,
 };
@@ -1103,7 +1103,7 @@ pub const DHCP_PROPERTY = extern struct {
         ByteValue: u8,
         WordValue: u16,
         DWordValue: u32,
-        StringValue: ?PWSTR,
+        StringValue: ?[*:0]u16,
         BinaryValue: DHCP_BINARY_DATA,
     };
     ID: DHCP_PROPERTY_ID,
@@ -1172,7 +1172,7 @@ pub const DHCP_SEARCH_INFO = extern struct {
     pub const DHCP_CLIENT_SEARCH_UNION = extern union {
         ClientIpAddress: u32,
         ClientHardwareAddress: DHCP_BINARY_DATA,
-        ClientName: ?PWSTR,
+        ClientName: ?[*:0]u16,
     };
     SearchType: DHCP_SEARCH_INFO_TYPE,
     SearchInfo: DHCP_CLIENT_SEARCH_UNION,
@@ -1200,7 +1200,7 @@ pub const DHCP_SEARCH_INFO_V6 = extern struct {
     pub const _DHCP_CLIENT_SEARCH_UNION_V6 = extern union {
         ClientIpAddress: DHCP_IPV6_ADDRESS,
         ClientDUID: DHCP_BINARY_DATA,
-        ClientName: ?PWSTR,
+        ClientName: ?[*:0]u16,
     };
     SearchType: DHCP_SEARCH_INFO_TYPE_V6,
     SearchInfo: _DHCP_CLIENT_SEARCH_UNION_V6,
@@ -1208,9 +1208,9 @@ pub const DHCP_SEARCH_INFO_V6 = extern struct {
 
 pub const DHCP_SERVER_CONFIG_INFO = extern struct {
     APIProtocolSupport: u32,
-    DatabaseName: ?PWSTR,
-    DatabasePath: ?PWSTR,
-    BackupPath: ?PWSTR,
+    DatabaseName: ?[*:0]u16,
+    DatabasePath: ?[*:0]u16,
+    BackupPath: ?[*:0]u16,
     BackupInterval: u32,
     DatabaseLoggingFlag: u32,
     RestoreFlag: u32,
@@ -1220,9 +1220,9 @@ pub const DHCP_SERVER_CONFIG_INFO = extern struct {
 
 pub const DHCP_SERVER_CONFIG_INFO_V4 = extern struct {
     APIProtocolSupport: u32,
-    DatabaseName: ?PWSTR,
-    DatabasePath: ?PWSTR,
-    BackupPath: ?PWSTR,
+    DatabaseName: ?[*:0]u16,
+    DatabasePath: ?[*:0]u16,
+    BackupPath: ?[*:0]u16,
     BackupInterval: u32,
     DatabaseLoggingFlag: u32,
     RestoreFlag: u32,
@@ -1230,7 +1230,7 @@ pub const DHCP_SERVER_CONFIG_INFO_V4 = extern struct {
     DebugFlag: u32,
     dwPingRetries: u32,
     cbBootTableString: u32,
-    wszBootTableString: ?PWSTR,
+    wszBootTableString: ?[*:0]u16,
     fAuditLog: BOOL,
 };
 
@@ -1248,9 +1248,9 @@ pub const DHCP_SERVER_CONFIG_INFO_V6 = extern struct {
 
 pub const DHCP_SERVER_CONFIG_INFO_VQ = extern struct {
     APIProtocolSupport: u32,
-    DatabaseName: ?PWSTR,
-    DatabasePath: ?PWSTR,
-    BackupPath: ?PWSTR,
+    DatabaseName: ?[*:0]u16,
+    DatabasePath: ?[*:0]u16,
+    BackupPath: ?[*:0]u16,
     BackupInterval: u32,
     DatabaseLoggingFlag: u32,
     RestoreFlag: u32,
@@ -1258,7 +1258,7 @@ pub const DHCP_SERVER_CONFIG_INFO_VQ = extern struct {
     DebugFlag: u32,
     dwPingRetries: u32,
     cbBootTableString: u32,
-    wszBootTableString: ?PWSTR,
+    wszBootTableString: ?[*:0]u16,
     fAuditLog: BOOL,
     QuarantineOn: BOOL,
     QuarDefFail: u32,
@@ -1275,12 +1275,12 @@ pub const DHCP_SERVER_OPTIONS = extern struct {
     Server: ?*u32,
     ParameterRequestList: ?*u8,
     ParameterRequestListLength: u32,
-    MachineName: ?PSTR,
+    MachineName: ?[*:0]u8,
     MachineNameLength: u32,
     ClientHardwareAddressType: u8,
     ClientHardwareAddressLength: u8,
     ClientHardwareAddress: ?*u8,
-    ClassIdentifier: ?PSTR,
+    ClassIdentifier: ?[*:0]u8,
     ClassIdentifierLength: u32,
     VendorClass: ?*u8,
     VendorClassLength: u32,
@@ -1288,14 +1288,14 @@ pub const DHCP_SERVER_OPTIONS = extern struct {
     DNSNameLength: u32,
     DNSName: ?*u8,
     DSDomainNameRequested: BOOLEAN,
-    DSDomainName: ?PSTR,
+    DSDomainName: ?[*:0]u8,
     DSDomainNameLen: u32,
     ScopeId: ?*u32,
 };
 
 pub const DHCP_SERVER_SPECIFIC_STRINGS = extern struct {
-    DefaultVendorClassName: ?PWSTR,
-    DefaultUserClassName: ?PWSTR,
+    DefaultVendorClassName: ?[*:0]u16,
+    DefaultUserClassName: ?[*:0]u16,
 };
 
 pub const DHCP_SUBNET_ELEMENT_DATA = extern struct {
@@ -1404,8 +1404,8 @@ pub const DHCP_SUBNET_ELEMENT_UNION_V6_CONFLICT_ = usize;
 pub const DHCP_SUBNET_INFO = extern struct {
     SubnetAddress: u32,
     SubnetMask: u32,
-    SubnetName: ?PWSTR,
-    SubnetComment: ?PWSTR,
+    SubnetName: ?[*:0]u16,
+    SubnetComment: ?[*:0]u16,
     PrimaryHost: DHCP_HOST_INFO,
     SubnetState: DHCP_SUBNET_STATE,
 };
@@ -1414,8 +1414,8 @@ pub const DHCP_SUBNET_INFO_V6 = extern struct {
     SubnetAddress: DHCP_IPV6_ADDRESS,
     Prefix: u32,
     Preference: u16,
-    SubnetName: ?PWSTR,
-    SubnetComment: ?PWSTR,
+    SubnetName: ?[*:0]u16,
+    SubnetComment: ?[*:0]u16,
     State: u32,
     ScopeId: u32,
 };
@@ -1423,8 +1423,8 @@ pub const DHCP_SUBNET_INFO_V6 = extern struct {
 pub const DHCP_SUBNET_INFO_VQ = extern struct {
     SubnetAddress: u32,
     SubnetMask: u32,
-    SubnetName: ?PWSTR,
-    SubnetComment: ?PWSTR,
+    SubnetName: ?[*:0]u16,
+    SubnetComment: ?[*:0]u16,
     PrimaryHost: DHCP_HOST_INFO,
     SubnetState: DHCP_SUBNET_STATE,
     QuarantineOn: u32,
@@ -1456,7 +1456,7 @@ pub const DHCP_SUPER_SCOPE_TABLE_ENTRY = extern struct {
     SubnetAddress: u32,
     SuperScopeNumber: u32,
     NextInSuperScope: u32,
-    SuperScopeName: ?PWSTR,
+    SuperScopeName: ?[*:0]u16,
 };
 
 pub const DHCPAPI_PARAMS = extern struct {
@@ -1480,11 +1480,11 @@ pub const DHCPCAPI_PARAMS_ARRAY = extern struct {
 
 pub const DHCPDS_SERVER = extern struct {
     Version: u32,
-    ServerName: ?PWSTR,
+    ServerName: ?[*:0]u16,
     ServerAddress: u32,
     Flags: u32,
     State: u32,
-    DsLocation: ?PWSTR,
+    DsLocation: ?[*:0]u16,
     DsLocType: u32,
 };
 
@@ -1498,8 +1498,8 @@ pub const DHCPV4_FAILOVER_CLIENT_INFO = extern struct {
     ClientIpAddress: u32,
     SubnetMask: u32,
     ClientHardwareAddress: DHCP_BINARY_DATA,
-    ClientName: ?PWSTR,
-    ClientComment: ?PWSTR,
+    ClientName: ?[*:0]u16,
+    ClientComment: ?[*:0]u16,
     ClientLeaseExpires: DATE_TIME,
     OwnerHost: DHCP_HOST_INFO,
     bClientType: u8,
@@ -1514,7 +1514,7 @@ pub const DHCPV4_FAILOVER_CLIENT_INFO = extern struct {
     CltLastTransTime: u32,
     LastBndUpdTime: u32,
     BndMsgStatus: u32,
-    PolicyName: ?PWSTR,
+    PolicyName: ?[*:0]u16,
     Flags: u8,
 };
 
@@ -1527,8 +1527,8 @@ pub const DHCPV4_FAILOVER_CLIENT_INFO_EX = extern struct {
     ClientIpAddress: u32,
     SubnetMask: u32,
     ClientHardwareAddress: DHCP_BINARY_DATA,
-    ClientName: ?PWSTR,
-    ClientComment: ?PWSTR,
+    ClientName: ?[*:0]u16,
+    ClientComment: ?[*:0]u16,
     ClientLeaseExpires: DATE_TIME,
     OwnerHost: DHCP_HOST_INFO,
     bClientType: u8,
@@ -1543,7 +1543,7 @@ pub const DHCPV4_FAILOVER_CLIENT_INFO_EX = extern struct {
     CltLastTransTime: u32,
     LastBndUpdTime: u32,
     BndMsgStatus: u32,
-    PolicyName: ?PWSTR,
+    PolicyName: ?[*:0]u16,
     Flags: u8,
     AddressStateEx: u32,
 };
@@ -1553,7 +1553,7 @@ pub const DHCPV6_BIND_ELEMENT = extern struct {
     fBoundToDHCPServer: BOOL,
     AdapterPrimaryAddress: DHCP_IPV6_ADDRESS,
     AdapterSubnetAddress: DHCP_IPV6_ADDRESS,
-    IfDescription: ?PWSTR,
+    IfDescription: ?[*:0]u16,
     IpV6IfIndex: u32,
     IfIdSize: u32,
     IfId: ?*u8,
@@ -1691,7 +1691,7 @@ pub const LPDHCP_DROP_SEND = *const fn(
 ) callconv(.winapi) u32;
 
 pub const LPDHCP_ENTRY_POINT_FUNC = *const fn(
-    ChainDlls: ?PWSTR,
+    ChainDlls: ?[*:0]u16,
     CalloutVersion: u32,
     CalloutTbl: ?*DHCP_CALLOUT_TABLE,
 ) callconv(.winapi) u32;
@@ -1809,7 +1809,7 @@ pub extern "dhcpsapi" fn DhcpAddFilterV4(
 ) callconv(.winapi) u32;
 
 pub extern "dhcpsapi" fn DhcpAddSecurityGroup(
-    pServer: ?PWSTR,
+    pServer: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2000'
@@ -1844,16 +1844,16 @@ pub extern "dhcpsapi" fn DhcpAddSubnetElementV5(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpAddSubnetElementV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     SubnetAddress: DHCP_IPV6_ADDRESS,
     AddElementInfo: ?*DHCP_SUBNET_ELEMENT_DATA_V6,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpAuditLogGetParams(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
-    AuditLogDir: ?*?PWSTR,
+    AuditLogDir: ?*?[*:0]u16,
     DiskCheckInterval: ?*u32,
     MaxLogFilesSize: ?*u32,
     MinSpaceOnDisk: ?*u32,
@@ -1861,9 +1861,9 @@ pub extern "dhcpsapi" fn DhcpAuditLogGetParams(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpAuditLogSetParams(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
-    AuditLogDir: ?PWSTR,
+    AuditLogDir: ?[*:0]u16,
     DiskCheckInterval: u32,
     MaxLogFilesSize: u32,
     MinSpaceOnDisk: u32,
@@ -1880,14 +1880,14 @@ pub extern "dhcpcsvc" fn DhcpCApiInitialize(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpCreateClass(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     ReservedMustBeZero: u32,
     ClassInfo: ?*DHCP_CLASS_INFO,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpCreateClassV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     ReservedMustBeZero: u32,
     ClassInfo: ?*DHCP_CLASS_INFO_V6,
 ) callconv(.winapi) u32;
@@ -1919,21 +1919,21 @@ pub extern "dhcpsapi" fn DhcpCreateOption(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpCreateOptionV5(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     OptionId: u32,
-    ClassName: ?PWSTR,
-    VendorName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     OptionInfo: ?*DHCP_OPTION,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpCreateOptionV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     OptionId: u32,
-    ClassName: ?PWSTR,
-    VendorName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     OptionInfo: ?*DHCP_OPTION,
 ) callconv(.winapi) u32;
 
@@ -1946,7 +1946,7 @@ pub extern "dhcpsapi" fn DhcpCreateSubnet(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpCreateSubnetV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     SubnetAddress: DHCP_IPV6_ADDRESS,
     SubnetInfo: ?*DHCP_SUBNET_INFO_V6,
 ) callconv(.winapi) u32;
@@ -1960,16 +1960,16 @@ pub extern "dhcpsapi" fn DhcpCreateSubnetVQ(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpDeleteClass(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     ReservedMustBeZero: u32,
-    ClassName: ?PWSTR,
+    ClassName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpDeleteClassV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     ReservedMustBeZero: u32,
-    ClassName: ?PWSTR,
+    ClassName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2000'
@@ -2008,7 +2008,7 @@ pub extern "dhcpsapi" fn DhcpDeleteSubnet(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpDeleteSubnetV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     SubnetAddress: DHCP_IPV6_ADDRESS,
     ForceFlag: DHCP_FORCE_FLAG,
 ) callconv(.winapi) u32;
@@ -2036,7 +2036,7 @@ pub extern "dhcpsapi" fn DhcpDsInit(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpEnumClasses(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     ReservedMustBeZero: u32,
     ResumeHandle: ?*u32,
     PreferredMaximum: u32,
@@ -2047,7 +2047,7 @@ pub extern "dhcpsapi" fn DhcpEnumClasses(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpEnumClassesV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     ReservedMustBeZero: u32,
     ResumeHandle: ?*u32,
     PreferredMaximum: u32,
@@ -2079,10 +2079,10 @@ pub extern "dhcpsapi" fn DhcpEnumOptions(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpEnumOptionsV5(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
-    ClassName: ?PWSTR,
-    VendorName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     ResumeHandle: ?*u32,
     PreferredMaximum: u32,
     Options: ?*?*DHCP_OPTION_ARRAY,
@@ -2092,10 +2092,10 @@ pub extern "dhcpsapi" fn DhcpEnumOptionsV5(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpEnumOptionsV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
-    ClassName: ?PWSTR,
-    VendorName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     ResumeHandle: ?*u32,
     PreferredMaximum: u32,
     Options: ?*?*DHCP_OPTION_ARRAY,
@@ -2116,10 +2116,10 @@ pub extern "dhcpsapi" fn DhcpEnumOptionValues(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpEnumOptionValuesV5(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
-    ClassName: ?PWSTR,
-    VendorName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO,
     ResumeHandle: ?*u32,
     PreferredMaximum: u32,
@@ -2132,8 +2132,8 @@ pub extern "dhcpsapi" fn DhcpEnumOptionValuesV5(
 pub extern "dhcpsapi" fn DhcpEnumOptionValuesV6(
     ServerIpAddress: ?[*:0]const u16,
     Flags: u32,
-    ClassName: ?PWSTR,
-    VendorName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO6,
     ResumeHandle: ?*u32,
     PreferredMaximum: u32,
@@ -2255,7 +2255,7 @@ pub extern "dhcpsapi" fn DhcpEnumSubnetElementsV5(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpEnumSubnetElementsV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     SubnetAddress: DHCP_IPV6_ADDRESS,
     EnumElementType: DHCP_SUBNET_ELEMENT_TYPE_V6,
     ResumeHandle: ?*u32,
@@ -2287,21 +2287,21 @@ pub extern "dhcpsapi" fn DhcpEnumSubnetsV6(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpGetAllOptions(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     OptionStruct: ?*?*DHCP_ALL_OPTIONS,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpGetAllOptionsV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     OptionStruct: ?*?*DHCP_ALL_OPTIONS,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpGetAllOptionValues(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO,
     Values: ?*?*DHCP_ALL_OPTION_VALUES,
@@ -2309,7 +2309,7 @@ pub extern "dhcpsapi" fn DhcpGetAllOptionValues(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpGetAllOptionValuesV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO6,
     Values: ?*?*DHCP_ALL_OPTION_VALUES,
@@ -2317,7 +2317,7 @@ pub extern "dhcpsapi" fn DhcpGetAllOptionValuesV6(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpGetClassInfo(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     ReservedMustBeZero: u32,
     PartialClassInfo: ?*DHCP_CLASS_INFO,
     FilledClassInfo: ?*?*DHCP_CLASS_INFO,
@@ -2391,21 +2391,21 @@ pub extern "dhcpsapi" fn DhcpGetOptionInfo(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpGetOptionInfoV5(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     OptionID: u32,
-    ClassName: ?PWSTR,
-    VendorName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     OptionInfo: ?*?*DHCP_OPTION,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpGetOptionInfoV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     OptionID: u32,
-    ClassName: ?PWSTR,
-    VendorName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     OptionInfo: ?*?*DHCP_OPTION,
 ) callconv(.winapi) u32;
 
@@ -2419,22 +2419,22 @@ pub extern "dhcpsapi" fn DhcpGetOptionValue(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpGetOptionValueV5(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     OptionID: u32,
-    ClassName: ?PWSTR,
-    VendorName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO,
     OptionValue: ?*?*DHCP_OPTION_VALUE,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpGetOptionValueV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     OptionID: u32,
-    ClassName: ?PWSTR,
-    VendorName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO6,
     OptionValue: ?*?*DHCP_OPTION_VALUE,
 ) callconv(.winapi) u32;
@@ -2466,7 +2466,7 @@ pub extern "dhcpsapi" fn DhcpGetServerSpecificStrings(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpGetSubnetDelayOffer(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     SubnetAddress: u32,
     TimeDelayInMilliseconds: ?*u16,
 ) callconv(.winapi) u32;
@@ -2480,7 +2480,7 @@ pub extern "dhcpsapi" fn DhcpGetSubnetInfo(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpGetSubnetInfoV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     SubnetAddress: DHCP_IPV6_ADDRESS,
     SubnetInfo: ?*?*DHCP_SUBNET_INFO_V6,
 ) callconv(.winapi) u32;
@@ -2506,7 +2506,7 @@ pub extern "dhcpsapi" fn DhcpGetThreadOptions(
 
 // TODO: this type is limited to platform 'windowsserver2000'
 pub extern "dhcpsapi" fn DhcpGetVersion(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     MajorVersion: ?*u32,
     MinorVersion: ?*u32,
 ) callconv(.winapi) u32;
@@ -2518,7 +2518,7 @@ pub extern "dhcpsapi" fn DhcpHlprAddV4PolicyCondition(
     Type: DHCP_POL_ATTR_TYPE,
     OptionID: u32,
     SubOptionID: u32,
-    VendorName: ?PWSTR,
+    VendorName: ?[*:0]u16,
     Operator: DHCP_POL_COMPARATOR,
     /// parameter "ValueLength" is the size in bytes
     Value: ?*u8,
@@ -2542,23 +2542,23 @@ pub extern "dhcpsapi" fn DhcpHlprAddV4PolicyRange(
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpHlprCreateV4Policy(
-    PolicyName: ?PWSTR,
+    PolicyName: ?[*:0]u16,
     fGlobalPolicy: BOOL,
     Subnet: u32,
     ProcessingOrder: u32,
     RootOperator: DHCP_POL_LOGIC_OPER,
-    Description: ?PWSTR,
+    Description: ?[*:0]u16,
     Enabled: BOOL,
     Policy: ?*?*DHCP_POLICY,
 ) callconv(.winapi) u32;
 
 pub extern "dhcpsapi" fn DhcpHlprCreateV4PolicyEx(
-    PolicyName: ?PWSTR,
+    PolicyName: ?[*:0]u16,
     fGlobalPolicy: BOOL,
     Subnet: u32,
     ProcessingOrder: u32,
     RootOperator: DHCP_POL_LOGIC_OPER,
-    Description: ?PWSTR,
+    Description: ?[*:0]u16,
     Enabled: BOOL,
     Policy: ?*?*DHCP_POLICY_EX,
 ) callconv(.winapi) u32;
@@ -2622,14 +2622,14 @@ pub extern "dhcpsapi" fn DhcpHlprResetV4PolicyExpr(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpModifyClass(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     ReservedMustBeZero: u32,
     ClassInfo: ?*DHCP_CLASS_INFO,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpModifyClassV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     ReservedMustBeZero: u32,
     ClassInfo: ?*DHCP_CLASS_INFO_V6,
 ) callconv(.winapi) u32;
@@ -2638,7 +2638,7 @@ pub extern "dhcpsapi" fn DhcpModifyClassV6(
 pub extern "dhcpcsvc" fn DhcpRegisterParamChange(
     Flags: u32,
     Reserved: ?*anyopaque,
-    AdapterName: ?PWSTR,
+    AdapterName: ?[*:0]u16,
     ClassId: ?*DHCPCAPI_CLASSID,
     Params: DHCPCAPI_PARAMS_ARRAY,
     Handle: ?*anyopaque,
@@ -2656,20 +2656,20 @@ pub extern "dhcpsapi" fn DhcpRemoveOption(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpRemoveOptionV5(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     OptionID: u32,
-    ClassName: ?PWSTR,
-    VendorName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpRemoveOptionV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     OptionID: u32,
-    ClassName: ?PWSTR,
-    VendorName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
@@ -2681,21 +2681,21 @@ pub extern "dhcpsapi" fn DhcpRemoveOptionValue(
 
 // TODO: this type is limited to platform 'windowsserver2000'
 pub extern "dhcpsapi" fn DhcpRemoveOptionValueV5(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     OptionID: u32,
-    ClassName: ?PWSTR,
-    VendorName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpRemoveOptionValueV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     OptionID: u32,
-    ClassName: ?PWSTR,
-    VendorName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO6,
 ) callconv(.winapi) u32;
 
@@ -2725,7 +2725,7 @@ pub extern "dhcpsapi" fn DhcpRemoveSubnetElementV5(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpRemoveSubnetElementV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     SubnetAddress: DHCP_IPV6_ADDRESS,
     RemoveElementInfo: ?*DHCP_SUBNET_ELEMENT_DATA_V6,
     ForceFlag: DHCP_FORCE_FLAG,
@@ -2735,14 +2735,14 @@ pub extern "dhcpsapi" fn DhcpRemoveSubnetElementV6(
 pub extern "dhcpcsvc" fn DhcpRequestParams(
     Flags: u32,
     Reserved: ?*anyopaque,
-    AdapterName: ?PWSTR,
+    AdapterName: ?[*:0]u16,
     ClassId: ?*DHCPCAPI_CLASSID,
     SendParams: DHCPCAPI_PARAMS_ARRAY,
     RecdParams: DHCPCAPI_PARAMS_ARRAY,
     /// parameter "pSize" is the size in bytes
     Buffer: ?*u8,
     pSize: ?*u32,
-    RequestIdStr: ?PWSTR,
+    RequestIdStr: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2000'
@@ -2764,8 +2764,8 @@ pub extern "dhcpsapi" fn DhcpServerAuditlogParamsFree(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpServerBackupDatabase(
-    ServerIpAddress: ?PWSTR,
-    Path: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
+    Path: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
@@ -2795,7 +2795,7 @@ pub extern "dhcpsapi" fn DhcpServerGetConfigVQ(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpServerQueryAttribute(
-    ServerIpAddr: ?PWSTR,
+    ServerIpAddr: ?[*:0]u16,
     dwReserved: u32,
     DhcpAttribId: u32,
     pDhcpAttrib: ?*?*DHCP_ATTRIB,
@@ -2803,7 +2803,7 @@ pub extern "dhcpsapi" fn DhcpServerQueryAttribute(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpServerQueryAttributes(
-    ServerIpAddr: ?PWSTR,
+    ServerIpAddr: ?[*:0]u16,
     dwReserved: u32,
     dwAttribCount: u32,
     pDhcpAttribs: ?*u32,
@@ -2812,7 +2812,7 @@ pub extern "dhcpsapi" fn DhcpServerQueryAttributes(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpServerQueryDnsRegCredentials(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     UnameSize: u32,
     Uname: [*:0]u16,
     DomainSize: u32,
@@ -2821,14 +2821,14 @@ pub extern "dhcpsapi" fn DhcpServerQueryDnsRegCredentials(
 
 // TODO: this type is limited to platform 'windowsserver2000'
 pub extern "dhcpsapi" fn DhcpServerRedoAuthorization(
-    ServerIpAddr: ?PWSTR,
+    ServerIpAddr: ?[*:0]u16,
     dwReserved: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpServerRestoreDatabase(
-    ServerIpAddress: ?PWSTR,
-    Path: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
+    Path: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
@@ -2861,18 +2861,18 @@ pub extern "dhcpsapi" fn DhcpServerSetConfigVQ(
 ) callconv(.winapi) u32;
 
 pub extern "dhcpsapi" fn DhcpServerSetDnsRegCredentials(
-    ServerIpAddress: ?PWSTR,
-    Uname: ?PWSTR,
-    Domain: ?PWSTR,
-    Passwd: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
+    Uname: ?[*:0]u16,
+    Domain: ?[*:0]u16,
+    Passwd: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpServerSetDnsRegCredentialsV5(
-    ServerIpAddress: ?PWSTR,
-    Uname: ?PWSTR,
-    Domain: ?PWSTR,
-    Passwd: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
+    Uname: ?[*:0]u16,
+    Domain: ?[*:0]u16,
+    Passwd: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2000'
@@ -2914,21 +2914,21 @@ pub extern "dhcpsapi" fn DhcpSetOptionInfo(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpSetOptionInfoV5(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     OptionID: u32,
-    ClassName: ?PWSTR,
-    VendorName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     OptionInfo: ?*DHCP_OPTION,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpSetOptionInfoV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     OptionID: u32,
-    ClassName: ?PWSTR,
-    VendorName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     OptionInfo: ?*DHCP_OPTION,
 ) callconv(.winapi) u32;
 
@@ -2949,32 +2949,32 @@ pub extern "dhcpsapi" fn DhcpSetOptionValues(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpSetOptionValuesV5(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
-    ClassName: ?PWSTR,
-    VendorName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO,
     OptionValues: ?*DHCP_OPTION_VALUE_ARRAY,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2000'
 pub extern "dhcpsapi" fn DhcpSetOptionValueV5(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     OptionId: u32,
-    ClassName: ?PWSTR,
-    VendorName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO,
     OptionValue: ?*DHCP_OPTION_DATA,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpSetOptionValueV6(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     OptionId: u32,
-    ClassName: ?PWSTR,
-    VendorName: ?PWSTR,
+    ClassName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO6,
     OptionValue: ?*DHCP_OPTION_DATA,
 ) callconv(.winapi) u32;
@@ -2995,7 +2995,7 @@ pub extern "dhcpsapi" fn DhcpSetServerBindingInfoV6(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "dhcpsapi" fn DhcpSetSubnetDelayOffer(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     SubnetAddress: u32,
     TimeDelayInMilliseconds: u16,
 ) callconv(.winapi) u32;
@@ -3039,15 +3039,15 @@ pub extern "dhcpsapi" fn DhcpSetThreadOptions(
 pub extern "dhcpcsvc" fn DhcpUndoRequestParams(
     Flags: u32,
     Reserved: ?*anyopaque,
-    AdapterName: ?PWSTR,
-    RequestIdStr: ?PWSTR,
+    AdapterName: ?[*:0]u16,
+    RequestIdStr: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4AddPolicyRange(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     SubnetAddress: u32,
-    PolicyName: ?PWSTR,
+    PolicyName: ?[*:0]u16,
     Range: ?*DHCP_IP_RANGE,
 ) callconv(.winapi) u32;
 
@@ -3064,26 +3064,26 @@ pub extern "dhcpsapi" fn DhcpV4CreateClientInfoEx(
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4CreatePolicy(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     pPolicy: ?*DHCP_POLICY,
 ) callconv(.winapi) u32;
 
 pub extern "dhcpsapi" fn DhcpV4CreatePolicyEx(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     PolicyEx: ?*DHCP_POLICY_EX,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4DeletePolicy(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     fGlobalPolicy: BOOL,
     SubnetAddress: u32,
-    PolicyName: ?PWSTR,
+    PolicyName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4EnumPolicies(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     ResumeHandle: ?*u32,
     PreferredMaximum: u32,
     fGlobalPolicy: BOOL,
@@ -3094,7 +3094,7 @@ pub extern "dhcpsapi" fn DhcpV4EnumPolicies(
 ) callconv(.winapi) u32;
 
 pub extern "dhcpsapi" fn DhcpV4EnumPoliciesEx(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     ResumeHandle: ?*u32,
     PreferredMaximum: u32,
     GlobalPolicy: BOOL,
@@ -3138,31 +3138,31 @@ pub extern "dhcpsapi" fn DhcpV4EnumSubnetReservations(
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4FailoverAddScopeToRelationship(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     pRelationship: ?*DHCP_FAILOVER_RELATIONSHIP,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4FailoverCreateRelationship(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     pRelationship: ?*DHCP_FAILOVER_RELATIONSHIP,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4FailoverDeleteRelationship(
-    ServerIpAddress: ?PWSTR,
-    pRelationshipName: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
+    pRelationshipName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4FailoverDeleteScopeFromRelationship(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     pRelationship: ?*DHCP_FAILOVER_RELATIONSHIP,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4FailoverEnumRelationship(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     ResumeHandle: ?*u32,
     PreferredMaximum: u32,
     pRelationship: ?*?*DHCP_FAILOVER_RELATIONSHIP_ARRAY,
@@ -3172,62 +3172,62 @@ pub extern "dhcpsapi" fn DhcpV4FailoverEnumRelationship(
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4FailoverGetAddressStatus(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     SubnetAddress: u32,
     pStatus: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4FailoverGetClientInfo(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     SearchInfo: ?*const DHCP_SEARCH_INFO,
     ClientInfo: ?*?*DHCPV4_FAILOVER_CLIENT_INFO,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4FailoverGetRelationship(
-    ServerIpAddress: ?PWSTR,
-    pRelationshipName: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
+    pRelationshipName: ?[*:0]u16,
     pRelationship: ?*?*DHCP_FAILOVER_RELATIONSHIP,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4FailoverGetScopeRelationship(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     ScopeId: u32,
     pRelationship: ?*?*DHCP_FAILOVER_RELATIONSHIP,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4FailoverGetScopeStatistics(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     ScopeId: u32,
     pStats: ?*?*DHCP_FAILOVER_STATISTICS,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4FailoverGetSystemTime(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     pTime: ?*u32,
     pMaxAllowedDeltaTime: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4FailoverSetRelationship(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     pRelationship: ?*DHCP_FAILOVER_RELATIONSHIP,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4FailoverTriggerAddrAllocation(
-    ServerIpAddress: ?PWSTR,
-    pFailRelName: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
+    pFailRelName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4GetAllOptionValues(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO,
     Values: ?*?*DHCP_ALL_OPTION_VALUES_PB,
@@ -3248,7 +3248,7 @@ pub extern "dhcpsapi" fn DhcpV4GetClientInfoEx(
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4GetFreeIPAddress(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     ScopeId: u32,
     StartIP: u32,
     EndIP: u32,
@@ -3258,35 +3258,35 @@ pub extern "dhcpsapi" fn DhcpV4GetFreeIPAddress(
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4GetOptionValue(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     OptionID: u32,
-    PolicyName: ?PWSTR,
-    VendorName: ?PWSTR,
+    PolicyName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO,
     OptionValue: ?*?*DHCP_OPTION_VALUE,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4GetPolicy(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     fGlobalPolicy: BOOL,
     SubnetAddress: u32,
-    PolicyName: ?PWSTR,
+    PolicyName: ?[*:0]u16,
     Policy: ?*?*DHCP_POLICY,
 ) callconv(.winapi) u32;
 
 pub extern "dhcpsapi" fn DhcpV4GetPolicyEx(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     GlobalPolicy: BOOL,
     SubnetAddress: u32,
-    PolicyName: ?PWSTR,
+    PolicyName: ?[*:0]u16,
     Policy: ?*?*DHCP_POLICY_EX,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4QueryPolicyEnforcement(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     fGlobalPolicy: BOOL,
     SubnetAddress: u32,
     Enabled: ?*BOOL,
@@ -3294,67 +3294,67 @@ pub extern "dhcpsapi" fn DhcpV4QueryPolicyEnforcement(
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4RemoveOptionValue(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     OptionID: u32,
-    PolicyName: ?PWSTR,
-    VendorName: ?PWSTR,
+    PolicyName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4RemovePolicyRange(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     SubnetAddress: u32,
-    PolicyName: ?PWSTR,
+    PolicyName: ?[*:0]u16,
     Range: ?*DHCP_IP_RANGE,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4SetOptionValue(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
     OptionId: u32,
-    PolicyName: ?PWSTR,
-    VendorName: ?PWSTR,
+    PolicyName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO,
     OptionValue: ?*DHCP_OPTION_DATA,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4SetOptionValues(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     Flags: u32,
-    PolicyName: ?PWSTR,
-    VendorName: ?PWSTR,
+    PolicyName: ?[*:0]u16,
+    VendorName: ?[*:0]u16,
     ScopeInfo: ?*DHCP_OPTION_SCOPE_INFO,
     OptionValues: ?*DHCP_OPTION_VALUE_ARRAY,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4SetPolicy(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     FieldsModified: u32,
     fGlobalPolicy: BOOL,
     SubnetAddress: u32,
-    PolicyName: ?PWSTR,
+    PolicyName: ?[*:0]u16,
     Policy: ?*DHCP_POLICY,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV4SetPolicyEnforcement(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     fGlobalPolicy: BOOL,
     SubnetAddress: u32,
     Enable: BOOL,
 ) callconv(.winapi) u32;
 
 pub extern "dhcpsapi" fn DhcpV4SetPolicyEx(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     FieldsModified: u32,
     GlobalPolicy: BOOL,
     SubnetAddress: u32,
-    PolicyName: ?PWSTR,
+    PolicyName: ?[*:0]u16,
     Policy: ?*DHCP_POLICY_EX,
 ) callconv(.winapi) u32;
 
@@ -3375,7 +3375,7 @@ pub extern "dhcpsapi" fn DhcpV6CreateClientInfo(
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV6GetFreeIPAddress(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     ScopeId: DHCP_IPV6_ADDRESS,
     StartIP: DHCP_IPV6_ADDRESS,
     EndIP: DHCP_IPV6_ADDRESS,
@@ -3385,13 +3385,13 @@ pub extern "dhcpsapi" fn DhcpV6GetFreeIPAddress(
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV6GetStatelessStatistics(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     StatelessStats: ?*?*DHCPV6_STATELESS_STATS,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV6GetStatelessStoreParams(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     fServerLevel: BOOL,
     SubnetAddress: DHCP_IPV6_ADDRESS,
     Params: ?*?*DHCPV6_STATELESS_PARAMS,
@@ -3399,14 +3399,14 @@ pub extern "dhcpsapi" fn DhcpV6GetStatelessStoreParams(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dhcpcsvc6" fn Dhcpv6ReleasePrefix(
-    adapterName: ?PWSTR,
+    adapterName: ?[*:0]u16,
     classId: ?*DHCPV6CAPI_CLASSID,
     leaseInfo: ?*DHCPV6PrefixLeaseInformation,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dhcpcsvc6" fn Dhcpv6RenewPrefix(
-    adapterName: ?PWSTR,
+    adapterName: ?[*:0]u16,
     pclassId: ?*DHCPV6CAPI_CLASSID,
     prefixleaseInfo: ?*DHCPV6PrefixLeaseInformation,
     pdwTimeToWait: ?*u32,
@@ -3417,7 +3417,7 @@ pub extern "dhcpcsvc6" fn Dhcpv6RenewPrefix(
 pub extern "dhcpcsvc6" fn Dhcpv6RequestParams(
     forceNewInform: BOOL,
     reserved: ?*anyopaque,
-    adapterName: ?PWSTR,
+    adapterName: ?[*:0]u16,
     classId: ?*DHCPV6CAPI_CLASSID,
     recdParams: DHCPV6CAPI_PARAMS_ARRAY,
     buffer: ?*u8,
@@ -3426,7 +3426,7 @@ pub extern "dhcpcsvc6" fn Dhcpv6RequestParams(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dhcpcsvc6" fn Dhcpv6RequestPrefix(
-    adapterName: ?PWSTR,
+    adapterName: ?[*:0]u16,
     pclassId: ?*DHCPV6CAPI_CLASSID,
     prefixleaseInfo: ?*DHCPV6PrefixLeaseInformation,
     pdwTimeToWait: ?*u32,
@@ -3434,7 +3434,7 @@ pub extern "dhcpcsvc6" fn Dhcpv6RequestPrefix(
 
 // TODO: this type is limited to platform 'windowsserver2012'
 pub extern "dhcpsapi" fn DhcpV6SetStatelessStoreParams(
-    ServerIpAddress: ?PWSTR,
+    ServerIpAddress: ?[*:0]u16,
     fServerLevel: BOOL,
     SubnetAddress: DHCP_IPV6_ADDRESS,
     FieldModified: u32,
@@ -3446,12 +3446,10 @@ pub extern "dhcpsapi" fn DhcpV6SetStatelessStoreParams(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (2)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

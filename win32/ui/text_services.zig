@@ -7997,7 +7997,7 @@ pub extern "msctfmonitor" fn UninitLocalMsCtfMonitor(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (24)
+// Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -8018,7 +8018,6 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const LPARAM = @import("../foundation.zig").LPARAM;
 const MSG = @import("../ui/windows_and_messaging.zig").MSG;
 const POINT = @import("../foundation.zig").POINT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const SIZE = @import("../foundation.zig").SIZE;
 const VARIANT = @import("../system/com.zig").VARIANT;

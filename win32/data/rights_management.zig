@@ -75,8 +75,8 @@ pub const MSDRM_POLICY_ZONE = @as(u32, 37632);
 //--------------------------------------------------------------------------------
 pub const DRM_ACTSERV_INFO = extern struct {
     uVersion: u32,
-    wszPubKey: ?PWSTR,
-    wszURL: ?PWSTR,
+    wszPubKey: ?[*:0]u16,
+    wszURL: ?[*:0]u16,
 };
 
 pub const DRM_CLIENT_VERSION_INFO = extern struct {
@@ -98,11 +98,11 @@ pub const DRM_DISTRIBUTION_POINT_REFERRAL_INFO = DRM_DISTRIBUTION_POINT_INFO.REF
 
 pub const DRM_LICENSE_ACQ_DATA = extern struct {
     uVersion: u32,
-    wszURL: ?PWSTR,
-    wszLocalFilename: ?PWSTR,
+    wszURL: ?[*:0]u16,
+    wszLocalFilename: ?[*:0]u16,
     pbPostData: ?*u8,
     dwPostDataSize: u32,
-    wszFriendlyName: ?PWSTR,
+    wszFriendlyName: ?[*:0]u16,
 };
 
 pub const DRM_STATUS_MSG = enum(i32) {
@@ -144,12 +144,12 @@ pub const DRMBOUNDLICENSEPARAMS = extern struct {
     uVersion: u32,
     hEnablingPrincipal: u32,
     hSecureStore: u32,
-    wszRightsRequested: ?PWSTR,
-    wszRightsGroup: ?PWSTR,
+    wszRightsRequested: ?[*:0]u16,
+    wszRightsGroup: ?[*:0]u16,
     idResource: DRMID,
     cAuthenticatorCount: u32,
     rghAuthenticators: ?*u32,
-    wszDefaultEnablingPrincipalCredentials: ?PWSTR,
+    wszDefaultEnablingPrincipalCredentials: ?[*:0]u16,
     dwFlags: u32,
 };
 
@@ -184,8 +184,8 @@ pub const DRMGLOBALOPTIONS_USE_SERVERSECURITYPROCESSOR = DRMGLOBALOPTIONS.SERVER
 
 pub const DRMID = extern struct {
     uVersion: u32,
-    wszIDType: ?PWSTR,
-    wszID: ?PWSTR,
+    wszIDType: ?[*:0]u16,
+    wszID: ?[*:0]u16,
 };
 
 pub const DRMSECURITYPROVIDERTYPE = enum(i32) {
@@ -213,8 +213,8 @@ pub const DRMTIMETYPE_SYSTEMLOCAL = DRMTIMETYPE.LOCAL;
 //--------------------------------------------------------------------------------
 pub extern "msdrm" fn DRMAcquireAdvisories(
     hLicenseStorage: u32,
-    wszLicense: ?PWSTR,
-    wszURL: ?PWSTR,
+    wszLicense: ?[*:0]u16,
+    wszURL: ?[*:0]u16,
     pvContext: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
@@ -224,18 +224,18 @@ pub extern "msdrm" fn DRMAcquireIssuanceLicenseTemplate(
     uFlags: u32,
     pvReserved: ?*anyopaque,
     cTemplates: u32,
-    pwszTemplateIds: ?[*]?PWSTR,
-    wszUrl: ?PWSTR,
+    pwszTemplateIds: ?[*]?[*:0]u16,
+    wszUrl: ?[*:0]u16,
     pvContext: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMAcquireLicense(
     hSession: u32,
     uFlags: u32,
-    wszGroupIdentityCredential: ?PWSTR,
-    wszRequestedRights: ?PWSTR,
-    wszCustomData: ?PWSTR,
-    wszURL: ?PWSTR,
+    wszGroupIdentityCredential: ?[*:0]u16,
+    wszRequestedRights: ?[*:0]u16,
+    wszCustomData: ?[*:0]u16,
+    wszURL: ?[*:0]u16,
     pvContext: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
@@ -251,7 +251,7 @@ pub extern "msdrm" fn DRMActivate(
 pub extern "msdrm" fn DRMAddLicense(
     hLicenseStorage: u32,
     uFlags: u32,
-    wszLicense: ?PWSTR,
+    wszLicense: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMAddRightWithUser(
@@ -262,7 +262,7 @@ pub extern "msdrm" fn DRMAddRightWithUser(
 
 pub extern "msdrm" fn DRMAttest(
     hEnablingPrincipal: u32,
-    wszData: ?PWSTR,
+    wszData: ?[*:0]u16,
     eType: DRMATTESTTYPE,
     pcAttestedBlob: ?*u32,
     wszAttestedBlob: [*:0]u16,
@@ -299,7 +299,7 @@ pub extern "msdrm" fn DRMCloseSession(
 
 pub extern "msdrm" fn DRMConstructCertificateChain(
     cCertificates: u32,
-    rgwszCertificates: [*]?PWSTR,
+    rgwszCertificates: [*]?[*:0]u16,
     pcChain: ?*u32,
     wszChain: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
@@ -307,7 +307,7 @@ pub extern "msdrm" fn DRMConstructCertificateChain(
 pub extern "msdrm" fn DRMCreateBoundLicense(
     hEnv: u32,
     pParams: ?*DRMBOUNDLICENSEPARAMS,
-    wszLicenseChain: ?PWSTR,
+    wszLicenseChain: ?[*:0]u16,
     phBoundLicense: ?*u32,
     phErrorLog: ?*u32,
 ) callconv(.winapi) HRESULT;
@@ -315,43 +315,43 @@ pub extern "msdrm" fn DRMCreateBoundLicense(
 pub extern "msdrm" fn DRMCreateClientSession(
     pfnCallback: ?DRMCALLBACK,
     uCallbackVersion: u32,
-    wszGroupIDProviderType: ?PWSTR,
-    wszGroupID: ?PWSTR,
+    wszGroupIDProviderType: ?[*:0]u16,
+    wszGroupID: ?[*:0]u16,
     phClient: ?*u32,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCreateEnablingBitsDecryptor(
     hBoundLicense: u32,
-    wszRight: ?PWSTR,
+    wszRight: ?[*:0]u16,
     hAuxLib: u32,
-    wszAuxPlug: ?PWSTR,
+    wszAuxPlug: ?[*:0]u16,
     phDecryptor: ?*u32,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCreateEnablingBitsEncryptor(
     hBoundLicense: u32,
-    wszRight: ?PWSTR,
+    wszRight: ?[*:0]u16,
     hAuxLib: u32,
-    wszAuxPlug: ?PWSTR,
+    wszAuxPlug: ?[*:0]u16,
     phEncryptor: ?*u32,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCreateEnablingPrincipal(
     hEnv: u32,
     hLibrary: u32,
-    wszObject: ?PWSTR,
+    wszObject: ?[*:0]u16,
     pidPrincipal: ?*DRMID,
-    wszCredentials: ?PWSTR,
+    wszCredentials: ?[*:0]u16,
     phEnablingPrincipal: ?*u32,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCreateIssuanceLicense(
     pstTimeFrom: ?*SYSTEMTIME,
     pstTimeUntil: ?*SYSTEMTIME,
-    wszReferralInfoName: ?PWSTR,
-    wszReferralInfoURL: ?PWSTR,
+    wszReferralInfoName: ?[*:0]u16,
+    wszReferralInfoURL: ?[*:0]u16,
     hOwner: u32,
-    wszIssuanceLicense: ?PWSTR,
+    wszIssuanceLicense: ?[*:0]u16,
     hBoundLicense: u32,
     phIssuanceLicense: ?*u32,
 ) callconv(.winapi) HRESULT;
@@ -361,36 +361,36 @@ pub extern "msdrm" fn DRMCreateLicenseStorageSession(
     hDefaultLibrary: u32,
     hClient: u32,
     uFlags: u32,
-    wszIssuanceLicense: ?PWSTR,
+    wszIssuanceLicense: ?[*:0]u16,
     phLicenseStorage: ?*u32,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCreateRight(
-    wszRightName: ?PWSTR,
+    wszRightName: ?[*:0]u16,
     pstFrom: ?*SYSTEMTIME,
     pstUntil: ?*SYSTEMTIME,
     cExtendedInfo: u32,
-    pwszExtendedInfoName: ?[*]?PWSTR,
-    pwszExtendedInfoValue: ?[*]?PWSTR,
+    pwszExtendedInfoName: ?[*]?[*:0]u16,
+    pwszExtendedInfoValue: ?[*]?[*:0]u16,
     phRight: ?*u32,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCreateUser(
-    wszUserName: ?PWSTR,
-    wszUserId: ?PWSTR,
-    wszUserIdType: ?PWSTR,
+    wszUserName: ?[*:0]u16,
+    wszUserId: ?[*:0]u16,
+    wszUserIdType: ?[*:0]u16,
     phUser: ?*u32,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMDecode(
-    wszAlgID: ?PWSTR,
-    wszEncodedString: ?PWSTR,
+    wszAlgID: ?[*:0]u16,
+    wszEncodedString: ?[*:0]u16,
     puDecodedDataLen: ?*u32,
     pbDecodedData: ?*u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMDeconstructCertificateChain(
-    wszChain: ?PWSTR,
+    wszChain: ?[*:0]u16,
     iWhich: u32,
     pcCert: ?*u32,
     wszCert: ?[*:0]u16,
@@ -407,7 +407,7 @@ pub extern "msdrm" fn DRMDecrypt(
 
 pub extern "msdrm" fn DRMDeleteLicense(
     hSession: u32,
-    wszLicenseId: ?PWSTR,
+    wszLicenseId: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMDuplicateEnvironmentHandle(
@@ -431,7 +431,7 @@ pub extern "msdrm" fn DRMDuplicateSession(
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMEncode(
-    wszAlgID: ?PWSTR,
+    wszAlgID: ?[*:0]u16,
     uDataLen: u32,
     pbDecodedData: ?*u8,
     puEncodedStringLen: ?*u32,
@@ -467,7 +467,7 @@ pub extern "msdrm" fn DRMGetApplicationSpecificData(
 
 pub extern "msdrm" fn DRMGetBoundLicenseAttribute(
     hQueryRoot: u32,
-    wszAttribute: ?PWSTR,
+    wszAttribute: ?[*:0]u16,
     iWhich: u32,
     peEncoding: ?*DRMENCODINGTYPE,
     pcBuffer: ?*u32,
@@ -476,25 +476,25 @@ pub extern "msdrm" fn DRMGetBoundLicenseAttribute(
 
 pub extern "msdrm" fn DRMGetBoundLicenseAttributeCount(
     hQueryRoot: u32,
-    wszAttribute: ?PWSTR,
+    wszAttribute: ?[*:0]u16,
     pcAttributes: ?*u32,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetBoundLicenseObject(
     hQueryRoot: u32,
-    wszSubObjectType: ?PWSTR,
+    wszSubObjectType: ?[*:0]u16,
     iWhich: u32,
     phSubObject: ?*u32,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetBoundLicenseObjectCount(
     hQueryRoot: u32,
-    wszSubObjectType: ?PWSTR,
+    wszSubObjectType: ?[*:0]u16,
     pcSubObjects: ?*u32,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetCertificateChainCount(
-    wszChain: ?PWSTR,
+    wszChain: ?[*:0]u16,
     pcCertCount: ?*u32,
 ) callconv(.winapi) HRESULT;
 
@@ -504,7 +504,7 @@ pub extern "msdrm" fn DRMGetClientVersion(
 
 pub extern "msdrm" fn DRMGetEnvironmentInfo(
     handle: u32,
-    wszAttribute: ?PWSTR,
+    wszAttribute: ?[*:0]u16,
     peEncoding: ?*DRMENCODINGTYPE,
     pcBuffer: ?*u32,
     pbBuffer: ?*u8,
@@ -512,7 +512,7 @@ pub extern "msdrm" fn DRMGetEnvironmentInfo(
 
 pub extern "msdrm" fn DRMGetInfo(
     handle: u32,
-    wszAttribute: ?PWSTR,
+    wszAttribute: ?[*:0]u16,
     peEncoding: ?*DRMENCODINGTYPE,
     pcBuffer: ?*u32,
     pbBuffer: ?*u8,
@@ -576,7 +576,7 @@ pub extern "msdrm" fn DRMGetOwnerLicense(
 
 pub extern "msdrm" fn DRMGetProcAddress(
     hLibrary: u32,
-    wszProcName: ?PWSTR,
+    wszProcName: ?[*:0]u16,
     ppfnProcAddress: ?*?FARPROC,
 ) callconv(.winapi) HRESULT;
 
@@ -624,7 +624,7 @@ pub extern "msdrm" fn DRMGetServiceLocation(
     hClient: u32,
     uServiceType: u32,
     uServiceLocation: u32,
-    wszIssuanceLicense: ?PWSTR,
+    wszIssuanceLicense: ?[*:0]u16,
     puServiceURLLength: ?*u32,
     wszServiceURL: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
@@ -635,10 +635,10 @@ pub extern "msdrm" fn DRMGetSignedIssuanceLicense(
     uFlags: u32,
     pbSymKey: ?*u8,
     cbSymKey: u32,
-    wszSymKeyType: ?PWSTR,
-    wszClientLicensorCertificate: ?PWSTR,
+    wszSymKeyType: ?[*:0]u16,
+    wszClientLicensorCertificate: ?[*:0]u16,
     pfnCallback: ?DRMCALLBACK,
-    wszURL: ?PWSTR,
+    wszURL: ?[*:0]u16,
     pvContext: ?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
@@ -650,7 +650,7 @@ pub extern "msdrm" fn DRMGetSignedIssuanceLicenseEx(
     /// parameter "cbSymKey" is the size in bytes
     pbSymKey: ?*u8,
     cbSymKey: u32,
-    wszSymKeyType: ?PWSTR,
+    wszSymKeyType: ?[*:0]u16,
     pvReserved: ?*anyopaque,
     hEnablingPrincipal: u32,
     hBoundLicenseCLC: u32,
@@ -666,7 +666,7 @@ pub extern "msdrm" fn DRMGetTime(
 
 pub extern "msdrm" fn DRMGetUnboundLicenseAttribute(
     hQueryRoot: u32,
-    wszAttributeType: ?PWSTR,
+    wszAttributeType: ?[*:0]u16,
     iWhich: u32,
     peEncoding: ?*DRMENCODINGTYPE,
     pcBuffer: ?*u32,
@@ -675,20 +675,20 @@ pub extern "msdrm" fn DRMGetUnboundLicenseAttribute(
 
 pub extern "msdrm" fn DRMGetUnboundLicenseAttributeCount(
     hQueryRoot: u32,
-    wszAttributeType: ?PWSTR,
+    wszAttributeType: ?[*:0]u16,
     pcAttributes: ?*u32,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetUnboundLicenseObject(
     hQueryRoot: u32,
-    wszSubObjectType: ?PWSTR,
+    wszSubObjectType: ?[*:0]u16,
     iIndex: u32,
     phSubQuery: ?*u32,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetUnboundLicenseObjectCount(
     hQueryRoot: u32,
-    wszSubObjectType: ?PWSTR,
+    wszSubObjectType: ?[*:0]u16,
     pcSubObjects: ?*u32,
 ) callconv(.winapi) HRESULT;
 
@@ -737,9 +737,9 @@ pub extern "msdrm" fn DRMGetUsers(
 pub extern "msdrm" fn DRMInitEnvironment(
     eSecurityProviderType: DRMSECURITYPROVIDERTYPE,
     eSpecification: DRMSPECTYPE,
-    wszSecurityProvider: ?PWSTR,
-    wszManifestCredentials: ?PWSTR,
-    wszMachineCredentials: ?PWSTR,
+    wszSecurityProvider: ?[*:0]u16,
+    wszManifestCredentials: ?[*:0]u16,
+    wszMachineCredentials: ?[*:0]u16,
     phEnv: ?*u32,
     phDefaultLibrary: ?*u32,
 ) callconv(.winapi) HRESULT;
@@ -759,13 +759,13 @@ pub extern "msdrm" fn DRMIsWindowProtected(
 pub extern "msdrm" fn DRMLoadLibrary(
     hEnv: u32,
     eSpecification: DRMSPECTYPE,
-    wszLibraryProvider: ?PWSTR,
-    wszCredentials: ?PWSTR,
+    wszLibraryProvider: ?[*:0]u16,
+    wszCredentials: ?[*:0]u16,
     phLibrary: ?*u32,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMParseUnboundLicense(
-    wszCertificate: ?PWSTR,
+    wszCertificate: ?[*:0]u16,
     phQueryRoot: ?*u32,
 ) callconv(.winapi) HRESULT;
 
@@ -781,7 +781,7 @@ pub extern "msdrm" fn DRMRegisterProtectedWindow(
 
 pub extern "msdrm" fn DRMRegisterRevocationList(
     hEnv: u32,
-    wszRevocationList: ?PWSTR,
+    wszRevocationList: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMRepair(
@@ -790,8 +790,8 @@ pub extern "msdrm" fn DRMRepair(
 pub extern "msdrm" fn DRMSetApplicationSpecificData(
     hIssuanceLicense: u32,
     fDelete: BOOL,
-    wszName: ?PWSTR,
-    wszValue: ?PWSTR,
+    wszName: ?[*:0]u16,
+    wszValue: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMSetGlobalOptions(
@@ -807,31 +807,31 @@ pub extern "msdrm" fn DRMSetIntervalTime(
 
 pub extern "msdrm" fn DRMSetMetaData(
     hIssuanceLicense: u32,
-    wszContentId: ?PWSTR,
-    wszContentIdType: ?PWSTR,
-    wszSKUId: ?PWSTR,
-    wszSKUIdType: ?PWSTR,
-    wszContentType: ?PWSTR,
-    wszContentName: ?PWSTR,
+    wszContentId: ?[*:0]u16,
+    wszContentIdType: ?[*:0]u16,
+    wszSKUId: ?[*:0]u16,
+    wszSKUIdType: ?[*:0]u16,
+    wszContentType: ?[*:0]u16,
+    wszContentName: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMSetNameAndDescription(
     hIssuanceLicense: u32,
     fDelete: BOOL,
     lcid: u32,
-    wszName: ?PWSTR,
-    wszDescription: ?PWSTR,
+    wszName: ?[*:0]u16,
+    wszDescription: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMSetRevocationPoint(
     hIssuanceLicense: u32,
     fDelete: BOOL,
-    wszId: ?PWSTR,
-    wszIdType: ?PWSTR,
-    wszURL: ?PWSTR,
+    wszId: ?[*:0]u16,
+    wszIdType: ?[*:0]u16,
+    wszURL: ?[*:0]u16,
     pstFrequency: ?*SYSTEMTIME,
-    wszName: ?PWSTR,
-    wszPublicKey: ?PWSTR,
+    wszName: ?[*:0]u16,
+    wszPublicKey: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMSetUsagePolicy(
@@ -839,17 +839,17 @@ pub extern "msdrm" fn DRMSetUsagePolicy(
     eUsagePolicyType: DRM_USAGEPOLICY_TYPE,
     fDelete: BOOL,
     fExclusion: BOOL,
-    wszName: ?PWSTR,
-    wszMinVersion: ?PWSTR,
-    wszMaxVersion: ?PWSTR,
-    wszPublicKey: ?PWSTR,
-    wszDigestAlgorithm: ?PWSTR,
+    wszName: ?[*:0]u16,
+    wszMinVersion: ?[*:0]u16,
+    wszMaxVersion: ?[*:0]u16,
+    wszPublicKey: ?[*:0]u16,
+    wszDigestAlgorithm: ?[*:0]u16,
     pbDigest: ?*u8,
     cbDigest: u32,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMVerify(
-    wszData: ?PWSTR,
+    wszData: ?[*:0]u16,
     pcAttestedData: ?*u32,
     wszAttestedData: ?[*:0]u16,
     peType: ?*DRMATTESTTYPE,
@@ -864,13 +864,12 @@ pub extern "msdrm" fn DRMVerify(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const FARPROC = @import("../foundation.zig").FARPROC;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {

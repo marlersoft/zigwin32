@@ -4536,7 +4536,7 @@ pub extern "d3d9" fn Direct3DCreate9Ex(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (18)
+// Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -4553,7 +4553,6 @@ const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const LUID = @import("../foundation.zig").LUID;
 const PALETTEENTRY = @import("../graphics/gdi.zig").PALETTEENTRY;
 const POINT = @import("../foundation.zig").POINT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const RGNDATA = @import("../graphics/gdi.zig").RGNDATA;
 

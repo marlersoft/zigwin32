@@ -64,9 +64,9 @@ pub const SUCCESS_SUCCESS = @as(u32, 0);
 pub const LPMAPIADDRESS = *const fn(
     lhSession: usize,
     ulUIParam: usize,
-    lpszCaption: ?PSTR,
+    lpszCaption: ?[*:0]u8,
     nEditFields: u32,
-    lpszLabels: ?PSTR,
+    lpszLabels: ?[*:0]u8,
     nRecips: u32,
     lpRecips: ?*MapiRecipDesc,
     flFlags: u32,
@@ -78,7 +78,7 @@ pub const LPMAPIADDRESS = *const fn(
 pub const LPMAPIDELETEMAIL = *const fn(
     lhSession: usize,
     ulUIParam: usize,
-    lpszMessageID: ?PSTR,
+    lpszMessageID: ?[*:0]u8,
     flFlags: u32,
     ulReserved: u32,
 ) callconv(.winapi) u32;
@@ -94,11 +94,11 @@ pub const LPMAPIDETAILS = *const fn(
 pub const LPMAPIFINDNEXT = *const fn(
     lhSession: usize,
     ulUIParam: usize,
-    lpszMessageType: ?PSTR,
-    lpszSeedMessageID: ?PSTR,
+    lpszMessageType: ?[*:0]u8,
+    lpszSeedMessageID: ?[*:0]u8,
     flFlags: u32,
     ulReserved: u32,
-    lpszMessageID: ?PSTR,
+    lpszMessageID: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 pub const LPMAPIFREEBUFFER = *const fn(
@@ -114,8 +114,8 @@ pub const LPMAPILOGOFF = *const fn(
 
 pub const LPMAPILOGON = *const fn(
     ulUIParam: usize,
-    lpszProfileName: ?PSTR,
-    lpszPassword: ?PSTR,
+    lpszProfileName: ?[*:0]u8,
+    lpszPassword: ?[*:0]u8,
     flFlags: u32,
     ulReserved: u32,
     lplhSession: ?*usize,
@@ -124,7 +124,7 @@ pub const LPMAPILOGON = *const fn(
 pub const LPMAPIREADMAIL = *const fn(
     lhSession: usize,
     ulUIParam: usize,
-    lpszMessageID: ?PSTR,
+    lpszMessageID: ?[*:0]u8,
     flFlags: u32,
     ulReserved: u32,
     lppMessage: ?*?*MapiMessage,
@@ -133,7 +133,7 @@ pub const LPMAPIREADMAIL = *const fn(
 pub const LPMAPIRESOLVENAME = *const fn(
     lhSession: usize,
     ulUIParam: usize,
-    lpszName: ?PSTR,
+    lpszName: ?[*:0]u8,
     flFlags: u32,
     ulReserved: u32,
     lppRecip: ?*?*MapiRecipDesc,
@@ -145,14 +145,14 @@ pub const LPMAPISAVEMAIL = *const fn(
     lpMessage: ?*MapiMessage,
     flFlags: u32,
     ulReserved: u32,
-    lpszMessageID: ?PSTR,
+    lpszMessageID: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 pub const LPMAPISENDDOCUMENTS = *const fn(
     ulUIParam: usize,
-    lpszDelimChar: ?PSTR,
-    lpszFilePaths: ?PSTR,
-    lpszFileNames: ?PSTR,
+    lpszDelimChar: ?[*:0]u8,
+    lpszFilePaths: ?[*:0]u8,
+    lpszFileNames: ?[*:0]u8,
     ulReserved: u32,
 ) callconv(.winapi) u32;
 
@@ -176,8 +176,8 @@ pub const MapiFileDesc = extern struct {
     ulReserved: u32,
     flFlags: u32,
     nPosition: u32,
-    lpszPathName: ?PSTR,
-    lpszFileName: ?PSTR,
+    lpszPathName: ?[*:0]u8,
+    lpszFileName: ?[*:0]u8,
     lpFileType: ?*anyopaque,
 };
 
@@ -185,8 +185,8 @@ pub const MapiFileDescW = extern struct {
     ulReserved: u32,
     flFlags: u32,
     nPosition: u32,
-    lpszPathName: ?PWSTR,
-    lpszFileName: ?PWSTR,
+    lpszPathName: ?[*:0]u16,
+    lpszFileName: ?[*:0]u16,
     lpFileType: ?*anyopaque,
 };
 
@@ -200,11 +200,11 @@ pub const MapiFileTagExt = extern struct {
 
 pub const MapiMessage = extern struct {
     ulReserved: u32,
-    lpszSubject: ?PSTR,
-    lpszNoteText: ?PSTR,
-    lpszMessageType: ?PSTR,
-    lpszDateReceived: ?PSTR,
-    lpszConversationID: ?PSTR,
+    lpszSubject: ?[*:0]u8,
+    lpszNoteText: ?[*:0]u8,
+    lpszMessageType: ?[*:0]u8,
+    lpszDateReceived: ?[*:0]u8,
+    lpszConversationID: ?[*:0]u8,
     flFlags: u32,
     lpOriginator: ?*MapiRecipDesc,
     nRecipCount: u32,
@@ -215,11 +215,11 @@ pub const MapiMessage = extern struct {
 
 pub const MapiMessageW = extern struct {
     ulReserved: u32,
-    lpszSubject: ?PWSTR,
-    lpszNoteText: ?PWSTR,
-    lpszMessageType: ?PWSTR,
-    lpszDateReceived: ?PWSTR,
-    lpszConversationID: ?PWSTR,
+    lpszSubject: ?[*:0]u16,
+    lpszNoteText: ?[*:0]u16,
+    lpszMessageType: ?[*:0]u16,
+    lpszDateReceived: ?[*:0]u16,
+    lpszConversationID: ?[*:0]u16,
     flFlags: u32,
     lpOriginator: ?*MapiRecipDescW,
     nRecipCount: u32,
@@ -231,8 +231,8 @@ pub const MapiMessageW = extern struct {
 pub const MapiRecipDesc = extern struct {
     ulReserved: u32,
     ulRecipClass: u32,
-    lpszName: ?PSTR,
-    lpszAddress: ?PSTR,
+    lpszName: ?[*:0]u8,
+    lpszAddress: ?[*:0]u8,
     ulEIDSize: u32,
     lpEntryID: ?*anyopaque,
 };
@@ -240,8 +240,8 @@ pub const MapiRecipDesc = extern struct {
 pub const MapiRecipDescW = extern struct {
     ulReserved: u32,
     ulRecipClass: u32,
-    lpszName: ?PWSTR,
-    lpszAddress: ?PWSTR,
+    lpszName: ?[*:0]u16,
+    lpszAddress: ?[*:0]u16,
     ulEIDSize: u32,
     lpEntryID: ?*anyopaque,
 };
@@ -259,10 +259,8 @@ pub extern "mapi32" fn MAPIFreeBuffer(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (2)
+// Section: Imports (0)
 //--------------------------------------------------------------------------------
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

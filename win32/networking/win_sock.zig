@@ -1184,7 +1184,7 @@ pub const ADDRINFO_DNS_SERVER = extern struct {
     ai_addrlen: u32,
     ai_addr: ?*SOCKADDR,
     Anonymous: extern union {
-        ai_template: ?PWSTR,
+        ai_template: ?[*:0]u16,
     },
 };
 
@@ -1194,7 +1194,7 @@ pub const ADDRINFOA = extern struct {
     ai_socktype: i32,
     ai_protocol: i32,
     ai_addrlen: usize,
-    ai_canonname: ?PSTR,
+    ai_canonname: ?[*:0]u8,
     ai_addr: ?*SOCKADDR,
     ai_next: ?*ADDRINFOA,
 };
@@ -1205,14 +1205,14 @@ pub const ADDRINFOEX2A = extern struct {
     ai_socktype: i32,
     ai_protocol: i32,
     ai_addrlen: usize,
-    ai_canonname: ?PSTR,
+    ai_canonname: ?[*:0]u8,
     ai_addr: ?*SOCKADDR,
     ai_blob: ?*anyopaque,
     ai_bloblen: usize,
     ai_provider: ?*Guid,
     ai_next: ?*ADDRINFOEX2A,
     ai_version: i32,
-    ai_fqdn: ?PSTR,
+    ai_fqdn: ?[*:0]u8,
 };
 
 pub const ADDRINFOEX2W = extern struct {
@@ -1221,14 +1221,14 @@ pub const ADDRINFOEX2W = extern struct {
     ai_socktype: i32,
     ai_protocol: i32,
     ai_addrlen: usize,
-    ai_canonname: ?PWSTR,
+    ai_canonname: ?[*:0]u16,
     ai_addr: ?*SOCKADDR,
     ai_blob: ?*anyopaque,
     ai_bloblen: usize,
     ai_provider: ?*Guid,
     ai_next: ?*ADDRINFOEX2W,
     ai_version: i32,
-    ai_fqdn: ?PWSTR,
+    ai_fqdn: ?[*:0]u16,
 };
 
 pub const ADDRINFOEX3 = extern struct {
@@ -1237,14 +1237,14 @@ pub const ADDRINFOEX3 = extern struct {
     ai_socktype: i32,
     ai_protocol: i32,
     ai_addrlen: usize,
-    ai_canonname: ?PWSTR,
+    ai_canonname: ?[*:0]u16,
     ai_addr: ?*SOCKADDR,
     ai_blob: ?*anyopaque,
     ai_bloblen: usize,
     ai_provider: ?*Guid,
     ai_next: ?*ADDRINFOEX3,
     ai_version: i32,
-    ai_fqdn: ?PWSTR,
+    ai_fqdn: ?[*:0]u16,
     ai_interfaceindex: i32,
 };
 
@@ -1254,14 +1254,14 @@ pub const ADDRINFOEX4 = extern struct {
     ai_socktype: i32,
     ai_protocol: i32,
     ai_addrlen: usize,
-    ai_canonname: ?PWSTR,
+    ai_canonname: ?[*:0]u16,
     ai_addr: ?*SOCKADDR,
     ai_blob: ?*anyopaque,
     ai_bloblen: usize,
     ai_provider: ?*Guid,
     ai_next: ?*ADDRINFOEX4,
     ai_version: i32,
-    ai_fqdn: ?PWSTR,
+    ai_fqdn: ?[*:0]u16,
     ai_interfaceindex: i32,
     ai_resolutionhandle: ?HANDLE,
 };
@@ -1272,14 +1272,14 @@ pub const ADDRINFOEX5 = extern struct {
     ai_socktype: i32,
     ai_protocol: i32,
     ai_addrlen: usize,
-    ai_canonname: ?PWSTR,
+    ai_canonname: ?[*:0]u16,
     ai_addr: ?*SOCKADDR,
     ai_blob: ?*anyopaque,
     ai_bloblen: usize,
     ai_provider: ?*Guid,
     ai_next: ?*ADDRINFOEX5,
     ai_version: i32,
-    ai_fqdn: ?PWSTR,
+    ai_fqdn: ?[*:0]u16,
     ai_interfaceindex: i32,
     ai_resolutionhandle: ?HANDLE,
     ai_ttl: u32,
@@ -1291,14 +1291,14 @@ pub const ADDRINFOEX6 = extern struct {
     ai_socktype: i32,
     ai_protocol: i32,
     ai_addrlen: usize,
-    ai_canonname: ?PWSTR,
+    ai_canonname: ?[*:0]u16,
     ai_addr: ?*SOCKADDR,
     ai_blob: ?*anyopaque,
     ai_bloblen: usize,
     ai_provider: ?*Guid,
     ai_next: ?*ADDRINFOEX5,
     ai_version: i32,
-    ai_fqdn: ?PWSTR,
+    ai_fqdn: ?[*:0]u16,
     ai_interfaceindex: i32,
     ai_resolutionhandle: ?HANDLE,
     ai_ttl: u32,
@@ -1313,7 +1313,7 @@ pub const ADDRINFOEXA = extern struct {
     ai_socktype: i32,
     ai_protocol: i32,
     ai_addrlen: usize,
-    ai_canonname: ?PSTR,
+    ai_canonname: ?[*:0]u8,
     ai_addr: ?*SOCKADDR,
     ai_blob: ?*anyopaque,
     ai_bloblen: usize,
@@ -1327,7 +1327,7 @@ pub const ADDRINFOEXW = extern struct {
     ai_socktype: i32,
     ai_protocol: i32,
     ai_addrlen: usize,
-    ai_canonname: ?PWSTR,
+    ai_canonname: ?[*:0]u16,
     ai_addr: ?*SOCKADDR,
     ai_blob: ?*anyopaque,
     ai_bloblen: usize,
@@ -1341,7 +1341,7 @@ pub const ADDRINFOW = extern struct {
     ai_socktype: i32,
     ai_protocol: i32,
     ai_addrlen: usize,
-    ai_canonname: ?PWSTR,
+    ai_canonname: ?[*:0]u16,
     ai_addr: ?*SOCKADDR,
     ai_next: ?*ADDRINFOW,
 };
@@ -1636,7 +1636,7 @@ pub const GROUP_SOURCE_REQ = extern struct {
 };
 
 pub const HOSTENT = extern struct {
-    h_name: ?PSTR,
+    h_name: ?[*:0]u8,
     h_aliases: ?*?*i8,
     h_addrtype: i16,
     h_length: i16,
@@ -2641,8 +2641,8 @@ pub const LPWSCGETPROVIDERPATH = *const fn(
 ) callconv(.winapi) i32;
 
 pub const LPWSCINSTALLNAMESPACE = *const fn(
-    lpszIdentifier: ?PWSTR,
-    lpszPathName: ?PWSTR,
+    lpszIdentifier: ?[*:0]u16,
+    lpszPathName: ?[*:0]u16,
     dwNameSpace: u32,
     dwVersion: u32,
     lpProviderId: ?*Guid,
@@ -2797,7 +2797,7 @@ pub const LPWSPGETSOCKOPT = *const fn(
     level: i32,
     optname: i32,
     /// parameter "optlen" is the size in bytes
-    optval: ?PSTR,
+    optval: ?[*:0]u8,
     optlen: ?*i32,
     lpErrno: ?*i32,
 ) callconv(.winapi) i32;
@@ -2947,7 +2947,7 @@ pub const LPWSPSTARTUP = *const fn(
 ) callconv(.winapi) i32;
 
 pub const LPWSPSTRINGTOADDRESS = *const fn(
-    AddressString: ?PWSTR,
+    AddressString: ?[*:0]u16,
     AddressFamily: i32,
     lpProtocolInfo: ?*WSAPROTOCOL_INFOW,
     /// parameter "lpAddressLength" is the size in bytes
@@ -3166,7 +3166,7 @@ pub const ND_ROUTER_SOLICIT_HEADER = extern struct {
 };
 
 pub const netent = extern struct {
-    n_name: ?PSTR,
+    n_name: ?[*:0]u8,
     n_aliases: ?*?*i8,
     n_addrtype: i16,
     n_net: u32,
@@ -3177,9 +3177,9 @@ pub const NETRESOURCE2A = extern struct {
     dwType: u32,
     dwUsage: u32,
     dwDisplayType: u32,
-    lpLocalName: ?PSTR,
-    lpRemoteName: ?PSTR,
-    lpComment: ?PSTR,
+    lpLocalName: ?[*:0]u8,
+    lpRemoteName: ?[*:0]u8,
+    lpComment: ?[*:0]u8,
     ns_info: NS_INFOA,
     ServiceType: Guid,
     dwProtocols: u32,
@@ -3191,9 +3191,9 @@ pub const NETRESOURCE2W = extern struct {
     dwType: u32,
     dwUsage: u32,
     dwDisplayType: u32,
-    lpLocalName: ?PWSTR,
-    lpRemoteName: ?PWSTR,
-    lpComment: ?PWSTR,
+    lpLocalName: ?[*:0]u16,
+    lpRemoteName: ?[*:0]u16,
+    lpComment: ?[*:0]u16,
     ns_info: NS_INFOA,
     ServiceType: Guid,
     dwProtocols: u32,
@@ -3634,13 +3634,13 @@ pub const MIT_IF_LUID = NPI_MODULEID_TYPE.IF_LUID;
 pub const NS_INFOA = extern struct {
     dwNameSpace: u32,
     dwNameSpaceFlags: u32,
-    lpNameSpace: ?PSTR,
+    lpNameSpace: ?[*:0]u8,
 };
 
 pub const NS_INFOW = extern struct {
     dwNameSpace: u32,
     dwNameSpaceFlags: u32,
-    lpNameSpace: ?PWSTR,
+    lpNameSpace: ?[*:0]u16,
 };
 
 pub const NS_SERVICE_INFOA = extern struct {
@@ -3707,7 +3707,7 @@ pub const PROTOCOL_INFOA = extern struct {
     iSocketType: i32,
     iProtocol: i32,
     dwMessageSize: u32,
-    lpProtocol: ?PSTR,
+    lpProtocol: ?[*:0]u8,
 };
 
 pub const PROTOCOL_INFOW = extern struct {
@@ -3718,11 +3718,11 @@ pub const PROTOCOL_INFOW = extern struct {
     iSocketType: i32,
     iProtocol: i32,
     dwMessageSize: u32,
-    lpProtocol: ?PWSTR,
+    lpProtocol: ?[*:0]u16,
 };
 
 pub const PROTOENT = extern struct {
-    p_name: ?PSTR,
+    p_name: ?[*:0]u8,
     p_aliases: ?*?*i8,
     p_proto: i16,
 };
@@ -4028,26 +4028,26 @@ pub const SERVICE_ASYNC_INFO = extern struct {
 
 pub const SERVICE_INFOA = extern struct {
     lpServiceType: ?*Guid,
-    lpServiceName: ?PSTR,
-    lpComment: ?PSTR,
-    lpLocale: ?PSTR,
+    lpServiceName: ?[*:0]u8,
+    lpComment: ?[*:0]u8,
+    lpLocale: ?[*:0]u8,
     dwDisplayHint: RESOURCE_DISPLAY_TYPE,
     dwVersion: u32,
     dwTime: u32,
-    lpMachineName: ?PSTR,
+    lpMachineName: ?[*:0]u8,
     lpServiceAddress: ?*SERVICE_ADDRESSES,
     ServiceSpecificInfo: BLOB,
 };
 
 pub const SERVICE_INFOW = extern struct {
     lpServiceType: ?*Guid,
-    lpServiceName: ?PWSTR,
-    lpComment: ?PWSTR,
-    lpLocale: ?PWSTR,
+    lpServiceName: ?[*:0]u16,
+    lpComment: ?[*:0]u16,
+    lpLocale: ?[*:0]u16,
     dwDisplayHint: RESOURCE_DISPLAY_TYPE,
     dwVersion: u32,
     dwTime: u32,
-    lpMachineName: ?PWSTR,
+    lpMachineName: ?[*:0]u16,
     lpServiceAddress: ?*SERVICE_ADDRESSES,
     ServiceSpecificInfo: BLOB,
 };
@@ -4059,13 +4059,13 @@ pub const SERVICE_TYPE_INFO = extern struct {
 };
 
 pub const SERVICE_TYPE_INFO_ABSA = extern struct {
-    lpTypeName: ?PSTR,
+    lpTypeName: ?[*:0]u8,
     dwValueCount: u32,
     Values: [1]SERVICE_TYPE_VALUE_ABSA,
 };
 
 pub const SERVICE_TYPE_INFO_ABSW = extern struct {
-    lpTypeName: ?PWSTR,
+    lpTypeName: ?[*:0]u16,
     dwValueCount: u32,
     Values: [1]SERVICE_TYPE_VALUE_ABSW,
 };
@@ -4082,7 +4082,7 @@ pub const SERVICE_TYPE_VALUE_ABSA = extern struct {
     dwNameSpace: u32,
     dwValueType: u32,
     dwValueSize: u32,
-    lpValueName: ?PSTR,
+    lpValueName: ?[*:0]u8,
     lpValue: ?*anyopaque,
 };
 
@@ -4090,7 +4090,7 @@ pub const SERVICE_TYPE_VALUE_ABSW = extern struct {
     dwNameSpace: u32,
     dwValueType: u32,
     dwValueSize: u32,
-    lpValueName: ?PWSTR,
+    lpValueName: ?[*:0]u16,
     lpValue: ?*anyopaque,
 };
 
@@ -4863,7 +4863,7 @@ pub const WSA_IPSEC_NAME_POLICY_ERROR = WSA_ERROR._IPSEC_NAME_POLICY_ERROR;
 
 pub const WSABUF = extern struct {
     len: u32,
-    buf: ?PSTR,
+    buf: ?[*:0]u8,
 };
 
 pub const WSACOMPLETION = extern struct {
@@ -4934,7 +4934,7 @@ pub const WSANAMESPACE_INFOA = extern struct {
     dwNameSpace: u32,
     fActive: BOOL,
     dwVersion: u32,
-    lpszIdentifier: ?PSTR,
+    lpszIdentifier: ?[*:0]u8,
 };
 
 pub const WSANAMESPACE_INFOEXA = extern struct {
@@ -4942,7 +4942,7 @@ pub const WSANAMESPACE_INFOEXA = extern struct {
     dwNameSpace: u32,
     fActive: BOOL,
     dwVersion: u32,
-    lpszIdentifier: ?PSTR,
+    lpszIdentifier: ?[*:0]u8,
     ProviderSpecific: BLOB,
 };
 
@@ -4951,7 +4951,7 @@ pub const WSANAMESPACE_INFOEXW = extern struct {
     dwNameSpace: u32,
     fActive: BOOL,
     dwVersion: u32,
-    lpszIdentifier: ?PWSTR,
+    lpszIdentifier: ?[*:0]u16,
     ProviderSpecific: BLOB,
 };
 
@@ -4960,7 +4960,7 @@ pub const WSANAMESPACE_INFOW = extern struct {
     dwNameSpace: u32,
     fActive: BOOL,
     dwVersion: u32,
-    lpszIdentifier: ?PWSTR,
+    lpszIdentifier: ?[*:0]u16,
 };
 
 pub const WSANETWORKEVENTS = extern struct {
@@ -4969,7 +4969,7 @@ pub const WSANETWORKEVENTS = extern struct {
 };
 
 pub const WSANSCLASSINFOA = extern struct {
-    lpszName: ?PSTR,
+    lpszName: ?[*:0]u8,
     dwNameSpace: u32,
     dwValueType: u32,
     dwValueSize: u32,
@@ -4977,7 +4977,7 @@ pub const WSANSCLASSINFOA = extern struct {
 };
 
 pub const WSANSCLASSINFOW = extern struct {
-    lpszName: ?PWSTR,
+    lpszName: ?[*:0]u16,
     dwNameSpace: u32,
     dwValueType: u32,
     dwValueSize: u32,
@@ -5050,15 +5050,15 @@ pub const WSAPROTOCOLCHAIN = extern struct {
 
 pub const WSAQUERYSET2A = extern struct {
     dwSize: u32,
-    lpszServiceInstanceName: ?PSTR,
+    lpszServiceInstanceName: ?[*:0]u8,
     lpVersion: ?*WSAVERSION,
-    lpszComment: ?PSTR,
+    lpszComment: ?[*:0]u8,
     dwNameSpace: u32,
     lpNSProviderId: ?*Guid,
-    lpszContext: ?PSTR,
+    lpszContext: ?[*:0]u8,
     dwNumberOfProtocols: u32,
     lpafpProtocols: ?*AFPROTOCOLS,
-    lpszQueryString: ?PSTR,
+    lpszQueryString: ?[*:0]u8,
     dwNumberOfCsAddrs: u32,
     lpcsaBuffer: ?*CSADDR_INFO,
     dwOutputFlags: u32,
@@ -5067,15 +5067,15 @@ pub const WSAQUERYSET2A = extern struct {
 
 pub const WSAQUERYSET2W = extern struct {
     dwSize: u32,
-    lpszServiceInstanceName: ?PWSTR,
+    lpszServiceInstanceName: ?[*:0]u16,
     lpVersion: ?*WSAVERSION,
-    lpszComment: ?PWSTR,
+    lpszComment: ?[*:0]u16,
     dwNameSpace: u32,
     lpNSProviderId: ?*Guid,
-    lpszContext: ?PWSTR,
+    lpszContext: ?[*:0]u16,
     dwNumberOfProtocols: u32,
     lpafpProtocols: ?*AFPROTOCOLS,
-    lpszQueryString: ?PWSTR,
+    lpszQueryString: ?[*:0]u16,
     dwNumberOfCsAddrs: u32,
     lpcsaBuffer: ?*CSADDR_INFO,
     dwOutputFlags: u32,
@@ -5084,16 +5084,16 @@ pub const WSAQUERYSET2W = extern struct {
 
 pub const WSAQUERYSETA = extern struct {
     dwSize: u32,
-    lpszServiceInstanceName: ?PSTR,
+    lpszServiceInstanceName: ?[*:0]u8,
     lpServiceClassId: ?*Guid,
     lpVersion: ?*WSAVERSION,
-    lpszComment: ?PSTR,
+    lpszComment: ?[*:0]u8,
     dwNameSpace: u32,
     lpNSProviderId: ?*Guid,
-    lpszContext: ?PSTR,
+    lpszContext: ?[*:0]u8,
     dwNumberOfProtocols: u32,
     lpafpProtocols: ?*AFPROTOCOLS,
-    lpszQueryString: ?PSTR,
+    lpszQueryString: ?[*:0]u8,
     dwNumberOfCsAddrs: u32,
     lpcsaBuffer: ?*CSADDR_INFO,
     dwOutputFlags: u32,
@@ -5102,16 +5102,16 @@ pub const WSAQUERYSETA = extern struct {
 
 pub const WSAQUERYSETW = extern struct {
     dwSize: u32,
-    lpszServiceInstanceName: ?PWSTR,
+    lpszServiceInstanceName: ?[*:0]u16,
     lpServiceClassId: ?*Guid,
     lpVersion: ?*WSAVERSION,
-    lpszComment: ?PWSTR,
+    lpszComment: ?[*:0]u16,
     dwNameSpace: u32,
     lpNSProviderId: ?*Guid,
-    lpszContext: ?PWSTR,
+    lpszContext: ?[*:0]u16,
     dwNumberOfProtocols: u32,
     lpafpProtocols: ?*AFPROTOCOLS,
-    lpszQueryString: ?PWSTR,
+    lpszQueryString: ?[*:0]u16,
     dwNumberOfCsAddrs: u32,
     lpcsaBuffer: ?*CSADDR_INFO,
     dwOutputFlags: u32,
@@ -5128,14 +5128,14 @@ pub const WSASENDMSG = extern struct {
 
 pub const WSASERVICECLASSINFOA = extern struct {
     lpServiceClassId: ?*Guid,
-    lpszServiceClassName: ?PSTR,
+    lpszServiceClassName: ?[*:0]u8,
     dwCount: u32,
     lpClassInfos: ?*WSANSCLASSINFOA,
 };
 
 pub const WSASERVICECLASSINFOW = extern struct {
     lpServiceClassId: ?*Guid,
-    lpszServiceClassName: ?PWSTR,
+    lpszServiceClassName: ?[*:0]u16,
     dwCount: u32,
     lpClassInfos: ?*WSANSCLASSINFOW,
 };
@@ -5221,16 +5221,16 @@ pub const WSPUPCALLTABLE = extern struct {
 
 pub const SERVENT = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
-        s_name: ?PSTR,
+        s_name: ?[*:0]u8,
         s_aliases: ?*?*i8,
-        s_proto: ?PSTR,
+        s_proto: ?[*:0]u8,
         s_port: i16,
     },
     .X86 => extern struct {
-        s_name: ?PSTR,
+        s_name: ?[*:0]u8,
         s_aliases: ?*?*i8,
         s_port: i16,
-        s_proto: ?PSTR,
+        s_proto: ?[*:0]u8,
     },
 };
 pub const WSADATA = switch(@import("../zig.zig").arch) {
@@ -5239,7 +5239,7 @@ pub const WSADATA = switch(@import("../zig.zig").arch) {
         wHighVersion: u16,
         iMaxSockets: u16,
         iMaxUdpDg: u16,
-        lpVendorInfo: ?PSTR,
+        lpVendorInfo: ?[*:0]u8,
         szDescription: [257]CHAR,
         szSystemStatus: [129]CHAR,
     },
@@ -5250,7 +5250,7 @@ pub const WSADATA = switch(@import("../zig.zig").arch) {
         szSystemStatus: [129]CHAR,
         iMaxSockets: u16,
         iMaxUdpDg: u16,
-        lpVendorInfo: ?PSTR,
+        lpVendorInfo: ?[*:0]u8,
     },
 };
 
@@ -5356,7 +5356,7 @@ pub extern "mswsock" fn GetAcceptExSockaddrs(
 pub extern "mswsock" fn GetAddressByNameA(
     dwNameSpace: u32,
     lpServiceType: ?*Guid,
-    lpServiceName: ?PSTR,
+    lpServiceName: ?[*:0]u8,
     lpiProtocols: ?*i32,
     dwResolution: u32,
     lpServiceAsyncInfo: ?*SERVICE_ASYNC_INFO,
@@ -5371,7 +5371,7 @@ pub extern "mswsock" fn GetAddressByNameA(
 pub extern "mswsock" fn GetAddressByNameW(
     dwNameSpace: u32,
     lpServiceType: ?*Guid,
-    lpServiceName: ?PWSTR,
+    lpServiceName: ?[*:0]u16,
     lpiProtocols: ?*i32,
     dwResolution: u32,
     lpServiceAsyncInfo: ?*SERVICE_ASYNC_INFO,
@@ -5452,7 +5452,7 @@ pub extern "ws2_32" fn gethostbyname(
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ws2_32" fn gethostname(
     /// parameter "namelen" is the size in bytes
-    name: ?PSTR,
+    name: ?[*:0]u8,
     namelen: i32,
 ) callconv(.winapi) i32;
 
@@ -5466,7 +5466,7 @@ pub extern "ws2_32" fn GetHostNameW(
 pub extern "mswsock" fn GetNameByTypeA(
     lpServiceType: ?*Guid,
     /// parameter "dwNameLength" is the size in bytes
-    lpServiceName: ?PSTR,
+    lpServiceName: ?[*:0]u8,
     dwNameLength: u32,
 ) callconv(.winapi) i32;
 
@@ -5474,7 +5474,7 @@ pub extern "mswsock" fn GetNameByTypeA(
 pub extern "mswsock" fn GetNameByTypeW(
     lpServiceType: ?*Guid,
     /// parameter "dwNameLength" is the size in bytes
-    lpServiceName: ?PWSTR,
+    lpServiceName: ?[*:0]u16,
     dwNameLength: u32,
 ) callconv(.winapi) i32;
 
@@ -5536,7 +5536,7 @@ pub extern "ws2_32" fn getservbyport(
 pub extern "mswsock" fn GetServiceA(
     dwNameSpace: u32,
     lpGuid: ?*Guid,
-    lpServiceName: ?PSTR,
+    lpServiceName: ?[*:0]u8,
     dwProperties: u32,
     /// parameter "lpdwBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
@@ -5548,7 +5548,7 @@ pub extern "mswsock" fn GetServiceA(
 pub extern "mswsock" fn GetServiceW(
     dwNameSpace: u32,
     lpGuid: ?*Guid,
-    lpServiceName: ?PWSTR,
+    lpServiceName: ?[*:0]u16,
     dwProperties: u32,
     /// parameter "lpdwBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
@@ -5570,19 +5570,19 @@ pub extern "ws2_32" fn getsockopt(
     level: i32,
     optname: i32,
     /// parameter "optlen" is the size in bytes
-    optval: ?PSTR,
+    optval: ?[*:0]u8,
     optlen: ?*i32,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "mswsock" fn GetTypeByNameA(
-    lpServiceName: ?PSTR,
+    lpServiceName: ?[*:0]u8,
     lpServiceType: ?*Guid,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "mswsock" fn GetTypeByNameW(
-    lpServiceName: ?PWSTR,
+    lpServiceName: ?[*:0]u16,
     lpServiceType: ?*Guid,
 ) callconv(.winapi) i32;
 
@@ -5604,7 +5604,7 @@ pub extern "ws2_32" fn inet_addr(
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ws2_32" fn inet_ntoa(
     in: IN_ADDR,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ws2_32" fn inet_ntop(
@@ -5612,7 +5612,7 @@ pub extern "ws2_32" fn inet_ntop(
     pAddr: ?*const anyopaque,
     pStringBuf: [*:0]u8,
     StringBufSize: usize,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ws2_32" fn inet_pton(
@@ -5627,7 +5627,7 @@ pub extern "ws2_32" fn InetNtopW(
     pAddr: ?*const anyopaque,
     pStringBuf: [*:0]u16,
     StringBufSize: usize,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ws2_32" fn InetPtonW(
@@ -5673,7 +5673,7 @@ pub extern "ws2_32" fn ProcessSocketNotifications(
 pub extern "ws2_32" fn recv(
     s: ?SOCKET,
     /// parameter "len" is the size in bytes
-    buf: ?PSTR,
+    buf: ?[*:0]u8,
     len: i32,
     flags: SEND_RECV_FLAGS,
 ) callconv(.winapi) i32;
@@ -5682,7 +5682,7 @@ pub extern "ws2_32" fn recv(
 pub extern "ws2_32" fn recvfrom(
     s: ?SOCKET,
     /// parameter "len" is the size in bytes
-    buf: ?PSTR,
+    buf: ?[*:0]u8,
     len: i32,
     flags: i32,
     /// parameter "fromlen" is the size in bytes
@@ -5694,25 +5694,25 @@ pub extern "ws2_32" fn recvfrom(
 pub extern "ntdll" fn RtlEthernetAddressToStringA(
     Addr: ?*const DL_EUI48,
     S: *[18]u8,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "ntdll" fn RtlEthernetAddressToStringW(
     Addr: ?*const DL_EUI48,
     S: *[18]u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "ntdll" fn RtlEthernetStringToAddressA(
     S: ?[*:0]const u8,
-    Terminator: ?*?PSTR,
+    Terminator: ?*?[*:0]u8,
     Addr: ?*DL_EUI48,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "ntdll" fn RtlEthernetStringToAddressW(
     S: ?[*:0]const u16,
-    Terminator: ?*?PWSTR,
+    Terminator: ?*?[*:0]u16,
     Addr: ?*DL_EUI48,
 ) callconv(.winapi) i32;
 
@@ -5720,7 +5720,7 @@ pub extern "ntdll" fn RtlEthernetStringToAddressW(
 pub extern "ntdll" fn RtlIpv4AddressToStringA(
     Addr: ?*const IN_ADDR,
     S: *[16]u8,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "ntdll" fn RtlIpv4AddressToStringExA(
     Address: ?*const IN_ADDR,
@@ -5741,13 +5741,13 @@ pub extern "ntdll" fn RtlIpv4AddressToStringExW(
 pub extern "ntdll" fn RtlIpv4AddressToStringW(
     Addr: ?*const IN_ADDR,
     S: *[16]u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdll" fn RtlIpv4StringToAddressA(
     S: ?[*:0]const u8,
     Strict: BOOLEAN,
-    Terminator: ?*?PSTR,
+    Terminator: ?*?[*:0]u8,
     Addr: ?*IN_ADDR,
 ) callconv(.winapi) i32;
 
@@ -5770,7 +5770,7 @@ pub extern "ntdll" fn RtlIpv4StringToAddressExW(
 pub extern "ntdll" fn RtlIpv4StringToAddressW(
     S: ?[*:0]const u16,
     Strict: BOOLEAN,
-    Terminator: ?*?PWSTR,
+    Terminator: ?*?[*:0]u16,
     Addr: ?*IN_ADDR,
 ) callconv(.winapi) i32;
 
@@ -5778,7 +5778,7 @@ pub extern "ntdll" fn RtlIpv4StringToAddressW(
 pub extern "ntdll" fn RtlIpv6AddressToStringA(
     Addr: ?*const IN6_ADDR,
     S: *[46]u8,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "ntdll" fn RtlIpv6AddressToStringExA(
     Address: ?*const IN6_ADDR,
@@ -5801,12 +5801,12 @@ pub extern "ntdll" fn RtlIpv6AddressToStringExW(
 pub extern "ntdll" fn RtlIpv6AddressToStringW(
     Addr: ?*const IN6_ADDR,
     S: *[46]u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdll" fn RtlIpv6StringToAddressA(
     S: ?[*:0]const u8,
-    Terminator: ?*?PSTR,
+    Terminator: ?*?[*:0]u8,
     Addr: ?*IN6_ADDR,
 ) callconv(.winapi) i32;
 
@@ -5828,7 +5828,7 @@ pub extern "ntdll" fn RtlIpv6StringToAddressExW(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdll" fn RtlIpv6StringToAddressW(
     S: ?[*:0]const u16,
-    Terminator: ?*?PWSTR,
+    Terminator: ?*?[*:0]u16,
     Addr: ?*IN6_ADDR,
 ) callconv(.winapi) i32;
 
@@ -6007,7 +6007,7 @@ pub extern "ws2_32" fn WSAAsyncGetHostByAddr(
     len: i32,
     type: i32,
     /// parameter "buflen" is the size in bytes
-    buf: ?PSTR,
+    buf: ?[*:0]u8,
     buflen: i32,
 ) callconv(.winapi) ?HANDLE;
 
@@ -6017,7 +6017,7 @@ pub extern "ws2_32" fn WSAAsyncGetHostByName(
     wMsg: u32,
     name: ?[*:0]const u8,
     /// parameter "buflen" is the size in bytes
-    buf: ?PSTR,
+    buf: ?[*:0]u8,
     buflen: i32,
 ) callconv(.winapi) ?HANDLE;
 
@@ -6027,7 +6027,7 @@ pub extern "ws2_32" fn WSAAsyncGetProtoByName(
     wMsg: u32,
     name: ?[*:0]const u8,
     /// parameter "buflen" is the size in bytes
-    buf: ?PSTR,
+    buf: ?[*:0]u8,
     buflen: i32,
 ) callconv(.winapi) ?HANDLE;
 
@@ -6037,7 +6037,7 @@ pub extern "ws2_32" fn WSAAsyncGetProtoByNumber(
     wMsg: u32,
     number: i32,
     /// parameter "buflen" is the size in bytes
-    buf: ?PSTR,
+    buf: ?[*:0]u8,
     buflen: i32,
 ) callconv(.winapi) ?HANDLE;
 
@@ -6048,7 +6048,7 @@ pub extern "ws2_32" fn WSAAsyncGetServByName(
     name: ?[*:0]const u8,
     proto: ?[*:0]const u8,
     /// parameter "buflen" is the size in bytes
-    buf: ?PSTR,
+    buf: ?[*:0]u8,
     buflen: i32,
 ) callconv(.winapi) ?HANDLE;
 
@@ -6059,7 +6059,7 @@ pub extern "ws2_32" fn WSAAsyncGetServByPort(
     port: i32,
     proto: ?[*:0]const u8,
     /// parameter "buflen" is the size in bytes
-    buf: ?PSTR,
+    buf: ?[*:0]u8,
     buflen: i32,
 ) callconv(.winapi) ?HANDLE;
 
@@ -6132,8 +6132,8 @@ pub extern "ws2_32" fn WSAConnectByNameA(
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ws2_32" fn WSAConnectByNameW(
     s: ?SOCKET,
-    nodename: ?PWSTR,
-    servicename: ?PWSTR,
+    nodename: ?[*:0]u16,
+    servicename: ?[*:0]u16,
     LocalAddressLength: ?*u32,
     /// parameter "LocalAddressLength" is the size in bytes
     LocalAddress: ?*SOCKADDR,
@@ -6272,7 +6272,7 @@ pub extern "ws2_32" fn WSAGetServiceClassInfoW(
 pub extern "ws2_32" fn WSAGetServiceClassNameByClassIdA(
     lpServiceClassId: ?*Guid,
     /// parameter "lpdwBufferLength" is the size in bytes
-    lpszServiceClassName: ?PSTR,
+    lpszServiceClassName: ?[*:0]u8,
     lpdwBufferLength: ?*u32,
 ) callconv(.winapi) i32;
 
@@ -6280,7 +6280,7 @@ pub extern "ws2_32" fn WSAGetServiceClassNameByClassIdA(
 pub extern "ws2_32" fn WSAGetServiceClassNameByClassIdW(
     lpServiceClassId: ?*Guid,
     /// parameter "lpdwBufferLength" is the size in bytes
-    lpszServiceClassName: ?PWSTR,
+    lpszServiceClassName: ?[*:0]u16,
     lpdwBufferLength: ?*u32,
 ) callconv(.winapi) i32;
 
@@ -6466,7 +6466,7 @@ pub extern "ws2_32" fn WSARecvDisconnect(
 pub extern "mswsock" fn WSARecvEx(
     s: ?SOCKET,
     /// parameter "len" is the size in bytes
-    buf: ?PSTR,
+    buf: ?[*:0]u8,
     len: i32,
     flags: ?*i32,
 ) callconv(.winapi) i32;
@@ -6616,7 +6616,7 @@ pub extern "ws2_32" fn WSAStartup(
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ws2_32" fn WSAStringToAddressA(
-    AddressString: ?PSTR,
+    AddressString: ?[*:0]u8,
     AddressFamily: i32,
     lpProtocolInfo: ?*WSAPROTOCOL_INFOA,
     /// parameter "lpAddressLength" is the size in bytes
@@ -6626,7 +6626,7 @@ pub extern "ws2_32" fn WSAStringToAddressA(
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ws2_32" fn WSAStringToAddressW(
-    AddressString: ?PWSTR,
+    AddressString: ?[*:0]u16,
     AddressFamily: i32,
     lpProtocolInfo: ?*WSAPROTOCOL_INFOW,
     /// parameter "lpAddressLength" is the size in bytes
@@ -6806,8 +6806,8 @@ pub extern "ws2_32" fn WSCGetProviderPath32(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ws2_32" fn WSCInstallNameSpace(
-    lpszIdentifier: ?PWSTR,
-    lpszPathName: ?PWSTR,
+    lpszIdentifier: ?[*:0]u16,
+    lpszPathName: ?[*:0]u16,
     dwNameSpace: u32,
     dwVersion: u32,
     lpProviderId: ?*Guid,
@@ -6818,8 +6818,8 @@ pub const WSCInstallNameSpace32 = switch (@import("../zig.zig").arch) {
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCInstallNameSpace32(
-    lpszIdentifier: ?PWSTR,
-    lpszPathName: ?PWSTR,
+    lpszIdentifier: ?[*:0]u16,
+    lpszPathName: ?[*:0]u16,
     dwNameSpace: u32,
     dwVersion: u32,
     lpProviderId: ?*Guid,
@@ -6831,8 +6831,8 @@ pub extern "ws2_32" fn WSCInstallNameSpace32(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCInstallNameSpaceEx(
-    lpszIdentifier: ?PWSTR,
-    lpszPathName: ?PWSTR,
+    lpszIdentifier: ?[*:0]u16,
+    lpszPathName: ?[*:0]u16,
     dwNameSpace: u32,
     dwVersion: u32,
     lpProviderId: ?*Guid,
@@ -6844,8 +6844,8 @@ pub const WSCInstallNameSpaceEx32 = switch (@import("../zig.zig").arch) {
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ws2_32" fn WSCInstallNameSpaceEx32(
-    lpszIdentifier: ?PWSTR,
-    lpszPathName: ?PWSTR,
+    lpszIdentifier: ?[*:0]u16,
+    lpszPathName: ?[*:0]u16,
     dwNameSpace: u32,
     dwVersion: u32,
     lpProviderId: ?*Guid,
@@ -7369,7 +7369,7 @@ pub const WSAStringToAddress = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (19)
+// Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLOB = @import("../system/com.zig").BLOB;
@@ -7387,8 +7387,6 @@ const LUID = @import("../foundation.zig").LUID;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
 const OVERLAPPED_ENTRY = @import("../system/io.zig").OVERLAPPED_ENTRY;
 const PROCESSOR_NUMBER = @import("../system/kernel.zig").PROCESSOR_NUMBER;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {

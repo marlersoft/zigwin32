@@ -555,9 +555,9 @@ pub const DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_A_DATA = extern struct {
     Type: DIRECTSOUNDDEVICE_TYPE,
     DataFlow: DIRECTSOUNDDEVICE_DATAFLOW,
     DeviceId: Guid,
-    Description: ?PSTR,
-    Module: ?PSTR,
-    Interface: ?PSTR,
+    Description: ?[*:0]u8,
+    Module: ?[*:0]u8,
+    Interface: ?[*:0]u8,
     WaveDeviceId: u32,
 };
 
@@ -565,9 +565,9 @@ pub const DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_W_DATA = extern struct {
     Type: DIRECTSOUNDDEVICE_TYPE,
     DataFlow: DIRECTSOUNDDEVICE_DATAFLOW,
     DeviceId: Guid,
-    Description: ?PWSTR,
-    Module: ?PWSTR,
-    Interface: ?PWSTR,
+    Description: ?[*:0]u16,
+    Module: ?[*:0]u16,
+    Interface: ?[*:0]u16,
     WaveDeviceId: u32,
 };
 
@@ -587,13 +587,13 @@ pub const DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_W_DATA = extern struct {
 };
 
 pub const DSPROPERTY_DIRECTSOUNDDEVICE_WAVEDEVICEMAPPING_A_DATA = extern struct {
-    DeviceName: ?PSTR,
+    DeviceName: ?[*:0]u8,
     DataFlow: DIRECTSOUNDDEVICE_DATAFLOW,
     DeviceId: Guid,
 };
 
 pub const DSPROPERTY_DIRECTSOUNDDEVICE_WAVEDEVICEMAPPING_W_DATA = extern struct {
-    DeviceName: ?PWSTR,
+    DeviceName: ?[*:0]u16,
     DataFlow: DIRECTSOUNDDEVICE_DATAFLOW,
     DeviceId: Guid,
 };
@@ -829,7 +829,7 @@ pub const IDirectMusicCollection = extern union {
             self: *const IDirectMusicCollection,
             dwIndex: u32,
             pdwPatch: ?*u32,
-            pwszName: ?PWSTR,
+            pwszName: ?[*:0]u16,
             dwNameLen: u32,
         ) callconv(.winapi) HRESULT,
     };
@@ -838,7 +838,7 @@ pub const IDirectMusicCollection = extern union {
     pub fn GetInstrument(self: *const IDirectMusicCollection, dwPatch: u32, ppInstrument: ?*?*IDirectMusicInstrument) callconv(.@"inline") HRESULT {
         return self.vtable.GetInstrument(self, dwPatch, ppInstrument);
     }
-    pub fn EnumInstrument(self: *const IDirectMusicCollection, dwIndex: u32, pdwPatch: ?*u32, pwszName: ?PWSTR, dwNameLen: u32) callconv(.@"inline") HRESULT {
+    pub fn EnumInstrument(self: *const IDirectMusicCollection, dwIndex: u32, pdwPatch: ?*u32, pwszName: ?[*:0]u16, dwNameLen: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumInstrument(self, dwIndex, pdwPatch, pwszName, dwNameLen);
     }
 };
@@ -1486,7 +1486,7 @@ pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK = switch (@import("../../zig.zi
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (16)
+// Section: Imports (14)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -1501,8 +1501,6 @@ const IReferenceClock = @import("../../media.zig").IReferenceClock;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const MIDIOPENSTRMID = @import("../../media/multimedia.zig").MIDIOPENSTRMID;
 const OVERLAPPED = @import("../../system/io.zig").OVERLAPPED;
-const PSTR = @import("../../foundation.zig").PSTR;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const WAVEFORMATEX = @import("../../media/audio.zig").WAVEFORMATEX;
 
 test {

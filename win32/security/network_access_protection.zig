@@ -28,7 +28,7 @@ pub const CorrelationId = extern struct {
 
 pub const CountedString = extern struct {
     length: u16,
-    string: ?PWSTR,
+    string: ?[*:0]u16,
 };
 
 pub const ExtendedIsolationState = enum(i32) {
@@ -188,13 +188,12 @@ pub const SystemHealthAgentState = extern struct {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

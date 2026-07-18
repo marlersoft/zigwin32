@@ -774,8 +774,8 @@ pub const ETW_TRACE_PARTITION_INFORMATION = extern struct {
 pub const ETW_TRACE_PARTITION_INFORMATION_V2 = extern struct {
     QpcOffsetFromRoot: i64,
     PartitionType: u32,
-    PartitionId: ?PWSTR,
-    ParentId: ?PWSTR,
+    PartitionId: ?[*:0]u16,
+    ParentId: ?[*:0]u16,
 };
 
 pub const EVENT_DATA_DESCRIPTOR = extern struct {
@@ -1182,8 +1182,8 @@ pub const EVENT_TRACE_HEADER = extern struct {
 };
 
 pub const EVENT_TRACE_LOGFILEA = extern struct {
-    LogFileName: ?PSTR,
-    LoggerName: ?PSTR,
+    LogFileName: ?[*:0]u8,
+    LoggerName: ?[*:0]u8,
     CurrentTime: i64,
     BuffersRead: u32,
     Anonymous1: extern union {
@@ -1205,8 +1205,8 @@ pub const EVENT_TRACE_LOGFILEA = extern struct {
 };
 
 pub const EVENT_TRACE_LOGFILEW = extern struct {
-    LogFileName: ?PWSTR,
-    LoggerName: ?PWSTR,
+    LogFileName: ?[*:0]u16,
+    LoggerName: ?[*:0]u16,
     CurrentTime: i64,
     BuffersRead: u32,
     Anonymous1: extern union {
@@ -1547,9 +1547,9 @@ pub const OFFSETINSTANCEDATAANDLENGTH = extern struct {
 };
 
 pub const PAYLOAD_FILTER_PREDICATE = extern struct {
-    FieldName: ?PWSTR,
+    FieldName: ?[*:0]u16,
     CompareOp: u16,
-    Value: ?PWSTR,
+    Value: ?[*:0]u16,
 };
 
 pub const PAYLOAD_OPERATOR = enum(i32) {
@@ -1805,8 +1805,8 @@ pub const TRACE_LOGFILE_HEADER = extern struct {
             CpuSpeedInMHz: u32,
         },
     },
-    LoggerName: ?PWSTR,
-    LogFileName: ?PWSTR,
+    LoggerName: ?[*:0]u16,
+    LogFileName: ?[*:0]u16,
     TimeZone: TIME_ZONE_INFORMATION,
     BootTime: LARGE_INTEGER,
     PerfFreq: LARGE_INTEGER,
@@ -2607,7 +2607,7 @@ pub extern "tdh" fn TdhGetEventInformation(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tdh" fn TdhGetEventMapInformation(
     pEvent: ?*EVENT_RECORD,
-    pMapName: ?PWSTR,
+    pMapName: ?[*:0]u16,
     /// parameter "pBufferSize" is the size in bytes
     pBuffer: ?*EVENT_MAP_INFO,
     pBufferSize: ?*u32,
@@ -2657,7 +2657,7 @@ pub extern "tdh" fn TdhGetWppMessage(
 pub extern "tdh" fn TdhGetWppProperty(
     Handle: TDH_HANDLE,
     EventRecord: ?*EVENT_RECORD,
-    PropertyName: ?PWSTR,
+    PropertyName: ?[*:0]u16,
     BufferSize: ?*u32,
     /// parameter "BufferSize" is the size in bytes
     Buffer: ?*u8,
@@ -2665,12 +2665,12 @@ pub extern "tdh" fn TdhGetWppProperty(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "tdh" fn TdhLoadManifest(
-    Manifest: ?PWSTR,
+    Manifest: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "tdh" fn TdhLoadManifestFromBinary(
-    BinaryPath: ?PWSTR,
+    BinaryPath: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub extern "tdh" fn TdhLoadManifestFromMemory(
@@ -2702,7 +2702,7 @@ pub extern "tdh" fn TdhSetDecodingParameter(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "tdh" fn TdhUnloadManifest(
-    Manifest: ?PWSTR,
+    Manifest: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub extern "tdh" fn TdhUnloadManifestFromMemory(
@@ -2862,7 +2862,7 @@ pub const UpdateTrace = switch (@import("../../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (14)
+// Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOLEAN = @import("../../foundation.zig").BOOLEAN;
@@ -2874,8 +2874,6 @@ const IUnknown = @import("../../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../../foundation.zig").LARGE_INTEGER;
 const PSECURITY_DESCRIPTOR = @import("../../security.zig").PSECURITY_DESCRIPTOR;
 const PSID = @import("../../foundation.zig").PSID;
-const PSTR = @import("../../foundation.zig").PSTR;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const TIME_ZONE_INFORMATION = @import("../../system/time.zig").TIME_ZONE_INFORMATION;
 const WIN32_ERROR = @import("../../foundation.zig").WIN32_ERROR;
 

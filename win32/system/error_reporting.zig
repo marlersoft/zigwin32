@@ -405,7 +405,7 @@ pub const WER_REPORT_METADATA_V2 = extern struct {
     ReportIntegratorId: Guid,
     NumberOfFiles: u32,
     SizeOfFileNames: u32,
-    FileNames: ?PWSTR,
+    FileNames: ?[*:0]u16,
 };
 
 pub const WER_REPORT_METADATA_V3 = extern struct {
@@ -419,7 +419,7 @@ pub const WER_REPORT_METADATA_V3 = extern struct {
     ReportIntegratorId: Guid,
     NumberOfFiles: u32,
     SizeOfFileNames: u32,
-    FileNames: ?PWSTR,
+    FileNames: ?[*:0]u16,
     FriendlyEventName: [128]u16,
     ApplicationName: [128]u16,
     ApplicationPath: [260]u16,
@@ -726,13 +726,13 @@ pub extern "wer" fn WerStoreClose(
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "wer" fn WerStoreGetFirstReportKey(
     hReportStore: HREPORTSTORE,
-    ppszReportKey: ?*?PWSTR,
+    ppszReportKey: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "wer" fn WerStoreGetNextReportKey(
     hReportStore: HREPORTSTORE,
-    ppszReportKey: ?*?PWSTR,
+    ppszReportKey: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "wer" fn WerStoreGetReportCount(
@@ -834,7 +834,7 @@ pub const AddERExcludedApplication = switch (@import("../zig.zig").unicode_mode)
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -845,8 +845,6 @@ const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -422,7 +422,7 @@ pub const IHardwareAudioEngineBase = extern union {
         base: IUnknown.VTable,
         GetAvailableOffloadConnectorCount: *const fn(
             self: *const IHardwareAudioEngineBase,
-            _pwstrDeviceId: ?PWSTR,
+            _pwstrDeviceId: ?[*:0]u16,
             _uConnectorId: u32,
             _pAvailableConnectorInstanceCount: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -450,7 +450,7 @@ pub const IHardwareAudioEngineBase = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAvailableOffloadConnectorCount(self: *const IHardwareAudioEngineBase, _pwstrDeviceId: ?PWSTR, _uConnectorId: u32, _pAvailableConnectorInstanceCount: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetAvailableOffloadConnectorCount(self: *const IHardwareAudioEngineBase, _pwstrDeviceId: ?[*:0]u16, _uConnectorId: u32, _pAvailableConnectorInstanceCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetAvailableOffloadConnectorCount(self, _pwstrDeviceId, _uConnectorId, _pAvailableConnectorInstanceCount);
     }
     pub fn GetEngineFormat(self: *const IHardwareAudioEngineBase, pDevice: ?*IMMDevice, _bRequestDeviceFormat: BOOL, _ppwfxFormat: ?*?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
@@ -476,7 +476,7 @@ pub const IHardwareAudioEngineBase = extern union {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const APO_CONNECTION_PROPERTY = @import("../../media/audio/apo.zig").APO_CONNECTION_PROPERTY;
@@ -487,7 +487,6 @@ const HRESULT = @import("../../foundation.zig").HRESULT;
 const IMMDevice = @import("../../media/audio.zig").IMMDevice;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const PROPERTYKEY = @import("../../ui/shell/properties_system.zig").PROPERTYKEY;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const WAVEFORMATEX = @import("../../media/audio.zig").WAVEFORMATEX;
 
 test {

@@ -2075,11 +2075,11 @@ pub const WZC_PROFILE_XML_ERROR_UNSUPPORTED_VERSION = @as(u32, 3);
 // Section: Types (359)
 //--------------------------------------------------------------------------------
 pub const ACCESS_INFO_0 = extern struct {
-    acc0_resource_name: ?PWSTR,
+    acc0_resource_name: ?[*:0]u16,
 };
 
 pub const ACCESS_INFO_1 = extern struct {
-    acc1_resource_name: ?PWSTR,
+    acc1_resource_name: ?[*:0]u16,
     acc1_attr: u32,
     acc1_count: u32,
 };
@@ -2089,7 +2089,7 @@ pub const ACCESS_INFO_1002 = extern struct {
 };
 
 pub const ACCESS_LIST = extern struct {
-    acl_ugname: ?PWSTR,
+    acl_ugname: ?[*:0]u16,
     acl_access: u32,
 };
 
@@ -2213,7 +2213,7 @@ pub const AT_ENUM = extern struct {
     DaysOfMonth: u32,
     DaysOfWeek: u8,
     Flags: u8,
-    Command: ?PWSTR,
+    Command: ?[*:0]u16,
 };
 
 pub const AT_INFO = extern struct {
@@ -2221,7 +2221,7 @@ pub const AT_INFO = extern struct {
     DaysOfMonth: u32,
     DaysOfWeek: u8,
     Flags: u8,
-    Command: ?PWSTR,
+    Command: ?[*:0]u16,
 };
 
 pub const AUDIT_ENTRY = extern struct {
@@ -2292,8 +2292,8 @@ pub const NCF_FIXED_BINDING = COMPONENT_CHARACTERISTICS.FIXED_BINDING;
 pub const NCF_LW_FILTER = COMPONENT_CHARACTERISTICS.LW_FILTER;
 
 pub const CONFIG_INFO_0 = extern struct {
-    cfgi0_key: ?PWSTR,
-    cfgi0_data: ?PWSTR,
+    cfgi0_key: ?[*:0]u16,
+    cfgi0_data: ?[*:0]u16,
 };
 
 pub const DEFAULT_PAGES = enum(i32) {
@@ -2304,15 +2304,15 @@ pub const DPP_ADVANCED = DEFAULT_PAGES.D;
 pub const DSREG_JOIN_INFO = extern struct {
     joinType: DSREG_JOIN_TYPE,
     pJoinCertificate: ?*const CERT_CONTEXT,
-    pszDeviceId: ?PWSTR,
-    pszIdpDomain: ?PWSTR,
-    pszTenantId: ?PWSTR,
-    pszJoinUserEmail: ?PWSTR,
-    pszTenantDisplayName: ?PWSTR,
-    pszMdmEnrollmentUrl: ?PWSTR,
-    pszMdmTermsOfUseUrl: ?PWSTR,
-    pszMdmComplianceUrl: ?PWSTR,
-    pszUserSettingSyncUrl: ?PWSTR,
+    pszDeviceId: ?[*:0]u16,
+    pszIdpDomain: ?[*:0]u16,
+    pszTenantId: ?[*:0]u16,
+    pszJoinUserEmail: ?[*:0]u16,
+    pszTenantDisplayName: ?[*:0]u16,
+    pszMdmEnrollmentUrl: ?[*:0]u16,
+    pszMdmTermsOfUseUrl: ?[*:0]u16,
+    pszMdmComplianceUrl: ?[*:0]u16,
+    pszUserSettingSyncUrl: ?[*:0]u16,
     pUserInfo: ?*DSREG_USER_INFO,
 };
 
@@ -2326,9 +2326,9 @@ pub const DSREG_DEVICE_JOIN = DSREG_JOIN_TYPE.DEVICE_JOIN;
 pub const DSREG_WORKPLACE_JOIN = DSREG_JOIN_TYPE.WORKPLACE_JOIN;
 
 pub const DSREG_USER_INFO = extern struct {
-    pszUserEmail: ?PWSTR,
-    pszUserKeyId: ?PWSTR,
-    pszUserKeyName: ?PWSTR,
+    pszUserEmail: ?[*:0]u16,
+    pszUserKeyId: ?[*:0]u16,
+    pszUserKeyName: ?[*:0]u16,
 };
 
 pub const ENUM_BINDING_PATHS_FLAGS = enum(i32) {
@@ -2348,8 +2348,8 @@ pub const ERROR_LOG = extern struct {
     el_reserved: u32,
     el_time: u32,
     el_error: u32,
-    el_name: ?PWSTR,
-    el_text: ?PWSTR,
+    el_name: ?[*:0]u16,
+    el_text: ?[*:0]u16,
     el_data: ?*u8,
     el_data_size: u32,
     el_nstrings: u32,
@@ -2371,16 +2371,16 @@ pub const USE_FORCE = FORCE_LEVEL_FLAGS.FORCE;
 pub const USE_LOTS_OF_FORCE = FORCE_LEVEL_FLAGS.LOTS_OF_FORCE;
 
 pub const GROUP_INFO_0 = extern struct {
-    grpi0_name: ?PWSTR,
+    grpi0_name: ?[*:0]u16,
 };
 
 pub const GROUP_INFO_1 = extern struct {
-    grpi1_name: ?PWSTR,
-    grpi1_comment: ?PWSTR,
+    grpi1_name: ?[*:0]u16,
+    grpi1_comment: ?[*:0]u16,
 };
 
 pub const GROUP_INFO_1002 = extern struct {
-    grpi1002_comment: ?PWSTR,
+    grpi1002_comment: ?[*:0]u16,
 };
 
 pub const GROUP_INFO_1005 = extern struct {
@@ -2388,25 +2388,25 @@ pub const GROUP_INFO_1005 = extern struct {
 };
 
 pub const GROUP_INFO_2 = extern struct {
-    grpi2_name: ?PWSTR,
-    grpi2_comment: ?PWSTR,
+    grpi2_name: ?[*:0]u16,
+    grpi2_comment: ?[*:0]u16,
     grpi2_group_id: u32,
     grpi2_attributes: u32,
 };
 
 pub const GROUP_INFO_3 = extern struct {
-    grpi3_name: ?PWSTR,
-    grpi3_comment: ?PWSTR,
+    grpi3_name: ?[*:0]u16,
+    grpi3_comment: ?[*:0]u16,
     grpi3_group_sid: ?PSID,
     grpi3_attributes: u32,
 };
 
 pub const GROUP_USERS_INFO_0 = extern struct {
-    grui0_name: ?PWSTR,
+    grui0_name: ?[*:0]u16,
 };
 
 pub const GROUP_USERS_INFO_1 = extern struct {
-    grui1_name: ?PWSTR,
+    grui1_name: ?[*:0]u16,
     grui1_attributes: u32,
 };
 
@@ -2605,7 +2605,7 @@ pub const INetCfgBindingInterface = extern union {
         base: IUnknown.VTable,
         GetName: *const fn(
             self: *const INetCfgBindingInterface,
-            ppszwInterfaceName: ?*?PWSTR,
+            ppszwInterfaceName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetUpperComponent: *const fn(
             self: *const INetCfgBindingInterface,
@@ -2618,7 +2618,7 @@ pub const INetCfgBindingInterface = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const INetCfgBindingInterface, ppszwInterfaceName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetName(self: *const INetCfgBindingInterface, ppszwInterfaceName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, ppszwInterfaceName);
     }
     pub fn GetUpperComponent(self: *const INetCfgBindingInterface, ppnccItem: ?*?*INetCfgComponent) callconv(.@"inline") HRESULT {
@@ -2651,7 +2651,7 @@ pub const INetCfgBindingPath = extern union {
         ) callconv(.winapi) HRESULT,
         GetPathToken: *const fn(
             self: *const INetCfgBindingPath,
-            ppszwPathToken: ?*?PWSTR,
+            ppszwPathToken: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetOwner: *const fn(
             self: *const INetCfgBindingPath,
@@ -2680,7 +2680,7 @@ pub const INetCfgBindingPath = extern union {
     pub fn Enable(self: *const INetCfgBindingPath, fEnable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Enable(self, fEnable);
     }
-    pub fn GetPathToken(self: *const INetCfgBindingPath, ppszwPathToken: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPathToken(self: *const INetCfgBindingPath, ppszwPathToken: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPathToken(self, ppszwPathToken);
     }
     pub fn GetOwner(self: *const INetCfgBindingPath, ppComponent: ?*?*INetCfgComponent) callconv(.@"inline") HRESULT {
@@ -2744,7 +2744,7 @@ pub const INetCfgClassSetup = extern union {
             self: *const INetCfgClassSetup,
             pComponent: ?*INetCfgComponent,
             pOboToken: ?*OBO_TOKEN,
-            pmszwRefs: ?*?PWSTR,
+            pmszwRefs: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -2755,7 +2755,7 @@ pub const INetCfgClassSetup = extern union {
     pub fn Install(self: *const INetCfgClassSetup, pszwInfId: ?[*:0]const u16, pOboToken: ?*OBO_TOKEN, dwSetupFlags: u32, dwUpgradeFromBuildNo: u32, pszwAnswerFile: ?[*:0]const u16, pszwAnswerSections: ?[*:0]const u16, ppnccItem: ?*?*INetCfgComponent) callconv(.@"inline") HRESULT {
         return self.vtable.Install(self, pszwInfId, pOboToken, dwSetupFlags, dwUpgradeFromBuildNo, pszwAnswerFile, pszwAnswerSections, ppnccItem);
     }
-    pub fn DeInstall(self: *const INetCfgClassSetup, pComponent: ?*INetCfgComponent, pOboToken: ?*OBO_TOKEN, pmszwRefs: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn DeInstall(self: *const INetCfgClassSetup, pComponent: ?*INetCfgComponent, pOboToken: ?*OBO_TOKEN, pmszwRefs: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.DeInstall(self, pComponent, pOboToken, pmszwRefs);
     }
 };
@@ -2787,7 +2787,7 @@ pub const INetCfgComponent = extern union {
         base: IUnknown.VTable,
         GetDisplayName: *const fn(
             self: *const INetCfgComponent,
-            ppszwDisplayName: ?*?PWSTR,
+            ppszwDisplayName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetDisplayName: *const fn(
             self: *const INetCfgComponent,
@@ -2795,11 +2795,11 @@ pub const INetCfgComponent = extern union {
         ) callconv(.winapi) HRESULT,
         GetHelpText: *const fn(
             self: *const INetCfgComponent,
-            pszwHelpText: ?*?PWSTR,
+            pszwHelpText: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetId: *const fn(
             self: *const INetCfgComponent,
-            ppszwId: ?*?PWSTR,
+            ppszwId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetCharacteristics: *const fn(
             self: *const INetCfgComponent,
@@ -2811,7 +2811,7 @@ pub const INetCfgComponent = extern union {
         ) callconv(.winapi) HRESULT,
         GetPnpDevNodeId: *const fn(
             self: *const INetCfgComponent,
-            ppszwDevNodeId: ?*?PWSTR,
+            ppszwDevNodeId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetClassGuid: *const fn(
             self: *const INetCfgComponent,
@@ -2819,7 +2819,7 @@ pub const INetCfgComponent = extern union {
         ) callconv(.winapi) HRESULT,
         GetBindName: *const fn(
             self: *const INetCfgComponent,
-            ppszwBindName: ?*?PWSTR,
+            ppszwBindName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetDeviceStatus: *const fn(
             self: *const INetCfgComponent,
@@ -2838,16 +2838,16 @@ pub const INetCfgComponent = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDisplayName(self: *const INetCfgComponent, ppszwDisplayName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDisplayName(self: *const INetCfgComponent, ppszwDisplayName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayName(self, ppszwDisplayName);
     }
     pub fn SetDisplayName(self: *const INetCfgComponent, pszwDisplayName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetDisplayName(self, pszwDisplayName);
     }
-    pub fn GetHelpText(self: *const INetCfgComponent, pszwHelpText: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetHelpText(self: *const INetCfgComponent, pszwHelpText: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetHelpText(self, pszwHelpText);
     }
-    pub fn GetId(self: *const INetCfgComponent, ppszwId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetId(self: *const INetCfgComponent, ppszwId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetId(self, ppszwId);
     }
     pub fn GetCharacteristics(self: *const INetCfgComponent, pdwCharacteristics: ?*u32) callconv(.@"inline") HRESULT {
@@ -2856,13 +2856,13 @@ pub const INetCfgComponent = extern union {
     pub fn GetInstanceGuid(self: *const INetCfgComponent, pGuid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetInstanceGuid(self, pGuid);
     }
-    pub fn GetPnpDevNodeId(self: *const INetCfgComponent, ppszwDevNodeId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPnpDevNodeId(self: *const INetCfgComponent, ppszwDevNodeId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPnpDevNodeId(self, ppszwDevNodeId);
     }
     pub fn GetClassGuid(self: *const INetCfgComponent, pGuid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetClassGuid(self, pGuid);
     }
-    pub fn GetBindName(self: *const INetCfgComponent, ppszwBindName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetBindName(self: *const INetCfgComponent, ppszwBindName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetBindName(self, ppszwBindName);
     }
     pub fn GetDeviceStatus(self: *const INetCfgComponent, pulStatus: ?*u32) callconv(.@"inline") HRESULT {
@@ -3070,7 +3070,7 @@ pub const INetCfgComponentPropertyUi = extern union {
             pahpspPrivate: ?*?*u8,
             pcPages: ?*u32,
             hwndParent: ?HWND,
-            pszStartPage: ?*?PWSTR,
+            pszStartPage: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         ValidateProperties: *const fn(
             self: *const INetCfgComponentPropertyUi,
@@ -3091,7 +3091,7 @@ pub const INetCfgComponentPropertyUi = extern union {
     pub fn SetContext(self: *const INetCfgComponentPropertyUi, pUnkReserved: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.SetContext(self, pUnkReserved);
     }
-    pub fn MergePropPages(self: *const INetCfgComponentPropertyUi, pdwDefPages: ?*u32, pahpspPrivate: ?*?*u8, pcPages: ?*u32, hwndParent: ?HWND, pszStartPage: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn MergePropPages(self: *const INetCfgComponentPropertyUi, pdwDefPages: ?*u32, pahpspPrivate: ?*?*u8, pcPages: ?*u32, hwndParent: ?HWND, pszStartPage: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.MergePropPages(self, pdwDefPages, pahpspPrivate, pcPages, hwndParent, pszStartPage);
     }
     pub fn ValidateProperties(self: *const INetCfgComponentPropertyUi, hwndSheet: ?HWND) callconv(.@"inline") HRESULT {
@@ -3217,25 +3217,25 @@ pub const INetCfgLock = extern union {
             self: *const INetCfgLock,
             cmsTimeout: u32,
             pszwClientDescription: ?[*:0]const u16,
-            ppszwClientDescription: ?*?PWSTR,
+            ppszwClientDescription: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         ReleaseWriteLock: *const fn(
             self: *const INetCfgLock,
         ) callconv(.winapi) HRESULT,
         IsWriteLocked: *const fn(
             self: *const INetCfgLock,
-            ppszwClientDescription: ?*?PWSTR,
+            ppszwClientDescription: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AcquireWriteLock(self: *const INetCfgLock, cmsTimeout: u32, pszwClientDescription: ?[*:0]const u16, ppszwClientDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn AcquireWriteLock(self: *const INetCfgLock, cmsTimeout: u32, pszwClientDescription: ?[*:0]const u16, ppszwClientDescription: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.AcquireWriteLock(self, cmsTimeout, pszwClientDescription, ppszwClientDescription);
     }
     pub fn ReleaseWriteLock(self: *const INetCfgLock) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseWriteLock(self);
     }
-    pub fn IsWriteLocked(self: *const INetCfgLock, ppszwClientDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn IsWriteLocked(self: *const INetCfgLock, ppszwClientDescription: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.IsWriteLocked(self, ppszwClientDescription);
     }
 };
@@ -3390,16 +3390,16 @@ pub const IProvisioningProfileWireless = extern union {
 };
 
 pub const LOCALGROUP_INFO_0 = extern struct {
-    lgrpi0_name: ?PWSTR,
+    lgrpi0_name: ?[*:0]u16,
 };
 
 pub const LOCALGROUP_INFO_1 = extern struct {
-    lgrpi1_name: ?PWSTR,
-    lgrpi1_comment: ?PWSTR,
+    lgrpi1_name: ?[*:0]u16,
+    lgrpi1_comment: ?[*:0]u16,
 };
 
 pub const LOCALGROUP_INFO_1002 = extern struct {
-    lgrpi1002_comment: ?PWSTR,
+    lgrpi1002_comment: ?[*:0]u16,
 };
 
 pub const LOCALGROUP_MEMBERS_INFO_0 = extern struct {
@@ -3409,21 +3409,21 @@ pub const LOCALGROUP_MEMBERS_INFO_0 = extern struct {
 pub const LOCALGROUP_MEMBERS_INFO_1 = extern struct {
     lgrmi1_sid: ?PSID,
     lgrmi1_sidusage: SID_NAME_USE,
-    lgrmi1_name: ?PWSTR,
+    lgrmi1_name: ?[*:0]u16,
 };
 
 pub const LOCALGROUP_MEMBERS_INFO_2 = extern struct {
     lgrmi2_sid: ?PSID,
     lgrmi2_sidusage: SID_NAME_USE,
-    lgrmi2_domainandname: ?PWSTR,
+    lgrmi2_domainandname: ?[*:0]u16,
 };
 
 pub const LOCALGROUP_MEMBERS_INFO_3 = extern struct {
-    lgrmi3_domainandname: ?PWSTR,
+    lgrmi3_domainandname: ?[*:0]u16,
 };
 
 pub const LOCALGROUP_USERS_INFO_0 = extern struct {
-    lgrui0_name: ?PWSTR,
+    lgrui0_name: ?[*:0]u16,
 };
 
 pub const MPR_PROTOCOL_0 = extern struct {
@@ -3457,13 +3457,13 @@ pub const MsaInfoCanInstall = MSA_INFO_STATE.CanInstall;
 pub const MsaInfoInstalled = MSA_INFO_STATE.Installed;
 
 pub const MSG_INFO_0 = extern struct {
-    msgi0_name: ?PWSTR,
+    msgi0_name: ?[*:0]u16,
 };
 
 pub const MSG_INFO_1 = extern struct {
-    msgi1_name: ?PWSTR,
+    msgi1_name: ?[*:0]u16,
     msgi1_forward_flag: u32,
-    msgi1_forward: ?PWSTR,
+    msgi1_forward: ?[*:0]u16,
 };
 
 pub const NCPNP_RECONFIG_LAYER = enum(i32) {
@@ -3492,26 +3492,26 @@ pub const NetAllComputerNames = NET_COMPUTER_NAME_TYPE.AllComputerNames;
 pub const NetComputerNameTypeMax = NET_COMPUTER_NAME_TYPE.ComputerNameTypeMax;
 
 pub const NET_DISPLAY_GROUP = extern struct {
-    grpi3_name: ?PWSTR,
-    grpi3_comment: ?PWSTR,
+    grpi3_name: ?[*:0]u16,
+    grpi3_comment: ?[*:0]u16,
     grpi3_group_id: u32,
     grpi3_attributes: u32,
     grpi3_next_index: u32,
 };
 
 pub const NET_DISPLAY_MACHINE = extern struct {
-    usri2_name: ?PWSTR,
-    usri2_comment: ?PWSTR,
+    usri2_name: ?[*:0]u16,
+    usri2_comment: ?[*:0]u16,
     usri2_flags: USER_ACCOUNT_FLAGS,
     usri2_user_id: u32,
     usri2_next_index: u32,
 };
 
 pub const NET_DISPLAY_USER = extern struct {
-    usri1_name: ?PWSTR,
-    usri1_comment: ?PWSTR,
+    usri1_name: ?[*:0]u16,
+    usri1_comment: ?[*:0]u16,
     usri1_flags: USER_ACCOUNT_FLAGS,
-    usri1_full_name: ?PWSTR,
+    usri1_full_name: ?[*:0]u16,
     usri1_user_id: u32,
     usri1_next_index: u32,
 };
@@ -3771,8 +3771,8 @@ pub const NET_VALIDATE_OUTPUT_ARG = extern struct {
 
 pub const NET_VALIDATE_PASSWORD_CHANGE_INPUT_ARG = extern struct {
     InputPersistedFields: NET_VALIDATE_PERSISTED_FIELDS,
-    ClearPassword: ?PWSTR,
-    UserAccountName: ?PWSTR,
+    ClearPassword: ?[*:0]u16,
+    UserAccountName: ?[*:0]u16,
     HashedPassword: NET_VALIDATE_PASSWORD_HASH,
     PasswordMatch: BOOLEAN,
 };
@@ -3784,8 +3784,8 @@ pub const NET_VALIDATE_PASSWORD_HASH = extern struct {
 
 pub const NET_VALIDATE_PASSWORD_RESET_INPUT_ARG = extern struct {
     InputPersistedFields: NET_VALIDATE_PERSISTED_FIELDS,
-    ClearPassword: ?PWSTR,
-    UserAccountName: ?PWSTR,
+    ClearPassword: ?[*:0]u16,
+    UserAccountName: ?[*:0]u16,
     HashedPassword: NET_VALIDATE_PASSWORD_HASH,
     PasswordMustChangeAtNextLogon: BOOLEAN,
     ClearLockout: BOOLEAN,
@@ -3818,7 +3818,7 @@ pub const NETLOGON_INFO_1 = extern struct {
 pub const NETLOGON_INFO_2 = extern struct {
     netlog2_flags: u32,
     netlog2_pdc_connection_status: u32,
-    netlog2_trusted_dc_name: ?PWSTR,
+    netlog2_trusted_dc_name: ?[*:0]u16,
     netlog2_tc_connection_status: u32,
 };
 
@@ -3833,8 +3833,8 @@ pub const NETLOGON_INFO_3 = extern struct {
 };
 
 pub const NETLOGON_INFO_4 = extern struct {
-    netlog4_trusted_dc_name: ?PWSTR,
-    netlog4_trusted_domain_name: ?PWSTR,
+    netlog4_trusted_dc_name: ?[*:0]u16,
+    netlog4_trusted_domain_name: ?[*:0]u16,
 };
 
 const CLSID_NetProvisioning_Value = Guid.initString("2aa2b5fe-b846-4d07-810c-b21ee45320e3");
@@ -3913,15 +3913,15 @@ pub const NETSETUP_PROVISIONING_PARAMS = extern struct {
     lpMachineAccountOU: ?[*:0]const u16,
     lpDcName: ?[*:0]const u16,
     dwProvisionOptions: NETSETUP_PROVISION,
-    aCertTemplateNames: ?*?PWSTR,
+    aCertTemplateNames: ?*?[*:0]u16,
     cCertTemplateNames: u32,
-    aMachinePolicyNames: ?*?PWSTR,
+    aMachinePolicyNames: ?*?[*:0]u16,
     cMachinePolicyNames: u32,
-    aMachinePolicyPaths: ?*?PWSTR,
+    aMachinePolicyPaths: ?*?[*:0]u16,
     cMachinePolicyPaths: u32,
-    lpNetbiosName: ?PWSTR,
-    lpSiteName: ?PWSTR,
-    lpPrimaryDNSDomain: ?PWSTR,
+    lpNetbiosName: ?[*:0]u16,
+    lpSiteName: ?[*:0]u16,
+    lpPrimaryDNSDomain: ?[*:0]u16,
 };
 
 pub const NETWORK_INSTALL_TIME = enum(i32) {
@@ -4029,11 +4029,11 @@ pub const RCUIF_USE_IPv6_EXPLICIT_METRIC = RASCON_UIINFO_FLAGS.USE_IPv6_EXPLICIT
 pub const RCUIF_DISABLE_CLASS_BASED_ROUTE = RASCON_UIINFO_FLAGS.DISABLE_CLASS_BASED_ROUTE;
 
 pub const REPL_EDIR_INFO_0 = extern struct {
-    rped0_dirname: ?PWSTR,
+    rped0_dirname: ?[*:0]u16,
 };
 
 pub const REPL_EDIR_INFO_1 = extern struct {
-    rped1_dirname: ?PWSTR,
+    rped1_dirname: ?[*:0]u16,
     rped1_integrity: u32,
     rped1_extent: u32,
 };
@@ -4047,7 +4047,7 @@ pub const REPL_EDIR_INFO_1001 = extern struct {
 };
 
 pub const REPL_EDIR_INFO_2 = extern struct {
-    rped2_dirname: ?PWSTR,
+    rped2_dirname: ?[*:0]u16,
     rped2_integrity: u32,
     rped2_extent: u32,
     rped2_lockcount: u32,
@@ -4055,13 +4055,13 @@ pub const REPL_EDIR_INFO_2 = extern struct {
 };
 
 pub const REPL_IDIR_INFO_0 = extern struct {
-    rpid0_dirname: ?PWSTR,
+    rpid0_dirname: ?[*:0]u16,
 };
 
 pub const REPL_IDIR_INFO_1 = extern struct {
-    rpid1_dirname: ?PWSTR,
+    rpid1_dirname: ?[*:0]u16,
     rpid1_state: u32,
-    rpid1_mastername: ?PWSTR,
+    rpid1_mastername: ?[*:0]u16,
     rpid1_last_update_time: u32,
     rpid1_lockcount: u32,
     rpid1_locktime: u32,
@@ -4069,11 +4069,11 @@ pub const REPL_IDIR_INFO_1 = extern struct {
 
 pub const REPL_INFO_0 = extern struct {
     rp0_role: u32,
-    rp0_exportpath: ?PWSTR,
-    rp0_exportlist: ?PWSTR,
-    rp0_importpath: ?PWSTR,
-    rp0_importlist: ?PWSTR,
-    rp0_logonusername: ?PWSTR,
+    rp0_exportpath: ?[*:0]u16,
+    rp0_exportlist: ?[*:0]u16,
+    rp0_importpath: ?[*:0]u16,
+    rp0_importlist: ?[*:0]u16,
+    rp0_logonusername: ?[*:0]u16,
     rp0_interval: u32,
     rp0_pulse: u32,
     rp0_guardtime: u32,
@@ -4112,20 +4112,20 @@ pub const RTR_TOC_ENTRY = extern struct {
 
 pub const SERVER_INFO_100 = extern struct {
     sv100_platform_id: u32,
-    sv100_name: ?PWSTR,
+    sv100_name: ?[*:0]u16,
 };
 
 pub const SERVER_INFO_1005 = extern struct {
-    sv1005_comment: ?PWSTR,
+    sv1005_comment: ?[*:0]u16,
 };
 
 pub const SERVER_INFO_101 = extern struct {
     sv101_platform_id: u32,
-    sv101_name: ?PWSTR,
+    sv101_name: ?[*:0]u16,
     sv101_version_major: u32,
     sv101_version_minor: u32,
     sv101_type: NET_SERVER_TYPE,
-    sv101_comment: ?PWSTR,
+    sv101_comment: ?[*:0]u16,
 };
 
 pub const SERVER_INFO_1010 = extern struct {
@@ -4146,34 +4146,34 @@ pub const SERVER_INFO_1018 = extern struct {
 
 pub const SERVER_INFO_102 = extern struct {
     sv102_platform_id: u32,
-    sv102_name: ?PWSTR,
+    sv102_name: ?[*:0]u16,
     sv102_version_major: u32,
     sv102_version_minor: u32,
     sv102_type: NET_SERVER_TYPE,
-    sv102_comment: ?PWSTR,
+    sv102_comment: ?[*:0]u16,
     sv102_users: u32,
     sv102_disc: i32,
     sv102_hidden: SERVER_INFO_HIDDEN,
     sv102_announce: u32,
     sv102_anndelta: u32,
     sv102_licenses: u32,
-    sv102_userpath: ?PWSTR,
+    sv102_userpath: ?[*:0]u16,
 };
 
 pub const SERVER_INFO_103 = extern struct {
     sv103_platform_id: u32,
-    sv103_name: ?PWSTR,
+    sv103_name: ?[*:0]u16,
     sv103_version_major: u32,
     sv103_version_minor: u32,
     sv103_type: u32,
-    sv103_comment: ?PWSTR,
+    sv103_comment: ?[*:0]u16,
     sv103_users: u32,
     sv103_disc: i32,
     sv103_hidden: BOOL,
     sv103_announce: u32,
     sv103_anndelta: u32,
     sv103_licenses: u32,
-    sv103_userpath: ?PWSTR,
+    sv103_userpath: ?[*:0]u16,
     sv103_capabilities: u32,
 };
 
@@ -4537,11 +4537,11 @@ pub const SERVER_INFO_402 = extern struct {
     sv402_ulist_mtime: u32,
     sv402_glist_mtime: u32,
     sv402_alist_mtime: u32,
-    sv402_alerts: ?PWSTR,
+    sv402_alerts: ?[*:0]u16,
     sv402_security: SERVER_INFO_SECURITY,
     sv402_numadmin: u32,
     sv402_lanmask: u32,
-    sv402_guestacct: ?PWSTR,
+    sv402_guestacct: ?[*:0]u16,
     sv402_chdevs: u32,
     sv402_chdevq: u32,
     sv402_chdevjobs: u32,
@@ -4564,18 +4564,18 @@ pub const SERVER_INFO_402 = extern struct {
     sv402_diskalert: u32,
     sv402_netioalert: u32,
     sv402_maxauditsz: u32,
-    sv402_srvheuristics: ?PWSTR,
+    sv402_srvheuristics: ?[*:0]u16,
 };
 
 pub const SERVER_INFO_403 = extern struct {
     sv403_ulist_mtime: u32,
     sv403_glist_mtime: u32,
     sv403_alist_mtime: u32,
-    sv403_alerts: ?PWSTR,
+    sv403_alerts: ?[*:0]u16,
     sv403_security: SERVER_INFO_SECURITY,
     sv403_numadmin: u32,
     sv403_lanmask: u32,
-    sv403_guestacct: ?PWSTR,
+    sv403_guestacct: ?[*:0]u16,
     sv403_chdevs: u32,
     sv403_chdevq: u32,
     sv403_chdevjobs: u32,
@@ -4598,10 +4598,10 @@ pub const SERVER_INFO_403 = extern struct {
     sv403_diskalert: u32,
     sv403_netioalert: u32,
     sv403_maxauditsz: u32,
-    sv403_srvheuristics: ?PWSTR,
+    sv403_srvheuristics: ?[*:0]u16,
     sv403_auditedevents: u32,
     sv403_autoprofile: u32,
-    sv403_autopath: ?PWSTR,
+    sv403_autopath: ?[*:0]u16,
 };
 
 pub const SERVER_INFO_502 = extern struct {
@@ -4644,7 +4644,7 @@ pub const SERVER_INFO_503 = extern struct {
     sv503_timesource: BOOL,
     sv503_acceptdownlevelapis: BOOL,
     sv503_lmannounce: BOOL,
-    sv503_domain: ?PWSTR,
+    sv503_domain: ?[*:0]u16,
     sv503_maxcopyreadlen: u32,
     sv503_maxcopywritelen: u32,
     sv503_minkeepsearch: u32,
@@ -4735,7 +4735,7 @@ pub const SERVER_INFO_599 = extern struct {
     sv599_timesource: BOOL,
     sv599_acceptdownlevelapis: BOOL,
     sv599_lmannounce: BOOL,
-    sv599_domain: ?PWSTR,
+    sv599_domain: ?[*:0]u16,
     sv599_maxcopyreadlen: u32,
     sv599_maxcopywritelen: u32,
     sv599_minkeepsearch: u32,
@@ -4791,62 +4791,62 @@ pub const SV_USERSECURITY = SERVER_INFO_SECURITY.USERSECURITY;
 
 pub const SERVER_TRANSPORT_INFO_0 = extern struct {
     svti0_numberofvcs: u32,
-    svti0_transportname: ?PWSTR,
+    svti0_transportname: ?[*:0]u16,
     svti0_transportaddress: ?*u8,
     svti0_transportaddresslength: u32,
-    svti0_networkaddress: ?PWSTR,
+    svti0_networkaddress: ?[*:0]u16,
 };
 
 pub const SERVER_TRANSPORT_INFO_1 = extern struct {
     svti1_numberofvcs: u32,
-    svti1_transportname: ?PWSTR,
+    svti1_transportname: ?[*:0]u16,
     svti1_transportaddress: ?*u8,
     svti1_transportaddresslength: u32,
-    svti1_networkaddress: ?PWSTR,
-    svti1_domain: ?PWSTR,
+    svti1_networkaddress: ?[*:0]u16,
+    svti1_domain: ?[*:0]u16,
 };
 
 pub const SERVER_TRANSPORT_INFO_2 = extern struct {
     svti2_numberofvcs: u32,
-    svti2_transportname: ?PWSTR,
+    svti2_transportname: ?[*:0]u16,
     svti2_transportaddress: ?*u8,
     svti2_transportaddresslength: u32,
-    svti2_networkaddress: ?PWSTR,
-    svti2_domain: ?PWSTR,
+    svti2_networkaddress: ?[*:0]u16,
+    svti2_domain: ?[*:0]u16,
     svti2_flags: u32,
 };
 
 pub const SERVER_TRANSPORT_INFO_3 = extern struct {
     svti3_numberofvcs: u32,
-    svti3_transportname: ?PWSTR,
+    svti3_transportname: ?[*:0]u16,
     svti3_transportaddress: ?*u8,
     svti3_transportaddresslength: u32,
-    svti3_networkaddress: ?PWSTR,
-    svti3_domain: ?PWSTR,
+    svti3_networkaddress: ?[*:0]u16,
+    svti3_domain: ?[*:0]u16,
     svti3_flags: u32,
     svti3_passwordlength: u32,
     svti3_password: [256]u8,
 };
 
 pub const SERVICE_INFO_0 = extern struct {
-    svci0_name: ?PWSTR,
+    svci0_name: ?[*:0]u16,
 };
 
 pub const SERVICE_INFO_1 = extern struct {
-    svci1_name: ?PWSTR,
+    svci1_name: ?[*:0]u16,
     svci1_status: u32,
     svci1_code: u32,
     svci1_pid: u32,
 };
 
 pub const SERVICE_INFO_2 = extern struct {
-    svci2_name: ?PWSTR,
+    svci2_name: ?[*:0]u16,
     svci2_status: u32,
     svci2_code: u32,
     svci2_pid: u32,
-    svci2_text: ?PWSTR,
+    svci2_text: ?[*:0]u16,
     svci2_specific_error: u32,
-    svci2_display_name: ?PWSTR,
+    svci2_display_name: ?[*:0]u16,
 };
 
 pub const SMB_COMPRESSION_INFO = extern struct {
@@ -4912,14 +4912,14 @@ pub const UseTransportType_Wsk = TRANSPORT_TYPE.Wsk;
 pub const UseTransportType_Quic = TRANSPORT_TYPE.Quic;
 
 pub const USE_INFO_0 = extern struct {
-    ui0_local: ?PWSTR,
-    ui0_remote: ?PWSTR,
+    ui0_local: ?[*:0]u16,
+    ui0_remote: ?[*:0]u16,
 };
 
 pub const USE_INFO_1 = extern struct {
-    ui1_local: ?PWSTR,
-    ui1_remote: ?PWSTR,
-    ui1_password: ?PWSTR,
+    ui1_local: ?[*:0]u16,
+    ui1_remote: ?[*:0]u16,
+    ui1_password: ?[*:0]u16,
     ui1_status: u32,
     ui1_asg_type: USE_INFO_ASG_TYPE,
     ui1_refcount: u32,
@@ -4927,15 +4927,15 @@ pub const USE_INFO_1 = extern struct {
 };
 
 pub const USE_INFO_2 = extern struct {
-    ui2_local: ?PWSTR,
-    ui2_remote: ?PWSTR,
-    ui2_password: ?PWSTR,
+    ui2_local: ?[*:0]u16,
+    ui2_remote: ?[*:0]u16,
+    ui2_password: ?[*:0]u16,
     ui2_status: u32,
     ui2_asg_type: USE_INFO_ASG_TYPE,
     ui2_refcount: u32,
     ui2_usecount: u32,
-    ui2_username: ?PWSTR,
-    ui2_domainname: ?PWSTR,
+    ui2_username: ?[*:0]u16,
+    ui2_domainname: ?[*:0]u16,
 };
 
 pub const USE_INFO_3 = extern struct {
@@ -5045,29 +5045,29 @@ pub const UF_PASSWORD_EXPIRED = USER_ACCOUNT_FLAGS{ .PASSWORD_EXPIRED = 1 };
 pub const UF_TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION = USER_ACCOUNT_FLAGS{ .TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION = 1 };
 
 pub const USER_INFO_0 = extern struct {
-    usri0_name: ?PWSTR,
+    usri0_name: ?[*:0]u16,
 };
 
 pub const USER_INFO_1 = extern struct {
-    usri1_name: ?PWSTR,
-    usri1_password: ?PWSTR,
+    usri1_name: ?[*:0]u16,
+    usri1_password: ?[*:0]u16,
     usri1_password_age: u32,
     usri1_priv: USER_PRIV,
-    usri1_home_dir: ?PWSTR,
-    usri1_comment: ?PWSTR,
+    usri1_home_dir: ?[*:0]u16,
+    usri1_comment: ?[*:0]u16,
     usri1_flags: USER_ACCOUNT_FLAGS,
-    usri1_script_path: ?PWSTR,
+    usri1_script_path: ?[*:0]u16,
 };
 
 pub const USER_INFO_10 = extern struct {
-    usri10_name: ?PWSTR,
-    usri10_comment: ?PWSTR,
-    usri10_usr_comment: ?PWSTR,
-    usri10_full_name: ?PWSTR,
+    usri10_name: ?[*:0]u16,
+    usri10_comment: ?[*:0]u16,
+    usri10_usr_comment: ?[*:0]u16,
+    usri10_full_name: ?[*:0]u16,
 };
 
 pub const USER_INFO_1003 = extern struct {
-    usri1003_password: ?PWSTR,
+    usri1003_password: ?[*:0]u16,
 };
 
 pub const USER_INFO_1005 = extern struct {
@@ -5075,11 +5075,11 @@ pub const USER_INFO_1005 = extern struct {
 };
 
 pub const USER_INFO_1006 = extern struct {
-    usri1006_home_dir: ?PWSTR,
+    usri1006_home_dir: ?[*:0]u16,
 };
 
 pub const USER_INFO_1007 = extern struct {
-    usri1007_comment: ?PWSTR,
+    usri1007_comment: ?[*:0]u16,
 };
 
 pub const USER_INFO_1008 = extern struct {
@@ -5087,7 +5087,7 @@ pub const USER_INFO_1008 = extern struct {
 };
 
 pub const USER_INFO_1009 = extern struct {
-    usri1009_script_path: ?PWSTR,
+    usri1009_script_path: ?[*:0]u16,
 };
 
 pub const USER_INFO_1010 = extern struct {
@@ -5095,19 +5095,19 @@ pub const USER_INFO_1010 = extern struct {
 };
 
 pub const USER_INFO_1011 = extern struct {
-    usri1011_full_name: ?PWSTR,
+    usri1011_full_name: ?[*:0]u16,
 };
 
 pub const USER_INFO_1012 = extern struct {
-    usri1012_usr_comment: ?PWSTR,
+    usri1012_usr_comment: ?[*:0]u16,
 };
 
 pub const USER_INFO_1013 = extern struct {
-    usri1013_parms: ?PWSTR,
+    usri1013_parms: ?[*:0]u16,
 };
 
 pub const USER_INFO_1014 = extern struct {
-    usri1014_workstations: ?PWSTR,
+    usri1014_workstations: ?[*:0]u16,
 };
 
 pub const USER_INFO_1017 = extern struct {
@@ -5124,7 +5124,7 @@ pub const USER_INFO_1020 = extern struct {
 };
 
 pub const USER_INFO_1023 = extern struct {
-    usri1023_logon_server: ?PWSTR,
+    usri1023_logon_server: ?[*:0]u16,
 };
 
 pub const USER_INFO_1024 = extern struct {
@@ -5140,30 +5140,30 @@ pub const USER_INFO_1051 = extern struct {
 };
 
 pub const USER_INFO_1052 = extern struct {
-    usri1052_profile: ?PWSTR,
+    usri1052_profile: ?[*:0]u16,
 };
 
 pub const USER_INFO_1053 = extern struct {
-    usri1053_home_dir_drive: ?PWSTR,
+    usri1053_home_dir_drive: ?[*:0]u16,
 };
 
 pub const USER_INFO_11 = extern struct {
-    usri11_name: ?PWSTR,
-    usri11_comment: ?PWSTR,
-    usri11_usr_comment: ?PWSTR,
-    usri11_full_name: ?PWSTR,
+    usri11_name: ?[*:0]u16,
+    usri11_comment: ?[*:0]u16,
+    usri11_usr_comment: ?[*:0]u16,
+    usri11_full_name: ?[*:0]u16,
     usri11_priv: USER_PRIV,
     usri11_auth_flags: AF_OP,
     usri11_password_age: u32,
-    usri11_home_dir: ?PWSTR,
-    usri11_parms: ?PWSTR,
+    usri11_home_dir: ?[*:0]u16,
+    usri11_parms: ?[*:0]u16,
     usri11_last_logon: u32,
     usri11_last_logoff: u32,
     usri11_bad_pw_count: u32,
     usri11_num_logons: u32,
-    usri11_logon_server: ?PWSTR,
+    usri11_logon_server: ?[*:0]u16,
     usri11_country_code: u32,
-    usri11_workstations: ?PWSTR,
+    usri11_workstations: ?[*:0]u16,
     usri11_max_storage: u32,
     usri11_units_per_week: u32,
     usri11_logon_hours: ?*u8,
@@ -5171,19 +5171,19 @@ pub const USER_INFO_11 = extern struct {
 };
 
 pub const USER_INFO_2 = extern struct {
-    usri2_name: ?PWSTR,
-    usri2_password: ?PWSTR,
+    usri2_name: ?[*:0]u16,
+    usri2_password: ?[*:0]u16,
     usri2_password_age: u32,
     usri2_priv: USER_PRIV,
-    usri2_home_dir: ?PWSTR,
-    usri2_comment: ?PWSTR,
+    usri2_home_dir: ?[*:0]u16,
+    usri2_comment: ?[*:0]u16,
     usri2_flags: USER_ACCOUNT_FLAGS,
-    usri2_script_path: ?PWSTR,
+    usri2_script_path: ?[*:0]u16,
     usri2_auth_flags: AF_OP,
-    usri2_full_name: ?PWSTR,
-    usri2_usr_comment: ?PWSTR,
-    usri2_parms: ?PWSTR,
-    usri2_workstations: ?PWSTR,
+    usri2_full_name: ?[*:0]u16,
+    usri2_usr_comment: ?[*:0]u16,
+    usri2_parms: ?[*:0]u16,
+    usri2_workstations: ?[*:0]u16,
     usri2_last_logon: u32,
     usri2_last_logoff: u32,
     usri2_acct_expires: u32,
@@ -5192,15 +5192,15 @@ pub const USER_INFO_2 = extern struct {
     usri2_logon_hours: ?*u8,
     usri2_bad_pw_count: u32,
     usri2_num_logons: u32,
-    usri2_logon_server: ?PWSTR,
+    usri2_logon_server: ?[*:0]u16,
     usri2_country_code: u32,
     usri2_code_page: u32,
 };
 
 pub const USER_INFO_20 = extern struct {
-    usri20_name: ?PWSTR,
-    usri20_full_name: ?PWSTR,
-    usri20_comment: ?PWSTR,
+    usri20_name: ?[*:0]u16,
+    usri20_full_name: ?[*:0]u16,
+    usri20_comment: ?[*:0]u16,
     usri20_flags: USER_ACCOUNT_FLAGS,
     usri20_user_id: u32,
 };
@@ -5210,19 +5210,19 @@ pub const USER_INFO_21 = extern struct {
 };
 
 pub const USER_INFO_22 = extern struct {
-    usri22_name: ?PWSTR,
+    usri22_name: ?[*:0]u16,
     usri22_password: [16]u8,
     usri22_password_age: u32,
     usri22_priv: USER_PRIV,
-    usri22_home_dir: ?PWSTR,
-    usri22_comment: ?PWSTR,
+    usri22_home_dir: ?[*:0]u16,
+    usri22_comment: ?[*:0]u16,
     usri22_flags: USER_ACCOUNT_FLAGS,
-    usri22_script_path: ?PWSTR,
+    usri22_script_path: ?[*:0]u16,
     usri22_auth_flags: AF_OP,
-    usri22_full_name: ?PWSTR,
-    usri22_usr_comment: ?PWSTR,
-    usri22_parms: ?PWSTR,
-    usri22_workstations: ?PWSTR,
+    usri22_full_name: ?[*:0]u16,
+    usri22_usr_comment: ?[*:0]u16,
+    usri22_parms: ?[*:0]u16,
+    usri22_workstations: ?[*:0]u16,
     usri22_last_logon: u32,
     usri22_last_logoff: u32,
     usri22_acct_expires: u32,
@@ -5231,15 +5231,15 @@ pub const USER_INFO_22 = extern struct {
     usri22_logon_hours: ?*u8,
     usri22_bad_pw_count: u32,
     usri22_num_logons: u32,
-    usri22_logon_server: ?PWSTR,
+    usri22_logon_server: ?[*:0]u16,
     usri22_country_code: u32,
     usri22_code_page: u32,
 };
 
 pub const USER_INFO_23 = extern struct {
-    usri23_name: ?PWSTR,
-    usri23_full_name: ?PWSTR,
-    usri23_comment: ?PWSTR,
+    usri23_name: ?[*:0]u16,
+    usri23_full_name: ?[*:0]u16,
+    usri23_comment: ?[*:0]u16,
     usri23_flags: USER_ACCOUNT_FLAGS,
     usri23_user_sid: ?PSID,
 };
@@ -5247,25 +5247,25 @@ pub const USER_INFO_23 = extern struct {
 pub const USER_INFO_24 = extern struct {
     usri24_internet_identity: BOOL,
     usri24_flags: u32,
-    usri24_internet_provider_name: ?PWSTR,
-    usri24_internet_principal_name: ?PWSTR,
+    usri24_internet_provider_name: ?[*:0]u16,
+    usri24_internet_principal_name: ?[*:0]u16,
     usri24_user_sid: ?PSID,
 };
 
 pub const USER_INFO_3 = extern struct {
-    usri3_name: ?PWSTR,
-    usri3_password: ?PWSTR,
+    usri3_name: ?[*:0]u16,
+    usri3_password: ?[*:0]u16,
     usri3_password_age: u32,
     usri3_priv: USER_PRIV,
-    usri3_home_dir: ?PWSTR,
-    usri3_comment: ?PWSTR,
+    usri3_home_dir: ?[*:0]u16,
+    usri3_comment: ?[*:0]u16,
     usri3_flags: USER_ACCOUNT_FLAGS,
-    usri3_script_path: ?PWSTR,
+    usri3_script_path: ?[*:0]u16,
     usri3_auth_flags: AF_OP,
-    usri3_full_name: ?PWSTR,
-    usri3_usr_comment: ?PWSTR,
-    usri3_parms: ?PWSTR,
-    usri3_workstations: ?PWSTR,
+    usri3_full_name: ?[*:0]u16,
+    usri3_usr_comment: ?[*:0]u16,
+    usri3_parms: ?[*:0]u16,
+    usri3_workstations: ?[*:0]u16,
     usri3_last_logon: u32,
     usri3_last_logoff: u32,
     usri3_acct_expires: u32,
@@ -5274,30 +5274,30 @@ pub const USER_INFO_3 = extern struct {
     usri3_logon_hours: ?*u8,
     usri3_bad_pw_count: u32,
     usri3_num_logons: u32,
-    usri3_logon_server: ?PWSTR,
+    usri3_logon_server: ?[*:0]u16,
     usri3_country_code: u32,
     usri3_code_page: u32,
     usri3_user_id: u32,
     usri3_primary_group_id: u32,
-    usri3_profile: ?PWSTR,
-    usri3_home_dir_drive: ?PWSTR,
+    usri3_profile: ?[*:0]u16,
+    usri3_home_dir_drive: ?[*:0]u16,
     usri3_password_expired: u32,
 };
 
 pub const USER_INFO_4 = extern struct {
-    usri4_name: ?PWSTR,
-    usri4_password: ?PWSTR,
+    usri4_name: ?[*:0]u16,
+    usri4_password: ?[*:0]u16,
     usri4_password_age: u32,
     usri4_priv: USER_PRIV,
-    usri4_home_dir: ?PWSTR,
-    usri4_comment: ?PWSTR,
+    usri4_home_dir: ?[*:0]u16,
+    usri4_comment: ?[*:0]u16,
     usri4_flags: USER_ACCOUNT_FLAGS,
-    usri4_script_path: ?PWSTR,
+    usri4_script_path: ?[*:0]u16,
     usri4_auth_flags: AF_OP,
-    usri4_full_name: ?PWSTR,
-    usri4_usr_comment: ?PWSTR,
-    usri4_parms: ?PWSTR,
-    usri4_workstations: ?PWSTR,
+    usri4_full_name: ?[*:0]u16,
+    usri4_usr_comment: ?[*:0]u16,
+    usri4_parms: ?[*:0]u16,
+    usri4_workstations: ?[*:0]u16,
     usri4_last_logon: u32,
     usri4_last_logoff: u32,
     usri4_acct_expires: u32,
@@ -5306,13 +5306,13 @@ pub const USER_INFO_4 = extern struct {
     usri4_logon_hours: ?*u8,
     usri4_bad_pw_count: u32,
     usri4_num_logons: u32,
-    usri4_logon_server: ?PWSTR,
+    usri4_logon_server: ?[*:0]u16,
     usri4_country_code: u32,
     usri4_code_page: u32,
     usri4_user_sid: ?PSID,
     usri4_primary_group_id: u32,
-    usri4_profile: ?PWSTR,
-    usri4_home_dir_drive: ?PWSTR,
+    usri4_profile: ?[*:0]u16,
+    usri4_home_dir_drive: ?[*:0]u16,
     usri4_password_expired: u32,
 };
 
@@ -5326,7 +5326,7 @@ pub const USER_MODALS_INFO_0 = extern struct {
 
 pub const USER_MODALS_INFO_1 = extern struct {
     usrmod1_role: u32,
-    usrmod1_primary: ?PWSTR,
+    usrmod1_primary: ?[*:0]u16,
 };
 
 pub const USER_MODALS_INFO_1001 = extern struct {
@@ -5354,11 +5354,11 @@ pub const USER_MODALS_INFO_1006 = extern struct {
 };
 
 pub const USER_MODALS_INFO_1007 = extern struct {
-    usrmod1007_primary: ?PWSTR,
+    usrmod1007_primary: ?[*:0]u16,
 };
 
 pub const USER_MODALS_INFO_2 = extern struct {
-    usrmod2_domain_name: ?PWSTR,
+    usrmod2_domain_name: ?[*:0]u16,
     usrmod2_domain_id: ?PSID,
 };
 
@@ -5395,19 +5395,19 @@ pub const USER_PRIV_ADMIN = USER_PRIV.ADMIN;
 
 pub const WKSTA_INFO_100 = extern struct {
     wki100_platform_id: u32,
-    wki100_computername: ?PWSTR,
-    wki100_langroup: ?PWSTR,
+    wki100_computername: ?[*:0]u16,
+    wki100_langroup: ?[*:0]u16,
     wki100_ver_major: u32,
     wki100_ver_minor: u32,
 };
 
 pub const WKSTA_INFO_101 = extern struct {
     wki101_platform_id: u32,
-    wki101_computername: ?PWSTR,
-    wki101_langroup: ?PWSTR,
+    wki101_computername: ?[*:0]u16,
+    wki101_langroup: ?[*:0]u16,
     wki101_ver_major: u32,
     wki101_ver_minor: u32,
-    wki101_lanroot: ?PWSTR,
+    wki101_lanroot: ?[*:0]u16,
 };
 
 pub const WKSTA_INFO_1010 = extern struct {
@@ -5432,11 +5432,11 @@ pub const WKSTA_INFO_1018 = extern struct {
 
 pub const WKSTA_INFO_102 = extern struct {
     wki102_platform_id: u32,
-    wki102_computername: ?PWSTR,
-    wki102_langroup: ?PWSTR,
+    wki102_computername: ?[*:0]u16,
+    wki102_langroup: ?[*:0]u16,
     wki102_ver_major: u32,
     wki102_ver_minor: u32,
-    wki102_lanroot: ?PWSTR,
+    wki102_lanroot: ?[*:0]u16,
     wki102_logged_on_users: u32,
 };
 
@@ -5566,7 +5566,7 @@ pub const WKSTA_INFO_302 = extern struct {
     wki302_print_buf_time: u32,
     wki302_num_char_buf: u32,
     wki302_siz_char_buf: u32,
-    wki302_wrk_heuristics: ?PWSTR,
+    wki302_wrk_heuristics: ?[*:0]u16,
     wki302_mailslots: u32,
     wki302_num_dgram_buf: u32,
 };
@@ -5589,7 +5589,7 @@ pub const WKSTA_INFO_402 = extern struct {
     wki402_print_buf_time: u32,
     wki402_num_char_buf: u32,
     wki402_siz_char_buf: u32,
-    wki402_wrk_heuristics: ?PWSTR,
+    wki402_wrk_heuristics: ?[*:0]u16,
     wki402_mailslots: u32,
     wki402_num_dgram_buf: u32,
     wki402_max_threads: u32,
@@ -5636,24 +5636,24 @@ pub const WKSTA_INFO_502 = extern struct {
 pub const WKSTA_TRANSPORT_INFO_0 = extern struct {
     wkti0_quality_of_service: u32,
     wkti0_number_of_vcs: u32,
-    wkti0_transport_name: ?PWSTR,
-    wkti0_transport_address: ?PWSTR,
+    wkti0_transport_name: ?[*:0]u16,
+    wkti0_transport_address: ?[*:0]u16,
     wkti0_wan_ish: BOOL,
 };
 
 pub const WKSTA_USER_INFO_0 = extern struct {
-    wkui0_username: ?PWSTR,
+    wkui0_username: ?[*:0]u16,
 };
 
 pub const WKSTA_USER_INFO_1 = extern struct {
-    wkui1_username: ?PWSTR,
-    wkui1_logon_domain: ?PWSTR,
-    wkui1_oth_domains: ?PWSTR,
-    wkui1_logon_server: ?PWSTR,
+    wkui1_username: ?[*:0]u16,
+    wkui1_logon_domain: ?[*:0]u16,
+    wkui1_oth_domains: ?[*:0]u16,
+    wkui1_logon_server: ?[*:0]u16,
 };
 
 pub const WKSTA_USER_INFO_1101 = extern struct {
-    wkui1101_oth_domains: ?PWSTR,
+    wkui1101_oth_domains: ?[*:0]u16,
 };
 
 pub const WORKERFUNCTION = *const fn(
@@ -5682,14 +5682,14 @@ pub extern "netapi32" fn I_NetLogonControl2(
 pub extern "rtutils" fn LogErrorA(
     dwMessageId: u32,
     cNumberOfSubStrings: u32,
-    plpwsSubStrings: [*]?PSTR,
+    plpwsSubStrings: [*]?[*:0]u8,
     dwErrorCode: u32,
 ) callconv(.winapi) void;
 
 pub extern "rtutils" fn LogErrorW(
     dwMessageId: u32,
     cNumberOfSubStrings: u32,
-    plpwsSubStrings: [*]?PWSTR,
+    plpwsSubStrings: [*]?[*:0]u16,
     dwErrorCode: u32,
 ) callconv(.winapi) void;
 
@@ -5697,14 +5697,14 @@ pub extern "rtutils" fn LogEventA(
     wEventType: u32,
     dwMessageId: u32,
     cNumberOfSubStrings: u32,
-    plpwsSubStrings: [*]?PSTR,
+    plpwsSubStrings: [*]?[*:0]u8,
 ) callconv(.winapi) void;
 
 pub extern "rtutils" fn LogEventW(
     wEventType: u32,
     dwMessageId: u32,
     cNumberOfSubStrings: u32,
-    plpwsSubStrings: [*]?PWSTR,
+    plpwsSubStrings: [*]?[*:0]u16,
 ) callconv(.winapi) void;
 
 pub extern "rtutils" fn MprSetupProtocolEnum(
@@ -5780,9 +5780,9 @@ pub extern "netapi32" fn NetAddAlternateComputerName(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "netapi32" fn NetAddServiceAccount(
-    ServerName: ?PWSTR,
-    AccountName: ?PWSTR,
-    Password: ?PWSTR,
+    ServerName: ?[*:0]u16,
+    AccountName: ?[*:0]u16,
+    Password: ?[*:0]u16,
     Flags: u32,
 ) callconv(.winapi) NTSTATUS;
 
@@ -5881,7 +5881,7 @@ pub extern "netapi32" fn NetCreateProvisioningPackage(
     pProvisioningParams: ?*NETSETUP_PROVISIONING_PARAMS,
     ppPackageBinData: ?*?*u8,
     pdwPackageBinDataSize: ?*u32,
-    ppPackageTextData: ?*?PWSTR,
+    ppPackageTextData: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5890,12 +5890,12 @@ pub extern "netapi32" fn NetEnumerateComputerNames(
     NameType: NET_COMPUTER_NAME_TYPE,
     Reserved: u32,
     EntryCount: ?*u32,
-    ComputerNames: ?*?*?PWSTR,
+    ComputerNames: ?*?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "netapi32" fn NetEnumerateServiceAccounts(
-    ServerName: ?PWSTR,
+    ServerName: ?[*:0]u16,
     Flags: u32,
     AccountsCount: ?*u32,
     Accounts: ?*?*?*u16,
@@ -5909,7 +5909,7 @@ pub extern "netapi32" fn NetErrorLogClear(
 
 pub extern "netapi32" fn NetErrorLogRead(
     UncServerName: ?[*:0]const u16,
-    Reserved1: ?PWSTR,
+    Reserved1: ?[*:0]u16,
     ErrorLogHandle: ?*HLOG,
     Offset: u32,
     Reserved2: ?*u32,
@@ -5972,13 +5972,13 @@ pub extern "netapi32" fn NetGetJoinableOUs(
     lpAccount: ?[*:0]const u16,
     lpPassword: ?[*:0]const u16,
     OUCount: ?*u32,
-    OUs: ?*?*?PWSTR,
+    OUs: ?*?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetGetJoinInformation(
     lpServer: ?[*:0]const u16,
-    lpNameBuffer: ?*?PWSTR,
+    lpNameBuffer: ?*?[*:0]u16,
     BufferType: ?*NETSETUP_JOIN_STATUS,
 ) callconv(.winapi) u32;
 
@@ -6061,8 +6061,8 @@ pub extern "netapi32" fn NetGroupSetUsers(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "netapi32" fn NetIsServiceAccount(
-    ServerName: ?PWSTR,
-    AccountName: ?PWSTR,
+    ServerName: ?[*:0]u16,
+    AccountName: ?[*:0]u16,
     IsService: ?*BOOL,
 ) callconv(.winapi) NTSTATUS;
 
@@ -6218,7 +6218,7 @@ pub extern "netapi32" fn NetProvisionComputerAccount(
     dwOptions: NETSETUP_PROVISION,
     pProvisionBinData: ?*?*u8,
     pdwProvisionBinDataSize: ?*u32,
-    pProvisionTextData: ?*?PWSTR,
+    pProvisionTextData: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6234,8 +6234,8 @@ pub extern "netapi32" fn NetQueryDisplayInformation(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "netapi32" fn NetQueryServiceAccount(
-    ServerName: ?PWSTR,
-    AccountName: ?PWSTR,
+    ServerName: ?[*:0]u16,
+    AccountName: ?[*:0]u16,
     InfoLevel: u32,
     Buffer: ?*?*u8,
 ) callconv(.winapi) NTSTATUS;
@@ -6264,8 +6264,8 @@ pub extern "netapi32" fn NetRemoveAlternateComputerName(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "netapi32" fn NetRemoveServiceAccount(
-    ServerName: ?PWSTR,
-    AccountName: ?PWSTR,
+    ServerName: ?[*:0]u16,
+    AccountName: ?[*:0]u16,
     Flags: u32,
 ) callconv(.winapi) NTSTATUS;
 
@@ -6431,20 +6431,20 @@ pub extern "netapi32" fn NetScheduleJobGetInfo(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerComputerNameAdd(
-    ServerName: ?PWSTR,
-    EmulatedDomainName: ?PWSTR,
-    EmulatedServerName: ?PWSTR,
+    ServerName: ?[*:0]u16,
+    EmulatedDomainName: ?[*:0]u16,
+    EmulatedServerName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerComputerNameDel(
-    ServerName: ?PWSTR,
-    EmulatedServerName: ?PWSTR,
+    ServerName: ?[*:0]u16,
+    EmulatedServerName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerDiskEnum(
-    servername: ?PWSTR,
+    servername: ?[*:0]u16,
     level: u32,
     bufptr: ?*?*u8,
     prefmaxlen: u32,
@@ -6468,14 +6468,14 @@ pub extern "netapi32" fn NetServerEnum(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerGetInfo(
-    servername: ?PWSTR,
+    servername: ?[*:0]u16,
     level: u32,
     bufptr: ?*?*u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerSetInfo(
-    servername: ?PWSTR,
+    servername: ?[*:0]u16,
     level: u32,
     buf: ?*u8,
     ParmError: ?*u32,
@@ -6483,28 +6483,28 @@ pub extern "netapi32" fn NetServerSetInfo(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerTransportAdd(
-    servername: ?PWSTR,
+    servername: ?[*:0]u16,
     level: u32,
     bufptr: ?*u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerTransportAddEx(
-    servername: ?PWSTR,
+    servername: ?[*:0]u16,
     level: u32,
     bufptr: ?*u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerTransportDel(
-    servername: ?PWSTR,
+    servername: ?[*:0]u16,
     level: u32,
     bufptr: ?*u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetServerTransportEnum(
-    servername: ?PWSTR,
+    servername: ?[*:0]u16,
     level: u32,
     bufptr: ?*?*u8,
     prefmaxlen: u32,
@@ -6542,7 +6542,7 @@ pub extern "netapi32" fn NetServiceInstall(
     servername: ?[*:0]const u16,
     service: ?[*:0]const u16,
     argc: u32,
-    argv: [*]?PWSTR,
+    argv: [*]?[*:0]u16,
     bufptr: ?*?*u8,
 ) callconv(.winapi) u32;
 
@@ -6573,14 +6573,14 @@ pub extern "netapi32" fn NetUseAdd(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetUseDel(
-    UncServerName: ?PWSTR,
-    UseName: ?PWSTR,
+    UncServerName: ?[*:0]u16,
+    UseName: ?[*:0]u16,
     ForceLevelFlags: FORCE_LEVEL_FLAGS,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetUseEnum(
-    UncServerName: ?PWSTR,
+    UncServerName: ?[*:0]u16,
     LevelFlags: u32,
     BufPtr: ?*?*u8,
     PreferedMaximumSize: u32,
@@ -6591,8 +6591,8 @@ pub extern "netapi32" fn NetUseEnum(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetUseGetInfo(
-    UncServerName: ?PWSTR,
-    UseName: ?PWSTR,
+    UncServerName: ?[*:0]u16,
+    UseName: ?[*:0]u16,
     LevelFlags: u32,
     bufptr: ?*?*u8,
 ) callconv(.winapi) u32;
@@ -6720,14 +6720,14 @@ pub extern "netapi32" fn NetValidatePasswordPolicyFree(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetWkstaGetInfo(
-    servername: ?PWSTR,
+    servername: ?[*:0]u16,
     level: u32,
     bufptr: ?*?*u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetWkstaSetInfo(
-    servername: ?PWSTR,
+    servername: ?[*:0]u16,
     level: u32,
     buffer: ?*u8,
     parm_err: ?*u32,
@@ -6741,8 +6741,8 @@ pub extern "netapi32" fn NetWkstaTransportAdd(
 ) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetWkstaTransportDel(
-    servername: ?PWSTR,
-    transportname: ?PWSTR,
+    servername: ?[*:0]u16,
+    transportname: ?[*:0]u16,
     ucond: FORCE_LEVEL_FLAGS,
 ) callconv(.winapi) u32;
 
@@ -6759,7 +6759,7 @@ pub extern "netapi32" fn NetWkstaTransportEnum(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetWkstaUserEnum(
-    servername: ?PWSTR,
+    servername: ?[*:0]u16,
     level: u32,
     bufptr: ?*?*u8,
     prefmaxlen: u32,
@@ -6770,34 +6770,34 @@ pub extern "netapi32" fn NetWkstaUserEnum(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetWkstaUserGetInfo(
-    reserved: ?PWSTR,
+    reserved: ?[*:0]u16,
     level: u32,
     bufptr: ?*?*u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn NetWkstaUserSetInfo(
-    reserved: ?PWSTR,
+    reserved: ?[*:0]u16,
     level: u32,
     buf: ?*u8,
     parm_err: ?*u32,
 ) callconv(.winapi) u32;
 
 pub extern "rtutils" fn RouterAssert(
-    pszFailedAssertion: ?PSTR,
-    pszFileName: ?PSTR,
+    pszFailedAssertion: ?[*:0]u8,
+    pszFileName: ?[*:0]u8,
     dwLineNumber: u32,
-    pszMessage: ?PSTR,
+    pszMessage: ?[*:0]u8,
 ) callconv(.winapi) void;
 
 pub extern "rtutils" fn RouterGetErrorStringA(
     dwErrorCode: u32,
-    lplpszErrorString: ?*?PSTR,
+    lplpszErrorString: ?*?[*:0]u8,
 ) callconv(.winapi) u32;
 
 pub extern "rtutils" fn RouterGetErrorStringW(
     dwErrorCode: u32,
-    lplpwszErrorString: ?*?PWSTR,
+    lplpwszErrorString: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub extern "rtutils" fn RouterLogDeregisterA(
@@ -6813,7 +6813,7 @@ pub extern "rtutils" fn RouterLogEventA(
     dwEventType: u32,
     dwMessageId: u32,
     dwSubStringCount: u32,
-    plpszSubStringArray: ?[*]?PSTR,
+    plpszSubStringArray: ?[*]?[*:0]u8,
     dwErrorCode: u32,
 ) callconv(.winapi) void;
 
@@ -6822,7 +6822,7 @@ pub extern "rtutils" fn RouterLogEventDataA(
     dwEventType: u32,
     dwMessageId: u32,
     dwSubStringCount: u32,
-    plpszSubStringArray: ?[*]?PSTR,
+    plpszSubStringArray: ?[*]?[*:0]u8,
     dwDataBytes: u32,
     lpDataBytes: ?*u8,
 ) callconv(.winapi) void;
@@ -6832,7 +6832,7 @@ pub extern "rtutils" fn RouterLogEventDataW(
     dwEventType: u32,
     dwMessageId: u32,
     dwSubStringCount: u32,
-    plpszSubStringArray: ?[*]?PWSTR,
+    plpszSubStringArray: ?[*]?[*:0]u16,
     dwDataBytes: u32,
     lpDataBytes: ?*u8,
 ) callconv(.winapi) void;
@@ -6858,7 +6858,7 @@ pub extern "rtutils" fn RouterLogEventStringA(
     dwEventType: u32,
     dwMessageId: u32,
     dwSubStringCount: u32,
-    plpszSubStringArray: [*]?PSTR,
+    plpszSubStringArray: [*]?[*:0]u8,
     dwErrorCode: u32,
     dwErrorIndex: u32,
 ) callconv(.winapi) void;
@@ -6868,7 +6868,7 @@ pub extern "rtutils" fn RouterLogEventStringW(
     dwEventType: u32,
     dwMessageId: u32,
     dwSubStringCount: u32,
-    plpszSubStringArray: [*]?PWSTR,
+    plpszSubStringArray: [*]?[*:0]u16,
     dwErrorCode: u32,
     dwErrorIndex: u32,
 ) callconv(.winapi) void;
@@ -6896,7 +6896,7 @@ pub extern "rtutils" fn RouterLogEventW(
     dwEventType: u32,
     dwMessageId: u32,
     dwSubStringCount: u32,
-    plpszSubStringArray: ?[*]?PWSTR,
+    plpszSubStringArray: ?[*]?[*:0]u16,
     dwErrorCode: u32,
 ) callconv(.winapi) void;
 
@@ -7159,7 +7159,7 @@ pub const TraceVprintfEx = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (18)
+// Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -7176,8 +7176,6 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const IXMLDOMNodeList = @import("../data/xml/ms_xml.zig").IXMLDOMNodeList;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const PSID = @import("../foundation.zig").PSID;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SID_NAME_USE = @import("../security.zig").SID_NAME_USE;
 
 test {

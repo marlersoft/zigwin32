@@ -517,10 +517,10 @@ pub const IVdsAdmin = extern union {
             self: *const IVdsAdmin,
             providerId: Guid,
             providerClsid: Guid,
-            pwszName: ?PWSTR,
+            pwszName: ?[*:0]u16,
             type: VDS_PROVIDER_TYPE,
-            pwszMachineName: ?PWSTR,
-            pwszVersion: ?PWSTR,
+            pwszMachineName: ?[*:0]u16,
+            pwszVersion: ?[*:0]u16,
             guidVersionId: Guid,
         ) callconv(.winapi) HRESULT,
         UnregisterProvider: *const fn(
@@ -530,7 +530,7 @@ pub const IVdsAdmin = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterProvider(self: *const IVdsAdmin, providerId: Guid, providerClsid: Guid, pwszName: ?PWSTR, @"type": VDS_PROVIDER_TYPE, pwszMachineName: ?PWSTR, pwszVersion: ?PWSTR, guidVersionId: Guid) callconv(.@"inline") HRESULT {
+    pub fn RegisterProvider(self: *const IVdsAdmin, providerId: Guid, providerClsid: Guid, pwszName: ?[*:0]u16, @"type": VDS_PROVIDER_TYPE, pwszMachineName: ?[*:0]u16, pwszVersion: ?[*:0]u16, guidVersionId: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterProvider(self, providerId, providerClsid, pwszName, @"type", pwszMachineName, pwszVersion, guidVersionId);
     }
     pub fn UnregisterProvider(self: *const IVdsAdmin, providerId: Guid) callconv(.@"inline") HRESULT {
@@ -828,14 +828,14 @@ pub const IVdsHwProviderPrivate = extern union {
         base: IUnknown.VTable,
         QueryIfCreatedLun: *const fn(
             self: *const IVdsHwProviderPrivate,
-            pwszDevicePath: ?PWSTR,
+            pwszDevicePath: ?[*:0]u16,
             pVdsLunInformation: ?*VDS_LUN_INFORMATION,
             pLunId: ?*Guid,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryIfCreatedLun(self: *const IVdsHwProviderPrivate, pwszDevicePath: ?PWSTR, pVdsLunInformation: ?*VDS_LUN_INFORMATION, pLunId: ?*Guid) callconv(.@"inline") HRESULT {
+    pub fn QueryIfCreatedLun(self: *const IVdsHwProviderPrivate, pwszDevicePath: ?[*:0]u16, pVdsLunInformation: ?*VDS_LUN_INFORMATION, pLunId: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.QueryIfCreatedLun(self, pwszDevicePath, pVdsLunInformation, pLunId);
     }
 };
@@ -877,7 +877,7 @@ pub const IVdsHwProviderStoragePools = extern union {
             type: VDS_LUN_TYPE,
             ullSizeInBytes: u64,
             StoragePoolId: Guid,
-            pwszUnmaskingList: ?PWSTR,
+            pwszUnmaskingList: ?[*:0]u16,
             pHints2: ?*VDS_HINTS2,
             ppAsync: ?*?*IVdsAsync,
         ) callconv(.winapi) HRESULT,
@@ -894,7 +894,7 @@ pub const IVdsHwProviderStoragePools = extern union {
     pub fn QueryStoragePools(self: *const IVdsHwProviderStoragePools, ulFlags: u32, ullRemainingFreeSpace: u64, pPoolAttributes: ?*VDS_POOL_ATTRIBUTES, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
         return self.vtable.QueryStoragePools(self, ulFlags, ullRemainingFreeSpace, pPoolAttributes, ppEnum);
     }
-    pub fn CreateLunInStoragePool(self: *const IVdsHwProviderStoragePools, @"type": VDS_LUN_TYPE, ullSizeInBytes: u64, StoragePoolId: Guid, pwszUnmaskingList: ?PWSTR, pHints2: ?*VDS_HINTS2, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
+    pub fn CreateLunInStoragePool(self: *const IVdsHwProviderStoragePools, @"type": VDS_LUN_TYPE, ullSizeInBytes: u64, StoragePoolId: Guid, pwszUnmaskingList: ?[*:0]u16, pHints2: ?*VDS_HINTS2, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
         return self.vtable.CreateLunInStoragePool(self, @"type", ullSizeInBytes, StoragePoolId, pwszUnmaskingList, pHints2, ppAsync);
     }
     pub fn QueryMaxLunCreateSizeInStoragePool(self: *const IVdsHwProviderStoragePools, @"type": VDS_LUN_TYPE, StoragePoolId: Guid, pHints2: ?*VDS_HINTS2, pullMaxLunSize: ?*u64) callconv(.@"inline") HRESULT {
@@ -1089,21 +1089,21 @@ pub const IVdsIscsiTarget = extern union {
         ) callconv(.winapi) HRESULT,
         SetFriendlyName: *const fn(
             self: *const IVdsIscsiTarget,
-            pwszFriendlyName: ?PWSTR,
+            pwszFriendlyName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetSharedSecret: *const fn(
             self: *const IVdsIscsiTarget,
             pTargetSharedSecret: ?*VDS_ISCSI_SHARED_SECRET,
-            pwszInitiatorName: ?PWSTR,
+            pwszInitiatorName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         RememberInitiatorSharedSecret: *const fn(
             self: *const IVdsIscsiTarget,
-            pwszInitiatorName: ?PWSTR,
+            pwszInitiatorName: ?[*:0]u16,
             pInitiatorSharedSecret: ?*VDS_ISCSI_SHARED_SECRET,
         ) callconv(.winapi) HRESULT,
         GetConnectedInitiators: *const fn(
             self: *const IVdsIscsiTarget,
-            pppwszInitiatorList: [*]?*?PWSTR,
+            pppwszInitiatorList: [*]?*?[*:0]u16,
             plNumberOfInitiators: ?*i32,
         ) callconv(.winapi) HRESULT,
     };
@@ -1127,16 +1127,16 @@ pub const IVdsIscsiTarget = extern union {
     pub fn Delete(self: *const IVdsIscsiTarget, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self, ppAsync);
     }
-    pub fn SetFriendlyName(self: *const IVdsIscsiTarget, pwszFriendlyName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetFriendlyName(self: *const IVdsIscsiTarget, pwszFriendlyName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetFriendlyName(self, pwszFriendlyName);
     }
-    pub fn SetSharedSecret(self: *const IVdsIscsiTarget, pTargetSharedSecret: ?*VDS_ISCSI_SHARED_SECRET, pwszInitiatorName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetSharedSecret(self: *const IVdsIscsiTarget, pTargetSharedSecret: ?*VDS_ISCSI_SHARED_SECRET, pwszInitiatorName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetSharedSecret(self, pTargetSharedSecret, pwszInitiatorName);
     }
-    pub fn RememberInitiatorSharedSecret(self: *const IVdsIscsiTarget, pwszInitiatorName: ?PWSTR, pInitiatorSharedSecret: ?*VDS_ISCSI_SHARED_SECRET) callconv(.@"inline") HRESULT {
+    pub fn RememberInitiatorSharedSecret(self: *const IVdsIscsiTarget, pwszInitiatorName: ?[*:0]u16, pInitiatorSharedSecret: ?*VDS_ISCSI_SHARED_SECRET) callconv(.@"inline") HRESULT {
         return self.vtable.RememberInitiatorSharedSecret(self, pwszInitiatorName, pInitiatorSharedSecret);
     }
-    pub fn GetConnectedInitiators(self: *const IVdsIscsiTarget, pppwszInitiatorList: [*]?*?PWSTR, plNumberOfInitiators: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn GetConnectedInitiators(self: *const IVdsIscsiTarget, pppwszInitiatorList: [*]?*?[*:0]u16, plNumberOfInitiators: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetConnectedInitiators(self, pppwszInitiatorList, plNumberOfInitiators);
     }
 };
@@ -1195,7 +1195,7 @@ pub const IVdsLun = extern union {
         ) callconv(.winapi) HRESULT,
         SetMask: *const fn(
             self: *const IVdsLun,
-            pwszUnmaskingList: ?PWSTR,
+            pwszUnmaskingList: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IVdsLun,
@@ -1258,7 +1258,7 @@ pub const IVdsLun = extern union {
     pub fn Recover(self: *const IVdsLun, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
         return self.vtable.Recover(self, ppAsync);
     }
-    pub fn SetMask(self: *const IVdsLun, pwszUnmaskingList: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetMask(self: *const IVdsLun, pwszUnmaskingList: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetMask(self, pwszUnmaskingList);
     }
     pub fn Delete(self: *const IVdsLun) callconv(.@"inline") HRESULT {
@@ -1412,12 +1412,12 @@ pub const IVdsLunNaming = extern union {
         base: IUnknown.VTable,
         SetFriendlyName: *const fn(
             self: *const IVdsLunNaming,
-            pwszFriendlyName: ?PWSTR,
+            pwszFriendlyName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetFriendlyName(self: *const IVdsLunNaming, pwszFriendlyName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetFriendlyName(self: *const IVdsLunNaming, pwszFriendlyName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetFriendlyName(self, pwszFriendlyName);
     }
 };
@@ -1552,7 +1552,7 @@ pub const IVdsProviderPrivate = extern union {
         ) callconv(.winapi) HRESULT,
         OnLoad: *const fn(
             self: *const IVdsProviderPrivate,
-            pwszMachineName: ?PWSTR,
+            pwszMachineName: ?[*:0]u16,
             pCallbackObject: ?*IUnknown,
         ) callconv(.winapi) HRESULT,
         OnUnload: *const fn(
@@ -1565,7 +1565,7 @@ pub const IVdsProviderPrivate = extern union {
     pub fn GetObject(self: *const IVdsProviderPrivate, ObjectId: Guid, @"type": VDS_OBJECT_TYPE, ppObjectUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetObject(self, ObjectId, @"type", ppObjectUnk);
     }
-    pub fn OnLoad(self: *const IVdsProviderPrivate, pwszMachineName: ?PWSTR, pCallbackObject: ?*IUnknown) callconv(.@"inline") HRESULT {
+    pub fn OnLoad(self: *const IVdsProviderPrivate, pwszMachineName: ?[*:0]u16, pCallbackObject: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.OnLoad(self, pwszMachineName, pCallbackObject);
     }
     pub fn OnUnload(self: *const IVdsProviderPrivate, bForceUnload: BOOL) callconv(.@"inline") HRESULT {
@@ -1693,7 +1693,7 @@ pub const IVdsSubSystem = extern union {
             ullSizeInBytes: u64,
             pDriveIdArray: ?[*]Guid,
             lNumberOfDrives: i32,
-            pwszUnmaskingList: ?PWSTR,
+            pwszUnmaskingList: ?[*:0]u16,
             pHints: ?*VDS_HINTS,
             ppAsync: ?*?*IVdsAsync,
         ) callconv(.winapi) HRESULT,
@@ -1741,7 +1741,7 @@ pub const IVdsSubSystem = extern union {
     pub fn SetControllerStatus(self: *const IVdsSubSystem, pOnlineControllerIdArray: [*]Guid, lNumberOfOnlineControllers: i32, pOfflineControllerIdArray: [*]Guid, lNumberOfOfflineControllers: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetControllerStatus(self, pOnlineControllerIdArray, lNumberOfOnlineControllers, pOfflineControllerIdArray, lNumberOfOfflineControllers);
     }
-    pub fn CreateLun(self: *const IVdsSubSystem, @"type": VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: ?PWSTR, pHints: ?*VDS_HINTS, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
+    pub fn CreateLun(self: *const IVdsSubSystem, @"type": VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: ?[*:0]u16, pHints: ?*VDS_HINTS, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
         return self.vtable.CreateLun(self, @"type", ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints, ppAsync);
     }
     pub fn ReplaceDrive(self: *const IVdsSubSystem, DriveToBeReplaced: Guid, ReplacementDrive: Guid) callconv(.@"inline") HRESULT {
@@ -1778,7 +1778,7 @@ pub const IVdsSubSystem2 = extern union {
             ullSizeInBytes: u64,
             pDriveIdArray: ?[*]Guid,
             lNumberOfDrives: i32,
-            pwszUnmaskingList: ?PWSTR,
+            pwszUnmaskingList: ?[*:0]u16,
             pHints2: ?*VDS_HINTS2,
             ppAsync: ?*?*IVdsAsync,
         ) callconv(.winapi) HRESULT,
@@ -1799,7 +1799,7 @@ pub const IVdsSubSystem2 = extern union {
     pub fn GetDrive2(self: *const IVdsSubSystem2, sBusNumber: i16, sSlotNumber: i16, ulEnclosureNumber: u32, ppDrive: ?*?*IVdsDrive) callconv(.@"inline") HRESULT {
         return self.vtable.GetDrive2(self, sBusNumber, sSlotNumber, ulEnclosureNumber, ppDrive);
     }
-    pub fn CreateLun2(self: *const IVdsSubSystem2, @"type": VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: ?PWSTR, pHints2: ?*VDS_HINTS2, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
+    pub fn CreateLun2(self: *const IVdsSubSystem2, @"type": VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: ?[*:0]u16, pHints2: ?*VDS_HINTS2, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
         return self.vtable.CreateLun2(self, @"type", ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints2, ppAsync);
     }
     pub fn QueryMaxLunCreateSize2(self: *const IVdsSubSystem2, @"type": VDS_LUN_TYPE, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pHints2: ?*VDS_HINTS2, pullMaxLunSize: ?*u64) callconv(.@"inline") HRESULT {
@@ -1841,8 +1841,8 @@ pub const IVdsSubSystemIscsi = extern union {
         ) callconv(.winapi) HRESULT,
         CreateTarget: *const fn(
             self: *const IVdsSubSystemIscsi,
-            pwszIscsiName: ?PWSTR,
-            pwszFriendlyName: ?PWSTR,
+            pwszIscsiName: ?[*:0]u16,
+            pwszFriendlyName: ?[*:0]u16,
             ppAsync: ?*?*IVdsAsync,
         ) callconv(.winapi) HRESULT,
         SetIpsecGroupPresharedKey: *const fn(
@@ -1858,7 +1858,7 @@ pub const IVdsSubSystemIscsi = extern union {
     pub fn QueryPortals(self: *const IVdsSubSystemIscsi, ppEnum: ?*?*IEnumVdsObject) callconv(.@"inline") HRESULT {
         return self.vtable.QueryPortals(self, ppEnum);
     }
-    pub fn CreateTarget(self: *const IVdsSubSystemIscsi, pwszIscsiName: ?PWSTR, pwszFriendlyName: ?PWSTR, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
+    pub fn CreateTarget(self: *const IVdsSubSystemIscsi, pwszIscsiName: ?[*:0]u16, pwszFriendlyName: ?[*:0]u16, ppAsync: ?*?*IVdsAsync) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTarget(self, pwszIscsiName, pwszFriendlyName, ppAsync);
     }
     pub fn SetIpsecGroupPresharedKey(self: *const IVdsSubSystemIscsi, pIpsecKey: ?*VDS_ISCSI_IPSEC_KEY) callconv(.@"inline") HRESULT {
@@ -1874,12 +1874,12 @@ pub const IVdsSubSystemNaming = extern union {
         base: IUnknown.VTable,
         SetFriendlyName: *const fn(
             self: *const IVdsSubSystemNaming,
-            pwszFriendlyName: ?PWSTR,
+            pwszFriendlyName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetFriendlyName(self: *const IVdsSubSystemNaming, pwszFriendlyName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetFriendlyName(self: *const IVdsSubSystemNaming, pwszFriendlyName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetFriendlyName(self, pwszFriendlyName);
     }
 };
@@ -1997,8 +1997,8 @@ pub const VDS_CONTROLLER_NOTIFICATION = extern struct {
 
 pub const VDS_CONTROLLER_PROP = extern struct {
     id: Guid,
-    pwszFriendlyName: ?PWSTR,
-    pwszIdentification: ?PWSTR,
+    pwszFriendlyName: ?[*:0]u16,
+    pwszIdentification: ?[*:0]u16,
     status: VDS_CONTROLLER_STATUS,
     health: VDS_HEALTH,
     sNumberOfPorts: i16,
@@ -2058,8 +2058,8 @@ pub const VDS_DRIVE_NOTIFICATION = extern struct {
 pub const VDS_DRIVE_PROP = extern struct {
     id: Guid,
     ullSize: u64,
-    pwszFriendlyName: ?PWSTR,
-    pwszIdentification: ?PWSTR,
+    pwszFriendlyName: ?[*:0]u16,
+    pwszIdentification: ?[*:0]u16,
     ulFlags: u32,
     status: VDS_DRIVE_STATUS,
     health: VDS_HEALTH,
@@ -2070,8 +2070,8 @@ pub const VDS_DRIVE_PROP = extern struct {
 pub const VDS_DRIVE_PROP2 = extern struct {
     id: Guid,
     ullSize: u64,
-    pwszFriendlyName: ?PWSTR,
-    pwszIdentification: ?PWSTR,
+    pwszFriendlyName: ?[*:0]u16,
+    pwszIdentification: ?[*:0]u16,
     ulFlags: u32,
     status: VDS_DRIVE_STATUS,
     health: VDS_HEALTH,
@@ -2358,7 +2358,7 @@ pub const VDS_IAT_MUTUAL_CHAP = VDS_ISCSI_AUTH_TYPE.MUTUAL_CHAP;
 
 pub const VDS_ISCSI_INITIATOR_ADAPTER_PROP = extern struct {
     id: Guid,
-    pwszName: ?PWSTR,
+    pwszName: ?[*:0]u16,
 };
 
 pub const VDS_ISCSI_INITIATOR_PORTAL_PROP = extern struct {
@@ -2436,8 +2436,8 @@ pub const VDS_ISCSI_SHARED_SECRET = extern struct {
 
 pub const VDS_ISCSI_TARGET_PROP = extern struct {
     id: Guid,
-    pwszIscsiName: ?PWSTR,
-    pwszFriendlyName: ?PWSTR,
+    pwszIscsiName: ?[*:0]u16,
+    pwszFriendlyName: ?[*:0]u16,
     bChapEnabled: BOOL,
 };
 
@@ -2574,9 +2574,9 @@ pub const VDS_LPT_RAID60 = VDS_LUN_PLEX_TYPE.RAID60;
 pub const VDS_LUN_PROP = extern struct {
     id: Guid,
     ullSize: u64,
-    pwszFriendlyName: ?PWSTR,
-    pwszIdentification: ?PWSTR,
-    pwszUnmaskingList: ?PWSTR,
+    pwszFriendlyName: ?[*:0]u16,
+    pwszIdentification: ?[*:0]u16,
+    pwszUnmaskingList: ?[*:0]u16,
     ulFlags: u32,
     type: VDS_LUN_TYPE,
     status: VDS_LUN_STATUS,
@@ -2899,7 +2899,7 @@ pub const VDS_POOL_ATTRIBUTES = extern struct {
     ullAttributeMask: u64,
     raidType: VDS_RAID_TYPE,
     busType: VDS_STORAGE_BUS_TYPE,
-    pwszIntendedUsage: ?PWSTR,
+    pwszIntendedUsage: ?[*:0]u16,
     bSpinDown: BOOL,
     bIsThinProvisioned: BOOL,
     ullProvisionedSpace: u64,
@@ -2937,8 +2937,8 @@ pub const VDS_POOL_ATTRIBUTES = extern struct {
 };
 
 pub const VDS_POOL_CUSTOM_ATTRIBUTES = extern struct {
-    pwszName: ?PWSTR,
-    pwszValue: ?PWSTR,
+    pwszName: ?[*:0]u16,
+    pwszValue: ?[*:0]u16,
 };
 
 pub const VDS_PORT_NOTIFICATION = extern struct {
@@ -2948,8 +2948,8 @@ pub const VDS_PORT_NOTIFICATION = extern struct {
 
 pub const VDS_PORT_PROP = extern struct {
     id: Guid,
-    pwszFriendlyName: ?PWSTR,
-    pwszIdentification: ?PWSTR,
+    pwszFriendlyName: ?[*:0]u16,
+    pwszIdentification: ?[*:0]u16,
     status: VDS_PORT_STATUS,
 };
 
@@ -3020,9 +3020,9 @@ pub const VDS_LBF_VENDOR_SPECIFIC = VDS_PROVIDER_LBSUPPORT_FLAG.VENDOR_SPECIFIC;
 
 pub const VDS_PROVIDER_PROP = extern struct {
     id: Guid,
-    pwszName: ?PWSTR,
+    pwszName: ?[*:0]u16,
     guidVersionId: Guid,
-    pwszVersion: ?PWSTR,
+    pwszVersion: ?[*:0]u16,
     type: VDS_PROVIDER_TYPE,
     ulFlags: u32,
     ulStripeSizeFlags: u32,
@@ -3200,8 +3200,8 @@ pub const VDS_STORAGE_POOL_PROP = extern struct {
     status: VDS_STORAGE_POOL_STATUS,
     health: VDS_HEALTH,
     type: VDS_STORAGE_POOL_TYPE,
-    pwszName: ?PWSTR,
-    pwszDescription: ?PWSTR,
+    pwszName: ?[*:0]u16,
+    pwszDescription: ?[*:0]u16,
     ullTotalConsumedSpace: u64,
     ullTotalManagedSpace: u64,
     ullRemainingFreeSpace: u64,
@@ -3285,8 +3285,8 @@ pub const VDS_SUB_SYSTEM_NOTIFICATION = extern struct {
 
 pub const VDS_SUB_SYSTEM_PROP = extern struct {
     id: Guid,
-    pwszFriendlyName: ?PWSTR,
-    pwszIdentification: ?PWSTR,
+    pwszFriendlyName: ?[*:0]u16,
+    pwszIdentification: ?[*:0]u16,
     ulFlags: u32,
     ulStripeSizeFlags: u32,
     status: VDS_SUB_SYSTEM_STATUS,
@@ -3299,8 +3299,8 @@ pub const VDS_SUB_SYSTEM_PROP = extern struct {
 
 pub const VDS_SUB_SYSTEM_PROP2 = extern struct {
     id: Guid,
-    pwszFriendlyName: ?PWSTR,
-    pwszIdentification: ?PWSTR,
+    pwszFriendlyName: ?[*:0]u16,
+    pwszIdentification: ?[*:0]u16,
     ulFlags: u32,
     ulStripeSizeFlags: u32,
     ulSupportedRaidTypeFlags: u32,
@@ -3416,13 +3416,12 @@ pub const VDS_WWN = extern struct {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

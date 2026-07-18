@@ -596,13 +596,12 @@ pub extern "projectedfslib" fn PrjWritePlaceholderInfo2(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

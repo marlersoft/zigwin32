@@ -125,14 +125,13 @@ pub extern "prntvpt" fn PTReleaseMemory(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const BSTR = @import("../../foundation.zig").BSTR;
 const DEVMODEA = @import("../../graphics/gdi.zig").DEVMODEA;
 const HPTPROVIDER = @import("../../storage/xps.zig").HPTPROVIDER;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IStream = @import("../../system/com.zig").IStream;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

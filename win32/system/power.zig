@@ -931,10 +931,10 @@ pub const PWRSCHEMESENUMPROC = *const fn(
     Index: u32,
     NameSize: u32,
     /// parameter "NameSize" is the size in bytes
-    Name: ?PWSTR,
+    Name: ?[*:0]u16,
     DescriptionSize: u32,
     /// parameter "DescriptionSize" is the size in bytes
-    Description: ?PWSTR,
+    Description: ?[*:0]u16,
     Policy: ?*POWER_POLICY,
     Context: LPARAM,
 ) callconv(.winapi) BOOLEAN;
@@ -1101,7 +1101,7 @@ pub const THERMAL_EVENT = extern struct {
     Type: u32,
     Temperature: u32,
     TripPointTemperature: u32,
-    Initiator: ?PWSTR,
+    Initiator: ?[*:0]u16,
 };
 
 pub const THERMAL_INFORMATION = extern struct {
@@ -1876,7 +1876,7 @@ pub extern "powrprof" fn WritePwrScheme(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (13)
+// Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -1887,7 +1887,6 @@ const HKEY = @import("../system/registry.zig").HKEY;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const LPARAM = @import("../foundation.zig").LPARAM;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const REASON_CONTEXT = @import("../system/threading.zig").REASON_CONTEXT;
 const REG_SAM_FLAGS = @import("../system/registry.zig").REG_SAM_FLAGS;
 const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;

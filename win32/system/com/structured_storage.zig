@@ -94,7 +94,7 @@ pub const CABSTRBLOB = extern struct {
 
 pub const CAC = extern struct {
     cElems: u32,
-    pElems: ?PSTR,
+    pElems: ?[*:0]u8,
 };
 
 pub const CACLIPDATA = extern struct {
@@ -149,12 +149,12 @@ pub const CAL = extern struct {
 
 pub const CALPSTR = extern struct {
     cElems: u32,
-    pElems: ?*?PSTR,
+    pElems: ?*?[*:0]u8,
 };
 
 pub const CALPWSTR = extern struct {
     cElems: u32,
-    pElems: ?*?PWSTR,
+    pElems: ?*?[*:0]u16,
 };
 
 pub const CAPROPVARIANT = extern struct {
@@ -409,7 +409,7 @@ pub const ILayoutStorage = extern union {
         ) callconv(.winapi) HRESULT,
         ReLayoutDocfile: *const fn(
             self: *const ILayoutStorage,
-            pwcsNewDfName: ?PWSTR,
+            pwcsNewDfName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         ReLayoutDocfileOnILockBytes: *const fn(
             self: *const ILayoutStorage,
@@ -427,7 +427,7 @@ pub const ILayoutStorage = extern union {
     pub fn EndMonitor(self: *const ILayoutStorage) callconv(.@"inline") HRESULT {
         return self.vtable.EndMonitor(self);
     }
-    pub fn ReLayoutDocfile(self: *const ILayoutStorage, pwcsNewDfName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn ReLayoutDocfile(self: *const ILayoutStorage, pwcsNewDfName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.ReLayoutDocfile(self, pwcsNewDfName);
     }
     pub fn ReLayoutDocfileOnILockBytes(self: *const ILayoutStorage, pILockBytes: ?*ILockBytes) callconv(.@"inline") HRESULT {
@@ -717,7 +717,7 @@ pub const IPropertyStorage = extern union {
             self: *const IPropertyStorage,
             cpropid: u32,
             rgpropid: [*]const u32,
-            rglpwstrName: [*]?PWSTR,
+            rglpwstrName: [*]?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         WritePropertyNames: *const fn(
             self: *const IPropertyStorage,
@@ -767,7 +767,7 @@ pub const IPropertyStorage = extern union {
     pub fn DeleteMultiple(self: *const IPropertyStorage, cpspec: u32, rgpspec: [*]const PROPSPEC) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteMultiple(self, cpspec, rgpspec);
     }
-    pub fn ReadPropertyNames(self: *const IPropertyStorage, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn ReadPropertyNames(self: *const IPropertyStorage, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.ReadPropertyNames(self, cpropid, rgpropid, rglpwstrName);
     }
     pub fn WritePropertyNames(self: *const IPropertyStorage, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]const ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -804,12 +804,12 @@ pub const IRootStorage = extern union {
         base: IUnknown.VTable,
         SwitchToFile: *const fn(
             self: *const IRootStorage,
-            pszFile: ?PWSTR,
+            pszFile: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SwitchToFile(self: *const IRootStorage, pszFile: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SwitchToFile(self: *const IRootStorage, pszFile: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SwitchToFile(self, pszFile);
     }
 };
@@ -1002,7 +1002,7 @@ pub const PROPBAG2 = extern struct {
     vt: VARENUM,
     cfType: u16,
     dwHint: u32,
-    pstrName: ?PWSTR,
+    pstrName: ?[*:0]u16,
     clsid: Guid,
 };
 
@@ -1010,7 +1010,7 @@ pub const PROPSPEC = extern struct {
     ulKind: PROPSPEC_KIND,
     Anonymous: extern union {
         propid: u32,
-        lpwstr: ?PWSTR,
+        lpwstr: ?[*:0]u16,
     },
 };
 
@@ -1052,8 +1052,8 @@ pub const PROPVARIANT = extern struct {
                 bstrVal: ?BSTR,
                 bstrblobVal: BSTRBLOB,
                 blob: BLOB,
-                pszVal: ?PSTR,
-                pwszVal: ?PWSTR,
+                pszVal: ?[*:0]u8,
+                pwszVal: ?[*:0]u16,
                 punkVal: ?*IUnknown,
                 pdispVal: ?*IDispatch,
                 pStream: ?*IStream,
@@ -1082,7 +1082,7 @@ pub const PROPVARIANT = extern struct {
                 calpstr: CALPSTR,
                 calpwstr: CALPWSTR,
                 capropvar: CAPROPVARIANT,
-                pcVal: ?PSTR,
+                pcVal: ?[*:0]u8,
                 pbVal: ?*u8,
                 piVal: ?*i16,
                 puiVal: ?*u16,
@@ -1130,7 +1130,7 @@ pub const STATPROPSETSTG = extern struct {
 };
 
 pub const STATPROPSTG = extern struct {
-    lpwstrName: ?PWSTR,
+    lpwstrName: ?[*:0]u16,
     propid: u32,
     vt: VARENUM,
 };
@@ -1182,7 +1182,7 @@ pub extern "ole32" fn CoGetInstanceFromFile(
     punkOuter: ?*IUnknown,
     dwClsCtx: CLSCTX,
     grfMode: u32,
-    pwszName: ?PWSTR,
+    pwszName: ?[*:0]u16,
     dwCount: u32,
     pResults: [*]MULTI_QI,
 ) callconv(.winapi) HRESULT;
@@ -1222,7 +1222,7 @@ pub extern "ole32" fn CreateStreamOnHGlobal(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn FmtIdToPropStgName(
     pfmtid: ?*const Guid,
-    oszName: ?PWSTR,
+    oszName: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1316,7 +1316,7 @@ pub extern "ole32" fn ReadClassStm(
 pub extern "ole32" fn ReadFmtUserTypeStg(
     pstg: ?*IStorage,
     pcf: ?*u16,
-    lplpszUserType: ?*?PWSTR,
+    lplpszUserType: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1512,7 +1512,7 @@ pub extern "ole32" fn WriteClassStm(
 pub extern "ole32" fn WriteFmtUserTypeStg(
     pstg: ?*IStorage,
     cf: u16,
-    lpszUserType: ?PWSTR,
+    lpszUserType: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 
@@ -1520,7 +1520,7 @@ pub extern "ole32" fn WriteFmtUserTypeStg(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (35)
+// Section: Imports (33)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BLOB = @import("../../system/com.zig").BLOB;
@@ -1544,8 +1544,6 @@ const LARGE_INTEGER = @import("../../foundation.zig").LARGE_INTEGER;
 const LOCKTYPE = @import("../../system/com.zig").LOCKTYPE;
 const MULTI_QI = @import("../../system/com.zig").MULTI_QI;
 const PSECURITY_DESCRIPTOR = @import("../../security.zig").PSECURITY_DESCRIPTOR;
-const PSTR = @import("../../foundation.zig").PSTR;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const SAFEARRAY = @import("../../system/com.zig").SAFEARRAY;
 const STATFLAG = @import("../../system/com.zig").STATFLAG;
 const STATSTG = @import("../../system/com.zig").STATSTG;

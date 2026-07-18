@@ -81,7 +81,7 @@ pub const NS_CONTEXT_ATTRIBUTES = extern struct {
         },
         _ullAlign: u64,
     },
-    pwszContext: ?PWSTR,
+    pwszContext: ?[*:0]u16,
     guidHelper: Guid,
     dwFlags: u32,
     ulPriority: u32,
@@ -148,7 +148,7 @@ pub const NS_REQ_ONE_OR_MORE = NS_REQS.ONE_OR_MORE;
 
 pub const PFN_HANDLE_CMD = *const fn(
     pwszMachine: ?[*:0]const u16,
-    ppwcArguments: [*]?PWSTR,
+    ppwcArguments: [*]?[*:0]u16,
     dwCurrentIndex: u32,
     dwArgCount: u32,
     dwFlags: u32,
@@ -158,7 +158,7 @@ pub const PFN_HANDLE_CMD = *const fn(
 
 pub const PGET_RESOURCE_STRING_FN = *const fn(
     dwMsgID: u32,
-    lpBuffer: ?PWSTR,
+    lpBuffer: ?[*:0]u16,
     nBufferMax: u32,
 ) callconv(.winapi) u32;
 
@@ -172,7 +172,7 @@ pub const PNS_CONTEXT_CONNECT_FN = *const fn(
 
 pub const PNS_CONTEXT_DUMP_FN = *const fn(
     pwszRouter: ?[*:0]const u16,
-    ppwcArguments: [*]?PWSTR,
+    ppwcArguments: [*]?[*:0]u16,
     dwArgCount: u32,
     pvData: ?*const anyopaque,
 ) callconv(.winapi) u32;
@@ -239,7 +239,7 @@ pub extern "netsh" fn MatchToken(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netsh" fn PreprocessCommand(
     hModule: ?HANDLE,
-    ppwcArguments: [*]?PWSTR,
+    ppwcArguments: [*]?[*:0]u16,
     dwCurrentIndex: u32,
     dwArgCount: u32,
     pttTags: ?[*]TAG_TYPE,
@@ -282,12 +282,11 @@ pub extern "netsh" fn RegisterHelper(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -2878,7 +2878,7 @@ pub const AUTHENTICODE_TS_EXTRA_CERT_CHAIN_POLICY_PARA = extern struct {
 pub const BCRYPT_ALG_HANDLE = BCRYPT_HANDLE;
 
 pub const BCRYPT_ALGORITHM_IDENTIFIER = extern struct {
-    pszName: ?PWSTR,
+    pszName: ?[*:0]u16,
     dwClass: u32,
     dwFlags: u32,
 };
@@ -2964,7 +2964,7 @@ pub const BCRYPT_DSA_PARAMETER_HEADER_V2 = extern struct {
 
 pub const BCRYPT_ECC_CURVE_NAMES = extern struct {
     dwEccCurveNames: u32,
-    pEccCurveNames: ?*?PWSTR,
+    pEccCurveNames: ?*?[*:0]u16,
 };
 
 pub const BCRYPT_ECCFULLKEY_BLOB = extern struct {
@@ -3166,7 +3166,7 @@ pub const BCRYPT_PKCS1_PADDING_INFO = extern struct {
 };
 
 pub const BCRYPT_PROVIDER_NAME = extern struct {
-    pszProviderName: ?PWSTR,
+    pszProviderName: ?[*:0]u16,
 };
 
 pub const BCRYPT_PSS_PADDING_INFO = extern struct {
@@ -3329,7 +3329,7 @@ pub const ENUM_CEPSETUPPROP_URL = CEPSetupProperty.URL;
 pub const ENUM_CEPSETUPPROP_KEYBASED_RENEWAL = CEPSetupProperty.KEYBASED_RENEWAL;
 
 pub const CERT_ACCESS_DESCRIPTION = extern struct {
-    pszAccessMethod: ?PSTR,
+    pszAccessMethod: ?[*:0]u8,
     AccessLocation: CERT_ALT_NAME_ENTRY,
 };
 
@@ -3337,12 +3337,12 @@ pub const CERT_ALT_NAME_ENTRY = extern struct {
     dwAltNameChoice: u32,
     Anonymous: extern union {
         pOtherName: ?*CERT_OTHER_NAME,
-        pwszRfc822Name: ?PWSTR,
-        pwszDNSName: ?PWSTR,
+        pwszRfc822Name: ?[*:0]u16,
+        pwszDNSName: ?[*:0]u16,
         DirectoryName: CRYPT_INTEGER_BLOB,
-        pwszURL: ?PWSTR,
+        pwszURL: ?[*:0]u16,
         IPAddress: CRYPT_INTEGER_BLOB,
-        pszRegisteredID: ?PSTR,
+        pszRegisteredID: ?[*:0]u8,
     },
 };
 
@@ -3386,7 +3386,7 @@ pub const CERT_BIOMETRIC_DATA = extern struct {
     dwTypeOfBiometricDataChoice: CERT_BIOMETRIC_DATA_TYPE,
     Anonymous: extern union {
         dwPredefined: u32,
-        pszObjId: ?PSTR,
+        pszObjId: ?[*:0]u8,
     },
     HashedUrl: CERT_HASHED_URL,
 };
@@ -3601,7 +3601,7 @@ pub const CERT_ECC_SIGNATURE = extern struct {
 };
 
 pub const CERT_EXTENSION = extern struct {
-    pszObjId: ?PSTR,
+    pszObjId: ?[*:0]u8,
     fCritical: BOOL,
     Value: CRYPT_INTEGER_BLOB,
 };
@@ -3867,7 +3867,7 @@ pub const CERT_GENERAL_SUBTREE = extern struct {
 pub const CERT_HASHED_URL = extern struct {
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     Hash: CRYPT_INTEGER_BLOB,
-    pwszUrl: ?PWSTR,
+    pwszUrl: ?[*:0]u16,
 };
 
 pub const CERT_ID = extern struct {
@@ -3941,7 +3941,7 @@ pub const CERT_KEY_USAGE_RESTRICTION_INFO = extern struct {
 pub const CERT_KEYGEN_REQUEST_INFO = extern struct {
     dwVersion: u32,
     SubjectPublicKeyInfo: CERT_PUBLIC_KEY_INFO,
-    pwszChallengeString: ?PWSTR,
+    pwszChallengeString: ?[*:0]u16,
 };
 
 pub const CERT_LDAP_STORE_OPENED_PARA = extern struct {
@@ -3959,7 +3959,7 @@ pub const CERT_LOGOTYPE_AUDIO_INFO = extern struct {
     dwPlayTime: u32,
     dwChannels: u32,
     dwSampleRate: u32,
-    pwszLanguage: ?PWSTR,
+    pwszLanguage: ?[*:0]u16,
 };
 
 pub const CERT_LOGOTYPE_CHOICE = enum(u32) {
@@ -3979,7 +3979,7 @@ pub const CERT_LOGOTYPE_DATA = extern struct {
 };
 
 pub const CERT_LOGOTYPE_DETAILS = extern struct {
-    pwszMimeType: ?PWSTR,
+    pwszMimeType: ?[*:0]u16,
     cHashedUrl: u32,
     rgHashedUrl: ?*CERT_HASHED_URL,
 };
@@ -4008,7 +4008,7 @@ pub const CERT_LOGOTYPE_IMAGE_INFO = extern struct {
         dwNumBits: u32,
         dwTableSize: u32,
     },
-    pwszLanguage: ?PWSTR,
+    pwszLanguage: ?[*:0]u16,
 };
 
 pub const CERT_LOGOTYPE_IMAGE_INFO_TYPE = enum(u32) {
@@ -4094,12 +4094,12 @@ pub const CERT_OR_CRL_BUNDLE = extern struct {
 };
 
 pub const CERT_OTHER_LOGOTYPE_INFO = extern struct {
-    pszObjId: ?PSTR,
+    pszObjId: ?[*:0]u8,
     LogotypeInfo: CERT_LOGOTYPE_INFO,
 };
 
 pub const CERT_OTHER_NAME = extern struct {
-    pszObjId: ?PSTR,
+    pszObjId: ?[*:0]u8,
     Value: CRYPT_INTEGER_BLOB,
 };
 
@@ -4110,7 +4110,7 @@ pub const CERT_PAIR = extern struct {
 
 pub const CERT_PHYSICAL_STORE_INFO = extern struct {
     cbSize: u32,
-    pszOpenStoreProvider: ?PSTR,
+    pszOpenStoreProvider: ?[*:0]u8,
     dwOpenEncodingType: u32,
     dwOpenFlags: u32,
     OpenParameters: CRYPT_INTEGER_BLOB,
@@ -4124,9 +4124,9 @@ pub const CERT_POLICIES_INFO = extern struct {
 };
 
 pub const CERT_POLICY95_QUALIFIER1 = extern struct {
-    pszPracticesReference: ?PWSTR,
-    pszNoticeIdentifier: ?PSTR,
-    pszNSINoticeIdentifier: ?PSTR,
+    pszPracticesReference: ?[*:0]u16,
+    pszNoticeIdentifier: ?[*:0]u8,
+    pszNSINoticeIdentifier: ?[*:0]u8,
     cCPSURLs: u32,
     rgCPSURLs: ?*CPS_URLS,
 };
@@ -4140,18 +4140,18 @@ pub const CERT_POLICY_CONSTRAINTS_INFO = extern struct {
 
 pub const CERT_POLICY_ID = extern struct {
     cCertPolicyElementId: u32,
-    rgpszCertPolicyElementId: ?*?PSTR,
+    rgpszCertPolicyElementId: ?*?[*:0]u8,
 };
 
 pub const CERT_POLICY_INFO = extern struct {
-    pszPolicyIdentifier: ?PSTR,
+    pszPolicyIdentifier: ?[*:0]u8,
     cPolicyQualifier: u32,
     rgPolicyQualifier: ?*CERT_POLICY_QUALIFIER_INFO,
 };
 
 pub const CERT_POLICY_MAPPING = extern struct {
-    pszIssuerDomainPolicy: ?PSTR,
-    pszSubjectDomainPolicy: ?PSTR,
+    pszIssuerDomainPolicy: ?[*:0]u8,
+    pszSubjectDomainPolicy: ?[*:0]u8,
 };
 
 pub const CERT_POLICY_MAPPINGS_INFO = extern struct {
@@ -4160,19 +4160,19 @@ pub const CERT_POLICY_MAPPINGS_INFO = extern struct {
 };
 
 pub const CERT_POLICY_QUALIFIER_INFO = extern struct {
-    pszPolicyQualifierId: ?PSTR,
+    pszPolicyQualifierId: ?[*:0]u8,
     Qualifier: CRYPT_INTEGER_BLOB,
 };
 
 pub const CERT_POLICY_QUALIFIER_NOTICE_REFERENCE = extern struct {
-    pszOrganization: ?PSTR,
+    pszOrganization: ?[*:0]u8,
     cNoticeNumbers: u32,
     rgNoticeNumbers: ?*i32,
 };
 
 pub const CERT_POLICY_QUALIFIER_USER_NOTICE = extern struct {
     pNoticeReference: ?*CERT_POLICY_QUALIFIER_NOTICE_REFERENCE,
-    pszDisplayText: ?PWSTR,
+    pszDisplayText: ?[*:0]u16,
 };
 
 pub const CERT_PRIVATE_KEY_VALIDITY = extern struct {
@@ -4186,7 +4186,7 @@ pub const CERT_PUBLIC_KEY_INFO = extern struct {
 };
 
 pub const CERT_QC_STATEMENT = extern struct {
-    pszStatementId: ?PSTR,
+    pszStatementId: ?[*:0]u8,
     StatementInfo: CRYPT_INTEGER_BLOB,
 };
 
@@ -4331,7 +4331,7 @@ pub const CERT_RDN = extern struct {
 };
 
 pub const CERT_RDN_ATTR = extern struct {
-    pszObjId: ?PSTR,
+    pszObjId: ?[*:0]u8,
     dwValueType: CERT_RDN_ATTR_VALUE_TYPE,
     Value: CRYPT_INTEGER_BLOB,
 };
@@ -4377,12 +4377,12 @@ pub const CERT_RDN_VISIBLE_STRING = CERT_RDN_ATTR_VALUE_TYPE.ISO646_STRING;
 
 pub const CERT_REGISTRY_STORE_CLIENT_GPT_PARA = extern struct {
     hKeyBase: ?HKEY,
-    pwszRegPath: ?PWSTR,
+    pwszRegPath: ?[*:0]u16,
 };
 
 pub const CERT_REGISTRY_STORE_ROAMING_PARA = extern struct {
     hKey: ?HKEY,
-    pwszStoreDirectory: ?PWSTR,
+    pwszStoreDirectory: ?[*:0]u16,
 };
 
 pub const CERT_REQUEST_INFO = extern struct {
@@ -4546,7 +4546,7 @@ pub const CERT_SERVER_OCSP_RESPONSE_OPEN_PARA = extern struct {
     cbSize: u32,
     dwFlags: u32,
     pcbUsedSize: ?*u32,
-    pwszOcspDirectory: ?PWSTR,
+    pwszOcspDirectory: ?[*:0]u16,
     pfnUpdateCallback: ?PFN_CERT_SERVER_OCSP_RESPONSE_UPDATE_CALLBACK,
     pvUpdateCallbackArg: ?*anyopaque,
 };
@@ -4696,14 +4696,14 @@ pub const CERT_STRONG_SIGN_PARA = extern struct {
     Anonymous: extern union {
         pvInfo: ?*anyopaque,
         pSerializedInfo: ?*CERT_STRONG_SIGN_SERIALIZED_INFO,
-        pszOID: ?PSTR,
+        pszOID: ?[*:0]u8,
     },
 };
 
 pub const CERT_STRONG_SIGN_SERIALIZED_INFO = extern struct {
     dwFlags: CERT_STRONG_SIGN_FLAGS,
-    pwszCNGSignHashAlgids: ?PWSTR,
-    pwszCNGPubKeyMinBitLengths: ?PWSTR,
+    pwszCNGSignHashAlgids: ?[*:0]u16,
+    pwszCNGPubKeyMinBitLengths: ?[*:0]u16,
 };
 
 pub const CERT_SUPPORTED_ALGORITHM_INFO = extern struct {
@@ -4736,14 +4736,14 @@ pub const CERT_SYSTEM_STORE_RELOCATE_PARA = extern struct {
 };
 
 pub const CERT_TEMPLATE_EXT = extern struct {
-    pszObjId: ?PSTR,
+    pszObjId: ?[*:0]u8,
     dwMajorVersion: u32,
     fMinorVersion: BOOL,
     dwMinorVersion: u32,
 };
 
 pub const CERT_TPM_SPECIFICATION_INFO = extern struct {
-    pwszFamily: ?PWSTR,
+    pwszFamily: ?[*:0]u16,
     dwLevel: u32,
     dwRevision: u32,
 };
@@ -4822,7 +4822,7 @@ pub const ENUM_CESSETUPPROP_ALLOW_KEYBASED_RENEWAL = CESSetupProperty.ALLOW_KEYB
 
 pub const CLAIMLIST = extern struct {
     count: u32,
-    claims: ?*?PWSTR,
+    claims: ?*?[*:0]u16,
 };
 
 pub const CMC_ADD_ATTRIBUTES_INFO = extern struct {
@@ -4870,7 +4870,7 @@ pub const CMC_STATUS_INFO = extern struct {
     dwStatus: u32,
     cBodyList: u32,
     rgdwBodyList: ?*u32,
-    pwszStatusString: ?PWSTR,
+    pwszStatusString: ?[*:0]u16,
     dwOtherInfoChoice: u32,
     Anonymous: extern union {
         dwFailInfo: u32,
@@ -4895,7 +4895,7 @@ pub const CMC_TAGGED_CONTENT_INFO = extern struct {
 
 pub const CMC_TAGGED_OTHER_MSG = extern struct {
     dwBodyPartID: u32,
-    pszObjId: ?PSTR,
+    pszObjId: ?[*:0]u8,
     Value: CRYPT_INTEGER_BLOB,
 };
 
@@ -4909,7 +4909,7 @@ pub const CMC_TAGGED_REQUEST = extern struct {
 pub const CMS_DH_KEY_INFO = extern struct {
     dwVersion: u32,
     Algid: u32,
-    pszContentEncObjId: ?PSTR,
+    pszContentEncObjId: ?[*:0]u8,
     PubInfo: CRYPT_INTEGER_BLOB,
     pReserved: ?*anyopaque,
 };
@@ -5274,7 +5274,7 @@ pub const CMSG_STREAM_INFO = extern struct {
 };
 
 pub const CPS_URLS = extern struct {
-    pszURL: ?PWSTR,
+    pszURL: ?[*:0]u16,
     pAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
     pDigest: ?*CRYPT_INTEGER_BLOB,
 };
@@ -5412,7 +5412,7 @@ pub const CRYPT_AES_256_KEY_STATE = extern struct {
 };
 
 pub const CRYPT_ALGORITHM_IDENTIFIER = extern struct {
-    pszObjId: ?PSTR,
+    pszObjId: ?[*:0]u8,
     Parameters: CRYPT_INTEGER_BLOB,
 };
 
@@ -5422,13 +5422,13 @@ pub const CRYPT_ASYNC_RETRIEVAL_COMPLETION = extern struct {
 };
 
 pub const CRYPT_ATTRIBUTE = extern struct {
-    pszObjId: ?PSTR,
+    pszObjId: ?[*:0]u8,
     cValue: u32,
     rgValue: ?*CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_ATTRIBUTE_TYPE_VALUE = extern struct {
-    pszObjId: ?PSTR,
+    pszObjId: ?[*:0]u8,
     Value: CRYPT_INTEGER_BLOB,
 };
 
@@ -5449,12 +5449,12 @@ pub const CRYPT_BLOB_ARRAY = extern struct {
 };
 
 pub const CRYPT_CONTENT_INFO = extern struct {
-    pszObjId: ?PSTR,
+    pszObjId: ?[*:0]u8,
     Content: CRYPT_INTEGER_BLOB,
 };
 
 pub const CRYPT_CONTENT_INFO_SEQUENCE_OF_ANY = extern struct {
-    pszObjId: ?PSTR,
+    pszObjId: ?[*:0]u8,
     cValue: u32,
     rgValue: ?*CRYPT_INTEGER_BLOB,
 };
@@ -5508,17 +5508,17 @@ pub const CRYPT_CONTEXT_FUNCTION_CONFIG = extern struct {
 
 pub const CRYPT_CONTEXT_FUNCTION_PROVIDERS = extern struct {
     cProviders: u32,
-    rgpszProviders: ?*?PWSTR,
+    rgpszProviders: ?*?[*:0]u16,
 };
 
 pub const CRYPT_CONTEXT_FUNCTIONS = extern struct {
     cFunctions: u32,
-    rgpszFunctions: ?*?PWSTR,
+    rgpszFunctions: ?*?[*:0]u16,
 };
 
 pub const CRYPT_CONTEXTS = extern struct {
     cContexts: u32,
-    rgpszContexts: ?*?PWSTR,
+    rgpszContexts: ?*?[*:0]u16,
 };
 
 pub const CRYPT_CREDENTIALS = extern struct {
@@ -5529,7 +5529,7 @@ pub const CRYPT_CREDENTIALS = extern struct {
 
 pub const CRYPT_CSP_PROVIDER = extern struct {
     dwKeySpec: u32,
-    pwszProviderName: ?PWSTR,
+    pwszProviderName: ?[*:0]u16,
     Signature: CRYPT_BIT_BLOB,
 };
 
@@ -5585,7 +5585,7 @@ pub const CRYPT_DEFAULT_CONTEXT_PROCESS_FLAG = CRYPT_DEFAULT_CONTEXT_FLAGS{ .PRO
 
 pub const CRYPT_DEFAULT_CONTEXT_MULTI_OID_PARA = extern struct {
     cOID: u32,
-    rgpszOID: ?*?PSTR,
+    rgpszOID: ?*?[*:0]u8,
 };
 
 pub const CRYPT_DEFAULT_CONTEXT_TYPE = enum(u32) {
@@ -5610,7 +5610,7 @@ pub const CRYPT_ECC_CMS_SHARED_INFO = extern struct {
 pub const CRYPT_ECC_PRIVATE_KEY_INFO = extern struct {
     dwVersion: u32,
     PrivateKey: CRYPT_INTEGER_BLOB,
-    szCurveOid: ?PSTR,
+    szCurveOid: ?[*:0]u8,
     PublicKey: CRYPT_BIT_BLOB,
 };
 
@@ -5676,8 +5676,8 @@ pub const CRYPT_ENCRYPTED_PRIVATE_KEY_INFO = extern struct {
 };
 
 pub const CRYPT_ENROLLMENT_NAME_VALUE_PAIR = extern struct {
-    pwszName: ?PWSTR,
-    pwszValue: ?PWSTR,
+    pwszName: ?[*:0]u16,
+    pwszValue: ?[*:0]u16,
 };
 
 pub const CRYPT_FIND_FLAGS = enum(u32) {
@@ -5752,7 +5752,7 @@ pub const CRYPT_HASH_MESSAGE_PARA = extern struct {
 };
 
 pub const CRYPT_IMAGE_REF = extern struct {
-    pszImage: ?PWSTR,
+    pszImage: ?[*:0]u16,
     dwFlags: CRYPT_IMAGE_REF_FLAGS,
 };
 
@@ -5794,7 +5794,7 @@ pub const CRYPT_MIN_DEPENDENCIES = CRYPT_IMAGE_REF_FLAGS{ .MIN_DEPENDENCIES = 1 
 pub const CRYPT_PROCESS_ISOLATE = CRYPT_IMAGE_REF_FLAGS{ .PROCESS_ISOLATE = 1 };
 
 pub const CRYPT_IMAGE_REG = extern struct {
-    pszImage: ?PWSTR,
+    pszImage: ?[*:0]u16,
     cInterfaces: u32,
     rgpInterfaces: ?*?*CRYPT_INTERFACE_REG,
 };
@@ -5845,7 +5845,7 @@ pub const CRYPT_INTERFACE_REG = extern struct {
     dwInterface: BCRYPT_INTERFACE,
     dwFlags: BCRYPT_TABLE,
     cFunctions: u32,
-    rgpszFunctions: ?*?PWSTR,
+    rgpszFunctions: ?*?[*:0]u16,
 };
 
 pub const CRYPT_KEY_FLAGS = packed struct(u32) {
@@ -5950,8 +5950,8 @@ pub const KP_GET_USE_COUNT = CRYPT_KEY_PARAM_ID.GET_USE_COUNT;
 pub const KP_KEYLEN = CRYPT_KEY_PARAM_ID.KEYLEN;
 
 pub const CRYPT_KEY_PROV_INFO = extern struct {
-    pwszContainerName: ?PWSTR,
-    pwszProvName: ?PWSTR,
+    pwszContainerName: ?[*:0]u16,
+    pwszProvName: ?[*:0]u16,
     dwProvType: u32,
     dwFlags: CRYPT_KEY_FLAGS,
     cProvParam: u32,
@@ -5986,7 +5986,7 @@ pub const CRYPT_KEY_VERIFY_MESSAGE_PARA = extern struct {
 };
 
 pub const CRYPT_MASK_GEN_ALGORITHM = extern struct {
-    pszObjId: ?PSTR,
+    pszObjId: ?[*:0]u8,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
 };
 
@@ -6048,14 +6048,14 @@ pub const CRYPT_OID_INFO = extern struct {
 
 pub const CRYPT_PASSWORD_CREDENTIALSA = extern struct {
     cbSize: u32,
-    pszUsername: ?PSTR,
-    pszPassword: ?PSTR,
+    pszUsername: ?[*:0]u8,
+    pszPassword: ?[*:0]u8,
 };
 
 pub const CRYPT_PASSWORD_CREDENTIALSW = extern struct {
     cbSize: u32,
-    pszUsername: ?PWSTR,
-    pszPassword: ?PWSTR,
+    pszUsername: ?[*:0]u16,
+    pszPassword: ?[*:0]u16,
 };
 
 pub const CRYPT_PKCS12_PBE_PARAMS = extern struct {
@@ -6066,7 +6066,7 @@ pub const CRYPT_PKCS12_PBE_PARAMS = extern struct {
 pub const CRYPT_PKCS8_EXPORT_PARAMS = extern struct {
     hCryptProv: usize,
     dwKeySpec: u32,
-    pszPrivateKeyObjId: ?PSTR,
+    pszPrivateKeyObjId: ?[*:0]u8,
     pEncryptPrivateKeyFunc: ?PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC,
     pVoidEncryptFunc: ?*anyopaque,
 };
@@ -6087,15 +6087,15 @@ pub const CRYPT_PRIVATE_KEY_INFO = extern struct {
 };
 
 pub const CRYPT_PROPERTY_REF = extern struct {
-    pszProperty: ?PWSTR,
+    pszProperty: ?[*:0]u16,
     cbValue: u32,
     pbValue: ?*u8,
 };
 
 pub const CRYPT_PROVIDER_REF = extern struct {
     dwInterface: u32,
-    pszFunction: ?PWSTR,
-    pszProvider: ?PWSTR,
+    pszFunction: ?[*:0]u16,
+    pszProvider: ?[*:0]u16,
     cProperties: u32,
     rgpProperties: ?*?*CRYPT_PROPERTY_REF,
     pUM: ?*CRYPT_IMAGE_REF,
@@ -6109,18 +6109,18 @@ pub const CRYPT_PROVIDER_REFS = extern struct {
 
 pub const CRYPT_PROVIDER_REG = extern struct {
     cAliases: u32,
-    rgpszAliases: ?*?PWSTR,
+    rgpszAliases: ?*?[*:0]u16,
     pUM: ?*CRYPT_IMAGE_REG,
     pKM: ?*CRYPT_IMAGE_REG,
 };
 
 pub const CRYPT_PROVIDERS = extern struct {
     cProviders: u32,
-    rgpszProviders: ?*?PWSTR,
+    rgpszProviders: ?*?[*:0]u16,
 };
 
 pub const CRYPT_PSOURCE_ALGORITHM = extern struct {
-    pszObjId: ?PSTR,
+    pszObjId: ?[*:0]u8,
     EncodingParameters: CRYPT_INTEGER_BLOB,
 };
 
@@ -6144,11 +6144,11 @@ pub const CRYPT_RETRIEVE_AUX_INFO = extern struct {
     pPreFetchInfo: ?*CRYPTNET_URL_CACHE_PRE_FETCH_INFO,
     pFlushInfo: ?*CRYPTNET_URL_CACHE_FLUSH_INFO,
     ppResponseInfo: ?*?*CRYPTNET_URL_CACHE_RESPONSE_INFO,
-    pwszCacheFileNamePrefix: ?PWSTR,
+    pwszCacheFileNamePrefix: ?[*:0]u16,
     pftCacheResync: ?*FILETIME,
     fProxyCacheRetrieval: BOOL,
     dwHttpStatusCode: u32,
-    ppwszErrorResponseHeaders: ?*?PWSTR,
+    ppwszErrorResponseHeaders: ?*?[*:0]u16,
     ppErrorContentBlob: ?*?*CRYPT_INTEGER_BLOB,
 };
 
@@ -6243,7 +6243,7 @@ pub const CRYPT_SMIME_CAPABILITIES = extern struct {
 };
 
 pub const CRYPT_SMIME_CAPABILITY = extern struct {
-    pszObjId: ?PSTR,
+    pszObjId: ?[*:0]u8,
     Parameters: CRYPT_INTEGER_BLOB,
 };
 
@@ -6279,8 +6279,8 @@ pub const CRYPT_STRING_ANY = CRYPT_STRING.ANY;
 pub const CRYPT_STRING_HEX_ANY = CRYPT_STRING.HEX_ANY;
 
 pub const CRYPT_TIME_STAMP_REQUEST_INFO = extern struct {
-    pszTimeStampAlgorithm: ?PSTR,
-    pszContentType: ?PSTR,
+    pszTimeStampAlgorithm: ?[*:0]u8,
+    pszContentType: ?[*:0]u8,
     Content: CRYPT_INTEGER_BLOB,
     cAttribute: u32,
     rgAttribute: ?*CRYPT_ATTRIBUTE,
@@ -6300,7 +6300,7 @@ pub const CRYPT_TIMESTAMP_CONTEXT = extern struct {
 
 pub const CRYPT_TIMESTAMP_INFO = extern struct {
     dwVersion: u32,
-    pszTSAPolicyId: ?PSTR,
+    pszTSAPolicyId: ?[*:0]u8,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     HashedMessage: CRYPT_INTEGER_BLOB,
     SerialNumber: CRYPT_INTEGER_BLOB,
@@ -6325,7 +6325,7 @@ pub const CRYPT_TIMESTAMP_REQUEST = extern struct {
     dwVersion: CRYPT_TIMESTAMP_VERSION,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     HashedMessage: CRYPT_INTEGER_BLOB,
-    pszTSAPolicyId: ?PSTR,
+    pszTSAPolicyId: ?[*:0]u8,
     Nonce: CRYPT_INTEGER_BLOB,
     fCertReq: BOOL,
     cExtension: u32,
@@ -6335,7 +6335,7 @@ pub const CRYPT_TIMESTAMP_REQUEST = extern struct {
 pub const CRYPT_TIMESTAMP_RESPONSE = extern struct {
     dwStatus: CRYPT_TIMESTAMP_RESPONSE_STATUS,
     cFreeText: u32,
-    rgFreeText: ?*?PWSTR,
+    rgFreeText: ?*?[*:0]u16,
     FailureInfo: CRYPT_BIT_BLOB,
     ContentInfo: CRYPT_INTEGER_BLOB,
 };
@@ -6362,7 +6362,7 @@ pub const TIMESTAMP_VERSION = CRYPT_TIMESTAMP_VERSION.N;
 
 pub const CRYPT_URL_ARRAY = extern struct {
     cUrl: u32,
-    rgwszUrl: ?*?PWSTR,
+    rgwszUrl: ?*?[*:0]u16,
 };
 
 pub const CRYPT_URL_INFO = extern struct {
@@ -6388,7 +6388,7 @@ pub const CRYPT_VERIFY_CERT_SIGN_STRONG_PROPERTIES_INFO = extern struct {
 
 pub const CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO = extern struct {
     cCNGHashAlgid: u32,
-    rgpwszCNGHashAlgid: ?*?PWSTR,
+    rgpwszCNGHashAlgid: ?*?[*:0]u16,
     dwWeakIndex: u32,
 };
 
@@ -6401,7 +6401,7 @@ pub const CRYPT_VERIFY_MESSAGE_PARA = extern struct {
 };
 
 pub const CRYPT_X942_OTHER_INFO = extern struct {
-    pszContentEncryptionObjId: ?PSTR,
+    pszContentEncryptionObjId: ?[*:0]u8,
     rgbCounter: [4]u8,
     rgbKeyLength: [4]u8,
     PubInfo: CRYPT_INTEGER_BLOB,
@@ -6415,11 +6415,11 @@ pub const CRYPT_XML_ALGORITHM = extern struct {
 
 pub const CRYPT_XML_ALGORITHM_INFO = extern struct {
     cbSize: u32,
-    wszAlgorithmURI: ?PWSTR,
-    wszName: ?PWSTR,
+    wszAlgorithmURI: ?[*:0]u16,
+    wszName: ?[*:0]u16,
     dwGroupId: CRYPT_XML_GROUP_ID,
-    wszCNGAlgid: ?PWSTR,
-    wszCNGExtraAlgid: ?PWSTR,
+    wszCNGAlgid: ?[*:0]u16,
+    wszCNGExtraAlgid: ?[*:0]u16,
     dwSignFlags: u32,
     dwVerifyFlags: u32,
     pvPaddingInfo: ?*anyopaque,
@@ -6944,7 +6944,7 @@ pub const CTL_INFO = extern struct {
 
 pub const CTL_USAGE = extern struct {
     cUsageIdentifier: u32,
-    rgpszUsageIdentifier: ?*?PSTR,
+    rgpszUsageIdentifier: ?*?[*:0]u8,
 };
 
 pub const CTL_USAGE_MATCH = extern struct {
@@ -7031,9 +7031,9 @@ pub const EV_EXTRA_CERT_CHAIN_POLICY_STATUS = extern struct {
 pub const GENERIC_XML_TOKEN = extern struct {
     createDate: FILETIME align(1),
     expiryDate: FILETIME align(1),
-    xmlToken: ?PWSTR align(1),
-    internalTokenReference: ?PWSTR align(1),
-    externalTokenReference: ?PWSTR align(1),
+    xmlToken: ?[*:0]u16 align(1),
+    internalTokenReference: ?[*:0]u16 align(1),
+    externalTokenReference: ?[*:0]u16 align(1),
 };
 
 pub const HandleType = enum(i32) {
@@ -7095,7 +7095,7 @@ pub const HTTPSPolicyCallbackData = extern struct {
     },
     dwAuthType: HTTPSPOLICY_CALLBACK_DATA_AUTH_TYPE,
     fdwChecks: u32,
-    pwszServerName: ?PWSTR,
+    pwszServerName: ?[*:0]u16,
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -7638,8 +7638,8 @@ pub const IMSCEPSetup = extern union {
 
 pub const INFORMATIONCARD_ASYMMETRIC_CRYPTO_PARAMETERS = extern struct {
     keySize: i32,
-    keyExchangeAlgorithm: ?PWSTR,
-    signatureAlgorithm: ?PWSTR,
+    keyExchangeAlgorithm: ?[*:0]u16,
+    signatureAlgorithm: ?[*:0]u16,
 };
 
 pub const INFORMATIONCARD_CRYPTO_HANDLE = extern struct {
@@ -7988,22 +7988,22 @@ pub const NCRYPT_VSM_KEY_ATTESTATION_STATEMENT = extern struct {
 };
 
 pub const NCryptAlgorithmName = extern struct {
-    pszName: ?PWSTR,
+    pszName: ?[*:0]u16,
     dwClass: NCRYPT_ALGORITHM_NAME_CLASS,
     dwAlgOperations: NCRYPT_OPERATION,
     dwFlags: u32,
 };
 
 pub const NCryptKeyName = extern struct {
-    pszName: ?PWSTR,
-    pszAlgid: ?PWSTR,
+    pszName: ?[*:0]u16,
+    pszAlgid: ?[*:0]u16,
     dwLegacyKeySpec: CERT_KEY_SPEC,
     dwFlags: u32,
 };
 
 pub const NCryptProviderName = extern struct {
-    pszName: ?PWSTR,
-    pszComment: ?PWSTR,
+    pszName: ?[*:0]u16,
+    pszComment: ?[*:0]u16,
 };
 
 pub const OCSP_BASIC_RESPONSE_ENTRY = extern struct {
@@ -8066,7 +8066,7 @@ pub const OCSP_REQUEST_INFO = extern struct {
 
 pub const OCSP_RESPONSE_INFO = extern struct {
     dwStatus: u32,
-    pszObjId: ?PSTR,
+    pszObjId: ?[*:0]u8,
     Value: CRYPT_INTEGER_BLOB,
 };
 
@@ -8480,7 +8480,7 @@ pub const PFN_CRYPT_ALLOC = *const fn(
 ) callconv(.winapi) ?*anyopaque;
 
 pub const PFN_CRYPT_ASYNC_PARAM_FREE_FUNC = *const fn(
-    pszParamOid: ?PSTR,
+    pszParamOid: ?[*:0]u8,
     pvParam: ?*anyopaque,
 ) callconv(.winapi) void;
 
@@ -8488,7 +8488,7 @@ pub const PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC = *const fn(
     pvCompletion: ?*anyopaque,
     dwCompletionCode: u32,
     pszUrl: ?[*:0]const u8,
-    pszObjectOid: ?PSTR,
+    pszObjectOid: ?[*:0]u8,
     pvObject: ?*anyopaque,
 ) callconv(.winapi) void;
 
@@ -8528,7 +8528,7 @@ pub const PFN_CRYPT_ENUM_OID_INFO = *const fn(
 pub const PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC = *const fn(
     hNCryptKey: NCRYPT_KEY_HANDLE,
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
-    pszPublicKeyObjId: ?PSTR,
+    pszPublicKeyObjId: ?[*:0]u8,
     dwFlags: u32,
     pvAuxInfo: ?*anyopaque,
     /// parameter "pcbInfo" is the size in bytes
@@ -8539,7 +8539,7 @@ pub const PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC = *const fn(
 pub const PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC = *const fn(
     hBCryptKey: BCRYPT_KEY_HANDLE,
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
-    pszPublicKeyObjId: ?PSTR,
+    pszPublicKeyObjId: ?[*:0]u8,
     dwFlags: u32,
     pvAuxInfo: ?*anyopaque,
     /// parameter "pcbInfo" is the size in bytes
@@ -8551,7 +8551,7 @@ pub const PFN_CRYPT_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC = *const fn(
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     pSignatureAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
     ppvDecodedSignPara: ?*?*anyopaque,
-    ppwszCNGHashAlgid: ?*?PWSTR,
+    ppwszCNGHashAlgid: ?*?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub const PFN_CRYPT_FREE = *const fn(
@@ -8593,7 +8593,7 @@ pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET = *const fn(
     pNameBlob: ?*CRYPT_INTEGER_BLOB,
     ppbContent: ?*?*u8,
     pcbContent: ?*u32,
-    ppwszPassword: ?*?PWSTR,
+    ppwszPassword: ?*?[*:0]u16,
     ppIdentifier: ?*?*CRYPT_INTEGER_BLOB,
 ) callconv(.winapi) BOOL;
 
@@ -8673,7 +8673,7 @@ pub const PFN_CRYPT_XML_WRITE_CALLBACK = *const fn(
 pub const PFN_EXPORT_PRIV_KEY_FUNC = *const fn(
     hCryptProv: usize,
     dwKeySpec: u32,
-    pszPrivateKeyObjId: ?PSTR,
+    pszPrivateKeyObjId: ?[*:0]u8,
     dwFlags: u32,
     pvAuxInfo: ?*anyopaque,
     /// parameter "pcbPrivateKeyInfo" is the size in bytes
@@ -8730,7 +8730,7 @@ pub const PFNCryptStreamOutputCallbackEx = *const fn(
 pub const PKCS12_PBES2_EXPORT_PARAMS = extern struct {
     dwSize: u32,
     hNcryptDescriptor: ?*anyopaque,
-    pwszPbes2Alg: ?PWSTR,
+    pwszPbes2Alg: ?[*:0]u16,
 };
 
 pub const POLICY_ELEMENT = extern struct {
@@ -8845,8 +8845,8 @@ pub const SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS = extern struct {
 pub const SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA = extern struct {
     cbSize: u32,
     dwReserved: u32,
-    pwszServerName: ?PWSTR,
-    rgpszHpkpValue: [2]?PSTR,
+    pwszServerName: ?[*:0]u16,
+    rgpszHpkpValue: [2]?[*:0]u8,
 };
 
 pub const SSL_KEY_PIN_EXTRA_CERT_CHAIN_POLICY_PARA = extern struct {
@@ -9519,7 +9519,7 @@ pub extern "crypt32" fn CertAddStoreToCollection(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertAlgIdToOID(
     dwAlgId: u32,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "crypt32" fn CertCloseServerOcspResponse(
@@ -9990,7 +9990,7 @@ pub extern "crypt32" fn CertGetValidUsages(
     rghCerts: [*]?*CERT_CONTEXT,
     cNumOIDs: ?*i32,
     /// parameter "pcbOIDs" is the size in bytes
-    rghOIDs: ?*?PSTR,
+    rghOIDs: ?*?[*:0]u8,
     pcbOIDs: ?*u32,
 ) callconv(.winapi) BOOL;
 
@@ -10137,7 +10137,7 @@ pub extern "crypt32" fn CertRetrieveLogoOrBiometricInfo(
     pvReserved: ?*anyopaque,
     ppbData: ?*?*u8,
     pcbData: ?*u32,
-    ppwszMimeType: ?*?PWSTR,
+    ppwszMimeType: ?*?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -10243,7 +10243,7 @@ pub extern "crypt32" fn CertStrToNameA(
     /// parameter "pcbEncoded" is the size in bytes
     pbEncoded: ?*u8,
     pcbEncoded: ?*u32,
-    ppszError: ?*?PSTR,
+    ppszError: ?*?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -10255,7 +10255,7 @@ pub extern "crypt32" fn CertStrToNameW(
     /// parameter "pcbEncoded" is the size in bytes
     pbEncoded: ?*u8,
     pcbEncoded: ?*u32,
-    ppszError: ?*?PWSTR,
+    ppszError: ?*?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -10625,7 +10625,7 @@ pub extern "advapi32" fn CryptEnumProvidersA(
     dwFlags: u32,
     pdwProvType: ?*u32,
     /// parameter "pcbProvName" is the size in bytes
-    szProvName: ?PSTR,
+    szProvName: ?[*:0]u8,
     pcbProvName: ?*u32,
 ) callconv(.winapi) BOOL;
 
@@ -10636,7 +10636,7 @@ pub extern "advapi32" fn CryptEnumProvidersW(
     dwFlags: u32,
     pdwProvType: ?*u32,
     /// parameter "pcbProvName" is the size in bytes
-    szProvName: ?PWSTR,
+    szProvName: ?[*:0]u16,
     pcbProvName: ?*u32,
 ) callconv(.winapi) BOOL;
 
@@ -10647,7 +10647,7 @@ pub extern "advapi32" fn CryptEnumProviderTypesA(
     dwFlags: u32,
     pdwProvType: ?*u32,
     /// parameter "pcbTypeName" is the size in bytes
-    szTypeName: ?PSTR,
+    szTypeName: ?[*:0]u8,
     pcbTypeName: ?*u32,
 ) callconv(.winapi) BOOL;
 
@@ -10658,7 +10658,7 @@ pub extern "advapi32" fn CryptEnumProviderTypesW(
     dwFlags: u32,
     pdwProvType: ?*u32,
     /// parameter "pcbTypeName" is the size in bytes
-    szTypeName: ?PWSTR,
+    szTypeName: ?[*:0]u16,
     pcbTypeName: ?*u32,
 ) callconv(.winapi) BOOL;
 
@@ -10677,7 +10677,7 @@ pub extern "advapi32" fn CryptExportKey(
 pub extern "crypt32" fn CryptExportPKCS8(
     hCryptProv: usize,
     dwKeySpec: u32,
-    pszPrivateKeyObjId: ?PSTR,
+    pszPrivateKeyObjId: ?[*:0]u8,
     dwFlags: u32,
     pvAuxInfo: ?*anyopaque,
     /// parameter "pcbPrivateKeyBlob" is the size in bytes
@@ -10700,7 +10700,7 @@ pub extern "crypt32" fn CryptExportPublicKeyInfoEx(
     hCryptProvOrNCryptKey: HCRYPTPROV_OR_NCRYPT_KEY_HANDLE,
     dwKeySpec: u32,
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
-    pszPublicKeyObjId: ?PSTR,
+    pszPublicKeyObjId: ?[*:0]u8,
     dwFlags: u32,
     pvAuxInfo: ?*anyopaque,
     /// parameter "pcbInfo" is the size in bytes
@@ -10712,7 +10712,7 @@ pub extern "crypt32" fn CryptExportPublicKeyInfoEx(
 pub extern "crypt32" fn CryptExportPublicKeyInfoFromBCryptKeyHandle(
     hBCryptKey: BCRYPT_KEY_HANDLE,
     dwCertEncodingType: CERT_QUERY_ENCODING_TYPE,
-    pszPublicKeyObjId: ?PSTR,
+    pszPublicKeyObjId: ?[*:0]u8,
     dwFlags: u32,
     pvAuxInfo: ?*anyopaque,
     /// parameter "pcbInfo" is the size in bytes
@@ -10730,7 +10730,7 @@ pub extern "crypt32" fn CryptFindCertificateKeyProvInfo(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptFindLocalizedName(
     pwszCryptName: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptFindOIDInfo(
@@ -10778,7 +10778,7 @@ pub extern "advapi32" fn CryptGenRandom(
 
 pub extern "crypt32" fn CryptGetAsyncParam(
     hAsync: ?HCRYPTASYNC,
-    pszParamOid: ?PSTR,
+    pszParamOid: ?[*:0]u8,
     ppvParam: ?*?*anyopaque,
     ppfnFree: ?*?PFN_CRYPT_ASYNC_PARAM_FREE_FUNC,
 ) callconv(.winapi) BOOL;
@@ -10807,7 +10807,7 @@ pub extern "advapi32" fn CryptGetDefaultProviderA(
     pdwReserved: ?*u32,
     dwFlags: u32,
     /// parameter "pcbProvName" is the size in bytes
-    pszProvName: ?PSTR,
+    pszProvName: ?[*:0]u8,
     pcbProvName: ?*u32,
 ) callconv(.winapi) BOOL;
 
@@ -10817,7 +10817,7 @@ pub extern "advapi32" fn CryptGetDefaultProviderW(
     pdwReserved: ?*u32,
     dwFlags: u32,
     /// parameter "pcbProvName" is the size in bytes
-    pszProvName: ?PWSTR,
+    pszProvName: ?[*:0]u16,
     pcbProvName: ?*u32,
 ) callconv(.winapi) BOOL;
 
@@ -11107,7 +11107,7 @@ pub extern "crypt32" fn CryptMsgCalculateEncodedLength(
     dwFlags: u32,
     dwMsgType: u32,
     pvMsgEncodeInfo: ?*const anyopaque,
-    pszInnerContentObjID: ?PSTR,
+    pszInnerContentObjID: ?[*:0]u8,
     cbData: u32,
 ) callconv(.winapi) u32;
 
@@ -11197,7 +11197,7 @@ pub extern "crypt32" fn CryptMsgOpenToEncode(
     dwFlags: u32,
     dwMsgType: CRYPT_MSG_TYPE,
     pvMsgEncodeInfo: ?*const anyopaque,
-    pszInnerContentObjID: ?PSTR,
+    pszInnerContentObjID: ?[*:0]u8,
     pStreamInfo: ?*CMSG_STREAM_INFO,
 ) callconv(.winapi) ?*anyopaque;
 
@@ -11357,7 +11357,7 @@ pub extern "crypt32" fn CryptRetrieveTimeStamp(
 
 pub extern "crypt32" fn CryptSetAsyncParam(
     hAsync: ?HCRYPTASYNC,
-    pszParamOid: ?PSTR,
+    pszParamOid: ?[*:0]u8,
     pvParam: ?*anyopaque,
     pfnFree: ?PFN_CRYPT_ASYNC_PARAM_FREE_FUNC,
 ) callconv(.winapi) BOOL;
@@ -11553,7 +11553,7 @@ pub extern "crypt32" fn CryptUninstallDefaultContext(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptUnprotectData(
     pDataIn: ?*CRYPT_INTEGER_BLOB,
-    ppszDataDescr: ?*?PWSTR,
+    ppszDataDescr: ?*?[*:0]u16,
     pOptionalEntropy: ?*CRYPT_INTEGER_BLOB,
     pvReserved: ?*anyopaque,
     pPromptStruct: ?*CRYPTPROTECT_PROMPTSTRUCT,
@@ -12539,7 +12539,7 @@ pub const CryptVerifySignature = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (23)
+// Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -12558,8 +12558,6 @@ const NCRYPT_STREAM_HANDLE = @import("../security.zig").NCRYPT_STREAM_HANDLE;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const OBJECT_SECURITY_INFORMATION = @import("../security.zig").OBJECT_SECURITY_INFORMATION;
 const PSID = @import("../foundation.zig").PSID;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const REG_VALUE_TYPE = @import("../system/registry.zig").REG_VALUE_TYPE;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;

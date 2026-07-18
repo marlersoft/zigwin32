@@ -94,23 +94,23 @@ pub const pfnIsFileSupported = *const fn(
 ) callconv(.winapi) BOOL;
 
 pub const pfnIsFileSupportedName = *const fn(
-    pwszFileName: ?PWSTR,
+    pwszFileName: ?[*:0]u16,
     pgSubject: ?*Guid,
 ) callconv(.winapi) BOOL;
 
 pub const SIP_ADD_NEWPROVIDER = extern struct {
     cbStruct: u32,
     pgSubject: ?*Guid,
-    pwszDLLFileName: ?PWSTR,
-    pwszMagicNumber: ?PWSTR,
-    pwszIsFunctionName: ?PWSTR,
-    pwszGetFuncName: ?PWSTR,
-    pwszPutFuncName: ?PWSTR,
-    pwszCreateFuncName: ?PWSTR,
-    pwszVerifyFuncName: ?PWSTR,
-    pwszRemoveFuncName: ?PWSTR,
-    pwszIsFunctionNameFmt2: ?PWSTR,
-    pwszGetCapFuncName: ?PWSTR,
+    pwszDLLFileName: ?[*:0]u16,
+    pwszMagicNumber: ?[*:0]u16,
+    pwszIsFunctionName: ?[*:0]u16,
+    pwszGetFuncName: ?[*:0]u16,
+    pwszPutFuncName: ?[*:0]u16,
+    pwszCreateFuncName: ?[*:0]u16,
+    pwszVerifyFuncName: ?[*:0]u16,
+    pwszRemoveFuncName: ?[*:0]u16,
+    pwszIsFunctionNameFmt2: ?[*:0]u16,
+    pwszGetCapFuncName: ?[*:0]u16,
 };
 
 pub const SIP_CAP_SET_V2 = extern struct {
@@ -262,7 +262,7 @@ pub extern "wintrust" fn CryptSIPVerifyIndirectData(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -272,7 +272,6 @@ const CRYPT_ATTRIBUTE_TYPE_VALUE = @import("../../security/cryptography.zig").CR
 const CRYPT_INTEGER_BLOB = @import("../../security/cryptography.zig").CRYPT_INTEGER_BLOB;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const MS_ADDINFO_CATALOGMEMBER = @import("../../security/cryptography/catalog.zig").MS_ADDINFO_CATALOGMEMBER;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

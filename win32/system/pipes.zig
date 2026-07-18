@@ -131,14 +131,14 @@ pub extern "kernel32" fn DisconnectNamedPipe(
 pub extern "kernel32" fn GetNamedPipeClientComputerNameA(
     Pipe: ?HANDLE,
     /// parameter "ClientComputerNameLength" is the size in bytes
-    ClientComputerName: ?PSTR,
+    ClientComputerName: ?[*:0]u8,
     ClientComputerNameLength: u32,
 ) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn GetNamedPipeClientComputerNameW(
     Pipe: ?HANDLE,
     /// parameter "ClientComputerNameLength" is the size in bytes
-    ClientComputerName: ?PWSTR,
+    ClientComputerName: ?[*:0]u16,
     ClientComputerNameLength: u32,
 ) callconv(.winapi) BOOL;
 
@@ -284,14 +284,12 @@ pub const WaitNamedPipe = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const FILE_FLAGS_AND_ATTRIBUTES = @import("../storage/file_system.zig").FILE_FLAGS_AND_ATTRIBUTES;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {

@@ -1193,9 +1193,9 @@ pub extern "ntdll" fn RtlConvertDeviceFamilyInfoToString(
     pulDeviceFamilyBufferSize: ?*u32,
     pulDeviceFormBufferSize: ?*u32,
     /// parameter "pulDeviceFamilyBufferSize" is the size in bytes
-    DeviceFamily: ?PWSTR,
+    DeviceFamily: ?[*:0]u16,
     /// parameter "pulDeviceFormBufferSize" is the size in bytes
-    DeviceForm: ?PWSTR,
+    DeviceForm: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub extern "ntdll" fn RtlGetDeviceFamilyInfoEnum(
@@ -1395,7 +1395,7 @@ pub const VerifyVersionInfo = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
@@ -1404,8 +1404,6 @@ const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const PROCESSOR_ARCHITECTURE = @import("../system/diagnostics/debug.zig").PROCESSOR_ARCHITECTURE;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {

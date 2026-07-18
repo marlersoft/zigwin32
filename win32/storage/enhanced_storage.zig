@@ -1462,11 +1462,11 @@ pub const IEnhancedStorageACT = extern union {
         ) callconv(.winapi) HRESULT,
         GetMatchingVolume: *const fn(
             self: *const IEnhancedStorageACT,
-            ppwszVolume: ?*?PWSTR,
+            ppwszVolume: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetUniqueIdentity: *const fn(
             self: *const IEnhancedStorageACT,
-            ppwszIdentity: ?*?PWSTR,
+            ppwszIdentity: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetSilos: *const fn(
             self: *const IEnhancedStorageACT,
@@ -1485,10 +1485,10 @@ pub const IEnhancedStorageACT = extern union {
     pub fn GetAuthorizationState(self: *const IEnhancedStorageACT, pState: ?*ACT_AUTHORIZATION_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.GetAuthorizationState(self, pState);
     }
-    pub fn GetMatchingVolume(self: *const IEnhancedStorageACT, ppwszVolume: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetMatchingVolume(self: *const IEnhancedStorageACT, ppwszVolume: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetMatchingVolume(self, ppwszVolume);
     }
-    pub fn GetUniqueIdentity(self: *const IEnhancedStorageACT, ppwszIdentity: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetUniqueIdentity(self: *const IEnhancedStorageACT, ppwszIdentity: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetUniqueIdentity(self, ppwszIdentity);
     }
     pub fn GetSilos(self: *const IEnhancedStorageACT, pppIEnhancedStorageSilos: [*]?*?*IEnhancedStorageSilo, pcEnhancedStorageSilos: ?*u32) callconv(.@"inline") HRESULT {
@@ -1504,7 +1504,7 @@ pub const IEnhancedStorageACT2 = extern union {
         base: IEnhancedStorageACT.VTable,
         GetDeviceName: *const fn(
             self: *const IEnhancedStorageACT2,
-            ppwszDeviceName: ?*?PWSTR,
+            ppwszDeviceName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         IsDeviceRemovable: *const fn(
             self: *const IEnhancedStorageACT2,
@@ -1514,7 +1514,7 @@ pub const IEnhancedStorageACT2 = extern union {
     vtable: *const VTable,
     IEnhancedStorageACT: IEnhancedStorageACT,
     IUnknown: IUnknown,
-    pub fn GetDeviceName(self: *const IEnhancedStorageACT2, ppwszDeviceName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDeviceName(self: *const IEnhancedStorageACT2, ppwszDeviceName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceName(self, ppwszDeviceName);
     }
     pub fn IsDeviceRemovable(self: *const IEnhancedStorageACT2, pIsDeviceRemovable: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -1584,7 +1584,7 @@ pub const IEnhancedStorageSilo = extern union {
         ) callconv(.winapi) HRESULT,
         GetDevicePath: *const fn(
             self: *const IEnhancedStorageSilo,
-            ppwszSiloDevicePath: ?*?PWSTR,
+            ppwszSiloDevicePath: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1601,7 +1601,7 @@ pub const IEnhancedStorageSilo = extern union {
     pub fn GetPortableDevice(self: *const IEnhancedStorageSilo, ppIPortableDevice: ?*?*IPortableDevice) callconv(.@"inline") HRESULT {
         return self.vtable.GetPortableDevice(self, ppIPortableDevice);
     }
-    pub fn GetDevicePath(self: *const IEnhancedStorageSilo, ppwszSiloDevicePath: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDevicePath(self: *const IEnhancedStorageSilo, ppwszSiloDevicePath: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevicePath(self, ppwszSiloDevicePath);
     }
 };
@@ -1614,11 +1614,11 @@ pub const IEnhancedStorageSiloAction = extern union {
         base: IUnknown.VTable,
         GetName: *const fn(
             self: *const IEnhancedStorageSiloAction,
-            ppwszActionName: ?*?PWSTR,
+            ppwszActionName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetDescription: *const fn(
             self: *const IEnhancedStorageSiloAction,
-            ppwszActionDescription: ?*?PWSTR,
+            ppwszActionDescription: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Invoke: *const fn(
             self: *const IEnhancedStorageSiloAction,
@@ -1626,10 +1626,10 @@ pub const IEnhancedStorageSiloAction = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IEnhancedStorageSiloAction, ppwszActionName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetName(self: *const IEnhancedStorageSiloAction, ppwszActionName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, ppwszActionName);
     }
-    pub fn GetDescription(self: *const IEnhancedStorageSiloAction, ppwszActionDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDescription(self: *const IEnhancedStorageSiloAction, ppwszActionDescription: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDescription(self, ppwszActionDescription);
     }
     pub fn Invoke(self: *const IEnhancedStorageSiloAction) callconv(.@"inline") HRESULT {
@@ -1683,7 +1683,7 @@ pub const SILO_INFO = extern struct {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -1691,7 +1691,6 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const IPortableDevice = @import("../devices/portable_devices.zig").IPortableDevice;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PROPERTYKEY = @import("../ui/shell/properties_system.zig").PROPERTYKEY;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

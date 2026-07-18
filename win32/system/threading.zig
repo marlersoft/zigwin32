@@ -817,9 +817,9 @@ pub const REASON_CONTEXT = extern struct {
             LocalizedReasonModule: ?HINSTANCE,
             LocalizedReasonId: u32,
             ReasonStringCount: u32,
-            ReasonStrings: ?*?PWSTR,
+            ReasonStrings: ?*?[*:0]u16,
         },
-        SimpleReasonString: ?PWSTR,
+        SimpleReasonString: ?[*:0]u16,
     },
 };
 
@@ -892,9 +892,9 @@ pub const RTL_USER_PROCESS_PARAMETERS = extern struct {
 
 pub const STARTUPINFOA = extern struct {
     cb: u32,
-    lpReserved: ?PSTR,
-    lpDesktop: ?PSTR,
-    lpTitle: ?PSTR,
+    lpReserved: ?[*:0]u8,
+    lpDesktop: ?[*:0]u8,
+    lpTitle: ?[*:0]u8,
     dwX: u32,
     dwY: u32,
     dwXSize: u32,
@@ -923,9 +923,9 @@ pub const STARTUPINFOEXW = extern struct {
 
 pub const STARTUPINFOW = extern struct {
     cb: u32,
-    lpReserved: ?PWSTR,
-    lpDesktop: ?PWSTR,
-    lpTitle: ?PWSTR,
+    lpReserved: ?[*:0]u16,
+    lpDesktop: ?[*:0]u16,
+    lpTitle: ?[*:0]u16,
     dwX: u32,
     dwY: u32,
     dwXSize: u32,
@@ -1660,7 +1660,7 @@ pub extern "kernel32" fn CreatePrivateNamespaceW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn CreateProcessA(
     lpApplicationName: ?[*:0]const u8,
-    lpCommandLine: ?PSTR,
+    lpCommandLine: ?[*:0]u8,
     lpProcessAttributes: ?*SECURITY_ATTRIBUTES,
     lpThreadAttributes: ?*SECURITY_ATTRIBUTES,
     bInheritHandles: BOOL,
@@ -1675,7 +1675,7 @@ pub extern "kernel32" fn CreateProcessA(
 pub extern "advapi32" fn CreateProcessAsUserA(
     hToken: ?HANDLE,
     lpApplicationName: ?[*:0]const u8,
-    lpCommandLine: ?PSTR,
+    lpCommandLine: ?[*:0]u8,
     lpProcessAttributes: ?*SECURITY_ATTRIBUTES,
     lpThreadAttributes: ?*SECURITY_ATTRIBUTES,
     bInheritHandles: BOOL,
@@ -1690,7 +1690,7 @@ pub extern "advapi32" fn CreateProcessAsUserA(
 pub extern "advapi32" fn CreateProcessAsUserW(
     hToken: ?HANDLE,
     lpApplicationName: ?[*:0]const u16,
-    lpCommandLine: ?PWSTR,
+    lpCommandLine: ?[*:0]u16,
     lpProcessAttributes: ?*SECURITY_ATTRIBUTES,
     lpThreadAttributes: ?*SECURITY_ATTRIBUTES,
     bInheritHandles: BOOL,
@@ -1704,7 +1704,7 @@ pub extern "advapi32" fn CreateProcessAsUserW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn CreateProcessW(
     lpApplicationName: ?[*:0]const u16,
-    lpCommandLine: ?PWSTR,
+    lpCommandLine: ?[*:0]u16,
     lpProcessAttributes: ?*SECURITY_ATTRIBUTES,
     lpThreadAttributes: ?*SECURITY_ATTRIBUTES,
     bInheritHandles: BOOL,
@@ -1722,7 +1722,7 @@ pub extern "advapi32" fn CreateProcessWithLogonW(
     lpPassword: ?[*:0]const u16,
     dwLogonFlags: CREATE_PROCESS_LOGON_FLAGS,
     lpApplicationName: ?[*:0]const u16,
-    lpCommandLine: ?PWSTR,
+    lpCommandLine: ?[*:0]u16,
     dwCreationFlags: PROCESS_CREATION_FLAGS,
     lpEnvironment: ?*anyopaque,
     lpCurrentDirectory: ?[*:0]const u16,
@@ -1735,7 +1735,7 @@ pub extern "advapi32" fn CreateProcessWithTokenW(
     hToken: ?HANDLE,
     dwLogonFlags: CREATE_PROCESS_LOGON_FLAGS,
     lpApplicationName: ?[*:0]const u16,
-    lpCommandLine: ?PWSTR,
+    lpCommandLine: ?[*:0]u16,
     dwCreationFlags: PROCESS_CREATION_FLAGS,
     lpEnvironment: ?*anyopaque,
     lpCurrentDirectory: ?[*:0]const u16,
@@ -2296,7 +2296,7 @@ pub extern "kernel32" fn GetSystemTimes(
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "kernel32" fn GetThreadDescription(
     hThread: ?HANDLE,
-    ppszThreadDescription: ?*?PWSTR,
+    ppszThreadDescription: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3407,7 +3407,7 @@ pub const QueryFullProcessImageName = switch (@import("../zig.zig").unicode_mode
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (24)
+// Section: Imports (22)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -3424,8 +3424,6 @@ const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const PAPCFUNC = @import("../foundation.zig").PAPCFUNC;
 const PROCESSOR_NUMBER = @import("../system/kernel.zig").PROCESSOR_NUMBER;
 const PSID = @import("../foundation.zig").PSID;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RTL_UMS_SCHEDULER_REASON = @import("../system/system_services.zig").RTL_UMS_SCHEDULER_REASON;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const SLIST_ENTRY = @import("../system/kernel.zig").SLIST_ENTRY;

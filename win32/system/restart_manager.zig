@@ -63,9 +63,9 @@ pub const RM_FILTER_INFO = extern struct {
     FilterTrigger: RM_FILTER_TRIGGER,
     cbNextOffset: u32,
     Anonymous: extern union {
-        strFilename: ?PWSTR,
+        strFilename: ?[*:0]u16,
         Process: RM_UNIQUE_PROCESS,
-        strServiceShortName: ?PWSTR,
+        strServiceShortName: ?[*:0]u16,
     },
 };
 
@@ -172,11 +172,11 @@ pub extern "rstrtmgr" fn RmJoinSession(
 pub extern "rstrtmgr" fn RmRegisterResources(
     dwSessionHandle: u32,
     nFiles: u32,
-    rgsFileNames: ?[*]?PWSTR,
+    rgsFileNames: ?[*]?[*:0]u16,
     nApplications: u32,
     rgApplications: ?[*]RM_UNIQUE_PROCESS,
     nServices: u32,
-    rgsServiceNames: ?[*]?PWSTR,
+    rgsServiceNames: ?[*]?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -205,7 +205,7 @@ pub extern "rstrtmgr" fn RmShutdown(
 pub extern "rstrtmgr" fn RmStartSession(
     pSessionHandle: ?*u32,
     dwSessionFlags: u32,
-    strSessionKey: ?PWSTR,
+    strSessionKey: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 
@@ -213,11 +213,10 @@ pub extern "rstrtmgr" fn RmStartSession(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (3)
+// Section: Imports (2)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const FILETIME = @import("../foundation.zig").FILETIME;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

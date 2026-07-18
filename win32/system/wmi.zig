@@ -171,11 +171,11 @@ pub const IMofCompiler = extern union {
         base: IUnknown.VTable,
         CompileFile: *const fn(
             self: *const IMofCompiler,
-            FileName: ?PWSTR,
-            ServerAndNamespace: ?PWSTR,
-            User: ?PWSTR,
-            Authority: ?PWSTR,
-            Password: ?PWSTR,
+            FileName: ?[*:0]u16,
+            ServerAndNamespace: ?[*:0]u16,
+            User: ?[*:0]u16,
+            Authority: ?[*:0]u16,
+            Password: ?[*:0]u16,
             lOptionFlags: i32,
             lClassFlags: i32,
             lInstanceFlags: i32,
@@ -186,10 +186,10 @@ pub const IMofCompiler = extern union {
             BuffSize: i32,
             /// parameter "BuffSize" is the size in bytes
             pBuffer: ?*u8,
-            ServerAndNamespace: ?PWSTR,
-            User: ?PWSTR,
-            Authority: ?PWSTR,
-            Password: ?PWSTR,
+            ServerAndNamespace: ?[*:0]u16,
+            User: ?[*:0]u16,
+            Authority: ?[*:0]u16,
+            Password: ?[*:0]u16,
             lOptionFlags: i32,
             lClassFlags: i32,
             lInstanceFlags: i32,
@@ -197,9 +197,9 @@ pub const IMofCompiler = extern union {
         ) callconv(.winapi) HRESULT,
         CreateBMOF: *const fn(
             self: *const IMofCompiler,
-            TextFileName: ?PWSTR,
-            BMOFFileName: ?PWSTR,
-            ServerAndNamespace: ?PWSTR,
+            TextFileName: ?[*:0]u16,
+            BMOFFileName: ?[*:0]u16,
+            ServerAndNamespace: ?[*:0]u16,
             lOptionFlags: i32,
             lClassFlags: i32,
             lInstanceFlags: i32,
@@ -208,13 +208,13 @@ pub const IMofCompiler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CompileFile(self: *const IMofCompiler, FileName: ?PWSTR, ServerAndNamespace: ?PWSTR, User: ?PWSTR, Authority: ?PWSTR, Password: ?PWSTR, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: ?*WBEM_COMPILE_STATUS_INFO) callconv(.@"inline") HRESULT {
+    pub fn CompileFile(self: *const IMofCompiler, FileName: ?[*:0]u16, ServerAndNamespace: ?[*:0]u16, User: ?[*:0]u16, Authority: ?[*:0]u16, Password: ?[*:0]u16, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: ?*WBEM_COMPILE_STATUS_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.CompileFile(self, FileName, ServerAndNamespace, User, Authority, Password, lOptionFlags, lClassFlags, lInstanceFlags, pInfo);
     }
-    pub fn CompileBuffer(self: *const IMofCompiler, BuffSize: i32, pBuffer: ?*u8, ServerAndNamespace: ?PWSTR, User: ?PWSTR, Authority: ?PWSTR, Password: ?PWSTR, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: ?*WBEM_COMPILE_STATUS_INFO) callconv(.@"inline") HRESULT {
+    pub fn CompileBuffer(self: *const IMofCompiler, BuffSize: i32, pBuffer: ?*u8, ServerAndNamespace: ?[*:0]u16, User: ?[*:0]u16, Authority: ?[*:0]u16, Password: ?[*:0]u16, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: ?*WBEM_COMPILE_STATUS_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.CompileBuffer(self, BuffSize, pBuffer, ServerAndNamespace, User, Authority, Password, lOptionFlags, lClassFlags, lInstanceFlags, pInfo);
     }
-    pub fn CreateBMOF(self: *const IMofCompiler, TextFileName: ?PWSTR, BMOFFileName: ?PWSTR, ServerAndNamespace: ?PWSTR, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: ?*WBEM_COMPILE_STATUS_INFO) callconv(.@"inline") HRESULT {
+    pub fn CreateBMOF(self: *const IMofCompiler, TextFileName: ?[*:0]u16, BMOFFileName: ?[*:0]u16, ServerAndNamespace: ?[*:0]u16, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: ?*WBEM_COMPILE_STATUS_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBMOF(self, TextFileName, BMOFFileName, ServerAndNamespace, lOptionFlags, lClassFlags, lInstanceFlags, pInfo);
     }
 };
@@ -2298,15 +2298,15 @@ pub const IWbemAddressResolution = extern union {
         base: IUnknown.VTable,
         Resolve: *const fn(
             self: *const IWbemAddressResolution,
-            wszNamespacePath: ?PWSTR,
-            wszAddressType: ?PWSTR,
+            wszNamespacePath: ?[*:0]u16,
+            wszAddressType: ?[*:0]u16,
             pdwAddressLength: ?*u32,
             pabBinaryAddress: ?*?*u8,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Resolve(self: *const IWbemAddressResolution, wszNamespacePath: ?PWSTR, wszAddressType: ?PWSTR, pdwAddressLength: ?*u32, pabBinaryAddress: ?*?*u8) callconv(.@"inline") HRESULT {
+    pub fn Resolve(self: *const IWbemAddressResolution, wszNamespacePath: ?[*:0]u16, wszAddressType: ?[*:0]u16, pdwAddressLength: ?*u32, pabBinaryAddress: ?*?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.Resolve(self, wszNamespacePath, wszAddressType, pdwAddressLength, pabBinaryAddress);
     }
 };
@@ -2764,8 +2764,8 @@ pub const IWbemConnectorLogin = extern union {
         base: IUnknown.VTable,
         ConnectorLogin: *const fn(
             self: *const IWbemConnectorLogin,
-            wszNetworkResource: ?PWSTR,
-            wszPreferredLocale: ?PWSTR,
+            wszNetworkResource: ?[*:0]u16,
+            wszPreferredLocale: ?[*:0]u16,
             lFlags: i32,
             pCtx: ?*IWbemContext,
             riid: ?*const Guid,
@@ -2774,7 +2774,7 @@ pub const IWbemConnectorLogin = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ConnectorLogin(self: *const IWbemConnectorLogin, wszNetworkResource: ?PWSTR, wszPreferredLocale: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: **anyopaque) callconv(.@"inline") HRESULT {
+    pub fn ConnectorLogin(self: *const IWbemConnectorLogin, wszNetworkResource: ?[*:0]u16, wszPreferredLocale: ?[*:0]u16, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.ConnectorLogin(self, wszNetworkResource, wszPreferredLocale, lFlags, pCtx, riid, pInterface);
     }
 };
@@ -2788,7 +2788,7 @@ pub const IWbemConstructClassObject = extern union {
             self: *const IWbemConstructClassObject,
             lNumAntecedents: i32,
             /// parameter "lNumAntecedents" is the size in bytes
-            awszAntecedents: ?*?PWSTR,
+            awszAntecedents: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetPropertyOrigin: *const fn(
             self: *const IWbemConstructClassObject,
@@ -2808,7 +2808,7 @@ pub const IWbemConstructClassObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetInheritanceChain(self: *const IWbemConstructClassObject, lNumAntecedents: i32, awszAntecedents: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetInheritanceChain(self: *const IWbemConstructClassObject, lNumAntecedents: i32, awszAntecedents: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetInheritanceChain(self, lNumAntecedents, awszAntecedents);
     }
     pub fn SetPropertyOrigin(self: *const IWbemConstructClassObject, wszPropertyName: ?[*:0]const u16, lOriginIndex: i32) callconv(.@"inline") HRESULT {
@@ -3149,7 +3149,7 @@ pub const IWbemHiPerfProvider = extern union {
         QueryInstances: *const fn(
             self: *const IWbemHiPerfProvider,
             pNamespace: ?*IWbemServices,
-            wszClass: ?PWSTR,
+            wszClass: ?[*:0]u16,
             lFlags: i32,
             pCtx: ?*IWbemContext,
             pSink: ?*IWbemObjectSink,
@@ -3197,7 +3197,7 @@ pub const IWbemHiPerfProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryInstances(self: *const IWbemHiPerfProvider, pNamespace: ?*IWbemServices, wszClass: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, pSink: ?*IWbemObjectSink) callconv(.@"inline") HRESULT {
+    pub fn QueryInstances(self: *const IWbemHiPerfProvider, pNamespace: ?*IWbemServices, wszClass: ?[*:0]u16, lFlags: i32, pCtx: ?*IWbemContext, pSink: ?*IWbemObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.QueryInstances(self, pNamespace, wszClass, lFlags, pCtx, pSink);
     }
     pub fn CreateRefresher(self: *const IWbemHiPerfProvider, pNamespace: ?*IWbemServices, lFlags: i32, ppRefresher: ?*?*IWbemRefresher) callconv(.@"inline") HRESULT {
@@ -3224,19 +3224,19 @@ pub const IWbemLevel1Login = extern union {
         base: IUnknown.VTable,
         EstablishPosition: *const fn(
             self: *const IWbemLevel1Login,
-            wszLocaleList: ?PWSTR,
+            wszLocaleList: ?[*:0]u16,
             dwNumLocales: u32,
             reserved: ?*u32,
         ) callconv(.winapi) HRESULT,
         RequestChallenge: *const fn(
             self: *const IWbemLevel1Login,
-            wszNetworkResource: ?PWSTR,
-            wszUser: ?PWSTR,
+            wszNetworkResource: ?[*:0]u16,
+            wszUser: ?[*:0]u16,
             Nonce: ?*u8,
         ) callconv(.winapi) HRESULT,
         WBEMLogin: *const fn(
             self: *const IWbemLevel1Login,
-            wszPreferredLocale: ?PWSTR,
+            wszPreferredLocale: ?[*:0]u16,
             AccessToken: ?*u8,
             lFlags: i32,
             pCtx: ?*IWbemContext,
@@ -3244,8 +3244,8 @@ pub const IWbemLevel1Login = extern union {
         ) callconv(.winapi) HRESULT,
         NTLMLogin: *const fn(
             self: *const IWbemLevel1Login,
-            wszNetworkResource: ?PWSTR,
-            wszPreferredLocale: ?PWSTR,
+            wszNetworkResource: ?[*:0]u16,
+            wszPreferredLocale: ?[*:0]u16,
             lFlags: i32,
             pCtx: ?*IWbemContext,
             ppNamespace: ?*?*IWbemServices,
@@ -3253,16 +3253,16 @@ pub const IWbemLevel1Login = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EstablishPosition(self: *const IWbemLevel1Login, wszLocaleList: ?PWSTR, dwNumLocales: u32, reserved: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn EstablishPosition(self: *const IWbemLevel1Login, wszLocaleList: ?[*:0]u16, dwNumLocales: u32, reserved: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.EstablishPosition(self, wszLocaleList, dwNumLocales, reserved);
     }
-    pub fn RequestChallenge(self: *const IWbemLevel1Login, wszNetworkResource: ?PWSTR, wszUser: ?PWSTR, Nonce: ?*u8) callconv(.@"inline") HRESULT {
+    pub fn RequestChallenge(self: *const IWbemLevel1Login, wszNetworkResource: ?[*:0]u16, wszUser: ?[*:0]u16, Nonce: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.RequestChallenge(self, wszNetworkResource, wszUser, Nonce);
     }
-    pub fn WBEMLogin(self: *const IWbemLevel1Login, wszPreferredLocale: ?PWSTR, AccessToken: ?*u8, lFlags: i32, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.@"inline") HRESULT {
+    pub fn WBEMLogin(self: *const IWbemLevel1Login, wszPreferredLocale: ?[*:0]u16, AccessToken: ?*u8, lFlags: i32, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.@"inline") HRESULT {
         return self.vtable.WBEMLogin(self, wszPreferredLocale, AccessToken, lFlags, pCtx, ppNamespace);
     }
-    pub fn NTLMLogin(self: *const IWbemLevel1Login, wszNetworkResource: ?PWSTR, wszPreferredLocale: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.@"inline") HRESULT {
+    pub fn NTLMLogin(self: *const IWbemLevel1Login, wszNetworkResource: ?[*:0]u16, wszPreferredLocale: ?[*:0]u16, lFlags: i32, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.@"inline") HRESULT {
         return self.vtable.NTLMLogin(self, wszNetworkResource, wszPreferredLocale, lFlags, pCtx, ppNamespace);
     }
 };
@@ -3567,12 +3567,12 @@ pub const IWbemPath = extern union {
         SetScope: *const fn(
             self: *const IWbemPath,
             uIndex: u32,
-            pszClass: ?PWSTR,
+            pszClass: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetScopeFromText: *const fn(
             self: *const IWbemPath,
             uIndex: u32,
-            pszText: ?PWSTR,
+            pszText: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetScope: *const fn(
             self: *const IWbemPath,
@@ -3618,13 +3618,13 @@ pub const IWbemPath = extern union {
         ) callconv(.winapi) HRESULT,
         IsRelative: *const fn(
             self: *const IWbemPath,
-            wszMachine: ?PWSTR,
-            wszNamespace: ?PWSTR,
+            wszMachine: ?[*:0]u16,
+            wszNamespace: ?[*:0]u16,
         ) callconv(.winapi) BOOL,
         IsRelativeOrChild: *const fn(
             self: *const IWbemPath,
-            wszMachine: ?PWSTR,
-            wszNamespace: ?PWSTR,
+            wszMachine: ?[*:0]u16,
+            wszNamespace: ?[*:0]u16,
             lFlags: i32,
         ) callconv(.winapi) BOOL,
         IsLocal: *const fn(
@@ -3671,10 +3671,10 @@ pub const IWbemPath = extern union {
     pub fn GetScopeCount(self: *const IWbemPath, puCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetScopeCount(self, puCount);
     }
-    pub fn SetScope(self: *const IWbemPath, uIndex: u32, pszClass: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetScope(self: *const IWbemPath, uIndex: u32, pszClass: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetScope(self, uIndex, pszClass);
     }
-    pub fn SetScopeFromText(self: *const IWbemPath, uIndex: u32, pszText: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetScopeFromText(self: *const IWbemPath, uIndex: u32, pszText: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetScopeFromText(self, uIndex, pszText);
     }
     pub fn GetScope(self: *const IWbemPath, uIndex: u32, puClassNameBufSize: ?*u32, pszClass: [*:0]u16, pKeyList: ?*?*IWbemPathKeyList) callconv(.@"inline") HRESULT {
@@ -3704,10 +3704,10 @@ pub const IWbemPath = extern union {
     pub fn DeleteClassPart(self: *const IWbemPath, lFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteClassPart(self, lFlags);
     }
-    pub fn IsRelative(self: *const IWbemPath, wszMachine: ?PWSTR, wszNamespace: ?PWSTR) callconv(.@"inline") BOOL {
+    pub fn IsRelative(self: *const IWbemPath, wszMachine: ?[*:0]u16, wszNamespace: ?[*:0]u16) callconv(.@"inline") BOOL {
         return self.vtable.IsRelative(self, wszMachine, wszNamespace);
     }
-    pub fn IsRelativeOrChild(self: *const IWbemPath, wszMachine: ?PWSTR, wszNamespace: ?PWSTR, lFlags: i32) callconv(.@"inline") BOOL {
+    pub fn IsRelativeOrChild(self: *const IWbemPath, wszMachine: ?[*:0]u16, wszNamespace: ?[*:0]u16, lFlags: i32) callconv(.@"inline") BOOL {
         return self.vtable.IsRelativeOrChild(self, wszMachine, wszNamespace, lFlags);
     }
     pub fn IsLocal(self: *const IWbemPath, wszMachine: ?[*:0]const u16) callconv(.@"inline") BOOL {
@@ -3882,10 +3882,10 @@ pub const IWbemProviderInit = extern union {
         base: IUnknown.VTable,
         Initialize: *const fn(
             self: *const IWbemProviderInit,
-            wszUser: ?PWSTR,
+            wszUser: ?[*:0]u16,
             lFlags: i32,
-            wszNamespace: ?PWSTR,
-            wszLocale: ?PWSTR,
+            wszNamespace: ?[*:0]u16,
+            wszLocale: ?[*:0]u16,
             pNamespace: ?*IWbemServices,
             pCtx: ?*IWbemContext,
             pInitSink: ?*IWbemProviderInitSink,
@@ -3893,7 +3893,7 @@ pub const IWbemProviderInit = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWbemProviderInit, wszUser: ?PWSTR, lFlags: i32, wszNamespace: ?PWSTR, wszLocale: ?PWSTR, pNamespace: ?*IWbemServices, pCtx: ?*IWbemContext, pInitSink: ?*IWbemProviderInitSink) callconv(.@"inline") HRESULT {
+    pub fn Initialize(self: *const IWbemProviderInit, wszUser: ?[*:0]u16, lFlags: i32, wszNamespace: ?[*:0]u16, wszLocale: ?[*:0]u16, pNamespace: ?*IWbemServices, pCtx: ?*IWbemContext, pInitSink: ?*IWbemProviderInitSink) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, wszUser, lFlags, wszNamespace, wszLocale, pNamespace, pCtx, pInitSink);
     }
 };
@@ -6072,14 +6072,14 @@ pub const SWbemAssocQueryInf = extern struct {
     m_uAnalysisType: u32,
     m_uFeatureMask: u32,
     m_pPath: ?*IWbemPath,
-    m_pszPath: ?PWSTR,
-    m_pszQueryText: ?PWSTR,
-    m_pszResultClass: ?PWSTR,
-    m_pszAssocClass: ?PWSTR,
-    m_pszRole: ?PWSTR,
-    m_pszResultRole: ?PWSTR,
-    m_pszRequiredQualifier: ?PWSTR,
-    m_pszRequiredAssocQualifier: ?PWSTR,
+    m_pszPath: ?[*:0]u16,
+    m_pszQueryText: ?[*:0]u16,
+    m_pszResultClass: ?[*:0]u16,
+    m_pszAssocClass: ?[*:0]u16,
+    m_pszRole: ?[*:0]u16,
+    m_pszResultRole: ?[*:0]u16,
+    m_pszRequiredQualifier: ?[*:0]u16,
+    m_pszRequiredAssocQualifier: ?[*:0]u16,
 };
 
 const CLSID_SWbemDateTime_Value = Guid.initString("47dfbe54-cf76-11d3-b38f-00105a1f473a");
@@ -6140,7 +6140,7 @@ pub const SWbemQueryQualifiedName = extern struct {
     m_uVersion: u32,
     m_uTokenType: u32,
     m_uNameListSize: u32,
-    m_ppszNameList: ?*?PWSTR,
+    m_ppszNameList: ?*?[*:0]u16,
     m_bArraysUsed: BOOL,
     m_pbArrayElUsed: ?*BOOL,
     m_puArrayIndex: ?*u32,
@@ -6173,13 +6173,13 @@ pub const SWbemRpnEncodedQuery = extern struct {
     m_uFromTargetType: u32,
     m_pszOptionalFromPath: ?[*:0]const u16,
     m_uFromListSize: u32,
-    m_ppszFromList: ?*?PWSTR,
+    m_ppszFromList: ?*?[*:0]u16,
     m_uWhereClauseSize: u32,
     m_ppRpnWhereClause: ?*?*SWbemRpnQueryToken,
     m_dblWithinPolling: f64,
     m_dblWithinWindow: f64,
     m_uOrderByListSize: u32,
-    m_ppszOrderByList: ?*?PWSTR,
+    m_ppszOrderByList: ?*?[*:0]u16,
     m_uOrderDirectionEl: ?*u32,
 };
 
@@ -7861,7 +7861,7 @@ pub extern "mi" fn MI_Application_InitializeV1(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -7869,7 +7869,6 @@ const BSTR = @import("../foundation.zig").BSTR;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const VARIANT = @import("../system/com.zig").VARIANT;
 const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;

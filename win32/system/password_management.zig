@@ -28,8 +28,8 @@ pub const SAMPR_ENCRYPTED_USER_PASSWORD = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn MSChapSrvChangePassword(
-    ServerName: ?PWSTR,
-    UserName: ?PWSTR,
+    ServerName: ?[*:0]u16,
+    UserName: ?[*:0]u16,
     LmOldPresent: BOOLEAN,
     LmOldOwfPassword: ?*LM_OWF_PASSWORD,
     LmNewOwfPassword: ?*LM_OWF_PASSWORD,
@@ -39,8 +39,8 @@ pub extern "advapi32" fn MSChapSrvChangePassword(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn MSChapSrvChangePassword2(
-    ServerName: ?PWSTR,
-    UserName: ?PWSTR,
+    ServerName: ?[*:0]u16,
+    UserName: ?[*:0]u16,
     NewPasswordEncryptedWithOldNt: ?*SAMPR_ENCRYPTED_USER_PASSWORD,
     OldNtOwfPasswordEncryptedWithNewNt: ?*ENCRYPTED_LM_OWF_PASSWORD,
     LmPresent: BOOLEAN,
@@ -53,11 +53,10 @@ pub extern "advapi32" fn MSChapSrvChangePassword2(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (3)
+// Section: Imports (2)
 //--------------------------------------------------------------------------------
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const CHAR = @import("../foundation.zig").CHAR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

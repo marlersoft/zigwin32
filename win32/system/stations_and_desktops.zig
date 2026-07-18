@@ -134,12 +134,12 @@ pub const DESKTOP_CONTROL_FLAGS = enum(u32) {
 pub const DF_ALLOWOTHERACCOUNTHOOK = DESKTOP_CONTROL_FLAGS.K;
 
 pub const DESKTOPENUMPROCA = *const fn(
-    param0: ?PSTR,
+    param0: ?[*:0]u8,
     param1: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const DESKTOPENUMPROCW = *const fn(
-    param0: ?PWSTR,
+    param0: ?[*:0]u16,
     param1: LPARAM,
 ) callconv(.winapi) BOOL;
 
@@ -173,12 +173,12 @@ pub const USEROBJECTFLAGS = extern struct {
 };
 
 pub const WINSTAENUMPROCA = *const fn(
-    param0: ?PSTR,
+    param0: ?[*:0]u8,
     param1: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const WINSTAENUMPROCW = *const fn(
-    param0: ?PWSTR,
+    param0: ?[*:0]u16,
     param1: LPARAM,
 ) callconv(.winapi) BOOL;
 
@@ -521,7 +521,7 @@ pub const SetUserObjectInformation = switch (@import("../zig.zig").unicode_mode)
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (12)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const DEVMODEA = @import("../graphics/gdi.zig").DEVMODEA;
@@ -530,8 +530,6 @@ const HANDLE = @import("../foundation.zig").HANDLE;
 const HWND = @import("../foundation.zig").HWND;
 const LPARAM = @import("../foundation.zig").LPARAM;
 const LUID = @import("../foundation.zig").LUID;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const WNDENUMPROC = @import("../ui/windows_and_messaging.zig").WNDENUMPROC;
 const WPARAM = @import("../foundation.zig").WPARAM;

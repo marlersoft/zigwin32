@@ -7258,7 +7258,7 @@ pub extern "ksuser" fn KsCreateTopologyNode2(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (14)
+// Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -7269,7 +7269,6 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const LUID = @import("../foundation.zig").LUID;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const SIZE = @import("../foundation.zig").SIZE;
 const TIMECODE_SAMPLE = @import("../media.zig").TIMECODE_SAMPLE;

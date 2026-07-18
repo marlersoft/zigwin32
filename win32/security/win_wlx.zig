@@ -67,7 +67,7 @@ pub const WLX_WM_SAS = @as(u32, 1625);
 //--------------------------------------------------------------------------------
 pub const PFNMSGECALLBACK = *const fn(
     bVerbose: BOOL,
-    lpMessage: ?PWSTR,
+    lpMessage: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub const PWLX_ASSIGN_SHELL_PROTECTION = *const fn(
@@ -87,7 +87,7 @@ pub const PWLX_CHANGE_PASSWORD_NOTIFY_EX = *const fn(
     hWlx: ?HANDLE,
     pMprInfo: ?*WLX_MPR_NOTIFY_INFO,
     dwChangeInfo: u32,
-    ProviderName: ?PWSTR,
+    ProviderName: ?[*:0]u16,
     Reserved: ?*anyopaque,
 ) callconv(.winapi) i32;
 
@@ -101,14 +101,14 @@ pub const PWLX_CREATE_USER_DESKTOP = *const fn(
     hWlx: ?HANDLE,
     hToken: ?HANDLE,
     Flags: u32,
-    pszDesktopName: ?PWSTR,
+    pszDesktopName: ?[*:0]u16,
     ppDesktop: ?*?*WLX_DESKTOP,
 ) callconv(.winapi) BOOL;
 
 pub const PWLX_DIALOG_BOX = *const fn(
     hWlx: ?HANDLE,
     hInst: ?HANDLE,
-    lpszTemplate: ?PWSTR,
+    lpszTemplate: ?[*:0]u16,
     hwndOwner: ?HWND,
     dlgprc: ?DLGPROC,
 ) callconv(.winapi) i32;
@@ -133,7 +133,7 @@ pub const PWLX_DIALOG_BOX_INDIRECT_PARAM = *const fn(
 pub const PWLX_DIALOG_BOX_PARAM = *const fn(
     hWlx: ?HANDLE,
     hInst: ?HANDLE,
-    lpszTemplate: ?PWSTR,
+    lpszTemplate: ?[*:0]u16,
     hwndOwner: ?HWND,
     dlgprc: ?DLGPROC,
     dwInitParam: LPARAM,
@@ -156,8 +156,8 @@ pub const PWLX_GET_SOURCE_DESKTOP = *const fn(
 pub const PWLX_MESSAGE_BOX = *const fn(
     hWlx: ?HANDLE,
     hwndOwner: ?HWND,
-    lpszText: ?PWSTR,
-    lpszTitle: ?PWSTR,
+    lpszText: ?[*:0]u16,
+    lpszTitle: ?[*:0]u16,
     fuStyle: u32,
 ) callconv(.winapi) i32;
 
@@ -176,8 +176,8 @@ pub const PWLX_QUERY_IC_CREDENTIALS = *const fn(
 pub const PWLX_QUERY_TERMINAL_SERVICES_DATA = *const fn(
     hWlx: ?HANDLE,
     pTSData: ?*WLX_TERMINAL_SERVICES_DATA,
-    UserName: ?PWSTR,
-    Domain: ?PWSTR,
+    UserName: ?[*:0]u16,
+    Domain: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub const PWLX_QUERY_TS_LOGON_CREDENTIALS = *const fn(
@@ -229,17 +229,17 @@ pub const PWLX_WIN31_MIGRATE = *const fn(
 
 pub const WLX_CLIENT_CREDENTIALS_INFO_V1_0 = extern struct {
     dwType: u32,
-    pszUserName: ?PWSTR,
-    pszDomain: ?PWSTR,
-    pszPassword: ?PWSTR,
+    pszUserName: ?[*:0]u16,
+    pszDomain: ?[*:0]u16,
+    pszPassword: ?[*:0]u16,
     fPromptForPassword: BOOL,
 };
 
 pub const WLX_CLIENT_CREDENTIALS_INFO_V2_0 = extern struct {
     dwType: u32,
-    pszUserName: ?PWSTR,
-    pszDomain: ?PWSTR,
-    pszPassword: ?PWSTR,
+    pszUserName: ?[*:0]u16,
+    pszDomain: ?[*:0]u16,
+    pszPassword: ?[*:0]u16,
     fPromptForPassword: BOOL,
     fDisconnectOnLogonFailure: BOOL,
 };
@@ -249,8 +249,8 @@ pub const WLX_CONSOLESWITCH_CREDENTIALS_INFO_V1_0 = extern struct {
     UserToken: ?HANDLE,
     LogonId: LUID,
     Quotas: QUOTA_LIMITS,
-    UserName: ?PWSTR,
-    Domain: ?PWSTR,
+    UserName: ?[*:0]u16,
+    Domain: ?[*:0]u16,
     LogonTime: LARGE_INTEGER,
     SmartCardLogon: BOOL,
     ProfileLength: u32,
@@ -263,12 +263,12 @@ pub const WLX_CONSOLESWITCH_CREDENTIALS_INFO_V1_0 = extern struct {
     PasswordLastSet: LARGE_INTEGER,
     PasswordCanChange: LARGE_INTEGER,
     PasswordMustChange: LARGE_INTEGER,
-    LogonScript: ?PWSTR,
-    HomeDirectory: ?PWSTR,
-    FullName: ?PWSTR,
-    ProfilePath: ?PWSTR,
-    HomeDirectoryDrive: ?PWSTR,
-    LogonServer: ?PWSTR,
+    LogonScript: ?[*:0]u16,
+    HomeDirectory: ?[*:0]u16,
+    FullName: ?[*:0]u16,
+    ProfilePath: ?[*:0]u16,
+    HomeDirectoryDrive: ?[*:0]u16,
+    LogonServer: ?[*:0]u16,
     UserFlags: u32,
     PrivateDataLen: u32,
     PrivateData: ?*u8,
@@ -278,7 +278,7 @@ pub const WLX_DESKTOP = extern struct {
     Size: u32,
     Flags: u32,
     hDesktop: ?HDESK,
-    pszDesktopName: ?PWSTR,
+    pszDesktopName: ?[*:0]u16,
 };
 
 pub const WLX_DISPATCH_VERSION_1_0 = extern struct {
@@ -397,18 +397,18 @@ pub const WLX_DISPATCH_VERSION_1_4 = extern struct {
 };
 
 pub const WLX_MPR_NOTIFY_INFO = extern struct {
-    pszUserName: ?PWSTR,
-    pszDomain: ?PWSTR,
-    pszPassword: ?PWSTR,
-    pszOldPassword: ?PWSTR,
+    pszUserName: ?[*:0]u16,
+    pszDomain: ?[*:0]u16,
+    pszPassword: ?[*:0]u16,
+    pszOldPassword: ?[*:0]u16,
 };
 
 pub const WLX_NOTIFICATION_INFO = extern struct {
     Size: u32,
     Flags: u32,
-    UserName: ?PWSTR,
-    Domain: ?PWSTR,
-    WindowStation: ?PWSTR,
+    UserName: ?[*:0]u16,
+    Domain: ?[*:0]u16,
+    WindowStation: ?[*:0]u16,
     hToken: ?HANDLE,
     hDesktop: ?HDESK,
     pStatusCallback: ?PFNMSGECALLBACK,
@@ -416,23 +416,23 @@ pub const WLX_NOTIFICATION_INFO = extern struct {
 
 pub const WLX_PROFILE_V1_0 = extern struct {
     dwType: u32,
-    pszProfile: ?PWSTR,
+    pszProfile: ?[*:0]u16,
 };
 
 pub const WLX_PROFILE_V2_0 = extern struct {
     dwType: u32,
-    pszProfile: ?PWSTR,
-    pszPolicy: ?PWSTR,
-    pszNetworkDefaultUserProfile: ?PWSTR,
-    pszServerName: ?PWSTR,
-    pszEnvironment: ?PWSTR,
+    pszProfile: ?[*:0]u16,
+    pszPolicy: ?[*:0]u16,
+    pszNetworkDefaultUserProfile: ?[*:0]u16,
+    pszServerName: ?[*:0]u16,
+    pszEnvironment: ?[*:0]u16,
 };
 
 pub const WLX_SC_NOTIFICATION_INFO = extern struct {
-    pszCard: ?PWSTR,
-    pszReader: ?PWSTR,
-    pszContainer: ?PWSTR,
-    pszCryptoProvider: ?PWSTR,
+    pszCard: ?[*:0]u16,
+    pszReader: ?[*:0]u16,
+    pszContainer: ?[*:0]u16,
+    pszCryptoProvider: ?[*:0]u16,
 };
 
 pub const WLX_SHUTDOWN_TYPE = enum(u32) {
@@ -459,7 +459,7 @@ pub const WLX_TERMINAL_SERVICES_DATA = extern struct {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const DLGPROC = @import("../ui/windows_and_messaging.zig").DLGPROC;
@@ -470,7 +470,6 @@ const HWND = @import("../foundation.zig").HWND;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const LPARAM = @import("../foundation.zig").LPARAM;
 const LUID = @import("../foundation.zig").LUID;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const QUOTA_LIMITS = @import("../security.zig").QUOTA_LIMITS;
 
 test {

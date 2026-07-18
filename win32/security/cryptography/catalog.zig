@@ -109,7 +109,7 @@ pub const CRYPTCAT_VERSION_2 = CRYPTCAT_VERSION.@"2";
 
 pub const CRYPTCATATTRIBUTE = extern struct {
     cbStruct: u32,
-    pwszReferenceTag: ?PWSTR,
+    pwszReferenceTag: ?[*:0]u16,
     dwAttrTypeAndAction: u32,
     cbValue: u32,
     pbValue: ?*u8,
@@ -122,14 +122,14 @@ pub const CRYPTCATCDF = extern struct {
     dwCurFilePos: u32,
     dwLastMemberOffset: u32,
     fEOF: BOOL,
-    pwszResultDir: ?PWSTR,
+    pwszResultDir: ?[*:0]u16,
     hCATStore: ?HANDLE,
 };
 
 pub const CRYPTCATMEMBER = extern struct {
     cbStruct: u32,
-    pwszReferenceTag: ?PWSTR,
-    pwszFileName: ?PWSTR,
+    pwszReferenceTag: ?[*:0]u16,
+    pwszFileName: ?[*:0]u16,
     gSubjectType: Guid,
     fdwMemberFlags: u32,
     pIndirectData: ?*SIP_INDIRECT_DATA,
@@ -143,7 +143,7 @@ pub const CRYPTCATMEMBER = extern struct {
 pub const CRYPTCATSTORE = extern struct {
     cbStruct: u32,
     dwPublicVersion: u32,
-    pwszP7File: ?PWSTR,
+    pwszP7File: ?[*:0]u16,
     hProv: usize,
     dwEncodingType: u32,
     fdwStoreFlags: CRYPTCAT_OPEN_FLAGS,
@@ -162,7 +162,7 @@ pub const MS_ADDINFO_CATALOGMEMBER = extern struct {
 pub const PFN_CDF_PARSE_ERROR_CALLBACK = *const fn(
     dwErrorArea: u32,
     dwLocalError: u32,
-    pwszLine: ?PWSTR,
+    pwszLine: ?[*:0]u16,
 ) callconv(.winapi) void;
 
 
@@ -188,8 +188,8 @@ pub extern "wintrust" fn CryptCATAdminAcquireContext2(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn CryptCATAdminAddCatalog(
     hCatAdmin: isize,
-    pwszCatalogFile: ?PWSTR,
-    pwszSelectBaseName: ?PWSTR,
+    pwszCatalogFile: ?[*:0]u16,
+    pwszSelectBaseName: ?[*:0]u16,
     dwFlags: u32,
 ) callconv(.winapi) isize;
 
@@ -250,14 +250,14 @@ pub extern "wintrust" fn CryptCATAdminRemoveCatalog(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn CryptCATAdminResolveCatalogPath(
     hCatAdmin: isize,
-    pwszCatalogFile: ?PWSTR,
+    pwszCatalogFile: ?[*:0]u16,
     psCatInfo: ?*CATALOG_INFO,
     dwFlags: u32,
 ) callconv(.winapi) BOOL;
 
 pub extern "wintrust" fn CryptCATAllocSortedMemberInfo(
     hCatalog: ?HANDLE,
-    pwszReferenceTag: ?PWSTR,
+    pwszReferenceTag: ?[*:0]u16,
 ) callconv(.winapi) ?*CRYPTCATMEMBER;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -294,7 +294,7 @@ pub extern "wintrust" fn CryptCATCDFEnumMembers(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn CryptCATCDFOpen(
-    pwszFilePath: ?PWSTR,
+    pwszFilePath: ?[*:0]u16,
     pfnParseError: ?PFN_CDF_PARSE_ERROR_CALLBACK,
 ) callconv(.winapi) ?*CRYPTCATCDF;
 
@@ -331,18 +331,18 @@ pub extern "wintrust" fn CryptCATFreeSortedMemberInfo(
 pub extern "wintrust" fn CryptCATGetAttrInfo(
     hCatalog: ?HANDLE,
     pCatMember: ?*CRYPTCATMEMBER,
-    pwszReferenceTag: ?PWSTR,
+    pwszReferenceTag: ?[*:0]u16,
 ) callconv(.winapi) ?*CRYPTCATATTRIBUTE;
 
 pub extern "wintrust" fn CryptCATGetCatAttrInfo(
     hCatalog: ?HANDLE,
-    pwszReferenceTag: ?PWSTR,
+    pwszReferenceTag: ?[*:0]u16,
 ) callconv(.winapi) ?*CRYPTCATATTRIBUTE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn CryptCATGetMemberInfo(
     hCatalog: ?HANDLE,
-    pwszReferenceTag: ?PWSTR,
+    pwszReferenceTag: ?[*:0]u16,
 ) callconv(.winapi) ?*CRYPTCATMEMBER;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -352,7 +352,7 @@ pub extern "wintrust" fn CryptCATHandleFromStore(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn CryptCATOpen(
-    pwszFileName: ?PWSTR,
+    pwszFileName: ?[*:0]u16,
     fdwOpenFlags: CRYPTCAT_OPEN_FLAGS,
     hProv: usize,
     dwPublicVersion: CRYPTCAT_VERSION,
@@ -368,7 +368,7 @@ pub extern "wintrust" fn CryptCATPersistStore(
 pub extern "wintrust" fn CryptCATPutAttrInfo(
     hCatalog: ?HANDLE,
     pCatMember: ?*CRYPTCATMEMBER,
-    pwszReferenceTag: ?PWSTR,
+    pwszReferenceTag: ?[*:0]u16,
     dwAttrTypeAndAction: u32,
     cbData: u32,
     pbData: ?*u8,
@@ -377,7 +377,7 @@ pub extern "wintrust" fn CryptCATPutAttrInfo(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn CryptCATPutCatAttrInfo(
     hCatalog: ?HANDLE,
-    pwszReferenceTag: ?PWSTR,
+    pwszReferenceTag: ?[*:0]u16,
     dwAttrTypeAndAction: u32,
     cbData: u32,
     pbData: ?*u8,
@@ -386,8 +386,8 @@ pub extern "wintrust" fn CryptCATPutCatAttrInfo(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn CryptCATPutMemberInfo(
     hCatalog: ?HANDLE,
-    pwszFileName: ?PWSTR,
-    pwszReferenceTag: ?PWSTR,
+    pwszFileName: ?[*:0]u16,
+    pwszReferenceTag: ?[*:0]u16,
     pgSubjectType: ?*Guid,
     dwCertVersion: u32,
     cbSIPIndirectData: u32,
@@ -402,7 +402,7 @@ pub extern "wintrust" fn CryptCATStoreFromHandle(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn IsCatalogFile(
     hFile: ?HANDLE,
-    pwszFileName: ?PWSTR,
+    pwszFileName: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 
@@ -410,14 +410,13 @@ pub extern "wintrust" fn IsCatalogFile(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
 const CERT_STRONG_SIGN_PARA = @import("../../security/cryptography.zig").CERT_STRONG_SIGN_PARA;
 const CRYPT_INTEGER_BLOB = @import("../../security/cryptography.zig").CRYPT_INTEGER_BLOB;
 const HANDLE = @import("../../foundation.zig").HANDLE;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const SIP_INDIRECT_DATA = @import("../../security/cryptography/sip.zig").SIP_INDIRECT_DATA;
 
 test {

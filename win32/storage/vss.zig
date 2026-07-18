@@ -1680,14 +1680,14 @@ pub const IVssWriterImpl = extern union {
         ) callconv(.winapi) void,
         GetCurrentVolumeArray: *const fn(
             self: *const IVssWriterImpl,
-        ) callconv(.winapi) ?*?PWSTR,
+        ) callconv(.winapi) ?*?[*:0]u16,
         GetCurrentVolumeCount: *const fn(
             self: *const IVssWriterImpl,
         ) callconv(.winapi) u32,
         GetSnapshotDeviceName: *const fn(
             self: *const IVssWriterImpl,
             wszOriginalVolume: ?[*:0]const u16,
-            ppwszSnapshotDevice: ?*?PWSTR,
+            ppwszSnapshotDevice: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetCurrentSnapshotSetId: *const fn(
             self: *const IVssWriterImpl,
@@ -1757,13 +1757,13 @@ pub const IVssWriterImpl = extern union {
     pub fn Uninitialize(self: *const IVssWriterImpl) callconv(.@"inline") void {
         return self.vtable.Uninitialize(self);
     }
-    pub fn GetCurrentVolumeArray(self: *const IVssWriterImpl) callconv(.@"inline") ?*?PWSTR {
+    pub fn GetCurrentVolumeArray(self: *const IVssWriterImpl) callconv(.@"inline") ?*?[*:0]u16 {
         return self.vtable.GetCurrentVolumeArray(self);
     }
     pub fn GetCurrentVolumeCount(self: *const IVssWriterImpl) callconv(.@"inline") u32 {
         return self.vtable.GetCurrentVolumeCount(self);
     }
-    pub fn GetSnapshotDeviceName(self: *const IVssWriterImpl, wszOriginalVolume: ?[*:0]const u16, ppwszSnapshotDevice: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSnapshotDeviceName(self: *const IVssWriterImpl, wszOriginalVolume: ?[*:0]const u16, ppwszSnapshotDevice: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSnapshotDeviceName(self, wszOriginalVolume, ppwszSnapshotDevice);
     }
     pub fn GetCurrentSnapshotSetId(self: *const IVssWriterImpl) callconv(.@"inline") Guid {
@@ -2446,7 +2446,7 @@ pub extern "vssapi" fn CreateVssExpressWriterInternal(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -2455,7 +2455,6 @@ const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const IXMLDOMDocument = @import("../data/xml/ms_xml.zig").IXMLDOMDocument;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/com.zig").VARIANT;
 const VDS_LUN_INFORMATION = @import("../storage/virtual_disk_service.zig").VDS_LUN_INFORMATION;
 

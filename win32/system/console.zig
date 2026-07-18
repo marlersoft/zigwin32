@@ -291,15 +291,15 @@ pub const WINDOW_BUFFER_SIZE_RECORD = extern struct {
 // Section: Functions (94)
 //--------------------------------------------------------------------------------
 pub extern "kernel32" fn AddConsoleAliasA(
-    Source: ?PSTR,
-    Target: ?PSTR,
-    ExeName: ?PSTR,
+    Source: ?[*:0]u8,
+    Target: ?[*:0]u8,
+    ExeName: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn AddConsoleAliasW(
-    Source: ?PWSTR,
-    Target: ?PWSTR,
-    ExeName: ?PWSTR,
+    Source: ?[*:0]u16,
+    Target: ?[*:0]u16,
+    ExeName: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn AllocConsole(
@@ -330,11 +330,11 @@ pub extern "kernel32" fn CreatePseudoConsole(
 ) callconv(.winapi) HRESULT;
 
 pub extern "kernel32" fn ExpungeConsoleCommandHistoryA(
-    ExeName: ?PSTR,
+    ExeName: ?[*:0]u8,
 ) callconv(.winapi) void;
 
 pub extern "kernel32" fn ExpungeConsoleCommandHistoryW(
-    ExeName: ?PWSTR,
+    ExeName: ?[*:0]u16,
 ) callconv(.winapi) void;
 
 pub extern "kernel32" fn FillConsoleOutputAttribute(
@@ -374,30 +374,30 @@ pub extern "kernel32" fn GenerateConsoleCtrlEvent(
 ) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn GetConsoleAliasA(
-    Source: ?PSTR,
+    Source: ?[*:0]u8,
     TargetBuffer: [*:0]u8,
     TargetBufferLength: u32,
-    ExeName: ?PSTR,
+    ExeName: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 pub extern "kernel32" fn GetConsoleAliasesA(
     AliasBuffer: [*:0]u8,
     AliasBufferLength: u32,
-    ExeName: ?PSTR,
+    ExeName: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 pub extern "kernel32" fn GetConsoleAliasesLengthA(
-    ExeName: ?PSTR,
+    ExeName: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 pub extern "kernel32" fn GetConsoleAliasesLengthW(
-    ExeName: ?PWSTR,
+    ExeName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub extern "kernel32" fn GetConsoleAliasesW(
     AliasBuffer: [*:0]u16,
     AliasBufferLength: u32,
-    ExeName: ?PWSTR,
+    ExeName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub extern "kernel32" fn GetConsoleAliasExesA(
@@ -417,32 +417,32 @@ pub extern "kernel32" fn GetConsoleAliasExesW(
 ) callconv(.winapi) u32;
 
 pub extern "kernel32" fn GetConsoleAliasW(
-    Source: ?PWSTR,
+    Source: ?[*:0]u16,
     TargetBuffer: [*:0]u16,
     TargetBufferLength: u32,
-    ExeName: ?PWSTR,
+    ExeName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub extern "kernel32" fn GetConsoleCommandHistoryA(
     /// parameter "CommandBufferLength" is the size in bytes
-    Commands: ?PSTR,
+    Commands: ?[*:0]u8,
     CommandBufferLength: u32,
-    ExeName: ?PSTR,
+    ExeName: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 pub extern "kernel32" fn GetConsoleCommandHistoryLengthA(
-    ExeName: ?PSTR,
+    ExeName: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 pub extern "kernel32" fn GetConsoleCommandHistoryLengthW(
-    ExeName: ?PWSTR,
+    ExeName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub extern "kernel32" fn GetConsoleCommandHistoryW(
     /// parameter "CommandBufferLength" is the size in bytes
-    Commands: ?PWSTR,
+    Commands: ?[*:0]u16,
     CommandBufferLength: u32,
-    ExeName: ?PWSTR,
+    ExeName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub extern "kernel32" fn GetConsoleCP(
@@ -690,12 +690,12 @@ pub extern "kernel32" fn SetConsoleMode(
 
 pub extern "kernel32" fn SetConsoleNumberOfCommandsA(
     Number: u32,
-    ExeName: ?PSTR,
+    ExeName: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn SetConsoleNumberOfCommandsW(
     Number: u32,
-    ExeName: ?PWSTR,
+    ExeName: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn SetConsoleOutputCP(
@@ -991,7 +991,7 @@ pub const WriteConsoleOutputCharacter = switch (@import("../zig.zig").unicode_mo
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const CHAR = @import("../foundation.zig").CHAR;
@@ -999,8 +999,6 @@ const COLORREF = @import("../foundation.zig").COLORREF;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {

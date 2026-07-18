@@ -4477,7 +4477,7 @@ pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V1 = extern struct {
     MaxIops: i64,
     MaxBandwidth: i64,
     ReservationIops: i64,
-    VolumeName: ?PWSTR,
+    VolumeName: ?[*:0]u16,
     BaseIoSize: u32,
     ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
     VolumeNameLength: u16,
@@ -6136,7 +6136,7 @@ pub const TEB = extern struct {
 };
 
 pub const TOKEN_BNO_ISOLATION_INFORMATION = extern struct {
-    IsolationPrefix: ?PWSTR,
+    IsolationPrefix: ?[*:0]u16,
     IsolationEnabled: BOOLEAN,
 };
 
@@ -6289,7 +6289,7 @@ pub const userCLIPFORMAT = extern struct {
     fContext: i32,
     u: extern union {
         dwValue: u32,
-        pwszName: ?PWSTR,
+        pwszName: ?[*:0]u16,
     },
 };
 
@@ -6436,7 +6436,7 @@ pub const DEV_BROADCAST_PORT_ = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (21)
+// Section: Imports (19)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -6451,8 +6451,6 @@ const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const LOGPALETTE = @import("../graphics/gdi.zig").LOGPALETTE;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const PSID = @import("../foundation.zig").PSID;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SID = @import("../security.zig").SID;
 const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
 const TOKEN_USER = @import("../security.zig").TOKEN_USER;

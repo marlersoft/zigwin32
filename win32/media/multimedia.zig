@@ -5704,7 +5704,7 @@ pub const LPFNEXTDEVIO = *const fn(
 ) callconv(.winapi) BOOL;
 
 pub const LPMMIOPROC = *const fn(
-    lpmmioinfo: ?PSTR,
+    lpmmioinfo: ?[*:0]u8,
     uMsg: u32,
     lParam1: LPARAM,
     lParam2: LPARAM,
@@ -5779,13 +5779,13 @@ pub const MCI_BREAK_PARMS = extern struct {
 
 pub const MCI_DGV_CAPTURE_PARMSA = extern struct {
     dwCallback: usize align(1),
-    lpstrFileName: ?PSTR align(1),
+    lpstrFileName: ?[*:0]u8 align(1),
     rc: RECT align(1),
 };
 
 pub const MCI_DGV_CAPTURE_PARMSW = extern struct {
     dwCallback: usize align(1),
-    lpstrFileName: ?PWSTR align(1),
+    lpstrFileName: ?[*:0]u16 align(1),
     rc: RECT align(1),
 };
 
@@ -5823,34 +5823,34 @@ pub const MCI_DGV_DELETE_PARMS = extern struct {
 
 pub const MCI_DGV_INFO_PARMSA = extern struct {
     dwCallback: usize align(1),
-    lpstrReturn: ?PSTR align(1),
+    lpstrReturn: ?[*:0]u8 align(1),
     dwRetSize: u32 align(1),
     dwItem: u32 align(1),
 };
 
 pub const MCI_DGV_INFO_PARMSW = extern struct {
     dwCallback: usize align(1),
-    lpstrReturn: ?PWSTR align(1),
+    lpstrReturn: ?[*:0]u16 align(1),
     dwRetSize: u32 align(1),
     dwItem: u32 align(1),
 };
 
 pub const MCI_DGV_LIST_PARMSA = extern struct {
     dwCallback: usize align(1),
-    lpstrReturn: ?PSTR align(1),
+    lpstrReturn: ?[*:0]u8 align(1),
     dwLength: u32 align(1),
     dwNumber: u32 align(1),
     dwItem: u32 align(1),
-    lpstrAlgorithm: ?PSTR align(1),
+    lpstrAlgorithm: ?[*:0]u8 align(1),
 };
 
 pub const MCI_DGV_LIST_PARMSW = extern struct {
     dwCallback: usize align(1),
-    lpstrReturn: ?PWSTR align(1),
+    lpstrReturn: ?[*:0]u16 align(1),
     dwLength: u32 align(1),
     dwNumber: u32 align(1),
     dwItem: u32 align(1),
-    lpstrAlgorithm: ?PWSTR align(1),
+    lpstrAlgorithm: ?[*:0]u16 align(1),
 };
 
 pub const MCI_DGV_MONITOR_PARMS = extern struct {
@@ -5862,9 +5862,9 @@ pub const MCI_DGV_MONITOR_PARMS = extern struct {
 pub const MCI_DGV_OPEN_PARMSA = extern struct {
     dwCallback: usize align(1),
     wDeviceID: u32 align(1),
-    lpstrDeviceType: ?PSTR align(1),
-    lpstrElementName: ?PSTR align(1),
-    lpstrAlias: ?PSTR align(1),
+    lpstrDeviceType: ?[*:0]u8 align(1),
+    lpstrElementName: ?[*:0]u8 align(1),
+    lpstrAlias: ?[*:0]u8 align(1),
     dwStyle: u32 align(1),
     hWndParent: ?HWND align(1),
 };
@@ -5872,9 +5872,9 @@ pub const MCI_DGV_OPEN_PARMSA = extern struct {
 pub const MCI_DGV_OPEN_PARMSW = extern struct {
     dwCallback: usize align(1),
     wDeviceID: u32 align(1),
-    lpstrDeviceType: ?PWSTR align(1),
-    lpstrElementName: ?PWSTR align(1),
-    lpstrAlias: ?PWSTR align(1),
+    lpstrDeviceType: ?[*:0]u16 align(1),
+    lpstrElementName: ?[*:0]u16 align(1),
+    lpstrAlias: ?[*:0]u16 align(1),
     dwStyle: u32 align(1),
     hWndParent: ?HWND align(1),
 };
@@ -5890,7 +5890,7 @@ pub const MCI_DGV_PASTE_PARMS = extern struct {
 pub const MCI_DGV_QUALITY_PARMSA = extern struct {
     dwCallback: usize align(1),
     dwItem: u32 align(1),
-    lpstrName: ?PSTR align(1),
+    lpstrName: ?[*:0]u8 align(1),
     lpstrAlgorithm: u32 align(1),
     dwHandle: u32 align(1),
 };
@@ -5898,7 +5898,7 @@ pub const MCI_DGV_QUALITY_PARMSA = extern struct {
 pub const MCI_DGV_QUALITY_PARMSW = extern struct {
     dwCallback: usize align(1),
     dwItem: u32 align(1),
-    lpstrName: ?PWSTR align(1),
+    lpstrName: ?[*:0]u16 align(1),
     lpstrAlgorithm: u32 align(1),
     dwHandle: u32 align(1),
 };
@@ -5919,37 +5919,37 @@ pub const MCI_DGV_RECT_PARMS = extern struct {
 
 pub const MCI_DGV_RESERVE_PARMSA = extern struct {
     dwCallback: usize align(1),
-    lpstrPath: ?PSTR align(1),
+    lpstrPath: ?[*:0]u8 align(1),
     dwSize: u32 align(1),
 };
 
 pub const MCI_DGV_RESERVE_PARMSW = extern struct {
     dwCallback: usize align(1),
-    lpstrPath: ?PWSTR align(1),
+    lpstrPath: ?[*:0]u16 align(1),
     dwSize: u32 align(1),
 };
 
 pub const MCI_DGV_RESTORE_PARMSA = extern struct {
     dwCallback: usize align(1),
-    lpstrFileName: ?PSTR align(1),
+    lpstrFileName: ?[*:0]u8 align(1),
     rc: RECT align(1),
 };
 
 pub const MCI_DGV_RESTORE_PARMSW = extern struct {
     dwCallback: usize align(1),
-    lpstrFileName: ?PWSTR align(1),
+    lpstrFileName: ?[*:0]u16 align(1),
     rc: RECT align(1),
 };
 
 pub const MCI_DGV_SAVE_PARMSA = extern struct {
     dwCallback: usize align(1),
-    lpstrFileName: ?PSTR align(1),
+    lpstrFileName: ?[*:0]u8 align(1),
     rc: RECT align(1),
 };
 
 pub const MCI_DGV_SAVE_PARMSW = extern struct {
     dwCallback: usize align(1),
-    lpstrFileName: ?PWSTR align(1),
+    lpstrFileName: ?[*:0]u16 align(1),
     rc: RECT align(1),
 };
 
@@ -5966,8 +5966,8 @@ pub const MCI_DGV_SETAUDIO_PARMSA = extern struct {
     dwItem: u32 align(1),
     dwValue: u32 align(1),
     dwOver: u32 align(1),
-    lpstrAlgorithm: ?PSTR align(1),
-    lpstrQuality: ?PSTR align(1),
+    lpstrAlgorithm: ?[*:0]u8 align(1),
+    lpstrQuality: ?[*:0]u8 align(1),
 };
 
 pub const MCI_DGV_SETAUDIO_PARMSW = extern struct {
@@ -5975,8 +5975,8 @@ pub const MCI_DGV_SETAUDIO_PARMSW = extern struct {
     dwItem: u32 align(1),
     dwValue: u32 align(1),
     dwOver: u32 align(1),
-    lpstrAlgorithm: ?PWSTR align(1),
-    lpstrQuality: ?PWSTR align(1),
+    lpstrAlgorithm: ?[*:0]u16 align(1),
+    lpstrQuality: ?[*:0]u16 align(1),
 };
 
 pub const MCI_DGV_SETVIDEO_PARMSA = extern struct {
@@ -5984,8 +5984,8 @@ pub const MCI_DGV_SETVIDEO_PARMSA = extern struct {
     dwItem: u32 align(1),
     dwValue: u32 align(1),
     dwOver: u32 align(1),
-    lpstrAlgorithm: ?PSTR align(1),
-    lpstrQuality: ?PSTR align(1),
+    lpstrAlgorithm: ?[*:0]u8 align(1),
+    lpstrQuality: ?[*:0]u8 align(1),
     dwSourceNumber: u32 align(1),
 };
 
@@ -5994,8 +5994,8 @@ pub const MCI_DGV_SETVIDEO_PARMSW = extern struct {
     dwItem: u32 align(1),
     dwValue: u32 align(1),
     dwOver: u32 align(1),
-    lpstrAlgorithm: ?PWSTR align(1),
-    lpstrQuality: ?PWSTR align(1),
+    lpstrAlgorithm: ?[*:0]u16 align(1),
+    lpstrQuality: ?[*:0]u16 align(1),
     dwSourceNumber: u32 align(1),
 };
 
@@ -6011,7 +6011,7 @@ pub const MCI_DGV_STATUS_PARMSA = extern struct {
     dwReturn: usize align(1),
     dwItem: u32 align(1),
     dwTrack: u32 align(1),
-    lpstrDrive: ?PSTR align(1),
+    lpstrDrive: ?[*:0]u8 align(1),
     dwReference: u32 align(1),
 };
 
@@ -6020,7 +6020,7 @@ pub const MCI_DGV_STATUS_PARMSW = extern struct {
     dwReturn: usize align(1),
     dwItem: u32 align(1),
     dwTrack: u32 align(1),
-    lpstrDrive: ?PWSTR align(1),
+    lpstrDrive: ?[*:0]u16 align(1),
     dwReference: u32 align(1),
 };
 
@@ -6039,14 +6039,14 @@ pub const MCI_DGV_WINDOW_PARMSA = extern struct {
     dwCallback: usize align(1),
     hWnd: ?HWND align(1),
     nCmdShow: u32 align(1),
-    lpstrText: ?PSTR align(1),
+    lpstrText: ?[*:0]u8 align(1),
 };
 
 pub const MCI_DGV_WINDOW_PARMSW = extern struct {
     dwCallback: usize align(1),
     hWnd: ?HWND align(1),
     nCmdShow: u32 align(1),
-    lpstrText: ?PWSTR align(1),
+    lpstrText: ?[*:0]u16 align(1),
 };
 
 pub const MCI_GENERIC_PARMS = extern struct {
@@ -6061,13 +6061,13 @@ pub const MCI_GETDEVCAPS_PARMS = extern struct {
 
 pub const MCI_INFO_PARMSA = extern struct {
     dwCallback: usize align(1),
-    lpstrReturn: ?PSTR align(1),
+    lpstrReturn: ?[*:0]u8 align(1),
     dwRetSize: u32 align(1),
 };
 
 pub const MCI_INFO_PARMSW = extern struct {
     dwCallback: usize align(1),
-    lpstrReturn: ?PWSTR align(1),
+    lpstrReturn: ?[*:0]u16 align(1),
     dwRetSize: u32 align(1),
 };
 
@@ -6220,7 +6220,7 @@ pub const MCI_STATUS_PARMS = extern struct {
 
 pub const MCI_SYSINFO_PARMSA = extern struct {
     dwCallback: usize align(1),
-    lpstrReturn: ?PSTR align(1),
+    lpstrReturn: ?[*:0]u8 align(1),
     dwRetSize: u32 align(1),
     dwNumber: u32 align(1),
     wDeviceType: u32 align(1),
@@ -6228,7 +6228,7 @@ pub const MCI_SYSINFO_PARMSA = extern struct {
 
 pub const MCI_SYSINFO_PARMSW = extern struct {
     dwCallback: usize align(1),
-    lpstrReturn: ?PWSTR align(1),
+    lpstrReturn: ?[*:0]u16 align(1),
     dwRetSize: u32 align(1),
     dwNumber: u32 align(1),
     wDeviceType: u32 align(1),
@@ -7132,7 +7132,7 @@ pub extern "msvfw32" fn ICCompressorChoose(
     pvIn: ?*anyopaque,
     lpData: ?*anyopaque,
     pc: ?*COMPVARS,
-    lpszTitle: ?PSTR,
+    lpszTitle: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7231,7 +7231,7 @@ pub extern "msvfw32" fn ICInstall(
     fccType: u32,
     fccHandler: u32,
     lParam: LPARAM,
-    szDesc: ?PSTR,
+    szDesc: ?[*:0]u8,
     wFlags: u32,
 ) callconv(.winapi) BOOL;
 
@@ -8072,7 +8072,7 @@ pub const mmioStringToFOURCC = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (33)
+// Section: Imports (31)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BITMAPINFO = @import("../graphics/gdi.zig").BITMAPINFO;
@@ -8101,8 +8101,6 @@ const OPENFILENAMEW = @import("../ui/controls/dialogs.zig").OPENFILENAMEW;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
 const PALETTEENTRY = @import("../graphics/gdi.zig").PALETTEENTRY;
 const POINT = @import("../foundation.zig").POINT;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const WAVEFORMAT = @import("../media/audio.zig").WAVEFORMAT;
 const WAVEFORMATEX = @import("../media/audio.zig").WAVEFORMATEX;

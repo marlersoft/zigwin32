@@ -168,9 +168,9 @@ pub const FDIERROR_EOF = FDIERROR.EOF;
 
 pub const FDINOTIFICATION = extern struct {
     cb: i32,
-    psz1: ?PSTR,
-    psz2: ?PSTR,
-    psz3: ?PSTR,
+    psz1: ?[*:0]u8,
+    psz2: ?[*:0]u8,
+    psz3: ?[*:0]u8,
     pv: ?*anyopaque,
     hf: isize,
     date: u16,
@@ -218,14 +218,14 @@ pub const PFNFCICLOSE = *const fn(
 ) callconv(.winapi) i32;
 
 pub const PFNFCIDELETE = *const fn(
-    pszFile: ?PSTR,
+    pszFile: ?[*:0]u8,
     err: ?*i32,
     pv: ?*anyopaque,
 ) callconv(.winapi) i32;
 
 pub const PFNFCIFILEPLACED = *const fn(
     pccab: ?*CCAB,
-    pszFile: ?PSTR,
+    pszFile: ?[*:0]u8,
     cbFile: i32,
     fContinuation: BOOL,
     pv: ?*anyopaque,
@@ -242,7 +242,7 @@ pub const PFNFCIGETNEXTCABINET = *const fn(
 ) callconv(.winapi) BOOL;
 
 pub const PFNFCIGETOPENINFO = *const fn(
-    pszName: ?PSTR,
+    pszName: ?[*:0]u8,
     pdate: ?*u16,
     ptime: ?*u16,
     pattribs: ?*u16,
@@ -252,13 +252,13 @@ pub const PFNFCIGETOPENINFO = *const fn(
 
 pub const PFNFCIGETTEMPFILE = *const fn(
     /// parameter "cbTempName" is the size in bytes
-    pszTempName: ?PSTR,
+    pszTempName: ?[*:0]u8,
     cbTempName: i32,
     pv: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
 pub const PFNFCIOPEN = *const fn(
-    pszFile: ?PSTR,
+    pszFile: ?[*:0]u8,
     oflag: i32,
     pmode: i32,
     err: ?*i32,
@@ -310,7 +310,7 @@ pub const PFNFREE = *const fn(
 ) callconv(.winapi) void;
 
 pub const PFNOPEN = *const fn(
-    pszFile: ?PSTR,
+    pszFile: ?[*:0]u8,
     oflag: i32,
     pmode: i32,
 ) callconv(.winapi) isize;
@@ -351,8 +351,8 @@ pub const FDISPILLFILE = switch(@import("../zig.zig").arch) {
 //--------------------------------------------------------------------------------
 pub extern "cabinet" fn FCIAddFile(
     hfci: ?*anyopaque,
-    pszSourceFile: ?PSTR,
-    pszFileName: ?PSTR,
+    pszSourceFile: ?[*:0]u8,
+    pszFileName: ?[*:0]u8,
     fExecute: BOOL,
     pfnfcignc: ?PFNFCIGETNEXTCABINET,
     pfnfcis: ?PFNFCISTATUS,
@@ -396,8 +396,8 @@ pub extern "cabinet" fn FCIFlushFolder(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cabinet" fn FDICopy(
     hfdi: ?*anyopaque,
-    pszCabinet: ?PSTR,
-    pszCabPath: ?PSTR,
+    pszCabinet: ?[*:0]u8,
+    pszCabPath: ?[*:0]u8,
     flags: i32,
     pfnfdin: ?PFNFDINOTIFY,
     pfnfdid: ?PFNFDIDECRYPT,
@@ -431,7 +431,7 @@ pub extern "cabinet" fn FDIIsCabinet(
 
 pub extern "cabinet" fn FDITruncateCabinet(
     hfdi: ?*anyopaque,
-    pszCabinetName: ?PSTR,
+    pszCabinetName: ?[*:0]u8,
     iFolderToDelete: u16,
 ) callconv(.winapi) BOOL;
 
@@ -440,11 +440,10 @@ pub extern "cabinet" fn FDITruncateCabinet(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (3)
+// Section: Imports (2)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const CHAR = @import("../foundation.zig").CHAR;
-const PSTR = @import("../foundation.zig").PSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

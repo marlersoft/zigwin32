@@ -113,7 +113,7 @@ pub const AsyncIConnectedIdentityProvider = extern union {
         Finish_GetUrl: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
             PostData: ?*VARIANT,
-            Url: ?*?PWSTR,
+            Url: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Begin_GetAccountState: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
@@ -146,7 +146,7 @@ pub const AsyncIConnectedIdentityProvider = extern union {
     pub fn Begin_GetUrl(self: *const AsyncIConnectedIdentityProvider, Identifier: IDENTITY_URL, Context: ?*IBindCtx) callconv(.@"inline") HRESULT {
         return self.vtable.Begin_GetUrl(self, Identifier, Context);
     }
-    pub fn Finish_GetUrl(self: *const AsyncIConnectedIdentityProvider, PostData: ?*VARIANT, Url: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Finish_GetUrl(self: *const AsyncIConnectedIdentityProvider, PostData: ?*VARIANT, Url: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Finish_GetUrl(self, PostData, Url);
     }
     pub fn Begin_GetAccountState(self: *const AsyncIConnectedIdentityProvider) callconv(.@"inline") HRESULT {
@@ -546,7 +546,7 @@ pub const IConnectedIdentityProvider = extern union {
             Identifier: IDENTITY_URL,
             Context: ?*IBindCtx,
             PostData: ?*VARIANT,
-            Url: ?*?PWSTR,
+            Url: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetAccountState: *const fn(
             self: *const IConnectedIdentityProvider,
@@ -564,7 +564,7 @@ pub const IConnectedIdentityProvider = extern union {
     pub fn IsConnected(self: *const IConnectedIdentityProvider, Connected: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsConnected(self, Connected);
     }
-    pub fn GetUrl(self: *const IConnectedIdentityProvider, Identifier: IDENTITY_URL, Context: ?*IBindCtx, PostData: ?*VARIANT, Url: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetUrl(self: *const IConnectedIdentityProvider, Identifier: IDENTITY_URL, Context: ?*IBindCtx, PostData: ?*VARIANT, Url: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetUrl(self, Identifier, Context, PostData, Url);
     }
     pub fn GetAccountState(self: *const IConnectedIdentityProvider, pState: ?*ACCOUNT_STATE) callconv(.@"inline") HRESULT {
@@ -859,7 +859,7 @@ pub const IIdentityStoreEx = extern union {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (12)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../../zig.zig").Guid;
 const BOOL = @import("../../../foundation.zig").BOOL;
@@ -871,7 +871,6 @@ const IPropertyStore = @import("../../../ui/shell/properties_system.zig").IPrope
 const IUnknown = @import("../../../system/com.zig").IUnknown;
 const PROPERTYKEY = @import("../../../ui/shell/properties_system.zig").PROPERTYKEY;
 const PROPVARIANT = @import("../../../system/com/structured_storage.zig").PROPVARIANT;
-const PWSTR = @import("../../../foundation.zig").PWSTR;
 const VARIANT = @import("../../../system/com.zig").VARIANT;
 
 test {

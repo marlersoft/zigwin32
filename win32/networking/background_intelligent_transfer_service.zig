@@ -330,8 +330,8 @@ pub const BG_AUTH_TARGET_SERVER = BG_AUTH_TARGET.SERVER;
 pub const BG_AUTH_TARGET_PROXY = BG_AUTH_TARGET.PROXY;
 
 pub const BG_BASIC_CREDENTIALS = extern struct {
-    UserName: ?PWSTR,
-    Password: ?PWSTR,
+    UserName: ?[*:0]u16,
+    Password: ?[*:0]u16,
 };
 
 pub const BG_CERT_STORE_LOCATION = enum(i32) {
@@ -375,8 +375,8 @@ pub const BG_ERROR_CONTEXT_REMOTE_APPLICATION = BG_ERROR_CONTEXT.REMOTE_APPLICAT
 pub const BG_ERROR_CONTEXT_SERVER_CERTIFICATE_CALLBACK = BG_ERROR_CONTEXT.SERVER_CERTIFICATE_CALLBACK;
 
 pub const BG_FILE_INFO = extern struct {
-    RemoteName: ?PWSTR,
-    LocalName: ?PWSTR,
+    RemoteName: ?[*:0]u16,
+    LocalName: ?[*:0]u16,
 };
 
 pub const BG_FILE_PROGRESS = extern struct {
@@ -473,7 +473,7 @@ pub const BITS_FILE_PROPERTY_ID = enum(i32) {
 pub const BITS_FILE_PROPERTY_ID_HTTP_RESPONSE_HEADERS = BITS_FILE_PROPERTY_ID.S;
 
 pub const BITS_FILE_PROPERTY_VALUE = extern union {
-    String: ?PWSTR,
+    String: ?[*:0]u16,
 };
 
 pub const BITS_JOB_PROPERTY_ID = enum(i32) {
@@ -697,16 +697,16 @@ pub const IBackgroundCopyError = extern union {
         GetErrorDescription: *const fn(
             self: *const IBackgroundCopyError,
             LanguageId: u32,
-            pErrorDescription: ?*?PWSTR,
+            pErrorDescription: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetErrorContextDescription: *const fn(
             self: *const IBackgroundCopyError,
             LanguageId: u32,
-            pContextDescription: ?*?PWSTR,
+            pContextDescription: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetProtocol: *const fn(
             self: *const IBackgroundCopyError,
-            pProtocol: ?*?PWSTR,
+            pProtocol: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -717,13 +717,13 @@ pub const IBackgroundCopyError = extern union {
     pub fn GetFile(self: *const IBackgroundCopyError, pVal: ?*?*IBackgroundCopyFile) callconv(.@"inline") HRESULT {
         return self.vtable.GetFile(self, pVal);
     }
-    pub fn GetErrorDescription(self: *const IBackgroundCopyError, LanguageId: u32, pErrorDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetErrorDescription(self: *const IBackgroundCopyError, LanguageId: u32, pErrorDescription: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetErrorDescription(self, LanguageId, pErrorDescription);
     }
-    pub fn GetErrorContextDescription(self: *const IBackgroundCopyError, LanguageId: u32, pContextDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetErrorContextDescription(self: *const IBackgroundCopyError, LanguageId: u32, pContextDescription: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetErrorContextDescription(self, LanguageId, pContextDescription);
     }
-    pub fn GetProtocol(self: *const IBackgroundCopyError, pProtocol: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetProtocol(self: *const IBackgroundCopyError, pProtocol: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetProtocol(self, pProtocol);
     }
 };
@@ -736,11 +736,11 @@ pub const IBackgroundCopyFile = extern union {
         base: IUnknown.VTable,
         GetRemoteName: *const fn(
             self: *const IBackgroundCopyFile,
-            pVal: ?*?PWSTR,
+            pVal: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetLocalName: *const fn(
             self: *const IBackgroundCopyFile,
-            pVal: ?*?PWSTR,
+            pVal: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetProgress: *const fn(
             self: *const IBackgroundCopyFile,
@@ -749,10 +749,10 @@ pub const IBackgroundCopyFile = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRemoteName(self: *const IBackgroundCopyFile, pVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetRemoteName(self: *const IBackgroundCopyFile, pVal: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetRemoteName(self, pVal);
     }
-    pub fn GetLocalName(self: *const IBackgroundCopyFile, pVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetLocalName(self: *const IBackgroundCopyFile, pVal: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetLocalName(self, pVal);
     }
     pub fn GetProgress(self: *const IBackgroundCopyFile, pVal: ?*BG_FILE_PROGRESS) callconv(.@"inline") HRESULT {
@@ -795,7 +795,7 @@ pub const IBackgroundCopyFile3 = extern union {
         base: IBackgroundCopyFile2.VTable,
         GetTemporaryName: *const fn(
             self: *const IBackgroundCopyFile3,
-            pFilename: ?*?PWSTR,
+            pFilename: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetValidationState: *const fn(
             self: *const IBackgroundCopyFile3,
@@ -814,7 +814,7 @@ pub const IBackgroundCopyFile3 = extern union {
     IBackgroundCopyFile2: IBackgroundCopyFile2,
     IBackgroundCopyFile: IBackgroundCopyFile,
     IUnknown: IUnknown,
-    pub fn GetTemporaryName(self: *const IBackgroundCopyFile3, pFilename: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetTemporaryName(self: *const IBackgroundCopyFile3, pFilename: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetTemporaryName(self, pFilename);
     }
     pub fn SetValidationState(self: *const IBackgroundCopyFile3, state: BOOL) callconv(.@"inline") HRESULT {
@@ -1101,7 +1101,7 @@ pub const IBackgroundCopyJob = extern union {
         ) callconv(.winapi) HRESULT,
         GetOwner: *const fn(
             self: *const IBackgroundCopyJob,
-            pVal: ?*?PWSTR,
+            pVal: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetDisplayName: *const fn(
             self: *const IBackgroundCopyJob,
@@ -1109,7 +1109,7 @@ pub const IBackgroundCopyJob = extern union {
         ) callconv(.winapi) HRESULT,
         GetDisplayName: *const fn(
             self: *const IBackgroundCopyJob,
-            pVal: ?*?PWSTR,
+            pVal: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetDescription: *const fn(
             self: *const IBackgroundCopyJob,
@@ -1117,7 +1117,7 @@ pub const IBackgroundCopyJob = extern union {
         ) callconv(.winapi) HRESULT,
         GetDescription: *const fn(
             self: *const IBackgroundCopyJob,
-            pVal: ?*?PWSTR,
+            pVal: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetPriority: *const fn(
             self: *const IBackgroundCopyJob,
@@ -1172,8 +1172,8 @@ pub const IBackgroundCopyJob = extern union {
         GetProxySettings: *const fn(
             self: *const IBackgroundCopyJob,
             pProxyUsage: ?*BG_JOB_PROXY_USAGE,
-            pProxyList: ?*?PWSTR,
-            pProxyBypassList: ?*?PWSTR,
+            pProxyList: ?*?[*:0]u16,
+            pProxyBypassList: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         TakeOwnership: *const fn(
             self: *const IBackgroundCopyJob,
@@ -1220,19 +1220,19 @@ pub const IBackgroundCopyJob = extern union {
     pub fn GetError(self: *const IBackgroundCopyJob, ppError: ?*?*IBackgroundCopyError) callconv(.@"inline") HRESULT {
         return self.vtable.GetError(self, ppError);
     }
-    pub fn GetOwner(self: *const IBackgroundCopyJob, pVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetOwner(self: *const IBackgroundCopyJob, pVal: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetOwner(self, pVal);
     }
     pub fn SetDisplayName(self: *const IBackgroundCopyJob, Val: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetDisplayName(self, Val);
     }
-    pub fn GetDisplayName(self: *const IBackgroundCopyJob, pVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDisplayName(self: *const IBackgroundCopyJob, pVal: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayName(self, pVal);
     }
     pub fn SetDescription(self: *const IBackgroundCopyJob, Val: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetDescription(self, Val);
     }
-    pub fn GetDescription(self: *const IBackgroundCopyJob, pVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDescription(self: *const IBackgroundCopyJob, pVal: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDescription(self, pVal);
     }
     pub fn SetPriority(self: *const IBackgroundCopyJob, Val: BG_JOB_PRIORITY) callconv(.@"inline") HRESULT {
@@ -1271,7 +1271,7 @@ pub const IBackgroundCopyJob = extern union {
     pub fn SetProxySettings(self: *const IBackgroundCopyJob, ProxyUsage: BG_JOB_PROXY_USAGE, ProxyList: ?[*:0]const u16, ProxyBypassList: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetProxySettings(self, ProxyUsage, ProxyList, ProxyBypassList);
     }
-    pub fn GetProxySettings(self: *const IBackgroundCopyJob, pProxyUsage: ?*BG_JOB_PROXY_USAGE, pProxyList: ?*?PWSTR, pProxyBypassList: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetProxySettings(self: *const IBackgroundCopyJob, pProxyUsage: ?*BG_JOB_PROXY_USAGE, pProxyList: ?*?[*:0]u16, pProxyBypassList: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetProxySettings(self, pProxyUsage, pProxyList, pProxyBypassList);
     }
     pub fn TakeOwnership(self: *const IBackgroundCopyJob) callconv(.@"inline") HRESULT {
@@ -1364,8 +1364,8 @@ pub const IBackgroundCopyJob2 = extern union {
         ) callconv(.winapi) HRESULT,
         GetNotifyCmdLine: *const fn(
             self: *const IBackgroundCopyJob2,
-            pProgram: ?*?PWSTR,
-            pParameters: ?*?PWSTR,
+            pProgram: ?*?[*:0]u16,
+            pParameters: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetReplyProgress: *const fn(
             self: *const IBackgroundCopyJob2,
@@ -1382,7 +1382,7 @@ pub const IBackgroundCopyJob2 = extern union {
         ) callconv(.winapi) HRESULT,
         GetReplyFileName: *const fn(
             self: *const IBackgroundCopyJob2,
-            pReplyFileName: ?*?PWSTR,
+            pReplyFileName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetCredentials: *const fn(
             self: *const IBackgroundCopyJob2,
@@ -1400,7 +1400,7 @@ pub const IBackgroundCopyJob2 = extern union {
     pub fn SetNotifyCmdLine(self: *const IBackgroundCopyJob2, Program: ?[*:0]const u16, Parameters: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetNotifyCmdLine(self, Program, Parameters);
     }
-    pub fn GetNotifyCmdLine(self: *const IBackgroundCopyJob2, pProgram: ?*?PWSTR, pParameters: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetNotifyCmdLine(self: *const IBackgroundCopyJob2, pProgram: ?*?[*:0]u16, pParameters: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetNotifyCmdLine(self, pProgram, pParameters);
     }
     pub fn GetReplyProgress(self: *const IBackgroundCopyJob2, pProgress: ?*BG_JOB_REPLY_PROGRESS) callconv(.@"inline") HRESULT {
@@ -1412,7 +1412,7 @@ pub const IBackgroundCopyJob2 = extern union {
     pub fn SetReplyFileName(self: *const IBackgroundCopyJob2, ReplyFileName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetReplyFileName(self, ReplyFileName);
     }
-    pub fn GetReplyFileName(self: *const IBackgroundCopyJob2, pReplyFileName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetReplyFileName(self: *const IBackgroundCopyJob2, pReplyFileName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetReplyFileName(self, pReplyFileName);
     }
     pub fn SetCredentials(self: *const IBackgroundCopyJob2, credentials: ?*BG_AUTH_CREDENTIALS) callconv(.@"inline") HRESULT {
@@ -1579,9 +1579,9 @@ pub const IBackgroundCopyJobHttpOptions = extern union {
         GetClientCertificate: *const fn(
             self: *const IBackgroundCopyJobHttpOptions,
             pStoreLocation: ?*BG_CERT_STORE_LOCATION,
-            pStoreName: ?*?PWSTR,
+            pStoreName: ?*?[*:0]u16,
             ppCertHashBlob: ?*?*u8,
-            pSubjectName: ?*?PWSTR,
+            pSubjectName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetCustomHeaders: *const fn(
             self: *const IBackgroundCopyJobHttpOptions,
@@ -1589,7 +1589,7 @@ pub const IBackgroundCopyJobHttpOptions = extern union {
         ) callconv(.winapi) HRESULT,
         GetCustomHeaders: *const fn(
             self: *const IBackgroundCopyJobHttpOptions,
-            pRequestHeaders: ?*?PWSTR,
+            pRequestHeaders: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetSecurityFlags: *const fn(
             self: *const IBackgroundCopyJobHttpOptions,
@@ -1611,13 +1611,13 @@ pub const IBackgroundCopyJobHttpOptions = extern union {
     pub fn RemoveClientCertificate(self: *const IBackgroundCopyJobHttpOptions) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveClientCertificate(self);
     }
-    pub fn GetClientCertificate(self: *const IBackgroundCopyJobHttpOptions, pStoreLocation: ?*BG_CERT_STORE_LOCATION, pStoreName: ?*?PWSTR, ppCertHashBlob: ?*?*u8, pSubjectName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetClientCertificate(self: *const IBackgroundCopyJobHttpOptions, pStoreLocation: ?*BG_CERT_STORE_LOCATION, pStoreName: ?*?[*:0]u16, ppCertHashBlob: ?*?*u8, pSubjectName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetClientCertificate(self, pStoreLocation, pStoreName, ppCertHashBlob, pSubjectName);
     }
     pub fn SetCustomHeaders(self: *const IBackgroundCopyJobHttpOptions, RequestHeaders: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetCustomHeaders(self, RequestHeaders);
     }
-    pub fn GetCustomHeaders(self: *const IBackgroundCopyJobHttpOptions, pRequestHeaders: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetCustomHeaders(self: *const IBackgroundCopyJobHttpOptions, pRequestHeaders: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetCustomHeaders(self, pRequestHeaders);
     }
     pub fn SetSecurityFlags(self: *const IBackgroundCopyJobHttpOptions, Flags: u32) callconv(.@"inline") HRESULT {
@@ -1640,7 +1640,7 @@ pub const IBackgroundCopyJobHttpOptions2 = extern union {
         ) callconv(.winapi) HRESULT,
         GetHttpMethod: *const fn(
             self: *const IBackgroundCopyJobHttpOptions2,
-            method: ?*?PWSTR,
+            method: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1649,7 +1649,7 @@ pub const IBackgroundCopyJobHttpOptions2 = extern union {
     pub fn SetHttpMethod(self: *const IBackgroundCopyJobHttpOptions2, method: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetHttpMethod(self, method);
     }
-    pub fn GetHttpMethod(self: *const IBackgroundCopyJobHttpOptions2, method: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetHttpMethod(self: *const IBackgroundCopyJobHttpOptions2, method: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetHttpMethod(self, method);
     }
 };
@@ -1706,7 +1706,7 @@ pub const IBackgroundCopyManager = extern union {
             self: *const IBackgroundCopyManager,
             hResult: HRESULT,
             LanguageId: u32,
-            pErrorDescription: ?*?PWSTR,
+            pErrorDescription: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1720,7 +1720,7 @@ pub const IBackgroundCopyManager = extern union {
     pub fn EnumJobs(self: *const IBackgroundCopyManager, dwFlags: u32, ppEnum: ?*?*IEnumBackgroundCopyJobs) callconv(.@"inline") HRESULT {
         return self.vtable.EnumJobs(self, dwFlags, ppEnum);
     }
-    pub fn GetErrorDescription(self: *const IBackgroundCopyManager, hResult: HRESULT, LanguageId: u32, pErrorDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetErrorDescription(self: *const IBackgroundCopyManager, hResult: HRESULT, LanguageId: u32, pErrorDescription: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetErrorDescription(self, hResult, LanguageId, pErrorDescription);
     }
 };
@@ -1850,7 +1850,7 @@ pub const IBitsPeer = extern union {
         base: IUnknown.VTable,
         GetPeerName: *const fn(
             self: *const IBitsPeer,
-            pName: ?*?PWSTR,
+            pName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         IsAuthenticated: *const fn(
             self: *const IBitsPeer,
@@ -1863,7 +1863,7 @@ pub const IBitsPeer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPeerName(self: *const IBitsPeer, pName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPeerName(self: *const IBitsPeer, pName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPeerName(self, pName);
     }
     pub fn IsAuthenticated(self: *const IBitsPeer, pAuth: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -1993,7 +1993,7 @@ pub const IBitsPeerCacheRecord = extern union {
         ) callconv(.winapi) HRESULT,
         GetOriginUrl: *const fn(
             self: *const IBitsPeerCacheRecord,
-            pVal: ?*?PWSTR,
+            pVal: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetFileSize: *const fn(
             self: *const IBitsPeerCacheRecord,
@@ -2021,7 +2021,7 @@ pub const IBitsPeerCacheRecord = extern union {
     pub fn GetId(self: *const IBitsPeerCacheRecord, pVal: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetId(self, pVal);
     }
-    pub fn GetOriginUrl(self: *const IBitsPeerCacheRecord, pVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetOriginUrl(self: *const IBitsPeerCacheRecord, pVal: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetOriginUrl(self, pVal);
     }
     pub fn GetFileSize(self: *const IBitsPeerCacheRecord, pVal: ?*u64) callconv(.@"inline") HRESULT {
@@ -2063,7 +2063,7 @@ pub const IBitsTokenOptions = extern union {
         ) callconv(.winapi) HRESULT,
         GetHelperTokenSid: *const fn(
             self: *const IBitsTokenOptions,
-            pSid: ?*?PWSTR,
+            pSid: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -2080,7 +2080,7 @@ pub const IBitsTokenOptions = extern union {
     pub fn ClearHelperToken(self: *const IBitsTokenOptions) callconv(.@"inline") HRESULT {
         return self.vtable.ClearHelperToken(self);
     }
-    pub fn GetHelperTokenSid(self: *const IBitsTokenOptions, pSid: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetHelperTokenSid(self: *const IBitsTokenOptions, pSid: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetHelperTokenSid(self, pSid);
     }
 };
@@ -2376,7 +2376,7 @@ pub const IEnumBitsPeers = extern union {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -2385,7 +2385,6 @@ const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {

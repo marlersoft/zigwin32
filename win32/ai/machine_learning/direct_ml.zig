@@ -2289,7 +2289,7 @@ pub extern "directml" fn DMLCreateDevice1(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -2300,8 +2300,6 @@ const ID3D12CommandList = @import("../../graphics/direct3d12.zig").ID3D12Command
 const ID3D12Device = @import("../../graphics/direct3d12.zig").ID3D12Device;
 const ID3D12Resource = @import("../../graphics/direct3d12.zig").ID3D12Resource;
 const IUnknown = @import("../../system/com.zig").IUnknown;
-const PSTR = @import("../../foundation.zig").PSTR;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

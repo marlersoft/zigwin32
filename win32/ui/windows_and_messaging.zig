@@ -2055,8 +2055,8 @@ pub const LR_COPYFROMRESOURCE = IMAGE_FLAGS{ .COPYFROMRESOURCE = 1 };
 pub const LR_COPYRETURNORG = IMAGE_FLAGS{ .COPYRETURNORG = 1 };
 
 pub const IndexedResourceQualifier = extern struct {
-    name: ?PWSTR,
-    value: ?PWSTR,
+    name: ?[*:0]u16,
+    value: ?[*:0]u16,
 };
 
 pub const KBDLLHOOKSTRUCT = extern struct {
@@ -2505,7 +2505,7 @@ pub const MENUITEMINFOA = extern struct {
     hbmpChecked: ?HBITMAP,
     hbmpUnchecked: ?HBITMAP,
     dwItemData: usize,
-    dwTypeData: ?PSTR,
+    dwTypeData: ?[*:0]u8,
     cch: u32,
     hbmpItem: ?HBITMAP,
 };
@@ -2520,7 +2520,7 @@ pub const MENUITEMINFOW = extern struct {
     hbmpChecked: ?HBITMAP,
     hbmpUnchecked: ?HBITMAP,
     dwItemData: usize,
-    dwTypeData: ?PWSTR,
+    dwTypeData: ?[*:0]u16,
     cch: u32,
     hbmpItem: ?HBITMAP,
 };
@@ -2900,12 +2900,12 @@ pub const MSLLHOOKSTRUCT = extern struct {
 };
 
 pub const NAMEENUMPROCA = *const fn(
-    param0: ?PSTR,
+    param0: ?[*:0]u8,
     param1: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const NAMEENUMPROCW = *const fn(
-    param0: ?PWSTR,
+    param0: ?[*:0]u16,
     param1: LPARAM,
 ) callconv(.winapi) BOOL;
 
@@ -3059,14 +3059,14 @@ pub const PROPENUMPROCA = *const fn(
 
 pub const PROPENUMPROCEXA = *const fn(
     param0: HWND,
-    param1: ?PSTR,
+    param1: ?[*:0]u8,
     param2: ?HANDLE,
     param3: usize,
 ) callconv(.winapi) BOOL;
 
 pub const PROPENUMPROCEXW = *const fn(
     param0: HWND,
-    param1: ?PWSTR,
+    param1: ?[*:0]u16,
     param2: ?HANDLE,
     param3: usize,
 ) callconv(.winapi) BOOL;
@@ -5835,8 +5835,8 @@ pub extern "user32" fn ChangeWindowMessageFilterEx(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharLowerA(
-    lpsz: ?PSTR,
-) callconv(.winapi) ?PSTR;
+    lpsz: ?[*:0]u8,
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharLowerBuffA(
@@ -5852,31 +5852,31 @@ pub extern "user32" fn CharLowerBuffW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharLowerW(
-    lpsz: ?PWSTR,
-) callconv(.winapi) ?PWSTR;
+    lpsz: ?[*:0]u16,
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharNextA(
     lpsz: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharNextExA(
     CodePage: u16,
     lpCurrentChar: ?[*:0]const u8,
     dwFlags: u32,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharNextW(
     lpsz: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharPrevA(
     lpszStart: ?[*:0]const u8,
     lpszCurrent: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharPrevExA(
@@ -5884,18 +5884,18 @@ pub extern "user32" fn CharPrevExA(
     lpStart: ?[*:0]const u8,
     lpCurrentChar: ?[*:0]const u8,
     dwFlags: u32,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharPrevW(
     lpszStart: ?[*:0]const u16,
     lpszCurrent: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharToOemA(
     pSrc: ?[*:0]const u8,
-    pDst: ?PSTR,
+    pDst: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5915,13 +5915,13 @@ pub extern "user32" fn CharToOemBuffW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharToOemW(
     pSrc: ?[*:0]const u16,
-    pDst: ?PSTR,
+    pDst: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharUpperA(
-    lpsz: ?PSTR,
-) callconv(.winapi) ?PSTR;
+    lpsz: ?[*:0]u8,
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharUpperBuffA(
@@ -5937,8 +5937,8 @@ pub extern "user32" fn CharUpperBuffW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharUpperW(
-    lpsz: ?PWSTR,
-) callconv(.winapi) ?PWSTR;
+    lpsz: ?[*:0]u16,
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CheckMenuItem(
@@ -6296,7 +6296,7 @@ pub extern "user32" fn DestroyIcon(
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "mrmsupport" fn DestroyIndexedResults(
-    resourceUri: ?PWSTR,
+    resourceUri: ?[*:0]u16,
     qualifierCount: u32,
     qualifiers: ?[*]IndexedResourceQualifier,
 ) callconv(.winapi) void;
@@ -7097,7 +7097,7 @@ pub extern "user32" fn HiliteMenuItem(
 pub extern "mrmsupport" fn IndexFilePath(
     resourceIndexer: ?*anyopaque,
     filePath: ?[*:0]const u16,
-    ppResourceUri: ?*?PWSTR,
+    ppResourceUri: ?*?[*:0]u16,
     pQualifierCount: ?*u32,
     ppQualifiers: [*]?*IndexedResourceQualifier,
 ) callconv(.winapi) HRESULT;
@@ -7356,7 +7356,7 @@ pub extern "user32" fn LoadMenuW(
 pub extern "user32" fn LoadStringA(
     hInstance: ?HINSTANCE,
     uID: u32,
-    lpBuffer: ?PSTR,
+    lpBuffer: ?[*:0]u8,
     cchBufferMax: i32,
 ) callconv(.winapi) i32;
 
@@ -7364,7 +7364,7 @@ pub extern "user32" fn LoadStringA(
 pub extern "user32" fn LoadStringW(
     hInstance: ?HINSTANCE,
     uID: u32,
-    lpBuffer: ?PWSTR,
+    lpBuffer: ?[*:0]u16,
     cchBufferMax: i32,
 ) callconv(.winapi) i32;
 
@@ -7668,7 +7668,7 @@ pub extern "user32" fn MsgWaitForMultipleObjectsEx(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn OemToCharA(
     pSrc: ?[*:0]const u8,
-    pDst: ?PSTR,
+    pDst: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7688,7 +7688,7 @@ pub extern "user32" fn OemToCharBuffW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn OemToCharW(
     pSrc: ?[*:0]const u8,
-    pDst: ?PWSTR,
+    pDst: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -8492,26 +8492,26 @@ pub extern "user32" fn WindowFromPoint(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn wsprintfA(
-    param0: ?PSTR,
+    param0: ?[*:0]u8,
     param1: ?[*:0]const u8,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn wsprintfW(
-    param0: ?PWSTR,
+    param0: ?[*:0]u16,
     param1: ?[*:0]const u16,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn wvsprintfA(
-    param0: ?PSTR,
+    param0: ?[*:0]u8,
     param1: ?[*:0]const u8,
     arglist: ?*i8,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn wvsprintfW(
-    param0: ?PWSTR,
+    param0: ?[*:0]u16,
     param1: ?[*:0]const u16,
     arglist: ?*i8,
 ) callconv(.winapi) i32;
@@ -9284,7 +9284,7 @@ pub const wvsprintf = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (25)
+// Section: Imports (23)
 //--------------------------------------------------------------------------------
 const BLENDFUNCTION = @import("../graphics/gdi.zig").BLENDFUNCTION;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -9306,8 +9306,6 @@ const LPARAM = @import("../foundation.zig").LPARAM;
 const LRESULT = @import("../foundation.zig").LRESULT;
 const POINT = @import("../foundation.zig").POINT;
 const POWER_SETTING_REGISTER_NOTIFICATION_FLAGS = @import("../system/power.zig").POWER_SETTING_REGISTER_NOTIFICATION_FLAGS;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const SIZE = @import("../foundation.zig").SIZE;
 const WPARAM = @import("../foundation.zig").WPARAM;

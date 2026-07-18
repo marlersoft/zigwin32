@@ -41,11 +41,10 @@ pub extern "licenseprotection" fn ValidateLicenseKeyProtection(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (3)
+// Section: Imports (2)
 //--------------------------------------------------------------------------------
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

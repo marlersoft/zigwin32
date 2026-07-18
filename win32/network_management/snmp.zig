@@ -637,13 +637,13 @@ pub extern "mgmtapi" fn SnmpMgrGetTrapEx(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "mgmtapi" fn SnmpMgrOidToStr(
     oid: ?*AsnObjectIdentifier,
-    string: ?*?PSTR,
+    string: ?*?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "mgmtapi" fn SnmpMgrOpen(
-    lpAgentAddress: ?PSTR,
-    lpAgentCommunity: ?PSTR,
+    lpAgentAddress: ?[*:0]u8,
+    lpAgentCommunity: ?[*:0]u8,
     nTimeOut: i32,
     nRetries: i32,
 ) callconv(.winapi) ?*anyopaque;
@@ -659,7 +659,7 @@ pub extern "mgmtapi" fn SnmpMgrRequest(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "mgmtapi" fn SnmpMgrStrToOid(
-    string: ?PSTR,
+    string: ?[*:0]u8,
     oid: ?*AsnObjectIdentifier,
 ) callconv(.winapi) BOOL;
 
@@ -833,14 +833,14 @@ pub extern "snmpapi" fn SnmpUtilAsnAnyFree(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilDbgPrint(
     nLogLevel: SNMP_LOG,
-    szFormat: ?PSTR,
+    szFormat: ?[*:0]u8,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilIdsToA(
     Ids: ?*u32,
     IdLength: u32,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilMemAlloc(
@@ -915,7 +915,7 @@ pub extern "snmpapi" fn SnmpUtilOidNCmp(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilOidToA(
     Oid: ?*AsnObjectIdentifier,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpUtilPrintAsnAny(
@@ -954,14 +954,13 @@ pub extern "snmpapi" fn SnmpUtilVarBindListFree(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const CHAR = @import("../foundation.zig").CHAR;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HWND = @import("../foundation.zig").HWND;
 const LPARAM = @import("../foundation.zig").LPARAM;
-const PSTR = @import("../foundation.zig").PSTR;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
 const WPARAM = @import("../foundation.zig").WPARAM;
 

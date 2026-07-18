@@ -301,10 +301,9 @@ pub const DEVPROP_TYPE_STRING_INDIRECT = DEVPROPTYPE.STRING_INDIRECT;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (2)
+// Section: Imports (1)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

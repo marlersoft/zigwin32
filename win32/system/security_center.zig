@@ -290,7 +290,7 @@ pub const CLSID_WSCProductList = &CLSID_WSCProductList_Value;
 // Section: Functions (6)
 //--------------------------------------------------------------------------------
 pub extern "wscapi" fn WscGetAntiMalwareUri(
-    ppszUri: ?*?PWSTR,
+    ppszUri: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -323,7 +323,7 @@ pub extern "wscapi" fn WscUnRegisterChanges(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -333,7 +333,6 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LPTHREAD_START_ROUTINE = @import("../system/threading.zig").LPTHREAD_START_ROUTINE;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

@@ -45,11 +45,10 @@ pub extern "ualapi" fn UalStop(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;
 
 test {

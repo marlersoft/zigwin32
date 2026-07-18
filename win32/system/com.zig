@@ -461,11 +461,11 @@ pub const BIND_OPTS3 = extern struct {
 
 pub const BINDINFO = extern struct {
     cbSize: u32,
-    szExtraInfo: ?PWSTR,
+    szExtraInfo: ?[*:0]u16,
     stgmedData: STGMEDIUM,
     grfBindInfoF: u32,
     dwBindVerb: u32,
-    szCustomVerb: ?PWSTR,
+    szCustomVerb: ?[*:0]u16,
     cbstgmedData: u32,
     dwOptions: u32,
     dwOptionsFlags: u32,
@@ -682,7 +682,7 @@ pub const COAUTHIDENTITY = extern struct {
 pub const COAUTHINFO = extern struct {
     dwAuthnSvc: u32,
     dwAuthzSvc: u32,
-    pwszServerPrincName: ?PWSTR,
+    pwszServerPrincName: ?[*:0]u16,
     dwAuthnLevel: u32,
     dwImpersonationLevel: u32,
     pAuthIdentityData: ?*COAUTHIDENTITY,
@@ -757,7 +757,7 @@ pub const CONNECTDATA = extern struct {
 
 pub const COSERVERINFO = extern struct {
     dwReserved1: u32,
-    pwszName: ?PWSTR,
+    pwszName: ?[*:0]u16,
     pAuthInfo: ?*COAUTHINFO,
     dwReserved2: u32,
 };
@@ -1358,13 +1358,13 @@ pub const IAuthenticate = extern union {
         Authenticate: *const fn(
             self: *const IAuthenticate,
             phwnd: ?*?HWND,
-            pszUsername: ?*?PWSTR,
-            pszPassword: ?*?PWSTR,
+            pszUsername: ?*?[*:0]u16,
+            pszPassword: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Authenticate(self: *const IAuthenticate, phwnd: ?*?HWND, pszUsername: ?*?PWSTR, pszPassword: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Authenticate(self: *const IAuthenticate, phwnd: ?*?HWND, pszUsername: ?*?[*:0]u16, pszPassword: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Authenticate(self, phwnd, pszUsername, pszPassword);
     }
 };
@@ -1377,15 +1377,15 @@ pub const IAuthenticateEx = extern union {
         AuthenticateEx: *const fn(
             self: *const IAuthenticateEx,
             phwnd: ?*?HWND,
-            pszUsername: ?*?PWSTR,
-            pszPassword: ?*?PWSTR,
+            pszUsername: ?*?[*:0]u16,
+            pszPassword: ?*?[*:0]u16,
             pauthinfo: ?*AUTHENTICATEINFO,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAuthenticate: IAuthenticate,
     IUnknown: IUnknown,
-    pub fn AuthenticateEx(self: *const IAuthenticateEx, phwnd: ?*?HWND, pszUsername: ?*?PWSTR, pszPassword: ?*?PWSTR, pauthinfo: ?*AUTHENTICATEINFO) callconv(.@"inline") HRESULT {
+    pub fn AuthenticateEx(self: *const IAuthenticateEx, phwnd: ?*?HWND, pszUsername: ?*?[*:0]u16, pszPassword: ?*?[*:0]u16, pauthinfo: ?*AUTHENTICATEINFO) callconv(.@"inline") HRESULT {
         return self.vtable.AuthenticateEx(self, phwnd, pszUsername, pszPassword, pauthinfo);
     }
 };
@@ -1421,12 +1421,12 @@ pub const IBindCtx = extern union {
         ) callconv(.winapi) HRESULT,
         RegisterObjectParam: *const fn(
             self: *const IBindCtx,
-            pszKey: ?PWSTR,
+            pszKey: ?[*:0]u16,
             punk: ?*IUnknown,
         ) callconv(.winapi) HRESULT,
         GetObjectParam: *const fn(
             self: *const IBindCtx,
-            pszKey: ?PWSTR,
+            pszKey: ?[*:0]u16,
             ppunk: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
         EnumObjectParam: *const fn(
@@ -1435,7 +1435,7 @@ pub const IBindCtx = extern union {
         ) callconv(.winapi) HRESULT,
         RevokeObjectParam: *const fn(
             self: *const IBindCtx,
-            pszKey: ?PWSTR,
+            pszKey: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1458,16 +1458,16 @@ pub const IBindCtx = extern union {
     pub fn GetRunningObjectTable(self: *const IBindCtx, pprot: ?*?*IRunningObjectTable) callconv(.@"inline") HRESULT {
         return self.vtable.GetRunningObjectTable(self, pprot);
     }
-    pub fn RegisterObjectParam(self: *const IBindCtx, pszKey: ?PWSTR, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
+    pub fn RegisterObjectParam(self: *const IBindCtx, pszKey: ?[*:0]u16, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterObjectParam(self, pszKey, punk);
     }
-    pub fn GetObjectParam(self: *const IBindCtx, pszKey: ?PWSTR, ppunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+    pub fn GetObjectParam(self: *const IBindCtx, pszKey: ?[*:0]u16, ppunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetObjectParam(self, pszKey, ppunk);
     }
     pub fn EnumObjectParam(self: *const IBindCtx, ppenum: ?*?*IEnumString) callconv(.@"inline") HRESULT {
         return self.vtable.EnumObjectParam(self, ppenum);
     }
-    pub fn RevokeObjectParam(self: *const IBindCtx, pszKey: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn RevokeObjectParam(self: *const IBindCtx, pszKey: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.RevokeObjectParam(self, pszKey);
     }
 };
@@ -1479,7 +1479,7 @@ pub const IBindHost = extern union {
         base: IUnknown.VTable,
         CreateMoniker: *const fn(
             self: *const IBindHost,
-            szName: ?PWSTR,
+            szName: ?[*:0]u16,
             pBC: ?*IBindCtx,
             ppmk: ?*?*IMoniker,
             dwReserved: u32,
@@ -1503,7 +1503,7 @@ pub const IBindHost = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateMoniker(self: *const IBindHost, szName: ?PWSTR, pBC: ?*IBindCtx, ppmk: ?*?*IMoniker, dwReserved: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateMoniker(self: *const IBindHost, szName: ?[*:0]u16, pBC: ?*IBindCtx, ppmk: ?*?*IMoniker, dwReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateMoniker(self, szName, pBC, ppmk, dwReserved);
     }
     pub fn MonikerBindToStorage(self: *const IBindHost, pMk: ?*IMoniker, pBC: ?*IBindCtx, pBSC: ?*IBindStatusCallback, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.@"inline") HRESULT {
@@ -1540,7 +1540,7 @@ pub const IBinding = extern union {
             self: *const IBinding,
             pclsidProtocol: ?*Guid,
             pdwResult: ?*u32,
-            pszResult: ?*?PWSTR,
+            pszResult: ?*?[*:0]u16,
             pdwReserved: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
@@ -1561,7 +1561,7 @@ pub const IBinding = extern union {
     pub fn GetPriority(self: *const IBinding, pnPriority: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPriority(self, pnPriority);
     }
-    pub fn GetBindResult(self: *const IBinding, pclsidProtocol: ?*Guid, pdwResult: ?*u32, pszResult: ?*?PWSTR, pdwReserved: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetBindResult(self: *const IBinding, pclsidProtocol: ?*Guid, pdwResult: ?*u32, pszResult: ?*?[*:0]u16, pdwReserved: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBindResult(self, pclsidProtocol, pdwResult, pszResult, pdwReserved);
     }
 };
@@ -1747,7 +1747,7 @@ pub const ICatInformation = extern union {
             self: *const ICatInformation,
             rcatid: ?*Guid,
             lcid: u32,
-            pszDesc: ?*?PWSTR,
+            pszDesc: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         EnumClassesOfCategories: *const fn(
             self: *const ICatInformation,
@@ -1781,7 +1781,7 @@ pub const ICatInformation = extern union {
     pub fn EnumCategories(self: *const ICatInformation, lcid: u32, ppenumCategoryInfo: ?*?*IEnumCATEGORYINFO) callconv(.@"inline") HRESULT {
         return self.vtable.EnumCategories(self, lcid, ppenumCategoryInfo);
     }
-    pub fn GetCategoryDesc(self: *const ICatInformation, rcatid: ?*Guid, lcid: u32, pszDesc: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetCategoryDesc(self: *const ICatInformation, rcatid: ?*Guid, lcid: u32, pszDesc: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetCategoryDesc(self, rcatid, lcid, pszDesc);
     }
     pub fn EnumClassesOfCategories(self: *const ICatInformation, cImplemented: u32, rgcatidImpl: [*]const Guid, cRequired: u32, rgcatidReq: [*]const Guid, ppenumClsid: ?*?*IEnumGUID) callconv(.@"inline") HRESULT {
@@ -2005,7 +2005,7 @@ pub const IClientSecurity = extern union {
             pProxy: ?*IUnknown,
             dwAuthnSvc: u32,
             dwAuthzSvc: u32,
-            pServerPrincName: ?PWSTR,
+            pServerPrincName: ?[*:0]u16,
             dwAuthnLevel: RPC_C_AUTHN_LEVEL,
             dwImpLevel: RPC_C_IMP_LEVEL,
             pAuthInfo: ?*anyopaque,
@@ -2022,7 +2022,7 @@ pub const IClientSecurity = extern union {
     pub fn QueryBlanket(self: *const IClientSecurity, pProxy: ?*IUnknown, pAuthnSvc: ?*u32, pAuthzSvc: ?*u32, pServerPrincName: ?*?*u16, pAuthnLevel: ?*RPC_C_AUTHN_LEVEL, pImpLevel: ?*RPC_C_IMP_LEVEL, pAuthInfo: ?*?*anyopaque, pCapabilites: ?*EOLE_AUTHENTICATION_CAPABILITIES) callconv(.@"inline") HRESULT {
         return self.vtable.QueryBlanket(self, pProxy, pAuthnSvc, pAuthzSvc, pServerPrincName, pAuthnLevel, pImpLevel, pAuthInfo, pCapabilites);
     }
-    pub fn SetBlanket(self: *const IClientSecurity, pProxy: ?*IUnknown, dwAuthnSvc: u32, dwAuthzSvc: u32, pServerPrincName: ?PWSTR, dwAuthnLevel: RPC_C_AUTHN_LEVEL, dwImpLevel: RPC_C_IMP_LEVEL, pAuthInfo: ?*anyopaque, dwCapabilities: EOLE_AUTHENTICATION_CAPABILITIES) callconv(.@"inline") HRESULT {
+    pub fn SetBlanket(self: *const IClientSecurity, pProxy: ?*IUnknown, dwAuthnSvc: u32, dwAuthzSvc: u32, pServerPrincName: ?[*:0]u16, dwAuthnLevel: RPC_C_AUTHN_LEVEL, dwImpLevel: RPC_C_IMP_LEVEL, pAuthInfo: ?*anyopaque, dwCapabilities: EOLE_AUTHENTICATION_CAPABILITIES) callconv(.@"inline") HRESULT {
         return self.vtable.SetBlanket(self, pProxy, dwAuthnSvc, dwAuthzSvc, pServerPrincName, dwAuthnLevel, dwImpLevel, pAuthInfo, dwCapabilities);
     }
     pub fn CopyProxy(self: *const IClientSecurity, pProxy: ?*IUnknown, ppCopy: ?*?*IUnknown) callconv(.@"inline") HRESULT {
@@ -2314,7 +2314,7 @@ pub const IDispatch = extern union {
         GetIDsOfNames: *const fn(
             self: *const IDispatch,
             riid: ?*const Guid,
-            rgszNames: [*]?PWSTR,
+            rgszNames: [*]?[*:0]u16,
             cNames: u32,
             lcid: u32,
             rgDispId: [*]i32,
@@ -2339,7 +2339,7 @@ pub const IDispatch = extern union {
     pub fn GetTypeInfo(self: *const IDispatch, iTInfo: u32, lcid: u32, ppTInfo: ?*?*ITypeInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetTypeInfo(self, iTInfo, lcid, ppTInfo);
     }
-    pub fn GetIDsOfNames(self: *const IDispatch, riid: ?*const Guid, rgszNames: [*]?PWSTR, cNames: u32, lcid: u32, rgDispId: [*]i32) callconv(.@"inline") HRESULT {
+    pub fn GetIDsOfNames(self: *const IDispatch, riid: ?*const Guid, rgszNames: [*]?[*:0]u16, cNames: u32, lcid: u32, rgDispId: [*]i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIDsOfNames(self, riid, rgszNames, cNames, lcid, rgDispId);
     }
     pub fn Invoke(self: *const IDispatch, dispIdMember: i32, riid: ?*const Guid, lcid: u32, wFlags: DISPATCH_FLAGS, pDispParams: ?*DISPPARAMS, pVarResult: ?*VARIANT, pExcepInfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.@"inline") HRESULT {
@@ -2669,7 +2669,7 @@ pub const IEnumString = extern union {
         Next: *const fn(
             self: *const IEnumString,
             celt: u32,
-            rgelt: [*]?PWSTR,
+            rgelt: [*]?[*:0]u16,
             pceltFetched: ?*u32,
         ) callconv(.winapi) HRESULT,
         Skip: *const fn(
@@ -2686,7 +2686,7 @@ pub const IEnumString = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumString, celt: u32, rgelt: [*]?PWSTR, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn Next(self: *const IEnumString, celt: u32, rgelt: [*]?[*:0]u16, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumString, celt: u32) callconv(.@"inline") HRESULT {
@@ -3253,13 +3253,13 @@ pub const IMoniker = extern union {
             self: *const IMoniker,
             pbc: ?*IBindCtx,
             pmkToLeft: ?*IMoniker,
-            ppszDisplayName: ?*?PWSTR,
+            ppszDisplayName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         ParseDisplayName: *const fn(
             self: *const IMoniker,
             pbc: ?*IBindCtx,
             pmkToLeft: ?*IMoniker,
-            pszDisplayName: ?PWSTR,
+            pszDisplayName: ?[*:0]u16,
             pchEaten: ?*u32,
             ppmkOut: ?*?*IMoniker,
         ) callconv(.winapi) HRESULT,
@@ -3308,10 +3308,10 @@ pub const IMoniker = extern union {
     pub fn RelativePathTo(self: *const IMoniker, pmkOther: ?*IMoniker, ppmkRelPath: ?*?*IMoniker) callconv(.@"inline") HRESULT {
         return self.vtable.RelativePathTo(self, pmkOther, ppmkRelPath);
     }
-    pub fn GetDisplayName(self: *const IMoniker, pbc: ?*IBindCtx, pmkToLeft: ?*IMoniker, ppszDisplayName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDisplayName(self: *const IMoniker, pbc: ?*IBindCtx, pmkToLeft: ?*IMoniker, ppszDisplayName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayName(self, pbc, pmkToLeft, ppszDisplayName);
     }
-    pub fn ParseDisplayName(self: *const IMoniker, pbc: ?*IBindCtx, pmkToLeft: ?*IMoniker, pszDisplayName: ?PWSTR, pchEaten: ?*u32, ppmkOut: ?*?*IMoniker) callconv(.@"inline") HRESULT {
+    pub fn ParseDisplayName(self: *const IMoniker, pbc: ?*IBindCtx, pmkToLeft: ?*IMoniker, pszDisplayName: ?[*:0]u16, pchEaten: ?*u32, ppmkOut: ?*?*IMoniker) callconv(.@"inline") HRESULT {
         return self.vtable.ParseDisplayName(self, pbc, pmkToLeft, pszDisplayName, pchEaten, ppmkOut);
     }
     pub fn IsSystemMoniker(self: *const IMoniker, pdwMksys: ?*u32) callconv(.@"inline") HRESULT {
@@ -3482,7 +3482,7 @@ pub const IPersistFile = extern union {
         ) callconv(.winapi) HRESULT,
         GetCurFile: *const fn(
             self: *const IPersistFile,
-            ppszFileName: ?*?PWSTR,
+            ppszFileName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -3500,7 +3500,7 @@ pub const IPersistFile = extern union {
     pub fn SaveCompleted(self: *const IPersistFile, pszFileName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SaveCompleted(self, pszFileName);
     }
-    pub fn GetCurFile(self: *const IPersistFile, ppszFileName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetCurFile(self: *const IPersistFile, ppszFileName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurFile(self, ppszFileName);
     }
 };
@@ -4678,7 +4678,7 @@ pub const ITypeComp = extern union {
         base: IUnknown.VTable,
         Bind: *const fn(
             self: *const ITypeComp,
-            szName: ?PWSTR,
+            szName: ?[*:0]u16,
             lHashVal: u32,
             wFlags: u16,
             ppTInfo: ?*?*ITypeInfo,
@@ -4687,7 +4687,7 @@ pub const ITypeComp = extern union {
         ) callconv(.winapi) HRESULT,
         BindType: *const fn(
             self: *const ITypeComp,
-            szName: ?PWSTR,
+            szName: ?[*:0]u16,
             lHashVal: u32,
             ppTInfo: ?*?*ITypeInfo,
             ppTComp: ?*?*ITypeComp,
@@ -4695,10 +4695,10 @@ pub const ITypeComp = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Bind(self: *const ITypeComp, szName: ?PWSTR, lHashVal: u32, wFlags: u16, ppTInfo: ?*?*ITypeInfo, pDescKind: ?*DESCKIND, pBindPtr: ?*BINDPTR) callconv(.@"inline") HRESULT {
+    pub fn Bind(self: *const ITypeComp, szName: ?[*:0]u16, lHashVal: u32, wFlags: u16, ppTInfo: ?*?*ITypeInfo, pDescKind: ?*DESCKIND, pBindPtr: ?*BINDPTR) callconv(.@"inline") HRESULT {
         return self.vtable.Bind(self, szName, lHashVal, wFlags, ppTInfo, pDescKind, pBindPtr);
     }
-    pub fn BindType(self: *const ITypeComp, szName: ?PWSTR, lHashVal: u32, ppTInfo: ?*?*ITypeInfo, ppTComp: ?*?*ITypeComp) callconv(.@"inline") HRESULT {
+    pub fn BindType(self: *const ITypeComp, szName: ?[*:0]u16, lHashVal: u32, ppTInfo: ?*?*ITypeInfo, ppTComp: ?*?*ITypeComp) callconv(.@"inline") HRESULT {
         return self.vtable.BindType(self, szName, lHashVal, ppTInfo, ppTComp);
     }
 };
@@ -4745,7 +4745,7 @@ pub const ITypeInfo = extern union {
         ) callconv(.winapi) HRESULT,
         GetIDsOfNames: *const fn(
             self: *const ITypeInfo,
-            rgszNames: [*]?PWSTR,
+            rgszNames: [*]?[*:0]u16,
             cNames: u32,
             pMemId: [*]i32,
         ) callconv(.winapi) HRESULT,
@@ -4838,7 +4838,7 @@ pub const ITypeInfo = extern union {
     pub fn GetImplTypeFlags(self: *const ITypeInfo, index: u32, pImplTypeFlags: ?*IMPLTYPEFLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.GetImplTypeFlags(self, index, pImplTypeFlags);
     }
-    pub fn GetIDsOfNames(self: *const ITypeInfo, rgszNames: [*]?PWSTR, cNames: u32, pMemId: [*]i32) callconv(.@"inline") HRESULT {
+    pub fn GetIDsOfNames(self: *const ITypeInfo, rgszNames: [*]?[*:0]u16, cNames: u32, pMemId: [*]i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIDsOfNames(self, rgszNames, cNames, pMemId);
     }
     pub fn Invoke(self: *const ITypeInfo, pvInstance: ?*anyopaque, memid: i32, wFlags: DISPATCH_FLAGS, pDispParams: ?*DISPPARAMS, pVarResult: ?*VARIANT, pExcepInfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.@"inline") HRESULT {
@@ -5055,13 +5055,13 @@ pub const ITypeLib = extern union {
         ) callconv(.winapi) HRESULT,
         IsName: *const fn(
             self: *const ITypeLib,
-            szNameBuf: ?PWSTR,
+            szNameBuf: ?[*:0]u16,
             lHashVal: u32,
             pfName: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         FindName: *const fn(
             self: *const ITypeLib,
-            szNameBuf: ?PWSTR,
+            szNameBuf: ?[*:0]u16,
             lHashVal: u32,
             ppTInfo: [*]?*ITypeInfo,
             rgMemId: [*]i32,
@@ -5095,10 +5095,10 @@ pub const ITypeLib = extern union {
     pub fn GetDocumentation(self: *const ITypeLib, index: i32, pBstrName: ?*?BSTR, pBstrDocString: ?*?BSTR, pdwHelpContext: ?*u32, pBstrHelpFile: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDocumentation(self, index, pBstrName, pBstrDocString, pdwHelpContext, pBstrHelpFile);
     }
-    pub fn IsName(self: *const ITypeLib, szNameBuf: ?PWSTR, lHashVal: u32, pfName: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn IsName(self: *const ITypeLib, szNameBuf: ?[*:0]u16, lHashVal: u32, pfName: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsName(self, szNameBuf, lHashVal, pfName);
     }
-    pub fn FindName(self: *const ITypeLib, szNameBuf: ?PWSTR, lHashVal: u32, ppTInfo: [*]?*ITypeInfo, rgMemId: [*]i32, pcFound: ?*u16) callconv(.@"inline") HRESULT {
+    pub fn FindName(self: *const ITypeLib, szNameBuf: ?[*:0]u16, lHashVal: u32, ppTInfo: [*]?*ITypeInfo, rgMemId: [*]i32, pcFound: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.FindName(self, szNameBuf, lHashVal, ppTInfo, rgMemId, pcFound);
     }
     pub fn ReleaseTLibAttr(self: *const ITypeLib, pTLibAttr: ?*TLIBATTR) callconv(.@"inline") void {
@@ -5492,22 +5492,22 @@ pub const IUriBuilder = extern union {
         GetFragment: *const fn(
             self: *const IUriBuilder,
             pcchFragment: ?*u32,
-            ppwzFragment: ?*?PWSTR,
+            ppwzFragment: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetHost: *const fn(
             self: *const IUriBuilder,
             pcchHost: ?*u32,
-            ppwzHost: ?*?PWSTR,
+            ppwzHost: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetPassword: *const fn(
             self: *const IUriBuilder,
             pcchPassword: ?*u32,
-            ppwzPassword: ?*?PWSTR,
+            ppwzPassword: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetPath: *const fn(
             self: *const IUriBuilder,
             pcchPath: ?*u32,
-            ppwzPath: ?*?PWSTR,
+            ppwzPath: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetPort: *const fn(
             self: *const IUriBuilder,
@@ -5517,17 +5517,17 @@ pub const IUriBuilder = extern union {
         GetQuery: *const fn(
             self: *const IUriBuilder,
             pcchQuery: ?*u32,
-            ppwzQuery: ?*?PWSTR,
+            ppwzQuery: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetSchemeName: *const fn(
             self: *const IUriBuilder,
             pcchSchemeName: ?*u32,
-            ppwzSchemeName: ?*?PWSTR,
+            ppwzSchemeName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetUserName: *const fn(
             self: *const IUriBuilder,
             pcchUserName: ?*u32,
-            ppwzUserName: ?*?PWSTR,
+            ppwzUserName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetFragment: *const fn(
             self: *const IUriBuilder,
@@ -5588,28 +5588,28 @@ pub const IUriBuilder = extern union {
     pub fn SetIUri(self: *const IUriBuilder, pIUri: ?*IUri) callconv(.@"inline") HRESULT {
         return self.vtable.SetIUri(self, pIUri);
     }
-    pub fn GetFragment(self: *const IUriBuilder, pcchFragment: ?*u32, ppwzFragment: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetFragment(self: *const IUriBuilder, pcchFragment: ?*u32, ppwzFragment: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetFragment(self, pcchFragment, ppwzFragment);
     }
-    pub fn GetHost(self: *const IUriBuilder, pcchHost: ?*u32, ppwzHost: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetHost(self: *const IUriBuilder, pcchHost: ?*u32, ppwzHost: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetHost(self, pcchHost, ppwzHost);
     }
-    pub fn GetPassword(self: *const IUriBuilder, pcchPassword: ?*u32, ppwzPassword: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPassword(self: *const IUriBuilder, pcchPassword: ?*u32, ppwzPassword: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPassword(self, pcchPassword, ppwzPassword);
     }
-    pub fn GetPath(self: *const IUriBuilder, pcchPath: ?*u32, ppwzPath: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPath(self: *const IUriBuilder, pcchPath: ?*u32, ppwzPath: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPath(self, pcchPath, ppwzPath);
     }
     pub fn GetPort(self: *const IUriBuilder, pfHasPort: ?*BOOL, pdwPort: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPort(self, pfHasPort, pdwPort);
     }
-    pub fn GetQuery(self: *const IUriBuilder, pcchQuery: ?*u32, ppwzQuery: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetQuery(self: *const IUriBuilder, pcchQuery: ?*u32, ppwzQuery: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetQuery(self, pcchQuery, ppwzQuery);
     }
-    pub fn GetSchemeName(self: *const IUriBuilder, pcchSchemeName: ?*u32, ppwzSchemeName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSchemeName(self: *const IUriBuilder, pcchSchemeName: ?*u32, ppwzSchemeName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSchemeName(self, pcchSchemeName, ppwzSchemeName);
     }
-    pub fn GetUserName(self: *const IUriBuilder, pcchUserName: ?*u32, ppwzUserName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetUserName(self: *const IUriBuilder, pcchUserName: ?*u32, ppwzUserName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetUserName(self, pcchUserName, ppwzUserName);
     }
     pub fn SetFragment(self: *const IUriBuilder, pwzNewValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -6013,7 +6013,7 @@ pub const SOLE_AUTHENTICATION_LIST = extern struct {
 pub const SOLE_AUTHENTICATION_SERVICE = extern struct {
     dwAuthnSvc: u32,
     dwAuthzSvc: u32,
-    pPrincipalName: ?PWSTR,
+    pPrincipalName: ?[*:0]u16,
     hr: HRESULT,
 };
 
@@ -6034,7 +6034,7 @@ pub const STATFLAG_NONAME = STATFLAG.NONAME;
 pub const STATFLAG_NOOPEN = STATFLAG.NOOPEN;
 
 pub const STATSTG = extern struct {
-    pwcsName: ?PWSTR,
+    pwcsName: ?[*:0]u16,
     type: u32,
     cbSize: ULARGE_INTEGER,
     mtime: FILETIME,
@@ -6150,7 +6150,7 @@ pub const STGMEDIUM = extern struct {
         hMetaFilePict: ?*anyopaque,
         hEnhMetaFile: ?HENHMETAFILE,
         hGlobal: isize,
-        lpszFileName: ?PWSTR,
+        lpszFileName: ?[*:0]u16,
         pstm: ?*IStream,
         pstg: ?*IStorage,
     },
@@ -6170,7 +6170,7 @@ pub const STGTY_PROPERTY = STGTY.PROPERTY;
 
 pub const StorageLayout = extern struct {
     LayoutType: u32,
-    pwcsElementName: ?PWSTR,
+    pwcsElementName: ?[*:0]u16,
     cOffset: LARGE_INTEGER,
     cBytes: LARGE_INTEGER,
 };
@@ -6236,7 +6236,7 @@ pub const TYPEATTR = extern struct {
     dwReserved: u32,
     memidConstructor: i32,
     memidDestructor: i32,
-    lpstrSchema: ?PWSTR,
+    lpstrSchema: ?[*:0]u16,
     cbSizeInstance: u32,
     typekind: TYPEKIND,
     cFuncs: u16,
@@ -6302,12 +6302,12 @@ pub const uCLSSPEC = extern struct {
     tyspec: u32,
     tagged_union: extern union {
         clsid: Guid,
-        pFileExt: ?PWSTR,
-        pMimeType: ?PWSTR,
-        pProgId: ?PWSTR,
-        pFileName: ?PWSTR,
+        pFileExt: ?[*:0]u16,
+        pMimeType: ?[*:0]u16,
+        pProgId: ?[*:0]u16,
+        pFileName: ?[*:0]u16,
         ByName: extern struct {
-            pPackageName: ?PWSTR,
+            pPackageName: ?[*:0]u16,
             PolicyId: Guid,
         },
         ByObjectId: extern struct {
@@ -6433,7 +6433,7 @@ pub const userSTGMEDIUM = extern struct {
             hHEnhMetaFile: ?*userHENHMETAFILE,
             hGdiHandle: ?*GDI_OBJECT,
             hGlobal: ?*userHGLOBAL,
-            lpszFileName: ?PWSTR,
+            lpszFileName: ?[*:0]u16,
             pstm: ?*BYTE_BLOB,
             pstg: ?*BYTE_BLOB,
         },
@@ -6443,7 +6443,7 @@ pub const userSTGMEDIUM = extern struct {
 
 pub const VARDESC = extern struct {
     memid: i32,
-    lpstrSchema: ?PWSTR,
+    lpstrSchema: ?[*:0]u16,
     Anonymous: extern union {
         oInst: u32,
         lpvarValue: ?*VARIANT,
@@ -6636,7 +6636,7 @@ pub const VARIANT = extern struct {
                 intVal: i32,
                 uintVal: u32,
                 pdecVal: ?*DECIMAL,
-                pcVal: ?PSTR,
+                pcVal: ?[*:0]u8,
                 puiVal: ?*u16,
                 pulVal: ?*u32,
                 pullVal: ?*u64,
@@ -6958,12 +6958,12 @@ pub extern "ole32" fn CoInstall(
     dwFlags: u32,
     pClassSpec: ?*uCLSSPEC,
     pQuery: ?*QUERYCONTEXT,
-    pszCodeBase: ?PWSTR,
+    pszCodeBase: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ole32" fn CoInvalidateRemoteMachineBindings(
-    pszMachineName: ?PWSTR,
+    pszMachineName: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6978,7 +6978,7 @@ pub extern "ole32" fn CoIsOle1Class(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn CoLoadLibrary(
-    lpszLibName: ?PWSTR,
+    lpszLibName: ?[*:0]u16,
     bAutoFree: BOOL,
 ) callconv(.winapi) ?HINSTANCE;
 
@@ -6999,7 +6999,7 @@ pub extern "ole32" fn CoQueryAuthenticationServices(
 pub extern "ole32" fn CoQueryClientBlanket(
     pAuthnSvc: ?*u32,
     pAuthzSvc: ?*u32,
-    pServerPrincName: ?*?PWSTR,
+    pServerPrincName: ?*?[*:0]u16,
     pAuthnLevel: ?*u32,
     pImpLevel: ?*u32,
     pPrivs: ?*?*anyopaque,
@@ -7011,7 +7011,7 @@ pub extern "ole32" fn CoQueryProxyBlanket(
     pProxy: ?*IUnknown,
     pwAuthnSvc: ?*u32,
     pAuthzSvc: ?*u32,
-    pServerPrincName: ?*?PWSTR,
+    pServerPrincName: ?*?[*:0]u16,
     pAuthnLevel: ?*u32,
     pImpLevel: ?*u32,
     pAuthInfo: ?*?*anyopaque,
@@ -7104,7 +7104,7 @@ pub extern "ole32" fn CoSetProxyBlanket(
     pProxy: ?*IUnknown,
     dwAuthnSvc: u32,
     dwAuthzSvc: u32,
-    pServerPrincName: ?PWSTR,
+    pServerPrincName: ?[*:0]u16,
     dwAuthnLevel: RPC_C_AUTHN_LEVEL,
     dwImpLevel: RPC_C_IMP_LEVEL,
     pAuthInfo: ?*anyopaque,
@@ -7323,7 +7323,7 @@ pub extern "ole32" fn MonikerRelativePathTo(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn ProgIDFromCLSID(
     clsid: ?*const Guid,
-    lplpszProgID: ?*?PWSTR,
+    lplpszProgID: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn SetErrorInfo(
@@ -7334,7 +7334,7 @@ pub extern "oleaut32" fn SetErrorInfo(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StringFromCLSID(
     rclsid: ?*const Guid,
-    lplpsz: ?*?PWSTR,
+    lplpsz: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7347,7 +7347,7 @@ pub extern "ole32" fn StringFromGUID2(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn StringFromIID(
     rclsid: ?*const Guid,
-    lplpsz: ?*?PWSTR,
+    lplpsz: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 
@@ -7355,7 +7355,7 @@ pub extern "ole32" fn StringFromIID(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (28)
+// Section: Imports (26)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ARRAYDESC = @import("../system/ole.zig").ARRAYDESC;
@@ -7375,8 +7375,6 @@ const IStorage = @import("../system/com/structured_storage.zig").IStorage;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const PARAMDESC = @import("../system/ole.zig").PARAMDESC;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
 const userHBITMAP = @import("../system/system_services.zig").userHBITMAP;

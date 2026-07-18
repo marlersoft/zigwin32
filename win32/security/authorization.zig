@@ -332,7 +332,7 @@ pub const ACTRL_ACCESS_ENTRYA = extern struct {
     Access: u32,
     ProvSpecificAccess: u32,
     Inheritance: ACE_FLAGS,
-    lpInheritProperty: ?PSTR,
+    lpInheritProperty: ?[*:0]u8,
 };
 
 pub const ACTRL_ACCESS_ENTRYW = extern struct {
@@ -341,17 +341,17 @@ pub const ACTRL_ACCESS_ENTRYW = extern struct {
     Access: u32,
     ProvSpecificAccess: u32,
     Inheritance: ACE_FLAGS,
-    lpInheritProperty: ?PWSTR,
+    lpInheritProperty: ?[*:0]u16,
 };
 
 pub const ACTRL_ACCESS_INFOA = extern struct {
     fAccessPermission: u32,
-    lpAccessPermissionName: ?PSTR,
+    lpAccessPermissionName: ?[*:0]u8,
 };
 
 pub const ACTRL_ACCESS_INFOW = extern struct {
     fAccessPermission: u32,
-    lpAccessPermissionName: ?PWSTR,
+    lpAccessPermissionName: ?[*:0]u16,
 };
 
 pub const ACTRL_ACCESSA = extern struct {
@@ -365,13 +365,13 @@ pub const ACTRL_ACCESSW = extern struct {
 };
 
 pub const ACTRL_CONTROL_INFOA = extern struct {
-    lpControlId: ?PSTR,
-    lpControlName: ?PSTR,
+    lpControlId: ?[*:0]u8,
+    lpControlName: ?[*:0]u8,
 };
 
 pub const ACTRL_CONTROL_INFOW = extern struct {
-    lpControlId: ?PWSTR,
-    lpControlName: ?PWSTR,
+    lpControlId: ?[*:0]u16,
+    lpControlName: ?[*:0]u16,
 };
 
 pub const ACTRL_OVERLAPPED = extern struct {
@@ -384,13 +384,13 @@ pub const ACTRL_OVERLAPPED = extern struct {
 };
 
 pub const ACTRL_PROPERTY_ENTRYA = extern struct {
-    lpProperty: ?PSTR,
+    lpProperty: ?[*:0]u8,
     pAccessEntryList: ?*ACTRL_ACCESS_ENTRY_LISTA,
     fListFlags: u32,
 };
 
 pub const ACTRL_PROPERTY_ENTRYW = extern struct {
-    lpProperty: ?PWSTR,
+    lpProperty: ?[*:0]u16,
     pAccessEntryList: ?*ACTRL_ACCESS_ENTRY_LISTW,
     fListFlags: u32,
 };
@@ -418,7 +418,7 @@ pub const AUDIT_PARAM = extern struct {
     Flags: u32,
     Anonymous1: extern union {
         Data0: usize,
-        String: ?PWSTR,
+        String: ?[*:0]u16,
         u: usize,
         psid: ?*SID,
         pguid: ?*Guid,
@@ -598,7 +598,7 @@ pub const AUTHZ_NO_FAILURE_AUDIT = AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FL
 pub const AUTHZ_NO_ALLOC_STRINGS = AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS.ALLOC_STRINGS;
 
 pub const AUTHZ_REGISTRATION_OBJECT_TYPE_NAME_OFFSET = extern struct {
-    szObjectTypeName: ?PWSTR,
+    szObjectTypeName: ?[*:0]u16,
     dwOffset: u32,
 };
 
@@ -645,12 +645,12 @@ pub const AUTHZ_RESOURCE_MANAGER_HANDLE = isize;
 
 pub const AUTHZ_RPC_INIT_INFO_CLIENT = extern struct {
     version: u16,
-    ObjectUuid: ?PWSTR,
-    ProtSeq: ?PWSTR,
-    NetworkAddr: ?PWSTR,
-    Endpoint: ?PWSTR,
-    Options: ?PWSTR,
-    ServerSpn: ?PWSTR,
+    ObjectUuid: ?[*:0]u16,
+    ProtSeq: ?[*:0]u16,
+    NetworkAddr: ?[*:0]u16,
+    Endpoint: ?[*:0]u16,
+    Options: ?[*:0]u16,
+    ServerSpn: ?[*:0]u16,
 };
 
 pub const AUTHZ_SECURITY_ATTRIBUTE_FLAGS = packed struct(u32) {
@@ -692,7 +692,7 @@ pub const AUTHZ_SECURITY_ATTRIBUTE_VALUE_CASE_SENSITIVE = AUTHZ_SECURITY_ATTRIBU
 
 pub const AUTHZ_SECURITY_ATTRIBUTE_FQBN_VALUE = extern struct {
     Version: u64,
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
 };
 
 pub const AUTHZ_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE = extern struct {
@@ -714,7 +714,7 @@ pub const AUTHZ_SECURITY_ATTRIBUTE_OPERATION_DELETE = AUTHZ_SECURITY_ATTRIBUTE_O
 pub const AUTHZ_SECURITY_ATTRIBUTE_OPERATION_REPLACE = AUTHZ_SECURITY_ATTRIBUTE_OPERATION.REPLACE;
 
 pub const AUTHZ_SECURITY_ATTRIBUTE_V1 = extern struct {
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
     ValueType: u16,
     Reserved: u16,
     Flags: AUTHZ_SECURITY_ATTRIBUTE_FLAGS,
@@ -722,7 +722,7 @@ pub const AUTHZ_SECURITY_ATTRIBUTE_V1 = extern struct {
     Values: extern union {
         pInt64: ?*i64,
         pUint64: ?*u64,
-        ppString: ?*?PWSTR,
+        ppString: ?*?[*:0]u16,
         pFqbn: ?*AUTHZ_SECURITY_ATTRIBUTE_FQBN_VALUE,
         pOctetString: ?*AUTHZ_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE,
     },
@@ -755,11 +755,11 @@ pub const AUTHZ_SID_OPERATION_REPLACE = AUTHZ_SID_OPERATION.REPLACE;
 
 pub const AUTHZ_SOURCE_SCHEMA_REGISTRATION = extern struct {
     dwFlags: u32,
-    szEventSourceName: ?PWSTR,
-    szEventMessageFile: ?PWSTR,
-    szEventSourceXmlSchemaFile: ?PWSTR,
-    szEventAccessStringsFile: ?PWSTR,
-    szExecutableImagePath: ?PWSTR,
+    szEventSourceName: ?[*:0]u16,
+    szEventMessageFile: ?[*:0]u16,
+    szEventSourceXmlSchemaFile: ?[*:0]u16,
+    szEventAccessStringsFile: ?[*:0]u16,
+    szExecutableImagePath: ?[*:0]u16,
     Anonymous: extern union {
         pReserved: ?*anyopaque,
         pProviderGuid: ?*Guid,
@@ -995,7 +995,7 @@ pub const FN_OBJECT_MGR_FUNCTS = extern struct {
 };
 
 pub const FN_PROGRESS = *const fn(
-    pObjectName: ?PWSTR,
+    pObjectName: ?[*:0]u16,
     Status: u32,
     pInvokeSetting: ?*PROG_INVOKE_SETTING,
     Args: ?*anyopaque,
@@ -4431,12 +4431,12 @@ pub const IAzTasks = extern union {
 
 pub const INHERITED_FROMA = extern struct {
     GenerationGap: i32,
-    AncestorName: ?PSTR,
+    AncestorName: ?[*:0]u8,
 };
 
 pub const INHERITED_FROMW = extern struct {
     GenerationGap: i32,
-    AncestorName: ?PWSTR,
+    AncestorName: ?[*:0]u16,
 };
 
 pub const MULTIPLE_TRUSTEE_OPERATION = enum(i32) {
@@ -4449,17 +4449,17 @@ pub const TRUSTEE_IS_IMPERSONATE = MULTIPLE_TRUSTEE_OPERATION.TRUSTEE_IS_IMPERSO
 pub const OBJECTS_AND_NAME_A = extern struct {
     ObjectsPresent: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
     ObjectType: SE_OBJECT_TYPE,
-    ObjectTypeName: ?PSTR,
-    InheritedObjectTypeName: ?PSTR,
-    ptstrName: ?PSTR,
+    ObjectTypeName: ?[*:0]u8,
+    InheritedObjectTypeName: ?[*:0]u8,
+    ptstrName: ?[*:0]u8,
 };
 
 pub const OBJECTS_AND_NAME_W = extern struct {
     ObjectsPresent: SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
     ObjectType: SE_OBJECT_TYPE,
-    ObjectTypeName: ?PWSTR,
-    InheritedObjectTypeName: ?PWSTR,
-    ptstrName: ?PWSTR,
+    ObjectTypeName: ?[*:0]u16,
+    InheritedObjectTypeName: ?[*:0]u16,
+    ptstrName: ?[*:0]u16,
 };
 
 pub const OBJECTS_AND_SID = extern struct {
@@ -4565,14 +4565,14 @@ pub const TRUSTEE_A = extern struct {
 };
 
 pub const TRUSTEE_ACCESSA = extern struct {
-    lpProperty: ?PSTR,
+    lpProperty: ?[*:0]u8,
     Access: u32,
     fAccessFlags: u32,
     fReturnedAccess: u32,
 };
 
 pub const TRUSTEE_ACCESSW = extern struct {
-    lpProperty: ?PWSTR,
+    lpProperty: ?[*:0]u16,
     Access: u32,
     fAccessFlags: u32,
     fReturnedAccess: u32,
@@ -4749,10 +4749,10 @@ pub extern "authz" fn AuthzInitializeContextFromToken(
 pub extern "authz" fn AuthzInitializeObjectAccessAuditEvent(
     Flags: AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS,
     hAuditEventType: AUTHZ_AUDIT_EVENT_TYPE_HANDLE,
-    szOperationType: ?PWSTR,
-    szObjectType: ?PWSTR,
-    szObjectName: ?PWSTR,
-    szAdditionalInfo: ?PWSTR,
+    szOperationType: ?[*:0]u16,
+    szObjectType: ?[*:0]u16,
+    szObjectName: ?[*:0]u16,
+    szAdditionalInfo: ?[*:0]u16,
     phAuditEvent: ?*isize,
     dwAdditionalParameterCount: u32,
 ) callconv(.winapi) BOOL;
@@ -4761,11 +4761,11 @@ pub extern "authz" fn AuthzInitializeObjectAccessAuditEvent(
 pub extern "authz" fn AuthzInitializeObjectAccessAuditEvent2(
     Flags: u32,
     hAuditEventType: AUTHZ_AUDIT_EVENT_TYPE_HANDLE,
-    szOperationType: ?PWSTR,
-    szObjectType: ?PWSTR,
-    szObjectName: ?PWSTR,
-    szAdditionalInfo: ?PWSTR,
-    szAdditionalInfo2: ?PWSTR,
+    szOperationType: ?[*:0]u16,
+    szObjectType: ?[*:0]u16,
+    szObjectName: ?[*:0]u16,
+    szAdditionalInfo: ?[*:0]u16,
+    szAdditionalInfo2: ?[*:0]u16,
     phAuditEvent: ?*isize,
     dwAdditionalParameterCount: u32,
 ) callconv(.winapi) BOOL;
@@ -4891,7 +4891,7 @@ pub extern "authz" fn AuthzUnregisterSecurityEventSource(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildExplicitAccessWithNameA(
     pExplicitAccess: ?*EXPLICIT_ACCESS_A,
-    pTrusteeName: ?PSTR,
+    pTrusteeName: ?[*:0]u8,
     AccessPermissions: u32,
     AccessMode: ACCESS_MODE,
     Inheritance: ACE_FLAGS,
@@ -4900,7 +4900,7 @@ pub extern "advapi32" fn BuildExplicitAccessWithNameA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildExplicitAccessWithNameW(
     pExplicitAccess: ?*EXPLICIT_ACCESS_W,
-    pTrusteeName: ?PWSTR,
+    pTrusteeName: ?[*:0]u16,
     AccessPermissions: u32,
     AccessMode: ACCESS_MODE,
     Inheritance: ACE_FLAGS,
@@ -4908,7 +4908,7 @@ pub extern "advapi32" fn BuildExplicitAccessWithNameW(
 
 pub extern "advapi32" fn BuildImpersonateExplicitAccessWithNameA(
     pExplicitAccess: ?*EXPLICIT_ACCESS_A,
-    pTrusteeName: ?PSTR,
+    pTrusteeName: ?[*:0]u8,
     pTrustee: ?*TRUSTEE_A,
     AccessPermissions: u32,
     AccessMode: ACCESS_MODE,
@@ -4917,7 +4917,7 @@ pub extern "advapi32" fn BuildImpersonateExplicitAccessWithNameA(
 
 pub extern "advapi32" fn BuildImpersonateExplicitAccessWithNameW(
     pExplicitAccess: ?*EXPLICIT_ACCESS_W,
-    pTrusteeName: ?PWSTR,
+    pTrusteeName: ?[*:0]u16,
     pTrustee: ?*TRUSTEE_W,
     AccessPermissions: u32,
     AccessMode: ACCESS_MODE,
@@ -4963,13 +4963,13 @@ pub extern "advapi32" fn BuildSecurityDescriptorW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildTrusteeWithNameA(
     pTrustee: ?*TRUSTEE_A,
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildTrusteeWithNameW(
     pTrustee: ?*TRUSTEE_W,
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5015,7 +5015,7 @@ pub extern "advapi32" fn ConvertSecurityDescriptorToStringSecurityDescriptorA(
     SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     RequestedStringSDRevision: u32,
     SecurityInformation: u32,
-    StringSecurityDescriptor: ?*?PSTR,
+    StringSecurityDescriptor: ?*?[*:0]u8,
     StringSecurityDescriptorLen: ?*u32,
 ) callconv(.winapi) BOOL;
 
@@ -5024,20 +5024,20 @@ pub extern "advapi32" fn ConvertSecurityDescriptorToStringSecurityDescriptorW(
     SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     RequestedStringSDRevision: u32,
     SecurityInformation: u32,
-    StringSecurityDescriptor: ?*?PWSTR,
+    StringSecurityDescriptor: ?*?[*:0]u16,
     StringSecurityDescriptorLen: ?*u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertSidToStringSidA(
     Sid: ?PSID,
-    StringSid: ?*?PSTR,
+    StringSid: ?*?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertSidToStringSidW(
     Sid: ?PSID,
-    StringSid: ?*?PWSTR,
+    StringSid: ?*?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5121,7 +5121,7 @@ pub extern "advapi32" fn GetExplicitEntriesFromAclW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetInheritanceSourceA(
-    pObjectName: ?PSTR,
+    pObjectName: ?[*:0]u8,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
     Container: BOOL,
@@ -5135,7 +5135,7 @@ pub extern "advapi32" fn GetInheritanceSourceA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetInheritanceSourceW(
-    pObjectName: ?PWSTR,
+    pObjectName: ?[*:0]u16,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
     Container: BOOL,
@@ -5212,12 +5212,12 @@ pub extern "advapi32" fn GetTrusteeFormW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetTrusteeNameA(
     pTrustee: ?*TRUSTEE_A,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetTrusteeNameW(
     pTrustee: ?*TRUSTEE_W,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetTrusteeTypeA(
@@ -5269,7 +5269,7 @@ pub extern "advapi32" fn SetEntriesInAclW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetNamedSecurityInfoA(
-    pObjectName: ?PSTR,
+    pObjectName: ?[*:0]u8,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: OBJECT_SECURITY_INFORMATION,
     psidOwner: ?PSID,
@@ -5280,7 +5280,7 @@ pub extern "advapi32" fn SetNamedSecurityInfoA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetNamedSecurityInfoW(
-    pObjectName: ?PWSTR,
+    pObjectName: ?[*:0]u16,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: OBJECT_SECURITY_INFORMATION,
     psidOwner: ?PSID,
@@ -5302,7 +5302,7 @@ pub extern "advapi32" fn SetSecurityInfo(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn TreeResetNamedSecurityInfoA(
-    pObjectName: ?PSTR,
+    pObjectName: ?[*:0]u8,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
     pOwner: ?PSID,
@@ -5317,7 +5317,7 @@ pub extern "advapi32" fn TreeResetNamedSecurityInfoA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn TreeResetNamedSecurityInfoW(
-    pObjectName: ?PWSTR,
+    pObjectName: ?[*:0]u16,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
     pOwner: ?PSID,
@@ -5332,7 +5332,7 @@ pub extern "advapi32" fn TreeResetNamedSecurityInfoW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn TreeSetNamedSecurityInfoA(
-    pObjectName: ?PSTR,
+    pObjectName: ?[*:0]u8,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
     pOwner: ?PSID,
@@ -5347,7 +5347,7 @@ pub extern "advapi32" fn TreeSetNamedSecurityInfoA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn TreeSetNamedSecurityInfoW(
-    pObjectName: ?PWSTR,
+    pObjectName: ?[*:0]u16,
     ObjectType: SE_OBJECT_TYPE,
     SecurityInfo: u32,
     pOwner: ?PSID,
@@ -5631,7 +5631,7 @@ pub const TreeSetNamedSecurityInfo = switch (@import("../zig.zig").unicode_mode)
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (28)
+// Section: Imports (26)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ACE_FLAGS = @import("../security.zig").ACE_FLAGS;
@@ -5652,8 +5652,6 @@ const OBJECT_SECURITY_INFORMATION = @import("../security.zig").OBJECT_SECURITY_I
 const OBJECT_TYPE_LIST = @import("../security.zig").OBJECT_TYPE_LIST;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PSID = @import("../foundation.zig").PSID;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SID = @import("../security.zig").SID;
 const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
 const SYSTEM_AUDIT_OBJECT_ACE_FLAGS = @import("../security.zig").SYSTEM_AUDIT_OBJECT_ACE_FLAGS;

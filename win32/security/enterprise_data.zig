@@ -303,7 +303,7 @@ pub extern "srpapi" fn SrpGetEnterpriseIds(
     tokenHandle: ?HANDLE,
     numberOfBytes: ?*u32,
     /// parameter "numberOfBytes" is the size in bytes
-    enterpriseIds: ?*?PWSTR,
+    enterpriseIds: ?*?[*:0]u16,
     enterpriseIdCount: ?*u32,
 ) callconv(.winapi) HRESULT;
 
@@ -346,7 +346,7 @@ pub extern "efswrt" fn UnprotectFile(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -358,7 +358,6 @@ const IInspectable = @import("../system/win_rt.zig").IInspectable;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const PACKAGE_ID = @import("../storage/packaging/appx.zig").PACKAGE_ID;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

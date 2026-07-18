@@ -29,9 +29,9 @@ pub const DAV_CALLBACK_AUTH_BLOB = extern struct {
 };
 
 pub const DAV_CALLBACK_AUTH_UNP = extern struct {
-    pszUserName: ?PWSTR,
+    pszUserName: ?[*:0]u16,
     ulUserNameLength: u32,
-    pszPassword: ?PWSTR,
+    pszPassword: ?[*:0]u16,
     ulPasswordLength: u32,
 };
 
@@ -43,8 +43,8 @@ pub const DAV_CALLBACK_CRED = extern struct {
 };
 
 pub const PFNDAVAUTHCALLBACK = *const fn(
-    lpwzServerName: ?PWSTR,
-    lpwzRemoteName: ?PWSTR,
+    lpwzServerName: ?[*:0]u16,
+    lpwzRemoteName: ?[*:0]u16,
     dwAuthScheme: u32,
     dwFlags: u32,
     pCallbackCred: ?*DAV_CALLBACK_CRED,
@@ -73,7 +73,7 @@ pub extern "netapi32" fn DavAddConnection(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "davclnt" fn DavCancelConnectionsToServer(
-    lpName: ?PWSTR,
+    lpName: ?[*:0]u16,
     fForce: BOOL,
 ) callconv(.winapi) u32;
 
@@ -106,7 +106,7 @@ pub extern "netapi32" fn DavGetHTTPFromUNCPath(
 pub extern "davclnt" fn DavGetTheLockOwnerOfTheFile(
     FileName: ?[*:0]const u16,
     /// parameter "LockOwnerNameLengthInBytes" is the size in bytes
-    LockOwnerName: ?PWSTR,
+    LockOwnerName: ?[*:0]u16,
     LockOwnerNameLengthInBytes: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -138,11 +138,10 @@ pub extern "davclnt" fn DavUnregisterAuthCallback(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (3)
+// Section: Imports (2)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

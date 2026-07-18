@@ -6591,10 +6591,10 @@ pub const XHR_CERT_IGNORE_CERT_DATE_INVALID = XHR_CERT_IGNORE_FLAG.CERT_DATE_INV
 pub const XHR_CERT_IGNORE_ALL_SERVER_ERRORS = XHR_CERT_IGNORE_FLAG.ALL_SERVER_ERRORS;
 
 pub const XHR_COOKIE = extern struct {
-    pwszUrl: ?PWSTR,
-    pwszName: ?PWSTR,
-    pwszValue: ?PWSTR,
-    pwszP3PPolicy: ?PWSTR,
+    pwszUrl: ?[*:0]u16,
+    pwszName: ?[*:0]u16,
+    pwszValue: ?[*:0]u16,
+    pwszP3PPolicy: ?[*:0]u16,
     ftExpires: FILETIME,
     dwFlags: u32,
 };
@@ -6743,7 +6743,7 @@ pub const CLSID_XSLTemplate60 = &CLSID_XSLTemplate60_Value;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -6753,7 +6753,6 @@ const HRESULT = @import("../../foundation.zig").HRESULT;
 const IDispatch = @import("../../system/com.zig").IDispatch;
 const ISequentialStream = @import("../../system/com.zig").ISequentialStream;
 const IUnknown = @import("../../system/com.zig").IUnknown;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const VARIANT = @import("../../system/com.zig").VARIANT;
 const VARIANT_BOOL = @import("../../foundation.zig").VARIANT_BOOL;
 

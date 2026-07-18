@@ -6837,9 +6837,7 @@ pub const PROC = *const fn(
 
 pub const PSID = *opaque{};
 
-pub const PSTR = [*:0]u8;
 
-pub const PWSTR = [*:0]u16;
 
 pub const RECT = extern struct {
     left: i32,

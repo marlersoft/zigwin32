@@ -49,13 +49,12 @@ pub const IDDEInitializer = extern union {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IShellItem = @import("../../ui/shell.zig").IShellItem;
 const IUnknown = @import("../../system/com.zig").IUnknown;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

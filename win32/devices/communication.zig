@@ -812,7 +812,7 @@ pub const SetDefaultCommConfig = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -820,8 +820,6 @@ const CHAR = @import("../foundation.zig").CHAR;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HWND = @import("../foundation.zig").HWND;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

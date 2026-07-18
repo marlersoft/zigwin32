@@ -759,8 +759,8 @@ pub const CIP_NEED_REBOOT_UI_PERMISSION = CIP_STATUS.NEED_REBOOT_UI_PERMISSION;
 
 pub const CODEBASEHOLD = extern struct {
     cbSize: u32,
-    szDistUnit: ?PWSTR,
-    szCodeBase: ?PWSTR,
+    szDistUnit: ?[*:0]u16,
+    szCodeBase: ?[*:0]u16,
     dwVersionMS: u32,
     dwVersionLS: u32,
     dwStyle: u32,
@@ -781,10 +781,10 @@ pub const DATAINFO = extern struct {
 
 pub const HIT_LOGGING_INFO = extern struct {
     dwStructSize: u32,
-    lpszLoggedUrlName: ?PSTR,
+    lpszLoggedUrlName: ?[*:0]u8,
     StartTime: SYSTEMTIME,
     EndTime: SYSTEMTIME,
-    lpszExtendedInfo: ?PSTR,
+    lpszExtendedInfo: ?[*:0]u8,
 };
 
 const IID_IBindCallbackRedirect_Value = Guid.initString("11c81bc2-121e-4ed5-b9c4-b430bd54f2c0");
@@ -848,7 +848,7 @@ pub const ICatalogFileInfo = extern union {
         base: IUnknown.VTable,
         GetCatalogFile: *const fn(
             self: *const ICatalogFileInfo,
-            ppszCatalogFile: ?*?PSTR,
+            ppszCatalogFile: ?*?[*:0]u8,
         ) callconv(.winapi) HRESULT,
         GetJavaTrust: *const fn(
             self: *const ICatalogFileInfo,
@@ -857,7 +857,7 @@ pub const ICatalogFileInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCatalogFile(self: *const ICatalogFileInfo, ppszCatalogFile: ?*?PSTR) callconv(.@"inline") HRESULT {
+    pub fn GetCatalogFile(self: *const ICatalogFileInfo, ppszCatalogFile: ?*?[*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetCatalogFile(self, ppszCatalogFile);
     }
     pub fn GetJavaTrust(self: *const ICatalogFileInfo, ppJavaTrust: ?*?*anyopaque) callconv(.@"inline") HRESULT {
@@ -1009,22 +1009,22 @@ pub const IHttpNegotiate = extern union {
             szURL: ?[*:0]const u16,
             szHeaders: ?[*:0]const u16,
             dwReserved: u32,
-            pszAdditionalHeaders: ?*?PWSTR,
+            pszAdditionalHeaders: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         OnResponse: *const fn(
             self: *const IHttpNegotiate,
             dwResponseCode: u32,
             szResponseHeaders: ?[*:0]const u16,
             szRequestHeaders: ?[*:0]const u16,
-            pszAdditionalRequestHeaders: ?*?PWSTR,
+            pszAdditionalRequestHeaders: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BeginningTransaction(self: *const IHttpNegotiate, szURL: ?[*:0]const u16, szHeaders: ?[*:0]const u16, dwReserved: u32, pszAdditionalHeaders: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn BeginningTransaction(self: *const IHttpNegotiate, szURL: ?[*:0]const u16, szHeaders: ?[*:0]const u16, dwReserved: u32, pszAdditionalHeaders: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.BeginningTransaction(self, szURL, szHeaders, dwReserved, pszAdditionalHeaders);
     }
-    pub fn OnResponse(self: *const IHttpNegotiate, dwResponseCode: u32, szResponseHeaders: ?[*:0]const u16, szRequestHeaders: ?[*:0]const u16, pszAdditionalRequestHeaders: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn OnResponse(self: *const IHttpNegotiate, dwResponseCode: u32, szResponseHeaders: ?[*:0]const u16, szRequestHeaders: ?[*:0]const u16, pszAdditionalRequestHeaders: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.OnResponse(self, dwResponseCode, szResponseHeaders, szRequestHeaders, pszAdditionalRequestHeaders);
     }
 };
@@ -1110,7 +1110,7 @@ pub const IInternetBindInfo = extern union {
         GetBindString: *const fn(
             self: *const IInternetBindInfo,
             ulStringType: u32,
-            ppwzStr: ?*?PWSTR,
+            ppwzStr: ?*?[*:0]u16,
             cEl: u32,
             pcElFetched: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -1120,7 +1120,7 @@ pub const IInternetBindInfo = extern union {
     pub fn GetBindInfo(self: *const IInternetBindInfo, grfBINDF: ?*u32, pbindinfo: ?*BINDINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetBindInfo(self, grfBINDF, pbindinfo);
     }
-    pub fn GetBindString(self: *const IInternetBindInfo, ulStringType: u32, ppwzStr: ?*?PWSTR, cEl: u32, pcElFetched: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetBindString(self: *const IInternetBindInfo, ulStringType: u32, ppwzStr: ?*?[*:0]u16, cEl: u32, pcElFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBindString(self, ulStringType, ppwzStr, cEl, pcElFetched);
     }
 };
@@ -1289,7 +1289,7 @@ pub const IInternetProtocolInfo = extern union {
             pwzUrl: ?[*:0]const u16,
             ParseAction: PARSEACTION,
             dwParseFlags: u32,
-            pwzResult: ?PWSTR,
+            pwzResult: ?[*:0]u16,
             cchResult: u32,
             pcchResult: ?*u32,
             dwReserved: u32,
@@ -1299,7 +1299,7 @@ pub const IInternetProtocolInfo = extern union {
             pwzBaseUrl: ?[*:0]const u16,
             pwzRelativeUrl: ?[*:0]const u16,
             dwCombineFlags: u32,
-            pwzResult: ?PWSTR,
+            pwzResult: ?[*:0]u16,
             cchResult: u32,
             pcchResult: ?*u32,
             dwReserved: u32,
@@ -1323,10 +1323,10 @@ pub const IInternetProtocolInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ParseUrl(self: *const IInternetProtocolInfo, pwzUrl: ?[*:0]const u16, ParseAction: PARSEACTION, dwParseFlags: u32, pwzResult: ?PWSTR, cchResult: u32, pcchResult: ?*u32, dwReserved: u32) callconv(.@"inline") HRESULT {
+    pub fn ParseUrl(self: *const IInternetProtocolInfo, pwzUrl: ?[*:0]const u16, ParseAction: PARSEACTION, dwParseFlags: u32, pwzResult: ?[*:0]u16, cchResult: u32, pcchResult: ?*u32, dwReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ParseUrl(self, pwzUrl, ParseAction, dwParseFlags, pwzResult, cchResult, pcchResult, dwReserved);
     }
-    pub fn CombineUrl(self: *const IInternetProtocolInfo, pwzBaseUrl: ?[*:0]const u16, pwzRelativeUrl: ?[*:0]const u16, dwCombineFlags: u32, pwzResult: ?PWSTR, cchResult: u32, pcchResult: ?*u32, dwReserved: u32) callconv(.@"inline") HRESULT {
+    pub fn CombineUrl(self: *const IInternetProtocolInfo, pwzBaseUrl: ?[*:0]const u16, pwzRelativeUrl: ?[*:0]const u16, dwCombineFlags: u32, pwzResult: ?[*:0]u16, cchResult: u32, pcchResult: ?*u32, dwReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CombineUrl(self, pwzBaseUrl, pwzRelativeUrl, dwCombineFlags, pwzResult, cchResult, pcchResult, dwReserved);
     }
     pub fn CompareUrl(self: *const IInternetProtocolInfo, pwzUrl1: ?[*:0]const u16, pwzUrl2: ?[*:0]const u16, dwCompareFlags: u32) callconv(.@"inline") HRESULT {
@@ -1588,7 +1588,7 @@ pub const IInternetSecurityManagerEx2 = extern union {
             pUri: ?*IUri,
             pdwZone: ?*u32,
             dwFlags: u32,
-            ppwszMappedUrl: ?*?PWSTR,
+            ppwszMappedUrl: ?*?[*:0]u16,
             pdwOutFlags: ?*u32,
         ) callconv(.winapi) HRESULT,
         ProcessUrlActionEx2: *const fn(
@@ -1625,7 +1625,7 @@ pub const IInternetSecurityManagerEx2 = extern union {
     IInternetSecurityManagerEx: IInternetSecurityManagerEx,
     IInternetSecurityManager: IInternetSecurityManager,
     IUnknown: IUnknown,
-    pub fn MapUrlToZoneEx2(self: *const IInternetSecurityManagerEx2, pUri: ?*IUri, pdwZone: ?*u32, dwFlags: u32, ppwszMappedUrl: ?*?PWSTR, pdwOutFlags: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn MapUrlToZoneEx2(self: *const IInternetSecurityManagerEx2, pUri: ?*IUri, pdwZone: ?*u32, dwFlags: u32, ppwszMappedUrl: ?*?[*:0]u16, pdwOutFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.MapUrlToZoneEx2(self, pUri, pdwZone, dwFlags, ppwszMappedUrl, pdwOutFlags);
     }
     pub fn ProcessUrlActionEx2(self: *const IInternetSecurityManagerEx2, pUri: ?*IUri, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, pContext: ?*u8, cbContext: u32, dwFlags: u32, dwReserved: usize, pdwOutFlags: ?*u32) callconv(.@"inline") HRESULT {
@@ -1674,7 +1674,7 @@ pub const IInternetSession = extern union {
             rclsid: ?*const Guid,
             pwzProtocol: ?[*:0]const u16,
             cPatterns: u32,
-            ppwzPatterns: ?*const ?PWSTR,
+            ppwzPatterns: ?*const ?[*:0]u16,
             dwReserved: u32,
         ) callconv(.winapi) HRESULT,
         UnregisterNameSpace: *const fn(
@@ -1719,7 +1719,7 @@ pub const IInternetSession = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterNameSpace(self: *const IInternetSession, pCF: ?*IClassFactory, rclsid: ?*const Guid, pwzProtocol: ?[*:0]const u16, cPatterns: u32, ppwzPatterns: ?*const ?PWSTR, dwReserved: u32) callconv(.@"inline") HRESULT {
+    pub fn RegisterNameSpace(self: *const IInternetSession, pCF: ?*IClassFactory, rclsid: ?*const Guid, pwzProtocol: ?[*:0]const u16, cPatterns: u32, ppwzPatterns: ?*const ?[*:0]u16, dwReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterNameSpace(self, pCF, rclsid, pwzProtocol, cPatterns, ppwzPatterns, dwReserved);
     }
     pub fn UnregisterNameSpace(self: *const IInternetSession, pCF: ?*IClassFactory, pszProtocol: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -2127,12 +2127,12 @@ pub const ISoftDistExt = extern union {
         ) callconv(.winapi) HRESULT,
         GetFirstCodeBase: *const fn(
             self: *const ISoftDistExt,
-            szCodeBase: ?*?PWSTR,
+            szCodeBase: ?*?[*:0]u16,
             dwMaxSize: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetNextCodeBase: *const fn(
             self: *const ISoftDistExt,
-            szCodeBase: ?*?PWSTR,
+            szCodeBase: ?*?[*:0]u16,
             dwMaxSize: ?*u32,
         ) callconv(.winapi) HRESULT,
         AsyncInstallDistributionUnit: *const fn(
@@ -2148,10 +2148,10 @@ pub const ISoftDistExt = extern union {
     pub fn ProcessSoftDist(self: *const ISoftDistExt, szCDFURL: ?[*:0]const u16, pSoftDistElement: ?*IXMLElement, lpsdi: ?*SOFTDISTINFO) callconv(.@"inline") HRESULT {
         return self.vtable.ProcessSoftDist(self, szCDFURL, pSoftDistElement, lpsdi);
     }
-    pub fn GetFirstCodeBase(self: *const ISoftDistExt, szCodeBase: ?*?PWSTR, dwMaxSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetFirstCodeBase(self: *const ISoftDistExt, szCodeBase: ?*?[*:0]u16, dwMaxSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFirstCodeBase(self, szCodeBase, dwMaxSize);
     }
-    pub fn GetNextCodeBase(self: *const ISoftDistExt, szCodeBase: ?*?PWSTR, dwMaxSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetNextCodeBase(self: *const ISoftDistExt, szCodeBase: ?*?[*:0]u16, dwMaxSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNextCodeBase(self, szCodeBase, dwMaxSize);
     }
     pub fn AsyncInstallDistributionUnit(self: *const ISoftDistExt, pbc: ?*IBindCtx, pvReserved: ?*anyopaque, flags: u32, lpcbh: ?*CODEBASEHOLD) callconv(.@"inline") HRESULT {
@@ -2251,7 +2251,7 @@ pub const IWinInetCacheHints2 = extern union {
         SetCacheExtension2: *const fn(
             self: *const IWinInetCacheHints2,
             pwzExt: ?[*:0]const u16,
-            pwzCacheFile: ?PWSTR,
+            pwzCacheFile: ?[*:0]u16,
             pcchCacheFile: ?*u32,
             pdwWinInetError: ?*u32,
             pdwReserved: ?*u32,
@@ -2260,7 +2260,7 @@ pub const IWinInetCacheHints2 = extern union {
     vtable: *const VTable,
     IWinInetCacheHints: IWinInetCacheHints,
     IUnknown: IUnknown,
-    pub fn SetCacheExtension2(self: *const IWinInetCacheHints2, pwzExt: ?[*:0]const u16, pwzCacheFile: ?PWSTR, pcchCacheFile: ?*u32, pdwWinInetError: ?*u32, pdwReserved: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn SetCacheExtension2(self: *const IWinInetCacheHints2, pwzExt: ?[*:0]const u16, pwzCacheFile: ?[*:0]u16, pcchCacheFile: ?*u32, pdwWinInetError: ?*u32, pdwReserved: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCacheExtension2(self, pwzExt, pwzCacheFile, pcchCacheFile, pdwWinInetError, pdwReserved);
     }
 };
@@ -2405,7 +2405,7 @@ pub const IZoneIdentifier2 = extern union {
         base: IZoneIdentifier.VTable,
         GetLastWriterPackageFamilyName: *const fn(
             self: *const IZoneIdentifier2,
-            packageFamilyName: ?*?PWSTR,
+            packageFamilyName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetLastWriterPackageFamilyName: *const fn(
             self: *const IZoneIdentifier2,
@@ -2429,7 +2429,7 @@ pub const IZoneIdentifier2 = extern union {
     vtable: *const VTable,
     IZoneIdentifier: IZoneIdentifier,
     IUnknown: IUnknown,
-    pub fn GetLastWriterPackageFamilyName(self: *const IZoneIdentifier2, packageFamilyName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetLastWriterPackageFamilyName(self: *const IZoneIdentifier2, packageFamilyName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetLastWriterPackageFamilyName(self, packageFamilyName);
     }
     pub fn SetLastWriterPackageFamilyName(self: *const IZoneIdentifier2, packageFamilyName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -2659,10 +2659,10 @@ pub const QUERY_IS_CACHED_AND_USABLE_OFFLINE = QUERYOPTION.IS_CACHED_AND_USABLE_
 
 pub const RemBINDINFO = extern struct {
     cbSize: u32,
-    szExtraInfo: ?PWSTR,
+    szExtraInfo: ?[*:0]u16,
     grfBindInfoF: u32,
     dwBindVerb: u32,
-    szCustomVerb: ?PWSTR,
+    szCustomVerb: ?[*:0]u16,
     cbstgmedData: u32,
     dwOptions: u32,
     dwOptionsFlags: u32,
@@ -2691,9 +2691,9 @@ pub const SOFTDISTINFO = extern struct {
     cbSize: u32,
     dwFlags: u32,
     dwAdState: u32,
-    szTitle: ?PWSTR,
-    szAbstract: ?PWSTR,
-    szHREF: ?PWSTR,
+    szTitle: ?[*:0]u16,
+    szAbstract: ?[*:0]u16,
+    szHREF: ?[*:0]u16,
     dwInstalledVersionMS: u32,
     dwInstalledVersionLS: u32,
     dwUpdateVersionMS: u32,
@@ -2896,7 +2896,7 @@ pub extern "urlmon" fn CoInternetGetProtocolFlags(
 
 pub extern "urlmon" fn CoInternetGetSecurityUrl(
     pwszUrl: ?[*:0]const u16,
-    ppwszSecUrl: ?*?PWSTR,
+    ppwszSecUrl: ?*?[*:0]u16,
     psuAction: PSUACTION,
     dwReserved: u32,
 ) callconv(.winapi) HRESULT;
@@ -3072,7 +3072,7 @@ pub extern "urlmon" fn FindMimeFromData(
     cbSize: u32,
     pwzMimeProposed: ?[*:0]const u16,
     dwMimeFlags: u32,
-    ppwzMimeOut: ?*?PWSTR,
+    ppwzMimeOut: ?*?[*:0]u16,
     dwReserved: u32,
 ) callconv(.winapi) HRESULT;
 
@@ -3094,7 +3094,7 @@ pub extern "urlmon" fn GetClassURL(
 
 pub extern "urlmon" fn GetComponentIDFromCLSSPEC(
     pClassspec: ?*uCLSSPEC,
-    ppszComponentID: ?*?PSTR,
+    ppszComponentID: ?*?[*:0]u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "urlmon" fn GetSoftwareUpdateInfo(
@@ -3143,7 +3143,7 @@ pub extern "urlmon" fn HlinkSimpleNavigateToString(
 ) callconv(.winapi) HRESULT;
 
 pub extern "urlmon" fn IEGetUserPrivateNamespaceName(
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 pub extern "urlmon" fn IEInstallScope(
     pdwScope: ?*u32,
@@ -3380,7 +3380,7 @@ pub const URLOpenStream = switch (@import("../../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (31)
+// Section: Imports (29)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BINDINFO = @import("../../system/com.zig").BINDINFO;
@@ -3405,8 +3405,6 @@ const IUri = @import("../../system/com.zig").IUri;
 const IUriBuilder = @import("../../system/com.zig").IUriBuilder;
 const IXMLElement = @import("../../data/xml/ms_xml.zig").IXMLElement;
 const LARGE_INTEGER = @import("../../foundation.zig").LARGE_INTEGER;
-const PSTR = @import("../../foundation.zig").PSTR;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const QUERYCONTEXT = @import("../../system/com.zig").QUERYCONTEXT;
 const STGMEDIUM = @import("../../system/com.zig").STGMEDIUM;
 const SYSTEMTIME = @import("../../foundation.zig").SYSTEMTIME;

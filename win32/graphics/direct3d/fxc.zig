@@ -369,7 +369,7 @@ pub extern "d3dcompiler_47" fn D3DWriteBlobToFile(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (12)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -381,8 +381,6 @@ const ID3D11Linker = @import("../../graphics/direct3d11.zig").ID3D11Linker;
 const ID3D11Module = @import("../../graphics/direct3d11.zig").ID3D11Module;
 const ID3DBlob = @import("../../graphics/direct3d.zig").ID3DBlob;
 const ID3DInclude = @import("../../graphics/direct3d.zig").ID3DInclude;
-const PSTR = @import("../../foundation.zig").PSTR;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -96,8 +96,8 @@ pub const BOID = extern struct {
 };
 
 pub const DTC_GET_TRANSACTION_MANAGER = *const fn(
-    pszHost: ?PSTR,
-    pszTmName: ?PSTR,
+    pszHost: ?[*:0]u8,
+    pszTmName: ?[*:0]u8,
     rid: ?*const Guid,
     dwReserved1: u32,
     wcbReserved2: u16,
@@ -106,8 +106,8 @@ pub const DTC_GET_TRANSACTION_MANAGER = *const fn(
 ) callconv(.winapi) HRESULT;
 
 pub const DTC_GET_TRANSACTION_MANAGER_EX_A = *const fn(
-    i_pszHost: ?PSTR,
-    i_pszTmName: ?PSTR,
+    i_pszHost: ?[*:0]u8,
+    i_pszTmName: ?[*:0]u8,
     i_riid: ?*const Guid,
     i_grfOptions: u32,
     i_pvConfigParams: ?*anyopaque,
@@ -115,8 +115,8 @@ pub const DTC_GET_TRANSACTION_MANAGER_EX_A = *const fn(
 ) callconv(.winapi) HRESULT;
 
 pub const DTC_GET_TRANSACTION_MANAGER_EX_W = *const fn(
-    i_pwszHost: ?PWSTR,
-    i_pwszTmName: ?PWSTR,
+    i_pwszHost: ?[*:0]u16,
+    i_pwszTmName: ?[*:0]u16,
     i_riid: ?*const Guid,
     i_grfOptions: u32,
     i_pvConfigParams: ?*anyopaque,
@@ -1012,15 +1012,15 @@ pub const IDtcToXaHelperFactory = extern union {
         base: IUnknown.VTable,
         Create: *const fn(
             self: *const IDtcToXaHelperFactory,
-            pszDSN: ?PSTR,
-            pszClientDllName: ?PSTR,
+            pszDSN: ?[*:0]u8,
+            pszClientDllName: ?[*:0]u8,
             pguidRm: ?*Guid,
             ppXaHelper: ?*?*IDtcToXaHelper,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Create(self: *const IDtcToXaHelperFactory, pszDSN: ?PSTR, pszClientDllName: ?PSTR, pguidRm: ?*Guid, ppXaHelper: ?*?*IDtcToXaHelper) callconv(.@"inline") HRESULT {
+    pub fn Create(self: *const IDtcToXaHelperFactory, pszDSN: ?[*:0]u8, pszClientDllName: ?[*:0]u8, pguidRm: ?*Guid, ppXaHelper: ?*?*IDtcToXaHelper) callconv(.@"inline") HRESULT {
         return self.vtable.Create(self, pszDSN, pszClientDllName, pguidRm, ppXaHelper);
     }
 };
@@ -1032,8 +1032,8 @@ pub const IDtcToXaHelperSinglePipe = extern union {
         base: IUnknown.VTable,
         XARMCreate: *const fn(
             self: *const IDtcToXaHelperSinglePipe,
-            pszDSN: ?PSTR,
-            pszClientDll: ?PSTR,
+            pszDSN: ?[*:0]u8,
+            pszClientDll: ?[*:0]u8,
             pdwRMCookie: ?*u32,
         ) callconv(.winapi) HRESULT,
         ConvertTridToXID: *const fn(
@@ -1057,7 +1057,7 @@ pub const IDtcToXaHelperSinglePipe = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn XARMCreate(self: *const IDtcToXaHelperSinglePipe, pszDSN: ?PSTR, pszClientDll: ?PSTR, pdwRMCookie: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn XARMCreate(self: *const IDtcToXaHelperSinglePipe, pszDSN: ?[*:0]u8, pszClientDll: ?[*:0]u8, pdwRMCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.XARMCreate(self, pszDSN, pszClientDll, pdwRMCookie);
     }
     pub fn ConvertTridToXID(self: *const IDtcToXaHelperSinglePipe, pdwITrans: ?*u32, dwRMCookie: u32, pxid: ?*XID) callconv(.@"inline") HRESULT {
@@ -1078,8 +1078,8 @@ pub const IDtcToXaMapper = extern union {
         base: IUnknown.VTable,
         RequestNewResourceManager: *const fn(
             self: *const IDtcToXaMapper,
-            pszDSN: ?PSTR,
-            pszClientDllName: ?PSTR,
+            pszDSN: ?[*:0]u8,
+            pszClientDllName: ?[*:0]u8,
             pdwRMCookie: ?*u32,
         ) callconv(.winapi) HRESULT,
         TranslateTridToXid: *const fn(
@@ -1100,7 +1100,7 @@ pub const IDtcToXaMapper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RequestNewResourceManager(self: *const IDtcToXaMapper, pszDSN: ?PSTR, pszClientDllName: ?PSTR, pdwRMCookie: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn RequestNewResourceManager(self: *const IDtcToXaMapper, pszDSN: ?[*:0]u8, pszClientDllName: ?[*:0]u8, pdwRMCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.RequestNewResourceManager(self, pszDSN, pszClientDllName, pdwRMCookie);
     }
     pub fn TranslateTridToXid(self: *const IDtcToXaMapper, pdwITransaction: ?*u32, dwRMCookie: u32, pXid: ?*XID) callconv(.@"inline") HRESULT {
@@ -1308,14 +1308,14 @@ pub const IResourceManagerFactory = extern union {
         Create: *const fn(
             self: *const IResourceManagerFactory,
             pguidRM: ?*Guid,
-            pszRMName: ?PSTR,
+            pszRMName: ?[*:0]u8,
             pIResMgrSink: ?*IResourceManagerSink,
             ppResMgr: ?*?*IResourceManager,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Create(self: *const IResourceManagerFactory, pguidRM: ?*Guid, pszRMName: ?PSTR, pIResMgrSink: ?*IResourceManagerSink, ppResMgr: ?*?*IResourceManager) callconv(.@"inline") HRESULT {
+    pub fn Create(self: *const IResourceManagerFactory, pguidRM: ?*Guid, pszRMName: ?[*:0]u8, pIResMgrSink: ?*IResourceManagerSink, ppResMgr: ?*?*IResourceManager) callconv(.@"inline") HRESULT {
         return self.vtable.Create(self, pguidRM, pszRMName, pIResMgrSink, ppResMgr);
     }
 };
@@ -1328,7 +1328,7 @@ pub const IResourceManagerFactory2 = extern union {
         CreateEx: *const fn(
             self: *const IResourceManagerFactory2,
             pguidRM: ?*Guid,
-            pszRMName: ?PSTR,
+            pszRMName: ?[*:0]u8,
             pIResMgrSink: ?*IResourceManagerSink,
             riidRequested: ?*const Guid,
             ppvResMgr: ?*?*anyopaque,
@@ -1337,7 +1337,7 @@ pub const IResourceManagerFactory2 = extern union {
     vtable: *const VTable,
     IResourceManagerFactory: IResourceManagerFactory,
     IUnknown: IUnknown,
-    pub fn CreateEx(self: *const IResourceManagerFactory2, pguidRM: ?*Guid, pszRMName: ?PSTR, pIResMgrSink: ?*IResourceManagerSink, riidRequested: ?*const Guid, ppvResMgr: ?*?*anyopaque) callconv(.@"inline") HRESULT {
+    pub fn CreateEx(self: *const IResourceManagerFactory2, pguidRM: ?*Guid, pszRMName: ?[*:0]u8, pIResMgrSink: ?*IResourceManagerSink, riidRequested: ?*const Guid, ppvResMgr: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEx(self, pguidRM, pszRMName, pIResMgrSink, riidRequested, ppvResMgr);
     }
 };
@@ -1393,8 +1393,8 @@ pub const IRMHelper = extern union {
             self: *const IRMHelper,
             pXa_Switch: ?*xa_switch_t,
             fCDeclCallingConv: BOOL,
-            pszOpenString: ?PSTR,
-            pszCloseString: ?PSTR,
+            pszOpenString: ?[*:0]u8,
+            pszCloseString: ?[*:0]u8,
             guidRMRecovery: Guid,
         ) callconv(.winapi) HRESULT,
     };
@@ -1403,7 +1403,7 @@ pub const IRMHelper = extern union {
     pub fn RMCount(self: *const IRMHelper, dwcTotalNumberOfRMs: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RMCount(self, dwcTotalNumberOfRMs);
     }
-    pub fn RMInfo(self: *const IRMHelper, pXa_Switch: ?*xa_switch_t, fCDeclCallingConv: BOOL, pszOpenString: ?PSTR, pszCloseString: ?PSTR, guidRMRecovery: Guid) callconv(.@"inline") HRESULT {
+    pub fn RMInfo(self: *const IRMHelper, pXa_Switch: ?*xa_switch_t, fCDeclCallingConv: BOOL, pszOpenString: ?[*:0]u8, pszCloseString: ?[*:0]u8, guidRMRecovery: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.RMInfo(self, pXa_Switch, fCDeclCallingConv, pszOpenString, pszCloseString, guidRMRecovery);
     }
 };
@@ -1513,19 +1513,19 @@ pub const ITipTransaction = extern union {
         Push: *const fn(
             self: *const ITipTransaction,
             i_pszRemoteTmUrl: ?*u8,
-            o_ppszRemoteTxUrl: ?*?PSTR,
+            o_ppszRemoteTxUrl: ?*?[*:0]u8,
         ) callconv(.winapi) HRESULT,
         GetTransactionUrl: *const fn(
             self: *const ITipTransaction,
-            o_ppszLocalTxUrl: ?*?PSTR,
+            o_ppszLocalTxUrl: ?*?[*:0]u8,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Push(self: *const ITipTransaction, i_pszRemoteTmUrl: ?*u8, o_ppszRemoteTxUrl: ?*?PSTR) callconv(.@"inline") HRESULT {
+    pub fn Push(self: *const ITipTransaction, i_pszRemoteTmUrl: ?*u8, o_ppszRemoteTxUrl: ?*?[*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.Push(self, i_pszRemoteTmUrl, o_ppszRemoteTxUrl);
     }
-    pub fn GetTransactionUrl(self: *const ITipTransaction, o_ppszLocalTxUrl: ?*?PSTR) callconv(.@"inline") HRESULT {
+    pub fn GetTransactionUrl(self: *const ITipTransaction, o_ppszLocalTxUrl: ?*?[*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetTransactionUrl(self, o_ppszLocalTxUrl);
     }
 };
@@ -1542,7 +1542,7 @@ pub const ITmNodeName = extern union {
         GetNodeName: *const fn(
             self: *const ITmNodeName,
             cbNodeNameBufferSize: u32,
-            pNodeNameBuffer: ?PWSTR,
+            pNodeNameBuffer: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1550,7 +1550,7 @@ pub const ITmNodeName = extern union {
     pub fn GetNodeNameSize(self: *const ITmNodeName, pcbNodeNameSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNodeNameSize(self, pcbNodeNameSize);
     }
-    pub fn GetNodeName(self: *const ITmNodeName, cbNodeNameBufferSize: u32, pNodeNameBuffer: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetNodeName(self: *const ITmNodeName, cbNodeNameBufferSize: u32, pNodeNameBuffer: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetNodeName(self, cbNodeNameBufferSize, pNodeNameBuffer);
     }
 };
@@ -2340,7 +2340,7 @@ pub const TX_MISC_CONSTANTS = enum(i32) {
 pub const MAX_TRAN_DESC = TX_MISC_CONSTANTS.C;
 
 pub const XA_CLOSE_EPT = *const fn(
-    param0: ?PSTR,
+    param0: ?[*:0]u8,
     param1: i32,
     param2: i32,
 ) callconv(.winapi) i32;
@@ -2371,7 +2371,7 @@ pub const XA_FORGET_EPT = *const fn(
 ) callconv(.winapi) i32;
 
 pub const XA_OPEN_EPT = *const fn(
-    param0: ?PSTR,
+    param0: ?[*:0]u8,
     param1: i32,
     param2: i32,
 ) callconv(.winapi) i32;
@@ -2591,8 +2591,8 @@ pub const XID = extern struct {
 // Section: Functions (4)
 //--------------------------------------------------------------------------------
 pub extern "xolehlp" fn DtcGetTransactionManager(
-    i_pszHost: ?PSTR,
-    i_pszTmName: ?PSTR,
+    i_pszHost: ?[*:0]u8,
+    i_pszTmName: ?[*:0]u8,
     i_riid: ?*const Guid,
     i_dwReserved1: u32,
     i_wcbReserved2: u16,
@@ -2602,8 +2602,8 @@ pub extern "xolehlp" fn DtcGetTransactionManager(
 ) callconv(.winapi) HRESULT;
 
 pub extern "xolehlp" fn DtcGetTransactionManagerC(
-    i_pszHost: ?PSTR,
-    i_pszTmName: ?PSTR,
+    i_pszHost: ?[*:0]u8,
+    i_pszTmName: ?[*:0]u8,
     i_riid: ?*const Guid,
     i_dwReserved1: u32,
     i_wcbReserved2: u16,
@@ -2613,8 +2613,8 @@ pub extern "xolehlp" fn DtcGetTransactionManagerC(
 ) callconv(.winapi) HRESULT;
 
 pub extern "xolehlp" fn DtcGetTransactionManagerExA(
-    i_pszHost: ?PSTR,
-    i_pszTmName: ?PSTR,
+    i_pszHost: ?[*:0]u8,
+    i_pszTmName: ?[*:0]u8,
     i_riid: ?*const Guid,
     i_grfOptions: u32,
     i_pvConfigParams: ?*anyopaque,
@@ -2622,8 +2622,8 @@ pub extern "xolehlp" fn DtcGetTransactionManagerExA(
 ) callconv(.winapi) HRESULT;
 
 pub extern "xolehlp" fn DtcGetTransactionManagerExW(
-    i_pwszHost: ?PWSTR,
-    i_pwszTmName: ?PWSTR,
+    i_pwszHost: ?[*:0]u16,
+    i_pwszTmName: ?[*:0]u16,
     i_riid: ?*const Guid,
     i_grfOptions: u32,
     i_pvConfigParams: ?*anyopaque,
@@ -2649,7 +2649,7 @@ pub const DtcGetTransactionManagerEx = switch (@import("../zig.zig").unicode_mod
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -2659,8 +2659,6 @@ const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IMoniker = @import("../system/com.zig").IMoniker;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

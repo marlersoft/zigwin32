@@ -457,36 +457,36 @@ pub const ARP_SEND_REPLY = extern struct {
 };
 
 pub const DNS_DOH_SERVER_SETTINGS = extern struct {
-    Template: ?PWSTR,
+    Template: ?[*:0]u16,
     Flags: u64,
 };
 
 pub const DNS_INTERFACE_SETTINGS = extern struct {
     Version: u32,
     Flags: u64,
-    Domain: ?PWSTR,
-    NameServer: ?PWSTR,
-    SearchList: ?PWSTR,
+    Domain: ?[*:0]u16,
+    NameServer: ?[*:0]u16,
+    SearchList: ?[*:0]u16,
     RegistrationEnabled: u32,
     RegisterAdapterName: u32,
     EnableLLMNR: u32,
     QueryAdapterName: u32,
-    ProfileNameServer: ?PWSTR,
+    ProfileNameServer: ?[*:0]u16,
 };
 
 pub const DNS_INTERFACE_SETTINGS3 = extern struct {
     Version: u32,
     Flags: u64,
-    Domain: ?PWSTR,
-    NameServer: ?PWSTR,
-    SearchList: ?PWSTR,
+    Domain: ?[*:0]u16,
+    NameServer: ?[*:0]u16,
+    SearchList: ?[*:0]u16,
     RegistrationEnabled: u32,
     RegisterAdapterName: u32,
     EnableLLMNR: u32,
     QueryAdapterName: u32,
-    ProfileNameServer: ?PWSTR,
+    ProfileNameServer: ?[*:0]u16,
     DisableUnconstrainedQueries: u32,
-    SupplementalSearchList: ?PWSTR,
+    SupplementalSearchList: ?[*:0]u16,
     cServerProperties: u32,
     ServerProperties: ?*DNS_SERVER_PROPERTY,
     cProfileServerProperties: u32,
@@ -496,7 +496,7 @@ pub const DNS_INTERFACE_SETTINGS3 = extern struct {
 pub const DNS_INTERFACE_SETTINGS_EX = extern struct {
     SettingsV1: DNS_INTERFACE_SETTINGS,
     DisableUnconstrainedQueries: u32,
-    SupplementalSearchList: ?PWSTR,
+    SupplementalSearchList: ?[*:0]u16,
 };
 
 pub const DNS_SERVER_PROPERTY = extern struct {
@@ -520,17 +520,17 @@ pub const DNS_SERVER_PROPERTY_TYPES = extern union {
 pub const DNS_SETTINGS = extern struct {
     Version: u32,
     Flags: u64,
-    Hostname: ?PWSTR,
-    Domain: ?PWSTR,
-    SearchList: ?PWSTR,
+    Hostname: ?[*:0]u16,
+    Domain: ?[*:0]u16,
+    SearchList: ?[*:0]u16,
 };
 
 pub const DNS_SETTINGS2 = extern struct {
     Version: u32,
     Flags: u64,
-    Hostname: ?PWSTR,
-    Domain: ?PWSTR,
-    SearchList: ?PWSTR,
+    Hostname: ?[*:0]u16,
+    Domain: ?[*:0]u16,
+    SearchList: ?[*:0]u16,
     SettingFlags: u64,
 };
 
@@ -2831,7 +2831,7 @@ pub extern "iphlpapi" fn FreeMibTable(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "iphlpapi" fn GetAdapterIndex(
-    AdapterName: ?PWSTR,
+    AdapterName: ?[*:0]u16,
     IfIndex: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -3029,7 +3029,7 @@ pub extern "iphlpapi" fn GetIpAddrTable(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "iphlpapi" fn GetIpErrorString(
     ErrorCode: u32,
-    Buffer: ?PWSTR,
+    Buffer: ?[*:0]u16,
     Size: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -3460,7 +3460,7 @@ pub extern "iphlpapi" fn IcmpSendEcho2Ex(
 pub extern "iphlpapi" fn if_indextoname(
     InterfaceIndex: u32,
     InterfaceName: *[256]u8,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn if_nametoindex(
@@ -3854,7 +3854,7 @@ pub const ConvertInterfaceNameToLuid = switch (@import("../zig.zig").unicode_mod
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (41)
+// Section: Imports (39)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ADDRESS_FAMILY = @import("../networking/win_sock.zig").ADDRESS_FAMILY;
@@ -3887,8 +3887,6 @@ const NL_SUFFIX_ORIGIN = @import("../networking/win_sock.zig").NL_SUFFIX_ORIGIN;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
 const PIO_APC_ROUTINE = @import("../system/windows_programming.zig").PIO_APC_ROUTINE;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SCOPE_ID = @import("../networking/win_sock.zig").SCOPE_ID;
 const SOCKADDR = @import("../networking/win_sock.zig").SOCKADDR;
 const SOCKADDR_IN6 = @import("../networking/win_sock.zig").SOCKADDR_IN6;

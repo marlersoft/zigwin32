@@ -14,7 +14,7 @@ pub const WCM_UNKNOWN_DATAPLAN_STATUS = @as(u32, 4294967295);
 //--------------------------------------------------------------------------------
 pub const NET_INTERFACE_CONTEXT = extern struct {
     InterfaceIndex: u32,
-    ConfigurationName: ?PWSTR,
+    ConfigurationName: ?[*:0]u16,
 };
 
 pub const NET_INTERFACE_CONTEXT_TABLE = extern struct {
@@ -223,14 +223,13 @@ pub extern "wcmapi" fn WcmSetProperty(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -103,13 +103,12 @@ pub extern "kernel32" fn UnregisterApplicationRestart(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const APPLICATION_RECOVERY_CALLBACK = @import("../system/windows_programming.zig").APPLICATION_RECOVERY_CALLBACK;
 const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

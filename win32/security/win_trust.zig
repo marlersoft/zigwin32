@@ -166,7 +166,7 @@ pub const WTD_PROV_FLAGS_MASK = @as(u32, 65535);
 // Section: Types (76)
 //--------------------------------------------------------------------------------
 pub const CAT_MEMBERINFO = extern struct {
-    pwszSubjGuid: ?PWSTR,
+    pwszSubjGuid: ?[*:0]u16,
     dwCertVersion: u32,
 };
 
@@ -176,7 +176,7 @@ pub const CAT_MEMBERINFO2 = extern struct {
 };
 
 pub const CAT_NAMEVALUE = extern struct {
-    pwszTag: ?PWSTR,
+    pwszTag: ?[*:0]u16,
     fdwFlags: u32,
     Value: CRYPT_INTEGER_BLOB,
 };
@@ -239,10 +239,10 @@ pub const CRYPT_PROVIDER_DATA = extern struct {
     Anonymous: extern union {
         pPDSip: ?*PROVDATA_SIP,
     },
-    pszUsageOID: ?PSTR,
+    pszUsageOID: ?[*:0]u8,
     fRecallWithState: BOOL,
     sftSystemTime: FILETIME,
-    pszCTLSignerUsageOID: ?PSTR,
+    pszCTLSignerUsageOID: ?[*:0]u8,
     dwProvFlags: u32,
     dwFinalError: u32,
     pRequestUsage: ?*CERT_USAGE_MATCH,
@@ -288,9 +288,9 @@ pub const CRYPT_PROVIDER_PRIVDATA = extern struct {
 pub const CRYPT_PROVIDER_REGDEFUSAGE = extern struct {
     cbStruct: u32,
     pgActionID: ?*Guid,
-    pwszDllName: ?PWSTR,
-    pwszLoadCallbackDataFunctionName: ?PSTR,
-    pwszFreeCallbackDataFunctionName: ?PSTR,
+    pwszDllName: ?[*:0]u16,
+    pwszLoadCallbackDataFunctionName: ?[*:0]u8,
+    pwszFreeCallbackDataFunctionName: ?[*:0]u8,
 };
 
 pub const CRYPT_PROVIDER_SGNR = extern struct {
@@ -324,13 +324,13 @@ pub const CRYPT_PROVIDER_SIGSTATE = extern struct {
 pub const CRYPT_PROVUI_DATA = extern struct {
     cbStruct: u32,
     dwFinalError: u32,
-    pYesButtonText: ?PWSTR,
-    pNoButtonText: ?PWSTR,
-    pMoreInfoButtonText: ?PWSTR,
-    pAdvancedLinkText: ?PWSTR,
-    pCopyActionText: ?PWSTR,
-    pCopyActionTextNoTS: ?PWSTR,
-    pCopyActionTextNotSigned: ?PWSTR,
+    pYesButtonText: ?[*:0]u16,
+    pNoButtonText: ?[*:0]u16,
+    pMoreInfoButtonText: ?[*:0]u16,
+    pAdvancedLinkText: ?[*:0]u16,
+    pCopyActionText: ?[*:0]u16,
+    pCopyActionTextNoTS: ?[*:0]u16,
+    pCopyActionTextNotSigned: ?[*:0]u16,
 };
 
 pub const CRYPT_PROVUI_FUNCS = extern struct {
@@ -356,8 +356,8 @@ pub const CRYPT_REGISTER_ACTIONID = extern struct {
 
 pub const CRYPT_TRUST_REG_ENTRY = extern struct {
     cbStruct: u32,
-    pwszDLLName: ?PWSTR,
-    pwszFunctionName: ?PWSTR,
+    pwszDLLName: ?[*:0]u16,
+    pwszFunctionName: ?[*:0]u16,
 };
 
 pub const DRIVER_VER_INFO = extern struct {
@@ -494,9 +494,9 @@ pub const SPC_INDIRECT_DATA_CONTENT = extern struct {
 pub const SPC_LINK = extern struct {
     dwLinkChoice: u32,
     Anonymous: extern union {
-        pwszUrl: ?PWSTR,
+        pwszUrl: ?[*:0]u16,
         Moniker: SPC_SERIALIZED_OBJECT,
-        pwszFile: ?PWSTR,
+        pwszFile: ?[*:0]u16,
     },
 };
 
@@ -522,7 +522,7 @@ pub const SPC_SIGINFO = extern struct {
 
 pub const SPC_SP_AGENCY_INFO = extern struct {
     pPolicyInformation: ?*SPC_LINK,
-    pwszPolicyDisplayText: ?PWSTR,
+    pwszPolicyDisplayText: ?[*:0]u16,
     pLogoImage: ?*SPC_IMAGE,
     pLogoLink: ?*SPC_LINK,
 };
@@ -535,7 +535,7 @@ pub const SPC_SP_OPUS_INFO = extern struct {
 
 pub const SPC_STATEMENT_TYPE = extern struct {
     cKeyPurposeId: u32,
-    rgpszKeyPurposeId: ?*?PSTR,
+    rgpszKeyPurposeId: ?*?[*:0]u8,
 };
 
 pub const WIN_CERTIFICATE = extern struct {
@@ -621,7 +621,7 @@ pub const WINTRUST_DATA = extern struct {
     },
     dwStateAction: WINTRUST_DATA_STATE_ACTION,
     hWVTStateData: ?HANDLE,
-    pwszURLReference: ?PWSTR,
+    pwszURLReference: ?[*:0]u16,
     dwProvFlags: WINTRUST_DATA_PROVIDER_FLAGS,
     dwUIContext: WINTRUST_DATA_UICONTEXT,
     pSignatureSettings: ?*WINTRUST_SIGNATURE_SETTINGS,
@@ -963,7 +963,7 @@ pub extern "wintrust" fn WTHelperProvDataFromStateData(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (27)
+// Section: Imports (25)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -987,8 +987,6 @@ const HCERTCHAINENGINE = @import("../security/cryptography.zig").HCERTCHAINENGIN
 const HCERTSTORE = @import("../security/cryptography.zig").HCERTSTORE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SIP_DISPATCH_INFO = @import("../security/cryptography/sip.zig").SIP_DISPATCH_INFO;
 const SIP_INDIRECT_DATA = @import("../security/cryptography/sip.zig").SIP_INDIRECT_DATA;
 const SIP_SUBJECTINFO = @import("../security/cryptography/sip.zig").SIP_SUBJECTINFO;

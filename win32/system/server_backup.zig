@@ -41,18 +41,18 @@ pub const IWsbApplicationBackupSupport = extern union {
         base: IUnknown.VTable,
         CheckConsistency: *const fn(
             self: *const IWsbApplicationBackupSupport,
-            wszWriterMetadata: ?PWSTR,
-            wszComponentName: ?PWSTR,
-            wszComponentLogicalPath: ?PWSTR,
+            wszWriterMetadata: ?[*:0]u16,
+            wszComponentName: ?[*:0]u16,
+            wszComponentLogicalPath: ?[*:0]u16,
             cVolumes: u32,
-            rgwszSourceVolumePath: [*]?PWSTR,
-            rgwszSnapshotVolumePath: [*]?PWSTR,
+            rgwszSourceVolumePath: [*]?[*:0]u16,
+            rgwszSnapshotVolumePath: [*]?[*:0]u16,
             ppAsync: ?*?*IWsbApplicationAsync,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CheckConsistency(self: *const IWsbApplicationBackupSupport, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, cVolumes: u32, rgwszSourceVolumePath: [*]?PWSTR, rgwszSnapshotVolumePath: [*]?PWSTR, ppAsync: ?*?*IWsbApplicationAsync) callconv(.@"inline") HRESULT {
+    pub fn CheckConsistency(self: *const IWsbApplicationBackupSupport, wszWriterMetadata: ?[*:0]u16, wszComponentName: ?[*:0]u16, wszComponentLogicalPath: ?[*:0]u16, cVolumes: u32, rgwszSourceVolumePath: [*]?[*:0]u16, rgwszSnapshotVolumePath: [*]?[*:0]u16, ppAsync: ?*?*IWsbApplicationAsync) callconv(.@"inline") HRESULT {
         return self.vtable.CheckConsistency(self, wszWriterMetadata, wszComponentName, wszComponentLogicalPath, cVolumes, rgwszSourceVolumePath, rgwszSnapshotVolumePath, ppAsync);
     }
 };
@@ -65,25 +65,25 @@ pub const IWsbApplicationRestoreSupport = extern union {
         base: IUnknown.VTable,
         PreRestore: *const fn(
             self: *const IWsbApplicationRestoreSupport,
-            wszWriterMetadata: ?PWSTR,
-            wszComponentName: ?PWSTR,
-            wszComponentLogicalPath: ?PWSTR,
+            wszWriterMetadata: ?[*:0]u16,
+            wszComponentName: ?[*:0]u16,
+            wszComponentLogicalPath: ?[*:0]u16,
             bNoRollForward: BOOLEAN,
         ) callconv(.winapi) HRESULT,
         PostRestore: *const fn(
             self: *const IWsbApplicationRestoreSupport,
-            wszWriterMetadata: ?PWSTR,
-            wszComponentName: ?PWSTR,
-            wszComponentLogicalPath: ?PWSTR,
+            wszWriterMetadata: ?[*:0]u16,
+            wszComponentName: ?[*:0]u16,
+            wszComponentLogicalPath: ?[*:0]u16,
             bNoRollForward: BOOLEAN,
         ) callconv(.winapi) HRESULT,
         OrderComponents: *const fn(
             self: *const IWsbApplicationRestoreSupport,
             cComponents: u32,
-            rgComponentName: [*]?PWSTR,
-            rgComponentLogicalPaths: [*]?PWSTR,
-            prgComponentName: [*]?*?PWSTR,
-            prgComponentLogicalPath: [*]?*?PWSTR,
+            rgComponentName: [*]?[*:0]u16,
+            rgComponentLogicalPaths: [*]?[*:0]u16,
+            prgComponentName: [*]?*?[*:0]u16,
+            prgComponentLogicalPath: [*]?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         IsRollForwardSupported: *const fn(
             self: *const IWsbApplicationRestoreSupport,
@@ -92,13 +92,13 @@ pub const IWsbApplicationRestoreSupport = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn PreRestore(self: *const IWsbApplicationRestoreSupport, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, bNoRollForward: BOOLEAN) callconv(.@"inline") HRESULT {
+    pub fn PreRestore(self: *const IWsbApplicationRestoreSupport, wszWriterMetadata: ?[*:0]u16, wszComponentName: ?[*:0]u16, wszComponentLogicalPath: ?[*:0]u16, bNoRollForward: BOOLEAN) callconv(.@"inline") HRESULT {
         return self.vtable.PreRestore(self, wszWriterMetadata, wszComponentName, wszComponentLogicalPath, bNoRollForward);
     }
-    pub fn PostRestore(self: *const IWsbApplicationRestoreSupport, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, bNoRollForward: BOOLEAN) callconv(.@"inline") HRESULT {
+    pub fn PostRestore(self: *const IWsbApplicationRestoreSupport, wszWriterMetadata: ?[*:0]u16, wszComponentName: ?[*:0]u16, wszComponentLogicalPath: ?[*:0]u16, bNoRollForward: BOOLEAN) callconv(.@"inline") HRESULT {
         return self.vtable.PostRestore(self, wszWriterMetadata, wszComponentName, wszComponentLogicalPath, bNoRollForward);
     }
-    pub fn OrderComponents(self: *const IWsbApplicationRestoreSupport, cComponents: u32, rgComponentName: [*]?PWSTR, rgComponentLogicalPaths: [*]?PWSTR, prgComponentName: [*]?*?PWSTR, prgComponentLogicalPath: [*]?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn OrderComponents(self: *const IWsbApplicationRestoreSupport, cComponents: u32, rgComponentName: [*]?[*:0]u16, rgComponentLogicalPaths: [*]?[*:0]u16, prgComponentName: [*]?*?[*:0]u16, prgComponentLogicalPath: [*]?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.OrderComponents(self, cComponents, rgComponentName, rgComponentLogicalPaths, prgComponentName, prgComponentLogicalPath);
     }
     pub fn IsRollForwardSupported(self: *const IWsbApplicationRestoreSupport, pbRollForwardSupported: ?*u8) callconv(.@"inline") HRESULT {
@@ -107,7 +107,7 @@ pub const IWsbApplicationRestoreSupport = extern union {
 };
 
 pub const WSB_OB_REGISTRATION_INFO = extern struct {
-    m_wszResourceDLL: ?PWSTR,
+    m_wszResourceDLL: ?[*:0]u16,
     m_guidSnapinId: Guid,
     m_dwProviderName: u32,
     m_dwProviderIcon: u32,
@@ -140,7 +140,7 @@ pub const WSB_OB_ET_SIZE = WSB_OB_STATUS_ENTRY_PAIR_TYPE.SIZE;
 pub const WSB_OB_ET_MAX = WSB_OB_STATUS_ENTRY_PAIR_TYPE.MAX;
 
 pub const WSB_OB_STATUS_ENTRY_VALUE_TYPE_PAIR = extern struct {
-    m_wszObStatusEntryPairValue: ?PWSTR,
+    m_wszObStatusEntryPairValue: ?[*:0]u16,
     m_ObStatusEntryPairType: WSB_OB_STATUS_ENTRY_PAIR_TYPE,
 };
 
@@ -159,13 +159,12 @@ pub const WSB_OB_STATUS_INFO = extern struct {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

@@ -1174,7 +1174,7 @@ pub extern "cfgmgr32" fn SwDeviceInterfaceRegister(
     cPropertyCount: u32,
     pProperties: ?[*]const DEVPROPERTY,
     fEnabled: BOOL,
-    ppszDeviceInterfaceId: ?*?PWSTR,
+    ppszDeviceInterfaceId: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1207,7 +1207,7 @@ pub extern "cfgmgr32" fn SwMemFree(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -1216,7 +1216,6 @@ const DEVPROPERTY = @import("../../devices/properties.zig").DEVPROPERTY;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IDispatch = @import("../../system/com.zig").IDispatch;
 const IUnknown = @import("../../system/com.zig").IUnknown;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const SECURITY_DESCRIPTOR = @import("../../security.zig").SECURITY_DESCRIPTOR;
 const VARIANT = @import("../../system/com.zig").VARIANT;
 const VARIANT_BOOL = @import("../../foundation.zig").VARIANT_BOOL;

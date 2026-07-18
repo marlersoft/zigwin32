@@ -306,22 +306,22 @@ pub const ISideShowNotification = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Title: *const fn(
             self: *const ISideShowNotification,
-            out_ppwszTitle: ?*?PWSTR,
+            out_ppwszTitle: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Title: *const fn(
             self: *const ISideShowNotification,
-            in_pwszTitle: ?PWSTR,
+            in_pwszTitle: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Message: *const fn(
             self: *const ISideShowNotification,
-            out_ppwszMessage: ?*?PWSTR,
+            out_ppwszMessage: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Message: *const fn(
             self: *const ISideShowNotification,
-            in_pwszMessage: ?PWSTR,
+            in_pwszMessage: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Image: *const fn(
@@ -352,16 +352,16 @@ pub const ISideShowNotification = extern union {
     pub fn put_NotificationId(self: *const ISideShowNotification, in_notificationId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.put_NotificationId(self, in_notificationId);
     }
-    pub fn get_Title(self: *const ISideShowNotification, out_ppwszTitle: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Title(self: *const ISideShowNotification, out_ppwszTitle: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Title(self, out_ppwszTitle);
     }
-    pub fn put_Title(self: *const ISideShowNotification, in_pwszTitle: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn put_Title(self: *const ISideShowNotification, in_pwszTitle: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Title(self, in_pwszTitle);
     }
-    pub fn get_Message(self: *const ISideShowNotification, out_ppwszMessage: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Message(self: *const ISideShowNotification, out_ppwszMessage: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Message(self, out_ppwszMessage);
     }
-    pub fn put_Message(self: *const ISideShowNotification, in_pwszMessage: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn put_Message(self: *const ISideShowNotification, in_pwszMessage: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Message(self, in_pwszMessage);
     }
     pub fn get_Image(self: *const ISideShowNotification, out_phIcon: ?*?HICON) callconv(.@"inline") HRESULT {
@@ -584,7 +584,7 @@ pub const CLSID_SideShowSession = &CLSID_SideShowSession_Value;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -593,7 +593,6 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PROPERTYKEY = @import("../ui/shell/properties_system.zig").PROPERTYKEY;
 const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {

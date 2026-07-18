@@ -2441,7 +2441,7 @@ pub const MBN_CDMA_SHORT_MSG_SIZE_MAX = WWAEXT_SMS_CONSTANTS.CDMA_SHORT_MSG_SIZE
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -2449,7 +2449,6 @@ const BSTR = @import("../foundation.zig").BSTR;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 

@@ -2553,8 +2553,8 @@ pub const CSBACKUP_TYPE_FULL = CSBACKUP_TYPE.FULL;
 pub const CSBACKUP_TYPE_LOGS_ONLY = CSBACKUP_TYPE.LOGS_ONLY;
 
 pub const CSEDB_RSTMAPW = extern struct {
-    pwszDatabaseName: ?PWSTR,
-    pwszNewDatabaseName: ?PWSTR,
+    pwszDatabaseName: ?[*:0]u16,
+    pwszNewDatabaseName: ?[*:0]u16,
 };
 
 const CLSID_CSignerCertificate_Value = Guid.initString("884e203d-217d-11da-b2a4-000e7bbb2b09");
@@ -7453,12 +7453,12 @@ pub const IEnroll = extern union {
             self: *const IEnroll,
             dwIndex: i32,
             dwFlags: i32,
-            pbstrProvName: ?*?PWSTR,
+            pbstrProvName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         enumContainersWStr: *const fn(
             self: *const IEnroll,
             dwIndex: i32,
-            pbstr: ?*?PWSTR,
+            pbstr: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         freeRequestInfoBlob: *const fn(
             self: *const IEnroll,
@@ -7467,22 +7467,22 @@ pub const IEnroll = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MyStoreNameWStr: *const fn(
             self: *const IEnroll,
-            szwName: ?*?PWSTR,
+            szwName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MyStoreNameWStr: *const fn(
             self: *const IEnroll,
-            szwName: ?PWSTR,
+            szwName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MyStoreTypeWStr: *const fn(
             self: *const IEnroll,
-            szwType: ?*?PWSTR,
+            szwType: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MyStoreTypeWStr: *const fn(
             self: *const IEnroll,
-            szwType: ?PWSTR,
+            szwType: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MyStoreFlags: *const fn(
@@ -7497,22 +7497,22 @@ pub const IEnroll = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CAStoreNameWStr: *const fn(
             self: *const IEnroll,
-            szwName: ?*?PWSTR,
+            szwName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CAStoreNameWStr: *const fn(
             self: *const IEnroll,
-            szwName: ?PWSTR,
+            szwName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CAStoreTypeWStr: *const fn(
             self: *const IEnroll,
-            szwType: ?*?PWSTR,
+            szwType: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CAStoreTypeWStr: *const fn(
             self: *const IEnroll,
-            szwType: ?PWSTR,
+            szwType: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CAStoreFlags: *const fn(
@@ -7527,22 +7527,22 @@ pub const IEnroll = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RootStoreNameWStr: *const fn(
             self: *const IEnroll,
-            szwName: ?*?PWSTR,
+            szwName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RootStoreNameWStr: *const fn(
             self: *const IEnroll,
-            szwName: ?PWSTR,
+            szwName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RootStoreTypeWStr: *const fn(
             self: *const IEnroll,
-            szwType: ?*?PWSTR,
+            szwType: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RootStoreTypeWStr: *const fn(
             self: *const IEnroll,
-            szwType: ?PWSTR,
+            szwType: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RootStoreFlags: *const fn(
@@ -7557,22 +7557,22 @@ pub const IEnroll = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequestStoreNameWStr: *const fn(
             self: *const IEnroll,
-            szwName: ?*?PWSTR,
+            szwName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RequestStoreNameWStr: *const fn(
             self: *const IEnroll,
-            szwName: ?PWSTR,
+            szwName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequestStoreTypeWStr: *const fn(
             self: *const IEnroll,
-            szwType: ?*?PWSTR,
+            szwType: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RequestStoreTypeWStr: *const fn(
             self: *const IEnroll,
-            szwType: ?PWSTR,
+            szwType: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequestStoreFlags: *const fn(
@@ -7587,22 +7587,22 @@ pub const IEnroll = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContainerNameWStr: *const fn(
             self: *const IEnroll,
-            szwContainer: ?*?PWSTR,
+            szwContainer: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ContainerNameWStr: *const fn(
             self: *const IEnroll,
-            szwContainer: ?PWSTR,
+            szwContainer: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProviderNameWStr: *const fn(
             self: *const IEnroll,
-            szwProvider: ?*?PWSTR,
+            szwProvider: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ProviderNameWStr: *const fn(
             self: *const IEnroll,
-            szwProvider: ?PWSTR,
+            szwProvider: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProviderType: *const fn(
@@ -7697,32 +7697,32 @@ pub const IEnroll = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SPCFileNameWStr: *const fn(
             self: *const IEnroll,
-            szw: ?*?PWSTR,
+            szw: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SPCFileNameWStr: *const fn(
             self: *const IEnroll,
-            szw: ?PWSTR,
+            szw: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PVKFileNameWStr: *const fn(
             self: *const IEnroll,
-            szw: ?*?PWSTR,
+            szw: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PVKFileNameWStr: *const fn(
             self: *const IEnroll,
-            szw: ?PWSTR,
+            szw: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HashAlgorithmWStr: *const fn(
             self: *const IEnroll,
-            szw: ?*?PWSTR,
+            szw: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HashAlgorithmWStr: *const fn(
             self: *const IEnroll,
-            szw: ?PWSTR,
+            szw: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RenewalCertificate: *const fn(
@@ -7736,12 +7736,12 @@ pub const IEnroll = extern union {
         ) callconv(.winapi) HRESULT,
         AddCertTypeToRequestWStr: *const fn(
             self: *const IEnroll,
-            szw: ?PWSTR,
+            szw: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         AddNameValuePairToSignatureWStr: *const fn(
             self: *const IEnroll,
-            Name: ?PWSTR,
-            Value: ?PWSTR,
+            Name: ?[*:0]u16,
+            Value: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         AddExtensionsToRequest: *const fn(
             self: *const IEnroll,
@@ -7784,25 +7784,25 @@ pub const IEnroll = extern union {
     pub fn getROOTHStore(self: *const IEnroll) callconv(.@"inline") ?HCERTSTORE {
         return self.vtable.getROOTHStore(self);
     }
-    pub fn enumProvidersWStr(self: *const IEnroll, dwIndex: i32, dwFlags: i32, pbstrProvName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn enumProvidersWStr(self: *const IEnroll, dwIndex: i32, dwFlags: i32, pbstrProvName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.enumProvidersWStr(self, dwIndex, dwFlags, pbstrProvName);
     }
-    pub fn enumContainersWStr(self: *const IEnroll, dwIndex: i32, pbstr: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn enumContainersWStr(self: *const IEnroll, dwIndex: i32, pbstr: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.enumContainersWStr(self, dwIndex, pbstr);
     }
     pub fn freeRequestInfoBlob(self: *const IEnroll, pkcs7OrPkcs10: CRYPT_INTEGER_BLOB) callconv(.@"inline") HRESULT {
         return self.vtable.freeRequestInfoBlob(self, pkcs7OrPkcs10);
     }
-    pub fn get_MyStoreNameWStr(self: *const IEnroll, szwName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_MyStoreNameWStr(self: *const IEnroll, szwName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_MyStoreNameWStr(self, szwName);
     }
-    pub fn put_MyStoreNameWStr(self: *const IEnroll, szwName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn put_MyStoreNameWStr(self: *const IEnroll, szwName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_MyStoreNameWStr(self, szwName);
     }
-    pub fn get_MyStoreTypeWStr(self: *const IEnroll, szwType: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_MyStoreTypeWStr(self: *const IEnroll, szwType: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_MyStoreTypeWStr(self, szwType);
     }
-    pub fn put_MyStoreTypeWStr(self: *const IEnroll, szwType: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn put_MyStoreTypeWStr(self: *const IEnroll, szwType: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_MyStoreTypeWStr(self, szwType);
     }
     pub fn get_MyStoreFlags(self: *const IEnroll, pdwFlags: ?*i32) callconv(.@"inline") HRESULT {
@@ -7811,16 +7811,16 @@ pub const IEnroll = extern union {
     pub fn put_MyStoreFlags(self: *const IEnroll, dwFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_MyStoreFlags(self, dwFlags);
     }
-    pub fn get_CAStoreNameWStr(self: *const IEnroll, szwName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_CAStoreNameWStr(self: *const IEnroll, szwName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_CAStoreNameWStr(self, szwName);
     }
-    pub fn put_CAStoreNameWStr(self: *const IEnroll, szwName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn put_CAStoreNameWStr(self: *const IEnroll, szwName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_CAStoreNameWStr(self, szwName);
     }
-    pub fn get_CAStoreTypeWStr(self: *const IEnroll, szwType: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_CAStoreTypeWStr(self: *const IEnroll, szwType: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_CAStoreTypeWStr(self, szwType);
     }
-    pub fn put_CAStoreTypeWStr(self: *const IEnroll, szwType: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn put_CAStoreTypeWStr(self: *const IEnroll, szwType: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_CAStoreTypeWStr(self, szwType);
     }
     pub fn get_CAStoreFlags(self: *const IEnroll, pdwFlags: ?*i32) callconv(.@"inline") HRESULT {
@@ -7829,16 +7829,16 @@ pub const IEnroll = extern union {
     pub fn put_CAStoreFlags(self: *const IEnroll, dwFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_CAStoreFlags(self, dwFlags);
     }
-    pub fn get_RootStoreNameWStr(self: *const IEnroll, szwName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_RootStoreNameWStr(self: *const IEnroll, szwName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_RootStoreNameWStr(self, szwName);
     }
-    pub fn put_RootStoreNameWStr(self: *const IEnroll, szwName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn put_RootStoreNameWStr(self: *const IEnroll, szwName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_RootStoreNameWStr(self, szwName);
     }
-    pub fn get_RootStoreTypeWStr(self: *const IEnroll, szwType: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_RootStoreTypeWStr(self: *const IEnroll, szwType: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_RootStoreTypeWStr(self, szwType);
     }
-    pub fn put_RootStoreTypeWStr(self: *const IEnroll, szwType: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn put_RootStoreTypeWStr(self: *const IEnroll, szwType: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_RootStoreTypeWStr(self, szwType);
     }
     pub fn get_RootStoreFlags(self: *const IEnroll, pdwFlags: ?*i32) callconv(.@"inline") HRESULT {
@@ -7847,16 +7847,16 @@ pub const IEnroll = extern union {
     pub fn put_RootStoreFlags(self: *const IEnroll, dwFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_RootStoreFlags(self, dwFlags);
     }
-    pub fn get_RequestStoreNameWStr(self: *const IEnroll, szwName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_RequestStoreNameWStr(self: *const IEnroll, szwName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_RequestStoreNameWStr(self, szwName);
     }
-    pub fn put_RequestStoreNameWStr(self: *const IEnroll, szwName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn put_RequestStoreNameWStr(self: *const IEnroll, szwName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_RequestStoreNameWStr(self, szwName);
     }
-    pub fn get_RequestStoreTypeWStr(self: *const IEnroll, szwType: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_RequestStoreTypeWStr(self: *const IEnroll, szwType: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_RequestStoreTypeWStr(self, szwType);
     }
-    pub fn put_RequestStoreTypeWStr(self: *const IEnroll, szwType: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn put_RequestStoreTypeWStr(self: *const IEnroll, szwType: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_RequestStoreTypeWStr(self, szwType);
     }
     pub fn get_RequestStoreFlags(self: *const IEnroll, pdwFlags: ?*i32) callconv(.@"inline") HRESULT {
@@ -7865,16 +7865,16 @@ pub const IEnroll = extern union {
     pub fn put_RequestStoreFlags(self: *const IEnroll, dwFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_RequestStoreFlags(self, dwFlags);
     }
-    pub fn get_ContainerNameWStr(self: *const IEnroll, szwContainer: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_ContainerNameWStr(self: *const IEnroll, szwContainer: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_ContainerNameWStr(self, szwContainer);
     }
-    pub fn put_ContainerNameWStr(self: *const IEnroll, szwContainer: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn put_ContainerNameWStr(self: *const IEnroll, szwContainer: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_ContainerNameWStr(self, szwContainer);
     }
-    pub fn get_ProviderNameWStr(self: *const IEnroll, szwProvider: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_ProviderNameWStr(self: *const IEnroll, szwProvider: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_ProviderNameWStr(self, szwProvider);
     }
-    pub fn put_ProviderNameWStr(self: *const IEnroll, szwProvider: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn put_ProviderNameWStr(self: *const IEnroll, szwProvider: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_ProviderNameWStr(self, szwProvider);
     }
     pub fn get_ProviderType(self: *const IEnroll, pdwType: ?*i32) callconv(.@"inline") HRESULT {
@@ -7931,22 +7931,22 @@ pub const IEnroll = extern union {
     pub fn put_WriteCertToCSP(self: *const IEnroll, fBool: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_WriteCertToCSP(self, fBool);
     }
-    pub fn get_SPCFileNameWStr(self: *const IEnroll, szw: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_SPCFileNameWStr(self: *const IEnroll, szw: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_SPCFileNameWStr(self, szw);
     }
-    pub fn put_SPCFileNameWStr(self: *const IEnroll, szw: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn put_SPCFileNameWStr(self: *const IEnroll, szw: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_SPCFileNameWStr(self, szw);
     }
-    pub fn get_PVKFileNameWStr(self: *const IEnroll, szw: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_PVKFileNameWStr(self: *const IEnroll, szw: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_PVKFileNameWStr(self, szw);
     }
-    pub fn put_PVKFileNameWStr(self: *const IEnroll, szw: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn put_PVKFileNameWStr(self: *const IEnroll, szw: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_PVKFileNameWStr(self, szw);
     }
-    pub fn get_HashAlgorithmWStr(self: *const IEnroll, szw: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_HashAlgorithmWStr(self: *const IEnroll, szw: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_HashAlgorithmWStr(self, szw);
     }
-    pub fn put_HashAlgorithmWStr(self: *const IEnroll, szw: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn put_HashAlgorithmWStr(self: *const IEnroll, szw: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_HashAlgorithmWStr(self, szw);
     }
     pub fn get_RenewalCertificate(self: *const IEnroll, ppCertContext: ?*?*CERT_CONTEXT) callconv(.@"inline") HRESULT {
@@ -7955,10 +7955,10 @@ pub const IEnroll = extern union {
     pub fn put_RenewalCertificate(self: *const IEnroll, pCertContext: ?*const CERT_CONTEXT) callconv(.@"inline") HRESULT {
         return self.vtable.put_RenewalCertificate(self, pCertContext);
     }
-    pub fn AddCertTypeToRequestWStr(self: *const IEnroll, szw: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn AddCertTypeToRequestWStr(self: *const IEnroll, szw: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.AddCertTypeToRequestWStr(self, szw);
     }
-    pub fn AddNameValuePairToSignatureWStr(self: *const IEnroll, Name: ?PWSTR, Value: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn AddNameValuePairToSignatureWStr(self: *const IEnroll, Name: ?[*:0]u16, Value: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.AddNameValuePairToSignatureWStr(self, Name, Value);
     }
     pub fn AddExtensionsToRequest(self: *const IEnroll, pCertExtensions: ?*CERT_EXTENSIONS) callconv(.@"inline") HRESULT {
@@ -8004,7 +8004,7 @@ pub const IEnroll2 = extern union {
         GetAlgNameWStr: *const fn(
             self: *const IEnroll2,
             algID: i32,
-            ppwsz: ?*?PWSTR,
+            ppwsz: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReuseHardwareKeyIfUnableToGenNew: *const fn(
@@ -8081,7 +8081,7 @@ pub const IEnroll2 = extern union {
     pub fn EnumAlgs(self: *const IEnroll2, dwIndex: i32, algClass: i32, pdwAlgID: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumAlgs(self, dwIndex, algClass, pdwAlgID);
     }
-    pub fn GetAlgNameWStr(self: *const IEnroll2, algID: i32, ppwsz: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetAlgNameWStr(self: *const IEnroll2, algID: i32, ppwsz: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetAlgNameWStr(self, algID, ppwsz);
     }
     pub fn put_ReuseHardwareKeyIfUnableToGenNew(self: *const IEnroll2, fReuseHardwareKeyIfUnableToGenNew: BOOL) callconv(.@"inline") HRESULT {
@@ -8149,7 +8149,7 @@ pub const IEnroll4 = extern union {
             self: *const IEnroll4,
             Flags: i32,
             pblobBinary: ?*CRYPT_INTEGER_BLOB,
-            ppwszString: ?*?PWSTR,
+            ppwszString: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         stringToBinaryBlob: *const fn(
             self: *const IEnroll4,
@@ -8313,7 +8313,7 @@ pub const IEnroll4 = extern union {
     pub fn GetPrivateKeyArchiveCertificate(self: *const IEnroll4) callconv(.@"inline") ?*CERT_CONTEXT {
         return self.vtable.GetPrivateKeyArchiveCertificate(self);
     }
-    pub fn binaryBlobToString(self: *const IEnroll4, Flags: i32, pblobBinary: ?*CRYPT_INTEGER_BLOB, ppwszString: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn binaryBlobToString(self: *const IEnroll4, Flags: i32, pblobBinary: ?*CRYPT_INTEGER_BLOB, ppwszString: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.binaryBlobToString(self, Flags, pblobBinary, ppwszString);
     }
     pub fn stringToBinaryBlob(self: *const IEnroll4, Flags: i32, pwszString: ?[*:0]const u16, pblobBinary: ?*CRYPT_INTEGER_BLOB, pdwSkip: ?*i32, pdwFlags: ?*i32) callconv(.@"inline") HRESULT {
@@ -8709,7 +8709,7 @@ pub const INDESPolicy = extern union {
             self: *const INDESPolicy,
             pwszTemplate: ?[*:0]const u16,
             pwszParams: ?[*:0]const u16,
-            ppwszResponse: ?*?PWSTR,
+            ppwszResponse: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         VerifyRequest: *const fn(
             self: *const INDESPolicy,
@@ -8736,7 +8736,7 @@ pub const INDESPolicy = extern union {
     pub fn Uninitialize(self: *const INDESPolicy) callconv(.@"inline") HRESULT {
         return self.vtable.Uninitialize(self);
     }
-    pub fn GenerateChallenge(self: *const INDESPolicy, pwszTemplate: ?[*:0]const u16, pwszParams: ?[*:0]const u16, ppwszResponse: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GenerateChallenge(self: *const INDESPolicy, pwszTemplate: ?[*:0]const u16, pwszParams: ?[*:0]const u16, ppwszResponse: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GenerateChallenge(self, pwszTemplate, pwszParams, ppwszResponse);
     }
     pub fn VerifyRequest(self: *const INDESPolicy, pctbRequest: ?*CERTTRANSBLOB, pctbSigningCertEncoded: ?*CERTTRANSBLOB, pwszTemplate: ?[*:0]const u16, pwszTransactionId: ?[*:0]const u16, pfVerified: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -15300,21 +15300,21 @@ pub extern "certadm" fn CertSrvBackupFree(
 // TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvBackupGetBackupLogsW(
     hbc: ?*anyopaque,
-    ppwszzBackupLogFiles: ?*?PWSTR,
+    ppwszzBackupLogFiles: ?*?[*:0]u16,
     pcbSize: ?*u32,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvBackupGetDatabaseNamesW(
     hbc: ?*anyopaque,
-    ppwszzAttachmentInformation: ?*?PWSTR,
+    ppwszzAttachmentInformation: ?*?[*:0]u16,
     pcbSize: ?*u32,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvBackupGetDynamicFileListW(
     hbc: ?*anyopaque,
-    ppwszzFileList: ?*?PWSTR,
+    ppwszzFileList: ?*?[*:0]u16,
     pcbSize: ?*u32,
 ) callconv(.winapi) HRESULT;
 
@@ -15361,7 +15361,7 @@ pub extern "certadm" fn CertSrvRestoreEnd(
 // TODO: this type is limited to platform 'windowsserver2003'
 pub extern "certadm" fn CertSrvRestoreGetDatabaseLocationsW(
     hbc: ?*anyopaque,
-    ppwszzDatabaseLocationList: ?*?PWSTR,
+    ppwszzDatabaseLocationList: ?*?[*:0]u16,
     pcbSize: ?*u32,
 ) callconv(.winapi) HRESULT;
 
@@ -15475,7 +15475,7 @@ pub extern "certpoleng" fn PstValidate(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (24)
+// Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -15496,7 +15496,6 @@ const IUnknown = @import("../../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../../foundation.zig").LARGE_INTEGER;
 const LSA_TOKEN_INFORMATION_TYPE = @import("../../security/authentication/identity.zig").LSA_TOKEN_INFORMATION_TYPE;
 const NTSTATUS = @import("../../foundation.zig").NTSTATUS;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const SecPkgContext_IssuerListInfoEx = @import("../../security/authentication/identity.zig").SecPkgContext_IssuerListInfoEx;
 const UNICODE_STRING = @import("../../foundation.zig").UNICODE_STRING;
 const VARIANT = @import("../../system/com.zig").VARIANT;

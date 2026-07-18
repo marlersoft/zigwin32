@@ -204,7 +204,7 @@ pub const ISecurityInformation3 = extern union {
         base: IUnknown.VTable,
         GetFullResourceName: *const fn(
             self: *const ISecurityInformation3,
-            ppszResourceName: ?*?PWSTR,
+            ppszResourceName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         OpenElevatedEditor: *const fn(
             self: *const ISecurityInformation3,
@@ -214,7 +214,7 @@ pub const ISecurityInformation3 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFullResourceName(self: *const ISecurityInformation3, ppszResourceName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetFullResourceName(self: *const ISecurityInformation3, ppszResourceName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetFullResourceName(self, ppszResourceName);
     }
     pub fn OpenElevatedEditor(self: *const ISecurityInformation3, hWnd: ?HWND, uPage: SI_PAGE_TYPE) callconv(.@"inline") HRESULT {
@@ -300,7 +300,7 @@ pub const SI_EDIT_AUDITS = SECURITY_INFO_PAGE_FLAGS{ .EDIT_AUDITS = 1 };
 pub const SI_EDIT_PROPERTIES = SECURITY_INFO_PAGE_FLAGS{ .EDIT_PROPERTIES = 1 };
 
 pub const SECURITY_OBJECT = extern struct {
-    pwszName: ?PWSTR,
+    pwszName: ?[*:0]u16,
     pData: ?*anyopaque,
     cbData: u32,
     pData2: ?*anyopaque,
@@ -325,9 +325,9 @@ pub const SI_INHERIT_TYPE = extern struct {
 pub const SI_OBJECT_INFO = extern struct {
     dwFlags: SI_OBJECT_INFO_FLAGS,
     hInstance: ?HINSTANCE,
-    pszServerName: ?PWSTR,
-    pszObjectName: ?PWSTR,
-    pszPageTitle: ?PWSTR,
+    pszServerName: ?[*:0]u16,
+    pszObjectName: ?[*:0]u16,
+    pszPageTitle: ?[*:0]u16,
     guidObjectType: Guid,
 };
 
@@ -416,9 +416,9 @@ pub const SI_PAGE_SHARE = SI_PAGE_TYPE.SHARE;
 
 pub const SID_INFO = extern struct {
     pSid: ?PSID,
-    pwzCommonName: ?PWSTR,
-    pwzClass: ?PWSTR,
-    pwzUPN: ?PWSTR,
+    pwzCommonName: ?[*:0]u16,
+    pwzClass: ?[*:0]u16,
+    pwzUPN: ?[*:0]u16,
 };
 
 pub const SID_INFO_LIST = extern struct {
@@ -453,7 +453,7 @@ pub extern "aclui" fn EditSecurityAdvanced(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (22)
+// Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const ACE_FLAGS = @import("../../security.zig").ACE_FLAGS;
@@ -475,7 +475,6 @@ const OBJECT_TYPE_LIST = @import("../../security.zig").OBJECT_TYPE_LIST;
 const PSECURITY_DESCRIPTOR = @import("../../security.zig").PSECURITY_DESCRIPTOR;
 const PSID = @import("../../foundation.zig").PSID;
 const PSPCB_MESSAGE = @import("../../ui/controls.zig").PSPCB_MESSAGE;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const TOKEN_GROUPS = @import("../../security.zig").TOKEN_GROUPS;
 
 test {

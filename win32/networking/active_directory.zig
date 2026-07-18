@@ -765,7 +765,7 @@ pub const ADS_ACETYPE_SYSTEM_AUDIT_CALLBACK_OBJECT = ADS_ACETYPE_ENUM.SYSTEM_AUD
 pub const ADS_ACETYPE_SYSTEM_ALARM_CALLBACK_OBJECT = ADS_ACETYPE_ENUM.SYSTEM_ALARM_CALLBACK_OBJECT;
 
 pub const ADS_ATTR_DEF = extern struct {
-    pszAttrName: ?PWSTR,
+    pszAttrName: ?[*:0]u16,
     dwADsType: ADSTYPE,
     dwMinRange: u32,
     dwMaxRange: u32,
@@ -773,7 +773,7 @@ pub const ADS_ATTR_DEF = extern struct {
 };
 
 pub const ADS_ATTR_INFO = extern struct {
-    pszAttrName: ?PWSTR,
+    pszAttrName: ?[*:0]u16,
     dwControlCode: u32,
     dwADsType: ADSTYPE,
     pADsValues: ?*ADSVALUE,
@@ -811,12 +811,12 @@ pub const ADS_AUTH_RESERVED = ADS_AUTHENTICATION_ENUM.AUTH_RESERVED;
 
 pub const ADS_BACKLINK = extern struct {
     RemoteID: u32,
-    ObjectName: ?PWSTR,
+    ObjectName: ?[*:0]u16,
 };
 
 pub const ADS_CASEIGNORE_LIST = extern struct {
     Next: ?*ADS_CASEIGNORE_LIST,
-    String: ?PWSTR,
+    String: ?[*:0]u16,
 };
 
 pub const ADS_CHASE_REFERRALS_ENUM = enum(i32) {
@@ -831,15 +831,15 @@ pub const ADS_CHASE_REFERRALS_EXTERNAL = ADS_CHASE_REFERRALS_ENUM.EXTERNAL;
 pub const ADS_CHASE_REFERRALS_ALWAYS = ADS_CHASE_REFERRALS_ENUM.ALWAYS;
 
 pub const ADS_CLASS_DEF = extern struct {
-    pszClassName: ?PWSTR,
+    pszClassName: ?[*:0]u16,
     dwMandatoryAttrs: u32,
-    ppszMandatoryAttrs: ?*?PWSTR,
+    ppszMandatoryAttrs: ?*?[*:0]u16,
     optionalAttrs: u32,
-    ppszOptionalAttrs: ?*?*?PWSTR,
+    ppszOptionalAttrs: ?*?*?[*:0]u16,
     dwNamingAttrs: u32,
-    ppszNamingAttrs: ?*?*?PWSTR,
+    ppszNamingAttrs: ?*?*?[*:0]u16,
     dwSuperClasses: u32,
-    ppszSuperClasses: ?*?*?PWSTR,
+    ppszSuperClasses: ?*?*?[*:0]u16,
     fIsContainer: BOOL,
 };
 
@@ -864,16 +864,16 @@ pub const ADS_DISPLAY_VALUE_ONLY = ADS_DISPLAY_ENUM.VALUE_ONLY;
 pub const ADS_DN_WITH_BINARY = extern struct {
     dwLength: u32,
     lpBinaryValue: ?*u8,
-    pszDNString: ?PWSTR,
+    pszDNString: ?[*:0]u16,
 };
 
 pub const ADS_DN_WITH_STRING = extern struct {
-    pszStringValue: ?PWSTR,
-    pszDNString: ?PWSTR,
+    pszStringValue: ?[*:0]u16,
+    pszDNString: ?[*:0]u16,
 };
 
 pub const ADS_EMAIL = extern struct {
-    Address: ?PWSTR,
+    Address: ?[*:0]u16,
     Type: u32,
 };
 
@@ -889,7 +889,7 @@ pub const ADS_ESCAPEDMODE_OFF = ADS_ESCAPE_MODE_ENUM.OFF;
 pub const ADS_ESCAPEDMODE_OFF_EX = ADS_ESCAPE_MODE_ENUM.OFF_EX;
 
 pub const ADS_FAXNUMBER = extern struct {
-    TelephoneNumber: ?PWSTR,
+    TelephoneNumber: ?[*:0]u16,
     NumberOfBits: u32,
     Parameters: ?*u8,
 };
@@ -940,7 +940,7 @@ pub const ADS_GROUP_TYPE_UNIVERSAL_GROUP = ADS_GROUP_TYPE_ENUM.UNIVERSAL_GROUP;
 pub const ADS_GROUP_TYPE_SECURITY_ENABLED = ADS_GROUP_TYPE_ENUM.SECURITY_ENABLED;
 
 pub const ADS_HOLD = extern struct {
-    ObjectName: ?PWSTR,
+    ObjectName: ?[*:0]u16,
     Amount: u32,
 };
 
@@ -992,11 +992,11 @@ pub const ADS_NT_SECURITY_DESCRIPTOR = extern struct {
 };
 
 pub const ADS_OBJECT_INFO = extern struct {
-    pszRDN: ?PWSTR,
-    pszObjectDN: ?PWSTR,
-    pszParentDN: ?PWSTR,
-    pszSchemaDN: ?PWSTR,
-    pszClassName: ?PWSTR,
+    pszRDN: ?[*:0]u16,
+    pszObjectDN: ?[*:0]u16,
+    pszParentDN: ?[*:0]u16,
+    pszSchemaDN: ?[*:0]u16,
+    pszClassName: ?[*:0]u16,
 };
 
 pub const ADS_OCTET_LIST = extern struct {
@@ -1042,8 +1042,8 @@ pub const ADS_PASSWORD_ENCODE_CLEAR = ADS_PASSWORD_ENCODING_ENUM.CLEAR;
 
 pub const ADS_PATH = extern struct {
     Type: u32,
-    VolumeName: ?PWSTR,
-    Path: ?PWSTR,
+    VolumeName: ?[*:0]u16,
+    Path: ?[*:0]u16,
 };
 
 pub const ADS_PATHTYPE_ENUM = enum(i32) {
@@ -1056,7 +1056,7 @@ pub const ADS_PATH_FILESHARE = ADS_PATHTYPE_ENUM.FILESHARE;
 pub const ADS_PATH_REGISTRY = ADS_PATHTYPE_ENUM.REGISTRY;
 
 pub const ADS_POSTALADDRESS = extern struct {
-    PostalAddress: [6]?PWSTR,
+    PostalAddress: [6]?[*:0]u16,
 };
 
 pub const ADS_PREFERENCES_ENUM = enum(i32) {
@@ -1105,7 +1105,7 @@ pub const ADS_PROV_SPECIFIC = extern struct {
 };
 
 pub const ADS_REPLICAPOINTER = extern struct {
-    ServerName: ?PWSTR,
+    ServerName: ?[*:0]u16,
     ReplicaType: u32,
     ReplicaNumber: u32,
     Count: u32,
@@ -1206,7 +1206,7 @@ pub const ADS_SD_REVISION_ENUM = enum(i32) {
 pub const ADS_SD_REVISION_DS = ADS_SD_REVISION_ENUM.S;
 
 pub const ADS_SEARCH_COLUMN = extern struct {
-    pszAttrName: ?PWSTR,
+    pszAttrName: ?[*:0]u16,
     dwADsType: ADSTYPE,
     pADsValues: ?*ADSVALUE,
     dwNumValues: u32,
@@ -1286,8 +1286,8 @@ pub const ADS_SETTYPE_SERVER = ADS_SETTYPE_ENUM.SERVER;
 pub const ADS_SETTYPE_DN = ADS_SETTYPE_ENUM.DN;
 
 pub const ADS_SORTKEY = extern struct {
-    pszAttrType: ?PWSTR,
-    pszReserved: ?PWSTR,
+    pszAttrType: ?[*:0]u16,
+    pszReserved: ?[*:0]u16,
     fReverseorder: BOOLEAN,
 };
 
@@ -1329,7 +1329,7 @@ pub const ADS_TIMESTAMP = extern struct {
 };
 
 pub const ADS_TYPEDNAME = extern struct {
-    ObjectName: ?PWSTR,
+    ObjectName: ?[*:0]u16,
     Level: u32,
     Interval: u32,
 };
@@ -1384,7 +1384,7 @@ pub const ADS_VLV = extern struct {
     dwAfterCount: u32,
     dwOffset: u32,
     dwContentCount: u32,
-    pszTarget: ?PWSTR,
+    pszTarget: ?[*:0]u16,
     dwContextIDLength: u32,
     lpContextID: ?*u8,
 };
@@ -1398,11 +1398,11 @@ pub const ADSI_DIALECT_SQL = ADSI_DIALECT_ENUM.SQL;
 
 pub const ADSPROPERROR = extern struct {
     hwndPage: ?HWND,
-    pszPageTitle: ?PWSTR,
-    pszObjPath: ?PWSTR,
-    pszObjClass: ?PWSTR,
+    pszPageTitle: ?[*:0]u16,
+    pszObjPath: ?[*:0]u16,
+    pszObjClass: ?[*:0]u16,
     hr: HRESULT,
-    pszError: ?PWSTR,
+    pszError: ?[*:0]u16,
 };
 
 pub const ADSPROPINITPARAMS = extern struct {
@@ -1410,7 +1410,7 @@ pub const ADSPROPINITPARAMS = extern struct {
     dwFlags: u32,
     hr: HRESULT,
     pDsObj: ?*IDirectoryObject,
-    pwzCN: ?PWSTR,
+    pwzCN: ?[*:0]u16,
     pWritableAttrs: ?*ADS_ATTR_INFO,
 };
 
@@ -1546,27 +1546,27 @@ const CLSID_DNWithString_Value = Guid.initString("334857cc-f934-11d2-ba96-00c04f
 pub const CLSID_DNWithString = &CLSID_DNWithString_Value;
 
 pub const DOMAIN_CONTROLLER_INFOA = extern struct {
-    DomainControllerName: ?PSTR,
-    DomainControllerAddress: ?PSTR,
+    DomainControllerName: ?[*:0]u8,
+    DomainControllerAddress: ?[*:0]u8,
     DomainControllerAddressType: u32,
     DomainGuid: Guid,
-    DomainName: ?PSTR,
-    DnsForestName: ?PSTR,
+    DomainName: ?[*:0]u8,
+    DnsForestName: ?[*:0]u8,
     Flags: u32,
-    DcSiteName: ?PSTR,
-    ClientSiteName: ?PSTR,
+    DcSiteName: ?[*:0]u8,
+    ClientSiteName: ?[*:0]u8,
 };
 
 pub const DOMAIN_CONTROLLER_INFOW = extern struct {
-    DomainControllerName: ?PWSTR,
-    DomainControllerAddress: ?PWSTR,
+    DomainControllerName: ?[*:0]u16,
+    DomainControllerAddress: ?[*:0]u16,
     DomainControllerAddressType: u32,
     DomainGuid: Guid,
-    DomainName: ?PWSTR,
-    DnsForestName: ?PWSTR,
+    DomainName: ?[*:0]u16,
+    DnsForestName: ?[*:0]u16,
     Flags: u32,
-    DcSiteName: ?PWSTR,
-    ClientSiteName: ?PWSTR,
+    DcSiteName: ?[*:0]u16,
+    ClientSiteName: ?[*:0]u16,
 };
 
 pub const DOMAIN_TREE = extern struct {
@@ -1576,11 +1576,11 @@ pub const DOMAIN_TREE = extern struct {
 };
 
 pub const DOMAINDESC = extern struct {
-    pszName: ?PWSTR,
-    pszPath: ?PWSTR,
-    pszNCName: ?PWSTR,
-    pszTrustParent: ?PWSTR,
-    pszObjectClass: ?PWSTR,
+    pszName: ?[*:0]u16,
+    pszPath: ?[*:0]u16,
+    pszNCName: ?[*:0]u16,
+    pszTrustParent: ?[*:0]u16,
+    pszObjectClass: ?[*:0]u16,
     ulFlags: u32,
     fDownLevel: BOOL,
     pdChildList: ?*DOMAINDESC,
@@ -1588,33 +1588,33 @@ pub const DOMAINDESC = extern struct {
 };
 
 pub const DS_DOMAIN_CONTROLLER_INFO_1A = extern struct {
-    NetbiosName: ?PSTR,
-    DnsHostName: ?PSTR,
-    SiteName: ?PSTR,
-    ComputerObjectName: ?PSTR,
-    ServerObjectName: ?PSTR,
+    NetbiosName: ?[*:0]u8,
+    DnsHostName: ?[*:0]u8,
+    SiteName: ?[*:0]u8,
+    ComputerObjectName: ?[*:0]u8,
+    ServerObjectName: ?[*:0]u8,
     fIsPdc: BOOL,
     fDsEnabled: BOOL,
 };
 
 pub const DS_DOMAIN_CONTROLLER_INFO_1W = extern struct {
-    NetbiosName: ?PWSTR,
-    DnsHostName: ?PWSTR,
-    SiteName: ?PWSTR,
-    ComputerObjectName: ?PWSTR,
-    ServerObjectName: ?PWSTR,
+    NetbiosName: ?[*:0]u16,
+    DnsHostName: ?[*:0]u16,
+    SiteName: ?[*:0]u16,
+    ComputerObjectName: ?[*:0]u16,
+    ServerObjectName: ?[*:0]u16,
     fIsPdc: BOOL,
     fDsEnabled: BOOL,
 };
 
 pub const DS_DOMAIN_CONTROLLER_INFO_2A = extern struct {
-    NetbiosName: ?PSTR,
-    DnsHostName: ?PSTR,
-    SiteName: ?PSTR,
-    SiteObjectName: ?PSTR,
-    ComputerObjectName: ?PSTR,
-    ServerObjectName: ?PSTR,
-    NtdsDsaObjectName: ?PSTR,
+    NetbiosName: ?[*:0]u8,
+    DnsHostName: ?[*:0]u8,
+    SiteName: ?[*:0]u8,
+    SiteObjectName: ?[*:0]u8,
+    ComputerObjectName: ?[*:0]u8,
+    ServerObjectName: ?[*:0]u8,
+    NtdsDsaObjectName: ?[*:0]u8,
     fIsPdc: BOOL,
     fDsEnabled: BOOL,
     fIsGc: BOOL,
@@ -1625,13 +1625,13 @@ pub const DS_DOMAIN_CONTROLLER_INFO_2A = extern struct {
 };
 
 pub const DS_DOMAIN_CONTROLLER_INFO_2W = extern struct {
-    NetbiosName: ?PWSTR,
-    DnsHostName: ?PWSTR,
-    SiteName: ?PWSTR,
-    SiteObjectName: ?PWSTR,
-    ComputerObjectName: ?PWSTR,
-    ServerObjectName: ?PWSTR,
-    NtdsDsaObjectName: ?PWSTR,
+    NetbiosName: ?[*:0]u16,
+    DnsHostName: ?[*:0]u16,
+    SiteName: ?[*:0]u16,
+    SiteObjectName: ?[*:0]u16,
+    ComputerObjectName: ?[*:0]u16,
+    ServerObjectName: ?[*:0]u16,
+    NtdsDsaObjectName: ?[*:0]u16,
     fIsPdc: BOOL,
     fDsEnabled: BOOL,
     fIsGc: BOOL,
@@ -1642,13 +1642,13 @@ pub const DS_DOMAIN_CONTROLLER_INFO_2W = extern struct {
 };
 
 pub const DS_DOMAIN_CONTROLLER_INFO_3A = extern struct {
-    NetbiosName: ?PSTR,
-    DnsHostName: ?PSTR,
-    SiteName: ?PSTR,
-    SiteObjectName: ?PSTR,
-    ComputerObjectName: ?PSTR,
-    ServerObjectName: ?PSTR,
-    NtdsDsaObjectName: ?PSTR,
+    NetbiosName: ?[*:0]u8,
+    DnsHostName: ?[*:0]u8,
+    SiteName: ?[*:0]u8,
+    SiteObjectName: ?[*:0]u8,
+    ComputerObjectName: ?[*:0]u8,
+    ServerObjectName: ?[*:0]u8,
+    NtdsDsaObjectName: ?[*:0]u8,
     fIsPdc: BOOL,
     fDsEnabled: BOOL,
     fIsGc: BOOL,
@@ -1660,13 +1660,13 @@ pub const DS_DOMAIN_CONTROLLER_INFO_3A = extern struct {
 };
 
 pub const DS_DOMAIN_CONTROLLER_INFO_3W = extern struct {
-    NetbiosName: ?PWSTR,
-    DnsHostName: ?PWSTR,
-    SiteName: ?PWSTR,
-    SiteObjectName: ?PWSTR,
-    ComputerObjectName: ?PWSTR,
-    ServerObjectName: ?PWSTR,
-    NtdsDsaObjectName: ?PWSTR,
+    NetbiosName: ?[*:0]u16,
+    DnsHostName: ?[*:0]u16,
+    SiteName: ?[*:0]u16,
+    SiteObjectName: ?[*:0]u16,
+    ComputerObjectName: ?[*:0]u16,
+    ServerObjectName: ?[*:0]u16,
+    NtdsDsaObjectName: ?[*:0]u16,
     fIsPdc: BOOL,
     fDsEnabled: BOOL,
     fIsGc: BOOL,
@@ -1678,8 +1678,8 @@ pub const DS_DOMAIN_CONTROLLER_INFO_3W = extern struct {
 };
 
 pub const DS_DOMAIN_TRUSTSA = extern struct {
-    NetbiosDomainName: ?PSTR,
-    DnsDomainName: ?PSTR,
+    NetbiosDomainName: ?[*:0]u8,
+    DnsDomainName: ?[*:0]u8,
     Flags: u32,
     ParentIndex: u32,
     TrustType: u32,
@@ -1689,8 +1689,8 @@ pub const DS_DOMAIN_TRUSTSA = extern struct {
 };
 
 pub const DS_DOMAIN_TRUSTSW = extern struct {
-    NetbiosDomainName: ?PWSTR,
-    DnsDomainName: ?PWSTR,
+    NetbiosDomainName: ?[*:0]u16,
+    DnsDomainName: ?[*:0]u16,
     Flags: u32,
     ParentIndex: u32,
     TrustType: u32,
@@ -1772,14 +1772,14 @@ pub const DS_DNS_DOMAIN_NAME = DS_NAME_FORMAT.DNS_DOMAIN_NAME;
 
 pub const DS_NAME_RESULT_ITEMA = extern struct {
     status: u32,
-    pDomain: ?PSTR,
-    pName: ?PSTR,
+    pDomain: ?[*:0]u8,
+    pName: ?[*:0]u8,
 };
 
 pub const DS_NAME_RESULT_ITEMW = extern struct {
     status: u32,
-    pDomain: ?PWSTR,
-    pName: ?PWSTR,
+    pDomain: ?[*:0]u16,
+    pName: ?[*:0]u16,
 };
 
 pub const DS_NAME_RESULTA = extern struct {
@@ -1793,7 +1793,7 @@ pub const DS_NAME_RESULTW = extern struct {
 };
 
 pub const DS_REPL_ATTR_META_DATA = extern struct {
-    pszAttributeName: ?PWSTR,
+    pszAttributeName: ?[*:0]u16,
     dwVersion: u32,
     ftimeLastOriginatingChange: FILETIME,
     uuidLastOriginatingDsaInvocationID: Guid,
@@ -1802,13 +1802,13 @@ pub const DS_REPL_ATTR_META_DATA = extern struct {
 };
 
 pub const DS_REPL_ATTR_META_DATA_2 = extern struct {
-    pszAttributeName: ?PWSTR,
+    pszAttributeName: ?[*:0]u16,
     dwVersion: u32,
     ftimeLastOriginatingChange: FILETIME,
     uuidLastOriginatingDsaInvocationID: Guid,
     usnOriginatingChange: i64,
     usnLocalChange: i64,
-    pszLastOriginatingDsaDN: ?PWSTR,
+    pszLastOriginatingDsaDN: ?[*:0]u16,
 };
 
 pub const DS_REPL_ATTR_META_DATA_BLOB = extern struct {
@@ -1854,7 +1854,7 @@ pub const DS_REPL_CURSOR_3W = extern struct {
     uuidSourceDsaInvocationID: Guid,
     usnAttributeFilter: i64,
     ftimeLastSyncSuccess: FILETIME,
-    pszSourceDsaDN: ?PWSTR,
+    pszSourceDsaDN: ?[*:0]u16,
 };
 
 pub const DS_REPL_CURSOR_BLOB = extern struct {
@@ -1918,7 +1918,7 @@ pub const DS_REPL_KCC_DSA_FAILURESW = extern struct {
 };
 
 pub const DS_REPL_KCC_DSA_FAILUREW = extern struct {
-    pszDsaDN: ?PWSTR,
+    pszDsaDN: ?[*:0]u16,
     uuidDsaObjGuid: Guid,
     ftimeFirstFailure: FILETIME,
     cNumFailures: u32,
@@ -1940,10 +1940,10 @@ pub const DS_REPL_NEIGHBORSW = extern struct {
 };
 
 pub const DS_REPL_NEIGHBORW = extern struct {
-    pszNamingContext: ?PWSTR,
-    pszSourceDsaDN: ?PWSTR,
-    pszSourceDsaAddress: ?PWSTR,
-    pszAsyncIntersiteTransportDN: ?PWSTR,
+    pszNamingContext: ?[*:0]u16,
+    pszSourceDsaDN: ?[*:0]u16,
+    pszSourceDsaAddress: ?[*:0]u16,
+    pszAsyncIntersiteTransportDN: ?[*:0]u16,
     dwReplicaFlags: u32,
     dwReserved: u32,
     uuidNamingContextObjGuid: Guid,
@@ -2008,9 +2008,9 @@ pub const DS_REPL_OPW = extern struct {
     ulPriority: u32,
     OpType: DS_REPL_OP_TYPE,
     ulOptions: u32,
-    pszNamingContext: ?PWSTR,
-    pszDsaDN: ?PWSTR,
-    pszDsaAddress: ?PWSTR,
+    pszNamingContext: ?[*:0]u16,
+    pszDsaDN: ?[*:0]u16,
+    pszDsaAddress: ?[*:0]u16,
     uuidNamingContextObjGuid: Guid,
     uuidDsaObjGuid: Guid,
 };
@@ -2045,8 +2045,8 @@ pub const DS_REPL_QUEUE_STATISTICSW = extern struct {
 };
 
 pub const DS_REPL_VALUE_META_DATA = extern struct {
-    pszAttributeName: ?PWSTR,
-    pszObjectDn: ?PWSTR,
+    pszAttributeName: ?[*:0]u16,
+    pszObjectDn: ?[*:0]u16,
     cbData: u32,
     pbData: ?*u8,
     ftimeDeleted: FILETIME,
@@ -2059,8 +2059,8 @@ pub const DS_REPL_VALUE_META_DATA = extern struct {
 };
 
 pub const DS_REPL_VALUE_META_DATA_2 = extern struct {
-    pszAttributeName: ?PWSTR,
-    pszObjectDn: ?PWSTR,
+    pszAttributeName: ?[*:0]u16,
+    pszObjectDn: ?[*:0]u16,
     cbData: u32,
     pbData: ?*u8,
     ftimeDeleted: FILETIME,
@@ -2070,7 +2070,7 @@ pub const DS_REPL_VALUE_META_DATA_2 = extern struct {
     uuidLastOriginatingDsaInvocationID: Guid,
     usnOriginatingChange: i64,
     usnLocalChange: i64,
-    pszLastOriginatingDsaDN: ?PWSTR,
+    pszLastOriginatingDsaDN: ?[*:0]u16,
 };
 
 pub const DS_REPL_VALUE_META_DATA_BLOB = extern struct {
@@ -2107,8 +2107,8 @@ pub const DS_REPL_VALUE_META_DATA_BLOB_EXT = extern struct {
 };
 
 pub const DS_REPL_VALUE_META_DATA_EXT = extern struct {
-    pszAttributeName: ?PWSTR,
-    pszObjectDn: ?PWSTR,
+    pszAttributeName: ?[*:0]u16,
+    pszObjectDn: ?[*:0]u16,
     cbData: u32,
     pbData: ?*u8,
     ftimeDeleted: FILETIME,
@@ -2118,24 +2118,24 @@ pub const DS_REPL_VALUE_META_DATA_EXT = extern struct {
     uuidLastOriginatingDsaInvocationID: Guid,
     usnOriginatingChange: i64,
     usnLocalChange: i64,
-    pszLastOriginatingDsaDN: ?PWSTR,
+    pszLastOriginatingDsaDN: ?[*:0]u16,
     dwUserIdentifier: u32,
     dwPriorLinkState: u32,
     dwCurrentLinkState: u32,
 };
 
 pub const DS_REPSYNCALL_ERRINFOA = extern struct {
-    pszSvrId: ?PSTR,
+    pszSvrId: ?[*:0]u8,
     @"error": DS_REPSYNCALL_ERROR,
     dwWin32Err: u32,
-    pszSrcId: ?PSTR,
+    pszSrcId: ?[*:0]u8,
 };
 
 pub const DS_REPSYNCALL_ERRINFOW = extern struct {
-    pszSvrId: ?PWSTR,
+    pszSvrId: ?[*:0]u16,
     @"error": DS_REPSYNCALL_ERROR,
     dwWin32Err: u32,
-    pszSrcId: ?PWSTR,
+    pszSrcId: ?[*:0]u16,
 };
 
 pub const DS_REPSYNCALL_ERROR = enum(i32) {
@@ -2159,17 +2159,17 @@ pub const DS_REPSYNCALL_EVENT_SYNC_COMPLETED = DS_REPSYNCALL_EVENT.SYNC_COMPLETE
 pub const DS_REPSYNCALL_EVENT_FINISHED = DS_REPSYNCALL_EVENT.FINISHED;
 
 pub const DS_REPSYNCALL_SYNCA = extern struct {
-    pszSrcId: ?PSTR,
-    pszDstId: ?PSTR,
-    pszNC: ?PSTR,
+    pszSrcId: ?[*:0]u8,
+    pszDstId: ?[*:0]u8,
+    pszNC: ?[*:0]u8,
     pguidSrc: ?*Guid,
     pguidDst: ?*Guid,
 };
 
 pub const DS_REPSYNCALL_SYNCW = extern struct {
-    pszSrcId: ?PWSTR,
-    pszDstId: ?PWSTR,
-    pszNC: ?PWSTR,
+    pszSrcId: ?[*:0]u16,
+    pszDstId: ?[*:0]u16,
+    pszNC: ?[*:0]u16,
     pguidSrc: ?*Guid,
     pguidDst: ?*Guid,
 };
@@ -2189,20 +2189,20 @@ pub const DS_REPSYNCALL_UPDATEW = extern struct {
 pub const DS_SCHEMA_GUID_MAPA = extern struct {
     guid: Guid,
     guidType: u32,
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
 };
 
 pub const DS_SCHEMA_GUID_MAPW = extern struct {
     guid: Guid,
     guidType: u32,
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
 };
 
 pub const DS_SELECTION = extern struct {
-    pwzName: ?PWSTR,
-    pwzADsPath: ?PWSTR,
-    pwzClass: ?PWSTR,
-    pwzUPN: ?PWSTR,
+    pwzName: ?[*:0]u16,
+    pwzADsPath: ?[*:0]u16,
+    pwzClass: ?[*:0]u16,
+    pwzUPN: ?[*:0]u16,
     pvarFetchedAttributes: ?*VARIANT,
     flScopeType: u32,
 };
@@ -2245,8 +2245,8 @@ pub const DS_SPN_DELETE_SPN_OP = DS_SPN_WRITE_OP.DELETE_SPN_OP;
 pub const DSA_NEWOBJ_DISPINFO = extern struct {
     dwSize: u32,
     hObjClassIcon: ?HICON,
-    lpszWizTitle: ?PWSTR,
-    lpszContDisplayName: ?PWSTR,
+    lpszWizTitle: ?[*:0]u16,
+    lpszContDisplayName: ?[*:0]u16,
 };
 
 pub const DSBITEMA = extern struct {
@@ -2279,7 +2279,7 @@ pub const DSBROWSEINFOA = extern struct {
     pszCaption: ?[*:0]const u8,
     pszTitle: ?[*:0]const u8,
     pszRoot: ?[*:0]const u16,
-    pszPath: ?PWSTR,
+    pszPath: ?[*:0]u16,
     cchPath: u32,
     dwFlags: u32,
     pfnCallback: ?BFFCALLBACK,
@@ -2287,7 +2287,7 @@ pub const DSBROWSEINFOA = extern struct {
     dwReturnFormat: u32,
     pUserName: ?[*:0]const u16,
     pPassword: ?[*:0]const u16,
-    pszObjectClass: ?PWSTR,
+    pszObjectClass: ?[*:0]u16,
     cchObjectClass: u32,
 };
 
@@ -2297,7 +2297,7 @@ pub const DSBROWSEINFOW = extern struct {
     pszCaption: ?[*:0]const u16,
     pszTitle: ?[*:0]const u16,
     pszRoot: ?[*:0]const u16,
-    pszPath: ?PWSTR,
+    pszPath: ?[*:0]u16,
     cchPath: u32,
     dwFlags: u32,
     pfnCallback: ?BFFCALLBACK,
@@ -2305,7 +2305,7 @@ pub const DSBROWSEINFOW = extern struct {
     dwReturnFormat: u32,
     pUserName: ?[*:0]const u16,
     pPassword: ?[*:0]const u16,
-    pszObjectClass: ?PWSTR,
+    pszObjectClass: ?[*:0]u16,
     cchObjectClass: u32,
 };
 
@@ -2361,7 +2361,7 @@ pub const DSOP_INIT_INFO = extern struct {
     aDsScopeInfos: ?*DSOP_SCOPE_INIT_INFO,
     flOptions: u32,
     cAttributesToFetch: u32,
-    apwzAttributeNames: ?*?PWSTR,
+    apwzAttributeNames: ?*?[*:0]u16,
 };
 
 pub const DSOP_SCOPE_INIT_INFO = extern struct {
@@ -2393,11 +2393,11 @@ pub const DSQUERYCLASSLIST = extern struct {
 pub const DSQUERYINITPARAMS = extern struct {
     cbStruct: u32,
     dwFlags: u32,
-    pDefaultScope: ?PWSTR,
-    pDefaultSaveLocation: ?PWSTR,
-    pUserName: ?PWSTR,
-    pPassword: ?PWSTR,
-    pServer: ?PWSTR,
+    pDefaultScope: ?[*:0]u16,
+    pDefaultSaveLocation: ?[*:0]u16,
+    pUserName: ?[*:0]u16,
+    pPassword: ?[*:0]u16,
+    pServer: ?[*:0]u16,
 };
 
 pub const DSQUERYPARAMS = extern struct {
@@ -2441,9 +2441,9 @@ pub const DSROLE_OPERATION_STATE_INFO = extern struct {
 pub const DSROLE_PRIMARY_DOMAIN_INFO_BASIC = extern struct {
     MachineRole: DSROLE_MACHINE_ROLE,
     Flags: u32,
-    DomainNameFlat: ?PWSTR,
-    DomainNameDns: ?PWSTR,
-    DomainForestName: ?PWSTR,
+    DomainNameFlat: ?[*:0]u16,
+    DomainNameDns: ?[*:0]u16,
+    DomainForestName: ?[*:0]u16,
     DomainGuid: Guid,
 };
 
@@ -7881,7 +7881,7 @@ pub const IDirectoryObject = extern union {
         ) callconv(.winapi) HRESULT,
         GetObjectAttributes: *const fn(
             self: *const IDirectoryObject,
-            pAttributeNames: ?*?PWSTR,
+            pAttributeNames: ?*?[*:0]u16,
             dwNumberAttributes: u32,
             ppAttributeEntries: ?*?*ADS_ATTR_INFO,
             pdwNumAttributesReturned: ?*u32,
@@ -7894,14 +7894,14 @@ pub const IDirectoryObject = extern union {
         ) callconv(.winapi) HRESULT,
         CreateDSObject: *const fn(
             self: *const IDirectoryObject,
-            pszRDNName: ?PWSTR,
+            pszRDNName: ?[*:0]u16,
             pAttributeEntries: ?*ADS_ATTR_INFO,
             dwNumAttributes: u32,
             ppObject: ?*?*IDispatch,
         ) callconv(.winapi) HRESULT,
         DeleteDSObject: *const fn(
             self: *const IDirectoryObject,
-            pszRDNName: ?PWSTR,
+            pszRDNName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -7909,16 +7909,16 @@ pub const IDirectoryObject = extern union {
     pub fn GetObjectInformation(self: *const IDirectoryObject, ppObjInfo: ?*?*ADS_OBJECT_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetObjectInformation(self, ppObjInfo);
     }
-    pub fn GetObjectAttributes(self: *const IDirectoryObject, pAttributeNames: ?*?PWSTR, dwNumberAttributes: u32, ppAttributeEntries: ?*?*ADS_ATTR_INFO, pdwNumAttributesReturned: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetObjectAttributes(self: *const IDirectoryObject, pAttributeNames: ?*?[*:0]u16, dwNumberAttributes: u32, ppAttributeEntries: ?*?*ADS_ATTR_INFO, pdwNumAttributesReturned: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetObjectAttributes(self, pAttributeNames, dwNumberAttributes, ppAttributeEntries, pdwNumAttributesReturned);
     }
     pub fn SetObjectAttributes(self: *const IDirectoryObject, pAttributeEntries: ?*ADS_ATTR_INFO, dwNumAttributes: u32, pdwNumAttributesModified: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetObjectAttributes(self, pAttributeEntries, dwNumAttributes, pdwNumAttributesModified);
     }
-    pub fn CreateDSObject(self: *const IDirectoryObject, pszRDNName: ?PWSTR, pAttributeEntries: ?*ADS_ATTR_INFO, dwNumAttributes: u32, ppObject: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+    pub fn CreateDSObject(self: *const IDirectoryObject, pszRDNName: ?[*:0]u16, pAttributeEntries: ?*ADS_ATTR_INFO, dwNumAttributes: u32, ppObject: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDSObject(self, pszRDNName, pAttributeEntries, dwNumAttributes, ppObject);
     }
-    pub fn DeleteDSObject(self: *const IDirectoryObject, pszRDNName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn DeleteDSObject(self: *const IDirectoryObject, pszRDNName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteDSObject(self, pszRDNName);
     }
 };
@@ -7931,71 +7931,71 @@ pub const IDirectorySchemaMgmt = extern union {
         base: IUnknown.VTable,
         EnumAttributes: *const fn(
             self: *const IDirectorySchemaMgmt,
-            ppszAttrNames: ?*?PWSTR,
+            ppszAttrNames: ?*?[*:0]u16,
             dwNumAttributes: u32,
             ppAttrDefinition: ?*?*ADS_ATTR_DEF,
             pdwNumAttributes: ?*u32,
         ) callconv(.winapi) HRESULT,
         CreateAttributeDefinition: *const fn(
             self: *const IDirectorySchemaMgmt,
-            pszAttributeName: ?PWSTR,
+            pszAttributeName: ?[*:0]u16,
             pAttributeDefinition: ?*ADS_ATTR_DEF,
         ) callconv(.winapi) HRESULT,
         WriteAttributeDefinition: *const fn(
             self: *const IDirectorySchemaMgmt,
-            pszAttributeName: ?PWSTR,
+            pszAttributeName: ?[*:0]u16,
             pAttributeDefinition: ?*ADS_ATTR_DEF,
         ) callconv(.winapi) HRESULT,
         DeleteAttributeDefinition: *const fn(
             self: *const IDirectorySchemaMgmt,
-            pszAttributeName: ?PWSTR,
+            pszAttributeName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         EnumClasses: *const fn(
             self: *const IDirectorySchemaMgmt,
-            ppszClassNames: ?*?PWSTR,
+            ppszClassNames: ?*?[*:0]u16,
             dwNumClasses: u32,
             ppClassDefinition: ?*?*ADS_CLASS_DEF,
             pdwNumClasses: ?*u32,
         ) callconv(.winapi) HRESULT,
         WriteClassDefinition: *const fn(
             self: *const IDirectorySchemaMgmt,
-            pszClassName: ?PWSTR,
+            pszClassName: ?[*:0]u16,
             pClassDefinition: ?*ADS_CLASS_DEF,
         ) callconv(.winapi) HRESULT,
         CreateClassDefinition: *const fn(
             self: *const IDirectorySchemaMgmt,
-            pszClassName: ?PWSTR,
+            pszClassName: ?[*:0]u16,
             pClassDefinition: ?*ADS_CLASS_DEF,
         ) callconv(.winapi) HRESULT,
         DeleteClassDefinition: *const fn(
             self: *const IDirectorySchemaMgmt,
-            pszClassName: ?PWSTR,
+            pszClassName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EnumAttributes(self: *const IDirectorySchemaMgmt, ppszAttrNames: ?*?PWSTR, dwNumAttributes: u32, ppAttrDefinition: ?*?*ADS_ATTR_DEF, pdwNumAttributes: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn EnumAttributes(self: *const IDirectorySchemaMgmt, ppszAttrNames: ?*?[*:0]u16, dwNumAttributes: u32, ppAttrDefinition: ?*?*ADS_ATTR_DEF, pdwNumAttributes: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumAttributes(self, ppszAttrNames, dwNumAttributes, ppAttrDefinition, pdwNumAttributes);
     }
-    pub fn CreateAttributeDefinition(self: *const IDirectorySchemaMgmt, pszAttributeName: ?PWSTR, pAttributeDefinition: ?*ADS_ATTR_DEF) callconv(.@"inline") HRESULT {
+    pub fn CreateAttributeDefinition(self: *const IDirectorySchemaMgmt, pszAttributeName: ?[*:0]u16, pAttributeDefinition: ?*ADS_ATTR_DEF) callconv(.@"inline") HRESULT {
         return self.vtable.CreateAttributeDefinition(self, pszAttributeName, pAttributeDefinition);
     }
-    pub fn WriteAttributeDefinition(self: *const IDirectorySchemaMgmt, pszAttributeName: ?PWSTR, pAttributeDefinition: ?*ADS_ATTR_DEF) callconv(.@"inline") HRESULT {
+    pub fn WriteAttributeDefinition(self: *const IDirectorySchemaMgmt, pszAttributeName: ?[*:0]u16, pAttributeDefinition: ?*ADS_ATTR_DEF) callconv(.@"inline") HRESULT {
         return self.vtable.WriteAttributeDefinition(self, pszAttributeName, pAttributeDefinition);
     }
-    pub fn DeleteAttributeDefinition(self: *const IDirectorySchemaMgmt, pszAttributeName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn DeleteAttributeDefinition(self: *const IDirectorySchemaMgmt, pszAttributeName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteAttributeDefinition(self, pszAttributeName);
     }
-    pub fn EnumClasses(self: *const IDirectorySchemaMgmt, ppszClassNames: ?*?PWSTR, dwNumClasses: u32, ppClassDefinition: ?*?*ADS_CLASS_DEF, pdwNumClasses: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn EnumClasses(self: *const IDirectorySchemaMgmt, ppszClassNames: ?*?[*:0]u16, dwNumClasses: u32, ppClassDefinition: ?*?*ADS_CLASS_DEF, pdwNumClasses: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumClasses(self, ppszClassNames, dwNumClasses, ppClassDefinition, pdwNumClasses);
     }
-    pub fn WriteClassDefinition(self: *const IDirectorySchemaMgmt, pszClassName: ?PWSTR, pClassDefinition: ?*ADS_CLASS_DEF) callconv(.@"inline") HRESULT {
+    pub fn WriteClassDefinition(self: *const IDirectorySchemaMgmt, pszClassName: ?[*:0]u16, pClassDefinition: ?*ADS_CLASS_DEF) callconv(.@"inline") HRESULT {
         return self.vtable.WriteClassDefinition(self, pszClassName, pClassDefinition);
     }
-    pub fn CreateClassDefinition(self: *const IDirectorySchemaMgmt, pszClassName: ?PWSTR, pClassDefinition: ?*ADS_CLASS_DEF) callconv(.@"inline") HRESULT {
+    pub fn CreateClassDefinition(self: *const IDirectorySchemaMgmt, pszClassName: ?[*:0]u16, pClassDefinition: ?*ADS_CLASS_DEF) callconv(.@"inline") HRESULT {
         return self.vtable.CreateClassDefinition(self, pszClassName, pClassDefinition);
     }
-    pub fn DeleteClassDefinition(self: *const IDirectorySchemaMgmt, pszClassName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn DeleteClassDefinition(self: *const IDirectorySchemaMgmt, pszClassName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteClassDefinition(self, pszClassName);
     }
 };
@@ -8013,8 +8013,8 @@ pub const IDirectorySearch = extern union {
         ) callconv(.winapi) HRESULT,
         ExecuteSearch: *const fn(
             self: *const IDirectorySearch,
-            pszSearchFilter: ?PWSTR,
-            pAttributeNames: ?*?PWSTR,
+            pszSearchFilter: ?[*:0]u16,
+            pAttributeNames: ?*?[*:0]u16,
             dwNumberAttributes: u32,
             phSearchResult: ?*ADS_SEARCH_HANDLE,
         ) callconv(.winapi) HRESULT,
@@ -8037,12 +8037,12 @@ pub const IDirectorySearch = extern union {
         GetNextColumnName: *const fn(
             self: *const IDirectorySearch,
             hSearchHandle: ADS_SEARCH_HANDLE,
-            ppszColumnName: ?*?PWSTR,
+            ppszColumnName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetColumn: *const fn(
             self: *const IDirectorySearch,
             hSearchResult: ADS_SEARCH_HANDLE,
-            szColumnName: ?PWSTR,
+            szColumnName: ?[*:0]u16,
             pSearchColumn: ?*ADS_SEARCH_COLUMN,
         ) callconv(.winapi) HRESULT,
         FreeColumn: *const fn(
@@ -8059,7 +8059,7 @@ pub const IDirectorySearch = extern union {
     pub fn SetSearchPreference(self: *const IDirectorySearch, pSearchPrefs: ?*ADS_SEARCHPREF_INFO, dwNumPrefs: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSearchPreference(self, pSearchPrefs, dwNumPrefs);
     }
-    pub fn ExecuteSearch(self: *const IDirectorySearch, pszSearchFilter: ?PWSTR, pAttributeNames: ?*?PWSTR, dwNumberAttributes: u32, phSearchResult: ?*ADS_SEARCH_HANDLE) callconv(.@"inline") HRESULT {
+    pub fn ExecuteSearch(self: *const IDirectorySearch, pszSearchFilter: ?[*:0]u16, pAttributeNames: ?*?[*:0]u16, dwNumberAttributes: u32, phSearchResult: ?*ADS_SEARCH_HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.ExecuteSearch(self, pszSearchFilter, pAttributeNames, dwNumberAttributes, phSearchResult);
     }
     pub fn AbandonSearch(self: *const IDirectorySearch, phSearchResult: ADS_SEARCH_HANDLE) callconv(.@"inline") HRESULT {
@@ -8074,10 +8074,10 @@ pub const IDirectorySearch = extern union {
     pub fn GetPreviousRow(self: *const IDirectorySearch, hSearchResult: ADS_SEARCH_HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.GetPreviousRow(self, hSearchResult);
     }
-    pub fn GetNextColumnName(self: *const IDirectorySearch, hSearchHandle: ADS_SEARCH_HANDLE, ppszColumnName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetNextColumnName(self: *const IDirectorySearch, hSearchHandle: ADS_SEARCH_HANDLE, ppszColumnName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetNextColumnName(self, hSearchHandle, ppszColumnName);
     }
-    pub fn GetColumn(self: *const IDirectorySearch, hSearchResult: ADS_SEARCH_HANDLE, szColumnName: ?PWSTR, pSearchColumn: ?*ADS_SEARCH_COLUMN) callconv(.@"inline") HRESULT {
+    pub fn GetColumn(self: *const IDirectorySearch, hSearchResult: ADS_SEARCH_HANDLE, szColumnName: ?[*:0]u16, pSearchColumn: ?*ADS_SEARCH_COLUMN) callconv(.@"inline") HRESULT {
         return self.vtable.GetColumn(self, hSearchResult, szColumnName, pSearchColumn);
     }
     pub fn FreeColumn(self: *const IDirectorySearch, pSearchColumn: ?*ADS_SEARCH_COLUMN) callconv(.@"inline") HRESULT {
@@ -8281,7 +8281,7 @@ pub const IDsBrowseDomainTree = extern union {
         BrowseTo: *const fn(
             self: *const IDsBrowseDomainTree,
             hwndParent: ?HWND,
-            ppszTargetPath: ?*?PWSTR,
+            ppszTargetPath: ?*?[*:0]u16,
             dwFlags: u32,
         ) callconv(.winapi) HRESULT,
         GetDomains: *const fn(
@@ -8305,7 +8305,7 @@ pub const IDsBrowseDomainTree = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BrowseTo(self: *const IDsBrowseDomainTree, hwndParent: ?HWND, ppszTargetPath: ?*?PWSTR, dwFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn BrowseTo(self: *const IDsBrowseDomainTree, hwndParent: ?HWND, ppszTargetPath: ?*?[*:0]u16, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BrowseTo(self, hwndParent, ppszTargetPath, dwFlags);
     }
     pub fn GetDomains(self: *const IDsBrowseDomainTree, ppDomainTree: ?*?*DOMAIN_TREE, dwFlags: u32) callconv(.@"inline") HRESULT {
@@ -8494,7 +8494,7 @@ pub const IPersistQuery = extern union {
             self: *const IPersistQuery,
             pSection: ?[*:0]const u16,
             pValueName: ?[*:0]const u16,
-            pBuffer: ?PWSTR,
+            pBuffer: ?[*:0]u16,
             cchBuffer: i32,
         ) callconv(.winapi) HRESULT,
         WriteInt: *const fn(
@@ -8533,7 +8533,7 @@ pub const IPersistQuery = extern union {
     pub fn WriteString(self: *const IPersistQuery, pSection: ?[*:0]const u16, pValueName: ?[*:0]const u16, pValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.WriteString(self, pSection, pValueName, pValue);
     }
-    pub fn ReadString(self: *const IPersistQuery, pSection: ?[*:0]const u16, pValueName: ?[*:0]const u16, pBuffer: ?PWSTR, cchBuffer: i32) callconv(.@"inline") HRESULT {
+    pub fn ReadString(self: *const IPersistQuery, pSection: ?[*:0]const u16, pValueName: ?[*:0]const u16, pBuffer: ?[*:0]u16, cchBuffer: i32) callconv(.@"inline") HRESULT {
         return self.vtable.ReadString(self, pSection, pValueName, pBuffer, cchBuffer);
     }
     pub fn WriteInt(self: *const IPersistQuery, pSection: ?[*:0]const u16, pValueName: ?[*:0]const u16, value: i32) callconv(.@"inline") HRESULT {
@@ -8782,7 +8782,7 @@ pub extern "activeds" fn ADsBuildVarArrayInt(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "activeds" fn ADsBuildVarArrayStr(
-    lppPathNames: [*]?PWSTR,
+    lppPathNames: [*]?[*:0]u16,
     dwPathNames: u32,
     pVar: ?*VARIANT,
 ) callconv(.winapi) HRESULT;
@@ -8797,7 +8797,7 @@ pub extern "activeds" fn ADsDecodeBinaryData(
 pub extern "activeds" fn ADsEncodeBinaryData(
     pbSrcData: ?*u8,
     dwSrcLen: u32,
-    ppszDestData: ?*?PWSTR,
+    ppszDestData: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8853,7 +8853,7 @@ pub extern "dsprop" fn ADsPropCheckIfWritable(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dsprop" fn ADsPropCreateNotifyObj(
     pAppThdDataObj: ?*IDataObject,
-    pwzADsObjName: ?PWSTR,
+    pwzADsObjName: ?[*:0]u16,
     phNotifyObj: ?*?HWND,
 ) callconv(.winapi) HRESULT;
 
@@ -8909,7 +8909,7 @@ pub extern "activeds" fn AllocADsMem(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "activeds" fn AllocADsStr(
     pStr: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "activeds" fn BinarySDToSecurityDescriptor(
@@ -8926,7 +8926,7 @@ pub extern "netapi32" fn DsAddressToSiteNamesA(
     ComputerName: ?[*:0]const u8,
     EntryCount: u32,
     SocketAddresses: [*]SOCKET_ADDRESS,
-    SiteNames: ?*?*?PSTR,
+    SiteNames: ?*?*?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8934,8 +8934,8 @@ pub extern "netapi32" fn DsAddressToSiteNamesExA(
     ComputerName: ?[*:0]const u8,
     EntryCount: u32,
     SocketAddresses: [*]SOCKET_ADDRESS,
-    SiteNames: ?*?*?PSTR,
-    SubnetNames: ?*?*?PSTR,
+    SiteNames: ?*?*?[*:0]u8,
+    SubnetNames: ?*?*?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8943,8 +8943,8 @@ pub extern "netapi32" fn DsAddressToSiteNamesExW(
     ComputerName: ?[*:0]const u16,
     EntryCount: u32,
     SocketAddresses: [*]SOCKET_ADDRESS,
-    SiteNames: ?*?*?PWSTR,
-    SubnetNames: ?*?*?PWSTR,
+    SiteNames: ?*?*?[*:0]u16,
+    SubnetNames: ?*?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8952,7 +8952,7 @@ pub extern "netapi32" fn DsAddressToSiteNamesW(
     ComputerName: ?[*:0]const u16,
     EntryCount: u32,
     SocketAddresses: [*]SOCKET_ADDRESS,
-    SiteNames: ?*?*?PWSTR,
+    SiteNames: ?*?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9232,25 +9232,25 @@ pub extern "dsparse" fn DsCrackUnquotedMangledRdnW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "netapi32" fn DsDeregisterDnsHostRecordsA(
-    ServerName: ?PSTR,
-    DnsDomainName: ?PSTR,
+    ServerName: ?[*:0]u8,
+    DnsDomainName: ?[*:0]u8,
     DomainGuid: ?*Guid,
     DsaGuid: ?*Guid,
-    DnsHostName: ?PSTR,
+    DnsHostName: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "netapi32" fn DsDeregisterDnsHostRecordsW(
-    ServerName: ?PWSTR,
-    DnsDomainName: ?PWSTR,
+    ServerName: ?[*:0]u16,
+    DnsDomainName: ?[*:0]u16,
     DomainGuid: ?*Guid,
     DsaGuid: ?*Guid,
-    DnsHostName: ?PWSTR,
+    DnsHostName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "netapi32" fn DsEnumerateDomainTrustsA(
-    ServerName: ?PSTR,
+    ServerName: ?[*:0]u8,
     Flags: u32,
     Domains: ?*?*DS_DOMAIN_TRUSTSA,
     DomainCount: ?*u32,
@@ -9258,7 +9258,7 @@ pub extern "netapi32" fn DsEnumerateDomainTrustsA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "netapi32" fn DsEnumerateDomainTrustsW(
-    ServerName: ?PWSTR,
+    ServerName: ?[*:0]u16,
     Flags: u32,
     Domains: ?*?*DS_DOMAIN_TRUSTSW,
     DomainCount: ?*u32,
@@ -9306,13 +9306,13 @@ pub extern "ntdsapi" fn DsFreeSchemaGuidMapW(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdsapi" fn DsFreeSpnArrayA(
     cSpn: u32,
-    rpszSpn: [*]?PSTR,
+    rpszSpn: [*]?[*:0]u8,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdsapi" fn DsFreeSpnArrayW(
     cSpn: u32,
-    rpszSpn: [*]?PWSTR,
+    rpszSpn: [*]?[*:0]u16,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9345,7 +9345,7 @@ pub extern "netapi32" fn DsGetDcNextA(
     GetDcContextHandle: ?HANDLE,
     SockAddressCount: ?*u32,
     SockAddresses: ?*?*SOCKET_ADDRESS,
-    DnsHostName: ?*?PSTR,
+    DnsHostName: ?*?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9353,7 +9353,7 @@ pub extern "netapi32" fn DsGetDcNextW(
     GetDcContextHandle: ?HANDLE,
     SockAddressCount: ?*u32,
     SockAddresses: ?*?*SOCKET_ADDRESS,
-    DnsHostName: ?*?PWSTR,
+    DnsHostName: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9382,14 +9382,14 @@ pub extern "netapi32" fn DsGetDcOpenW(
 pub extern "netapi32" fn DsGetDcSiteCoverageA(
     ServerName: ?[*:0]const u8,
     EntryCount: ?*u32,
-    SiteNames: ?*?*?PSTR,
+    SiteNames: ?*?*?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "netapi32" fn DsGetDcSiteCoverageW(
     ServerName: ?[*:0]const u16,
     EntryCount: ?*u32,
-    SiteNames: ?*?*?PWSTR,
+    SiteNames: ?*?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9435,24 +9435,24 @@ pub extern "dsuiext" fn DsGetIcon(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dsparse" fn DsGetRdnW(
-    ppDN: [*]?PWSTR,
+    ppDN: [*]?[*:0]u16,
     pcDN: ?*u32,
-    ppKey: ?*?PWSTR,
+    ppKey: ?*?[*:0]u16,
     pcKey: ?*u32,
-    ppVal: ?*?PWSTR,
+    ppVal: ?*?[*:0]u16,
     pcVal: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "netapi32" fn DsGetSiteNameA(
     ComputerName: ?[*:0]const u8,
-    SiteName: ?*?PSTR,
+    SiteName: ?*?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "netapi32" fn DsGetSiteNameW(
     ComputerName: ?[*:0]const u16,
-    SiteName: ?*?PWSTR,
+    SiteName: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9462,10 +9462,10 @@ pub extern "ntdsapi" fn DsGetSpnA(
     ServiceName: ?[*:0]const u8,
     InstancePort: u16,
     cInstanceNames: u16,
-    pInstanceNames: ?[*]?PSTR,
+    pInstanceNames: ?[*]?[*:0]u8,
     pInstancePorts: ?[*:0]const u16,
     pcSpn: ?*u32,
-    prpszSpn: ?*?*?PSTR,
+    prpszSpn: ?*?*?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9475,10 +9475,10 @@ pub extern "ntdsapi" fn DsGetSpnW(
     ServiceName: ?[*:0]const u16,
     InstancePort: u16,
     cInstanceNames: u16,
-    pInstanceNames: ?[*]?PWSTR,
+    pInstanceNames: ?[*]?[*:0]u16,
     pInstancePorts: ?[*:0]const u16,
     pcSpn: ?*u32,
-    prpszSpn: ?*?*?PWSTR,
+    prpszSpn: ?*?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9670,8 +9670,8 @@ pub extern "netapi32" fn DsMergeForestTrustInformationW(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdsapi" fn DsQuerySitesByCostA(
     hDS: ?HANDLE,
-    pszFromSite: ?PSTR,
-    rgszToSites: [*]?PSTR,
+    pszFromSite: ?[*:0]u8,
+    rgszToSites: [*]?[*:0]u8,
     cToSites: u32,
     dwFlags: u32,
     prgSiteInfo: ?*?*DS_SITE_COST_INFO,
@@ -9680,8 +9680,8 @@ pub extern "ntdsapi" fn DsQuerySitesByCostA(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdsapi" fn DsQuerySitesByCostW(
     hDS: ?HANDLE,
-    pwszFromSite: ?PWSTR,
-    rgwszToSites: [*]?PWSTR,
+    pwszFromSite: ?[*:0]u16,
+    rgwszToSites: [*]?[*:0]u16,
     cToSites: u32,
     dwFlags: u32,
     prgSiteInfo: ?*?*DS_SITE_COST_INFO,
@@ -9711,20 +9711,20 @@ pub extern "dsparse" fn DsQuoteRdnValueW(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdsapi" fn DsRemoveDsDomainA(
     hDs: ?HANDLE,
-    DomainDN: ?PSTR,
+    DomainDN: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdsapi" fn DsRemoveDsDomainW(
     hDs: ?HANDLE,
-    DomainDN: ?PWSTR,
+    DomainDN: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdsapi" fn DsRemoveDsServerA(
     hDs: ?HANDLE,
-    ServerDN: ?PSTR,
-    DomainDN: ?PSTR,
+    ServerDN: ?[*:0]u8,
+    DomainDN: ?[*:0]u8,
     fLastDcInDomain: ?*BOOL,
     fCommit: BOOL,
 ) callconv(.winapi) u32;
@@ -9732,8 +9732,8 @@ pub extern "ntdsapi" fn DsRemoveDsServerA(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdsapi" fn DsRemoveDsServerW(
     hDs: ?HANDLE,
-    ServerDN: ?PWSTR,
-    DomainDN: ?PWSTR,
+    ServerDN: ?[*:0]u16,
+    DomainDN: ?[*:0]u16,
     fLastDcInDomain: ?*BOOL,
     fCommit: BOOL,
 ) callconv(.winapi) u32;
@@ -9975,7 +9975,7 @@ pub extern "ntdsapi" fn DsWriteAccountSpnA(
     Operation: DS_SPN_WRITE_OP,
     pszAccount: ?[*:0]const u8,
     cSpn: u32,
-    rpszSpn: [*]?PSTR,
+    rpszSpn: [*]?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9984,7 +9984,7 @@ pub extern "ntdsapi" fn DsWriteAccountSpnW(
     Operation: DS_SPN_WRITE_OP,
     pszAccount: ?[*:0]const u16,
     cSpn: u32,
-    rpszSpn: [*]?PWSTR,
+    rpszSpn: [*]?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9994,7 +9994,7 @@ pub extern "activeds" fn FreeADsMem(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "activeds" fn FreeADsStr(
-    pStr: ?PWSTR,
+    pStr: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "activeds" fn PropVariantToAdsType(
@@ -10013,8 +10013,8 @@ pub extern "activeds" fn ReallocADsMem(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "activeds" fn ReallocADsStr(
-    ppStr: ?*?PWSTR,
-    pStr: ?PWSTR,
+    ppStr: ?*?[*:0]u16,
+    pStr: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -10516,7 +10516,7 @@ pub const DsWriteAccountSpn = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (36)
+// Section: Imports (34)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BFFCALLBACK = @import("../ui/shell.zig").BFFCALLBACK;
@@ -10547,8 +10547,6 @@ const LPFNSVADDPROPSHEETPAGE = @import("../ui/controls.zig").LPFNSVADDPROPSHEETP
 const LSA_FOREST_TRUST_INFORMATION = @import("../security/authentication/identity.zig").LSA_FOREST_TRUST_INFORMATION;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PSID = @import("../foundation.zig").PSID;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SOCKET_ADDRESS = @import("../networking/win_sock.zig").SOCKET_ADDRESS;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;

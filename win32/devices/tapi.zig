@@ -2634,9 +2634,9 @@ pub const IMcastAddressAllocation = extern union {
             LeaseStartTime: f64,
             LeaseStopTime: f64,
             dwNumAddresses: u32,
-            ppAddresses: ?*?PWSTR,
-            pRequestID: ?PWSTR,
-            pServerAddress: ?PWSTR,
+            ppAddresses: ?*?[*:0]u16,
+            pRequestID: ?[*:0]u16,
+            pServerAddress: ?[*:0]u16,
             ppReleaseRequest: ?*?*IMcastLeaseInfo,
         ) callconv(.winapi) HRESULT,
         CreateLeaseInfoFromVariant: *const fn(
@@ -2667,7 +2667,7 @@ pub const IMcastAddressAllocation = extern union {
     pub fn ReleaseAddress(self: *const IMcastAddressAllocation, pReleaseRequest: ?*IMcastLeaseInfo) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseAddress(self, pReleaseRequest);
     }
-    pub fn CreateLeaseInfo(self: *const IMcastAddressAllocation, LeaseStartTime: f64, LeaseStopTime: f64, dwNumAddresses: u32, ppAddresses: ?*?PWSTR, pRequestID: ?PWSTR, pServerAddress: ?PWSTR, ppReleaseRequest: ?*?*IMcastLeaseInfo) callconv(.@"inline") HRESULT {
+    pub fn CreateLeaseInfo(self: *const IMcastAddressAllocation, LeaseStartTime: f64, LeaseStopTime: f64, dwNumAddresses: u32, ppAddresses: ?*?[*:0]u16, pRequestID: ?[*:0]u16, pServerAddress: ?[*:0]u16, ppReleaseRequest: ?*?*IMcastLeaseInfo) callconv(.@"inline") HRESULT {
         return self.vtable.CreateLeaseInfo(self, LeaseStartTime, LeaseStopTime, dwNumAddresses, ppAddresses, pRequestID, pServerAddress, ppReleaseRequest);
     }
     pub fn CreateLeaseInfoFromVariant(self: *const IMcastAddressAllocation, LeaseStartTime: f64, LeaseStopTime: f64, vAddresses: VARIANT, pRequestID: ?BSTR, pServerAddress: ?BSTR, ppReleaseRequest: ?*?*IMcastLeaseInfo) callconv(.@"inline") HRESULT {
@@ -11783,7 +11783,7 @@ pub const phoneInitializeEx = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (26)
+// Section: Imports (24)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ALLOCATOR_PROPERTIES = @import("../media/direct_show.zig").ALLOCATOR_PROPERTIES;
@@ -11803,8 +11803,6 @@ const IMAPITable = @import("../system/address_book.zig").IMAPITable;
 const IMessage = @import("../system/address_book.zig").IMessage;
 const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SPropTagArray = @import("../system/address_book.zig").SPropTagArray;
 const SPropValue = @import("../system/address_book.zig").SPropValue;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;

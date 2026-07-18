@@ -1232,7 +1232,7 @@ pub const SVF_USER = SystemVisibilityFlags.USER;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -1242,7 +1242,6 @@ const IServiceProvider = @import("../system/com.zig").IServiceProvider;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PROPERTYKEY = @import("../ui/shell/properties_system.zig").PROPERTYKEY;
 const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const STGM = @import("../system/com.zig").STGM;
 
 test {

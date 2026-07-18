@@ -478,7 +478,7 @@ pub extern "api-ms-win-devices-query-l1-1-1" fn DevGetObjectsEx(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const DEVPROPCOMPKEY = @import("../devices/properties.zig").DEVPROPCOMPKEY;
 const DEVPROPERTY = @import("../devices/properties.zig").DEVPROPERTY;
@@ -486,7 +486,6 @@ const DEVPROPKEY = @import("../devices/properties.zig").DEVPROPKEY;
 const DEVPROPSTORE = @import("../devices/properties.zig").DEVPROPSTORE;
 const DEVPROPTYPE = @import("../devices/properties.zig").DEVPROPTYPE;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

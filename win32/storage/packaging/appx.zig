@@ -200,7 +200,7 @@ pub const APPX_COMPRESSION_OPTION_SUPERFAST = APPX_COMPRESSION_OPTION.SUPERFAST;
 
 pub const APPX_ENCRYPTED_EXEMPTIONS = extern struct {
     count: u32,
-    plainTextFiles: ?*?PWSTR,
+    plainTextFiles: ?*?[*:0]u16,
 };
 
 pub const APPX_ENCRYPTED_PACKAGE_OPTIONS = packed struct(u32) {
@@ -480,7 +480,7 @@ pub const IAppxBlockMapFile = extern union {
         ) callconv(.winapi) HRESULT,
         GetName: *const fn(
             self: *const IAppxBlockMapFile,
-            name: ?*?PWSTR,
+            name: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetUncompressedSize: *const fn(
             self: *const IAppxBlockMapFile,
@@ -500,7 +500,7 @@ pub const IAppxBlockMapFile = extern union {
     pub fn GetLocalFileHeaderSize(self: *const IAppxBlockMapFile, lfhSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLocalFileHeaderSize(self, lfhSize);
     }
-    pub fn GetName(self: *const IAppxBlockMapFile, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetName(self: *const IAppxBlockMapFile, name: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
     pub fn GetUncompressedSize(self: *const IAppxBlockMapFile, size: ?*u64) callconv(.@"inline") HRESULT {
@@ -631,7 +631,7 @@ pub const IAppxBundleManifestOptionalBundleInfo = extern union {
         ) callconv(.winapi) HRESULT,
         GetFileName: *const fn(
             self: *const IAppxBundleManifestOptionalBundleInfo,
-            fileName: ?*?PWSTR,
+            fileName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetPackageInfoItems: *const fn(
             self: *const IAppxBundleManifestOptionalBundleInfo,
@@ -643,7 +643,7 @@ pub const IAppxBundleManifestOptionalBundleInfo = extern union {
     pub fn GetPackageId(self: *const IAppxBundleManifestOptionalBundleInfo, packageId: ?*?*IAppxManifestPackageId) callconv(.@"inline") HRESULT {
         return self.vtable.GetPackageId(self, packageId);
     }
-    pub fn GetFileName(self: *const IAppxBundleManifestOptionalBundleInfo, fileName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetFileName(self: *const IAppxBundleManifestOptionalBundleInfo, fileName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileName(self, fileName);
     }
     pub fn GetPackageInfoItems(self: *const IAppxBundleManifestOptionalBundleInfo, packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator) callconv(.@"inline") HRESULT {
@@ -699,7 +699,7 @@ pub const IAppxBundleManifestPackageInfo = extern union {
         ) callconv(.winapi) HRESULT,
         GetFileName: *const fn(
             self: *const IAppxBundleManifestPackageInfo,
-            fileName: ?*?PWSTR,
+            fileName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetOffset: *const fn(
             self: *const IAppxBundleManifestPackageInfo,
@@ -722,7 +722,7 @@ pub const IAppxBundleManifestPackageInfo = extern union {
     pub fn GetPackageId(self: *const IAppxBundleManifestPackageInfo, packageId: ?*?*IAppxManifestPackageId) callconv(.@"inline") HRESULT {
         return self.vtable.GetPackageId(self, packageId);
     }
-    pub fn GetFileName(self: *const IAppxBundleManifestPackageInfo, fileName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetFileName(self: *const IAppxBundleManifestPackageInfo, fileName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileName(self, fileName);
     }
     pub fn GetOffset(self: *const IAppxBundleManifestPackageInfo, offset: ?*u64) callconv(.@"inline") HRESULT {
@@ -1048,7 +1048,7 @@ pub const IAppxContentGroup = extern union {
         base: IUnknown.VTable,
         GetName: *const fn(
             self: *const IAppxContentGroup,
-            groupName: ?*?PWSTR,
+            groupName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetFiles: *const fn(
             self: *const IAppxContentGroup,
@@ -1057,7 +1057,7 @@ pub const IAppxContentGroup = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxContentGroup, groupName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetName(self: *const IAppxContentGroup, groupName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, groupName);
     }
     pub fn GetFiles(self: *const IAppxContentGroup, enumerator: ?*?*IAppxContentGroupFilesEnumerator) callconv(.@"inline") HRESULT {
@@ -1073,7 +1073,7 @@ pub const IAppxContentGroupFilesEnumerator = extern union {
         base: IUnknown.VTable,
         GetCurrent: *const fn(
             self: *const IAppxContentGroupFilesEnumerator,
-            file: ?*?PWSTR,
+            file: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxContentGroupFilesEnumerator,
@@ -1086,7 +1086,7 @@ pub const IAppxContentGroupFilesEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxContentGroupFilesEnumerator, file: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetCurrent(self: *const IAppxContentGroupFilesEnumerator, file: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, file);
     }
     pub fn GetHasCurrent(self: *const IAppxContentGroupFilesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -1602,11 +1602,11 @@ pub const IAppxFile = extern union {
         ) callconv(.winapi) HRESULT,
         GetContentType: *const fn(
             self: *const IAppxFile,
-            contentType: ?*?PWSTR,
+            contentType: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetName: *const fn(
             self: *const IAppxFile,
-            fileName: ?*?PWSTR,
+            fileName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetSize: *const fn(
             self: *const IAppxFile,
@@ -1622,10 +1622,10 @@ pub const IAppxFile = extern union {
     pub fn GetCompressionOption(self: *const IAppxFile, compressionOption: ?*APPX_COMPRESSION_OPTION) callconv(.@"inline") HRESULT {
         return self.vtable.GetCompressionOption(self, compressionOption);
     }
-    pub fn GetContentType(self: *const IAppxFile, contentType: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetContentType(self: *const IAppxFile, contentType: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetContentType(self, contentType);
     }
-    pub fn GetName(self: *const IAppxFile, fileName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetName(self: *const IAppxFile, fileName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, fileName);
     }
     pub fn GetSize(self: *const IAppxFile, size: ?*u64) callconv(.@"inline") HRESULT {
@@ -1677,19 +1677,19 @@ pub const IAppxManifestApplication = extern union {
         GetStringValue: *const fn(
             self: *const IAppxManifestApplication,
             name: ?[*:0]const u16,
-            value: ?*?PWSTR,
+            value: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetAppUserModelId: *const fn(
             self: *const IAppxManifestApplication,
-            appUserModelId: ?*?PWSTR,
+            appUserModelId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetStringValue(self: *const IAppxManifestApplication, name: ?[*:0]const u16, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetStringValue(self: *const IAppxManifestApplication, name: ?[*:0]const u16, value: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetStringValue(self, name, value);
     }
-    pub fn GetAppUserModelId(self: *const IAppxManifestApplication, appUserModelId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetAppUserModelId(self: *const IAppxManifestApplication, appUserModelId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetAppUserModelId(self, appUserModelId);
     }
 };
@@ -1733,7 +1733,7 @@ pub const IAppxManifestCapabilitiesEnumerator = extern union {
         base: IUnknown.VTable,
         GetCurrent: *const fn(
             self: *const IAppxManifestCapabilitiesEnumerator,
-            capability: ?*?PWSTR,
+            capability: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxManifestCapabilitiesEnumerator,
@@ -1746,7 +1746,7 @@ pub const IAppxManifestCapabilitiesEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestCapabilitiesEnumerator, capability: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestCapabilitiesEnumerator, capability: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, capability);
     }
     pub fn GetHasCurrent(self: *const IAppxManifestCapabilitiesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -1765,7 +1765,7 @@ pub const IAppxManifestDeviceCapabilitiesEnumerator = extern union {
         base: IUnknown.VTable,
         GetCurrent: *const fn(
             self: *const IAppxManifestDeviceCapabilitiesEnumerator,
-            deviceCapability: ?*?PWSTR,
+            deviceCapability: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxManifestDeviceCapabilitiesEnumerator,
@@ -1778,7 +1778,7 @@ pub const IAppxManifestDeviceCapabilitiesEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestDeviceCapabilitiesEnumerator, deviceCapability: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestDeviceCapabilitiesEnumerator, deviceCapability: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, deviceCapability);
     }
     pub fn GetHasCurrent(self: *const IAppxManifestDeviceCapabilitiesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -1796,7 +1796,7 @@ pub const IAppxManifestDriverConstraint = extern union {
         base: IUnknown.VTable,
         GetName: *const fn(
             self: *const IAppxManifestDriverConstraint,
-            name: ?*?PWSTR,
+            name: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetMinVersion: *const fn(
             self: *const IAppxManifestDriverConstraint,
@@ -1804,18 +1804,18 @@ pub const IAppxManifestDriverConstraint = extern union {
         ) callconv(.winapi) HRESULT,
         GetMinDate: *const fn(
             self: *const IAppxManifestDriverConstraint,
-            minDate: ?*?PWSTR,
+            minDate: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestDriverConstraint, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetName(self: *const IAppxManifestDriverConstraint, name: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
     pub fn GetMinVersion(self: *const IAppxManifestDriverConstraint, minVersion: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetMinVersion(self, minVersion);
     }
-    pub fn GetMinDate(self: *const IAppxManifestDriverConstraint, minDate: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetMinDate(self: *const IAppxManifestDriverConstraint, minDate: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetMinDate(self, minDate);
     }
 };
@@ -1937,11 +1937,11 @@ pub const IAppxManifestHostRuntimeDependency = extern union {
         base: IUnknown.VTable,
         GetName: *const fn(
             self: *const IAppxManifestHostRuntimeDependency,
-            name: ?*?PWSTR,
+            name: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetPublisher: *const fn(
             self: *const IAppxManifestHostRuntimeDependency,
-            publisher: ?*?PWSTR,
+            publisher: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetMinVersion: *const fn(
             self: *const IAppxManifestHostRuntimeDependency,
@@ -1950,10 +1950,10 @@ pub const IAppxManifestHostRuntimeDependency = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestHostRuntimeDependency, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetName(self: *const IAppxManifestHostRuntimeDependency, name: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetPublisher(self: *const IAppxManifestHostRuntimeDependency, publisher: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPublisher(self: *const IAppxManifestHostRuntimeDependency, publisher: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPublisher(self, publisher);
     }
     pub fn GetMinVersion(self: *const IAppxManifestHostRuntimeDependency, minVersion: ?*u64) callconv(.@"inline") HRESULT {
@@ -1968,12 +1968,12 @@ pub const IAppxManifestHostRuntimeDependency2 = extern union {
         base: IUnknown.VTable,
         GetPackageFamilyName: *const fn(
             self: *const IAppxManifestHostRuntimeDependency2,
-            packageFamilyName: ?*?PWSTR,
+            packageFamilyName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPackageFamilyName(self: *const IAppxManifestHostRuntimeDependency2, packageFamilyName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPackageFamilyName(self: *const IAppxManifestHostRuntimeDependency2, packageFamilyName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPackageFamilyName(self, packageFamilyName);
     }
 };
@@ -2018,26 +2018,26 @@ pub const IAppxManifestMainPackageDependency = extern union {
         base: IUnknown.VTable,
         GetName: *const fn(
             self: *const IAppxManifestMainPackageDependency,
-            name: ?*?PWSTR,
+            name: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetPublisher: *const fn(
             self: *const IAppxManifestMainPackageDependency,
-            publisher: ?*?PWSTR,
+            publisher: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetPackageFamilyName: *const fn(
             self: *const IAppxManifestMainPackageDependency,
-            packageFamilyName: ?*?PWSTR,
+            packageFamilyName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestMainPackageDependency, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetName(self: *const IAppxManifestMainPackageDependency, name: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetPublisher(self: *const IAppxManifestMainPackageDependency, publisher: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPublisher(self: *const IAppxManifestMainPackageDependency, publisher: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPublisher(self, publisher);
     }
-    pub fn GetPackageFamilyName(self: *const IAppxManifestMainPackageDependency, packageFamilyName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPackageFamilyName(self: *const IAppxManifestMainPackageDependency, packageFamilyName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPackageFamilyName(self, packageFamilyName);
     }
 };
@@ -2054,7 +2054,7 @@ pub const IAppxManifestOptionalPackageInfo = extern union {
         ) callconv(.winapi) HRESULT,
         GetMainPackageName: *const fn(
             self: *const IAppxManifestOptionalPackageInfo,
-            mainPackageName: ?*?PWSTR,
+            mainPackageName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -2062,7 +2062,7 @@ pub const IAppxManifestOptionalPackageInfo = extern union {
     pub fn GetIsOptionalPackage(self: *const IAppxManifestOptionalPackageInfo, isOptionalPackage: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetIsOptionalPackage(self, isOptionalPackage);
     }
-    pub fn GetMainPackageName(self: *const IAppxManifestOptionalPackageInfo, mainPackageName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetMainPackageName(self: *const IAppxManifestOptionalPackageInfo, mainPackageName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetMainPackageName(self, mainPackageName);
     }
 };
@@ -2105,7 +2105,7 @@ pub const IAppxManifestOSPackageDependency = extern union {
         base: IUnknown.VTable,
         GetName: *const fn(
             self: *const IAppxManifestOSPackageDependency,
-            name: ?*?PWSTR,
+            name: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetVersion: *const fn(
             self: *const IAppxManifestOSPackageDependency,
@@ -2114,7 +2114,7 @@ pub const IAppxManifestOSPackageDependency = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestOSPackageDependency, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetName(self: *const IAppxManifestOSPackageDependency, name: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
     pub fn GetVersion(self: *const IAppxManifestOSPackageDependency, version: ?*u64) callconv(.@"inline") HRESULT {
@@ -2162,11 +2162,11 @@ pub const IAppxManifestPackageDependency = extern union {
         base: IUnknown.VTable,
         GetName: *const fn(
             self: *const IAppxManifestPackageDependency,
-            name: ?*?PWSTR,
+            name: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetPublisher: *const fn(
             self: *const IAppxManifestPackageDependency,
-            publisher: ?*?PWSTR,
+            publisher: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetMinVersion: *const fn(
             self: *const IAppxManifestPackageDependency,
@@ -2175,10 +2175,10 @@ pub const IAppxManifestPackageDependency = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestPackageDependency, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetName(self: *const IAppxManifestPackageDependency, name: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetPublisher(self: *const IAppxManifestPackageDependency, publisher: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPublisher(self: *const IAppxManifestPackageDependency, publisher: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPublisher(self, publisher);
     }
     pub fn GetMinVersion(self: *const IAppxManifestPackageDependency, minVersion: ?*u64) callconv(.@"inline") HRESULT {
@@ -2230,7 +2230,7 @@ pub const IAppxManifestPackageId = extern union {
         base: IUnknown.VTable,
         GetName: *const fn(
             self: *const IAppxManifestPackageId,
-            name: ?*?PWSTR,
+            name: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetArchitecture: *const fn(
             self: *const IAppxManifestPackageId,
@@ -2238,7 +2238,7 @@ pub const IAppxManifestPackageId = extern union {
         ) callconv(.winapi) HRESULT,
         GetPublisher: *const fn(
             self: *const IAppxManifestPackageId,
-            publisher: ?*?PWSTR,
+            publisher: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetVersion: *const fn(
             self: *const IAppxManifestPackageId,
@@ -2246,7 +2246,7 @@ pub const IAppxManifestPackageId = extern union {
         ) callconv(.winapi) HRESULT,
         GetResourceId: *const fn(
             self: *const IAppxManifestPackageId,
-            resourceId: ?*?PWSTR,
+            resourceId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         ComparePublisher: *const fn(
             self: *const IAppxManifestPackageId,
@@ -2255,37 +2255,37 @@ pub const IAppxManifestPackageId = extern union {
         ) callconv(.winapi) HRESULT,
         GetPackageFullName: *const fn(
             self: *const IAppxManifestPackageId,
-            packageFullName: ?*?PWSTR,
+            packageFullName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetPackageFamilyName: *const fn(
             self: *const IAppxManifestPackageId,
-            packageFamilyName: ?*?PWSTR,
+            packageFamilyName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestPackageId, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetName(self: *const IAppxManifestPackageId, name: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
     pub fn GetArchitecture(self: *const IAppxManifestPackageId, architecture: ?*APPX_PACKAGE_ARCHITECTURE) callconv(.@"inline") HRESULT {
         return self.vtable.GetArchitecture(self, architecture);
     }
-    pub fn GetPublisher(self: *const IAppxManifestPackageId, publisher: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPublisher(self: *const IAppxManifestPackageId, publisher: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPublisher(self, publisher);
     }
     pub fn GetVersion(self: *const IAppxManifestPackageId, packageVersion: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetVersion(self, packageVersion);
     }
-    pub fn GetResourceId(self: *const IAppxManifestPackageId, resourceId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetResourceId(self: *const IAppxManifestPackageId, resourceId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetResourceId(self, resourceId);
     }
     pub fn ComparePublisher(self: *const IAppxManifestPackageId, other: ?[*:0]const u16, isSame: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ComparePublisher(self, other, isSame);
     }
-    pub fn GetPackageFullName(self: *const IAppxManifestPackageId, packageFullName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPackageFullName(self: *const IAppxManifestPackageId, packageFullName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPackageFullName(self, packageFullName);
     }
-    pub fn GetPackageFamilyName(self: *const IAppxManifestPackageId, packageFamilyName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPackageFamilyName(self: *const IAppxManifestPackageId, packageFamilyName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPackageFamilyName(self, packageFamilyName);
     }
 };
@@ -2323,7 +2323,7 @@ pub const IAppxManifestProperties = extern union {
         GetStringValue: *const fn(
             self: *const IAppxManifestProperties,
             name: ?[*:0]const u16,
-            value: ?*?PWSTR,
+            value: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -2331,7 +2331,7 @@ pub const IAppxManifestProperties = extern union {
     pub fn GetBoolValue(self: *const IAppxManifestProperties, name: ?[*:0]const u16, value: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetBoolValue(self, name, value);
     }
-    pub fn GetStringValue(self: *const IAppxManifestProperties, name: ?[*:0]const u16, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetStringValue(self: *const IAppxManifestProperties, name: ?[*:0]const u16, value: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetStringValue(self, name, value);
     }
 };
@@ -2343,7 +2343,7 @@ pub const IAppxManifestQualifiedResource = extern union {
         base: IUnknown.VTable,
         GetLanguage: *const fn(
             self: *const IAppxManifestQualifiedResource,
-            language: ?*?PWSTR,
+            language: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetScale: *const fn(
             self: *const IAppxManifestQualifiedResource,
@@ -2356,7 +2356,7 @@ pub const IAppxManifestQualifiedResource = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetLanguage(self: *const IAppxManifestQualifiedResource, language: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetLanguage(self: *const IAppxManifestQualifiedResource, language: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetLanguage(self, language);
     }
     pub fn GetScale(self: *const IAppxManifestQualifiedResource, scale: ?*u32) callconv(.@"inline") HRESULT {
@@ -2614,7 +2614,7 @@ pub const IAppxManifestResourcesEnumerator = extern union {
         base: IUnknown.VTable,
         GetCurrent: *const fn(
             self: *const IAppxManifestResourcesEnumerator,
-            resource: ?*?PWSTR,
+            resource: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxManifestResourcesEnumerator,
@@ -2627,7 +2627,7 @@ pub const IAppxManifestResourcesEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestResourcesEnumerator, resource: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestResourcesEnumerator, resource: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, resource);
     }
     pub fn GetHasCurrent(self: *const IAppxManifestResourcesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -2677,7 +2677,7 @@ pub const IAppxManifestTargetDeviceFamily = extern union {
         base: IUnknown.VTable,
         GetName: *const fn(
             self: *const IAppxManifestTargetDeviceFamily,
-            name: ?*?PWSTR,
+            name: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetMinVersion: *const fn(
             self: *const IAppxManifestTargetDeviceFamily,
@@ -2690,7 +2690,7 @@ pub const IAppxManifestTargetDeviceFamily = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestTargetDeviceFamily, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetName(self: *const IAppxManifestTargetDeviceFamily, name: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
     pub fn GetMinVersion(self: *const IAppxManifestTargetDeviceFamily, minVersion: ?*u64) callconv(.@"inline") HRESULT {
@@ -2957,18 +2957,18 @@ pub const PACKAGE_ID = extern struct {
     reserved: u32 align(4),
     processorArchitecture: u32 align(4),
     version: PACKAGE_VERSION align(4),
-    name: ?PWSTR align(4),
-    publisher: ?PWSTR align(4),
-    resourceId: ?PWSTR align(4),
-    publisherId: ?PWSTR align(4),
+    name: ?[*:0]u16 align(4),
+    publisher: ?[*:0]u16 align(4),
+    resourceId: ?[*:0]u16 align(4),
+    publisherId: ?[*:0]u16 align(4),
 };
 
 pub const PACKAGE_INFO = extern struct {
     reserved: u32 align(4),
     flags: u32 align(4),
-    path: ?PWSTR align(4),
-    packageFullName: ?PWSTR align(4),
-    packageFamilyName: ?PWSTR align(4),
+    path: ?[*:0]u16 align(4),
+    packageFullName: ?[*:0]u16 align(4),
+    packageFamilyName: ?[*:0]u16 align(4),
     packageId: PACKAGE_ID align(4),
 };
 
@@ -3064,7 +3064,7 @@ pub extern "kernelbase" fn AddPackageDependency(
     rank: i32,
     options: AddPackageDependencyOptions,
     packageDependencyContext: ?*?*PACKAGEDEPENDENCY_CONTEXT__,
-    packageFullName: ?*?PWSTR,
+    packageFullName: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "kernel32" fn AppPolicyGetClrCompat(
@@ -3140,7 +3140,7 @@ pub extern "kernel32" fn FindPackagesByPackageFamily(
     packageFamilyName: ?[*:0]const u16,
     packageFilters: u32,
     count: ?*u32,
-    packageFullNames: ?[*]?PWSTR,
+    packageFullNames: ?[*]?[*:0]u16,
     bufferLength: ?*u32,
     buffer: ?[*:0]u16,
     packageProperties: ?[*]u32,
@@ -3227,7 +3227,7 @@ pub extern "kernel32" fn GetCurrentPackageVirtualizationContext(
 
 pub extern "kernelbase" fn GetIdForPackageDependencyContext(
     packageDependencyContext: ?*PACKAGEDEPENDENCY_CONTEXT__,
-    packageDependencyId: ?*?PWSTR,
+    packageDependencyId: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -3323,7 +3323,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackagePathByFullName2(
 pub extern "kernel32" fn GetPackagesByPackageFamily(
     packageFamilyName: ?[*:0]const u16,
     count: ?*u32,
-    packageFullNames: ?[*]?PWSTR,
+    packageFullNames: ?[*]?[*:0]u16,
     bufferLength: ?*u32,
     buffer: ?[*:0]u16,
 ) callconv(.winapi) WIN32_ERROR;
@@ -3336,7 +3336,7 @@ pub extern "kernel32" fn GetProcessesInVirtualizationContext(
 
 pub extern "kernelbase" fn GetResolvedPackageFullNameForPackageDependency(
     packageDependencyId: ?[*:0]const u16,
-    packageFullName: ?*?PWSTR,
+    packageFullName: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -3438,7 +3438,7 @@ pub extern "kernelbase" fn TryCreatePackageDependency(
     lifetimeKind: PackageDependencyLifetimeKind,
     lifetimeArtifact: ?[*:0]const u16,
     options: CreatePackageDependencyOptions,
-    packageDependencyId: ?*?PWSTR,
+    packageDependencyId: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyApplicationUserModelId(
@@ -3466,7 +3466,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageRelativeApplicat
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -3476,8 +3476,6 @@ const IStream = @import("../../system/com.zig").IStream;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const IUri = @import("../../system/com.zig").IUri;
 const PSID = @import("../../foundation.zig").PSID;
-const PSTR = @import("../../foundation.zig").PSTR;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const WIN32_ERROR = @import("../../foundation.zig").WIN32_ERROR;
 
 test {

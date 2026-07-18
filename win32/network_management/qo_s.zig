@@ -1251,8 +1251,8 @@ pub const TC_GEN_FLOW = extern struct {
 
 pub const TC_IFC_DESCRIPTOR = extern struct {
     Length: u32,
-    pInterfaceName: ?PWSTR,
-    pInterfaceID: ?PWSTR,
+    pInterfaceName: ?[*:0]u16,
+    pInterfaceID: ?[*:0]u16,
     AddressListDesc: ADDRESS_LIST_DESCRIPTOR,
 };
 
@@ -1496,7 +1496,7 @@ pub extern "traffic" fn TcModifyFlow(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "traffic" fn TcOpenInterfaceA(
-    pInterfaceName: ?PSTR,
+    pInterfaceName: ?[*:0]u8,
     ClientHandle: ?HANDLE,
     ClIfcCtx: ?HANDLE,
     pIfcHandle: ?*?HANDLE,
@@ -1504,7 +1504,7 @@ pub extern "traffic" fn TcOpenInterfaceA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "traffic" fn TcOpenInterfaceW(
-    pInterfaceName: ?PWSTR,
+    pInterfaceName: ?[*:0]u16,
     ClientHandle: ?HANDLE,
     ClIfcCtx: ?HANDLE,
     pIfcHandle: ?*?HANDLE,
@@ -1512,7 +1512,7 @@ pub extern "traffic" fn TcOpenInterfaceW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "traffic" fn TcQueryFlowA(
-    pFlowName: ?PSTR,
+    pFlowName: ?[*:0]u8,
     pGuidParam: ?*Guid,
     pBufferSize: ?*u32,
     /// parameter "pBufferSize" is the size in bytes
@@ -1521,7 +1521,7 @@ pub extern "traffic" fn TcQueryFlowA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "traffic" fn TcQueryFlowW(
-    pFlowName: ?PWSTR,
+    pFlowName: ?[*:0]u16,
     pGuidParam: ?*Guid,
     pBufferSize: ?*u32,
     /// parameter "pBufferSize" is the size in bytes
@@ -1548,7 +1548,7 @@ pub extern "traffic" fn TcRegisterClient(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "traffic" fn TcSetFlowA(
-    pFlowName: ?PSTR,
+    pFlowName: ?[*:0]u8,
     pGuidParam: ?*Guid,
     BufferSize: u32,
     /// parameter "BufferSize" is the size in bytes
@@ -1557,7 +1557,7 @@ pub extern "traffic" fn TcSetFlowA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "traffic" fn TcSetFlowW(
-    pFlowName: ?PWSTR,
+    pFlowName: ?[*:0]u16,
     pGuidParam: ?*Guid,
     BufferSize: u32,
     /// parameter "BufferSize" is the size in bytes
@@ -1606,7 +1606,7 @@ pub const TcSetFlow = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (12)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -1616,8 +1616,6 @@ const HANDLE = @import("../foundation.zig").HANDLE;
 const IN_ADDR = @import("../networking/win_sock.zig").IN_ADDR;
 const NETWORK_ADDRESS_LIST = @import("../network_management/ndis.zig").NETWORK_ADDRESS_LIST;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SOCKADDR = @import("../networking/win_sock.zig").SOCKADDR;
 const SOCKET = @import("../networking/win_sock.zig").SOCKET;
 

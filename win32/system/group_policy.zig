@@ -408,11 +408,11 @@ pub const GPOBROWSEINFO = extern struct {
     dwSize: u32,
     dwFlags: u32,
     hwndOwner: ?HWND,
-    lpTitle: ?PWSTR,
-    lpInitialOU: ?PWSTR,
-    lpDSPath: ?PWSTR,
+    lpTitle: ?[*:0]u16,
+    lpInitialOU: ?[*:0]u16,
+    lpDSPath: ?[*:0]u16,
     dwDSPathSize: u32,
-    lpName: ?PWSTR,
+    lpName: ?[*:0]u16,
     dwNameSize: u32,
     gpoType: GROUP_POLICY_OBJECT_TYPE,
     gpoHint: GROUP_POLICY_HINT_TYPE,
@@ -447,33 +447,33 @@ pub const GPOTypeLocalGroup = GROUP_POLICY_OBJECT_TYPE.LocalGroup;
 pub const GROUP_POLICY_OBJECTA = extern struct {
     dwOptions: u32,
     dwVersion: u32,
-    lpDSPath: ?PSTR,
-    lpFileSysPath: ?PSTR,
-    lpDisplayName: ?PSTR,
+    lpDSPath: ?[*:0]u8,
+    lpFileSysPath: ?[*:0]u8,
+    lpDisplayName: ?[*:0]u8,
     szGPOName: [50]CHAR,
     GPOLink: GPO_LINK,
     lParam: LPARAM,
     pNext: ?*GROUP_POLICY_OBJECTA,
     pPrev: ?*GROUP_POLICY_OBJECTA,
-    lpExtensions: ?PSTR,
+    lpExtensions: ?[*:0]u8,
     lParam2: LPARAM,
-    lpLink: ?PSTR,
+    lpLink: ?[*:0]u8,
 };
 
 pub const GROUP_POLICY_OBJECTW = extern struct {
     dwOptions: u32,
     dwVersion: u32,
-    lpDSPath: ?PWSTR,
-    lpFileSysPath: ?PWSTR,
-    lpDisplayName: ?PWSTR,
+    lpDSPath: ?[*:0]u16,
+    lpFileSysPath: ?[*:0]u16,
+    lpDisplayName: ?[*:0]u16,
     szGPOName: [50]u16,
     GPOLink: GPO_LINK,
     lParam: LPARAM,
     pNext: ?*GROUP_POLICY_OBJECTW,
     pPrev: ?*GROUP_POLICY_OBJECTW,
-    lpExtensions: ?PWSTR,
+    lpExtensions: ?[*:0]u16,
     lParam2: LPARAM,
-    lpLink: ?PWSTR,
+    lpLink: ?[*:0]u16,
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -3743,13 +3743,13 @@ pub const IGroupPolicyObject = extern union {
         base: IUnknown.VTable,
         New: *const fn(
             self: *const IGroupPolicyObject,
-            pszDomainName: ?PWSTR,
-            pszDisplayName: ?PWSTR,
+            pszDomainName: ?[*:0]u16,
+            pszDisplayName: ?[*:0]u16,
             dwFlags: u32,
         ) callconv(.winapi) HRESULT,
         OpenDSGPO: *const fn(
             self: *const IGroupPolicyObject,
-            pszPath: ?PWSTR,
+            pszPath: ?[*:0]u16,
             dwFlags: u32,
         ) callconv(.winapi) HRESULT,
         OpenLocalMachineGPO: *const fn(
@@ -3758,7 +3758,7 @@ pub const IGroupPolicyObject = extern union {
         ) callconv(.winapi) HRESULT,
         OpenRemoteMachineGPO: *const fn(
             self: *const IGroupPolicyObject,
-            pszComputerName: ?PWSTR,
+            pszComputerName: ?[*:0]u16,
             dwFlags: u32,
         ) callconv(.winapi) HRESULT,
         Save: *const fn(
@@ -3783,7 +3783,7 @@ pub const IGroupPolicyObject = extern union {
         ) callconv(.winapi) HRESULT,
         SetDisplayName: *const fn(
             self: *const IGroupPolicyObject,
-            pszName: ?PWSTR,
+            pszName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetPath: *const fn(
             self: *const IGroupPolicyObject,
@@ -3833,16 +3833,16 @@ pub const IGroupPolicyObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn New(self: *const IGroupPolicyObject, pszDomainName: ?PWSTR, pszDisplayName: ?PWSTR, dwFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn New(self: *const IGroupPolicyObject, pszDomainName: ?[*:0]u16, pszDisplayName: ?[*:0]u16, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.New(self, pszDomainName, pszDisplayName, dwFlags);
     }
-    pub fn OpenDSGPO(self: *const IGroupPolicyObject, pszPath: ?PWSTR, dwFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn OpenDSGPO(self: *const IGroupPolicyObject, pszPath: ?[*:0]u16, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OpenDSGPO(self, pszPath, dwFlags);
     }
     pub fn OpenLocalMachineGPO(self: *const IGroupPolicyObject, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OpenLocalMachineGPO(self, dwFlags);
     }
-    pub fn OpenRemoteMachineGPO(self: *const IGroupPolicyObject, pszComputerName: ?PWSTR, dwFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn OpenRemoteMachineGPO(self: *const IGroupPolicyObject, pszComputerName: ?[*:0]u16, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OpenRemoteMachineGPO(self, pszComputerName, dwFlags);
     }
     pub fn Save(self: *const IGroupPolicyObject, bMachine: BOOL, bAdd: BOOL, pGuidExtension: ?*Guid, pGuid: ?*Guid) callconv(.@"inline") HRESULT {
@@ -3857,7 +3857,7 @@ pub const IGroupPolicyObject = extern union {
     pub fn GetDisplayName(self: *const IGroupPolicyObject, pszName: [*:0]u16, cchMaxLength: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayName(self, pszName, cchMaxLength);
     }
-    pub fn SetDisplayName(self: *const IGroupPolicyObject, pszName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetDisplayName(self: *const IGroupPolicyObject, pszName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetDisplayName(self, pszName);
     }
     pub fn GetPath(self: *const IGroupPolicyObject, pszPath: [*:0]u16, cchMaxLength: i32) callconv(.@"inline") HRESULT {
@@ -3896,11 +3896,11 @@ pub const INSTALLDATA = extern struct {
 
 pub const INSTALLSPEC = extern union {
     AppName: extern struct {
-        Name: ?PWSTR,
+        Name: ?[*:0]u16,
         GPOId: Guid,
     },
-    FileExt: ?PWSTR,
-    ProgId: ?PWSTR,
+    FileExt: ?[*:0]u16,
+    ProgId: ?[*:0]u16,
     COMClass: extern struct {
         Clsid: Guid,
         ClsCtx: u32,
@@ -3936,11 +3936,11 @@ pub const IRSOPInformation = extern union {
         ) callconv(.winapi) HRESULT,
         GetEventLogEntryText: *const fn(
             self: *const IRSOPInformation,
-            pszEventSource: ?PWSTR,
-            pszEventLogName: ?PWSTR,
-            pszEventTime: ?PWSTR,
+            pszEventSource: ?[*:0]u16,
+            pszEventLogName: ?[*:0]u16,
+            pszEventTime: ?[*:0]u16,
             dwEventID: u32,
-            ppszText: ?*?PWSTR,
+            ppszText: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -3951,33 +3951,33 @@ pub const IRSOPInformation = extern union {
     pub fn GetFlags(self: *const IRSOPInformation, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFlags(self, pdwFlags);
     }
-    pub fn GetEventLogEntryText(self: *const IRSOPInformation, pszEventSource: ?PWSTR, pszEventLogName: ?PWSTR, pszEventTime: ?PWSTR, dwEventID: u32, ppszText: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetEventLogEntryText(self: *const IRSOPInformation, pszEventSource: ?[*:0]u16, pszEventLogName: ?[*:0]u16, pszEventTime: ?[*:0]u16, dwEventID: u32, ppszText: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetEventLogEntryText(self, pszEventSource, pszEventLogName, pszEventTime, dwEventID, ppszText);
     }
 };
 
 pub const LOCALMANAGEDAPPLICATION = extern struct {
-    pszDeploymentName: ?PWSTR,
-    pszPolicyName: ?PWSTR,
-    pszProductId: ?PWSTR,
+    pszDeploymentName: ?[*:0]u16,
+    pszPolicyName: ?[*:0]u16,
+    pszProductId: ?[*:0]u16,
     dwState: u32,
 };
 
 pub const MANAGEDAPPLICATION = extern struct {
-    pszPackageName: ?PWSTR,
-    pszPublisher: ?PWSTR,
+    pszPackageName: ?[*:0]u16,
+    pszPublisher: ?[*:0]u16,
     dwVersionHi: u32,
     dwVersionLo: u32,
     dwRevision: u32,
     GpoId: Guid,
-    pszPolicyName: ?PWSTR,
+    pszPolicyName: ?[*:0]u16,
     ProductId: Guid,
     Language: u16,
-    pszOwner: ?PWSTR,
-    pszCompany: ?PWSTR,
-    pszComments: ?PWSTR,
-    pszContact: ?PWSTR,
-    pszSupportUrl: ?PWSTR,
+    pszOwner: ?[*:0]u16,
+    pszCompany: ?[*:0]u16,
+    pszComments: ?[*:0]u16,
+    pszContact: ?[*:0]u16,
+    pszSupportUrl: ?[*:0]u16,
     dwPathType: u32,
     bInstalled: BOOL,
 };
@@ -3985,7 +3985,7 @@ pub const MANAGEDAPPLICATION = extern struct {
 pub const PFNGENERATEGROUPPOLICY = *const fn(
     dwFlags: u32,
     pbAbort: ?*BOOL,
-    pwszSite: ?PWSTR,
+    pwszSite: ?[*:0]u16,
     pComputerTarget: ?*RSOP_TARGET,
     pUserTarget: ?*RSOP_TARGET,
 ) callconv(.winapi) u32;
@@ -4016,13 +4016,13 @@ pub const PFNPROCESSGROUPPOLICYEX = *const fn(
 
 pub const PFNSTATUSMESSAGECALLBACK = *const fn(
     bVerbose: BOOL,
-    lpMessage: ?PWSTR,
+    lpMessage: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub const POLICYSETTINGSTATUSINFO = extern struct {
-    szKey: ?PWSTR,
-    szEventSource: ?PWSTR,
-    szEventLogName: ?PWSTR,
+    szKey: ?[*:0]u16,
+    szEventSource: ?[*:0]u16,
+    szEventLogName: ?[*:0]u16,
     dwEventID: u32,
     dwErrorCode: u32,
     status: SETTINGSTATUS,
@@ -4030,8 +4030,8 @@ pub const POLICYSETTINGSTATUSINFO = extern struct {
 };
 
 pub const RSOP_TARGET = extern struct {
-    pwszAccountName: ?PWSTR,
-    pwszNewSOM: ?PWSTR,
+    pwszAccountName: ?[*:0]u16,
+    pwszNewSOM: ?[*:0]u16,
     psaSecurityGroups: ?*SAFEARRAY,
     pRsopToken: ?*anyopaque,
     pGPOList: ?*GROUP_POLICY_OBJECTA,
@@ -4061,27 +4061,27 @@ pub extern "gpedit" fn BrowseForGPO(
 ) callconv(.winapi) HRESULT;
 
 pub extern "advapi32" fn CommandLineFromMsiDescriptor(
-    Descriptor: ?PWSTR,
+    Descriptor: ?[*:0]u16,
     CommandLine: [*:0]u16,
     CommandLineLength: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "gpedit" fn CreateGPOLink(
-    lpGPO: ?PWSTR,
-    lpContainer: ?PWSTR,
+    lpGPO: ?[*:0]u16,
+    lpContainer: ?[*:0]u16,
     fHighPriority: BOOL,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "gpedit" fn DeleteAllGPOLinks(
-    lpContainer: ?PWSTR,
+    lpContainer: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "gpedit" fn DeleteGPOLink(
-    lpGPO: ?PWSTR,
-    lpContainer: ?PWSTR,
+    lpGPO: ?[*:0]u16,
+    lpContainer: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4091,8 +4091,8 @@ pub extern "userenv" fn EnterCriticalPolicySection(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "gpedit" fn ExportRSoPData(
-    lpNameSpace: ?PWSTR,
-    lpFileName: ?PWSTR,
+    lpNameSpace: ?[*:0]u16,
+    lpFileName: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4150,9 +4150,9 @@ pub extern "userenv" fn GetGPOListW(
 ) callconv(.winapi) BOOL;
 
 pub extern "advapi32" fn GetLocalManagedApplicationData(
-    ProductCode: ?PWSTR,
-    DisplayName: ?*?PWSTR,
-    SupportUrl: ?*?PWSTR,
+    ProductCode: ?[*:0]u16,
+    DisplayName: ?*?[*:0]u16,
+    SupportUrl: ?*?[*:0]u16,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4179,8 +4179,8 @@ pub extern "advapi32" fn GetManagedApplications(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "gpedit" fn ImportRSoPData(
-    lpNameSpace: ?PWSTR,
-    lpFileName: ?PWSTR,
+    lpNameSpace: ?[*:0]u16,
+    lpFileName: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4243,7 +4243,7 @@ pub extern "userenv" fn RsopAccessCheckByType(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "userenv" fn RsopFileAccessCheck(
-    pszFileName: ?PWSTR,
+    pszFileName: ?[*:0]u16,
     pRsopToken: ?*anyopaque,
     dwDesiredAccessMask: u32,
     pdwGrantedAccessMask: ?*u32,
@@ -4268,7 +4268,7 @@ pub extern "userenv" fn RsopSetPolicySettingStatus(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn UninstallApplication(
-    ProductCode: ?PWSTR,
+    ProductCode: ?[*:0]u16,
     dwStatus: u32,
 ) callconv(.winapi) u32;
 
@@ -4310,7 +4310,7 @@ pub const GetGPOList = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (27)
+// Section: Imports (25)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const APPCATEGORYINFOLIST = @import("../ui/shell.zig").APPCATEGORYINFOLIST;
@@ -4333,8 +4333,6 @@ const OBJECT_TYPE_LIST = @import("../security.zig").OBJECT_TYPE_LIST;
 const PRIVILEGE_SET = @import("../security.zig").PRIVILEGE_SET;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PSID = @import("../foundation.zig").PSID;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;

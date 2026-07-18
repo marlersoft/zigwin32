@@ -1915,7 +1915,7 @@ pub const IViewHelper = extern union {
 
 pub const LIGATURE = extern struct {
     culSize: u32,
-    pwsz: ?PWSTR,
+    pwsz: ?[*:0]u16,
     chglyph: u32,
     ahglyph: [1]u32,
 };
@@ -2361,7 +2361,7 @@ pub const PFN_DrvEnableDriver = *const fn(
 
 pub const PFN_DrvEnablePDEV = *const fn(
     param0: ?*DEVMODEW,
-    param1: ?PWSTR,
+    param1: ?[*:0]u16,
     param2: u32,
     param3: ?*?HSURF,
     param4: u32,
@@ -2369,7 +2369,7 @@ pub const PFN_DrvEnablePDEV = *const fn(
     param6: u32,
     param7: ?*DEVINFO,
     param8: ?HDEV,
-    param9: ?PWSTR,
+    param9: ?[*:0]u16,
     param10: ?HANDLE,
 ) callconv(.winapi) DHPDEV;
 
@@ -2627,7 +2627,7 @@ pub const PFN_DrvQueryPerBandInfo = *const fn(
 
 pub const PFN_DrvQuerySpoolType = *const fn(
     dhpdev: DHPDEV,
-    pwchType: ?PWSTR,
+    pwchType: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub const PFN_DrvQueryTrueTypeOutline = *const fn(
@@ -2731,7 +2731,7 @@ pub const PFN_DrvStartBanding = *const fn(
 
 pub const PFN_DrvStartDoc = *const fn(
     pso: ?*SURFOBJ,
-    pwszDocName: ?PWSTR,
+    pwszDocName: ?[*:0]u16,
     dwJobId: u32,
 ) callconv(.winapi) BOOL;
 
@@ -3057,7 +3057,7 @@ pub const STROBJ = extern struct {
     ulCharInc: u32,
     rclBkGround: RECTL,
     pgp: ?*GLYPHPOS,
-    pwszOrg: ?PWSTR,
+    pwszOrg: ?[*:0]u16,
 };
 
 pub const SURFOBJ = extern struct {
@@ -3971,12 +3971,12 @@ pub extern "gdi32" fn EngGetCurrentCodePage(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn EngGetDriverName(
     hdev: ?HDEV,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn EngGetPrinterDataFileName(
     hdev: ?HDEV,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn EngGradientFill(
@@ -4007,7 +4007,7 @@ pub extern "gdi32" fn EngLineTo(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn EngLoadModule(
-    pwsz: ?PWSTR,
+    pwsz: ?[*:0]u16,
 ) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4023,7 +4023,7 @@ pub extern "gdi32" fn EngMarkBandingSurface(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn EngMultiByteToUnicodeN(
     /// parameter "MaxBytesInUnicodeString" is the size in bytes
-    UnicodeString: ?PWSTR,
+    UnicodeString: ?[*:0]u16,
     MaxBytesInUnicodeString: u32,
     BytesInUnicodeString: ?*u32,
     /// parameter "BytesInMultiByteString" is the size in bytes
@@ -4035,10 +4035,10 @@ pub extern "gdi32" fn EngMultiByteToUnicodeN(
 pub extern "gdi32" fn EngMultiByteToWideChar(
     CodePage: u32,
     /// parameter "BytesInWideCharString" is the size in bytes
-    WideCharString: ?PWSTR,
+    WideCharString: ?[*:0]u16,
     BytesInWideCharString: i32,
     /// parameter "BytesInMultiByteString" is the size in bytes
-    MultiByteString: ?PSTR,
+    MultiByteString: ?[*:0]u8,
     BytesInMultiByteString: i32,
 ) callconv(.winapi) i32;
 
@@ -4172,7 +4172,7 @@ pub extern "gdi32" fn EngUnicodeToMultiByteN(
     MaxBytesInMultiByteString: u32,
     BytesInMultiByteString: ?*u32,
     /// parameter "BytesInUnicodeString" is the size in bytes
-    UnicodeString: ?PWSTR,
+    UnicodeString: ?[*:0]u16,
     BytesInUnicodeString: u32,
 ) callconv(.winapi) void;
 
@@ -4185,10 +4185,10 @@ pub extern "gdi32" fn EngUnlockSurface(
 pub extern "gdi32" fn EngWideCharToMultiByte(
     CodePage: u32,
     /// parameter "BytesInWideCharString" is the size in bytes
-    WideCharString: ?PWSTR,
+    WideCharString: ?[*:0]u16,
     BytesInWideCharString: i32,
     /// parameter "BytesInMultiByteString" is the size in bytes
-    MultiByteString: ?PSTR,
+    MultiByteString: ?[*:0]u8,
     BytesInMultiByteString: i32,
 ) callconv(.winapi) i32;
 
@@ -4596,7 +4596,7 @@ pub extern "gdi32" fn XLATEOBJ_piVector(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (46)
+// Section: Imports (44)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLENDFUNCTION = @import("../graphics/gdi.zig").BLENDFUNCTION;
@@ -4635,8 +4635,6 @@ const PALETTEENTRY = @import("../graphics/gdi.zig").PALETTEENTRY;
 const PANOSE = @import("../graphics/gdi.zig").PANOSE;
 const PIXELFORMATDESCRIPTOR = @import("../graphics/open_gl.zig").PIXELFORMATDESCRIPTOR;
 const POINTL = @import("../foundation.zig").POINTL;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const RECTL = @import("../foundation.zig").RECTL;
 const SIZE = @import("../foundation.zig").SIZE;

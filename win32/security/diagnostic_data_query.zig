@@ -16,25 +16,25 @@ pub const CurrentUserData = DdqAccessLevel.CurrentUserData;
 pub const AllUserData = DdqAccessLevel.AllUserData;
 
 pub const DIAGNOSTIC_DATA_EVENT_BINARY_STATS = extern struct {
-    moduleName: ?PWSTR,
-    friendlyModuleName: ?PWSTR,
+    moduleName: ?[*:0]u16,
+    friendlyModuleName: ?[*:0]u16,
     eventCount: u32,
     uploadSizeBytes: u64,
 };
 
 pub const DIAGNOSTIC_DATA_EVENT_CATEGORY_DESCRIPTION = extern struct {
     id: i32,
-    name: ?PWSTR,
+    name: ?[*:0]u16,
 };
 
 pub const DIAGNOSTIC_DATA_EVENT_PRODUCER_DESCRIPTION = extern struct {
-    name: ?PWSTR,
+    name: ?[*:0]u16,
 };
 
 pub const DIAGNOSTIC_DATA_EVENT_TAG_DESCRIPTION = extern struct {
     privacyTag: i32,
-    name: ?PWSTR,
-    description: ?PWSTR,
+    name: ?[*:0]u16,
+    description: ?[*:0]u16,
 };
 
 pub const DIAGNOSTIC_DATA_EVENT_TAG_STATS = extern struct {
@@ -60,21 +60,21 @@ pub const DIAGNOSTIC_DATA_RECORD = extern struct {
     rowId: i64,
     timestamp: u64,
     eventKeywords: u64,
-    fullEventName: ?PWSTR,
-    providerGroupGuid: ?PWSTR,
-    producerName: ?PWSTR,
+    fullEventName: ?[*:0]u16,
+    providerGroupGuid: ?[*:0]u16,
+    producerName: ?[*:0]u16,
     privacyTags: ?*i32,
     privacyTagCount: u32,
     categoryIds: ?*i32,
     categoryIdCount: u32,
     isCoreData: BOOL,
-    extra1: ?PWSTR,
-    extra2: ?PWSTR,
-    extra3: ?PWSTR,
+    extra1: ?[*:0]u16,
+    extra2: ?[*:0]u16,
+    extra3: ?[*:0]u16,
 };
 
 pub const DIAGNOSTIC_DATA_SEARCH_CRITERIA = extern struct {
-    producerNames: ?*?PWSTR,
+    producerNames: ?*?[*:0]u16,
     producerNameCount: u32,
     textToMatch: ?[*:0]const u16,
     categoryIds: ?*const i32,
@@ -90,18 +90,18 @@ pub const DIAGNOSTIC_REPORT_DATA = extern struct {
     reportId: Guid,
     creationTime: FILETIME,
     sizeInBytes: u64,
-    cabId: ?PWSTR,
+    cabId: ?[*:0]u16,
     reportStatus: u32,
     reportIntegratorId: Guid,
-    fileNames: ?*?PWSTR,
+    fileNames: ?*?[*:0]u16,
     fileCount: u32,
-    friendlyEventName: ?PWSTR,
-    applicationName: ?PWSTR,
-    applicationPath: ?PWSTR,
-    description: ?PWSTR,
-    bucketIdString: ?PWSTR,
+    friendlyEventName: ?[*:0]u16,
+    applicationName: ?[*:0]u16,
+    applicationPath: ?[*:0]u16,
+    description: ?[*:0]u16,
+    bucketIdString: ?[*:0]u16,
     legacyBucketId: u64,
-    reportKey: ?PWSTR,
+    reportKey: ?[*:0]u16,
 };
 
 pub const DIAGNOSTIC_REPORT_PARAMETER = extern struct {
@@ -182,7 +182,7 @@ pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordAtIndex(
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordBinaryDistribution(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
-    producerNames: [*]?PWSTR,
+    producerNames: [*]?[*:0]u16,
     producerNameCount: u32,
     topNBinaries: u32,
     binaryStats: [*]?*DIAGNOSTIC_DATA_EVENT_BINARY_STATS,
@@ -242,7 +242,7 @@ pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordPage(
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordPayload(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
     rowId: i64,
-    payload: ?*?PWSTR,
+    payload: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
@@ -291,7 +291,7 @@ pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordSummary(
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordTagDistribution(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
-    producerNames: [*]?PWSTR,
+    producerNames: [*]?[*:0]u16,
     producerNameCount: u32,
     tagStats: [*]?*DIAGNOSTIC_DATA_EVENT_TAG_STATS,
     statCount: ?*u32,
@@ -360,7 +360,7 @@ pub extern "diagnosticdataquery" fn DdqSetTranscriptConfiguration(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -372,7 +372,6 @@ const HDIAGNOSTIC_EVENT_TAG_DESCRIPTION = @import("../security.zig").HDIAGNOSTIC
 const HDIAGNOSTIC_RECORD = @import("../security.zig").HDIAGNOSTIC_RECORD;
 const HDIAGNOSTIC_REPORT = @import("../security.zig").HDIAGNOSTIC_REPORT;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

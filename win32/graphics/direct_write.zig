@@ -6893,7 +6893,7 @@ pub extern "dwrite" fn DWriteCreateFactory(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (19)
+// Section: Imports (18)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -6911,7 +6911,6 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const LOGFONTA = @import("../graphics/gdi.zig").LOGFONTA;
 const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
 const POINT = @import("../foundation.zig").POINT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const SIZE = @import("../foundation.zig").SIZE;
 

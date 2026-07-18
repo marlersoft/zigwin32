@@ -1720,7 +1720,7 @@ pub const DirectSoundEnumerate = switch (@import("../../zig.zig").unicode_mode) 
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -1729,8 +1729,6 @@ const HANDLE = @import("../../foundation.zig").HANDLE;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const HWND = @import("../../foundation.zig").HWND;
 const IUnknown = @import("../../system/com.zig").IUnknown;
-const PSTR = @import("../../foundation.zig").PSTR;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const WAVEFORMATEX = @import("../../media/audio.zig").WAVEFORMATEX;
 
 test {

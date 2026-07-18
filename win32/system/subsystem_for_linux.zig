@@ -60,7 +60,7 @@ pub extern "api-ms-win-wsl-api-l1-1-0" fn WslGetDistributionConfiguration(
     distributionVersion: ?*u32,
     defaultUID: ?*u32,
     wslDistributionFlags: ?*WSL_DISTRIBUTION_FLAGS,
-    defaultEnvironmentVariables: ?*?*?PSTR,
+    defaultEnvironmentVariables: ?*?*?[*:0]u8,
     defaultEnvironmentVariableCount: ?*u32,
 ) callconv(.winapi) HRESULT;
 
@@ -99,13 +99,11 @@ pub extern "api-ms-win-wsl-api-l1-1-0" fn WslUnregisterDistribution(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

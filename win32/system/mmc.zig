@@ -603,8 +603,8 @@ pub const ContextMenu = extern union {
 };
 
 pub const CONTEXTMENUITEM = extern struct {
-    strName: ?PWSTR,
-    strStatusBarText: ?PWSTR,
+    strName: ?[*:0]u16,
+    strStatusBarText: ?[*:0]u16,
     lCommandID: i32,
     lInsertionPointID: i32,
     fFlags: i32,
@@ -612,13 +612,13 @@ pub const CONTEXTMENUITEM = extern struct {
 };
 
 pub const CONTEXTMENUITEM2 = extern struct {
-    strName: ?PWSTR,
-    strStatusBarText: ?PWSTR,
+    strName: ?[*:0]u16,
+    strStatusBarText: ?[*:0]u16,
     lCommandID: i32,
     lInsertionPointID: i32,
     fFlags: i32,
     fSpecialFlags: i32,
-    strLanguageIndependentName: ?PWSTR,
+    strLanguageIndependentName: ?[*:0]u16,
 };
 
 pub const DATA_OBJECT_TYPES = enum(i32) {
@@ -1032,7 +1032,7 @@ pub const IComponent = extern union {
         GetResultViewType: *const fn(
             self: *const IComponent,
             cookie: isize,
-            ppViewType: ?*?PWSTR,
+            ppViewType: ?*?[*:0]u16,
             pViewOptions: ?*i32,
         ) callconv(.winapi) HRESULT,
         GetDisplayInfo: *const fn(
@@ -1059,7 +1059,7 @@ pub const IComponent = extern union {
     pub fn QueryDataObject(self: *const IComponent, cookie: isize, @"type": DATA_OBJECT_TYPES, ppDataObject: ?*?*IDataObject) callconv(.@"inline") HRESULT {
         return self.vtable.QueryDataObject(self, cookie, @"type", ppDataObject);
     }
-    pub fn GetResultViewType(self: *const IComponent, cookie: isize, ppViewType: ?*?PWSTR, pViewOptions: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn GetResultViewType(self: *const IComponent, cookie: isize, ppViewType: ?*?[*:0]u16, pViewOptions: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetResultViewType(self, cookie, ppViewType, pViewOptions);
     }
     pub fn GetDisplayInfo(self: *const IComponent, pResultDataItem: ?*RESULTDATAITEM) callconv(.@"inline") HRESULT {
@@ -1320,7 +1320,7 @@ pub const IConsole2 = extern union {
         ) callconv(.winapi) HRESULT,
         SetStatusText: *const fn(
             self: *const IConsole2,
-            pszStatusText: ?PWSTR,
+            pszStatusText: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1332,7 +1332,7 @@ pub const IConsole2 = extern union {
     pub fn IsTaskpadViewPreferred(self: *const IConsole2) callconv(.@"inline") HRESULT {
         return self.vtable.IsTaskpadViewPreferred(self);
     }
-    pub fn SetStatusText(self: *const IConsole2, pszStatusText: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetStatusText(self: *const IConsole2, pszStatusText: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetStatusText(self, pszStatusText);
     }
 };
@@ -1662,12 +1662,12 @@ pub const IDisplayHelp = extern union {
         base: IUnknown.VTable,
         ShowTopic: *const fn(
             self: *const IDisplayHelp,
-            pszHelpTopic: ?PWSTR,
+            pszHelpTopic: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ShowTopic(self: *const IDisplayHelp, pszHelpTopic: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn ShowTopic(self: *const IDisplayHelp, pszHelpTopic: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.ShowTopic(self, pszHelpTopic);
     }
 };
@@ -1832,27 +1832,27 @@ pub const IExtendTaskPad = extern union {
         EnumTasks: *const fn(
             self: *const IExtendTaskPad,
             pdo: ?*IDataObject,
-            szTaskGroup: ?PWSTR,
+            szTaskGroup: ?[*:0]u16,
             ppEnumTASK: ?*?*IEnumTASK,
         ) callconv(.winapi) HRESULT,
         GetTitle: *const fn(
             self: *const IExtendTaskPad,
-            pszGroup: ?PWSTR,
-            pszTitle: ?*?PWSTR,
+            pszGroup: ?[*:0]u16,
+            pszTitle: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetDescriptiveText: *const fn(
             self: *const IExtendTaskPad,
-            pszGroup: ?PWSTR,
-            pszDescriptiveText: ?*?PWSTR,
+            pszGroup: ?[*:0]u16,
+            pszDescriptiveText: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetBackground: *const fn(
             self: *const IExtendTaskPad,
-            pszGroup: ?PWSTR,
+            pszGroup: ?[*:0]u16,
             pTDO: ?*MMC_TASK_DISPLAY_OBJECT,
         ) callconv(.winapi) HRESULT,
         GetListPadInfo: *const fn(
             self: *const IExtendTaskPad,
-            pszGroup: ?PWSTR,
+            pszGroup: ?[*:0]u16,
             lpListPadInfo: ?*MMC_LISTPAD_INFO,
         ) callconv(.winapi) HRESULT,
     };
@@ -1861,19 +1861,19 @@ pub const IExtendTaskPad = extern union {
     pub fn TaskNotify(self: *const IExtendTaskPad, pdo: ?*IDataObject, arg: ?*VARIANT, param2: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.TaskNotify(self, pdo, arg, param2);
     }
-    pub fn EnumTasks(self: *const IExtendTaskPad, pdo: ?*IDataObject, szTaskGroup: ?PWSTR, ppEnumTASK: ?*?*IEnumTASK) callconv(.@"inline") HRESULT {
+    pub fn EnumTasks(self: *const IExtendTaskPad, pdo: ?*IDataObject, szTaskGroup: ?[*:0]u16, ppEnumTASK: ?*?*IEnumTASK) callconv(.@"inline") HRESULT {
         return self.vtable.EnumTasks(self, pdo, szTaskGroup, ppEnumTASK);
     }
-    pub fn GetTitle(self: *const IExtendTaskPad, pszGroup: ?PWSTR, pszTitle: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetTitle(self: *const IExtendTaskPad, pszGroup: ?[*:0]u16, pszTitle: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetTitle(self, pszGroup, pszTitle);
     }
-    pub fn GetDescriptiveText(self: *const IExtendTaskPad, pszGroup: ?PWSTR, pszDescriptiveText: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDescriptiveText(self: *const IExtendTaskPad, pszGroup: ?[*:0]u16, pszDescriptiveText: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDescriptiveText(self, pszGroup, pszDescriptiveText);
     }
-    pub fn GetBackground(self: *const IExtendTaskPad, pszGroup: ?PWSTR, pTDO: ?*MMC_TASK_DISPLAY_OBJECT) callconv(.@"inline") HRESULT {
+    pub fn GetBackground(self: *const IExtendTaskPad, pszGroup: ?[*:0]u16, pTDO: ?*MMC_TASK_DISPLAY_OBJECT) callconv(.@"inline") HRESULT {
         return self.vtable.GetBackground(self, pszGroup, pTDO);
     }
-    pub fn GetListPadInfo(self: *const IExtendTaskPad, pszGroup: ?PWSTR, lpListPadInfo: ?*MMC_LISTPAD_INFO) callconv(.@"inline") HRESULT {
+    pub fn GetListPadInfo(self: *const IExtendTaskPad, pszGroup: ?[*:0]u16, lpListPadInfo: ?*MMC_LISTPAD_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetListPadInfo(self, pszGroup, lpListPadInfo);
     }
 };
@@ -1922,7 +1922,7 @@ pub const IHeaderCtrl = extern union {
         GetColumnText: *const fn(
             self: *const IHeaderCtrl,
             nCol: i32,
-            pText: ?*?PWSTR,
+            pText: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetColumnWidth: *const fn(
             self: *const IHeaderCtrl,
@@ -1946,7 +1946,7 @@ pub const IHeaderCtrl = extern union {
     pub fn SetColumnText(self: *const IHeaderCtrl, nCol: i32, title: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetColumnText(self, nCol, title);
     }
-    pub fn GetColumnText(self: *const IHeaderCtrl, nCol: i32, pText: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetColumnText(self: *const IHeaderCtrl, nCol: i32, pText: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetColumnText(self, nCol, pText);
     }
     pub fn SetColumnWidth(self: *const IHeaderCtrl, nCol: i32, nWidth: i32) callconv(.@"inline") HRESULT {
@@ -2032,14 +2032,14 @@ pub const IMenuButton = extern union {
         AddButton: *const fn(
             self: *const IMenuButton,
             idCommand: i32,
-            lpButtonText: ?PWSTR,
-            lpTooltipText: ?PWSTR,
+            lpButtonText: ?[*:0]u16,
+            lpTooltipText: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetButton: *const fn(
             self: *const IMenuButton,
             idCommand: i32,
-            lpButtonText: ?PWSTR,
-            lpTooltipText: ?PWSTR,
+            lpButtonText: ?[*:0]u16,
+            lpTooltipText: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetButtonState: *const fn(
             self: *const IMenuButton,
@@ -2050,10 +2050,10 @@ pub const IMenuButton = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddButton(self: *const IMenuButton, idCommand: i32, lpButtonText: ?PWSTR, lpTooltipText: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn AddButton(self: *const IMenuButton, idCommand: i32, lpButtonText: ?[*:0]u16, lpTooltipText: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.AddButton(self, idCommand, lpButtonText, lpTooltipText);
     }
-    pub fn SetButton(self: *const IMenuButton, idCommand: i32, lpButtonText: ?PWSTR, lpTooltipText: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetButton(self: *const IMenuButton, idCommand: i32, lpButtonText: ?[*:0]u16, lpTooltipText: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetButton(self, idCommand, lpButtonText, lpTooltipText);
     }
     pub fn SetButtonState(self: *const IMenuButton, idCommand: i32, nState: MMC_BUTTON_STATE, bState: BOOL) callconv(.@"inline") HRESULT {
@@ -2316,7 +2316,7 @@ pub const IResultData = extern union {
         ) callconv(.winapi) HRESULT,
         SetDescBarText: *const fn(
             self: *const IResultData,
-            DescText: ?PWSTR,
+            DescText: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetItemCount: *const fn(
             self: *const IResultData,
@@ -2365,7 +2365,7 @@ pub const IResultData = extern union {
     pub fn Sort(self: *const IResultData, nColumn: i32, dwSortOptions: u32, lUserParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.Sort(self, nColumn, dwSortOptions, lUserParam);
     }
-    pub fn SetDescBarText(self: *const IResultData, DescText: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetDescBarText(self: *const IResultData, DescText: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetDescBarText(self, DescText);
     }
     pub fn SetItemCount(self: *const IResultData, nItemCount: i32, dwOptions: u32) callconv(.@"inline") HRESULT {
@@ -2476,15 +2476,15 @@ pub const ISnapinAbout = extern union {
         base: IUnknown.VTable,
         GetSnapinDescription: *const fn(
             self: *const ISnapinAbout,
-            lpDescription: ?*?PWSTR,
+            lpDescription: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetProvider: *const fn(
             self: *const ISnapinAbout,
-            lpName: ?*?PWSTR,
+            lpName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetSnapinVersion: *const fn(
             self: *const ISnapinAbout,
-            lpVersion: ?*?PWSTR,
+            lpVersion: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetSnapinImage: *const fn(
             self: *const ISnapinAbout,
@@ -2500,13 +2500,13 @@ pub const ISnapinAbout = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSnapinDescription(self: *const ISnapinAbout, lpDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSnapinDescription(self: *const ISnapinAbout, lpDescription: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSnapinDescription(self, lpDescription);
     }
-    pub fn GetProvider(self: *const ISnapinAbout, lpName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetProvider(self: *const ISnapinAbout, lpName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetProvider(self, lpName);
     }
-    pub fn GetSnapinVersion(self: *const ISnapinAbout, lpVersion: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSnapinVersion(self: *const ISnapinAbout, lpVersion: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSnapinVersion(self, lpVersion);
     }
     pub fn GetSnapinImage(self: *const ISnapinAbout, hAppIcon: ?*?HICON) callconv(.@"inline") HRESULT {
@@ -2525,12 +2525,12 @@ pub const ISnapinHelp = extern union {
         base: IUnknown.VTable,
         GetHelpTopic: *const fn(
             self: *const ISnapinHelp,
-            lpCompiledHelpFile: ?*?PWSTR,
+            lpCompiledHelpFile: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetHelpTopic(self: *const ISnapinHelp, lpCompiledHelpFile: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetHelpTopic(self: *const ISnapinHelp, lpCompiledHelpFile: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetHelpTopic(self, lpCompiledHelpFile);
     }
 };
@@ -2543,13 +2543,13 @@ pub const ISnapinHelp2 = extern union {
         base: ISnapinHelp.VTable,
         GetLinkedTopics: *const fn(
             self: *const ISnapinHelp2,
-            lpCompiledHelpFiles: ?*?PWSTR,
+            lpCompiledHelpFiles: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISnapinHelp: ISnapinHelp,
     IUnknown: IUnknown,
-    pub fn GetLinkedTopics(self: *const ISnapinHelp2, lpCompiledHelpFiles: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetLinkedTopics(self: *const ISnapinHelp2, lpCompiledHelpFiles: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetLinkedTopics(self, lpCompiledHelpFiles);
     }
 };
@@ -2923,14 +2923,14 @@ pub const MMC_INT_FILTER = MMC_FILTER_TYPE.INT_FILTER;
 pub const MMC_FILTER_NOVALUE = MMC_FILTER_TYPE.FILTER_NOVALUE;
 
 pub const MMC_FILTERDATA = extern struct {
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     cchTextMax: i32,
     lValue: i32,
 };
 
 pub const MMC_LISTPAD_INFO = extern struct {
-    szTitle: ?PWSTR,
-    szButtonText: ?PWSTR,
+    szTitle: ?[*:0]u16,
+    szButtonText: ?[*:0]u16,
     nCommandID: isize,
 };
 
@@ -3024,7 +3024,7 @@ pub const MMC_PROPACT_INITIALIZED = MMC_PROPERTY_ACTION.INITIALIZED;
 pub const MMC_RESTORE_VIEW = extern struct {
     dwSize: u32,
     cookie: isize,
-    pViewType: ?PWSTR,
+    pViewType: ?[*:0]u16,
     lViewOptions: i32,
 };
 
@@ -3068,19 +3068,19 @@ pub const MMC_SORT_SET_DATA = extern struct {
 
 pub const MMC_TASK = extern struct {
     sDisplayObject: MMC_TASK_DISPLAY_OBJECT,
-    szText: ?PWSTR,
-    szHelpString: ?PWSTR,
+    szText: ?[*:0]u16,
+    szHelpString: ?[*:0]u16,
     eActionType: MMC_ACTION_TYPE,
     Anonymous: extern union {
         nCommandID: isize,
-        szActionURL: ?PWSTR,
-        szScript: ?PWSTR,
+        szActionURL: ?[*:0]u16,
+        szScript: ?[*:0]u16,
     },
 };
 
 pub const MMC_TASK_DISPLAY_BITMAP = extern struct {
-    szMouseOverBitmap: ?PWSTR,
-    szMouseOffBitmap: ?PWSTR,
+    szMouseOverBitmap: ?[*:0]u16,
+    szMouseOffBitmap: ?[*:0]u16,
 };
 
 pub const MMC_TASK_DISPLAY_OBJECT = extern struct {
@@ -3092,9 +3092,9 @@ pub const MMC_TASK_DISPLAY_OBJECT = extern struct {
 };
 
 pub const MMC_TASK_DISPLAY_SYMBOL = extern struct {
-    szFontFamilyName: ?PWSTR,
-    szURLtoEOT: ?PWSTR,
-    szSymbolString: ?PWSTR,
+    szFontFamilyName: ?[*:0]u16,
+    szURLtoEOT: ?[*:0]u16,
+    szSymbolString: ?[*:0]u16,
 };
 
 pub const MMC_TASK_DISPLAY_TYPE = enum(i32) {
@@ -3129,8 +3129,8 @@ pub const MMCBUTTON = extern struct {
     idCommand: i32,
     fsState: u8,
     fsType: u8,
-    lpButtonText: ?PWSTR,
-    lpTooltipText: ?PWSTR,
+    lpButtonText: ?[*:0]u16,
+    lpTooltipText: ?[*:0]u16,
 };
 
 const CLSID_MMCVersionInfo_Value = Guid.initString("d6fedb1d-cf21-4bd9-af3b-c5468e9c6684");
@@ -3314,14 +3314,14 @@ pub const RDITEMHDR = extern struct {
 };
 
 pub const RESULT_VIEW_TYPE_INFO = extern struct {
-    pstrPersistableViewDescription: ?PWSTR,
+    pstrPersistableViewDescription: ?[*:0]u16,
     eViewType: MMC_VIEW_TYPE,
     dwMiscOptions: u32,
     Anonymous: extern union {
         dwListOptions: u32,
         Anonymous1: extern struct {
             dwHTMLOptions: u32,
-            pstrURL: ?PWSTR,
+            pstrURL: ?[*:0]u16,
         },
         Anonymous2: extern struct {
             dwOCXOptions: u32,
@@ -3336,7 +3336,7 @@ pub const RESULTDATAITEM = extern struct {
     itemID: isize,
     nIndex: i32,
     nCol: i32,
-    str: ?PWSTR,
+    str: ?[*:0]u16,
     nImage: i32,
     nState: u32,
     lParam: LPARAM,
@@ -3344,7 +3344,7 @@ pub const RESULTDATAITEM = extern struct {
 };
 
 pub const RESULTFINDINFO = extern struct {
-    psz: ?PWSTR,
+    psz: ?[*:0]u16,
     nStart: i32,
     dwOptions: u32,
 };
@@ -3357,7 +3357,7 @@ pub const SColumnSetID = extern struct {
 
 pub const SCOPEDATAITEM = extern struct {
     mask: u32,
-    displayname: ?PWSTR,
+    displayname: ?[*:0]u16,
     nImage: i32,
     nOpenImage: i32,
     nState: u32,
@@ -3931,7 +3931,7 @@ pub const Views = extern union {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (19)
+// Section: Imports (18)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -3949,7 +3949,6 @@ const IEnumString = @import("../system/com.zig").IEnumString;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LPARAM = @import("../foundation.zig").LPARAM;
 const LRESULT = @import("../foundation.zig").LRESULT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/com.zig").VARIANT;
 const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 

@@ -1664,7 +1664,7 @@ pub const CredFreeCredentialsFn = *const fn(
 ) callconv(.winapi) void;
 
 pub const CrediUnmarshalandDecodeStringFn = *const fn(
-    MarshaledString: ?PWSTR,
+    MarshaledString: ?[*:0]u16,
     Blob: ?*?*u8,
     BlobSize: ?*u32,
     IsFailureFatal: ?*u8,
@@ -1682,7 +1682,7 @@ pub const CredReadDomainCredentialsFn = *const fn(
 pub const CredReadFn = *const fn(
     LogonId: ?*LUID,
     CredFlags: u32,
-    TargetName: ?PWSTR,
+    TargetName: ?[*:0]u16,
     Type: u32,
     Flags: u32,
     Credential: ?*?*ENCRYPTED_CREDENTIALW,
@@ -1893,14 +1893,14 @@ pub const ICcgDomainAuthCredentials = extern union {
         GetPasswordCredentials: *const fn(
             self: *const ICcgDomainAuthCredentials,
             pluginInput: ?[*:0]const u16,
-            domainName: ?*?PWSTR,
-            username: ?*?PWSTR,
-            password: ?*?PWSTR,
+            domainName: ?*?[*:0]u16,
+            username: ?*?[*:0]u16,
+            password: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPasswordCredentials(self: *const ICcgDomainAuthCredentials, pluginInput: ?[*:0]const u16, domainName: ?*?PWSTR, username: ?*?PWSTR, password: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPasswordCredentials(self: *const ICcgDomainAuthCredentials, pluginInput: ?[*:0]const u16, domainName: ?*?[*:0]u16, username: ?*?[*:0]u16, password: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPasswordCredentials(self, pluginInput, domainName, username, password);
     }
 };
@@ -3587,7 +3587,7 @@ pub const NEGOTIATE_CALLER_NAME_REQUEST = extern struct {
 
 pub const NEGOTIATE_CALLER_NAME_RESPONSE = extern struct {
     MessageType: u32,
-    CallerName: ?PWSTR,
+    CallerName: ?[*:0]u16,
 };
 
 pub const NEGOTIATE_MESSAGES = enum(i32) {
@@ -4613,8 +4613,8 @@ pub const REVERT_SECURITY_CONTEXT_FN = *const fn(
 ) callconv(.winapi) HRESULT;
 
 pub const SAM_REGISTER_MAPPING_ELEMENT = extern struct {
-    Original: ?PSTR,
-    Mapped: ?PSTR,
+    Original: ?[*:0]u8,
+    Mapped: ?[*:0]u8,
     Continuable: BOOLEAN,
 };
 
@@ -4659,7 +4659,7 @@ pub const SCH_CRED_SECRET_PRIVKEY = extern struct {
     dwType: u32,
     pPrivateKey: ?*u8,
     cbPrivateKey: u32,
-    pszPassword: ?PSTR,
+    pszPassword: ?[*:0]u8,
 };
 
 pub const SCH_EXTENSION_DATA = extern struct {
@@ -5691,7 +5691,7 @@ pub const SecPkgContext_AuthorityW = extern struct {
 
 pub const SecPkgContext_AuthzID = extern struct {
     AuthzIDLength: u32,
-    AuthzID: ?PSTR,
+    AuthzID: ?[*:0]u8,
 };
 
 pub const SecPkgContext_Bindings = extern struct {
@@ -5713,9 +5713,9 @@ pub const SecPkgContext_CertificateValidationResult = extern struct {
 pub const SecPkgContext_CertInfo = extern struct {
     dwVersion: u32,
     cbSubjectName: u32,
-    pwszSubjectName: ?PWSTR,
+    pwszSubjectName: ?[*:0]u16,
     cbIssuerName: u32,
-    pwszIssuerName: ?PWSTR,
+    pwszIssuerName: ?[*:0]u16,
     dwKeySize: u32,
 };
 
@@ -5834,7 +5834,7 @@ pub const SecPkgContext_KeyingMaterial = extern struct {
 
 pub const SecPkgContext_KeyingMaterial_Inproc = extern struct {
     cbLabel: u16,
-    pszLabel: ?PSTR,
+    pszLabel: ?[*:0]u8,
     cbContextValue: u16,
     pbContextValue: ?*u8,
     cbKeyingMaterial: u32,
@@ -5843,7 +5843,7 @@ pub const SecPkgContext_KeyingMaterial_Inproc = extern struct {
 
 pub const SecPkgContext_KeyingMaterialInfo = extern struct {
     cbLabel: u16,
-    pszLabel: ?PSTR,
+    pszLabel: ?[*:0]u8,
     cbContextValue: u16,
     pbContextValue: ?*u8,
     cbKeyingMaterial: u32,
@@ -6010,7 +6010,7 @@ pub const SecPkgContext_SupportedSignatures = extern struct {
 
 pub const SecPkgContext_Target = extern struct {
     TargetLength: u32,
-    Target: ?PSTR,
+    Target: ?[*:0]u8,
 };
 
 pub const SecPkgContext_TargetInformation = extern struct {
@@ -6046,8 +6046,8 @@ pub const SecPkgCred_ClientCertPolicy = extern struct {
     fCheckRevocationFreshnessTime: BOOL,
     dwRevocationFreshnessTime: u32,
     fOmitUsageCheck: BOOL,
-    pwszSslCtlStoreName: ?PWSTR,
-    pwszSslCtlIdentifier: ?PWSTR,
+    pwszSslCtlStoreName: ?[*:0]u16,
+    pwszSslCtlIdentifier: ?[*:0]u16,
 };
 
 pub const SecPkgCred_SessionTicketKey = extern struct {
@@ -6096,13 +6096,13 @@ pub const SecPkgCredentials_NamesW = extern struct {
 pub const SecPkgCredentials_SSIProviderA = extern struct {
     sProviderName: ?*i8,
     ProviderInfoLength: u32,
-    ProviderInfo: ?PSTR,
+    ProviderInfo: ?[*:0]u8,
 };
 
 pub const SecPkgCredentials_SSIProviderW = extern struct {
     sProviderName: ?*u16,
     ProviderInfoLength: u32,
-    ProviderInfo: ?PSTR,
+    ProviderInfo: ?[*:0]u8,
 };
 
 pub const SecPkgInfoA = extern struct {
@@ -6747,16 +6747,16 @@ pub const SSL_CREDENTIAL_CERTIFICATE = extern struct {
     pPrivateKey: ?*u8,
     cbCertificate: u32,
     pCertificate: ?*u8,
-    pszPassword: ?PSTR,
+    pszPassword: ?[*:0]u8,
 };
 
 pub const SSL_EMPTY_CACHE_FN_A = *const fn(
-    pszTargetName: ?PSTR,
+    pszTargetName: ?[*:0]u8,
     dwFlags: u32,
 ) callconv(.winapi) BOOL;
 
 pub const SSL_EMPTY_CACHE_FN_W = *const fn(
-    pszTargetName: ?PWSTR,
+    pszTargetName: ?[*:0]u16,
     dwFlags: u32,
 ) callconv(.winapi) BOOL;
 
@@ -7023,8 +7023,8 @@ pub const X509Certificate = extern struct {
     SignatureAlgorithm: u32,
     ValidFrom: FILETIME,
     ValidUntil: FILETIME,
-    pszIssuer: ?PSTR,
-    pszSubject: ?PSTR,
+    pszIssuer: ?[*:0]u8,
+    pszSubject: ?[*:0]u8,
     pPublicKey: ?*PctPublicKey,
 };
 
@@ -7047,8 +7047,8 @@ pub extern "secur32" fn AcceptSecurityContext(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "secur32" fn AcquireCredentialsHandleA(
-    pszPrincipal: ?PSTR,
-    pszPackage: ?PSTR,
+    pszPrincipal: ?[*:0]u8,
+    pszPackage: ?[*:0]u8,
     fCredentialUse: SECPKG_CRED,
     pvLogonId: ?*anyopaque,
     pAuthData: ?*anyopaque,
@@ -7060,8 +7060,8 @@ pub extern "secur32" fn AcquireCredentialsHandleA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "secur32" fn AcquireCredentialsHandleW(
-    pszPrincipal: ?PWSTR,
-    pszPackage: ?PWSTR,
+    pszPrincipal: ?[*:0]u16,
+    pszPackage: ?[*:0]u16,
     fCredentialUse: SECPKG_CRED,
     pvLogonId: ?*anyopaque,
     pAuthData: ?*anyopaque,
@@ -7073,8 +7073,8 @@ pub extern "secur32" fn AcquireCredentialsHandleW(
 
 pub extern "secur32" fn AddCredentialsA(
     hCredentials: ?*SecHandle,
-    pszPrincipal: ?PSTR,
-    pszPackage: ?PSTR,
+    pszPrincipal: ?[*:0]u8,
+    pszPackage: ?[*:0]u8,
     fCredentialUse: u32,
     pAuthData: ?*anyopaque,
     pGetKeyFn: ?SEC_GET_KEY_FN,
@@ -7084,8 +7084,8 @@ pub extern "secur32" fn AddCredentialsA(
 
 pub extern "secur32" fn AddCredentialsW(
     hCredentials: ?*SecHandle,
-    pszPrincipal: ?PWSTR,
-    pszPackage: ?PWSTR,
+    pszPrincipal: ?[*:0]u16,
+    pszPackage: ?[*:0]u16,
     fCredentialUse: u32,
     pAuthData: ?*anyopaque,
     pGetKeyFn: ?SEC_GET_KEY_FN,
@@ -7095,13 +7095,13 @@ pub extern "secur32" fn AddCredentialsW(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn AddSecurityPackageA(
-    pszPackageName: ?PSTR,
+    pszPackageName: ?[*:0]u8,
     pOptions: ?*SECURITY_PACKAGE_OPTIONS,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn AddSecurityPackageW(
-    pszPackageName: ?PWSTR,
+    pszPackageName: ?[*:0]u16,
     pOptions: ?*SECURITY_PACKAGE_OPTIONS,
 ) callconv(.winapi) HRESULT;
 
@@ -7166,25 +7166,25 @@ pub extern "advapi32" fn AuditLookupCategoryIdFromCategoryGuid(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn AuditLookupCategoryNameA(
     pAuditCategoryGuid: ?*const Guid,
-    ppszCategoryName: ?*?PSTR,
+    ppszCategoryName: ?*?[*:0]u8,
 ) callconv(.winapi) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn AuditLookupCategoryNameW(
     pAuditCategoryGuid: ?*const Guid,
-    ppszCategoryName: ?*?PWSTR,
+    ppszCategoryName: ?*?[*:0]u16,
 ) callconv(.winapi) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn AuditLookupSubCategoryNameA(
     pAuditSubCategoryGuid: ?*const Guid,
-    ppszSubCategoryName: ?*?PSTR,
+    ppszSubCategoryName: ?*?[*:0]u8,
 ) callconv(.winapi) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn AuditLookupSubCategoryNameW(
     pAuditSubCategoryGuid: ?*const Guid,
-    ppszSubCategoryName: ?*?PWSTR,
+    ppszSubCategoryName: ?*?[*:0]u16,
 ) callconv(.winapi) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -7311,12 +7311,12 @@ pub extern "secur32" fn DeleteSecurityContext(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn DeleteSecurityPackageA(
-    pszPackageName: ?PSTR,
+    pszPackageName: ?[*:0]u8,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn DeleteSecurityPackageW(
-    pszPackageName: ?PWSTR,
+    pszPackageName: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7392,7 +7392,7 @@ pub extern "secur32" fn ImpersonateSecurityContext(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn ImportSecurityContextA(
-    pszPackage: ?PSTR,
+    pszPackage: ?[*:0]u8,
     pPackedContext: ?*SecBuffer,
     Token: ?*anyopaque,
     phContext: ?*SecHandle,
@@ -7400,7 +7400,7 @@ pub extern "secur32" fn ImportSecurityContextA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn ImportSecurityContextW(
-    pszPackage: ?PWSTR,
+    pszPackage: ?[*:0]u16,
     pPackedContext: ?*SecBuffer,
     Token: ?*anyopaque,
     phContext: ?*SecHandle,
@@ -7854,13 +7854,13 @@ pub extern "secur32" fn QuerySecurityContextToken(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn QuerySecurityPackageInfoA(
-    pszPackageName: ?PSTR,
+    pszPackageName: ?[*:0]u8,
     ppPackageInfo: ?*?*SecPkgInfoA,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn QuerySecurityPackageInfoW(
-    pszPackageName: ?PWSTR,
+    pszPackageName: ?[*:0]u16,
     ppPackageInfo: ?*?*SecPkgInfoW,
 ) callconv(.winapi) HRESULT;
 
@@ -7884,13 +7884,13 @@ pub extern "secur32" fn SaslAcceptSecurityContext(
 
 // TODO: this type is limited to platform 'windowsserver2003'
 pub extern "secur32" fn SaslEnumerateProfilesA(
-    ProfileList: ?*?PSTR,
+    ProfileList: ?*?[*:0]u8,
     ProfileCount: ?*u32,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsserver2003'
 pub extern "secur32" fn SaslEnumerateProfilesW(
-    ProfileList: ?*?PWSTR,
+    ProfileList: ?*?[*:0]u16,
     ProfileCount: ?*u32,
 ) callconv(.winapi) HRESULT;
 
@@ -7905,13 +7905,13 @@ pub extern "secur32" fn SaslGetContextOption(
 
 // TODO: this type is limited to platform 'windowsserver2003'
 pub extern "secur32" fn SaslGetProfilePackageA(
-    ProfileName: ?PSTR,
+    ProfileName: ?[*:0]u8,
     PackageInfo: ?*?*SecPkgInfoA,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsserver2003'
 pub extern "secur32" fn SaslGetProfilePackageW(
-    ProfileName: ?PWSTR,
+    ProfileName: ?[*:0]u16,
     PackageInfo: ?*?*SecPkgInfoW,
 ) callconv(.winapi) HRESULT;
 
@@ -7931,7 +7931,7 @@ pub extern "secur32" fn SaslIdentifyPackageW(
 pub extern "secur32" fn SaslInitializeSecurityContextA(
     phCredential: ?*SecHandle,
     phContext: ?*SecHandle,
-    pszTargetName: ?PSTR,
+    pszTargetName: ?[*:0]u8,
     fContextReq: ISC_REQ_FLAGS,
     Reserved1: u32,
     TargetDataRep: u32,
@@ -7947,7 +7947,7 @@ pub extern "secur32" fn SaslInitializeSecurityContextA(
 pub extern "secur32" fn SaslInitializeSecurityContextW(
     phCredential: ?*SecHandle,
     phContext: ?*SecHandle,
-    pszTargetName: ?PWSTR,
+    pszTargetName: ?[*:0]u16,
     fContextReq: ISC_REQ_FLAGS,
     Reserved1: u32,
     TargetDataRep: u32,
@@ -8070,7 +8070,7 @@ pub extern "slc" fn SLFireEvent(
 pub extern "slc" fn SLGenerateOfflineInstallationId(
     hSLC: ?*anyopaque,
     pProductSkuId: ?*const Guid,
-    ppwszInstallationId: ?*?PWSTR,
+    ppwszInstallationId: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -8078,7 +8078,7 @@ pub extern "slc" fn SLGenerateOfflineInstallationIdEx(
     hSLC: ?*anyopaque,
     pProductSkuId: ?*const Guid,
     pActivationInfo: ?*const SL_ACTIVATION_INFO_HEADER,
-    ppwszInstallationId: ?*?PWSTR,
+    ppwszInstallationId: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -8198,7 +8198,7 @@ pub extern "slcext" fn SLGetReferralInformation(
     eReferralType: SLREFERRALTYPE,
     pSkuOrAppId: ?*const Guid,
     pwszValueName: ?[*:0]const u16,
-    ppwszValue: ?*?PWSTR,
+    ppwszValue: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -8340,13 +8340,13 @@ pub extern "schannel" fn SslCrackCertificate(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "schannel" fn SslEmptyCacheA(
-    pszTargetName: ?PSTR,
+    pszTargetName: ?[*:0]u8,
     dwFlags: u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "schannel" fn SslEmptyCacheW(
-    pszTargetName: ?PWSTR,
+    pszTargetName: ?[*:0]u16,
     dwFlags: u32,
 ) callconv(.winapi) BOOL;
 
@@ -8411,9 +8411,9 @@ pub extern "sspicli" fn SspiDecryptAuthIdentityEx(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn SspiEncodeAuthIdentityAsStrings(
     pAuthIdentity: ?*anyopaque,
-    ppszUserName: ?*?PWSTR,
-    ppszDomainName: ?*?PWSTR,
-    ppszPackedCredentialsString: ?*?PWSTR,
+    ppszUserName: ?*?[*:0]u16,
+    ppszDomainName: ?*?[*:0]u16,
+    ppszPackedCredentialsString: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -8450,7 +8450,7 @@ pub extern "secur32" fn SspiFreeAuthIdentity(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn SspiGetTargetHostName(
     pszTargetName: ?[*:0]const u16,
-    pszHostName: ?*?PWSTR,
+    pszHostName: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -8480,7 +8480,7 @@ pub extern "secur32" fn SspiPrepareForCredRead(
     AuthIdentity: ?*anyopaque,
     pszTargetName: ?[*:0]const u16,
     pCredmanCredentialType: ?*u32,
-    ppszCredmanTargetName: ?*?PWSTR,
+    ppszCredmanTargetName: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -8488,8 +8488,8 @@ pub extern "secur32" fn SspiPrepareForCredWrite(
     AuthIdentity: ?*anyopaque,
     pszTargetName: ?[*:0]const u16,
     pCredmanCredentialType: ?*u32,
-    ppszCredmanTargetName: ?*?PWSTR,
-    ppszCredmanUserName: ?*?PWSTR,
+    ppszCredmanTargetName: ?*?[*:0]u16,
+    ppszCredmanUserName: ?*?[*:0]u16,
     ppCredentialBlob: ?*?*u8,
     pCredentialBlobSize: ?*u32,
 ) callconv(.winapi) HRESULT;
@@ -8522,7 +8522,7 @@ pub extern "credui" fn SspiPromptForCredentialsW(
 pub extern "secur32" fn SspiUnmarshalAuthIdentity(
     AuthIdentityLength: u32,
     /// parameter "AuthIdentityLength" is the size in bytes
-    AuthIdentityByteArray: ?PSTR,
+    AuthIdentityByteArray: ?[*:0]u8,
     ppAuthIdentity: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
@@ -9061,7 +9061,7 @@ pub const TranslateName = switch (@import("../../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (45)
+// Section: Imports (43)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const ACL = @import("../../security.zig").ACL;
@@ -9088,8 +9088,6 @@ const NTSTATUS = @import("../../foundation.zig").NTSTATUS;
 const OBJECT_ATTRIBUTES = @import("../../system/windows_programming.zig").OBJECT_ATTRIBUTES;
 const PSECURITY_DESCRIPTOR = @import("../../security.zig").PSECURITY_DESCRIPTOR;
 const PSID = @import("../../foundation.zig").PSID;
-const PSTR = @import("../../foundation.zig").PSTR;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const QUOTA_LIMITS = @import("../../security.zig").QUOTA_LIMITS;
 const SEC_WINNT_AUTH_IDENTITY_A = @import("../../system/rpc.zig").SEC_WINNT_AUTH_IDENTITY_A;
 const SEC_WINNT_AUTH_IDENTITY_W = @import("../../system/rpc.zig").SEC_WINNT_AUTH_IDENTITY_W;

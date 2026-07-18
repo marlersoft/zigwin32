@@ -198,7 +198,7 @@ pub const IContactAggregationAggregate = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AntiLink: *const fn(
             self: *const IContactAggregationAggregate,
-            ppAntiLink: ?*?PWSTR,
+            ppAntiLink: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AntiLink: *const fn(
@@ -218,7 +218,7 @@ pub const IContactAggregationAggregate = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IContactAggregationAggregate,
-            ppItemId: ?*?PWSTR,
+            ppItemId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -235,7 +235,7 @@ pub const IContactAggregationAggregate = extern union {
     pub fn get_Groups(self: *const IContactAggregationAggregate, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppGroups: ?*?*IContactAggregationGroupCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_Groups(self, options, ppGroups);
     }
-    pub fn get_AntiLink(self: *const IContactAggregationAggregate, ppAntiLink: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_AntiLink(self: *const IContactAggregationAggregate, ppAntiLink: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AntiLink(self, ppAntiLink);
     }
     pub fn put_AntiLink(self: *const IContactAggregationAggregate, pAntiLink: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -247,7 +247,7 @@ pub const IContactAggregationAggregate = extern union {
     pub fn put_FavoriteOrder(self: *const IContactAggregationAggregate, favoriteOrder: u32) callconv(.@"inline") HRESULT {
         return self.vtable.put_FavoriteOrder(self, favoriteOrder);
     }
-    pub fn get_Id(self: *const IContactAggregationAggregate, ppItemId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Id(self: *const IContactAggregationAggregate, ppItemId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Id(self, ppItemId);
     }
 };
@@ -313,7 +313,7 @@ pub const IContactAggregationContact = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AccountId: *const fn(
             self: *const IContactAggregationContact,
-            ppAccountId: ?*?PWSTR,
+            ppAccountId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AccountId: *const fn(
@@ -323,12 +323,12 @@ pub const IContactAggregationContact = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AggregateId: *const fn(
             self: *const IContactAggregationContact,
-            ppAggregateId: ?*?PWSTR,
+            ppAggregateId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IContactAggregationContact,
-            ppItemId: ?*?PWSTR,
+            ppItemId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsMe: *const fn(
@@ -353,7 +353,7 @@ pub const IContactAggregationContact = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetworkSourceIdString: *const fn(
             self: *const IContactAggregationContact,
-            ppNetworkSourceId: ?*?PWSTR,
+            ppNetworkSourceId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NetworkSourceIdString: *const fn(
@@ -395,16 +395,16 @@ pub const IContactAggregationContact = extern union {
     pub fn Unlink(self: *const IContactAggregationContact) callconv(.@"inline") HRESULT {
         return self.vtable.Unlink(self);
     }
-    pub fn get_AccountId(self: *const IContactAggregationContact, ppAccountId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_AccountId(self: *const IContactAggregationContact, ppAccountId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AccountId(self, ppAccountId);
     }
     pub fn put_AccountId(self: *const IContactAggregationContact, pAccountId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_AccountId(self, pAccountId);
     }
-    pub fn get_AggregateId(self: *const IContactAggregationContact, ppAggregateId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_AggregateId(self: *const IContactAggregationContact, ppAggregateId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AggregateId(self, ppAggregateId);
     }
-    pub fn get_Id(self: *const IContactAggregationContact, ppItemId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Id(self: *const IContactAggregationContact, ppItemId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Id(self, ppItemId);
     }
     pub fn get_IsMe(self: *const IContactAggregationContact, pIsMe: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -419,7 +419,7 @@ pub const IContactAggregationContact = extern union {
     pub fn put_NetworkSourceId(self: *const IContactAggregationContact, networkSourceId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.put_NetworkSourceId(self, networkSourceId);
     }
-    pub fn get_NetworkSourceIdString(self: *const IContactAggregationContact, ppNetworkSourceId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_NetworkSourceIdString(self: *const IContactAggregationContact, ppNetworkSourceId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_NetworkSourceIdString(self, ppNetworkSourceId);
     }
     pub fn put_NetworkSourceIdString(self: *const IContactAggregationContact, pNetworkSourceId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -528,12 +528,12 @@ pub const IContactAggregationGroup = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IContactAggregationGroup,
-            ppItemId: ?*?PWSTR,
+            ppItemId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const IContactAggregationGroup,
-            ppName: ?*?PWSTR,
+            ppName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
@@ -564,10 +564,10 @@ pub const IContactAggregationGroup = extern union {
     pub fn put_GlobalObjectId(self: *const IContactAggregationGroup, pGlobalObjectId: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.put_GlobalObjectId(self, pGlobalObjectId);
     }
-    pub fn get_Id(self: *const IContactAggregationGroup, ppItemId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Id(self: *const IContactAggregationGroup, ppItemId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Id(self, ppItemId);
     }
-    pub fn get_Name(self: *const IContactAggregationGroup, ppName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Name(self: *const IContactAggregationGroup, ppName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, ppName);
     }
     pub fn put_Name(self: *const IContactAggregationGroup, pName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -629,7 +629,7 @@ pub const IContactAggregationLink = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AccountId: *const fn(
             self: *const IContactAggregationLink,
-            ppAccountId: ?*?PWSTR,
+            ppAccountId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AccountId: *const fn(
@@ -639,7 +639,7 @@ pub const IContactAggregationLink = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IContactAggregationLink,
-            ppItemId: ?*?PWSTR,
+            ppItemId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsLinkResolved: *const fn(
@@ -654,7 +654,7 @@ pub const IContactAggregationLink = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetworkSourceIdString: *const fn(
             self: *const IContactAggregationLink,
-            ppNetworkSourceId: ?*?PWSTR,
+            ppNetworkSourceId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NetworkSourceIdString: *const fn(
@@ -674,7 +674,7 @@ pub const IContactAggregationLink = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServerPerson: *const fn(
             self: *const IContactAggregationLink,
-            ppServerPersonId: ?*?PWSTR,
+            ppServerPersonId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ServerPerson: *const fn(
@@ -684,7 +684,7 @@ pub const IContactAggregationLink = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServerPersonBaseline: *const fn(
             self: *const IContactAggregationLink,
-            ppServerPersonId: ?*?PWSTR,
+            ppServerPersonId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ServerPersonBaseline: *const fn(
@@ -710,13 +710,13 @@ pub const IContactAggregationLink = extern union {
     pub fn Save(self: *const IContactAggregationLink) callconv(.@"inline") HRESULT {
         return self.vtable.Save(self);
     }
-    pub fn get_AccountId(self: *const IContactAggregationLink, ppAccountId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_AccountId(self: *const IContactAggregationLink, ppAccountId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AccountId(self, ppAccountId);
     }
     pub fn put_AccountId(self: *const IContactAggregationLink, pAccountId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_AccountId(self, pAccountId);
     }
-    pub fn get_Id(self: *const IContactAggregationLink, ppItemId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Id(self: *const IContactAggregationLink, ppItemId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Id(self, ppItemId);
     }
     pub fn get_IsLinkResolved(self: *const IContactAggregationLink, pIsLinkResolved: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -725,7 +725,7 @@ pub const IContactAggregationLink = extern union {
     pub fn put_IsLinkResolved(self: *const IContactAggregationLink, isLinkResolved: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_IsLinkResolved(self, isLinkResolved);
     }
-    pub fn get_NetworkSourceIdString(self: *const IContactAggregationLink, ppNetworkSourceId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_NetworkSourceIdString(self: *const IContactAggregationLink, ppNetworkSourceId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_NetworkSourceIdString(self, ppNetworkSourceId);
     }
     pub fn put_NetworkSourceIdString(self: *const IContactAggregationLink, pNetworkSourceId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -737,13 +737,13 @@ pub const IContactAggregationLink = extern union {
     pub fn put_RemoteObjectId(self: *const IContactAggregationLink, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB) callconv(.@"inline") HRESULT {
         return self.vtable.put_RemoteObjectId(self, pRemoteObjectId);
     }
-    pub fn get_ServerPerson(self: *const IContactAggregationLink, ppServerPersonId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_ServerPerson(self: *const IContactAggregationLink, ppServerPersonId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_ServerPerson(self, ppServerPersonId);
     }
     pub fn put_ServerPerson(self: *const IContactAggregationLink, pServerPersonId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_ServerPerson(self, pServerPersonId);
     }
-    pub fn get_ServerPersonBaseline(self: *const IContactAggregationLink, ppServerPersonId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_ServerPersonBaseline(self: *const IContactAggregationLink, ppServerPersonId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_ServerPersonBaseline(self, ppServerPersonId);
     }
     pub fn put_ServerPersonBaseline(self: *const IContactAggregationLink, pServerPersonId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -940,7 +940,7 @@ pub const IContactAggregationServerPerson = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AggregateId: *const fn(
             self: *const IContactAggregationServerPerson,
-            ppAggregateId: ?*?PWSTR,
+            ppAggregateId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AggregateId: *const fn(
@@ -950,7 +950,7 @@ pub const IContactAggregationServerPerson = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AntiLink: *const fn(
             self: *const IContactAggregationServerPerson,
-            ppAntiLink: ?*?PWSTR,
+            ppAntiLink: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AntiLink: *const fn(
@@ -960,7 +960,7 @@ pub const IContactAggregationServerPerson = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AntiLinkBaseline: *const fn(
             self: *const IContactAggregationServerPerson,
-            ppAntiLink: ?*?PWSTR,
+            ppAntiLink: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AntiLinkBaseline: *const fn(
@@ -1010,7 +1010,7 @@ pub const IContactAggregationServerPerson = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IContactAggregationServerPerson,
-            ppId: ?*?PWSTR,
+            ppId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsTombstone: *const fn(
@@ -1025,7 +1025,7 @@ pub const IContactAggregationServerPerson = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LinkedAggregateId: *const fn(
             self: *const IContactAggregationServerPerson,
-            ppLinkedAggregateId: ?*?PWSTR,
+            ppLinkedAggregateId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LinkedAggregateId: *const fn(
@@ -1035,7 +1035,7 @@ pub const IContactAggregationServerPerson = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ObjectId: *const fn(
             self: *const IContactAggregationServerPerson,
-            ppObjectId: ?*?PWSTR,
+            ppObjectId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ObjectId: *const fn(
@@ -1051,19 +1051,19 @@ pub const IContactAggregationServerPerson = extern union {
     pub fn Save(self: *const IContactAggregationServerPerson) callconv(.@"inline") HRESULT {
         return self.vtable.Save(self);
     }
-    pub fn get_AggregateId(self: *const IContactAggregationServerPerson, ppAggregateId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_AggregateId(self: *const IContactAggregationServerPerson, ppAggregateId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AggregateId(self, ppAggregateId);
     }
     pub fn put_AggregateId(self: *const IContactAggregationServerPerson, pAggregateId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_AggregateId(self, pAggregateId);
     }
-    pub fn get_AntiLink(self: *const IContactAggregationServerPerson, ppAntiLink: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_AntiLink(self: *const IContactAggregationServerPerson, ppAntiLink: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AntiLink(self, ppAntiLink);
     }
     pub fn put_AntiLink(self: *const IContactAggregationServerPerson, pAntiLink: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_AntiLink(self, pAntiLink);
     }
-    pub fn get_AntiLinkBaseline(self: *const IContactAggregationServerPerson, ppAntiLink: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_AntiLinkBaseline(self: *const IContactAggregationServerPerson, ppAntiLink: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AntiLinkBaseline(self, ppAntiLink);
     }
     pub fn put_AntiLinkBaseline(self: *const IContactAggregationServerPerson, pAntiLink: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -1093,7 +1093,7 @@ pub const IContactAggregationServerPerson = extern union {
     pub fn put_GroupsBaseline(self: *const IContactAggregationServerPerson, pGroups: ?*const CONTACT_AGGREGATION_BLOB) callconv(.@"inline") HRESULT {
         return self.vtable.put_GroupsBaseline(self, pGroups);
     }
-    pub fn get_Id(self: *const IContactAggregationServerPerson, ppId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_Id(self: *const IContactAggregationServerPerson, ppId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Id(self, ppId);
     }
     pub fn get_IsTombstone(self: *const IContactAggregationServerPerson, pIsTombstone: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -1102,13 +1102,13 @@ pub const IContactAggregationServerPerson = extern union {
     pub fn put_IsTombstone(self: *const IContactAggregationServerPerson, isTombstone: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_IsTombstone(self, isTombstone);
     }
-    pub fn get_LinkedAggregateId(self: *const IContactAggregationServerPerson, ppLinkedAggregateId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_LinkedAggregateId(self: *const IContactAggregationServerPerson, ppLinkedAggregateId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_LinkedAggregateId(self, ppLinkedAggregateId);
     }
     pub fn put_LinkedAggregateId(self: *const IContactAggregationServerPerson, pLinkedAggregateId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.put_LinkedAggregateId(self, pLinkedAggregateId);
     }
-    pub fn get_ObjectId(self: *const IContactAggregationServerPerson, ppObjectId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_ObjectId(self: *const IContactAggregationServerPerson, ppObjectId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_ObjectId(self, ppObjectId);
     }
     pub fn put_ObjectId(self: *const IContactAggregationServerPerson, pObjectId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -1319,7 +1319,7 @@ pub const IContactProperties = extern union {
             pszArrayElementName: ?[*:0]const u16,
             dwFlags: u32,
             dwLabelCount: u32,
-            ppszLabels: [*]?PWSTR,
+            ppszLabels: [*]?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         CreateArrayNode: *const fn(
             self: *const IContactProperties,
@@ -1351,7 +1351,7 @@ pub const IContactProperties = extern union {
             dwFlags: u32,
             pszMultiValueName: ?[*:0]const u16,
             dwLabelCount: u32,
-            ppszLabels: [*]?PWSTR,
+            ppszLabels: [*]?[*:0]u16,
             fAnyLabelMatches: BOOL,
         ) callconv(.winapi) HRESULT,
     };
@@ -1378,7 +1378,7 @@ pub const IContactProperties = extern union {
     pub fn SetBinary(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszContentType: ?[*:0]const u16, pStream: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.SetBinary(self, pszPropertyName, dwFlags, pszContentType, pStream);
     }
-    pub fn SetLabels(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32, dwLabelCount: u32, ppszLabels: [*]?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetLabels(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32, dwLabelCount: u32, ppszLabels: [*]?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetLabels(self, pszArrayElementName, dwFlags, dwLabelCount, ppszLabels);
     }
     pub fn CreateArrayNode(self: *const IContactProperties, pszArrayName: ?[*:0]const u16, dwFlags: u32, fAppend: BOOL, pszNewArrayElementName: [*:0]u16, cchNewArrayElementName: u32, pdwcchNewArrayElementNameRequired: ?*u32) callconv(.@"inline") HRESULT {
@@ -1393,7 +1393,7 @@ pub const IContactProperties = extern union {
     pub fn DeleteLabels(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteLabels(self, pszArrayElementName, dwFlags);
     }
-    pub fn GetPropertyCollection(self: *const IContactProperties, ppPropertyCollection: ?*?*IContactPropertyCollection, dwFlags: u32, pszMultiValueName: ?[*:0]const u16, dwLabelCount: u32, ppszLabels: [*]?PWSTR, fAnyLabelMatches: BOOL) callconv(.@"inline") HRESULT {
+    pub fn GetPropertyCollection(self: *const IContactProperties, ppPropertyCollection: ?*?*IContactPropertyCollection, dwFlags: u32, pszMultiValueName: ?[*:0]const u16, dwLabelCount: u32, ppszLabels: [*]?[*:0]u16, fAnyLabelMatches: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyCollection(self, ppPropertyCollection, dwFlags, pszMultiValueName, dwLabelCount, ppszLabels, fAnyLabelMatches);
     }
 };
@@ -1469,7 +1469,7 @@ pub const IContactPropertyCollection = extern union {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -1477,7 +1477,6 @@ const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

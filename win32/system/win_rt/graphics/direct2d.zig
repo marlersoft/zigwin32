@@ -121,14 +121,13 @@ pub const IGraphicsEffectD2D1Interop = extern union {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../../zig.zig").Guid;
 const HRESULT = @import("../../../foundation.zig").HRESULT;
 const ID2D1Factory = @import("../../../graphics/direct2d.zig").ID2D1Factory;
 const ID2D1Geometry = @import("../../../graphics/direct2d.zig").ID2D1Geometry;
 const IUnknown = @import("../../../system/com.zig").IUnknown;
-const PWSTR = @import("../../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

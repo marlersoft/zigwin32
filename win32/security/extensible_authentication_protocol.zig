@@ -492,8 +492,8 @@ pub const EAP_CONFIG_INPUT_FIELD_DATA = extern struct {
     dwSize: u32,
     Type: EAP_CONFIG_INPUT_FIELD_TYPE,
     dwFlagProps: u32,
-    pwszLabel: ?PWSTR,
-    pwszData: ?PWSTR,
+    pwszLabel: ?[*:0]u16,
+    pwszData: ?[*:0]u16,
     dwMinDataLength: u32,
     dwMaxDataLength: u32,
 };
@@ -531,8 +531,8 @@ pub const EAP_ERROR = extern struct {
     rootCauseGuid: Guid,
     repairGuid: Guid,
     helpLinkGuid: Guid,
-    pRootCauseString: ?PWSTR,
-    pRepairString: ?PWSTR,
+    pRootCauseString: ?[*:0]u16,
+    pRepairString: ?[*:0]u16,
 };
 
 pub const EAP_INTERACTIVE_UI_DATA = extern struct {
@@ -581,8 +581,8 @@ pub const EAP_METHOD_AUTHENTICATOR_RESULT = extern struct {
 
 pub const EAP_METHOD_INFO = extern struct {
     eaptype: EAP_METHOD_TYPE,
-    pwszAuthorName: ?PWSTR,
-    pwszFriendlyName: ?PWSTR,
+    pwszAuthorName: ?[*:0]u16,
+    pwszFriendlyName: ?[*:0]u16,
     eapProperties: u32,
     pInnerMethodInfo: ?*EAP_METHOD_INFO,
 };
@@ -599,8 +599,8 @@ pub const EAP_METHOD_INFO_ARRAY_EX = extern struct {
 
 pub const EAP_METHOD_INFO_EX = extern struct {
     eaptype: EAP_METHOD_TYPE,
-    pwszAuthorName: ?PWSTR,
-    pwszFriendlyName: ?PWSTR,
+    pwszAuthorName: ?[*:0]u16,
+    pwszFriendlyName: ?[*:0]u16,
     eapProperties: u32,
     pInnerMethodInfoArray: ?*EAP_METHOD_INFO_ARRAY_EX,
 };
@@ -748,7 +748,7 @@ pub const EAP_UI_DATA_FORMAT = extern union {
 
 pub const EapCertificateCredential = extern struct {
     certHash: [20]u8,
-    password: ?PWSTR,
+    password: ?[*:0]u16,
 };
 
 pub const EapCode = enum(i32) {
@@ -822,7 +822,7 @@ pub const EAPHOST_IDENTITY_UI_PARAMS = extern struct {
     pUserData: ?*u8,
     dwSizeofUserDataOut: u32,
     pUserDataOut: ?*u8,
-    pwszIdentity: ?PWSTR,
+    pwszIdentity: ?[*:0]u16,
     dwError: u32,
     pEapError: ?*EAP_ERROR,
 };
@@ -940,12 +940,12 @@ pub const EapPeerMethodResultSuccess = EapPeerMethodResultReason.Success;
 pub const EapPeerMethodResultFailure = EapPeerMethodResultReason.Failure;
 
 pub const EapSimCredential = extern struct {
-    iccID: ?PWSTR,
+    iccID: ?[*:0]u16,
 };
 
 pub const EapUsernamePasswordCredential = extern struct {
-    username: ?PWSTR,
-    password: ?PWSTR,
+    username: ?[*:0]u16,
+    password: ?[*:0]u16,
 };
 
 const IID_IAccountingProviderConfig_Value = Guid.initString("66a2db18-d706-11d0-a37b-00c04fc9da04");
@@ -1240,7 +1240,7 @@ pub const LEGACY_IDENTITY_UI_PARAMS = extern struct {
     pUserData: ?*u8,
     dwSizeofUserDataOut: u32,
     pUserDataOut: ?*u8,
-    pwszIdentity: ?PWSTR,
+    pwszIdentity: ?[*:0]u16,
     dwError: u32,
 };
 
@@ -1298,8 +1298,8 @@ pub const PPP_EAP_INPUT = extern struct {
     dwSizeInBytes: u32,
     fFlags: u32,
     fAuthenticator: BOOL,
-    pwszIdentity: ?PWSTR,
-    pwszPassword: ?PWSTR,
+    pwszIdentity: ?[*:0]u16,
+    pwszPassword: ?[*:0]u16,
     bInitialId: u8,
     pUserAttributes: ?*RAS_AUTH_ATTRIBUTE,
     fAuthenticationComplete: BOOL,
@@ -1651,8 +1651,8 @@ pub extern "eappprxy" fn EapHostPeerGetDataToUnplumbCredentials(
 pub extern "eappprxy" fn EapHostPeerGetEncryptedPassword(
     dwSizeofPassword: u32,
     /// parameter "dwSizeofPassword" is the size in bytes
-    szPassword: ?PWSTR,
-    ppszEncPassword: ?*?PWSTR,
+    szPassword: ?[*:0]u16,
+    ppszEncPassword: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1668,7 +1668,7 @@ pub extern "eappprxy" fn EapHostPeerGetIdentity(
     pfInvokeUI: ?*BOOL,
     pdwSizeOfUserDataOut: ?*u32,
     ppUserDataOut: ?*?*u8,
-    ppwszIdentity: ?*?PWSTR,
+    ppwszIdentity: ?*?[*:0]u16,
     ppEapError: ?*?*EAP_ERROR,
     ppvReserved: ?*?*u8,
 ) callconv(.winapi) u32;
@@ -1752,7 +1752,7 @@ pub extern "eappcfg" fn EapHostPeerInvokeIdentityUI(
     pUserData: ?[*:0]const u8,
     pdwSizeOfUserDataOut: ?*u32,
     ppUserDataOut: ?*?*u8,
-    ppwszIdentity: ?*?PWSTR,
+    ppwszIdentity: ?*?[*:0]u16,
     ppEapError: ?*?*EAP_ERROR,
     ppvReserved: ?*?*anyopaque,
 ) callconv(.winapi) u32;
@@ -1850,7 +1850,7 @@ pub extern "eappprxy" fn EapHostPeerUninitialize(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -1861,7 +1861,6 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const IXMLDOMDocument2 = @import("../data/xml/ms_xml.zig").IXMLDOMDocument2;
 const IXMLDOMNode = @import("../data/xml/ms_xml.zig").IXMLDOMNode;
 const NCRYPT_KEY_HANDLE = @import("../security/cryptography.zig").NCRYPT_KEY_HANDLE;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

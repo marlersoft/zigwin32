@@ -3730,14 +3730,14 @@ pub const IInkLineInfo = extern union {
         GetCandidate: *const fn(
             self: *const IInkLineInfo,
             nCandidateNum: u32,
-            pwcRecogWord: ?PWSTR,
+            pwcRecogWord: ?[*:0]u16,
             pcwcRecogWord: ?*u32,
             dwFlags: u32,
         ) callconv(.winapi) HRESULT,
         SetCandidate: *const fn(
             self: *const IInkLineInfo,
             nCandidateNum: u32,
-            strRecogWord: ?PWSTR,
+            strRecogWord: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Recognize: *const fn(
             self: *const IInkLineInfo,
@@ -3754,10 +3754,10 @@ pub const IInkLineInfo = extern union {
     pub fn GetInkExtent(self: *const IInkLineInfo, pim: ?*INKMETRIC, pnWidth: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetInkExtent(self, pim, pnWidth);
     }
-    pub fn GetCandidate(self: *const IInkLineInfo, nCandidateNum: u32, pwcRecogWord: ?PWSTR, pcwcRecogWord: ?*u32, dwFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn GetCandidate(self: *const IInkLineInfo, nCandidateNum: u32, pwcRecogWord: ?[*:0]u16, pcwcRecogWord: ?*u32, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCandidate(self, nCandidateNum, pwcRecogWord, pcwcRecogWord, dwFlags);
     }
-    pub fn SetCandidate(self: *const IInkLineInfo, nCandidateNum: u32, strRecogWord: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetCandidate(self: *const IInkLineInfo, nCandidateNum: u32, strRecogWord: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetCandidate(self, nCandidateNum, strRecogWord);
     }
     pub fn Recognize(self: *const IInkLineInfo) callconv(.@"inline") HRESULT {
@@ -9009,7 +9009,7 @@ pub extern "inkobjcore" fn AddStroke(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn AddWordsToWordList(
     hwl: ?HRECOWORDLIST,
-    pwcWords: ?PWSTR,
+    pwcWords: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -9119,7 +9119,7 @@ pub extern "inkobjcore" fn LoadCachedAttributes(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "inkobjcore" fn MakeWordList(
     hrec: ?HRECOGNIZER,
-    pBuffer: ?PWSTR,
+    pBuffer: ?[*:0]u16,
     phwl: ?*?HRECOWORDLIST,
 ) callconv(.winapi) HRESULT;
 
@@ -9176,7 +9176,7 @@ pub extern "inkobjcore" fn SetWordList(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (21)
+// Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -9193,7 +9193,6 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const NMHDR = @import("../ui/controls.zig").NMHDR;
 const OLE_HANDLE = @import("../system/ole.zig").OLE_HANDLE;
 const POINT = @import("../foundation.zig").POINT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const VARIANT = @import("../system/com.zig").VARIANT;

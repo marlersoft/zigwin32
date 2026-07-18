@@ -27,7 +27,7 @@ pub const ITpmVirtualSmartCardManager = extern union {
             cbPin: u32,
             fGenerate: BOOL,
             pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
-            ppszInstanceId: ?*?PWSTR,
+            ppszInstanceId: ?*?[*:0]u16,
             pfNeedReboot: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         DestroyVirtualSmartCard: *const fn(
@@ -39,7 +39,7 @@ pub const ITpmVirtualSmartCardManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateVirtualSmartCard(self: *const ITpmVirtualSmartCardManager, pszFriendlyName: ?[*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, fGenerate: BOOL, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: ?*?PWSTR, pfNeedReboot: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn CreateVirtualSmartCard(self: *const ITpmVirtualSmartCardManager, pszFriendlyName: ?[*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, fGenerate: BOOL, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: ?*?[*:0]u16, pfNeedReboot: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVirtualSmartCard(self, pszFriendlyName, bAdminAlgId, pbAdminKey, cbAdminKey, pbAdminKcv, cbAdminKcv, pbPuk, cbPuk, pbPin, cbPin, fGenerate, pStatusCallback, ppszInstanceId, pfNeedReboot);
     }
     pub fn DestroyVirtualSmartCard(self: *const ITpmVirtualSmartCardManager, pszInstanceId: ?[*:0]const u16, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, pfNeedReboot: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -68,14 +68,14 @@ pub const ITpmVirtualSmartCardManager2 = extern union {
             cbPinPolicy: u32,
             fGenerate: BOOL,
             pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
-            ppszInstanceId: ?*?PWSTR,
+            ppszInstanceId: ?*?[*:0]u16,
             pfNeedReboot: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITpmVirtualSmartCardManager: ITpmVirtualSmartCardManager,
     IUnknown: IUnknown,
-    pub fn CreateVirtualSmartCardWithPinPolicy(self: *const ITpmVirtualSmartCardManager2, pszFriendlyName: ?[*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, pbPinPolicy: [*:0]const u8, cbPinPolicy: u32, fGenerate: BOOL, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: ?*?PWSTR, pfNeedReboot: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn CreateVirtualSmartCardWithPinPolicy(self: *const ITpmVirtualSmartCardManager2, pszFriendlyName: ?[*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, pbPinPolicy: [*:0]const u8, cbPinPolicy: u32, fGenerate: BOOL, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: ?*?[*:0]u16, pfNeedReboot: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVirtualSmartCardWithPinPolicy(self, pszFriendlyName, bAdminAlgId, pbAdminKey, cbAdminKey, pbAdminKcv, cbAdminKcv, pbPuk, cbPuk, pbPin, cbPin, pbPinPolicy, cbPinPolicy, fGenerate, pStatusCallback, ppszInstanceId, pfNeedReboot);
     }
 };
@@ -102,14 +102,14 @@ pub const ITpmVirtualSmartCardManager3 = extern union {
             attestationType: TPMVSC_ATTESTATION_TYPE,
             fGenerate: BOOL,
             pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
-            ppszInstanceId: ?*?PWSTR,
+            ppszInstanceId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITpmVirtualSmartCardManager2: ITpmVirtualSmartCardManager2,
     ITpmVirtualSmartCardManager: ITpmVirtualSmartCardManager,
     IUnknown: IUnknown,
-    pub fn CreateVirtualSmartCardWithAttestation(self: *const ITpmVirtualSmartCardManager3, pszFriendlyName: ?[*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, pbPinPolicy: [*:0]const u8, cbPinPolicy: u32, attestationType: TPMVSC_ATTESTATION_TYPE, fGenerate: BOOL, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn CreateVirtualSmartCardWithAttestation(self: *const ITpmVirtualSmartCardManager3, pszFriendlyName: ?[*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, pbPinPolicy: [*:0]const u8, cbPinPolicy: u32, attestationType: TPMVSC_ATTESTATION_TYPE, fGenerate: BOOL, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVirtualSmartCardWithAttestation(self, pszFriendlyName, bAdminAlgId, pbAdminKey, cbAdminKey, pbAdminKcv, cbAdminKcv, pbPuk, cbPuk, pbPin, cbPin, pbPinPolicy, cbPinPolicy, attestationType, fGenerate, pStatusCallback, ppszInstanceId);
     }
 };
@@ -235,13 +235,12 @@ pub const TPMVSCMGR_STATUS_CARD_DESTROYED = TPMVSCMGR_STATUS.CARD_DESTROYED;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

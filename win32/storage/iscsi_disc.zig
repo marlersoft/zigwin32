@@ -1219,7 +1219,7 @@ pub extern "iscsidsc" fn AddIScsiConnectionW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn AddIScsiSendTargetPortalA(
-    InitiatorInstance: ?PSTR,
+    InitiatorInstance: ?[*:0]u8,
     InitiatorPortNumber: u32,
     LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
     SecurityFlags: u64,
@@ -1228,7 +1228,7 @@ pub extern "iscsidsc" fn AddIScsiSendTargetPortalA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn AddIScsiSendTargetPortalW(
-    InitiatorInstance: ?PWSTR,
+    InitiatorInstance: ?[*:0]u16,
     InitiatorPortNumber: u32,
     LoginOptions: ?*ISCSI_LOGIN_OPTIONS,
     SecurityFlags: u64,
@@ -1237,8 +1237,8 @@ pub extern "iscsidsc" fn AddIScsiSendTargetPortalW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn AddIScsiStaticTargetA(
-    TargetName: ?PSTR,
-    TargetAlias: ?PSTR,
+    TargetName: ?[*:0]u8,
+    TargetAlias: ?[*:0]u8,
     TargetFlags: u32,
     Persist: BOOLEAN,
     Mappings: ?*ISCSI_TARGET_MAPPINGA,
@@ -1248,8 +1248,8 @@ pub extern "iscsidsc" fn AddIScsiStaticTargetA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn AddIScsiStaticTargetW(
-    TargetName: ?PWSTR,
-    TargetAlias: ?PWSTR,
+    TargetName: ?[*:0]u16,
+    TargetAlias: ?[*:0]u16,
     TargetFlags: u32,
     Persist: BOOLEAN,
     Mappings: ?*ISCSI_TARGET_MAPPINGW,
@@ -1259,32 +1259,32 @@ pub extern "iscsidsc" fn AddIScsiStaticTargetW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn AddISNSServerA(
-    Address: ?PSTR,
+    Address: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn AddISNSServerW(
-    Address: ?PWSTR,
+    Address: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn AddPersistentIScsiDeviceA(
-    DevicePath: ?PSTR,
+    DevicePath: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn AddPersistentIScsiDeviceW(
-    DevicePath: ?PWSTR,
+    DevicePath: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn AddRadiusServerA(
-    Address: ?PSTR,
+    Address: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn AddRadiusServerW(
-    Address: ?PWSTR,
+    Address: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1307,7 +1307,7 @@ pub extern "iscsidsc" fn GetDevicesForIScsiSessionW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn GetIScsiIKEInfoA(
-    InitiatorName: ?PSTR,
+    InitiatorName: ?[*:0]u8,
     InitiatorPortNumber: u32,
     Reserved: ?*u32,
     AuthInfo: ?*IKE_AUTHENTICATION_INFORMATION,
@@ -1315,7 +1315,7 @@ pub extern "iscsidsc" fn GetIScsiIKEInfoA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn GetIScsiIKEInfoW(
-    InitiatorName: ?PWSTR,
+    InitiatorName: ?[*:0]u16,
     InitiatorPortNumber: u32,
     Reserved: ?*u32,
     AuthInfo: ?*IKE_AUTHENTICATION_INFORMATION,
@@ -1353,8 +1353,8 @@ pub extern "iscsidsc" fn GetIScsiSessionListW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn GetIScsiTargetInformationA(
-    TargetName: ?PSTR,
-    DiscoveryMechanism: ?PSTR,
+    TargetName: ?[*:0]u8,
+    DiscoveryMechanism: ?[*:0]u8,
     InfoClass: TARGET_INFORMATION_CLASS,
     BufferSize: ?*u32,
     Buffer: ?*anyopaque,
@@ -1362,8 +1362,8 @@ pub extern "iscsidsc" fn GetIScsiTargetInformationA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn GetIScsiTargetInformationW(
-    TargetName: ?PWSTR,
-    DiscoveryMechanism: ?PWSTR,
+    TargetName: ?[*:0]u16,
+    DiscoveryMechanism: ?[*:0]u16,
     InfoClass: TARGET_INFORMATION_CLASS,
     BufferSize: ?*u32,
     Buffer: ?*anyopaque,
@@ -1376,9 +1376,9 @@ pub extern "iscsidsc" fn GetIScsiVersionInformation(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn LoginIScsiTargetA(
-    TargetName: ?PSTR,
+    TargetName: ?[*:0]u8,
     IsInformationalSession: BOOLEAN,
-    InitiatorInstance: ?PSTR,
+    InitiatorInstance: ?[*:0]u8,
     InitiatorPortNumber: u32,
     TargetPortal: ?*ISCSI_TARGET_PORTALA,
     SecurityFlags: u64,
@@ -1393,9 +1393,9 @@ pub extern "iscsidsc" fn LoginIScsiTargetA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn LoginIScsiTargetW(
-    TargetName: ?PWSTR,
+    TargetName: ?[*:0]u16,
     IsInformationalSession: BOOLEAN,
-    InitiatorInstance: ?PWSTR,
+    InitiatorInstance: ?[*:0]u16,
     InitiatorPortNumber: u32,
     TargetPortal: ?*ISCSI_TARGET_PORTALW,
     SecurityFlags: u64,
@@ -1415,26 +1415,26 @@ pub extern "iscsidsc" fn LogoutIScsiTarget(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn RefreshIScsiSendTargetPortalA(
-    InitiatorInstance: ?PSTR,
+    InitiatorInstance: ?[*:0]u8,
     InitiatorPortNumber: u32,
     Portal: ?*ISCSI_TARGET_PORTALA,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn RefreshIScsiSendTargetPortalW(
-    InitiatorInstance: ?PWSTR,
+    InitiatorInstance: ?[*:0]u16,
     InitiatorPortNumber: u32,
     Portal: ?*ISCSI_TARGET_PORTALW,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn RefreshISNSServerA(
-    Address: ?PSTR,
+    Address: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn RefreshISNSServerW(
-    Address: ?PWSTR,
+    Address: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1445,72 +1445,72 @@ pub extern "iscsidsc" fn RemoveIScsiConnection(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn RemoveIScsiPersistentTargetA(
-    InitiatorInstance: ?PSTR,
+    InitiatorInstance: ?[*:0]u8,
     InitiatorPortNumber: u32,
-    TargetName: ?PSTR,
+    TargetName: ?[*:0]u8,
     Portal: ?*ISCSI_TARGET_PORTALA,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn RemoveIScsiPersistentTargetW(
-    InitiatorInstance: ?PWSTR,
+    InitiatorInstance: ?[*:0]u16,
     InitiatorPortNumber: u32,
-    TargetName: ?PWSTR,
+    TargetName: ?[*:0]u16,
     Portal: ?*ISCSI_TARGET_PORTALW,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn RemoveIScsiSendTargetPortalA(
-    InitiatorInstance: ?PSTR,
+    InitiatorInstance: ?[*:0]u8,
     InitiatorPortNumber: u32,
     Portal: ?*ISCSI_TARGET_PORTALA,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn RemoveIScsiSendTargetPortalW(
-    InitiatorInstance: ?PWSTR,
+    InitiatorInstance: ?[*:0]u16,
     InitiatorPortNumber: u32,
     Portal: ?*ISCSI_TARGET_PORTALW,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn RemoveIScsiStaticTargetA(
-    TargetName: ?PSTR,
+    TargetName: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn RemoveIScsiStaticTargetW(
-    TargetName: ?PWSTR,
+    TargetName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn RemoveISNSServerA(
-    Address: ?PSTR,
+    Address: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn RemoveISNSServerW(
-    Address: ?PWSTR,
+    Address: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn RemovePersistentIScsiDeviceA(
-    DevicePath: ?PSTR,
+    DevicePath: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn RemovePersistentIScsiDeviceW(
-    DevicePath: ?PWSTR,
+    DevicePath: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn RemoveRadiusServerA(
-    Address: ?PSTR,
+    Address: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn RemoveRadiusServerW(
-    Address: ?PWSTR,
+    Address: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1581,8 +1581,8 @@ pub extern "iscsidsc" fn ReportIScsiSendTargetPortalsW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn ReportIScsiTargetPortalsA(
-    InitiatorName: ?PSTR,
-    TargetName: ?PSTR,
+    InitiatorName: ?[*:0]u8,
+    TargetName: ?[*:0]u8,
     TargetPortalTag: ?*u16,
     ElementCount: ?*u32,
     Portals: ?*ISCSI_TARGET_PORTALA,
@@ -1590,8 +1590,8 @@ pub extern "iscsidsc" fn ReportIScsiTargetPortalsA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn ReportIScsiTargetPortalsW(
-    InitiatorName: ?PWSTR,
-    TargetName: ?PWSTR,
+    InitiatorName: ?[*:0]u16,
+    TargetName: ?[*:0]u16,
     TargetPortalTag: ?*u16,
     ElementCount: ?*u32,
     Portals: ?*ISCSI_TARGET_PORTALW,
@@ -1690,7 +1690,7 @@ pub extern "iscsidsc" fn SetIScsiGroupPresharedKey(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn SetIScsiIKEInfoA(
-    InitiatorName: ?PSTR,
+    InitiatorName: ?[*:0]u8,
     InitiatorPortNumber: u32,
     AuthInfo: ?*IKE_AUTHENTICATION_INFORMATION,
     Persist: BOOLEAN,
@@ -1698,7 +1698,7 @@ pub extern "iscsidsc" fn SetIScsiIKEInfoA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn SetIScsiIKEInfoW(
-    InitiatorName: ?PWSTR,
+    InitiatorName: ?[*:0]u16,
     InitiatorPortNumber: u32,
     AuthInfo: ?*IKE_AUTHENTICATION_INFORMATION,
     Persist: BOOLEAN,
@@ -1712,12 +1712,12 @@ pub extern "iscsidsc" fn SetIScsiInitiatorCHAPSharedSecret(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn SetIScsiInitiatorNodeNameA(
-    InitiatorNodeName: ?PSTR,
+    InitiatorNodeName: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn SetIScsiInitiatorNodeNameW(
-    InitiatorNodeName: ?PWSTR,
+    InitiatorNodeName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1728,19 +1728,19 @@ pub extern "iscsidsc" fn SetIScsiInitiatorRADIUSSharedSecret(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn SetIScsiTunnelModeOuterAddressA(
-    InitiatorName: ?PSTR,
+    InitiatorName: ?[*:0]u8,
     InitiatorPortNumber: u32,
-    DestinationAddress: ?PSTR,
-    OuterModeAddress: ?PSTR,
+    DestinationAddress: ?[*:0]u8,
+    OuterModeAddress: ?[*:0]u8,
     Persist: BOOLEAN,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iscsidsc" fn SetIScsiTunnelModeOuterAddressW(
-    InitiatorName: ?PWSTR,
+    InitiatorName: ?[*:0]u16,
     InitiatorPortNumber: u32,
-    DestinationAddress: ?PWSTR,
-    OuterModeAddress: ?PWSTR,
+    DestinationAddress: ?[*:0]u16,
+    OuterModeAddress: ?[*:0]u16,
     Persist: BOOLEAN,
 ) callconv(.winapi) u32;
 
@@ -2050,14 +2050,12 @@ pub const SetIScsiTunnelModeOuterAddress = switch (@import("../zig.zig").unicode
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const CHAR = @import("../foundation.zig").CHAR;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const STORAGE_DEVICE_NUMBER = @import("../system/ioctl.zig").STORAGE_DEVICE_NUMBER;
 
 test {

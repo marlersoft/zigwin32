@@ -2559,7 +2559,7 @@ pub const DICONDITION = extern struct {
 pub const DICONFIGUREDEVICESPARAMSA = extern struct {
     dwSize: u32,
     dwcUsers: u32,
-    lptszUserNames: ?PSTR,
+    lptszUserNames: ?[*:0]u8,
     dwcFormats: u32,
     lprgFormats: ?*DIACTIONFORMATA,
     hwnd: ?HWND,
@@ -2570,7 +2570,7 @@ pub const DICONFIGUREDEVICESPARAMSA = extern struct {
 pub const DICONFIGUREDEVICESPARAMSW = extern struct {
     dwSize: u32,
     dwcUsers: u32,
-    lptszUserNames: ?PWSTR,
+    lptszUserNames: ?[*:0]u16,
     dwcFormats: u32,
     lprgFormats: ?*DIACTIONFORMATW,
     hwnd: ?HWND,
@@ -2889,7 +2889,7 @@ pub const DIFILEEFFECT = extern struct {
 
 pub const DIHIDFFINITINFO = extern struct {
     dwSize: u32,
-    pwszDeviceInterface: ?PWSTR,
+    pwszDeviceInterface: ?[*:0]u16,
     GuidInstance: Guid,
 };
 
@@ -4973,7 +4973,7 @@ pub const IDirectInputJoyConfig8 = extern union {
             param0: ?[*:0]const u16,
             param1: ?*DIJOYTYPEINFO,
             param2: u32,
-            param3: ?PWSTR,
+            param3: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         DeleteType: *const fn(
             self: *const IDirectInputJoyConfig8,
@@ -5041,7 +5041,7 @@ pub const IDirectInputJoyConfig8 = extern union {
     pub fn GetTypeInfo(self: *const IDirectInputJoyConfig8, param0: ?[*:0]const u16, param1: ?*DIJOYTYPEINFO, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetTypeInfo(self, param0, param1, param2);
     }
-    pub fn SetTypeInfo(self: *const IDirectInputJoyConfig8, param0: ?[*:0]const u16, param1: ?*DIJOYTYPEINFO, param2: u32, param3: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetTypeInfo(self: *const IDirectInputJoyConfig8, param0: ?[*:0]const u16, param1: ?*DIJOYTYPEINFO, param2: u32, param3: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetTypeInfo(self, param0, param1, param2, param3);
     }
     pub fn DeleteType(self: *const IDirectInputJoyConfig8, param0: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -5909,7 +5909,7 @@ pub const LPDIENUMEFFECTSCALLBACK = switch (@import("../zig.zig").unicode_mode) 
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (17)
+// Section: Imports (15)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -5925,8 +5925,6 @@ const HWND = @import("../foundation.zig").HWND;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const POINT = @import("../foundation.zig").POINT;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 
 test {

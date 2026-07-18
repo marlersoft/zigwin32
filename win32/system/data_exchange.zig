@@ -1052,7 +1052,7 @@ pub const RegisterClipboardFormat = switch (@import("../zig.zig").unicode_mode) 
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (12)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const CHAR = @import("../foundation.zig").CHAR;
@@ -1062,8 +1062,6 @@ const HENHMETAFILE = @import("../graphics/gdi.zig").HENHMETAFILE;
 const HMETAFILE = @import("../graphics/gdi.zig").HMETAFILE;
 const HWND = @import("../foundation.zig").HWND;
 const LPARAM = @import("../foundation.zig").LPARAM;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_QUALITY_OF_SERVICE = @import("../security.zig").SECURITY_QUALITY_OF_SERVICE;
 const WPARAM = @import("../foundation.zig").WPARAM;
 

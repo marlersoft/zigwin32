@@ -151,26 +151,26 @@ pub const SERVICE_INACTIVE = ENUM_SERVICE_STATE.INACTIVE;
 pub const SERVICE_STATE_ALL = ENUM_SERVICE_STATE.STATE_ALL;
 
 pub const ENUM_SERVICE_STATUS_PROCESSA = extern struct {
-    lpServiceName: ?PSTR,
-    lpDisplayName: ?PSTR,
+    lpServiceName: ?[*:0]u8,
+    lpDisplayName: ?[*:0]u8,
     ServiceStatusProcess: SERVICE_STATUS_PROCESS,
 };
 
 pub const ENUM_SERVICE_STATUS_PROCESSW = extern struct {
-    lpServiceName: ?PWSTR,
-    lpDisplayName: ?PWSTR,
+    lpServiceName: ?[*:0]u16,
+    lpDisplayName: ?[*:0]u16,
     ServiceStatusProcess: SERVICE_STATUS_PROCESS,
 };
 
 pub const ENUM_SERVICE_STATUSA = extern struct {
-    lpServiceName: ?PSTR,
-    lpDisplayName: ?PSTR,
+    lpServiceName: ?[*:0]u8,
+    lpDisplayName: ?[*:0]u8,
     ServiceStatus: SERVICE_STATUS,
 };
 
 pub const ENUM_SERVICE_STATUSW = extern struct {
-    lpServiceName: ?PWSTR,
-    lpDisplayName: ?PWSTR,
+    lpServiceName: ?[*:0]u16,
+    lpDisplayName: ?[*:0]u16,
     ServiceStatus: SERVICE_STATUS,
 };
 
@@ -256,12 +256,12 @@ pub const LPHANDLER_FUNCTION_EX = *const fn(
 
 pub const LPSERVICE_MAIN_FUNCTIONA = *const fn(
     dwNumServicesArgs: u32,
-    lpServiceArgVectors: ?*?PSTR,
+    lpServiceArgVectors: ?*?[*:0]u8,
 ) callconv(.winapi) void;
 
 pub const LPSERVICE_MAIN_FUNCTIONW = *const fn(
     dwNumServicesArgs: u32,
-    lpServiceArgVectors: ?*?PWSTR,
+    lpServiceArgVectors: ?*?[*:0]u16,
 ) callconv(.winapi) void;
 
 pub const PFN_SC_NOTIFY_CALLBACK = *const fn(
@@ -277,35 +277,35 @@ pub const QUERY_SERVICE_CONFIGA = extern struct {
     dwServiceType: ENUM_SERVICE_TYPE,
     dwStartType: SERVICE_START_TYPE,
     dwErrorControl: SERVICE_ERROR,
-    lpBinaryPathName: ?PSTR,
-    lpLoadOrderGroup: ?PSTR,
+    lpBinaryPathName: ?[*:0]u8,
+    lpLoadOrderGroup: ?[*:0]u8,
     dwTagId: u32,
-    lpDependencies: ?PSTR,
-    lpServiceStartName: ?PSTR,
-    lpDisplayName: ?PSTR,
+    lpDependencies: ?[*:0]u8,
+    lpServiceStartName: ?[*:0]u8,
+    lpDisplayName: ?[*:0]u8,
 };
 
 pub const QUERY_SERVICE_CONFIGW = extern struct {
     dwServiceType: ENUM_SERVICE_TYPE,
     dwStartType: SERVICE_START_TYPE,
     dwErrorControl: SERVICE_ERROR,
-    lpBinaryPathName: ?PWSTR,
-    lpLoadOrderGroup: ?PWSTR,
+    lpBinaryPathName: ?[*:0]u16,
+    lpLoadOrderGroup: ?[*:0]u16,
     dwTagId: u32,
-    lpDependencies: ?PWSTR,
-    lpServiceStartName: ?PWSTR,
-    lpDisplayName: ?PWSTR,
+    lpDependencies: ?[*:0]u16,
+    lpServiceStartName: ?[*:0]u16,
+    lpDisplayName: ?[*:0]u16,
 };
 
 pub const QUERY_SERVICE_LOCK_STATUSA = extern struct {
     fIsLocked: u32,
-    lpLockOwner: ?PSTR,
+    lpLockOwner: ?[*:0]u8,
     dwLockDuration: u32,
 };
 
 pub const QUERY_SERVICE_LOCK_STATUSW = extern struct {
     fIsLocked: u32,
-    lpLockOwner: ?PWSTR,
+    lpLockOwner: ?[*:0]u16,
     dwLockDuration: u32,
 };
 
@@ -371,13 +371,13 @@ pub const SERVICE_CONFIG_LAUNCH_PROTECTED = SERVICE_CONFIG.LAUNCH_PROTECTED;
 
 pub const SERVICE_CONTROL_STATUS_REASON_PARAMSA = extern struct {
     dwReason: u32,
-    pszComment: ?PSTR,
+    pszComment: ?[*:0]u8,
     ServiceStatus: SERVICE_STATUS_PROCESS,
 };
 
 pub const SERVICE_CONTROL_STATUS_REASON_PARAMSW = extern struct {
     dwReason: u32,
-    pszComment: ?PWSTR,
+    pszComment: ?[*:0]u16,
     ServiceStatus: SERVICE_STATUS_PROCESS,
 };
 
@@ -396,11 +396,11 @@ pub const SERVICE_DELAYED_AUTO_START_INFO = extern struct {
 };
 
 pub const SERVICE_DESCRIPTIONA = extern struct {
-    lpDescription: ?PSTR,
+    lpDescription: ?[*:0]u8,
 };
 
 pub const SERVICE_DESCRIPTIONW = extern struct {
-    lpDescription: ?PWSTR,
+    lpDescription: ?[*:0]u16,
 };
 
 pub const SERVICE_DIRECTORY_TYPE = enum(i32) {
@@ -427,16 +427,16 @@ pub const SERVICE_FAILURE_ACTIONS_FLAG = extern struct {
 
 pub const SERVICE_FAILURE_ACTIONSA = extern struct {
     dwResetPeriod: u32,
-    lpRebootMsg: ?PSTR,
-    lpCommand: ?PSTR,
+    lpRebootMsg: ?[*:0]u8,
+    lpCommand: ?[*:0]u8,
     cActions: u32,
     lpsaActions: ?*SC_ACTION,
 };
 
 pub const SERVICE_FAILURE_ACTIONSW = extern struct {
     dwResetPeriod: u32,
-    lpRebootMsg: ?PWSTR,
-    lpCommand: ?PWSTR,
+    lpRebootMsg: ?[*:0]u16,
+    lpCommand: ?[*:0]u16,
     cActions: u32,
     lpsaActions: ?*SC_ACTION,
 };
@@ -452,7 +452,7 @@ pub const SERVICE_MAIN_FUNCTIONA = *const fn(
 
 pub const SERVICE_MAIN_FUNCTIONW = *const fn(
     dwNumServicesArgs: u32,
-    lpServiceArgVectors: ?*?PWSTR,
+    lpServiceArgVectors: ?*?[*:0]u16,
 ) callconv(.winapi) void;
 
 pub const SERVICE_NOTIFY = packed struct(u32) {
@@ -515,7 +515,7 @@ pub const SERVICE_NOTIFY_2A = extern struct {
     dwNotificationStatus: u32,
     ServiceStatus: SERVICE_STATUS_PROCESS,
     dwNotificationTriggered: u32,
-    pszServiceNames: ?PSTR,
+    pszServiceNames: ?[*:0]u8,
 };
 
 pub const SERVICE_NOTIFY_2W = extern struct {
@@ -525,7 +525,7 @@ pub const SERVICE_NOTIFY_2W = extern struct {
     dwNotificationStatus: u32,
     ServiceStatus: SERVICE_STATUS_PROCESS,
     dwNotificationTriggered: u32,
-    pszServiceNames: ?PWSTR,
+    pszServiceNames: ?[*:0]u16,
 };
 
 pub const SERVICE_PREFERRED_NODE_INFO = extern struct {
@@ -547,11 +547,11 @@ pub const ServiceRegistryStatePersistent = SERVICE_REGISTRY_STATE_TYPE.ServiceRe
 pub const MaxServiceRegistryStateType = SERVICE_REGISTRY_STATE_TYPE.MaxServiceRegistryStateType;
 
 pub const SERVICE_REQUIRED_PRIVILEGES_INFOA = extern struct {
-    pmszRequiredPrivileges: ?PSTR,
+    pmszRequiredPrivileges: ?[*:0]u8,
 };
 
 pub const SERVICE_REQUIRED_PRIVILEGES_INFOW = extern struct {
-    pmszRequiredPrivileges: ?PWSTR,
+    pmszRequiredPrivileges: ?[*:0]u16,
 };
 
 pub const SERVICE_RUNS_IN_PROCESS = enum(u32) {
@@ -635,12 +635,12 @@ pub const SERVICE_STATUS_PROCESS = extern struct {
 };
 
 pub const SERVICE_TABLE_ENTRYA = extern struct {
-    lpServiceName: ?PSTR,
+    lpServiceName: ?[*:0]u8,
     lpServiceProc: ?LPSERVICE_MAIN_FUNCTIONA,
 };
 
 pub const SERVICE_TABLE_ENTRYW = extern struct {
-    lpServiceName: ?PWSTR,
+    lpServiceName: ?[*:0]u16,
     lpServiceProc: ?LPSERVICE_MAIN_FUNCTIONW,
 };
 
@@ -1159,7 +1159,7 @@ pub extern "advapi32" fn SetServiceStatus(
 pub extern "advapi32" fn StartServiceA(
     hService: SC_HANDLE,
     dwNumServiceArgs: u32,
-    lpServiceArgVectors: ?[*]?PSTR,
+    lpServiceArgVectors: ?[*]?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1176,7 +1176,7 @@ pub extern "advapi32" fn StartServiceCtrlDispatcherW(
 pub extern "advapi32" fn StartServiceW(
     hService: SC_HANDLE,
     dwNumServiceArgs: u32,
-    lpServiceArgVectors: ?[*]?PWSTR,
+    lpServiceArgVectors: ?[*]?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1413,7 +1413,7 @@ pub const StartServiceCtrlDispatcher = switch (@import("../zig.zig").unicode_mod
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -1423,8 +1423,6 @@ const HKEY = @import("../system/registry.zig").HKEY;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const OBJECT_SECURITY_INFORMATION = @import("../security.zig").OBJECT_SECURITY_INFORMATION;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SC_HANDLE = @import("../security.zig").SC_HANDLE;
 
 test {

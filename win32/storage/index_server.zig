@@ -361,7 +361,7 @@ pub const DBID = switch(@import("../zig.zig").arch) {
         },
         eKind: u32,
         uName: extern union {
-            pwszName: ?PWSTR,
+            pwszName: ?[*:0]u16,
             ulPropid: u32,
         },
     },
@@ -372,7 +372,7 @@ pub const DBID = switch(@import("../zig.zig").arch) {
         } align(2),
         eKind: u32 align(2),
         uName: extern union {
-            pwszName: ?PWSTR align(2),
+            pwszName: ?[*:0]u16 align(2),
             ulPropid: u32 align(2),
         } align(2),
     },
@@ -414,7 +414,7 @@ pub extern "query" fn LoadIFilterEx(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HRESULT = @import("../foundation.zig").HRESULT;
@@ -423,7 +423,6 @@ const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PROPSPEC = @import("../system/com/structured_storage.zig").PROPSPEC;
 const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

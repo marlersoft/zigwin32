@@ -6718,31 +6718,31 @@ pub const LPDD32BITDRIVERINIT = *const fn(
 
 pub const LPDDENUMCALLBACKA = *const fn(
     param0: ?*Guid,
-    param1: ?PSTR,
-    param2: ?PSTR,
+    param1: ?[*:0]u8,
+    param2: ?[*:0]u8,
     param3: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
 pub const LPDDENUMCALLBACKEXA = *const fn(
     param0: ?*Guid,
-    param1: ?PSTR,
-    param2: ?PSTR,
+    param1: ?[*:0]u8,
+    param2: ?[*:0]u8,
     param3: ?*anyopaque,
     param4: ?HMONITOR,
 ) callconv(.winapi) BOOL;
 
 pub const LPDDENUMCALLBACKEXW = *const fn(
     param0: ?*Guid,
-    param1: ?PWSTR,
-    param2: ?PWSTR,
+    param1: ?[*:0]u16,
+    param2: ?[*:0]u16,
     param3: ?*anyopaque,
     param4: ?HMONITOR,
 ) callconv(.winapi) BOOL;
 
 pub const LPDDENUMCALLBACKW = *const fn(
     param0: ?*Guid,
-    param1: ?PWSTR,
-    param2: ?PWSTR,
+    param1: ?[*:0]u16,
+    param2: ?[*:0]u16,
     param3: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -7556,7 +7556,7 @@ pub const DirectDrawEnumerateEx = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (19)
+// Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -7571,8 +7571,6 @@ const HWND = @import("../foundation.zig").HWND;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const PALETTEENTRY = @import("../graphics/gdi.zig").PALETTEENTRY;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const RECTL = @import("../foundation.zig").RECTL;
 const RGNDATA = @import("../graphics/gdi.zig").RGNDATA;

@@ -303,7 +303,7 @@ pub extern "user32" fn SystemParametersInfoForDpi(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (12)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
@@ -312,7 +312,6 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const HTHEME = @import("../ui/controls.zig").HTHEME;
 const HWND = @import("../foundation.zig").HWND;
 const POINT = @import("../foundation.zig").POINT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const SYSTEM_METRICS_INDEX = @import("../ui/windows_and_messaging.zig").SYSTEM_METRICS_INDEX;
 const WINDOW_EX_STYLE = @import("../ui/windows_and_messaging.zig").WINDOW_EX_STYLE;

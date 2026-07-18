@@ -562,7 +562,7 @@ pub const INATNumberOfEntriesCallback = extern union {
 
 pub const INET_FIREWALL_AC_BINARIES = extern struct {
     count: u32,
-    binaries: ?*?PWSTR,
+    binaries: ?*?[*:0]u16,
 };
 
 pub const INET_FIREWALL_AC_CAPABILITIES = extern struct {
@@ -575,7 +575,7 @@ pub const INET_FIREWALL_AC_CHANGE = extern struct {
     createType: INET_FIREWALL_AC_CREATION_TYPE,
     appContainerSid: ?*SID,
     userSid: ?*SID,
-    displayName: ?PWSTR,
+    displayName: ?[*:0]u16,
     Anonymous: extern union {
         capabilities: INET_FIREWALL_AC_CAPABILITIES,
         binaries: INET_FIREWALL_AC_BINARIES,
@@ -607,13 +607,13 @@ pub const INET_FIREWALL_AC_MAX = INET_FIREWALL_AC_CREATION_TYPE.MAX;
 pub const INET_FIREWALL_APP_CONTAINER = extern struct {
     appContainerSid: ?*SID,
     userSid: ?*SID,
-    appContainerName: ?PWSTR,
-    displayName: ?PWSTR,
-    description: ?PWSTR,
+    appContainerName: ?[*:0]u16,
+    displayName: ?[*:0]u16,
+    description: ?[*:0]u16,
     capabilities: INET_FIREWALL_AC_CAPABILITIES,
     binaries: INET_FIREWALL_AC_BINARIES,
-    workingDirectory: ?PWSTR,
-    packageFullName: ?PWSTR,
+    workingDirectory: ?[*:0]u16,
+    packageFullName: ?[*:0]u16,
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3318,8 +3318,8 @@ pub const NCM_SHAREDACCESSHOST_RAS = NETCON_MEDIATYPE.SHAREDACCESSHOST_RAS;
 
 pub const NETCON_PROPERTIES = extern struct {
     guidId: Guid,
-    pszwName: ?PWSTR,
-    pszwDeviceName: ?PWSTR,
+    pszwName: ?[*:0]u16,
+    pszwDeviceName: ?[*:0]u16,
     Status: NETCON_STATUS,
     MediaType: NETCON_MEDIATYPE,
     dwCharacter: u32,
@@ -3544,7 +3544,7 @@ pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationSetupAppContaine
     packageFolder: ?[*:0]const u16,
     displayName: ?[*:0]const u16,
     bBinariesFullyComputed: BOOL,
-    binaries: [*]?PWSTR,
+    binaries: [*]?[*:0]u16,
     binariesCount: u32,
 ) callconv(.winapi) HRESULT;
 
@@ -3558,7 +3558,7 @@ pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationUnregisterForApp
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (14)
+// Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -3569,7 +3569,6 @@ const HWND = @import("../foundation.zig").HWND;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PSID = @import("../foundation.zig").PSID;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SID = @import("../security.zig").SID;
 const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
 const VARIANT = @import("../system/com.zig").VARIANT;

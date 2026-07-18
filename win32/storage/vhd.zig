@@ -1146,10 +1146,10 @@ pub const STORAGE_DEPENDENCY_INFO_TYPE_2 = extern struct {
     ProviderSpecificFlags: u32,
     VirtualStorageType: VIRTUAL_STORAGE_TYPE,
     AncestorLevel: u32,
-    DependencyDeviceName: ?PWSTR,
-    HostVolumeName: ?PWSTR,
-    DependentVolumeName: ?PWSTR,
-    DependentVolumeRelativePath: ?PWSTR,
+    DependencyDeviceName: ?[*:0]u16,
+    HostVolumeName: ?[*:0]u16,
+    DependentVolumeName: ?[*:0]u16,
+    DependentVolumeRelativePath: ?[*:0]u16,
 };
 
 pub const STORAGE_DEPENDENCY_INFO_VERSION = enum(i32) {
@@ -1387,7 +1387,7 @@ pub extern "virtdisk" fn ForkVirtualDisk(
 pub extern "virtdisk" fn GetAllAttachedVirtualDiskPhysicalPaths(
     PathsBufferSizeInBytes: ?*u32,
     /// parameter "PathsBufferSizeInBytes" is the size in bytes
-    PathsBuffer: ?PWSTR,
+    PathsBuffer: ?[*:0]u16,
 ) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1429,7 +1429,7 @@ pub extern "virtdisk" fn GetVirtualDiskPhysicalPath(
     VirtualDiskHandle: ?HANDLE,
     DiskPathSizeInBytes: ?*u32,
     /// parameter "DiskPathSizeInBytes" is the size in bytes
-    DiskPath: ?PWSTR,
+    DiskPath: ?[*:0]u16,
 ) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1520,14 +1520,13 @@ pub extern "virtdisk" fn TakeSnapshotVhdSet(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
 
 test {

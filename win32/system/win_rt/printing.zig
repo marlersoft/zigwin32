@@ -218,7 +218,7 @@ pub const IPrintWorkflowXpsReceiver2 = extern union {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (12)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const HRESULT = @import("../../foundation.zig").HRESULT;
@@ -231,7 +231,6 @@ const IUnknown = @import("../../system/com.zig").IUnknown;
 const IXpsDocumentPackageTarget = @import("../../storage/xps.zig").IXpsDocumentPackageTarget;
 const IXpsOMObjectFactory1 = @import("../../storage/xps.zig").IXpsOMObjectFactory1;
 const IXpsOMPageReference = @import("../../storage/xps.zig").IXpsOMPageReference;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

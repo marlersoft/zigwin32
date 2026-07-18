@@ -550,7 +550,7 @@ pub const _wireVARIANT = extern struct {
         uintVal: u32,
         decVal: DECIMAL,
         pdecVal: ?*DECIMAL,
-        pcVal: ?PSTR,
+        pcVal: ?[*:0]u8,
         puiVal: ?*u16,
         pulVal: ?*u32,
         pullVal: ?*u64,
@@ -662,7 +662,7 @@ pub const CADWORD = extern struct {
 
 pub const CALPOLESTR = extern struct {
     cElems: u32,
-    pElems: ?*?PWSTR,
+    pElems: ?*?[*:0]u16,
 };
 
 pub const CAUUID = extern struct {
@@ -1075,7 +1075,7 @@ pub const fdexPropCannotSourceEvents = FDEX_PROP_FLAGS{ .CannotSourceEvents = 1 
 
 pub const FONTDESC = extern struct {
     cbSizeofstruct: u32,
-    lpstrName: ?PWSTR,
+    lpstrName: ?[*:0]u16,
     cySize: CY,
     sWeight: i16,
     sCharset: i16,
@@ -1204,7 +1204,7 @@ pub const IContinueCallback = extern union {
             self: *const IContinueCallback,
             nCntPrinted: i32,
             nCurPage: i32,
-            pwszPrintStatus: ?PWSTR,
+            pwszPrintStatus: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1212,7 +1212,7 @@ pub const IContinueCallback = extern union {
     pub fn FContinue(self: *const IContinueCallback) callconv(.@"inline") HRESULT {
         return self.vtable.FContinue(self);
     }
-    pub fn FContinuePrinting(self: *const IContinueCallback, nCntPrinted: i32, nCurPage: i32, pwszPrintStatus: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn FContinuePrinting(self: *const IContinueCallback, nCntPrinted: i32, nCurPage: i32, pwszPrintStatus: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.FContinuePrinting(self, nCntPrinted, nCurPage, pwszPrintStatus);
     }
 };
@@ -1228,15 +1228,15 @@ pub const ICreateErrorInfo = extern union {
         ) callconv(.winapi) HRESULT,
         SetSource: *const fn(
             self: *const ICreateErrorInfo,
-            szSource: ?PWSTR,
+            szSource: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetDescription: *const fn(
             self: *const ICreateErrorInfo,
-            szDescription: ?PWSTR,
+            szDescription: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetHelpFile: *const fn(
             self: *const ICreateErrorInfo,
-            szHelpFile: ?PWSTR,
+            szHelpFile: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetHelpContext: *const fn(
             self: *const ICreateErrorInfo,
@@ -1248,13 +1248,13 @@ pub const ICreateErrorInfo = extern union {
     pub fn SetGUID(self: *const ICreateErrorInfo, rguid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetGUID(self, rguid);
     }
-    pub fn SetSource(self: *const ICreateErrorInfo, szSource: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetSource(self: *const ICreateErrorInfo, szSource: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetSource(self, szSource);
     }
-    pub fn SetDescription(self: *const ICreateErrorInfo, szDescription: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetDescription(self: *const ICreateErrorInfo, szDescription: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetDescription(self, szDescription);
     }
-    pub fn SetHelpFile(self: *const ICreateErrorInfo, szHelpFile: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetHelpFile(self: *const ICreateErrorInfo, szHelpFile: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetHelpFile(self, szHelpFile);
     }
     pub fn SetHelpContext(self: *const ICreateErrorInfo, dwHelpContext: u32) callconv(.@"inline") HRESULT {
@@ -1277,7 +1277,7 @@ pub const ICreateTypeInfo = extern union {
         ) callconv(.winapi) HRESULT,
         SetDocString: *const fn(
             self: *const ICreateTypeInfo,
-            pStrDoc: ?PWSTR,
+            pStrDoc: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetHelpContext: *const fn(
             self: *const ICreateTypeInfo,
@@ -1314,7 +1314,7 @@ pub const ICreateTypeInfo = extern union {
         ) callconv(.winapi) HRESULT,
         SetSchema: *const fn(
             self: *const ICreateTypeInfo,
-            pStrSchema: ?PWSTR,
+            pStrSchema: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         AddVarDesc: *const fn(
             self: *const ICreateTypeInfo,
@@ -1324,13 +1324,13 @@ pub const ICreateTypeInfo = extern union {
         SetFuncAndParamNames: *const fn(
             self: *const ICreateTypeInfo,
             index: u32,
-            rgszNames: [*]?PWSTR,
+            rgszNames: [*]?[*:0]u16,
             cNames: u32,
         ) callconv(.winapi) HRESULT,
         SetVarName: *const fn(
             self: *const ICreateTypeInfo,
             index: u32,
-            szName: ?PWSTR,
+            szName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetTypeDescAlias: *const fn(
             self: *const ICreateTypeInfo,
@@ -1339,18 +1339,18 @@ pub const ICreateTypeInfo = extern union {
         DefineFuncAsDllEntry: *const fn(
             self: *const ICreateTypeInfo,
             index: u32,
-            szDllName: ?PWSTR,
-            szProcName: ?PWSTR,
+            szDllName: ?[*:0]u16,
+            szProcName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetFuncDocString: *const fn(
             self: *const ICreateTypeInfo,
             index: u32,
-            szDocString: ?PWSTR,
+            szDocString: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetVarDocString: *const fn(
             self: *const ICreateTypeInfo,
             index: u32,
-            szDocString: ?PWSTR,
+            szDocString: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetFuncHelpContext: *const fn(
             self: *const ICreateTypeInfo,
@@ -1383,7 +1383,7 @@ pub const ICreateTypeInfo = extern union {
     pub fn SetTypeFlags(self: *const ICreateTypeInfo, uTypeFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTypeFlags(self, uTypeFlags);
     }
-    pub fn SetDocString(self: *const ICreateTypeInfo, pStrDoc: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetDocString(self: *const ICreateTypeInfo, pStrDoc: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetDocString(self, pStrDoc);
     }
     pub fn SetHelpContext(self: *const ICreateTypeInfo, dwHelpContext: u32) callconv(.@"inline") HRESULT {
@@ -1407,28 +1407,28 @@ pub const ICreateTypeInfo = extern union {
     pub fn SetAlignment(self: *const ICreateTypeInfo, cbAlignment: u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetAlignment(self, cbAlignment);
     }
-    pub fn SetSchema(self: *const ICreateTypeInfo, pStrSchema: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetSchema(self: *const ICreateTypeInfo, pStrSchema: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetSchema(self, pStrSchema);
     }
     pub fn AddVarDesc(self: *const ICreateTypeInfo, index: u32, pVarDesc: ?*VARDESC) callconv(.@"inline") HRESULT {
         return self.vtable.AddVarDesc(self, index, pVarDesc);
     }
-    pub fn SetFuncAndParamNames(self: *const ICreateTypeInfo, index: u32, rgszNames: [*]?PWSTR, cNames: u32) callconv(.@"inline") HRESULT {
+    pub fn SetFuncAndParamNames(self: *const ICreateTypeInfo, index: u32, rgszNames: [*]?[*:0]u16, cNames: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFuncAndParamNames(self, index, rgszNames, cNames);
     }
-    pub fn SetVarName(self: *const ICreateTypeInfo, index: u32, szName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetVarName(self: *const ICreateTypeInfo, index: u32, szName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetVarName(self, index, szName);
     }
     pub fn SetTypeDescAlias(self: *const ICreateTypeInfo, pTDescAlias: ?*TYPEDESC) callconv(.@"inline") HRESULT {
         return self.vtable.SetTypeDescAlias(self, pTDescAlias);
     }
-    pub fn DefineFuncAsDllEntry(self: *const ICreateTypeInfo, index: u32, szDllName: ?PWSTR, szProcName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn DefineFuncAsDllEntry(self: *const ICreateTypeInfo, index: u32, szDllName: ?[*:0]u16, szProcName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.DefineFuncAsDllEntry(self, index, szDllName, szProcName);
     }
-    pub fn SetFuncDocString(self: *const ICreateTypeInfo, index: u32, szDocString: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetFuncDocString(self: *const ICreateTypeInfo, index: u32, szDocString: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetFuncDocString(self, index, szDocString);
     }
-    pub fn SetVarDocString(self: *const ICreateTypeInfo, index: u32, szDocString: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetVarDocString(self: *const ICreateTypeInfo, index: u32, szDocString: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetVarDocString(self, index, szDocString);
     }
     pub fn SetFuncHelpContext(self: *const ICreateTypeInfo, index: u32, dwHelpContext: u32) callconv(.@"inline") HRESULT {
@@ -1523,7 +1523,7 @@ pub const ICreateTypeInfo2 = extern union {
         ) callconv(.winapi) HRESULT,
         SetName: *const fn(
             self: *const ICreateTypeInfo2,
-            szName: ?PWSTR,
+            szName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1571,7 +1571,7 @@ pub const ICreateTypeInfo2 = extern union {
     pub fn Invalidate(self: *const ICreateTypeInfo2) callconv(.@"inline") HRESULT {
         return self.vtable.Invalidate(self);
     }
-    pub fn SetName(self: *const ICreateTypeInfo2, szName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetName(self: *const ICreateTypeInfo2, szName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetName(self, szName);
     }
 };
@@ -1583,13 +1583,13 @@ pub const ICreateTypeLib = extern union {
         base: IUnknown.VTable,
         CreateTypeInfo: *const fn(
             self: *const ICreateTypeLib,
-            szName: ?PWSTR,
+            szName: ?[*:0]u16,
             tkind: TYPEKIND,
             ppCTInfo: ?*?*ICreateTypeInfo,
         ) callconv(.winapi) HRESULT,
         SetName: *const fn(
             self: *const ICreateTypeLib,
-            szName: ?PWSTR,
+            szName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetVersion: *const fn(
             self: *const ICreateTypeLib,
@@ -1602,11 +1602,11 @@ pub const ICreateTypeLib = extern union {
         ) callconv(.winapi) HRESULT,
         SetDocString: *const fn(
             self: *const ICreateTypeLib,
-            szDoc: ?PWSTR,
+            szDoc: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetHelpFileName: *const fn(
             self: *const ICreateTypeLib,
-            szHelpFileName: ?PWSTR,
+            szHelpFileName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetHelpContext: *const fn(
             self: *const ICreateTypeLib,
@@ -1626,10 +1626,10 @@ pub const ICreateTypeLib = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateTypeInfo(self: *const ICreateTypeLib, szName: ?PWSTR, tkind: TYPEKIND, ppCTInfo: ?*?*ICreateTypeInfo) callconv(.@"inline") HRESULT {
+    pub fn CreateTypeInfo(self: *const ICreateTypeLib, szName: ?[*:0]u16, tkind: TYPEKIND, ppCTInfo: ?*?*ICreateTypeInfo) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTypeInfo(self, szName, tkind, ppCTInfo);
     }
-    pub fn SetName(self: *const ICreateTypeLib, szName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetName(self: *const ICreateTypeLib, szName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetName(self, szName);
     }
     pub fn SetVersion(self: *const ICreateTypeLib, wMajorVerNum: u16, wMinorVerNum: u16) callconv(.@"inline") HRESULT {
@@ -1638,10 +1638,10 @@ pub const ICreateTypeLib = extern union {
     pub fn SetGuid(self: *const ICreateTypeLib, guid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetGuid(self, guid);
     }
-    pub fn SetDocString(self: *const ICreateTypeLib, szDoc: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetDocString(self: *const ICreateTypeLib, szDoc: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetDocString(self, szDoc);
     }
-    pub fn SetHelpFileName(self: *const ICreateTypeLib, szHelpFileName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetHelpFileName(self: *const ICreateTypeLib, szHelpFileName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetHelpFileName(self, szHelpFileName);
     }
     pub fn SetHelpContext(self: *const ICreateTypeLib, dwHelpContext: u32) callconv(.@"inline") HRESULT {
@@ -1665,7 +1665,7 @@ pub const ICreateTypeLib2 = extern union {
         base: ICreateTypeLib.VTable,
         DeleteTypeInfo: *const fn(
             self: *const ICreateTypeLib2,
-            szName: ?PWSTR,
+            szName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetCustData: *const fn(
             self: *const ICreateTypeLib2,
@@ -1678,13 +1678,13 @@ pub const ICreateTypeLib2 = extern union {
         ) callconv(.winapi) HRESULT,
         SetHelpStringDll: *const fn(
             self: *const ICreateTypeLib2,
-            szFileName: ?PWSTR,
+            szFileName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICreateTypeLib: ICreateTypeLib,
     IUnknown: IUnknown,
-    pub fn DeleteTypeInfo(self: *const ICreateTypeLib2, szName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn DeleteTypeInfo(self: *const ICreateTypeLib2, szName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteTypeInfo(self, szName);
     }
     pub fn SetCustData(self: *const ICreateTypeLib2, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.@"inline") HRESULT {
@@ -1693,7 +1693,7 @@ pub const ICreateTypeLib2 = extern union {
     pub fn SetHelpStringContext(self: *const ICreateTypeLib2, dwHelpStringContext: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetHelpStringContext(self, dwHelpStringContext);
     }
-    pub fn SetHelpStringDll(self: *const ICreateTypeLib2, szFileName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetHelpStringDll(self: *const ICreateTypeLib2, szFileName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetHelpStringDll(self, szFileName);
     }
 };
@@ -3442,7 +3442,7 @@ pub const IOleItemContainer = extern union {
         base: IOleContainer.VTable,
         GetObject: *const fn(
             self: *const IOleItemContainer,
-            pszItem: ?PWSTR,
+            pszItem: ?[*:0]u16,
             dwSpeedNeeded: u32,
             pbc: ?*IBindCtx,
             riid: ?*const Guid,
@@ -3450,27 +3450,27 @@ pub const IOleItemContainer = extern union {
         ) callconv(.winapi) HRESULT,
         GetObjectStorage: *const fn(
             self: *const IOleItemContainer,
-            pszItem: ?PWSTR,
+            pszItem: ?[*:0]u16,
             pbc: ?*IBindCtx,
             riid: ?*const Guid,
             ppvStorage: **anyopaque,
         ) callconv(.winapi) HRESULT,
         IsRunning: *const fn(
             self: *const IOleItemContainer,
-            pszItem: ?PWSTR,
+            pszItem: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IOleContainer: IOleContainer,
     IParseDisplayName: IParseDisplayName,
     IUnknown: IUnknown,
-    pub fn GetObject(self: *const IOleItemContainer, pszItem: ?PWSTR, dwSpeedNeeded: u32, pbc: ?*IBindCtx, riid: ?*const Guid, ppvObject: **anyopaque) callconv(.@"inline") HRESULT {
+    pub fn GetObject(self: *const IOleItemContainer, pszItem: ?[*:0]u16, dwSpeedNeeded: u32, pbc: ?*IBindCtx, riid: ?*const Guid, ppvObject: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetObject(self, pszItem, dwSpeedNeeded, pbc, riid, ppvObject);
     }
-    pub fn GetObjectStorage(self: *const IOleItemContainer, pszItem: ?PWSTR, pbc: ?*IBindCtx, riid: ?*const Guid, ppvStorage: **anyopaque) callconv(.@"inline") HRESULT {
+    pub fn GetObjectStorage(self: *const IOleItemContainer, pszItem: ?[*:0]u16, pbc: ?*IBindCtx, riid: ?*const Guid, ppvStorage: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetObjectStorage(self, pszItem, pbc, riid, ppvStorage);
     }
-    pub fn IsRunning(self: *const IOleItemContainer, pszItem: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn IsRunning(self: *const IOleItemContainer, pszItem: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.IsRunning(self, pszItem);
     }
 };
@@ -3504,7 +3504,7 @@ pub const IOleLink = extern union {
         ) callconv(.winapi) HRESULT,
         GetSourceDisplayName: *const fn(
             self: *const IOleLink,
-            ppszDisplayName: ?*?PWSTR,
+            ppszDisplayName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         BindToSource: *const fn(
             self: *const IOleLink,
@@ -3543,7 +3543,7 @@ pub const IOleLink = extern union {
     pub fn SetSourceDisplayName(self: *const IOleLink, pszStatusText: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetSourceDisplayName(self, pszStatusText);
     }
-    pub fn GetSourceDisplayName(self: *const IOleLink, ppszDisplayName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSourceDisplayName(self: *const IOleLink, ppszDisplayName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSourceDisplayName(self, ppszDisplayName);
     }
     pub fn BindToSource(self: *const IOleLink, bindflags: u32, pbc: ?*IBindCtx) callconv(.@"inline") HRESULT {
@@ -3634,7 +3634,7 @@ pub const IOleObject = extern union {
         GetUserType: *const fn(
             self: *const IOleObject,
             dwFormOfType: USERCLASSTYPE,
-            pszUserType: ?*?PWSTR,
+            pszUserType: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetExtent: *const fn(
             self: *const IOleObject,
@@ -3710,7 +3710,7 @@ pub const IOleObject = extern union {
     pub fn GetUserClassID(self: *const IOleObject, pClsid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetUserClassID(self, pClsid);
     }
-    pub fn GetUserType(self: *const IOleObject, dwFormOfType: USERCLASSTYPE, pszUserType: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetUserType(self: *const IOleObject, dwFormOfType: USERCLASSTYPE, pszUserType: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetUserType(self, dwFormOfType, pszUserType);
     }
     pub fn SetExtent(self: *const IOleObject, dwDrawAspect: DVASPECT, psizel: ?*SIZE) callconv(.@"inline") HRESULT {
@@ -3805,7 +3805,7 @@ pub const IOleUILinkContainerA = extern union {
         SetLinkSource: *const fn(
             self: *const IOleUILinkContainerA,
             dwLink: u32,
-            lpszDisplayName: ?PSTR,
+            lpszDisplayName: ?[*:0]u8,
             lenFileName: u32,
             pchEaten: ?*u32,
             fValidateSource: BOOL,
@@ -3813,10 +3813,10 @@ pub const IOleUILinkContainerA = extern union {
         GetLinkSource: *const fn(
             self: *const IOleUILinkContainerA,
             dwLink: u32,
-            lplpszDisplayName: ?*?PSTR,
+            lplpszDisplayName: ?*?[*:0]u8,
             lplenFileName: ?*u32,
-            lplpszFullLinkType: ?*?PSTR,
-            lplpszShortLinkType: ?*?PSTR,
+            lplpszFullLinkType: ?*?[*:0]u8,
+            lplpszShortLinkType: ?*?[*:0]u8,
             lpfSourceAvailable: ?*BOOL,
             lpfIsSelected: ?*BOOL,
         ) callconv(.winapi) HRESULT,
@@ -3846,10 +3846,10 @@ pub const IOleUILinkContainerA = extern union {
     pub fn GetLinkUpdateOptions(self: *const IOleUILinkContainerA, dwLink: u32, lpdwUpdateOpt: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLinkUpdateOptions(self, dwLink, lpdwUpdateOpt);
     }
-    pub fn SetLinkSource(self: *const IOleUILinkContainerA, dwLink: u32, lpszDisplayName: ?PSTR, lenFileName: u32, pchEaten: ?*u32, fValidateSource: BOOL) callconv(.@"inline") HRESULT {
+    pub fn SetLinkSource(self: *const IOleUILinkContainerA, dwLink: u32, lpszDisplayName: ?[*:0]u8, lenFileName: u32, pchEaten: ?*u32, fValidateSource: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetLinkSource(self, dwLink, lpszDisplayName, lenFileName, pchEaten, fValidateSource);
     }
-    pub fn GetLinkSource(self: *const IOleUILinkContainerA, dwLink: u32, lplpszDisplayName: ?*?PSTR, lplenFileName: ?*u32, lplpszFullLinkType: ?*?PSTR, lplpszShortLinkType: ?*?PSTR, lpfSourceAvailable: ?*BOOL, lpfIsSelected: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn GetLinkSource(self: *const IOleUILinkContainerA, dwLink: u32, lplpszDisplayName: ?*?[*:0]u8, lplenFileName: ?*u32, lplpszFullLinkType: ?*?[*:0]u8, lplpszShortLinkType: ?*?[*:0]u8, lpfSourceAvailable: ?*BOOL, lpfIsSelected: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetLinkSource(self, dwLink, lplpszDisplayName, lplenFileName, lplpszFullLinkType, lplpszShortLinkType, lpfSourceAvailable, lpfIsSelected);
     }
     pub fn OpenLinkSource(self: *const IOleUILinkContainerA, dwLink: u32) callconv(.@"inline") HRESULT {
@@ -3884,7 +3884,7 @@ pub const IOleUILinkContainerW = extern union {
         SetLinkSource: *const fn(
             self: *const IOleUILinkContainerW,
             dwLink: u32,
-            lpszDisplayName: ?PWSTR,
+            lpszDisplayName: ?[*:0]u16,
             lenFileName: u32,
             pchEaten: ?*u32,
             fValidateSource: BOOL,
@@ -3892,10 +3892,10 @@ pub const IOleUILinkContainerW = extern union {
         GetLinkSource: *const fn(
             self: *const IOleUILinkContainerW,
             dwLink: u32,
-            lplpszDisplayName: ?*?PWSTR,
+            lplpszDisplayName: ?*?[*:0]u16,
             lplenFileName: ?*u32,
-            lplpszFullLinkType: ?*?PWSTR,
-            lplpszShortLinkType: ?*?PWSTR,
+            lplpszFullLinkType: ?*?[*:0]u16,
+            lplpszShortLinkType: ?*?[*:0]u16,
             lpfSourceAvailable: ?*BOOL,
             lpfIsSelected: ?*BOOL,
         ) callconv(.winapi) HRESULT,
@@ -3925,10 +3925,10 @@ pub const IOleUILinkContainerW = extern union {
     pub fn GetLinkUpdateOptions(self: *const IOleUILinkContainerW, dwLink: u32, lpdwUpdateOpt: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLinkUpdateOptions(self, dwLink, lpdwUpdateOpt);
     }
-    pub fn SetLinkSource(self: *const IOleUILinkContainerW, dwLink: u32, lpszDisplayName: ?PWSTR, lenFileName: u32, pchEaten: ?*u32, fValidateSource: BOOL) callconv(.@"inline") HRESULT {
+    pub fn SetLinkSource(self: *const IOleUILinkContainerW, dwLink: u32, lpszDisplayName: ?[*:0]u16, lenFileName: u32, pchEaten: ?*u32, fValidateSource: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetLinkSource(self, dwLink, lpszDisplayName, lenFileName, pchEaten, fValidateSource);
     }
-    pub fn GetLinkSource(self: *const IOleUILinkContainerW, dwLink: u32, lplpszDisplayName: ?*?PWSTR, lplenFileName: ?*u32, lplpszFullLinkType: ?*?PWSTR, lplpszShortLinkType: ?*?PWSTR, lpfSourceAvailable: ?*BOOL, lpfIsSelected: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn GetLinkSource(self: *const IOleUILinkContainerW, dwLink: u32, lplpszDisplayName: ?*?[*:0]u16, lplenFileName: ?*u32, lplpszFullLinkType: ?*?[*:0]u16, lplpszShortLinkType: ?*?[*:0]u16, lpfSourceAvailable: ?*BOOL, lpfIsSelected: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetLinkSource(self, dwLink, lplpszDisplayName, lplenFileName, lplpszFullLinkType, lplpszShortLinkType, lpfSourceAvailable, lpfIsSelected);
     }
     pub fn OpenLinkSource(self: *const IOleUILinkContainerW, dwLink: u32) callconv(.@"inline") HRESULT {
@@ -3986,10 +3986,10 @@ pub const IOleUIObjInfoA = extern union {
             self: *const IOleUIObjInfoA,
             dwObject: u32,
             lpdwObjSize: ?*u32,
-            lplpszLabel: ?*?PSTR,
-            lplpszType: ?*?PSTR,
-            lplpszShortType: ?*?PSTR,
-            lplpszLocation: ?*?PSTR,
+            lplpszLabel: ?*?[*:0]u8,
+            lplpszType: ?*?[*:0]u8,
+            lplpszShortType: ?*?[*:0]u8,
+            lplpszLocation: ?*?[*:0]u8,
         ) callconv(.winapi) HRESULT,
         GetConvertInfo: *const fn(
             self: *const IOleUIObjInfoA,
@@ -4023,7 +4023,7 @@ pub const IOleUIObjInfoA = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetObjectInfo(self: *const IOleUIObjInfoA, dwObject: u32, lpdwObjSize: ?*u32, lplpszLabel: ?*?PSTR, lplpszType: ?*?PSTR, lplpszShortType: ?*?PSTR, lplpszLocation: ?*?PSTR) callconv(.@"inline") HRESULT {
+    pub fn GetObjectInfo(self: *const IOleUIObjInfoA, dwObject: u32, lpdwObjSize: ?*u32, lplpszLabel: ?*?[*:0]u8, lplpszType: ?*?[*:0]u8, lplpszShortType: ?*?[*:0]u8, lplpszLocation: ?*?[*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetObjectInfo(self, dwObject, lpdwObjSize, lplpszLabel, lplpszType, lplpszShortType, lplpszLocation);
     }
     pub fn GetConvertInfo(self: *const IOleUIObjInfoA, dwObject: u32, lpClassID: ?*Guid, lpwFormat: ?*u16, lpConvertDefaultClassID: ?*Guid, lplpClsidExclude: ?*?*Guid, lpcClsidExclude: ?*u32) callconv(.@"inline") HRESULT {
@@ -4048,10 +4048,10 @@ pub const IOleUIObjInfoW = extern union {
             self: *const IOleUIObjInfoW,
             dwObject: u32,
             lpdwObjSize: ?*u32,
-            lplpszLabel: ?*?PWSTR,
-            lplpszType: ?*?PWSTR,
-            lplpszShortType: ?*?PWSTR,
-            lplpszLocation: ?*?PWSTR,
+            lplpszLabel: ?*?[*:0]u16,
+            lplpszType: ?*?[*:0]u16,
+            lplpszShortType: ?*?[*:0]u16,
+            lplpszLocation: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetConvertInfo: *const fn(
             self: *const IOleUIObjInfoW,
@@ -4085,7 +4085,7 @@ pub const IOleUIObjInfoW = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetObjectInfo(self: *const IOleUIObjInfoW, dwObject: u32, lpdwObjSize: ?*u32, lplpszLabel: ?*?PWSTR, lplpszType: ?*?PWSTR, lplpszShortType: ?*?PWSTR, lplpszLocation: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetObjectInfo(self: *const IOleUIObjInfoW, dwObject: u32, lpdwObjSize: ?*u32, lplpszLabel: ?*?[*:0]u16, lplpszType: ?*?[*:0]u16, lplpszShortType: ?*?[*:0]u16, lplpszLocation: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetObjectInfo(self, dwObject, lpdwObjSize, lplpszLabel, lplpszType, lplpszShortType, lplpszLocation);
     }
     pub fn GetConvertInfo(self: *const IOleUIObjInfoW, dwObject: u32, lpClassID: ?*Guid, lpwFormat: ?*u16, lpConvertDefaultClassID: ?*Guid, lplpClsidExclude: ?*?*Guid, lpcClsidExclude: ?*u32) callconv(.@"inline") HRESULT {
@@ -4271,14 +4271,14 @@ pub const IParseDisplayName = extern union {
         ParseDisplayName: *const fn(
             self: *const IParseDisplayName,
             pbc: ?*IBindCtx,
-            pszDisplayName: ?PWSTR,
+            pszDisplayName: ?[*:0]u16,
             pchEaten: ?*u32,
             ppmkOut: ?*?*IMoniker,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ParseDisplayName(self: *const IParseDisplayName, pbc: ?*IBindCtx, pszDisplayName: ?PWSTR, pchEaten: ?*u32, ppmkOut: ?*?*IMoniker) callconv(.@"inline") HRESULT {
+    pub fn ParseDisplayName(self: *const IParseDisplayName, pbc: ?*IBindCtx, pszDisplayName: ?[*:0]u16, pchEaten: ?*u32, ppmkOut: ?*?*IMoniker) callconv(.@"inline") HRESULT {
         return self.vtable.ParseDisplayName(self, pbc, pszDisplayName, pchEaten, ppmkOut);
     }
 };
@@ -5296,22 +5296,22 @@ pub const ITypeChangeEvents = extern union {
             self: *const ITypeChangeEvents,
             changeKind: CHANGEKIND,
             pTInfoBefore: ?*ITypeInfo,
-            pStrName: ?PWSTR,
+            pStrName: ?[*:0]u16,
             pfCancel: ?*i32,
         ) callconv(.winapi) HRESULT,
         AfterTypeChange: *const fn(
             self: *const ITypeChangeEvents,
             changeKind: CHANGEKIND,
             pTInfoAfter: ?*ITypeInfo,
-            pStrName: ?PWSTR,
+            pStrName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RequestTypeChange(self: *const ITypeChangeEvents, changeKind: CHANGEKIND, pTInfoBefore: ?*ITypeInfo, pStrName: ?PWSTR, pfCancel: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn RequestTypeChange(self: *const ITypeChangeEvents, changeKind: CHANGEKIND, pTInfoBefore: ?*ITypeInfo, pStrName: ?[*:0]u16, pfCancel: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.RequestTypeChange(self, changeKind, pTInfoBefore, pStrName, pfCancel);
     }
-    pub fn AfterTypeChange(self: *const ITypeChangeEvents, changeKind: CHANGEKIND, pTInfoAfter: ?*ITypeInfo, pStrName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn AfterTypeChange(self: *const ITypeChangeEvents, changeKind: CHANGEKIND, pTInfoAfter: ?*ITypeInfo, pStrName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.AfterTypeChange(self, changeKind, pTInfoAfter, pStrName);
     }
 };
@@ -5737,7 +5737,7 @@ pub const MEDIAPLAYBACK_PAUSE_AND_SUSPEND = MEDIAPLAYBACK_STATE.PAUSE_AND_SUSPEN
 pub const MEDIAPLAYBACK_RESUME_FROM_SUSPEND = MEDIAPLAYBACK_STATE.RESUME_FROM_SUSPEND;
 
 pub const METHODDATA = extern struct {
-    szName: ?PWSTR,
+    szName: ?[*:0]u16,
     ppdata: ?*PARAMDATA,
     dispid: i32,
     iMeth: u32,
@@ -6486,10 +6486,10 @@ pub const OLEUICHANGESOURCEA = extern struct {
     dwReserved1: [4]u32,
     lpOleUILinkContainer: ?*IOleUILinkContainerA,
     dwLink: u32,
-    lpszDisplayName: ?PSTR,
+    lpszDisplayName: ?[*:0]u8,
     nFileLength: u32,
-    lpszFrom: ?PSTR,
-    lpszTo: ?PSTR,
+    lpszFrom: ?[*:0]u8,
+    lpszTo: ?[*:0]u8,
 };
 
 pub const OLEUICHANGESOURCEW = extern struct {
@@ -6506,10 +6506,10 @@ pub const OLEUICHANGESOURCEW = extern struct {
     dwReserved1: [4]u32,
     lpOleUILinkContainer: ?*IOleUILinkContainerW,
     dwLink: u32,
-    lpszDisplayName: ?PWSTR,
+    lpszDisplayName: ?[*:0]u16,
     nFileLength: u32,
-    lpszFrom: ?PWSTR,
-    lpszTo: ?PWSTR,
+    lpszFrom: ?[*:0]u16,
+    lpszTo: ?[*:0]u16,
 };
 
 pub const OLEUICONVERTA = extern struct {
@@ -6530,9 +6530,9 @@ pub const OLEUICONVERTA = extern struct {
     wFormat: u16,
     fIsLinkedObject: BOOL,
     hMetaPict: isize,
-    lpszUserType: ?PSTR,
+    lpszUserType: ?[*:0]u8,
     fObjectsIconChanged: BOOL,
-    lpszDefLabel: ?PSTR,
+    lpszDefLabel: ?[*:0]u8,
     cClsidExclude: u32,
     lpClsidExclude: ?*Guid,
 };
@@ -6555,9 +6555,9 @@ pub const OLEUICONVERTW = extern struct {
     wFormat: u16,
     fIsLinkedObject: BOOL,
     hMetaPict: isize,
-    lpszUserType: ?PWSTR,
+    lpszUserType: ?[*:0]u16,
     fObjectsIconChanged: BOOL,
-    lpszDefLabel: ?PWSTR,
+    lpszDefLabel: ?[*:0]u16,
     cClsidExclude: u32,
     lpClsidExclude: ?*Guid,
 };
@@ -6619,7 +6619,7 @@ pub const OLEUIINSERTOBJECTA = extern struct {
     lpszTemplate: ?[*:0]const u8,
     hResource: ?HRSRC,
     clsid: Guid,
-    lpszFile: ?PSTR,
+    lpszFile: ?[*:0]u8,
     cchFile: u32,
     cClsidExclude: u32,
     lpClsidExclude: ?*Guid,
@@ -6644,7 +6644,7 @@ pub const OLEUIINSERTOBJECTW = extern struct {
     lpszTemplate: ?[*:0]const u16,
     hResource: ?HRSRC,
     clsid: Guid,
-    lpszFile: ?PWSTR,
+    lpszFile: ?[*:0]u16,
     cchFile: u32,
     cClsidExclude: u32,
     lpClsidExclude: ?*Guid,
@@ -6826,7 +6826,7 @@ pub const OLEUPDATE_ONCALL = OLEUPDATE.ONCALL;
 
 pub const OLEVERB = extern struct {
     lVerb: OLEIVERB,
-    lpszVerbName: ?PWSTR,
+    lpszVerbName: ?[*:0]u16,
     fuFlags: MENU_ITEM_FLAGS,
     grfAttribs: OLEVERBATTRIB,
 };
@@ -6872,7 +6872,7 @@ pub const PAGESET = extern struct {
 };
 
 pub const PARAMDATA = extern struct {
-    szName: ?PWSTR,
+    szName: ?[*:0]u16,
     vt: VARENUM,
 };
 
@@ -7075,10 +7075,10 @@ pub const PROPBAG2_TYPE_MONIKER = PROPBAG2_TYPE.MONIKER;
 
 pub const PROPPAGEINFO = extern struct {
     cb: u32,
-    pszTitle: ?PWSTR,
+    pszTitle: ?[*:0]u16,
     size: SIZE,
-    pszDocString: ?PWSTR,
-    pszHelpFile: ?PWSTR,
+    pszDocString: ?[*:0]u16,
+    pszHelpFile: ?[*:0]u16,
     dwHelpContext: u32,
 };
 
@@ -7658,7 +7658,7 @@ pub extern "oleaut32" fn DispCallFunc(
 
 pub extern "oleaut32" fn DispGetIDsOfNames(
     ptinfo: ?*ITypeInfo,
-    rgszNames: [*]?PWSTR,
+    rgszNames: [*]?[*:0]u16,
     cNames: u32,
     rgdispid: [*]i32,
 ) callconv(.winapi) HRESULT;
@@ -7704,7 +7704,7 @@ pub extern "oleaut32" fn GetActiveObject(
 
 pub extern "oleaut32" fn GetAltMonthNames(
     lcid: u32,
-    prgp: ?*?*?PWSTR,
+    prgp: ?*?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn GetRecordInfoFromGuids(
@@ -8093,22 +8093,22 @@ pub extern "ole32" fn OleGetClipboard(
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "ole32" fn OleGetClipboardWithEnterpriseInfo(
     dataObject: ?*?*IDataObject,
-    dataEnterpriseId: ?*?PWSTR,
-    sourceDescription: ?*?PWSTR,
-    targetDescription: ?*?PWSTR,
-    dataDescription: ?*?PWSTR,
+    dataEnterpriseId: ?*?[*:0]u16,
+    sourceDescription: ?*?[*:0]u16,
+    targetDescription: ?*?[*:0]u16,
+    dataDescription: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn OleGetIconOfClass(
     rclsid: ?*const Guid,
-    lpszLabel: ?PWSTR,
+    lpszLabel: ?[*:0]u16,
     fUseTypeAsLabel: BOOL,
 ) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn OleGetIconOfFile(
-    lpszPath: ?PWSTR,
+    lpszPath: ?[*:0]u16,
     fUseFileAsLabel: BOOL,
 ) callconv(.winapi) isize;
 
@@ -8184,7 +8184,7 @@ pub extern "oleaut32" fn OleLoadPictureFileEx(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "oleaut32" fn OleLoadPicturePath(
-    szURLorPath: ?PWSTR,
+    szURLorPath: ?[*:0]u16,
     punkCaller: ?*IUnknown,
     dwReserved: u32,
     clrReserved: u32,
@@ -8202,8 +8202,8 @@ pub extern "ole32" fn OleLockRunning(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn OleMetafilePictFromIconAndLabel(
     hIcon: ?HICON,
-    lpszLabel: ?PWSTR,
-    lpszSourceFile: ?PWSTR,
+    lpszLabel: ?[*:0]u16,
+    lpszSourceFile: ?[*:0]u16,
     iIconIndex: u32,
 ) callconv(.winapi) isize;
 
@@ -8247,7 +8247,7 @@ pub extern "ole32" fn OleRegGetMiscStatus(
 pub extern "ole32" fn OleRegGetUserType(
     clsid: ?*const Guid,
     dwFormOfType: USERCLASSTYPE,
-    pszUserType: ?*?PWSTR,
+    pszUserType: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -8442,7 +8442,7 @@ pub extern "oledlg" fn OleUIPromptUserW(
 pub extern "oledlg" fn OleUIUpdateLinksA(
     lpOleUILinkCntr: ?*IOleUILinkContainerA,
     hwndParent: ?HWND,
-    lpszTitle: ?PSTR,
+    lpszTitle: ?[*:0]u8,
     cLinks: i32,
 ) callconv(.winapi) BOOL;
 
@@ -8450,7 +8450,7 @@ pub extern "oledlg" fn OleUIUpdateLinksA(
 pub extern "oledlg" fn OleUIUpdateLinksW(
     lpOleUILinkCntr: ?*IOleUILinkContainerW,
     hwndParent: ?HWND,
-    lpszTitle: ?PWSTR,
+    lpszTitle: ?[*:0]u16,
     cLinks: i32,
 ) callconv(.winapi) BOOL;
 
@@ -8487,8 +8487,8 @@ pub extern "oleaut32" fn RegisterTypeLib(
 
 pub extern "oleaut32" fn RegisterTypeLibForUser(
     ptlib: ?*ITypeLib,
-    szFullPath: ?PWSTR,
-    szHelpDir: ?PWSTR,
+    szFullPath: ?[*:0]u16,
+    szHelpDir: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9309,7 +9309,7 @@ pub extern "oleaut32" fn VarFix(
 
 pub extern "oleaut32" fn VarFormat(
     pvarIn: ?*VARIANT,
-    pstrFormat: ?PWSTR,
+    pstrFormat: ?[*:0]u16,
     iFirstDay: VARFORMAT_FIRST_DAY,
     iFirstWeek: VARFORMAT_FIRST_WEEK,
     dwFlags: u32,
@@ -9335,7 +9335,7 @@ pub extern "oleaut32" fn VarFormatDateTime(
 
 pub extern "oleaut32" fn VarFormatFromTokens(
     pvarIn: ?*VARIANT,
-    pstrFormat: ?PWSTR,
+    pstrFormat: ?[*:0]u16,
     pbTokCur: ?*u8,
     dwFlags: u32,
     pbstrOut: ?*?BSTR,
@@ -9364,80 +9364,80 @@ pub extern "oleaut32" fn VarFormatPercent(
 
 pub extern "oleaut32" fn VarI1FromBool(
     boolIn: VARIANT_BOOL,
-    pcOut: ?PSTR,
+    pcOut: ?[*:0]u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarI1FromCy(
     cyIn: CY,
-    pcOut: ?PSTR,
+    pcOut: ?[*:0]u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarI1FromDate(
     dateIn: f64,
-    pcOut: ?PSTR,
+    pcOut: ?[*:0]u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarI1FromDec(
     pdecIn: ?*const DECIMAL,
-    pcOut: ?PSTR,
+    pcOut: ?[*:0]u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarI1FromDisp(
     pdispIn: ?*IDispatch,
     lcid: u32,
-    pcOut: ?PSTR,
+    pcOut: ?[*:0]u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarI1FromI2(
     uiIn: i16,
-    pcOut: ?PSTR,
+    pcOut: ?[*:0]u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarI1FromI4(
     lIn: i32,
-    pcOut: ?PSTR,
+    pcOut: ?[*:0]u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarI1FromI8(
     i64In: i64,
-    pcOut: ?PSTR,
+    pcOut: ?[*:0]u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarI1FromR4(
     fltIn: f32,
-    pcOut: ?PSTR,
+    pcOut: ?[*:0]u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarI1FromR8(
     dblIn: f64,
-    pcOut: ?PSTR,
+    pcOut: ?[*:0]u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarI1FromStr(
     strIn: ?[*:0]const u16,
     lcid: u32,
     dwFlags: u32,
-    pcOut: ?PSTR,
+    pcOut: ?[*:0]u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarI1FromUI1(
     bIn: u8,
-    pcOut: ?PSTR,
+    pcOut: ?[*:0]u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarI1FromUI2(
     uiIn: u16,
-    pcOut: ?PSTR,
+    pcOut: ?[*:0]u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarI1FromUI4(
     ulIn: u32,
-    pcOut: ?PSTR,
+    pcOut: ?[*:0]u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarI1FromUI8(
     i64In: u64,
-    pcOut: ?PSTR,
+    pcOut: ?[*:0]u8,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarI2FromBool(
@@ -9972,7 +9972,7 @@ pub extern "oleaut32" fn VarSub(
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarTokenizeFormatString(
-    pstrFormat: ?PWSTR,
+    pstrFormat: ?[*:0]u16,
     rgbTok: [*:0]u8,
     cbTok: i32,
     iFirstDay: VARFORMAT_FIRST_DAY,
@@ -10500,7 +10500,7 @@ pub const OleUIUpdateLinks = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (96)
+// Section: Imports (94)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ADVF = @import("../system/com.zig").ADVF;
@@ -10578,8 +10578,6 @@ const POINT = @import("../foundation.zig").POINT;
 const POINTL = @import("../foundation.zig").POINTL;
 const PROPSHEETHEADERA_V2 = @import("../ui/controls.zig").PROPSHEETHEADERA_V2;
 const PROPSHEETHEADERW_V2 = @import("../ui/controls.zig").PROPSHEETHEADERW_V2;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const RECTL = @import("../foundation.zig").RECTL;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;

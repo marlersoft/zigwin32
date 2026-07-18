@@ -269,7 +269,7 @@ pub const DRT_SETTINGS = extern struct {
     bProtocolMajorVersion: u8,
     bProtocolMinorVersion: u8,
     ulMaxRoutingAddresses: u32,
-    pwzDrtInstancePrefix: ?PWSTR,
+    pwzDrtInstancePrefix: ?[*:0]u16,
     hTransport: ?*anyopaque,
     pSecurityProvider: ?*DRT_SECURITY_PROVIDER,
     pBootstrapProvider: ?*DRT_BOOTSTRAP_PROVIDER,
@@ -301,13 +301,13 @@ pub const PEER_APP_LAUNCH_INFO = extern struct {
 pub const PEER_APPLICATION = extern struct {
     id: Guid,
     data: PEER_DATA,
-    pwzDescription: ?PWSTR,
+    pwzDescription: ?[*:0]u16,
 };
 
 pub const PEER_APPLICATION_REGISTRATION_INFO = extern struct {
     application: PEER_APPLICATION,
-    pwzApplicationToLaunch: ?PWSTR,
-    pwzApplicationArguments: ?PWSTR,
+    pwzApplicationToLaunch: ?[*:0]u16,
+    pwzApplicationArguments: ?[*:0]u16,
     dwPublicationScope: u32,
 };
 
@@ -382,7 +382,7 @@ pub const PEER_CONNECTION_INFO = extern struct {
     dwFlags: u32,
     ullConnectionId: u64,
     ullNodeId: u64,
-    pwzPeerId: ?PWSTR,
+    pwzPeerId: ?[*:0]u16,
     address: PEER_ADDRESS,
 };
 
@@ -396,10 +396,10 @@ pub const PEER_DISCONNECTED = PEER_CONNECTION_STATUS.DISCONNECTED;
 pub const PEER_CONNECTION_FAILED = PEER_CONNECTION_STATUS.CONNECTION_FAILED;
 
 pub const PEER_CONTACT = extern struct {
-    pwzPeerName: ?PWSTR,
-    pwzNickName: ?PWSTR,
-    pwzDisplayName: ?PWSTR,
-    pwzEmailAddress: ?PWSTR,
+    pwzPeerName: ?[*:0]u16,
+    pwzNickName: ?[*:0]u16,
+    pwzDisplayName: ?[*:0]u16,
+    pwzEmailAddress: ?[*:0]u16,
     fWatch: BOOL,
     WatcherPermissions: PEER_WATCH_PERMISSION,
     credentials: PEER_DATA,
@@ -408,10 +408,10 @@ pub const PEER_CONTACT = extern struct {
 pub const PEER_CREDENTIAL_INFO = extern struct {
     dwSize: u32,
     dwFlags: u32,
-    pwzFriendlyName: ?PWSTR,
+    pwzFriendlyName: ?[*:0]u16,
     pPublicKey: ?*CERT_PUBLIC_KEY_INFO,
-    pwzIssuerPeerName: ?PWSTR,
-    pwzIssuerFriendlyName: ?PWSTR,
+    pwzIssuerPeerName: ?[*:0]u16,
+    pwzIssuerFriendlyName: ?[*:0]u16,
     ftValidityStart: FILETIME,
     ftValidityEnd: FILETIME,
     cRoles: u32,
@@ -425,7 +425,7 @@ pub const PEER_DATA = extern struct {
 
 pub const PEER_ENDPOINT = extern struct {
     address: PEER_ADDRESS,
-    pwzEndpointName: ?PWSTR,
+    pwzEndpointName: ?[*:0]u16,
 };
 
 pub const PEER_EVENT_APPLICATION_CHANGED_DATA = extern struct {
@@ -459,14 +459,14 @@ pub const PEER_EVENT_INCOMING_DATA = extern struct {
 pub const PEER_EVENT_MEMBER_CHANGE_DATA = extern struct {
     dwSize: u32,
     changeType: PEER_MEMBER_CHANGE_TYPE,
-    pwzIdentity: ?PWSTR,
+    pwzIdentity: ?[*:0]u16,
 };
 
 pub const PEER_EVENT_NODE_CHANGE_DATA = extern struct {
     dwSize: u32,
     changeType: PEER_NODE_CHANGE_TYPE,
     ullNodeId: u64,
-    pwzPeerId: ?PWSTR,
+    pwzPeerId: ?[*:0]u16,
 };
 
 pub const PEER_EVENT_OBJECT_CHANGED_DATA = extern struct {
@@ -553,10 +553,10 @@ pub const PEER_GRAPH_PROPERTIES = extern struct {
     dwFlags: u32,
     dwScope: u32,
     dwMaxRecordSize: u32,
-    pwzGraphId: ?PWSTR,
-    pwzCreatorId: ?PWSTR,
-    pwzFriendlyName: ?PWSTR,
-    pwzComment: ?PWSTR,
+    pwzGraphId: ?[*:0]u16,
+    pwzCreatorId: ?[*:0]u16,
+    pwzFriendlyName: ?[*:0]u16,
+    pwzComment: ?[*:0]u16,
     ulPresenceLifetime: u32,
     cPresenceMax: u32,
 };
@@ -643,16 +643,16 @@ pub const PEER_GROUP_STORE_CREDENTIALS = PEER_GROUP_ISSUE_CREDENTIAL_FLAGS.S;
 pub const PEER_GROUP_PROPERTIES = extern struct {
     dwSize: u32,
     dwFlags: u32,
-    pwzCloud: ?PWSTR,
-    pwzClassifier: ?PWSTR,
-    pwzGroupPeerName: ?PWSTR,
-    pwzCreatorPeerName: ?PWSTR,
-    pwzFriendlyName: ?PWSTR,
-    pwzComment: ?PWSTR,
+    pwzCloud: ?[*:0]u16,
+    pwzClassifier: ?[*:0]u16,
+    pwzGroupPeerName: ?[*:0]u16,
+    pwzCreatorPeerName: ?[*:0]u16,
+    pwzFriendlyName: ?[*:0]u16,
+    pwzComment: ?[*:0]u16,
     ulMemberDataLifetime: u32,
     ulPresenceLifetime: u32,
     dwAuthenticationSchemes: u32,
-    pwzGroupPassword: ?PWSTR,
+    pwzGroupPassword: ?[*:0]u16,
     groupPasswordRole: Guid,
 };
 
@@ -675,34 +675,34 @@ pub const PEER_GROUP_STATUS_HAS_CONNECTIONS = PEER_GROUP_STATUS.HAS_CONNECTIONS;
 pub const PEER_INVITATION = extern struct {
     applicationId: Guid,
     applicationData: PEER_DATA,
-    pwzMessage: ?PWSTR,
+    pwzMessage: ?[*:0]u16,
 };
 
 pub const PEER_INVITATION_INFO = extern struct {
     dwSize: u32,
     dwFlags: u32,
-    pwzCloudName: ?PWSTR,
+    pwzCloudName: ?[*:0]u16,
     dwScope: u32,
     dwCloudFlags: u32,
-    pwzGroupPeerName: ?PWSTR,
-    pwzIssuerPeerName: ?PWSTR,
-    pwzSubjectPeerName: ?PWSTR,
-    pwzGroupFriendlyName: ?PWSTR,
-    pwzIssuerFriendlyName: ?PWSTR,
-    pwzSubjectFriendlyName: ?PWSTR,
+    pwzGroupPeerName: ?[*:0]u16,
+    pwzIssuerPeerName: ?[*:0]u16,
+    pwzSubjectPeerName: ?[*:0]u16,
+    pwzGroupFriendlyName: ?[*:0]u16,
+    pwzIssuerFriendlyName: ?[*:0]u16,
+    pwzSubjectFriendlyName: ?[*:0]u16,
     ftValidityStart: FILETIME,
     ftValidityEnd: FILETIME,
     cRoles: u32,
     pRoles: ?*Guid,
     cClassifiers: u32,
-    ppwzClassifiers: ?*?PWSTR,
+    ppwzClassifiers: ?*?[*:0]u16,
     pSubjectPublicKey: ?*CERT_PUBLIC_KEY_INFO,
     authScheme: PEER_GROUP_AUTHENTICATION_SCHEME,
 };
 
 pub const PEER_INVITATION_RESPONSE = extern struct {
     action: PEER_INVITATION_RESPONSE_TYPE,
-    pwzMessage: ?PWSTR,
+    pwzMessage: ?[*:0]u16,
     hrExtendedInfo: HRESULT,
 };
 
@@ -720,8 +720,8 @@ pub const PEER_INVITATION_RESPONSE_ERROR = PEER_INVITATION_RESPONSE_TYPE.ERROR;
 pub const PEER_MEMBER = extern struct {
     dwSize: u32,
     dwFlags: u32,
-    pwzIdentity: ?PWSTR,
-    pwzAttributes: ?PWSTR,
+    pwzIdentity: ?[*:0]u16,
+    pwzAttributes: ?[*:0]u16,
     ullNodeId: u64,
     cAddresses: u32,
     pAddresses: ?*PEER_ADDRESS,
@@ -748,8 +748,8 @@ pub const PEER_MEMBER_PRESENT = PEER_MEMBER_FLAGS.T;
 
 pub const PEER_NAME_PAIR = extern struct {
     dwSize: u32,
-    pwzPeerName: ?PWSTR,
-    pwzFriendlyName: ?PWSTR,
+    pwzPeerName: ?[*:0]u16,
+    pwzFriendlyName: ?[*:0]u16,
 };
 
 pub const PEER_NODE_CHANGE_TYPE = enum(i32) {
@@ -764,10 +764,10 @@ pub const PEER_NODE_CHANGE_UPDATED = PEER_NODE_CHANGE_TYPE.UPDATED;
 pub const PEER_NODE_INFO = extern struct {
     dwSize: u32,
     ullNodeId: u64,
-    pwzPeerId: ?PWSTR,
+    pwzPeerId: ?[*:0]u16,
     cAddresses: u32,
     pAddresses: ?*PEER_ADDRESS,
-    pwzAttributes: ?PWSTR,
+    pwzAttributes: ?[*:0]u16,
 };
 
 pub const PEER_OBJECT = extern struct {
@@ -777,38 +777,38 @@ pub const PEER_OBJECT = extern struct {
 };
 
 pub const PEER_PEOPLE_NEAR_ME = extern struct {
-    pwzNickName: ?PWSTR,
+    pwzNickName: ?[*:0]u16,
     endpoint: PEER_ENDPOINT,
     id: Guid,
 };
 
 pub const PEER_PNRP_CLOUD_INFO = extern struct {
-    pwzCloudName: ?PWSTR,
+    pwzCloudName: ?[*:0]u16,
     dwScope: PNRP_SCOPE,
     dwScopeId: u32,
 };
 
 pub const PEER_PNRP_ENDPOINT_INFO = extern struct {
-    pwzPeerName: ?PWSTR,
+    pwzPeerName: ?[*:0]u16,
     cAddresses: u32,
     ppAddresses: ?*?*SOCKADDR,
-    pwzComment: ?PWSTR,
+    pwzComment: ?[*:0]u16,
     payload: PEER_DATA,
 };
 
 pub const PEER_PNRP_REGISTRATION_INFO = extern struct {
-    pwzCloudName: ?PWSTR,
-    pwzPublishingIdentity: ?PWSTR,
+    pwzCloudName: ?[*:0]u16,
+    pwzPublishingIdentity: ?[*:0]u16,
     cAddresses: u32,
     ppAddresses: ?*?*SOCKADDR,
     wPort: u16,
-    pwzComment: ?PWSTR,
+    pwzComment: ?[*:0]u16,
     payload: PEER_DATA,
 };
 
 pub const PEER_PRESENCE_INFO = extern struct {
     status: PEER_PRESENCE_STATUS,
-    pwzDescriptiveText: ?PWSTR,
+    pwzDescriptiveText: ?[*:0]u16,
 };
 
 pub const PEER_PRESENCE_STATUS = enum(i32) {
@@ -847,9 +847,9 @@ pub const PEER_RECORD = extern struct {
     id: Guid,
     dwVersion: u32,
     dwFlags: u32,
-    pwzCreatorId: ?PWSTR,
-    pwzModifiedById: ?PWSTR,
-    pwzAttributes: ?PWSTR,
+    pwzCreatorId: ?[*:0]u16,
+    pwzModifiedById: ?[*:0]u16,
+    pwzAttributes: ?[*:0]u16,
     ftCreation: FILETIME,
     ftExpiration: FILETIME,
     ftLastModified: FILETIME,
@@ -877,8 +877,8 @@ pub const PEER_RECORD_FLAG_DELETED = PEER_RECORD_FLAGS.DELETED;
 
 pub const PEER_SECURITY_INTERFACE = extern struct {
     dwSize: u32,
-    pwzSspFilename: ?PWSTR,
-    pwzPackageName: ?PWSTR,
+    pwzSspFilename: ?[*:0]u16,
+    pwzPackageName: ?[*:0]u16,
     cbSecurityInfo: u32,
     pbSecurityInfo: ?*u8,
     pvContext: ?*anyopaque,
@@ -1076,7 +1076,7 @@ pub const PNRPCLOUDINFO = extern struct {
 
 pub const PNRPINFO_V1 = extern struct {
     dwSize: u32,
-    lpwszIdentity: ?PWSTR,
+    lpwszIdentity: ?[*:0]u16,
     nMaxResolve: u32,
     dwTimeout: u32,
     dwLifetime: u32,
@@ -1088,7 +1088,7 @@ pub const PNRPINFO_V1 = extern struct {
 
 pub const PNRPINFO_V2 = extern struct {
     dwSize: u32,
-    lpwszIdentity: ?PWSTR,
+    lpwszIdentity: ?[*:0]u16,
     nMaxResolve: u32,
     dwTimeout: u32,
     dwLifetime: u32,
@@ -1099,7 +1099,7 @@ pub const PNRPINFO_V2 = extern struct {
     enExtendedPayloadType: PNRP_EXTENDED_PAYLOAD_TYPE,
     Anonymous: extern union {
         blobPayload: BLOB,
-        pwszPayload: ?PWSTR,
+        pwszPayload: ?[*:0]u16,
     },
 };
 
@@ -1209,7 +1209,7 @@ pub extern "drt" fn DrtGetInstanceName(
     hDrt: ?*anyopaque,
     ulcbInstanceNameSize: u32,
     /// parameter "ulcbInstanceNameSize" is the size in bytes
-    pwzDrtInstanceName: ?PWSTR,
+    pwzDrtInstanceName: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1371,7 +1371,7 @@ pub extern "p2p" fn PeerCollabEnumPeopleNearMe(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "p2p" fn PeerCollabExportContact(
     pwzPeerName: ?[*:0]const u16,
-    ppwzContactData: ?*?PWSTR,
+    ppwzContactData: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1394,7 +1394,7 @@ pub extern "p2p" fn PeerCollabGetContact(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "p2p" fn PeerCollabGetEndpointName(
-    ppwzEndpointName: ?*?PWSTR,
+    ppwzEndpointName: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1444,7 +1444,7 @@ pub extern "p2p" fn PeerCollabParseContact(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "p2p" fn PeerCollabQueryContactData(
     pcEndpoint: ?*PEER_ENDPOINT,
-    ppwzContactData: ?*?PWSTR,
+    ppwzContactData: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1531,7 +1531,7 @@ pub extern "p2p" fn PeerCollabUpdateContact(
 pub extern "p2p" fn PeerCreatePeerName(
     pwzIdentity: ?[*:0]const u16,
     pwzClassifier: ?[*:0]const u16,
-    ppwzPeerName: ?*?PWSTR,
+    ppwzPeerName: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2101,13 +2101,13 @@ pub extern "p2p" fn PeerGroupCreateInvitation(
     pftExpiration: ?*FILETIME,
     cRoles: u32,
     pRoles: ?[*]const Guid,
-    ppwzInvitation: ?*?PWSTR,
+    ppwzInvitation: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "p2p" fn PeerGroupCreatePasswordInvitation(
     hGroup: ?*anyopaque,
-    ppwzInvitation: ?*?PWSTR,
+    ppwzInvitation: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2148,7 +2148,7 @@ pub extern "p2p" fn PeerGroupEnumRecords(
 pub extern "p2p" fn PeerGroupExportConfig(
     hGroup: ?*anyopaque,
     pwzPassword: ?[*:0]const u16,
-    ppwzXML: ?*?PWSTR,
+    ppwzXML: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2187,8 +2187,8 @@ pub extern "p2p" fn PeerGroupImportConfig(
     pwzXML: ?[*:0]const u16,
     pwzPassword: ?[*:0]const u16,
     fOverwrite: BOOL,
-    ppwzIdentity: ?*?PWSTR,
-    ppwzGroup: ?*?PWSTR,
+    ppwzIdentity: ?*?[*:0]u16,
+    ppwzGroup: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2203,7 +2203,7 @@ pub extern "p2p" fn PeerGroupIssueCredentials(
     pwzSubjectIdentity: ?[*:0]const u16,
     pCredentialInfo: ?*PEER_CREDENTIAL_INFO,
     dwFlags: u32,
-    ppwzInvitation: ?*?PWSTR,
+    ppwzInvitation: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2320,7 +2320,7 @@ pub extern "p2p" fn PeerGroupUpdateRecord(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "p2p" fn PeerHostNameToPeerName(
     pwzHostName: ?[*:0]const u16,
-    ppwzPeerName: ?*?PWSTR,
+    ppwzPeerName: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2328,7 +2328,7 @@ pub extern "p2p" fn PeerIdentityCreate(
     pwzClassifier: ?[*:0]const u16,
     pwzFriendlyName: ?[*:0]const u16,
     hCryptProv: usize,
-    ppwzIdentity: ?*?PWSTR,
+    ppwzIdentity: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2340,7 +2340,7 @@ pub extern "p2p" fn PeerIdentityDelete(
 pub extern "p2p" fn PeerIdentityExport(
     pwzIdentity: ?[*:0]const u16,
     pwzPassword: ?[*:0]const u16,
-    ppwzExportXML: ?*?PWSTR,
+    ppwzExportXML: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2351,26 +2351,26 @@ pub extern "p2p" fn PeerIdentityGetCryptKey(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "p2p" fn PeerIdentityGetDefault(
-    ppwzPeerName: ?*?PWSTR,
+    ppwzPeerName: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "p2p" fn PeerIdentityGetFriendlyName(
     pwzIdentity: ?[*:0]const u16,
-    ppwzFriendlyName: ?*?PWSTR,
+    ppwzFriendlyName: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "p2p" fn PeerIdentityGetXML(
     pwzIdentity: ?[*:0]const u16,
-    ppwzIdentityXML: ?*?PWSTR,
+    ppwzIdentityXML: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "p2p" fn PeerIdentityImport(
     pwzImportXML: ?[*:0]const u16,
     pwzPassword: ?[*:0]const u16,
-    ppwzIdentity: ?*?PWSTR,
+    ppwzIdentity: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2382,7 +2382,7 @@ pub extern "p2p" fn PeerIdentitySetFriendlyName(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "p2p" fn PeerNameToPeerHostName(
     pwzPeerName: ?[*:0]const u16,
-    ppwzHostName: ?*?PWSTR,
+    ppwzHostName: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2451,7 +2451,7 @@ pub extern "p2p" fn PeerPnrpUpdateRegistration(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (16)
+// Section: Imports (15)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLOB = @import("../system/com.zig").BLOB;
@@ -2463,7 +2463,6 @@ const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SOCKADDR = @import("../networking/win_sock.zig").SOCKADDR;
 const SOCKADDR_IN6 = @import("../networking/win_sock.zig").SOCKADDR_IN6;
 const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;

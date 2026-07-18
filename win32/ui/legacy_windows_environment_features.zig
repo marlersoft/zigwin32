@@ -143,8 +143,8 @@ pub const IEmptyVolumeCache = extern union {
             self: *const IEmptyVolumeCache,
             hkRegKey: ?HKEY,
             pcwszVolume: ?[*:0]const u16,
-            ppwszDisplayName: ?*?PWSTR,
-            ppwszDescription: ?*?PWSTR,
+            ppwszDisplayName: ?*?[*:0]u16,
+            ppwszDescription: ?*?[*:0]u16,
             pdwFlags: ?*EMPTY_VOLUME_CACHE_FLAGS,
         ) callconv(.winapi) HRESULT,
         GetSpaceUsed: *const fn(
@@ -168,7 +168,7 @@ pub const IEmptyVolumeCache = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IEmptyVolumeCache, hkRegKey: ?HKEY, pcwszVolume: ?[*:0]const u16, ppwszDisplayName: ?*?PWSTR, ppwszDescription: ?*?PWSTR, pdwFlags: ?*EMPTY_VOLUME_CACHE_FLAGS) callconv(.@"inline") HRESULT {
+    pub fn Initialize(self: *const IEmptyVolumeCache, hkRegKey: ?HKEY, pcwszVolume: ?[*:0]const u16, ppwszDisplayName: ?*?[*:0]u16, ppwszDescription: ?*?[*:0]u16, pdwFlags: ?*EMPTY_VOLUME_CACHE_FLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, hkRegKey, pcwszVolume, ppwszDisplayName, ppwszDescription, pdwFlags);
     }
     pub fn GetSpaceUsed(self: *const IEmptyVolumeCache, pdwlSpaceUsed: ?*u64, picb: ?*IEmptyVolumeCacheCallBack) callconv(.@"inline") HRESULT {
@@ -196,16 +196,16 @@ pub const IEmptyVolumeCache2 = extern union {
             hkRegKey: ?HKEY,
             pcwszVolume: ?[*:0]const u16,
             pcwszKeyName: ?[*:0]const u16,
-            ppwszDisplayName: ?*?PWSTR,
-            ppwszDescription: ?*?PWSTR,
-            ppwszBtnText: ?*?PWSTR,
+            ppwszDisplayName: ?*?[*:0]u16,
+            ppwszDescription: ?*?[*:0]u16,
+            ppwszBtnText: ?*?[*:0]u16,
             pdwFlags: ?*EMPTY_VOLUME_CACHE_FLAGS,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IEmptyVolumeCache: IEmptyVolumeCache,
     IUnknown: IUnknown,
-    pub fn InitializeEx(self: *const IEmptyVolumeCache2, hkRegKey: ?HKEY, pcwszVolume: ?[*:0]const u16, pcwszKeyName: ?[*:0]const u16, ppwszDisplayName: ?*?PWSTR, ppwszDescription: ?*?PWSTR, ppwszBtnText: ?*?PWSTR, pdwFlags: ?*EMPTY_VOLUME_CACHE_FLAGS) callconv(.@"inline") HRESULT {
+    pub fn InitializeEx(self: *const IEmptyVolumeCache2, hkRegKey: ?HKEY, pcwszVolume: ?[*:0]const u16, pcwszKeyName: ?[*:0]const u16, ppwszDisplayName: ?*?[*:0]u16, ppwszDescription: ?*?[*:0]u16, ppwszBtnText: ?*?[*:0]u16, pdwFlags: ?*EMPTY_VOLUME_CACHE_FLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeEx(self, hkRegKey, pcwszVolume, pcwszKeyName, ppwszDisplayName, ppwszDescription, ppwszBtnText, pdwFlags);
     }
 };
@@ -327,7 +327,7 @@ pub const ALL_RECONCILE_FLAGS = RECONCILEF.ALL_RECONCILE_FLAGS;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HKEY = @import("../system/registry.zig").HKEY;
@@ -337,7 +337,6 @@ const IMoniker = @import("../system/com.zig").IMoniker;
 const IOleObject = @import("../system/ole.zig").IOleObject;
 const IStorage = @import("../system/com/structured_storage.zig").IStorage;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

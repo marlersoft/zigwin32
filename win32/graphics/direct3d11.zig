@@ -10154,7 +10154,7 @@ pub const ID3D11ShaderReflectionType = extern union {
         GetMemberTypeName: *const fn(
             self: *const ID3D11ShaderReflectionType,
             Index: u32,
-        ) callconv(.winapi) ?PSTR,
+        ) callconv(.winapi) ?[*:0]u8,
         IsEqual: *const fn(
             self: *const ID3D11ShaderReflectionType,
             pType: ?*ID3D11ShaderReflectionType,
@@ -10191,7 +10191,7 @@ pub const ID3D11ShaderReflectionType = extern union {
     pub fn GetMemberTypeByName(self: *const ID3D11ShaderReflectionType, Name: ?[*:0]const u8) callconv(.@"inline") ?*ID3D11ShaderReflectionType {
         return self.vtable.GetMemberTypeByName(self, Name);
     }
-    pub fn GetMemberTypeName(self: *const ID3D11ShaderReflectionType, Index: u32) callconv(.@"inline") ?PSTR {
+    pub fn GetMemberTypeName(self: *const ID3D11ShaderReflectionType, Index: u32) callconv(.@"inline") ?[*:0]u8 {
         return self.vtable.GetMemberTypeName(self, Index);
     }
     pub fn IsEqual(self: *const ID3D11ShaderReflectionType, pType: ?*ID3D11ShaderReflectionType) callconv(.@"inline") HRESULT {
@@ -12262,7 +12262,7 @@ pub extern "d3dcsx" fn D3DX11CreateSegmentedScan(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (38)
+// Section: Imports (36)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -12297,8 +12297,6 @@ const ID3DBlob = @import("../graphics/direct3d.zig").ID3DBlob;
 const IDXGIAdapter = @import("../graphics/dxgi.zig").IDXGIAdapter;
 const IDXGISwapChain = @import("../graphics/dxgi.zig").IDXGISwapChain;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const SIZE = @import("../foundation.zig").SIZE;

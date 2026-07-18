@@ -1650,8 +1650,8 @@ pub const PXE_DHCPV6_RELAY_MESSAGE = extern struct {
 
 pub const PXE_PROVIDER = extern struct {
     uSizeOfStruct: u32,
-    pwszName: ?PWSTR,
-    pwszFilePath: ?PWSTR,
+    pwszName: ?[*:0]u16,
+    pwszFilePath: ?[*:0]u16,
     bIsCritical: BOOL,
     uIndex: u32,
 };
@@ -2310,7 +2310,7 @@ pub extern "wdsclientapi" fn WdsCliClose(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliCreateSession(
-    pwszServer: ?PWSTR,
+    pwszServer: ?[*:0]u16,
     pCred: ?*WDS_CLI_CRED,
     phSession: ?*?HANDLE,
 ) callconv(.winapi) HRESULT;
@@ -2328,14 +2328,14 @@ pub extern "wdsclientapi" fn WdsCliFindNextImage(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wdsclientapi" fn WdsCliFreeStringArray(
-    ppwszArray: ?[*]?PWSTR,
+    ppwszArray: ?[*]?[*:0]u16,
     ulCount: u32,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdsclientapi" fn WdsCliGetDriverQueryXml(
-    pwszWinDirPath: ?PWSTR,
-    ppwszDriverQuery: ?*?PWSTR,
+    pwszWinDirPath: ?[*:0]u16,
+    ppwszDriverQuery: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2353,25 +2353,25 @@ pub extern "wdsclientapi" fn WdsCliGetImageArchitecture(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageDescription(
     hIfh: ?HANDLE,
-    ppwszValue: ?*?PWSTR,
+    ppwszValue: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "wdsclientapi" fn WdsCliGetImageFiles(
     hIfh: ?HANDLE,
-    pppwszFiles: ?*?*?PWSTR,
+    pppwszFiles: ?*?*?[*:0]u16,
     pdwCount: ?*u32,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageGroup(
     hIfh: ?HANDLE,
-    ppwszValue: ?*?PWSTR,
+    ppwszValue: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageHalName(
     hIfh: ?HANDLE,
-    ppwszValue: ?*?PWSTR,
+    ppwszValue: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2395,7 +2395,7 @@ pub extern "wdsclientapi" fn WdsCliGetImageIndex(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageLanguage(
     hIfh: ?HANDLE,
-    ppwszValue: ?*?PWSTR,
+    ppwszValue: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2414,13 +2414,13 @@ pub extern "wdsclientapi" fn WdsCliGetImageLastModifiedTime(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageName(
     hIfh: ?HANDLE,
-    ppwszValue: ?*?PWSTR,
+    ppwszValue: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageNamespace(
     hIfh: ?HANDLE,
-    ppwszValue: ?*?PWSTR,
+    ppwszValue: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "wdsclientapi" fn WdsCliGetImageParameter(
@@ -2434,7 +2434,7 @@ pub extern "wdsclientapi" fn WdsCliGetImageParameter(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImagePath(
     hIfh: ?HANDLE,
-    ppwszValue: ?*?PWSTR,
+    ppwszValue: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2451,7 +2451,7 @@ pub extern "wdsclientapi" fn WdsCliGetImageType(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageVersion(
     hIfh: ?HANDLE,
-    ppwszValue: ?*?PWSTR,
+    ppwszValue: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2464,8 +2464,8 @@ pub extern "wdsclientapi" fn WdsCliGetTransferSize(
 pub extern "wdsclientapi" fn WdsCliInitializeLog(
     hSession: ?HANDLE,
     ulClientArchitecture: CPU_ARCHITECTURE,
-    pwszClientId: ?PWSTR,
-    pwszClientAddress: ?PWSTR,
+    pwszClientId: ?[*:0]u16,
+    pwszClientAddress: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2478,17 +2478,17 @@ pub extern "wdsclientapi" fn WdsCliLog(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wdsclientapi" fn WdsCliObtainDriverPackages(
     hImage: ?HANDLE,
-    ppwszServerName: ?*?PWSTR,
-    pppwszDriverPackages: ?*?*?PWSTR,
+    ppwszServerName: ?*?[*:0]u16,
+    pppwszDriverPackages: ?*?*?[*:0]u16,
     pulCount: ?*u32,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdsclientapi" fn WdsCliObtainDriverPackagesEx(
     hSession: ?HANDLE,
-    pwszMachineInfo: ?PWSTR,
-    ppwszServerName: ?*?PWSTR,
-    pppwszDriverPackages: ?*?*?PWSTR,
+    pwszMachineInfo: ?[*:0]u16,
+    ppwszServerName: ?*?[*:0]u16,
+    pppwszDriverPackages: ?*?*?[*:0]u16,
     pulCount: ?*u32,
 ) callconv(.winapi) HRESULT;
 
@@ -2517,7 +2517,7 @@ pub extern "wdsclientapi" fn WdsCliTransferFile(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliTransferImage(
     hImage: ?HANDLE,
-    pwszLocalPath: ?PWSTR,
+    pwszLocalPath: ?[*:0]u16,
     dwFlags: u32,
     dwReserved: u32,
     pfnWdsCliCallback: ?PFN_WdsCliCallback,
@@ -2649,7 +2649,7 @@ pub extern "wdsmc" fn WdsTransportServerTraceV(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (14)
+// Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -2660,7 +2660,6 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LPARAM = @import("../foundation.zig").LPARAM;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
 const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;

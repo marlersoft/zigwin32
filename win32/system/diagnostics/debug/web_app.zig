@@ -239,7 +239,7 @@ pub const UnregisterAuthoringClientFunctionType = *const fn(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../../zig.zig").Guid;
 const BOOL = @import("../../../foundation.zig").BOOL;
@@ -251,7 +251,6 @@ const IHTMLDocument2 = @import("../../../web/ms_html.zig").IHTMLDocument2;
 const IHTMLWindow2 = @import("../../../web/ms_html.zig").IHTMLWindow2;
 const IServiceProvider = @import("../../../system/com.zig").IServiceProvider;
 const IUnknown = @import("../../../system/com.zig").IUnknown;
-const PWSTR = @import("../../../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -294,7 +294,7 @@ pub const IXpsOMCanvas = extern union {
         ) callconv(.winapi) HRESULT,
         GetAccessibilityShortDescription: *const fn(
             self: *const IXpsOMCanvas,
-            shortDescription: ?*?PWSTR,
+            shortDescription: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetAccessibilityShortDescription: *const fn(
             self: *const IXpsOMCanvas,
@@ -302,7 +302,7 @@ pub const IXpsOMCanvas = extern union {
         ) callconv(.winapi) HRESULT,
         GetAccessibilityLongDescription: *const fn(
             self: *const IXpsOMCanvas,
-            longDescription: ?*?PWSTR,
+            longDescription: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetAccessibilityLongDescription: *const fn(
             self: *const IXpsOMCanvas,
@@ -346,13 +346,13 @@ pub const IXpsOMCanvas = extern union {
     pub fn SetUseAliasedEdgeMode(self: *const IXpsOMCanvas, useAliasedEdgeMode: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetUseAliasedEdgeMode(self, useAliasedEdgeMode);
     }
-    pub fn GetAccessibilityShortDescription(self: *const IXpsOMCanvas, shortDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetAccessibilityShortDescription(self: *const IXpsOMCanvas, shortDescription: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetAccessibilityShortDescription(self, shortDescription);
     }
     pub fn SetAccessibilityShortDescription(self: *const IXpsOMCanvas, shortDescription: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetAccessibilityShortDescription(self, shortDescription);
     }
-    pub fn GetAccessibilityLongDescription(self: *const IXpsOMCanvas, longDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetAccessibilityLongDescription(self: *const IXpsOMCanvas, longDescription: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetAccessibilityLongDescription(self, longDescription);
     }
     pub fn SetAccessibilityLongDescription(self: *const IXpsOMCanvas, longDescription: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -482,7 +482,7 @@ pub const IXpsOMCoreProperties = extern union {
         ) callconv(.winapi) HRESULT,
         GetCategory: *const fn(
             self: *const IXpsOMCoreProperties,
-            category: ?*?PWSTR,
+            category: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetCategory: *const fn(
             self: *const IXpsOMCoreProperties,
@@ -490,7 +490,7 @@ pub const IXpsOMCoreProperties = extern union {
         ) callconv(.winapi) HRESULT,
         GetContentStatus: *const fn(
             self: *const IXpsOMCoreProperties,
-            contentStatus: ?*?PWSTR,
+            contentStatus: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetContentStatus: *const fn(
             self: *const IXpsOMCoreProperties,
@@ -498,7 +498,7 @@ pub const IXpsOMCoreProperties = extern union {
         ) callconv(.winapi) HRESULT,
         GetContentType: *const fn(
             self: *const IXpsOMCoreProperties,
-            contentType: ?*?PWSTR,
+            contentType: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetContentType: *const fn(
             self: *const IXpsOMCoreProperties,
@@ -514,7 +514,7 @@ pub const IXpsOMCoreProperties = extern union {
         ) callconv(.winapi) HRESULT,
         GetCreator: *const fn(
             self: *const IXpsOMCoreProperties,
-            creator: ?*?PWSTR,
+            creator: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetCreator: *const fn(
             self: *const IXpsOMCoreProperties,
@@ -522,7 +522,7 @@ pub const IXpsOMCoreProperties = extern union {
         ) callconv(.winapi) HRESULT,
         GetDescription: *const fn(
             self: *const IXpsOMCoreProperties,
-            description: ?*?PWSTR,
+            description: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetDescription: *const fn(
             self: *const IXpsOMCoreProperties,
@@ -530,7 +530,7 @@ pub const IXpsOMCoreProperties = extern union {
         ) callconv(.winapi) HRESULT,
         GetIdentifier: *const fn(
             self: *const IXpsOMCoreProperties,
-            identifier: ?*?PWSTR,
+            identifier: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetIdentifier: *const fn(
             self: *const IXpsOMCoreProperties,
@@ -538,7 +538,7 @@ pub const IXpsOMCoreProperties = extern union {
         ) callconv(.winapi) HRESULT,
         GetKeywords: *const fn(
             self: *const IXpsOMCoreProperties,
-            keywords: ?*?PWSTR,
+            keywords: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetKeywords: *const fn(
             self: *const IXpsOMCoreProperties,
@@ -546,7 +546,7 @@ pub const IXpsOMCoreProperties = extern union {
         ) callconv(.winapi) HRESULT,
         GetLanguage: *const fn(
             self: *const IXpsOMCoreProperties,
-            language: ?*?PWSTR,
+            language: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetLanguage: *const fn(
             self: *const IXpsOMCoreProperties,
@@ -554,7 +554,7 @@ pub const IXpsOMCoreProperties = extern union {
         ) callconv(.winapi) HRESULT,
         GetLastModifiedBy: *const fn(
             self: *const IXpsOMCoreProperties,
-            lastModifiedBy: ?*?PWSTR,
+            lastModifiedBy: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetLastModifiedBy: *const fn(
             self: *const IXpsOMCoreProperties,
@@ -578,7 +578,7 @@ pub const IXpsOMCoreProperties = extern union {
         ) callconv(.winapi) HRESULT,
         GetRevision: *const fn(
             self: *const IXpsOMCoreProperties,
-            revision: ?*?PWSTR,
+            revision: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetRevision: *const fn(
             self: *const IXpsOMCoreProperties,
@@ -586,7 +586,7 @@ pub const IXpsOMCoreProperties = extern union {
         ) callconv(.winapi) HRESULT,
         GetSubject: *const fn(
             self: *const IXpsOMCoreProperties,
-            subject: ?*?PWSTR,
+            subject: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetSubject: *const fn(
             self: *const IXpsOMCoreProperties,
@@ -594,7 +594,7 @@ pub const IXpsOMCoreProperties = extern union {
         ) callconv(.winapi) HRESULT,
         GetTitle: *const fn(
             self: *const IXpsOMCoreProperties,
-            title: ?*?PWSTR,
+            title: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetTitle: *const fn(
             self: *const IXpsOMCoreProperties,
@@ -602,7 +602,7 @@ pub const IXpsOMCoreProperties = extern union {
         ) callconv(.winapi) HRESULT,
         GetVersion: *const fn(
             self: *const IXpsOMCoreProperties,
-            version: ?*?PWSTR,
+            version: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetVersion: *const fn(
             self: *const IXpsOMCoreProperties,
@@ -619,19 +619,19 @@ pub const IXpsOMCoreProperties = extern union {
     pub fn GetOwner(self: *const IXpsOMCoreProperties, package: ?*?*IXpsOMPackage) callconv(.@"inline") HRESULT {
         return self.vtable.GetOwner(self, package);
     }
-    pub fn GetCategory(self: *const IXpsOMCoreProperties, category: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetCategory(self: *const IXpsOMCoreProperties, category: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetCategory(self, category);
     }
     pub fn SetCategory(self: *const IXpsOMCoreProperties, category: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetCategory(self, category);
     }
-    pub fn GetContentStatus(self: *const IXpsOMCoreProperties, contentStatus: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetContentStatus(self: *const IXpsOMCoreProperties, contentStatus: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetContentStatus(self, contentStatus);
     }
     pub fn SetContentStatus(self: *const IXpsOMCoreProperties, contentStatus: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetContentStatus(self, contentStatus);
     }
-    pub fn GetContentType(self: *const IXpsOMCoreProperties, contentType: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetContentType(self: *const IXpsOMCoreProperties, contentType: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetContentType(self, contentType);
     }
     pub fn SetContentType(self: *const IXpsOMCoreProperties, contentType: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -643,37 +643,37 @@ pub const IXpsOMCoreProperties = extern union {
     pub fn SetCreated(self: *const IXpsOMCoreProperties, created: ?*const SYSTEMTIME) callconv(.@"inline") HRESULT {
         return self.vtable.SetCreated(self, created);
     }
-    pub fn GetCreator(self: *const IXpsOMCoreProperties, creator: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetCreator(self: *const IXpsOMCoreProperties, creator: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetCreator(self, creator);
     }
     pub fn SetCreator(self: *const IXpsOMCoreProperties, creator: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetCreator(self, creator);
     }
-    pub fn GetDescription(self: *const IXpsOMCoreProperties, description: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDescription(self: *const IXpsOMCoreProperties, description: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDescription(self, description);
     }
     pub fn SetDescription(self: *const IXpsOMCoreProperties, description: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetDescription(self, description);
     }
-    pub fn GetIdentifier(self: *const IXpsOMCoreProperties, identifier: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetIdentifier(self: *const IXpsOMCoreProperties, identifier: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetIdentifier(self, identifier);
     }
     pub fn SetIdentifier(self: *const IXpsOMCoreProperties, identifier: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetIdentifier(self, identifier);
     }
-    pub fn GetKeywords(self: *const IXpsOMCoreProperties, keywords: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetKeywords(self: *const IXpsOMCoreProperties, keywords: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetKeywords(self, keywords);
     }
     pub fn SetKeywords(self: *const IXpsOMCoreProperties, keywords: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetKeywords(self, keywords);
     }
-    pub fn GetLanguage(self: *const IXpsOMCoreProperties, language: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetLanguage(self: *const IXpsOMCoreProperties, language: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetLanguage(self, language);
     }
     pub fn SetLanguage(self: *const IXpsOMCoreProperties, language: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetLanguage(self, language);
     }
-    pub fn GetLastModifiedBy(self: *const IXpsOMCoreProperties, lastModifiedBy: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetLastModifiedBy(self: *const IXpsOMCoreProperties, lastModifiedBy: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetLastModifiedBy(self, lastModifiedBy);
     }
     pub fn SetLastModifiedBy(self: *const IXpsOMCoreProperties, lastModifiedBy: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -691,25 +691,25 @@ pub const IXpsOMCoreProperties = extern union {
     pub fn SetModified(self: *const IXpsOMCoreProperties, modified: ?*const SYSTEMTIME) callconv(.@"inline") HRESULT {
         return self.vtable.SetModified(self, modified);
     }
-    pub fn GetRevision(self: *const IXpsOMCoreProperties, revision: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetRevision(self: *const IXpsOMCoreProperties, revision: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetRevision(self, revision);
     }
     pub fn SetRevision(self: *const IXpsOMCoreProperties, revision: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetRevision(self, revision);
     }
-    pub fn GetSubject(self: *const IXpsOMCoreProperties, subject: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSubject(self: *const IXpsOMCoreProperties, subject: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSubject(self, subject);
     }
     pub fn SetSubject(self: *const IXpsOMCoreProperties, subject: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetSubject(self, subject);
     }
-    pub fn GetTitle(self: *const IXpsOMCoreProperties, title: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetTitle(self: *const IXpsOMCoreProperties, title: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetTitle(self, title);
     }
     pub fn SetTitle(self: *const IXpsOMCoreProperties, title: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetTitle(self, title);
     }
-    pub fn GetVersion(self: *const IXpsOMCoreProperties, version: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetVersion(self: *const IXpsOMCoreProperties, version: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetVersion(self, version);
     }
     pub fn SetVersion(self: *const IXpsOMCoreProperties, version: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -793,7 +793,7 @@ pub const IXpsOMDictionary = extern union {
         GetAt: *const fn(
             self: *const IXpsOMDictionary,
             index: u32,
-            key: ?*?PWSTR,
+            key: ?*?[*:0]u16,
             entry: ?*?*IXpsOMShareable,
         ) callconv(.winapi) HRESULT,
         GetByKey: *const fn(
@@ -841,7 +841,7 @@ pub const IXpsOMDictionary = extern union {
     pub fn GetCount(self: *const IXpsOMDictionary, count: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, count);
     }
-    pub fn GetAt(self: *const IXpsOMDictionary, index: u32, key: ?*?PWSTR, entry: ?*?*IXpsOMShareable) callconv(.@"inline") HRESULT {
+    pub fn GetAt(self: *const IXpsOMDictionary, index: u32, key: ?*?[*:0]u16, entry: ?*?*IXpsOMShareable) callconv(.@"inline") HRESULT {
         return self.vtable.GetAt(self, index, key, entry);
     }
     pub fn GetByKey(self: *const IXpsOMDictionary, key: ?[*:0]const u16, beforeEntry: ?*IXpsOMShareable, entry: ?*?*IXpsOMShareable) callconv(.@"inline") HRESULT {
@@ -1198,7 +1198,7 @@ pub const IXpsOMGeometry = extern union {
         ) callconv(.winapi) HRESULT,
         GetTransformLookup: *const fn(
             self: *const IXpsOMGeometry,
-            lookup: ?*?PWSTR,
+            lookup: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetTransformLookup: *const fn(
             self: *const IXpsOMGeometry,
@@ -1230,7 +1230,7 @@ pub const IXpsOMGeometry = extern union {
     pub fn SetTransformLocal(self: *const IXpsOMGeometry, transform: ?*IXpsOMMatrixTransform) callconv(.@"inline") HRESULT {
         return self.vtable.SetTransformLocal(self, transform);
     }
-    pub fn GetTransformLookup(self: *const IXpsOMGeometry, lookup: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetTransformLookup(self: *const IXpsOMGeometry, lookup: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetTransformLookup(self, lookup);
     }
     pub fn SetTransformLookup(self: *const IXpsOMGeometry, lookup: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -1428,7 +1428,7 @@ pub const IXpsOMGlyphs = extern union {
         base: IXpsOMVisual.VTable,
         GetUnicodeString: *const fn(
             self: *const IXpsOMGlyphs,
-            unicodeString: ?*?PWSTR,
+            unicodeString: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetGlyphIndexCount: *const fn(
             self: *const IXpsOMGlyphs,
@@ -1467,7 +1467,7 @@ pub const IXpsOMGlyphs = extern union {
         ) callconv(.winapi) HRESULT,
         GetDeviceFontName: *const fn(
             self: *const IXpsOMGlyphs,
-            deviceFontName: ?*?PWSTR,
+            deviceFontName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetStyleSimulations: *const fn(
             self: *const IXpsOMGlyphs,
@@ -1523,7 +1523,7 @@ pub const IXpsOMGlyphs = extern union {
         ) callconv(.winapi) HRESULT,
         GetFillBrushLookup: *const fn(
             self: *const IXpsOMGlyphs,
-            key: ?*?PWSTR,
+            key: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetFillBrushLookup: *const fn(
             self: *const IXpsOMGlyphs,
@@ -1542,7 +1542,7 @@ pub const IXpsOMGlyphs = extern union {
     IXpsOMVisual: IXpsOMVisual,
     IXpsOMShareable: IXpsOMShareable,
     IUnknown: IUnknown,
-    pub fn GetUnicodeString(self: *const IXpsOMGlyphs, unicodeString: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetUnicodeString(self: *const IXpsOMGlyphs, unicodeString: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetUnicodeString(self, unicodeString);
     }
     pub fn GetGlyphIndexCount(self: *const IXpsOMGlyphs, indexCount: ?*u32) callconv(.@"inline") HRESULT {
@@ -1569,7 +1569,7 @@ pub const IXpsOMGlyphs = extern union {
     pub fn GetIsSideways(self: *const IXpsOMGlyphs, isSideways: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetIsSideways(self, isSideways);
     }
-    pub fn GetDeviceFontName(self: *const IXpsOMGlyphs, deviceFontName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDeviceFontName(self: *const IXpsOMGlyphs, deviceFontName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceFontName(self, deviceFontName);
     }
     pub fn GetStyleSimulations(self: *const IXpsOMGlyphs, styleSimulations: ?*XPS_STYLE_SIMULATION) callconv(.@"inline") HRESULT {
@@ -1611,7 +1611,7 @@ pub const IXpsOMGlyphs = extern union {
     pub fn SetFillBrushLocal(self: *const IXpsOMGlyphs, fillBrush: ?*IXpsOMBrush) callconv(.@"inline") HRESULT {
         return self.vtable.SetFillBrushLocal(self, fillBrush);
     }
-    pub fn GetFillBrushLookup(self: *const IXpsOMGlyphs, key: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetFillBrushLookup(self: *const IXpsOMGlyphs, key: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetFillBrushLookup(self, key);
     }
     pub fn SetFillBrushLookup(self: *const IXpsOMGlyphs, key: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -1636,7 +1636,7 @@ pub const IXpsOMGlyphsEditor = extern union {
         ) callconv(.winapi) HRESULT,
         GetUnicodeString: *const fn(
             self: *const IXpsOMGlyphsEditor,
-            unicodeString: ?*?PWSTR,
+            unicodeString: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetUnicodeString: *const fn(
             self: *const IXpsOMGlyphsEditor,
@@ -1702,7 +1702,7 @@ pub const IXpsOMGlyphsEditor = extern union {
         ) callconv(.winapi) HRESULT,
         GetDeviceFontName: *const fn(
             self: *const IXpsOMGlyphsEditor,
-            deviceFontName: ?*?PWSTR,
+            deviceFontName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetDeviceFontName: *const fn(
             self: *const IXpsOMGlyphsEditor,
@@ -1714,7 +1714,7 @@ pub const IXpsOMGlyphsEditor = extern union {
     pub fn ApplyEdits(self: *const IXpsOMGlyphsEditor) callconv(.@"inline") HRESULT {
         return self.vtable.ApplyEdits(self);
     }
-    pub fn GetUnicodeString(self: *const IXpsOMGlyphsEditor, unicodeString: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetUnicodeString(self: *const IXpsOMGlyphsEditor, unicodeString: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetUnicodeString(self, unicodeString);
     }
     pub fn SetUnicodeString(self: *const IXpsOMGlyphsEditor, unicodeString: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -1759,7 +1759,7 @@ pub const IXpsOMGlyphsEditor = extern union {
     pub fn SetIsSideways(self: *const IXpsOMGlyphsEditor, isSideways: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetIsSideways(self, isSideways);
     }
-    pub fn GetDeviceFontName(self: *const IXpsOMGlyphsEditor, deviceFontName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDeviceFontName(self: *const IXpsOMGlyphsEditor, deviceFontName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceFontName(self, deviceFontName);
     }
     pub fn SetDeviceFontName(self: *const IXpsOMGlyphsEditor, deviceFontName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -1791,7 +1791,7 @@ pub const IXpsOMGradientBrush = extern union {
         ) callconv(.winapi) HRESULT,
         GetTransformLookup: *const fn(
             self: *const IXpsOMGradientBrush,
-            key: ?*?PWSTR,
+            key: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetTransformLookup: *const fn(
             self: *const IXpsOMGradientBrush,
@@ -1830,7 +1830,7 @@ pub const IXpsOMGradientBrush = extern union {
     pub fn SetTransformLocal(self: *const IXpsOMGradientBrush, transform: ?*IXpsOMMatrixTransform) callconv(.@"inline") HRESULT {
         return self.vtable.SetTransformLocal(self, transform);
     }
-    pub fn GetTransformLookup(self: *const IXpsOMGradientBrush, key: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetTransformLookup(self: *const IXpsOMGradientBrush, key: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetTransformLookup(self, key);
     }
     pub fn SetTransformLookup(self: *const IXpsOMGradientBrush, key: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -2205,7 +2205,7 @@ pub const IXpsOMNameCollection = extern union {
         GetAt: *const fn(
             self: *const IXpsOMNameCollection,
             index: u32,
-            name: ?*?PWSTR,
+            name: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -2213,7 +2213,7 @@ pub const IXpsOMNameCollection = extern union {
     pub fn GetCount(self: *const IXpsOMNameCollection, count: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, count);
     }
-    pub fn GetAt(self: *const IXpsOMNameCollection, index: u32, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetAt(self: *const IXpsOMNameCollection, index: u32, name: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetAt(self, index, name);
     }
 };
@@ -2966,7 +2966,7 @@ pub const IXpsOMPage = extern union {
         ) callconv(.winapi) HRESULT,
         GetLanguage: *const fn(
             self: *const IXpsOMPage,
-            language: ?*?PWSTR,
+            language: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetLanguage: *const fn(
             self: *const IXpsOMPage,
@@ -2974,7 +2974,7 @@ pub const IXpsOMPage = extern union {
         ) callconv(.winapi) HRESULT,
         GetName: *const fn(
             self: *const IXpsOMPage,
-            name: ?*?PWSTR,
+            name: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetName: *const fn(
             self: *const IXpsOMPage,
@@ -3016,7 +3016,7 @@ pub const IXpsOMPage = extern union {
         GenerateUnusedLookupKey: *const fn(
             self: *const IXpsOMPage,
             type: XPS_OBJECT_TYPE,
-            key: ?*?PWSTR,
+            key: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IXpsOMPage,
@@ -3050,13 +3050,13 @@ pub const IXpsOMPage = extern union {
     pub fn SetBleedBox(self: *const IXpsOMPage, bleedBox: ?*const XPS_RECT) callconv(.@"inline") HRESULT {
         return self.vtable.SetBleedBox(self, bleedBox);
     }
-    pub fn GetLanguage(self: *const IXpsOMPage, language: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetLanguage(self: *const IXpsOMPage, language: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetLanguage(self, language);
     }
     pub fn SetLanguage(self: *const IXpsOMPage, language: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetLanguage(self, language);
     }
-    pub fn GetName(self: *const IXpsOMPage, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetName(self: *const IXpsOMPage, name: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
     pub fn SetName(self: *const IXpsOMPage, name: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -3086,7 +3086,7 @@ pub const IXpsOMPage = extern union {
     pub fn Write(self: *const IXpsOMPage, stream: ?*ISequentialStream, optimizeMarkupSize: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Write(self, stream, optimizeMarkupSize);
     }
-    pub fn GenerateUnusedLookupKey(self: *const IXpsOMPage, @"type": XPS_OBJECT_TYPE, key: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GenerateUnusedLookupKey(self: *const IXpsOMPage, @"type": XPS_OBJECT_TYPE, key: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GenerateUnusedLookupKey(self, @"type", key);
     }
     pub fn Clone(self: *const IXpsOMPage, page: ?*?*IXpsOMPage) callconv(.@"inline") HRESULT {
@@ -3448,7 +3448,7 @@ pub const IXpsOMPath = extern union {
         ) callconv(.winapi) HRESULT,
         GetGeometryLookup: *const fn(
             self: *const IXpsOMPath,
-            lookup: ?*?PWSTR,
+            lookup: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetGeometryLookup: *const fn(
             self: *const IXpsOMPath,
@@ -3456,7 +3456,7 @@ pub const IXpsOMPath = extern union {
         ) callconv(.winapi) HRESULT,
         GetAccessibilityShortDescription: *const fn(
             self: *const IXpsOMPath,
-            shortDescription: ?*?PWSTR,
+            shortDescription: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetAccessibilityShortDescription: *const fn(
             self: *const IXpsOMPath,
@@ -3464,7 +3464,7 @@ pub const IXpsOMPath = extern union {
         ) callconv(.winapi) HRESULT,
         GetAccessibilityLongDescription: *const fn(
             self: *const IXpsOMPath,
-            longDescription: ?*?PWSTR,
+            longDescription: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetAccessibilityLongDescription: *const fn(
             self: *const IXpsOMPath,
@@ -3492,7 +3492,7 @@ pub const IXpsOMPath = extern union {
         ) callconv(.winapi) HRESULT,
         GetStrokeBrushLookup: *const fn(
             self: *const IXpsOMPath,
-            lookup: ?*?PWSTR,
+            lookup: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetStrokeBrushLookup: *const fn(
             self: *const IXpsOMPath,
@@ -3572,7 +3572,7 @@ pub const IXpsOMPath = extern union {
         ) callconv(.winapi) HRESULT,
         GetFillBrushLookup: *const fn(
             self: *const IXpsOMPath,
-            lookup: ?*?PWSTR,
+            lookup: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetFillBrushLookup: *const fn(
             self: *const IXpsOMPath,
@@ -3596,19 +3596,19 @@ pub const IXpsOMPath = extern union {
     pub fn SetGeometryLocal(self: *const IXpsOMPath, geometry: ?*IXpsOMGeometry) callconv(.@"inline") HRESULT {
         return self.vtable.SetGeometryLocal(self, geometry);
     }
-    pub fn GetGeometryLookup(self: *const IXpsOMPath, lookup: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetGeometryLookup(self: *const IXpsOMPath, lookup: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetGeometryLookup(self, lookup);
     }
     pub fn SetGeometryLookup(self: *const IXpsOMPath, lookup: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetGeometryLookup(self, lookup);
     }
-    pub fn GetAccessibilityShortDescription(self: *const IXpsOMPath, shortDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetAccessibilityShortDescription(self: *const IXpsOMPath, shortDescription: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetAccessibilityShortDescription(self, shortDescription);
     }
     pub fn SetAccessibilityShortDescription(self: *const IXpsOMPath, shortDescription: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetAccessibilityShortDescription(self, shortDescription);
     }
-    pub fn GetAccessibilityLongDescription(self: *const IXpsOMPath, longDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetAccessibilityLongDescription(self: *const IXpsOMPath, longDescription: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetAccessibilityLongDescription(self, longDescription);
     }
     pub fn SetAccessibilityLongDescription(self: *const IXpsOMPath, longDescription: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -3629,7 +3629,7 @@ pub const IXpsOMPath = extern union {
     pub fn SetStrokeBrushLocal(self: *const IXpsOMPath, brush: ?*IXpsOMBrush) callconv(.@"inline") HRESULT {
         return self.vtable.SetStrokeBrushLocal(self, brush);
     }
-    pub fn GetStrokeBrushLookup(self: *const IXpsOMPath, lookup: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetStrokeBrushLookup(self: *const IXpsOMPath, lookup: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetStrokeBrushLookup(self, lookup);
     }
     pub fn SetStrokeBrushLookup(self: *const IXpsOMPath, lookup: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -3689,7 +3689,7 @@ pub const IXpsOMPath = extern union {
     pub fn SetFillBrushLocal(self: *const IXpsOMPath, brush: ?*IXpsOMBrush) callconv(.@"inline") HRESULT {
         return self.vtable.SetFillBrushLocal(self, brush);
     }
-    pub fn GetFillBrushLookup(self: *const IXpsOMPath, lookup: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetFillBrushLookup(self: *const IXpsOMPath, lookup: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetFillBrushLookup(self, lookup);
     }
     pub fn SetFillBrushLookup(self: *const IXpsOMPath, lookup: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -4160,7 +4160,7 @@ pub const IXpsOMTileBrush = extern union {
         ) callconv(.winapi) HRESULT,
         GetTransformLookup: *const fn(
             self: *const IXpsOMTileBrush,
-            key: ?*?PWSTR,
+            key: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetTransformLookup: *const fn(
             self: *const IXpsOMTileBrush,
@@ -4204,7 +4204,7 @@ pub const IXpsOMTileBrush = extern union {
     pub fn SetTransformLocal(self: *const IXpsOMTileBrush, transform: ?*IXpsOMMatrixTransform) callconv(.@"inline") HRESULT {
         return self.vtable.SetTransformLocal(self, transform);
     }
-    pub fn GetTransformLookup(self: *const IXpsOMTileBrush, key: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetTransformLookup(self: *const IXpsOMTileBrush, key: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetTransformLookup(self, key);
     }
     pub fn SetTransformLookup(self: *const IXpsOMTileBrush, key: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -4250,7 +4250,7 @@ pub const IXpsOMVisual = extern union {
         ) callconv(.winapi) HRESULT,
         GetTransformLookup: *const fn(
             self: *const IXpsOMVisual,
-            key: ?*?PWSTR,
+            key: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetTransformLookup: *const fn(
             self: *const IXpsOMVisual,
@@ -4270,7 +4270,7 @@ pub const IXpsOMVisual = extern union {
         ) callconv(.winapi) HRESULT,
         GetClipGeometryLookup: *const fn(
             self: *const IXpsOMVisual,
-            key: ?*?PWSTR,
+            key: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetClipGeometryLookup: *const fn(
             self: *const IXpsOMVisual,
@@ -4298,7 +4298,7 @@ pub const IXpsOMVisual = extern union {
         ) callconv(.winapi) HRESULT,
         GetOpacityMaskBrushLookup: *const fn(
             self: *const IXpsOMVisual,
-            key: ?*?PWSTR,
+            key: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetOpacityMaskBrushLookup: *const fn(
             self: *const IXpsOMVisual,
@@ -4306,7 +4306,7 @@ pub const IXpsOMVisual = extern union {
         ) callconv(.winapi) HRESULT,
         GetName: *const fn(
             self: *const IXpsOMVisual,
-            name: ?*?PWSTR,
+            name: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetName: *const fn(
             self: *const IXpsOMVisual,
@@ -4330,7 +4330,7 @@ pub const IXpsOMVisual = extern union {
         ) callconv(.winapi) HRESULT,
         GetLanguage: *const fn(
             self: *const IXpsOMVisual,
-            language: ?*?PWSTR,
+            language: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetLanguage: *const fn(
             self: *const IXpsOMVisual,
@@ -4349,7 +4349,7 @@ pub const IXpsOMVisual = extern union {
     pub fn SetTransformLocal(self: *const IXpsOMVisual, matrixTransform: ?*IXpsOMMatrixTransform) callconv(.@"inline") HRESULT {
         return self.vtable.SetTransformLocal(self, matrixTransform);
     }
-    pub fn GetTransformLookup(self: *const IXpsOMVisual, key: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetTransformLookup(self: *const IXpsOMVisual, key: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetTransformLookup(self, key);
     }
     pub fn SetTransformLookup(self: *const IXpsOMVisual, key: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -4364,7 +4364,7 @@ pub const IXpsOMVisual = extern union {
     pub fn SetClipGeometryLocal(self: *const IXpsOMVisual, clipGeometry: ?*IXpsOMGeometry) callconv(.@"inline") HRESULT {
         return self.vtable.SetClipGeometryLocal(self, clipGeometry);
     }
-    pub fn GetClipGeometryLookup(self: *const IXpsOMVisual, key: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetClipGeometryLookup(self: *const IXpsOMVisual, key: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetClipGeometryLookup(self, key);
     }
     pub fn SetClipGeometryLookup(self: *const IXpsOMVisual, key: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -4385,13 +4385,13 @@ pub const IXpsOMVisual = extern union {
     pub fn SetOpacityMaskBrushLocal(self: *const IXpsOMVisual, opacityMaskBrush: ?*IXpsOMBrush) callconv(.@"inline") HRESULT {
         return self.vtable.SetOpacityMaskBrushLocal(self, opacityMaskBrush);
     }
-    pub fn GetOpacityMaskBrushLookup(self: *const IXpsOMVisual, key: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetOpacityMaskBrushLookup(self: *const IXpsOMVisual, key: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetOpacityMaskBrushLookup(self, key);
     }
     pub fn SetOpacityMaskBrushLookup(self: *const IXpsOMVisual, key: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetOpacityMaskBrushLookup(self, key);
     }
-    pub fn GetName(self: *const IXpsOMVisual, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetName(self: *const IXpsOMVisual, name: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
     pub fn SetName(self: *const IXpsOMVisual, name: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -4409,7 +4409,7 @@ pub const IXpsOMVisual = extern union {
     pub fn SetHyperlinkNavigateUri(self: *const IXpsOMVisual, hyperlinkUri: ?*IUri) callconv(.@"inline") HRESULT {
         return self.vtable.SetHyperlinkNavigateUri(self, hyperlinkUri);
     }
-    pub fn GetLanguage(self: *const IXpsOMVisual, language: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetLanguage(self: *const IXpsOMVisual, language: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetLanguage(self, language);
     }
     pub fn SetLanguage(self: *const IXpsOMVisual, language: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -4437,7 +4437,7 @@ pub const IXpsOMVisualBrush = extern union {
         ) callconv(.winapi) HRESULT,
         GetVisualLookup: *const fn(
             self: *const IXpsOMVisualBrush,
-            lookup: ?*?PWSTR,
+            lookup: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetVisualLookup: *const fn(
             self: *const IXpsOMVisualBrush,
@@ -4462,7 +4462,7 @@ pub const IXpsOMVisualBrush = extern union {
     pub fn SetVisualLocal(self: *const IXpsOMVisualBrush, visual: ?*IXpsOMVisual) callconv(.@"inline") HRESULT {
         return self.vtable.SetVisualLocal(self, visual);
     }
-    pub fn GetVisualLookup(self: *const IXpsOMVisualBrush, lookup: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetVisualLookup(self: *const IXpsOMVisualBrush, lookup: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetVisualLookup(self, lookup);
     }
     pub fn SetVisualLookup(self: *const IXpsOMVisualBrush, lookup: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -4537,7 +4537,7 @@ pub const IXpsSignature = extern union {
         base: IUnknown.VTable,
         GetSignatureId: *const fn(
             self: *const IXpsSignature,
-            sigId: ?*?PWSTR,
+            sigId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetSignatureValue: *const fn(
             self: *const IXpsSignature,
@@ -4550,7 +4550,7 @@ pub const IXpsSignature = extern union {
         ) callconv(.winapi) HRESULT,
         GetSigningTime: *const fn(
             self: *const IXpsSignature,
-            sigDateTimeString: ?*?PWSTR,
+            sigDateTimeString: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetSigningTimeFormat: *const fn(
             self: *const IXpsSignature,
@@ -4590,7 +4590,7 @@ pub const IXpsSignature = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSignatureId(self: *const IXpsSignature, sigId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSignatureId(self: *const IXpsSignature, sigId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSignatureId(self, sigId);
     }
     pub fn GetSignatureValue(self: *const IXpsSignature, signatureHashValue: [*]?*u8, count: ?*u32) callconv(.@"inline") HRESULT {
@@ -4599,7 +4599,7 @@ pub const IXpsSignature = extern union {
     pub fn GetCertificateEnumerator(self: *const IXpsSignature, certificateEnumerator: ?*?*IOpcCertificateEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetCertificateEnumerator(self, certificateEnumerator);
     }
-    pub fn GetSigningTime(self: *const IXpsSignature, sigDateTimeString: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSigningTime(self: *const IXpsSignature, sigDateTimeString: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSigningTime(self, sigDateTimeString);
     }
     pub fn GetSigningTimeFormat(self: *const IXpsSignature, timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT) callconv(.@"inline") HRESULT {
@@ -4843,7 +4843,7 @@ pub const IXpsSignatureRequest = extern union {
         base: IUnknown.VTable,
         GetIntent: *const fn(
             self: *const IXpsSignatureRequest,
-            intent: ?*?PWSTR,
+            intent: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetIntent: *const fn(
             self: *const IXpsSignatureRequest,
@@ -4851,7 +4851,7 @@ pub const IXpsSignatureRequest = extern union {
         ) callconv(.winapi) HRESULT,
         GetRequestedSigner: *const fn(
             self: *const IXpsSignatureRequest,
-            signerName: ?*?PWSTR,
+            signerName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetRequestedSigner: *const fn(
             self: *const IXpsSignatureRequest,
@@ -4859,7 +4859,7 @@ pub const IXpsSignatureRequest = extern union {
         ) callconv(.winapi) HRESULT,
         GetRequestSignByDate: *const fn(
             self: *const IXpsSignatureRequest,
-            dateString: ?*?PWSTR,
+            dateString: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetRequestSignByDate: *const fn(
             self: *const IXpsSignatureRequest,
@@ -4867,7 +4867,7 @@ pub const IXpsSignatureRequest = extern union {
         ) callconv(.winapi) HRESULT,
         GetSigningLocale: *const fn(
             self: *const IXpsSignatureRequest,
-            place: ?*?PWSTR,
+            place: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetSigningLocale: *const fn(
             self: *const IXpsSignatureRequest,
@@ -4888,7 +4888,7 @@ pub const IXpsSignatureRequest = extern union {
         ) callconv(.winapi) HRESULT,
         GetRequestId: *const fn(
             self: *const IXpsSignatureRequest,
-            requestId: ?*?PWSTR,
+            requestId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetSignature: *const fn(
             self: *const IXpsSignatureRequest,
@@ -4897,25 +4897,25 @@ pub const IXpsSignatureRequest = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIntent(self: *const IXpsSignatureRequest, intent: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetIntent(self: *const IXpsSignatureRequest, intent: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetIntent(self, intent);
     }
     pub fn SetIntent(self: *const IXpsSignatureRequest, intent: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetIntent(self, intent);
     }
-    pub fn GetRequestedSigner(self: *const IXpsSignatureRequest, signerName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetRequestedSigner(self: *const IXpsSignatureRequest, signerName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetRequestedSigner(self, signerName);
     }
     pub fn SetRequestedSigner(self: *const IXpsSignatureRequest, signerName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetRequestedSigner(self, signerName);
     }
-    pub fn GetRequestSignByDate(self: *const IXpsSignatureRequest, dateString: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetRequestSignByDate(self: *const IXpsSignatureRequest, dateString: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetRequestSignByDate(self, dateString);
     }
     pub fn SetRequestSignByDate(self: *const IXpsSignatureRequest, dateString: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetRequestSignByDate(self, dateString);
     }
-    pub fn GetSigningLocale(self: *const IXpsSignatureRequest, place: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSigningLocale(self: *const IXpsSignatureRequest, place: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSigningLocale(self, place);
     }
     pub fn SetSigningLocale(self: *const IXpsSignatureRequest, place: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -4927,7 +4927,7 @@ pub const IXpsSignatureRequest = extern union {
     pub fn SetSpotLocation(self: *const IXpsSignatureRequest, pageIndex: i32, x: f32, y: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSpotLocation(self, pageIndex, x, y);
     }
-    pub fn GetRequestId(self: *const IXpsSignatureRequest, requestId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetRequestId(self: *const IXpsSignatureRequest, requestId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetRequestId(self, requestId);
     }
     pub fn GetSignature(self: *const IXpsSignatureRequest, signature: ?*?*IXpsSignature) callconv(.@"inline") HRESULT {
@@ -4976,7 +4976,7 @@ pub const IXpsSigningOptions = extern union {
         base: IUnknown.VTable,
         GetSignatureId: *const fn(
             self: *const IXpsSigningOptions,
-            signatureId: ?*?PWSTR,
+            signatureId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetSignatureId: *const fn(
             self: *const IXpsSigningOptions,
@@ -4984,7 +4984,7 @@ pub const IXpsSigningOptions = extern union {
         ) callconv(.winapi) HRESULT,
         GetSignatureMethod: *const fn(
             self: *const IXpsSigningOptions,
-            signatureMethod: ?*?PWSTR,
+            signatureMethod: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetSignatureMethod: *const fn(
             self: *const IXpsSigningOptions,
@@ -4992,7 +4992,7 @@ pub const IXpsSigningOptions = extern union {
         ) callconv(.winapi) HRESULT,
         GetDigestMethod: *const fn(
             self: *const IXpsSigningOptions,
-            digestMethod: ?*?PWSTR,
+            digestMethod: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetDigestMethod: *const fn(
             self: *const IXpsSigningOptions,
@@ -5045,19 +5045,19 @@ pub const IXpsSigningOptions = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSignatureId(self: *const IXpsSigningOptions, signatureId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSignatureId(self: *const IXpsSigningOptions, signatureId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSignatureId(self, signatureId);
     }
     pub fn SetSignatureId(self: *const IXpsSigningOptions, signatureId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetSignatureId(self, signatureId);
     }
-    pub fn GetSignatureMethod(self: *const IXpsSigningOptions, signatureMethod: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSignatureMethod(self: *const IXpsSigningOptions, signatureMethod: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSignatureMethod(self, signatureMethod);
     }
     pub fn SetSignatureMethod(self: *const IXpsSigningOptions, signatureMethod: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetSignatureMethod(self, signatureMethod);
     }
-    pub fn GetDigestMethod(self: *const IXpsSigningOptions, digestMethod: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDigestMethod(self: *const IXpsSigningOptions, digestMethod: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDigestMethod(self, digestMethod);
     }
     pub fn SetDigestMethod(self: *const IXpsSigningOptions, digestMethod: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -5590,7 +5590,7 @@ pub extern "winspool.drv" fn DeviceCapabilitiesA(
     pDevice: ?[*:0]const u8,
     pPort: ?[*:0]const u8,
     fwCapability: DEVICE_CAPABILITIES,
-    pOutput: ?PSTR,
+    pOutput: ?[*:0]u8,
     pDevMode: ?*const DEVMODEA,
 ) callconv(.winapi) i32;
 
@@ -5599,7 +5599,7 @@ pub extern "winspool.drv" fn DeviceCapabilitiesW(
     pDevice: ?[*:0]const u16,
     pPort: ?[*:0]const u16,
     fwCapability: DEVICE_CAPABILITIES,
-    pOutput: ?PWSTR,
+    pOutput: ?[*:0]u16,
     pDevMode: ?*const DEVMODEW,
 ) callconv(.winapi) i32;
 
@@ -5632,7 +5632,7 @@ pub extern "gdi32" fn ExtEscape(
     lpInData: ?[*:0]const u8,
     cjOutput: i32,
     /// parameter "cjOutput" is the size in bytes
-    lpOutData: ?PSTR,
+    lpOutData: ?[*:0]u8,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5691,7 +5691,7 @@ pub const StartDoc = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (25)
+// Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -5714,8 +5714,6 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const IUri = @import("../system/com.zig").IUri;
 const OPC_SIGNATURE_TIME_FORMAT = @import("../storage/packaging/opc.zig").OPC_SIGNATURE_TIME_FORMAT;
 const POINT = @import("../foundation.zig").POINT;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 

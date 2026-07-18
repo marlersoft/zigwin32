@@ -1440,12 +1440,11 @@ pub const PFN_DESTRUCTION_CALLBACK = *const fn(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PSTR = @import("../foundation.zig").PSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

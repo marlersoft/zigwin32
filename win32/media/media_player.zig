@@ -4993,9 +4993,9 @@ pub const IWMPMediaPluginRegistrar = extern union {
         base: IUnknown.VTable,
         WMPRegisterPlayerPlugin: *const fn(
             self: *const IWMPMediaPluginRegistrar,
-            pwszFriendlyName: ?PWSTR,
-            pwszDescription: ?PWSTR,
-            pwszUninstallString: ?PWSTR,
+            pwszFriendlyName: ?[*:0]u16,
+            pwszDescription: ?[*:0]u16,
+            pwszUninstallString: ?[*:0]u16,
             dwPriority: u32,
             guidPluginType: Guid,
             clsid: Guid,
@@ -5010,7 +5010,7 @@ pub const IWMPMediaPluginRegistrar = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn WMPRegisterPlayerPlugin(self: *const IWMPMediaPluginRegistrar, pwszFriendlyName: ?PWSTR, pwszDescription: ?PWSTR, pwszUninstallString: ?PWSTR, dwPriority: u32, guidPluginType: Guid, clsid: Guid, cMediaTypes: u32, pMediaTypes: ?*anyopaque) callconv(.@"inline") HRESULT {
+    pub fn WMPRegisterPlayerPlugin(self: *const IWMPMediaPluginRegistrar, pwszFriendlyName: ?[*:0]u16, pwszDescription: ?[*:0]u16, pwszUninstallString: ?[*:0]u16, dwPriority: u32, guidPluginType: Guid, clsid: Guid, cMediaTypes: u32, pMediaTypes: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.WMPRegisterPlayerPlugin(self, pwszFriendlyName, pwszDescription, pwszUninstallString, dwPriority, guidPluginType, clsid, cMediaTypes, pMediaTypes);
     }
     pub fn WMPUnRegisterPlayerPlugin(self: *const IWMPMediaPluginRegistrar, guidPluginType: Guid, clsid: Guid) callconv(.@"inline") HRESULT {
@@ -7185,7 +7185,7 @@ pub const IXFeed = extern union {
         ) callconv(.winapi) HRESULT,
         Name: *const fn(
             self: *const IXFeed,
-            ppszName: ?*?PWSTR,
+            ppszName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Rename: *const fn(
             self: *const IXFeed,
@@ -7193,7 +7193,7 @@ pub const IXFeed = extern union {
         ) callconv(.winapi) HRESULT,
         Url: *const fn(
             self: *const IXFeed,
-            ppszUrl: ?*?PWSTR,
+            ppszUrl: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetUrl: *const fn(
             self: *const IXFeed,
@@ -7205,7 +7205,7 @@ pub const IXFeed = extern union {
         ) callconv(.winapi) HRESULT,
         Path: *const fn(
             self: *const IXFeed,
-            ppszPath: ?*?PWSTR,
+            ppszPath: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Move: *const fn(
             self: *const IXFeed,
@@ -7254,7 +7254,7 @@ pub const IXFeed = extern union {
         ) callconv(.winapi) HRESULT,
         LocalEnclosurePath: *const fn(
             self: *const IXFeed,
-            ppszPath: ?*?PWSTR,
+            ppszPath: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Items: *const fn(
             self: *const IXFeed,
@@ -7300,23 +7300,23 @@ pub const IXFeed = extern union {
         ) callconv(.winapi) HRESULT,
         DownloadUrl: *const fn(
             self: *const IXFeed,
-            ppszUrl: ?*?PWSTR,
+            ppszUrl: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Title: *const fn(
             self: *const IXFeed,
-            ppszTitle: ?*?PWSTR,
+            ppszTitle: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Description: *const fn(
             self: *const IXFeed,
-            ppszDescription: ?*?PWSTR,
+            ppszDescription: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Link: *const fn(
             self: *const IXFeed,
-            ppszHomePage: ?*?PWSTR,
+            ppszHomePage: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Image: *const fn(
             self: *const IXFeed,
-            ppszImageUrl: ?*?PWSTR,
+            ppszImageUrl: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         LastBuildDate: *const fn(
             self: *const IXFeed,
@@ -7332,11 +7332,11 @@ pub const IXFeed = extern union {
         ) callconv(.winapi) HRESULT,
         Language: *const fn(
             self: *const IXFeed,
-            ppszLanguage: ?*?PWSTR,
+            ppszLanguage: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Copyright: *const fn(
             self: *const IXFeed,
-            ppszCopyright: ?*?PWSTR,
+            ppszCopyright: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         IsList: *const fn(
             self: *const IXFeed,
@@ -7363,13 +7363,13 @@ pub const IXFeed = extern union {
     pub fn Xml(self: *const IXFeed, uiItemCount: u32, sortProperty: FEEDS_XML_SORT_PROPERTY, sortOrder: FEEDS_XML_SORT_ORDER, filterFlags: FEEDS_XML_FILTER_FLAGS, includeFlags: FEEDS_XML_INCLUDE_FLAGS, pps: ?*?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.Xml(self, uiItemCount, sortProperty, sortOrder, filterFlags, includeFlags, pps);
     }
-    pub fn Name(self: *const IXFeed, ppszName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Name(self: *const IXFeed, ppszName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Name(self, ppszName);
     }
     pub fn Rename(self: *const IXFeed, pszName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Rename(self, pszName);
     }
-    pub fn Url(self: *const IXFeed, ppszUrl: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Url(self: *const IXFeed, ppszUrl: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Url(self, ppszUrl);
     }
     pub fn SetUrl(self: *const IXFeed, pszUrl: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -7378,7 +7378,7 @@ pub const IXFeed = extern union {
     pub fn LocalId(self: *const IXFeed, pguid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.LocalId(self, pguid);
     }
-    pub fn Path(self: *const IXFeed, ppszPath: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Path(self: *const IXFeed, ppszPath: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Path(self, ppszPath);
     }
     pub fn Move(self: *const IXFeed, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -7417,7 +7417,7 @@ pub const IXFeed = extern union {
     pub fn LastDownloadTime(self: *const IXFeed, pstLastDownloadTime: ?*SYSTEMTIME) callconv(.@"inline") HRESULT {
         return self.vtable.LastDownloadTime(self, pstLastDownloadTime);
     }
-    pub fn LocalEnclosurePath(self: *const IXFeed, ppszPath: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn LocalEnclosurePath(self: *const IXFeed, ppszPath: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.LocalEnclosurePath(self, ppszPath);
     }
     pub fn Items(self: *const IXFeed, ppfe: ?*?*IXFeedsEnum) callconv(.@"inline") HRESULT {
@@ -7450,19 +7450,19 @@ pub const IXFeed = extern union {
     pub fn Merge(self: *const IXFeed, pStream: ?*IStream, pszUrl: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Merge(self, pStream, pszUrl);
     }
-    pub fn DownloadUrl(self: *const IXFeed, ppszUrl: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn DownloadUrl(self: *const IXFeed, ppszUrl: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.DownloadUrl(self, ppszUrl);
     }
-    pub fn Title(self: *const IXFeed, ppszTitle: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Title(self: *const IXFeed, ppszTitle: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Title(self, ppszTitle);
     }
-    pub fn Description(self: *const IXFeed, ppszDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Description(self: *const IXFeed, ppszDescription: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Description(self, ppszDescription);
     }
-    pub fn Link(self: *const IXFeed, ppszHomePage: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Link(self: *const IXFeed, ppszHomePage: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Link(self, ppszHomePage);
     }
-    pub fn Image(self: *const IXFeed, ppszImageUrl: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Image(self: *const IXFeed, ppszImageUrl: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Image(self, ppszImageUrl);
     }
     pub fn LastBuildDate(self: *const IXFeed, pstLastBuildDate: ?*SYSTEMTIME) callconv(.@"inline") HRESULT {
@@ -7474,10 +7474,10 @@ pub const IXFeed = extern union {
     pub fn Ttl(self: *const IXFeed, puiTtl: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Ttl(self, puiTtl);
     }
-    pub fn Language(self: *const IXFeed, ppszLanguage: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Language(self: *const IXFeed, ppszLanguage: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Language(self, ppszLanguage);
     }
-    pub fn Copyright(self: *const IXFeed, ppszCopyright: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Copyright(self: *const IXFeed, ppszCopyright: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Copyright(self, ppszCopyright);
     }
     pub fn IsList(self: *const IXFeed, pbIsList: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -7511,11 +7511,11 @@ pub const IXFeed2 = extern union {
         ) callconv(.winapi) HRESULT,
         Username: *const fn(
             self: *const IXFeed2,
-            ppszUsername: ?*?PWSTR,
+            ppszUsername: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Password: *const fn(
             self: *const IXFeed2,
-            ppszPassword: ?*?PWSTR,
+            ppszPassword: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetCredentials: *const fn(
             self: *const IXFeed2,
@@ -7535,10 +7535,10 @@ pub const IXFeed2 = extern union {
     pub fn LastItemDownloadTime(self: *const IXFeed2, pstLastItemDownloadTime: ?*SYSTEMTIME) callconv(.@"inline") HRESULT {
         return self.vtable.LastItemDownloadTime(self, pstLastItemDownloadTime);
     }
-    pub fn Username(self: *const IXFeed2, ppszUsername: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Username(self: *const IXFeed2, ppszUsername: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Username(self, ppszUsername);
     }
-    pub fn Password(self: *const IXFeed2, ppszPassword: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Password(self: *const IXFeed2, ppszPassword: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Password(self, ppszPassword);
     }
     pub fn SetCredentials(self: *const IXFeed2, pszUsername: ?[*:0]const u16, pszPassword: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -7556,11 +7556,11 @@ pub const IXFeedEnclosure = extern union {
         base: IUnknown.VTable,
         Url: *const fn(
             self: *const IXFeedEnclosure,
-            ppszUrl: ?*?PWSTR,
+            ppszUrl: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Type: *const fn(
             self: *const IXFeedEnclosure,
-            ppszMimeType: ?*?PWSTR,
+            ppszMimeType: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Length: *const fn(
             self: *const IXFeedEnclosure,
@@ -7582,7 +7582,7 @@ pub const IXFeedEnclosure = extern union {
         ) callconv(.winapi) HRESULT,
         LocalPath: *const fn(
             self: *const IXFeedEnclosure,
-            ppszPath: ?*?PWSTR,
+            ppszPath: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Parent: *const fn(
             self: *const IXFeedEnclosure,
@@ -7591,11 +7591,11 @@ pub const IXFeedEnclosure = extern union {
         ) callconv(.winapi) HRESULT,
         DownloadUrl: *const fn(
             self: *const IXFeedEnclosure,
-            ppszUrl: ?*?PWSTR,
+            ppszUrl: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         DownloadMimeType: *const fn(
             self: *const IXFeedEnclosure,
-            ppszMimeType: ?*?PWSTR,
+            ppszMimeType: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         RemoveFile: *const fn(
             self: *const IXFeedEnclosure,
@@ -7610,10 +7610,10 @@ pub const IXFeedEnclosure = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Url(self: *const IXFeedEnclosure, ppszUrl: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Url(self: *const IXFeedEnclosure, ppszUrl: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Url(self, ppszUrl);
     }
-    pub fn Type(self: *const IXFeedEnclosure, ppszMimeType: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Type(self: *const IXFeedEnclosure, ppszMimeType: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Type(self, ppszMimeType);
     }
     pub fn Length(self: *const IXFeedEnclosure, puiLength: ?*u32) callconv(.@"inline") HRESULT {
@@ -7631,16 +7631,16 @@ pub const IXFeedEnclosure = extern union {
     pub fn LastDownloadError(self: *const IXFeedEnclosure, pfde: ?*FEEDS_DOWNLOAD_ERROR) callconv(.@"inline") HRESULT {
         return self.vtable.LastDownloadError(self, pfde);
     }
-    pub fn LocalPath(self: *const IXFeedEnclosure, ppszPath: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn LocalPath(self: *const IXFeedEnclosure, ppszPath: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.LocalPath(self, ppszPath);
     }
     pub fn Parent(self: *const IXFeedEnclosure, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Parent(self, riid, ppv);
     }
-    pub fn DownloadUrl(self: *const IXFeedEnclosure, ppszUrl: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn DownloadUrl(self: *const IXFeedEnclosure, ppszUrl: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.DownloadUrl(self, ppszUrl);
     }
-    pub fn DownloadMimeType(self: *const IXFeedEnclosure, ppszMimeType: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn DownloadMimeType(self: *const IXFeedEnclosure, ppszMimeType: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.DownloadMimeType(self, ppszMimeType);
     }
     pub fn RemoveFile(self: *const IXFeedEnclosure) callconv(.@"inline") HRESULT {
@@ -7773,7 +7773,7 @@ pub const IXFeedFolder = extern union {
         ) callconv(.winapi) HRESULT,
         Name: *const fn(
             self: *const IXFeedFolder,
-            ppszName: ?*?PWSTR,
+            ppszName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Rename: *const fn(
             self: *const IXFeedFolder,
@@ -7781,7 +7781,7 @@ pub const IXFeedFolder = extern union {
         ) callconv(.winapi) HRESULT,
         Path: *const fn(
             self: *const IXFeedFolder,
-            ppszPath: ?*?PWSTR,
+            ppszPath: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Move: *const fn(
             self: *const IXFeedFolder,
@@ -7841,13 +7841,13 @@ pub const IXFeedFolder = extern union {
     pub fn Delete(self: *const IXFeedFolder) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self);
     }
-    pub fn Name(self: *const IXFeedFolder, ppszName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Name(self: *const IXFeedFolder, ppszName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Name(self, ppszName);
     }
     pub fn Rename(self: *const IXFeedFolder, pszName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Rename(self, pszName);
     }
-    pub fn Path(self: *const IXFeedFolder, ppszPath: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Path(self: *const IXFeedFolder, ppszPath: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Path(self, ppszPath);
     }
     pub fn Move(self: *const IXFeedFolder, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -8012,19 +8012,19 @@ pub const IXFeedItem = extern union {
         ) callconv(.winapi) HRESULT,
         Title: *const fn(
             self: *const IXFeedItem,
-            ppszTitle: ?*?PWSTR,
+            ppszTitle: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Link: *const fn(
             self: *const IXFeedItem,
-            ppszUrl: ?*?PWSTR,
+            ppszUrl: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Guid: *const fn(
             self: *const IXFeedItem,
-            ppszGuid: ?*?PWSTR,
+            ppszGuid: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Description: *const fn(
             self: *const IXFeedItem,
-            ppszDescription: ?*?PWSTR,
+            ppszDescription: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         PubDate: *const fn(
             self: *const IXFeedItem,
@@ -8032,11 +8032,11 @@ pub const IXFeedItem = extern union {
         ) callconv(.winapi) HRESULT,
         Comments: *const fn(
             self: *const IXFeedItem,
-            ppszUrl: ?*?PWSTR,
+            ppszUrl: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Author: *const fn(
             self: *const IXFeedItem,
-            ppszAuthor: ?*?PWSTR,
+            ppszAuthor: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Enclosure: *const fn(
             self: *const IXFeedItem,
@@ -8065,7 +8065,7 @@ pub const IXFeedItem = extern union {
         ) callconv(.winapi) HRESULT,
         DownloadUrl: *const fn(
             self: *const IXFeedItem,
-            ppszUrl: ?*?PWSTR,
+            ppszUrl: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         LastDownloadTime: *const fn(
             self: *const IXFeedItem,
@@ -8081,25 +8081,25 @@ pub const IXFeedItem = extern union {
     pub fn Xml(self: *const IXFeedItem, fxif: FEEDS_XML_INCLUDE_FLAGS, pps: ?*?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.Xml(self, fxif, pps);
     }
-    pub fn Title(self: *const IXFeedItem, ppszTitle: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Title(self: *const IXFeedItem, ppszTitle: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Title(self, ppszTitle);
     }
-    pub fn Link(self: *const IXFeedItem, ppszUrl: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Link(self: *const IXFeedItem, ppszUrl: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Link(self, ppszUrl);
     }
-    pub fn _method_Guid(self: *const IXFeedItem, ppszGuid: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn _method_Guid(self: *const IXFeedItem, ppszGuid: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable._method_Guid(self, ppszGuid);
     }
-    pub fn Description(self: *const IXFeedItem, ppszDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Description(self: *const IXFeedItem, ppszDescription: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Description(self, ppszDescription);
     }
     pub fn PubDate(self: *const IXFeedItem, pstPubDate: ?*SYSTEMTIME) callconv(.@"inline") HRESULT {
         return self.vtable.PubDate(self, pstPubDate);
     }
-    pub fn Comments(self: *const IXFeedItem, ppszUrl: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Comments(self: *const IXFeedItem, ppszUrl: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Comments(self, ppszUrl);
     }
-    pub fn Author(self: *const IXFeedItem, ppszAuthor: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Author(self: *const IXFeedItem, ppszAuthor: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Author(self, ppszAuthor);
     }
     pub fn Enclosure(self: *const IXFeedItem, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
@@ -8120,7 +8120,7 @@ pub const IXFeedItem = extern union {
     pub fn Delete(self: *const IXFeedItem) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self);
     }
-    pub fn DownloadUrl(self: *const IXFeedItem, ppszUrl: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn DownloadUrl(self: *const IXFeedItem, ppszUrl: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.DownloadUrl(self, ppszUrl);
     }
     pub fn LastDownloadTime(self: *const IXFeedItem, pstLastDownloadTime: ?*SYSTEMTIME) callconv(.@"inline") HRESULT {
@@ -8689,7 +8689,7 @@ pub const wmpttBuy = WMPTransactionType.Buy;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (22)
+// Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLOB = @import("../system/com.zig").BLOB;
@@ -8706,7 +8706,6 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const LPARAM = @import("../foundation.zig").LPARAM;
 const LRESULT = @import("../foundation.zig").LRESULT;
 const MSG = @import("../ui/windows_and_messaging.zig").MSG;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const SIZE = @import("../foundation.zig").SIZE;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;

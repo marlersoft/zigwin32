@@ -217,7 +217,7 @@ pub const SHITEMID = extern struct {
 pub const STRRET = extern struct {
     uType: u32,
     Anonymous: extern union {
-        pOleStr: ?PWSTR,
+        pOleStr: ?[*:0]u16,
         uOffset: u32,
         cStr: [260]u8,
     },
@@ -241,12 +241,11 @@ pub const STRRET_CSTR = STRRET_TYPE.CSTR;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IUnknown = @import("../../system/com.zig").IUnknown;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

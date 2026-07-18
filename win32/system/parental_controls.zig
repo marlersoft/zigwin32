@@ -152,7 +152,7 @@ pub const IWindowsParentalControlsCore = extern union {
         GetWebFilterInfo: *const fn(
             self: *const IWindowsParentalControlsCore,
             pguidID: ?*Guid,
-            ppszName: ?*?PWSTR,
+            ppszName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -166,7 +166,7 @@ pub const IWindowsParentalControlsCore = extern union {
     pub fn GetWebSettings(self: *const IWindowsParentalControlsCore, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCWebSettings) callconv(.@"inline") HRESULT {
         return self.vtable.GetWebSettings(self, pcszSID, ppSettings);
     }
-    pub fn GetWebFilterInfo(self: *const IWindowsParentalControlsCore, pguidID: ?*Guid, ppszName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetWebFilterInfo(self: *const IWindowsParentalControlsCore, pguidID: ?*Guid, ppszName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetWebFilterInfo(self, pguidID, ppszName);
     }
 };
@@ -315,7 +315,7 @@ pub const IWPCWebSettings = extern union {
             hWnd: ?HWND,
             pcszURL: ?[*:0]const u16,
             cURLs: u32,
-            ppcszSubURLs: ?[*]?PWSTR,
+            ppcszSubURLs: ?[*]?[*:0]u16,
             pfChanged: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
@@ -325,7 +325,7 @@ pub const IWPCWebSettings = extern union {
     pub fn GetSettings(self: *const IWPCWebSettings, pdwSettings: ?*WPCFLAG_WEB_SETTING) callconv(.@"inline") HRESULT {
         return self.vtable.GetSettings(self, pdwSettings);
     }
-    pub fn RequestURLOverride(self: *const IWPCWebSettings, hWnd: ?HWND, pcszURL: ?[*:0]const u16, cURLs: u32, ppcszSubURLs: ?[*]?PWSTR, pfChanged: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn RequestURLOverride(self: *const IWPCWebSettings, hWnd: ?HWND, pcszURL: ?[*:0]const u16, cURLs: u32, ppcszSubURLs: ?[*]?[*:0]u16, pfChanged: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.RequestURLOverride(self, hWnd, pcszURL, cURLs, ppcszSubURLs, pfChanged);
     }
 };
@@ -1035,7 +1035,7 @@ pub const CLSID_WpcSettingsProvider = &CLSID_WpcSettingsProvider_Value;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -1043,7 +1043,6 @@ const BSTR = @import("../foundation.zig").BSTR;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {

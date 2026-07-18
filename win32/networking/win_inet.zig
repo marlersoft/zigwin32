@@ -926,7 +926,7 @@ pub const XDR_CACHE_ENTRY = @as(u32, 262144);
 // Section: Types (120)
 //--------------------------------------------------------------------------------
 pub const APP_CACHE_DOWNLOAD_ENTRY = extern struct {
-    pwszUrl: ?PWSTR,
+    pwszUrl: ?[*:0]u16,
     dwEntryType: u32,
 };
 
@@ -945,7 +945,7 @@ pub const AppCacheFinalizeStateManifestChange = APP_CACHE_FINALIZE_STATE.Manifes
 pub const AppCacheFinalizeStateComplete = APP_CACHE_FINALIZE_STATE.Complete;
 
 pub const APP_CACHE_GROUP_INFO = extern struct {
-    pwszManifestUrl: ?PWSTR,
+    pwszManifestUrl: ?[*:0]u16,
     ftLastAccessTime: FILETIME,
     ullSize: u64,
 };
@@ -968,7 +968,7 @@ pub const AppCacheStateUpdateNeededMasterOnly = APP_CACHE_STATE.UpdateNeededMast
 
 pub const AUTO_PROXY_SCRIPT_BUFFER = extern struct {
     dwStructSize: u32,
-    lpszScriptBuffer: ?PSTR,
+    lpszScriptBuffer: ?[*:0]u8,
     dwScriptBufferSize: u32,
 };
 
@@ -1018,12 +1018,12 @@ pub const CACHE_OPERATOR = *const fn(
 ) callconv(.winapi) BOOL;
 
 pub const COOKIE_DLG_INFO = extern struct {
-    pszServer: ?PWSTR,
+    pszServer: ?[*:0]u16,
     pic: ?*INTERNET_COOKIE,
     dwStopWarning: u32,
     cx: i32,
     cy: i32,
-    pszHeader: ?PWSTR,
+    pszHeader: ?[*:0]u16,
     dwOperation: u32,
 };
 
@@ -1430,7 +1430,7 @@ pub const IDialEngine = extern union {
         GetProperty: *const fn(
             self: *const IDialEngine,
             pwzProperty: ?[*:0]const u16,
-            pwzValue: ?PWSTR,
+            pwzValue: ?[*:0]u16,
             dwBufSize: u32,
         ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
@@ -1458,7 +1458,7 @@ pub const IDialEngine = extern union {
     pub fn Initialize(self: *const IDialEngine, pwzConnectoid: ?[*:0]const u16, pIDES: ?*IDialEventSink) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pwzConnectoid, pIDES);
     }
-    pub fn GetProperty(self: *const IDialEngine, pwzProperty: ?[*:0]const u16, pwzValue: ?PWSTR, dwBufSize: u32) callconv(.@"inline") HRESULT {
+    pub fn GetProperty(self: *const IDialEngine, pwzProperty: ?[*:0]const u16, pwzValue: ?[*:0]u16, dwBufSize: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, pwzProperty, pwzValue, dwBufSize);
     }
     pub fn SetProperty(self: *const IDialEngine, pwzProperty: ?[*:0]const u16, pwzValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -1614,24 +1614,24 @@ pub const INTERNET_CACHE_CONFIG_PATH_ENTRYW = extern struct {
 
 pub const INTERNET_CACHE_CONTAINER_INFOA = extern struct {
     dwCacheVersion: u32,
-    lpszName: ?PSTR,
-    lpszCachePrefix: ?PSTR,
-    lpszVolumeLabel: ?PSTR,
-    lpszVolumeTitle: ?PSTR,
+    lpszName: ?[*:0]u8,
+    lpszCachePrefix: ?[*:0]u8,
+    lpszVolumeLabel: ?[*:0]u8,
+    lpszVolumeTitle: ?[*:0]u8,
 };
 
 pub const INTERNET_CACHE_CONTAINER_INFOW = extern struct {
     dwCacheVersion: u32,
-    lpszName: ?PWSTR,
-    lpszCachePrefix: ?PWSTR,
-    lpszVolumeLabel: ?PWSTR,
-    lpszVolumeTitle: ?PWSTR,
+    lpszName: ?[*:0]u16,
+    lpszCachePrefix: ?[*:0]u16,
+    lpszVolumeLabel: ?[*:0]u16,
+    lpszVolumeTitle: ?[*:0]u16,
 };
 
 pub const INTERNET_CACHE_ENTRY_INFOA = extern struct {
     dwStructSize: u32,
-    lpszSourceUrlName: ?PSTR,
-    lpszLocalFileName: ?PSTR,
+    lpszSourceUrlName: ?[*:0]u8,
+    lpszLocalFileName: ?[*:0]u8,
     CacheEntryType: u32,
     dwUseCount: u32,
     dwHitRate: u32,
@@ -1641,9 +1641,9 @@ pub const INTERNET_CACHE_ENTRY_INFOA = extern struct {
     ExpireTime: FILETIME,
     LastAccessTime: FILETIME,
     LastSyncTime: FILETIME,
-    lpHeaderInfo: ?PSTR,
+    lpHeaderInfo: ?[*:0]u8,
     dwHeaderInfoSize: u32,
-    lpszFileExtension: ?PSTR,
+    lpszFileExtension: ?[*:0]u8,
     Anonymous: extern union {
         dwReserved: u32,
         dwExemptDelta: u32,
@@ -1652,8 +1652,8 @@ pub const INTERNET_CACHE_ENTRY_INFOA = extern struct {
 
 pub const INTERNET_CACHE_ENTRY_INFOW = extern struct {
     dwStructSize: u32,
-    lpszSourceUrlName: ?PWSTR,
-    lpszLocalFileName: ?PWSTR,
+    lpszSourceUrlName: ?[*:0]u16,
+    lpszLocalFileName: ?[*:0]u16,
     CacheEntryType: u32,
     dwUseCount: u32,
     dwHitRate: u32,
@@ -1663,9 +1663,9 @@ pub const INTERNET_CACHE_ENTRY_INFOW = extern struct {
     ExpireTime: FILETIME,
     LastAccessTime: FILETIME,
     LastSyncTime: FILETIME,
-    lpHeaderInfo: ?PWSTR,
+    lpHeaderInfo: ?[*:0]u16,
     dwHeaderInfoSize: u32,
-    lpszFileExtension: ?PWSTR,
+    lpszFileExtension: ?[*:0]u16,
     Anonymous: extern union {
         dwReserved: u32,
         dwExemptDelta: u32,
@@ -1766,21 +1766,21 @@ pub const INTERNET_RAS_INSTALLED = INTERNET_CONNECTION{ .RAS_INSTALLED = 1 };
 
 pub const INTERNET_COOKIE = extern struct {
     cbSize: u32,
-    pszName: ?PSTR,
-    pszData: ?PSTR,
-    pszDomain: ?PSTR,
-    pszPath: ?PSTR,
+    pszName: ?[*:0]u8,
+    pszData: ?[*:0]u8,
+    pszDomain: ?[*:0]u8,
+    pszPath: ?[*:0]u8,
     pftExpires: ?*FILETIME,
     dwFlags: u32,
-    pszUrl: ?PSTR,
-    pszP3PPolicy: ?PSTR,
+    pszUrl: ?[*:0]u8,
+    pszP3PPolicy: ?[*:0]u8,
 };
 
 pub const INTERNET_COOKIE2 = extern struct {
-    pwszName: ?PWSTR,
-    pwszValue: ?PWSTR,
-    pwszDomain: ?PWSTR,
-    pwszPath: ?PWSTR,
+    pwszName: ?[*:0]u16,
+    pwszValue: ?[*:0]u16,
+    pwszDomain: ?[*:0]u16,
+    pwszPath: ?[*:0]u16,
     dwFlags: u32,
     ftExpires: FILETIME,
     fExpiresSet: BOOL,
@@ -1851,7 +1851,7 @@ pub const INTERNET_PER_CONN_AUTOCONFIG_LAST_DETECT_URL = INTERNET_PER_CONN.AUTOC
 
 pub const INTERNET_PER_CONN_OPTION_LISTA = extern struct {
     dwSize: u32,
-    pszConnection: ?PSTR,
+    pszConnection: ?[*:0]u8,
     dwOptionCount: u32,
     dwOptionError: u32,
     pOptions: ?*INTERNET_PER_CONN_OPTIONA,
@@ -1859,7 +1859,7 @@ pub const INTERNET_PER_CONN_OPTION_LISTA = extern struct {
 
 pub const INTERNET_PER_CONN_OPTION_LISTW = extern struct {
     dwSize: u32,
-    pszConnection: ?PWSTR,
+    pszConnection: ?[*:0]u16,
     dwOptionCount: u32,
     dwOptionError: u32,
     pOptions: ?*INTERNET_PER_CONN_OPTIONW,
@@ -1869,7 +1869,7 @@ pub const INTERNET_PER_CONN_OPTIONA = extern struct {
     dwOption: INTERNET_PER_CONN,
     Value: extern union {
         dwValue: u32,
-        pszValue: ?PSTR,
+        pszValue: ?[*:0]u8,
         ftValue: FILETIME,
     },
 };
@@ -1878,7 +1878,7 @@ pub const INTERNET_PER_CONN_OPTIONW = extern struct {
     dwOption: INTERNET_PER_CONN,
     Value: extern union {
         dwValue: u32,
-        pszValue: ?PWSTR,
+        pszValue: ?[*:0]u16,
         ftValue: FILETIME,
     },
 };
@@ -2066,32 +2066,32 @@ pub const PFN_DIAL_HANDLER = *const fn(
 ) callconv(.winapi) u32;
 
 pub const pfnInternetDeInitializeAutoProxyDll = *const fn(
-    lpszMime: ?PSTR,
+    lpszMime: ?[*:0]u8,
     dwReserved: u32,
 ) callconv(.winapi) BOOL;
 
 pub const pfnInternetGetProxyInfo = *const fn(
     lpszUrl: ?[*:0]const u8,
     dwUrlLength: u32,
-    lpszUrlHostName: ?PSTR,
+    lpszUrlHostName: ?[*:0]u8,
     dwUrlHostNameLength: u32,
-    lplpszProxyHostName: ?*?PSTR,
+    lplpszProxyHostName: ?*?[*:0]u8,
     lpdwProxyHostNameLength: ?*u32,
 ) callconv(.winapi) BOOL;
 
 pub const pfnInternetInitializeAutoProxyDll = *const fn(
     dwVersion: u32,
-    lpszDownloadedTempFile: ?PSTR,
-    lpszMime: ?PSTR,
+    lpszDownloadedTempFile: ?[*:0]u8,
+    lpszMime: ?[*:0]u8,
     lpAutoProxyCallbacks: ?*AutoProxyHelperFunctions,
     lpAutoProxyScriptBuffer: ?*AUTO_PROXY_SCRIPT_BUFFER,
 ) callconv(.winapi) BOOL;
 
 pub const ProofOfPossessionCookieInfo = extern struct {
-    name: ?PWSTR,
-    data: ?PWSTR,
+    name: ?[*:0]u16,
+    data: ?[*:0]u16,
     flags: u32,
-    p3pHeader: ?PWSTR,
+    p3pHeader: ?[*:0]u16,
 };
 
 const CLSID_ProofOfPossessionCookieInfoManager_Value = Guid.initString("a9927f85-a304-4390-8b23-a75f1c668600");
@@ -2166,43 +2166,43 @@ pub const UrlCacheLimitTypeNum = URL_CACHE_LIMIT_TYPE.Num;
 
 pub const URL_COMPONENTSA = extern struct {
     dwStructSize: u32,
-    lpszScheme: ?PSTR,
+    lpszScheme: ?[*:0]u8,
     dwSchemeLength: u32,
     nScheme: INTERNET_SCHEME,
-    lpszHostName: ?PSTR,
+    lpszHostName: ?[*:0]u8,
     dwHostNameLength: u32,
     nPort: u16,
-    lpszUserName: ?PSTR,
+    lpszUserName: ?[*:0]u8,
     dwUserNameLength: u32,
-    lpszPassword: ?PSTR,
+    lpszPassword: ?[*:0]u8,
     dwPasswordLength: u32,
-    lpszUrlPath: ?PSTR,
+    lpszUrlPath: ?[*:0]u8,
     dwUrlPathLength: u32,
-    lpszExtraInfo: ?PSTR,
+    lpszExtraInfo: ?[*:0]u8,
     dwExtraInfoLength: u32,
 };
 
 pub const URL_COMPONENTSW = extern struct {
     dwStructSize: u32,
-    lpszScheme: ?PWSTR,
+    lpszScheme: ?[*:0]u16,
     dwSchemeLength: u32,
     nScheme: INTERNET_SCHEME,
-    lpszHostName: ?PWSTR,
+    lpszHostName: ?[*:0]u16,
     dwHostNameLength: u32,
     nPort: u16,
-    lpszUserName: ?PWSTR,
+    lpszUserName: ?[*:0]u16,
     dwUserNameLength: u32,
-    lpszPassword: ?PWSTR,
+    lpszPassword: ?[*:0]u16,
     dwPasswordLength: u32,
-    lpszUrlPath: ?PWSTR,
+    lpszUrlPath: ?[*:0]u16,
     dwUrlPathLength: u32,
-    lpszExtraInfo: ?PWSTR,
+    lpszExtraInfo: ?[*:0]u16,
     dwExtraInfoLength: u32,
 };
 
 pub const URLCACHE_ENTRY_INFO = extern struct {
-    pwszSourceUrlName: ?PWSTR,
-    pwszLocalFileName: ?PWSTR,
+    pwszSourceUrlName: ?[*:0]u16,
+    pwszLocalFileName: ?[*:0]u16,
     dwCacheEntryType: u32,
     dwUseCount: u32,
     dwHitRate: u32,
@@ -2222,7 +2222,7 @@ pub const WININET_PROXY_INFO = extern struct {
     fProxy: BOOL,
     fBypass: BOOL,
     ProxyScheme: INTERNET_SCHEME,
-    pwszProxy: ?PWSTR,
+    pwszProxy: ?[*:0]u16,
     ProxyPort: u16,
 };
 
@@ -2328,7 +2328,7 @@ pub extern "wininet" fn AppCacheGetDownloadList(
 pub extern "wininet" fn AppCacheGetFallbackUrl(
     hAppCache: ?*anyopaque,
     pwszUrl: ?[*:0]const u16,
-    ppwszFallbackUrl: ?*?PWSTR,
+    ppwszFallbackUrl: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub extern "wininet" fn AppCacheGetGroupList(
@@ -2346,7 +2346,7 @@ pub extern "wininet" fn AppCacheGetInfo(
 
 pub extern "wininet" fn AppCacheGetManifestUrl(
     hAppCache: ?*anyopaque,
-    ppwszManifestUrl: ?*?PWSTR,
+    ppwszManifestUrl: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub extern "wininet" fn AppCacheLookup(
@@ -2392,9 +2392,9 @@ pub extern "wininet" fn CommitUrlCacheEntryW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn CreateMD5SSOHash(
-    pszChallengeInfo: ?PWSTR,
-    pwszRealm: ?PWSTR,
-    pwszTarget: ?PWSTR,
+    pszChallengeInfo: ?[*:0]u16,
+    pwszRealm: ?[*:0]u16,
+    pwszTarget: ?[*:0]u16,
     pbHexHash: ?*u8,
 ) callconv(.winapi) BOOL;
 
@@ -2458,7 +2458,7 @@ pub extern "wininet" fn CreateUrlCacheGroup(
 pub extern "wininet" fn DeleteIE3Cache(
     hwnd: ?HWND,
     hinst: ?HINSTANCE,
-    lpszCmd: ?PSTR,
+    lpszCmd: ?[*:0]u8,
     nCmdShow: i32,
 ) callconv(.winapi) u32;
 
@@ -2913,7 +2913,7 @@ pub extern "wininet" fn GetUrlCacheEntryInfoExA(
     /// parameter "lpcbCacheEntryInfo" is the size in bytes
     lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOA,
     lpcbCacheEntryInfo: ?*u32,
-    lpszRedirectUrl: ?PSTR,
+    lpszRedirectUrl: ?[*:0]u8,
     lpcbRedirectUrl: ?*u32,
     lpReserved: ?*anyopaque,
     dwFlags: u32,
@@ -2925,7 +2925,7 @@ pub extern "wininet" fn GetUrlCacheEntryInfoExW(
     /// parameter "lpcbCacheEntryInfo" is the size in bytes
     lpCacheEntryInfo: ?*INTERNET_CACHE_ENTRY_INFOW,
     lpcbCacheEntryInfo: ?*u32,
-    lpszRedirectUrl: ?PWSTR,
+    lpszRedirectUrl: ?[*:0]u16,
     lpcbRedirectUrl: ?*u32,
     lpReserved: ?*anyopaque,
     dwFlags: u32,
@@ -3120,9 +3120,9 @@ pub extern "wininet" fn HttpEndRequestW(
 ) callconv(.winapi) BOOL;
 
 pub extern "wininet" fn HttpGetServerCredentials(
-    pwszUrl: ?PWSTR,
-    ppwszUserName: ?*?PWSTR,
-    ppwszPassword: ?*?PWSTR,
+    pwszUrl: ?[*:0]u16,
+    ppwszUserName: ?*?[*:0]u16,
+    ppwszPassword: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub extern "wininet" fn HttpIndicatePageLoadComplete(
@@ -3147,7 +3147,7 @@ pub extern "wininet" fn HttpOpenRequestA(
     lpszObjectName: ?[*:0]const u8,
     lpszVersion: ?[*:0]const u8,
     lpszReferrer: ?[*:0]const u8,
-    lplpszAcceptTypes: ?*?PSTR,
+    lplpszAcceptTypes: ?*?[*:0]u8,
     dwFlags: u32,
     dwContext: usize,
 ) callconv(.winapi) ?*anyopaque;
@@ -3159,7 +3159,7 @@ pub extern "wininet" fn HttpOpenRequestW(
     lpszObjectName: ?[*:0]const u16,
     lpszVersion: ?[*:0]const u16,
     lpszReferrer: ?[*:0]const u16,
-    lplpszAcceptTypes: ?*?PWSTR,
+    lplpszAcceptTypes: ?*?[*:0]u16,
     dwFlags: u32,
     dwContext: usize,
 ) callconv(.winapi) ?*anyopaque;
@@ -3394,24 +3394,24 @@ pub extern "wininet" fn InternetCombineUrlW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn InternetConfirmZoneCrossing(
     hWnd: ?HWND,
-    szUrlPrev: ?PSTR,
-    szUrlNew: ?PSTR,
+    szUrlPrev: ?[*:0]u8,
+    szUrlNew: ?[*:0]u8,
     bPost: BOOL,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn InternetConfirmZoneCrossingA(
     hWnd: ?HWND,
-    szUrlPrev: ?PSTR,
-    szUrlNew: ?PSTR,
+    szUrlPrev: ?[*:0]u8,
+    szUrlNew: ?[*:0]u8,
     bPost: BOOL,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn InternetConfirmZoneCrossingW(
     hWnd: ?HWND,
-    szUrlPrev: ?PWSTR,
-    szUrlNew: ?PWSTR,
+    szUrlPrev: ?[*:0]u16,
+    szUrlNew: ?[*:0]u16,
     bPost: BOOL,
 ) callconv(.winapi) u32;
 
@@ -3447,7 +3447,7 @@ pub extern "wininet" fn InternetConvertUrlFromWireToWideChar(
     dwCodePagePath: u32,
     fEncodePathExtra: BOOL,
     dwCodePageExtra: u32,
-    ppwszConvertedUrl: ?*?PWSTR,
+    ppwszConvertedUrl: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3485,7 +3485,7 @@ pub extern "wininet" fn InternetCreateUrlW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn InternetDial(
     hwndParent: ?HWND,
-    lpszConnectoid: ?PSTR,
+    lpszConnectoid: ?[*:0]u8,
     dwFlags: u32,
     lpdwConnection: ?*u32,
     dwReserved: u32,
@@ -3494,7 +3494,7 @@ pub extern "wininet" fn InternetDial(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn InternetDialA(
     hwndParent: ?HWND,
-    lpszConnectoid: ?PSTR,
+    lpszConnectoid: ?[*:0]u8,
     dwFlags: u32,
     lpdwConnection: ?*usize,
     dwReserved: u32,
@@ -3503,7 +3503,7 @@ pub extern "wininet" fn InternetDialA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn InternetDialW(
     hwndParent: ?HWND,
-    lpszConnectoid: ?PWSTR,
+    lpszConnectoid: ?[*:0]u16,
     dwFlags: u32,
     lpdwConnection: ?*usize,
     dwReserved: u32,
@@ -3668,13 +3668,13 @@ pub extern "wininet" fn InternetGetProxyForUrl(
 ) callconv(.winapi) u32;
 
 pub extern "wininet" fn InternetGetSecurityInfoByURL(
-    lpszURL: ?PSTR,
+    lpszURL: ?[*:0]u8,
     ppCertChain: ?*?*CERT_CHAIN_CONTEXT,
     pdwSecureFlags: ?*u32,
 ) callconv(.winapi) BOOL;
 
 pub extern "wininet" fn InternetGetSecurityInfoByURLA(
-    lpszURL: ?PSTR,
+    lpszURL: ?[*:0]u8,
     ppCertChain: ?*?*CERT_CHAIN_CONTEXT,
     pdwSecureFlags: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -3687,7 +3687,7 @@ pub extern "wininet" fn InternetGetSecurityInfoByURLW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn InternetGoOnline(
-    lpszURL: ?PSTR,
+    lpszURL: ?[*:0]u8,
     hwndParent: ?HWND,
     dwFlags: u32,
 ) callconv(.winapi) BOOL;
@@ -3961,12 +3961,12 @@ pub extern "wininet" fn InternetSetStatusCallbackW(
 ) callconv(.winapi) ?LPINTERNET_STATUS_CALLBACK;
 
 pub extern "wininet" fn InternetShowSecurityInfoByURL(
-    lpszURL: ?PSTR,
+    lpszURL: ?[*:0]u8,
     hwndParent: ?HWND,
 ) callconv(.winapi) BOOL;
 
 pub extern "wininet" fn InternetShowSecurityInfoByURLA(
-    lpszURL: ?PSTR,
+    lpszURL: ?[*:0]u8,
     hwndParent: ?HWND,
 ) callconv(.winapi) BOOL;
 
@@ -3980,7 +3980,7 @@ pub extern "wininet" fn InternetTimeFromSystemTime(
     pst: ?*const SYSTEMTIME,
     dwRFC: u32,
     /// parameter "cbTime" is the size in bytes
-    lpszTime: ?PSTR,
+    lpszTime: ?[*:0]u8,
     cbTime: u32,
 ) callconv(.winapi) BOOL;
 
@@ -3989,7 +3989,7 @@ pub extern "wininet" fn InternetTimeFromSystemTimeA(
     pst: ?*const SYSTEMTIME,
     dwRFC: u32,
     /// parameter "cbTime" is the size in bytes
-    lpszTime: ?PSTR,
+    lpszTime: ?[*:0]u8,
     cbTime: u32,
 ) callconv(.winapi) BOOL;
 
@@ -3998,7 +3998,7 @@ pub extern "wininet" fn InternetTimeFromSystemTimeW(
     pst: ?*const SYSTEMTIME,
     dwRFC: u32,
     /// parameter "cbTime" is the size in bytes
-    lpszTime: ?PWSTR,
+    lpszTime: ?[*:0]u16,
     cbTime: u32,
 ) callconv(.winapi) BOOL;
 
@@ -4124,9 +4124,9 @@ pub extern "wininet" fn PrivacySetZonePreferenceW(
 
 pub extern "wininet" fn ReadGuidsForConnectedNetworks(
     pcNetworks: ?*u32,
-    pppwszNetworkGuids: ?*?*?PWSTR,
+    pppwszNetworkGuids: ?*?*?[*:0]u16,
     pppbstrNetworkNames: ?*?*?BSTR,
-    pppwszGWMacs: ?*?*?PWSTR,
+    pppwszGWMacs: ?*?*?[*:0]u16,
     pcGatewayMacs: ?*u32,
     pdwFlags: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -4204,7 +4204,7 @@ pub extern "wininet" fn RetrieveUrlCacheEntryStreamW(
 pub extern "wininet" fn RunOnceUrlCache(
     hwnd: ?HWND,
     hinst: ?HINSTANCE,
-    lpszCmd: ?PSTR,
+    lpszCmd: ?[*:0]u8,
     nCmdShow: i32,
 ) callconv(.winapi) u32;
 
@@ -4330,7 +4330,7 @@ pub extern "wininet" fn UpdateUrlCacheContentPath(
 ) callconv(.winapi) BOOL;
 
 pub extern "wininet" fn UrlCacheCheckEntriesExist(
-    rgpwszUrls: [*]?PWSTR,
+    rgpwszUrls: [*]?[*:0]u16,
     cEntries: u32,
     rgfExist: [*]BOOL,
 ) callconv(.winapi) u32;
@@ -4376,7 +4376,7 @@ pub extern "wininet" fn UrlCacheFreeGlobalSpace(
 ) callconv(.winapi) u32;
 
 pub extern "wininet" fn UrlCacheGetContentPaths(
-    pppwszDirectories: ?*?*?PWSTR,
+    pppwszDirectories: ?*?*?[*:0]u16,
     pcDirectories: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -5011,7 +5011,7 @@ pub const SetUrlCacheGroupAttribute = switch (@import("../zig.zig").unicode_mode
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (23)
+// Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -5027,8 +5027,6 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IInspectable = @import("../system/win_rt.zig").IInspectable;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SecPkgContext_Bindings = @import("../security/authentication/identity.zig").SecPkgContext_Bindings;
 const SecPkgContext_CipherInfo = @import("../security/authentication/identity.zig").SecPkgContext_CipherInfo;
 const SecPkgContext_ConnectionInfo = @import("../security/authentication/identity.zig").SecPkgContext_ConnectionInfo;

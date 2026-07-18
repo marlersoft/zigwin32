@@ -908,7 +908,7 @@ pub const MGM_IF_ENTRY = extern struct {
 pub const MPR_CERT_EKU = extern struct {
     dwSize: u32,
     IsEKUOID: BOOL,
-    pwszEKU: ?PWSTR,
+    pwszEKU: ?[*:0]u16,
 };
 
 pub const MPR_CREDENTIALSEX_0 = extern struct {
@@ -990,7 +990,7 @@ pub const MPR_INTERFACE_1 = extern struct {
     dwConnectionState: ROUTER_CONNECTION_STATE,
     fUnReachabilityReasons: u32,
     dwLastError: u32,
-    lpwsDialoutHoursRestriction: ?PWSTR,
+    lpwsDialoutHoursRestriction: ?[*:0]u16,
 };
 
 pub const MPR_INTERFACE_2 = extern struct {
@@ -1243,7 +1243,7 @@ pub const MPRAPI_TUNNEL_CONFIG_PARAMS1 = extern struct {
 
 pub const ORASADFUNC = *const fn(
     param0: ?HWND,
-    param1: ?PSTR,
+    param1: ?[*:0]u8,
     param2: u32,
     param3: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -1428,15 +1428,15 @@ pub const PMPRADMINCONNECTIONHANGUPNOTIFICATIONEX = *const fn(
 ) callconv(.winapi) void;
 
 pub const PMPRADMINGETIPADDRESSFORUSER = *const fn(
-    param0: ?PWSTR,
-    param1: ?PWSTR,
+    param0: ?[*:0]u16,
+    param1: ?[*:0]u16,
     param2: ?*u32,
     param3: ?*BOOL,
 ) callconv(.winapi) u32;
 
 pub const PMPRADMINGETIPV6ADDRESSFORUSER = *const fn(
-    param0: ?PWSTR,
-    param1: ?PWSTR,
+    param0: ?[*:0]u16,
+    param1: ?[*:0]u16,
     param2: ?*IN6_ADDR,
     param3: ?*BOOL,
 ) callconv(.winapi) u32;
@@ -1451,14 +1451,14 @@ pub const PMPRADMINRASVALIDATEPREAUTHENTICATEDCONNECTIONEX = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PMPRADMINRELEASEIPADRESS = *const fn(
-    param0: ?PWSTR,
-    param1: ?PWSTR,
+    param0: ?[*:0]u16,
+    param1: ?[*:0]u16,
     param2: ?*u32,
 ) callconv(.winapi) void;
 
 pub const PMPRADMINRELEASEIPV6ADDRESSFORUSER = *const fn(
-    param0: ?PWSTR,
-    param1: ?PWSTR,
+    param0: ?[*:0]u16,
+    param1: ?[*:0]u16,
     param2: ?*IN6_ADDR,
 ) callconv(.winapi) void;
 
@@ -1934,15 +1934,15 @@ pub const RAS_USER_1 = extern struct {
 };
 
 pub const RASADFUNCA = *const fn(
-    param0: ?PSTR,
-    param1: ?PSTR,
+    param0: ?[*:0]u8,
+    param1: ?[*:0]u8,
     param2: ?*RASADPARAMS,
     param3: ?*u32,
 ) callconv(.winapi) BOOL;
 
 pub const RASADFUNCW = *const fn(
-    param0: ?PWSTR,
-    param1: ?PWSTR,
+    param0: ?[*:0]u16,
+    param1: ?[*:0]u16,
     param2: ?*RASADPARAMS,
     param3: ?*u32,
 ) callconv(.winapi) BOOL;
@@ -2165,9 +2165,9 @@ pub const RasCustomDeleteEntryNotifyFn = *const fn(
 pub const RasCustomDialDlgFn = *const fn(
     hInstDll: ?HINSTANCE,
     dwFlags: u32,
-    lpszPhonebook: ?PWSTR,
-    lpszEntry: ?PWSTR,
-    lpszPhoneNumber: ?PWSTR,
+    lpszPhonebook: ?[*:0]u16,
+    lpszEntry: ?[*:0]u16,
+    lpszPhoneNumber: ?[*:0]u16,
     lpInfo: ?*RASDIALDLG,
     pvInfo: ?*anyopaque,
 ) callconv(.winapi) BOOL;
@@ -2185,8 +2185,8 @@ pub const RasCustomDialFn = *const fn(
 
 pub const RasCustomEntryDlgFn = *const fn(
     hInstDll: ?HINSTANCE,
-    lpszPhonebook: ?PWSTR,
-    lpszEntry: ?PWSTR,
+    lpszPhonebook: ?[*:0]u16,
+    lpszEntry: ?[*:0]u16,
     lpInfo: ?*RASENTRYDLGA,
     dwFlags: u32,
 ) callconv(.winapi) BOOL;
@@ -2289,7 +2289,7 @@ pub const RASDIALPARAMSA = extern struct {
     dwSubEntry: u32 align(4),
     dwCallbackId: usize align(4),
     dwIfIndex: u32 align(4),
-    szEncPassword: ?PSTR align(4),
+    szEncPassword: ?[*:0]u8 align(4),
 };
 
 pub const RASDIALPARAMSW = extern struct {
@@ -2303,7 +2303,7 @@ pub const RASDIALPARAMSW = extern struct {
     dwSubEntry: u32 align(4),
     dwCallbackId: usize align(4),
     dwIfIndex: u32 align(4),
-    szEncPassword: ?PWSTR align(4),
+    szEncPassword: ?[*:0]u16 align(4),
 };
 
 pub const RASEAPINFO = extern struct {
@@ -2599,14 +2599,14 @@ pub const RASPBDLGA = extern struct {
 pub const RASPBDLGFUNCA = *const fn(
     param0: usize,
     param1: u32,
-    param2: ?PSTR,
+    param2: ?[*:0]u8,
     param3: ?*anyopaque,
 ) callconv(.winapi) void;
 
 pub const RASPBDLGFUNCW = *const fn(
     param0: usize,
     param1: u32,
-    param2: ?PWSTR,
+    param2: ?[*:0]u16,
     param3: ?*anyopaque,
 ) callconv(.winapi) void;
 
@@ -3273,22 +3273,22 @@ pub extern "mprapi" fn MprAdminDeviceEnum(
 
 // TODO: this type is limited to platform 'windowsserver2003'
 pub extern "mprapi" fn MprAdminEstablishDomainRasServer(
-    pszDomain: ?PWSTR,
-    pszMachine: ?PWSTR,
+    pszDomain: ?[*:0]u16,
+    pszMachine: ?[*:0]u16,
     bEnable: BOOL,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2000'
 pub extern "mprapi" fn MprAdminGetErrorString(
     dwError: u32,
-    lplpwsErrorString: ?*?PWSTR,
+    lplpwsErrorString: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "mprapi" fn MprAdminGetPDCServer(
     lpszDomain: ?[*:0]const u16,
     lpszServer: ?[*:0]const u16,
-    lpszPDCServer: ?PWSTR,
+    lpszPDCServer: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2000'
@@ -3350,11 +3350,11 @@ pub extern "mprapi" fn MprAdminInterfaceEnum(
 
 // TODO: this type is limited to platform 'windowsserver2000'
 pub extern "mprapi" fn MprAdminInterfaceGetCredentials(
-    lpwsServer: ?PWSTR,
-    lpwsInterfaceName: ?PWSTR,
-    lpwsUserName: ?PWSTR,
-    lpwsPassword: ?PWSTR,
-    lpwsDomainName: ?PWSTR,
+    lpwsServer: ?[*:0]u16,
+    lpwsInterfaceName: ?[*:0]u16,
+    lpwsUserName: ?[*:0]u16,
+    lpwsPassword: ?[*:0]u16,
+    lpwsDomainName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2000'
@@ -3375,7 +3375,7 @@ pub extern "mprapi" fn MprAdminInterfaceGetCustomInfoEx(
 // TODO: this type is limited to platform 'windowsserver2000'
 pub extern "mprapi" fn MprAdminInterfaceGetHandle(
     hMprServer: isize,
-    lpwsInterfaceName: ?PWSTR,
+    lpwsInterfaceName: ?[*:0]u16,
     phInterface: ?*?HANDLE,
     fIncludeClientInterfaces: BOOL,
 ) callconv(.winapi) u32;
@@ -3398,11 +3398,11 @@ pub extern "mprapi" fn MprAdminInterfaceQueryUpdateResult(
 
 // TODO: this type is limited to platform 'windowsserver2000'
 pub extern "mprapi" fn MprAdminInterfaceSetCredentials(
-    lpwsServer: ?PWSTR,
-    lpwsInterfaceName: ?PWSTR,
-    lpwsUserName: ?PWSTR,
-    lpwsDomainName: ?PWSTR,
-    lpwsPassword: ?PWSTR,
+    lpwsServer: ?[*:0]u16,
+    lpwsInterfaceName: ?[*:0]u16,
+    lpwsUserName: ?[*:0]u16,
+    lpwsDomainName: ?[*:0]u16,
+    lpwsPassword: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2000'
@@ -3478,20 +3478,20 @@ pub extern "mprapi" fn MprAdminInterfaceUpdateRoutes(
 
 // TODO: this type is limited to platform 'windowsserver2003'
 pub extern "mprapi" fn MprAdminIsDomainRasServer(
-    pszDomain: ?PWSTR,
-    pszMachine: ?PWSTR,
+    pszDomain: ?[*:0]u16,
+    pszMachine: ?[*:0]u16,
     pbIsRasServer: ?*BOOL,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "mprapi" fn MprAdminIsServiceInitialized(
-    lpwsServerName: ?PWSTR,
+    lpwsServerName: ?[*:0]u16,
     fIsServiceInitialized: ?*BOOL,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2000'
 pub extern "mprapi" fn MprAdminIsServiceRunning(
-    lpwsServerName: ?PWSTR,
+    lpwsServerName: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsserver2000'
@@ -3561,7 +3561,7 @@ pub extern "mprapi" fn MprAdminMIBEntrySet(
 
 // TODO: this type is limited to platform 'windowsserver2000'
 pub extern "mprapi" fn MprAdminMIBServerConnect(
-    lpwsServerName: ?PWSTR,
+    lpwsServerName: ?[*:0]u16,
     phMibServer: ?*isize,
 ) callconv(.winapi) u32;
 
@@ -3618,12 +3618,12 @@ pub extern "mprapi" fn MprAdminRegisterConnectionNotification(
 pub extern "mprapi" fn MprAdminSendUserMessage(
     hMprServer: isize,
     hConnection: ?HANDLE,
-    lpwszMessage: ?PWSTR,
+    lpwszMessage: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2000'
 pub extern "mprapi" fn MprAdminServerConnect(
-    lpwsServerName: ?PWSTR,
+    lpwsServerName: ?[*:0]u16,
     phMprServer: ?*isize,
 ) callconv(.winapi) u32;
 
@@ -3676,12 +3676,12 @@ pub extern "mprapi" fn MprAdminServerSetInfoEx(
 pub extern "mprapi" fn MprAdminTransportCreate(
     hMprServer: isize,
     dwTransportId: u32,
-    lpwsTransportName: ?PWSTR,
+    lpwsTransportName: ?[*:0]u16,
     pGlobalInfo: ?*u8,
     dwGlobalInfoSize: u32,
     pClientInterfaceInfo: ?*u8,
     dwClientInterfaceInfoSize: u32,
-    lpwsDLLPath: ?PWSTR,
+    lpwsDLLPath: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2000'
@@ -3750,7 +3750,7 @@ pub extern "mprapi" fn MprConfigFilterSetInfo(
 // TODO: this type is limited to platform 'windowsserver2000'
 pub extern "mprapi" fn MprConfigGetFriendlyName(
     hMprConfig: ?HANDLE,
-    pszGuidName: ?PWSTR,
+    pszGuidName: ?[*:0]u16,
     /// parameter "dwBufferSize" is the size in bytes
     pszBuffer: ?[*]u16,
     dwBufferSize: u32,
@@ -3759,7 +3759,7 @@ pub extern "mprapi" fn MprConfigGetFriendlyName(
 // TODO: this type is limited to platform 'windowsserver2000'
 pub extern "mprapi" fn MprConfigGetGuidName(
     hMprConfig: ?HANDLE,
-    pszFriendlyName: ?PWSTR,
+    pszFriendlyName: ?[*:0]u16,
     /// parameter "dwBufferSize" is the size in bytes
     pszBuffer: ?[*]u16,
     dwBufferSize: u32,
@@ -3800,7 +3800,7 @@ pub extern "mprapi" fn MprConfigInterfaceGetCustomInfoEx(
 // TODO: this type is limited to platform 'windowsserver2000'
 pub extern "mprapi" fn MprConfigInterfaceGetHandle(
     hMprConfig: ?HANDLE,
-    lpwsInterfaceName: ?PWSTR,
+    lpwsInterfaceName: ?[*:0]u16,
     phRouterInterface: ?*?HANDLE,
 ) callconv(.winapi) u32;
 
@@ -3833,7 +3833,7 @@ pub extern "mprapi" fn MprConfigInterfaceTransportAdd(
     hMprConfig: ?HANDLE,
     hRouterInterface: ?HANDLE,
     dwTransportId: u32,
-    lpwsTransportName: ?PWSTR,
+    lpwsTransportName: ?[*:0]u16,
     /// parameter "dwInterfaceInfoSize" is the size in bytes
     pInterfaceInfo: ?*u8,
     dwInterfaceInfoSize: u32,
@@ -3889,12 +3889,12 @@ pub extern "mprapi" fn MprConfigInterfaceTransportSetInfo(
 // TODO: this type is limited to platform 'windowsserver2000'
 pub extern "mprapi" fn MprConfigServerBackup(
     hMprConfig: ?HANDLE,
-    lpwsPath: ?PWSTR,
+    lpwsPath: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2000'
 pub extern "mprapi" fn MprConfigServerConnect(
-    lpwsServerName: ?PWSTR,
+    lpwsServerName: ?[*:0]u16,
     phMprConfig: ?*?HANDLE,
 ) callconv(.winapi) u32;
 
@@ -3929,7 +3929,7 @@ pub extern "mprapi" fn MprConfigServerRefresh(
 // TODO: this type is limited to platform 'windowsserver2000'
 pub extern "mprapi" fn MprConfigServerRestore(
     hMprConfig: ?HANDLE,
-    lpwsPath: ?PWSTR,
+    lpwsPath: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2003'
@@ -3949,14 +3949,14 @@ pub extern "mprapi" fn MprConfigServerSetInfoEx(
 pub extern "mprapi" fn MprConfigTransportCreate(
     hMprConfig: ?HANDLE,
     dwTransportId: u32,
-    lpwsTransportName: ?PWSTR,
+    lpwsTransportName: ?[*:0]u16,
     /// parameter "dwGlobalInfoSize" is the size in bytes
     pGlobalInfo: ?*u8,
     dwGlobalInfoSize: u32,
     /// parameter "dwClientInterfaceInfoSize" is the size in bytes
     pClientInterfaceInfo: ?*u8,
     dwClientInterfaceInfoSize: u32,
-    lpwsDLLPath: ?PWSTR,
+    lpwsDLLPath: ?[*:0]u16,
     phRouterTransport: ?*?HANDLE,
 ) callconv(.winapi) u32;
 
@@ -3992,7 +3992,7 @@ pub extern "mprapi" fn MprConfigTransportGetInfo(
     lpdwGlobalInfoSize: ?*u32,
     ppClientInterfaceInfo: ?*?*u8,
     lpdwClientInterfaceInfoSize: ?*u32,
-    lplpwsDLLPath: ?*?PWSTR,
+    lplpwsDLLPath: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2000'
@@ -4005,7 +4005,7 @@ pub extern "mprapi" fn MprConfigTransportSetInfo(
     /// parameter "dwClientInterfaceInfoSize" is the size in bytes
     pClientInterfaceInfo: ?*u8,
     dwClientInterfaceInfoSize: u32,
-    lpwsDLLPath: ?PWSTR,
+    lpwsDLLPath: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2000'
@@ -4147,17 +4147,17 @@ pub extern "rasapi32" fn RasDialA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rasdlg" fn RasDialDlgA(
-    lpszPhonebook: ?PSTR,
-    lpszEntry: ?PSTR,
-    lpszPhoneNumber: ?PSTR,
+    lpszPhonebook: ?[*:0]u8,
+    lpszEntry: ?[*:0]u8,
+    lpszPhoneNumber: ?[*:0]u8,
     lpInfo: ?*RASDIALDLG,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rasdlg" fn RasDialDlgW(
-    lpszPhonebook: ?PWSTR,
-    lpszEntry: ?PWSTR,
-    lpszPhoneNumber: ?PWSTR,
+    lpszPhonebook: ?[*:0]u16,
+    lpszEntry: ?[*:0]u16,
+    lpszPhoneNumber: ?[*:0]u16,
     lpInfo: ?*RASDIALDLG,
 ) callconv(.winapi) BOOL;
 
@@ -4187,22 +4187,22 @@ pub extern "rasapi32" fn RasEditPhonebookEntryW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rasdlg" fn RasEntryDlgA(
-    lpszPhonebook: ?PSTR,
-    lpszEntry: ?PSTR,
+    lpszPhonebook: ?[*:0]u8,
+    lpszEntry: ?[*:0]u8,
     lpInfo: ?*RASENTRYDLGA,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rasdlg" fn RasEntryDlgW(
-    lpszPhonebook: ?PWSTR,
-    lpszEntry: ?PWSTR,
+    lpszPhonebook: ?[*:0]u16,
+    lpszEntry: ?[*:0]u16,
     lpInfo: ?*RASENTRYDLGW,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rasapi32" fn RasEnumAutodialAddressesA(
     /// parameter "lpdwcbRasAutodialAddresses" is the size in bytes
-    lppRasAutodialAddresses: ?*?PSTR,
+    lppRasAutodialAddresses: ?*?[*:0]u8,
     lpdwcbRasAutodialAddresses: ?*u32,
     lpdwcRasAutodialAddresses: ?*u32,
 ) callconv(.winapi) u32;
@@ -4210,7 +4210,7 @@ pub extern "rasapi32" fn RasEnumAutodialAddressesA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rasapi32" fn RasEnumAutodialAddressesW(
     /// parameter "lpdwcbRasAutodialAddresses" is the size in bytes
-    lppRasAutodialAddresses: ?*?PWSTR,
+    lppRasAutodialAddresses: ?*?[*:0]u16,
     lpdwcbRasAutodialAddresses: ?*u32,
     lpdwcRasAutodialAddresses: ?*u32,
 ) callconv(.winapi) u32;
@@ -4469,7 +4469,7 @@ pub extern "rasapi32" fn RasGetLinkStatistics(
 ) callconv(.winapi) u32;
 
 pub extern "rasapi32" fn RasGetPCscf(
-    lpszPCscf: ?PWSTR,
+    lpszPCscf: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4551,15 +4551,15 @@ pub extern "rasapi32" fn RasInvokeEapUI(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rasdlg" fn RasPhonebookDlgA(
-    lpszPhonebook: ?PSTR,
-    lpszEntry: ?PSTR,
+    lpszPhonebook: ?[*:0]u8,
+    lpszEntry: ?[*:0]u8,
     lpInfo: ?*RASPBDLGA,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rasdlg" fn RasPhonebookDlgW(
-    lpszPhonebook: ?PWSTR,
-    lpszEntry: ?PWSTR,
+    lpszPhonebook: ?[*:0]u16,
+    lpszEntry: ?[*:0]u16,
     lpInfo: ?*RASPBDLGW,
 ) callconv(.winapi) BOOL;
 
@@ -5637,7 +5637,7 @@ pub const RasValidateEntryName = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (14)
+// Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -5651,8 +5651,6 @@ const IN6_ADDR = @import("../networking/win_sock.zig").IN6_ADDR;
 const IN_ADDR = @import("../networking/win_sock.zig").IN_ADDR;
 const LUID = @import("../foundation.zig").LUID;
 const MIB_IPMCAST_MFE = @import("../network_management/ip_helper.zig").MIB_IPMCAST_MFE;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

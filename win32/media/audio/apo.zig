@@ -264,7 +264,7 @@ pub const AUDIO_SYSTEMEFFECTS_PROPERTY_CHANGE_NOTIFICATION = extern struct {
 
 pub const AudioFXExtensionParams = extern struct {
     AddPageParam: LPARAM,
-    pwstrEndpointID: ?PWSTR,
+    pwstrEndpointID: ?[*:0]u16,
     pFxProperties: ?*IPropertyStore,
 };
 
@@ -689,7 +689,7 @@ pub const IAudioSystemEffectsCustomFormats = extern union {
         GetFormatRepresentation: *const fn(
             self: *const IAudioSystemEffectsCustomFormats,
             nFormat: u32,
-            ppwstrFormatRep: ?*?PWSTR,
+            ppwstrFormatRep: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -700,7 +700,7 @@ pub const IAudioSystemEffectsCustomFormats = extern union {
     pub fn GetFormat(self: *const IAudioSystemEffectsCustomFormats, nFormat: u32, ppFormat: ?*?*IAudioMediaType) callconv(.@"inline") HRESULT {
         return self.vtable.GetFormat(self, nFormat, ppFormat);
     }
-    pub fn GetFormatRepresentation(self: *const IAudioSystemEffectsCustomFormats, nFormat: u32, ppwstrFormatRep: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetFormatRepresentation(self: *const IAudioSystemEffectsCustomFormats, nFormat: u32, ppwstrFormatRep: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetFormatRepresentation(self, nFormat, ppwstrFormatRep);
     }
 };
@@ -723,7 +723,7 @@ pub const UNCOMPRESSEDAUDIOFORMAT = extern struct {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (15)
+// Section: Imports (14)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE = @import("../../media/audio.zig").AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE;
@@ -738,7 +738,6 @@ const IServiceProvider = @import("../../system/com.zig").IServiceProvider;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const LPARAM = @import("../../foundation.zig").LPARAM;
 const PROPERTYKEY = @import("../../ui/shell/properties_system.zig").PROPERTYKEY;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const WAVEFORMATEX = @import("../../media/audio.zig").WAVEFORMATEX;
 
 test {

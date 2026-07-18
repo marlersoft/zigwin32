@@ -75,13 +75,13 @@ pub const MREGISTER_E_REGISTRATION_IN_PROGRESS = @import("../zig.zig").typedCons
 pub const MANAGEMENT_REGISTRATION_INFO = extern struct {
     fDeviceRegisteredWithManagement: BOOL,
     dwDeviceRegistionKind: u32,
-    pszUPN: ?PWSTR,
-    pszMDMServiceUri: ?PWSTR,
+    pszUPN: ?[*:0]u16,
+    pszMDMServiceUri: ?[*:0]u16,
 };
 
 pub const MANAGEMENT_SERVICE_INFO = extern struct {
-    pszMDMServiceUri: ?PWSTR,
-    pszAuthenticationUri: ?PWSTR,
+    pszMDMServiceUri: ?[*:0]u16,
+    pszAuthenticationUri: ?[*:0]u16,
 };
 
 pub const REGISTRATION_INFORMATION_CLASS = enum(i32) {
@@ -97,7 +97,7 @@ pub const MaxDeviceInfoClass = REGISTRATION_INFORMATION_CLASS.MaxDeviceInfoClass
 //--------------------------------------------------------------------------------
 pub extern "mdmlocalmanagement" fn ApplyLocalManagementSyncML(
     syncMLRequest: ?[*:0]const u16,
-    syncMLResult: ?*?PWSTR,
+    syncMLResult: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
@@ -194,12 +194,11 @@ pub extern "mdmregistration" fn UnregisterDeviceWithManagement(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

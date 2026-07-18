@@ -2830,7 +2830,7 @@ pub extern "glu32" fn gluErrorString(
 
 pub extern "glu32" fn gluErrorUnicodeStringEXT(
     errCode: u32,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 pub extern "glu32" fn gluGetNurbsProperty(
     nobj: ?*GLUnurbs,
@@ -3361,7 +3361,7 @@ pub const wglUseFontOutlines = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const COLORREF = @import("../foundation.zig").COLORREF;
@@ -3369,8 +3369,6 @@ const EMR = @import("../graphics/gdi.zig").EMR;
 const HDC = @import("../graphics/gdi.zig").HDC;
 const HENHMETAFILE = @import("../graphics/gdi.zig").HENHMETAFILE;
 const PROC = @import("../foundation.zig").PROC;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

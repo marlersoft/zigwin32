@@ -323,12 +323,12 @@ pub const SHTDN_REASON_VALID_BIT_MASK = SHUTDOWN_REASON{
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn AbortSystemShutdownA(
-    lpMachineName: ?PSTR,
+    lpMachineName: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn AbortSystemShutdownW(
-    lpMachineName: ?PWSTR,
+    lpMachineName: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "advapi32" fn CheckForHiberboot(
@@ -344,8 +344,8 @@ pub extern "user32" fn ExitWindowsEx(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn InitiateShutdownA(
-    lpMachineName: ?PSTR,
-    lpMessage: ?PSTR,
+    lpMachineName: ?[*:0]u8,
+    lpMessage: ?[*:0]u8,
     dwGracePeriod: u32,
     dwShutdownFlags: SHUTDOWN_FLAGS,
     dwReason: SHUTDOWN_REASON,
@@ -353,8 +353,8 @@ pub extern "advapi32" fn InitiateShutdownA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn InitiateShutdownW(
-    lpMachineName: ?PWSTR,
-    lpMessage: ?PWSTR,
+    lpMachineName: ?[*:0]u16,
+    lpMessage: ?[*:0]u16,
     dwGracePeriod: u32,
     dwShutdownFlags: SHUTDOWN_FLAGS,
     dwReason: SHUTDOWN_REASON,
@@ -362,8 +362,8 @@ pub extern "advapi32" fn InitiateShutdownW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn InitiateSystemShutdownA(
-    lpMachineName: ?PSTR,
-    lpMessage: ?PSTR,
+    lpMachineName: ?[*:0]u8,
+    lpMessage: ?[*:0]u8,
     dwTimeout: u32,
     bForceAppsClosed: BOOL,
     bRebootAfterShutdown: BOOL,
@@ -371,8 +371,8 @@ pub extern "advapi32" fn InitiateSystemShutdownA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn InitiateSystemShutdownExA(
-    lpMachineName: ?PSTR,
-    lpMessage: ?PSTR,
+    lpMachineName: ?[*:0]u8,
+    lpMessage: ?[*:0]u8,
     dwTimeout: u32,
     bForceAppsClosed: BOOL,
     bRebootAfterShutdown: BOOL,
@@ -381,8 +381,8 @@ pub extern "advapi32" fn InitiateSystemShutdownExA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn InitiateSystemShutdownExW(
-    lpMachineName: ?PWSTR,
-    lpMessage: ?PWSTR,
+    lpMachineName: ?[*:0]u16,
+    lpMessage: ?[*:0]u16,
     dwTimeout: u32,
     bForceAppsClosed: BOOL,
     bRebootAfterShutdown: BOOL,
@@ -391,8 +391,8 @@ pub extern "advapi32" fn InitiateSystemShutdownExW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn InitiateSystemShutdownW(
-    lpMachineName: ?PWSTR,
-    lpMessage: ?PWSTR,
+    lpMachineName: ?[*:0]u16,
+    lpMessage: ?[*:0]u16,
     dwTimeout: u32,
     bForceAppsClosed: BOOL,
     bRebootAfterShutdown: BOOL,
@@ -453,13 +453,11 @@ pub const InitiateSystemShutdownEx = switch (@import("../zig.zig").unicode_mode)
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const HWND = @import("../foundation.zig").HWND;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

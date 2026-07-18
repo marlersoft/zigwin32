@@ -1308,7 +1308,7 @@ pub const WSMAN_COMMAND = extern struct {
 
 pub const WSMAN_COMMAND_ARG_SET = extern struct {
     argsCount: u32,
-    args: ?*?PWSTR,
+    args: ?*?[*:0]u16,
 };
 
 pub const WSMAN_CONNECT_DATA = extern struct {
@@ -1410,7 +1410,7 @@ pub const WSMAN_OPTION_SETEX = extern struct {
     optionsCount: u32,
     options: ?*WSMAN_OPTION,
     optionsMustUnderstand: BOOL,
-    optionTypes: ?*?PWSTR,
+    optionTypes: ?*?[*:0]u16,
 };
 
 pub const WSMAN_PLUGIN_AUTHORIZE_OPERATION = *const fn(
@@ -1592,7 +1592,7 @@ pub const WSMAN_SHELL_STARTUP_INFO_V11 = extern struct {
 
 pub const WSMAN_STREAM_ID_SET = extern struct {
     streamIDsCount: u32,
-    streamIDs: ?*?PWSTR,
+    streamIDs: ?*?[*:0]u16,
 };
 
 pub const WSMAN_USERNAME_PASSWORD_CREDS = extern struct {
@@ -2100,7 +2100,7 @@ pub extern "wsmsvc" fn WSManSignalShell(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -2109,7 +2109,6 @@ const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/com.zig").VARIANT;
 const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 

@@ -667,7 +667,7 @@ pub const HTTP_REQUEST_AUTH_INFO = extern struct {
     MutualAuthDataLength: u32,
     pMutualAuthData: ?[*]u8,
     PackageNameLength: u16,
-    pPackageName: ?PWSTR,
+    pPackageName: ?[*:0]u16,
 };
 
 pub const HTTP_REQUEST_AUTH_TYPE = enum(i32) {
@@ -937,14 +937,14 @@ pub const HttpSchemeMaximum = HTTP_SCHEME.Maximum;
 
 pub const HTTP_SERVER_AUTHENTICATION_BASIC_PARAMS = extern struct {
     RealmLength: u16,
-    Realm: ?PWSTR,
+    Realm: ?[*:0]u16,
 };
 
 pub const HTTP_SERVER_AUTHENTICATION_DIGEST_PARAMS = extern struct {
     DomainNameLength: u16,
-    DomainName: ?PWSTR,
+    DomainName: ?[*:0]u16,
     RealmLength: u16,
-    Realm: ?PWSTR,
+    Realm: ?[*:0]u16,
 };
 
 pub const HTTP_SERVER_AUTHENTICATION_INFO = extern struct {
@@ -1125,12 +1125,12 @@ pub const HTTP_SERVICE_CONFIG_SSL_PARAM = extern struct {
     SslHashLength: u32,
     pSslHash: ?*anyopaque,
     AppId: Guid,
-    pSslCertStoreName: ?PWSTR,
+    pSslCertStoreName: ?[*:0]u16,
     DefaultCertCheckMode: u32,
     DefaultRevocationFreshnessTime: u32,
     DefaultRevocationUrlRetrievalTimeout: u32,
-    pDefaultSslCtlIdentifier: ?PWSTR,
-    pDefaultSslCtlStoreName: ?PWSTR,
+    pDefaultSslCtlIdentifier: ?[*:0]u16,
+    pDefaultSslCtlStoreName: ?[*:0]u16,
     DefaultFlags: u32,
 };
 
@@ -1172,7 +1172,7 @@ pub const HTTP_SERVICE_CONFIG_SSL_SET_EX = extern struct {
 
 pub const HTTP_SERVICE_CONFIG_SSL_SNI_KEY = extern struct {
     IpPort: SOCKADDR_STORAGE,
-    Host: ?PWSTR,
+    Host: ?[*:0]u16,
 };
 
 pub const HTTP_SERVICE_CONFIG_SSL_SNI_QUERY = extern struct {
@@ -1211,11 +1211,11 @@ pub const HTTP_SERVICE_CONFIG_TIMEOUT_SET = extern struct {
 };
 
 pub const HTTP_SERVICE_CONFIG_URLACL_KEY = extern struct {
-    pUrlPrefix: ?PWSTR,
+    pUrlPrefix: ?[*:0]u16,
 };
 
 pub const HTTP_SERVICE_CONFIG_URLACL_PARAM = extern struct {
-    pStringSecurityDescriptor: ?PWSTR,
+    pStringSecurityDescriptor: ?[*:0]u16,
 };
 
 pub const HTTP_SERVICE_CONFIG_URLACL_QUERY = extern struct {
@@ -1527,7 +1527,7 @@ pub extern "httpapi" fn HttpPrepareUrl(
     Reserved: ?*anyopaque,
     Flags: u32,
     Url: ?[*:0]const u16,
-    PreparedUrl: ?*?PWSTR,
+    PreparedUrl: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1767,7 +1767,7 @@ pub const HTTP_SERVICE_BINDING_ = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (13)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -1776,8 +1776,6 @@ const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const SOCKADDR = @import("../networking/win_sock.zig").SOCKADDR;
 const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;

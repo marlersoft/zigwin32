@@ -1122,7 +1122,7 @@ pub const ISpDataKey = extern union {
         GetStringValue: *const fn(
             self: *const ISpDataKey,
             pszValueName: ?[*:0]const u16,
-            ppszValue: ?*?PWSTR,
+            ppszValue: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetDWORD: *const fn(
             self: *const ISpDataKey,
@@ -1155,12 +1155,12 @@ pub const ISpDataKey = extern union {
         EnumKeys: *const fn(
             self: *const ISpDataKey,
             Index: u32,
-            ppszSubKeyName: ?*?PWSTR,
+            ppszSubKeyName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         EnumValues: *const fn(
             self: *const ISpDataKey,
             Index: u32,
-            ppszValueName: ?*?PWSTR,
+            ppszValueName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1174,7 +1174,7 @@ pub const ISpDataKey = extern union {
     pub fn SetStringValue(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, pszValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetStringValue(self, pszValueName, pszValue);
     }
-    pub fn GetStringValue(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, ppszValue: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetStringValue(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, ppszValue: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetStringValue(self, pszValueName, ppszValue);
     }
     pub fn SetDWORD(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, dwValue: u32) callconv(.@"inline") HRESULT {
@@ -1195,10 +1195,10 @@ pub const ISpDataKey = extern union {
     pub fn DeleteValue(self: *const ISpDataKey, pszValueName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteValue(self, pszValueName);
     }
-    pub fn EnumKeys(self: *const ISpDataKey, Index: u32, ppszSubKeyName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn EnumKeys(self: *const ISpDataKey, Index: u32, ppszSubKeyName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.EnumKeys(self, Index, ppszSubKeyName);
     }
-    pub fn EnumValues(self: *const ISpDataKey, Index: u32, ppszValueName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn EnumValues(self: *const ISpDataKey, Index: u32, ppszValueName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.EnumValues(self, Index, ppszValueName);
     }
 };
@@ -5378,7 +5378,7 @@ pub const ISpObjectToken = extern union {
         ) callconv(.winapi) HRESULT,
         GetId: *const fn(
             self: *const ISpObjectToken,
-            ppszCoMemTokenId: ?*?PWSTR,
+            ppszCoMemTokenId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetCategory: *const fn(
             self: *const ISpObjectToken,
@@ -5397,7 +5397,7 @@ pub const ISpObjectToken = extern union {
             pszValueName: ?[*:0]const u16,
             pszFileNameSpecifier: ?[*:0]const u16,
             nFolder: u32,
-            ppszFilePath: ?*?PWSTR,
+            ppszFilePath: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         RemoveStorageFileName: *const fn(
             self: *const ISpObjectToken,
@@ -5438,7 +5438,7 @@ pub const ISpObjectToken = extern union {
     pub fn SetId(self: *const ISpObjectToken, pszCategoryId: ?[*:0]const u16, pszTokenId: ?[*:0]const u16, fCreateIfNotExist: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetId(self, pszCategoryId, pszTokenId, fCreateIfNotExist);
     }
-    pub fn GetId(self: *const ISpObjectToken, ppszCoMemTokenId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetId(self: *const ISpObjectToken, ppszCoMemTokenId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetId(self, ppszCoMemTokenId);
     }
     pub fn GetCategory(self: *const ISpObjectToken, ppTokenCategory: ?*?*ISpObjectTokenCategory) callconv(.@"inline") HRESULT {
@@ -5447,7 +5447,7 @@ pub const ISpObjectToken = extern union {
     pub fn CreateInstance(self: *const ISpObjectToken, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateInstance(self, pUnkOuter, dwClsContext, riid, ppvObject);
     }
-    pub fn GetStorageFileName(self: *const ISpObjectToken, clsidCaller: ?*const Guid, pszValueName: ?[*:0]const u16, pszFileNameSpecifier: ?[*:0]const u16, nFolder: u32, ppszFilePath: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetStorageFileName(self: *const ISpObjectToken, clsidCaller: ?*const Guid, pszValueName: ?[*:0]const u16, pszFileNameSpecifier: ?[*:0]const u16, nFolder: u32, ppszFilePath: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetStorageFileName(self, clsidCaller, pszValueName, pszFileNameSpecifier, nFolder, ppszFilePath);
     }
     pub fn RemoveStorageFileName(self: *const ISpObjectToken, clsidCaller: ?*const Guid, pszKeyName: ?[*:0]const u16, fDeleteFile: BOOL) callconv(.@"inline") HRESULT {
@@ -5479,7 +5479,7 @@ pub const ISpObjectTokenCategory = extern union {
         ) callconv(.winapi) HRESULT,
         GetId: *const fn(
             self: *const ISpObjectTokenCategory,
-            ppszCoMemCategoryId: ?*?PWSTR,
+            ppszCoMemCategoryId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetDataKey: *const fn(
             self: *const ISpObjectTokenCategory,
@@ -5498,7 +5498,7 @@ pub const ISpObjectTokenCategory = extern union {
         ) callconv(.winapi) HRESULT,
         GetDefaultTokenId: *const fn(
             self: *const ISpObjectTokenCategory,
-            ppszCoMemTokenId: ?*?PWSTR,
+            ppszCoMemTokenId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -5507,7 +5507,7 @@ pub const ISpObjectTokenCategory = extern union {
     pub fn SetId(self: *const ISpObjectTokenCategory, pszCategoryId: ?[*:0]const u16, fCreateIfNotExist: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetId(self, pszCategoryId, fCreateIfNotExist);
     }
-    pub fn GetId(self: *const ISpObjectTokenCategory, ppszCoMemCategoryId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetId(self: *const ISpObjectTokenCategory, ppszCoMemCategoryId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetId(self, ppszCoMemCategoryId);
     }
     pub fn GetDataKey(self: *const ISpObjectTokenCategory, spdkl: SPDATAKEYLOCATION, ppDataKey: ?*?*ISpDataKey) callconv(.@"inline") HRESULT {
@@ -5519,7 +5519,7 @@ pub const ISpObjectTokenCategory = extern union {
     pub fn SetDefaultTokenId(self: *const ISpObjectTokenCategory, pszTokenId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetDefaultTokenId(self, pszTokenId);
     }
-    pub fn GetDefaultTokenId(self: *const ISpObjectTokenCategory, ppszCoMemTokenId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDefaultTokenId(self: *const ISpObjectTokenCategory, ppszCoMemTokenId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultTokenId(self, ppszCoMemTokenId);
     }
 };
@@ -5582,7 +5582,7 @@ pub const ISpPhoneConverter = extern union {
         IdToPhone: *const fn(
             self: *const ISpPhoneConverter,
             pId: ?*u16,
-            pszPhone: ?PWSTR,
+            pszPhone: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -5591,7 +5591,7 @@ pub const ISpPhoneConverter = extern union {
     pub fn PhoneToId(self: *const ISpPhoneConverter, pszPhone: ?[*:0]const u16, pId: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.PhoneToId(self, pszPhone, pId);
     }
-    pub fn IdToPhone(self: *const ISpPhoneConverter, pId: ?*u16, pszPhone: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn IdToPhone(self: *const ISpPhoneConverter, pId: ?*u16, pszPhone: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.IdToPhone(self, pId, pszPhone);
     }
 };
@@ -5689,7 +5689,7 @@ pub const ISpPhrase = extern union {
             ulStart: u32,
             ulCount: u32,
             fUseTextReplacements: BOOL,
-            ppszCoMemText: ?*?PWSTR,
+            ppszCoMemText: ?*?[*:0]u16,
             pbDisplayAttributes: ?*u8,
         ) callconv(.winapi) HRESULT,
         Discard: *const fn(
@@ -5705,7 +5705,7 @@ pub const ISpPhrase = extern union {
     pub fn GetSerializedPhrase(self: *const ISpPhrase, ppCoMemPhrase: ?*?*SPSERIALIZEDPHRASE) callconv(.@"inline") HRESULT {
         return self.vtable.GetSerializedPhrase(self, ppCoMemPhrase);
     }
-    pub fn GetText(self: *const ISpPhrase, ulStart: u32, ulCount: u32, fUseTextReplacements: BOOL, ppszCoMemText: ?*?PWSTR, pbDisplayAttributes: ?*u8) callconv(.@"inline") HRESULT {
+    pub fn GetText(self: *const ISpPhrase, ulStart: u32, ulCount: u32, fUseTextReplacements: BOOL, ppszCoMemText: ?*?[*:0]u16, pbDisplayAttributes: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetText(self, ulStart, ulCount, fUseTextReplacements, ppszCoMemText, pbDisplayAttributes);
     }
     pub fn Discard(self: *const ISpPhrase, dwValueTypes: u32) callconv(.@"inline") HRESULT {
@@ -5720,7 +5720,7 @@ pub const ISpPhrase2 = extern union {
         base: ISpPhrase.VTable,
         GetXMLResult: *const fn(
             self: *const ISpPhrase2,
-            ppszCoMemXMLResult: ?*?PWSTR,
+            ppszCoMemXMLResult: ?*?[*:0]u16,
             Options: SPXMLRESULTOPTIONS,
         ) callconv(.winapi) HRESULT,
         GetXMLErrorInfo: *const fn(
@@ -5737,7 +5737,7 @@ pub const ISpPhrase2 = extern union {
     vtable: *const VTable,
     ISpPhrase: ISpPhrase,
     IUnknown: IUnknown,
-    pub fn GetXMLResult(self: *const ISpPhrase2, ppszCoMemXMLResult: ?*?PWSTR, Options: SPXMLRESULTOPTIONS) callconv(.@"inline") HRESULT {
+    pub fn GetXMLResult(self: *const ISpPhrase2, ppszCoMemXMLResult: ?*?[*:0]u16, Options: SPXMLRESULTOPTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.GetXMLResult(self, ppszCoMemXMLResult, Options);
     }
     pub fn GetXMLErrorInfo(self: *const ISpPhrase2, pSemanticErrorInfo: ?*SPSEMANTICERRORINFO) callconv(.@"inline") HRESULT {
@@ -5798,7 +5798,7 @@ pub const ISpProperties = extern union {
         GetPropertyString: *const fn(
             self: *const ISpProperties,
             pName: ?[*:0]const u16,
-            ppCoMemValue: ?*?PWSTR,
+            ppCoMemValue: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -5812,7 +5812,7 @@ pub const ISpProperties = extern union {
     pub fn SetPropertyString(self: *const ISpProperties, pName: ?[*:0]const u16, pValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetPropertyString(self, pName, pValue);
     }
-    pub fn GetPropertyString(self: *const ISpProperties, pName: ?[*:0]const u16, ppCoMemValue: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPropertyString(self: *const ISpProperties, pName: ?[*:0]const u16, ppCoMemValue: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyString(self, pName, ppCoMemValue);
     }
 };
@@ -6254,7 +6254,7 @@ pub const ISpRecoGrammar = extern union {
         SaveCmd: *const fn(
             self: *const ISpRecoGrammar,
             pStream: ?*IStream,
-            ppszCoMemErrorText: ?*?PWSTR,
+            ppszCoMemErrorText: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetGrammarState: *const fn(
             self: *const ISpRecoGrammar,
@@ -6312,7 +6312,7 @@ pub const ISpRecoGrammar = extern union {
     pub fn SetGrammarState(self: *const ISpRecoGrammar, eGrammarState: SPGRAMMARSTATE) callconv(.@"inline") HRESULT {
         return self.vtable.SetGrammarState(self, eGrammarState);
     }
-    pub fn SaveCmd(self: *const ISpRecoGrammar, pStream: ?*IStream, ppszCoMemErrorText: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SaveCmd(self: *const ISpRecoGrammar, pStream: ?*IStream, ppszCoMemErrorText: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SaveCmd(self, pStream, ppszCoMemErrorText);
     }
     pub fn GetGrammarState(self: *const ISpRecoGrammar, peGrammarState: ?*SPGRAMMARSTATE) callconv(.@"inline") HRESULT {
@@ -6793,7 +6793,7 @@ pub const ISpTranscript = extern union {
         base: IUnknown.VTable,
         GetTranscript: *const fn(
             self: *const ISpTranscript,
-            ppszTranscript: ?*?PWSTR,
+            ppszTranscript: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         AppendTranscript: *const fn(
             self: *const ISpTranscript,
@@ -6802,7 +6802,7 @@ pub const ISpTranscript = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetTranscript(self: *const ISpTranscript, ppszTranscript: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetTranscript(self: *const ISpTranscript, ppszTranscript: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetTranscript(self, ppszTranscript);
     }
     pub fn AppendTranscript(self: *const ISpTranscript, pszTranscript: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -6857,7 +6857,7 @@ pub const ISpVoice = extern union {
         GetStatus: *const fn(
             self: *const ISpVoice,
             pStatus: ?*SPVOICESTATUS,
-            ppszLastBookmark: ?*?PWSTR,
+            ppszLastBookmark: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const ISpVoice,
@@ -6959,7 +6959,7 @@ pub const ISpVoice = extern union {
     pub fn SpeakStream(self: *const ISpVoice, pStream: ?*IStream, dwFlags: u32, pulStreamNumber: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SpeakStream(self, pStream, dwFlags, pulStreamNumber);
     }
-    pub fn GetStatus(self: *const ISpVoice, pStatus: ?*SPVOICESTATUS, ppszLastBookmark: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetStatus(self: *const ISpVoice, pStatus: ?*SPVOICESTATUS, ppszLastBookmark: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, pStatus, ppszLastBookmark);
     }
     pub fn Skip(self: *const ISpVoice, pItemType: ?[*:0]const u16, lNumItems: i32, pulNumSkipped: ?*u32) callconv(.@"inline") HRESULT {
@@ -7016,7 +7016,7 @@ pub const ISpXMLRecoResult = extern union {
         base: ISpRecoResult.VTable,
         GetXMLResult: *const fn(
             self: *const ISpXMLRecoResult,
-            ppszCoMemXMLResult: ?*?PWSTR,
+            ppszCoMemXMLResult: ?*?[*:0]u16,
             Options: SPXMLRESULTOPTIONS,
         ) callconv(.winapi) HRESULT,
         GetXMLErrorInfo: *const fn(
@@ -7028,7 +7028,7 @@ pub const ISpXMLRecoResult = extern union {
     ISpRecoResult: ISpRecoResult,
     ISpPhrase: ISpPhrase,
     IUnknown: IUnknown,
-    pub fn GetXMLResult(self: *const ISpXMLRecoResult, ppszCoMemXMLResult: ?*?PWSTR, Options: SPXMLRESULTOPTIONS) callconv(.@"inline") HRESULT {
+    pub fn GetXMLResult(self: *const ISpXMLRecoResult, ppszCoMemXMLResult: ?*?[*:0]u16, Options: SPXMLRESULTOPTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.GetXMLResult(self, ppszCoMemXMLResult, Options);
     }
     pub fn GetXMLErrorInfo(self: *const ISpXMLRecoResult, pSemanticErrorInfo: ?*SPSEMANTICERRORINFO) callconv(.@"inline") HRESULT {
@@ -8243,7 +8243,7 @@ pub const CLSID_SpPhoneticAlphabetConverter = &CLSID_SpPhoneticAlphabetConverter
 
 pub const SPPHRASE = extern struct {
     Base: SPPHRASE_50,
-    pSML: ?PWSTR,
+    pSML: ?[*:0]u16,
     pSemanticErrorInfo: ?*SPSEMANTICERRORINFO,
 };
 
@@ -8433,9 +8433,9 @@ pub const SPRS_IS_SPEAKING = SPRUNSTATE.IS_SPEAKING;
 
 pub const SPSEMANTICERRORINFO = extern struct {
     ulLineNumber: u32,
-    pszScriptLine: ?PWSTR,
-    pszSource: ?PWSTR,
-    pszDescription: ?PWSTR,
+    pszScriptLine: ?[*:0]u16,
+    pszSource: ?[*:0]u16,
+    pszDescription: ?[*:0]u16,
     hrResultCode: HRESULT,
 };
 
@@ -8489,8 +8489,8 @@ pub const SPSHORTCUTPAIR = extern struct {
     pNextSHORTCUTPAIR: ?*SPSHORTCUTPAIR,
     LangID: u16,
     shType: SPSHORTCUTTYPE,
-    pszDisplay: ?PWSTR,
-    pszSpoken: ?PWSTR,
+    pszDisplay: ?[*:0]u16,
+    pszSpoken: ?[*:0]u16,
 };
 
 pub const SPSHORTCUTPAIRLIST = extern struct {
@@ -8857,7 +8857,7 @@ pub const SPWORD = extern struct {
     LangID: u16,
     wReserved: u16,
     eWordType: SPWORDTYPE,
-    pszWord: ?PWSTR,
+    pszWord: ?[*:0]u16,
     pFirstWordPronunciation: ?*SPWORDPRONUNCIATION,
 };
 
@@ -8914,7 +8914,7 @@ pub const SPXRO_Alternates_SML = SPXMLRESULTOPTIONS.Alternates_SML;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (21)
+// Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -8932,7 +8932,6 @@ const IServiceProvider = @import("../system/com.zig").IServiceProvider;
 const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LPARAM = @import("../foundation.zig").LPARAM;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/com.zig").VARIANT;
 const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 const WAVEFORMATEX = @import("../media/audio.zig").WAVEFORMATEX;

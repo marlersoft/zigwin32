@@ -1901,13 +1901,13 @@ pub const AM_EXSEEK_SENDS_VIDEOFRAMEREADY = AMExtendedSeekingCapabilities.SENDS_
 
 pub const AMGETERRORTEXTPROCA = *const fn(
     param0: HRESULT,
-    param1: ?PSTR,
+    param1: ?[*:0]u8,
     param2: u32,
 ) callconv(.winapi) BOOL;
 
 pub const AMGETERRORTEXTPROCW = *const fn(
     param0: HRESULT,
-    param1: ?PWSTR,
+    param1: ?[*:0]u16,
     param2: u32,
 ) callconv(.winapi) BOOL;
 
@@ -6302,7 +6302,7 @@ pub const IAMDeviceRemoval = extern union {
         DeviceInfo: *const fn(
             self: *const IAMDeviceRemoval,
             pclsidInterfaceClass: ?*Guid,
-            pwszSymbolicLink: ?*?PWSTR,
+            pwszSymbolicLink: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Reassociate: *const fn(
             self: *const IAMDeviceRemoval,
@@ -6313,7 +6313,7 @@ pub const IAMDeviceRemoval = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn DeviceInfo(self: *const IAMDeviceRemoval, pclsidInterfaceClass: ?*Guid, pwszSymbolicLink: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn DeviceInfo(self: *const IAMDeviceRemoval, pclsidInterfaceClass: ?*Guid, pwszSymbolicLink: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.DeviceInfo(self, pclsidInterfaceClass, pwszSymbolicLink);
     }
     pub fn Reassociate(self: *const IAMDeviceRemoval) callconv(.@"inline") HRESULT {
@@ -6528,12 +6528,12 @@ pub const IAMExtDevice = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExternalDeviceID: *const fn(
             self: *const IAMExtDevice,
-            ppszData: ?*?PWSTR,
+            ppszData: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExternalDeviceVersion: *const fn(
             self: *const IAMExtDevice,
-            ppszData: ?*?PWSTR,
+            ppszData: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DevicePower: *const fn(
@@ -6567,10 +6567,10 @@ pub const IAMExtDevice = extern union {
     pub fn GetCapability(self: *const IAMExtDevice, Capability: i32, pValue: ?*i32, pdblValue: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetCapability(self, Capability, pValue, pdblValue);
     }
-    pub fn get_ExternalDeviceID(self: *const IAMExtDevice, ppszData: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_ExternalDeviceID(self: *const IAMExtDevice, ppszData: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_ExternalDeviceID(self, ppszData);
     }
-    pub fn get_ExternalDeviceVersion(self: *const IAMExtDevice, ppszData: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn get_ExternalDeviceVersion(self: *const IAMExtDevice, ppszData: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_ExternalDeviceVersion(self, ppszData);
     }
     pub fn put_DevicePower(self: *const IAMExtDevice, PowerMode: i32) callconv(.@"inline") HRESULT {
@@ -6735,7 +6735,7 @@ pub const IAMExtTransport = extern union {
             self: *const IAMExtTransport,
             Param: i32,
             pValue: ?*i32,
-            ppszData: ?*?PWSTR,
+            ppszData: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetTransportBasicParameters: *const fn(
             self: *const IAMExtTransport,
@@ -6868,7 +6868,7 @@ pub const IAMExtTransport = extern union {
     pub fn GetStatus(self: *const IAMExtTransport, StatusItem: i32, pValue: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, StatusItem, pValue);
     }
-    pub fn GetTransportBasicParameters(self: *const IAMExtTransport, Param: i32, pValue: ?*i32, ppszData: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetTransportBasicParameters(self: *const IAMExtTransport, Param: i32, pValue: ?*i32, ppszData: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetTransportBasicParameters(self, Param, pValue, ppszData);
     }
     pub fn SetTransportBasicParameters(self: *const IAMExtTransport, Param: i32, Value: i32, pszData: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -8090,12 +8090,12 @@ pub const IAMPhysicalPinInfo = extern union {
         GetPhysicalType: *const fn(
             self: *const IAMPhysicalPinInfo,
             pType: ?*i32,
-            ppszType: ?*?PWSTR,
+            ppszType: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPhysicalType(self: *const IAMPhysicalPinInfo, pType: ?*i32, ppszType: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPhysicalType(self: *const IAMPhysicalPinInfo, pType: ?*i32, ppszType: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPhysicalType(self, pType, ppszType);
     }
 };
@@ -8120,7 +8120,7 @@ pub const IAMPlayList = extern union {
         ) callconv(.winapi) HRESULT,
         GetNamedEvent: *const fn(
             self: *const IAMPlayList,
-            pwszEventName: ?PWSTR,
+            pwszEventName: ?[*:0]u16,
             dwItemIndex: u32,
             ppItem: ?*?*IAMPlayListItem,
             pdwFlags: ?*u32,
@@ -8143,7 +8143,7 @@ pub const IAMPlayList = extern union {
     pub fn GetItem(self: *const IAMPlayList, dwItemIndex: u32, ppItem: ?*?*IAMPlayListItem) callconv(.@"inline") HRESULT {
         return self.vtable.GetItem(self, dwItemIndex, ppItem);
     }
-    pub fn GetNamedEvent(self: *const IAMPlayList, pwszEventName: ?PWSTR, dwItemIndex: u32, ppItem: ?*?*IAMPlayListItem, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetNamedEvent(self: *const IAMPlayList, pwszEventName: ?[*:0]u16, dwItemIndex: u32, ppItem: ?*?*IAMPlayListItem, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNamedEvent(self, pwszEventName, dwItemIndex, ppItem, pdwFlags);
     }
     pub fn GetRepeatInfo(self: *const IAMPlayList, pdwRepeatCount: ?*u32, pdwRepeatStart: ?*u32, pdwRepeatEnd: ?*u32) callconv(.@"inline") HRESULT {
@@ -8566,7 +8566,7 @@ pub const IAMStreamSelect = extern union {
             pdwFlags: ?*u32,
             plcid: ?*u32,
             pdwGroup: ?*u32,
-            ppszName: ?*?PWSTR,
+            ppszName: ?*?[*:0]u16,
             ppObject: ?*?*IUnknown,
             ppUnk: ?*?*IUnknown,
         ) callconv(.winapi) HRESULT,
@@ -8581,7 +8581,7 @@ pub const IAMStreamSelect = extern union {
     pub fn Count(self: *const IAMStreamSelect, pcStreams: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Count(self, pcStreams);
     }
-    pub fn Info(self: *const IAMStreamSelect, lIndex: i32, ppmt: ?*?*AM_MEDIA_TYPE, pdwFlags: ?*u32, plcid: ?*u32, pdwGroup: ?*u32, ppszName: ?*?PWSTR, ppObject: ?*?*IUnknown, ppUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
+    pub fn Info(self: *const IAMStreamSelect, lIndex: i32, ppmt: ?*?*AM_MEDIA_TYPE, pdwFlags: ?*u32, plcid: ?*u32, pdwGroup: ?*u32, ppszName: ?*?[*:0]u16, ppObject: ?*?*IUnknown, ppUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Info(self, lIndex, ppmt, pdwFlags, plcid, pdwGroup, ppszName, ppObject, ppUnk);
     }
     pub fn Enable(self: *const IAMStreamSelect, lIndex: i32, dwFlags: u32) callconv(.@"inline") HRESULT {
@@ -9336,10 +9336,10 @@ pub const IAMVideoCompression = extern union {
         GetInfo: *const fn(
             self: *const IAMVideoCompression,
             /// parameter "pcbVersion" is the size in bytes
-            pszVersion: ?PWSTR,
+            pszVersion: ?[*:0]u16,
             pcbVersion: ?*i32,
             /// parameter "pcbDescription" is the size in bytes
-            pszDescription: ?PWSTR,
+            pszDescription: ?[*:0]u16,
             pcbDescription: ?*i32,
             pDefaultKeyFrameRate: ?*i32,
             pDefaultPFramesPerKey: ?*i32,
@@ -9382,7 +9382,7 @@ pub const IAMVideoCompression = extern union {
     pub fn get_WindowSize(self: *const IAMVideoCompression, pWindowSize: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.get_WindowSize(self, pWindowSize);
     }
-    pub fn GetInfo(self: *const IAMVideoCompression, pszVersion: ?PWSTR, pcbVersion: ?*i32, pszDescription: ?PWSTR, pcbDescription: ?*i32, pDefaultKeyFrameRate: ?*i32, pDefaultPFramesPerKey: ?*i32, pDefaultQuality: ?*f64, pCapabilities: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn GetInfo(self: *const IAMVideoCompression, pszVersion: ?[*:0]u16, pcbVersion: ?*i32, pszDescription: ?[*:0]u16, pcbDescription: ?*i32, pDefaultKeyFrameRate: ?*i32, pDefaultPFramesPerKey: ?*i32, pDefaultQuality: ?*f64, pCapabilities: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetInfo(self, pszVersion, pcbVersion, pszDescription, pcbDescription, pDefaultKeyFrameRate, pDefaultPFramesPerKey, pDefaultQuality, pCapabilities);
     }
     pub fn OverrideKeyFrame(self: *const IAMVideoCompression, FrameNumber: i32) callconv(.@"inline") HRESULT {
@@ -10370,7 +10370,7 @@ pub const IATSC_VCT = extern union {
         GetRecordName: *const fn(
             self: *const IATSC_VCT,
             dwRecordIndex: u32,
-            pwsName: ?*?PWSTR,
+            pwsName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetRecordMajorChannelNumber: *const fn(
             self: *const IATSC_VCT,
@@ -10493,7 +10493,7 @@ pub const IATSC_VCT = extern union {
     pub fn GetCountOfRecords(self: *const IATSC_VCT, pdwVal: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCountOfRecords(self, pdwVal);
     }
-    pub fn GetRecordName(self: *const IATSC_VCT, dwRecordIndex: u32, pwsName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetRecordName(self: *const IATSC_VCT, dwRecordIndex: u32, pwsName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetRecordName(self, dwRecordIndex, pwsName);
     }
     pub fn GetRecordMajorChannelNumber(self: *const IATSC_VCT, dwRecordIndex: u32, pwVal: ?*u16) callconv(.@"inline") HRESULT {
@@ -11147,7 +11147,7 @@ pub const IBaseFilter = extern union {
         ) callconv(.winapi) HRESULT,
         QueryVendorInfo: *const fn(
             self: *const IBaseFilter,
-            pVendorInfo: ?*?PWSTR,
+            pVendorInfo: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -11166,7 +11166,7 @@ pub const IBaseFilter = extern union {
     pub fn JoinFilterGraph(self: *const IBaseFilter, pGraph: ?*IFilterGraph, pName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.JoinFilterGraph(self, pGraph, pName);
     }
-    pub fn QueryVendorInfo(self: *const IBaseFilter, pVendorInfo: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn QueryVendorInfo(self: *const IBaseFilter, pVendorInfo: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.QueryVendorInfo(self, pVendorInfo);
     }
 };
@@ -14378,8 +14378,8 @@ pub const ICaptureGraphBuilder = extern union {
         ) callconv(.winapi) HRESULT,
         CopyCaptureFile: *const fn(
             self: *const ICaptureGraphBuilder,
-            lpwstrOld: ?PWSTR,
-            lpwstrNew: ?PWSTR,
+            lpwstrOld: ?[*:0]u16,
+            lpwstrNew: ?[*:0]u16,
             fAllowEscAbort: i32,
             pCallback: ?*IAMCopyCaptureFileProgress,
         ) callconv(.winapi) HRESULT,
@@ -14407,7 +14407,7 @@ pub const ICaptureGraphBuilder = extern union {
     pub fn AllocCapFile(self: *const ICaptureGraphBuilder, lpstr: ?[*:0]const u16, dwlSize: u64) callconv(.@"inline") HRESULT {
         return self.vtable.AllocCapFile(self, lpstr, dwlSize);
     }
-    pub fn CopyCaptureFile(self: *const ICaptureGraphBuilder, lpwstrOld: ?PWSTR, lpwstrNew: ?PWSTR, fAllowEscAbort: i32, pCallback: ?*IAMCopyCaptureFileProgress) callconv(.@"inline") HRESULT {
+    pub fn CopyCaptureFile(self: *const ICaptureGraphBuilder, lpwstrOld: ?[*:0]u16, lpwstrNew: ?[*:0]u16, fAllowEscAbort: i32, pCallback: ?*IAMCopyCaptureFileProgress) callconv(.@"inline") HRESULT {
         return self.vtable.CopyCaptureFile(self, lpwstrOld, lpwstrNew, fAllowEscAbort, pCallback);
     }
 };
@@ -14466,8 +14466,8 @@ pub const ICaptureGraphBuilder2 = extern union {
         ) callconv(.winapi) HRESULT,
         CopyCaptureFile: *const fn(
             self: *const ICaptureGraphBuilder2,
-            lpwstrOld: ?PWSTR,
-            lpwstrNew: ?PWSTR,
+            lpwstrOld: ?[*:0]u16,
+            lpwstrNew: ?[*:0]u16,
             fAllowEscAbort: i32,
             pCallback: ?*IAMCopyCaptureFileProgress,
         ) callconv(.winapi) HRESULT,
@@ -14505,7 +14505,7 @@ pub const ICaptureGraphBuilder2 = extern union {
     pub fn AllocCapFile(self: *const ICaptureGraphBuilder2, lpstr: ?[*:0]const u16, dwlSize: u64) callconv(.@"inline") HRESULT {
         return self.vtable.AllocCapFile(self, lpstr, dwlSize);
     }
-    pub fn CopyCaptureFile(self: *const ICaptureGraphBuilder2, lpwstrOld: ?PWSTR, lpwstrNew: ?PWSTR, fAllowEscAbort: i32, pCallback: ?*IAMCopyCaptureFileProgress) callconv(.@"inline") HRESULT {
+    pub fn CopyCaptureFile(self: *const ICaptureGraphBuilder2, lpwstrOld: ?[*:0]u16, lpwstrNew: ?[*:0]u16, fAllowEscAbort: i32, pCallback: ?*IAMCopyCaptureFileProgress) callconv(.@"inline") HRESULT {
         return self.vtable.CopyCaptureFile(self, lpwstrOld, lpwstrNew, fAllowEscAbort, pCallback);
     }
     pub fn FindPin(self: *const ICaptureGraphBuilder2, pSource: ?*IUnknown, pindir: PIN_DIRECTION, pCategory: ?*const Guid, pType: ?*const Guid, fUnconnected: BOOL, num: i32, ppPin: ?*?*IPin) callconv(.@"inline") HRESULT {
@@ -16232,14 +16232,14 @@ pub const IDTFilterLicenseRenewal = extern union {
         base: IUnknown.VTable,
         GetLicenseRenewalData: *const fn(
             self: *const IDTFilterLicenseRenewal,
-            ppwszFileName: ?*?PWSTR,
-            ppwszExpiredKid: ?*?PWSTR,
-            ppwszTunerId: ?*?PWSTR,
+            ppwszFileName: ?*?[*:0]u16,
+            ppwszExpiredKid: ?*?[*:0]u16,
+            ppwszTunerId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetLicenseRenewalData(self: *const IDTFilterLicenseRenewal, ppwszFileName: ?*?PWSTR, ppwszExpiredKid: ?*?PWSTR, ppwszTunerId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetLicenseRenewalData(self: *const IDTFilterLicenseRenewal, ppwszFileName: ?*?[*:0]u16, ppwszExpiredKid: ?*?[*:0]u16, ppwszTunerId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetLicenseRenewalData(self, ppwszFileName, ppwszExpiredKid, ppwszTunerId);
     }
 };
@@ -20428,7 +20428,7 @@ pub const IDvdInfo2 = extern union {
             self: *const IDvdInfo2,
             ulLangIndex: u32,
             ulStringIndex: u32,
-            pchwBuffer: ?PWSTR,
+            pchwBuffer: ?[*:0]u16,
             ulMaxBufferSize: u32,
             pulActualSize: ?*u32,
             pType: ?*DVD_TextStringType,
@@ -20581,7 +20581,7 @@ pub const IDvdInfo2 = extern union {
     pub fn GetDVDTextStringAsNative(self: *const IDvdInfo2, ulLangIndex: u32, ulStringIndex: u32, pbBuffer: ?*u8, ulMaxBufferSize: u32, pulActualSize: ?*u32, pType: ?*DVD_TextStringType) callconv(.@"inline") HRESULT {
         return self.vtable.GetDVDTextStringAsNative(self, ulLangIndex, ulStringIndex, pbBuffer, ulMaxBufferSize, pulActualSize, pType);
     }
-    pub fn GetDVDTextStringAsUnicode(self: *const IDvdInfo2, ulLangIndex: u32, ulStringIndex: u32, pchwBuffer: ?PWSTR, ulMaxBufferSize: u32, pulActualSize: ?*u32, pType: ?*DVD_TextStringType) callconv(.@"inline") HRESULT {
+    pub fn GetDVDTextStringAsUnicode(self: *const IDvdInfo2, ulLangIndex: u32, ulStringIndex: u32, pchwBuffer: ?[*:0]u16, ulMaxBufferSize: u32, pulActualSize: ?*u32, pType: ?*DVD_TextStringType) callconv(.@"inline") HRESULT {
         return self.vtable.GetDVDTextStringAsUnicode(self, ulLangIndex, ulStringIndex, pchwBuffer, ulMaxBufferSize, pulActualSize, pType);
     }
     pub fn GetPlayerParentalLevel(self: *const IDvdInfo2, pulParentalLevel: ?*u32, pbCountryCode: ?*u8) callconv(.@"inline") HRESULT {
@@ -21940,7 +21940,7 @@ pub const IFileSinkFilter = extern union {
         ) callconv(.winapi) HRESULT,
         GetCurFile: *const fn(
             self: *const IFileSinkFilter,
-            ppszFileName: ?*?PWSTR,
+            ppszFileName: ?*?[*:0]u16,
             pmt: ?*AM_MEDIA_TYPE,
         ) callconv(.winapi) HRESULT,
     };
@@ -21949,7 +21949,7 @@ pub const IFileSinkFilter = extern union {
     pub fn SetFileName(self: *const IFileSinkFilter, pszFileName: ?[*:0]const u16, pmt: ?*const AM_MEDIA_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.SetFileName(self, pszFileName, pmt);
     }
-    pub fn GetCurFile(self: *const IFileSinkFilter, ppszFileName: ?*?PWSTR, pmt: ?*AM_MEDIA_TYPE) callconv(.@"inline") HRESULT {
+    pub fn GetCurFile(self: *const IFileSinkFilter, ppszFileName: ?*?[*:0]u16, pmt: ?*AM_MEDIA_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurFile(self, ppszFileName, pmt);
     }
 };
@@ -21993,7 +21993,7 @@ pub const IFileSourceFilter = extern union {
         ) callconv(.winapi) HRESULT,
         GetCurFile: *const fn(
             self: *const IFileSourceFilter,
-            ppszFileName: ?*?PWSTR,
+            ppszFileName: ?*?[*:0]u16,
             pmt: ?*AM_MEDIA_TYPE,
         ) callconv(.winapi) HRESULT,
     };
@@ -22002,7 +22002,7 @@ pub const IFileSourceFilter = extern union {
     pub fn Load(self: *const IFileSourceFilter, pszFileName: ?[*:0]const u16, pmt: ?*const AM_MEDIA_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.Load(self, pszFileName, pmt);
     }
-    pub fn GetCurFile(self: *const IFileSourceFilter, ppszFileName: ?*?PWSTR, pmt: ?*AM_MEDIA_TYPE) callconv(.@"inline") HRESULT {
+    pub fn GetCurFile(self: *const IFileSourceFilter, ppszFileName: ?*?[*:0]u16, pmt: ?*AM_MEDIA_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurFile(self, ppszFileName, pmt);
     }
 };
@@ -25203,7 +25203,7 @@ pub const IKsTopologyInfo = extern union {
             self: *const IKsTopologyInfo,
             dwNodeId: u32,
             /// parameter "dwBufSize" is the size in bytes
-            pwchNodeName: ?PWSTR,
+            pwchNodeName: ?[*:0]u16,
             dwBufSize: u32,
             pdwNameLen: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -25238,7 +25238,7 @@ pub const IKsTopologyInfo = extern union {
     pub fn get_ConnectionInfo(self: *const IKsTopologyInfo, dwIndex: u32, pConnectionInfo: ?*KSTOPOLOGY_CONNECTION) callconv(.@"inline") HRESULT {
         return self.vtable.get_ConnectionInfo(self, dwIndex, pConnectionInfo);
     }
-    pub fn get_NodeName(self: *const IKsTopologyInfo, dwNodeId: u32, pwchNodeName: ?PWSTR, dwBufSize: u32, pdwNameLen: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn get_NodeName(self: *const IKsTopologyInfo, dwNodeId: u32, pwchNodeName: ?[*:0]u16, dwBufSize: u32, pdwNameLen: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_NodeName(self, dwNodeId, pwchNodeName, dwBufSize, pdwNameLen);
     }
     pub fn get_NumNodes(self: *const IKsTopologyInfo, pdwNumNodes: ?*u32) callconv(.@"inline") HRESULT {
@@ -26988,28 +26988,28 @@ pub const IMpeg2Demultiplexer = extern union {
         CreateOutputPin: *const fn(
             self: *const IMpeg2Demultiplexer,
             pMediaType: ?*AM_MEDIA_TYPE,
-            pszPinName: ?PWSTR,
+            pszPinName: ?[*:0]u16,
             ppIPin: ?*?*IPin,
         ) callconv(.winapi) HRESULT,
         SetOutputPinMediaType: *const fn(
             self: *const IMpeg2Demultiplexer,
-            pszPinName: ?PWSTR,
+            pszPinName: ?[*:0]u16,
             pMediaType: ?*AM_MEDIA_TYPE,
         ) callconv(.winapi) HRESULT,
         DeleteOutputPin: *const fn(
             self: *const IMpeg2Demultiplexer,
-            pszPinName: ?PWSTR,
+            pszPinName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateOutputPin(self: *const IMpeg2Demultiplexer, pMediaType: ?*AM_MEDIA_TYPE, pszPinName: ?PWSTR, ppIPin: ?*?*IPin) callconv(.@"inline") HRESULT {
+    pub fn CreateOutputPin(self: *const IMpeg2Demultiplexer, pMediaType: ?*AM_MEDIA_TYPE, pszPinName: ?[*:0]u16, ppIPin: ?*?*IPin) callconv(.@"inline") HRESULT {
         return self.vtable.CreateOutputPin(self, pMediaType, pszPinName, ppIPin);
     }
-    pub fn SetOutputPinMediaType(self: *const IMpeg2Demultiplexer, pszPinName: ?PWSTR, pMediaType: ?*AM_MEDIA_TYPE) callconv(.@"inline") HRESULT {
+    pub fn SetOutputPinMediaType(self: *const IMpeg2Demultiplexer, pszPinName: ?[*:0]u16, pMediaType: ?*AM_MEDIA_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.SetOutputPinMediaType(self, pszPinName, pMediaType);
     }
-    pub fn DeleteOutputPin(self: *const IMpeg2Demultiplexer, pszPinName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn DeleteOutputPin(self: *const IMpeg2Demultiplexer, pszPinName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteOutputPin(self, pszPinName);
     }
 };
@@ -32629,7 +32629,7 @@ pub const IPin = extern union {
         ) callconv(.winapi) HRESULT,
         QueryId: *const fn(
             self: *const IPin,
-            Id: ?*?PWSTR,
+            Id: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         QueryAccept: *const fn(
             self: *const IPin,
@@ -32683,7 +32683,7 @@ pub const IPin = extern union {
     pub fn QueryDirection(self: *const IPin, pPinDir: ?*PIN_DIRECTION) callconv(.@"inline") HRESULT {
         return self.vtable.QueryDirection(self, pPinDir);
     }
-    pub fn QueryId(self: *const IPin, Id: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn QueryId(self: *const IPin, Id: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.QueryId(self, Id);
     }
     pub fn QueryAccept(self: *const IPin, pmt: ?*const AM_MEDIA_TYPE) callconv(.@"inline") HRESULT {
@@ -33059,8 +33059,8 @@ pub const IPTFilterLicenseRenewal = extern union {
         base: IUnknown.VTable,
         RenewLicenses: *const fn(
             self: *const IPTFilterLicenseRenewal,
-            wszFileName: ?PWSTR,
-            wszExpiredKid: ?PWSTR,
+            wszFileName: ?[*:0]u16,
+            wszExpiredKid: ?[*:0]u16,
             dwCallersId: u32,
             bHighPriority: BOOL,
         ) callconv(.winapi) HRESULT,
@@ -33070,7 +33070,7 @@ pub const IPTFilterLicenseRenewal = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RenewLicenses(self: *const IPTFilterLicenseRenewal, wszFileName: ?PWSTR, wszExpiredKid: ?PWSTR, dwCallersId: u32, bHighPriority: BOOL) callconv(.@"inline") HRESULT {
+    pub fn RenewLicenses(self: *const IPTFilterLicenseRenewal, wszFileName: ?[*:0]u16, wszExpiredKid: ?[*:0]u16, dwCallersId: u32, bHighPriority: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.RenewLicenses(self, wszFileName, wszExpiredKid, dwCallersId, bHighPriority);
     }
     pub fn CancelLicenseRenewal(self: *const IPTFilterLicenseRenewal) callconv(.@"inline") HRESULT {
@@ -34242,7 +34242,7 @@ pub const IStreamBufferConfigure = extern union {
         ) callconv(.winapi) HRESULT,
         GetDirectory: *const fn(
             self: *const IStreamBufferConfigure,
-            ppszDirectoryName: ?*?PWSTR,
+            ppszDirectoryName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetBackingFileCount: *const fn(
             self: *const IStreamBufferConfigure,
@@ -34268,7 +34268,7 @@ pub const IStreamBufferConfigure = extern union {
     pub fn SetDirectory(self: *const IStreamBufferConfigure, pszDirectoryName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetDirectory(self, pszDirectoryName);
     }
-    pub fn GetDirectory(self: *const IStreamBufferConfigure, ppszDirectoryName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDirectory(self: *const IStreamBufferConfigure, ppszDirectoryName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDirectory(self, ppszDirectoryName);
     }
     pub fn SetBackingFileCount(self: *const IStreamBufferConfigure, dwMin: u32, dwMax: u32) callconv(.@"inline") HRESULT {
@@ -34343,11 +34343,11 @@ pub const IStreamBufferConfigure3 = extern union {
         ) callconv(.winapi) HRESULT,
         SetNamespace: *const fn(
             self: *const IStreamBufferConfigure3,
-            pszNamespace: ?PWSTR,
+            pszNamespace: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetNamespace: *const fn(
             self: *const IStreamBufferConfigure3,
-            ppszNamespace: ?*?PWSTR,
+            ppszNamespace: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -34360,10 +34360,10 @@ pub const IStreamBufferConfigure3 = extern union {
     pub fn GetStartRecConfig(self: *const IStreamBufferConfigure3, pfStartStopsCur: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetStartRecConfig(self, pfStartStopsCur);
     }
-    pub fn SetNamespace(self: *const IStreamBufferConfigure3, pszNamespace: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetNamespace(self: *const IStreamBufferConfigure3, pszNamespace: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetNamespace(self, pszNamespace);
     }
-    pub fn GetNamespace(self: *const IStreamBufferConfigure3, ppszNamespace: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetNamespace(self: *const IStreamBufferConfigure3, ppszNamespace: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetNamespace(self, ppszNamespace);
     }
 };
@@ -34570,7 +34570,7 @@ pub const IStreamBufferRecordingAttribute = extern union {
             self: *const IStreamBufferRecordingAttribute,
             wIndex: u16,
             pulReserved: ?*u32,
-            pszAttributeName: ?PWSTR,
+            pszAttributeName: ?[*:0]u16,
             pcchNameLength: ?*u16,
             pStreamBufferAttributeType: ?*STREAMBUFFER_ATTR_DATATYPE,
             pbAttribute: [*:0]u8,
@@ -34592,7 +34592,7 @@ pub const IStreamBufferRecordingAttribute = extern union {
     pub fn GetAttributeByName(self: *const IStreamBufferRecordingAttribute, pszAttributeName: ?[*:0]const u16, pulReserved: ?*u32, pStreamBufferAttributeType: ?*STREAMBUFFER_ATTR_DATATYPE, pbAttribute: [*:0]u8, pcbLength: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttributeByName(self, pszAttributeName, pulReserved, pStreamBufferAttributeType, pbAttribute, pcbLength);
     }
-    pub fn GetAttributeByIndex(self: *const IStreamBufferRecordingAttribute, wIndex: u16, pulReserved: ?*u32, pszAttributeName: ?PWSTR, pcchNameLength: ?*u16, pStreamBufferAttributeType: ?*STREAMBUFFER_ATTR_DATATYPE, pbAttribute: [*:0]u8, pcbLength: ?*u16) callconv(.@"inline") HRESULT {
+    pub fn GetAttributeByIndex(self: *const IStreamBufferRecordingAttribute, wIndex: u16, pulReserved: ?*u32, pszAttributeName: ?[*:0]u16, pcchNameLength: ?*u16, pStreamBufferAttributeType: ?*STREAMBUFFER_ATTR_DATATYPE, pbAttribute: [*:0]u8, pcbLength: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttributeByIndex(self, wIndex, pulReserved, pszAttributeName, pcchNameLength, pStreamBufferAttributeType, pbAttribute, pcbLength);
     }
     pub fn EnumAttributes(self: *const IStreamBufferRecordingAttribute, ppIEnumStreamBufferAttrib: ?*?*IEnumStreamBufferRecordingAttrib) callconv(.@"inline") HRESULT {
@@ -40331,7 +40331,7 @@ pub const REG_PINFLAG_B_OUTPUT = REG_PINFLAG{ .OUTPUT = 1 };
 
 pub const REGFILTER = extern struct {
     Clsid: Guid,
-    Name: ?PWSTR,
+    Name: ?[*:0]u16,
 };
 
 pub const REGFILTER2 = extern struct {
@@ -40350,7 +40350,7 @@ pub const REGFILTER2 = extern struct {
 };
 
 pub const REGFILTERPINS = extern struct {
-    strName: ?PWSTR,
+    strName: ?[*:0]u16,
     bRendered: BOOL,
     bOutput: BOOL,
     bZero: BOOL,
@@ -41272,7 +41272,7 @@ pub const STREAMBUFFER_TYPE_WORD = STREAMBUFFER_ATTR_DATATYPE.WORD;
 pub const STREAMBUFFER_TYPE_GUID = STREAMBUFFER_ATTR_DATATYPE.GUID;
 
 pub const STREAMBUFFER_ATTRIBUTE = extern struct {
-    pszName: ?PWSTR,
+    pszName: ?[*:0]u16,
     StreamBufferAttributeType: STREAMBUFFER_ATTR_DATATYPE,
     pbAttribute: ?*u8,
     cbLength: u16,
@@ -42209,7 +42209,7 @@ pub const AMGetErrorText = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (85)
+// Section: Imports (83)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const AM_MEDIA_TYPE = @import("../media/media_foundation.zig").AM_MEDIA_TYPE;
@@ -42283,8 +42283,6 @@ const PALETTEENTRY = @import("../graphics/gdi.zig").PALETTEENTRY;
 const PAPCFUNC = @import("../foundation.zig").PAPCFUNC;
 const POINT = @import("../foundation.zig").POINT;
 const PSID = @import("../foundation.zig").PSID;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const RGBQUAD = @import("../graphics/gdi.zig").RGBQUAD;
 const RGNDATA = @import("../graphics/gdi.zig").RGNDATA;

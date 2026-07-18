@@ -2303,7 +2303,7 @@ pub const CLUSPROP_BUFFER_HELPER = extern union {
     pw: ?*u16,
     pdw: ?*u32,
     pl: ?*i32,
-    psz: ?PWSTR,
+    psz: ?[*:0]u16,
     pList: ?*CLUSPROP_LIST,
     pSyntax: ?*CLUSPROP_SYNTAX,
     pName: ?*CLUSPROP_SZ,
@@ -2913,9 +2913,9 @@ pub const CLUSTER_ENUM_ITEM = extern struct {
     dwVersion: u32,
     dwType: u32,
     cbId: u32,
-    lpszId: ?PWSTR,
+    lpszId: ?[*:0]u16,
     cbName: u32,
-    lpszName: ?PWSTR,
+    lpszName: ?[*:0]u16,
 };
 
 pub const CLUSTER_GROUP_AUTOFAILBACK_TYPE = enum(i32) {
@@ -2939,12 +2939,12 @@ pub const CLUSTER_GROUP_ENUM_ALL = CLUSTER_GROUP_ENUM.ALL;
 pub const CLUSTER_GROUP_ENUM_ITEM = extern struct {
     dwVersion: u32,
     cbId: u32,
-    lpszId: ?PWSTR,
+    lpszId: ?[*:0]u16,
     cbName: u32,
-    lpszName: ?PWSTR,
+    lpszName: ?[*:0]u16,
     state: CLUSTER_GROUP_STATE,
     cbOwnerNode: u32,
-    lpszOwnerNode: ?PWSTR,
+    lpszOwnerNode: ?[*:0]u16,
     dwFlags: u32,
     cbProperties: u32,
     pProperties: ?*anyopaque,
@@ -2979,11 +2979,11 @@ pub const ClusterGroupPartialOnline = CLUSTER_GROUP_STATE.PartialOnline;
 pub const ClusterGroupPending = CLUSTER_GROUP_STATE.Pending;
 
 pub const CLUSTER_HEALTH_FAULT = extern struct {
-    Id: ?PWSTR,
+    Id: ?[*:0]u16,
     ErrorType: u32,
     ErrorCode: u32,
-    Description: ?PWSTR,
-    Provider: ?PWSTR,
+    Description: ?[*:0]u16,
+    Provider: ?[*:0]u16,
     Flags: u32,
     Reserved: u32,
 };
@@ -3420,13 +3420,13 @@ pub const CLUSTER_RESOURCE_ENUM_ALL = CLUSTER_RESOURCE_ENUM.ALL;
 pub const CLUSTER_RESOURCE_ENUM_ITEM = extern struct {
     dwVersion: u32,
     cbId: u32,
-    lpszId: ?PWSTR,
+    lpszId: ?[*:0]u16,
     cbName: u32,
-    lpszName: ?PWSTR,
+    lpszName: ?[*:0]u16,
     cbOwnerGroupName: u32,
-    lpszOwnerGroupName: ?PWSTR,
+    lpszOwnerGroupName: ?[*:0]u16,
     cbOwnerGroupId: u32,
-    lpszOwnerGroupId: ?PWSTR,
+    lpszOwnerGroupId: ?[*:0]u16,
     cbProperties: u32,
     pProperties: ?*anyopaque,
     cbRoProperties: u32,
@@ -3825,7 +3825,7 @@ pub const CREATE_CLUSTER_CONFIG = extern struct {
     dwVersion: u32,
     lpszClusterName: ?[*:0]const u16,
     cNodes: u32,
-    ppszNodeNames: ?*?PWSTR,
+    ppszNodeNames: ?*?[*:0]u16,
     cIpEntries: u32,
     pIpEntries: ?*CLUSTER_IP_ENTRY,
     fEmptyCluster: BOOLEAN,
@@ -8096,13 +8096,13 @@ pub const PCLUSAPI_GET_CLUSTER_NOTIFY_V2 = *const fn(
     pFilterAndType: ?*NOTIFY_FILTER_AND_TYPE,
     buffer: ?*u8,
     lpcchBufferSize: ?*u32,
-    lpszObjectId: ?PWSTR,
+    lpszObjectId: ?[*:0]u16,
     lpcchObjectId: ?*u32,
-    lpszParentId: ?PWSTR,
+    lpszParentId: ?[*:0]u16,
     lpcchParentId: ?*u32,
-    lpszName: ?PWSTR,
+    lpszName: ?[*:0]u16,
     lpcchName: ?*u32,
-    lpszType: ?PWSTR,
+    lpszType: ?[*:0]u16,
     lpcchType: ?*u32,
     dwMilliseconds: u32,
 ) callconv(.winapi) u32;
@@ -8443,13 +8443,13 @@ pub const PCLUSTER_ENCRYPT = *const fn(
 
 pub const PCLUSTER_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT = *const fn(
     lpszVolumeMountPoint: ?[*:0]const u16,
-    lpszVolumeName: ?PWSTR,
+    lpszVolumeName: ?[*:0]u16,
     cchBufferLength: u32,
 ) callconv(.winapi) BOOL;
 
 pub const PCLUSTER_GET_VOLUME_PATH_NAME = *const fn(
     lpszFileName: ?[*:0]const u16,
-    lpszVolumePathName: ?PWSTR,
+    lpszVolumePathName: ?[*:0]u16,
     cchBufferLength: u32,
 ) callconv(.winapi) BOOL;
 
@@ -8459,16 +8459,16 @@ pub const PCLUSTER_IS_PATH_ON_SHARED_VOLUME = *const fn(
 
 pub const PCLUSTER_PREPARE_SHARED_VOLUME_FOR_BACKUP = *const fn(
     lpszFileName: ?[*:0]const u16,
-    lpszVolumePathName: ?PWSTR,
+    lpszVolumePathName: ?[*:0]u16,
     lpcchVolumePathName: ?*u32,
-    lpszVolumeName: ?PWSTR,
+    lpszVolumeName: ?[*:0]u16,
     lpcchVolumeName: ?*u32,
 ) callconv(.winapi) u32;
 
 pub const PCLUSTER_REG_BATCH_ADD_COMMAND = *const fn(
     hRegBatch: ?*_HREGBATCH,
     dwCommand: CLUSTER_REG_COMMAND,
-    wzName: ?PWSTR,
+    wzName: ?[*:0]u16,
     dwOptions: u32,
     /// parameter "cbData" is the size in bytes
     lpData: ?*const anyopaque,
@@ -8779,12 +8779,12 @@ pub const PRESUTIL_DUP_PARAMETER_BLOCK = *const fn(
 
 pub const PRESUTIL_DUP_STRING = *const fn(
     pszInString: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 pub const PRESUTIL_ENUM_PRIVATE_PROPERTIES = *const fn(
     hkeyClusterKey: ?HKEY,
     /// parameter "cbOutPropertiesSize" is the size in bytes
-    pszOutProperties: ?PWSTR,
+    pszOutProperties: ?[*:0]u16,
     cbOutPropertiesSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
@@ -8793,7 +8793,7 @@ pub const PRESUTIL_ENUM_PRIVATE_PROPERTIES = *const fn(
 pub const PRESUTIL_ENUM_PROPERTIES = *const fn(
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     /// parameter "cbOutPropertiesSize" is the size in bytes
-    pszOutProperties: ?PWSTR,
+    pszOutProperties: ?[*:0]u16,
     cbOutPropertiesSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
@@ -8825,7 +8825,7 @@ pub const PRESUTIL_ENUM_RESOURCES_EX2 = *const fn(
 
 pub const PRESUTIL_EXPAND_ENVIRONMENT_STRINGS = *const fn(
     pszSrc: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 pub const PRESUTIL_FIND_BINARY_PROPERTY = *const fn(
     /// parameter "cbPropertyListSize" is the size in bytes
@@ -8857,7 +8857,7 @@ pub const PRESUTIL_FIND_EXPAND_SZ_PROPERTY = *const fn(
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
+    pszPropertyValue: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_EXPANDED_SZ_PROPERTY = *const fn(
@@ -8865,7 +8865,7 @@ pub const PRESUTIL_FIND_EXPANDED_SZ_PROPERTY = *const fn(
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
+    pszPropertyValue: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_FILETIME_PROPERTY = *const fn(
@@ -8890,7 +8890,7 @@ pub const PRESUTIL_FIND_MULTI_SZ_PROPERTY = *const fn(
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
     /// parameter "pcbPropertyValueSize" is the size in bytes
-    pszPropertyValue: ?*?PWSTR,
+    pszPropertyValue: ?*?[*:0]u16,
     pcbPropertyValueSize: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -8899,7 +8899,7 @@ pub const PRESUTIL_FIND_SZ_PROPERTY = *const fn(
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
+    pszPropertyValue: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_ULARGEINTEGER_PROPERTY = *const fn(
@@ -8990,7 +8990,7 @@ pub const PRESUTIL_GET_EXPAND_SZ_VALUE = *const fn(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     bExpand: BOOL,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 pub const PRESUTIL_GET_FILETIME_PROPERTY = *const fn(
     pftOutValue: ?*FILETIME,
@@ -9013,7 +9013,7 @@ pub const PRESUTIL_GET_LONG_PROPERTY = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_MULTI_SZ_PROPERTY = *const fn(
-    ppszOutValue: ?*?PWSTR,
+    ppszOutValue: ?*?[*:0]u16,
     pcbOutValueSize: ?*u32,
     pValueStruct: ?*const CLUSPROP_SZ,
     /// parameter "cbOldValueSize" is the size in bytes
@@ -9048,7 +9048,7 @@ pub const PRESUTIL_GET_PROPERTIES_TO_PARAMETER_BLOCK = *const fn(
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     pOutParams: ?*u8,
     bCheckForRequiredProperties: BOOL,
-    pszNameOfPropInError: ?*?PWSTR,
+    pszNameOfPropInError: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_PROPERTY = *const fn(
@@ -9151,7 +9151,7 @@ pub const PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY_EX = *const fn(
 ) callconv(.winapi) ?*_HRESOURCE;
 
 pub const PRESUTIL_GET_SZ_PROPERTY = *const fn(
-    ppszOutValue: ?*?PWSTR,
+    ppszOutValue: ?*?[*:0]u16,
     pValueStruct: ?*const CLUSPROP_SZ,
     pszOldValue: ?[*:0]const u16,
     /// parameter "pcbPropertyListSize" is the size in bytes
@@ -9162,7 +9162,7 @@ pub const PRESUTIL_GET_SZ_PROPERTY = *const fn(
 pub const PRESUTIL_GET_SZ_VALUE = *const fn(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 pub const PRESUTIL_IS_PATH_VALID = *const fn(
     pszPath: ?[*:0]const u16,
@@ -9221,7 +9221,7 @@ pub const PRESUTIL_SET_EXPAND_SZ_VALUE = *const fn(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     pszNewValue: ?[*:0]const u16,
-    ppszOutString: ?*?PWSTR,
+    ppszOutString: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub const PRESUTIL_SET_MULTI_SZ_VALUE = *const fn(
@@ -9231,7 +9231,7 @@ pub const PRESUTIL_SET_MULTI_SZ_VALUE = *const fn(
     pszNewValue: ?[*:0]const u16,
     cbNewValueSize: u32,
     /// parameter "pcbOutValueSize" is the size in bytes
-    ppszOutValue: ?*?PWSTR,
+    ppszOutValue: ?*?[*:0]u16,
     pcbOutValueSize: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -9320,7 +9320,7 @@ pub const PRESUTIL_SET_SZ_VALUE = *const fn(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     pszNewValue: ?[*:0]const u16,
-    ppszOutString: ?*?PWSTR,
+    ppszOutString: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub const PRESUTIL_SET_UNKNOWN_PROPERTIES = *const fn(
@@ -9553,8 +9553,8 @@ pub const RESUTIL_LARGEINT_DATA = extern struct {
 };
 
 pub const RESUTIL_PROPERTY_ITEM = extern struct {
-    Name: ?PWSTR,
-    KeyName: ?PWSTR,
+    Name: ?[*:0]u16,
+    KeyName: ?[*:0]u16,
     Format: u32,
     Anonymous: extern union {
         DefaultPtr: usize,
@@ -10003,14 +10003,14 @@ pub extern "clusapi" fn ClusterGetEnumCountEx(
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ClusterGetVolumeNameForVolumeMountPoint(
     lpszVolumeMountPoint: ?[*:0]const u16,
-    lpszVolumeName: ?PWSTR,
+    lpszVolumeName: ?[*:0]u16,
     cchBufferLength: u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ClusterGetVolumePathName(
     lpszFileName: ?[*:0]const u16,
-    lpszVolumePathName: ?PWSTR,
+    lpszVolumePathName: ?[*:0]u16,
     cchBufferLength: u32,
 ) callconv(.winapi) BOOL;
 
@@ -10284,9 +10284,9 @@ pub extern "clusapi" fn ClusterOpenEnumEx(
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ClusterPrepareSharedVolumeForBackup(
     lpszFileName: ?[*:0]const u16,
-    lpszVolumePathName: ?PWSTR,
+    lpszVolumePathName: ?[*:0]u16,
     lpcchVolumePathName: ?*u32,
-    lpszVolumeName: ?PWSTR,
+    lpszVolumeName: ?[*:0]u16,
     lpcchVolumeName: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -10821,7 +10821,7 @@ pub extern "clusapi" fn DetermineClusterCloudTypeFromCluster(
 
 pub extern "clusapi" fn DetermineClusterCloudTypeFromNodelist(
     cNodes: u32,
-    ppszNodeNames: ?*?PWSTR,
+    ppszNodeNames: ?*?[*:0]u16,
     pCloudType: ?*CLUSTER_CLOUD_TYPE,
 ) callconv(.winapi) u32;
 
@@ -10832,7 +10832,7 @@ pub extern "clusapi" fn DetermineCNOResTypeFromCluster(
 
 pub extern "clusapi" fn DetermineCNOResTypeFromNodelist(
     cNodes: u32,
-    ppszNodeNames: ?*?PWSTR,
+    ppszNodeNames: ?*?[*:0]u16,
     pCNOResType: ?*CLUSTER_MGMT_POINT_RESTYPE,
 ) callconv(.winapi) u32;
 
@@ -11441,7 +11441,7 @@ pub extern "resutils" fn ResUtilDupResource(
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilDupString(
     pszInString: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 pub extern "resutils" fn ResUtilEnumGroups(
     hCluster: ?*_HCLUSTER,
@@ -11462,7 +11462,7 @@ pub extern "resutils" fn ResUtilEnumGroupsEx(
 pub extern "resutils" fn ResUtilEnumPrivateProperties(
     hkeyClusterKey: ?HKEY,
     /// parameter "cbOutPropertiesSize" is the size in bytes
-    pszOutProperties: ?PWSTR,
+    pszOutProperties: ?[*:0]u16,
     cbOutPropertiesSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
@@ -11472,7 +11472,7 @@ pub extern "resutils" fn ResUtilEnumPrivateProperties(
 pub extern "resutils" fn ResUtilEnumProperties(
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     /// parameter "cbOutPropertiesSize" is the size in bytes
-    pszOutProperties: ?PWSTR,
+    pszOutProperties: ?[*:0]u16,
     cbOutPropertiesSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
@@ -11508,7 +11508,7 @@ pub extern "resutils" fn ResUtilEnumResourcesEx2(
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilExpandEnvironmentStrings(
     pszSrc: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilFindBinaryProperty(
@@ -11544,7 +11544,7 @@ pub extern "resutils" fn ResUtilFindExpandedSzProperty(
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
+    pszPropertyValue: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
@@ -11553,7 +11553,7 @@ pub extern "resutils" fn ResUtilFindExpandSzProperty(
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
+    pszPropertyValue: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
@@ -11581,7 +11581,7 @@ pub extern "resutils" fn ResUtilFindMultiSzProperty(
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
     /// parameter "pcbPropertyValueSize" is the size in bytes
-    pszPropertyValue: ?*?PWSTR,
+    pszPropertyValue: ?*?[*:0]u16,
     pcbPropertyValueSize: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -11591,7 +11591,7 @@ pub extern "resutils" fn ResUtilFindSzProperty(
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
-    pszPropertyValue: ?*?PWSTR,
+    pszPropertyValue: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2016'
@@ -11732,7 +11732,7 @@ pub extern "resutils" fn ResUtilGetLongProperty(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilGetMultiSzProperty(
-    ppszOutValue: ?*?PWSTR,
+    ppszOutValue: ?*?[*:0]u16,
     pcbOutValueSize: ?*u32,
     pValueStruct: ?*const CLUSPROP_SZ,
     /// parameter "cbOldValueSize" is the size in bytes
@@ -11770,7 +11770,7 @@ pub extern "resutils" fn ResUtilGetPropertiesToParameterBlock(
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     pOutParams: ?*u8,
     bCheckForRequiredProperties: BOOL,
-    pszNameOfPropInError: ?*?PWSTR,
+    pszNameOfPropInError: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
@@ -11888,7 +11888,7 @@ pub extern "resutils" fn ResUtilGetResourceNameDependencyEx(
 
 // TODO: this type is limited to platform 'windowsserver2008'
 pub extern "resutils" fn ResUtilGetSzProperty(
-    ppszOutValue: ?*?PWSTR,
+    ppszOutValue: ?*?[*:0]u16,
     pValueStruct: ?*const CLUSPROP_SZ,
     pszOldValue: ?[*:0]const u16,
     /// parameter "pcbPropertyListSize" is the size in bytes
@@ -11900,7 +11900,7 @@ pub extern "resutils" fn ResUtilGetSzProperty(
 pub extern "resutils" fn ResUtilGetSzValue(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 pub extern "resutils" fn ResUtilGroupsEqual(
     hSelf: ?*_HGROUP,
@@ -12005,7 +12005,7 @@ pub extern "resutils" fn ResUtilSetExpandSzValue(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     pszNewValue: ?[*:0]const u16,
-    ppszOutString: ?*?PWSTR,
+    ppszOutString: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
@@ -12016,7 +12016,7 @@ pub extern "resutils" fn ResUtilSetMultiSzValue(
     pszNewValue: ?[*:0]const u16,
     cbNewValueSize: u32,
     /// parameter "pcbOutValueSize" is the size in bytes
-    ppszOutValue: ?*?PWSTR,
+    ppszOutValue: ?*?[*:0]u16,
     pcbOutValueSize: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -12115,7 +12115,7 @@ pub extern "resutils" fn ResUtilSetSzValue(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     pszNewValue: ?[*:0]const u16,
-    ppszOutString: ?*?PWSTR,
+    ppszOutString: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsserver2008'
@@ -12282,7 +12282,7 @@ pub extern "clusapi" fn SetGroupDependencyExpression(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (22)
+// Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -12299,7 +12299,6 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SC_HANDLE = @import("../security.zig").SC_HANDLE;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const SECURITY_DESCRIPTOR_RELATIVE = @import("../security.zig").SECURITY_DESCRIPTOR_RELATIVE;

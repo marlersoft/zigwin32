@@ -2950,7 +2950,7 @@ pub const WS_SSPI_TRANSPORT_SECURITY_BINDING_POLICY_DESCRIPTION = extern struct 
 
 pub const WS_STRING = extern struct {
     length: u32,
-    chars: ?PWSTR,
+    chars: ?[*:0]u16,
 };
 
 pub const WS_STRING_DESCRIPTION = extern struct {
@@ -4385,7 +4385,7 @@ pub extern "webauthn" fn WebAuthNGetCancellationId(
 
 pub extern "webauthn" fn WebAuthNGetErrorName(
     hr: HRESULT,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 pub extern "webauthn" fn WebAuthNGetW3CExceptionDOMError(
     hr: HRESULT,
@@ -6078,7 +6078,7 @@ pub extern "webservices" fn WsXmlStringEquals(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (13)
+// Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -6091,7 +6091,6 @@ const HWND = @import("../foundation.zig").HWND;
 const IInspectable = @import("../system/win_rt.zig").IInspectable;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const NCRYPT_KEY_HANDLE = @import("../security/cryptography.zig").NCRYPT_KEY_HANDLE;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SecPkgContext_IssuerListInfoEx = @import("../security/authentication/identity.zig").SecPkgContext_IssuerListInfoEx;
 
 test {

@@ -434,7 +434,7 @@ pub const IPropertyDescription = extern union {
         ) callconv(.winapi) HRESULT,
         GetCanonicalName: *const fn(
             self: *const IPropertyDescription,
-            ppszName: ?*?PWSTR,
+            ppszName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetPropertyType: *const fn(
             self: *const IPropertyDescription,
@@ -442,11 +442,11 @@ pub const IPropertyDescription = extern union {
         ) callconv(.winapi) HRESULT,
         GetDisplayName: *const fn(
             self: *const IPropertyDescription,
-            ppszName: ?*?PWSTR,
+            ppszName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetEditInvitation: *const fn(
             self: *const IPropertyDescription,
-            ppszInvite: ?*?PWSTR,
+            ppszInvite: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetTypeFlags: *const fn(
             self: *const IPropertyDescription,
@@ -481,8 +481,8 @@ pub const IPropertyDescription = extern union {
             self: *const IPropertyDescription,
             propvar1: ?*const PROPVARIANT,
             propvar2: ?*const PROPVARIANT,
-            ppszDesc1: ?*?PWSTR,
-            ppszDesc2: ?*?PWSTR,
+            ppszDesc1: ?*?[*:0]u16,
+            ppszDesc2: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetSortDescription: *const fn(
             self: *const IPropertyDescription,
@@ -491,7 +491,7 @@ pub const IPropertyDescription = extern union {
         GetSortDescriptionLabel: *const fn(
             self: *const IPropertyDescription,
             fDescending: BOOL,
-            ppszDescription: ?*?PWSTR,
+            ppszDescription: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetAggregationType: *const fn(
             self: *const IPropertyDescription,
@@ -515,7 +515,7 @@ pub const IPropertyDescription = extern union {
             self: *const IPropertyDescription,
             propvar: ?*const PROPVARIANT,
             pdfFlags: PROPDESC_FORMAT_FLAGS,
-            ppszDisplay: ?*?PWSTR,
+            ppszDisplay: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         IsValueCanonical: *const fn(
             self: *const IPropertyDescription,
@@ -527,16 +527,16 @@ pub const IPropertyDescription = extern union {
     pub fn GetPropertyKey(self: *const IPropertyDescription, pkey: ?*PROPERTYKEY) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyKey(self, pkey);
     }
-    pub fn GetCanonicalName(self: *const IPropertyDescription, ppszName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetCanonicalName(self: *const IPropertyDescription, ppszName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetCanonicalName(self, ppszName);
     }
     pub fn GetPropertyType(self: *const IPropertyDescription, pvartype: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyType(self, pvartype);
     }
-    pub fn GetDisplayName(self: *const IPropertyDescription, ppszName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDisplayName(self: *const IPropertyDescription, ppszName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayName(self, ppszName);
     }
-    pub fn GetEditInvitation(self: *const IPropertyDescription, ppszInvite: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetEditInvitation(self: *const IPropertyDescription, ppszInvite: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetEditInvitation(self, ppszInvite);
     }
     pub fn GetTypeFlags(self: *const IPropertyDescription, mask: PROPDESC_TYPE_FLAGS, ppdtFlags: ?*PROPDESC_TYPE_FLAGS) callconv(.@"inline") HRESULT {
@@ -560,13 +560,13 @@ pub const IPropertyDescription = extern union {
     pub fn GetRelativeDescriptionType(self: *const IPropertyDescription, prdt: ?*PROPDESC_RELATIVEDESCRIPTION_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.GetRelativeDescriptionType(self, prdt);
     }
-    pub fn GetRelativeDescription(self: *const IPropertyDescription, propvar1: ?*const PROPVARIANT, propvar2: ?*const PROPVARIANT, ppszDesc1: ?*?PWSTR, ppszDesc2: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetRelativeDescription(self: *const IPropertyDescription, propvar1: ?*const PROPVARIANT, propvar2: ?*const PROPVARIANT, ppszDesc1: ?*?[*:0]u16, ppszDesc2: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetRelativeDescription(self, propvar1, propvar2, ppszDesc1, ppszDesc2);
     }
     pub fn GetSortDescription(self: *const IPropertyDescription, psd: ?*PROPDESC_SORTDESCRIPTION) callconv(.@"inline") HRESULT {
         return self.vtable.GetSortDescription(self, psd);
     }
-    pub fn GetSortDescriptionLabel(self: *const IPropertyDescription, fDescending: BOOL, ppszDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSortDescriptionLabel(self: *const IPropertyDescription, fDescending: BOOL, ppszDescription: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSortDescriptionLabel(self, fDescending, ppszDescription);
     }
     pub fn GetAggregationType(self: *const IPropertyDescription, paggtype: ?*PROPDESC_AGGREGATION_TYPE) callconv(.@"inline") HRESULT {
@@ -581,7 +581,7 @@ pub const IPropertyDescription = extern union {
     pub fn CoerceToCanonicalValue(self: *const IPropertyDescription, ppropvar: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.CoerceToCanonicalValue(self, ppropvar);
     }
-    pub fn FormatForDisplay(self: *const IPropertyDescription, propvar: ?*const PROPVARIANT, pdfFlags: PROPDESC_FORMAT_FLAGS, ppszDisplay: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn FormatForDisplay(self: *const IPropertyDescription, propvar: ?*const PROPVARIANT, pdfFlags: PROPDESC_FORMAT_FLAGS, ppszDisplay: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.FormatForDisplay(self, propvar, pdfFlags, ppszDisplay);
     }
     pub fn IsValueCanonical(self: *const IPropertyDescription, propvar: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
@@ -598,13 +598,13 @@ pub const IPropertyDescription2 = extern union {
         GetImageReferenceForValue: *const fn(
             self: *const IPropertyDescription2,
             propvar: ?*const PROPVARIANT,
-            ppszImageRes: ?*?PWSTR,
+            ppszImageRes: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPropertyDescription: IPropertyDescription,
     IUnknown: IUnknown,
-    pub fn GetImageReferenceForValue(self: *const IPropertyDescription2, propvar: ?*const PROPVARIANT, ppszImageRes: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetImageReferenceForValue(self: *const IPropertyDescription2, propvar: ?*const PROPVARIANT, ppszImageRes: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetImageReferenceForValue(self, propvar, ppszImageRes);
     }
 };
@@ -701,7 +701,7 @@ pub const IPropertyDescriptionSearchInfo = extern union {
         ) callconv(.winapi) HRESULT,
         GetProjectionString: *const fn(
             self: *const IPropertyDescriptionSearchInfo,
-            ppszProjection: ?*?PWSTR,
+            ppszProjection: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetMaxSize: *const fn(
             self: *const IPropertyDescriptionSearchInfo,
@@ -717,7 +717,7 @@ pub const IPropertyDescriptionSearchInfo = extern union {
     pub fn GetColumnIndexType(self: *const IPropertyDescriptionSearchInfo, ppdciType: ?*PROPDESC_COLUMNINDEX_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.GetColumnIndexType(self, ppdciType);
     }
-    pub fn GetProjectionString(self: *const IPropertyDescriptionSearchInfo, ppszProjection: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetProjectionString(self: *const IPropertyDescriptionSearchInfo, ppszProjection: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetProjectionString(self, ppszProjection);
     }
     pub fn GetMaxSize(self: *const IPropertyDescriptionSearchInfo, pcbMaxSize: ?*u32) callconv(.@"inline") HRESULT {
@@ -749,7 +749,7 @@ pub const IPropertyEnumType = extern union {
         ) callconv(.winapi) HRESULT,
         GetDisplayText: *const fn(
             self: *const IPropertyEnumType,
-            ppszDisplay: ?*?PWSTR,
+            ppszDisplay: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -766,7 +766,7 @@ pub const IPropertyEnumType = extern union {
     pub fn GetRangeSetValue(self: *const IPropertyEnumType, ppropvarSet: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetRangeSetValue(self, ppropvarSet);
     }
-    pub fn GetDisplayText(self: *const IPropertyEnumType, ppszDisplay: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDisplayText(self: *const IPropertyEnumType, ppszDisplay: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayText(self, ppszDisplay);
     }
 };
@@ -779,13 +779,13 @@ pub const IPropertyEnumType2 = extern union {
         base: IPropertyEnumType.VTable,
         GetImageReference: *const fn(
             self: *const IPropertyEnumType2,
-            ppszImageRes: ?*?PWSTR,
+            ppszImageRes: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPropertyEnumType: IPropertyEnumType,
     IUnknown: IUnknown,
-    pub fn GetImageReference(self: *const IPropertyEnumType2, ppszImageRes: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetImageReference(self: *const IPropertyEnumType2, ppszImageRes: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetImageReference(self, ppszImageRes);
     }
 };
@@ -1020,7 +1020,7 @@ pub const IPropertySystem = extern union {
             key: ?*const PROPERTYKEY,
             propvar: ?*const PROPVARIANT,
             pdff: PROPDESC_FORMAT_FLAGS,
-            ppszDisplay: ?*?PWSTR,
+            ppszDisplay: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         RegisterPropertySchema: *const fn(
             self: *const IPropertySystem,
@@ -1051,7 +1051,7 @@ pub const IPropertySystem = extern union {
     pub fn FormatForDisplay(self: *const IPropertySystem, key: ?*const PROPERTYKEY, propvar: ?*const PROPVARIANT, pdff: PROPDESC_FORMAT_FLAGS, pszText: [*:0]u16, cchText: u32) callconv(.@"inline") HRESULT {
         return self.vtable.FormatForDisplay(self, key, propvar, pdff, pszText, cchText);
     }
-    pub fn FormatForDisplayAlloc(self: *const IPropertySystem, key: ?*const PROPERTYKEY, propvar: ?*const PROPVARIANT, pdff: PROPDESC_FORMAT_FLAGS, ppszDisplay: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn FormatForDisplayAlloc(self: *const IPropertySystem, key: ?*const PROPERTYKEY, propvar: ?*const PROPVARIANT, pdff: PROPDESC_FORMAT_FLAGS, ppszDisplay: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.FormatForDisplayAlloc(self, key, propvar, pdff, ppszDisplay);
     }
     pub fn RegisterPropertySchema(self: *const IPropertySystem, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -2139,7 +2139,7 @@ pub extern "propsys" fn InitPropVariantFromStringAsVector(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "propsys" fn InitPropVariantFromStringVector(
-    prgsz: ?[*]?PWSTR,
+    prgsz: ?[*]?[*:0]u16,
     cElems: u32,
     ppropvar: ?*PROPVARIANT,
 ) callconv(.winapi) HRESULT;
@@ -2249,7 +2249,7 @@ pub extern "propsys" fn InitVariantFromResource(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "propsys" fn InitVariantFromStringArray(
-    prgsz: [*]?PWSTR,
+    prgsz: [*]?[*:0]u16,
     cElems: u32,
     pvar: ?*VARIANT,
 ) callconv(.winapi) HRESULT;
@@ -2390,7 +2390,7 @@ pub extern "propsys" fn PropVariantGetInt64Elem(
 pub extern "propsys" fn PropVariantGetStringElem(
     propvar: ?*const PROPVARIANT,
     iElem: u32,
-    ppszVal: ?*?PWSTR,
+    ppszVal: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2601,13 +2601,13 @@ pub extern "propsys" fn PropVariantToString(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "propsys" fn PropVariantToStringAlloc(
     propvar: ?*const PROPVARIANT,
-    ppszOut: ?*?PWSTR,
+    ppszOut: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "propsys" fn PropVariantToStringVector(
     propvar: ?*const PROPVARIANT,
-    prgsz: [*]?PWSTR,
+    prgsz: [*]?[*:0]u16,
     crgsz: u32,
     pcElem: ?*u32,
 ) callconv(.winapi) HRESULT;
@@ -2615,7 +2615,7 @@ pub extern "propsys" fn PropVariantToStringVector(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "propsys" fn PropVariantToStringVectorAlloc(
     propvar: ?*const PROPVARIANT,
-    pprgsz: ?*?*?PWSTR,
+    pprgsz: ?*?*?[*:0]u16,
     pcElem: ?*u32,
 ) callconv(.winapi) HRESULT;
 
@@ -2623,7 +2623,7 @@ pub extern "propsys" fn PropVariantToStringVectorAlloc(
 pub extern "propsys" fn PropVariantToStringWithDefault(
     propvarIn: ?*const PROPVARIANT,
     pszDefault: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "propsys" fn PropVariantToStrRet(
@@ -2818,7 +2818,7 @@ pub extern "propsys" fn PSFormatForDisplayAlloc(
     key: ?*const PROPERTYKEY,
     propvar: ?*const PROPVARIANT,
     pdff: PROPDESC_FORMAT_FLAGS,
-    ppszDisplay: ?*?PWSTR,
+    ppszDisplay: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2826,14 +2826,14 @@ pub extern "propsys" fn PSFormatPropertyValue(
     pps: ?*IPropertyStore,
     ppd: ?*IPropertyDescription,
     pdff: PROPDESC_FORMAT_FLAGS,
-    ppszDisplay: ?*?PWSTR,
+    ppszDisplay: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "propsys" fn PSGetImageReferenceForValue(
     propkey: ?*const PROPERTYKEY,
     propvar: ?*const PROPVARIANT,
-    ppszImageRes: ?*?PWSTR,
+    ppszImageRes: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2865,7 +2865,7 @@ pub extern "propsys" fn PSGetNamedPropertyFromPropertyStorage(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "propsys" fn PSGetNameFromPropertyKey(
     propkey: ?*const PROPERTYKEY,
-    ppszCanonicalName: ?*?PWSTR,
+    ppszCanonicalName: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3018,7 +3018,7 @@ pub extern "propsys" fn PSPropertyBag_ReadStr(
 pub extern "propsys" fn PSPropertyBag_ReadStrAlloc(
     propBag: ?*IPropertyBag,
     propName: ?[*:0]const u16,
-    value: ?*?PWSTR,
+    value: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -3301,7 +3301,7 @@ pub extern "propsys" fn VariantGetInt64Elem(
 pub extern "propsys" fn VariantGetStringElem(
     @"var": ?*const VARIANT,
     iElem: u32,
-    ppszVal: ?*?PWSTR,
+    ppszVal: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3504,13 +3504,13 @@ pub extern "propsys" fn VariantToString(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "propsys" fn VariantToStringAlloc(
     varIn: ?*const VARIANT,
-    ppszBuf: ?*?PWSTR,
+    ppszBuf: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "propsys" fn VariantToStringArray(
     @"var": ?*const VARIANT,
-    prgsz: [*]?PWSTR,
+    prgsz: [*]?[*:0]u16,
     crgsz: u32,
     pcElem: ?*u32,
 ) callconv(.winapi) HRESULT;
@@ -3518,7 +3518,7 @@ pub extern "propsys" fn VariantToStringArray(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "propsys" fn VariantToStringArrayAlloc(
     @"var": ?*const VARIANT,
-    pprgsz: ?*?*?PWSTR,
+    pprgsz: ?*?*?[*:0]u16,
     pcElem: ?*u32,
 ) callconv(.winapi) HRESULT;
 
@@ -3526,7 +3526,7 @@ pub extern "propsys" fn VariantToStringArrayAlloc(
 pub extern "propsys" fn VariantToStringWithDefault(
     varIn: ?*const VARIANT,
     pszDefault: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "propsys" fn VariantToStrRet(
@@ -3626,7 +3626,7 @@ pub extern "propsys" fn WinRTPropertyValueToPropVariant(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (27)
+// Section: Imports (25)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -3649,8 +3649,6 @@ const POINTL = @import("../../foundation.zig").POINTL;
 const POINTS = @import("../../foundation.zig").POINTS;
 const PROPSPEC = @import("../../system/com/structured_storage.zig").PROPSPEC;
 const PROPVARIANT = @import("../../system/com/structured_storage.zig").PROPVARIANT;
-const PSTR = @import("../../foundation.zig").PSTR;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const RECTL = @import("../../foundation.zig").RECTL;
 const STRRET = @import("../../ui/shell/common.zig").STRRET;
 const VARENUM = @import("../../system/com.zig").VARENUM;

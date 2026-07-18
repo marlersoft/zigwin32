@@ -339,10 +339,10 @@ pub const EvtRenderEventXml = EVT_RENDER_FLAGS.EventXml;
 pub const EvtRenderBookmark = EVT_RENDER_FLAGS.Bookmark;
 
 pub const EVT_RPC_LOGIN = extern struct {
-    Server: ?PWSTR,
-    User: ?PWSTR,
-    Domain: ?PWSTR,
-    Password: ?PWSTR,
+    Server: ?[*:0]u16,
+    User: ?[*:0]u16,
+    Domain: ?[*:0]u16,
+    Password: ?[*:0]u16,
     Flags: u32,
 };
 
@@ -476,13 +476,13 @@ pub const EVT_VARIANT = extern struct {
         FileTimeArr: ?*FILETIME,
         SysTimeArr: ?*SYSTEMTIME,
         GuidArr: ?*Guid,
-        StringArr: ?*?PWSTR,
-        AnsiStringArr: ?*?PSTR,
+        StringArr: ?*?[*:0]u16,
+        AnsiStringArr: ?*?[*:0]u8,
         SidArr: ?*?PSID,
         SizeTArr: ?*usize,
         EvtHandleVal: EVT_HANDLE,
         XmlVal: ?[*:0]const u16,
-        XmlValArr: ?*?PWSTR,
+        XmlValArr: ?*?[*:0]u16,
     },
     Count: u32,
     Type: u32,
@@ -633,7 +633,7 @@ pub extern "wevtapi" fn EvtCreateBookmark(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtCreateRenderContext(
     ValuePathsCount: u32,
-    ValuePaths: ?[*]?PWSTR,
+    ValuePaths: ?[*]?[*:0]u16,
     Flags: u32,
 ) callconv(.winapi) EVT_HANDLE;
 
@@ -986,7 +986,7 @@ pub extern "advapi32" fn ReportEventA(
     lpUserSid: ?PSID,
     wNumStrings: u16,
     dwDataSize: u32,
-    lpStrings: ?[*]?PSTR,
+    lpStrings: ?[*]?[*:0]u8,
     /// parameter "dwDataSize" is the size in bytes
     lpRawData: ?*anyopaque,
 ) callconv(.winapi) BOOL;
@@ -1000,7 +1000,7 @@ pub extern "advapi32" fn ReportEventW(
     lpUserSid: ?PSID,
     wNumStrings: u16,
     dwDataSize: u32,
-    lpStrings: ?[*]?PWSTR,
+    lpStrings: ?[*]?[*:0]u16,
     /// parameter "dwDataSize" is the size in bytes
     lpRawData: ?*anyopaque,
 ) callconv(.winapi) BOOL;
@@ -1059,15 +1059,13 @@ pub const ReportEvent = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const PSID = @import("../foundation.zig").PSID;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {

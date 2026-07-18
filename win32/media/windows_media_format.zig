@@ -439,7 +439,7 @@ pub const INSNetSourceCreator = extern union {
         GetProtocolName: *const fn(
             self: *const INSNetSourceCreator,
             dwProtocolNum: u32,
-            pwszProtocolName: ?PWSTR,
+            pwszProtocolName: ?[*:0]u16,
             pcchProtocolName: ?*u16,
         ) callconv(.winapi) HRESULT,
         Shutdown: *const fn(
@@ -466,7 +466,7 @@ pub const INSNetSourceCreator = extern union {
     pub fn GetNumProtocolsSupported(self: *const INSNetSourceCreator, pcProtocols: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNumProtocolsSupported(self, pcProtocols);
     }
-    pub fn GetProtocolName(self: *const INSNetSourceCreator, dwProtocolNum: u32, pwszProtocolName: ?PWSTR, pcchProtocolName: ?*u16) callconv(.@"inline") HRESULT {
+    pub fn GetProtocolName(self: *const INSNetSourceCreator, dwProtocolNum: u32, pwszProtocolName: ?[*:0]u16, pcchProtocolName: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetProtocolName(self, dwProtocolNum, pwszProtocolName, pcchProtocolName);
     }
     pub fn Shutdown(self: *const INSNetSourceCreator) callconv(.@"inline") HRESULT {
@@ -1007,8 +1007,8 @@ pub const IWMCredentialCallback = extern union {
         base: IUnknown.VTable,
         AcquireCredentials: *const fn(
             self: *const IWMCredentialCallback,
-            pwszRealm: ?PWSTR,
-            pwszSite: ?PWSTR,
+            pwszRealm: ?[*:0]u16,
+            pwszSite: ?[*:0]u16,
             pwszUser: [*:0]u16,
             cchUser: u32,
             pwszPassword: [*:0]u16,
@@ -1019,7 +1019,7 @@ pub const IWMCredentialCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AcquireCredentials(self: *const IWMCredentialCallback, pwszRealm: ?PWSTR, pwszSite: ?PWSTR, pwszUser: [*:0]u16, cchUser: u32, pwszPassword: [*:0]u16, cchPassword: u32, hrStatus: HRESULT, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn AcquireCredentials(self: *const IWMCredentialCallback, pwszRealm: ?[*:0]u16, pwszSite: ?[*:0]u16, pwszUser: [*:0]u16, cchUser: u32, pwszPassword: [*:0]u16, cchPassword: u32, hrStatus: HRESULT, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.AcquireCredentials(self, pwszRealm, pwszSite, pwszUser, cchUser, pwszPassword, cchPassword, hrStatus, pdwFlags);
     }
 };
@@ -1535,7 +1535,7 @@ pub const IWMHeaderInfo = extern union {
         ) callconv(.winapi) HRESULT,
         AddMarker: *const fn(
             self: *const IWMHeaderInfo,
-            pwszMarkerName: ?PWSTR,
+            pwszMarkerName: ?[*:0]u16,
             cnsMarkerTime: u64,
         ) callconv(.winapi) HRESULT,
         RemoveMarker: *const fn(
@@ -1557,8 +1557,8 @@ pub const IWMHeaderInfo = extern union {
         ) callconv(.winapi) HRESULT,
         AddScript: *const fn(
             self: *const IWMHeaderInfo,
-            pwszType: ?PWSTR,
-            pwszCommand: ?PWSTR,
+            pwszType: ?[*:0]u16,
+            pwszCommand: ?[*:0]u16,
             cnsScriptTime: u64,
         ) callconv(.winapi) HRESULT,
         RemoveScript: *const fn(
@@ -1586,7 +1586,7 @@ pub const IWMHeaderInfo = extern union {
     pub fn GetMarker(self: *const IWMHeaderInfo, wIndex: u16, pwszMarkerName: [*:0]u16, pcchMarkerNameLen: ?*u16, pcnsMarkerTime: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetMarker(self, wIndex, pwszMarkerName, pcchMarkerNameLen, pcnsMarkerTime);
     }
-    pub fn AddMarker(self: *const IWMHeaderInfo, pwszMarkerName: ?PWSTR, cnsMarkerTime: u64) callconv(.@"inline") HRESULT {
+    pub fn AddMarker(self: *const IWMHeaderInfo, pwszMarkerName: ?[*:0]u16, cnsMarkerTime: u64) callconv(.@"inline") HRESULT {
         return self.vtable.AddMarker(self, pwszMarkerName, cnsMarkerTime);
     }
     pub fn RemoveMarker(self: *const IWMHeaderInfo, wIndex: u16) callconv(.@"inline") HRESULT {
@@ -1598,7 +1598,7 @@ pub const IWMHeaderInfo = extern union {
     pub fn GetScript(self: *const IWMHeaderInfo, wIndex: u16, pwszType: [*:0]u16, pcchTypeLen: ?*u16, pwszCommand: [*:0]u16, pcchCommandLen: ?*u16, pcnsScriptTime: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetScript(self, wIndex, pwszType, pcchTypeLen, pwszCommand, pcchCommandLen, pcnsScriptTime);
     }
-    pub fn AddScript(self: *const IWMHeaderInfo, pwszType: ?PWSTR, pwszCommand: ?PWSTR, cnsScriptTime: u64) callconv(.@"inline") HRESULT {
+    pub fn AddScript(self: *const IWMHeaderInfo, pwszType: ?[*:0]u16, pwszCommand: ?[*:0]u16, cnsScriptTime: u64) callconv(.@"inline") HRESULT {
         return self.vtable.AddScript(self, pwszType, pwszCommand, cnsScriptTime);
     }
     pub fn RemoveScript(self: *const IWMHeaderInfo, wIndex: u16) callconv(.@"inline") HRESULT {
@@ -1693,8 +1693,8 @@ pub const IWMHeaderInfo3 = extern union {
         ) callconv(.winapi) HRESULT,
         AddCodecInfo: *const fn(
             self: *const IWMHeaderInfo3,
-            pwszName: ?PWSTR,
-            pwszDescription: ?PWSTR,
+            pwszName: ?[*:0]u16,
+            pwszDescription: ?[*:0]u16,
             codecType: WMT_CODEC_INFO_TYPE,
             cbCodecInfo: u16,
             pbCodecInfo: [*:0]u8,
@@ -1722,7 +1722,7 @@ pub const IWMHeaderInfo3 = extern union {
     pub fn DeleteAttribute(self: *const IWMHeaderInfo3, wStreamNum: u16, wIndex: u16) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteAttribute(self, wStreamNum, wIndex);
     }
-    pub fn AddCodecInfo(self: *const IWMHeaderInfo3, pwszName: ?PWSTR, pwszDescription: ?PWSTR, codecType: WMT_CODEC_INFO_TYPE, cbCodecInfo: u16, pbCodecInfo: [*:0]u8) callconv(.@"inline") HRESULT {
+    pub fn AddCodecInfo(self: *const IWMHeaderInfo3, pwszName: ?[*:0]u16, pwszDescription: ?[*:0]u16, codecType: WMT_CODEC_INFO_TYPE, cbCodecInfo: u16, pbCodecInfo: [*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.AddCodecInfo(self, pwszName, pwszDescription, codecType, cbCodecInfo, pbCodecInfo);
     }
 };
@@ -1868,7 +1868,7 @@ pub const IWMLanguageList = extern union {
         ) callconv(.winapi) HRESULT,
         AddLanguageByRFC1766String: *const fn(
             self: *const IWMLanguageList,
-            pwszLanguageString: ?PWSTR,
+            pwszLanguageString: ?[*:0]u16,
             pwIndex: ?*u16,
         ) callconv(.winapi) HRESULT,
     };
@@ -1880,7 +1880,7 @@ pub const IWMLanguageList = extern union {
     pub fn GetLanguageDetails(self: *const IWMLanguageList, wIndex: u16, pwszLanguageString: [*:0]u16, pcchLanguageStringLength: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetLanguageDetails(self, wIndex, pwszLanguageString, pcchLanguageStringLength);
     }
-    pub fn AddLanguageByRFC1766String(self: *const IWMLanguageList, pwszLanguageString: ?PWSTR, pwIndex: ?*u16) callconv(.@"inline") HRESULT {
+    pub fn AddLanguageByRFC1766String(self: *const IWMLanguageList, pwszLanguageString: ?[*:0]u16, pwIndex: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.AddLanguageByRFC1766String(self, pwszLanguageString, pwIndex);
     }
 };
@@ -2085,7 +2085,7 @@ pub const IWMMutualExclusion2 = extern union {
         ) callconv(.winapi) HRESULT,
         SetName: *const fn(
             self: *const IWMMutualExclusion2,
-            pwszName: ?PWSTR,
+            pwszName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetRecordCount: *const fn(
             self: *const IWMMutualExclusion2,
@@ -2107,7 +2107,7 @@ pub const IWMMutualExclusion2 = extern union {
         SetRecordName: *const fn(
             self: *const IWMMutualExclusion2,
             wRecordNumber: u16,
-            pwszRecordName: ?PWSTR,
+            pwszRecordName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetStreamsForRecord: *const fn(
             self: *const IWMMutualExclusion2,
@@ -2133,7 +2133,7 @@ pub const IWMMutualExclusion2 = extern union {
     pub fn GetName(self: *const IWMMutualExclusion2, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, pwszName, pcchName);
     }
-    pub fn SetName(self: *const IWMMutualExclusion2, pwszName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetName(self: *const IWMMutualExclusion2, pwszName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetName(self, pwszName);
     }
     pub fn GetRecordCount(self: *const IWMMutualExclusion2, pwRecordCount: ?*u16) callconv(.@"inline") HRESULT {
@@ -2148,7 +2148,7 @@ pub const IWMMutualExclusion2 = extern union {
     pub fn GetRecordName(self: *const IWMMutualExclusion2, wRecordNumber: u16, pwszRecordName: [*:0]u16, pcchRecordName: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetRecordName(self, wRecordNumber, pwszRecordName, pcchRecordName);
     }
-    pub fn SetRecordName(self: *const IWMMutualExclusion2, wRecordNumber: u16, pwszRecordName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetRecordName(self: *const IWMMutualExclusion2, wRecordNumber: u16, pwszRecordName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetRecordName(self, wRecordNumber, pwszRecordName);
     }
     pub fn GetStreamsForRecord(self: *const IWMMutualExclusion2, wRecordNumber: u16, pwStreamNumArray: [*:0]u16, pcStreams: ?*u16) callconv(.@"inline") HRESULT {
@@ -2552,7 +2552,7 @@ pub const IWMProfileManager = extern union {
         SaveProfile: *const fn(
             self: *const IWMProfileManager,
             pIWMProfile: ?*IWMProfile,
-            pwszProfile: ?PWSTR,
+            pwszProfile: ?[*:0]u16,
             pdwLength: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetSystemProfileCount: *const fn(
@@ -2576,7 +2576,7 @@ pub const IWMProfileManager = extern union {
     pub fn LoadProfileByData(self: *const IWMProfileManager, pwszProfile: ?[*:0]const u16, ppProfile: ?*?*IWMProfile) callconv(.@"inline") HRESULT {
         return self.vtable.LoadProfileByData(self, pwszProfile, ppProfile);
     }
-    pub fn SaveProfile(self: *const IWMProfileManager, pIWMProfile: ?*IWMProfile, pwszProfile: ?PWSTR, pdwLength: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn SaveProfile(self: *const IWMProfileManager, pIWMProfile: ?*IWMProfile, pwszProfile: ?[*:0]u16, pdwLength: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SaveProfile(self, pIWMProfile, pwszProfile, pdwLength);
     }
     pub fn GetSystemProfileCount(self: *const IWMProfileManager, pcProfiles: ?*u32) callconv(.@"inline") HRESULT {
@@ -3793,7 +3793,7 @@ pub const IWMReaderPlaylistBurn = extern union {
         InitPlaylistBurn: *const fn(
             self: *const IWMReaderPlaylistBurn,
             cFiles: u32,
-            ppwszFilenames: ?*?PWSTR,
+            ppwszFilenames: ?*?[*:0]u16,
             pCallback: ?*IWMStatusCallback,
             pvContext: ?*anyopaque,
         ) callconv(.winapi) HRESULT,
@@ -3812,7 +3812,7 @@ pub const IWMReaderPlaylistBurn = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn InitPlaylistBurn(self: *const IWMReaderPlaylistBurn, cFiles: u32, ppwszFilenames: ?*?PWSTR, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
+    pub fn InitPlaylistBurn(self: *const IWMReaderPlaylistBurn, cFiles: u32, ppwszFilenames: ?*?[*:0]u16, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.InitPlaylistBurn(self, cFiles, ppwszFilenames, pCallback, pvContext);
     }
     pub fn GetInitResults(self: *const IWMReaderPlaylistBurn, cFiles: u32, phrStati: ?*HRESULT) callconv(.@"inline") HRESULT {
@@ -4447,7 +4447,7 @@ pub const IWMStreamConfig = extern union {
         ) callconv(.winapi) HRESULT,
         SetStreamName: *const fn(
             self: *const IWMStreamConfig,
-            pwszStreamName: ?PWSTR,
+            pwszStreamName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetConnectionName: *const fn(
             self: *const IWMStreamConfig,
@@ -4456,7 +4456,7 @@ pub const IWMStreamConfig = extern union {
         ) callconv(.winapi) HRESULT,
         SetConnectionName: *const fn(
             self: *const IWMStreamConfig,
-            pwszInputName: ?PWSTR,
+            pwszInputName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetBitrate: *const fn(
             self: *const IWMStreamConfig,
@@ -4489,13 +4489,13 @@ pub const IWMStreamConfig = extern union {
     pub fn GetStreamName(self: *const IWMStreamConfig, pwszStreamName: [*:0]u16, pcchStreamName: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetStreamName(self, pwszStreamName, pcchStreamName);
     }
-    pub fn SetStreamName(self: *const IWMStreamConfig, pwszStreamName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetStreamName(self: *const IWMStreamConfig, pwszStreamName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetStreamName(self, pwszStreamName);
     }
     pub fn GetConnectionName(self: *const IWMStreamConfig, pwszInputName: [*:0]u16, pcchInputName: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetConnectionName(self, pwszInputName, pcchInputName);
     }
-    pub fn SetConnectionName(self: *const IWMStreamConfig, pwszInputName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetConnectionName(self: *const IWMStreamConfig, pwszInputName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetConnectionName(self, pwszInputName);
     }
     pub fn GetBitrate(self: *const IWMStreamConfig, pdwBitrate: ?*u32) callconv(.@"inline") HRESULT {
@@ -4583,7 +4583,7 @@ pub const IWMStreamConfig3 = extern union {
         ) callconv(.winapi) HRESULT,
         SetLanguage: *const fn(
             self: *const IWMStreamConfig3,
-            pwszLanguageString: ?PWSTR,
+            pwszLanguageString: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -4593,7 +4593,7 @@ pub const IWMStreamConfig3 = extern union {
     pub fn GetLanguage(self: *const IWMStreamConfig3, pwszLanguageString: [*:0]u16, pcchLanguageStringLength: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetLanguage(self, pwszLanguageString, pcchLanguageStringLength);
     }
-    pub fn SetLanguage(self: *const IWMStreamConfig3, pwszLanguageString: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetLanguage(self: *const IWMStreamConfig3, pwszLanguageString: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetLanguage(self, pwszLanguageString);
     }
 };
@@ -5402,7 +5402,7 @@ pub const IWMWriterNetworkSink = extern union {
         ) callconv(.winapi) HRESULT,
         GetHostURL: *const fn(
             self: *const IWMWriterNetworkSink,
-            pwszURL: ?PWSTR,
+            pwszURL: ?[*:0]u16,
             pcchURL: ?*u32,
         ) callconv(.winapi) HRESULT,
         Open: *const fn(
@@ -5431,7 +5431,7 @@ pub const IWMWriterNetworkSink = extern union {
     pub fn GetNetworkProtocol(self: *const IWMWriterNetworkSink, pProtocol: ?*WMT_NET_PROTOCOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetNetworkProtocol(self, pProtocol);
     }
-    pub fn GetHostURL(self: *const IWMWriterNetworkSink, pwszURL: ?PWSTR, pcchURL: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetHostURL(self: *const IWMWriterNetworkSink, pwszURL: ?[*:0]u16, pcchURL: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetHostURL(self, pwszURL, pcchURL);
     }
     pub fn Open(self: *const IWMWriterNetworkSink, pdwPortNum: ?*u32) callconv(.@"inline") HRESULT {
@@ -5790,9 +5790,9 @@ pub const WM_MEDIA_TYPE = extern struct {
 };
 
 pub const WM_PICTURE = extern struct {
-    pwszMIMEType: ?PWSTR align(1),
+    pwszMIMEType: ?[*:0]u16 align(1),
     bPictureType: u8 align(1),
-    pwszDescription: ?PWSTR align(1),
+    pwszDescription: ?[*:0]u16 align(1),
     dwDataLen: u32 align(1),
     pbData: ?*u8 align(1),
 };
@@ -5813,14 +5813,14 @@ pub const WM_PORT_NUMBER_RANGE = extern struct {
 
 pub const WM_READER_CLIENTINFO = extern struct {
     cbSize: u32,
-    wszLang: ?PWSTR,
-    wszBrowserUserAgent: ?PWSTR,
-    wszBrowserWebPage: ?PWSTR,
+    wszLang: ?[*:0]u16,
+    wszBrowserUserAgent: ?[*:0]u16,
+    wszBrowserWebPage: ?[*:0]u16,
     qwReserved: u64,
     pReserved: ?*LPARAM,
-    wszHostExe: ?PWSTR,
+    wszHostExe: ?[*:0]u16,
     qwHostVersion: u64,
-    wszPlayerUserAgent: ?PWSTR,
+    wszPlayerUserAgent: ?[*:0]u16,
 };
 
 pub const WM_READER_STATISTICS = extern struct {
@@ -5861,19 +5861,19 @@ pub const WM_STREAM_TYPE_INFO = extern struct {
 pub const WM_SYNCHRONISED_LYRICS = extern struct {
     bTimeStampFormat: u8 align(1),
     bContentType: u8 align(1),
-    pwszContentDescriptor: ?PWSTR align(1),
+    pwszContentDescriptor: ?[*:0]u16 align(1),
     dwLyricsLen: u32 align(1),
     pbLyrics: ?*u8 align(1),
 };
 
 pub const WM_USER_TEXT = extern struct {
-    pwszDescription: ?PWSTR align(1),
-    pwszText: ?PWSTR align(1),
+    pwszDescription: ?[*:0]u16 align(1),
+    pwszText: ?[*:0]u16 align(1),
 };
 
 pub const WM_USER_WEB_URL = extern struct {
-    pwszDescription: ?PWSTR align(1),
-    pwszURL: ?PWSTR align(1),
+    pwszDescription: ?[*:0]u16 align(1),
+    pwszURL: ?[*:0]u16 align(1),
 };
 
 pub const WM_WRITER_STATISTICS = extern struct {
@@ -6334,7 +6334,7 @@ pub const WMT_WATERMARK_ENTRY = extern struct {
     wmetType: WMT_WATERMARK_ENTRY_TYPE,
     clsid: Guid,
     cbDisplayName: u32,
-    pwszDisplayName: ?PWSTR,
+    pwszDisplayName: ?[*:0]u16,
 };
 
 pub const WMT_WATERMARK_ENTRY_TYPE = enum(i32) {
@@ -6454,7 +6454,7 @@ pub extern "wmvcore" fn WMIsContentProtected(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BITMAPINFOHEADER = @import("../graphics/gdi.zig").BITMAPINFOHEADER;
@@ -6464,7 +6464,6 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LPARAM = @import("../foundation.zig").LPARAM;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const VARIANT = @import("../system/com.zig").VARIANT;
 

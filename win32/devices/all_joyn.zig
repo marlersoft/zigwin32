@@ -375,7 +375,7 @@ pub const alljoyn_interfacedescription_translation_callback_ptr = *const fn(
     sourceLanguage: ?[*:0]const u8,
     targetLanguage: ?[*:0]const u8,
     sourceText: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub const alljoyn_keystore = isize;
 
@@ -1573,7 +1573,7 @@ pub extern "msajapi" fn alljoyn_aboutdata_getfields(
 pub extern "msajapi" fn alljoyn_aboutdata_getfieldsignature(
     data: alljoyn_aboutdata,
     fieldName: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_aboutdata_gethardwareversion(
     data: alljoyn_aboutdata,
@@ -2163,7 +2163,7 @@ pub extern "msajapi" fn alljoyn_busattachment_getconcurrency(
 
 pub extern "msajapi" fn alljoyn_busattachment_getconnectspec(
     bus: alljoyn_busattachment,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_busattachment_getdbusproxyobj(
     bus: alljoyn_busattachment,
@@ -2171,7 +2171,7 @@ pub extern "msajapi" fn alljoyn_busattachment_getdbusproxyobj(
 
 pub extern "msajapi" fn alljoyn_busattachment_getglobalguidstring(
     bus: alljoyn_busattachment,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_busattachment_getinterface(
     bus: alljoyn_busattachment,
@@ -2193,7 +2193,7 @@ pub extern "msajapi" fn alljoyn_busattachment_getkeyexpiration(
 pub extern "msajapi" fn alljoyn_busattachment_getpeerguid(
     bus: alljoyn_busattachment,
     name: ?[*:0]const u8,
-    guid: ?PSTR,
+    guid: ?[*:0]u8,
     guidSz: ?*usize,
 ) callconv(.winapi) QStatus;
 
@@ -2206,7 +2206,7 @@ pub extern "msajapi" fn alljoyn_busattachment_gettimestamp(
 
 pub extern "msajapi" fn alljoyn_busattachment_getuniquename(
     bus: alljoyn_busattachment,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_busattachment_isconnected(
     bus: alljoyn_busattachment,
@@ -2525,13 +2525,13 @@ pub extern "msajapi" fn alljoyn_busobject_getbusattachment(
 
 pub extern "msajapi" fn alljoyn_busobject_getname(
     bus: alljoyn_busobject,
-    buffer: ?PSTR,
+    buffer: ?[*:0]u8,
     bufferSz: usize,
 ) callconv(.winapi) usize;
 
 pub extern "msajapi" fn alljoyn_busobject_getpath(
     bus: alljoyn_busobject,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_busobject_issecure(
     bus: alljoyn_busobject,
@@ -2588,7 +2588,7 @@ pub extern "msajapi" fn alljoyn_credentials_destroy(
 
 pub extern "msajapi" fn alljoyn_credentials_getcertchain(
     cred: alljoyn_credentials,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_credentials_getexpiration(
     cred: alljoyn_credentials,
@@ -2596,19 +2596,19 @@ pub extern "msajapi" fn alljoyn_credentials_getexpiration(
 
 pub extern "msajapi" fn alljoyn_credentials_getlogonentry(
     cred: alljoyn_credentials,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_credentials_getpassword(
     cred: alljoyn_credentials,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_credentials_getprivateKey(
     cred: alljoyn_credentials,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_credentials_getusername(
     cred: alljoyn_credentials,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_credentials_isset(
     cred: alljoyn_credentials,
@@ -2646,13 +2646,13 @@ pub extern "msajapi" fn alljoyn_credentials_setusername(
 ) callconv(.winapi) void;
 
 pub extern "msajapi" fn alljoyn_getbuildinfo(
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_getnumericversion(
 ) callconv(.winapi) u32;
 
 pub extern "msajapi" fn alljoyn_getversion(
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_init(
 ) callconv(.winapi) QStatus;
@@ -2733,16 +2733,16 @@ pub extern "msajapi" fn alljoyn_interfacedescription_eql(
 pub extern "msajapi" fn alljoyn_interfacedescription_getannotation(
     iface: alljoyn_interfacedescription,
     name: ?[*:0]const u8,
-    value: ?PSTR,
+    value: ?[*:0]u8,
     value_size: ?*usize,
 ) callconv(.winapi) i32;
 
 pub extern "msajapi" fn alljoyn_interfacedescription_getannotationatindex(
     iface: alljoyn_interfacedescription,
     index: usize,
-    name: ?PSTR,
+    name: ?[*:0]u8,
     name_size: ?*usize,
-    value: ?PSTR,
+    value: ?[*:0]u8,
     value_size: ?*usize,
 ) callconv(.winapi) void;
 
@@ -2754,14 +2754,14 @@ pub extern "msajapi" fn alljoyn_interfacedescription_getargdescriptionforlanguag
     iface: alljoyn_interfacedescription,
     member: ?[*:0]const u8,
     arg: ?[*:0]const u8,
-    description: ?PSTR,
+    description: ?[*:0]u8,
     maxLanguageLength: usize,
     languageTag: ?[*:0]const u8,
 ) callconv(.winapi) usize;
 
 pub extern "msajapi" fn alljoyn_interfacedescription_getdescriptionforlanguage(
     iface: alljoyn_interfacedescription,
-    description: ?PSTR,
+    description: ?[*:0]u8,
     maxLanguageLength: usize,
     languageTag: ?[*:0]const u8,
 ) callconv(.winapi) usize;
@@ -2774,7 +2774,7 @@ pub extern "msajapi" fn alljoyn_interfacedescription_getdescriptionlanguages(
 
 pub extern "msajapi" fn alljoyn_interfacedescription_getdescriptionlanguages2(
     iface: alljoyn_interfacedescription,
-    languages: ?PSTR,
+    languages: ?[*:0]u8,
     languagesSize: usize,
 ) callconv(.winapi) usize;
 
@@ -2792,7 +2792,7 @@ pub extern "msajapi" fn alljoyn_interfacedescription_getmemberannotation(
     iface: alljoyn_interfacedescription,
     member: ?[*:0]const u8,
     name: ?[*:0]const u8,
-    value: ?PSTR,
+    value: ?[*:0]u8,
     value_size: ?*usize,
 ) callconv(.winapi) i32;
 
@@ -2801,14 +2801,14 @@ pub extern "msajapi" fn alljoyn_interfacedescription_getmemberargannotation(
     member: ?[*:0]const u8,
     argName: ?[*:0]const u8,
     name: ?[*:0]const u8,
-    value: ?PSTR,
+    value: ?[*:0]u8,
     value_size: ?*usize,
 ) callconv(.winapi) i32;
 
 pub extern "msajapi" fn alljoyn_interfacedescription_getmemberdescriptionforlanguage(
     iface: alljoyn_interfacedescription,
     member: ?[*:0]const u8,
-    description: ?PSTR,
+    description: ?[*:0]u8,
     maxLanguageLength: usize,
     languageTag: ?[*:0]const u8,
 ) callconv(.winapi) usize;
@@ -2827,7 +2827,7 @@ pub extern "msajapi" fn alljoyn_interfacedescription_getmethod(
 
 pub extern "msajapi" fn alljoyn_interfacedescription_getname(
     iface: alljoyn_interfacedescription,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_interfacedescription_getproperties(
     iface: alljoyn_interfacedescription,
@@ -2845,14 +2845,14 @@ pub extern "msajapi" fn alljoyn_interfacedescription_getpropertyannotation(
     iface: alljoyn_interfacedescription,
     property: ?[*:0]const u8,
     name: ?[*:0]const u8,
-    value: ?PSTR,
+    value: ?[*:0]u8,
     str_size: ?*usize,
 ) callconv(.winapi) i32;
 
 pub extern "msajapi" fn alljoyn_interfacedescription_getpropertydescriptionforlanguage(
     iface: alljoyn_interfacedescription,
     property: ?[*:0]const u8,
-    description: ?PSTR,
+    description: ?[*:0]u8,
     maxLanguageLength: usize,
     languageTag: ?[*:0]const u8,
 ) callconv(.winapi) usize;
@@ -2889,7 +2889,7 @@ pub extern "msajapi" fn alljoyn_interfacedescription_hasproperty(
 
 pub extern "msajapi" fn alljoyn_interfacedescription_introspect(
     iface: alljoyn_interfacedescription,
-    str: ?PSTR,
+    str: ?[*:0]u8,
     buf: usize,
     indent: usize,
 ) callconv(.winapi) usize;
@@ -2906,16 +2906,16 @@ pub extern "msajapi" fn alljoyn_interfacedescription_member_eql(
 pub extern "msajapi" fn alljoyn_interfacedescription_member_getannotation(
     member: alljoyn_interfacedescription_member,
     name: ?[*:0]const u8,
-    value: ?PSTR,
+    value: ?[*:0]u8,
     value_size: ?*usize,
 ) callconv(.winapi) i32;
 
 pub extern "msajapi" fn alljoyn_interfacedescription_member_getannotationatindex(
     member: alljoyn_interfacedescription_member,
     index: usize,
-    name: ?PSTR,
+    name: ?[*:0]u8,
     name_size: ?*usize,
-    value: ?PSTR,
+    value: ?[*:0]u8,
     value_size: ?*usize,
 ) callconv(.winapi) void;
 
@@ -2927,7 +2927,7 @@ pub extern "msajapi" fn alljoyn_interfacedescription_member_getargannotation(
     member: alljoyn_interfacedescription_member,
     argName: ?[*:0]const u8,
     name: ?[*:0]const u8,
-    value: ?PSTR,
+    value: ?[*:0]u8,
     value_size: ?*usize,
 ) callconv(.winapi) i32;
 
@@ -2935,9 +2935,9 @@ pub extern "msajapi" fn alljoyn_interfacedescription_member_getargannotationatin
     member: alljoyn_interfacedescription_member,
     argName: ?[*:0]const u8,
     index: usize,
-    name: ?PSTR,
+    name: ?[*:0]u8,
     name_size: ?*usize,
-    value: ?PSTR,
+    value: ?[*:0]u8,
     value_size: ?*usize,
 ) callconv(.winapi) void;
 
@@ -2954,16 +2954,16 @@ pub extern "msajapi" fn alljoyn_interfacedescription_property_eql(
 pub extern "msajapi" fn alljoyn_interfacedescription_property_getannotation(
     property: alljoyn_interfacedescription_property,
     name: ?[*:0]const u8,
-    value: ?PSTR,
+    value: ?[*:0]u8,
     value_size: ?*usize,
 ) callconv(.winapi) i32;
 
 pub extern "msajapi" fn alljoyn_interfacedescription_property_getannotationatindex(
     property: alljoyn_interfacedescription_property,
     index: usize,
-    name: ?PSTR,
+    name: ?[*:0]u8,
     name_size: ?*usize,
-    value: ?PSTR,
+    value: ?[*:0]u8,
     value_size: ?*usize,
 ) callconv(.winapi) void;
 
@@ -3045,7 +3045,7 @@ pub extern "msajapi" fn alljoyn_keystorelistener_destroy(
 pub extern "msajapi" fn alljoyn_keystorelistener_getkeys(
     listener: alljoyn_keystorelistener,
     keyStore: alljoyn_keystore,
-    sink: ?PSTR,
+    sink: ?[*:0]u8,
     sink_sz: ?*usize,
 ) callconv(.winapi) QStatus;
 
@@ -3067,7 +3067,7 @@ pub extern "msajapi" fn alljoyn_message_create(
 
 pub extern "msajapi" fn alljoyn_message_description(
     msg: alljoyn_message,
-    str: ?PSTR,
+    str: ?[*:0]u8,
     buf: usize,
 ) callconv(.winapi) usize;
 
@@ -3093,7 +3093,7 @@ pub extern "msajapi" fn alljoyn_message_getargs(
 
 pub extern "msajapi" fn alljoyn_message_getauthmechanism(
     msg: alljoyn_message,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_message_getcallserial(
     msg: alljoyn_message,
@@ -3105,13 +3105,13 @@ pub extern "msajapi" fn alljoyn_message_getcompressiontoken(
 
 pub extern "msajapi" fn alljoyn_message_getdestination(
     msg: alljoyn_message,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_message_geterrorname(
     msg: alljoyn_message,
-    errorMessage: ?PSTR,
+    errorMessage: ?[*:0]u8,
     errorMessage_size: ?*usize,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_message_getflags(
     msg: alljoyn_message,
@@ -3119,19 +3119,19 @@ pub extern "msajapi" fn alljoyn_message_getflags(
 
 pub extern "msajapi" fn alljoyn_message_getinterface(
     msg: alljoyn_message,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_message_getmembername(
     msg: alljoyn_message,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_message_getobjectpath(
     msg: alljoyn_message,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_message_getreceiveendpointname(
     msg: alljoyn_message,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_message_getreplyserial(
     msg: alljoyn_message,
@@ -3139,7 +3139,7 @@ pub extern "msajapi" fn alljoyn_message_getreplyserial(
 
 pub extern "msajapi" fn alljoyn_message_getsender(
     msg: alljoyn_message,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_message_getsessionid(
     msg: alljoyn_message,
@@ -3147,7 +3147,7 @@ pub extern "msajapi" fn alljoyn_message_getsessionid(
 
 pub extern "msajapi" fn alljoyn_message_getsignature(
     msg: alljoyn_message,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_message_gettimestamp(
     msg: alljoyn_message,
@@ -3193,7 +3193,7 @@ pub extern "msajapi" fn alljoyn_message_setendianess(
 
 pub extern "msajapi" fn alljoyn_message_tostring(
     msg: alljoyn_message,
-    str: ?PSTR,
+    str: ?[*:0]u8,
     buf: usize,
 ) callconv(.winapi) usize;
 
@@ -3228,14 +3228,14 @@ pub extern "msajapi" fn alljoyn_msgarg_array_set_offset(
 pub extern "msajapi" fn alljoyn_msgarg_array_signature(
     values: alljoyn_msgarg,
     numValues: usize,
-    str: ?PSTR,
+    str: ?[*:0]u8,
     buf: usize,
 ) callconv(.winapi) usize;
 
 pub extern "msajapi" fn alljoyn_msgarg_array_tostring(
     args: alljoyn_msgarg,
     numArgs: usize,
-    str: ?PSTR,
+    str: ?[*:0]u8,
     buf: usize,
     indent: usize,
 ) callconv(.winapi) usize;
@@ -3283,7 +3283,7 @@ pub extern "msajapi" fn alljoyn_msgarg_get_array_element(
 pub extern "msajapi" fn alljoyn_msgarg_get_array_elementsignature(
     arg: alljoyn_msgarg,
     index: usize,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_msgarg_get_array_numberofelements(
     arg: alljoyn_msgarg,
@@ -3602,7 +3602,7 @@ pub extern "msajapi" fn alljoyn_msgarg_setstruct(
 
 pub extern "msajapi" fn alljoyn_msgarg_signature(
     arg: alljoyn_msgarg,
-    str: ?PSTR,
+    str: ?[*:0]u8,
     buf: usize,
 ) callconv(.winapi) usize;
 
@@ -3612,7 +3612,7 @@ pub extern "msajapi" fn alljoyn_msgarg_stabilize(
 
 pub extern "msajapi" fn alljoyn_msgarg_tostring(
     arg: alljoyn_msgarg,
-    str: ?PSTR,
+    str: ?[*:0]u8,
     buf: usize,
     indent: usize,
 ) callconv(.winapi) usize;
@@ -3934,7 +3934,7 @@ pub extern "msajapi" fn alljoyn_proxybusobject_getinterfaces(
 
 pub extern "msajapi" fn alljoyn_proxybusobject_getpath(
     proxyObj: alljoyn_proxybusobject,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_proxybusobject_getproperty(
     proxyObj: alljoyn_proxybusobject,
@@ -3954,7 +3954,7 @@ pub extern "msajapi" fn alljoyn_proxybusobject_getpropertyasync(
 
 pub extern "msajapi" fn alljoyn_proxybusobject_getservicename(
     proxyObj: alljoyn_proxybusobject,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_proxybusobject_getsessionid(
     proxyObj: alljoyn_proxybusobject,
@@ -3962,7 +3962,7 @@ pub extern "msajapi" fn alljoyn_proxybusobject_getsessionid(
 
 pub extern "msajapi" fn alljoyn_proxybusobject_getuniquename(
     proxyObj: alljoyn_proxybusobject,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "msajapi" fn alljoyn_proxybusobject_implementsinterface(
     proxyObj: alljoyn_proxybusobject,
@@ -4403,19 +4403,17 @@ pub extern "msajapi" fn AllJoynSendToBus(
 
 pub extern "msajapi" fn QCC_StatusText(
     status: QStatus,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {

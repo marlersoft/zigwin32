@@ -183,7 +183,7 @@ pub const IDxcBlobUtf16 = extern union {
         base: IDxcBlobEncoding.VTable,
         GetStringPointer: *const fn(
             self: *const IDxcBlobUtf16,
-        ) callconv(.winapi) ?PWSTR,
+        ) callconv(.winapi) ?[*:0]u16,
         GetStringLength: *const fn(
             self: *const IDxcBlobUtf16,
         ) callconv(.winapi) usize,
@@ -192,7 +192,7 @@ pub const IDxcBlobUtf16 = extern union {
     IDxcBlobEncoding: IDxcBlobEncoding,
     IDxcBlob: IDxcBlob,
     IUnknown: IUnknown,
-    pub fn GetStringPointer(self: *const IDxcBlobUtf16) callconv(.@"inline") ?PWSTR {
+    pub fn GetStringPointer(self: *const IDxcBlobUtf16) callconv(.@"inline") ?[*:0]u16 {
         return self.vtable.GetStringPointer(self);
     }
     pub fn GetStringLength(self: *const IDxcBlobUtf16) callconv(.@"inline") usize {
@@ -207,7 +207,7 @@ pub const IDxcBlobUtf8 = extern union {
         base: IDxcBlobEncoding.VTable,
         GetStringPointer: *const fn(
             self: *const IDxcBlobUtf8,
-        ) callconv(.winapi) ?PSTR,
+        ) callconv(.winapi) ?[*:0]u8,
         GetStringLength: *const fn(
             self: *const IDxcBlobUtf8,
         ) callconv(.winapi) usize,
@@ -216,7 +216,7 @@ pub const IDxcBlobUtf8 = extern union {
     IDxcBlobEncoding: IDxcBlobEncoding,
     IDxcBlob: IDxcBlob,
     IUnknown: IUnknown,
-    pub fn GetStringPointer(self: *const IDxcBlobUtf8) callconv(.@"inline") ?PSTR {
+    pub fn GetStringPointer(self: *const IDxcBlobUtf8) callconv(.@"inline") ?[*:0]u8 {
         return self.vtable.GetStringPointer(self);
     }
     pub fn GetStringLength(self: *const IDxcBlobUtf8) callconv(.@"inline") usize {
@@ -235,7 +235,7 @@ pub const IDxcCompiler = extern union {
             pSourceName: ?[*:0]const u16,
             pEntryPoint: ?[*:0]const u16,
             pTargetProfile: ?[*:0]const u16,
-            pArguments: ?[*]?PWSTR,
+            pArguments: ?[*]?[*:0]u16,
             argCount: u32,
             pDefines: [*]const DxcDefine,
             defineCount: u32,
@@ -246,7 +246,7 @@ pub const IDxcCompiler = extern union {
             self: *const IDxcCompiler,
             pSource: ?*IDxcBlob,
             pSourceName: ?[*:0]const u16,
-            pArguments: ?[*]?PWSTR,
+            pArguments: ?[*]?[*:0]u16,
             argCount: u32,
             pDefines: [*]const DxcDefine,
             defineCount: u32,
@@ -261,10 +261,10 @@ pub const IDxcCompiler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Compile(self: *const IDxcCompiler, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: **IDxcOperationResult) callconv(.@"inline") HRESULT {
+    pub fn Compile(self: *const IDxcCompiler, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?[*:0]u16, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: **IDxcOperationResult) callconv(.@"inline") HRESULT {
         return self.vtable.Compile(self, pSource, pSourceName, pEntryPoint, pTargetProfile, pArguments, argCount, pDefines, defineCount, pIncludeHandler, ppResult);
     }
-    pub fn Preprocess(self: *const IDxcCompiler, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: **IDxcOperationResult) callconv(.@"inline") HRESULT {
+    pub fn Preprocess(self: *const IDxcCompiler, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pArguments: ?[*]?[*:0]u16, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: **IDxcOperationResult) callconv(.@"inline") HRESULT {
         return self.vtable.Preprocess(self, pSource, pSourceName, pArguments, argCount, pDefines, defineCount, pIncludeHandler, ppResult);
     }
     pub fn Disassemble(self: *const IDxcCompiler, pSource: ?*IDxcBlob, ppDisassembly: **IDxcBlobEncoding) callconv(.@"inline") HRESULT {
@@ -283,20 +283,20 @@ pub const IDxcCompiler2 = extern union {
             pSourceName: ?[*:0]const u16,
             pEntryPoint: ?[*:0]const u16,
             pTargetProfile: ?[*:0]const u16,
-            pArguments: ?[*]?PWSTR,
+            pArguments: ?[*]?[*:0]u16,
             argCount: u32,
             pDefines: [*]const DxcDefine,
             defineCount: u32,
             pIncludeHandler: ?*IDxcIncludeHandler,
             ppResult: **IDxcOperationResult,
-            ppDebugBlobName: ?*?PWSTR,
+            ppDebugBlobName: ?*?[*:0]u16,
             ppDebugBlob: ?**IDxcBlob,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDxcCompiler: IDxcCompiler,
     IUnknown: IUnknown,
-    pub fn CompileWithDebug(self: *const IDxcCompiler2, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: **IDxcOperationResult, ppDebugBlobName: ?*?PWSTR, ppDebugBlob: ?**IDxcBlob) callconv(.@"inline") HRESULT {
+    pub fn CompileWithDebug(self: *const IDxcCompiler2, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?[*:0]u16, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: **IDxcOperationResult, ppDebugBlobName: ?*?[*:0]u16, ppDebugBlob: ?**IDxcBlob) callconv(.@"inline") HRESULT {
         return self.vtable.CompileWithDebug(self, pSource, pSourceName, pEntryPoint, pTargetProfile, pArguments, argCount, pDefines, defineCount, pIncludeHandler, ppResult, ppDebugBlobName, ppDebugBlob);
     }
 };
@@ -309,7 +309,7 @@ pub const IDxcCompiler3 = extern union {
         Compile: *const fn(
             self: *const IDxcCompiler3,
             pSource: ?*const DxcBuffer,
-            pArguments: ?[*]?PWSTR,
+            pArguments: ?[*]?[*:0]u16,
             argCount: u32,
             pIncludeHandler: ?*IDxcIncludeHandler,
             riid: ?*const Guid,
@@ -324,7 +324,7 @@ pub const IDxcCompiler3 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Compile(self: *const IDxcCompiler3, pSource: ?*const DxcBuffer, pArguments: ?[*]?PWSTR, argCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, riid: ?*const Guid, ppResult: **anyopaque) callconv(.@"inline") HRESULT {
+    pub fn Compile(self: *const IDxcCompiler3, pSource: ?*const DxcBuffer, pArguments: ?[*]?[*:0]u16, argCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, riid: ?*const Guid, ppResult: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Compile(self, pSource, pArguments, argCount, pIncludeHandler, riid, ppResult);
     }
     pub fn Disassemble(self: *const IDxcCompiler3, pObject: ?*const DxcBuffer, riid: ?*const Guid, ppResult: **anyopaque) callconv(.@"inline") HRESULT {
@@ -339,18 +339,18 @@ pub const IDxcCompilerArgs = extern union {
         base: IUnknown.VTable,
         GetArguments: *const fn(
             self: *const IDxcCompilerArgs,
-        ) callconv(.winapi) ?*?PWSTR,
+        ) callconv(.winapi) ?*?[*:0]u16,
         GetCount: *const fn(
             self: *const IDxcCompilerArgs,
         ) callconv(.winapi) u32,
         AddArguments: *const fn(
             self: *const IDxcCompilerArgs,
-            pArguments: ?[*]?PWSTR,
+            pArguments: ?[*]?[*:0]u16,
             argCount: u32,
         ) callconv(.winapi) HRESULT,
         AddArgumentsUTF8: *const fn(
             self: *const IDxcCompilerArgs,
-            pArguments: ?[*]?PSTR,
+            pArguments: ?[*]?[*:0]u8,
             argCount: u32,
         ) callconv(.winapi) HRESULT,
         AddDefines: *const fn(
@@ -361,16 +361,16 @@ pub const IDxcCompilerArgs = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetArguments(self: *const IDxcCompilerArgs) callconv(.@"inline") ?*?PWSTR {
+    pub fn GetArguments(self: *const IDxcCompilerArgs) callconv(.@"inline") ?*?[*:0]u16 {
         return self.vtable.GetArguments(self);
     }
     pub fn GetCount(self: *const IDxcCompilerArgs) callconv(.@"inline") u32 {
         return self.vtable.GetCount(self);
     }
-    pub fn AddArguments(self: *const IDxcCompilerArgs, pArguments: ?[*]?PWSTR, argCount: u32) callconv(.@"inline") HRESULT {
+    pub fn AddArguments(self: *const IDxcCompilerArgs, pArguments: ?[*]?[*:0]u16, argCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddArguments(self, pArguments, argCount);
     }
-    pub fn AddArgumentsUTF8(self: *const IDxcCompilerArgs, pArguments: ?[*]?PSTR, argCount: u32) callconv(.@"inline") HRESULT {
+    pub fn AddArgumentsUTF8(self: *const IDxcCompilerArgs, pArguments: ?[*]?[*:0]u8, argCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddArgumentsUTF8(self, pArguments, argCount);
     }
     pub fn AddDefines(self: *const IDxcCompilerArgs, pDefines: [*]const DxcDefine, defineCount: u32) callconv(.@"inline") HRESULT {
@@ -699,7 +699,7 @@ pub const IDxcOptimizer = extern union {
         RunOptimizer: *const fn(
             self: *const IDxcOptimizer,
             pBlob: ?*IDxcBlob,
-            ppOptions: [*]?PWSTR,
+            ppOptions: [*]?[*:0]u16,
             optionCount: u32,
             pOutputModule: **IDxcBlob,
             ppOutputText: ?**IDxcBlobEncoding,
@@ -713,7 +713,7 @@ pub const IDxcOptimizer = extern union {
     pub fn GetAvailablePass(self: *const IDxcOptimizer, index: u32, ppResult: **IDxcOptimizerPass) callconv(.@"inline") HRESULT {
         return self.vtable.GetAvailablePass(self, index, ppResult);
     }
-    pub fn RunOptimizer(self: *const IDxcOptimizer, pBlob: ?*IDxcBlob, ppOptions: [*]?PWSTR, optionCount: u32, pOutputModule: **IDxcBlob, ppOutputText: ?**IDxcBlobEncoding) callconv(.@"inline") HRESULT {
+    pub fn RunOptimizer(self: *const IDxcOptimizer, pBlob: ?*IDxcBlob, ppOptions: [*]?[*:0]u16, optionCount: u32, pOutputModule: **IDxcBlob, ppOutputText: ?**IDxcBlobEncoding) callconv(.@"inline") HRESULT {
         return self.vtable.RunOptimizer(self, pBlob, ppOptions, optionCount, pOutputModule, ppOutputText);
     }
 };
@@ -725,11 +725,11 @@ pub const IDxcOptimizerPass = extern union {
         base: IUnknown.VTable,
         GetOptionName: *const fn(
             self: *const IDxcOptimizerPass,
-            ppResult: *PWSTR,
+            ppResult: *[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetDescription: *const fn(
             self: *const IDxcOptimizerPass,
-            ppResult: *PWSTR,
+            ppResult: *[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetOptionArgCount: *const fn(
             self: *const IDxcOptimizerPass,
@@ -738,29 +738,29 @@ pub const IDxcOptimizerPass = extern union {
         GetOptionArgName: *const fn(
             self: *const IDxcOptimizerPass,
             argIndex: u32,
-            ppResult: *PWSTR,
+            ppResult: *[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetOptionArgDescription: *const fn(
             self: *const IDxcOptimizerPass,
             argIndex: u32,
-            ppResult: *PWSTR,
+            ppResult: *[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetOptionName(self: *const IDxcOptimizerPass, ppResult: *PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetOptionName(self: *const IDxcOptimizerPass, ppResult: *[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetOptionName(self, ppResult);
     }
-    pub fn GetDescription(self: *const IDxcOptimizerPass, ppResult: *PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDescription(self: *const IDxcOptimizerPass, ppResult: *[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDescription(self, ppResult);
     }
     pub fn GetOptionArgCount(self: *const IDxcOptimizerPass, pCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOptionArgCount(self, pCount);
     }
-    pub fn GetOptionArgName(self: *const IDxcOptimizerPass, argIndex: u32, ppResult: *PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetOptionArgName(self: *const IDxcOptimizerPass, argIndex: u32, ppResult: *[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetOptionArgName(self, argIndex, ppResult);
     }
-    pub fn GetOptionArgDescription(self: *const IDxcOptimizerPass, argIndex: u32, ppResult: *PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetOptionArgDescription(self: *const IDxcOptimizerPass, argIndex: u32, ppResult: *[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetOptionArgDescription(self, argIndex, ppResult);
     }
 };
@@ -1077,7 +1077,7 @@ pub const IDxcUtils = extern union {
             pSourceName: ?[*:0]const u16,
             pEntryPoint: ?[*:0]const u16,
             pTargetProfile: ?[*:0]const u16,
-            pArguments: ?[*]?PWSTR,
+            pArguments: ?[*]?[*:0]u16,
             argCount: u32,
             pDefines: [*]const DxcDefine,
             defineCount: u32,
@@ -1125,7 +1125,7 @@ pub const IDxcUtils = extern union {
     pub fn CreateReflection(self: *const IDxcUtils, pData: ?*const DxcBuffer, iid: ?*const Guid, ppvReflection: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateReflection(self, pData, iid, ppvReflection);
     }
-    pub fn BuildArguments(self: *const IDxcUtils, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, ppArgs: **IDxcCompilerArgs) callconv(.@"inline") HRESULT {
+    pub fn BuildArguments(self: *const IDxcUtils, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?[*:0]u16, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, ppArgs: **IDxcCompilerArgs) callconv(.@"inline") HRESULT {
         return self.vtable.BuildArguments(self, pSourceName, pEntryPoint, pTargetProfile, pArguments, argCount, pDefines, defineCount, ppArgs);
     }
     pub fn GetPDBContents(self: *const IDxcUtils, pPDBBlob: ?*IDxcBlob, ppHash: **IDxcBlob, ppContainer: **IDxcBlob) callconv(.@"inline") HRESULT {
@@ -1256,7 +1256,7 @@ pub extern "dxcompiler" fn DxcCreateInstance2(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -1265,8 +1265,6 @@ const HRESULT = @import("../../foundation.zig").HRESULT;
 const IMalloc = @import("../../system/com.zig").IMalloc;
 const IStream = @import("../../system/com.zig").IStream;
 const IUnknown = @import("../../system/com.zig").IUnknown;
-const PSTR = @import("../../foundation.zig").PSTR;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

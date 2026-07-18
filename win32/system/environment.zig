@@ -370,11 +370,11 @@ pub extern "kernel32" fn FreeEnvironmentStringsW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn GetCommandLineA(
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn GetCommandLineW(
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 pub extern "kernel32" fn GetCurrentDirectoryA(
     nBufferLength: u32,
@@ -388,11 +388,11 @@ pub extern "kernel32" fn GetCurrentDirectoryW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn GetEnvironmentStrings(
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn GetEnvironmentStringsW(
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn GetEnvironmentVariableA(
@@ -564,13 +564,11 @@ pub const SetEnvironmentVariable = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

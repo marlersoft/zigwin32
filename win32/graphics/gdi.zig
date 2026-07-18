@@ -3188,24 +3188,24 @@ pub const FONTENUMPROCW = *const fn(
 
 pub const GCP_RESULTSA = extern struct {
     lStructSize: u32,
-    lpOutString: ?PSTR,
+    lpOutString: ?[*:0]u8,
     lpOrder: ?*u32,
     lpDx: ?*i32,
     lpCaretPos: ?*i32,
-    lpClass: ?PSTR,
-    lpGlyphs: ?PWSTR,
+    lpClass: ?[*:0]u8,
+    lpGlyphs: ?[*:0]u16,
     nGlyphs: u32,
     nMaxFit: i32,
 };
 
 pub const GCP_RESULTSW = extern struct {
     lStructSize: u32,
-    lpOutString: ?PWSTR,
+    lpOutString: ?[*:0]u16,
     lpOrder: ?*u32,
     lpDx: ?*i32,
     lpCaretPos: ?*i32,
-    lpClass: ?PSTR,
-    lpGlyphs: ?PWSTR,
+    lpClass: ?[*:0]u8,
+    lpGlyphs: ?[*:0]u16,
     nGlyphs: u32,
     nMaxFit: i32,
 };
@@ -3695,10 +3695,10 @@ pub const LOGPEN = extern struct {
 };
 
 pub const LPFNDEVCAPS = *const fn(
-    param0: ?PSTR,
-    param1: ?PSTR,
+    param0: ?[*:0]u8,
+    param1: ?[*:0]u8,
     param2: u32,
-    param3: ?PSTR,
+    param3: ?[*:0]u8,
     param4: ?*DEVMODEA,
 ) callconv(.winapi) u32;
 
@@ -3706,10 +3706,10 @@ pub const LPFNDEVMODE = *const fn(
     param0: ?HWND,
     param1: ?HINSTANCE,
     param2: ?*DEVMODEA,
-    param3: ?PSTR,
-    param4: ?PSTR,
+    param3: ?[*:0]u8,
+    param4: ?[*:0]u8,
     param5: ?*DEVMODEA,
-    param6: ?PSTR,
+    param6: ?[*:0]u8,
     param7: u32,
 ) callconv(.winapi) u32;
 
@@ -3900,10 +3900,10 @@ pub const OUTLINETEXTMETRICA = extern struct {
     otmsStrikeoutPosition: i32,
     otmsUnderscoreSize: i32,
     otmsUnderscorePosition: i32,
-    otmpFamilyName: ?PSTR,
-    otmpFaceName: ?PSTR,
-    otmpStyleName: ?PSTR,
-    otmpFullName: ?PSTR,
+    otmpFamilyName: ?[*:0]u8,
+    otmpFaceName: ?[*:0]u8,
+    otmpStyleName: ?[*:0]u8,
+    otmpFullName: ?[*:0]u8,
 };
 
 pub const OUTLINETEXTMETRICW = extern struct {
@@ -3935,10 +3935,10 @@ pub const OUTLINETEXTMETRICW = extern struct {
     otmsStrikeoutPosition: i32,
     otmsUnderscoreSize: i32,
     otmsUnderscorePosition: i32,
-    otmpFamilyName: ?PSTR,
-    otmpFaceName: ?PSTR,
-    otmpStyleName: ?PSTR,
-    otmpFullName: ?PSTR,
+    otmpFamilyName: ?[*:0]u8,
+    otmpFaceName: ?[*:0]u8,
+    otmpStyleName: ?[*:0]u8,
+    otmpFullName: ?[*:0]u8,
 };
 
 pub const PAINTSTRUCT = extern struct {
@@ -7976,8 +7976,8 @@ pub extern "t2embed" fn TTLoadEmbeddedFont(
     pulStatus: ?*TTLOAD_EMBEDDED_FONT_STATUS,
     lpfnReadFromStream: ?READEMBEDPROC,
     lpvReadStream: ?*anyopaque,
-    szWinFamilyName: ?PWSTR,
-    szMacFamilyName: ?PSTR,
+    szWinFamilyName: ?[*:0]u16,
+    szMacFamilyName: ?[*:0]u8,
     pTTLoadInfo: ?*TTLOADINFO,
 ) callconv(.winapi) i32;
 
@@ -8530,7 +8530,7 @@ pub const TextOut = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (16)
+// Section: Imports (14)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const CHAR = @import("../foundation.zig").CHAR;
@@ -8542,8 +8542,6 @@ const LPARAM = @import("../foundation.zig").LPARAM;
 const POINT = @import("../foundation.zig").POINT;
 const POINTL = @import("../foundation.zig").POINTL;
 const POINTS = @import("../foundation.zig").POINTS;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const RECTL = @import("../foundation.zig").RECTL;
 const SIZE = @import("../foundation.zig").SIZE;

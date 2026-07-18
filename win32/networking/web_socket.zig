@@ -130,9 +130,9 @@ pub extern "websocket" fn WebSocketAbortHandle(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "websocket" fn WebSocketBeginClientHandshake(
     hWebSocket: WEB_SOCKET_HANDLE,
-    pszSubprotocols: ?[*]?PSTR,
+    pszSubprotocols: ?[*]?[*:0]u8,
     ulSubprotocolCount: u32,
-    pszExtensions: ?[*]?PSTR,
+    pszExtensions: ?[*]?[*:0]u8,
     ulExtensionCount: u32,
     pInitialHeaders: ?[*]const WEB_SOCKET_HTTP_HEADER,
     ulInitialHeaderCount: u32,
@@ -144,7 +144,7 @@ pub extern "websocket" fn WebSocketBeginClientHandshake(
 pub extern "websocket" fn WebSocketBeginServerHandshake(
     hWebSocket: WEB_SOCKET_HANDLE,
     pszSubprotocolSelected: ?[*:0]const u8,
-    pszExtensionSelected: ?[*]?PSTR,
+    pszExtensionSelected: ?[*]?[*:0]u8,
     ulExtensionSelectedCount: u32,
     pRequestHeaders: [*]const WEB_SOCKET_HTTP_HEADER,
     ulRequestHeaderCount: u32,
@@ -232,10 +232,9 @@ pub extern "websocket" fn WebSocketSend(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (2)
+// Section: Imports (1)
 //--------------------------------------------------------------------------------
 const HRESULT = @import("../foundation.zig").HRESULT;
-const PSTR = @import("../foundation.zig").PSTR;
 
 test {
     @setEvalBranchQuota(

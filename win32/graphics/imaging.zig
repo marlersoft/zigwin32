@@ -3890,7 +3890,7 @@ pub extern "windowscodecs" fn WICMapGuidToShortName(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "windowscodecs" fn WICMapSchemaToName(
     guidMetadataFormat: ?*const Guid,
-    pwzSchema: ?PWSTR,
+    pwzSchema: ?[*:0]u16,
     cchName: u32,
     wzName: ?[*:0]u16,
     pcchActual: ?*u32,
@@ -3923,7 +3923,7 @@ pub extern "windowscodecs" fn WICSerializeMetadataContent(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (24)
+// Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -3947,7 +3947,6 @@ const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PROPBAG2 = @import("../system/com/structured_storage.zig").PROPBAG2;
 const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
 
 test {

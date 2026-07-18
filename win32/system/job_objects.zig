@@ -432,7 +432,7 @@ pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V2 = extern struct {
     MaxIops: i64,
     MaxBandwidth: i64,
     ReservationIops: i64,
-    VolumeName: ?PWSTR,
+    VolumeName: ?[*:0]u16,
     BaseIoSize: u32,
     ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
     VolumeNameLength: u16,
@@ -448,7 +448,7 @@ pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V3 = extern struct {
     MaxIops: i64,
     MaxBandwidth: i64,
     ReservationIops: i64,
-    VolumeName: ?PWSTR,
+    VolumeName: ?[*:0]u16,
     BaseIoSize: u32,
     ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS,
     VolumeNameLength: u16,
@@ -796,14 +796,12 @@ pub const OpenJobObject = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const IO_COUNTERS = @import("../system/threading.zig").IO_COUNTERS;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const TOKEN_GROUPS = @import("../security.zig").TOKEN_GROUPS;
 const TOKEN_PRIVILEGES = @import("../security.zig").TOKEN_PRIVILEGES;

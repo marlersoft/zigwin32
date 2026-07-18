@@ -278,7 +278,7 @@ pub const CLAIM_SECURITY_ATTRIBUTE_MANDATORY = CLAIM_SECURITY_ATTRIBUTE_FLAGS{ .
 
 pub const CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE = extern struct {
     Version: u64,
-    Name: ?PWSTR,
+    Name: ?[*:0]u16,
 };
 
 pub const CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE = extern struct {
@@ -302,7 +302,7 @@ pub const CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 = extern struct {
 };
 
 pub const CLAIM_SECURITY_ATTRIBUTE_V1 = extern struct {
-    Name: ?PWSTR,
+    Name: ?[*:0]u16,
     ValueType: CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE,
     Reserved: u16,
     Flags: u32,
@@ -310,7 +310,7 @@ pub const CLAIM_SECURITY_ATTRIBUTE_V1 = extern struct {
     Values: extern union {
         pInt64: ?*i64,
         pUint64: ?*u64,
-        ppString: ?*?PWSTR,
+        ppString: ?*?[*:0]u16,
         pFqbn: ?*CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE,
         pOctetString: ?*CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE,
     },
@@ -1554,8 +1554,8 @@ pub extern "advapi32" fn AccessCheck(
 pub extern "advapi32" fn AccessCheckAndAuditAlarmA(
     SubsystemName: ?[*:0]const u8,
     HandleId: ?*anyopaque,
-    ObjectTypeName: ?PSTR,
-    ObjectName: ?PSTR,
+    ObjectTypeName: ?[*:0]u8,
+    ObjectName: ?[*:0]u8,
     SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     DesiredAccess: u32,
     GenericMapping: ?*GENERIC_MAPPING,
@@ -1568,8 +1568,8 @@ pub extern "advapi32" fn AccessCheckAndAuditAlarmA(
 pub extern "advapi32" fn AccessCheckAndAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
     HandleId: ?*anyopaque,
-    ObjectTypeName: ?PWSTR,
-    ObjectName: ?PWSTR,
+    ObjectTypeName: ?[*:0]u16,
+    ObjectName: ?[*:0]u16,
     SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     DesiredAccess: u32,
     GenericMapping: ?*GENERIC_MAPPING,
@@ -2532,8 +2532,8 @@ pub extern "advapi32" fn ObjectDeleteAuditAlarmW(
 pub extern "advapi32" fn ObjectOpenAuditAlarmA(
     SubsystemName: ?[*:0]const u8,
     HandleId: ?*anyopaque,
-    ObjectTypeName: ?PSTR,
-    ObjectName: ?PSTR,
+    ObjectTypeName: ?[*:0]u8,
+    ObjectName: ?[*:0]u8,
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     ClientToken: ?HANDLE,
     DesiredAccess: u32,
@@ -2547,8 +2547,8 @@ pub extern "advapi32" fn ObjectOpenAuditAlarmA(
 pub extern "advapi32" fn ObjectOpenAuditAlarmW(
     SubsystemName: ?[*:0]const u16,
     HandleId: ?*anyopaque,
-    ObjectTypeName: ?PWSTR,
-    ObjectName: ?PWSTR,
+    ObjectTypeName: ?[*:0]u16,
+    ObjectName: ?[*:0]u16,
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     ClientToken: ?HANDLE,
     DesiredAccess: u32,
@@ -2878,7 +2878,7 @@ pub const SetFileSecurity = switch (@import("zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (13)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("zig.zig").Guid;
 const BOOL = @import("foundation.zig").BOOL;
@@ -2890,8 +2890,6 @@ const LARGE_INTEGER = @import("foundation.zig").LARGE_INTEGER;
 const LUID = @import("foundation.zig").LUID;
 const NTSTATUS = @import("foundation.zig").NTSTATUS;
 const PSID = @import("foundation.zig").PSID;
-const PSTR = @import("foundation.zig").PSTR;
-const PWSTR = @import("foundation.zig").PWSTR;
 const UNICODE_STRING = @import("foundation.zig").UNICODE_STRING;
 
 test {

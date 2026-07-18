@@ -460,7 +460,7 @@ pub const yHeightCharPtsMost = @as(u32, 1638);
 pub const AutoCorrectProc = *const fn(
     langid: u16,
     pszBefore: ?[*:0]const u16,
-    pszAfter: ?PWSTR,
+    pszAfter: ?[*:0]u16,
     cchAfter: i32,
     pcchReplaced: ?*i32,
 ) callconv(.winapi) i32;
@@ -821,7 +821,7 @@ pub const EDITSTREAMCALLBACK = *const fn(
 ) callconv(.winapi) u32;
 
 pub const EDITWORDBREAKPROCEX = *const fn(
-    pchText: ?PSTR,
+    pchText: ?[*:0]u8,
     cchText: i32,
     bCharSet: u8,
     action: i32,
@@ -862,7 +862,7 @@ pub const ENLINK = extern struct {
 
 pub const ENLOWFIRTF = extern struct {
     nmhdr: NMHDR align(4),
-    szControl: ?PSTR align(4),
+    szControl: ?[*:0]u8 align(4),
 };
 
 pub const ENOLEOPFAILED = extern struct {
@@ -5646,7 +5646,7 @@ pub const PShutdownTextServices = *const fn(
 
 pub const PUNCTUATION = extern struct {
     iSize: u32 align(4),
-    szPunctuation: ?PSTR align(4),
+    szPunctuation: ?[*:0]u8 align(4),
 };
 
 pub const REOBJECT = extern struct {
@@ -5862,12 +5862,12 @@ pub const TM_MULTICODEPAGE = TEXTMODE.MULTICODEPAGE;
 
 pub const TEXTRANGEA = extern struct {
     chrg: CHARRANGE align(4),
-    lpstrText: ?PSTR align(4),
+    lpstrText: ?[*:0]u8 align(4),
 };
 
 pub const TEXTRANGEW = extern struct {
     chrg: CHARRANGE align(4),
-    lpstrText: ?PWSTR align(4),
+    lpstrText: ?[*:0]u16 align(4),
 };
 
 pub const tomConstants = enum(i32) {
@@ -7144,7 +7144,7 @@ pub const TEXTRANGE = switch (@import("../../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (49)
+// Section: Imports (47)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -7183,8 +7183,6 @@ const MODIFIERKEYS_FLAGS = @import("../../system/system_services.zig").MODIFIERK
 const NMHDR = @import("../../ui/controls.zig").NMHDR;
 const OLEINPLACEFRAMEINFO = @import("../../system/ole.zig").OLEINPLACEFRAMEINFO;
 const POINT = @import("../../foundation.zig").POINT;
-const PSTR = @import("../../foundation.zig").PSTR;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const RECO_FLAGS = @import("../../system/system_services.zig").RECO_FLAGS;
 const RECT = @import("../../foundation.zig").RECT;
 const RECTL = @import("../../foundation.zig").RECTL;

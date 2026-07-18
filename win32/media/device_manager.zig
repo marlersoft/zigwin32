@@ -425,7 +425,7 @@ pub const IMDSPDevice = extern union {
             self: *const IMDSPDevice,
             pFormatEx: [*]?*WAVEFORMATEX,
             pnFormatCount: ?*u32,
-            pppwszMimeType: [*]?*?PWSTR,
+            pppwszMimeType: [*]?*?[*:0]u16,
             pnMimeTypeCount: ?*u32,
         ) callconv(.winapi) HRESULT,
         SendOpaqueCommand: *const fn(
@@ -462,7 +462,7 @@ pub const IMDSPDevice = extern union {
     pub fn EnumStorage(self: *const IMDSPDevice, ppEnumStorage: ?*?*IMDSPEnumStorage) callconv(.@"inline") HRESULT {
         return self.vtable.EnumStorage(self, ppEnumStorage);
     }
-    pub fn GetFormatSupport(self: *const IMDSPDevice, pFormatEx: [*]?*WAVEFORMATEX, pnFormatCount: ?*u32, pppwszMimeType: [*]?*?PWSTR, pnMimeTypeCount: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetFormatSupport(self: *const IMDSPDevice, pFormatEx: [*]?*WAVEFORMATEX, pnFormatCount: ?*u32, pppwszMimeType: [*]?*?[*:0]u16, pnMimeTypeCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFormatSupport(self, pFormatEx, pnFormatCount, pppwszMimeType, pnMimeTypeCount);
     }
     pub fn SendOpaqueCommand(self: *const IMDSPDevice, pCommand: ?*OPAQUECOMMAND) callconv(.@"inline") HRESULT {
@@ -648,7 +648,7 @@ pub const IMDSPDirectTransfer = extern union {
             pwszSourceFilePath: ?[*:0]const u16,
             pSourceOperation: ?*IWMDMOperation,
             fuFlags: u32,
-            pwszDestinationName: ?PWSTR,
+            pwszDestinationName: ?[*:0]u16,
             pSourceMetaData: ?*IWMDMMetaData,
             pTransferProgress: ?*IWMDMProgress,
             ppNewObject: ?*?*IMDSPStorage,
@@ -656,7 +656,7 @@ pub const IMDSPDirectTransfer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn TransferToDevice(self: *const IMDSPDirectTransfer, pwszSourceFilePath: ?[*:0]const u16, pSourceOperation: ?*IWMDMOperation, fuFlags: u32, pwszDestinationName: ?PWSTR, pSourceMetaData: ?*IWMDMMetaData, pTransferProgress: ?*IWMDMProgress, ppNewObject: ?*?*IMDSPStorage) callconv(.@"inline") HRESULT {
+    pub fn TransferToDevice(self: *const IMDSPDirectTransfer, pwszSourceFilePath: ?[*:0]const u16, pSourceOperation: ?*IWMDMOperation, fuFlags: u32, pwszDestinationName: ?[*:0]u16, pSourceMetaData: ?*IWMDMMetaData, pTransferProgress: ?*IWMDMProgress, ppNewObject: ?*?*IMDSPStorage) callconv(.@"inline") HRESULT {
         return self.vtable.TransferToDevice(self, pwszSourceFilePath, pSourceOperation, fuFlags, pwszDestinationName, pSourceMetaData, pTransferProgress, ppNewObject);
     }
 };
@@ -774,7 +774,7 @@ pub const IMDSPObject = extern union {
         ) callconv(.winapi) HRESULT,
         Rename: *const fn(
             self: *const IMDSPObject,
-            pwszNewName: ?PWSTR,
+            pwszNewName: ?[*:0]u16,
             pProgress: ?*IWMDMProgress,
         ) callconv(.winapi) HRESULT,
         Move: *const fn(
@@ -804,7 +804,7 @@ pub const IMDSPObject = extern union {
     pub fn Seek(self: *const IMDSPObject, fuFlags: u32, dwOffset: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Seek(self, fuFlags, dwOffset);
     }
-    pub fn Rename(self: *const IMDSPObject, pwszNewName: ?PWSTR, pProgress: ?*IWMDMProgress) callconv(.@"inline") HRESULT {
+    pub fn Rename(self: *const IMDSPObject, pwszNewName: ?[*:0]u16, pProgress: ?*IWMDMProgress) callconv(.@"inline") HRESULT {
         return self.vtable.Rename(self, pwszNewName, pProgress);
     }
     pub fn Move(self: *const IMDSPObject, fuMode: u32, pProgress: ?*IWMDMProgress, pTarget: ?*IMDSPStorage) callconv(.@"inline") HRESULT {
@@ -908,13 +908,13 @@ pub const IMDSPRevoked = extern union {
         base: IUnknown.VTable,
         GetRevocationURL: *const fn(
             self: *const IMDSPRevoked,
-            ppwszRevocationURL: [*]?PWSTR,
+            ppwszRevocationURL: [*]?[*:0]u16,
             pdwBufferLen: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRevocationURL(self: *const IMDSPRevoked, ppwszRevocationURL: [*]?PWSTR, pdwBufferLen: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetRevocationURL(self: *const IMDSPRevoked, ppwszRevocationURL: [*]?[*:0]u16, pdwBufferLen: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRevocationURL(self, ppwszRevocationURL, pdwBufferLen);
     }
 };
@@ -962,7 +962,7 @@ pub const IMDSPStorage = extern union {
             self: *const IMDSPStorage,
             dwAttributes: u32,
             pFormat: ?*WAVEFORMATEX,
-            pwszName: ?PWSTR,
+            pwszName: ?[*:0]u16,
             ppNewStorage: ?*?*IMDSPStorage,
         ) callconv(.winapi) HRESULT,
         EnumStorage: *const fn(
@@ -997,7 +997,7 @@ pub const IMDSPStorage = extern union {
     pub fn GetRights(self: *const IMDSPStorage, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32, abMac: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetRights(self, ppRights, pnRightsCount, abMac);
     }
-    pub fn CreateStorage(self: *const IMDSPStorage, dwAttributes: u32, pFormat: ?*WAVEFORMATEX, pwszName: ?PWSTR, ppNewStorage: ?*?*IMDSPStorage) callconv(.@"inline") HRESULT {
+    pub fn CreateStorage(self: *const IMDSPStorage, dwAttributes: u32, pFormat: ?*WAVEFORMATEX, pwszName: ?[*:0]u16, ppNewStorage: ?*?*IMDSPStorage) callconv(.@"inline") HRESULT {
         return self.vtable.CreateStorage(self, dwAttributes, pFormat, pwszName, ppNewStorage);
     }
     pub fn EnumStorage(self: *const IMDSPStorage, ppEnumStorage: ?*?*IMDSPEnumStorage) callconv(.@"inline") HRESULT {
@@ -1024,7 +1024,7 @@ pub const IMDSPStorage2 = extern union {
             dwAttributesEx: u32,
             pAudioFormat: ?*WAVEFORMATEX,
             pVideoFormat: ?*VIDEOINFOHEADER,
-            pwszName: ?PWSTR,
+            pwszName: ?[*:0]u16,
             qwFileSize: u64,
             ppNewStorage: ?*?*IMDSPStorage,
         ) callconv(.winapi) HRESULT,
@@ -1049,7 +1049,7 @@ pub const IMDSPStorage2 = extern union {
     pub fn GetStorage(self: *const IMDSPStorage2, pszStorageName: ?[*:0]const u16, ppStorage: ?*?*IMDSPStorage) callconv(.@"inline") HRESULT {
         return self.vtable.GetStorage(self, pszStorageName, ppStorage);
     }
-    pub fn CreateStorage2(self: *const IMDSPStorage2, dwAttributes: u32, dwAttributesEx: u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER, pwszName: ?PWSTR, qwFileSize: u64, ppNewStorage: ?*?*IMDSPStorage) callconv(.@"inline") HRESULT {
+    pub fn CreateStorage2(self: *const IMDSPStorage2, dwAttributes: u32, dwAttributesEx: u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER, pwszName: ?[*:0]u16, qwFileSize: u64, ppNewStorage: ?*?*IMDSPStorage) callconv(.@"inline") HRESULT {
         return self.vtable.CreateStorage2(self, dwAttributes, dwAttributesEx, pAudioFormat, pVideoFormat, pwszName, qwFileSize, ppNewStorage);
     }
     pub fn SetAttributes2(self: *const IMDSPStorage2, dwAttributes: u32, dwAttributesEx: u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.@"inline") HRESULT {
@@ -1112,7 +1112,7 @@ pub const IMDSPStorage4 = extern union {
         GetSpecifiedMetadata: *const fn(
             self: *const IMDSPStorage4,
             cProperties: u32,
-            ppwszPropNames: [*]?PWSTR,
+            ppwszPropNames: [*]?[*:0]u16,
             pMetadata: ?*IWMDMMetaData,
         ) callconv(.winapi) HRESULT,
         FindStorage: *const fn(
@@ -1140,7 +1140,7 @@ pub const IMDSPStorage4 = extern union {
     pub fn CreateStorageWithMetadata(self: *const IMDSPStorage4, dwAttributes: u32, pwszName: ?[*:0]const u16, pMetadata: ?*IWMDMMetaData, qwFileSize: u64, ppNewStorage: ?*?*IMDSPStorage) callconv(.@"inline") HRESULT {
         return self.vtable.CreateStorageWithMetadata(self, dwAttributes, pwszName, pMetadata, qwFileSize, ppNewStorage);
     }
-    pub fn GetSpecifiedMetadata(self: *const IMDSPStorage4, cProperties: u32, ppwszPropNames: [*]?PWSTR, pMetadata: ?*IWMDMMetaData) callconv(.@"inline") HRESULT {
+    pub fn GetSpecifiedMetadata(self: *const IMDSPStorage4, cProperties: u32, ppwszPropNames: [*]?[*:0]u16, pMetadata: ?*IWMDMMetaData) callconv(.@"inline") HRESULT {
         return self.vtable.GetSpecifiedMetadata(self, cProperties, ppwszPropNames, pMetadata);
     }
     pub fn FindStorage(self: *const IMDSPStorage4, findScope: WMDM_FIND_SCOPE, pwszUniqueID: ?[*:0]const u16, ppStorage: ?*?*IMDSPStorage) callconv(.@"inline") HRESULT {
@@ -1376,7 +1376,7 @@ pub const ISCPSecureQuery = extern union {
         ExamineData: *const fn(
             self: *const ISCPSecureQuery,
             fuFlags: u32,
-            pwszExtension: ?PWSTR,
+            pwszExtension: ?[*:0]u16,
             pData: [*:0]u8,
             dwSize: u32,
             abMac: ?*u8,
@@ -1410,7 +1410,7 @@ pub const ISCPSecureQuery = extern union {
     pub fn GetDataDemands(self: *const ISCPSecureQuery, pfuFlags: ?*u32, pdwMinRightsData: ?*u32, pdwMinExamineData: ?*u32, pdwMinDecideData: ?*u32, abMac: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetDataDemands(self, pfuFlags, pdwMinRightsData, pdwMinExamineData, pdwMinDecideData, abMac);
     }
-    pub fn ExamineData(self: *const ISCPSecureQuery, fuFlags: u32, pwszExtension: ?PWSTR, pData: [*:0]u8, dwSize: u32, abMac: ?*u8) callconv(.@"inline") HRESULT {
+    pub fn ExamineData(self: *const ISCPSecureQuery, fuFlags: u32, pwszExtension: ?[*:0]u16, pData: [*:0]u8, dwSize: u32, abMac: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.ExamineData(self, fuFlags, pwszExtension, pData, dwSize, abMac);
     }
     pub fn MakeDecision(self: *const ISCPSecureQuery, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, ppExchange: ?*?*ISCPSecureExchange, abMac: ?*u8) callconv(.@"inline") HRESULT {
@@ -1439,7 +1439,7 @@ pub const ISCPSecureQuery2 = extern union {
             dwAppCertAppLen: u32,
             pAppCertSP: [*:0]u8,
             dwAppCertSPLen: u32,
-            pszRevocationURL: [*]?PWSTR,
+            pszRevocationURL: [*]?[*:0]u16,
             pdwRevocationURLLen: ?*u32,
             pdwRevocationBitFlag: ?*u32,
             pqwFileSize: ?*u64,
@@ -1451,7 +1451,7 @@ pub const ISCPSecureQuery2 = extern union {
     vtable: *const VTable,
     ISCPSecureQuery: ISCPSecureQuery,
     IUnknown: IUnknown,
-    pub fn MakeDecision2(self: *const ISCPSecureQuery2, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, pAppCertApp: [*:0]u8, dwAppCertAppLen: u32, pAppCertSP: [*:0]u8, dwAppCertSPLen: u32, pszRevocationURL: [*]?PWSTR, pdwRevocationURLLen: ?*u32, pdwRevocationBitFlag: ?*u32, pqwFileSize: ?*u64, pUnknown: ?*IUnknown, ppExchange: ?*?*ISCPSecureExchange, abMac: ?*u8) callconv(.@"inline") HRESULT {
+    pub fn MakeDecision2(self: *const ISCPSecureQuery2, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, pAppCertApp: [*:0]u8, dwAppCertAppLen: u32, pAppCertSP: [*:0]u8, dwAppCertSPLen: u32, pszRevocationURL: [*]?[*:0]u16, pdwRevocationURLLen: ?*u32, pdwRevocationBitFlag: ?*u32, pqwFileSize: ?*u64, pUnknown: ?*IUnknown, ppExchange: ?*?*ISCPSecureExchange, abMac: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.MakeDecision2(self, fuFlags, pData, dwSize, dwAppSec, pbSPSessionKey, dwSessionKeyLen, pStorageGlobals, pAppCertApp, dwAppCertAppLen, pAppCertSP, dwAppCertSPLen, pszRevocationURL, pdwRevocationURLLen, pdwRevocationBitFlag, pqwFileSize, pUnknown, ppExchange, abMac);
     }
 };
@@ -1486,7 +1486,7 @@ pub const ISCPSecureQuery3 = extern union {
             dwAppCertAppLen: u32,
             pAppCertSP: [*:0]u8,
             dwAppCertSPLen: u32,
-            pszRevocationURL: [*]?PWSTR,
+            pszRevocationURL: [*]?[*:0]u16,
             pdwRevocationURLLen: ?*u32,
             pdwRevocationBitFlag: ?*u32,
             pqwFileSize: ?*u64,
@@ -1501,7 +1501,7 @@ pub const ISCPSecureQuery3 = extern union {
     pub fn GetRightsOnClearChannel(self: *const ISCPSecureQuery3, pData: [*:0]u8, dwSize: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStgGlobals: ?*IMDSPStorageGlobals, pProgressCallback: ?*IWMDMProgress3, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRightsOnClearChannel(self, pData, dwSize, pbSPSessionKey, dwSessionKeyLen, pStgGlobals, pProgressCallback, ppRights, pnRightsCount);
     }
-    pub fn MakeDecisionOnClearChannel(self: *const ISCPSecureQuery3, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, pProgressCallback: ?*IWMDMProgress3, pAppCertApp: [*:0]u8, dwAppCertAppLen: u32, pAppCertSP: [*:0]u8, dwAppCertSPLen: u32, pszRevocationURL: [*]?PWSTR, pdwRevocationURLLen: ?*u32, pdwRevocationBitFlag: ?*u32, pqwFileSize: ?*u64, pUnknown: ?*IUnknown, ppExchange: ?*?*ISCPSecureExchange) callconv(.@"inline") HRESULT {
+    pub fn MakeDecisionOnClearChannel(self: *const ISCPSecureQuery3, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, pProgressCallback: ?*IWMDMProgress3, pAppCertApp: [*:0]u8, dwAppCertAppLen: u32, pAppCertSP: [*:0]u8, dwAppCertSPLen: u32, pszRevocationURL: [*]?[*:0]u16, pdwRevocationURLLen: ?*u32, pdwRevocationBitFlag: ?*u32, pqwFileSize: ?*u64, pUnknown: ?*IUnknown, ppExchange: ?*?*ISCPSecureExchange) callconv(.@"inline") HRESULT {
         return self.vtable.MakeDecisionOnClearChannel(self, fuFlags, pData, dwSize, dwAppSec, pbSPSessionKey, dwSessionKeyLen, pStorageGlobals, pProgressCallback, pAppCertApp, dwAppCertAppLen, pAppCertSP, dwAppCertSPLen, pszRevocationURL, pdwRevocationURLLen, pdwRevocationBitFlag, pqwFileSize, pUnknown, ppExchange);
     }
 };
@@ -1671,7 +1671,7 @@ pub const IWMDMDevice = extern union {
             self: *const IWMDMDevice,
             ppFormatEx: [*]?*WAVEFORMATEX,
             pnFormatCount: ?*u32,
-            pppwszMimeType: [*]?*?PWSTR,
+            pppwszMimeType: [*]?*?[*:0]u16,
             pnMimeTypeCount: ?*u32,
         ) callconv(.winapi) HRESULT,
         SendOpaqueCommand: *const fn(
@@ -1708,7 +1708,7 @@ pub const IWMDMDevice = extern union {
     pub fn EnumStorage(self: *const IWMDMDevice, ppEnumStorage: ?*?*IWMDMEnumStorage) callconv(.@"inline") HRESULT {
         return self.vtable.EnumStorage(self, ppEnumStorage);
     }
-    pub fn GetFormatSupport(self: *const IWMDMDevice, ppFormatEx: [*]?*WAVEFORMATEX, pnFormatCount: ?*u32, pppwszMimeType: [*]?*?PWSTR, pnMimeTypeCount: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetFormatSupport(self: *const IWMDMDevice, ppFormatEx: [*]?*WAVEFORMATEX, pnFormatCount: ?*u32, pppwszMimeType: [*]?*?[*:0]u16, pnMimeTypeCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFormatSupport(self, ppFormatEx, pnFormatCount, pppwszMimeType, pnMimeTypeCount);
     }
     pub fn SendOpaqueCommand(self: *const IWMDMDevice, pCommand: ?*OPAQUECOMMAND) callconv(.@"inline") HRESULT {
@@ -2007,24 +2007,24 @@ pub const IWMDMLogger = extern union {
         ) callconv(.winapi) HRESULT,
         GetLogFileName: *const fn(
             self: *const IWMDMLogger,
-            pszFilename: ?PSTR,
+            pszFilename: ?[*:0]u8,
             nMaxChars: u32,
         ) callconv(.winapi) HRESULT,
         SetLogFileName: *const fn(
             self: *const IWMDMLogger,
-            pszFilename: ?PSTR,
+            pszFilename: ?[*:0]u8,
         ) callconv(.winapi) HRESULT,
         LogString: *const fn(
             self: *const IWMDMLogger,
             dwFlags: u32,
-            pszSrcName: ?PSTR,
-            pszLog: ?PSTR,
+            pszSrcName: ?[*:0]u8,
+            pszLog: ?[*:0]u8,
         ) callconv(.winapi) HRESULT,
         LogDword: *const fn(
             self: *const IWMDMLogger,
             dwFlags: u32,
-            pszSrcName: ?PSTR,
-            pszLogFormat: ?PSTR,
+            pszSrcName: ?[*:0]u8,
+            pszLogFormat: ?[*:0]u8,
             dwLog: u32,
         ) callconv(.winapi) HRESULT,
         Reset: *const fn(
@@ -2049,16 +2049,16 @@ pub const IWMDMLogger = extern union {
     pub fn Enable(self: *const IWMDMLogger, fEnable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Enable(self, fEnable);
     }
-    pub fn GetLogFileName(self: *const IWMDMLogger, pszFilename: ?PSTR, nMaxChars: u32) callconv(.@"inline") HRESULT {
+    pub fn GetLogFileName(self: *const IWMDMLogger, pszFilename: ?[*:0]u8, nMaxChars: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLogFileName(self, pszFilename, nMaxChars);
     }
-    pub fn SetLogFileName(self: *const IWMDMLogger, pszFilename: ?PSTR) callconv(.@"inline") HRESULT {
+    pub fn SetLogFileName(self: *const IWMDMLogger, pszFilename: ?[*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.SetLogFileName(self, pszFilename);
     }
-    pub fn LogString(self: *const IWMDMLogger, dwFlags: u32, pszSrcName: ?PSTR, pszLog: ?PSTR) callconv(.@"inline") HRESULT {
+    pub fn LogString(self: *const IWMDMLogger, dwFlags: u32, pszSrcName: ?[*:0]u8, pszLog: ?[*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.LogString(self, dwFlags, pszSrcName, pszLog);
     }
-    pub fn LogDword(self: *const IWMDMLogger, dwFlags: u32, pszSrcName: ?PSTR, pszLogFormat: ?PSTR, dwLog: u32) callconv(.@"inline") HRESULT {
+    pub fn LogDword(self: *const IWMDMLogger, dwFlags: u32, pszSrcName: ?[*:0]u8, pszLogFormat: ?[*:0]u8, dwLog: u32) callconv(.@"inline") HRESULT {
         return self.vtable.LogDword(self, dwFlags, pszSrcName, pszLogFormat, dwLog);
     }
     pub fn Reset(self: *const IWMDMLogger) callconv(.@"inline") HRESULT {
@@ -2428,14 +2428,14 @@ pub const IWMDMRevoked = extern union {
         base: IUnknown.VTable,
         GetRevocationURL: *const fn(
             self: *const IWMDMRevoked,
-            ppwszRevocationURL: [*]?PWSTR,
+            ppwszRevocationURL: [*]?[*:0]u16,
             pdwBufferLen: ?*u32,
             pdwRevokedBitFlag: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRevocationURL(self: *const IWMDMRevoked, ppwszRevocationURL: [*]?PWSTR, pdwBufferLen: ?*u32, pdwRevokedBitFlag: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetRevocationURL(self: *const IWMDMRevoked, ppwszRevocationURL: [*]?[*:0]u16, pdwBufferLen: ?*u32, pdwRevokedBitFlag: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRevocationURL(self, ppwszRevocationURL, pdwBufferLen, pdwRevokedBitFlag);
     }
 };
@@ -2624,7 +2624,7 @@ pub const IWMDMStorage4 = extern union {
         GetSpecifiedMetadata: *const fn(
             self: *const IWMDMStorage4,
             cProperties: u32,
-            ppwszPropNames: [*]?PWSTR,
+            ppwszPropNames: [*]?[*:0]u16,
             ppMetadata: ?*?*IWMDMMetaData,
         ) callconv(.winapi) HRESULT,
         FindStorage: *const fn(
@@ -2652,7 +2652,7 @@ pub const IWMDMStorage4 = extern union {
     pub fn GetRightsWithProgress(self: *const IWMDMStorage4, pIProgressCallback: ?*IWMDMProgress3, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRightsWithProgress(self, pIProgressCallback, ppRights, pnRightsCount);
     }
-    pub fn GetSpecifiedMetadata(self: *const IWMDMStorage4, cProperties: u32, ppwszPropNames: [*]?PWSTR, ppMetadata: ?*?*IWMDMMetaData) callconv(.@"inline") HRESULT {
+    pub fn GetSpecifiedMetadata(self: *const IWMDMStorage4, cProperties: u32, ppwszPropNames: [*]?[*:0]u16, ppMetadata: ?*?*IWMDMMetaData) callconv(.@"inline") HRESULT {
         return self.vtable.GetSpecifiedMetadata(self, cProperties, ppwszPropNames, ppMetadata);
     }
     pub fn FindStorage(self: *const IWMDMStorage4, findScope: WMDM_FIND_SCOPE, pwszUniqueID: ?[*:0]const u16, ppStorage: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
@@ -2671,7 +2671,7 @@ pub const IWMDMStorageControl = extern union {
         Insert: *const fn(
             self: *const IWMDMStorageControl,
             fuMode: u32,
-            pwszFile: ?PWSTR,
+            pwszFile: ?[*:0]u16,
             pOperation: ?*IWMDMOperation,
             pProgress: ?*IWMDMProgress,
             ppNewObject: ?*?*IWMDMStorage,
@@ -2684,13 +2684,13 @@ pub const IWMDMStorageControl = extern union {
         Rename: *const fn(
             self: *const IWMDMStorageControl,
             fuMode: u32,
-            pwszNewName: ?PWSTR,
+            pwszNewName: ?[*:0]u16,
             pProgress: ?*IWMDMProgress,
         ) callconv(.winapi) HRESULT,
         Read: *const fn(
             self: *const IWMDMStorageControl,
             fuMode: u32,
-            pwszFile: ?PWSTR,
+            pwszFile: ?[*:0]u16,
             pProgress: ?*IWMDMProgress,
             pOperation: ?*IWMDMOperation,
         ) callconv(.winapi) HRESULT,
@@ -2703,16 +2703,16 @@ pub const IWMDMStorageControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Insert(self: *const IWMDMStorageControl, fuMode: u32, pwszFile: ?PWSTR, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, ppNewObject: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
+    pub fn Insert(self: *const IWMDMStorageControl, fuMode: u32, pwszFile: ?[*:0]u16, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, ppNewObject: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
         return self.vtable.Insert(self, fuMode, pwszFile, pOperation, pProgress, ppNewObject);
     }
     pub fn Delete(self: *const IWMDMStorageControl, fuMode: u32, pProgress: ?*IWMDMProgress) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self, fuMode, pProgress);
     }
-    pub fn Rename(self: *const IWMDMStorageControl, fuMode: u32, pwszNewName: ?PWSTR, pProgress: ?*IWMDMProgress) callconv(.@"inline") HRESULT {
+    pub fn Rename(self: *const IWMDMStorageControl, fuMode: u32, pwszNewName: ?[*:0]u16, pProgress: ?*IWMDMProgress) callconv(.@"inline") HRESULT {
         return self.vtable.Rename(self, fuMode, pwszNewName, pProgress);
     }
-    pub fn Read(self: *const IWMDMStorageControl, fuMode: u32, pwszFile: ?PWSTR, pProgress: ?*IWMDMProgress, pOperation: ?*IWMDMOperation) callconv(.@"inline") HRESULT {
+    pub fn Read(self: *const IWMDMStorageControl, fuMode: u32, pwszFile: ?[*:0]u16, pProgress: ?*IWMDMProgress, pOperation: ?*IWMDMOperation) callconv(.@"inline") HRESULT {
         return self.vtable.Read(self, fuMode, pwszFile, pProgress, pOperation);
     }
     pub fn Move(self: *const IWMDMStorageControl, fuMode: u32, pTargetObject: ?*IWMDMStorage, pProgress: ?*IWMDMProgress) callconv(.@"inline") HRESULT {
@@ -2728,8 +2728,8 @@ pub const IWMDMStorageControl2 = extern union {
         Insert2: *const fn(
             self: *const IWMDMStorageControl2,
             fuMode: u32,
-            pwszFileSource: ?PWSTR,
-            pwszFileDest: ?PWSTR,
+            pwszFileSource: ?[*:0]u16,
+            pwszFileDest: ?[*:0]u16,
             pOperation: ?*IWMDMOperation,
             pProgress: ?*IWMDMProgress,
             pUnknown: ?*IUnknown,
@@ -2739,7 +2739,7 @@ pub const IWMDMStorageControl2 = extern union {
     vtable: *const VTable,
     IWMDMStorageControl: IWMDMStorageControl,
     IUnknown: IUnknown,
-    pub fn Insert2(self: *const IWMDMStorageControl2, fuMode: u32, pwszFileSource: ?PWSTR, pwszFileDest: ?PWSTR, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, pUnknown: ?*IUnknown, ppNewObject: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
+    pub fn Insert2(self: *const IWMDMStorageControl2, fuMode: u32, pwszFileSource: ?[*:0]u16, pwszFileDest: ?[*:0]u16, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, pUnknown: ?*IUnknown, ppNewObject: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
         return self.vtable.Insert2(self, fuMode, pwszFileSource, pwszFileDest, pOperation, pProgress, pUnknown, ppNewObject);
     }
 };
@@ -2753,8 +2753,8 @@ pub const IWMDMStorageControl3 = extern union {
             self: *const IWMDMStorageControl3,
             fuMode: u32,
             fuType: u32,
-            pwszFileSource: ?PWSTR,
-            pwszFileDest: ?PWSTR,
+            pwszFileSource: ?[*:0]u16,
+            pwszFileDest: ?[*:0]u16,
             pOperation: ?*IWMDMOperation,
             pProgress: ?*IWMDMProgress,
             pMetaData: ?*IWMDMMetaData,
@@ -2766,7 +2766,7 @@ pub const IWMDMStorageControl3 = extern union {
     IWMDMStorageControl2: IWMDMStorageControl2,
     IWMDMStorageControl: IWMDMStorageControl,
     IUnknown: IUnknown,
-    pub fn Insert3(self: *const IWMDMStorageControl3, fuMode: u32, fuType: u32, pwszFileSource: ?PWSTR, pwszFileDest: ?PWSTR, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, pMetaData: ?*IWMDMMetaData, pUnknown: ?*IUnknown, ppNewObject: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
+    pub fn Insert3(self: *const IWMDMStorageControl3, fuMode: u32, fuType: u32, pwszFileSource: ?[*:0]u16, pwszFileDest: ?[*:0]u16, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, pMetaData: ?*IWMDMMetaData, pUnknown: ?*IUnknown, ppNewObject: ?*?*IWMDMStorage) callconv(.@"inline") HRESULT {
         return self.vtable.Insert3(self, fuMode, fuType, pwszFileSource, pwszFileDest, pOperation, pProgress, pMetaData, pUnknown, ppNewObject);
     }
 };
@@ -3091,7 +3091,7 @@ pub const WMDM_PROP_CONFIG = extern struct {
 };
 
 pub const WMDM_PROP_DESC = extern struct {
-    pwszPropName: ?PWSTR,
+    pwszPropName: ?[*:0]u16,
     ValidValuesForm: WMDM_ENUM_PROP_VALID_VALUES_FORM,
     ValidValues: extern union {
         ValidValuesRange: WMDM_PROP_VALUES_RANGE,
@@ -3273,7 +3273,7 @@ pub const WMDM_MSG_MEDIA_ARRIVAL = WMDMMessage.MEDIA_ARRIVAL;
 pub const WMDM_MSG_MEDIA_REMOVAL = WMDMMessage.MEDIA_REMOVAL;
 
 pub const WMDMMetadataView = extern struct {
-    pwszViewName: ?PWSTR,
+    pwszViewName: ?[*:0]u16,
     nDepth: u32,
     ppwszTags: ?*?*u16,
 };
@@ -3298,7 +3298,7 @@ const CLSID_WMDMStorageGlobal_Value = Guid.initString("807b3ce1-357a-11d3-8471-0
 pub const CLSID_WMDMStorageGlobal = &CLSID_WMDMStorageGlobal_Value;
 
 pub const WMFILECAPABILITIES = extern struct {
-    pwszMimeType: ?PWSTR,
+    pwszMimeType: ?[*:0]u16,
     dwReserved: u32,
 };
 
@@ -3311,7 +3311,7 @@ pub const WMFILECAPABILITIES = extern struct {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -3319,8 +3319,6 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const ISpecifyPropertyPages = @import("../system/ole.zig").ISpecifyPropertyPages;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const VIDEOINFOHEADER = @import("../media/media_foundation.zig").VIDEOINFOHEADER;
 const WAVEFORMATEX = @import("../media/audio.zig").WAVEFORMATEX;
 

@@ -479,7 +479,7 @@ pub const IEnumWorkItems = extern union {
         Next: *const fn(
             self: *const IEnumWorkItems,
             celt: u32,
-            rgpwszNames: ?*?*?PWSTR,
+            rgpwszNames: ?*?*?[*:0]u16,
             pceltFetched: ?*u32,
         ) callconv(.winapi) HRESULT,
         Skip: *const fn(
@@ -496,7 +496,7 @@ pub const IEnumWorkItems = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumWorkItems, celt: u32, rgpwszNames: ?*?*?PWSTR, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn Next(self: *const IEnumWorkItems, celt: u32, rgpwszNames: ?*?*?[*:0]u16, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgpwszNames, pceltFetched);
     }
     pub fn Skip(self: *const IEnumWorkItems, celt: u32) callconv(.@"inline") HRESULT {
@@ -1823,7 +1823,7 @@ pub const IScheduledWorkItem = extern union {
         GetTriggerString: *const fn(
             self: *const IScheduledWorkItem,
             iTrigger: u16,
-            ppwszTrigger: ?*?PWSTR,
+            ppwszTrigger: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetRunTimes: *const fn(
             self: *const IScheduledWorkItem,
@@ -1875,7 +1875,7 @@ pub const IScheduledWorkItem = extern union {
         ) callconv(.winapi) HRESULT,
         GetComment: *const fn(
             self: *const IScheduledWorkItem,
-            ppwszComment: ?*?PWSTR,
+            ppwszComment: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetCreator: *const fn(
             self: *const IScheduledWorkItem,
@@ -1883,7 +1883,7 @@ pub const IScheduledWorkItem = extern union {
         ) callconv(.winapi) HRESULT,
         GetCreator: *const fn(
             self: *const IScheduledWorkItem,
-            ppwszCreator: ?*?PWSTR,
+            ppwszCreator: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetWorkItemData: *const fn(
             self: *const IScheduledWorkItem,
@@ -1926,7 +1926,7 @@ pub const IScheduledWorkItem = extern union {
         ) callconv(.winapi) HRESULT,
         GetAccountInformation: *const fn(
             self: *const IScheduledWorkItem,
-            ppwszAccountName: ?*?PWSTR,
+            ppwszAccountName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1943,7 +1943,7 @@ pub const IScheduledWorkItem = extern union {
     pub fn GetTrigger(self: *const IScheduledWorkItem, iTrigger: u16, ppTrigger: ?*?*ITaskTrigger) callconv(.@"inline") HRESULT {
         return self.vtable.GetTrigger(self, iTrigger, ppTrigger);
     }
-    pub fn GetTriggerString(self: *const IScheduledWorkItem, iTrigger: u16, ppwszTrigger: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetTriggerString(self: *const IScheduledWorkItem, iTrigger: u16, ppwszTrigger: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetTriggerString(self, iTrigger, ppwszTrigger);
     }
     pub fn GetRunTimes(self: *const IScheduledWorkItem, pstBegin: ?*const SYSTEMTIME, pstEnd: ?*const SYSTEMTIME, pCount: ?*u16, rgstTaskTimes: ?*?*SYSTEMTIME) callconv(.@"inline") HRESULT {
@@ -1979,13 +1979,13 @@ pub const IScheduledWorkItem = extern union {
     pub fn SetComment(self: *const IScheduledWorkItem, pwszComment: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetComment(self, pwszComment);
     }
-    pub fn GetComment(self: *const IScheduledWorkItem, ppwszComment: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetComment(self: *const IScheduledWorkItem, ppwszComment: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetComment(self, ppwszComment);
     }
     pub fn SetCreator(self: *const IScheduledWorkItem, pwszCreator: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetCreator(self, pwszCreator);
     }
-    pub fn GetCreator(self: *const IScheduledWorkItem, ppwszCreator: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetCreator(self: *const IScheduledWorkItem, ppwszCreator: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetCreator(self, ppwszCreator);
     }
     pub fn SetWorkItemData(self: *const IScheduledWorkItem, cbData: u16, rgbData: ?*u8) callconv(.@"inline") HRESULT {
@@ -2015,7 +2015,7 @@ pub const IScheduledWorkItem = extern union {
     pub fn SetAccountInformation(self: *const IScheduledWorkItem, pwszAccountName: ?[*:0]const u16, pwszPassword: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetAccountInformation(self, pwszAccountName, pwszPassword);
     }
-    pub fn GetAccountInformation(self: *const IScheduledWorkItem, ppwszAccountName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetAccountInformation(self: *const IScheduledWorkItem, ppwszAccountName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetAccountInformation(self, ppwszAccountName);
     }
 };
@@ -2138,7 +2138,7 @@ pub const ITask = extern union {
         ) callconv(.winapi) HRESULT,
         GetApplicationName: *const fn(
             self: *const ITask,
-            ppwszApplicationName: ?*?PWSTR,
+            ppwszApplicationName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetParameters: *const fn(
             self: *const ITask,
@@ -2146,7 +2146,7 @@ pub const ITask = extern union {
         ) callconv(.winapi) HRESULT,
         GetParameters: *const fn(
             self: *const ITask,
-            ppwszParameters: ?*?PWSTR,
+            ppwszParameters: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetWorkingDirectory: *const fn(
             self: *const ITask,
@@ -2154,7 +2154,7 @@ pub const ITask = extern union {
         ) callconv(.winapi) HRESULT,
         GetWorkingDirectory: *const fn(
             self: *const ITask,
-            ppwszWorkingDirectory: ?*?PWSTR,
+            ppwszWorkingDirectory: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetPriority: *const fn(
             self: *const ITask,
@@ -2187,19 +2187,19 @@ pub const ITask = extern union {
     pub fn SetApplicationName(self: *const ITask, pwszApplicationName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetApplicationName(self, pwszApplicationName);
     }
-    pub fn GetApplicationName(self: *const ITask, ppwszApplicationName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetApplicationName(self: *const ITask, ppwszApplicationName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetApplicationName(self, ppwszApplicationName);
     }
     pub fn SetParameters(self: *const ITask, pwszParameters: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetParameters(self, pwszParameters);
     }
-    pub fn GetParameters(self: *const ITask, ppwszParameters: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetParameters(self: *const ITask, ppwszParameters: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetParameters(self, ppwszParameters);
     }
     pub fn SetWorkingDirectory(self: *const ITask, pwszWorkingDirectory: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetWorkingDirectory(self, pwszWorkingDirectory);
     }
-    pub fn GetWorkingDirectory(self: *const ITask, ppwszWorkingDirectory: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetWorkingDirectory(self: *const ITask, ppwszWorkingDirectory: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetWorkingDirectory(self, ppwszWorkingDirectory);
     }
     pub fn SetPriority(self: *const ITask, dwPriority: u32) callconv(.@"inline") HRESULT {
@@ -2689,7 +2689,7 @@ pub const ITaskScheduler = extern union {
         ) callconv(.winapi) HRESULT,
         GetTargetComputer: *const fn(
             self: *const ITaskScheduler,
-            ppwszComputer: ?*?PWSTR,
+            ppwszComputer: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Enum: *const fn(
             self: *const ITaskScheduler,
@@ -2728,7 +2728,7 @@ pub const ITaskScheduler = extern union {
     pub fn SetTargetComputer(self: *const ITaskScheduler, pwszComputer: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetTargetComputer(self, pwszComputer);
     }
-    pub fn GetTargetComputer(self: *const ITaskScheduler, ppwszComputer: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetTargetComputer(self: *const ITaskScheduler, ppwszComputer: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetTargetComputer(self, ppwszComputer);
     }
     pub fn Enum(self: *const ITaskScheduler, ppEnumWorkItems: ?*?*IEnumWorkItems) callconv(.@"inline") HRESULT {
@@ -3312,7 +3312,7 @@ pub const ITaskTrigger = extern union {
         ) callconv(.winapi) HRESULT,
         GetTriggerString: *const fn(
             self: *const ITaskTrigger,
-            ppwszTrigger: ?*?PWSTR,
+            ppwszTrigger: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -3323,7 +3323,7 @@ pub const ITaskTrigger = extern union {
     pub fn GetTrigger(self: *const ITaskTrigger, pTrigger: ?*TASK_TRIGGER) callconv(.@"inline") HRESULT {
         return self.vtable.GetTrigger(self, pTrigger);
     }
-    pub fn GetTriggerString(self: *const ITaskTrigger, ppwszTrigger: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetTriggerString(self: *const ITaskTrigger, ppwszTrigger: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetTriggerString(self, ppwszTrigger);
     }
 };
@@ -3874,7 +3874,7 @@ pub const WEEKLY = extern struct {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (13)
+// Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -3884,7 +3884,6 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;

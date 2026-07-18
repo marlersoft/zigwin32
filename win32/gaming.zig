@@ -176,14 +176,14 @@ pub const IGameStatistics = extern union {
         GetCategoryTitle: *const fn(
             self: *const IGameStatistics,
             categoryIndex: u16,
-            pTitle: ?*?PWSTR,
+            pTitle: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetStatistic: *const fn(
             self: *const IGameStatistics,
             categoryIndex: u16,
             statIndex: u16,
-            pName: ?*?PWSTR,
-            pValue: ?*?PWSTR,
+            pName: ?*?[*:0]u16,
+            pValue: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetStatistic: *const fn(
             self: *const IGameStatistics,
@@ -225,10 +225,10 @@ pub const IGameStatistics = extern union {
     pub fn SetCategoryTitle(self: *const IGameStatistics, categoryIndex: u16, title: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetCategoryTitle(self, categoryIndex, title);
     }
-    pub fn GetCategoryTitle(self: *const IGameStatistics, categoryIndex: u16, pTitle: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetCategoryTitle(self: *const IGameStatistics, categoryIndex: u16, pTitle: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetCategoryTitle(self, categoryIndex, pTitle);
     }
-    pub fn GetStatistic(self: *const IGameStatistics, categoryIndex: u16, statIndex: u16, pName: ?*?PWSTR, pValue: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetStatistic(self: *const IGameStatistics, categoryIndex: u16, statIndex: u16, pName: ?*?[*:0]u16, pValue: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatistic(self, categoryIndex, statIndex, pName, pValue);
     }
     pub fn SetStatistic(self: *const IGameStatistics, categoryIndex: u16, statIndex: u16, name: ?[*:0]const u16, value: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -284,8 +284,8 @@ pub const IXblIdpAuthManager = extern union {
         ) callconv(.winapi) HRESULT,
         GetGamerAccount: *const fn(
             self: *const IXblIdpAuthManager,
-            msaAccountId: ?*?PWSTR,
-            xuid: ?*?PWSTR,
+            msaAccountId: ?*?[*:0]u16,
+            xuid: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetAppViewInitialized: *const fn(
             self: *const IXblIdpAuthManager,
@@ -294,11 +294,11 @@ pub const IXblIdpAuthManager = extern union {
         ) callconv(.winapi) HRESULT,
         GetEnvironment: *const fn(
             self: *const IXblIdpAuthManager,
-            environment: ?*?PWSTR,
+            environment: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetSandbox: *const fn(
             self: *const IXblIdpAuthManager,
-            sandbox: ?*?PWSTR,
+            sandbox: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetTokenAndSignatureWithTokenResult: *const fn(
             self: *const IXblIdpAuthManager,
@@ -320,16 +320,16 @@ pub const IXblIdpAuthManager = extern union {
     pub fn SetGamerAccount(self: *const IXblIdpAuthManager, msaAccountId: ?[*:0]const u16, xuid: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetGamerAccount(self, msaAccountId, xuid);
     }
-    pub fn GetGamerAccount(self: *const IXblIdpAuthManager, msaAccountId: ?*?PWSTR, xuid: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetGamerAccount(self: *const IXblIdpAuthManager, msaAccountId: ?*?[*:0]u16, xuid: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetGamerAccount(self, msaAccountId, xuid);
     }
     pub fn SetAppViewInitialized(self: *const IXblIdpAuthManager, appSid: ?[*:0]const u16, msaAccountId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetAppViewInitialized(self, appSid, msaAccountId);
     }
-    pub fn GetEnvironment(self: *const IXblIdpAuthManager, environment: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetEnvironment(self: *const IXblIdpAuthManager, environment: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetEnvironment(self, environment);
     }
-    pub fn GetSandbox(self: *const IXblIdpAuthManager, sandbox: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSandbox(self: *const IXblIdpAuthManager, sandbox: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSandbox(self, sandbox);
     }
     pub fn GetTokenAndSignatureWithTokenResult(self: *const IXblIdpAuthManager, msaAccountId: ?[*:0]const u16, appSid: ?[*:0]const u16, msaTarget: ?[*:0]const u16, msaPolicy: ?[*:0]const u16, httpMethod: ?[*:0]const u16, uri: ?[*:0]const u16, headers: ?[*:0]const u16, body: [*:0]u8, bodySize: u32, forceRefresh: BOOL, result: ?*?*IXblIdpAuthTokenResult) callconv(.@"inline") HRESULT {
@@ -352,75 +352,75 @@ pub const IXblIdpAuthTokenResult = extern union {
         ) callconv(.winapi) HRESULT,
         GetToken: *const fn(
             self: *const IXblIdpAuthTokenResult,
-            token: ?*?PWSTR,
+            token: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetSignature: *const fn(
             self: *const IXblIdpAuthTokenResult,
-            signature: ?*?PWSTR,
+            signature: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetSandbox: *const fn(
             self: *const IXblIdpAuthTokenResult,
-            sandbox: ?*?PWSTR,
+            sandbox: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetEnvironment: *const fn(
             self: *const IXblIdpAuthTokenResult,
-            environment: ?*?PWSTR,
+            environment: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetMsaAccountId: *const fn(
             self: *const IXblIdpAuthTokenResult,
-            msaAccountId: ?*?PWSTR,
+            msaAccountId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetXuid: *const fn(
             self: *const IXblIdpAuthTokenResult,
-            xuid: ?*?PWSTR,
+            xuid: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetGamertag: *const fn(
             self: *const IXblIdpAuthTokenResult,
-            gamertag: ?*?PWSTR,
+            gamertag: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetAgeGroup: *const fn(
             self: *const IXblIdpAuthTokenResult,
-            ageGroup: ?*?PWSTR,
+            ageGroup: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetPrivileges: *const fn(
             self: *const IXblIdpAuthTokenResult,
-            privileges: ?*?PWSTR,
+            privileges: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetMsaTarget: *const fn(
             self: *const IXblIdpAuthTokenResult,
-            msaTarget: ?*?PWSTR,
+            msaTarget: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetMsaPolicy: *const fn(
             self: *const IXblIdpAuthTokenResult,
-            msaPolicy: ?*?PWSTR,
+            msaPolicy: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetMsaAppId: *const fn(
             self: *const IXblIdpAuthTokenResult,
-            msaAppId: ?*?PWSTR,
+            msaAppId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetRedirect: *const fn(
             self: *const IXblIdpAuthTokenResult,
-            redirect: ?*?PWSTR,
+            redirect: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetMessage: *const fn(
             self: *const IXblIdpAuthTokenResult,
-            message: ?*?PWSTR,
+            message: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetHelpId: *const fn(
             self: *const IXblIdpAuthTokenResult,
-            helpId: ?*?PWSTR,
+            helpId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetEnforcementBans: *const fn(
             self: *const IXblIdpAuthTokenResult,
-            enforcementBans: ?*?PWSTR,
+            enforcementBans: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetRestrictions: *const fn(
             self: *const IXblIdpAuthTokenResult,
-            restrictions: ?*?PWSTR,
+            restrictions: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetTitleRestrictions: *const fn(
             self: *const IXblIdpAuthTokenResult,
-            titleRestrictions: ?*?PWSTR,
+            titleRestrictions: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -431,58 +431,58 @@ pub const IXblIdpAuthTokenResult = extern union {
     pub fn GetErrorCode(self: *const IXblIdpAuthTokenResult, errorCode: ?*HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.GetErrorCode(self, errorCode);
     }
-    pub fn GetToken(self: *const IXblIdpAuthTokenResult, token: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetToken(self: *const IXblIdpAuthTokenResult, token: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetToken(self, token);
     }
-    pub fn GetSignature(self: *const IXblIdpAuthTokenResult, signature: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSignature(self: *const IXblIdpAuthTokenResult, signature: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSignature(self, signature);
     }
-    pub fn GetSandbox(self: *const IXblIdpAuthTokenResult, sandbox: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSandbox(self: *const IXblIdpAuthTokenResult, sandbox: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSandbox(self, sandbox);
     }
-    pub fn GetEnvironment(self: *const IXblIdpAuthTokenResult, environment: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetEnvironment(self: *const IXblIdpAuthTokenResult, environment: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetEnvironment(self, environment);
     }
-    pub fn GetMsaAccountId(self: *const IXblIdpAuthTokenResult, msaAccountId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetMsaAccountId(self: *const IXblIdpAuthTokenResult, msaAccountId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetMsaAccountId(self, msaAccountId);
     }
-    pub fn GetXuid(self: *const IXblIdpAuthTokenResult, xuid: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetXuid(self: *const IXblIdpAuthTokenResult, xuid: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetXuid(self, xuid);
     }
-    pub fn GetGamertag(self: *const IXblIdpAuthTokenResult, gamertag: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetGamertag(self: *const IXblIdpAuthTokenResult, gamertag: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetGamertag(self, gamertag);
     }
-    pub fn GetAgeGroup(self: *const IXblIdpAuthTokenResult, ageGroup: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetAgeGroup(self: *const IXblIdpAuthTokenResult, ageGroup: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetAgeGroup(self, ageGroup);
     }
-    pub fn GetPrivileges(self: *const IXblIdpAuthTokenResult, privileges: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPrivileges(self: *const IXblIdpAuthTokenResult, privileges: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrivileges(self, privileges);
     }
-    pub fn GetMsaTarget(self: *const IXblIdpAuthTokenResult, msaTarget: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetMsaTarget(self: *const IXblIdpAuthTokenResult, msaTarget: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetMsaTarget(self, msaTarget);
     }
-    pub fn GetMsaPolicy(self: *const IXblIdpAuthTokenResult, msaPolicy: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetMsaPolicy(self: *const IXblIdpAuthTokenResult, msaPolicy: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetMsaPolicy(self, msaPolicy);
     }
-    pub fn GetMsaAppId(self: *const IXblIdpAuthTokenResult, msaAppId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetMsaAppId(self: *const IXblIdpAuthTokenResult, msaAppId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetMsaAppId(self, msaAppId);
     }
-    pub fn GetRedirect(self: *const IXblIdpAuthTokenResult, redirect: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetRedirect(self: *const IXblIdpAuthTokenResult, redirect: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetRedirect(self, redirect);
     }
-    pub fn GetMessage(self: *const IXblIdpAuthTokenResult, message: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetMessage(self: *const IXblIdpAuthTokenResult, message: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetMessage(self, message);
     }
-    pub fn GetHelpId(self: *const IXblIdpAuthTokenResult, helpId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetHelpId(self: *const IXblIdpAuthTokenResult, helpId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetHelpId(self, helpId);
     }
-    pub fn GetEnforcementBans(self: *const IXblIdpAuthTokenResult, enforcementBans: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetEnforcementBans(self: *const IXblIdpAuthTokenResult, enforcementBans: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetEnforcementBans(self, enforcementBans);
     }
-    pub fn GetRestrictions(self: *const IXblIdpAuthTokenResult, restrictions: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetRestrictions(self: *const IXblIdpAuthTokenResult, restrictions: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetRestrictions(self, restrictions);
     }
-    pub fn GetTitleRestrictions(self: *const IXblIdpAuthTokenResult, titleRestrictions: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetTitleRestrictions(self: *const IXblIdpAuthTokenResult, titleRestrictions: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetTitleRestrictions(self, titleRestrictions);
     }
 };
@@ -494,26 +494,26 @@ pub const IXblIdpAuthTokenResult2 = extern union {
         base: IUnknown.VTable,
         GetModernGamertag: *const fn(
             self: *const IXblIdpAuthTokenResult2,
-            value: ?*?PWSTR,
+            value: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetModernGamertagSuffix: *const fn(
             self: *const IXblIdpAuthTokenResult2,
-            value: ?*?PWSTR,
+            value: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetUniqueModernGamertag: *const fn(
             self: *const IXblIdpAuthTokenResult2,
-            value: ?*?PWSTR,
+            value: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetModernGamertag(self: *const IXblIdpAuthTokenResult2, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetModernGamertag(self: *const IXblIdpAuthTokenResult2, value: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetModernGamertag(self, value);
     }
-    pub fn GetModernGamertagSuffix(self: *const IXblIdpAuthTokenResult2, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetModernGamertagSuffix(self: *const IXblIdpAuthTokenResult2, value: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetModernGamertagSuffix(self, value);
     }
-    pub fn GetUniqueModernGamertag(self: *const IXblIdpAuthTokenResult2, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetUniqueModernGamertag(self: *const IXblIdpAuthTokenResult2, value: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetUniqueModernGamertag(self, value);
     }
 };
@@ -814,7 +814,7 @@ pub extern "api-ms-win-gaming-tcui-l1-1-0" fn TryCancelPendingGameUI(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("zig.zig").Guid;
 const BOOL = @import("foundation.zig").BOOL;
@@ -823,7 +823,6 @@ const HRESULT = @import("foundation.zig").HRESULT;
 const HSTRING = @import("system/win_rt.zig").HSTRING;
 const IInspectable = @import("system/win_rt.zig").IInspectable;
 const IUnknown = @import("system/com.zig").IUnknown;
-const PWSTR = @import("foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

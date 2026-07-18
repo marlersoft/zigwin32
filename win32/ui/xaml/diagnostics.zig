@@ -538,7 +538,7 @@ pub extern "windows.ui.xaml" fn InitializeXamlDiagnosticsEx(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -548,7 +548,6 @@ const DXGI_FORMAT = @import("../../graphics/dxgi/common.zig").DXGI_FORMAT;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IInspectable = @import("../../system/win_rt.zig").IInspectable;
 const IUnknown = @import("../../system/com.zig").IUnknown;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const RECT = @import("../../foundation.zig").RECT;
 const SAFEARRAY = @import("../../system/com.zig").SAFEARRAY;
 

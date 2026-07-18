@@ -220,7 +220,7 @@ pub const IEnumDMO = extern union {
             self: *const IEnumDMO,
             cItemsToFetch: u32,
             pCLSID: [*]Guid,
-            Names: [*]?PWSTR,
+            Names: [*]?[*:0]u16,
             pcItemsFetched: ?*u32,
         ) callconv(.winapi) HRESULT,
         Skip: *const fn(
@@ -237,7 +237,7 @@ pub const IEnumDMO = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumDMO, cItemsToFetch: u32, pCLSID: [*]Guid, Names: [*]?PWSTR, pcItemsFetched: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn Next(self: *const IEnumDMO, cItemsToFetch: u32, pCLSID: [*]Guid, Names: [*]?[*:0]u16, pcItemsFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, cItemsToFetch, pCLSID, Names, pcItemsFetched);
     }
     pub fn Skip(self: *const IEnumDMO, cItemsToSkip: u32) callconv(.@"inline") HRESULT {
@@ -578,13 +578,12 @@ pub extern "msdmo" fn MoInitMediaType(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

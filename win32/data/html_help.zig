@@ -255,7 +255,7 @@ pub const CProperty = extern struct {
     cbData: u32,
     dwType: u32,
     Anonymous: extern union {
-        lpszwData: ?PWSTR,
+        lpszwData: ?[*:0]u16,
         lpvData: ?*anyopaque,
         dwValue: u32,
     },
@@ -1288,7 +1288,7 @@ pub const HtmlHelp = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (17)
+// Section: Imports (15)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -1303,8 +1303,6 @@ const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const NMHDR = @import("../ui/controls.zig").NMHDR;
 const POINT = @import("../foundation.zig").POINT;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const VARIANT = @import("../system/com.zig").VARIANT;
 

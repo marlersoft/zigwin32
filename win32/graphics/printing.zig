@@ -1409,12 +1409,12 @@ pub const _SPLCLIENT_INFO_2_V3 = extern struct {
 };
 
 pub const ADDJOB_INFO_1A = extern struct {
-    Path: ?PSTR,
+    Path: ?[*:0]u8,
     JobId: u32,
 };
 
 pub const ADDJOB_INFO_1W = extern struct {
-    Path: ?PWSTR,
+    Path: ?[*:0]u16,
     JobId: u32,
 };
 
@@ -1475,7 +1475,7 @@ pub const BIDI_DATA = extern struct {
     u: extern union {
         bData: BOOL,
         iData: i32,
-        sData: ?PWSTR,
+        sData: ?[*:0]u16,
         fData: f32,
         biData: BINARY_CONTAINER,
     },
@@ -1490,7 +1490,7 @@ pub const BIDI_REQUEST_CONTAINER = extern struct {
 
 pub const BIDI_REQUEST_DATA = extern struct {
     dwReqNumber: u32,
-    pSchema: ?PWSTR,
+    pSchema: ?[*:0]u16,
     data: BIDI_DATA,
 };
 
@@ -1504,7 +1504,7 @@ pub const BIDI_RESPONSE_CONTAINER = extern struct {
 pub const BIDI_RESPONSE_DATA = extern struct {
     dwResult: u32,
     dwReqNumber: u32,
-    pSchema: ?PWSTR,
+    pSchema: ?[*:0]u16,
     data: BIDI_DATA,
 };
 
@@ -1560,32 +1560,32 @@ pub const BranchOfficeJobDataContainer = extern struct {
 
 pub const BranchOfficeJobDataError = extern struct {
     LastError: u32,
-    pDocumentName: ?PWSTR,
-    pUserName: ?PWSTR,
-    pPrinterName: ?PWSTR,
-    pDataType: ?PWSTR,
+    pDocumentName: ?[*:0]u16,
+    pUserName: ?[*:0]u16,
+    pPrinterName: ?[*:0]u16,
+    pDataType: ?[*:0]u16,
     TotalSize: i64,
     PrintedSize: i64,
     TotalPages: u32,
     PrintedPages: u32,
-    pMachineName: ?PWSTR,
-    pJobError: ?PWSTR,
-    pErrorDescription: ?PWSTR,
+    pMachineName: ?[*:0]u16,
+    pJobError: ?[*:0]u16,
+    pErrorDescription: ?[*:0]u16,
 };
 
 pub const BranchOfficeJobDataPipelineFailed = extern struct {
-    pDocumentName: ?PWSTR,
-    pPrinterName: ?PWSTR,
-    pExtraErrorInfo: ?PWSTR,
+    pDocumentName: ?[*:0]u16,
+    pPrinterName: ?[*:0]u16,
+    pExtraErrorInfo: ?[*:0]u16,
 };
 
 pub const BranchOfficeJobDataPrinted = extern struct {
     Status: u32,
-    pDocumentName: ?PWSTR,
-    pUserName: ?PWSTR,
-    pMachineName: ?PWSTR,
-    pPrinterName: ?PWSTR,
-    pPortName: ?PWSTR,
+    pDocumentName: ?[*:0]u16,
+    pUserName: ?[*:0]u16,
+    pMachineName: ?[*:0]u16,
+    pPrinterName: ?[*:0]u16,
+    pPortName: ?[*:0]u16,
     Size: i64,
     TotalPages: u32,
 };
@@ -1601,7 +1601,7 @@ pub const BranchOfficeJobDataRendered = extern struct {
 };
 
 pub const BranchOfficeLogOfflineFileFull = extern struct {
-    pMachineName: ?PWSTR,
+    pMachineName: ?[*:0]u16,
 };
 
 pub const COMPROPSHEETUI = extern struct {
@@ -1678,11 +1678,11 @@ pub const DATA_HEADER = extern struct {
 };
 
 pub const DATATYPES_INFO_1A = extern struct {
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
 };
 
 pub const DATATYPES_INFO_1W = extern struct {
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
 };
 
 pub const DELETE_PORT_DATA_1 = extern struct {
@@ -1704,7 +1704,7 @@ pub const DEVQUERYPRINT_INFO = extern struct {
     Level: u16,
     hPrinter: ?HANDLE,
     pDevMode: ?*DEVMODEA,
-    pszErrorStr: ?PWSTR,
+    pszErrorStr: ?[*:0]u16,
     cchErrorStr: u32,
     cchNeeded: u32,
 };
@@ -1722,50 +1722,50 @@ pub const DLGPAGE = extern struct {
 };
 
 pub const DOC_INFO_1A = extern struct {
-    pDocName: ?PSTR,
-    pOutputFile: ?PSTR,
-    pDatatype: ?PSTR,
+    pDocName: ?[*:0]u8,
+    pOutputFile: ?[*:0]u8,
+    pDatatype: ?[*:0]u8,
 };
 
 pub const DOC_INFO_1W = extern struct {
-    pDocName: ?PWSTR,
-    pOutputFile: ?PWSTR,
-    pDatatype: ?PWSTR,
+    pDocName: ?[*:0]u16,
+    pOutputFile: ?[*:0]u16,
+    pDatatype: ?[*:0]u16,
 };
 
 pub const DOC_INFO_2A = extern struct {
-    pDocName: ?PSTR,
-    pOutputFile: ?PSTR,
-    pDatatype: ?PSTR,
+    pDocName: ?[*:0]u8,
+    pOutputFile: ?[*:0]u8,
+    pDatatype: ?[*:0]u8,
     dwMode: u32,
     JobId: u32,
 };
 
 pub const DOC_INFO_2W = extern struct {
-    pDocName: ?PWSTR,
-    pOutputFile: ?PWSTR,
-    pDatatype: ?PWSTR,
+    pDocName: ?[*:0]u16,
+    pOutputFile: ?[*:0]u16,
+    pDatatype: ?[*:0]u16,
     dwMode: u32,
     JobId: u32,
 };
 
 pub const DOC_INFO_3A = extern struct {
-    pDocName: ?PSTR,
-    pOutputFile: ?PSTR,
-    pDatatype: ?PSTR,
+    pDocName: ?[*:0]u8,
+    pOutputFile: ?[*:0]u8,
+    pDatatype: ?[*:0]u8,
     dwFlags: u32,
 };
 
 pub const DOC_INFO_3W = extern struct {
-    pDocName: ?PWSTR,
-    pOutputFile: ?PWSTR,
-    pDatatype: ?PWSTR,
+    pDocName: ?[*:0]u16,
+    pOutputFile: ?[*:0]u16,
+    pDatatype: ?[*:0]u16,
     dwFlags: u32,
 };
 
 pub const DOCEVENT_CREATEDCPRE = extern struct {
-    pszDriver: ?PWSTR,
-    pszDevice: ?PWSTR,
+    pszDriver: ?[*:0]u16,
+    pszDevice: ?[*:0]u16,
     pdm: ?*DEVMODEW,
     bIC: BOOL,
 };
@@ -1796,92 +1796,92 @@ pub const DOCUMENTPROPERTYHEADER = extern struct {
 };
 
 pub const DRIVER_INFO_1A = extern struct {
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
 };
 
 pub const DRIVER_INFO_1W = extern struct {
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
 };
 
 pub const DRIVER_INFO_2A = extern struct {
     cVersion: u32,
-    pName: ?PSTR,
-    pEnvironment: ?PSTR,
-    pDriverPath: ?PSTR,
-    pDataFile: ?PSTR,
-    pConfigFile: ?PSTR,
+    pName: ?[*:0]u8,
+    pEnvironment: ?[*:0]u8,
+    pDriverPath: ?[*:0]u8,
+    pDataFile: ?[*:0]u8,
+    pConfigFile: ?[*:0]u8,
 };
 
 pub const DRIVER_INFO_2W = extern struct {
     cVersion: u32,
-    pName: ?PWSTR,
-    pEnvironment: ?PWSTR,
-    pDriverPath: ?PWSTR,
-    pDataFile: ?PWSTR,
-    pConfigFile: ?PWSTR,
+    pName: ?[*:0]u16,
+    pEnvironment: ?[*:0]u16,
+    pDriverPath: ?[*:0]u16,
+    pDataFile: ?[*:0]u16,
+    pConfigFile: ?[*:0]u16,
 };
 
 pub const DRIVER_INFO_3A = extern struct {
     cVersion: u32,
-    pName: ?PSTR,
-    pEnvironment: ?PSTR,
-    pDriverPath: ?PSTR,
-    pDataFile: ?PSTR,
-    pConfigFile: ?PSTR,
-    pHelpFile: ?PSTR,
-    pDependentFiles: ?PSTR,
-    pMonitorName: ?PSTR,
-    pDefaultDataType: ?PSTR,
+    pName: ?[*:0]u8,
+    pEnvironment: ?[*:0]u8,
+    pDriverPath: ?[*:0]u8,
+    pDataFile: ?[*:0]u8,
+    pConfigFile: ?[*:0]u8,
+    pHelpFile: ?[*:0]u8,
+    pDependentFiles: ?[*:0]u8,
+    pMonitorName: ?[*:0]u8,
+    pDefaultDataType: ?[*:0]u8,
 };
 
 pub const DRIVER_INFO_3W = extern struct {
     cVersion: u32,
-    pName: ?PWSTR,
-    pEnvironment: ?PWSTR,
-    pDriverPath: ?PWSTR,
-    pDataFile: ?PWSTR,
-    pConfigFile: ?PWSTR,
-    pHelpFile: ?PWSTR,
-    pDependentFiles: ?PWSTR,
-    pMonitorName: ?PWSTR,
-    pDefaultDataType: ?PWSTR,
+    pName: ?[*:0]u16,
+    pEnvironment: ?[*:0]u16,
+    pDriverPath: ?[*:0]u16,
+    pDataFile: ?[*:0]u16,
+    pConfigFile: ?[*:0]u16,
+    pHelpFile: ?[*:0]u16,
+    pDependentFiles: ?[*:0]u16,
+    pMonitorName: ?[*:0]u16,
+    pDefaultDataType: ?[*:0]u16,
 };
 
 pub const DRIVER_INFO_4A = extern struct {
     cVersion: u32,
-    pName: ?PSTR,
-    pEnvironment: ?PSTR,
-    pDriverPath: ?PSTR,
-    pDataFile: ?PSTR,
-    pConfigFile: ?PSTR,
-    pHelpFile: ?PSTR,
-    pDependentFiles: ?PSTR,
-    pMonitorName: ?PSTR,
-    pDefaultDataType: ?PSTR,
-    pszzPreviousNames: ?PSTR,
+    pName: ?[*:0]u8,
+    pEnvironment: ?[*:0]u8,
+    pDriverPath: ?[*:0]u8,
+    pDataFile: ?[*:0]u8,
+    pConfigFile: ?[*:0]u8,
+    pHelpFile: ?[*:0]u8,
+    pDependentFiles: ?[*:0]u8,
+    pMonitorName: ?[*:0]u8,
+    pDefaultDataType: ?[*:0]u8,
+    pszzPreviousNames: ?[*:0]u8,
 };
 
 pub const DRIVER_INFO_4W = extern struct {
     cVersion: u32,
-    pName: ?PWSTR,
-    pEnvironment: ?PWSTR,
-    pDriverPath: ?PWSTR,
-    pDataFile: ?PWSTR,
-    pConfigFile: ?PWSTR,
-    pHelpFile: ?PWSTR,
-    pDependentFiles: ?PWSTR,
-    pMonitorName: ?PWSTR,
-    pDefaultDataType: ?PWSTR,
-    pszzPreviousNames: ?PWSTR,
+    pName: ?[*:0]u16,
+    pEnvironment: ?[*:0]u16,
+    pDriverPath: ?[*:0]u16,
+    pDataFile: ?[*:0]u16,
+    pConfigFile: ?[*:0]u16,
+    pHelpFile: ?[*:0]u16,
+    pDependentFiles: ?[*:0]u16,
+    pMonitorName: ?[*:0]u16,
+    pDefaultDataType: ?[*:0]u16,
+    pszzPreviousNames: ?[*:0]u16,
 };
 
 pub const DRIVER_INFO_5A = extern struct {
     cVersion: u32,
-    pName: ?PSTR,
-    pEnvironment: ?PSTR,
-    pDriverPath: ?PSTR,
-    pDataFile: ?PSTR,
-    pConfigFile: ?PSTR,
+    pName: ?[*:0]u8,
+    pEnvironment: ?[*:0]u8,
+    pDriverPath: ?[*:0]u8,
+    pDataFile: ?[*:0]u8,
+    pConfigFile: ?[*:0]u8,
     dwDriverAttributes: u32,
     dwConfigVersion: u32,
     dwDriverVersion: u32,
@@ -1889,11 +1889,11 @@ pub const DRIVER_INFO_5A = extern struct {
 
 pub const DRIVER_INFO_5W = extern struct {
     cVersion: u32,
-    pName: ?PWSTR,
-    pEnvironment: ?PWSTR,
-    pDriverPath: ?PWSTR,
-    pDataFile: ?PWSTR,
-    pConfigFile: ?PWSTR,
+    pName: ?[*:0]u16,
+    pEnvironment: ?[*:0]u16,
+    pDriverPath: ?[*:0]u16,
+    pDataFile: ?[*:0]u16,
+    pConfigFile: ?[*:0]u16,
     dwDriverAttributes: u32,
     dwConfigVersion: u32,
     dwDriverVersion: u32,
@@ -1901,96 +1901,96 @@ pub const DRIVER_INFO_5W = extern struct {
 
 pub const DRIVER_INFO_6A = extern struct {
     cVersion: u32,
-    pName: ?PSTR,
-    pEnvironment: ?PSTR,
-    pDriverPath: ?PSTR,
-    pDataFile: ?PSTR,
-    pConfigFile: ?PSTR,
-    pHelpFile: ?PSTR,
-    pDependentFiles: ?PSTR,
-    pMonitorName: ?PSTR,
-    pDefaultDataType: ?PSTR,
-    pszzPreviousNames: ?PSTR,
+    pName: ?[*:0]u8,
+    pEnvironment: ?[*:0]u8,
+    pDriverPath: ?[*:0]u8,
+    pDataFile: ?[*:0]u8,
+    pConfigFile: ?[*:0]u8,
+    pHelpFile: ?[*:0]u8,
+    pDependentFiles: ?[*:0]u8,
+    pMonitorName: ?[*:0]u8,
+    pDefaultDataType: ?[*:0]u8,
+    pszzPreviousNames: ?[*:0]u8,
     ftDriverDate: FILETIME,
     dwlDriverVersion: u64,
-    pszMfgName: ?PSTR,
-    pszOEMUrl: ?PSTR,
-    pszHardwareID: ?PSTR,
-    pszProvider: ?PSTR,
+    pszMfgName: ?[*:0]u8,
+    pszOEMUrl: ?[*:0]u8,
+    pszHardwareID: ?[*:0]u8,
+    pszProvider: ?[*:0]u8,
 };
 
 pub const DRIVER_INFO_6W = extern struct {
     cVersion: u32,
-    pName: ?PWSTR,
-    pEnvironment: ?PWSTR,
-    pDriverPath: ?PWSTR,
-    pDataFile: ?PWSTR,
-    pConfigFile: ?PWSTR,
-    pHelpFile: ?PWSTR,
-    pDependentFiles: ?PWSTR,
-    pMonitorName: ?PWSTR,
-    pDefaultDataType: ?PWSTR,
-    pszzPreviousNames: ?PWSTR,
+    pName: ?[*:0]u16,
+    pEnvironment: ?[*:0]u16,
+    pDriverPath: ?[*:0]u16,
+    pDataFile: ?[*:0]u16,
+    pConfigFile: ?[*:0]u16,
+    pHelpFile: ?[*:0]u16,
+    pDependentFiles: ?[*:0]u16,
+    pMonitorName: ?[*:0]u16,
+    pDefaultDataType: ?[*:0]u16,
+    pszzPreviousNames: ?[*:0]u16,
     ftDriverDate: FILETIME,
     dwlDriverVersion: u64,
-    pszMfgName: ?PWSTR,
-    pszOEMUrl: ?PWSTR,
-    pszHardwareID: ?PWSTR,
-    pszProvider: ?PWSTR,
+    pszMfgName: ?[*:0]u16,
+    pszOEMUrl: ?[*:0]u16,
+    pszHardwareID: ?[*:0]u16,
+    pszProvider: ?[*:0]u16,
 };
 
 pub const DRIVER_INFO_8A = extern struct {
     cVersion: u32,
-    pName: ?PSTR,
-    pEnvironment: ?PSTR,
-    pDriverPath: ?PSTR,
-    pDataFile: ?PSTR,
-    pConfigFile: ?PSTR,
-    pHelpFile: ?PSTR,
-    pDependentFiles: ?PSTR,
-    pMonitorName: ?PSTR,
-    pDefaultDataType: ?PSTR,
-    pszzPreviousNames: ?PSTR,
+    pName: ?[*:0]u8,
+    pEnvironment: ?[*:0]u8,
+    pDriverPath: ?[*:0]u8,
+    pDataFile: ?[*:0]u8,
+    pConfigFile: ?[*:0]u8,
+    pHelpFile: ?[*:0]u8,
+    pDependentFiles: ?[*:0]u8,
+    pMonitorName: ?[*:0]u8,
+    pDefaultDataType: ?[*:0]u8,
+    pszzPreviousNames: ?[*:0]u8,
     ftDriverDate: FILETIME,
     dwlDriverVersion: u64,
-    pszMfgName: ?PSTR,
-    pszOEMUrl: ?PSTR,
-    pszHardwareID: ?PSTR,
-    pszProvider: ?PSTR,
-    pszPrintProcessor: ?PSTR,
-    pszVendorSetup: ?PSTR,
-    pszzColorProfiles: ?PSTR,
-    pszInfPath: ?PSTR,
+    pszMfgName: ?[*:0]u8,
+    pszOEMUrl: ?[*:0]u8,
+    pszHardwareID: ?[*:0]u8,
+    pszProvider: ?[*:0]u8,
+    pszPrintProcessor: ?[*:0]u8,
+    pszVendorSetup: ?[*:0]u8,
+    pszzColorProfiles: ?[*:0]u8,
+    pszInfPath: ?[*:0]u8,
     dwPrinterDriverAttributes: u32,
-    pszzCoreDriverDependencies: ?PSTR,
+    pszzCoreDriverDependencies: ?[*:0]u8,
     ftMinInboxDriverVerDate: FILETIME,
     dwlMinInboxDriverVerVersion: u64,
 };
 
 pub const DRIVER_INFO_8W = extern struct {
     cVersion: u32,
-    pName: ?PWSTR,
-    pEnvironment: ?PWSTR,
-    pDriverPath: ?PWSTR,
-    pDataFile: ?PWSTR,
-    pConfigFile: ?PWSTR,
-    pHelpFile: ?PWSTR,
-    pDependentFiles: ?PWSTR,
-    pMonitorName: ?PWSTR,
-    pDefaultDataType: ?PWSTR,
-    pszzPreviousNames: ?PWSTR,
+    pName: ?[*:0]u16,
+    pEnvironment: ?[*:0]u16,
+    pDriverPath: ?[*:0]u16,
+    pDataFile: ?[*:0]u16,
+    pConfigFile: ?[*:0]u16,
+    pHelpFile: ?[*:0]u16,
+    pDependentFiles: ?[*:0]u16,
+    pMonitorName: ?[*:0]u16,
+    pDefaultDataType: ?[*:0]u16,
+    pszzPreviousNames: ?[*:0]u16,
     ftDriverDate: FILETIME,
     dwlDriverVersion: u64,
-    pszMfgName: ?PWSTR,
-    pszOEMUrl: ?PWSTR,
-    pszHardwareID: ?PWSTR,
-    pszProvider: ?PWSTR,
-    pszPrintProcessor: ?PWSTR,
-    pszVendorSetup: ?PWSTR,
-    pszzColorProfiles: ?PWSTR,
-    pszInfPath: ?PWSTR,
+    pszMfgName: ?[*:0]u16,
+    pszOEMUrl: ?[*:0]u16,
+    pszHardwareID: ?[*:0]u16,
+    pszProvider: ?[*:0]u16,
+    pszPrintProcessor: ?[*:0]u16,
+    pszVendorSetup: ?[*:0]u16,
+    pszzColorProfiles: ?[*:0]u16,
+    pszInfPath: ?[*:0]u16,
     dwPrinterDriverAttributes: u32,
-    pszzCoreDriverDependencies: ?PWSTR,
+    pszzCoreDriverDependencies: ?[*:0]u16,
     ftMinInboxDriverVerDate: FILETIME,
     dwlMinInboxDriverVerVersion: u64,
 };
@@ -2211,14 +2211,14 @@ pub const EXTTEXTMETRIC = extern struct {
 
 pub const FORM_INFO_1A = extern struct {
     Flags: u32,
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
     Size: SIZE,
     ImageableArea: RECTL,
 };
 
 pub const FORM_INFO_1W = extern struct {
     Flags: u32,
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
     Size: SIZE,
     ImageableArea: RECTL,
 };
@@ -2369,7 +2369,7 @@ pub const IBidiRequest = extern union {
         GetOutputData: *const fn(
             self: *const IBidiRequest,
             dwIndex: u32,
-            ppszSchema: ?*?PWSTR,
+            ppszSchema: ?*?[*:0]u16,
             pdwType: ?*u32,
             ppData: ?*?*u8,
             uSize: ?*u32,
@@ -2390,7 +2390,7 @@ pub const IBidiRequest = extern union {
     pub fn GetResult(self: *const IBidiRequest, phr: ?*HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.GetResult(self, phr);
     }
-    pub fn GetOutputData(self: *const IBidiRequest, dwIndex: u32, ppszSchema: ?*?PWSTR, pdwType: ?*u32, ppData: ?*?*u8, uSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetOutputData(self: *const IBidiRequest, dwIndex: u32, ppszSchema: ?*?[*:0]u16, pdwType: ?*u32, ppData: ?*?*u8, uSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOutputData(self, dwIndex, ppszSchema, pdwType, ppData, uSize);
     }
     pub fn GetEnumCount(self: *const IBidiRequest, pdwTotal: ?*u32) callconv(.@"inline") HRESULT {
@@ -3131,7 +3131,7 @@ pub const IPrintAsyncNotifyServerReferral = extern union {
         base: IUnknown.VTable,
         GetServerReferral: *const fn(
             self: *const IPrintAsyncNotifyServerReferral,
-            param0: ?*?PWSTR,
+            param0: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         AsyncGetServerReferral: *const fn(
             self: *const IPrintAsyncNotifyServerReferral,
@@ -3144,7 +3144,7 @@ pub const IPrintAsyncNotifyServerReferral = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetServerReferral(self: *const IPrintAsyncNotifyServerReferral, param0: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetServerReferral(self: *const IPrintAsyncNotifyServerReferral, param0: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetServerReferral(self, param0);
     }
     pub fn AsyncGetServerReferral(self: *const IPrintAsyncNotifyServerReferral, param0: ?*IAsyncGetSrvReferralCookie) callconv(.@"inline") HRESULT {
@@ -3201,7 +3201,7 @@ pub const IPrintCoreHelper = extern union {
             pDevmode: ?*const DEVMODEA,
             cbSize: u32,
             pszFeatureRequested: ?[*:0]const u8,
-            ppszOption: ?*?PSTR,
+            ppszOption: ?*?[*:0]u8,
         ) callconv(.winapi) HRESULT,
         SetOptions: *const fn(
             self: *const IPrintCoreHelper,
@@ -3218,7 +3218,7 @@ pub const IPrintCoreHelper = extern union {
             pDevmode: ?*const DEVMODEA,
             cbSize: u32,
             pszFeatureKeyword: ?[*:0]const u8,
-            pConstrainedOptionList: ?*?*?*?PSTR,
+            pConstrainedOptionList: ?*?*?*?[*:0]u8,
             pdwNumOptions: ?*u32,
         ) callconv(.winapi) HRESULT,
         WhyConstrained: *const fn(
@@ -3233,19 +3233,19 @@ pub const IPrintCoreHelper = extern union {
         ) callconv(.winapi) HRESULT,
         EnumFeatures: *const fn(
             self: *const IPrintCoreHelper,
-            pFeatureList: ?*?*?*?PSTR,
+            pFeatureList: ?*?*?*?[*:0]u8,
             pdwNumFeatures: ?*u32,
         ) callconv(.winapi) HRESULT,
         EnumOptions: *const fn(
             self: *const IPrintCoreHelper,
             pszFeatureKeyword: ?[*:0]const u8,
-            pOptionList: ?*?*?*?PSTR,
+            pOptionList: ?*?*?*?[*:0]u8,
             pdwNumOptions: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetFontSubstitution: *const fn(
             self: *const IPrintCoreHelper,
             pszTrueTypeFontName: ?[*:0]const u16,
-            ppszDevFontName: ?*?PWSTR,
+            ppszDevFontName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetFontSubstitution: *const fn(
             self: *const IPrintCoreHelper,
@@ -3263,25 +3263,25 @@ pub const IPrintCoreHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetOption(self: *const IPrintCoreHelper, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureRequested: ?[*:0]const u8, ppszOption: ?*?PSTR) callconv(.@"inline") HRESULT {
+    pub fn GetOption(self: *const IPrintCoreHelper, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureRequested: ?[*:0]const u8, ppszOption: ?*?[*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetOption(self, pDevmode, cbSize, pszFeatureRequested, ppszOption);
     }
     pub fn SetOptions(self: *const IPrintCoreHelper, pDevmode: ?*DEVMODEA, cbSize: u32, bResolveConflicts: BOOL, pFOPairs: ?*const PRINT_FEATURE_OPTION, cPairs: u32, pcPairsWritten: ?*u32, pdwResult: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOptions(self, pDevmode, cbSize, bResolveConflicts, pFOPairs, cPairs, pcPairsWritten, pdwResult);
     }
-    pub fn EnumConstrainedOptions(self: *const IPrintCoreHelper, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureKeyword: ?[*:0]const u8, pConstrainedOptionList: ?*?*?*?PSTR, pdwNumOptions: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn EnumConstrainedOptions(self: *const IPrintCoreHelper, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureKeyword: ?[*:0]const u8, pConstrainedOptionList: ?*?*?*?[*:0]u8, pdwNumOptions: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumConstrainedOptions(self, pDevmode, cbSize, pszFeatureKeyword, pConstrainedOptionList, pdwNumOptions);
     }
     pub fn WhyConstrained(self: *const IPrintCoreHelper, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, ppFOConstraints: ?*const ?*PRINT_FEATURE_OPTION, pdwNumOptions: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.WhyConstrained(self, pDevmode, cbSize, pszFeatureKeyword, pszOptionKeyword, ppFOConstraints, pdwNumOptions);
     }
-    pub fn EnumFeatures(self: *const IPrintCoreHelper, pFeatureList: ?*?*?*?PSTR, pdwNumFeatures: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn EnumFeatures(self: *const IPrintCoreHelper, pFeatureList: ?*?*?*?[*:0]u8, pdwNumFeatures: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumFeatures(self, pFeatureList, pdwNumFeatures);
     }
-    pub fn EnumOptions(self: *const IPrintCoreHelper, pszFeatureKeyword: ?[*:0]const u8, pOptionList: ?*?*?*?PSTR, pdwNumOptions: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn EnumOptions(self: *const IPrintCoreHelper, pszFeatureKeyword: ?[*:0]const u8, pOptionList: ?*?*?*?[*:0]u8, pdwNumOptions: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumOptions(self, pszFeatureKeyword, pOptionList, pdwNumOptions);
     }
-    pub fn GetFontSubstitution(self: *const IPrintCoreHelper, pszTrueTypeFontName: ?[*:0]const u16, ppszDevFontName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetFontSubstitution(self: *const IPrintCoreHelper, pszTrueTypeFontName: ?[*:0]const u16, ppszDevFontName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetFontSubstitution(self, pszTrueTypeFontName, ppszDevFontName);
     }
     pub fn SetFontSubstitution(self: *const IPrintCoreHelper, pszTrueTypeFontName: ?[*:0]const u16, pszDevFontName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -4423,7 +4423,7 @@ pub const IPrintOemUI = extern union {
             self: *const IPrintOemUI,
             poemuiobj: ?*OEMUIOBJ,
             hPrinter: ?HANDLE,
-            pDeviceName: ?PWSTR,
+            pDeviceName: ?[*:0]u16,
             wCapability: u16,
             pOutput: ?*anyopaque,
             pPublicDM: ?*DEVMODEA,
@@ -4438,7 +4438,7 @@ pub const IPrintOemUI = extern union {
         ) callconv(.winapi) HRESULT,
         PrinterEvent: *const fn(
             self: *const IPrintOemUI,
-            pPrinterName: ?PWSTR,
+            pPrinterName: ?[*:0]u16,
             iDriverEvent: i32,
             dwFlags: u32,
             lParam: LPARAM,
@@ -4472,7 +4472,7 @@ pub const IPrintOemUI = extern union {
             self: *const IPrintOemUI,
             hPrinter: ?HANDLE,
             hHeap: ?HANDLE,
-            pwstrCartridges: ?PWSTR,
+            pwstrCartridges: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -4493,13 +4493,13 @@ pub const IPrintOemUI = extern union {
     pub fn DevQueryPrintEx(self: *const IPrintOemUI, poemuiobj: ?*OEMUIOBJ, pDQPInfo: ?*DEVQUERYPRINT_INFO, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.DevQueryPrintEx(self, poemuiobj, pDQPInfo, pPublicDM, pOEMDM);
     }
-    pub fn DeviceCapabilitiesA(self: *const IPrintOemUI, poemuiobj: ?*OEMUIOBJ, hPrinter: ?HANDLE, pDeviceName: ?PWSTR, wCapability: u16, pOutput: ?*anyopaque, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque, dwOld: u32, dwResult: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn DeviceCapabilitiesA(self: *const IPrintOemUI, poemuiobj: ?*OEMUIOBJ, hPrinter: ?HANDLE, pDeviceName: ?[*:0]u16, wCapability: u16, pOutput: ?*anyopaque, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque, dwOld: u32, dwResult: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.DeviceCapabilitiesA(self, poemuiobj, hPrinter, pDeviceName, wCapability, pOutput, pPublicDM, pOEMDM, dwOld, dwResult);
     }
     pub fn UpgradePrinter(self: *const IPrintOemUI, dwLevel: u32, pDriverUpgradeInfo: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.UpgradePrinter(self, dwLevel, pDriverUpgradeInfo);
     }
-    pub fn PrinterEvent(self: *const IPrintOemUI, pPrinterName: ?PWSTR, iDriverEvent: i32, dwFlags: u32, lParam: LPARAM) callconv(.@"inline") HRESULT {
+    pub fn PrinterEvent(self: *const IPrintOemUI, pPrinterName: ?[*:0]u16, iDriverEvent: i32, dwFlags: u32, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.PrinterEvent(self, pPrinterName, iDriverEvent, dwFlags, lParam);
     }
     pub fn DriverEvent(self: *const IPrintOemUI, dwDriverEvent: u32, dwLevel: u32, pDriverInfo: ?*u8, lParam: LPARAM) callconv(.@"inline") HRESULT {
@@ -4511,7 +4511,7 @@ pub const IPrintOemUI = extern union {
     pub fn FontInstallerDlgProc(self: *const IPrintOemUI, hWnd: ?HWND, usMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.FontInstallerDlgProc(self, hWnd, usMsg, wParam, lParam);
     }
-    pub fn UpdateExternalFonts(self: *const IPrintOemUI, hPrinter: ?HANDLE, hHeap: ?HANDLE, pwstrCartridges: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn UpdateExternalFonts(self: *const IPrintOemUI, hPrinter: ?HANDLE, hHeap: ?HANDLE, pwstrCartridges: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateExternalFonts(self, hPrinter, hHeap, pwstrCartridges);
     }
 };
@@ -5805,12 +5805,12 @@ pub const IXpsRasterizerNotificationCallback = extern union {
 
 pub const JOB_INFO_1A = extern struct {
     JobId: u32,
-    pPrinterName: ?PSTR,
-    pMachineName: ?PSTR,
-    pUserName: ?PSTR,
-    pDocument: ?PSTR,
-    pDatatype: ?PSTR,
-    pStatus: ?PSTR,
+    pPrinterName: ?[*:0]u8,
+    pMachineName: ?[*:0]u8,
+    pUserName: ?[*:0]u8,
+    pDocument: ?[*:0]u8,
+    pDatatype: ?[*:0]u8,
+    pStatus: ?[*:0]u8,
     Status: u32,
     Priority: u32,
     Position: u32,
@@ -5821,12 +5821,12 @@ pub const JOB_INFO_1A = extern struct {
 
 pub const JOB_INFO_1W = extern struct {
     JobId: u32,
-    pPrinterName: ?PWSTR,
-    pMachineName: ?PWSTR,
-    pUserName: ?PWSTR,
-    pDocument: ?PWSTR,
-    pDatatype: ?PWSTR,
-    pStatus: ?PWSTR,
+    pPrinterName: ?[*:0]u16,
+    pMachineName: ?[*:0]u16,
+    pUserName: ?[*:0]u16,
+    pDocument: ?[*:0]u16,
+    pDatatype: ?[*:0]u16,
+    pStatus: ?[*:0]u16,
     Status: u32,
     Priority: u32,
     Position: u32,
@@ -5837,17 +5837,17 @@ pub const JOB_INFO_1W = extern struct {
 
 pub const JOB_INFO_2A = extern struct {
     JobId: u32,
-    pPrinterName: ?PSTR,
-    pMachineName: ?PSTR,
-    pUserName: ?PSTR,
-    pDocument: ?PSTR,
-    pNotifyName: ?PSTR,
-    pDatatype: ?PSTR,
-    pPrintProcessor: ?PSTR,
-    pParameters: ?PSTR,
-    pDriverName: ?PSTR,
+    pPrinterName: ?[*:0]u8,
+    pMachineName: ?[*:0]u8,
+    pUserName: ?[*:0]u8,
+    pDocument: ?[*:0]u8,
+    pNotifyName: ?[*:0]u8,
+    pDatatype: ?[*:0]u8,
+    pPrintProcessor: ?[*:0]u8,
+    pParameters: ?[*:0]u8,
+    pDriverName: ?[*:0]u8,
     pDevMode: ?*DEVMODEA,
-    pStatus: ?PSTR,
+    pStatus: ?[*:0]u8,
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     Status: u32,
     Priority: u32,
@@ -5863,17 +5863,17 @@ pub const JOB_INFO_2A = extern struct {
 
 pub const JOB_INFO_2W = extern struct {
     JobId: u32,
-    pPrinterName: ?PWSTR,
-    pMachineName: ?PWSTR,
-    pUserName: ?PWSTR,
-    pDocument: ?PWSTR,
-    pNotifyName: ?PWSTR,
-    pDatatype: ?PWSTR,
-    pPrintProcessor: ?PWSTR,
-    pParameters: ?PWSTR,
-    pDriverName: ?PWSTR,
+    pPrinterName: ?[*:0]u16,
+    pMachineName: ?[*:0]u16,
+    pUserName: ?[*:0]u16,
+    pDocument: ?[*:0]u16,
+    pNotifyName: ?[*:0]u16,
+    pDatatype: ?[*:0]u16,
+    pPrintProcessor: ?[*:0]u16,
+    pParameters: ?[*:0]u16,
+    pDriverName: ?[*:0]u16,
     pDevMode: ?*DEVMODEW,
-    pStatus: ?PWSTR,
+    pStatus: ?[*:0]u16,
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     Status: u32,
     Priority: u32,
@@ -5895,17 +5895,17 @@ pub const JOB_INFO_3 = extern struct {
 
 pub const JOB_INFO_4A = extern struct {
     JobId: u32,
-    pPrinterName: ?PSTR,
-    pMachineName: ?PSTR,
-    pUserName: ?PSTR,
-    pDocument: ?PSTR,
-    pNotifyName: ?PSTR,
-    pDatatype: ?PSTR,
-    pPrintProcessor: ?PSTR,
-    pParameters: ?PSTR,
-    pDriverName: ?PSTR,
+    pPrinterName: ?[*:0]u8,
+    pMachineName: ?[*:0]u8,
+    pUserName: ?[*:0]u8,
+    pDocument: ?[*:0]u8,
+    pNotifyName: ?[*:0]u8,
+    pDatatype: ?[*:0]u8,
+    pPrintProcessor: ?[*:0]u8,
+    pParameters: ?[*:0]u8,
+    pDriverName: ?[*:0]u8,
     pDevMode: ?*DEVMODEA,
-    pStatus: ?PSTR,
+    pStatus: ?[*:0]u8,
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     Status: u32,
     Priority: u32,
@@ -5922,17 +5922,17 @@ pub const JOB_INFO_4A = extern struct {
 
 pub const JOB_INFO_4W = extern struct {
     JobId: u32,
-    pPrinterName: ?PWSTR,
-    pMachineName: ?PWSTR,
-    pUserName: ?PWSTR,
-    pDocument: ?PWSTR,
-    pNotifyName: ?PWSTR,
-    pDatatype: ?PWSTR,
-    pPrintProcessor: ?PWSTR,
-    pParameters: ?PWSTR,
-    pDriverName: ?PWSTR,
+    pPrinterName: ?[*:0]u16,
+    pMachineName: ?[*:0]u16,
+    pUserName: ?[*:0]u16,
+    pDocument: ?[*:0]u16,
+    pNotifyName: ?[*:0]u16,
+    pDatatype: ?[*:0]u16,
+    pPrintProcessor: ?[*:0]u16,
+    pParameters: ?[*:0]u16,
+    pDriverName: ?[*:0]u16,
     pDevMode: ?*DEVMODEW,
-    pStatus: ?PWSTR,
+    pStatus: ?[*:0]u16,
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     Status: u32,
     Priority: u32,
@@ -5961,8 +5961,8 @@ pub const MAPTABLE = extern struct {
 
 pub const MESSAGEBOX_PARAMS = extern struct {
     cbSize: u32,
-    pTitle: ?PWSTR,
-    pMessage: ?PWSTR,
+    pTitle: ?[*:0]u16,
+    pMessage: ?[*:0]u16,
     Style: u32,
     dwTimeout: u32,
     bWait: BOOL,
@@ -6015,23 +6015,23 @@ pub const MONITOR2 = extern struct {
 };
 
 pub const MONITOR_INFO_1A = extern struct {
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
 };
 
 pub const MONITOR_INFO_1W = extern struct {
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
 };
 
 pub const MONITOR_INFO_2A = extern struct {
-    pName: ?PSTR,
-    pEnvironment: ?PSTR,
-    pDLLName: ?PSTR,
+    pName: ?[*:0]u8,
+    pEnvironment: ?[*:0]u8,
+    pDLLName: ?[*:0]u8,
 };
 
 pub const MONITOR_INFO_2W = extern struct {
-    pName: ?PWSTR,
-    pEnvironment: ?PWSTR,
-    pDLLName: ?PWSTR,
+    pName: ?[*:0]u16,
+    pEnvironment: ?[*:0]u16,
+    pDLLName: ?[*:0]u16,
 };
 
 pub const MONITOREX = extern struct {
@@ -6196,7 +6196,7 @@ pub const OEMCUIPPARAM = extern struct {
     cbSize: u32,
     poemuiobj: ?*OEMUIOBJ,
     hPrinter: ?HANDLE,
-    pPrinterName: ?PWSTR,
+    pPrinterName: ?[*:0]u16,
     hModule: ?HANDLE,
     hOEMHeap: ?HANDLE,
     pPublicDM: ?*DEVMODEA,
@@ -6228,7 +6228,7 @@ pub const OEMFONTINSTPARAM = extern struct {
     hModule: ?HANDLE,
     hHeap: ?HANDLE,
     dwFlags: u32,
-    pFontInstallerName: ?PWSTR,
+    pFontInstallerName: ?[*:0]u16,
 };
 
 pub const OEMUIOBJ = extern struct {
@@ -6245,7 +6245,7 @@ pub const OEMUIPSPARAM = extern struct {
     cbSize: u32,
     poemuiobj: ?*OEMUIOBJ,
     hPrinter: ?HANDLE,
-    pPrinterName: ?PWSTR,
+    pPrinterName: ?[*:0]u16,
     hModule: ?HANDLE,
     hOEMHeap: ?HANDLE,
     pPublicDM: ?*DEVMODEA,
@@ -6401,38 +6401,38 @@ pub const PORT_DATA_LIST_1 = extern struct {
 };
 
 pub const PORT_INFO_1A = extern struct {
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
 };
 
 pub const PORT_INFO_1W = extern struct {
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
 };
 
 pub const PORT_INFO_2A = extern struct {
-    pPortName: ?PSTR,
-    pMonitorName: ?PSTR,
-    pDescription: ?PSTR,
+    pPortName: ?[*:0]u8,
+    pMonitorName: ?[*:0]u8,
+    pDescription: ?[*:0]u8,
     fPortType: u32,
     Reserved: u32,
 };
 
 pub const PORT_INFO_2W = extern struct {
-    pPortName: ?PWSTR,
-    pMonitorName: ?PWSTR,
-    pDescription: ?PWSTR,
+    pPortName: ?[*:0]u16,
+    pMonitorName: ?[*:0]u16,
+    pDescription: ?[*:0]u16,
     fPortType: u32,
     Reserved: u32,
 };
 
 pub const PORT_INFO_3A = extern struct {
     dwStatus: u32,
-    pszStatus: ?PSTR,
+    pszStatus: ?[*:0]u8,
     dwSeverity: u32,
 };
 
 pub const PORT_INFO_3W = extern struct {
     dwStatus: u32,
-    pszStatus: ?PWSTR,
+    pszStatus: ?[*:0]u16,
     dwSeverity: u32,
 };
 
@@ -6624,28 +6624,28 @@ pub const PRINTER_ACCESS_MANAGE_LIMITED = PRINTER_ACCESS_RIGHTS{ .PRINTER_ACCESS
 
 pub const PRINTER_CONNECTION_INFO_1A = extern struct {
     dwFlags: u32,
-    pszDriverName: ?PSTR,
+    pszDriverName: ?[*:0]u8,
 };
 
 pub const PRINTER_CONNECTION_INFO_1W = extern struct {
     dwFlags: u32,
-    pszDriverName: ?PWSTR,
+    pszDriverName: ?[*:0]u16,
 };
 
 pub const PRINTER_DEFAULTSA = extern struct {
-    pDatatype: ?PSTR,
+    pDatatype: ?[*:0]u8,
     pDevMode: ?*DEVMODEA,
     DesiredAccess: PRINTER_ACCESS_RIGHTS,
 };
 
 pub const PRINTER_DEFAULTSW = extern struct {
-    pDatatype: ?PWSTR,
+    pDatatype: ?[*:0]u16,
     pDevMode: ?*DEVMODEW,
     DesiredAccess: PRINTER_ACCESS_RIGHTS,
 };
 
 pub const PRINTER_ENUM_VALUESA = extern struct {
-    pValueName: ?PSTR,
+    pValueName: ?[*:0]u8,
     cbValueName: u32,
     dwType: u32,
     pData: ?*u8,
@@ -6653,7 +6653,7 @@ pub const PRINTER_ENUM_VALUESA = extern struct {
 };
 
 pub const PRINTER_ENUM_VALUESW = extern struct {
-    pValueName: ?PWSTR,
+    pValueName: ?[*:0]u16,
     cbValueName: u32,
     dwType: u32,
     pData: ?*u8,
@@ -6668,31 +6668,31 @@ pub const PRINTER_EVENT_ATTRIBUTES_INFO = extern struct {
 
 pub const PRINTER_INFO_1A = extern struct {
     Flags: u32,
-    pDescription: ?PSTR,
-    pName: ?PSTR,
-    pComment: ?PSTR,
+    pDescription: ?[*:0]u8,
+    pName: ?[*:0]u8,
+    pComment: ?[*:0]u8,
 };
 
 pub const PRINTER_INFO_1W = extern struct {
     Flags: u32,
-    pDescription: ?PWSTR,
-    pName: ?PWSTR,
-    pComment: ?PWSTR,
+    pDescription: ?[*:0]u16,
+    pName: ?[*:0]u16,
+    pComment: ?[*:0]u16,
 };
 
 pub const PRINTER_INFO_2A = extern struct {
-    pServerName: ?PSTR,
-    pPrinterName: ?PSTR,
-    pShareName: ?PSTR,
-    pPortName: ?PSTR,
-    pDriverName: ?PSTR,
-    pComment: ?PSTR,
-    pLocation: ?PSTR,
+    pServerName: ?[*:0]u8,
+    pPrinterName: ?[*:0]u8,
+    pShareName: ?[*:0]u8,
+    pPortName: ?[*:0]u8,
+    pDriverName: ?[*:0]u8,
+    pComment: ?[*:0]u8,
+    pLocation: ?[*:0]u8,
     pDevMode: ?*DEVMODEA,
-    pSepFile: ?PSTR,
-    pPrintProcessor: ?PSTR,
-    pDatatype: ?PSTR,
-    pParameters: ?PSTR,
+    pSepFile: ?[*:0]u8,
+    pPrintProcessor: ?[*:0]u8,
+    pDatatype: ?[*:0]u8,
+    pParameters: ?[*:0]u8,
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     Attributes: u32,
     Priority: u32,
@@ -6705,18 +6705,18 @@ pub const PRINTER_INFO_2A = extern struct {
 };
 
 pub const PRINTER_INFO_2W = extern struct {
-    pServerName: ?PWSTR,
-    pPrinterName: ?PWSTR,
-    pShareName: ?PWSTR,
-    pPortName: ?PWSTR,
-    pDriverName: ?PWSTR,
-    pComment: ?PWSTR,
-    pLocation: ?PWSTR,
+    pServerName: ?[*:0]u16,
+    pPrinterName: ?[*:0]u16,
+    pShareName: ?[*:0]u16,
+    pPortName: ?[*:0]u16,
+    pDriverName: ?[*:0]u16,
+    pComment: ?[*:0]u16,
+    pLocation: ?[*:0]u16,
     pDevMode: ?*DEVMODEW,
-    pSepFile: ?PWSTR,
-    pPrintProcessor: ?PWSTR,
-    pDatatype: ?PWSTR,
-    pParameters: ?PWSTR,
+    pSepFile: ?[*:0]u16,
+    pPrintProcessor: ?[*:0]u16,
+    pDatatype: ?[*:0]u16,
+    pParameters: ?[*:0]u16,
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     Attributes: u32,
     Priority: u32,
@@ -6733,28 +6733,28 @@ pub const PRINTER_INFO_3 = extern struct {
 };
 
 pub const PRINTER_INFO_4A = extern struct {
-    pPrinterName: ?PSTR,
-    pServerName: ?PSTR,
+    pPrinterName: ?[*:0]u8,
+    pServerName: ?[*:0]u8,
     Attributes: u32,
 };
 
 pub const PRINTER_INFO_4W = extern struct {
-    pPrinterName: ?PWSTR,
-    pServerName: ?PWSTR,
+    pPrinterName: ?[*:0]u16,
+    pServerName: ?[*:0]u16,
     Attributes: u32,
 };
 
 pub const PRINTER_INFO_5A = extern struct {
-    pPrinterName: ?PSTR,
-    pPortName: ?PSTR,
+    pPrinterName: ?[*:0]u8,
+    pPortName: ?[*:0]u8,
     Attributes: u32,
     DeviceNotSelectedTimeout: u32,
     TransmissionRetryTimeout: u32,
 };
 
 pub const PRINTER_INFO_5W = extern struct {
-    pPrinterName: ?PWSTR,
-    pPortName: ?PWSTR,
+    pPrinterName: ?[*:0]u16,
+    pPortName: ?[*:0]u16,
     Attributes: u32,
     DeviceNotSelectedTimeout: u32,
     TransmissionRetryTimeout: u32,
@@ -6765,12 +6765,12 @@ pub const PRINTER_INFO_6 = extern struct {
 };
 
 pub const PRINTER_INFO_7A = extern struct {
-    pszObjectGUID: ?PSTR,
+    pszObjectGUID: ?[*:0]u8,
     dwAction: u32,
 };
 
 pub const PRINTER_INFO_7W = extern struct {
-    pszObjectGUID: ?PWSTR,
+    pszObjectGUID: ?[*:0]u16,
     dwAction: u32,
 };
 
@@ -6957,7 +6957,7 @@ pub const PrintJobStatus_Complete = PrintJobStatus.Complete;
 pub const PrintJobStatus_Retained = PrintJobStatus.Retained;
 
 pub const PrintNamedProperty = extern struct {
-    propertyName: ?PWSTR,
+    propertyName: ?[*:0]u16,
     propertyValue: PrintPropertyValue,
 };
 
@@ -6981,21 +6981,21 @@ pub const PRINTPROCESSOR_CAPS_2 = extern struct {
 };
 
 pub const PRINTPROCESSOR_INFO_1A = extern struct {
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
 };
 
 pub const PRINTPROCESSOR_INFO_1W = extern struct {
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
 };
 
 pub const PRINTPROCESSOROPENDATA = extern struct {
     pDevMode: ?*DEVMODEA,
-    pDatatype: ?PWSTR,
-    pParameters: ?PWSTR,
-    pDocumentName: ?PWSTR,
+    pDatatype: ?[*:0]u16,
+    pParameters: ?[*:0]u16,
+    pDocumentName: ?[*:0]u16,
     JobId: u32,
-    pOutputFile: ?PWSTR,
-    pPrinterName: ?PWSTR,
+    pOutputFile: ?[*:0]u16,
+    pPrinterName: ?[*:0]u16,
 };
 
 pub const PrintPropertiesCollection = extern struct {
@@ -7007,7 +7007,7 @@ pub const PrintPropertyValue = extern struct {
     ePropertyType: EPrintPropertyType,
     value: extern union {
         propertyByte: u8,
-        propertyString: ?PWSTR,
+        propertyString: ?[*:0]u16,
         propertyInt32: i32,
         propertyInt64: i64,
         propertyBlob: extern struct {
@@ -7189,23 +7189,23 @@ pub const PROPSHEETUI_INFO_HEADER = extern struct {
 };
 
 pub const PROVIDOR_INFO_1A = extern struct {
-    pName: ?PSTR,
-    pEnvironment: ?PSTR,
-    pDLLName: ?PSTR,
+    pName: ?[*:0]u8,
+    pEnvironment: ?[*:0]u8,
+    pDLLName: ?[*:0]u8,
 };
 
 pub const PROVIDOR_INFO_1W = extern struct {
-    pName: ?PWSTR,
-    pEnvironment: ?PWSTR,
-    pDLLName: ?PWSTR,
+    pName: ?[*:0]u16,
+    pEnvironment: ?[*:0]u16,
+    pDLLName: ?[*:0]u16,
 };
 
 pub const PROVIDOR_INFO_2A = extern struct {
-    pOrder: ?PSTR,
+    pOrder: ?[*:0]u8,
 };
 
 pub const PROVIDOR_INFO_2W = extern struct {
-    pOrder: ?PWSTR,
+    pOrder: ?[*:0]u16,
 };
 
 pub const PSCRIPT5_PRIVATE_DEVMODE = extern struct {
@@ -7265,8 +7265,8 @@ pub const SIMULATE_CAPS_1 = extern struct {
 
 pub const SPLCLIENT_INFO_1 = extern struct {
     dwSize: u32,
-    pMachineName: ?PWSTR,
-    pUserName: ?PWSTR,
+    pMachineName: ?[*:0]u16,
+    pUserName: ?[*:0]u16,
     dwBuildNum: u32,
     dwMajorVersion: u32,
     dwMinorVersion: u32,
@@ -7283,8 +7283,8 @@ pub const SPLCLIENT_INFO_3_VISTA = extern struct {
     cbSize: u32,
     dwFlags: u32,
     dwSize: u32,
-    pMachineName: ?PWSTR,
-    pUserName: ?PWSTR,
+    pMachineName: ?[*:0]u16,
+    pUserName: ?[*:0]u16,
     dwBuildNum: u32,
     dwMajorVersion: u32,
     dwMinorVersion: u32,
@@ -7390,7 +7390,7 @@ pub const UNIFM_HDR = extern struct {
 pub const USERDATA = extern struct {
     dwSize: u32,
     dwItemID: usize,
-    pKeyWordName: ?PSTR,
+    pKeyWordName: ?[*:0]u8,
     dwReserved: [8]u32,
 };
 
@@ -7476,27 +7476,27 @@ pub extern "winspool.drv" fn AddJobW(
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddMonitorA(
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
     Level: u32,
     pMonitors: ?*u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddMonitorW(
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
     Level: u32,
     pMonitors: ?*u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPortA(
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
     hWnd: ?HWND,
-    pMonitorName: ?PSTR,
+    pMonitorName: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPortW(
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
     hWnd: ?HWND,
-    pMonitorName: ?PWSTR,
+    pMonitorName: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "spoolss" fn AddPrintDeviceObject(
@@ -7505,7 +7505,7 @@ pub extern "spoolss" fn AddPrintDeviceObject(
 ) callconv(.winapi) HRESULT;
 
 pub extern "winspool.drv" fn AddPrinterA(
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
     Level: u32,
     pPrinter: ?*u8,
 ) callconv(.winapi) ?HANDLE;
@@ -7525,67 +7525,67 @@ pub extern "winspool.drv" fn AddPrinterConnection2W(
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrinterConnectionA(
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrinterConnectionW(
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrinterDriverA(
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
     Level: u32,
     pDriverInfo: ?*u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrinterDriverExA(
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
     Level: u32,
     lpbDriverInfo: ?*u8,
     dwFileCopyFlags: u32,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrinterDriverExW(
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
     Level: u32,
     lpbDriverInfo: ?*u8,
     dwFileCopyFlags: u32,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrinterDriverW(
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
     Level: u32,
     pDriverInfo: ?*u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrinterW(
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
     Level: u32,
     pPrinter: ?*u8,
 ) callconv(.winapi) ?HANDLE;
 
 pub extern "winspool.drv" fn AddPrintProcessorA(
-    pName: ?PSTR,
-    pEnvironment: ?PSTR,
-    pPathName: ?PSTR,
-    pPrintProcessorName: ?PSTR,
+    pName: ?[*:0]u8,
+    pEnvironment: ?[*:0]u8,
+    pPathName: ?[*:0]u8,
+    pPrintProcessorName: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrintProcessorW(
-    pName: ?PWSTR,
-    pEnvironment: ?PWSTR,
-    pPathName: ?PWSTR,
-    pPrintProcessorName: ?PWSTR,
+    pName: ?[*:0]u16,
+    pEnvironment: ?[*:0]u16,
+    pPathName: ?[*:0]u16,
+    pPrintProcessorName: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrintProvidorA(
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
     Level: u32,
     pProvidorInfo: ?*u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrintProvidorW(
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
     Level: u32,
     pProvidorInfo: ?*u8,
 ) callconv(.winapi) BOOL;
@@ -7593,7 +7593,7 @@ pub extern "winspool.drv" fn AddPrintProvidorW(
 pub extern "winspool.drv" fn AdvancedDocumentPropertiesA(
     hWnd: ?HWND,
     hPrinter: ?HANDLE,
-    pDeviceName: ?PSTR,
+    pDeviceName: ?[*:0]u8,
     pDevModeOutput: ?*DEVMODEA,
     pDevModeInput: ?*DEVMODEA,
 ) callconv(.winapi) i32;
@@ -7601,7 +7601,7 @@ pub extern "winspool.drv" fn AdvancedDocumentPropertiesA(
 pub extern "winspool.drv" fn AdvancedDocumentPropertiesW(
     hWnd: ?HWND,
     hPrinter: ?HANDLE,
-    pDeviceName: ?PWSTR,
+    pDeviceName: ?[*:0]u16,
     pDevModeOutput: ?*DEVMODEW,
     pDevModeInput: ?*DEVMODEW,
 ) callconv(.winapi) i32;
@@ -7650,15 +7650,15 @@ pub extern "compstui" fn CommonPropertySheetUIW(
 ) callconv(.winapi) i32;
 
 pub extern "winspool.drv" fn ConfigurePortA(
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
     hWnd: ?HWND,
-    pPortName: ?PSTR,
+    pPortName: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn ConfigurePortW(
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
     hWnd: ?HWND,
-    pPortName: ?PWSTR,
+    pPortName: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn ConnectToPrinterDlg(
@@ -7689,12 +7689,12 @@ pub extern "winspool.drv" fn CreatePrinterIC(
 
 pub extern "winspool.drv" fn DeleteFormA(
     hPrinter: ?HANDLE,
-    pFormName: ?PSTR,
+    pFormName: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeleteFormW(
     hPrinter: ?HANDLE,
-    pFormName: ?PWSTR,
+    pFormName: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeleteJobNamedProperty(
@@ -7704,27 +7704,27 @@ pub extern "winspool.drv" fn DeleteJobNamedProperty(
 ) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn DeleteMonitorA(
-    pName: ?PSTR,
-    pEnvironment: ?PSTR,
-    pMonitorName: ?PSTR,
+    pName: ?[*:0]u8,
+    pEnvironment: ?[*:0]u8,
+    pMonitorName: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeleteMonitorW(
-    pName: ?PWSTR,
-    pEnvironment: ?PWSTR,
-    pMonitorName: ?PWSTR,
+    pName: ?[*:0]u16,
+    pEnvironment: ?[*:0]u16,
+    pMonitorName: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePortA(
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
     hWnd: ?HWND,
-    pPortName: ?PSTR,
+    pPortName: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePortW(
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
     hWnd: ?HWND,
-    pPortName: ?PWSTR,
+    pPortName: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrinter(
@@ -7732,16 +7732,16 @@ pub extern "winspool.drv" fn DeletePrinter(
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrinterConnectionA(
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrinterConnectionW(
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrinterDataA(
     hPrinter: ?HANDLE,
-    pValueName: ?PSTR,
+    pValueName: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn DeletePrinterDataExA(
@@ -7758,27 +7758,27 @@ pub extern "winspool.drv" fn DeletePrinterDataExW(
 
 pub extern "winspool.drv" fn DeletePrinterDataW(
     hPrinter: ?HANDLE,
-    pValueName: ?PWSTR,
+    pValueName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn DeletePrinterDriverA(
-    pName: ?PSTR,
-    pEnvironment: ?PSTR,
-    pDriverName: ?PSTR,
+    pName: ?[*:0]u8,
+    pEnvironment: ?[*:0]u8,
+    pDriverName: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrinterDriverExA(
-    pName: ?PSTR,
-    pEnvironment: ?PSTR,
-    pDriverName: ?PSTR,
+    pName: ?[*:0]u8,
+    pEnvironment: ?[*:0]u8,
+    pDriverName: ?[*:0]u8,
     dwDeleteFlag: u32,
     dwVersionFlag: u32,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrinterDriverExW(
-    pName: ?PWSTR,
-    pEnvironment: ?PWSTR,
-    pDriverName: ?PWSTR,
+    pName: ?[*:0]u16,
+    pEnvironment: ?[*:0]u16,
+    pDriverName: ?[*:0]u16,
     dwDeleteFlag: u32,
     dwVersionFlag: u32,
 ) callconv(.winapi) BOOL;
@@ -7796,9 +7796,9 @@ pub extern "winspool.drv" fn DeletePrinterDriverPackageW(
 ) callconv(.winapi) HRESULT;
 
 pub extern "winspool.drv" fn DeletePrinterDriverW(
-    pName: ?PWSTR,
-    pEnvironment: ?PWSTR,
-    pDriverName: ?PWSTR,
+    pName: ?[*:0]u16,
+    pEnvironment: ?[*:0]u16,
+    pDriverName: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrinterIC(
@@ -7816,27 +7816,27 @@ pub extern "winspool.drv" fn DeletePrinterKeyW(
 ) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn DeletePrintProcessorA(
-    pName: ?PSTR,
-    pEnvironment: ?PSTR,
-    pPrintProcessorName: ?PSTR,
+    pName: ?[*:0]u8,
+    pEnvironment: ?[*:0]u8,
+    pPrintProcessorName: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrintProcessorW(
-    pName: ?PWSTR,
-    pEnvironment: ?PWSTR,
-    pPrintProcessorName: ?PWSTR,
+    pName: ?[*:0]u16,
+    pEnvironment: ?[*:0]u16,
+    pPrintProcessorName: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrintProvidorA(
-    pName: ?PSTR,
-    pEnvironment: ?PSTR,
-    pPrintProvidorName: ?PSTR,
+    pName: ?[*:0]u8,
+    pEnvironment: ?[*:0]u8,
+    pPrintProvidorName: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrintProvidorW(
-    pName: ?PWSTR,
-    pEnvironment: ?PWSTR,
-    pPrintProvidorName: ?PWSTR,
+    pName: ?[*:0]u16,
+    pEnvironment: ?[*:0]u16,
+    pPrintProvidorName: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DevQueryPrint(
@@ -7852,7 +7852,7 @@ pub extern "winspool.drv" fn DevQueryPrintEx(
 pub extern "winspool.drv" fn DocumentPropertiesA(
     hWnd: ?HWND,
     hPrinter: ?HANDLE,
-    pDeviceName: ?PSTR,
+    pDeviceName: ?[*:0]u8,
     pDevModeOutput: ?*DEVMODEA,
     pDevModeInput: ?*DEVMODEA,
     fMode: u32,
@@ -7861,7 +7861,7 @@ pub extern "winspool.drv" fn DocumentPropertiesA(
 pub extern "winspool.drv" fn DocumentPropertiesW(
     hWnd: ?HWND,
     hPrinter: ?HANDLE,
-    pDeviceName: ?PWSTR,
+    pDeviceName: ?[*:0]u16,
     pDevModeOutput: ?*DEVMODEW,
     pDevModeInput: ?*DEVMODEW,
     fMode: u32,
@@ -7927,7 +7927,7 @@ pub extern "winspool.drv" fn EnumJobsW(
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumMonitorsA(
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pMonitor: ?*u8,
@@ -7937,7 +7937,7 @@ pub extern "winspool.drv" fn EnumMonitorsA(
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumMonitorsW(
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pMonitor: ?*u8,
@@ -7947,7 +7947,7 @@ pub extern "winspool.drv" fn EnumMonitorsW(
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumPortsA(
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pPort: ?*u8,
@@ -7957,7 +7957,7 @@ pub extern "winspool.drv" fn EnumPortsA(
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumPortsW(
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pPort: ?*u8,
@@ -7970,7 +7970,7 @@ pub extern "winspool.drv" fn EnumPrinterDataA(
     hPrinter: ?HANDLE,
     dwIndex: u32,
     /// parameter "cbValueName" is the size in bytes
-    pValueName: ?PSTR,
+    pValueName: ?[*:0]u8,
     cbValueName: u32,
     pcbValueName: ?*u32,
     pType: ?*u32,
@@ -8003,7 +8003,7 @@ pub extern "winspool.drv" fn EnumPrinterDataW(
     hPrinter: ?HANDLE,
     dwIndex: u32,
     /// parameter "cbValueName" is the size in bytes
-    pValueName: ?PWSTR,
+    pValueName: ?[*:0]u16,
     cbValueName: u32,
     pcbValueName: ?*u32,
     pType: ?*u32,
@@ -8013,8 +8013,8 @@ pub extern "winspool.drv" fn EnumPrinterDataW(
 ) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn EnumPrinterDriversA(
-    pName: ?PSTR,
-    pEnvironment: ?PSTR,
+    pName: ?[*:0]u8,
+    pEnvironment: ?[*:0]u8,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pDriverInfo: ?*u8,
@@ -8024,8 +8024,8 @@ pub extern "winspool.drv" fn EnumPrinterDriversA(
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumPrinterDriversW(
-    pName: ?PWSTR,
-    pEnvironment: ?PWSTR,
+    pName: ?[*:0]u16,
+    pEnvironment: ?[*:0]u16,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pDriverInfo: ?*u8,
@@ -8038,7 +8038,7 @@ pub extern "winspool.drv" fn EnumPrinterKeyA(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u8,
     /// parameter "cbSubkey" is the size in bytes
-    pSubkey: ?PSTR,
+    pSubkey: ?[*:0]u8,
     cbSubkey: u32,
     pcbSubkey: ?*u32,
 ) callconv(.winapi) u32;
@@ -8047,14 +8047,14 @@ pub extern "winspool.drv" fn EnumPrinterKeyW(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u16,
     /// parameter "cbSubkey" is the size in bytes
-    pSubkey: ?PWSTR,
+    pSubkey: ?[*:0]u16,
     cbSubkey: u32,
     pcbSubkey: ?*u32,
 ) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn EnumPrintersA(
     Flags: u32,
-    Name: ?PSTR,
+    Name: ?[*:0]u8,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pPrinterEnum: ?*u8,
@@ -8065,7 +8065,7 @@ pub extern "winspool.drv" fn EnumPrintersA(
 
 pub extern "winspool.drv" fn EnumPrintersW(
     Flags: u32,
-    Name: ?PWSTR,
+    Name: ?[*:0]u16,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pPrinterEnum: ?*u8,
@@ -8075,8 +8075,8 @@ pub extern "winspool.drv" fn EnumPrintersW(
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumPrintProcessorDatatypesA(
-    pName: ?PSTR,
-    pPrintProcessorName: ?PSTR,
+    pName: ?[*:0]u8,
+    pPrintProcessorName: ?[*:0]u8,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pDatatypes: ?*u8,
@@ -8086,8 +8086,8 @@ pub extern "winspool.drv" fn EnumPrintProcessorDatatypesA(
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumPrintProcessorDatatypesW(
-    pName: ?PWSTR,
-    pPrintProcessorName: ?PWSTR,
+    pName: ?[*:0]u16,
+    pPrintProcessorName: ?[*:0]u16,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pDatatypes: ?*u8,
@@ -8097,8 +8097,8 @@ pub extern "winspool.drv" fn EnumPrintProcessorDatatypesW(
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumPrintProcessorsA(
-    pName: ?PSTR,
-    pEnvironment: ?PSTR,
+    pName: ?[*:0]u8,
+    pEnvironment: ?[*:0]u8,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pPrintProcessorInfo: ?*u8,
@@ -8108,8 +8108,8 @@ pub extern "winspool.drv" fn EnumPrintProcessorsA(
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumPrintProcessorsW(
-    pName: ?PWSTR,
-    pEnvironment: ?PWSTR,
+    pName: ?[*:0]u16,
+    pEnvironment: ?[*:0]u16,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pPrintProcessorInfo: ?*u8,
@@ -8122,10 +8122,10 @@ pub extern "winspool.drv" fn ExtDeviceMode(
     hWnd: ?HWND,
     hInst: ?HANDLE,
     pDevModeOutput: ?*DEVMODEA,
-    pDeviceName: ?PSTR,
-    pPort: ?PSTR,
+    pDeviceName: ?[*:0]u8,
+    pPort: ?[*:0]u8,
     pDevModeInput: ?*DEVMODEA,
-    pProfile: ?PSTR,
+    pProfile: ?[*:0]u8,
     fMode: u32,
 ) callconv(.winapi) i32;
 
@@ -8204,9 +8204,9 @@ pub extern "gdi32" fn GdiGetPageHandle(
 ) callconv(.winapi) ?HANDLE;
 
 pub extern "gdi32" fn GdiGetSpoolFileHandle(
-    pwszPrinterName: ?PWSTR,
+    pwszPrinterName: ?[*:0]u16,
     pDevmode: ?*DEVMODEW,
-    pwszDocName: ?PWSTR,
+    pwszDocName: ?[*:0]u16,
 ) callconv(.winapi) ?HANDLE;
 
 pub extern "gdi32" fn GdiPlayPageEMF(
@@ -8275,7 +8275,7 @@ pub extern "winspool.drv" fn GetDefaultPrinterW(
 
 pub extern "winspool.drv" fn GetFormA(
     hPrinter: ?HANDLE,
-    pFormName: ?PSTR,
+    pFormName: ?[*:0]u8,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pForm: ?*u8,
@@ -8285,7 +8285,7 @@ pub extern "winspool.drv" fn GetFormA(
 
 pub extern "winspool.drv" fn GetFormW(
     hPrinter: ?HANDLE,
-    pFormName: ?PWSTR,
+    pFormName: ?[*:0]u16,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pForm: ?*u8,
@@ -8304,13 +8304,13 @@ pub extern "winspool.drv" fn GetJobA(
 ) callconv(.winapi) BOOL;
 
 pub extern "spoolss" fn GetJobAttributes(
-    pPrinterName: ?PWSTR,
+    pPrinterName: ?[*:0]u16,
     pDevmode: ?*DEVMODEW,
     pAttributeInfo: ?*ATTRIBUTE_INFO_3,
 ) callconv(.winapi) BOOL;
 
 pub extern "spoolss" fn GetJobAttributesEx(
-    pPrinterName: ?PWSTR,
+    pPrinterName: ?[*:0]u16,
     pDevmode: ?*DEVMODEW,
     dwLevel: u32,
     /// parameter "nSize" is the size in bytes
@@ -8347,7 +8347,7 @@ pub extern "winspool.drv" fn GetPrinterA(
 
 pub extern "winspool.drv" fn GetPrinterDataA(
     hPrinter: ?HANDLE,
-    pValueName: ?PSTR,
+    pValueName: ?[*:0]u8,
     pType: ?*u32,
     /// parameter "nSize" is the size in bytes
     pData: ?*u8,
@@ -8379,7 +8379,7 @@ pub extern "winspool.drv" fn GetPrinterDataExW(
 
 pub extern "winspool.drv" fn GetPrinterDataW(
     hPrinter: ?HANDLE,
-    pValueName: ?PWSTR,
+    pValueName: ?[*:0]u16,
     pType: ?*u32,
     /// parameter "nSize" is the size in bytes
     pData: ?*u8,
@@ -8390,7 +8390,7 @@ pub extern "winspool.drv" fn GetPrinterDataW(
 pub extern "winspool.drv" fn GetPrinterDriver2A(
     hWnd: ?HWND,
     hPrinter: ?HANDLE,
-    pEnvironment: ?PSTR,
+    pEnvironment: ?[*:0]u8,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pDriverInfo: ?*u8,
@@ -8401,7 +8401,7 @@ pub extern "winspool.drv" fn GetPrinterDriver2A(
 pub extern "winspool.drv" fn GetPrinterDriver2W(
     hWnd: ?HWND,
     hPrinter: ?HANDLE,
-    pEnvironment: ?PWSTR,
+    pEnvironment: ?[*:0]u16,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pDriverInfo: ?*u8,
@@ -8411,7 +8411,7 @@ pub extern "winspool.drv" fn GetPrinterDriver2W(
 
 pub extern "winspool.drv" fn GetPrinterDriverA(
     hPrinter: ?HANDLE,
-    pEnvironment: ?PSTR,
+    pEnvironment: ?[*:0]u8,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pDriverInfo: ?*u8,
@@ -8420,8 +8420,8 @@ pub extern "winspool.drv" fn GetPrinterDriverA(
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetPrinterDriverDirectoryA(
-    pName: ?PSTR,
-    pEnvironment: ?PSTR,
+    pName: ?[*:0]u8,
+    pEnvironment: ?[*:0]u8,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pDriverDirectory: ?*u8,
@@ -8430,8 +8430,8 @@ pub extern "winspool.drv" fn GetPrinterDriverDirectoryA(
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetPrinterDriverDirectoryW(
-    pName: ?PWSTR,
-    pEnvironment: ?PWSTR,
+    pName: ?[*:0]u16,
+    pEnvironment: ?[*:0]u16,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pDriverDirectory: ?*u8,
@@ -8461,7 +8461,7 @@ pub extern "winspool.drv" fn GetPrinterDriverPackagePathW(
 
 pub extern "winspool.drv" fn GetPrinterDriverW(
     hPrinter: ?HANDLE,
-    pEnvironment: ?PWSTR,
+    pEnvironment: ?[*:0]u16,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pDriverInfo: ?*u8,
@@ -8486,12 +8486,12 @@ pub extern "winspool.drv" fn GetPrintOutputInfo(
     hWnd: ?HWND,
     pszPrinter: ?[*:0]const u16,
     phFile: ?*?HANDLE,
-    ppszOutputFile: ?*?PWSTR,
+    ppszOutputFile: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "winspool.drv" fn GetPrintProcessorDirectoryA(
-    pName: ?PSTR,
-    pEnvironment: ?PSTR,
+    pName: ?[*:0]u8,
+    pEnvironment: ?[*:0]u8,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pPrintProcessorInfo: ?*u8,
@@ -8500,8 +8500,8 @@ pub extern "winspool.drv" fn GetPrintProcessorDirectoryA(
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetPrintProcessorDirectoryW(
-    pName: ?PWSTR,
-    pEnvironment: ?PWSTR,
+    pName: ?[*:0]u16,
+    pEnvironment: ?[*:0]u16,
     Level: u32,
     /// parameter "cbBuf" is the size in bytes
     pPrintProcessorInfo: ?*u8,
@@ -8558,13 +8558,13 @@ pub extern "winspool.drv" fn OpenPrinter2W(
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn OpenPrinterA(
-    pPrinterName: ?PSTR,
+    pPrinterName: ?[*:0]u8,
     phPrinter: ?*?HANDLE,
     pDefault: ?*PRINTER_DEFAULTSA,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn OpenPrinterW(
-    pPrinterName: ?PWSTR,
+    pPrinterName: ?[*:0]u16,
     phPrinter: ?*?HANDLE,
     pDefault: ?*PRINTER_DEFAULTSW,
 ) callconv(.winapi) BOOL;
@@ -8589,8 +8589,8 @@ pub extern "winspool.drv" fn PrinterMessageBoxA(
     hPrinter: ?HANDLE,
     Error: u32,
     hWnd: ?HWND,
-    pText: ?PSTR,
-    pCaption: ?PSTR,
+    pText: ?[*:0]u8,
+    pCaption: ?[*:0]u8,
     dwType: u32,
 ) callconv(.winapi) u32;
 
@@ -8598,8 +8598,8 @@ pub extern "winspool.drv" fn PrinterMessageBoxW(
     hPrinter: ?HANDLE,
     Error: u32,
     hWnd: ?HWND,
-    pText: ?PWSTR,
-    pCaption: ?PWSTR,
+    pText: ?[*:0]u16,
+    pCaption: ?[*:0]u16,
     dwType: u32,
 ) callconv(.winapi) u32;
 
@@ -8722,14 +8722,14 @@ pub extern "winspool.drv" fn SetDefaultPrinterW(
 
 pub extern "winspool.drv" fn SetFormA(
     hPrinter: ?HANDLE,
-    pFormName: ?PSTR,
+    pFormName: ?[*:0]u8,
     Level: u32,
     pForm: ?*u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn SetFormW(
     hPrinter: ?HANDLE,
-    pFormName: ?PWSTR,
+    pFormName: ?[*:0]u16,
     Level: u32,
     pForm: ?*u8,
 ) callconv(.winapi) BOOL;
@@ -8757,15 +8757,15 @@ pub extern "winspool.drv" fn SetJobW(
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn SetPortA(
-    pName: ?PSTR,
-    pPortName: ?PSTR,
+    pName: ?[*:0]u8,
+    pPortName: ?[*:0]u8,
     dwLevel: u32,
     pPortInfo: ?*u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn SetPortW(
-    pName: ?PWSTR,
-    pPortName: ?PWSTR,
+    pName: ?[*:0]u16,
+    pPortName: ?[*:0]u16,
     dwLevel: u32,
     pPortInfo: ?*u8,
 ) callconv(.winapi) BOOL;
@@ -8779,7 +8779,7 @@ pub extern "winspool.drv" fn SetPrinterA(
 
 pub extern "winspool.drv" fn SetPrinterDataA(
     hPrinter: ?HANDLE,
-    pValueName: ?PSTR,
+    pValueName: ?[*:0]u8,
     Type: u32,
     /// parameter "cbData" is the size in bytes
     pData: ?*u8,
@@ -8808,7 +8808,7 @@ pub extern "winspool.drv" fn SetPrinterDataExW(
 
 pub extern "winspool.drv" fn SetPrinterDataW(
     hPrinter: ?HANDLE,
-    pValueName: ?PWSTR,
+    pValueName: ?[*:0]u16,
     Type: u32,
     /// parameter "cbData" is the size in bytes
     pData: ?*u8,
@@ -8836,8 +8836,8 @@ pub extern "spoolss" fn SplPromptUIInUsersSession(
 ) callconv(.winapi) BOOL;
 
 pub extern "mscms" fn SpoolerCopyFileEvent(
-    pszPrinterName: ?PWSTR,
-    pszKey: ?PWSTR,
+    pszPrinterName: ?[*:0]u16,
+    pszKey: ?[*:0]u16,
     dwCopyFileEvent: u32,
 ) callconv(.winapi) BOOL;
 
@@ -9672,7 +9672,7 @@ pub const UploadPrinterDriverPackage = switch (@import("../zig.zig").unicode_mod
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (42)
+// Section: Imports (40)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -9707,8 +9707,6 @@ const LRESULT = @import("../foundation.zig").LRESULT;
 const PANOSE = @import("../graphics/gdi.zig").PANOSE;
 const POINTL = @import("../foundation.zig").POINTL;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const RECTL = @import("../foundation.zig").RECTL;
 const SIZE = @import("../foundation.zig").SIZE;

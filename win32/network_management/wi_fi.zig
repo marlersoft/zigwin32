@@ -842,7 +842,7 @@ pub const DOT11_ACCESSNETWORKOPTIONS = extern struct {
 
 pub const DOT11_ADAPTER = extern struct {
     gAdapterId: Guid,
-    pszDescription: ?PWSTR,
+    pszDescription: ?[*:0]u16,
     Dot11CurrentOpMode: DOT11_CURRENT_OPERATION_MODE,
 };
 
@@ -3124,7 +3124,7 @@ pub const connection_phase_initial_connection = DOT11EXT_IHV_CONNECTION_PHASE.in
 pub const connection_phase_post_l3_connection = DOT11EXT_IHV_CONNECTION_PHASE.post_l3_connection;
 
 pub const DOT11EXT_IHV_CONNECTIVITY_PROFILE = extern struct {
-    pszXmlFragmentIhvConnectivity: ?PWSTR,
+    pszXmlFragmentIhvConnectivity: ?[*:0]u16,
 };
 
 pub const DOT11EXT_IHV_DISCOVERY_PROFILE = extern struct {
@@ -3186,7 +3186,7 @@ pub const DOT11EXT_IHV_PROFILE_PARAMS = extern struct {
 };
 
 pub const DOT11EXT_IHV_SECURITY_PROFILE = extern struct {
-    pszXmlFragmentIhvSecurity: ?PWSTR,
+    pszXmlFragmentIhvSecurity: ?[*:0]u16,
     bUseMSOnex: BOOL,
 };
 
@@ -3519,7 +3519,7 @@ pub const IDot11AdHocInterface = extern union {
         ) callconv(.winapi) HRESULT,
         GetFriendlyName: *const fn(
             self: *const IDot11AdHocInterface,
-            ppszName: ?*?PWSTR,
+            ppszName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         IsDot11d: *const fn(
             self: *const IDot11AdHocInterface,
@@ -3556,7 +3556,7 @@ pub const IDot11AdHocInterface = extern union {
     pub fn GetDeviceSignature(self: *const IDot11AdHocInterface, pSignature: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceSignature(self, pSignature);
     }
-    pub fn GetFriendlyName(self: *const IDot11AdHocInterface, ppszName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetFriendlyName(self: *const IDot11AdHocInterface, ppszName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetFriendlyName(self, ppszName);
     }
     pub fn IsDot11d(self: *const IDot11AdHocInterface, pf11d: ?*u8) callconv(.@"inline") HRESULT {
@@ -3707,7 +3707,7 @@ pub const IDot11AdHocNetwork = extern union {
         ) callconv(.winapi) HRESULT,
         GetSSID: *const fn(
             self: *const IDot11AdHocNetwork,
-            ppszwSSID: ?*?PWSTR,
+            ppszwSSID: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         HasProfile: *const fn(
             self: *const IDot11AdHocNetwork,
@@ -3715,7 +3715,7 @@ pub const IDot11AdHocNetwork = extern union {
         ) callconv(.winapi) HRESULT,
         GetProfileName: *const fn(
             self: *const IDot11AdHocNetwork,
-            ppszwProfileName: ?*?PWSTR,
+            ppszwProfileName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         DeleteProfile: *const fn(
             self: *const IDot11AdHocNetwork,
@@ -3757,13 +3757,13 @@ pub const IDot11AdHocNetwork = extern union {
     pub fn GetStatus(self: *const IDot11AdHocNetwork, eStatus: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, eStatus);
     }
-    pub fn GetSSID(self: *const IDot11AdHocNetwork, ppszwSSID: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSSID(self: *const IDot11AdHocNetwork, ppszwSSID: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSSID(self, ppszwSSID);
     }
     pub fn HasProfile(self: *const IDot11AdHocNetwork, pf11d: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.HasProfile(self, pf11d);
     }
-    pub fn GetProfileName(self: *const IDot11AdHocNetwork, ppszwProfileName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetProfileName(self: *const IDot11AdHocNetwork, ppszwProfileName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetProfileName(self, ppszwProfileName);
     }
     pub fn DeleteProfile(self: *const IDot11AdHocNetwork) callconv(.@"inline") HRESULT {
@@ -5129,7 +5129,7 @@ pub extern "wlanapi" fn WlanGetProfile(
     pInterfaceGuid: ?*const Guid,
     strProfileName: ?[*:0]const u16,
     pReserved: ?*anyopaque,
-    pstrProfileXml: ?*?PWSTR,
+    pstrProfileXml: ?*?[*:0]u16,
     pdwFlags: ?*u32,
     pdwGrantedAccess: ?*u32,
 ) callconv(.winapi) u32;
@@ -5157,7 +5157,7 @@ pub extern "wlanapi" fn WlanGetSecuritySettings(
     hClientHandle: ?HANDLE,
     SecurableObject: WLAN_SECURABLE_OBJECT,
     pValueType: ?*WLAN_OPCODE_VALUE_TYPE,
-    pstrCurrentSDDL: ?*?PWSTR,
+    pstrCurrentSDDL: ?*?[*:0]u16,
     pdwGrantedAccess: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -5443,7 +5443,7 @@ pub extern "wlanapi" fn WlanSetProfileList(
     hClientHandle: ?HANDLE,
     pInterfaceGuid: ?*const Guid,
     dwItems: u32,
-    strProfileNames: [*]?PWSTR,
+    strProfileNames: [*]?[*:0]u16,
     pReserved: ?*anyopaque,
 ) callconv(.winapi) u32;
 
@@ -5487,7 +5487,7 @@ pub extern "wlanui" fn WlanUIEditProfile(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (14)
+// Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -5501,7 +5501,6 @@ const HWND = @import("../foundation.zig").HWND;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const NDIS_OBJECT_HEADER = @import("../network_management/ndis.zig").NDIS_OBJECT_HEADER;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const WTSSESSION_NOTIFICATION = @import("../system/remote_desktop.zig").WTSSESSION_NOTIFICATION;
 
 test {

@@ -39,26 +39,26 @@ pub const ENUMRESLANGPROCW = *const fn(
 pub const ENUMRESNAMEPROCA = *const fn(
     hModule: ?HINSTANCE,
     lpType: ?[*:0]const u8,
-    lpName: ?PSTR,
+    lpName: ?[*:0]u8,
     lParam: isize,
 ) callconv(.winapi) BOOL;
 
 pub const ENUMRESNAMEPROCW = *const fn(
     hModule: ?HINSTANCE,
     lpType: ?[*:0]align(1) const u16,
-    lpName: ?PWSTR,
+    lpName: ?[*:0]u16,
     lParam: isize,
 ) callconv(.winapi) BOOL;
 
 pub const ENUMRESTYPEPROCA = *const fn(
     hModule: ?HINSTANCE,
-    lpType: ?PSTR,
+    lpType: ?[*:0]u8,
     lParam: isize,
 ) callconv(.winapi) BOOL;
 
 pub const ENUMRESTYPEPROCW = *const fn(
     hModule: ?HINSTANCE,
-    lpType: ?PWSTR,
+    lpType: ?[*:0]u16,
     lParam: isize,
 ) callconv(.winapi) BOOL;
 
@@ -640,15 +640,13 @@ pub const UpdateResource = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const FARPROC = @import("../foundation.zig").FARPROC;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const HRSRC = @import("../foundation.zig").HRSRC;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

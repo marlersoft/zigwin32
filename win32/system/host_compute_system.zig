@@ -330,7 +330,7 @@ pub extern "computecore" fn HcsGetComputeSystemProperties(
 
 pub extern "computestorage" fn HcsGetLayerVhdMountPath(
     vhdHandle: ?HANDLE,
-    mountPath: ?*?PWSTR,
+    mountPath: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsGetOperationContext(
@@ -343,13 +343,13 @@ pub extern "computecore" fn HcsGetOperationId(
 
 pub extern "computecore" fn HcsGetOperationResult(
     operation: HCS_OPERATION,
-    resultDocument: ?*?PWSTR,
+    resultDocument: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsGetOperationResultAndProcessInfo(
     operation: HCS_OPERATION,
     processInformation: ?*HCS_PROCESS_INFORMATION,
-    resultDocument: ?*?PWSTR,
+    resultDocument: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsGetOperationType(
@@ -367,7 +367,7 @@ pub extern "computecore" fn HcsGetProcessInfo(
 
 pub extern "computecore" fn HcsGetProcessorCompatibilityFromSavedState(
     RuntimeFileName: ?[*:0]const u16,
-    ProcessorFeaturesString: ?*?PWSTR,
+    ProcessorFeaturesString: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsGetProcessProperties(
@@ -378,7 +378,7 @@ pub extern "computecore" fn HcsGetProcessProperties(
 
 pub extern "computecore" fn HcsGetServiceProperties(
     propertyQuery: ?[*:0]const u16,
-    result: ?*?PWSTR,
+    result: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsGrantVmAccess(
@@ -424,7 +424,7 @@ pub extern "computecore" fn HcsModifyProcess(
 
 pub extern "computecore" fn HcsModifyServiceSettings(
     settings: ?[*:0]const u16,
-    result: ?*?PWSTR,
+    result: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsOpenComputeSystem(
@@ -548,26 +548,26 @@ pub extern "computecore" fn HcsTerminateProcess(
 pub extern "computecore" fn HcsWaitForComputeSystemExit(
     computeSystem: HCS_SYSTEM,
     timeoutMs: u32,
-    result: ?*?PWSTR,
+    result: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsWaitForOperationResult(
     operation: HCS_OPERATION,
     timeoutMs: u32,
-    resultDocument: ?*?PWSTR,
+    resultDocument: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsWaitForOperationResultAndProcessInfo(
     operation: HCS_OPERATION,
     timeoutMs: u32,
     processInformation: ?*HCS_PROCESS_INFORMATION,
-    resultDocument: ?*?PWSTR,
+    resultDocument: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsWaitForProcessExit(
     computeSystem: HCS_PROCESS,
     timeoutMs: u32,
-    result: ?*?PWSTR,
+    result: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 
@@ -575,11 +575,10 @@ pub extern "computecore" fn HcsWaitForProcessExit(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 
 test {

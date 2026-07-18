@@ -3275,7 +3275,7 @@ pub extern "cfgmgr32" fn CM_Add_Empty_Log_Conf_Ex(
 
 pub extern "cfgmgr32" fn CM_Add_ID_ExA(
     dnDevInst: u32,
-    pszID: ?PSTR,
+    pszID: ?[*:0]u8,
     ulFlags: u32,
     hMachine: isize,
 ) callconv(.winapi) CONFIGRET;
@@ -3283,21 +3283,21 @@ pub extern "cfgmgr32" fn CM_Add_ID_ExA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Add_ID_ExW(
     dnDevInst: u32,
-    pszID: ?PWSTR,
+    pszID: ?[*:0]u16,
     ulFlags: u32,
     hMachine: isize,
 ) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Add_IDA(
     dnDevInst: u32,
-    pszID: ?PSTR,
+    pszID: ?[*:0]u8,
     ulFlags: u32,
 ) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Add_IDW(
     dnDevInst: u32,
-    pszID: ?PWSTR,
+    pszID: ?[*:0]u16,
     ulFlags: u32,
 ) callconv(.winapi) CONFIGRET;
 
@@ -3344,7 +3344,7 @@ pub extern "cfgmgr32" fn CM_Connect_MachineW(
 
 pub extern "cfgmgr32" fn CM_Create_DevNode_ExA(
     pdnDevInst: ?*u32,
-    pDeviceID: ?PSTR,
+    pDeviceID: ?[*:0]u8,
     dnParent: u32,
     ulFlags: u32,
     hMachine: isize,
@@ -3352,7 +3352,7 @@ pub extern "cfgmgr32" fn CM_Create_DevNode_ExA(
 
 pub extern "cfgmgr32" fn CM_Create_DevNode_ExW(
     pdnDevInst: ?*u32,
-    pDeviceID: ?PWSTR,
+    pDeviceID: ?[*:0]u16,
     dnParent: u32,
     ulFlags: u32,
     hMachine: isize,
@@ -3360,14 +3360,14 @@ pub extern "cfgmgr32" fn CM_Create_DevNode_ExW(
 
 pub extern "cfgmgr32" fn CM_Create_DevNodeA(
     pdnDevInst: ?*u32,
-    pDeviceID: ?PSTR,
+    pDeviceID: ?[*:0]u8,
     dnParent: u32,
     ulFlags: u32,
 ) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Create_DevNodeW(
     pdnDevInst: ?*u32,
-    pDeviceID: ?PWSTR,
+    pDeviceID: ?[*:0]u16,
     dnParent: u32,
     ulFlags: u32,
 ) callconv(.winapi) CONFIGRET;
@@ -3903,7 +3903,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_AliasW(
 
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_ExA(
     InterfaceClassGuid: ?*Guid,
-    pDeviceID: ?PSTR,
+    pDeviceID: ?[*:0]u8,
     Buffer: [*]u8,
     BufferLen: u32,
     ulFlags: u32,
@@ -3912,7 +3912,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_ExA(
 
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_ExW(
     InterfaceClassGuid: ?*Guid,
-    pDeviceID: ?PWSTR,
+    pDeviceID: ?[*:0]u16,
     Buffer: [*]u16,
     BufferLen: u32,
     ulFlags: u32,
@@ -3922,7 +3922,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_ExW(
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_Size_ExA(
     pulLen: ?*u32,
     InterfaceClassGuid: ?*Guid,
-    pDeviceID: ?PSTR,
+    pDeviceID: ?[*:0]u8,
     ulFlags: u32,
     hMachine: isize,
 ) callconv(.winapi) CONFIGRET;
@@ -3930,7 +3930,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_Size_ExA(
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_Size_ExW(
     pulLen: ?*u32,
     InterfaceClassGuid: ?*Guid,
-    pDeviceID: ?PWSTR,
+    pDeviceID: ?[*:0]u16,
     ulFlags: u32,
     hMachine: isize,
 ) callconv(.winapi) CONFIGRET;
@@ -3939,7 +3939,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_Size_ExW(
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_SizeA(
     pulLen: ?*u32,
     InterfaceClassGuid: ?*Guid,
-    pDeviceID: ?PSTR,
+    pDeviceID: ?[*:0]u8,
     ulFlags: u32,
 ) callconv(.winapi) CONFIGRET;
 
@@ -3947,14 +3947,14 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_SizeA(
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_SizeW(
     pulLen: ?*u32,
     InterfaceClassGuid: ?*Guid,
-    pDeviceID: ?PWSTR,
+    pDeviceID: ?[*:0]u16,
     ulFlags: u32,
 ) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_ListA(
     InterfaceClassGuid: ?*Guid,
-    pDeviceID: ?PSTR,
+    pDeviceID: ?[*:0]u8,
     Buffer: [*]u8,
     BufferLen: u32,
     ulFlags: u32,
@@ -3963,7 +3963,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_ListA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_ListW(
     InterfaceClassGuid: ?*Guid,
-    pDeviceID: ?PWSTR,
+    pDeviceID: ?[*:0]u16,
     Buffer: [*]u16,
     BufferLen: u32,
     ulFlags: u32,
@@ -4205,7 +4205,7 @@ pub extern "cfgmgr32" fn CM_Get_Hardware_Profile_InfoW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_HW_Prof_Flags_ExA(
-    pDeviceID: ?PSTR,
+    pDeviceID: ?[*:0]u8,
     ulHardwareProfile: u32,
     pulValue: ?*u32,
     ulFlags: u32,
@@ -4214,7 +4214,7 @@ pub extern "cfgmgr32" fn CM_Get_HW_Prof_Flags_ExA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_HW_Prof_Flags_ExW(
-    pDeviceID: ?PWSTR,
+    pDeviceID: ?[*:0]u16,
     ulHardwareProfile: u32,
     pulValue: ?*u32,
     ulFlags: u32,
@@ -4223,7 +4223,7 @@ pub extern "cfgmgr32" fn CM_Get_HW_Prof_Flags_ExW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_HW_Prof_FlagsA(
-    pDeviceID: ?PSTR,
+    pDeviceID: ?[*:0]u8,
     ulHardwareProfile: u32,
     pulValue: ?*u32,
     ulFlags: u32,
@@ -4231,7 +4231,7 @@ pub extern "cfgmgr32" fn CM_Get_HW_Prof_FlagsA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_HW_Prof_FlagsW(
-    pDeviceID: ?PWSTR,
+    pDeviceID: ?[*:0]u16,
     ulHardwareProfile: u32,
     pulValue: ?*u32,
     ulFlags: u32,
@@ -4416,7 +4416,7 @@ pub extern "cfgmgr32" fn CM_Is_Version_Available_Ex(
 
 pub extern "cfgmgr32" fn CM_Locate_DevNode_ExA(
     pdnDevInst: ?*u32,
-    pDeviceID: ?PSTR,
+    pDeviceID: ?[*:0]u8,
     ulFlags: u32,
     hMachine: isize,
 ) callconv(.winapi) CONFIGRET;
@@ -4424,7 +4424,7 @@ pub extern "cfgmgr32" fn CM_Locate_DevNode_ExA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Locate_DevNode_ExW(
     pdnDevInst: ?*u32,
-    pDeviceID: ?PWSTR,
+    pDeviceID: ?[*:0]u16,
     ulFlags: u32,
     hMachine: isize,
 ) callconv(.winapi) CONFIGRET;
@@ -4432,14 +4432,14 @@ pub extern "cfgmgr32" fn CM_Locate_DevNode_ExW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Locate_DevNodeA(
     pdnDevInst: ?*u32,
-    pDeviceID: ?PSTR,
+    pDeviceID: ?[*:0]u8,
     ulFlags: u32,
 ) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Locate_DevNodeW(
     pdnDevInst: ?*u32,
-    pDeviceID: ?PWSTR,
+    pDeviceID: ?[*:0]u16,
     ulFlags: u32,
 ) callconv(.winapi) CONFIGRET;
 
@@ -4980,7 +4980,7 @@ pub extern "cfgmgr32" fn CM_Set_HW_Prof_Ex(
 ) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Set_HW_Prof_Flags_ExA(
-    pDeviceID: ?PSTR,
+    pDeviceID: ?[*:0]u8,
     ulConfig: u32,
     ulValue: u32,
     ulFlags: u32,
@@ -4988,7 +4988,7 @@ pub extern "cfgmgr32" fn CM_Set_HW_Prof_Flags_ExA(
 ) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Set_HW_Prof_Flags_ExW(
-    pDeviceID: ?PWSTR,
+    pDeviceID: ?[*:0]u16,
     ulConfig: u32,
     ulValue: u32,
     ulFlags: u32,
@@ -4996,14 +4996,14 @@ pub extern "cfgmgr32" fn CM_Set_HW_Prof_Flags_ExW(
 ) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Set_HW_Prof_FlagsA(
-    pDeviceID: ?PSTR,
+    pDeviceID: ?[*:0]u8,
     ulConfig: u32,
     ulValue: u32,
     ulFlags: u32,
 ) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Set_HW_Prof_FlagsW(
-    pDeviceID: ?PWSTR,
+    pDeviceID: ?[*:0]u16,
     ulConfig: u32,
     ulValue: u32,
     ulFlags: u32,
@@ -5361,7 +5361,7 @@ pub extern "setupapi" fn SetupCopyOEMInfA(
     DestinationInfFileName: ?[*:0]u8,
     DestinationInfFileNameSize: u32,
     RequiredSize: ?*u32,
-    DestinationInfFileNameComponent: ?*?PSTR,
+    DestinationInfFileNameComponent: ?*?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5373,7 +5373,7 @@ pub extern "setupapi" fn SetupCopyOEMInfW(
     DestinationInfFileName: ?[*:0]u16,
     DestinationInfFileNameSize: u32,
     RequiredSize: ?*u32,
-    DestinationInfFileNameComponent: ?*?PWSTR,
+    DestinationInfFileNameComponent: ?*?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5792,7 +5792,7 @@ pub extern "setupapi" fn SetupDiGetActualSectionToInstallA(
     InfSectionWithExt: ?[*:0]u8,
     InfSectionWithExtSize: u32,
     RequiredSize: ?*u32,
-    Extension: ?*?PSTR,
+    Extension: ?*?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5803,7 +5803,7 @@ pub extern "setupapi" fn SetupDiGetActualSectionToInstallExA(
     InfSectionWithExt: ?[*:0]u8,
     InfSectionWithExtSize: u32,
     RequiredSize: ?*u32,
-    Extension: ?*?PSTR,
+    Extension: ?*?[*:0]u8,
     Reserved: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -5815,7 +5815,7 @@ pub extern "setupapi" fn SetupDiGetActualSectionToInstallExW(
     InfSectionWithExt: ?[*:0]u16,
     InfSectionWithExtSize: u32,
     RequiredSize: ?*u32,
-    Extension: ?*?PWSTR,
+    Extension: ?*?[*:0]u16,
     Reserved: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -5826,7 +5826,7 @@ pub extern "setupapi" fn SetupDiGetActualSectionToInstallW(
     InfSectionWithExt: ?[*:0]u16,
     InfSectionWithExtSize: u32,
     RequiredSize: ?*u32,
-    Extension: ?*?PWSTR,
+    Extension: ?*?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6816,13 +6816,13 @@ pub extern "setupapi" fn SetupFindNextMatchLineW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupFreeSourceListA(
-    List: [*]?*?PSTR,
+    List: [*]?*?[*:0]u8,
     Count: u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupFreeSourceListW(
-    List: [*]?*?PWSTR,
+    List: [*]?*?[*:0]u16,
     Count: u32,
 ) callconv(.winapi) BOOL;
 
@@ -6854,7 +6854,7 @@ pub extern "setupapi" fn SetupGetFieldCount(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetFileCompressionInfoA(
     SourceFileName: ?[*:0]const u8,
-    ActualSourceFileName: ?*?PSTR,
+    ActualSourceFileName: ?*?[*:0]u8,
     SourceFileSize: ?*u32,
     TargetFileSize: ?*u32,
     CompressionType: ?*u32,
@@ -6885,7 +6885,7 @@ pub extern "setupapi" fn SetupGetFileCompressionInfoExW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetFileCompressionInfoW(
     SourceFileName: ?[*:0]const u16,
-    ActualSourceFileName: ?*?PWSTR,
+    ActualSourceFileName: ?*?[*:0]u16,
     SourceFileSize: ?*u32,
     TargetFileSize: ?*u32,
     CompressionType: ?*u32,
@@ -7562,14 +7562,14 @@ pub extern "setupapi" fn SetupQueryInfVersionInformationW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQuerySourceListA(
     Flags: u32,
-    List: ?*?*?PSTR,
+    List: ?*?*?[*:0]u8,
     Count: ?*u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQuerySourceListW(
     Flags: u32,
-    List: ?*?*?PWSTR,
+    List: ?*?*?[*:0]u16,
     Count: ?*u32,
 ) callconv(.winapi) BOOL;
 
@@ -7930,14 +7930,14 @@ pub extern "setupapi" fn SetupSetPlatformPathOverrideW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupSetSourceListA(
     Flags: u32,
-    SourceList: [*]?PSTR,
+    SourceList: [*]?[*:0]u8,
     SourceCount: u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupSetSourceListW(
     Flags: u32,
-    SourceList: [*]?PWSTR,
+    SourceList: [*]?[*:0]u16,
     SourceCount: u32,
 ) callconv(.winapi) BOOL;
 
@@ -9474,7 +9474,7 @@ pub const UpdateDriverForPlugAndPlayDevices = switch (@import("../zig.zig").unic
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (23)
+// Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -9495,8 +9495,6 @@ const LPARAM = @import("../foundation.zig").LPARAM;
 const PRIORITY = @import("../data/html_help.zig").PRIORITY;
 const PROPSHEETHEADERA_V2 = @import("../ui/controls.zig").PROPSHEETHEADERA_V2;
 const PROPSHEETHEADERW_V2 = @import("../ui/controls.zig").PROPSHEETHEADERW_V2;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const VER_PLATFORM = @import("../system/diagnostics/debug.zig").VER_PLATFORM;
 

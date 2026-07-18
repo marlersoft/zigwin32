@@ -238,8 +238,8 @@ pub const VDMENUMTASKWOWPROC = *const fn(
 ) callconv(.winapi) i32;
 
 pub const VDMGETADDREXPRESSIONPROC = *const fn(
-    param0: ?PSTR,
-    param1: ?PSTR,
+    param0: ?[*:0]u8,
+    param1: ?[*:0]u8,
     param2: ?*u16,
     param3: ?*u32,
     param4: ?*u16,
@@ -255,7 +255,7 @@ pub const VDMGETMODULESELECTORPROC = *const fn(
     param0: ?HANDLE,
     param1: ?HANDLE,
     param2: u32,
-    param3: ?PSTR,
+    param3: ?[*:0]u8,
     param4: ?*u16,
 ) callconv(.winapi) BOOL;
 
@@ -279,14 +279,14 @@ pub const VDMGETSELECTORMODULEPROC = *const fn(
     param1: ?HANDLE,
     param2: u16,
     param3: ?*u32,
-    param4: ?PSTR,
+    param4: ?[*:0]u8,
     param5: u32,
-    param6: ?PSTR,
+    param6: ?[*:0]u8,
     param7: u32,
 ) callconv(.winapi) BOOL;
 
 pub const VDMGETSYMBOLPROC = *const fn(
-    param0: ?PSTR,
+    param0: ?[*:0]u8,
     param1: u16,
     param2: u32,
     param3: BOOL,
@@ -316,7 +316,7 @@ pub const VDMGLOBALNEXTPROC = *const fn(
 ) callconv(.winapi) BOOL;
 
 pub const VDMISMODULELOADEDPROC = *const fn(
-    param0: ?PSTR,
+    param0: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub const VDMKILLWOWPROC = *const fn(
@@ -352,7 +352,7 @@ pub const VDMSETDBGFLAGSPROC = *const fn(
 
 pub const VDMSTARTTASKINWOWPROC = *const fn(
     param0: u32,
-    param1: ?PSTR,
+    param1: ?[*:0]u8,
     param2: u16,
 ) callconv(.winapi) BOOL;
 
@@ -456,7 +456,7 @@ pub const VDMSETCONTEXTPROC = switch(@import("../zig.zig").arch) {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const CHAR = @import("../foundation.zig").CHAR;
@@ -464,7 +464,6 @@ const DEBUG_EVENT = @import("../system/diagnostics/debug.zig").DEBUG_EVENT;
 const FLOATING_SAVE_AREA = @import("../system/kernel.zig").FLOATING_SAVE_AREA;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const LPARAM = @import("../foundation.zig").LPARAM;
-const PSTR = @import("../foundation.zig").PSTR;
 // 2 arch-specific imports
 const CONTEXT = switch(@import("../zig.zig").arch) {
     .X86 => @import("../system/diagnostics/debug.zig").CONTEXT,

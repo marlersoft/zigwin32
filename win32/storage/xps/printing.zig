@@ -206,7 +206,7 @@ pub extern "xpsprint" fn StartXpsPrintJob1(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const HANDLE = @import("../../foundation.zig").HANDLE;
@@ -216,7 +216,6 @@ const ISequentialStream = @import("../../system/com.zig").ISequentialStream;
 const IStream = @import("../../system/com.zig").IStream;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const IXpsOMPackageTarget = @import("../../storage/xps.zig").IXpsOMPackageTarget;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

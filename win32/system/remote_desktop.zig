@@ -1380,10 +1380,10 @@ pub const ItsPubPlugin = extern union {
         ResolveResource: *const fn(
             self: *const ItsPubPlugin,
             resourceType: ?*u32,
-            resourceLocation: ?PWSTR,
-            endPointName: ?PWSTR,
-            userID: ?PWSTR,
-            alias: ?PWSTR,
+            resourceLocation: ?[*:0]u16,
+            endPointName: ?[*:0]u16,
+            userID: ?[*:0]u16,
+            alias: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1403,7 +1403,7 @@ pub const ItsPubPlugin = extern union {
     pub fn get_pluginVersion(self: *const ItsPubPlugin, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_pluginVersion(self, pVal);
     }
-    pub fn ResolveResource(self: *const ItsPubPlugin, resourceType: ?*u32, resourceLocation: ?PWSTR, endPointName: ?PWSTR, userID: ?PWSTR, alias: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn ResolveResource(self: *const ItsPubPlugin, resourceType: ?*u32, resourceLocation: ?[*:0]u16, endPointName: ?[*:0]u16, userID: ?[*:0]u16, alias: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.ResolveResource(self, resourceType, resourceLocation, endPointName, userID, alias);
     }
 };
@@ -1432,7 +1432,7 @@ pub const ItsPubPlugin2 = extern union {
             poolId: ?[*:0]const u16,
             ePdResolutionType: TSPUB_PLUGIN_PD_RESOLUTION_TYPE,
             pPdAssignmentType: ?*TSPUB_PLUGIN_PD_ASSIGNMENT_TYPE,
-            endPointName: ?PWSTR,
+            endPointName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         DeletePersonalDesktopAssignment: *const fn(
             self: *const ItsPubPlugin2,
@@ -1450,7 +1450,7 @@ pub const ItsPubPlugin2 = extern union {
     pub fn GetResource2(self: *const ItsPubPlugin2, alias: ?[*:0]const u16, flags: i32, resource: ?*pluginResource2) callconv(.@"inline") HRESULT {
         return self.vtable.GetResource2(self, alias, flags, resource);
     }
-    pub fn ResolvePersonalDesktop(self: *const ItsPubPlugin2, userId: ?[*:0]const u16, poolId: ?[*:0]const u16, ePdResolutionType: TSPUB_PLUGIN_PD_RESOLUTION_TYPE, pPdAssignmentType: ?*TSPUB_PLUGIN_PD_ASSIGNMENT_TYPE, endPointName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn ResolvePersonalDesktop(self: *const ItsPubPlugin2, userId: ?[*:0]const u16, poolId: ?[*:0]const u16, ePdResolutionType: TSPUB_PLUGIN_PD_RESOLUTION_TYPE, pPdAssignmentType: ?*TSPUB_PLUGIN_PD_ASSIGNMENT_TYPE, endPointName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.ResolvePersonalDesktop(self, userId, poolId, ePdResolutionType, pPdAssignmentType, endPointName);
     }
     pub fn DeletePersonalDesktopAssignment(self: *const ItsPubPlugin2, userId: ?[*:0]const u16, poolId: ?[*:0]const u16, endpointName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -3689,8 +3689,8 @@ pub const IWRdsProtocolConnection = extern union {
             self: *const IWRdsProtocolConnection,
             SessionId: u32,
             UserToken: HANDLE_PTR,
-            pDomainName: ?PWSTR,
-            pUserName: ?PWSTR,
+            pDomainName: ?[*:0]u16,
+            pUserName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SessionArbitrationEnumeration: *const fn(
             self: *const IWRdsProtocolConnection,
@@ -3702,8 +3702,8 @@ pub const IWRdsProtocolConnection = extern union {
         LogonNotify: *const fn(
             self: *const IWRdsProtocolConnection,
             hClientToken: HANDLE_PTR,
-            wszUserName: ?PWSTR,
-            wszDomainName: ?PWSTR,
+            wszUserName: ?[*:0]u16,
+            wszDomainName: ?[*:0]u16,
             SessionId: ?*WTS_SESSION_ID,
             pWRdsConnectionSettings: ?*WRDS_CONNECTION_SETTINGS,
         ) callconv(.winapi) HRESULT,
@@ -3731,7 +3731,7 @@ pub const IWRdsProtocolConnection = extern union {
         ) callconv(.winapi) HRESULT,
         CreateVirtualChannel: *const fn(
             self: *const IWRdsProtocolConnection,
-            szEndpointName: ?PSTR,
+            szEndpointName: ?[*:0]u8,
             bStatic: BOOL,
             RequestedPriority: u32,
             phChannel: ?*usize,
@@ -3788,13 +3788,13 @@ pub const IWRdsProtocolConnection = extern union {
     pub fn ConnectNotify(self: *const IWRdsProtocolConnection, SessionId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ConnectNotify(self, SessionId);
     }
-    pub fn IsUserAllowedToLogon(self: *const IWRdsProtocolConnection, SessionId: u32, UserToken: HANDLE_PTR, pDomainName: ?PWSTR, pUserName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn IsUserAllowedToLogon(self: *const IWRdsProtocolConnection, SessionId: u32, UserToken: HANDLE_PTR, pDomainName: ?[*:0]u16, pUserName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.IsUserAllowedToLogon(self, SessionId, UserToken, pDomainName, pUserName);
     }
     pub fn SessionArbitrationEnumeration(self: *const IWRdsProtocolConnection, hUserToken: HANDLE_PTR, bSingleSessionPerUserEnabled: BOOL, pSessionIdArray: [*]u32, pdwSessionIdentifierCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionArbitrationEnumeration(self, hUserToken, bSingleSessionPerUserEnabled, pSessionIdArray, pdwSessionIdentifierCount);
     }
-    pub fn LogonNotify(self: *const IWRdsProtocolConnection, hClientToken: HANDLE_PTR, wszUserName: ?PWSTR, wszDomainName: ?PWSTR, SessionId: ?*WTS_SESSION_ID, pWRdsConnectionSettings: ?*WRDS_CONNECTION_SETTINGS) callconv(.@"inline") HRESULT {
+    pub fn LogonNotify(self: *const IWRdsProtocolConnection, hClientToken: HANDLE_PTR, wszUserName: ?[*:0]u16, wszDomainName: ?[*:0]u16, SessionId: ?*WTS_SESSION_ID, pWRdsConnectionSettings: ?*WRDS_CONNECTION_SETTINGS) callconv(.@"inline") HRESULT {
         return self.vtable.LogonNotify(self, hClientToken, wszUserName, wszDomainName, SessionId, pWRdsConnectionSettings);
     }
     pub fn PreDisconnect(self: *const IWRdsProtocolConnection, DisconnectReason: u32) callconv(.@"inline") HRESULT {
@@ -3815,7 +3815,7 @@ pub const IWRdsProtocolConnection = extern union {
     pub fn SetErrorInfo(self: *const IWRdsProtocolConnection, ulError: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetErrorInfo(self, ulError);
     }
-    pub fn CreateVirtualChannel(self: *const IWRdsProtocolConnection, szEndpointName: ?PSTR, bStatic: BOOL, RequestedPriority: u32, phChannel: ?*usize) callconv(.@"inline") HRESULT {
+    pub fn CreateVirtualChannel(self: *const IWRdsProtocolConnection, szEndpointName: ?[*:0]u8, bStatic: BOOL, RequestedPriority: u32, phChannel: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVirtualChannel(self, szEndpointName, bStatic, RequestedPriority, phChannel);
     }
     pub fn QueryProperty(self: *const IWRdsProtocolConnection, QueryType: Guid, ulNumEntriesIn: u32, ulNumEntriesOut: u32, pPropertyEntriesIn: [*]WTS_PROPERTY_VALUE, pPropertyEntriesOut: [*]WTS_PROPERTY_VALUE) callconv(.@"inline") HRESULT {
@@ -4056,7 +4056,7 @@ pub const IWRdsProtocolManager = extern union {
         ) callconv(.winapi) HRESULT,
         CreateListener: *const fn(
             self: *const IWRdsProtocolManager,
-            wszListenerName: ?PWSTR,
+            wszListenerName: ?[*:0]u16,
             pProtocolListener: ?*?*IWRdsProtocolListener,
         ) callconv(.winapi) HRESULT,
         NotifyServiceStateChange: *const fn(
@@ -4089,7 +4089,7 @@ pub const IWRdsProtocolManager = extern union {
     pub fn Initialize(self: *const IWRdsProtocolManager, pIWRdsSettings: ?*IWRdsProtocolSettings, pWRdsSettings: ?*WRDS_SETTINGS) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pIWRdsSettings, pWRdsSettings);
     }
-    pub fn CreateListener(self: *const IWRdsProtocolManager, wszListenerName: ?PWSTR, pProtocolListener: ?*?*IWRdsProtocolListener) callconv(.@"inline") HRESULT {
+    pub fn CreateListener(self: *const IWRdsProtocolManager, wszListenerName: ?[*:0]u16, pProtocolListener: ?*?*IWRdsProtocolListener) callconv(.@"inline") HRESULT {
         return self.vtable.CreateListener(self, wszListenerName, pProtocolListener);
     }
     pub fn NotifyServiceStateChange(self: *const IWRdsProtocolManager, pTSServiceStateChange: ?*WTS_SERVICE_STATE) callconv(.@"inline") HRESULT {
@@ -4152,7 +4152,7 @@ pub const IWRdsProtocolShadowCallback = extern union {
         ) callconv(.winapi) HRESULT,
         InvokeTargetShadow: *const fn(
             self: *const IWRdsProtocolShadowCallback,
-            pTargetServerName: ?PWSTR,
+            pTargetServerName: ?[*:0]u16,
             TargetSessionId: u32,
             pParam1: [*:0]u8,
             Param1Size: u32,
@@ -4162,7 +4162,7 @@ pub const IWRdsProtocolShadowCallback = extern union {
             Param3Size: u32,
             pParam4: [*:0]u8,
             Param4Size: u32,
-            pClientName: ?PWSTR,
+            pClientName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -4170,7 +4170,7 @@ pub const IWRdsProtocolShadowCallback = extern union {
     pub fn StopShadow(self: *const IWRdsProtocolShadowCallback) callconv(.@"inline") HRESULT {
         return self.vtable.StopShadow(self);
     }
-    pub fn InvokeTargetShadow(self: *const IWRdsProtocolShadowCallback, pTargetServerName: ?PWSTR, TargetSessionId: u32, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn InvokeTargetShadow(self: *const IWRdsProtocolShadowCallback, pTargetServerName: ?[*:0]u16, TargetSessionId: u32, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.InvokeTargetShadow(self, pTargetServerName, TargetSessionId, pParam1, Param1Size, pParam2, Param2Size, pParam3, Param3Size, pParam4, Param4Size, pClientName);
     }
 };
@@ -4183,7 +4183,7 @@ pub const IWRdsProtocolShadowConnection = extern union {
         base: IUnknown.VTable,
         Start: *const fn(
             self: *const IWRdsProtocolShadowConnection,
-            pTargetServerName: ?PWSTR,
+            pTargetServerName: ?[*:0]u16,
             TargetSessionId: u32,
             HotKeyVk: u8,
             HotkeyModifiers: u16,
@@ -4202,18 +4202,18 @@ pub const IWRdsProtocolShadowConnection = extern union {
             Param3Size: u32,
             pParam4: [*:0]u8,
             Param4Size: u32,
-            pClientName: ?PWSTR,
+            pClientName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Start(self: *const IWRdsProtocolShadowConnection, pTargetServerName: ?PWSTR, TargetSessionId: u32, HotKeyVk: u8, HotkeyModifiers: u16, pShadowCallback: ?*IWRdsProtocolShadowCallback) callconv(.@"inline") HRESULT {
+    pub fn Start(self: *const IWRdsProtocolShadowConnection, pTargetServerName: ?[*:0]u16, TargetSessionId: u32, HotKeyVk: u8, HotkeyModifiers: u16, pShadowCallback: ?*IWRdsProtocolShadowCallback) callconv(.@"inline") HRESULT {
         return self.vtable.Start(self, pTargetServerName, TargetSessionId, HotKeyVk, HotkeyModifiers, pShadowCallback);
     }
     pub fn Stop(self: *const IWRdsProtocolShadowConnection) callconv(.@"inline") HRESULT {
         return self.vtable.Stop(self);
     }
-    pub fn DoTarget(self: *const IWRdsProtocolShadowConnection, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn DoTarget(self: *const IWRdsProtocolShadowConnection, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.DoTarget(self, pParam1, Param1Size, pParam2, Param2Size, pParam3, Param3Size, pParam4, Param4Size, pClientName);
     }
 };
@@ -4479,8 +4479,8 @@ pub const IWTSProtocolConnection = extern union {
             self: *const IWTSProtocolConnection,
             SessionId: u32,
             UserToken: HANDLE_PTR,
-            pDomainName: ?PWSTR,
-            pUserName: ?PWSTR,
+            pDomainName: ?[*:0]u16,
+            pUserName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SessionArbitrationEnumeration: *const fn(
             self: *const IWTSProtocolConnection,
@@ -4492,8 +4492,8 @@ pub const IWTSProtocolConnection = extern union {
         LogonNotify: *const fn(
             self: *const IWTSProtocolConnection,
             hClientToken: HANDLE_PTR,
-            wszUserName: ?PWSTR,
-            wszDomainName: ?PWSTR,
+            wszUserName: ?[*:0]u16,
+            wszDomainName: ?[*:0]u16,
             SessionId: ?*WTS_SESSION_ID,
         ) callconv(.winapi) HRESULT,
         GetUserData: *const fn(
@@ -4526,7 +4526,7 @@ pub const IWTSProtocolConnection = extern union {
         ) callconv(.winapi) HRESULT,
         CreateVirtualChannel: *const fn(
             self: *const IWTSProtocolConnection,
-            szEndpointName: ?PSTR,
+            szEndpointName: ?[*:0]u8,
             bStatic: BOOL,
             RequestedPriority: u32,
             phChannel: ?*usize,
@@ -4576,13 +4576,13 @@ pub const IWTSProtocolConnection = extern union {
     pub fn ConnectNotify(self: *const IWTSProtocolConnection, SessionId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ConnectNotify(self, SessionId);
     }
-    pub fn IsUserAllowedToLogon(self: *const IWTSProtocolConnection, SessionId: u32, UserToken: HANDLE_PTR, pDomainName: ?PWSTR, pUserName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn IsUserAllowedToLogon(self: *const IWTSProtocolConnection, SessionId: u32, UserToken: HANDLE_PTR, pDomainName: ?[*:0]u16, pUserName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.IsUserAllowedToLogon(self, SessionId, UserToken, pDomainName, pUserName);
     }
     pub fn SessionArbitrationEnumeration(self: *const IWTSProtocolConnection, hUserToken: HANDLE_PTR, bSingleSessionPerUserEnabled: BOOL, pSessionIdArray: [*]u32, pdwSessionIdentifierCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionArbitrationEnumeration(self, hUserToken, bSingleSessionPerUserEnabled, pSessionIdArray, pdwSessionIdentifierCount);
     }
-    pub fn LogonNotify(self: *const IWTSProtocolConnection, hClientToken: HANDLE_PTR, wszUserName: ?PWSTR, wszDomainName: ?PWSTR, SessionId: ?*WTS_SESSION_ID) callconv(.@"inline") HRESULT {
+    pub fn LogonNotify(self: *const IWTSProtocolConnection, hClientToken: HANDLE_PTR, wszUserName: ?[*:0]u16, wszDomainName: ?[*:0]u16, SessionId: ?*WTS_SESSION_ID) callconv(.@"inline") HRESULT {
         return self.vtable.LogonNotify(self, hClientToken, wszUserName, wszDomainName, SessionId);
     }
     pub fn GetUserData(self: *const IWTSProtocolConnection, pPolicyData: ?*WTS_POLICY_DATA, pClientData: ?*WTS_USER_DATA) callconv(.@"inline") HRESULT {
@@ -4606,7 +4606,7 @@ pub const IWTSProtocolConnection = extern union {
     pub fn SendBeep(self: *const IWTSProtocolConnection, Frequency: u32, Duration: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendBeep(self, Frequency, Duration);
     }
-    pub fn CreateVirtualChannel(self: *const IWTSProtocolConnection, szEndpointName: ?PSTR, bStatic: BOOL, RequestedPriority: u32, phChannel: ?*usize) callconv(.@"inline") HRESULT {
+    pub fn CreateVirtualChannel(self: *const IWTSProtocolConnection, szEndpointName: ?[*:0]u8, bStatic: BOOL, RequestedPriority: u32, phChannel: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVirtualChannel(self, szEndpointName, bStatic, RequestedPriority, phChannel);
     }
     pub fn QueryProperty(self: *const IWTSProtocolConnection, QueryType: Guid, ulNumEntriesIn: u32, ulNumEntriesOut: u32, pPropertyEntriesIn: [*]WTS_PROPERTY_VALUE, pPropertyEntriesOut: [*]WTS_PROPERTY_VALUE) callconv(.@"inline") HRESULT {
@@ -4804,7 +4804,7 @@ pub const IWTSProtocolManager = extern union {
         base: IUnknown.VTable,
         CreateListener: *const fn(
             self: *const IWTSProtocolManager,
-            wszListenerName: ?PWSTR,
+            wszListenerName: ?[*:0]u16,
             pProtocolListener: ?*?*IWTSProtocolListener,
         ) callconv(.winapi) HRESULT,
         NotifyServiceStateChange: *const fn(
@@ -4827,7 +4827,7 @@ pub const IWTSProtocolManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateListener(self: *const IWTSProtocolManager, wszListenerName: ?PWSTR, pProtocolListener: ?*?*IWTSProtocolListener) callconv(.@"inline") HRESULT {
+    pub fn CreateListener(self: *const IWTSProtocolManager, wszListenerName: ?[*:0]u16, pProtocolListener: ?*?*IWTSProtocolListener) callconv(.@"inline") HRESULT {
         return self.vtable.CreateListener(self, wszListenerName, pProtocolListener);
     }
     pub fn NotifyServiceStateChange(self: *const IWTSProtocolManager, pTSServiceStateChange: ?*WTS_SERVICE_STATE) callconv(.@"inline") HRESULT {
@@ -4855,7 +4855,7 @@ pub const IWTSProtocolShadowCallback = extern union {
         ) callconv(.winapi) HRESULT,
         InvokeTargetShadow: *const fn(
             self: *const IWTSProtocolShadowCallback,
-            pTargetServerName: ?PWSTR,
+            pTargetServerName: ?[*:0]u16,
             TargetSessionId: u32,
             pParam1: [*:0]u8,
             Param1Size: u32,
@@ -4865,7 +4865,7 @@ pub const IWTSProtocolShadowCallback = extern union {
             Param3Size: u32,
             pParam4: [*:0]u8,
             Param4Size: u32,
-            pClientName: ?PWSTR,
+            pClientName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -4873,7 +4873,7 @@ pub const IWTSProtocolShadowCallback = extern union {
     pub fn StopShadow(self: *const IWTSProtocolShadowCallback) callconv(.@"inline") HRESULT {
         return self.vtable.StopShadow(self);
     }
-    pub fn InvokeTargetShadow(self: *const IWTSProtocolShadowCallback, pTargetServerName: ?PWSTR, TargetSessionId: u32, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn InvokeTargetShadow(self: *const IWTSProtocolShadowCallback, pTargetServerName: ?[*:0]u16, TargetSessionId: u32, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.InvokeTargetShadow(self, pTargetServerName, TargetSessionId, pParam1, Param1Size, pParam2, Param2Size, pParam3, Param3Size, pParam4, Param4Size, pClientName);
     }
 };
@@ -4886,7 +4886,7 @@ pub const IWTSProtocolShadowConnection = extern union {
         base: IUnknown.VTable,
         Start: *const fn(
             self: *const IWTSProtocolShadowConnection,
-            pTargetServerName: ?PWSTR,
+            pTargetServerName: ?[*:0]u16,
             TargetSessionId: u32,
             HotKeyVk: u8,
             HotkeyModifiers: u16,
@@ -4905,18 +4905,18 @@ pub const IWTSProtocolShadowConnection = extern union {
             Param3Size: u32,
             pParam4: [*:0]u8,
             Param4Size: u32,
-            pClientName: ?PWSTR,
+            pClientName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Start(self: *const IWTSProtocolShadowConnection, pTargetServerName: ?PWSTR, TargetSessionId: u32, HotKeyVk: u8, HotkeyModifiers: u16, pShadowCallback: ?*IWTSProtocolShadowCallback) callconv(.@"inline") HRESULT {
+    pub fn Start(self: *const IWTSProtocolShadowConnection, pTargetServerName: ?[*:0]u16, TargetSessionId: u32, HotKeyVk: u8, HotkeyModifiers: u16, pShadowCallback: ?*IWTSProtocolShadowCallback) callconv(.@"inline") HRESULT {
         return self.vtable.Start(self, pTargetServerName, TargetSessionId, HotKeyVk, HotkeyModifiers, pShadowCallback);
     }
     pub fn Stop(self: *const IWTSProtocolShadowConnection) callconv(.@"inline") HRESULT {
         return self.vtable.Stop(self);
     }
-    pub fn DoTarget(self: *const IWTSProtocolShadowConnection, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn DoTarget(self: *const IWTSProtocolShadowConnection, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.DoTarget(self, pParam1, Param1Size, pParam2, Param2Size, pParam3, Param3Size, pParam4, Param4Size, pClientName);
     }
 };
@@ -4946,10 +4946,10 @@ pub const IWTSSBPlugin = extern union {
         ) callconv(.winapi) HRESULT,
         WTSSBX_GetMostSuitableServer: *const fn(
             self: *const IWTSSBPlugin,
-            UserName: ?PWSTR,
-            DomainName: ?PWSTR,
-            ApplicationType: ?PWSTR,
-            FarmName: ?PWSTR,
+            UserName: ?[*:0]u16,
+            DomainName: ?[*:0]u16,
+            ApplicationType: ?[*:0]u16,
+            FarmName: ?[*:0]u16,
             pMachineId: ?*i32,
         ) callconv(.winapi) HRESULT,
         Terminated: *const fn(
@@ -4957,9 +4957,9 @@ pub const IWTSSBPlugin = extern union {
         ) callconv(.winapi) HRESULT,
         WTSSBX_GetUserExternalSession: *const fn(
             self: *const IWTSSBPlugin,
-            UserName: ?PWSTR,
-            DomainName: ?PWSTR,
-            ApplicationType: ?PWSTR,
+            UserName: ?[*:0]u16,
+            DomainName: ?[*:0]u16,
+            ApplicationType: ?[*:0]u16,
             RedirectorInternalIP: ?*WTSSBX_IP_ADDRESS,
             pSessionId: ?*u32,
             pMachineConnectInfo: ?*WTSSBX_MACHINE_CONNECT_INFO,
@@ -4976,13 +4976,13 @@ pub const IWTSSBPlugin = extern union {
     pub fn WTSSBX_SessionChangeNotification(self: *const IWTSSBPlugin, NotificationType: WTSSBX_NOTIFICATION_TYPE, MachineId: i32, NumOfSessions: u32, SessionInfo: [*]WTSSBX_SESSION_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.WTSSBX_SessionChangeNotification(self, NotificationType, MachineId, NumOfSessions, SessionInfo);
     }
-    pub fn WTSSBX_GetMostSuitableServer(self: *const IWTSSBPlugin, UserName: ?PWSTR, DomainName: ?PWSTR, ApplicationType: ?PWSTR, FarmName: ?PWSTR, pMachineId: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn WTSSBX_GetMostSuitableServer(self: *const IWTSSBPlugin, UserName: ?[*:0]u16, DomainName: ?[*:0]u16, ApplicationType: ?[*:0]u16, FarmName: ?[*:0]u16, pMachineId: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.WTSSBX_GetMostSuitableServer(self, UserName, DomainName, ApplicationType, FarmName, pMachineId);
     }
     pub fn Terminated(self: *const IWTSSBPlugin) callconv(.@"inline") HRESULT {
         return self.vtable.Terminated(self);
     }
-    pub fn WTSSBX_GetUserExternalSession(self: *const IWTSSBPlugin, UserName: ?PWSTR, DomainName: ?PWSTR, ApplicationType: ?PWSTR, RedirectorInternalIP: ?*WTSSBX_IP_ADDRESS, pSessionId: ?*u32, pMachineConnectInfo: ?*WTSSBX_MACHINE_CONNECT_INFO) callconv(.@"inline") HRESULT {
+    pub fn WTSSBX_GetUserExternalSession(self: *const IWTSSBPlugin, UserName: ?[*:0]u16, DomainName: ?[*:0]u16, ApplicationType: ?[*:0]u16, RedirectorInternalIP: ?*WTSSBX_IP_ADDRESS, pSessionId: ?*u32, pMachineConnectInfo: ?*WTSSBX_MACHINE_CONNECT_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.WTSSBX_GetUserExternalSession(self, UserName, DomainName, ApplicationType, RedirectorInternalIP, pSessionId, pMachineConnectInfo);
     }
 };
@@ -5121,7 +5121,7 @@ pub const TASK_PLUGIN = PLUGIN_TYPE.TASK_PLUGIN;
 pub const pluginResource = extern struct {
     alias: [256]u16,
     name: [256]u16,
-    resourceFileContents: ?PWSTR,
+    resourceFileContents: ?[*:0]u16,
     fileExtension: [256]u16,
     resourcePluginType: [256]u16,
     isDiscoverable: u8,
@@ -5136,7 +5136,7 @@ pub const pluginResource2 = extern struct {
     resourceV1: pluginResource,
     pceFileAssocListSize: u32,
     fileAssocList: ?*pluginResource2FileAssociation,
-    securityDescriptor: ?PWSTR,
+    securityDescriptor: ?[*:0]u16,
     pceFolderListSize: u32,
     folderList: ?*?*u16,
 };
@@ -5544,7 +5544,7 @@ pub const VM_NOTIFY_STATUS_CANCELED = VM_NOTIFY_STATUS.CANCELED;
 
 pub const VM_PATCH_INFO = extern struct {
     dwNumEntries: u32,
-    pVmNames: ?*?PWSTR,
+    pVmNames: ?*?[*:0]u16,
 };
 
 const CLSID_Workspace_Value = Guid.initString("4f1dfca6-3aad-48e1-8406-4bc21a501d7c");
@@ -6016,7 +6016,7 @@ pub const WTS_POLICY_DATA = extern struct {
 pub const WTS_PROCESS_INFO_EXA = extern struct {
     SessionId: u32,
     ProcessId: u32,
-    pProcessName: ?PSTR,
+    pProcessName: ?[*:0]u8,
     pUserSid: ?PSID,
     NumberOfThreads: u32,
     HandleCount: u32,
@@ -6031,7 +6031,7 @@ pub const WTS_PROCESS_INFO_EXA = extern struct {
 pub const WTS_PROCESS_INFO_EXW = extern struct {
     SessionId: u32,
     ProcessId: u32,
-    pProcessName: ?PWSTR,
+    pProcessName: ?[*:0]u16,
     pUserSid: ?PSID,
     NumberOfThreads: u32,
     HandleCount: u32,
@@ -6046,14 +6046,14 @@ pub const WTS_PROCESS_INFO_EXW = extern struct {
 pub const WTS_PROCESS_INFOA = extern struct {
     SessionId: u32,
     ProcessId: u32,
-    pProcessName: ?PSTR,
+    pProcessName: ?[*:0]u8,
     pUserSid: ?PSID,
 };
 
 pub const WTS_PROCESS_INFOW = extern struct {
     SessionId: u32,
     ProcessId: u32,
-    pProcessName: ?PWSTR,
+    pProcessName: ?[*:0]u16,
     pUserSid: ?PSID,
 };
 
@@ -6063,11 +6063,11 @@ pub const WTS_PROPERTY_VALUE = extern struct {
         ulVal: u32,
         strVal: extern struct {
             size: u32,
-            pstrVal: ?PWSTR,
+            pstrVal: ?[*:0]u16,
         },
         bVal: extern struct {
             size: u32,
-            pbVal: ?PSTR,
+            pbVal: ?[*:0]u8,
         },
         guidVal: Guid,
     },
@@ -6206,11 +6206,11 @@ pub const WTS_SECURITY_DISCONNECT = WTS_SECURITY_FLAGS{ .DISCONNECT = 1 };
 pub const WTS_SECURITY_GUEST_ACCESS = WTS_SECURITY_FLAGS{ .LOGON = 1 };
 
 pub const WTS_SERVER_INFOA = extern struct {
-    pServerName: ?PSTR,
+    pServerName: ?[*:0]u8,
 };
 
 pub const WTS_SERVER_INFOW = extern struct {
-    pServerName: ?PWSTR,
+    pServerName: ?[*:0]u16,
 };
 
 pub const WTS_SERVICE_STATE = extern struct {
@@ -6232,33 +6232,33 @@ pub const WTS_SESSION_INFO_1A = extern struct {
     ExecEnvId: u32,
     State: WTS_CONNECTSTATE_CLASS,
     SessionId: u32,
-    pSessionName: ?PSTR,
-    pHostName: ?PSTR,
-    pUserName: ?PSTR,
-    pDomainName: ?PSTR,
-    pFarmName: ?PSTR,
+    pSessionName: ?[*:0]u8,
+    pHostName: ?[*:0]u8,
+    pUserName: ?[*:0]u8,
+    pDomainName: ?[*:0]u8,
+    pFarmName: ?[*:0]u8,
 };
 
 pub const WTS_SESSION_INFO_1W = extern struct {
     ExecEnvId: u32,
     State: WTS_CONNECTSTATE_CLASS,
     SessionId: u32,
-    pSessionName: ?PWSTR,
-    pHostName: ?PWSTR,
-    pUserName: ?PWSTR,
-    pDomainName: ?PWSTR,
-    pFarmName: ?PWSTR,
+    pSessionName: ?[*:0]u16,
+    pHostName: ?[*:0]u16,
+    pUserName: ?[*:0]u16,
+    pDomainName: ?[*:0]u16,
+    pFarmName: ?[*:0]u16,
 };
 
 pub const WTS_SESSION_INFOA = extern struct {
     SessionId: u32,
-    pWinStationName: ?PSTR,
+    pWinStationName: ?[*:0]u8,
     State: WTS_CONNECTSTATE_CLASS,
 };
 
 pub const WTS_SESSION_INFOW = extern struct {
     SessionId: u32,
-    pWinStationName: ?PWSTR,
+    pWinStationName: ?[*:0]u16,
     State: WTS_CONNECTSTATE_CLASS,
 };
 
@@ -6748,7 +6748,7 @@ pub extern "wtsapi32" fn WTSCloseServer(
 pub extern "wtsapi32" fn WTSConnectSessionA(
     LogonId: u32,
     TargetLogonId: u32,
-    pPassword: ?PSTR,
+    pPassword: ?[*:0]u8,
     bWait: BOOL,
 ) callconv(.winapi) BOOL;
 
@@ -6756,7 +6756,7 @@ pub extern "wtsapi32" fn WTSConnectSessionA(
 pub extern "wtsapi32" fn WTSConnectSessionW(
     LogonId: u32,
     TargetLogonId: u32,
-    pPassword: ?PWSTR,
+    pPassword: ?[*:0]u16,
     bWait: BOOL,
 ) callconv(.winapi) BOOL;
 
@@ -6765,7 +6765,7 @@ pub extern "wtsapi32" fn WTSCreateListenerA(
     hServer: ?HANDLE,
     pReserved: ?*anyopaque,
     Reserved: u32,
-    pListenerName: ?PSTR,
+    pListenerName: ?[*:0]u8,
     pBuffer: ?*WTSLISTENERCONFIGA,
     flag: u32,
 ) callconv(.winapi) BOOL;
@@ -6775,7 +6775,7 @@ pub extern "wtsapi32" fn WTSCreateListenerW(
     hServer: ?HANDLE,
     pReserved: ?*anyopaque,
     Reserved: u32,
-    pListenerName: ?PWSTR,
+    pListenerName: ?[*:0]u16,
     pBuffer: ?*WTSLISTENERCONFIGW,
     flag: u32,
 ) callconv(.winapi) BOOL;
@@ -6824,7 +6824,7 @@ pub extern "wtsapi32" fn WTSEnumerateProcessesExA(
     hServer: ?HANDLE,
     pLevel: ?*u32,
     SessionId: u32,
-    ppProcessInfo: ?*?PSTR,
+    ppProcessInfo: ?*?[*:0]u8,
     pCount: ?*u32,
 ) callconv(.winapi) BOOL;
 
@@ -6833,7 +6833,7 @@ pub extern "wtsapi32" fn WTSEnumerateProcessesExW(
     hServer: ?HANDLE,
     pLevel: ?*u32,
     SessionId: u32,
-    ppProcessInfo: ?*?PWSTR,
+    ppProcessInfo: ?*?[*:0]u16,
     pCount: ?*u32,
 ) callconv(.winapi) BOOL;
 
@@ -6848,7 +6848,7 @@ pub extern "wtsapi32" fn WTSEnumerateProcessesW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wtsapi32" fn WTSEnumerateServersA(
-    pDomainName: ?PSTR,
+    pDomainName: ?[*:0]u8,
     Reserved: u32,
     Version: u32,
     ppServerInfo: ?*?*WTS_SERVER_INFOA,
@@ -6857,7 +6857,7 @@ pub extern "wtsapi32" fn WTSEnumerateServersA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wtsapi32" fn WTSEnumerateServersW(
-    pDomainName: ?PWSTR,
+    pDomainName: ?[*:0]u16,
     Reserved: u32,
     Version: u32,
     ppServerInfo: ?*?*WTS_SERVER_INFOW,
@@ -6933,7 +6933,7 @@ pub extern "wtsapi32" fn WTSGetListenerSecurityA(
     hServer: ?HANDLE,
     pReserved: ?*anyopaque,
     Reserved: u32,
-    pListenerName: ?PSTR,
+    pListenerName: ?[*:0]u8,
     SecurityInformation: u32,
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     nLength: u32,
@@ -6945,7 +6945,7 @@ pub extern "wtsapi32" fn WTSGetListenerSecurityW(
     hServer: ?HANDLE,
     pReserved: ?*anyopaque,
     Reserved: u32,
-    pListenerName: ?PWSTR,
+    pListenerName: ?[*:0]u16,
     SecurityInformation: u32,
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     nLength: u32,
@@ -6966,22 +6966,22 @@ pub extern "wtsapi32" fn WTSLogoffSession(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wtsapi32" fn WTSOpenServerA(
-    pServerName: ?PSTR,
+    pServerName: ?[*:0]u8,
 ) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wtsapi32" fn WTSOpenServerExA(
-    pServerName: ?PSTR,
+    pServerName: ?[*:0]u8,
 ) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wtsapi32" fn WTSOpenServerExW(
-    pServerName: ?PWSTR,
+    pServerName: ?[*:0]u16,
 ) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wtsapi32" fn WTSOpenServerW(
-    pServerName: ?PWSTR,
+    pServerName: ?[*:0]u16,
 ) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -6989,7 +6989,7 @@ pub extern "wtsapi32" fn WTSQueryListenerConfigA(
     hServer: ?HANDLE,
     pReserved: ?*anyopaque,
     Reserved: u32,
-    pListenerName: ?PSTR,
+    pListenerName: ?[*:0]u8,
     pBuffer: ?*WTSLISTENERCONFIGA,
 ) callconv(.winapi) BOOL;
 
@@ -6998,7 +6998,7 @@ pub extern "wtsapi32" fn WTSQueryListenerConfigW(
     hServer: ?HANDLE,
     pReserved: ?*anyopaque,
     Reserved: u32,
-    pListenerName: ?PWSTR,
+    pListenerName: ?[*:0]u16,
     pBuffer: ?*WTSLISTENERCONFIGW,
 ) callconv(.winapi) BOOL;
 
@@ -7007,7 +7007,7 @@ pub extern "wtsapi32" fn WTSQuerySessionInformationA(
     hServer: ?HANDLE,
     SessionId: u32,
     WTSInfoClass: WTS_INFO_CLASS,
-    ppBuffer: ?*?PSTR,
+    ppBuffer: ?*?[*:0]u8,
     pBytesReturned: ?*u32,
 ) callconv(.winapi) BOOL;
 
@@ -7016,25 +7016,25 @@ pub extern "wtsapi32" fn WTSQuerySessionInformationW(
     hServer: ?HANDLE,
     SessionId: u32,
     WTSInfoClass: WTS_INFO_CLASS,
-    ppBuffer: ?*?PWSTR,
+    ppBuffer: ?*?[*:0]u16,
     pBytesReturned: ?*u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wtsapi32" fn WTSQueryUserConfigA(
-    pServerName: ?PSTR,
-    pUserName: ?PSTR,
+    pServerName: ?[*:0]u8,
+    pUserName: ?[*:0]u8,
     WTSConfigClass: WTS_CONFIG_CLASS,
-    ppBuffer: ?*?PSTR,
+    ppBuffer: ?*?[*:0]u8,
     pBytesReturned: ?*u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wtsapi32" fn WTSQueryUserConfigW(
-    pServerName: ?PWSTR,
-    pUserName: ?PWSTR,
+    pServerName: ?[*:0]u16,
+    pUserName: ?[*:0]u16,
     WTSConfigClass: WTS_CONFIG_CLASS,
-    ppBuffer: ?*?PWSTR,
+    ppBuffer: ?*?[*:0]u16,
     pBytesReturned: ?*u32,
 ) callconv(.winapi) BOOL;
 
@@ -7062,10 +7062,10 @@ pub extern "wtsapi32" fn WTSSendMessageA(
     hServer: ?HANDLE,
     SessionId: u32,
     /// parameter "TitleLength" is the size in bytes
-    pTitle: ?PSTR,
+    pTitle: ?[*:0]u8,
     TitleLength: u32,
     /// parameter "MessageLength" is the size in bytes
-    pMessage: ?PSTR,
+    pMessage: ?[*:0]u8,
     MessageLength: u32,
     Style: MESSAGEBOX_STYLE,
     Timeout: u32,
@@ -7078,10 +7078,10 @@ pub extern "wtsapi32" fn WTSSendMessageW(
     hServer: ?HANDLE,
     SessionId: u32,
     /// parameter "TitleLength" is the size in bytes
-    pTitle: ?PWSTR,
+    pTitle: ?[*:0]u16,
     TitleLength: u32,
     /// parameter "MessageLength" is the size in bytes
-    pMessage: ?PWSTR,
+    pMessage: ?[*:0]u16,
     MessageLength: u32,
     Style: MESSAGEBOX_STYLE,
     Timeout: u32,
@@ -7094,7 +7094,7 @@ pub extern "wtsapi32" fn WTSSetListenerSecurityA(
     hServer: ?HANDLE,
     pReserved: ?*anyopaque,
     Reserved: u32,
-    pListenerName: ?PSTR,
+    pListenerName: ?[*:0]u8,
     SecurityInformation: u32,
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 ) callconv(.winapi) BOOL;
@@ -7104,7 +7104,7 @@ pub extern "wtsapi32" fn WTSSetListenerSecurityW(
     hServer: ?HANDLE,
     pReserved: ?*anyopaque,
     Reserved: u32,
-    pListenerName: ?PWSTR,
+    pListenerName: ?[*:0]u16,
     SecurityInformation: u32,
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 ) callconv(.winapi) BOOL;
@@ -7121,21 +7121,21 @@ pub extern "wtsapi32" fn WTSSetRenderHint(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wtsapi32" fn WTSSetUserConfigA(
-    pServerName: ?PSTR,
-    pUserName: ?PSTR,
+    pServerName: ?[*:0]u8,
+    pUserName: ?[*:0]u8,
     WTSConfigClass: WTS_CONFIG_CLASS,
     /// parameter "DataLength" is the size in bytes
-    pBuffer: ?PSTR,
+    pBuffer: ?[*:0]u8,
     DataLength: u32,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wtsapi32" fn WTSSetUserConfigW(
-    pServerName: ?PWSTR,
-    pUserName: ?PWSTR,
+    pServerName: ?[*:0]u16,
+    pUserName: ?[*:0]u16,
     WTSConfigClass: WTS_CONFIG_CLASS,
     /// parameter "DataLength" is the size in bytes
-    pBuffer: ?PWSTR,
+    pBuffer: ?[*:0]u16,
     DataLength: u32,
 ) callconv(.winapi) BOOL;
 
@@ -7147,7 +7147,7 @@ pub extern "wtsapi32" fn WTSShutdownSystem(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wtsapi32" fn WTSStartRemoteControlSessionA(
-    pTargetServerName: ?PSTR,
+    pTargetServerName: ?[*:0]u8,
     TargetLogonId: u32,
     HotkeyVk: u8,
     HotkeyModifiers: u16,
@@ -7155,7 +7155,7 @@ pub extern "wtsapi32" fn WTSStartRemoteControlSessionA(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wtsapi32" fn WTSStartRemoteControlSessionW(
-    pTargetServerName: ?PWSTR,
+    pTargetServerName: ?[*:0]u16,
     TargetLogonId: u32,
     HotkeyVk: u8,
     HotkeyModifiers: u16,
@@ -7193,13 +7193,13 @@ pub extern "wtsapi32" fn WTSVirtualChannelClose(
 pub extern "wtsapi32" fn WTSVirtualChannelOpen(
     hServer: ?HANDLE,
     SessionId: u32,
-    pVirtualName: ?PSTR,
+    pVirtualName: ?[*:0]u8,
 ) callconv(.winapi) HwtsVirtualChannelHandle;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wtsapi32" fn WTSVirtualChannelOpenEx(
     SessionId: u32,
-    pVirtualName: ?PSTR,
+    pVirtualName: ?[*:0]u8,
     flags: u32,
 ) callconv(.winapi) HwtsVirtualChannelHandle;
 
@@ -7490,7 +7490,7 @@ pub const WTSStartRemoteControlSession = switch (@import("../zig.zig").unicode_m
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (27)
+// Section: Imports (25)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const APO_CONNECTION_PROPERTY = @import("../media/audio/apo.zig").APO_CONNECTION_PROPERTY;
@@ -7512,8 +7512,6 @@ const MESSAGEBOX_RESULT = @import("../ui/windows_and_messaging.zig").MESSAGEBOX_
 const MESSAGEBOX_STYLE = @import("../ui/windows_and_messaging.zig").MESSAGEBOX_STYLE;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PSID = @import("../foundation.zig").PSID;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const VARIANT = @import("../system/com.zig").VARIANT;

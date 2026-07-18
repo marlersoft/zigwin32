@@ -340,7 +340,7 @@ pub const WINSAT_OEM_NO_DATA_SUPPLIED = WINSAT_OEM_CUSTOMIZATION_STATE.NO_DATA_S
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BSTR = @import("../foundation.zig").BSTR;
@@ -351,7 +351,6 @@ const IAccessible = @import("../ui/accessibility.zig").IAccessible;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const IXMLDOMNodeList = @import("../data/xml/ms_xml.zig").IXMLDOMNodeList;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {

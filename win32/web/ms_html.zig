@@ -9797,8 +9797,8 @@ pub const DOCHOSTUIINFO = extern struct {
     cbSize: u32,
     dwFlags: DOCHOSTUIFLAG,
     dwDoubleClick: DOCHOSTUIDBLCLK,
-    pchHostCss: ?PWSTR,
-    pchHostNS: ?PWSTR,
+    pchHostCss: ?[*:0]u16,
+    pchHostNS: ?[*:0]u16,
 };
 
 pub const DOCHOSTUITYPE = enum(i32) {
@@ -14016,8 +14016,8 @@ pub const IDiagnosticsScriptEngine = extern union {
         ) callconv(.winapi) HRESULT,
         FireScriptMessageEvent: *const fn(
             self: *const IDiagnosticsScriptEngine,
-            pszNames: [*]?PWSTR,
-            pszValues: [*]?PWSTR,
+            pszNames: [*]?[*:0]u16,
+            pszValues: [*]?[*:0]u16,
             ulPropertyCount: u32,
         ) callconv(.winapi) HRESULT,
         Detach: *const fn(
@@ -14029,7 +14029,7 @@ pub const IDiagnosticsScriptEngine = extern union {
     pub fn EvaluateScript(self: *const IDiagnosticsScriptEngine, pszScript: ?[*:0]const u16, pszScriptName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.EvaluateScript(self, pszScript, pszScriptName);
     }
-    pub fn FireScriptMessageEvent(self: *const IDiagnosticsScriptEngine, pszNames: [*]?PWSTR, pszValues: [*]?PWSTR, ulPropertyCount: u32) callconv(.@"inline") HRESULT {
+    pub fn FireScriptMessageEvent(self: *const IDiagnosticsScriptEngine, pszNames: [*]?[*:0]u16, pszValues: [*]?[*:0]u16, ulPropertyCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.FireScriptMessageEvent(self, pszNames, pszValues, ulPropertyCount);
     }
     pub fn Detach(self: *const IDiagnosticsScriptEngine) callconv(.@"inline") HRESULT {
@@ -14064,7 +14064,7 @@ pub const IDiagnosticsScriptEngineSite = extern union {
         base: IUnknown.VTable,
         OnMessage: *const fn(
             self: *const IDiagnosticsScriptEngineSite,
-            pszData: [*]?PWSTR,
+            pszData: [*]?[*:0]u16,
             ulDataCount: u32,
         ) callconv(.winapi) HRESULT,
         OnScriptError: *const fn(
@@ -14074,7 +14074,7 @@ pub const IDiagnosticsScriptEngineSite = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnMessage(self: *const IDiagnosticsScriptEngineSite, pszData: [*]?PWSTR, ulDataCount: u32) callconv(.@"inline") HRESULT {
+    pub fn OnMessage(self: *const IDiagnosticsScriptEngineSite, pszData: [*]?[*:0]u16, ulDataCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnMessage(self, pszData, ulDataCount);
     }
     pub fn OnScriptError(self: *const IDiagnosticsScriptEngineSite, pScriptError: ?*IActiveScriptError) callconv(.@"inline") HRESULT {
@@ -14333,17 +14333,17 @@ pub const IDocHostShowUI = extern union {
         ShowMessage: *const fn(
             self: *const IDocHostShowUI,
             hwnd: ?HWND,
-            lpstrText: ?PWSTR,
-            lpstrCaption: ?PWSTR,
+            lpstrText: ?[*:0]u16,
+            lpstrCaption: ?[*:0]u16,
             dwType: u32,
-            lpstrHelpFile: ?PWSTR,
+            lpstrHelpFile: ?[*:0]u16,
             dwHelpContext: u32,
             plResult: ?*LRESULT,
         ) callconv(.winapi) HRESULT,
         ShowHelp: *const fn(
             self: *const IDocHostShowUI,
             hwnd: ?HWND,
-            pszHelpFile: ?PWSTR,
+            pszHelpFile: ?[*:0]u16,
             uCommand: u32,
             dwData: u32,
             ptMouse: POINT,
@@ -14352,10 +14352,10 @@ pub const IDocHostShowUI = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ShowMessage(self: *const IDocHostShowUI, hwnd: ?HWND, lpstrText: ?PWSTR, lpstrCaption: ?PWSTR, dwType: u32, lpstrHelpFile: ?PWSTR, dwHelpContext: u32, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
+    pub fn ShowMessage(self: *const IDocHostShowUI, hwnd: ?HWND, lpstrText: ?[*:0]u16, lpstrCaption: ?[*:0]u16, dwType: u32, lpstrHelpFile: ?[*:0]u16, dwHelpContext: u32, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.ShowMessage(self, hwnd, lpstrText, lpstrCaption, dwType, lpstrHelpFile, dwHelpContext, plResult);
     }
-    pub fn ShowHelp(self: *const IDocHostShowUI, hwnd: ?HWND, pszHelpFile: ?PWSTR, uCommand: u32, dwData: u32, ptMouse: POINT, pDispatchObjectHit: ?*IDispatch) callconv(.@"inline") HRESULT {
+    pub fn ShowHelp(self: *const IDocHostShowUI, hwnd: ?HWND, pszHelpFile: ?[*:0]u16, uCommand: u32, dwData: u32, ptMouse: POINT, pDispatchObjectHit: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.ShowHelp(self, hwnd, pszHelpFile, uCommand, dwData, ptMouse, pDispatchObjectHit);
     }
 };
@@ -14416,7 +14416,7 @@ pub const IDocHostUIHandler = extern union {
         ) callconv(.winapi) HRESULT,
         GetOptionKeyPath: *const fn(
             self: *const IDocHostUIHandler,
-            pchKey: ?*?PWSTR,
+            pchKey: ?*?[*:0]u16,
             dw: u32,
         ) callconv(.winapi) HRESULT,
         GetDropTarget: *const fn(
@@ -14431,8 +14431,8 @@ pub const IDocHostUIHandler = extern union {
         TranslateUrl: *const fn(
             self: *const IDocHostUIHandler,
             dwTranslate: u32,
-            pchURLIn: ?PWSTR,
-            ppchURLOut: ?*?PWSTR,
+            pchURLIn: ?[*:0]u16,
+            ppchURLOut: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         FilterDataObject: *const fn(
             self: *const IDocHostUIHandler,
@@ -14472,7 +14472,7 @@ pub const IDocHostUIHandler = extern union {
     pub fn TranslateAccelerator(self: *const IDocHostUIHandler, lpMsg: ?*MSG, pguidCmdGroup: ?*const Guid, nCmdID: u32) callconv(.@"inline") HRESULT {
         return self.vtable.TranslateAccelerator(self, lpMsg, pguidCmdGroup, nCmdID);
     }
-    pub fn GetOptionKeyPath(self: *const IDocHostUIHandler, pchKey: ?*?PWSTR, dw: u32) callconv(.@"inline") HRESULT {
+    pub fn GetOptionKeyPath(self: *const IDocHostUIHandler, pchKey: ?*?[*:0]u16, dw: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOptionKeyPath(self, pchKey, dw);
     }
     pub fn GetDropTarget(self: *const IDocHostUIHandler, pDropTarget: ?*IDropTarget, ppDropTarget: ?*?*IDropTarget) callconv(.@"inline") HRESULT {
@@ -14481,7 +14481,7 @@ pub const IDocHostUIHandler = extern union {
     pub fn GetExternal(self: *const IDocHostUIHandler, ppDispatch: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.GetExternal(self, ppDispatch);
     }
-    pub fn TranslateUrl(self: *const IDocHostUIHandler, dwTranslate: u32, pchURLIn: ?PWSTR, ppchURLOut: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn TranslateUrl(self: *const IDocHostUIHandler, dwTranslate: u32, pchURLIn: ?[*:0]u16, ppchURLOut: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.TranslateUrl(self, dwTranslate, pchURLIn, ppchURLOut);
     }
     pub fn FilterDataObject(self: *const IDocHostUIHandler, pDO: ?*IDataObject, ppDORet: ?*?*IDataObject) callconv(.@"inline") HRESULT {
@@ -14496,14 +14496,14 @@ pub const IDocHostUIHandler2 = extern union {
         base: IDocHostUIHandler.VTable,
         GetOverrideKeyPath: *const fn(
             self: *const IDocHostUIHandler2,
-            pchKey: ?*?PWSTR,
+            pchKey: ?*?[*:0]u16,
             dw: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDocHostUIHandler: IDocHostUIHandler,
     IUnknown: IUnknown,
-    pub fn GetOverrideKeyPath(self: *const IDocHostUIHandler2, pchKey: ?*?PWSTR, dw: u32) callconv(.@"inline") HRESULT {
+    pub fn GetOverrideKeyPath(self: *const IDocHostUIHandler2, pchKey: ?*?[*:0]u16, dw: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOverrideKeyPath(self, pchKey, dw);
     }
 };
@@ -16431,12 +16431,12 @@ pub const IElementBehaviorCategory = extern union {
         base: IUnknown.VTable,
         GetCategory: *const fn(
             self: *const IElementBehaviorCategory,
-            ppchCategory: ?*?PWSTR,
+            ppchCategory: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCategory(self: *const IElementBehaviorCategory, ppchCategory: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetCategory(self: *const IElementBehaviorCategory, ppchCategory: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetCategory(self, ppchCategory);
     }
 };
@@ -16607,13 +16607,13 @@ pub const IElementBehaviorSiteCategory = extern union {
         GetRelatedBehaviors: *const fn(
             self: *const IElementBehaviorSiteCategory,
             lDirection: i32,
-            pchCategory: ?PWSTR,
+            pchCategory: ?[*:0]u16,
             ppEnumerator: ?*?*IEnumUnknown,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRelatedBehaviors(self: *const IElementBehaviorSiteCategory, lDirection: i32, pchCategory: ?PWSTR, ppEnumerator: ?*?*IEnumUnknown) callconv(.@"inline") HRESULT {
+    pub fn GetRelatedBehaviors(self: *const IElementBehaviorSiteCategory, lDirection: i32, pchCategory: ?[*:0]u16, ppEnumerator: ?*?*IEnumUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetRelatedBehaviors(self, lDirection, pchCategory, ppEnumerator);
     }
 };
@@ -16671,13 +16671,13 @@ pub const IElementBehaviorSiteOM = extern union {
         base: IUnknown.VTable,
         RegisterEvent: *const fn(
             self: *const IElementBehaviorSiteOM,
-            pchEvent: ?PWSTR,
+            pchEvent: ?[*:0]u16,
             lFlags: i32,
             plCookie: ?*i32,
         ) callconv(.winapi) HRESULT,
         GetEventCookie: *const fn(
             self: *const IElementBehaviorSiteOM,
-            pchEvent: ?PWSTR,
+            pchEvent: ?[*:0]u16,
             plCookie: ?*i32,
         ) callconv(.winapi) HRESULT,
         FireEvent: *const fn(
@@ -16691,19 +16691,19 @@ pub const IElementBehaviorSiteOM = extern union {
         ) callconv(.winapi) HRESULT,
         RegisterName: *const fn(
             self: *const IElementBehaviorSiteOM,
-            pchName: ?PWSTR,
+            pchName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         RegisterUrn: *const fn(
             self: *const IElementBehaviorSiteOM,
-            pchUrn: ?PWSTR,
+            pchUrn: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterEvent(self: *const IElementBehaviorSiteOM, pchEvent: ?PWSTR, lFlags: i32, plCookie: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn RegisterEvent(self: *const IElementBehaviorSiteOM, pchEvent: ?[*:0]u16, lFlags: i32, plCookie: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterEvent(self, pchEvent, lFlags, plCookie);
     }
-    pub fn GetEventCookie(self: *const IElementBehaviorSiteOM, pchEvent: ?PWSTR, plCookie: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn GetEventCookie(self: *const IElementBehaviorSiteOM, pchEvent: ?[*:0]u16, plCookie: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetEventCookie(self, pchEvent, plCookie);
     }
     pub fn FireEvent(self: *const IElementBehaviorSiteOM, lCookie: i32, pEventObject: ?*IHTMLEventObj) callconv(.@"inline") HRESULT {
@@ -16712,10 +16712,10 @@ pub const IElementBehaviorSiteOM = extern union {
     pub fn CreateEventObject(self: *const IElementBehaviorSiteOM, ppEventObject: ?*?*IHTMLEventObj) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEventObject(self, ppEventObject);
     }
-    pub fn RegisterName(self: *const IElementBehaviorSiteOM, pchName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn RegisterName(self: *const IElementBehaviorSiteOM, pchName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterName(self, pchName);
     }
-    pub fn RegisterUrn(self: *const IElementBehaviorSiteOM, pchUrn: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn RegisterUrn(self: *const IElementBehaviorSiteOM, pchUrn: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterUrn(self, pchUrn);
     }
 };
@@ -17333,7 +17333,7 @@ pub const IExtensionValidation = extern union {
         Validate: *const fn(
             self: *const IExtensionValidation,
             extensionGuid: ?*const Guid,
-            extensionModulePath: ?PWSTR,
+            extensionModulePath: ?[*:0]u16,
             extensionFileVersionMS: u32,
             extensionFileVersionLS: u32,
             htmlDocumentTop: ?*IHTMLDocument2,
@@ -17344,15 +17344,15 @@ pub const IExtensionValidation = extern union {
         ) callconv(.winapi) HRESULT,
         DisplayName: *const fn(
             self: *const IExtensionValidation,
-            displayName: ?*?PWSTR,
+            displayName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Validate(self: *const IExtensionValidation, extensionGuid: ?*const Guid, extensionModulePath: ?PWSTR, extensionFileVersionMS: u32, extensionFileVersionLS: u32, htmlDocumentTop: ?*IHTMLDocument2, htmlDocumentSubframe: ?*IHTMLDocument2, htmlElement: ?*IHTMLElement, contexts: ExtensionValidationContexts, results: ?*ExtensionValidationResults) callconv(.@"inline") HRESULT {
+    pub fn Validate(self: *const IExtensionValidation, extensionGuid: ?*const Guid, extensionModulePath: ?[*:0]u16, extensionFileVersionMS: u32, extensionFileVersionLS: u32, htmlDocumentTop: ?*IHTMLDocument2, htmlDocumentSubframe: ?*IHTMLDocument2, htmlElement: ?*IHTMLElement, contexts: ExtensionValidationContexts, results: ?*ExtensionValidationResults) callconv(.@"inline") HRESULT {
         return self.vtable.Validate(self, extensionGuid, extensionModulePath, extensionFileVersionMS, extensionFileVersionLS, htmlDocumentTop, htmlDocumentSubframe, htmlElement, contexts, results);
     }
-    pub fn DisplayName(self: *const IExtensionValidation, displayName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn DisplayName(self: *const IExtensionValidation, displayName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.DisplayName(self, displayName);
     }
 };
@@ -17763,14 +17763,14 @@ pub const IHostDialogHelper = extern union {
             hwndParent: ?HWND,
             pMk: ?*IMoniker,
             pvarArgIn: ?*VARIANT,
-            pchOptions: ?PWSTR,
+            pchOptions: ?[*:0]u16,
             pvarArgOut: ?*VARIANT,
             punkHost: ?*IUnknown,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ShowHTMLDialog(self: *const IHostDialogHelper, hwndParent: ?HWND, pMk: ?*IMoniker, pvarArgIn: ?*VARIANT, pchOptions: ?PWSTR, pvarArgOut: ?*VARIANT, punkHost: ?*IUnknown) callconv(.@"inline") HRESULT {
+    pub fn ShowHTMLDialog(self: *const IHostDialogHelper, hwndParent: ?HWND, pMk: ?*IMoniker, pvarArgIn: ?*VARIANT, pchOptions: ?[*:0]u16, pvarArgOut: ?*VARIANT, punkHost: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.ShowHTMLDialog(self, hwndParent, pMk, pvarArgIn, pchOptions, pvarArgOut, punkHost);
     }
 };
@@ -20698,7 +20698,7 @@ pub const IHTMLCaret = extern union {
         ) callconv(.winapi) HRESULT,
         InsertText: *const fn(
             self: *const IHTMLCaret,
-            pText: ?PWSTR,
+            pText: ?[*:0]u16,
             lLen: i32,
         ) callconv(.winapi) HRESULT,
         ScrollIntoView: *const fn(
@@ -20741,7 +20741,7 @@ pub const IHTMLCaret = extern union {
     pub fn Hide(self: *const IHTMLCaret) callconv(.@"inline") HRESULT {
         return self.vtable.Hide(self);
     }
-    pub fn InsertText(self: *const IHTMLCaret, pText: ?PWSTR, lLen: i32) callconv(.@"inline") HRESULT {
+    pub fn InsertText(self: *const IHTMLCaret, pText: ?[*:0]u16, lLen: i32) callconv(.@"inline") HRESULT {
         return self.vtable.InsertText(self, pText, lLen);
     }
     pub fn ScrollIntoView(self: *const IHTMLCaret) callconv(.@"inline") HRESULT {
@@ -59810,14 +59810,14 @@ pub const IIEWebDriverManager = extern union {
         base: IDispatch.VTable,
         ExecuteCommand: *const fn(
             self: *const IIEWebDriverManager,
-            command: ?PWSTR,
-            response: ?*?PWSTR,
+            command: ?[*:0]u16,
+            response: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn ExecuteCommand(self: *const IIEWebDriverManager, command: ?PWSTR, response: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn ExecuteCommand(self: *const IIEWebDriverManager, command: ?[*:0]u16, response: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.ExecuteCommand(self, command, response);
     }
 };
@@ -59839,7 +59839,7 @@ pub const IIEWebDriverSite = extern union {
         GetCapabilityValue: *const fn(
             self: *const IIEWebDriverSite,
             pUnkWD: ?*IUnknown,
-            capName: ?PWSTR,
+            capName: ?[*:0]u16,
             capValue: ?*VARIANT,
         ) callconv(.winapi) HRESULT,
     };
@@ -59852,7 +59852,7 @@ pub const IIEWebDriverSite = extern union {
     pub fn DetachWebdriver(self: *const IIEWebDriverSite, pUnkWD: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.DetachWebdriver(self, pUnkWD);
     }
-    pub fn GetCapabilityValue(self: *const IIEWebDriverSite, pUnkWD: ?*IUnknown, capName: ?PWSTR, capValue: ?*VARIANT) callconv(.@"inline") HRESULT {
+    pub fn GetCapabilityValue(self: *const IIEWebDriverSite, pUnkWD: ?*IUnknown, capName: ?[*:0]u16, capValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetCapabilityValue(self, pUnkWD, capName, capValue);
     }
 };
@@ -60404,7 +60404,7 @@ pub const IMarkupPointer = extern union {
         ) callconv(.winapi) HRESULT,
         FindText: *const fn(
             self: *const IMarkupPointer,
-            pchFindText: ?PWSTR,
+            pchFindText: ?[*:0]u16,
             dwFlags: u32,
             pIEndMatch: ?*IMarkupPointer,
             pIEndSearch: ?*IMarkupPointer,
@@ -60472,7 +60472,7 @@ pub const IMarkupPointer = extern union {
     pub fn MoveUnit(self: *const IMarkupPointer, muAction: MOVEUNIT_ACTION) callconv(.@"inline") HRESULT {
         return self.vtable.MoveUnit(self, muAction);
     }
-    pub fn FindText(self: *const IMarkupPointer, pchFindText: ?PWSTR, dwFlags: u32, pIEndMatch: ?*IMarkupPointer, pIEndSearch: ?*IMarkupPointer) callconv(.@"inline") HRESULT {
+    pub fn FindText(self: *const IMarkupPointer, pchFindText: ?[*:0]u16, dwFlags: u32, pIEndMatch: ?*IMarkupPointer, pIEndSearch: ?*IMarkupPointer) callconv(.@"inline") HRESULT {
         return self.vtable.FindText(self, pchFindText, dwFlags, pIEndMatch, pIEndSearch);
     }
 };
@@ -60550,7 +60550,7 @@ pub const IMarkupServices = extern union {
         CreateElement: *const fn(
             self: *const IMarkupServices,
             tagID: ELEMENT_TAG_ID,
-            pchAttributes: ?PWSTR,
+            pchAttributes: ?[*:0]u16,
             ppElement: ?*?*IHTMLElement,
         ) callconv(.winapi) HRESULT,
         CloneElement: *const fn(
@@ -60587,13 +60587,13 @@ pub const IMarkupServices = extern union {
         ) callconv(.winapi) HRESULT,
         InsertText: *const fn(
             self: *const IMarkupServices,
-            pchText: ?PWSTR,
+            pchText: ?[*:0]u16,
             cch: i32,
             pPointerTarget: ?*IMarkupPointer,
         ) callconv(.winapi) HRESULT,
         ParseString: *const fn(
             self: *const IMarkupServices,
-            pchHTML: ?PWSTR,
+            pchHTML: ?[*:0]u16,
             dwFlags: u32,
             ppContainerResult: ?*?*IMarkupContainer,
             ppPointerStart: ?*IMarkupPointer,
@@ -60641,7 +60641,7 @@ pub const IMarkupServices = extern union {
         ) callconv(.winapi) HRESULT,
         BeginUndoUnit: *const fn(
             self: *const IMarkupServices,
-            pchTitle: ?PWSTR,
+            pchTitle: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         EndUndoUnit: *const fn(
             self: *const IMarkupServices,
@@ -60655,7 +60655,7 @@ pub const IMarkupServices = extern union {
     pub fn CreateMarkupContainer(self: *const IMarkupServices, ppMarkupContainer: ?*?*IMarkupContainer) callconv(.@"inline") HRESULT {
         return self.vtable.CreateMarkupContainer(self, ppMarkupContainer);
     }
-    pub fn CreateElement(self: *const IMarkupServices, tagID: ELEMENT_TAG_ID, pchAttributes: ?PWSTR, ppElement: ?*?*IHTMLElement) callconv(.@"inline") HRESULT {
+    pub fn CreateElement(self: *const IMarkupServices, tagID: ELEMENT_TAG_ID, pchAttributes: ?[*:0]u16, ppElement: ?*?*IHTMLElement) callconv(.@"inline") HRESULT {
         return self.vtable.CreateElement(self, tagID, pchAttributes, ppElement);
     }
     pub fn CloneElement(self: *const IMarkupServices, pElemCloneThis: ?*IHTMLElement, ppElementTheClone: ?*?*IHTMLElement) callconv(.@"inline") HRESULT {
@@ -60676,10 +60676,10 @@ pub const IMarkupServices = extern union {
     pub fn Move(self: *const IMarkupServices, pPointerSourceStart: ?*IMarkupPointer, pPointerSourceFinish: ?*IMarkupPointer, pPointerTarget: ?*IMarkupPointer) callconv(.@"inline") HRESULT {
         return self.vtable.Move(self, pPointerSourceStart, pPointerSourceFinish, pPointerTarget);
     }
-    pub fn InsertText(self: *const IMarkupServices, pchText: ?PWSTR, cch: i32, pPointerTarget: ?*IMarkupPointer) callconv(.@"inline") HRESULT {
+    pub fn InsertText(self: *const IMarkupServices, pchText: ?[*:0]u16, cch: i32, pPointerTarget: ?*IMarkupPointer) callconv(.@"inline") HRESULT {
         return self.vtable.InsertText(self, pchText, cch, pPointerTarget);
     }
-    pub fn ParseString(self: *const IMarkupServices, pchHTML: ?PWSTR, dwFlags: u32, ppContainerResult: ?*?*IMarkupContainer, ppPointerStart: ?*IMarkupPointer, ppPointerFinish: ?*IMarkupPointer) callconv(.@"inline") HRESULT {
+    pub fn ParseString(self: *const IMarkupServices, pchHTML: ?[*:0]u16, dwFlags: u32, ppContainerResult: ?*?*IMarkupContainer, ppPointerStart: ?*IMarkupPointer, ppPointerFinish: ?*IMarkupPointer) callconv(.@"inline") HRESULT {
         return self.vtable.ParseString(self, pchHTML, dwFlags, ppContainerResult, ppPointerStart, ppPointerFinish);
     }
     pub fn ParseGlobal(self: *const IMarkupServices, hglobalHTML: isize, dwFlags: u32, ppContainerResult: ?*?*IMarkupContainer, pPointerStart: ?*IMarkupPointer, pPointerFinish: ?*IMarkupPointer) callconv(.@"inline") HRESULT {
@@ -60703,7 +60703,7 @@ pub const IMarkupServices = extern union {
     pub fn MoveRangeToPointers(self: *const IMarkupServices, pPointerStart: ?*IMarkupPointer, pPointerFinish: ?*IMarkupPointer, pIRange: ?*IHTMLTxtRange) callconv(.@"inline") HRESULT {
         return self.vtable.MoveRangeToPointers(self, pPointerStart, pPointerFinish, pIRange);
     }
-    pub fn BeginUndoUnit(self: *const IMarkupServices, pchTitle: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn BeginUndoUnit(self: *const IMarkupServices, pchTitle: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.BeginUndoUnit(self, pchTitle);
     }
     pub fn EndUndoUnit(self: *const IMarkupServices) callconv(.@"inline") HRESULT {
@@ -61924,13 +61924,13 @@ pub const ISecureUrlHost = extern union {
         ValidateSecureUrl: *const fn(
             self: *const ISecureUrlHost,
             pfAllow: ?*BOOL,
-            pchUrlInQuestion: ?PWSTR,
+            pchUrlInQuestion: ?[*:0]u16,
             dwFlags: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ValidateSecureUrl(self: *const ISecureUrlHost, pfAllow: ?*BOOL, pchUrlInQuestion: ?PWSTR, dwFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn ValidateSecureUrl(self: *const ISecureUrlHost, pfAllow: ?*BOOL, pchUrlInQuestion: ?[*:0]u16, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ValidateSecureUrl(self, pfAllow, pchUrlInQuestion, dwFlags);
     }
 };
@@ -68041,7 +68041,7 @@ pub const ITargetContainer = extern union {
         base: IUnknown.VTable,
         GetFrameUrl: *const fn(
             self: *const ITargetContainer,
-            ppszFrameSrc: ?*?PWSTR,
+            ppszFrameSrc: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetFramesContainer: *const fn(
             self: *const ITargetContainer,
@@ -68050,7 +68050,7 @@ pub const ITargetContainer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFrameUrl(self: *const ITargetContainer, ppszFrameSrc: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetFrameUrl(self: *const ITargetContainer, ppszFrameSrc: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetFrameUrl(self, ppszFrameSrc);
     }
     pub fn GetFramesContainer(self: *const ITargetContainer, ppContainer: ?*?*IOleContainer) callconv(.@"inline") HRESULT {
@@ -68086,7 +68086,7 @@ pub const ITargetFrame = extern union {
         ) callconv(.winapi) HRESULT,
         GetFrameName: *const fn(
             self: *const ITargetFrame,
-            ppszFrameName: ?*?PWSTR,
+            ppszFrameName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetParentFrame: *const fn(
             self: *const ITargetFrame,
@@ -68105,7 +68105,7 @@ pub const ITargetFrame = extern union {
         ) callconv(.winapi) HRESULT,
         GetFrameSrc: *const fn(
             self: *const ITargetFrame,
-            ppszFrameSrc: ?*?PWSTR,
+            ppszFrameSrc: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetFramesContainer: *const fn(
             self: *const ITargetFrame,
@@ -68148,7 +68148,7 @@ pub const ITargetFrame = extern union {
     pub fn SetFrameName(self: *const ITargetFrame, pszFrameName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetFrameName(self, pszFrameName);
     }
-    pub fn GetFrameName(self: *const ITargetFrame, ppszFrameName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetFrameName(self: *const ITargetFrame, ppszFrameName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetFrameName(self, ppszFrameName);
     }
     pub fn GetParentFrame(self: *const ITargetFrame, ppunkParent: ?*?*IUnknown) callconv(.@"inline") HRESULT {
@@ -68160,7 +68160,7 @@ pub const ITargetFrame = extern union {
     pub fn SetFrameSrc(self: *const ITargetFrame, pszFrameSrc: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetFrameSrc(self, pszFrameSrc);
     }
-    pub fn GetFrameSrc(self: *const ITargetFrame, ppszFrameSrc: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetFrameSrc(self: *const ITargetFrame, ppszFrameSrc: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetFrameSrc(self, ppszFrameSrc);
     }
     pub fn GetFramesContainer(self: *const ITargetFrame, ppContainer: ?*?*IOleContainer) callconv(.@"inline") HRESULT {
@@ -68200,7 +68200,7 @@ pub const ITargetFrame2 = extern union {
         ) callconv(.winapi) HRESULT,
         GetFrameName: *const fn(
             self: *const ITargetFrame2,
-            ppszFrameName: ?*?PWSTR,
+            ppszFrameName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetParentFrame: *const fn(
             self: *const ITargetFrame2,
@@ -68212,7 +68212,7 @@ pub const ITargetFrame2 = extern union {
         ) callconv(.winapi) HRESULT,
         GetFrameSrc: *const fn(
             self: *const ITargetFrame2,
-            ppszFrameSrc: ?*?PWSTR,
+            ppszFrameSrc: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetFramesContainer: *const fn(
             self: *const ITargetFrame2,
@@ -68245,7 +68245,7 @@ pub const ITargetFrame2 = extern union {
         GetTargetAlias: *const fn(
             self: *const ITargetFrame2,
             pszTargetName: ?[*:0]const u16,
-            ppszTargetAlias: ?*?PWSTR,
+            ppszTargetAlias: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -68253,7 +68253,7 @@ pub const ITargetFrame2 = extern union {
     pub fn SetFrameName(self: *const ITargetFrame2, pszFrameName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetFrameName(self, pszFrameName);
     }
-    pub fn GetFrameName(self: *const ITargetFrame2, ppszFrameName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetFrameName(self: *const ITargetFrame2, ppszFrameName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetFrameName(self, ppszFrameName);
     }
     pub fn GetParentFrame(self: *const ITargetFrame2, ppunkParent: ?*?*IUnknown) callconv(.@"inline") HRESULT {
@@ -68262,7 +68262,7 @@ pub const ITargetFrame2 = extern union {
     pub fn SetFrameSrc(self: *const ITargetFrame2, pszFrameSrc: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetFrameSrc(self, pszFrameSrc);
     }
-    pub fn GetFrameSrc(self: *const ITargetFrame2, ppszFrameSrc: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetFrameSrc(self: *const ITargetFrame2, ppszFrameSrc: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetFrameSrc(self, ppszFrameSrc);
     }
     pub fn GetFramesContainer(self: *const ITargetFrame2, ppContainer: ?*?*IOleContainer) callconv(.@"inline") HRESULT {
@@ -68283,7 +68283,7 @@ pub const ITargetFrame2 = extern union {
     pub fn FindFrame(self: *const ITargetFrame2, pszTargetName: ?[*:0]const u16, dwFlags: u32, ppunkTargetFrame: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.FindFrame(self, pszTargetName, dwFlags, ppunkTargetFrame);
     }
-    pub fn GetTargetAlias(self: *const ITargetFrame2, pszTargetName: ?[*:0]const u16, ppszTargetAlias: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetTargetAlias(self: *const ITargetFrame2, pszTargetName: ?[*:0]const u16, ppszTargetAlias: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetTargetAlias(self, pszTargetName, ppszTargetAlias);
     }
 };
@@ -70328,7 +70328,7 @@ pub const SHOWHTMLDIALOGEXFN = *const fn(
     pmk: ?*IMoniker,
     dwDialogFlags: u32,
     pvarArgIn: ?*VARIANT,
-    pchOptions: ?PWSTR,
+    pchOptions: ?[*:0]u16,
     pvArgOut: ?*VARIANT,
 ) callconv(.winapi) HRESULT;
 
@@ -70336,7 +70336,7 @@ pub const SHOWHTMLDIALOGFN = *const fn(
     hwndParent: ?HWND,
     pmk: ?*IMoniker,
     pvarArgIn: ?*VARIANT,
-    pchOptions: ?PWSTR,
+    pchOptions: ?[*:0]u16,
     pvArgOut: ?*VARIANT,
 ) callconv(.winapi) HRESULT;
 
@@ -70353,8 +70353,8 @@ pub const CLSID_StaticNodeList = &CLSID_StaticNodeList_Value;
 
 pub const STATURL = extern struct {
     cbSize: u32,
-    pwcsUrl: ?PWSTR,
-    pwcsTitle: ?PWSTR,
+    pwcsUrl: ?[*:0]u16,
+    pwcsTitle: ?[*:0]u16,
     ftLastVisited: FILETIME,
     ftLastUpdated: FILETIME,
     ftExpires: FILETIME,
@@ -73374,7 +73374,7 @@ pub extern "ieframe" fn IEGetProtectedModeCookie(
 
 pub extern "ieframe" fn IEGetWriteableFolderPath(
     clsidFolderID: ?*const Guid,
-    lppwstrPath: ?*?PWSTR,
+    lppwstrPath: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "ieframe" fn IEGetWriteableLowHKCU(
@@ -73413,7 +73413,7 @@ pub extern "ieframe" fn IERefreshElevationPolicy(
 pub extern "ieframe" fn IERegCreateKeyEx(
     lpSubKey: ?[*:0]const u16,
     Reserved: u32,
-    lpClass: ?PWSTR,
+    lpClass: ?[*:0]u16,
     dwOptions: u32,
     samDesired: u32,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
@@ -73473,7 +73473,7 @@ pub extern "ieframe" fn IEShowSaveFileDialog(
     lpwstrDefExt: ?[*:0]const u16,
     dwFilterIndex: u32,
     dwFlags: u32,
-    lppwstrDestinationFilePath: ?*?PWSTR,
+    lppwstrDestinationFilePath: ?*?[*:0]u16,
     phState: ?*?HANDLE,
 ) callconv(.winapi) HRESULT;
 
@@ -73544,14 +73544,14 @@ pub extern "msrating" fn RatingCheckUserAccessW(
 pub extern "msrating" fn RatingClickedOnPRFInternal(
     hWndOwner: ?HWND,
     param1: ?HINSTANCE,
-    lpszFileName: ?PSTR,
+    lpszFileName: ?[*:0]u8,
     nShow: i32,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msrating" fn RatingClickedOnRATInternal(
     hWndOwner: ?HWND,
     param1: ?HINSTANCE,
-    lpszFileName: ?PSTR,
+    lpszFileName: ?[*:0]u8,
     nShow: i32,
 ) callconv(.winapi) HRESULT;
 
@@ -73616,7 +73616,7 @@ pub extern "imgutil" fn SniffStream(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (57)
+// Section: Imports (55)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BINDINFO = @import("../system/com.zig").BINDINFO;
@@ -73664,8 +73664,6 @@ const LUID = @import("../foundation.zig").LUID;
 const MSG = @import("../ui/windows_and_messaging.zig").MSG;
 const POINT = @import("../foundation.zig").POINT;
 const PROCESS_INFORMATION = @import("../system/threading.zig").PROCESS_INFORMATION;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const RGBQUAD = @import("../graphics/gdi.zig").RGBQUAD;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;

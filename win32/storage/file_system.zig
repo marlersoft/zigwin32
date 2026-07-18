@@ -659,8 +659,8 @@ pub const CONNECTION_INFO_1 = extern struct {
     coni1_num_opens: u32,
     coni1_num_users: u32,
     coni1_time: u32,
-    coni1_username: ?PWSTR,
-    coni1_netname: ?PWSTR,
+    coni1_username: ?[*:0]u16,
+    coni1_netname: ?[*:0]u16,
 };
 
 pub const COPYFILE2_COPY_PHASE = enum(i32) {
@@ -950,7 +950,7 @@ pub const ENCRYPTION_CERTIFICATE_HASH = extern struct {
     cbTotalLength: u32,
     pUserSid: ?*SID,
     pHash: ?*EFS_HASH_BLOB,
-    lpDisplayInformation: ?PWSTR,
+    lpDisplayInformation: ?[*:0]u16,
 };
 
 pub const ENCRYPTION_CERTIFICATE_HASH_LIST = extern struct {
@@ -966,7 +966,7 @@ pub const ENCRYPTION_CERTIFICATE_LIST = extern struct {
 pub const ENCRYPTION_PROTECTOR = extern struct {
     cbTotalLength: u32,
     pUserSid: ?*SID,
-    lpProtectorDescriptor: ?PWSTR,
+    lpProtectorDescriptor: ?[*:0]u16,
 };
 
 pub const ENCRYPTION_PROTECTOR_LIST = extern struct {
@@ -982,14 +982,14 @@ pub const TAPE_ERASE_LONG = ERASE_TAPE_TYPE.LONG;
 pub const TAPE_ERASE_SHORT = ERASE_TAPE_TYPE.SHORT;
 
 pub const FCACHE_CREATE_CALLBACK = *const fn(
-    lpstrName: ?PSTR,
+    lpstrName: ?[*:0]u8,
     lpvData: ?*anyopaque,
     cbFileSize: ?*u32,
     cbFileSizeHigh: ?*u32,
 ) callconv(.winapi) ?HANDLE;
 
 pub const FCACHE_RICHCREATE_CALLBACK = *const fn(
-    lpstrName: ?PSTR,
+    lpstrName: ?[*:0]u8,
     lpvData: ?*anyopaque,
     cbFileSize: ?*u32,
     cbFileSizeHigh: ?*u32,
@@ -1415,8 +1415,8 @@ pub const FILE_INFO_3 = extern struct {
     fi3_id: u32,
     fi3_permissions: FILE_INFO_FLAGS_PERMISSIONS,
     fi3_num_locks: u32,
-    fi3_pathname: ?PWSTR,
-    fi3_username: ?PWSTR,
+    fi3_pathname: ?[*:0]u16,
+    fi3_username: ?[*:0]u16,
 };
 
 pub const FILE_INFO_BY_HANDLE_CLASS = enum(i32) {
@@ -1897,7 +1897,7 @@ pub const IDiskQuotaControl = extern union {
         ) callconv(.winapi) HRESULT,
         GetDefaultQuotaThresholdText: *const fn(
             self: *const IDiskQuotaControl,
-            pszText: ?PWSTR,
+            pszText: ?[*:0]u16,
             cchText: u32,
         ) callconv(.winapi) HRESULT,
         SetDefaultQuotaLimit: *const fn(
@@ -1910,7 +1910,7 @@ pub const IDiskQuotaControl = extern union {
         ) callconv(.winapi) HRESULT,
         GetDefaultQuotaLimitText: *const fn(
             self: *const IDiskQuotaControl,
-            pszText: ?PWSTR,
+            pszText: ?[*:0]u16,
             cchText: u32,
         ) callconv(.winapi) HRESULT,
         AddUserSid: *const fn(
@@ -1986,7 +1986,7 @@ pub const IDiskQuotaControl = extern union {
     pub fn GetDefaultQuotaThreshold(self: *const IDiskQuotaControl, pllThreshold: ?*i64) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultQuotaThreshold(self, pllThreshold);
     }
-    pub fn GetDefaultQuotaThresholdText(self: *const IDiskQuotaControl, pszText: ?PWSTR, cchText: u32) callconv(.@"inline") HRESULT {
+    pub fn GetDefaultQuotaThresholdText(self: *const IDiskQuotaControl, pszText: ?[*:0]u16, cchText: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultQuotaThresholdText(self, pszText, cchText);
     }
     pub fn SetDefaultQuotaLimit(self: *const IDiskQuotaControl, llLimit: i64) callconv(.@"inline") HRESULT {
@@ -1995,7 +1995,7 @@ pub const IDiskQuotaControl = extern union {
     pub fn GetDefaultQuotaLimit(self: *const IDiskQuotaControl, pllLimit: ?*i64) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultQuotaLimit(self, pllLimit);
     }
-    pub fn GetDefaultQuotaLimitText(self: *const IDiskQuotaControl, pszText: ?PWSTR, cchText: u32) callconv(.@"inline") HRESULT {
+    pub fn GetDefaultQuotaLimitText(self: *const IDiskQuotaControl, pszText: ?[*:0]u16, cchText: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultQuotaLimitText(self, pszText, cchText);
     }
     pub fn AddUserSid(self: *const IDiskQuotaControl, pUserSid: ?PSID, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: ?*?*IDiskQuotaUser) callconv(.@"inline") HRESULT {
@@ -2060,11 +2060,11 @@ pub const IDiskQuotaUser = extern union {
         ) callconv(.winapi) HRESULT,
         GetName: *const fn(
             self: *const IDiskQuotaUser,
-            pszAccountContainer: ?PWSTR,
+            pszAccountContainer: ?[*:0]u16,
             cchAccountContainer: u32,
-            pszLogonName: ?PWSTR,
+            pszLogonName: ?[*:0]u16,
             cchLogonName: u32,
-            pszDisplayName: ?PWSTR,
+            pszDisplayName: ?[*:0]u16,
             cchDisplayName: u32,
         ) callconv(.winapi) HRESULT,
         GetSidLength: *const fn(
@@ -2082,7 +2082,7 @@ pub const IDiskQuotaUser = extern union {
         ) callconv(.winapi) HRESULT,
         GetQuotaThresholdText: *const fn(
             self: *const IDiskQuotaUser,
-            pszText: ?PWSTR,
+            pszText: ?[*:0]u16,
             cchText: u32,
         ) callconv(.winapi) HRESULT,
         GetQuotaLimit: *const fn(
@@ -2091,7 +2091,7 @@ pub const IDiskQuotaUser = extern union {
         ) callconv(.winapi) HRESULT,
         GetQuotaLimitText: *const fn(
             self: *const IDiskQuotaUser,
-            pszText: ?PWSTR,
+            pszText: ?[*:0]u16,
             cchText: u32,
         ) callconv(.winapi) HRESULT,
         GetQuotaUsed: *const fn(
@@ -2100,7 +2100,7 @@ pub const IDiskQuotaUser = extern union {
         ) callconv(.winapi) HRESULT,
         GetQuotaUsedText: *const fn(
             self: *const IDiskQuotaUser,
-            pszText: ?PWSTR,
+            pszText: ?[*:0]u16,
             cchText: u32,
         ) callconv(.winapi) HRESULT,
         GetQuotaInformation: *const fn(
@@ -2131,7 +2131,7 @@ pub const IDiskQuotaUser = extern union {
     pub fn GetID(self: *const IDiskQuotaUser, pulID: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetID(self, pulID);
     }
-    pub fn GetName(self: *const IDiskQuotaUser, pszAccountContainer: ?PWSTR, cchAccountContainer: u32, pszLogonName: ?PWSTR, cchLogonName: u32, pszDisplayName: ?PWSTR, cchDisplayName: u32) callconv(.@"inline") HRESULT {
+    pub fn GetName(self: *const IDiskQuotaUser, pszAccountContainer: ?[*:0]u16, cchAccountContainer: u32, pszLogonName: ?[*:0]u16, cchLogonName: u32, pszDisplayName: ?[*:0]u16, cchDisplayName: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, pszAccountContainer, cchAccountContainer, pszLogonName, cchLogonName, pszDisplayName, cchDisplayName);
     }
     pub fn GetSidLength(self: *const IDiskQuotaUser, pdwLength: ?*u32) callconv(.@"inline") HRESULT {
@@ -2143,19 +2143,19 @@ pub const IDiskQuotaUser = extern union {
     pub fn GetQuotaThreshold(self: *const IDiskQuotaUser, pllThreshold: ?*i64) callconv(.@"inline") HRESULT {
         return self.vtable.GetQuotaThreshold(self, pllThreshold);
     }
-    pub fn GetQuotaThresholdText(self: *const IDiskQuotaUser, pszText: ?PWSTR, cchText: u32) callconv(.@"inline") HRESULT {
+    pub fn GetQuotaThresholdText(self: *const IDiskQuotaUser, pszText: ?[*:0]u16, cchText: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetQuotaThresholdText(self, pszText, cchText);
     }
     pub fn GetQuotaLimit(self: *const IDiskQuotaUser, pllLimit: ?*i64) callconv(.@"inline") HRESULT {
         return self.vtable.GetQuotaLimit(self, pllLimit);
     }
-    pub fn GetQuotaLimitText(self: *const IDiskQuotaUser, pszText: ?PWSTR, cchText: u32) callconv(.@"inline") HRESULT {
+    pub fn GetQuotaLimitText(self: *const IDiskQuotaUser, pszText: ?[*:0]u16, cchText: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetQuotaLimitText(self, pszText, cchText);
     }
     pub fn GetQuotaUsed(self: *const IDiskQuotaUser, pllUsed: ?*i64) callconv(.@"inline") HRESULT {
         return self.vtable.GetQuotaUsed(self, pllUsed);
     }
-    pub fn GetQuotaUsedText(self: *const IDiskQuotaUser, pszText: ?PWSTR, cchText: u32) callconv(.@"inline") HRESULT {
+    pub fn GetQuotaUsedText(self: *const IDiskQuotaUser, pszText: ?[*:0]u16, cchText: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetQuotaUsedText(self, pszText, cchText);
     }
     pub fn GetQuotaInformation(self: *const IDiskQuotaUser, pbQuotaInfo: ?*anyopaque, cbQuotaInfo: u32) callconv(.@"inline") HRESULT {
@@ -3813,23 +3813,23 @@ pub const REPLACEFILE_IGNORE_MERGE_ERRORS = REPLACE_FILE_FLAGS{ .IGNORE_MERGE_ER
 pub const REPLACEFILE_IGNORE_ACL_ERRORS = REPLACE_FILE_FLAGS{ .IGNORE_ACL_ERRORS = 1 };
 
 pub const SERVER_ALIAS_INFO_0 = extern struct {
-    srvai0_alias: ?PWSTR,
-    srvai0_target: ?PWSTR,
+    srvai0_alias: ?[*:0]u16,
+    srvai0_target: ?[*:0]u16,
     srvai0_default: BOOLEAN,
     srvai0_reserved: u32,
 };
 
 pub const SERVER_CERTIFICATE_INFO_0 = extern struct {
-    srvci0_name: ?PWSTR,
-    srvci0_subject: ?PWSTR,
-    srvci0_issuer: ?PWSTR,
-    srvci0_thumbprint: ?PWSTR,
-    srvci0_friendlyname: ?PWSTR,
-    srvci0_notbefore: ?PWSTR,
-    srvci0_notafter: ?PWSTR,
-    srvci0_storelocation: ?PWSTR,
-    srvci0_storename: ?PWSTR,
-    srvci0_renewalchain: ?PWSTR,
+    srvci0_name: ?[*:0]u16,
+    srvci0_subject: ?[*:0]u16,
+    srvci0_issuer: ?[*:0]u16,
+    srvci0_thumbprint: ?[*:0]u16,
+    srvci0_friendlyname: ?[*:0]u16,
+    srvci0_notbefore: ?[*:0]u16,
+    srvci0_notafter: ?[*:0]u16,
+    srvci0_storelocation: ?[*:0]u16,
+    srvci0_storename: ?[*:0]u16,
+    srvci0_renewalchain: ?[*:0]u16,
     srvci0_type: u32,
     srvci0_flags: u32,
 };
@@ -3840,12 +3840,12 @@ pub const SERVER_CERTIFICATE_TYPE = enum(i32) {
 pub const QUIC = SERVER_CERTIFICATE_TYPE.C;
 
 pub const SESSION_INFO_0 = extern struct {
-    sesi0_cname: ?PWSTR,
+    sesi0_cname: ?[*:0]u16,
 };
 
 pub const SESSION_INFO_1 = extern struct {
-    sesi1_cname: ?PWSTR,
-    sesi1_username: ?PWSTR,
+    sesi1_cname: ?[*:0]u16,
+    sesi1_username: ?[*:0]u16,
     sesi1_num_opens: u32,
     sesi1_time: u32,
     sesi1_idle_time: u32,
@@ -3853,31 +3853,31 @@ pub const SESSION_INFO_1 = extern struct {
 };
 
 pub const SESSION_INFO_10 = extern struct {
-    sesi10_cname: ?PWSTR,
-    sesi10_username: ?PWSTR,
+    sesi10_cname: ?[*:0]u16,
+    sesi10_username: ?[*:0]u16,
     sesi10_time: u32,
     sesi10_idle_time: u32,
 };
 
 pub const SESSION_INFO_2 = extern struct {
-    sesi2_cname: ?PWSTR,
-    sesi2_username: ?PWSTR,
+    sesi2_cname: ?[*:0]u16,
+    sesi2_username: ?[*:0]u16,
     sesi2_num_opens: u32,
     sesi2_time: u32,
     sesi2_idle_time: u32,
     sesi2_user_flags: SESSION_INFO_USER_FLAGS,
-    sesi2_cltype_name: ?PWSTR,
+    sesi2_cltype_name: ?[*:0]u16,
 };
 
 pub const SESSION_INFO_502 = extern struct {
-    sesi502_cname: ?PWSTR,
-    sesi502_username: ?PWSTR,
+    sesi502_cname: ?[*:0]u16,
+    sesi502_username: ?[*:0]u16,
     sesi502_num_opens: u32,
     sesi502_time: u32,
     sesi502_idle_time: u32,
     sesi502_user_flags: SESSION_INFO_USER_FLAGS,
-    sesi502_cltype_name: ?PWSTR,
-    sesi502_transport: ?PWSTR,
+    sesi502_cltype_name: ?[*:0]u16,
+    sesi502_transport: ?[*:0]u16,
 };
 
 pub const SESSION_INFO_USER_FLAGS = enum(u32) {
@@ -3897,17 +3897,17 @@ pub const FILE_CURRENT = SET_FILE_POINTER_MOVE_METHOD.CURRENT;
 pub const FILE_END = SET_FILE_POINTER_MOVE_METHOD.END;
 
 pub const SHARE_INFO_0 = extern struct {
-    shi0_netname: ?PWSTR,
+    shi0_netname: ?[*:0]u16,
 };
 
 pub const SHARE_INFO_1 = extern struct {
-    shi1_netname: ?PWSTR,
+    shi1_netname: ?[*:0]u16,
     shi1_type: SHARE_TYPE,
-    shi1_remark: ?PWSTR,
+    shi1_remark: ?[*:0]u16,
 };
 
 pub const SHARE_INFO_1004 = extern struct {
-    shi1004_remark: ?PWSTR,
+    shi1004_remark: ?[*:0]u16,
 };
 
 pub const SHARE_INFO_1005 = extern struct {
@@ -3928,46 +3928,46 @@ pub const SHARE_INFO_1503 = extern struct {
 };
 
 pub const SHARE_INFO_2 = extern struct {
-    shi2_netname: ?PWSTR,
+    shi2_netname: ?[*:0]u16,
     shi2_type: SHARE_TYPE,
-    shi2_remark: ?PWSTR,
+    shi2_remark: ?[*:0]u16,
     shi2_permissions: SHARE_INFO_PERMISSIONS,
     shi2_max_uses: u32,
     shi2_current_uses: u32,
-    shi2_path: ?PWSTR,
-    shi2_passwd: ?PWSTR,
+    shi2_path: ?[*:0]u16,
+    shi2_passwd: ?[*:0]u16,
 };
 
 pub const SHARE_INFO_501 = extern struct {
-    shi501_netname: ?PWSTR,
+    shi501_netname: ?[*:0]u16,
     shi501_type: SHARE_TYPE,
-    shi501_remark: ?PWSTR,
+    shi501_remark: ?[*:0]u16,
     shi501_flags: u32,
 };
 
 pub const SHARE_INFO_502 = extern struct {
-    shi502_netname: ?PWSTR,
+    shi502_netname: ?[*:0]u16,
     shi502_type: SHARE_TYPE,
-    shi502_remark: ?PWSTR,
+    shi502_remark: ?[*:0]u16,
     shi502_permissions: SHARE_INFO_PERMISSIONS,
     shi502_max_uses: u32,
     shi502_current_uses: u32,
-    shi502_path: ?PWSTR,
-    shi502_passwd: ?PWSTR,
+    shi502_path: ?[*:0]u16,
+    shi502_passwd: ?[*:0]u16,
     shi502_reserved: u32,
     shi502_security_descriptor: ?PSECURITY_DESCRIPTOR,
 };
 
 pub const SHARE_INFO_503 = extern struct {
-    shi503_netname: ?PWSTR,
+    shi503_netname: ?[*:0]u16,
     shi503_type: SHARE_TYPE,
-    shi503_remark: ?PWSTR,
+    shi503_remark: ?[*:0]u16,
     shi503_permissions: SHARE_INFO_PERMISSIONS,
     shi503_max_uses: u32,
     shi503_current_uses: u32,
-    shi503_path: ?PWSTR,
-    shi503_passwd: ?PWSTR,
-    shi503_servername: ?PWSTR,
+    shi503_path: ?[*:0]u16,
+    shi503_passwd: ?[*:0]u16,
+    shi503_servername: ?[*:0]u16,
     shi503_reserved: u32,
     shi503_security_descriptor: ?PSECURITY_DESCRIPTOR,
 };
@@ -4842,7 +4842,7 @@ pub const WofEnumFilesProc = *const fn(
 pub extern "clfsw32" fn AddLogContainer(
     hLog: ?HANDLE,
     pcbContainer: ?*u64,
-    pwszContainerPath: ?PWSTR,
+    pwszContainerPath: ?[*:0]u16,
     pReserved: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -4851,7 +4851,7 @@ pub extern "clfsw32" fn AddLogContainerSet(
     hLog: ?HANDLE,
     cContainer: u16,
     pcbContainer: ?*u64,
-    rgwszContainerPath: [*]?PWSTR,
+    rgwszContainerPath: [*]?[*:0]u16,
     pReserved: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -5302,7 +5302,7 @@ pub extern "ktmw32" fn CreateResourceManager(
     ResourceManagerId: ?*Guid,
     CreateOptions: u32,
     TmHandle: ?HANDLE,
-    Description: ?PWSTR,
+    Description: ?[*:0]u16,
 ) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5351,13 +5351,13 @@ pub extern "ktmw32" fn CreateTransaction(
     IsolationLevel: u32,
     IsolationFlags: u32,
     Timeout: u32,
-    Description: ?PWSTR,
+    Description: ?[*:0]u16,
 ) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn CreateTransactionManager(
     lpTransactionAttributes: ?*SECURITY_ATTRIBUTES,
-    LogFileName: ?PWSTR,
+    LogFileName: ?[*:0]u16,
     CreateOptions: u32,
     CommitStrength: u32,
 ) callconv(.winapi) ?HANDLE;
@@ -5865,13 +5865,13 @@ pub extern "ktmw32" fn GetEnlistmentRecoveryInformation(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn GetExpandedNameA(
-    lpszSource: ?PSTR,
+    lpszSource: ?[*:0]u8,
     lpszBuffer: *[260]u8,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn GetExpandedNameW(
-    lpszSource: ?PWSTR,
+    lpszSource: ?[*:0]u16,
     lpszBuffer: *[260]u16,
 ) callconv(.winapi) i32;
 
@@ -6056,7 +6056,7 @@ pub extern "kernel32" fn GetFullPathNameA(
     lpFileName: ?[*:0]const u8,
     nBufferLength: u32,
     lpBuffer: ?[*:0]u8,
-    lpFilePart: ?*?PSTR,
+    lpFilePart: ?*?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6064,7 +6064,7 @@ pub extern "kernel32" fn GetFullPathNameTransactedA(
     lpFileName: ?[*:0]const u8,
     nBufferLength: u32,
     lpBuffer: ?[*:0]u8,
-    lpFilePart: ?*?PSTR,
+    lpFilePart: ?*?[*:0]u8,
     hTransaction: ?HANDLE,
 ) callconv(.winapi) u32;
 
@@ -6073,7 +6073,7 @@ pub extern "kernel32" fn GetFullPathNameTransactedW(
     lpFileName: ?[*:0]const u16,
     nBufferLength: u32,
     lpBuffer: ?[*:0]u16,
-    lpFilePart: ?*?PWSTR,
+    lpFilePart: ?*?[*:0]u16,
     hTransaction: ?HANDLE,
 ) callconv(.winapi) u32;
 
@@ -6082,7 +6082,7 @@ pub extern "kernel32" fn GetFullPathNameW(
     lpFileName: ?[*:0]const u16,
     nBufferLength: u32,
     lpBuffer: ?[*:0]u16,
-    lpFilePart: ?*?PWSTR,
+    lpFilePart: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub extern "api-ms-win-core-ioring-l1-1-0" fn GetIoRingInfo(
@@ -6489,14 +6489,14 @@ pub extern "kernel32" fn LZInit(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn LZOpenFileA(
-    lpFileName: ?PSTR,
+    lpFileName: ?[*:0]u8,
     lpReOpenBuf: ?*OFSTRUCT,
     wStyle: LZOPENFILE_STYLE,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn LZOpenFileW(
-    lpFileName: ?PWSTR,
+    lpFileName: ?[*:0]u16,
     lpReOpenBuf: ?*OFSTRUCT,
     wStyle: LZOPENFILE_STYLE,
 ) callconv(.winapi) i32;
@@ -6505,7 +6505,7 @@ pub extern "kernel32" fn LZOpenFileW(
 pub extern "kernel32" fn LZRead(
     hFile: i32,
     /// parameter "cbRead" is the size in bytes
-    lpBuffer: ?PSTR,
+    lpBuffer: ?[*:0]u8,
     cbRead: i32,
 ) callconv(.winapi) i32;
 
@@ -6590,8 +6590,8 @@ pub extern "kernel32" fn MoveFileWithProgressW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netapi32" fn NetConnectionEnum(
-    servername: ?PWSTR,
-    qualifier: ?PWSTR,
+    servername: ?[*:0]u16,
+    qualifier: ?[*:0]u16,
     level: u32,
     bufptr: ?*?*u8,
     prefmaxlen: u32,
@@ -6602,15 +6602,15 @@ pub extern "netapi32" fn NetConnectionEnum(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netapi32" fn NetFileClose(
-    servername: ?PWSTR,
+    servername: ?[*:0]u16,
     fileid: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netapi32" fn NetFileEnum(
-    servername: ?PWSTR,
-    basepath: ?PWSTR,
-    username: ?PWSTR,
+    servername: ?[*:0]u16,
+    basepath: ?[*:0]u16,
+    username: ?[*:0]u16,
     level: u32,
     bufptr: ?*?*u8,
     prefmaxlen: u32,
@@ -6621,26 +6621,26 @@ pub extern "netapi32" fn NetFileEnum(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netapi32" fn NetFileGetInfo(
-    servername: ?PWSTR,
+    servername: ?[*:0]u16,
     fileid: u32,
     level: u32,
     bufptr: ?*?*u8,
 ) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetServerAliasAdd(
-    servername: ?PWSTR,
+    servername: ?[*:0]u16,
     level: u32,
     buf: ?*u8,
 ) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetServerAliasDel(
-    servername: ?PWSTR,
+    servername: ?[*:0]u16,
     level: u32,
     buf: ?*u8,
 ) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetServerAliasEnum(
-    servername: ?PWSTR,
+    servername: ?[*:0]u16,
     level: u32,
     bufptr: ?*?*u8,
     prefmaxlen: u32,
@@ -6651,16 +6651,16 @@ pub extern "netapi32" fn NetServerAliasEnum(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netapi32" fn NetSessionDel(
-    servername: ?PWSTR,
-    UncClientName: ?PWSTR,
-    username: ?PWSTR,
+    servername: ?[*:0]u16,
+    UncClientName: ?[*:0]u16,
+    username: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netapi32" fn NetSessionEnum(
-    servername: ?PWSTR,
-    UncClientName: ?PWSTR,
-    username: ?PWSTR,
+    servername: ?[*:0]u16,
+    UncClientName: ?[*:0]u16,
+    username: ?[*:0]u16,
     level: u32,
     bufptr: ?*?*u8,
     prefmaxlen: u32,
@@ -6671,16 +6671,16 @@ pub extern "netapi32" fn NetSessionEnum(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netapi32" fn NetSessionGetInfo(
-    servername: ?PWSTR,
-    UncClientName: ?PWSTR,
-    username: ?PWSTR,
+    servername: ?[*:0]u16,
+    UncClientName: ?[*:0]u16,
+    username: ?[*:0]u16,
     level: u32,
     bufptr: ?*?*u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netapi32" fn NetShareAdd(
-    servername: ?PWSTR,
+    servername: ?[*:0]u16,
     level: u32,
     buf: ?*u8,
     parm_err: ?*u32,
@@ -6688,34 +6688,34 @@ pub extern "netapi32" fn NetShareAdd(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netapi32" fn NetShareCheck(
-    servername: ?PWSTR,
-    device: ?PWSTR,
+    servername: ?[*:0]u16,
+    device: ?[*:0]u16,
     type: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netapi32" fn NetShareDel(
-    servername: ?PWSTR,
-    netname: ?PWSTR,
+    servername: ?[*:0]u16,
+    netname: ?[*:0]u16,
     reserved: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netapi32" fn NetShareDelEx(
-    servername: ?PWSTR,
+    servername: ?[*:0]u16,
     level: u32,
     buf: ?*u8,
 ) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetShareDelSticky(
-    servername: ?PWSTR,
-    netname: ?PWSTR,
+    servername: ?[*:0]u16,
+    netname: ?[*:0]u16,
     reserved: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netapi32" fn NetShareEnum(
-    servername: ?PWSTR,
+    servername: ?[*:0]u16,
     level: u32,
     bufptr: ?*?*u8,
     prefmaxlen: u32,
@@ -6725,7 +6725,7 @@ pub extern "netapi32" fn NetShareEnum(
 ) callconv(.winapi) u32;
 
 pub extern "netapi32" fn NetShareEnumSticky(
-    servername: ?PWSTR,
+    servername: ?[*:0]u16,
     level: u32,
     bufptr: ?*?*u8,
     prefmaxlen: u32,
@@ -6736,16 +6736,16 @@ pub extern "netapi32" fn NetShareEnumSticky(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netapi32" fn NetShareGetInfo(
-    servername: ?PWSTR,
-    netname: ?PWSTR,
+    servername: ?[*:0]u16,
+    netname: ?[*:0]u16,
     level: u32,
     bufptr: ?*?*u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "netapi32" fn NetShareSetInfo(
-    servername: ?PWSTR,
-    netname: ?PWSTR,
+    servername: ?[*:0]u16,
+    netname: ?[*:0]u16,
     level: u32,
     buf: ?*u8,
     parm_err: ?*u32,
@@ -6827,7 +6827,7 @@ pub extern "ktmw32" fn OpenTransaction(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn OpenTransactionManager(
-    LogFileName: ?PWSTR,
+    LogFileName: ?[*:0]u16,
     DesiredAccess: u32,
     OpenOptions: u32,
 ) callconv(.winapi) ?HANDLE;
@@ -7118,7 +7118,7 @@ pub extern "kernel32" fn RemoveDirectoryW(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "clfsw32" fn RemoveLogContainer(
     hLog: ?HANDLE,
-    pwszContainerPath: ?PWSTR,
+    pwszContainerPath: ?[*:0]u16,
     fForce: BOOL,
     pReserved: ?*anyopaque,
 ) callconv(.winapi) BOOL;
@@ -7127,7 +7127,7 @@ pub extern "clfsw32" fn RemoveLogContainer(
 pub extern "clfsw32" fn RemoveLogContainerSet(
     hLog: ?HANDLE,
     cContainer: u16,
-    rgwszContainerPath: [*]?PWSTR,
+    rgwszContainerPath: [*]?[*:0]u16,
     fForce: BOOL,
     pReserved: ?*anyopaque,
 ) callconv(.winapi) BOOL;
@@ -7146,7 +7146,7 @@ pub extern "advapi32" fn RemoveUsersFromEncryptedFile(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ktmw32" fn RenameTransactionManager(
-    LogFileName: ?PWSTR,
+    LogFileName: ?[*:0]u16,
     ExistingTransactionManagerGuid: ?*Guid,
 ) callconv(.winapi) BOOL;
 
@@ -7258,7 +7258,7 @@ pub extern "kernel32" fn SearchPathA(
     lpExtension: ?[*:0]const u8,
     nBufferLength: u32,
     lpBuffer: ?[*:0]u8,
-    lpFilePart: ?*?PSTR,
+    lpFilePart: ?*?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7268,7 +7268,7 @@ pub extern "kernel32" fn SearchPathW(
     lpExtension: ?[*:0]const u16,
     nBufferLength: u32,
     lpBuffer: ?[*:0]u16,
-    lpFilePart: ?*?PWSTR,
+    lpFilePart: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub extern "advapi32" fn SetEncryptedFileMetadata(
@@ -7472,7 +7472,7 @@ pub extern "ktmw32" fn SetTransactionInformation(
     IsolationLevel: u32,
     IsolationFlags: u32,
     Timeout: u32,
-    Description: ?PWSTR,
+    Description: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7584,7 +7584,7 @@ pub extern "txfw32" fn TxfLogRecordGetFileName(
     RecordBuffer: ?*anyopaque,
     RecordBufferLengthInBytes: u32,
     /// parameter "NameBufferLengthInBytes" is the size in bytes
-    NameBuffer: ?PWSTR,
+    NameBuffer: ?[*:0]u16,
     NameBufferLengthInBytes: ?*u32,
     TxfId: ?*TXF_ID,
 ) callconv(.winapi) BOOL;
@@ -8510,7 +8510,7 @@ pub const VerQueryValue = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (25)
+// Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -8531,8 +8531,6 @@ const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
 const PRIVILEGE_SET = @import("../security.zig").PRIVILEGE_SET;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PSID = @import("../foundation.zig").PSID;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const SID = @import("../security.zig").SID;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;

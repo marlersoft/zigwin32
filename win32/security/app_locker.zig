@@ -317,7 +317,7 @@ pub extern "advapi32" fn SaferSetPolicyInformation(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -326,7 +326,6 @@ const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HWND = @import("../foundation.zig").HWND;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SAFER_LEVEL_HANDLE = @import("../security.zig").SAFER_LEVEL_HANDLE;
 
 test {

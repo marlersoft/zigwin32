@@ -615,7 +615,7 @@ pub const ACMFILTERCHOOSEA = extern struct {
     pszTitle: ?[*:0]const u8 align(1),
     szFilterTag: [48]CHAR align(1),
     szFilter: [128]CHAR align(1),
-    pszName: ?PSTR align(1),
+    pszName: ?[*:0]u8 align(1),
     cchName: u32 align(1),
     fdwEnum: u32 align(1),
     pwfltrEnum: ?*WAVEFILTER align(1),
@@ -648,7 +648,7 @@ pub const ACMFILTERCHOOSEW = extern struct {
     pszTitle: ?[*:0]const u16 align(1),
     szFilterTag: [48]u16 align(1),
     szFilter: [128]u16 align(1),
-    pszName: ?PWSTR align(1),
+    pszName: ?[*:0]u16 align(1),
     cchName: u32 align(1),
     fdwEnum: u32 align(1),
     pwfltrEnum: ?*WAVEFILTER align(1),
@@ -735,7 +735,7 @@ pub const ACMFORMATCHOOSEA = extern struct {
     pszTitle: ?[*:0]const u8 align(1),
     szFormatTag: [48]CHAR align(1),
     szFormat: [128]CHAR align(1),
-    pszName: ?PSTR align(1),
+    pszName: ?[*:0]u8 align(1),
     cchName: u32 align(1),
     fdwEnum: u32 align(1),
     pwfxEnum: ?*WAVEFORMATEX align(1),
@@ -768,7 +768,7 @@ pub const ACMFORMATCHOOSEW = extern struct {
     pszTitle: ?[*:0]const u16 align(1),
     szFormatTag: [48]u16 align(1),
     szFormat: [128]u16 align(1),
-    pszName: ?PWSTR align(1),
+    pszName: ?[*:0]u16 align(1),
     cchName: u32 align(1),
     fdwEnum: u32 align(1),
     pwfxEnum: ?*WAVEFORMATEX align(1),
@@ -2010,7 +2010,7 @@ pub const IAudioSessionControl = extern union {
         ) callconv(.winapi) HRESULT,
         GetDisplayName: *const fn(
             self: *const IAudioSessionControl,
-            pRetVal: ?*?PWSTR,
+            pRetVal: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetDisplayName: *const fn(
             self: *const IAudioSessionControl,
@@ -2019,7 +2019,7 @@ pub const IAudioSessionControl = extern union {
         ) callconv(.winapi) HRESULT,
         GetIconPath: *const fn(
             self: *const IAudioSessionControl,
-            pRetVal: ?*?PWSTR,
+            pRetVal: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetIconPath: *const fn(
             self: *const IAudioSessionControl,
@@ -2049,13 +2049,13 @@ pub const IAudioSessionControl = extern union {
     pub fn GetState(self: *const IAudioSessionControl, pRetVal: ?*AudioSessionState) callconv(.@"inline") HRESULT {
         return self.vtable.GetState(self, pRetVal);
     }
-    pub fn GetDisplayName(self: *const IAudioSessionControl, pRetVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDisplayName(self: *const IAudioSessionControl, pRetVal: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayName(self, pRetVal);
     }
     pub fn SetDisplayName(self: *const IAudioSessionControl, Value: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetDisplayName(self, Value, EventContext);
     }
-    pub fn GetIconPath(self: *const IAudioSessionControl, pRetVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetIconPath(self: *const IAudioSessionControl, pRetVal: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetIconPath(self, pRetVal);
     }
     pub fn SetIconPath(self: *const IAudioSessionControl, Value: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
@@ -2083,11 +2083,11 @@ pub const IAudioSessionControl2 = extern union {
         base: IAudioSessionControl.VTable,
         GetSessionIdentifier: *const fn(
             self: *const IAudioSessionControl2,
-            pRetVal: ?*?PWSTR,
+            pRetVal: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetSessionInstanceIdentifier: *const fn(
             self: *const IAudioSessionControl2,
-            pRetVal: ?*?PWSTR,
+            pRetVal: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetProcessId: *const fn(
             self: *const IAudioSessionControl2,
@@ -2104,10 +2104,10 @@ pub const IAudioSessionControl2 = extern union {
     vtable: *const VTable,
     IAudioSessionControl: IAudioSessionControl,
     IUnknown: IUnknown,
-    pub fn GetSessionIdentifier(self: *const IAudioSessionControl2, pRetVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSessionIdentifier(self: *const IAudioSessionControl2, pRetVal: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSessionIdentifier(self, pRetVal);
     }
-    pub fn GetSessionInstanceIdentifier(self: *const IAudioSessionControl2, pRetVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSessionInstanceIdentifier(self: *const IAudioSessionControl2, pRetVal: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSessionInstanceIdentifier(self, pRetVal);
     }
     pub fn GetProcessId(self: *const IAudioSessionControl2, pRetVal: ?*u32) callconv(.@"inline") HRESULT {
@@ -2603,11 +2603,11 @@ pub const IConnector = extern union {
         ) callconv(.winapi) HRESULT,
         GetConnectorIdConnectedTo: *const fn(
             self: *const IConnector,
-            ppwstrConnectorId: ?*?PWSTR,
+            ppwstrConnectorId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetDeviceIdConnectedTo: *const fn(
             self: *const IConnector,
-            ppwstrDeviceId: ?*?PWSTR,
+            ppwstrDeviceId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -2630,10 +2630,10 @@ pub const IConnector = extern union {
     pub fn GetConnectedTo(self: *const IConnector, ppConTo: ?*?*IConnector) callconv(.@"inline") HRESULT {
         return self.vtable.GetConnectedTo(self, ppConTo);
     }
-    pub fn GetConnectorIdConnectedTo(self: *const IConnector, ppwstrConnectorId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetConnectorIdConnectedTo(self: *const IConnector, ppwstrConnectorId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetConnectorIdConnectedTo(self, ppwstrConnectorId);
     }
-    pub fn GetDeviceIdConnectedTo(self: *const IConnector, ppwstrDeviceId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDeviceIdConnectedTo(self: *const IConnector, ppwstrDeviceId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceIdConnectedTo(self, ppwstrDeviceId);
     }
 };
@@ -2665,7 +2665,7 @@ pub const IControlInterface = extern union {
         base: IUnknown.VTable,
         GetName: *const fn(
             self: *const IControlInterface,
-            ppwstrName: ?*?PWSTR,
+            ppwstrName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetIID: *const fn(
             self: *const IControlInterface,
@@ -2674,7 +2674,7 @@ pub const IControlInterface = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IControlInterface, ppwstrName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetName(self: *const IControlInterface, ppwstrName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, ppwstrName);
     }
     pub fn GetIID(self: *const IControlInterface, pIID: ?*Guid) callconv(.@"inline") HRESULT {
@@ -2757,7 +2757,7 @@ pub const IDeviceTopology = extern union {
         ) callconv(.winapi) HRESULT,
         GetDeviceId: *const fn(
             self: *const IDeviceTopology,
-            ppwstrDeviceId: ?*?PWSTR,
+            ppwstrDeviceId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetSignalPath: *const fn(
             self: *const IDeviceTopology,
@@ -2784,7 +2784,7 @@ pub const IDeviceTopology = extern union {
     pub fn GetPartById(self: *const IDeviceTopology, nId: u32, ppPart: ?*?*IPart) callconv(.@"inline") HRESULT {
         return self.vtable.GetPartById(self, nId, ppPart);
     }
-    pub fn GetDeviceId(self: *const IDeviceTopology, ppwstrDeviceId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDeviceId(self: *const IDeviceTopology, ppwstrDeviceId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceId(self, ppwstrDeviceId);
     }
     pub fn GetSignalPath(self: *const IDeviceTopology, pIPartFrom: ?*IPart, pIPartTo: ?*IPart, bRejectMixedPaths: BOOL, ppParts: ?*?*IPartsList) callconv(.@"inline") HRESULT {
@@ -2851,7 +2851,7 @@ pub const IMMDevice = extern union {
         ) callconv(.winapi) HRESULT,
         GetId: *const fn(
             self: *const IMMDevice,
-            ppstrId: ?*?PWSTR,
+            ppstrId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetState: *const fn(
             self: *const IMMDevice,
@@ -2866,7 +2866,7 @@ pub const IMMDevice = extern union {
     pub fn OpenPropertyStore(self: *const IMMDevice, stgmAccess: STGM, ppProperties: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
         return self.vtable.OpenPropertyStore(self, stgmAccess, ppProperties);
     }
-    pub fn GetId(self: *const IMMDevice, ppstrId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetId(self: *const IMMDevice, ppstrId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetId(self, ppstrId);
     }
     pub fn GetState(self: *const IMMDevice, pdwState: ?*u32) callconv(.@"inline") HRESULT {
@@ -3047,7 +3047,7 @@ pub const IPart = extern union {
         base: IUnknown.VTable,
         GetName: *const fn(
             self: *const IPart,
-            ppwstrName: ?*?PWSTR,
+            ppwstrName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetLocalId: *const fn(
             self: *const IPart,
@@ -3055,7 +3055,7 @@ pub const IPart = extern union {
         ) callconv(.winapi) HRESULT,
         GetGlobalId: *const fn(
             self: *const IPart,
-            ppwstrGlobalId: ?*?PWSTR,
+            ppwstrGlobalId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetPartType: *const fn(
             self: *const IPart,
@@ -3104,13 +3104,13 @@ pub const IPart = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IPart, ppwstrName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetName(self: *const IPart, ppwstrName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, ppwstrName);
     }
     pub fn GetLocalId(self: *const IPart, pnId: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLocalId(self, pnId);
     }
-    pub fn GetGlobalId(self: *const IPart, ppwstrGlobalId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetGlobalId(self: *const IPart, ppwstrGlobalId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetGlobalId(self, ppwstrGlobalId);
     }
     pub fn GetPartType(self: *const IPart, pPartType: ?*PartType) callconv(.@"inline") HRESULT {
@@ -4044,7 +4044,7 @@ pub const MIDIEVENT = extern struct {
 };
 
 pub const MIDIHDR = extern struct {
-    lpData: ?PSTR align(1),
+    lpData: ?[*:0]u8 align(1),
     dwBufferLength: u32 align(1),
     dwBytesRecorded: u32 align(1),
     dwUser: usize align(1),
@@ -6355,7 +6355,7 @@ pub const waveOutGetErrorText = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (23)
+// Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -6376,8 +6376,6 @@ const LRESULT = @import("../foundation.zig").LRESULT;
 const MMTIME = @import("../media.zig").MMTIME;
 const PROPERTYKEY = @import("../ui/shell/properties_system.zig").PROPERTYKEY;
 const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const STGM = @import("../system/com.zig").STGM;
 const WPARAM = @import("../foundation.zig").WPARAM;
 

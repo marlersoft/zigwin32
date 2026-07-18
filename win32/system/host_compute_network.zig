@@ -108,66 +108,66 @@ pub extern "computenetwork" fn HcnCreateEndpoint(
     Id: ?*const Guid,
     Settings: ?[*:0]const u16,
     Endpoint: ?*?*anyopaque,
-    ErrorRecord: ?*?PWSTR,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnCreateGuestNetworkService(
     Id: ?*const Guid,
     Settings: ?[*:0]const u16,
     GuestNetworkService: ?*?*anyopaque,
-    ErrorRecord: ?*?PWSTR,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnCreateLoadBalancer(
     Id: ?*const Guid,
     Settings: ?[*:0]const u16,
     LoadBalancer: ?*?*anyopaque,
-    ErrorRecord: ?*?PWSTR,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnCreateNamespace(
     Id: ?*const Guid,
     Settings: ?[*:0]const u16,
     Namespace: ?*?*anyopaque,
-    ErrorRecord: ?*?PWSTR,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnCreateNetwork(
     Id: ?*const Guid,
     Settings: ?[*:0]const u16,
     Network: ?*?*anyopaque,
-    ErrorRecord: ?*?PWSTR,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnDeleteEndpoint(
     Id: ?*const Guid,
-    ErrorRecord: ?*?PWSTR,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnDeleteGuestNetworkService(
     Id: ?*const Guid,
-    ErrorRecord: ?*?PWSTR,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnDeleteLoadBalancer(
     Id: ?*const Guid,
-    ErrorRecord: ?*?PWSTR,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnDeleteNamespace(
     Id: ?*const Guid,
-    ErrorRecord: ?*?PWSTR,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnDeleteNetwork(
     Id: ?*const Guid,
-    ErrorRecord: ?*?PWSTR,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnEnumerateEndpoints(
     Query: ?[*:0]const u16,
-    Endpoints: ?*?PWSTR,
-    ErrorRecord: ?*?PWSTR,
+    Endpoints: ?*?[*:0]u16,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnEnumerateGuestNetworkPortReservations(
@@ -178,20 +178,20 @@ pub extern "computenetwork" fn HcnEnumerateGuestNetworkPortReservations(
 
 pub extern "computenetwork" fn HcnEnumerateLoadBalancers(
     Query: ?[*:0]const u16,
-    LoadBalancer: ?*?PWSTR,
-    ErrorRecord: ?*?PWSTR,
+    LoadBalancer: ?*?[*:0]u16,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnEnumerateNamespaces(
     Query: ?[*:0]const u16,
-    Namespaces: ?*?PWSTR,
-    ErrorRecord: ?*?PWSTR,
+    Namespaces: ?*?[*:0]u16,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnEnumerateNetworks(
     Query: ?[*:0]const u16,
-    Networks: ?*?PWSTR,
-    ErrorRecord: ?*?PWSTR,
+    Networks: ?*?[*:0]u16,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnFreeGuestNetworkPortReservations(
@@ -201,83 +201,83 @@ pub extern "computenetwork" fn HcnFreeGuestNetworkPortReservations(
 pub extern "computenetwork" fn HcnModifyEndpoint(
     Endpoint: ?*anyopaque,
     Settings: ?[*:0]const u16,
-    ErrorRecord: ?*?PWSTR,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnModifyGuestNetworkService(
     GuestNetworkService: ?*anyopaque,
     Settings: ?[*:0]const u16,
-    ErrorRecord: ?*?PWSTR,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnModifyLoadBalancer(
     LoadBalancer: ?*anyopaque,
     Settings: ?[*:0]const u16,
-    ErrorRecord: ?*?PWSTR,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnModifyNamespace(
     Namespace: ?*anyopaque,
     Settings: ?[*:0]const u16,
-    ErrorRecord: ?*?PWSTR,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnModifyNetwork(
     Network: ?*anyopaque,
     Settings: ?[*:0]const u16,
-    ErrorRecord: ?*?PWSTR,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnOpenEndpoint(
     Id: ?*const Guid,
     Endpoint: ?*?*anyopaque,
-    ErrorRecord: ?*?PWSTR,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnOpenLoadBalancer(
     Id: ?*const Guid,
     LoadBalancer: ?*?*anyopaque,
-    ErrorRecord: ?*?PWSTR,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnOpenNamespace(
     Id: ?*const Guid,
     Namespace: ?*?*anyopaque,
-    ErrorRecord: ?*?PWSTR,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnOpenNetwork(
     Id: ?*const Guid,
     Network: ?*?*anyopaque,
-    ErrorRecord: ?*?PWSTR,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnQueryEndpointProperties(
     Endpoint: ?*anyopaque,
     Query: ?[*:0]const u16,
-    Properties: ?*?PWSTR,
-    ErrorRecord: ?*?PWSTR,
+    Properties: ?*?[*:0]u16,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnQueryLoadBalancerProperties(
     LoadBalancer: ?*anyopaque,
     Query: ?[*:0]const u16,
-    Properties: ?*?PWSTR,
-    ErrorRecord: ?*?PWSTR,
+    Properties: ?*?[*:0]u16,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnQueryNamespaceProperties(
     Namespace: ?*anyopaque,
     Query: ?[*:0]const u16,
-    Properties: ?*?PWSTR,
-    ErrorRecord: ?*?PWSTR,
+    Properties: ?*?[*:0]u16,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnQueryNetworkProperties(
     Network: ?*anyopaque,
     Query: ?[*:0]const u16,
-    Properties: ?*?PWSTR,
-    ErrorRecord: ?*?PWSTR,
+    Properties: ?*?[*:0]u16,
+    ErrorRecord: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "computenetwork" fn HcnRegisterGuestNetworkServiceCallback(
@@ -325,12 +325,11 @@ pub extern "computenetwork" fn HcnUnregisterServiceCallback(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

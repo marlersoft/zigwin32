@@ -61,27 +61,27 @@ pub const IXmlReader = extern union {
         ) callconv(.winapi) HRESULT,
         GetQualifiedName: *const fn(
             self: *const IXmlReader,
-            ppwszQualifiedName: ?*?PWSTR,
+            ppwszQualifiedName: ?*?[*:0]u16,
             pcwchQualifiedName: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetNamespaceUri: *const fn(
             self: *const IXmlReader,
-            ppwszNamespaceUri: ?*?PWSTR,
+            ppwszNamespaceUri: ?*?[*:0]u16,
             pcwchNamespaceUri: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetLocalName: *const fn(
             self: *const IXmlReader,
-            ppwszLocalName: ?*?PWSTR,
+            ppwszLocalName: ?*?[*:0]u16,
             pcwchLocalName: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetPrefix: *const fn(
             self: *const IXmlReader,
-            ppwszPrefix: ?*?PWSTR,
+            ppwszPrefix: ?*?[*:0]u16,
             pcwchPrefix: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const IXmlReader,
-            ppwszValue: ?*?PWSTR,
+            ppwszValue: ?*?[*:0]u16,
             pcwchValue: ?*u32,
         ) callconv(.winapi) HRESULT,
         ReadValueChunk: *const fn(
@@ -92,7 +92,7 @@ pub const IXmlReader = extern union {
         ) callconv(.winapi) HRESULT,
         GetBaseUri: *const fn(
             self: *const IXmlReader,
-            ppwszBaseUri: ?*?PWSTR,
+            ppwszBaseUri: ?*?[*:0]u16,
             pcwchBaseUri: ?*u32,
         ) callconv(.winapi) HRESULT,
         IsDefault: *const fn(
@@ -150,25 +150,25 @@ pub const IXmlReader = extern union {
     pub fn MoveToElement(self: *const IXmlReader) callconv(.@"inline") HRESULT {
         return self.vtable.MoveToElement(self);
     }
-    pub fn GetQualifiedName(self: *const IXmlReader, ppwszQualifiedName: ?*?PWSTR, pcwchQualifiedName: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetQualifiedName(self: *const IXmlReader, ppwszQualifiedName: ?*?[*:0]u16, pcwchQualifiedName: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetQualifiedName(self, ppwszQualifiedName, pcwchQualifiedName);
     }
-    pub fn GetNamespaceUri(self: *const IXmlReader, ppwszNamespaceUri: ?*?PWSTR, pcwchNamespaceUri: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetNamespaceUri(self: *const IXmlReader, ppwszNamespaceUri: ?*?[*:0]u16, pcwchNamespaceUri: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNamespaceUri(self, ppwszNamespaceUri, pcwchNamespaceUri);
     }
-    pub fn GetLocalName(self: *const IXmlReader, ppwszLocalName: ?*?PWSTR, pcwchLocalName: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetLocalName(self: *const IXmlReader, ppwszLocalName: ?*?[*:0]u16, pcwchLocalName: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLocalName(self, ppwszLocalName, pcwchLocalName);
     }
-    pub fn GetPrefix(self: *const IXmlReader, ppwszPrefix: ?*?PWSTR, pcwchPrefix: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetPrefix(self: *const IXmlReader, ppwszPrefix: ?*?[*:0]u16, pcwchPrefix: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrefix(self, ppwszPrefix, pcwchPrefix);
     }
-    pub fn GetValue(self: *const IXmlReader, ppwszValue: ?*?PWSTR, pcwchValue: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetValue(self: *const IXmlReader, ppwszValue: ?*?[*:0]u16, pcwchValue: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetValue(self, ppwszValue, pcwchValue);
     }
     pub fn ReadValueChunk(self: *const IXmlReader, pwchBuffer: [*:0]u16, cwchChunkSize: u32, pcwchRead: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ReadValueChunk(self, pwchBuffer, cwchChunkSize, pcwchRead);
     }
-    pub fn GetBaseUri(self: *const IXmlReader, ppwszBaseUri: ?*?PWSTR, pcwchBaseUri: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetBaseUri(self: *const IXmlReader, ppwszBaseUri: ?*?[*:0]u16, pcwchBaseUri: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBaseUri(self, ppwszBaseUri, pcwchBaseUri);
     }
     pub fn IsDefault(self: *const IXmlReader) callconv(.@"inline") BOOL {
@@ -994,14 +994,13 @@ pub extern "xmllite" fn CreateXmlWriterOutputWithEncodingName(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IMalloc = @import("../../system/com.zig").IMalloc;
 const IUnknown = @import("../../system/com.zig").IUnknown;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

@@ -399,7 +399,7 @@ pub const IWSDEndpointProxy = extern union {
         ) callconv(.winapi) HRESULT,
         GetErrorInfo: *const fn(
             self: *const IWSDEndpointProxy,
-            ppszErrorInfo: ?*?PWSTR,
+            ppszErrorInfo: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetFaultInfo: *const fn(
             self: *const IWSDEndpointProxy,
@@ -423,7 +423,7 @@ pub const IWSDEndpointProxy = extern union {
     pub fn ProcessFault(self: *const IWSDEndpointProxy, pFault: ?*const WSD_SOAP_FAULT) callconv(.@"inline") HRESULT {
         return self.vtable.ProcessFault(self, pFault);
     }
-    pub fn GetErrorInfo(self: *const IWSDEndpointProxy, ppszErrorInfo: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetErrorInfo(self: *const IWSDEndpointProxy, ppszErrorInfo: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetErrorInfo(self, ppszErrorInfo);
     }
     pub fn GetFaultInfo(self: *const IWSDEndpointProxy, ppFault: ?*?*WSD_SOAP_FAULT) callconv(.@"inline") HRESULT {
@@ -479,7 +479,7 @@ pub const IWSDHttpAddress = extern union {
         ) callconv(.winapi) HRESULT,
         GetPath: *const fn(
             self: *const IWSDHttpAddress,
-            ppszPath: ?*?PWSTR,
+            ppszPath: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetPath: *const fn(
             self: *const IWSDHttpAddress,
@@ -496,7 +496,7 @@ pub const IWSDHttpAddress = extern union {
     pub fn SetSecure(self: *const IWSDHttpAddress, fSecure: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetSecure(self, fSecure);
     }
-    pub fn GetPath(self: *const IWSDHttpAddress, ppszPath: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetPath(self: *const IWSDHttpAddress, ppszPath: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetPath(self, ppszPath);
     }
     pub fn SetPath(self: *const IWSDHttpAddress, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -541,7 +541,7 @@ pub const IWSDHttpMessageParameters = extern union {
         ) callconv(.winapi) HRESULT,
         GetInboundHttpHeaders: *const fn(
             self: *const IWSDHttpMessageParameters,
-            ppszHeaders: ?*?PWSTR,
+            ppszHeaders: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetOutboundHttpHeaders: *const fn(
             self: *const IWSDHttpMessageParameters,
@@ -549,7 +549,7 @@ pub const IWSDHttpMessageParameters = extern union {
         ) callconv(.winapi) HRESULT,
         GetOutboundHttpHeaders: *const fn(
             self: *const IWSDHttpMessageParameters,
-            ppszHeaders: ?*?PWSTR,
+            ppszHeaders: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetID: *const fn(
             self: *const IWSDHttpMessageParameters,
@@ -557,7 +557,7 @@ pub const IWSDHttpMessageParameters = extern union {
         ) callconv(.winapi) HRESULT,
         GetID: *const fn(
             self: *const IWSDHttpMessageParameters,
-            ppszId: ?*?PWSTR,
+            ppszId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetContext: *const fn(
             self: *const IWSDHttpMessageParameters,
@@ -577,19 +577,19 @@ pub const IWSDHttpMessageParameters = extern union {
     pub fn SetInboundHttpHeaders(self: *const IWSDHttpMessageParameters, pszHeaders: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetInboundHttpHeaders(self, pszHeaders);
     }
-    pub fn GetInboundHttpHeaders(self: *const IWSDHttpMessageParameters, ppszHeaders: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetInboundHttpHeaders(self: *const IWSDHttpMessageParameters, ppszHeaders: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetInboundHttpHeaders(self, ppszHeaders);
     }
     pub fn SetOutboundHttpHeaders(self: *const IWSDHttpMessageParameters, pszHeaders: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetOutboundHttpHeaders(self, pszHeaders);
     }
-    pub fn GetOutboundHttpHeaders(self: *const IWSDHttpMessageParameters, ppszHeaders: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetOutboundHttpHeaders(self: *const IWSDHttpMessageParameters, ppszHeaders: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetOutboundHttpHeaders(self, ppszHeaders);
     }
     pub fn SetID(self: *const IWSDHttpMessageParameters, pszId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetID(self, pszId);
     }
-    pub fn GetID(self: *const IWSDHttpMessageParameters, ppszId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetID(self: *const IWSDHttpMessageParameters, ppszId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetID(self, ppszId);
     }
     pub fn SetContext(self: *const IWSDHttpMessageParameters, pContext: ?*IUnknown) callconv(.@"inline") HRESULT {
@@ -663,15 +663,15 @@ pub const IWSDiscoveredService = extern union {
         ) callconv(.winapi) HRESULT,
         GetProbeResolveTag: *const fn(
             self: *const IWSDiscoveredService,
-            ppszTag: ?*?PWSTR,
+            ppszTag: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetRemoteTransportAddress: *const fn(
             self: *const IWSDiscoveredService,
-            ppszRemoteTransportAddress: ?*?PWSTR,
+            ppszRemoteTransportAddress: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetLocalTransportAddress: *const fn(
             self: *const IWSDiscoveredService,
-            ppszLocalTransportAddress: ?*?PWSTR,
+            ppszLocalTransportAddress: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetLocalInterfaceGUID: *const fn(
             self: *const IWSDiscoveredService,
@@ -702,13 +702,13 @@ pub const IWSDiscoveredService = extern union {
     pub fn GetExtendedDiscoXML(self: *const IWSDiscoveredService, ppHeaderAny: ?*?*WSDXML_ELEMENT, ppBodyAny: ?*?*WSDXML_ELEMENT) callconv(.@"inline") HRESULT {
         return self.vtable.GetExtendedDiscoXML(self, ppHeaderAny, ppBodyAny);
     }
-    pub fn GetProbeResolveTag(self: *const IWSDiscoveredService, ppszTag: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetProbeResolveTag(self: *const IWSDiscoveredService, ppszTag: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetProbeResolveTag(self, ppszTag);
     }
-    pub fn GetRemoteTransportAddress(self: *const IWSDiscoveredService, ppszRemoteTransportAddress: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetRemoteTransportAddress(self: *const IWSDiscoveredService, ppszRemoteTransportAddress: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetRemoteTransportAddress(self, ppszRemoteTransportAddress);
     }
-    pub fn GetLocalTransportAddress(self: *const IWSDiscoveredService, ppszLocalTransportAddress: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetLocalTransportAddress(self: *const IWSDiscoveredService, ppszLocalTransportAddress: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetLocalTransportAddress(self, ppszLocalTransportAddress);
     }
     pub fn GetLocalInterfaceGUID(self: *const IWSDiscoveredService, pGuid: ?*Guid) callconv(.@"inline") HRESULT {
@@ -1126,7 +1126,7 @@ pub const IWSDScopeMatchingRule = extern union {
         base: IUnknown.VTable,
         GetScopeRule: *const fn(
             self: *const IWSDScopeMatchingRule,
-            ppszScopeMatchingRule: ?*?PWSTR,
+            ppszScopeMatchingRule: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         MatchScopes: *const fn(
             self: *const IWSDScopeMatchingRule,
@@ -1137,7 +1137,7 @@ pub const IWSDScopeMatchingRule = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetScopeRule(self: *const IWSDScopeMatchingRule, ppszScopeMatchingRule: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetScopeRule(self: *const IWSDScopeMatchingRule, ppszScopeMatchingRule: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetScopeRule(self, ppszScopeMatchingRule);
     }
     pub fn MatchScopes(self: *const IWSDScopeMatchingRule, pszScope1: ?[*:0]const u16, pszScope2: ?[*:0]const u16, pfMatch: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -1483,12 +1483,12 @@ pub const IWSDTransportAddress = extern union {
         ) callconv(.winapi) HRESULT,
         GetTransportAddress: *const fn(
             self: *const IWSDTransportAddress,
-            ppszAddress: ?*?PWSTR,
+            ppszAddress: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetTransportAddressEx: *const fn(
             self: *const IWSDTransportAddress,
             fSafe: BOOL,
-            ppszAddress: ?*?PWSTR,
+            ppszAddress: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetTransportAddress: *const fn(
             self: *const IWSDTransportAddress,
@@ -1504,10 +1504,10 @@ pub const IWSDTransportAddress = extern union {
     pub fn SetPort(self: *const IWSDTransportAddress, wPort: u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetPort(self, wPort);
     }
-    pub fn GetTransportAddress(self: *const IWSDTransportAddress, ppszAddress: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetTransportAddress(self: *const IWSDTransportAddress, ppszAddress: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetTransportAddress(self, ppszAddress);
     }
-    pub fn GetTransportAddressEx(self: *const IWSDTransportAddress, fSafe: BOOL, ppszAddress: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetTransportAddressEx(self: *const IWSDTransportAddress, fSafe: BOOL, ppszAddress: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetTransportAddressEx(self, fSafe, ppszAddress);
     }
     pub fn SetTransportAddress(self: *const IWSDTransportAddress, pszAddress: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -1815,7 +1815,7 @@ pub const WSD_ENDPOINT_REFERENCE_LIST = extern struct {
 pub const WSD_EVENT = extern struct {
     Hr: HRESULT,
     EventType: u32,
-    DispatchTag: ?PWSTR,
+    DispatchTag: ?[*:0]u16,
     HandlerContext: WSD_HANDLER_CONTEXT,
     Soap: ?*WSD_SOAP_MESSAGE,
     Operation: ?*WSD_OPERATION,
@@ -2136,7 +2136,7 @@ pub const WSDXML_ATTRIBUTE = extern struct {
     Element: ?*WSDXML_ELEMENT,
     Next: ?*WSDXML_ATTRIBUTE,
     Name: ?*WSDXML_NAME,
-    Value: ?PWSTR,
+    Value: ?[*:0]u16,
 };
 
 pub const WSDXML_ELEMENT = extern struct {
@@ -2154,7 +2154,7 @@ pub const WSDXML_ELEMENT_LIST = extern struct {
 
 pub const WSDXML_NAME = extern struct {
     Space: ?*WSDXML_NAMESPACE,
-    LocalName: ?PWSTR,
+    LocalName: ?[*:0]u16,
 };
 
 pub const WSDXML_NAMESPACE = extern struct {
@@ -2272,12 +2272,12 @@ pub const WSDXML_PREFIX_MAPPING = extern struct {
     Refs: u32,
     Next: ?*WSDXML_PREFIX_MAPPING,
     Space: ?*WSDXML_NAMESPACE,
-    Prefix: ?PWSTR,
+    Prefix: ?[*:0]u16,
 };
 
 pub const WSDXML_TEXT = extern struct {
     Node: WSDXML_NODE,
-    Text: ?PWSTR,
+    Text: ?[*:0]u16,
 };
 
 pub const WSDXML_TYPE = extern struct {
@@ -2455,7 +2455,7 @@ pub extern "wsdapi" fn WSDSetConfigurationOption(
 pub extern "wsdapi" fn WSDUriDecode(
     source: [*:0]const u16,
     cchSource: u32,
-    destOut: [*]?PWSTR,
+    destOut: [*]?[*:0]u16,
     cchDestOut: ?*u32,
 ) callconv(.winapi) HRESULT;
 
@@ -2463,7 +2463,7 @@ pub extern "wsdapi" fn WSDUriDecode(
 pub extern "wsdapi" fn WSDUriEncode(
     source: [*:0]const u16,
     cchSource: u32,
-    destOut: [*]?PWSTR,
+    destOut: [*]?[*:0]u16,
     cchDestOut: ?*u32,
 ) callconv(.winapi) HRESULT;
 
@@ -2508,7 +2508,7 @@ pub extern "wsdapi" fn WSDXMLGetValueFromAny(
     pszNamespace: ?[*:0]const u16,
     pszName: ?[*:0]const u16,
     pAny: ?*WSDXML_ELEMENT,
-    ppszValue: ?*?PWSTR,
+    ppszValue: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 
@@ -2516,7 +2516,7 @@ pub extern "wsdapi" fn WSDXMLGetValueFromAny(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -2525,7 +2525,6 @@ const HANDLE = @import("../foundation.zig").HANDLE;
 const HCERTSTORE = @import("../security/cryptography.zig").HCERTSTORE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;
 
 test {

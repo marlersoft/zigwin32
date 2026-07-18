@@ -2638,7 +2638,7 @@ pub extern "vmsavedstatedumpprovider" fn CallStackUnwind(
     imageInfo: ?*MODULE_INFO,
     imageInfoCount: u32,
     frameCount: u32,
-    callStack: ?*?PWSTR,
+    callStack: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn FindSavedStateSymbolFieldInType(
@@ -2744,7 +2744,7 @@ pub extern "vmsavedstatedumpprovider" fn GetSavedStateSymbolFieldInfo(
     vmSavedStateDumpHandle: ?*anyopaque,
     vpId: u32,
     typeName: ?[*:0]const u8,
-    typeFieldInfoMap: ?*?PWSTR,
+    typeFieldInfoMap: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn GetSavedStateSymbolProviderHandle(
@@ -2916,9 +2916,9 @@ pub extern "vmsavedstatedumpprovider" fn LoadSavedStateSymbolProvider(
 pub extern "vmsavedstatedumpprovider" fn LocateSavedStateFiles(
     vmName: ?[*:0]const u16,
     snapshotName: ?[*:0]const u16,
-    binPath: ?*?PWSTR,
-    vsvPath: ?*?PWSTR,
-    vmrsPath: ?*?PWSTR,
+    binPath: ?*?[*:0]u16,
+    vsvPath: ?*?[*:0]u16,
+    vmrsPath: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn ReadGuestPhysicalAddress(
@@ -3488,7 +3488,7 @@ pub extern "winhvplatform" fn WHvWriteVpciDeviceRegister(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ADDRESS_FAMILY = @import("../networking/win_sock.zig").ADDRESS_FAMILY;
@@ -3498,8 +3498,6 @@ const HANDLE = @import("../foundation.zig").HANDLE;
 const HCS_SYSTEM = @import("../system/host_compute_system.zig").HCS_SYSTEM;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const LUID = @import("../foundation.zig").LUID;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

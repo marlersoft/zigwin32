@@ -68,7 +68,7 @@ pub extern "userenv" fn DeriveRestrictedAppContainerSidFromAppContainerSidAndRes
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "userenv" fn GetAppContainerFolderPath(
     pszAppContainerSid: ?[*:0]const u16,
-    ppszPath: ?*?PWSTR,
+    ppszPath: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -104,7 +104,7 @@ pub extern "api-ms-win-security-isolatedcontainer-l1-1-1" fn IsProcessInWDAGCont
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -113,7 +113,6 @@ const HKEY = @import("../system/registry.zig").HKEY;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PSID = @import("../foundation.zig").PSID;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
 
 test {

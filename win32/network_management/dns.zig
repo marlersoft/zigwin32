@@ -240,7 +240,7 @@ pub const SIZEOF_IP4_ADDRESS = @as(u32, 4);
 //--------------------------------------------------------------------------------
 pub const _DnsRecordOptA = extern struct {
     pNext: ?*DNS_RECORDA,
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
     wType: u16,
     wDataLength: u16,
     Flags: extern union {
@@ -371,7 +371,7 @@ pub const DNS_CONNECTION_POLICY_ENTRY = extern struct {
     cbAppSid: u32,
     pbAppSid: ?*u8,
     nConnections: u32,
-    ppwszConnections: ?*?PWSTR,
+    ppwszConnections: ?*?[*:0]u16,
     dwPolicyEntryFlags: u32,
 };
 
@@ -396,22 +396,22 @@ pub const DNS_CONNECTION_PROXY_ELEMENT = extern struct {
 
 pub const DNS_CONNECTION_PROXY_INFO = extern struct {
     Version: u32,
-    pwszFriendlyName: ?PWSTR,
+    pwszFriendlyName: ?[*:0]u16,
     Flags: u32,
     Switch: DNS_CONNECTION_PROXY_INFO_SWITCH,
     Anonymous: extern union {
         pub const _DNS_CONNECTION_PROXY_INFO_CONFIG = extern struct {
-            pwszServer: ?PWSTR,
-            pwszUsername: ?PWSTR,
-            pwszPassword: ?PWSTR,
-            pwszException: ?PWSTR,
-            pwszExtraInfo: ?PWSTR,
+            pwszServer: ?[*:0]u16,
+            pwszUsername: ?[*:0]u16,
+            pwszPassword: ?[*:0]u16,
+            pwszException: ?[*:0]u16,
+            pwszExtraInfo: ?[*:0]u16,
             Port: u16,
         };
         pub const _DNS_CONNECTION_PROXY_INFO_SCRIPT = extern struct {
-            pwszScript: ?PWSTR,
-            pwszUsername: ?PWSTR,
-            pwszPassword: ?PWSTR,
+            pwszScript: ?[*:0]u16,
+            pwszUsername: ?[*:0]u16,
+            pwszPassword: ?[*:0]u16,
         };
         Config: _DNS_CONNECTION_PROXY_INFO_CONFIG,
         Script: _DNS_CONNECTION_PROXY_INFO_SCRIPT,
@@ -421,7 +421,7 @@ pub const DNS_CONNECTION_PROXY_INFO = extern struct {
 pub const DNS_CONNECTION_PROXY_INFO_EX = extern struct {
     ProxyInfo: DNS_CONNECTION_PROXY_INFO,
     dwInterfaceIndex: u32,
-    pwszConnectionName: ?PWSTR,
+    pwszConnectionName: ?[*:0]u16,
     fDirectConfiguration: BOOL,
     hConnection: ?HANDLE,
 };
@@ -457,7 +457,7 @@ pub const DNS_CUSTOM_SERVER = extern struct {
     dwServerType: u32,
     ullFlags: u64,
     Anonymous1: extern union {
-        pwszTemplate: ?PWSTR,
+        pwszTemplate: ?[*:0]u16,
     },
     Anonymous2: extern union {
         MaxSa: [32]CHAR,
@@ -528,23 +528,23 @@ pub const DNS_MESSAGE_BUFFER = extern struct {
 };
 
 pub const DNS_MINFO_DATAA = extern struct {
-    pNameMailbox: ?PSTR,
-    pNameErrorsMailbox: ?PSTR,
+    pNameMailbox: ?[*:0]u8,
+    pNameErrorsMailbox: ?[*:0]u8,
 };
 
 pub const DNS_MINFO_DATAW = extern struct {
-    pNameMailbox: ?PWSTR,
-    pNameErrorsMailbox: ?PWSTR,
+    pNameMailbox: ?[*:0]u16,
+    pNameErrorsMailbox: ?[*:0]u16,
 };
 
 pub const DNS_MX_DATAA = extern struct {
-    pNameExchange: ?PSTR,
+    pNameExchange: ?[*:0]u8,
     wPreference: u16,
     Pad: u16,
 };
 
 pub const DNS_MX_DATAW = extern struct {
-    pNameExchange: ?PWSTR,
+    pNameExchange: ?[*:0]u16,
     wPreference: u16,
     Pad: u16,
 };
@@ -569,19 +569,19 @@ pub const DnsNameValidateTld = DNS_NAME_FORMAT.ValidateTld;
 pub const DNS_NAPTR_DATAA = extern struct {
     wOrder: u16,
     wPreference: u16,
-    pFlags: ?PSTR,
-    pService: ?PSTR,
-    pRegularExpression: ?PSTR,
-    pReplacement: ?PSTR,
+    pFlags: ?[*:0]u8,
+    pService: ?[*:0]u8,
+    pRegularExpression: ?[*:0]u8,
+    pReplacement: ?[*:0]u8,
 };
 
 pub const DNS_NAPTR_DATAW = extern struct {
     wOrder: u16,
     wPreference: u16,
-    pFlags: ?PWSTR,
-    pService: ?PWSTR,
-    pRegularExpression: ?PWSTR,
-    pReplacement: ?PWSTR,
+    pFlags: ?[*:0]u16,
+    pService: ?[*:0]u16,
+    pRegularExpression: ?[*:0]u16,
+    pReplacement: ?[*:0]u16,
 };
 
 pub const DNS_NSEC3_DATA = extern struct {
@@ -604,14 +604,14 @@ pub const DNS_NSEC3PARAM_DATA = extern struct {
 };
 
 pub const DNS_NSEC_DATAA = extern struct {
-    pNextDomainName: ?PSTR,
+    pNextDomainName: ?[*:0]u8,
     wTypeBitMapsLength: u16,
     wPad: u16,
     TypeBitMaps: [1]u8,
 };
 
 pub const DNS_NSEC_DATAW = extern struct {
-    pNextDomainName: ?PWSTR,
+    pNextDomainName: ?[*:0]u16,
     wTypeBitMapsLength: u16,
     wPad: u16,
     TypeBitMaps: [1]u8,
@@ -623,13 +623,13 @@ pub const DNS_NULL_DATA = extern struct {
 };
 
 pub const DNS_NXT_DATAA = extern struct {
-    pNameNext: ?PSTR,
+    pNameNext: ?[*:0]u8,
     wNumTypes: u16,
     wTypes: [1]u16,
 };
 
 pub const DNS_NXT_DATAW = extern struct {
-    pNameNext: ?PWSTR,
+    pNameNext: ?[*:0]u16,
     wNumTypes: u16,
     wTypes: [1]u16,
 };
@@ -648,7 +648,7 @@ pub const DNS_PROXY_COMPLETION_ROUTINE = *const fn(
 pub const DNS_PROXY_INFORMATION = extern struct {
     version: u32,
     proxyInformationType: DNS_PROXY_INFORMATION_TYPE,
-    proxyName: ?PWSTR,
+    proxyName: ?[*:0]u16,
 };
 
 pub const DNS_PROXY_INFORMATION_TYPE = enum(i32) {
@@ -663,11 +663,11 @@ pub const DNS_PROXY_INFORMATION_PROXY_NAME = DNS_PROXY_INFORMATION_TYPE.PROXY_NA
 pub const DNS_PROXY_INFORMATION_DOES_NOT_EXIST = DNS_PROXY_INFORMATION_TYPE.DOES_NOT_EXIST;
 
 pub const DNS_PTR_DATAA = extern struct {
-    pNameHost: ?PSTR,
+    pNameHost: ?[*:0]u8,
 };
 
 pub const DNS_PTR_DATAW = extern struct {
-    pNameHost: ?PWSTR,
+    pNameHost: ?[*:0]u16,
 };
 
 pub const DNS_QUERY_CANCEL = extern struct {
@@ -788,7 +788,7 @@ pub const DNS_RECORD_FLAGS = extern struct {
 
 pub const DNS_RECORD_OPTW = extern struct {
     pNext: ?*DNS_RECORDW,
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
     wType: u16,
     wDataLength: u16,
     Flags: extern union {
@@ -806,7 +806,7 @@ pub const DNS_RECORD_OPTW = extern struct {
 
 pub const DNS_RECORDA = extern struct {
     pNext: ?*DNS_RECORDA,
-    pName: ?PSTR,
+    pName: ?[*:0]u8,
     wType: u16,
     wDataLength: u16,
     Flags: extern union {
@@ -905,7 +905,7 @@ pub const DNS_RECORDA = extern struct {
 
 pub const DNS_RECORDW = extern struct {
     pNext: ?*DNS_RECORDW,
-    pName: ?PWSTR,
+    pName: ?[*:0]u16,
     wType: u16,
     wDataLength: u16,
     Flags: extern union {
@@ -1034,16 +1034,16 @@ pub const DNS_SERVICE_CANCEL = extern struct {
 };
 
 pub const DNS_SERVICE_INSTANCE = extern struct {
-    pszInstanceName: ?PWSTR,
-    pszHostName: ?PWSTR,
+    pszInstanceName: ?[*:0]u16,
+    pszHostName: ?[*:0]u16,
     ip4Address: ?*u32,
     ip6Address: ?*IP6_ADDRESS,
     wPort: u16,
     wPriority: u16,
     wWeight: u16,
     dwPropertyCount: u32,
-    keys: ?*?PWSTR,
-    values: ?*?PWSTR,
+    keys: ?*?[*:0]u16,
+    values: ?*?[*:0]u16,
     dwInterfaceIndex: u32,
 };
 
@@ -1060,7 +1060,7 @@ pub const DNS_SERVICE_REGISTER_REQUEST = extern struct {
 pub const DNS_SERVICE_RESOLVE_REQUEST = extern struct {
     Version: u32,
     InterfaceIndex: u32,
-    QueryName: ?PWSTR,
+    QueryName: ?[*:0]u16,
     pResolveCompletionCallback: ?PDNS_SERVICE_RESOLVE_COMPLETE,
     pQueryContext: ?*anyopaque,
 };
@@ -1074,7 +1074,7 @@ pub const DNS_SIG_DATAA = extern struct {
     dwTimeSigned: u32,
     wKeyTag: u16,
     wSignatureLength: u16,
-    pNameSigner: ?PSTR,
+    pNameSigner: ?[*:0]u8,
     Signature: [1]u8,
 };
 
@@ -1087,13 +1087,13 @@ pub const DNS_SIG_DATAW = extern struct {
     dwTimeSigned: u32,
     wKeyTag: u16,
     wSignatureLength: u16,
-    pNameSigner: ?PWSTR,
+    pNameSigner: ?[*:0]u16,
     Signature: [1]u8,
 };
 
 pub const DNS_SOA_DATAA = extern struct {
-    pNamePrimaryServer: ?PSTR,
-    pNameAdministrator: ?PSTR,
+    pNamePrimaryServer: ?[*:0]u8,
+    pNameAdministrator: ?[*:0]u8,
     dwSerialNo: u32,
     dwRefresh: u32,
     dwRetry: u32,
@@ -1102,8 +1102,8 @@ pub const DNS_SOA_DATAA = extern struct {
 };
 
 pub const DNS_SOA_DATAW = extern struct {
-    pNamePrimaryServer: ?PWSTR,
-    pNameAdministrator: ?PWSTR,
+    pNamePrimaryServer: ?[*:0]u16,
+    pNameAdministrator: ?[*:0]u16,
     dwSerialNo: u32,
     dwRefresh: u32,
     dwRetry: u32,
@@ -1112,7 +1112,7 @@ pub const DNS_SOA_DATAW = extern struct {
 };
 
 pub const DNS_SRV_DATAA = extern struct {
-    pNameTarget: ?PSTR,
+    pNameTarget: ?[*:0]u8,
     wPriority: u16,
     wWeight: u16,
     wPort: u16,
@@ -1120,7 +1120,7 @@ pub const DNS_SRV_DATAA = extern struct {
 };
 
 pub const DNS_SRV_DATAW = extern struct {
-    pNameTarget: ?PWSTR,
+    pNameTarget: ?[*:0]u16,
     wPriority: u16,
     wWeight: u16,
     wPort: u16,
@@ -1128,7 +1128,7 @@ pub const DNS_SRV_DATAW = extern struct {
 };
 
 pub const DNS_TKEY_DATAA = extern struct {
-    pNameAlgorithm: ?PSTR,
+    pNameAlgorithm: ?[*:0]u8,
     pAlgorithmPacket: ?*u8,
     pKey: ?*u8,
     pOtherData: ?*u8,
@@ -1143,7 +1143,7 @@ pub const DNS_TKEY_DATAA = extern struct {
 };
 
 pub const DNS_TKEY_DATAW = extern struct {
-    pNameAlgorithm: ?PWSTR,
+    pNameAlgorithm: ?[*:0]u16,
     pAlgorithmPacket: ?*u8,
     pKey: ?*u8,
     pOtherData: ?*u8,
@@ -1167,7 +1167,7 @@ pub const DNS_TLSA_DATA = extern struct {
 };
 
 pub const DNS_TSIG_DATAA = extern struct {
-    pNameAlgorithm: ?PSTR,
+    pNameAlgorithm: ?[*:0]u8,
     pAlgorithmPacket: ?*u8,
     pSignature: ?*u8,
     pOtherData: ?*u8,
@@ -1182,7 +1182,7 @@ pub const DNS_TSIG_DATAA = extern struct {
 };
 
 pub const DNS_TSIG_DATAW = extern struct {
-    pNameAlgorithm: ?PWSTR,
+    pNameAlgorithm: ?[*:0]u16,
     pAlgorithmPacket: ?*u8,
     pSignature: ?*u8,
     pOtherData: ?*u8,
@@ -1198,12 +1198,12 @@ pub const DNS_TSIG_DATAW = extern struct {
 
 pub const DNS_TXT_DATAA = extern struct {
     dwStringCount: u32,
-    pStringArray: [1]?PSTR,
+    pStringArray: [1]?[*:0]u8,
 };
 
 pub const DNS_TXT_DATAW = extern struct {
     dwStringCount: u32,
-    pStringArray: [1]?PWSTR,
+    pStringArray: [1]?[*:0]u16,
 };
 
 pub const DNS_TYPE = enum(u16) {
@@ -1358,14 +1358,14 @@ pub const DNS_WINSR_DATAA = extern struct {
     dwMappingFlag: u32,
     dwLookupTimeout: u32,
     dwCacheTimeout: u32,
-    pNameResultDomain: ?PSTR,
+    pNameResultDomain: ?[*:0]u8,
 };
 
 pub const DNS_WINSR_DATAW = extern struct {
     dwMappingFlag: u32,
     dwLookupTimeout: u32,
     dwCacheTimeout: u32,
-    pNameResultDomain: ?PWSTR,
+    pNameResultDomain: ?[*:0]u16,
 };
 
 pub const DNS_WIRE_QUESTION = extern struct {
@@ -1573,7 +1573,7 @@ pub extern "dnsapi" fn DnsFreeCustomServers(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "dnsapi" fn DnsFreeProxyName(
-    proxyName: ?PWSTR,
+    proxyName: ?[*:0]u16,
 ) callconv(.winapi) void;
 
 pub extern "dnsapi" fn DnsGetApplicationSettings(
@@ -1767,8 +1767,8 @@ pub extern "dnsapi" fn DnsServiceConstructInstance(
     wPriority: u16,
     wWeight: u16,
     dwPropertiesCount: u32,
-    keys: [*]?PWSTR,
-    values: [*]?PWSTR,
+    keys: [*]?[*:0]u16,
+    values: [*]?[*:0]u16,
 ) callconv(.winapi) ?*DNS_SERVICE_INSTANCE;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -2009,13 +2009,11 @@ pub const DnsValidateName_ = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const CHAR = @import("../foundation.zig").CHAR;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
 
 test {

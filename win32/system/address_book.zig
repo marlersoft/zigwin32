@@ -234,9 +234,9 @@ pub const __UPV = extern union {
     cur: CY,
     at: f64,
     ft: FILETIME,
-    lpszA: ?PSTR,
+    lpszA: ?[*:0]u8,
     bin: SBinary,
-    lpszW: ?PWSTR,
+    lpszW: ?[*:0]u16,
     lpguid: ?*Guid,
     li: LARGE_INTEGER,
     MVi: SShortArray,
@@ -1854,11 +1854,11 @@ pub const IWABObject = extern union {
         ) callconv(.winapi) HRESULT,
         Backup: *const fn(
             self: *const IWABObject,
-            lpFileName: ?PSTR,
+            lpFileName: ?[*:0]u8,
         ) callconv(.winapi) HRESULT,
         Import: *const fn(
             self: *const IWABObject,
-            lpWIP: ?PSTR,
+            lpWIP: ?[*:0]u8,
         ) callconv(.winapi) HRESULT,
         Find: *const fn(
             self: *const IWABObject,
@@ -1869,28 +1869,28 @@ pub const IWABObject = extern union {
             self: *const IWABObject,
             lpIAB: ?*IAddrBook,
             hWnd: ?HWND,
-            lpszFileName: ?PSTR,
+            lpszFileName: ?[*:0]u8,
         ) callconv(.winapi) HRESULT,
         LDAPUrl: *const fn(
             self: *const IWABObject,
             lpIAB: ?*IAddrBook,
             hWnd: ?HWND,
             ulFlags: u32,
-            lpszURL: ?PSTR,
+            lpszURL: ?[*:0]u8,
             lppMailUser: ?*?*IMailUser,
         ) callconv(.winapi) HRESULT,
         VCardCreate: *const fn(
             self: *const IWABObject,
             lpIAB: ?*IAddrBook,
             ulFlags: u32,
-            lpszVCard: ?PSTR,
+            lpszVCard: ?[*:0]u8,
             lpMailUser: ?*IMailUser,
         ) callconv(.winapi) HRESULT,
         VCardRetrieve: *const fn(
             self: *const IWABObject,
             lpIAB: ?*IAddrBook,
             ulFlags: u32,
-            lpszVCard: ?PSTR,
+            lpszVCard: ?[*:0]u8,
             lppMailUser: ?*?*IMailUser,
         ) callconv(.winapi) HRESULT,
         GetMe: *const fn(
@@ -1923,25 +1923,25 @@ pub const IWABObject = extern union {
     pub fn FreeBuffer(self: *const IWABObject, lpBuffer: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.FreeBuffer(self, lpBuffer);
     }
-    pub fn Backup(self: *const IWABObject, lpFileName: ?PSTR) callconv(.@"inline") HRESULT {
+    pub fn Backup(self: *const IWABObject, lpFileName: ?[*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.Backup(self, lpFileName);
     }
-    pub fn Import(self: *const IWABObject, lpWIP: ?PSTR) callconv(.@"inline") HRESULT {
+    pub fn Import(self: *const IWABObject, lpWIP: ?[*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.Import(self, lpWIP);
     }
     pub fn Find(self: *const IWABObject, lpIAB: ?*IAddrBook, hWnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.Find(self, lpIAB, hWnd);
     }
-    pub fn VCardDisplay(self: *const IWABObject, lpIAB: ?*IAddrBook, hWnd: ?HWND, lpszFileName: ?PSTR) callconv(.@"inline") HRESULT {
+    pub fn VCardDisplay(self: *const IWABObject, lpIAB: ?*IAddrBook, hWnd: ?HWND, lpszFileName: ?[*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.VCardDisplay(self, lpIAB, hWnd, lpszFileName);
     }
-    pub fn LDAPUrl(self: *const IWABObject, lpIAB: ?*IAddrBook, hWnd: ?HWND, ulFlags: u32, lpszURL: ?PSTR, lppMailUser: ?*?*IMailUser) callconv(.@"inline") HRESULT {
+    pub fn LDAPUrl(self: *const IWABObject, lpIAB: ?*IAddrBook, hWnd: ?HWND, ulFlags: u32, lpszURL: ?[*:0]u8, lppMailUser: ?*?*IMailUser) callconv(.@"inline") HRESULT {
         return self.vtable.LDAPUrl(self, lpIAB, hWnd, ulFlags, lpszURL, lppMailUser);
     }
-    pub fn VCardCreate(self: *const IWABObject, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?PSTR, lpMailUser: ?*IMailUser) callconv(.@"inline") HRESULT {
+    pub fn VCardCreate(self: *const IWABObject, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?[*:0]u8, lpMailUser: ?*IMailUser) callconv(.@"inline") HRESULT {
         return self.vtable.VCardCreate(self, lpIAB, ulFlags, lpszVCard, lpMailUser);
     }
-    pub fn VCardRetrieve(self: *const IWABObject, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?PSTR, lppMailUser: ?*?*IMailUser) callconv(.@"inline") HRESULT {
+    pub fn VCardRetrieve(self: *const IWABObject, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?[*:0]u8, lppMailUser: ?*?*IMailUser) callconv(.@"inline") HRESULT {
         return self.vtable.VCardRetrieve(self, lpIAB, ulFlags, lpszVCard, lppMailUser);
     }
     pub fn GetMe(self: *const IWABObject, lpIAB: ?*IAddrBook, ulFlags: u32, lpdwAction: ?*u32, lpsbEID: ?*SBinary, hwnd: ?HWND) callconv(.@"inline") HRESULT {
@@ -2059,7 +2059,7 @@ pub const MAPINAMEID = extern struct {
     ulKind: u32,
     Kind: extern union {
         lID: i32,
-        lpwstrName: ?PWSTR,
+        lpwstrName: ?[*:0]u16,
     },
 };
 
@@ -2199,7 +2199,7 @@ pub const SLongArray = extern struct {
 
 pub const SLPSTRArray = extern struct {
     cValues: u32,
-    lppszA: ?*?PSTR,
+    lppszA: ?*?[*:0]u8,
 };
 
 pub const SNotRestriction = extern struct {
@@ -2310,7 +2310,7 @@ pub const STATUS_OBJECT_NOTIFICATION = extern struct {
 
 pub const SWStringArray = extern struct {
     cValues: u32,
-    lppszW: ?*?PWSTR,
+    lppszW: ?*?[*:0]u16,
 };
 
 pub const TABLE_NOTIFICATION = extern struct {
@@ -2325,7 +2325,7 @@ pub const TABLE_NOTIFICATION = extern struct {
 pub const WAB_PARAM = extern struct {
     cbSize: u32,
     hwnd: ?HWND,
-    szFileName: ?PSTR,
+    szFileName: ?[*:0]u8,
     ulFlags: u32,
     guidPSExt: Guid,
 };
@@ -2347,7 +2347,7 @@ pub const WABIMPORTPARAM = extern struct {
     lpAdrBook: ?*IAddrBook,
     hWnd: ?HWND,
     ulFlags: u32,
-    lpszFileName: ?PSTR,
+    lpszFileName: ?[*:0]u8,
 };
 
 
@@ -2623,7 +2623,7 @@ pub extern "mapi32" fn ScInitMapiUtil(
 ) callconv(.winapi) i32;
 
 pub extern "mapi32" fn ScLocalPathFromUNC(
-    lpszUNC: ?PSTR,
+    lpszUNC: ?[*:0]u8,
     lpszLocal: [*:0]u8,
     cchLocal: u32,
 ) callconv(.winapi) i32;
@@ -2645,7 +2645,7 @@ pub extern "mapi32" fn ScRelocProps(
 ) callconv(.winapi) i32;
 
 pub extern "mapi32" fn ScUNCFromLocalPath(
-    lpszLocal: ?PSTR,
+    lpszLocal: ?[*:0]u8,
     lpszUNC: [*:0]u8,
     cchUNC: u32,
 ) callconv(.winapi) i32;
@@ -2703,7 +2703,7 @@ pub extern "mapi32" fn WrapStoreEntryID(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (14)
+// Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -2717,8 +2717,6 @@ const IStorage = @import("../system/com/structured_storage.zig").IStorage;
 const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

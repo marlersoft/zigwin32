@@ -349,7 +349,7 @@ pub extern "fltlib" fn FilterAttach(
     lpInstanceName: ?[*:0]const u16,
     dwCreatedInstanceNameLength: u32,
     /// parameter "dwCreatedInstanceNameLength" is the size in bytes
-    lpCreatedInstanceName: ?PWSTR,
+    lpCreatedInstanceName: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "fltlib" fn FilterAttachAtAltitude(
@@ -359,7 +359,7 @@ pub extern "fltlib" fn FilterAttachAtAltitude(
     lpInstanceName: ?[*:0]const u16,
     dwCreatedInstanceNameLength: u32,
     /// parameter "dwCreatedInstanceNameLength" is the size in bytes
-    lpCreatedInstanceName: ?PWSTR,
+    lpCreatedInstanceName: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "fltlib" fn FilterClose(
@@ -552,13 +552,12 @@ pub extern "fltlib" fn FilterVolumeInstanceFindNext(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {

@@ -525,7 +525,7 @@ pub extern "kernel32" fn PssWalkSnapshot(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../../foundation.zig").BOOL;
 const CONTEXT = @import("../../system/diagnostics/debug.zig").CONTEXT;
@@ -533,7 +533,6 @@ const FILETIME = @import("../../foundation.zig").FILETIME;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const LARGE_INTEGER = @import("../../foundation.zig").LARGE_INTEGER;
 const MEMORY_BASIC_INFORMATION = @import("../../system/memory.zig").MEMORY_BASIC_INFORMATION;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

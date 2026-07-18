@@ -32,7 +32,7 @@ pub const PFNCHECKCONNECTIONWIZARD = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PFNSETSHELLNEXT = *const fn(
-    param0: ?PSTR,
+    param0: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 
@@ -44,9 +44,8 @@ pub const PFNSETSHELLNEXT = *const fn(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (1)
+// Section: Imports (0)
 //--------------------------------------------------------------------------------
-const PSTR = @import("../foundation.zig").PSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

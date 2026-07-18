@@ -631,13 +631,12 @@ pub extern "chakra" fn JsVariantToValue(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IActiveScriptProfilerCallback = @import("../system/diagnostics/debug.zig").IActiveScriptProfilerCallback;
 const IActiveScriptProfilerHeapEnum = @import("../system/diagnostics/debug.zig").IActiveScriptProfilerHeapEnum;
 const PROFILER_EVENT_MASK = @import("../system/diagnostics/debug.zig").PROFILER_EVENT_MASK;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/com.zig").VARIANT;
 // 2 arch-specific imports
 const IDebugApplication32 = switch(@import("../zig.zig").arch) {

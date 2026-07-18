@@ -613,8 +613,8 @@ pub const APPLETIDLIST = extern struct {
 
 pub const APPLYCANDEXPARAM = extern struct {
     dwSize: u32,
-    lpwstrDisplay: ?PWSTR,
-    lpwstrReading: ?PWSTR,
+    lpwstrDisplay: ?[*:0]u16,
+    lpwstrReading: ?[*:0]u16,
     dwReserved: u32,
 };
 
@@ -732,13 +732,13 @@ pub const IActiveIME = extern union {
             self: *const IActiveIME,
             dwSystemInfoFlags: u32,
             pIMEInfo: ?*IMEINFO,
-            szWndClass: ?PWSTR,
+            szWndClass: ?[*:0]u16,
             pdwPrivate: ?*u32,
         ) callconv(.winapi) HRESULT,
         ConversionList: *const fn(
             self: *const IActiveIME,
             hIMC: ?HIMC,
-            szSource: ?PWSTR,
+            szSource: ?[*:0]u16,
             uFlag: u32,
             uBufLen: u32,
             pDest: ?*CANDIDATELIST,
@@ -807,15 +807,15 @@ pub const IActiveIME = extern union {
         ) callconv(.winapi) HRESULT,
         RegisterWord: *const fn(
             self: *const IActiveIME,
-            szReading: ?PWSTR,
+            szReading: ?[*:0]u16,
             dwStyle: u32,
-            szString: ?PWSTR,
+            szString: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         UnregisterWord: *const fn(
             self: *const IActiveIME,
-            szReading: ?PWSTR,
+            szReading: ?[*:0]u16,
             dwStyle: u32,
-            szString: ?PWSTR,
+            szString: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetRegisterWordStyle: *const fn(
             self: *const IActiveIME,
@@ -825,9 +825,9 @@ pub const IActiveIME = extern union {
         ) callconv(.winapi) HRESULT,
         EnumRegisterWord: *const fn(
             self: *const IActiveIME,
-            szReading: ?PWSTR,
+            szReading: ?[*:0]u16,
             dwStyle: u32,
-            szRegister: ?PWSTR,
+            szRegister: ?[*:0]u16,
             pData: ?*anyopaque,
             ppEnum: ?*?*IEnumRegisterWordW,
         ) callconv(.winapi) HRESULT,
@@ -842,10 +842,10 @@ pub const IActiveIME = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Inquire(self: *const IActiveIME, dwSystemInfoFlags: u32, pIMEInfo: ?*IMEINFO, szWndClass: ?PWSTR, pdwPrivate: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn Inquire(self: *const IActiveIME, dwSystemInfoFlags: u32, pIMEInfo: ?*IMEINFO, szWndClass: ?[*:0]u16, pdwPrivate: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Inquire(self, dwSystemInfoFlags, pIMEInfo, szWndClass, pdwPrivate);
     }
-    pub fn ConversionList(self: *const IActiveIME, hIMC: ?HIMC, szSource: ?PWSTR, uFlag: u32, uBufLen: u32, pDest: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn ConversionList(self: *const IActiveIME, hIMC: ?HIMC, szSource: ?[*:0]u16, uFlag: u32, uBufLen: u32, pDest: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ConversionList(self, hIMC, szSource, uFlag, uBufLen, pDest, puCopied);
     }
     pub fn Configure(self: *const IActiveIME, hKL: ?HKL, hWnd: ?HWND, dwMode: u32, pRegisterWord: ?*REGISTERWORDW) callconv(.@"inline") HRESULT {
@@ -875,16 +875,16 @@ pub const IActiveIME = extern union {
     pub fn ToAsciiEx(self: *const IActiveIME, uVirKey: u32, uScanCode: u32, pbKeyState: ?*u8, fuState: u32, hIMC: ?HIMC, pdwTransBuf: ?*u32, puSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ToAsciiEx(self, uVirKey, uScanCode, pbKeyState, fuState, hIMC, pdwTransBuf, puSize);
     }
-    pub fn RegisterWord(self: *const IActiveIME, szReading: ?PWSTR, dwStyle: u32, szString: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn RegisterWord(self: *const IActiveIME, szReading: ?[*:0]u16, dwStyle: u32, szString: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterWord(self, szReading, dwStyle, szString);
     }
-    pub fn UnregisterWord(self: *const IActiveIME, szReading: ?PWSTR, dwStyle: u32, szString: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn UnregisterWord(self: *const IActiveIME, szReading: ?[*:0]u16, dwStyle: u32, szString: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterWord(self, szReading, dwStyle, szString);
     }
     pub fn GetRegisterWordStyle(self: *const IActiveIME, nItem: u32, pStyleBuf: ?*STYLEBUFW, puBufSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRegisterWordStyle(self, nItem, pStyleBuf, puBufSize);
     }
-    pub fn EnumRegisterWord(self: *const IActiveIME, szReading: ?PWSTR, dwStyle: u32, szRegister: ?PWSTR, pData: ?*anyopaque, ppEnum: ?*?*IEnumRegisterWordW) callconv(.@"inline") HRESULT {
+    pub fn EnumRegisterWord(self: *const IActiveIME, szReading: ?[*:0]u16, dwStyle: u32, szRegister: ?[*:0]u16, pData: ?*anyopaque, ppEnum: ?*?*IEnumRegisterWordW) callconv(.@"inline") HRESULT {
         return self.vtable.EnumRegisterWord(self, szReading, dwStyle, szRegister, pData, ppEnum);
     }
     pub fn GetCodePageA(self: *const IActiveIME, uCodePage: ?*u32) callconv(.@"inline") HRESULT {
@@ -955,18 +955,18 @@ pub const IActiveIMMApp = extern union {
         EnumRegisterWordA: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
-            szReading: ?PSTR,
+            szReading: ?[*:0]u8,
             dwStyle: u32,
-            szRegister: ?PSTR,
+            szRegister: ?[*:0]u8,
             pData: ?*anyopaque,
             pEnum: ?*?*IEnumRegisterWordA,
         ) callconv(.winapi) HRESULT,
         EnumRegisterWordW: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
-            szReading: ?PWSTR,
+            szReading: ?[*:0]u16,
             dwStyle: u32,
-            szRegister: ?PWSTR,
+            szRegister: ?[*:0]u16,
             pData: ?*anyopaque,
             pEnum: ?*?*IEnumRegisterWordW,
         ) callconv(.winapi) HRESULT,
@@ -1060,7 +1060,7 @@ pub const IActiveIMMApp = extern union {
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             hIMC: ?HIMC,
-            pSrc: ?PSTR,
+            pSrc: ?[*:0]u8,
             uBufLen: u32,
             uFlag: u32,
             pDst: ?*CANDIDATELIST,
@@ -1070,7 +1070,7 @@ pub const IActiveIMMApp = extern union {
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             hIMC: ?HIMC,
-            pSrc: ?PWSTR,
+            pSrc: ?[*:0]u16,
             uBufLen: u32,
             uFlag: u32,
             pDst: ?*CANDIDATELIST,
@@ -1091,14 +1091,14 @@ pub const IActiveIMMApp = extern union {
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             uBufLen: u32,
-            szDescription: ?PSTR,
+            szDescription: ?[*:0]u8,
             puCopied: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetDescriptionW: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             uBufLen: u32,
-            szDescription: ?PWSTR,
+            szDescription: ?[*:0]u16,
             puCopied: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetGuideLineA: *const fn(
@@ -1106,7 +1106,7 @@ pub const IActiveIMMApp = extern union {
             hIMC: ?HIMC,
             dwIndex: u32,
             dwBufLen: u32,
-            pBuf: ?PSTR,
+            pBuf: ?[*:0]u8,
             pdwResult: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetGuideLineW: *const fn(
@@ -1114,21 +1114,21 @@ pub const IActiveIMMApp = extern union {
             hIMC: ?HIMC,
             dwIndex: u32,
             dwBufLen: u32,
-            pBuf: ?PWSTR,
+            pBuf: ?[*:0]u16,
             pdwResult: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetIMEFileNameA: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             uBufLen: u32,
-            szFileName: ?PSTR,
+            szFileName: ?[*:0]u8,
             puCopied: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetIMEFileNameW: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
             uBufLen: u32,
-            szFileName: ?PWSTR,
+            szFileName: ?[*:0]u16,
             puCopied: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetOpenStatus: *const fn(
@@ -1167,14 +1167,14 @@ pub const IActiveIMMApp = extern union {
         ) callconv(.winapi) HRESULT,
         InstallIMEA: *const fn(
             self: *const IActiveIMMApp,
-            szIMEFileName: ?PSTR,
-            szLayoutText: ?PSTR,
+            szIMEFileName: ?[*:0]u8,
+            szLayoutText: ?[*:0]u8,
             phKL: ?*?HKL,
         ) callconv(.winapi) HRESULT,
         InstallIMEW: *const fn(
             self: *const IActiveIMMApp,
-            szIMEFileName: ?PWSTR,
-            szLayoutText: ?PWSTR,
+            szIMEFileName: ?[*:0]u16,
+            szLayoutText: ?[*:0]u16,
             phKL: ?*?HKL,
         ) callconv(.winapi) HRESULT,
         IsIME: *const fn(
@@ -1205,16 +1205,16 @@ pub const IActiveIMMApp = extern union {
         RegisterWordA: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
-            szReading: ?PSTR,
+            szReading: ?[*:0]u8,
             dwStyle: u32,
-            szRegister: ?PSTR,
+            szRegister: ?[*:0]u8,
         ) callconv(.winapi) HRESULT,
         RegisterWordW: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
-            szReading: ?PWSTR,
+            szReading: ?[*:0]u16,
             dwStyle: u32,
-            szRegister: ?PWSTR,
+            szRegister: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         ReleaseContext: *const fn(
             self: *const IActiveIMMApp,
@@ -1283,16 +1283,16 @@ pub const IActiveIMMApp = extern union {
         UnregisterWordA: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
-            szReading: ?PSTR,
+            szReading: ?[*:0]u8,
             dwStyle: u32,
-            szUnregister: ?PSTR,
+            szUnregister: ?[*:0]u8,
         ) callconv(.winapi) HRESULT,
         UnregisterWordW: *const fn(
             self: *const IActiveIMMApp,
             hKL: ?HKL,
-            szReading: ?PWSTR,
+            szReading: ?[*:0]u16,
             dwStyle: u32,
-            szUnregister: ?PWSTR,
+            szUnregister: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         Activate: *const fn(
             self: *const IActiveIMMApp,
@@ -1377,10 +1377,10 @@ pub const IActiveIMMApp = extern union {
     pub fn DestroyContext(self: *const IActiveIMMApp, hIME: ?HIMC) callconv(.@"inline") HRESULT {
         return self.vtable.DestroyContext(self, hIME);
     }
-    pub fn EnumRegisterWordA(self: *const IActiveIMMApp, hKL: ?HKL, szReading: ?PSTR, dwStyle: u32, szRegister: ?PSTR, pData: ?*anyopaque, pEnum: ?*?*IEnumRegisterWordA) callconv(.@"inline") HRESULT {
+    pub fn EnumRegisterWordA(self: *const IActiveIMMApp, hKL: ?HKL, szReading: ?[*:0]u8, dwStyle: u32, szRegister: ?[*:0]u8, pData: ?*anyopaque, pEnum: ?*?*IEnumRegisterWordA) callconv(.@"inline") HRESULT {
         return self.vtable.EnumRegisterWordA(self, hKL, szReading, dwStyle, szRegister, pData, pEnum);
     }
-    pub fn EnumRegisterWordW(self: *const IActiveIMMApp, hKL: ?HKL, szReading: ?PWSTR, dwStyle: u32, szRegister: ?PWSTR, pData: ?*anyopaque, pEnum: ?*?*IEnumRegisterWordW) callconv(.@"inline") HRESULT {
+    pub fn EnumRegisterWordW(self: *const IActiveIMMApp, hKL: ?HKL, szReading: ?[*:0]u16, dwStyle: u32, szRegister: ?[*:0]u16, pData: ?*anyopaque, pEnum: ?*?*IEnumRegisterWordW) callconv(.@"inline") HRESULT {
         return self.vtable.EnumRegisterWordW(self, hKL, szReading, dwStyle, szRegister, pData, pEnum);
     }
     pub fn EscapeA(self: *const IActiveIMMApp, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
@@ -1422,10 +1422,10 @@ pub const IActiveIMMApp = extern union {
     pub fn GetContext(self: *const IActiveIMMApp, hWnd: ?HWND, phIMC: ?*?HIMC) callconv(.@"inline") HRESULT {
         return self.vtable.GetContext(self, hWnd, phIMC);
     }
-    pub fn GetConversionListA(self: *const IActiveIMMApp, hKL: ?HKL, hIMC: ?HIMC, pSrc: ?PSTR, uBufLen: u32, uFlag: u32, pDst: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetConversionListA(self: *const IActiveIMMApp, hKL: ?HKL, hIMC: ?HIMC, pSrc: ?[*:0]u8, uBufLen: u32, uFlag: u32, pDst: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetConversionListA(self, hKL, hIMC, pSrc, uBufLen, uFlag, pDst, puCopied);
     }
-    pub fn GetConversionListW(self: *const IActiveIMMApp, hKL: ?HKL, hIMC: ?HIMC, pSrc: ?PWSTR, uBufLen: u32, uFlag: u32, pDst: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetConversionListW(self: *const IActiveIMMApp, hKL: ?HKL, hIMC: ?HIMC, pSrc: ?[*:0]u16, uBufLen: u32, uFlag: u32, pDst: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetConversionListW(self, hKL, hIMC, pSrc, uBufLen, uFlag, pDst, puCopied);
     }
     pub fn GetConversionStatus(self: *const IActiveIMMApp, hIMC: ?HIMC, pfdwConversion: ?*u32, pfdwSentence: ?*u32) callconv(.@"inline") HRESULT {
@@ -1434,22 +1434,22 @@ pub const IActiveIMMApp = extern union {
     pub fn GetDefaultIMEWnd(self: *const IActiveIMMApp, hWnd: ?HWND, phDefWnd: ?*?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultIMEWnd(self, hWnd, phDefWnd);
     }
-    pub fn GetDescriptionA(self: *const IActiveIMMApp, hKL: ?HKL, uBufLen: u32, szDescription: ?PSTR, puCopied: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetDescriptionA(self: *const IActiveIMMApp, hKL: ?HKL, uBufLen: u32, szDescription: ?[*:0]u8, puCopied: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDescriptionA(self, hKL, uBufLen, szDescription, puCopied);
     }
-    pub fn GetDescriptionW(self: *const IActiveIMMApp, hKL: ?HKL, uBufLen: u32, szDescription: ?PWSTR, puCopied: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetDescriptionW(self: *const IActiveIMMApp, hKL: ?HKL, uBufLen: u32, szDescription: ?[*:0]u16, puCopied: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDescriptionW(self, hKL, uBufLen, szDescription, puCopied);
     }
-    pub fn GetGuideLineA(self: *const IActiveIMMApp, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, pBuf: ?PSTR, pdwResult: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetGuideLineA(self: *const IActiveIMMApp, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, pBuf: ?[*:0]u8, pdwResult: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetGuideLineA(self, hIMC, dwIndex, dwBufLen, pBuf, pdwResult);
     }
-    pub fn GetGuideLineW(self: *const IActiveIMMApp, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, pBuf: ?PWSTR, pdwResult: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetGuideLineW(self: *const IActiveIMMApp, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, pBuf: ?[*:0]u16, pdwResult: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetGuideLineW(self, hIMC, dwIndex, dwBufLen, pBuf, pdwResult);
     }
-    pub fn GetIMEFileNameA(self: *const IActiveIMMApp, hKL: ?HKL, uBufLen: u32, szFileName: ?PSTR, puCopied: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetIMEFileNameA(self: *const IActiveIMMApp, hKL: ?HKL, uBufLen: u32, szFileName: ?[*:0]u8, puCopied: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIMEFileNameA(self, hKL, uBufLen, szFileName, puCopied);
     }
-    pub fn GetIMEFileNameW(self: *const IActiveIMMApp, hKL: ?HKL, uBufLen: u32, szFileName: ?PWSTR, puCopied: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetIMEFileNameW(self: *const IActiveIMMApp, hKL: ?HKL, uBufLen: u32, szFileName: ?[*:0]u16, puCopied: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIMEFileNameW(self, hKL, uBufLen, szFileName, puCopied);
     }
     pub fn GetOpenStatus(self: *const IActiveIMMApp, hIMC: ?HIMC) callconv(.@"inline") HRESULT {
@@ -1470,10 +1470,10 @@ pub const IActiveIMMApp = extern union {
     pub fn GetVirtualKey(self: *const IActiveIMMApp, hWnd: ?HWND, puVirtualKey: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetVirtualKey(self, hWnd, puVirtualKey);
     }
-    pub fn InstallIMEA(self: *const IActiveIMMApp, szIMEFileName: ?PSTR, szLayoutText: ?PSTR, phKL: ?*?HKL) callconv(.@"inline") HRESULT {
+    pub fn InstallIMEA(self: *const IActiveIMMApp, szIMEFileName: ?[*:0]u8, szLayoutText: ?[*:0]u8, phKL: ?*?HKL) callconv(.@"inline") HRESULT {
         return self.vtable.InstallIMEA(self, szIMEFileName, szLayoutText, phKL);
     }
-    pub fn InstallIMEW(self: *const IActiveIMMApp, szIMEFileName: ?PWSTR, szLayoutText: ?PWSTR, phKL: ?*?HKL) callconv(.@"inline") HRESULT {
+    pub fn InstallIMEW(self: *const IActiveIMMApp, szIMEFileName: ?[*:0]u16, szLayoutText: ?[*:0]u16, phKL: ?*?HKL) callconv(.@"inline") HRESULT {
         return self.vtable.InstallIMEW(self, szIMEFileName, szLayoutText, phKL);
     }
     pub fn IsIME(self: *const IActiveIMMApp, hKL: ?HKL) callconv(.@"inline") HRESULT {
@@ -1488,10 +1488,10 @@ pub const IActiveIMMApp = extern union {
     pub fn NotifyIME(self: *const IActiveIMMApp, hIMC: ?HIMC, dwAction: u32, dwIndex: u32, dwValue: u32) callconv(.@"inline") HRESULT {
         return self.vtable.NotifyIME(self, hIMC, dwAction, dwIndex, dwValue);
     }
-    pub fn RegisterWordA(self: *const IActiveIMMApp, hKL: ?HKL, szReading: ?PSTR, dwStyle: u32, szRegister: ?PSTR) callconv(.@"inline") HRESULT {
+    pub fn RegisterWordA(self: *const IActiveIMMApp, hKL: ?HKL, szReading: ?[*:0]u8, dwStyle: u32, szRegister: ?[*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterWordA(self, hKL, szReading, dwStyle, szRegister);
     }
-    pub fn RegisterWordW(self: *const IActiveIMMApp, hKL: ?HKL, szReading: ?PWSTR, dwStyle: u32, szRegister: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn RegisterWordW(self: *const IActiveIMMApp, hKL: ?HKL, szReading: ?[*:0]u16, dwStyle: u32, szRegister: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterWordW(self, hKL, szReading, dwStyle, szRegister);
     }
     pub fn ReleaseContext(self: *const IActiveIMMApp, hWnd: ?HWND, hIMC: ?HIMC) callconv(.@"inline") HRESULT {
@@ -1527,10 +1527,10 @@ pub const IActiveIMMApp = extern union {
     pub fn SimulateHotKey(self: *const IActiveIMMApp, hWnd: ?HWND, dwHotKeyID: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SimulateHotKey(self, hWnd, dwHotKeyID);
     }
-    pub fn UnregisterWordA(self: *const IActiveIMMApp, hKL: ?HKL, szReading: ?PSTR, dwStyle: u32, szUnregister: ?PSTR) callconv(.@"inline") HRESULT {
+    pub fn UnregisterWordA(self: *const IActiveIMMApp, hKL: ?HKL, szReading: ?[*:0]u8, dwStyle: u32, szUnregister: ?[*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterWordA(self, hKL, szReading, dwStyle, szUnregister);
     }
-    pub fn UnregisterWordW(self: *const IActiveIMMApp, hKL: ?HKL, szReading: ?PWSTR, dwStyle: u32, szUnregister: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn UnregisterWordW(self: *const IActiveIMMApp, hKL: ?HKL, szReading: ?[*:0]u16, dwStyle: u32, szUnregister: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterWordW(self, hKL, szReading, dwStyle, szUnregister);
     }
     pub fn Activate(self: *const IActiveIMMApp, fRestoreLayout: BOOL) callconv(.@"inline") HRESULT {
@@ -1604,18 +1604,18 @@ pub const IActiveIMMIME = extern union {
         EnumRegisterWordA: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
-            szReading: ?PSTR,
+            szReading: ?[*:0]u8,
             dwStyle: u32,
-            szRegister: ?PSTR,
+            szRegister: ?[*:0]u8,
             pData: ?*anyopaque,
             pEnum: ?*?*IEnumRegisterWordA,
         ) callconv(.winapi) HRESULT,
         EnumRegisterWordW: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
-            szReading: ?PWSTR,
+            szReading: ?[*:0]u16,
             dwStyle: u32,
-            szRegister: ?PWSTR,
+            szRegister: ?[*:0]u16,
             pData: ?*anyopaque,
             pEnum: ?*?*IEnumRegisterWordW,
         ) callconv(.winapi) HRESULT,
@@ -1709,7 +1709,7 @@ pub const IActiveIMMIME = extern union {
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             hIMC: ?HIMC,
-            pSrc: ?PSTR,
+            pSrc: ?[*:0]u8,
             uBufLen: u32,
             uFlag: u32,
             pDst: ?*CANDIDATELIST,
@@ -1719,7 +1719,7 @@ pub const IActiveIMMIME = extern union {
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             hIMC: ?HIMC,
-            pSrc: ?PWSTR,
+            pSrc: ?[*:0]u16,
             uBufLen: u32,
             uFlag: u32,
             pDst: ?*CANDIDATELIST,
@@ -1740,14 +1740,14 @@ pub const IActiveIMMIME = extern union {
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             uBufLen: u32,
-            szDescription: ?PSTR,
+            szDescription: ?[*:0]u8,
             puCopied: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetDescriptionW: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             uBufLen: u32,
-            szDescription: ?PWSTR,
+            szDescription: ?[*:0]u16,
             puCopied: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetGuideLineA: *const fn(
@@ -1755,7 +1755,7 @@ pub const IActiveIMMIME = extern union {
             hIMC: ?HIMC,
             dwIndex: u32,
             dwBufLen: u32,
-            pBuf: ?PSTR,
+            pBuf: ?[*:0]u8,
             pdwResult: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetGuideLineW: *const fn(
@@ -1763,21 +1763,21 @@ pub const IActiveIMMIME = extern union {
             hIMC: ?HIMC,
             dwIndex: u32,
             dwBufLen: u32,
-            pBuf: ?PWSTR,
+            pBuf: ?[*:0]u16,
             pdwResult: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetIMEFileNameA: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             uBufLen: u32,
-            szFileName: ?PSTR,
+            szFileName: ?[*:0]u8,
             puCopied: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetIMEFileNameW: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
             uBufLen: u32,
-            szFileName: ?PWSTR,
+            szFileName: ?[*:0]u16,
             puCopied: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetOpenStatus: *const fn(
@@ -1816,14 +1816,14 @@ pub const IActiveIMMIME = extern union {
         ) callconv(.winapi) HRESULT,
         InstallIMEA: *const fn(
             self: *const IActiveIMMIME,
-            szIMEFileName: ?PSTR,
-            szLayoutText: ?PSTR,
+            szIMEFileName: ?[*:0]u8,
+            szLayoutText: ?[*:0]u8,
             phKL: ?*?HKL,
         ) callconv(.winapi) HRESULT,
         InstallIMEW: *const fn(
             self: *const IActiveIMMIME,
-            szIMEFileName: ?PWSTR,
-            szLayoutText: ?PWSTR,
+            szIMEFileName: ?[*:0]u16,
+            szLayoutText: ?[*:0]u16,
             phKL: ?*?HKL,
         ) callconv(.winapi) HRESULT,
         IsIME: *const fn(
@@ -1854,16 +1854,16 @@ pub const IActiveIMMIME = extern union {
         RegisterWordA: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
-            szReading: ?PSTR,
+            szReading: ?[*:0]u8,
             dwStyle: u32,
-            szRegister: ?PSTR,
+            szRegister: ?[*:0]u8,
         ) callconv(.winapi) HRESULT,
         RegisterWordW: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
-            szReading: ?PWSTR,
+            szReading: ?[*:0]u16,
             dwStyle: u32,
-            szRegister: ?PWSTR,
+            szRegister: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         ReleaseContext: *const fn(
             self: *const IActiveIMMIME,
@@ -1932,16 +1932,16 @@ pub const IActiveIMMIME = extern union {
         UnregisterWordA: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
-            szReading: ?PSTR,
+            szReading: ?[*:0]u8,
             dwStyle: u32,
-            szUnregister: ?PSTR,
+            szUnregister: ?[*:0]u8,
         ) callconv(.winapi) HRESULT,
         UnregisterWordW: *const fn(
             self: *const IActiveIMMIME,
             hKL: ?HKL,
-            szReading: ?PWSTR,
+            szReading: ?[*:0]u16,
             dwStyle: u32,
-            szUnregister: ?PWSTR,
+            szUnregister: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GenerateMessage: *const fn(
             self: *const IActiveIMMIME,
@@ -2136,10 +2136,10 @@ pub const IActiveIMMIME = extern union {
     pub fn DestroyContext(self: *const IActiveIMMIME, hIME: ?HIMC) callconv(.@"inline") HRESULT {
         return self.vtable.DestroyContext(self, hIME);
     }
-    pub fn EnumRegisterWordA(self: *const IActiveIMMIME, hKL: ?HKL, szReading: ?PSTR, dwStyle: u32, szRegister: ?PSTR, pData: ?*anyopaque, pEnum: ?*?*IEnumRegisterWordA) callconv(.@"inline") HRESULT {
+    pub fn EnumRegisterWordA(self: *const IActiveIMMIME, hKL: ?HKL, szReading: ?[*:0]u8, dwStyle: u32, szRegister: ?[*:0]u8, pData: ?*anyopaque, pEnum: ?*?*IEnumRegisterWordA) callconv(.@"inline") HRESULT {
         return self.vtable.EnumRegisterWordA(self, hKL, szReading, dwStyle, szRegister, pData, pEnum);
     }
-    pub fn EnumRegisterWordW(self: *const IActiveIMMIME, hKL: ?HKL, szReading: ?PWSTR, dwStyle: u32, szRegister: ?PWSTR, pData: ?*anyopaque, pEnum: ?*?*IEnumRegisterWordW) callconv(.@"inline") HRESULT {
+    pub fn EnumRegisterWordW(self: *const IActiveIMMIME, hKL: ?HKL, szReading: ?[*:0]u16, dwStyle: u32, szRegister: ?[*:0]u16, pData: ?*anyopaque, pEnum: ?*?*IEnumRegisterWordW) callconv(.@"inline") HRESULT {
         return self.vtable.EnumRegisterWordW(self, hKL, szReading, dwStyle, szRegister, pData, pEnum);
     }
     pub fn EscapeA(self: *const IActiveIMMIME, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
@@ -2181,10 +2181,10 @@ pub const IActiveIMMIME = extern union {
     pub fn GetContext(self: *const IActiveIMMIME, hWnd: ?HWND, phIMC: ?*?HIMC) callconv(.@"inline") HRESULT {
         return self.vtable.GetContext(self, hWnd, phIMC);
     }
-    pub fn GetConversionListA(self: *const IActiveIMMIME, hKL: ?HKL, hIMC: ?HIMC, pSrc: ?PSTR, uBufLen: u32, uFlag: u32, pDst: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetConversionListA(self: *const IActiveIMMIME, hKL: ?HKL, hIMC: ?HIMC, pSrc: ?[*:0]u8, uBufLen: u32, uFlag: u32, pDst: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetConversionListA(self, hKL, hIMC, pSrc, uBufLen, uFlag, pDst, puCopied);
     }
-    pub fn GetConversionListW(self: *const IActiveIMMIME, hKL: ?HKL, hIMC: ?HIMC, pSrc: ?PWSTR, uBufLen: u32, uFlag: u32, pDst: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetConversionListW(self: *const IActiveIMMIME, hKL: ?HKL, hIMC: ?HIMC, pSrc: ?[*:0]u16, uBufLen: u32, uFlag: u32, pDst: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetConversionListW(self, hKL, hIMC, pSrc, uBufLen, uFlag, pDst, puCopied);
     }
     pub fn GetConversionStatus(self: *const IActiveIMMIME, hIMC: ?HIMC, pfdwConversion: ?*u32, pfdwSentence: ?*u32) callconv(.@"inline") HRESULT {
@@ -2193,22 +2193,22 @@ pub const IActiveIMMIME = extern union {
     pub fn GetDefaultIMEWnd(self: *const IActiveIMMIME, hWnd: ?HWND, phDefWnd: ?*?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultIMEWnd(self, hWnd, phDefWnd);
     }
-    pub fn GetDescriptionA(self: *const IActiveIMMIME, hKL: ?HKL, uBufLen: u32, szDescription: ?PSTR, puCopied: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetDescriptionA(self: *const IActiveIMMIME, hKL: ?HKL, uBufLen: u32, szDescription: ?[*:0]u8, puCopied: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDescriptionA(self, hKL, uBufLen, szDescription, puCopied);
     }
-    pub fn GetDescriptionW(self: *const IActiveIMMIME, hKL: ?HKL, uBufLen: u32, szDescription: ?PWSTR, puCopied: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetDescriptionW(self: *const IActiveIMMIME, hKL: ?HKL, uBufLen: u32, szDescription: ?[*:0]u16, puCopied: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDescriptionW(self, hKL, uBufLen, szDescription, puCopied);
     }
-    pub fn GetGuideLineA(self: *const IActiveIMMIME, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, pBuf: ?PSTR, pdwResult: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetGuideLineA(self: *const IActiveIMMIME, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, pBuf: ?[*:0]u8, pdwResult: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetGuideLineA(self, hIMC, dwIndex, dwBufLen, pBuf, pdwResult);
     }
-    pub fn GetGuideLineW(self: *const IActiveIMMIME, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, pBuf: ?PWSTR, pdwResult: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetGuideLineW(self: *const IActiveIMMIME, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, pBuf: ?[*:0]u16, pdwResult: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetGuideLineW(self, hIMC, dwIndex, dwBufLen, pBuf, pdwResult);
     }
-    pub fn GetIMEFileNameA(self: *const IActiveIMMIME, hKL: ?HKL, uBufLen: u32, szFileName: ?PSTR, puCopied: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetIMEFileNameA(self: *const IActiveIMMIME, hKL: ?HKL, uBufLen: u32, szFileName: ?[*:0]u8, puCopied: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIMEFileNameA(self, hKL, uBufLen, szFileName, puCopied);
     }
-    pub fn GetIMEFileNameW(self: *const IActiveIMMIME, hKL: ?HKL, uBufLen: u32, szFileName: ?PWSTR, puCopied: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetIMEFileNameW(self: *const IActiveIMMIME, hKL: ?HKL, uBufLen: u32, szFileName: ?[*:0]u16, puCopied: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIMEFileNameW(self, hKL, uBufLen, szFileName, puCopied);
     }
     pub fn GetOpenStatus(self: *const IActiveIMMIME, hIMC: ?HIMC) callconv(.@"inline") HRESULT {
@@ -2229,10 +2229,10 @@ pub const IActiveIMMIME = extern union {
     pub fn GetVirtualKey(self: *const IActiveIMMIME, hWnd: ?HWND, puVirtualKey: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetVirtualKey(self, hWnd, puVirtualKey);
     }
-    pub fn InstallIMEA(self: *const IActiveIMMIME, szIMEFileName: ?PSTR, szLayoutText: ?PSTR, phKL: ?*?HKL) callconv(.@"inline") HRESULT {
+    pub fn InstallIMEA(self: *const IActiveIMMIME, szIMEFileName: ?[*:0]u8, szLayoutText: ?[*:0]u8, phKL: ?*?HKL) callconv(.@"inline") HRESULT {
         return self.vtable.InstallIMEA(self, szIMEFileName, szLayoutText, phKL);
     }
-    pub fn InstallIMEW(self: *const IActiveIMMIME, szIMEFileName: ?PWSTR, szLayoutText: ?PWSTR, phKL: ?*?HKL) callconv(.@"inline") HRESULT {
+    pub fn InstallIMEW(self: *const IActiveIMMIME, szIMEFileName: ?[*:0]u16, szLayoutText: ?[*:0]u16, phKL: ?*?HKL) callconv(.@"inline") HRESULT {
         return self.vtable.InstallIMEW(self, szIMEFileName, szLayoutText, phKL);
     }
     pub fn IsIME(self: *const IActiveIMMIME, hKL: ?HKL) callconv(.@"inline") HRESULT {
@@ -2247,10 +2247,10 @@ pub const IActiveIMMIME = extern union {
     pub fn NotifyIME(self: *const IActiveIMMIME, hIMC: ?HIMC, dwAction: u32, dwIndex: u32, dwValue: u32) callconv(.@"inline") HRESULT {
         return self.vtable.NotifyIME(self, hIMC, dwAction, dwIndex, dwValue);
     }
-    pub fn RegisterWordA(self: *const IActiveIMMIME, hKL: ?HKL, szReading: ?PSTR, dwStyle: u32, szRegister: ?PSTR) callconv(.@"inline") HRESULT {
+    pub fn RegisterWordA(self: *const IActiveIMMIME, hKL: ?HKL, szReading: ?[*:0]u8, dwStyle: u32, szRegister: ?[*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterWordA(self, hKL, szReading, dwStyle, szRegister);
     }
-    pub fn RegisterWordW(self: *const IActiveIMMIME, hKL: ?HKL, szReading: ?PWSTR, dwStyle: u32, szRegister: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn RegisterWordW(self: *const IActiveIMMIME, hKL: ?HKL, szReading: ?[*:0]u16, dwStyle: u32, szRegister: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterWordW(self, hKL, szReading, dwStyle, szRegister);
     }
     pub fn ReleaseContext(self: *const IActiveIMMIME, hWnd: ?HWND, hIMC: ?HIMC) callconv(.@"inline") HRESULT {
@@ -2286,10 +2286,10 @@ pub const IActiveIMMIME = extern union {
     pub fn SimulateHotKey(self: *const IActiveIMMIME, hWnd: ?HWND, dwHotKeyID: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SimulateHotKey(self, hWnd, dwHotKeyID);
     }
-    pub fn UnregisterWordA(self: *const IActiveIMMIME, hKL: ?HKL, szReading: ?PSTR, dwStyle: u32, szUnregister: ?PSTR) callconv(.@"inline") HRESULT {
+    pub fn UnregisterWordA(self: *const IActiveIMMIME, hKL: ?HKL, szReading: ?[*:0]u8, dwStyle: u32, szUnregister: ?[*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterWordA(self, hKL, szReading, dwStyle, szUnregister);
     }
-    pub fn UnregisterWordW(self: *const IActiveIMMIME, hKL: ?HKL, szReading: ?PWSTR, dwStyle: u32, szUnregister: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn UnregisterWordW(self: *const IActiveIMMIME, hKL: ?HKL, szReading: ?[*:0]u16, dwStyle: u32, szUnregister: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterWordW(self, hKL, szReading, dwStyle, szUnregister);
     }
     pub fn GenerateMessage(self: *const IActiveIMMIME, hIMC: ?HIMC) callconv(.@"inline") HRESULT {
@@ -3275,7 +3275,7 @@ pub const IMECOMPOSITIONSTRINGINFO = extern struct {
 pub const IMEDLG = extern struct {
     cbIMEDLG: i32 align(1),
     hwnd: ?HWND align(1),
-    lpwstrWord: ?PWSTR align(1),
+    lpwstrWord: ?[*:0]u16 align(1),
     nTabId: i32 align(1),
 };
 
@@ -3520,7 +3520,7 @@ pub const IMESHF = extern struct {
 
 pub const IMESTRINGCANDIDATE = extern struct {
     uCount: u32,
-    lpwstr: [1]?PWSTR,
+    lpwstr: [1]?[*:0]u16,
 };
 
 pub const IMESTRINGCANDIDATEINFO = extern struct {
@@ -3529,12 +3529,12 @@ pub const IMESTRINGCANDIDATEINFO = extern struct {
     fInfoMask: u32,
     iSelIndex: i32,
     uCount: u32,
-    lpwstr: [1]?PWSTR,
+    lpwstr: [1]?[*:0]u16,
 };
 
 pub const IMESTRINGINFO = extern struct {
     dwFarEastId: u32,
-    lpwstr: ?PWSTR,
+    lpwstr: ?[*:0]u16,
 };
 
 pub const IMEUCT = enum(i32) {
@@ -3551,8 +3551,8 @@ pub const IFED_UCT_USER_DEFINED = IMEUCT.USER_DEFINED;
 pub const IFED_UCT_MAX = IMEUCT.MAX;
 
 pub const IMEWRD = extern struct {
-    pwchReading: ?PWSTR align(1),
-    pwchDisplay: ?PWSTR align(1),
+    pwchReading: ?[*:0]u16 align(1),
+    pwchDisplay: ?[*:0]u16 align(1),
     Anonymous: extern union {
         ulPos: u32 align(1),
         Anonymous: extern struct {
@@ -3591,11 +3591,11 @@ pub const INPUTCONTEXT = extern struct {
 
 pub const MORRSLT = extern struct {
     dwSize: u32 align(1),
-    pwchOutput: ?PWSTR align(1),
+    pwchOutput: ?[*:0]u16 align(1),
     cchOutput: u16 align(1),
     Anonymous1: extern union {
-        pwchRead: ?PWSTR align(1),
-        pwchComp: ?PWSTR align(1),
+        pwchRead: ?[*:0]u16 align(1),
+        pwchComp: ?[*:0]u16 align(1),
     } align(1),
     Anonymous2: extern union {
         cchRead: u16 align(1),
@@ -3666,8 +3666,8 @@ pub const RECONVERTSTRING = extern struct {
 };
 
 pub const REGISTERWORDA = extern struct {
-    lpReading: ?PSTR,
-    lpWord: ?PSTR,
+    lpReading: ?[*:0]u8,
+    lpWord: ?[*:0]u8,
 };
 
 pub const REGISTERWORDENUMPROCA = *const fn(
@@ -3685,8 +3685,8 @@ pub const REGISTERWORDENUMPROCW = *const fn(
 ) callconv(.winapi) i32;
 
 pub const REGISTERWORDW = extern struct {
-    lpReading: ?PWSTR,
-    lpWord: ?PWSTR,
+    lpReading: ?[*:0]u16,
+    lpWord: ?[*:0]u16,
 };
 
 pub const SET_COMPOSITION_STRING_TYPE = enum(u32) {
@@ -3998,7 +3998,7 @@ pub extern "imm32" fn ImmGetGuideLineA(
     param0: ?HIMC,
     dwIndex: GET_GUIDE_LINE_TYPE,
     /// parameter "dwBufLen" is the size in bytes
-    lpBuf: ?PSTR,
+    lpBuf: ?[*:0]u8,
     dwBufLen: u32,
 ) callconv(.winapi) u32;
 
@@ -4007,7 +4007,7 @@ pub extern "imm32" fn ImmGetGuideLineW(
     param0: ?HIMC,
     dwIndex: GET_GUIDE_LINE_TYPE,
     /// parameter "dwBufLen" is the size in bytes
-    lpBuf: ?PWSTR,
+    lpBuf: ?[*:0]u16,
     dwBufLen: u32,
 ) callconv(.winapi) u32;
 
@@ -4481,7 +4481,7 @@ pub const ImmUnregisterWord = switch (@import("../../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (24)
+// Section: Imports (22)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -4502,8 +4502,6 @@ const LPARAM = @import("../../foundation.zig").LPARAM;
 const LRESULT = @import("../../foundation.zig").LRESULT;
 const MSG = @import("../../ui/windows_and_messaging.zig").MSG;
 const POINT = @import("../../foundation.zig").POINT;
-const PSTR = @import("../../foundation.zig").PSTR;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const RECT = @import("../../foundation.zig").RECT;
 const SAFEARRAY = @import("../../system/com.zig").SAFEARRAY;
 const WPARAM = @import("../../foundation.zig").WPARAM;

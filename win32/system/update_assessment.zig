@@ -31,9 +31,9 @@ pub const OSUpdateAssessment = extern struct {
     securityStatus: UpdateAssessmentStatus,
     assessmentTime: FILETIME,
     releaseInfoTime: FILETIME,
-    currentOSBuild: ?PWSTR,
+    currentOSBuild: ?[*:0]u16,
     currentOSReleaseTime: FILETIME,
-    upToDateOSBuild: ?PWSTR,
+    upToDateOSBuild: ?[*:0]u16,
     upToDateOSReleaseTime: FILETIME,
 };
 
@@ -93,14 +93,13 @@ pub const CLSID_WaaSAssessor = &CLSID_WaaSAssessor_Value;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

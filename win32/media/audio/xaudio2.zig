@@ -1190,14 +1190,13 @@ pub extern "xaudio2_8" fn XAudio2CreateWithVersionInfo(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const AUDIO_STREAM_CATEGORY = @import("../../media/audio.zig").AUDIO_STREAM_CATEGORY;
 const BOOL = @import("../../foundation.zig").BOOL;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IUnknown = @import("../../system/com.zig").IUnknown;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const WAVEFORMATEX = @import("../../media/audio.zig").WAVEFORMATEX;
 
 test {

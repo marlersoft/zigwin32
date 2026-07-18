@@ -880,7 +880,7 @@ pub const ASSEMBLY_INFO = extern struct {
     cbAssemblyInfo: u32,
     dwAssemblyFlags: u32,
     uliAssemblySizeInKB: ULARGE_INTEGER,
-    pszCurrentAssemblyPathBuf: ?PWSTR,
+    pszCurrentAssemblyPathBuf: ?[*:0]u16,
     cchBuf: u32,
 };
 
@@ -4820,7 +4820,7 @@ pub const PATCH_OPTION_DATA = extern struct {
     SizeOfThisStruct: u32,
     SymbolOptionFlags: u32,
     NewFileSymbolPath: ?[*:0]const u8,
-    OldFileSymbolPathArray: ?*?PSTR,
+    OldFileSymbolPathArray: ?*?[*:0]u8,
     ExtendedOptionFlags: u32,
     SymLoadCallback: ?PPATCH_SYMLOAD_CALLBACK,
     SymLoadContext: ?*anyopaque,
@@ -5852,7 +5852,7 @@ pub extern "mspatcha" fn GetFilePatchSignatureA(
     RetainRangeArray: ?[*]PATCH_RETAIN_RANGE,
     SignatureBufferSize: u32,
     /// parameter "SignatureBufferSize" is the size in bytes
-    SignatureBuffer: ?PSTR,
+    SignatureBuffer: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn GetFilePatchSignatureByBuffer(
@@ -5867,7 +5867,7 @@ pub extern "mspatcha" fn GetFilePatchSignatureByBuffer(
     RetainRangeArray: ?[*]PATCH_RETAIN_RANGE,
     SignatureBufferSize: u32,
     /// parameter "SignatureBufferSize" is the size in bytes
-    SignatureBuffer: ?PSTR,
+    SignatureBuffer: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn GetFilePatchSignatureByHandle(
@@ -5880,7 +5880,7 @@ pub extern "mspatcha" fn GetFilePatchSignatureByHandle(
     RetainRangeArray: ?[*]PATCH_RETAIN_RANGE,
     SignatureBufferSize: u32,
     /// parameter "SignatureBufferSize" is the size in bytes
-    SignatureBuffer: ?PSTR,
+    SignatureBuffer: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn GetFilePatchSignatureW(
@@ -5893,7 +5893,7 @@ pub extern "mspatcha" fn GetFilePatchSignatureW(
     RetainRangeArray: ?[*]PATCH_RETAIN_RANGE,
     SignatureBufferSize: u32,
     /// parameter "SignatureBufferSize" is the size in bytes
-    SignatureBuffer: ?PWSTR,
+    SignatureBuffer: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6274,7 +6274,7 @@ pub extern "msi" fn MsiEndTransaction(
 pub extern "msi" fn MsiEnumClientsA(
     szComponent: ?[*:0]const u8,
     iProductIndex: u32,
-    lpProductBuf: ?PSTR,
+    lpProductBuf: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6283,7 +6283,7 @@ pub extern "msi" fn MsiEnumClientsExA(
     szUserSid: ?[*:0]const u8,
     dwContext: MSIINSTALLCONTEXT,
     dwProductIndex: u32,
-    szProductBuf: ?PSTR,
+    szProductBuf: ?[*:0]u8,
     pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u8,
     pcchSid: ?*u32,
@@ -6295,7 +6295,7 @@ pub extern "msi" fn MsiEnumClientsExW(
     szUserSid: ?[*:0]const u16,
     dwContext: MSIINSTALLCONTEXT,
     dwProductIndex: u32,
-    szProductBuf: ?PWSTR,
+    szProductBuf: ?[*:0]u16,
     pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u16,
     pcchSid: ?*u32,
@@ -6305,7 +6305,7 @@ pub extern "msi" fn MsiEnumClientsExW(
 pub extern "msi" fn MsiEnumClientsW(
     szComponent: ?[*:0]const u16,
     iProductIndex: u32,
-    lpProductBuf: ?PWSTR,
+    lpProductBuf: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6355,7 +6355,7 @@ pub extern "msi" fn MsiEnumComponentQualifiersW(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumComponentsA(
     iComponentIndex: u32,
-    lpComponentBuf: ?PSTR,
+    lpComponentBuf: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6363,7 +6363,7 @@ pub extern "msi" fn MsiEnumComponentsExA(
     szUserSid: ?[*:0]const u8,
     dwContext: u32,
     dwIndex: u32,
-    szInstalledComponentCode: ?PSTR,
+    szInstalledComponentCode: ?[*:0]u8,
     pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u8,
     pcchSid: ?*u32,
@@ -6374,7 +6374,7 @@ pub extern "msi" fn MsiEnumComponentsExW(
     szUserSid: ?[*:0]const u16,
     dwContext: u32,
     dwIndex: u32,
-    szInstalledComponentCode: ?PWSTR,
+    szInstalledComponentCode: ?[*:0]u16,
     pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u16,
     pcchSid: ?*u32,
@@ -6383,30 +6383,30 @@ pub extern "msi" fn MsiEnumComponentsExW(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumComponentsW(
     iComponentIndex: u32,
-    lpComponentBuf: ?PWSTR,
+    lpComponentBuf: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumFeaturesA(
     szProduct: ?[*:0]const u8,
     iFeatureIndex: u32,
-    lpFeatureBuf: ?PSTR,
-    lpParentBuf: ?PSTR,
+    lpFeatureBuf: ?[*:0]u8,
+    lpParentBuf: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumFeaturesW(
     szProduct: ?[*:0]const u16,
     iFeatureIndex: u32,
-    lpFeatureBuf: ?PWSTR,
-    lpParentBuf: ?PWSTR,
+    lpFeatureBuf: ?[*:0]u16,
+    lpParentBuf: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumPatchesA(
     szProduct: ?[*:0]const u8,
     iPatchIndex: u32,
-    lpPatchBuf: ?PSTR,
+    lpPatchBuf: ?[*:0]u8,
     lpTransformsBuf: [*:0]u8,
     pcchTransformsBuf: ?*u32,
 ) callconv(.winapi) u32;
@@ -6418,8 +6418,8 @@ pub extern "msi" fn MsiEnumPatchesExA(
     dwContext: u32,
     dwFilter: u32,
     dwIndex: u32,
-    szPatchCode: ?PSTR,
-    szTargetProductCode: ?PSTR,
+    szPatchCode: ?[*:0]u8,
+    szTargetProductCode: ?[*:0]u8,
     pdwTargetProductContext: ?*MSIINSTALLCONTEXT,
     szTargetUserSid: ?[*:0]u8,
     pcchTargetUserSid: ?*u32,
@@ -6432,8 +6432,8 @@ pub extern "msi" fn MsiEnumPatchesExW(
     dwContext: u32,
     dwFilter: u32,
     dwIndex: u32,
-    szPatchCode: ?PWSTR,
-    szTargetProductCode: ?PWSTR,
+    szPatchCode: ?[*:0]u16,
+    szTargetProductCode: ?[*:0]u16,
     pdwTargetProductContext: ?*MSIINSTALLCONTEXT,
     szTargetUserSid: ?[*:0]u16,
     pcchTargetUserSid: ?*u32,
@@ -6443,7 +6443,7 @@ pub extern "msi" fn MsiEnumPatchesExW(
 pub extern "msi" fn MsiEnumPatchesW(
     szProduct: ?[*:0]const u16,
     iPatchIndex: u32,
-    lpPatchBuf: ?PWSTR,
+    lpPatchBuf: ?[*:0]u16,
     lpTransformsBuf: [*:0]u16,
     pcchTransformsBuf: ?*u32,
 ) callconv(.winapi) u32;
@@ -6451,7 +6451,7 @@ pub extern "msi" fn MsiEnumPatchesW(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumProductsA(
     iProductIndex: u32,
-    lpProductBuf: ?PSTR,
+    lpProductBuf: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6460,7 +6460,7 @@ pub extern "msi" fn MsiEnumProductsExA(
     szUserSid: ?[*:0]const u8,
     dwContext: u32,
     dwIndex: u32,
-    szInstalledProductCode: ?PSTR,
+    szInstalledProductCode: ?[*:0]u8,
     pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u8,
     pcchSid: ?*u32,
@@ -6472,7 +6472,7 @@ pub extern "msi" fn MsiEnumProductsExW(
     szUserSid: ?[*:0]const u16,
     dwContext: u32,
     dwIndex: u32,
-    szInstalledProductCode: ?PWSTR,
+    szInstalledProductCode: ?[*:0]u16,
     pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u16,
     pcchSid: ?*u32,
@@ -6481,7 +6481,7 @@ pub extern "msi" fn MsiEnumProductsExW(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumProductsW(
     iProductIndex: u32,
-    lpProductBuf: ?PWSTR,
+    lpProductBuf: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6489,7 +6489,7 @@ pub extern "msi" fn MsiEnumRelatedProductsA(
     lpUpgradeCode: ?[*:0]const u8,
     dwReserved: u32,
     iProductIndex: u32,
-    lpProductBuf: ?PSTR,
+    lpProductBuf: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6497,7 +6497,7 @@ pub extern "msi" fn MsiEnumRelatedProductsW(
     lpUpgradeCode: ?[*:0]const u16,
     dwReserved: u32,
     iProductIndex: u32,
-    lpProductBuf: ?PWSTR,
+    lpProductBuf: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6804,13 +6804,13 @@ pub extern "msi" fn MsiGetPatchInfoW(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetProductCodeA(
     szComponent: ?[*:0]const u8,
-    lpBuf39: ?PSTR,
+    lpBuf39: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetProductCodeW(
     szComponent: ?[*:0]const u16,
-    lpBuf39: ?PWSTR,
+    lpBuf39: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -6844,7 +6844,7 @@ pub extern "msi" fn MsiGetProductInfoExW(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetProductInfoFromScriptA(
     szScriptFile: ?[*:0]const u8,
-    lpProductBuf39: ?PSTR,
+    lpProductBuf39: ?[*:0]u8,
     plgidLanguage: ?*u16,
     pdwVersion: ?*u32,
     lpNameBuf: ?[*:0]u8,
@@ -6856,7 +6856,7 @@ pub extern "msi" fn MsiGetProductInfoFromScriptA(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetProductInfoFromScriptW(
     szScriptFile: ?[*:0]const u16,
-    lpProductBuf39: ?PWSTR,
+    lpProductBuf39: ?[*:0]u16,
     plgidLanguage: ?*u16,
     pdwVersion: ?*u32,
     lpNameBuf: ?[*:0]u16,
@@ -6908,17 +6908,17 @@ pub extern "msi" fn MsiGetPropertyW(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetShortcutTargetA(
     szShortcutPath: ?[*:0]const u8,
-    szProductCode: ?PSTR,
-    szFeatureId: ?PSTR,
-    szComponentCode: ?PSTR,
+    szProductCode: ?[*:0]u8,
+    szFeatureId: ?[*:0]u8,
+    szComponentCode: ?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetShortcutTargetW(
     szShortcutPath: ?[*:0]const u16,
-    szProductCode: ?PWSTR,
-    szFeatureId: ?PWSTR,
-    szComponentCode: ?PWSTR,
+    szProductCode: ?[*:0]u16,
+    szFeatureId: ?[*:0]u16,
+    szComponentCode: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -7366,7 +7366,7 @@ pub extern "msi" fn MsiRecordReadStream(
     hRecord: MSIHANDLE,
     iField: u32,
     /// parameter "pcbDataBuf" is the size in bytes
-    szDataBuf: ?PSTR,
+    szDataBuf: ?[*:0]u8,
     pcbDataBuf: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -7980,7 +7980,7 @@ pub extern "kernel32" fn QueryActCtxSettingsW(
     settingsNameSpace: ?[*:0]const u16,
     settingName: ?[*:0]const u16,
     /// parameter "dwBuffer" is the size in bytes
-    pvBuffer: ?PWSTR,
+    pvBuffer: ?[*:0]u16,
     dwBuffer: usize,
     pdwWrittenOrRequired: ?*usize,
 ) callconv(.winapi) BOOL;
@@ -8997,7 +8997,7 @@ pub const TestApplyPatchToFile = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (20)
+// Section: Imports (18)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA = @import("../system/windows_programming.zig").ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA;
@@ -9014,8 +9014,6 @@ const IDispatch = @import("../system/com.zig").IDispatch;
 const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
 const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;

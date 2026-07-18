@@ -953,7 +953,7 @@ pub const AsyncIFtpAuthenticationProvider = extern union {
         ) callconv(.winapi) HRESULT,
         Finish_AuthenticateUser: *const fn(
             self: *const AsyncIFtpAuthenticationProvider,
-            ppszCanonicalUserName: ?*?PWSTR,
+            ppszCanonicalUserName: ?*?[*:0]u16,
             pfAuthenticated: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
@@ -962,7 +962,7 @@ pub const AsyncIFtpAuthenticationProvider = extern union {
     pub fn Begin_AuthenticateUser(self: *const AsyncIFtpAuthenticationProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pszPassword: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Begin_AuthenticateUser(self, pszSessionId, pszSiteName, pszUserName, pszPassword);
     }
-    pub fn Finish_AuthenticateUser(self: *const AsyncIFtpAuthenticationProvider, ppszCanonicalUserName: ?*?PWSTR, pfAuthenticated: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn Finish_AuthenticateUser(self: *const AsyncIFtpAuthenticationProvider, ppszCanonicalUserName: ?*?[*:0]u16, pfAuthenticated: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Finish_AuthenticateUser(self, ppszCanonicalUserName, pfAuthenticated);
     }
 };
@@ -1007,7 +1007,7 @@ pub const AsyncIFtpHomeDirectoryProvider = extern union {
         ) callconv(.winapi) HRESULT,
         Finish_GetUserHomeDirectoryData: *const fn(
             self: *const AsyncIFtpHomeDirectoryProvider,
-            ppszHomeDirectoryData: ?*?PWSTR,
+            ppszHomeDirectoryData: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1015,7 +1015,7 @@ pub const AsyncIFtpHomeDirectoryProvider = extern union {
     pub fn Begin_GetUserHomeDirectoryData(self: *const AsyncIFtpHomeDirectoryProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Begin_GetUserHomeDirectoryData(self, pszSessionId, pszSiteName, pszUserName);
     }
-    pub fn Finish_GetUserHomeDirectoryData(self: *const AsyncIFtpHomeDirectoryProvider, ppszHomeDirectoryData: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn Finish_GetUserHomeDirectoryData(self: *const AsyncIFtpHomeDirectoryProvider, ppszHomeDirectoryData: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.Finish_GetUserHomeDirectoryData(self, ppszHomeDirectoryData);
     }
 };
@@ -1171,14 +1171,14 @@ pub const EXTENSION_CONTROL_BLOCK = extern struct {
     ConnID: ?*anyopaque,
     dwHttpStatusCode: u32,
     lpszLogData: [80]CHAR,
-    lpszMethod: ?PSTR,
-    lpszQueryString: ?PSTR,
-    lpszPathInfo: ?PSTR,
-    lpszPathTranslated: ?PSTR,
+    lpszMethod: ?[*:0]u8,
+    lpszQueryString: ?[*:0]u8,
+    lpszPathInfo: ?[*:0]u8,
+    lpszPathTranslated: ?[*:0]u8,
     cbTotalBytes: u32,
     cbAvailable: u32,
     lpbData: ?*u8,
-    lpszContentType: ?PSTR,
+    lpszContentType: ?[*:0]u8,
     GetServerVariable: isize,
     WriteClient: isize,
     ReadClient: isize,
@@ -1211,15 +1211,15 @@ const CLSID_FtpProvider_Value = Guid.initString("70bdc667-33b2-45f0-ac52-c3ca46f
 pub const CLSID_FtpProvider = &CLSID_FtpProvider_Value;
 
 pub const HSE_CUSTOM_ERROR_INFO = extern struct {
-    pszStatus: ?PSTR,
+    pszStatus: ?[*:0]u8,
     uHttpSubError: u16,
     fAsync: BOOL,
 };
 
 pub const HSE_EXEC_UNICODE_URL_INFO = extern struct {
-    pszUrl: ?PWSTR,
-    pszMethod: ?PSTR,
-    pszChildHeaders: ?PSTR,
+    pszUrl: ?[*:0]u16,
+    pszMethod: ?[*:0]u8,
+    pszChildHeaders: ?[*:0]u8,
     pUserInfo: ?*HSE_EXEC_UNICODE_URL_USER_INFO,
     pEntity: ?*HSE_EXEC_URL_ENTITY_INFO,
     dwExecUrlFlags: u32,
@@ -1227,8 +1227,8 @@ pub const HSE_EXEC_UNICODE_URL_INFO = extern struct {
 
 pub const HSE_EXEC_UNICODE_URL_USER_INFO = extern struct {
     hImpersonationToken: ?HANDLE,
-    pszCustomUserName: ?PWSTR,
-    pszCustomAuthType: ?PSTR,
+    pszCustomUserName: ?[*:0]u16,
+    pszCustomAuthType: ?[*:0]u8,
 };
 
 pub const HSE_EXEC_URL_ENTITY_INFO = extern struct {
@@ -1237,9 +1237,9 @@ pub const HSE_EXEC_URL_ENTITY_INFO = extern struct {
 };
 
 pub const HSE_EXEC_URL_INFO = extern struct {
-    pszUrl: ?PSTR,
-    pszMethod: ?PSTR,
-    pszChildHeaders: ?PSTR,
+    pszUrl: ?[*:0]u8,
+    pszMethod: ?[*:0]u8,
+    pszChildHeaders: ?[*:0]u8,
     pUserInfo: ?*HSE_EXEC_URL_USER_INFO,
     pEntity: ?*HSE_EXEC_URL_ENTITY_INFO,
     dwExecUrlFlags: u32,
@@ -1253,14 +1253,14 @@ pub const HSE_EXEC_URL_STATUS = extern struct {
 
 pub const HSE_EXEC_URL_USER_INFO = extern struct {
     hImpersonationToken: ?HANDLE,
-    pszCustomUserName: ?PSTR,
-    pszCustomAuthType: ?PSTR,
+    pszCustomUserName: ?[*:0]u8,
+    pszCustomAuthType: ?[*:0]u8,
 };
 
 pub const HSE_RESPONSE_VECTOR = extern struct {
     dwFlags: u32,
-    pszStatus: ?PSTR,
-    pszHeaders: ?PSTR,
+    pszStatus: ?[*:0]u8,
+    pszHeaders: ?[*:0]u8,
     nElementCount: u32,
     lpElementArray: ?*HSE_VECTOR_ELEMENT,
 };
@@ -1339,9 +1339,9 @@ pub const HTTP_FILTER_AUTH_COMPLETE_INFO = extern struct {
 };
 
 pub const HTTP_FILTER_AUTHENT = extern struct {
-    pszUser: ?PSTR,
+    pszUser: ?[*:0]u8,
     cbUserBuff: u32,
-    pszPassword: ?PSTR,
+    pszPassword: ?[*:0]u8,
     cbPasswordBuff: u32,
 };
 
@@ -1390,13 +1390,13 @@ pub const HTTP_FILTER_RAW_DATA = extern struct {
 
 pub const HTTP_FILTER_URL_MAP = extern struct {
     pszURL: ?[*:0]const u8,
-    pszPhysicalPath: ?PSTR,
+    pszPhysicalPath: ?[*:0]u8,
     cbPathBuff: u32,
 };
 
 pub const HTTP_FILTER_URL_MAP_EX = extern struct {
     pszURL: ?[*:0]const u8,
-    pszPhysicalPath: ?PSTR,
+    pszPhysicalPath: ?[*:0]u8,
     cbPathBuff: u32,
     dwFlags: u32,
     cchMatchingPath: u32,
@@ -1510,13 +1510,13 @@ pub const IFtpAuthenticationProvider = extern union {
             pszSiteName: ?[*:0]const u16,
             pszUserName: ?[*:0]const u16,
             pszPassword: ?[*:0]const u16,
-            ppszCanonicalUserName: ?*?PWSTR,
+            ppszCanonicalUserName: ?*?[*:0]u16,
             pfAuthenticated: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AuthenticateUser(self: *const IFtpAuthenticationProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pszPassword: ?[*:0]const u16, ppszCanonicalUserName: ?*?PWSTR, pfAuthenticated: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn AuthenticateUser(self: *const IFtpAuthenticationProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pszPassword: ?[*:0]const u16, ppszCanonicalUserName: ?*?[*:0]u16, pfAuthenticated: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.AuthenticateUser(self, pszSessionId, pszSiteName, pszUserName, pszPassword, ppszCanonicalUserName, pfAuthenticated);
     }
 };
@@ -1552,12 +1552,12 @@ pub const IFtpHomeDirectoryProvider = extern union {
             pszSessionId: ?[*:0]const u16,
             pszSiteName: ?[*:0]const u16,
             pszUserName: ?[*:0]const u16,
-            ppszHomeDirectoryData: ?*?PWSTR,
+            ppszHomeDirectoryData: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetUserHomeDirectoryData(self: *const IFtpHomeDirectoryProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, ppszHomeDirectoryData: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetUserHomeDirectoryData(self: *const IFtpHomeDirectoryProvider, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, ppszHomeDirectoryData: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetUserHomeDirectoryData(self, pszSessionId, pszSiteName, pszUserName, ppszHomeDirectoryData);
     }
 };
@@ -2112,7 +2112,7 @@ pub const LOGGING_PARAMETERS = extern struct {
 };
 
 pub const MD_CHANGE_OBJECT_W = extern struct {
-    pszMDPath: ?PWSTR,
+    pszMDPath: ?[*:0]u16,
     dwMDChangeType: u32,
     dwMDNumDataIDs: u32,
     pdwMDDataIDs: ?*u32,
@@ -2178,7 +2178,7 @@ pub const PFN_GETEXTENSIONVERSION = *const fn(
 ) callconv(.winapi) BOOL;
 
 pub const PFN_HSE_CACHE_INVALIDATION_CALLBACK = *const fn(
-    pszUrl: ?PWSTR,
+    pszUrl: ?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub const PFN_HSE_GET_PROTOCOL_MANAGER_CUSTOM_INTERFACE_CALLBACK = *const fn(
@@ -2327,7 +2327,7 @@ pub extern "rpcproxy" fn HttpFilterProc(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (12)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -2338,8 +2338,6 @@ const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 
 test {

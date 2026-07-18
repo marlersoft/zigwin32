@@ -837,13 +837,13 @@ pub const FlowDirections_Vertical = FlowDirections.Vertical;
 pub const HIGHCONTRASTA = extern struct {
     cbSize: u32,
     dwFlags: HIGHCONTRASTW_FLAGS,
-    lpszDefaultScheme: ?PSTR,
+    lpszDefaultScheme: ?[*:0]u8,
 };
 
 pub const HIGHCONTRASTW = extern struct {
     cbSize: u32,
     dwFlags: HIGHCONTRASTW_FLAGS,
-    lpszDefaultScheme: ?PWSTR,
+    lpszDefaultScheme: ?[*:0]u16,
 };
 
 pub const HIGHCONTRASTW_FLAGS = packed struct(u32) {
@@ -8472,7 +8472,7 @@ pub const MOUSEKEYS = extern struct {
 pub const MSAAMENUINFO = extern struct {
     dwMSAASignature: u32,
     cchWText: u32,
-    pszWText: ?PWSTR,
+    pszWText: ?[*:0]u16,
 };
 
 pub const NavigateDirection = enum(i32) {
@@ -8704,8 +8704,8 @@ pub const SERKF_SERIALKEYSON = SERIALKEYS_FLAGS{ .SERIALKEYSON = 1 };
 pub const SERIALKEYSA = extern struct {
     cbSize: u32,
     dwFlags: SERIALKEYS_FLAGS,
-    lpszActivePort: ?PSTR,
-    lpszPort: ?PSTR,
+    lpszActivePort: ?[*:0]u8,
+    lpszPort: ?[*:0]u8,
     iBaudRate: u32,
     iPortState: u32,
     iActive: u32,
@@ -8714,8 +8714,8 @@ pub const SERIALKEYSA = extern struct {
 pub const SERIALKEYSW = extern struct {
     cbSize: u32,
     dwFlags: SERIALKEYS_FLAGS,
-    lpszActivePort: ?PWSTR,
-    lpszPort: ?PWSTR,
+    lpszActivePort: ?[*:0]u16,
+    lpszPort: ?[*:0]u16,
     iBaudRate: u32,
     iPortState: u32,
     iActive: u32,
@@ -8801,7 +8801,7 @@ pub const SOUNDSENTRYA = extern struct {
     iFSGrafEffectColor: u32,
     iWindowsEffect: SOUNDSENTRY_WINDOWS_EFFECT,
     iWindowsEffectMSec: u32,
-    lpszWindowsEffectDLL: ?PSTR,
+    lpszWindowsEffectDLL: ?[*:0]u8,
     iWindowsEffectOrdinal: u32,
 };
 
@@ -8816,7 +8816,7 @@ pub const SOUNDSENTRYW = extern struct {
     iFSGrafEffectColor: u32,
     iWindowsEffect: SOUNDSENTRY_WINDOWS_EFFECT,
     iWindowsEffectMSec: u32,
-    lpszWindowsEffectDLL: ?PWSTR,
+    lpszWindowsEffectDLL: ?[*:0]u16,
     iWindowsEffectOrdinal: u32,
 };
 
@@ -9978,7 +9978,7 @@ pub const UIAutomationMethodInfo = extern struct {
     cInParameters: u32,
     cOutParameters: u32,
     pParameterTypes: ?*UIAutomationType,
-    pParameterNames: ?*?PWSTR,
+    pParameterNames: ?*?[*:0]u16,
 };
 
 pub const UIAutomationParameter = extern struct {
@@ -11000,7 +11000,7 @@ pub const GetStateText = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (19)
+// Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -11015,8 +11015,6 @@ const LPARAM = @import("../foundation.zig").LPARAM;
 const LRESULT = @import("../foundation.zig").LRESULT;
 const POINT = @import("../foundation.zig").POINT;
 const POINTER_INPUT_TYPE = @import("../ui/windows_and_messaging.zig").POINTER_INPUT_TYPE;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const VARIANT = @import("../system/com.zig").VARIANT;

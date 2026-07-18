@@ -97,8 +97,8 @@ pub const ICallFrame = extern union {
         ) callconv(.winapi) HRESULT,
         GetNames: *const fn(
             self: *const ICallFrame,
-            pwszInterface: ?*?PWSTR,
-            pwszMethod: ?*?PWSTR,
+            pwszInterface: ?*?[*:0]u16,
+            pwszMethod: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetStackLocation: *const fn(
             self: *const ICallFrame,
@@ -201,7 +201,7 @@ pub const ICallFrame = extern union {
     pub fn GetIIDAndMethod(self: *const ICallFrame, pIID: ?*Guid, piMethod: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIIDAndMethod(self, pIID, piMethod);
     }
-    pub fn GetNames(self: *const ICallFrame, pwszInterface: ?*?PWSTR, pwszMethod: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetNames(self: *const ICallFrame, pwszInterface: ?*?[*:0]u16, pwszMethod: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetNames(self, pwszInterface, pwszMethod);
     }
     pub fn GetStackLocation(self: *const ICallFrame) callconv(.@"inline") ?*anyopaque {
@@ -310,7 +310,7 @@ pub const ICallIndirect = extern union {
             self: *const ICallIndirect,
             iMethod: u32,
             pInfo: ?*CALLFRAMEINFO,
-            pwszMethod: ?*?PWSTR,
+            pwszMethod: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetStackSize: *const fn(
             self: *const ICallIndirect,
@@ -322,7 +322,7 @@ pub const ICallIndirect = extern union {
             piid: ?*Guid,
             pfDerivesFromIDispatch: ?*BOOL,
             pcMethod: ?*u32,
-            pwszInterface: ?*?PWSTR,
+            pwszInterface: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -330,13 +330,13 @@ pub const ICallIndirect = extern union {
     pub fn CallIndirect(self: *const ICallIndirect, phrReturn: ?*HRESULT, iMethod: u32, pvArgs: ?*anyopaque, cbArgs: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.CallIndirect(self, phrReturn, iMethod, pvArgs, cbArgs);
     }
-    pub fn GetMethodInfo(self: *const ICallIndirect, iMethod: u32, pInfo: ?*CALLFRAMEINFO, pwszMethod: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetMethodInfo(self: *const ICallIndirect, iMethod: u32, pInfo: ?*CALLFRAMEINFO, pwszMethod: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetMethodInfo(self, iMethod, pInfo, pwszMethod);
     }
     pub fn GetStackSize(self: *const ICallIndirect, iMethod: u32, cbArgs: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStackSize(self, iMethod, cbArgs);
     }
-    pub fn GetIID(self: *const ICallIndirect, piid: ?*Guid, pfDerivesFromIDispatch: ?*BOOL, pcMethod: ?*u32, pwszInterface: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetIID(self: *const ICallIndirect, piid: ?*Guid, pfDerivesFromIDispatch: ?*BOOL, pcMethod: ?*u32, pwszInterface: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetIID(self, piid, pfDerivesFromIDispatch, pcMethod, pwszInterface);
     }
 };
@@ -453,7 +453,7 @@ pub extern "ole32" fn CoGetInterceptorFromTypeInfo(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -462,7 +462,6 @@ const HRESULT = @import("../../foundation.zig").HRESULT;
 const ITypeInfo = @import("../../system/com.zig").ITypeInfo;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const MSHLFLAGS = @import("../../system/com.zig").MSHLFLAGS;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const VARIANT = @import("../../system/com.zig").VARIANT;
 
 test {

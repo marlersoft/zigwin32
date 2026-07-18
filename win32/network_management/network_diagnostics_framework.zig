@@ -95,7 +95,7 @@ pub const DiagnosticsInfo = extern struct {
 };
 
 pub const HELPER_ATTRIBUTE = extern struct {
-    pwszName: ?PWSTR,
+    pwszName: ?[*:0]u16,
     type: ATTRIBUTE_TYPE,
     Anonymous: extern union {
         Boolean: BOOL,
@@ -107,7 +107,7 @@ pub const HELPER_ATTRIBUTE = extern struct {
         DWord: u32,
         Int64: i64,
         UInt64: u64,
-        PWStr: ?PWSTR,
+        PWStr: ?[*:0]u16,
         Guid: Guid,
         LifeTime: LIFE_TIME,
         Address: DIAG_SOCKADDR,
@@ -116,13 +116,13 @@ pub const HELPER_ATTRIBUTE = extern struct {
 };
 
 pub const HelperAttributeInfo = extern struct {
-    pwszName: ?PWSTR,
+    pwszName: ?[*:0]u16,
     type: ATTRIBUTE_TYPE,
 };
 
 pub const HYPOTHESIS = extern struct {
-    pwszClassName: ?PWSTR,
-    pwszDescription: ?PWSTR,
+    pwszClassName: ?[*:0]u16,
+    pwszDescription: ?[*:0]u16,
     celt: u32,
     rgAttributes: ?*HELPER_ATTRIBUTE,
 };
@@ -175,14 +175,14 @@ pub const INetDiagHelper = extern union {
         LowHealth: *const fn(
             self: *const INetDiagHelper,
             pwszInstanceDescription: ?[*:0]const u16,
-            ppwszDescription: ?*?PWSTR,
+            ppwszDescription: ?*?[*:0]u16,
             pDeferredTime: ?*i32,
             pStatus: ?*DIAGNOSIS_STATUS,
         ) callconv(.winapi) HRESULT,
         HighUtilization: *const fn(
             self: *const INetDiagHelper,
             pwszInstanceDescription: ?[*:0]const u16,
-            ppwszDescription: ?*?PWSTR,
+            ppwszDescription: ?*?[*:0]u16,
             pDeferredTime: ?*i32,
             pStatus: ?*DIAGNOSIS_STATUS,
         ) callconv(.winapi) HRESULT,
@@ -259,10 +259,10 @@ pub const INetDiagHelper = extern union {
     pub fn GetKeyAttributes(self: *const INetDiagHelper, pcelt: ?*u32, pprgAttributes: [*]?*HELPER_ATTRIBUTE) callconv(.@"inline") HRESULT {
         return self.vtable.GetKeyAttributes(self, pcelt, pprgAttributes);
     }
-    pub fn LowHealth(self: *const INetDiagHelper, pwszInstanceDescription: ?[*:0]const u16, ppwszDescription: ?*?PWSTR, pDeferredTime: ?*i32, pStatus: ?*DIAGNOSIS_STATUS) callconv(.@"inline") HRESULT {
+    pub fn LowHealth(self: *const INetDiagHelper, pwszInstanceDescription: ?[*:0]const u16, ppwszDescription: ?*?[*:0]u16, pDeferredTime: ?*i32, pStatus: ?*DIAGNOSIS_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.LowHealth(self, pwszInstanceDescription, ppwszDescription, pDeferredTime, pStatus);
     }
-    pub fn HighUtilization(self: *const INetDiagHelper, pwszInstanceDescription: ?[*:0]const u16, ppwszDescription: ?*?PWSTR, pDeferredTime: ?*i32, pStatus: ?*DIAGNOSIS_STATUS) callconv(.@"inline") HRESULT {
+    pub fn HighUtilization(self: *const INetDiagHelper, pwszInstanceDescription: ?[*:0]const u16, ppwszDescription: ?*?[*:0]u16, pDeferredTime: ?*i32, pStatus: ?*DIAGNOSIS_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.HighUtilization(self, pwszInstanceDescription, ppwszDescription, pDeferredTime, pStatus);
     }
     pub fn GetLowerHypotheses(self: *const INetDiagHelper, pcelt: ?*u32, pprgHypotheses: [*]?*HYPOTHESIS) callconv(.@"inline") HRESULT {
@@ -316,7 +316,7 @@ pub const INetDiagHelperEx = extern union {
             self: *const INetDiagHelperEx,
             celt: u32,
             pResults: [*]HypothesisResult,
-            ppwszUpdatedDescription: ?*?PWSTR,
+            ppwszUpdatedDescription: ?*?[*:0]u16,
             pUpdatedStatus: ?*DIAGNOSIS_STATUS,
         ) callconv(.winapi) HRESULT,
         SetUtilities: *const fn(
@@ -329,7 +329,7 @@ pub const INetDiagHelperEx = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ReconfirmLowHealth(self: *const INetDiagHelperEx, celt: u32, pResults: [*]HypothesisResult, ppwszUpdatedDescription: ?*?PWSTR, pUpdatedStatus: ?*DIAGNOSIS_STATUS) callconv(.@"inline") HRESULT {
+    pub fn ReconfirmLowHealth(self: *const INetDiagHelperEx, celt: u32, pResults: [*]HypothesisResult, ppwszUpdatedDescription: ?*?[*:0]u16, pUpdatedStatus: ?*DIAGNOSIS_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.ReconfirmLowHealth(self, celt, pResults, ppwszUpdatedDescription, pUpdatedStatus);
     }
     pub fn SetUtilities(self: *const INetDiagHelperEx, pUtilities: ?*INetDiagHelperUtilFactory) callconv(.@"inline") HRESULT {
@@ -440,8 +440,8 @@ pub const RS_USER_ACTION = REPAIR_STATUS.USER_ACTION;
 
 pub const RepairInfo = extern struct {
     guid: Guid,
-    pwszClassName: ?PWSTR,
-    pwszDescription: ?PWSTR,
+    pwszClassName: ?[*:0]u16,
+    pwszDescription: ?[*:0]u16,
     sidType: u32,
     cost: i32,
     flags: u32,
@@ -457,7 +457,7 @@ pub const RepairInfoEx = extern struct {
 };
 
 pub const RootCauseInfo = extern struct {
-    pwszDescription: ?PWSTR,
+    pwszDescription: ?[*:0]u16,
     rootCauseID: Guid,
     rootCauseFlags: u32,
     networkInterfaceID: Guid,
@@ -466,10 +466,10 @@ pub const RootCauseInfo = extern struct {
 };
 
 pub const ShellCommandInfo = extern struct {
-    pwszOperation: ?PWSTR,
-    pwszFile: ?PWSTR,
-    pwszParameters: ?PWSTR,
-    pwszDirectory: ?PWSTR,
+    pwszOperation: ?[*:0]u16,
+    pwszFile: ?[*:0]u16,
+    pwszParameters: ?[*:0]u16,
+    pwszDirectory: ?[*:0]u16,
     nShowCmd: u32,
 };
 
@@ -489,10 +489,10 @@ pub const UIT_DUI = UI_INFO_TYPE.DUI;
 pub const UiInfo = extern struct {
     type: UI_INFO_TYPE,
     Anonymous: extern union {
-        pwzNull: ?PWSTR,
+        pwzNull: ?[*:0]u16,
         ShellInfo: ShellCommandInfo,
-        pwzHelpUrl: ?PWSTR,
-        pwzDui: ?PWSTR,
+        pwzHelpUrl: ?[*:0]u16,
+        pwzDui: ?[*:0]u16,
     },
 };
 
@@ -572,7 +572,7 @@ pub extern "ndfapi" fn NdfCreateWebIncident(
 pub extern "ndfapi" fn NdfCreateWebIncidentEx(
     url: ?[*:0]const u16,
     useWinHTTP: BOOL,
-    moduleName: ?PWSTR,
+    moduleName: ?[*:0]u16,
     handle: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
@@ -604,7 +604,7 @@ pub extern "ndfapi" fn NdfExecuteDiagnosis(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "ndfapi" fn NdfGetTraceFile(
     Handle: ?*anyopaque,
-    TraceFileLocation: ?*?PWSTR,
+    TraceFileLocation: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -619,7 +619,7 @@ pub extern "ndfapi" fn NdfRepairIncident(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -628,7 +628,6 @@ const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SID = @import("../security.zig").SID;
 const SOCKET = @import("../networking/win_sock.zig").SOCKET;
 const SOCKET_ADDRESS_LIST = @import("../networking/win_sock.zig").SOCKET_ADDRESS_LIST;

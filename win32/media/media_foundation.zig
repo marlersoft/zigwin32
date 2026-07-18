@@ -12159,7 +12159,7 @@ pub const IMFAttributes = extern union {
         GetAllocatedString: *const fn(
             self: *const IMFAttributes,
             guidKey: ?*const Guid,
-            ppwszValue: ?*?PWSTR,
+            ppwszValue: ?*?[*:0]u16,
             pcchLength: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetBlobSize: *const fn(
@@ -12287,7 +12287,7 @@ pub const IMFAttributes = extern union {
     pub fn GetString(self: *const IMFAttributes, guidKey: ?*const Guid, pwszValue: [*:0]u16, cchBufSize: u32, pcchLength: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetString(self, guidKey, pwszValue, cchBufSize, pcchLength);
     }
-    pub fn GetAllocatedString(self: *const IMFAttributes, guidKey: ?*const Guid, ppwszValue: ?*?PWSTR, pcchLength: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetAllocatedString(self: *const IMFAttributes, guidKey: ?*const Guid, ppwszValue: ?*?[*:0]u16, pcchLength: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetAllocatedString(self, guidKey, ppwszValue, pcchLength);
     }
     pub fn GetBlobSize(self: *const IMFAttributes, guidKey: ?*const Guid, pcbBlobSize: ?*u32) callconv(.@"inline") HRESULT {
@@ -12388,7 +12388,7 @@ pub const IMFAudioPolicy = extern union {
         ) callconv(.winapi) HRESULT,
         GetDisplayName: *const fn(
             self: *const IMFAudioPolicy,
-            pszName: ?*?PWSTR,
+            pszName: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetIconPath: *const fn(
             self: *const IMFAudioPolicy,
@@ -12396,7 +12396,7 @@ pub const IMFAudioPolicy = extern union {
         ) callconv(.winapi) HRESULT,
         GetIconPath: *const fn(
             self: *const IMFAudioPolicy,
-            pszPath: ?*?PWSTR,
+            pszPath: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -12410,13 +12410,13 @@ pub const IMFAudioPolicy = extern union {
     pub fn SetDisplayName(self: *const IMFAudioPolicy, pszName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetDisplayName(self, pszName);
     }
-    pub fn GetDisplayName(self: *const IMFAudioPolicy, pszName: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDisplayName(self: *const IMFAudioPolicy, pszName: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayName(self, pszName);
     }
     pub fn SetIconPath(self: *const IMFAudioPolicy, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetIconPath(self, pszPath);
     }
-    pub fn GetIconPath(self: *const IMFAudioPolicy, pszPath: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetIconPath(self: *const IMFAudioPolicy, pszPath: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetIconPath(self, pszPath);
     }
 };
@@ -13718,7 +13718,7 @@ pub const IMFContentDecryptionModuleAccess = extern union {
         ) callconv(.winapi) HRESULT,
         GetKeySystem: *const fn(
             self: *const IMFContentDecryptionModuleAccess,
-            keySystem: ?*?PWSTR,
+            keySystem: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -13729,7 +13729,7 @@ pub const IMFContentDecryptionModuleAccess = extern union {
     pub fn GetConfiguration(self: *const IMFContentDecryptionModuleAccess, configuration: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
         return self.vtable.GetConfiguration(self, configuration);
     }
-    pub fn GetKeySystem(self: *const IMFContentDecryptionModuleAccess, keySystem: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetKeySystem(self: *const IMFContentDecryptionModuleAccess, keySystem: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetKeySystem(self, keySystem);
     }
 };
@@ -13771,7 +13771,7 @@ pub const IMFContentDecryptionModuleSession = extern union {
         base: IUnknown.VTable,
         GetSessionId: *const fn(
             self: *const IMFContentDecryptionModuleSession,
-            sessionId: ?*?PWSTR,
+            sessionId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetExpiration: *const fn(
             self: *const IMFContentDecryptionModuleSession,
@@ -13807,7 +13807,7 @@ pub const IMFContentDecryptionModuleSession = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSessionId(self: *const IMFContentDecryptionModuleSession, sessionId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSessionId(self: *const IMFContentDecryptionModuleSession, sessionId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSessionId(self, sessionId);
     }
     pub fn GetExpiration(self: *const IMFContentDecryptionModuleSession, expiration: ?*f64) callconv(.@"inline") HRESULT {
@@ -13892,7 +13892,7 @@ pub const IMFContentEnabler = extern union {
         ) callconv(.winapi) HRESULT,
         GetEnableURL: *const fn(
             self: *const IMFContentEnabler,
-            ppwszURL: [*]?PWSTR,
+            ppwszURL: [*]?[*:0]u16,
             pcchURL: ?*u32,
             pTrustStatus: ?*MF_URL_TRUST_STATUS,
         ) callconv(.winapi) HRESULT,
@@ -13920,7 +13920,7 @@ pub const IMFContentEnabler = extern union {
     pub fn GetEnableType(self: *const IMFContentEnabler, pType: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetEnableType(self, pType);
     }
-    pub fn GetEnableURL(self: *const IMFContentEnabler, ppwszURL: [*]?PWSTR, pcchURL: ?*u32, pTrustStatus: ?*MF_URL_TRUST_STATUS) callconv(.@"inline") HRESULT {
+    pub fn GetEnableURL(self: *const IMFContentEnabler, ppwszURL: [*]?[*:0]u16, pcchURL: ?*u32, pTrustStatus: ?*MF_URL_TRUST_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.GetEnableURL(self, ppwszURL, pcchURL, pTrustStatus);
     }
     pub fn GetEnableData(self: *const IMFContentEnabler, ppbData: [*]?*u8, pcbData: ?*u32) callconv(.@"inline") HRESULT {
@@ -14832,11 +14832,11 @@ pub const IMFHttpDownloadRequest = extern union {
             self: *const IMFHttpDownloadRequest,
             szHeaderName: ?[*:0]const u16,
             dwIndex: u32,
-            ppszHeaderValue: ?*?PWSTR,
+            ppszHeaderValue: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetURL: *const fn(
             self: *const IMFHttpDownloadRequest,
-            ppszURL: ?*?PWSTR,
+            ppszURL: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         HasNullSourceOrigin: *const fn(
             self: *const IMFHttpDownloadRequest,
@@ -14891,10 +14891,10 @@ pub const IMFHttpDownloadRequest = extern union {
     pub fn EndReadPayload(self: *const IMFHttpDownloadRequest, pResult: ?*IMFAsyncResult, pqwOffset: ?*u64, pcbRead: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.EndReadPayload(self, pResult, pqwOffset, pcbRead);
     }
-    pub fn QueryHeader(self: *const IMFHttpDownloadRequest, szHeaderName: ?[*:0]const u16, dwIndex: u32, ppszHeaderValue: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn QueryHeader(self: *const IMFHttpDownloadRequest, szHeaderName: ?[*:0]const u16, dwIndex: u32, ppszHeaderValue: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.QueryHeader(self, szHeaderName, dwIndex, ppszHeaderValue);
     }
-    pub fn GetURL(self: *const IMFHttpDownloadRequest, ppszURL: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetURL(self: *const IMFHttpDownloadRequest, ppszURL: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetURL(self, ppszURL);
     }
     pub fn HasNullSourceOrigin(self: *const IMFHttpDownloadRequest, pfNullSourceOrigin: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -15449,7 +15449,7 @@ pub const IMFMediaEngineAudioEndpointId = extern union {
         ) callconv(.winapi) HRESULT,
         GetAudioEndpointId: *const fn(
             self: *const IMFMediaEngineAudioEndpointId,
-            ppszEndpointId: ?*?PWSTR,
+            ppszEndpointId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -15457,7 +15457,7 @@ pub const IMFMediaEngineAudioEndpointId = extern union {
     pub fn SetAudioEndpointId(self: *const IMFMediaEngineAudioEndpointId, pszEndpointId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetAudioEndpointId(self, pszEndpointId);
     }
-    pub fn GetAudioEndpointId(self: *const IMFMediaEngineAudioEndpointId, ppszEndpointId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetAudioEndpointId(self: *const IMFMediaEngineAudioEndpointId, ppszEndpointId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetAudioEndpointId(self, ppszEndpointId);
     }
 };
@@ -17478,7 +17478,7 @@ pub const IMFMetadata = extern union {
         ) callconv(.winapi) HRESULT,
         GetLanguage: *const fn(
             self: *const IMFMetadata,
-            ppwszRFC1766: ?*?PWSTR,
+            ppwszRFC1766: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetAllLanguages: *const fn(
             self: *const IMFMetadata,
@@ -17508,7 +17508,7 @@ pub const IMFMetadata = extern union {
     pub fn SetLanguage(self: *const IMFMetadata, pwszRFC1766: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetLanguage(self, pwszRFC1766);
     }
-    pub fn GetLanguage(self: *const IMFMetadata, ppwszRFC1766: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetLanguage(self: *const IMFMetadata, ppwszRFC1766: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetLanguage(self, ppwszRFC1766);
     }
     pub fn GetAllLanguages(self: *const IMFMetadata, ppvLanguages: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
@@ -17804,7 +17804,7 @@ pub const IMFNetCrossOriginSupport = extern union {
         ) callconv(.winapi) HRESULT,
         GetSourceOrigin: *const fn(
             self: *const IMFNetCrossOriginSupport,
-            wszSourceOrigin: ?*?PWSTR,
+            wszSourceOrigin: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         IsSameOrigin: *const fn(
             self: *const IMFNetCrossOriginSupport,
@@ -17817,7 +17817,7 @@ pub const IMFNetCrossOriginSupport = extern union {
     pub fn GetCrossOriginPolicy(self: *const IMFNetCrossOriginSupport, pPolicy: ?*MF_CROSS_ORIGIN_POLICY) callconv(.@"inline") HRESULT {
         return self.vtable.GetCrossOriginPolicy(self, pPolicy);
     }
-    pub fn GetSourceOrigin(self: *const IMFNetCrossOriginSupport, wszSourceOrigin: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSourceOrigin(self: *const IMFNetCrossOriginSupport, wszSourceOrigin: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSourceOrigin(self, wszSourceOrigin);
     }
     pub fn IsSameOrigin(self: *const IMFNetCrossOriginSupport, wszURL: ?[*:0]const u16, pfIsSameOrigin: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -18091,7 +18091,7 @@ pub const IMFPluginControl = extern union {
             self: *const IMFPluginControl,
             pluginType: u32,
             index: u32,
-            selector: ?*?PWSTR,
+            selector: ?*?[*:0]u16,
             clsid: ?*Guid,
         ) callconv(.winapi) HRESULT,
         SetPreferredClsid: *const fn(
@@ -18123,7 +18123,7 @@ pub const IMFPluginControl = extern union {
     pub fn GetPreferredClsid(self: *const IMFPluginControl, pluginType: u32, selector: ?[*:0]const u16, clsid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetPreferredClsid(self, pluginType, selector, clsid);
     }
-    pub fn GetPreferredClsidByIndex(self: *const IMFPluginControl, pluginType: u32, index: u32, selector: ?*?PWSTR, clsid: ?*Guid) callconv(.@"inline") HRESULT {
+    pub fn GetPreferredClsidByIndex(self: *const IMFPluginControl, pluginType: u32, index: u32, selector: ?*?[*:0]u16, clsid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetPreferredClsidByIndex(self, pluginType, index, selector, clsid);
     }
     pub fn SetPreferredClsid(self: *const IMFPluginControl, pluginType: u32, selector: ?[*:0]const u16, clsid: ?*const Guid) callconv(.@"inline") HRESULT {
@@ -18171,7 +18171,7 @@ pub const IMFPMediaItem = extern union {
         ) callconv(.winapi) HRESULT,
         GetURL: *const fn(
             self: *const IMFPMediaItem,
-            ppwszURL: ?*?PWSTR,
+            ppwszURL: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetObject: *const fn(
             self: *const IMFPMediaItem,
@@ -18262,7 +18262,7 @@ pub const IMFPMediaItem = extern union {
     pub fn GetMediaPlayer(self: *const IMFPMediaItem, ppMediaPlayer: ?*?*IMFPMediaPlayer) callconv(.@"inline") HRESULT {
         return self.vtable.GetMediaPlayer(self, ppMediaPlayer);
     }
-    pub fn GetURL(self: *const IMFPMediaItem, ppwszURL: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetURL(self: *const IMFPMediaItem, ppwszURL: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetURL(self, ppwszURL);
     }
     pub fn GetObject(self: *const IMFPMediaItem, ppIUnknown: ?*?*IUnknown) callconv(.@"inline") HRESULT {
@@ -19353,7 +19353,7 @@ pub const IMFSAMIStyle = extern union {
         ) callconv(.winapi) HRESULT,
         GetSelectedStyle: *const fn(
             self: *const IMFSAMIStyle,
-            ppwszStyle: ?*?PWSTR,
+            ppwszStyle: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -19367,7 +19367,7 @@ pub const IMFSAMIStyle = extern union {
     pub fn SetSelectedStyle(self: *const IMFSAMIStyle, pwszStyle: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetSelectedStyle(self, pwszStyle);
     }
-    pub fn GetSelectedStyle(self: *const IMFSAMIStyle, ppwszStyle: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSelectedStyle(self: *const IMFSAMIStyle, ppwszStyle: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSelectedStyle(self, ppwszStyle);
     }
 };
@@ -21641,7 +21641,7 @@ pub const IMFTimedTextCue = extern union {
         ) callconv(.winapi) u32,
         GetOriginalId: *const fn(
             self: *const IMFTimedTextCue,
-            originalId: ?*?PWSTR,
+            originalId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetCueKind: *const fn(
             self: *const IMFTimedTextCue,
@@ -21681,7 +21681,7 @@ pub const IMFTimedTextCue = extern union {
     pub fn GetId(self: *const IMFTimedTextCue) callconv(.@"inline") u32 {
         return self.vtable.GetId(self);
     }
-    pub fn GetOriginalId(self: *const IMFTimedTextCue, originalId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetOriginalId(self: *const IMFTimedTextCue, originalId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetOriginalId(self, originalId);
     }
     pub fn GetCueKind(self: *const IMFTimedTextCue) callconv(.@"inline") MF_TIMED_TEXT_TRACK_KIND {
@@ -21790,7 +21790,7 @@ pub const IMFTimedTextFormattedText = extern union {
         base: IUnknown.VTable,
         GetText: *const fn(
             self: *const IMFTimedTextFormattedText,
-            text: ?*?PWSTR,
+            text: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetSubformattingCount: *const fn(
             self: *const IMFTimedTextFormattedText,
@@ -21805,7 +21805,7 @@ pub const IMFTimedTextFormattedText = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetText(self: *const IMFTimedTextFormattedText, text: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetText(self: *const IMFTimedTextFormattedText, text: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetText(self, text);
     }
     pub fn GetSubformattingCount(self: *const IMFTimedTextFormattedText) callconv(.@"inline") u32 {
@@ -21888,7 +21888,7 @@ pub const IMFTimedTextRegion = extern union {
         base: IUnknown.VTable,
         GetName: *const fn(
             self: *const IMFTimedTextRegion,
-            name: ?*?PWSTR,
+            name: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetPosition: *const fn(
             self: *const IMFTimedTextRegion,
@@ -21946,7 +21946,7 @@ pub const IMFTimedTextRegion = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IMFTimedTextRegion, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetName(self: *const IMFTimedTextRegion, name: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
     pub fn GetPosition(self: *const IMFTimedTextRegion, pX: ?*f64, pY: ?*f64, unitType: ?*MF_TIMED_TEXT_UNIT_TYPE) callconv(.@"inline") HRESULT {
@@ -21991,7 +21991,7 @@ pub const IMFTimedTextRuby = extern union {
         base: IUnknown.VTable,
         GetRubyText: *const fn(
             self: *const IMFTimedTextRuby,
-            rubyText: ?*?PWSTR,
+            rubyText: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetRubyPosition: *const fn(
             self: *const IMFTimedTextRuby,
@@ -22008,7 +22008,7 @@ pub const IMFTimedTextRuby = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRubyText(self: *const IMFTimedTextRuby, rubyText: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetRubyText(self: *const IMFTimedTextRuby, rubyText: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetRubyText(self, rubyText);
     }
     pub fn GetRubyPosition(self: *const IMFTimedTextRuby, value: ?*MF_TIMED_TEXT_RUBY_POSITION) callconv(.@"inline") HRESULT {
@@ -22030,14 +22030,14 @@ pub const IMFTimedTextStyle = extern union {
         base: IUnknown.VTable,
         GetName: *const fn(
             self: *const IMFTimedTextStyle,
-            name: ?*?PWSTR,
+            name: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         IsExternal: *const fn(
             self: *const IMFTimedTextStyle,
         ) callconv(.winapi) BOOL,
         GetFontFamily: *const fn(
             self: *const IMFTimedTextStyle,
-            fontFamily: ?*?PWSTR,
+            fontFamily: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetFontSize: *const fn(
             self: *const IMFTimedTextStyle,
@@ -22086,13 +22086,13 @@ pub const IMFTimedTextStyle = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IMFTimedTextStyle, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetName(self: *const IMFTimedTextStyle, name: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
     pub fn IsExternal(self: *const IMFTimedTextStyle) callconv(.@"inline") BOOL {
         return self.vtable.IsExternal(self);
     }
-    pub fn GetFontFamily(self: *const IMFTimedTextStyle, fontFamily: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetFontFamily(self: *const IMFTimedTextStyle, fontFamily: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetFontFamily(self, fontFamily);
     }
     pub fn GetFontSize(self: *const IMFTimedTextStyle, fontSize: ?*f64, unitType: ?*MF_TIMED_TEXT_UNIT_TYPE) callconv(.@"inline") HRESULT {
@@ -22176,7 +22176,7 @@ pub const IMFTimedTextTrack = extern union {
         ) callconv(.winapi) u32,
         GetLabel: *const fn(
             self: *const IMFTimedTextTrack,
-            label: ?*?PWSTR,
+            label: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetLabel: *const fn(
             self: *const IMFTimedTextTrack,
@@ -22184,7 +22184,7 @@ pub const IMFTimedTextTrack = extern union {
         ) callconv(.winapi) HRESULT,
         GetLanguage: *const fn(
             self: *const IMFTimedTextTrack,
-            language: ?*?PWSTR,
+            language: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetTrackKind: *const fn(
             self: *const IMFTimedTextTrack,
@@ -22194,7 +22194,7 @@ pub const IMFTimedTextTrack = extern union {
         ) callconv(.winapi) BOOL,
         GetInBandMetadataTrackDispatchType: *const fn(
             self: *const IMFTimedTextTrack,
-            dispatchType: ?*?PWSTR,
+            dispatchType: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         IsActive: *const fn(
             self: *const IMFTimedTextTrack,
@@ -22222,13 +22222,13 @@ pub const IMFTimedTextTrack = extern union {
     pub fn GetId(self: *const IMFTimedTextTrack) callconv(.@"inline") u32 {
         return self.vtable.GetId(self);
     }
-    pub fn GetLabel(self: *const IMFTimedTextTrack, label: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetLabel(self: *const IMFTimedTextTrack, label: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetLabel(self, label);
     }
     pub fn SetLabel(self: *const IMFTimedTextTrack, label: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetLabel(self, label);
     }
-    pub fn GetLanguage(self: *const IMFTimedTextTrack, language: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetLanguage(self: *const IMFTimedTextTrack, language: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetLanguage(self, language);
     }
     pub fn GetTrackKind(self: *const IMFTimedTextTrack) callconv(.@"inline") MF_TIMED_TEXT_TRACK_KIND {
@@ -22237,7 +22237,7 @@ pub const IMFTimedTextTrack = extern union {
     pub fn IsInBand(self: *const IMFTimedTextTrack) callconv(.@"inline") BOOL {
         return self.vtable.IsInBand(self);
     }
-    pub fn GetInBandMetadataTrackDispatchType(self: *const IMFTimedTextTrack, dispatchType: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetInBandMetadataTrackDispatchType(self: *const IMFTimedTextTrack, dispatchType: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetInBandMetadataTrackDispatchType(self, dispatchType);
     }
     pub fn IsActive(self: *const IMFTimedTextTrack) callconv(.@"inline") BOOL {
@@ -29786,7 +29786,7 @@ pub extern "mf" fn MFGetLocalId(
     /// parameter "size" is the size in bytes
     verifier: ?*const u8,
     size: u32,
-    id: ?*?PWSTR,
+    id: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -29886,7 +29886,7 @@ pub extern "mfplat" fn MFGetWorkQueueMMCSSTaskId(
 pub extern "mfplat" fn MFHeapAlloc(
     nSize: usize,
     dwFlags: u32,
-    pszFile: ?PSTR,
+    pszFile: ?[*:0]u8,
     line: i32,
     eat: EAllocationType,
 ) callconv(.winapi) ?*anyopaque;
@@ -30209,7 +30209,7 @@ pub extern "mfplat" fn MFTEnumEx(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "mfplat" fn MFTGetInfo(
     clsidMFT: Guid,
-    pszName: ?*?PWSTR,
+    pszName: ?*?[*:0]u16,
     ppInputTypes: ?*?*MFT_REGISTER_TYPE_INFO,
     pcInputTypes: ?*u32,
     ppOutputTypes: ?*?*MFT_REGISTER_TYPE_INFO,
@@ -30229,7 +30229,7 @@ pub extern "mf" fn MFTranscodeGetAudioOutputAvailableTypes(
 pub extern "mfplat" fn MFTRegister(
     clsidMFT: Guid,
     guidCategory: Guid,
-    pszName: ?PWSTR,
+    pszName: ?[*:0]u16,
     Flags: u32,
     cInputTypes: u32,
     pInputTypes: ?[*]MFT_REGISTER_TYPE_INFO,
@@ -30358,7 +30358,7 @@ pub extern "opmxbox" fn OPMXboxGetHDCPStatusAndType(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (65)
+// Section: Imports (63)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const AudioObjectType = @import("../media/audio.zig").AudioObjectType;
@@ -30418,8 +30418,6 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const LUID = @import("../foundation.zig").LUID;
 const POINT = @import("../foundation.zig").POINT;
 const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const SIZE = @import("../foundation.zig").SIZE;
 const VARIANT = @import("../system/com.zig").VARIANT;

@@ -186,16 +186,16 @@ pub const DISC_NO_FORCE = DISCDLGSTRUCT_FLAGS{ .NO_FORCE = 1 };
 pub const DISCDLGSTRUCTA = extern struct {
     cbStructure: u32,
     hwndOwner: ?HWND,
-    lpLocalName: ?PSTR,
-    lpRemoteName: ?PSTR,
+    lpLocalName: ?[*:0]u8,
+    lpRemoteName: ?[*:0]u8,
     dwFlags: DISCDLGSTRUCT_FLAGS,
 };
 
 pub const DISCDLGSTRUCTW = extern struct {
     cbStructure: u32,
     hwndOwner: ?HWND,
-    lpLocalName: ?PWSTR,
-    lpRemoteName: ?PWSTR,
+    lpLocalName: ?[*:0]u16,
+    lpRemoteName: ?[*:0]u16,
     dwFlags: DISCDLGSTRUCT_FLAGS,
 };
 
@@ -358,10 +358,10 @@ pub const NETRESOURCEA = extern struct {
     dwType: NET_RESOURCE_TYPE,
     dwDisplayType: u32,
     dwUsage: u32,
-    lpLocalName: ?PSTR,
-    lpRemoteName: ?PSTR,
-    lpComment: ?PSTR,
-    lpProvider: ?PSTR,
+    lpLocalName: ?[*:0]u8,
+    lpRemoteName: ?[*:0]u8,
+    lpComment: ?[*:0]u8,
+    lpProvider: ?[*:0]u8,
 };
 
 pub const NETRESOURCEW = extern struct {
@@ -369,10 +369,10 @@ pub const NETRESOURCEW = extern struct {
     dwType: NET_RESOURCE_TYPE,
     dwDisplayType: u32,
     dwUsage: u32,
-    lpLocalName: ?PWSTR,
-    lpRemoteName: ?PWSTR,
-    lpComment: ?PWSTR,
-    lpProvider: ?PWSTR,
+    lpLocalName: ?[*:0]u16,
+    lpRemoteName: ?[*:0]u16,
+    lpComment: ?[*:0]u16,
+    lpProvider: ?[*:0]u16,
 };
 
 pub const NETWORK_NAME_FORMAT_FLAGS = enum(u32) {
@@ -389,8 +389,8 @@ pub const NOTIFYADD = extern struct {
 };
 
 pub const NOTIFYCANCEL = extern struct {
-    lpName: ?PWSTR,
-    lpProvider: ?PWSTR,
+    lpName: ?[*:0]u16,
+    lpProvider: ?[*:0]u16,
     dwFlags: u32,
     fForce: BOOL,
 };
@@ -431,15 +431,15 @@ pub const PF_CancelConnectNotify = *const fn(
 
 pub const PF_NPAddConnection = *const fn(
     lpNetResource: ?*NETRESOURCEW,
-    lpPassword: ?PWSTR,
-    lpUserName: ?PWSTR,
+    lpPassword: ?[*:0]u16,
+    lpUserName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub const PF_NPAddConnection3 = *const fn(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEW,
-    lpPassword: ?PWSTR,
-    lpUserName: ?PWSTR,
+    lpPassword: ?[*:0]u16,
+    lpUserName: ?[*:0]u16,
     dwFlags: u32,
 ) callconv(.winapi) u32;
 
@@ -456,12 +456,12 @@ pub const PF_NPAddConnection4 = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PF_NPCancelConnection = *const fn(
-    lpName: ?PWSTR,
+    lpName: ?[*:0]u16,
     fForce: BOOL,
 ) callconv(.winapi) u32;
 
 pub const PF_NPCancelConnection2 = *const fn(
-    lpName: ?PWSTR,
+    lpName: ?[*:0]u16,
     fForce: BOOL,
     dwFlags: u32,
 ) callconv(.winapi) u32;
@@ -476,7 +476,7 @@ pub const PF_NPDeviceMode = *const fn(
 
 pub const PF_NPDirectoryNotify = *const fn(
     hwnd: ?HWND,
-    lpDir: ?PWSTR,
+    lpDir: ?[*:0]u16,
     dwOper: u32,
 ) callconv(.winapi) u32;
 
@@ -489,17 +489,17 @@ pub const PF_NPEnumResource = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PF_NPFMXEditPerm = *const fn(
-    lpDriveName: ?PWSTR,
+    lpDriveName: ?[*:0]u16,
     hwndFMX: ?HWND,
     nDialogType: u32,
 ) callconv(.winapi) u32;
 
 pub const PF_NPFMXGetPermCaps = *const fn(
-    lpDriveName: ?PWSTR,
+    lpDriveName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub const PF_NPFMXGetPermHelp = *const fn(
-    lpDriveName: ?PWSTR,
+    lpDriveName: ?[*:0]u16,
     nDialogType: u32,
     fDirectory: BOOL,
     lpFileNameBuffer: [*]u8,
@@ -508,7 +508,7 @@ pub const PF_NPFMXGetPermHelp = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PF_NPFormatNetworkName = *const fn(
-    lpRemoteName: ?PWSTR,
+    lpRemoteName: ?[*:0]u16,
     lpFormattedName: [*:0]u16,
     lpnLength: ?*u32,
     dwFlags: u32,
@@ -520,7 +520,7 @@ pub const PF_NPGetCaps = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PF_NPGetConnection = *const fn(
-    lpLocalName: ?PWSTR,
+    lpLocalName: ?[*:0]u16,
     lpRemoteName: ?[*:0]u16,
     lpnBufferLen: ?*u32,
 ) callconv(.winapi) u32;
@@ -539,13 +539,13 @@ pub const PF_NPGetConnectionPerformance = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PF_NPGetDirectoryType = *const fn(
-    lpName: ?PWSTR,
+    lpName: ?[*:0]u16,
     lpType: ?*i32,
     bFlushCache: BOOL,
 ) callconv(.winapi) u32;
 
 pub const PF_NPGetPersistentUseOptionsForConnection = *const fn(
-    lpRemotePath: ?PWSTR,
+    lpRemotePath: ?[*:0]u16,
     /// parameter "cbReadUseOptions" is the size in bytes
     lpReadUseOptions: ?*u8,
     cbReadUseOptions: u32,
@@ -557,7 +557,7 @@ pub const PF_NPGetPersistentUseOptionsForConnection = *const fn(
 pub const PF_NPGetPropertyText = *const fn(
     iButton: u32,
     nPropSel: u32,
-    lpName: ?PWSTR,
+    lpName: ?[*:0]u16,
     lpButtonName: [*:0]u16,
     nButtonNameLen: u32,
     nType: u32,
@@ -568,7 +568,7 @@ pub const PF_NPGetResourceInformation = *const fn(
     /// parameter "lpBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
-    lplpSystem: ?*?PWSTR,
+    lplpSystem: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub const PF_NPGetResourceParent = *const fn(
@@ -587,7 +587,7 @@ pub const PF_NPGetUniversalName = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PF_NPGetUser = *const fn(
-    lpName: ?PWSTR,
+    lpName: ?[*:0]u16,
     lpUserName: [*:0]u16,
     lpnBufferLen: ?*u32,
 ) callconv(.winapi) u32;
@@ -598,9 +598,9 @@ pub const PF_NPLogonNotify = *const fn(
     lpAuthentInfo: ?*anyopaque,
     lpPreviousAuthentInfoType: ?[*:0]const u16,
     lpPreviousAuthentInfo: ?*anyopaque,
-    lpStationName: ?PWSTR,
+    lpStationName: ?[*:0]u16,
     StationHandle: ?*anyopaque,
-    lpLogonScript: ?*?PWSTR,
+    lpLogonScript: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub const PF_NPOpenEnum = *const fn(
@@ -616,7 +616,7 @@ pub const PF_NPPasswordChangeNotify = *const fn(
     lpAuthentInfo: ?*anyopaque,
     lpPreviousAuthentInfoType: ?[*:0]const u16,
     lpPreviousAuthentInfo: ?*anyopaque,
-    lpStationName: ?PWSTR,
+    lpStationName: ?[*:0]u16,
     StationHandle: ?*anyopaque,
     dwChangeInfo: u32,
 ) callconv(.winapi) u32;
@@ -625,7 +625,7 @@ pub const PF_NPPropertyDialog = *const fn(
     hwndParent: ?HWND,
     iButtonDlg: u32,
     nPropSel: u32,
-    lpFileName: ?PWSTR,
+    lpFileName: ?[*:0]u16,
     nType: u32,
 ) callconv(.winapi) u32;
 
@@ -638,15 +638,15 @@ pub const PF_NPSearchDialog = *const fn(
 ) callconv(.winapi) u32;
 
 pub const REMOTE_NAME_INFOA = extern struct {
-    lpUniversalName: ?PSTR,
-    lpConnectionName: ?PSTR,
-    lpRemainingPath: ?PSTR,
+    lpUniversalName: ?[*:0]u8,
+    lpConnectionName: ?[*:0]u8,
+    lpRemainingPath: ?[*:0]u8,
 };
 
 pub const REMOTE_NAME_INFOW = extern struct {
-    lpUniversalName: ?PWSTR,
-    lpConnectionName: ?PWSTR,
-    lpRemainingPath: ?PWSTR,
+    lpUniversalName: ?[*:0]u16,
+    lpConnectionName: ?[*:0]u16,
+    lpRemainingPath: ?[*:0]u16,
 };
 
 pub const UNC_INFO_LEVEL = enum(u32) {
@@ -657,11 +657,11 @@ pub const UNIVERSAL_NAME_INFO_LEVEL = UNC_INFO_LEVEL.UNIVERSAL_NAME_INFO_LEVEL;
 pub const REMOTE_NAME_INFO_LEVEL = UNC_INFO_LEVEL.REMOTE_NAME_INFO_LEVEL;
 
 pub const UNIVERSAL_NAME_INFOA = extern struct {
-    lpUniversalName: ?PSTR,
+    lpUniversalName: ?[*:0]u8,
 };
 
 pub const UNIVERSAL_NAME_INFOW = extern struct {
-    lpUniversalName: ?PWSTR,
+    lpUniversalName: ?[*:0]u16,
 };
 
 pub const WNET_OPEN_ENUM_USAGE = packed struct(u32) {
@@ -736,16 +736,16 @@ pub extern "mpr" fn MultinetGetConnectionPerformanceW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "davclnt" fn NPAddConnection(
     lpNetResource: ?*NETRESOURCEW,
-    lpPassword: ?PWSTR,
-    lpUserName: ?PWSTR,
+    lpPassword: ?[*:0]u16,
+    lpUserName: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "davclnt" fn NPAddConnection3(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEW,
-    lpPassword: ?PWSTR,
-    lpUserName: ?PWSTR,
+    lpPassword: ?[*:0]u16,
+    lpUserName: ?[*:0]u16,
     dwFlags: NET_USE_CONNECT_FLAGS,
 ) callconv(.winapi) u32;
 
@@ -763,12 +763,12 @@ pub extern "ntlanman" fn NPAddConnection4(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "davclnt" fn NPCancelConnection(
-    lpName: ?PWSTR,
+    lpName: ?[*:0]u16,
     fForce: BOOL,
 ) callconv(.winapi) u32;
 
 pub extern "ntlanman" fn NPCancelConnection2(
-    lpName: ?PWSTR,
+    lpName: ?[*:0]u16,
     fForce: BOOL,
     dwFlags: u32,
 ) callconv(.winapi) u32;
@@ -789,7 +789,7 @@ pub extern "davclnt" fn NPEnumResource(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "davclnt" fn NPFormatNetworkName(
-    lpRemoteName: ?PWSTR,
+    lpRemoteName: ?[*:0]u16,
     lpFormattedName: [*:0]u16,
     lpnLength: ?*u32,
     dwFlags: NETWORK_NAME_FORMAT_FLAGS,
@@ -803,7 +803,7 @@ pub extern "davclnt" fn NPGetCaps(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "davclnt" fn NPGetConnection(
-    lpLocalName: ?PWSTR,
+    lpLocalName: ?[*:0]u16,
     lpRemoteName: ?[*:0]u16,
     lpnBufferLen: ?*u32,
 ) callconv(.winapi) u32;
@@ -824,7 +824,7 @@ pub extern "ntlanman" fn NPGetConnectionPerformance(
 ) callconv(.winapi) u32;
 
 pub extern "ntlanman" fn NPGetPersistentUseOptionsForConnection(
-    lpRemotePath: ?PWSTR,
+    lpRemotePath: ?[*:0]u16,
     /// parameter "cbReadUseOptions" is the size in bytes
     lpReadUseOptions: ?*u8,
     cbReadUseOptions: u32,
@@ -839,7 +839,7 @@ pub extern "davclnt" fn NPGetResourceInformation(
     /// parameter "lpBufferSize" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
-    lplpSystem: ?*?PWSTR,
+    lplpSystem: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -861,7 +861,7 @@ pub extern "davclnt" fn NPGetUniversalName(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "davclnt" fn NPGetUser(
-    lpName: ?PWSTR,
+    lpName: ?[*:0]u16,
     lpUserName: [*:0]u16,
     lpnBufferLen: ?*u32,
 ) callconv(.winapi) u32;
@@ -1092,7 +1092,7 @@ pub extern "mpr" fn WNetGetResourceInformationA(
     /// parameter "lpcbBuffer" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpcbBuffer: ?*u32,
-    lplpSystem: ?*?PSTR,
+    lplpSystem: ?*?[*:0]u8,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1101,7 +1101,7 @@ pub extern "mpr" fn WNetGetResourceInformationW(
     /// parameter "lpcbBuffer" is the size in bytes
     lpBuffer: ?*anyopaque,
     lpcbBuffer: ?*u32,
-    lplpSystem: ?*?PWSTR,
+    lplpSystem: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1173,14 +1173,14 @@ pub extern "mpr" fn WNetOpenEnumW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "mpr" fn WNetSetLastErrorA(
     err: u32,
-    lpError: ?PSTR,
-    lpProviders: ?PSTR,
+    lpError: ?[*:0]u8,
+    lpProviders: ?[*:0]u8,
 ) callconv(.winapi) void;
 
 pub extern "mpr" fn WNetSetLastErrorW(
     err: u32,
-    lpError: ?PWSTR,
-    lpProviders: ?PWSTR,
+    lpError: ?[*:0]u16,
+    lpProviders: ?[*:0]u16,
 ) callconv(.winapi) void;
 
 pub extern "mpr" fn WNetUseConnection4A(
@@ -1431,14 +1431,12 @@ pub const WNetUseConnection = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HWND = @import("../foundation.zig").HWND;
 const LUID = @import("../foundation.zig").LUID;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
 
 test {

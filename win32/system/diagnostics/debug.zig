@@ -3458,7 +3458,7 @@ pub const EXT_FIND_FILE = extern struct {
     FileMapping: ?*anyopaque,
     FileMappingSize: u64,
     FileHandle: ?HANDLE,
-    FoundFileName: ?PWSTR,
+    FoundFileName: ?[*:0]u16,
     FoundFileNameChars: u32,
 };
 
@@ -3533,10 +3533,10 @@ pub const EXT_TYPED_DATA = extern struct {
 
 pub const ExtendedDebugPropertyInfo = extern struct {
     dwValidFields: u32,
-    pszName: ?PWSTR,
-    pszType: ?PWSTR,
-    pszValue: ?PWSTR,
-    pszFullName: ?PWSTR,
+    pszName: ?[*:0]u16,
+    pszType: ?[*:0]u16,
+    pszValue: ?[*:0]u16,
+    pszFullName: ?[*:0]u16,
     dwAttrib: u32,
     pDebugProp: ?*IDebugProperty,
     nDISPID: u32,
@@ -3971,7 +3971,7 @@ pub const GET_EXPRESSION_EX = extern struct {
 
 pub const GET_INPUT_LINE = extern struct {
     Prompt: ?[*:0]const u8,
-    Buffer: ?PSTR,
+    Buffer: ?[*:0]u8,
     BufferSize: u32,
     InputSize: u32,
 };
@@ -3983,7 +3983,7 @@ pub const GET_PEB_ADDRESS = extern struct {
 
 pub const GET_SET_SYMPATH = extern struct {
     Args: ?[*:0]const u8,
-    Result: ?PSTR,
+    Result: ?[*:0]u8,
     Length: i32,
 };
 
@@ -4367,7 +4367,7 @@ pub const IActiveScriptEncode = extern union {
             self: *const IActiveScriptEncode,
             pchIn: ?[*:0]const u16,
             cchIn: u32,
-            pchOut: ?PWSTR,
+            pchOut: ?[*:0]u16,
             cchOut: u32,
             pcchRet: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -4375,7 +4375,7 @@ pub const IActiveScriptEncode = extern union {
             self: *const IActiveScriptEncode,
             pchIn: ?[*:0]const u16,
             cchIn: u32,
-            pchOut: ?PWSTR,
+            pchOut: ?[*:0]u16,
             cchOut: u32,
             pcchRet: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -4386,10 +4386,10 @@ pub const IActiveScriptEncode = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EncodeSection(self: *const IActiveScriptEncode, pchIn: ?[*:0]const u16, cchIn: u32, pchOut: ?PWSTR, cchOut: u32, pcchRet: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn EncodeSection(self: *const IActiveScriptEncode, pchIn: ?[*:0]const u16, cchIn: u32, pchOut: ?[*:0]u16, cchOut: u32, pcchRet: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.EncodeSection(self, pchIn, cchIn, pchOut, cchOut, pcchRet);
     }
-    pub fn DecodeScript(self: *const IActiveScriptEncode, pchIn: ?[*:0]const u16, cchIn: u32, pchOut: ?PWSTR, cchOut: u32, pcchRet: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn DecodeScript(self: *const IActiveScriptEncode, pchIn: ?[*:0]const u16, cchIn: u32, pchOut: ?[*:0]u16, cchOut: u32, pcchRet: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.DecodeScript(self, pchIn, cchIn, pchOut, cchOut, pcchRet);
     }
     pub fn GetEncodeProgId(self: *const IActiveScriptEncode, pbstrOut: ?*?BSTR) callconv(.@"inline") HRESULT {
@@ -4996,7 +4996,7 @@ pub const IActiveScriptProfilerHeapEnum = extern union {
         ) callconv(.winapi) HRESULT,
         GetNameIdMap: *const fn(
             self: *const IActiveScriptProfilerHeapEnum,
-            pNameList: [*]?*?*?PWSTR,
+            pNameList: [*]?*?*?[*:0]u16,
             pcelt: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
@@ -5011,7 +5011,7 @@ pub const IActiveScriptProfilerHeapEnum = extern union {
     pub fn FreeObjectAndOptionalInfo(self: *const IActiveScriptProfilerHeapEnum, celt: u32, heapObjects: [*]?*PROFILER_HEAP_OBJECT) callconv(.@"inline") HRESULT {
         return self.vtable.FreeObjectAndOptionalInfo(self, celt, heapObjects);
     }
-    pub fn GetNameIdMap(self: *const IActiveScriptProfilerHeapEnum, pNameList: [*]?*?*?PWSTR, pcelt: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetNameIdMap(self: *const IActiveScriptProfilerHeapEnum, pNameList: [*]?*?*?[*:0]u16, pcelt: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNameIdMap(self, pNameList, pcelt);
     }
 };
@@ -6484,7 +6484,7 @@ pub const IDebugAdvanced2 = extern union {
         GetSourceFileInformation: *const fn(
             self: *const IDebugAdvanced2,
             Which: u32,
-            SourceFile: ?PSTR,
+            SourceFile: ?[*:0]u8,
             Arg64: u64,
             Arg32: u32,
             /// parameter "BufferSize" is the size in bytes
@@ -6541,7 +6541,7 @@ pub const IDebugAdvanced2 = extern union {
     pub fn Request(self: *const IDebugAdvanced2, _param_Request: u32, InBuffer: ?*anyopaque, InBufferSize: u32, OutBuffer: ?*anyopaque, OutBufferSize: u32, OutSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Request(self, _param_Request, InBuffer, InBufferSize, OutBuffer, OutBufferSize, OutSize);
     }
-    pub fn GetSourceFileInformation(self: *const IDebugAdvanced2, Which: u32, SourceFile: ?PSTR, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetSourceFileInformation(self: *const IDebugAdvanced2, Which: u32, SourceFile: ?[*:0]u8, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSourceFileInformation(self, Which, SourceFile, Arg64, Arg32, Buffer, BufferSize, InfoSize);
     }
     pub fn FindSourceFileAndToken(self: *const IDebugAdvanced2, StartElement: u32, ModAddr: u64, File: ?[*:0]const u8, Flags: u32, FileToken: ?*anyopaque, FileTokenSize: u32, FoundElement: ?*u32, Buffer: ?[*:0]u8, BufferSize: u32, FoundSize: ?*u32) callconv(.@"inline") HRESULT {
@@ -6586,7 +6586,7 @@ pub const IDebugAdvanced3 = extern union {
         GetSourceFileInformation: *const fn(
             self: *const IDebugAdvanced3,
             Which: u32,
-            SourceFile: ?PSTR,
+            SourceFile: ?[*:0]u8,
             Arg64: u64,
             Arg32: u32,
             /// parameter "BufferSize" is the size in bytes
@@ -6634,7 +6634,7 @@ pub const IDebugAdvanced3 = extern union {
         GetSourceFileInformationWide: *const fn(
             self: *const IDebugAdvanced3,
             Which: u32,
-            SourceFile: ?PWSTR,
+            SourceFile: ?[*:0]u16,
             Arg64: u64,
             Arg32: u32,
             /// parameter "BufferSize" is the size in bytes
@@ -6681,7 +6681,7 @@ pub const IDebugAdvanced3 = extern union {
     pub fn Request(self: *const IDebugAdvanced3, _param_Request: u32, InBuffer: ?*anyopaque, InBufferSize: u32, OutBuffer: ?*anyopaque, OutBufferSize: u32, OutSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Request(self, _param_Request, InBuffer, InBufferSize, OutBuffer, OutBufferSize, OutSize);
     }
-    pub fn GetSourceFileInformation(self: *const IDebugAdvanced3, Which: u32, SourceFile: ?PSTR, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetSourceFileInformation(self: *const IDebugAdvanced3, Which: u32, SourceFile: ?[*:0]u8, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSourceFileInformation(self, Which, SourceFile, Arg64, Arg32, Buffer, BufferSize, InfoSize);
     }
     pub fn FindSourceFileAndToken(self: *const IDebugAdvanced3, StartElement: u32, ModAddr: u64, File: ?[*:0]const u8, Flags: u32, FileToken: ?*anyopaque, FileTokenSize: u32, FoundElement: ?*u32, Buffer: ?[*:0]u8, BufferSize: u32, FoundSize: ?*u32) callconv(.@"inline") HRESULT {
@@ -6693,7 +6693,7 @@ pub const IDebugAdvanced3 = extern union {
     pub fn GetSystemObjectInformation(self: *const IDebugAdvanced3, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSystemObjectInformation(self, Which, Arg64, Arg32, Buffer, BufferSize, InfoSize);
     }
-    pub fn GetSourceFileInformationWide(self: *const IDebugAdvanced3, Which: u32, SourceFile: ?PWSTR, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetSourceFileInformationWide(self: *const IDebugAdvanced3, Which: u32, SourceFile: ?[*:0]u16, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSourceFileInformationWide(self, Which, SourceFile, Arg64, Arg32, Buffer, BufferSize, InfoSize);
     }
     pub fn FindSourceFileAndTokenWide(self: *const IDebugAdvanced3, StartElement: u32, ModAddr: u64, File: ?[*:0]const u16, Flags: u32, FileToken: ?*anyopaque, FileTokenSize: u32, FoundElement: ?*u32, Buffer: ?[*:0]u16, BufferSize: u32, FoundSize: ?*u32) callconv(.@"inline") HRESULT {
@@ -6735,7 +6735,7 @@ pub const IDebugAdvanced4 = extern union {
         GetSourceFileInformation: *const fn(
             self: *const IDebugAdvanced4,
             Which: u32,
-            SourceFile: ?PSTR,
+            SourceFile: ?[*:0]u8,
             Arg64: u64,
             Arg32: u32,
             /// parameter "BufferSize" is the size in bytes
@@ -6783,7 +6783,7 @@ pub const IDebugAdvanced4 = extern union {
         GetSourceFileInformationWide: *const fn(
             self: *const IDebugAdvanced4,
             Which: u32,
-            SourceFile: ?PWSTR,
+            SourceFile: ?[*:0]u16,
             Arg64: u64,
             Arg32: u32,
             /// parameter "BufferSize" is the size in bytes
@@ -6844,7 +6844,7 @@ pub const IDebugAdvanced4 = extern union {
     pub fn Request(self: *const IDebugAdvanced4, _param_Request: u32, InBuffer: ?*anyopaque, InBufferSize: u32, OutBuffer: ?*anyopaque, OutBufferSize: u32, OutSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Request(self, _param_Request, InBuffer, InBufferSize, OutBuffer, OutBufferSize, OutSize);
     }
-    pub fn GetSourceFileInformation(self: *const IDebugAdvanced4, Which: u32, SourceFile: ?PSTR, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetSourceFileInformation(self: *const IDebugAdvanced4, Which: u32, SourceFile: ?[*:0]u8, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSourceFileInformation(self, Which, SourceFile, Arg64, Arg32, Buffer, BufferSize, InfoSize);
     }
     pub fn FindSourceFileAndToken(self: *const IDebugAdvanced4, StartElement: u32, ModAddr: u64, File: ?[*:0]const u8, Flags: u32, FileToken: ?*anyopaque, FileTokenSize: u32, FoundElement: ?*u32, Buffer: ?[*:0]u8, BufferSize: u32, FoundSize: ?*u32) callconv(.@"inline") HRESULT {
@@ -6856,7 +6856,7 @@ pub const IDebugAdvanced4 = extern union {
     pub fn GetSystemObjectInformation(self: *const IDebugAdvanced4, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSystemObjectInformation(self, Which, Arg64, Arg32, Buffer, BufferSize, InfoSize);
     }
-    pub fn GetSourceFileInformationWide(self: *const IDebugAdvanced4, Which: u32, SourceFile: ?PWSTR, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetSourceFileInformationWide(self: *const IDebugAdvanced4, Which: u32, SourceFile: ?[*:0]u16, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSourceFileInformationWide(self, Which, SourceFile, Arg64, Arg32, Buffer, BufferSize, InfoSize);
     }
     pub fn FindSourceFileAndTokenWide(self: *const IDebugAdvanced4, StartElement: u32, ModAddr: u64, File: ?[*:0]const u16, Flags: u32, FileToken: ?*anyopaque, FileTokenSize: u32, FoundElement: ?*u32, Buffer: ?[*:0]u16, BufferSize: u32, FoundSize: ?*u32) callconv(.@"inline") HRESULT {
@@ -8266,13 +8266,13 @@ pub const IDebugClient = extern union {
         CreateProcessA: *const fn(
             self: *const IDebugClient,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             CreateFlags: u32,
         ) callconv(.winapi) HRESULT,
         CreateProcessAndAttach: *const fn(
             self: *const IDebugClient,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             CreateFlags: u32,
             ProcessId: u32,
             AttachFlags: u32,
@@ -8451,10 +8451,10 @@ pub const IDebugClient = extern union {
     pub fn AttachProcess(self: *const IDebugClient, Server: u64, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AttachProcess(self, Server, ProcessId, AttachFlags);
     }
-    pub fn CreateProcessA(self: *const IDebugClient, Server: u64, CommandLine: ?PSTR, CreateFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessA(self: *const IDebugClient, Server: u64, CommandLine: ?[*:0]u8, CreateFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessA(self, Server, CommandLine, CreateFlags);
     }
-    pub fn CreateProcessAndAttach(self: *const IDebugClient, Server: u64, CommandLine: ?PSTR, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttach(self: *const IDebugClient, Server: u64, CommandLine: ?[*:0]u8, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttach(self, Server, CommandLine, CreateFlags, ProcessId, AttachFlags);
     }
     pub fn GetProcessOptions(self: *const IDebugClient, Options: ?*u32) callconv(.@"inline") HRESULT {
@@ -8628,13 +8628,13 @@ pub const IDebugClient2 = extern union {
         CreateProcessA: *const fn(
             self: *const IDebugClient2,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             CreateFlags: u32,
         ) callconv(.winapi) HRESULT,
         CreateProcessAndAttach: *const fn(
             self: *const IDebugClient2,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             CreateFlags: u32,
             ProcessId: u32,
             AttachFlags: u32,
@@ -8845,10 +8845,10 @@ pub const IDebugClient2 = extern union {
     pub fn AttachProcess(self: *const IDebugClient2, Server: u64, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AttachProcess(self, Server, ProcessId, AttachFlags);
     }
-    pub fn CreateProcessA(self: *const IDebugClient2, Server: u64, CommandLine: ?PSTR, CreateFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessA(self: *const IDebugClient2, Server: u64, CommandLine: ?[*:0]u8, CreateFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessA(self, Server, CommandLine, CreateFlags);
     }
-    pub fn CreateProcessAndAttach(self: *const IDebugClient2, Server: u64, CommandLine: ?PSTR, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttach(self: *const IDebugClient2, Server: u64, CommandLine: ?[*:0]u8, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttach(self, Server, CommandLine, CreateFlags, ProcessId, AttachFlags);
     }
     pub fn GetProcessOptions(self: *const IDebugClient2, Options: ?*u32) callconv(.@"inline") HRESULT {
@@ -9046,13 +9046,13 @@ pub const IDebugClient3 = extern union {
         CreateProcessA: *const fn(
             self: *const IDebugClient3,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             CreateFlags: u32,
         ) callconv(.winapi) HRESULT,
         CreateProcessAndAttach: *const fn(
             self: *const IDebugClient3,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             CreateFlags: u32,
             ProcessId: u32,
             AttachFlags: u32,
@@ -9252,13 +9252,13 @@ pub const IDebugClient3 = extern union {
         CreateProcessWide: *const fn(
             self: *const IDebugClient3,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             CreateFlags: u32,
         ) callconv(.winapi) HRESULT,
         CreateProcessAndAttachWide: *const fn(
             self: *const IDebugClient3,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             CreateFlags: u32,
             ProcessId: u32,
             AttachFlags: u32,
@@ -9296,10 +9296,10 @@ pub const IDebugClient3 = extern union {
     pub fn AttachProcess(self: *const IDebugClient3, Server: u64, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AttachProcess(self, Server, ProcessId, AttachFlags);
     }
-    pub fn CreateProcessA(self: *const IDebugClient3, Server: u64, CommandLine: ?PSTR, CreateFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessA(self: *const IDebugClient3, Server: u64, CommandLine: ?[*:0]u8, CreateFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessA(self, Server, CommandLine, CreateFlags);
     }
-    pub fn CreateProcessAndAttach(self: *const IDebugClient3, Server: u64, CommandLine: ?PSTR, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttach(self: *const IDebugClient3, Server: u64, CommandLine: ?[*:0]u8, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttach(self, Server, CommandLine, CreateFlags, ProcessId, AttachFlags);
     }
     pub fn GetProcessOptions(self: *const IDebugClient3, Options: ?*u32) callconv(.@"inline") HRESULT {
@@ -9431,10 +9431,10 @@ pub const IDebugClient3 = extern union {
     pub fn GetRunningProcessDescriptionWide(self: *const IDebugClient3, Server: u64, SystemId: u32, Flags: u32, ExeName: ?[*:0]u16, ExeNameSize: u32, ActualExeNameSize: ?*u32, Description: ?[*:0]u16, DescriptionSize: u32, ActualDescriptionSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRunningProcessDescriptionWide(self, Server, SystemId, Flags, ExeName, ExeNameSize, ActualExeNameSize, Description, DescriptionSize, ActualDescriptionSize);
     }
-    pub fn CreateProcessWide(self: *const IDebugClient3, Server: u64, CommandLine: ?PWSTR, CreateFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessWide(self: *const IDebugClient3, Server: u64, CommandLine: ?[*:0]u16, CreateFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessWide(self, Server, CommandLine, CreateFlags);
     }
-    pub fn CreateProcessAndAttachWide(self: *const IDebugClient3, Server: u64, CommandLine: ?PWSTR, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttachWide(self: *const IDebugClient3, Server: u64, CommandLine: ?[*:0]u16, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttachWide(self, Server, CommandLine, CreateFlags, ProcessId, AttachFlags);
     }
 };
@@ -9509,13 +9509,13 @@ pub const IDebugClient4 = extern union {
         CreateProcessA: *const fn(
             self: *const IDebugClient4,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             CreateFlags: u32,
         ) callconv(.winapi) HRESULT,
         CreateProcessAndAttach: *const fn(
             self: *const IDebugClient4,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             CreateFlags: u32,
             ProcessId: u32,
             AttachFlags: u32,
@@ -9715,13 +9715,13 @@ pub const IDebugClient4 = extern union {
         CreateProcessWide: *const fn(
             self: *const IDebugClient4,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             CreateFlags: u32,
         ) callconv(.winapi) HRESULT,
         CreateProcessAndAttachWide: *const fn(
             self: *const IDebugClient4,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             CreateFlags: u32,
             ProcessId: u32,
             AttachFlags: u32,
@@ -9800,10 +9800,10 @@ pub const IDebugClient4 = extern union {
     pub fn AttachProcess(self: *const IDebugClient4, Server: u64, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AttachProcess(self, Server, ProcessId, AttachFlags);
     }
-    pub fn CreateProcessA(self: *const IDebugClient4, Server: u64, CommandLine: ?PSTR, CreateFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessA(self: *const IDebugClient4, Server: u64, CommandLine: ?[*:0]u8, CreateFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessA(self, Server, CommandLine, CreateFlags);
     }
-    pub fn CreateProcessAndAttach(self: *const IDebugClient4, Server: u64, CommandLine: ?PSTR, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttach(self: *const IDebugClient4, Server: u64, CommandLine: ?[*:0]u8, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttach(self, Server, CommandLine, CreateFlags, ProcessId, AttachFlags);
     }
     pub fn GetProcessOptions(self: *const IDebugClient4, Options: ?*u32) callconv(.@"inline") HRESULT {
@@ -9935,10 +9935,10 @@ pub const IDebugClient4 = extern union {
     pub fn GetRunningProcessDescriptionWide(self: *const IDebugClient4, Server: u64, SystemId: u32, Flags: u32, ExeName: ?[*:0]u16, ExeNameSize: u32, ActualExeNameSize: ?*u32, Description: ?[*:0]u16, DescriptionSize: u32, ActualDescriptionSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRunningProcessDescriptionWide(self, Server, SystemId, Flags, ExeName, ExeNameSize, ActualExeNameSize, Description, DescriptionSize, ActualDescriptionSize);
     }
-    pub fn CreateProcessWide(self: *const IDebugClient4, Server: u64, CommandLine: ?PWSTR, CreateFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessWide(self: *const IDebugClient4, Server: u64, CommandLine: ?[*:0]u16, CreateFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessWide(self, Server, CommandLine, CreateFlags);
     }
-    pub fn CreateProcessAndAttachWide(self: *const IDebugClient4, Server: u64, CommandLine: ?PWSTR, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttachWide(self: *const IDebugClient4, Server: u64, CommandLine: ?[*:0]u16, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttachWide(self, Server, CommandLine, CreateFlags, ProcessId, AttachFlags);
     }
     pub fn OpenDumpFileWide(self: *const IDebugClient4, FileName: ?[*:0]const u16, FileHandle: u64) callconv(.@"inline") HRESULT {
@@ -10031,13 +10031,13 @@ pub const IDebugClient5 = extern union {
         CreateProcessA: *const fn(
             self: *const IDebugClient5,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             CreateFlags: u32,
         ) callconv(.winapi) HRESULT,
         CreateProcessAndAttach: *const fn(
             self: *const IDebugClient5,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             CreateFlags: u32,
             ProcessId: u32,
             AttachFlags: u32,
@@ -10237,13 +10237,13 @@ pub const IDebugClient5 = extern union {
         CreateProcessWide: *const fn(
             self: *const IDebugClient5,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             CreateFlags: u32,
         ) callconv(.winapi) HRESULT,
         CreateProcessAndAttachWide: *const fn(
             self: *const IDebugClient5,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             CreateFlags: u32,
             ProcessId: u32,
             AttachFlags: u32,
@@ -10366,7 +10366,7 @@ pub const IDebugClient5 = extern union {
         CreateProcess2: *const fn(
             self: *const IDebugClient5,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
@@ -10376,7 +10376,7 @@ pub const IDebugClient5 = extern union {
         CreateProcess2Wide: *const fn(
             self: *const IDebugClient5,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
@@ -10386,7 +10386,7 @@ pub const IDebugClient5 = extern union {
         CreateProcessAndAttach2: *const fn(
             self: *const IDebugClient5,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
@@ -10398,7 +10398,7 @@ pub const IDebugClient5 = extern union {
         CreateProcessAndAttach2Wide: *const fn(
             self: *const IDebugClient5,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
@@ -10487,10 +10487,10 @@ pub const IDebugClient5 = extern union {
     pub fn AttachProcess(self: *const IDebugClient5, Server: u64, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AttachProcess(self, Server, ProcessId, AttachFlags);
     }
-    pub fn CreateProcessA(self: *const IDebugClient5, Server: u64, CommandLine: ?PSTR, CreateFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessA(self: *const IDebugClient5, Server: u64, CommandLine: ?[*:0]u8, CreateFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessA(self, Server, CommandLine, CreateFlags);
     }
-    pub fn CreateProcessAndAttach(self: *const IDebugClient5, Server: u64, CommandLine: ?PSTR, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttach(self: *const IDebugClient5, Server: u64, CommandLine: ?[*:0]u8, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttach(self, Server, CommandLine, CreateFlags, ProcessId, AttachFlags);
     }
     pub fn GetProcessOptions(self: *const IDebugClient5, Options: ?*u32) callconv(.@"inline") HRESULT {
@@ -10622,10 +10622,10 @@ pub const IDebugClient5 = extern union {
     pub fn GetRunningProcessDescriptionWide(self: *const IDebugClient5, Server: u64, SystemId: u32, Flags: u32, ExeName: ?[*:0]u16, ExeNameSize: u32, ActualExeNameSize: ?*u32, Description: ?[*:0]u16, DescriptionSize: u32, ActualDescriptionSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRunningProcessDescriptionWide(self, Server, SystemId, Flags, ExeName, ExeNameSize, ActualExeNameSize, Description, DescriptionSize, ActualDescriptionSize);
     }
-    pub fn CreateProcessWide(self: *const IDebugClient5, Server: u64, CommandLine: ?PWSTR, CreateFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessWide(self: *const IDebugClient5, Server: u64, CommandLine: ?[*:0]u16, CreateFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessWide(self, Server, CommandLine, CreateFlags);
     }
-    pub fn CreateProcessAndAttachWide(self: *const IDebugClient5, Server: u64, CommandLine: ?PWSTR, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttachWide(self: *const IDebugClient5, Server: u64, CommandLine: ?[*:0]u16, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttachWide(self, Server, CommandLine, CreateFlags, ProcessId, AttachFlags);
     }
     pub fn OpenDumpFileWide(self: *const IDebugClient5, FileName: ?[*:0]const u16, FileHandle: u64) callconv(.@"inline") HRESULT {
@@ -10691,16 +10691,16 @@ pub const IDebugClient5 = extern union {
     pub fn SetEventCallbacksWide(self: *const IDebugClient5, Callbacks: ?*IDebugEventCallbacksWide) callconv(.@"inline") HRESULT {
         return self.vtable.SetEventCallbacksWide(self, Callbacks);
     }
-    pub fn CreateProcess2(self: *const IDebugClient5, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8) callconv(.@"inline") HRESULT {
+    pub fn CreateProcess2(self: *const IDebugClient5, Server: u64, CommandLine: ?[*:0]u8, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcess2(self, Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment);
     }
-    pub fn CreateProcess2Wide(self: *const IDebugClient5, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+    pub fn CreateProcess2Wide(self: *const IDebugClient5, Server: u64, CommandLine: ?[*:0]u16, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcess2Wide(self, Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment);
     }
-    pub fn CreateProcessAndAttach2(self: *const IDebugClient5, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttach2(self: *const IDebugClient5, Server: u64, CommandLine: ?[*:0]u8, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttach2(self, Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment, ProcessId, AttachFlags);
     }
-    pub fn CreateProcessAndAttach2Wide(self: *const IDebugClient5, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttach2Wide(self: *const IDebugClient5, Server: u64, CommandLine: ?[*:0]u16, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttach2Wide(self, Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment, ProcessId, AttachFlags);
     }
     pub fn PushOutputLinePrefix(self: *const IDebugClient5, NewPrefix: ?[*:0]const u8, Handle: ?*u64) callconv(.@"inline") HRESULT {
@@ -10805,13 +10805,13 @@ pub const IDebugClient6 = extern union {
         CreateProcessA: *const fn(
             self: *const IDebugClient6,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             CreateFlags: u32,
         ) callconv(.winapi) HRESULT,
         CreateProcessAndAttach: *const fn(
             self: *const IDebugClient6,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             CreateFlags: u32,
             ProcessId: u32,
             AttachFlags: u32,
@@ -11011,13 +11011,13 @@ pub const IDebugClient6 = extern union {
         CreateProcessWide: *const fn(
             self: *const IDebugClient6,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             CreateFlags: u32,
         ) callconv(.winapi) HRESULT,
         CreateProcessAndAttachWide: *const fn(
             self: *const IDebugClient6,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             CreateFlags: u32,
             ProcessId: u32,
             AttachFlags: u32,
@@ -11140,7 +11140,7 @@ pub const IDebugClient6 = extern union {
         CreateProcess2: *const fn(
             self: *const IDebugClient6,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
@@ -11150,7 +11150,7 @@ pub const IDebugClient6 = extern union {
         CreateProcess2Wide: *const fn(
             self: *const IDebugClient6,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
@@ -11160,7 +11160,7 @@ pub const IDebugClient6 = extern union {
         CreateProcessAndAttach2: *const fn(
             self: *const IDebugClient6,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
@@ -11172,7 +11172,7 @@ pub const IDebugClient6 = extern union {
         CreateProcessAndAttach2Wide: *const fn(
             self: *const IDebugClient6,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
@@ -11265,10 +11265,10 @@ pub const IDebugClient6 = extern union {
     pub fn AttachProcess(self: *const IDebugClient6, Server: u64, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AttachProcess(self, Server, ProcessId, AttachFlags);
     }
-    pub fn CreateProcessA(self: *const IDebugClient6, Server: u64, CommandLine: ?PSTR, CreateFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessA(self: *const IDebugClient6, Server: u64, CommandLine: ?[*:0]u8, CreateFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessA(self, Server, CommandLine, CreateFlags);
     }
-    pub fn CreateProcessAndAttach(self: *const IDebugClient6, Server: u64, CommandLine: ?PSTR, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttach(self: *const IDebugClient6, Server: u64, CommandLine: ?[*:0]u8, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttach(self, Server, CommandLine, CreateFlags, ProcessId, AttachFlags);
     }
     pub fn GetProcessOptions(self: *const IDebugClient6, Options: ?*u32) callconv(.@"inline") HRESULT {
@@ -11400,10 +11400,10 @@ pub const IDebugClient6 = extern union {
     pub fn GetRunningProcessDescriptionWide(self: *const IDebugClient6, Server: u64, SystemId: u32, Flags: u32, ExeName: ?[*:0]u16, ExeNameSize: u32, ActualExeNameSize: ?*u32, Description: ?[*:0]u16, DescriptionSize: u32, ActualDescriptionSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRunningProcessDescriptionWide(self, Server, SystemId, Flags, ExeName, ExeNameSize, ActualExeNameSize, Description, DescriptionSize, ActualDescriptionSize);
     }
-    pub fn CreateProcessWide(self: *const IDebugClient6, Server: u64, CommandLine: ?PWSTR, CreateFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessWide(self: *const IDebugClient6, Server: u64, CommandLine: ?[*:0]u16, CreateFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessWide(self, Server, CommandLine, CreateFlags);
     }
-    pub fn CreateProcessAndAttachWide(self: *const IDebugClient6, Server: u64, CommandLine: ?PWSTR, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttachWide(self: *const IDebugClient6, Server: u64, CommandLine: ?[*:0]u16, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttachWide(self, Server, CommandLine, CreateFlags, ProcessId, AttachFlags);
     }
     pub fn OpenDumpFileWide(self: *const IDebugClient6, FileName: ?[*:0]const u16, FileHandle: u64) callconv(.@"inline") HRESULT {
@@ -11469,16 +11469,16 @@ pub const IDebugClient6 = extern union {
     pub fn SetEventCallbacksWide(self: *const IDebugClient6, Callbacks: ?*IDebugEventCallbacksWide) callconv(.@"inline") HRESULT {
         return self.vtable.SetEventCallbacksWide(self, Callbacks);
     }
-    pub fn CreateProcess2(self: *const IDebugClient6, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8) callconv(.@"inline") HRESULT {
+    pub fn CreateProcess2(self: *const IDebugClient6, Server: u64, CommandLine: ?[*:0]u8, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcess2(self, Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment);
     }
-    pub fn CreateProcess2Wide(self: *const IDebugClient6, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+    pub fn CreateProcess2Wide(self: *const IDebugClient6, Server: u64, CommandLine: ?[*:0]u16, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcess2Wide(self, Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment);
     }
-    pub fn CreateProcessAndAttach2(self: *const IDebugClient6, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttach2(self: *const IDebugClient6, Server: u64, CommandLine: ?[*:0]u8, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttach2(self, Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment, ProcessId, AttachFlags);
     }
-    pub fn CreateProcessAndAttach2Wide(self: *const IDebugClient6, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttach2Wide(self: *const IDebugClient6, Server: u64, CommandLine: ?[*:0]u16, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttach2Wide(self, Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment, ProcessId, AttachFlags);
     }
     pub fn PushOutputLinePrefix(self: *const IDebugClient6, NewPrefix: ?[*:0]const u8, Handle: ?*u64) callconv(.@"inline") HRESULT {
@@ -11586,13 +11586,13 @@ pub const IDebugClient7 = extern union {
         CreateProcessA: *const fn(
             self: *const IDebugClient7,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             CreateFlags: u32,
         ) callconv(.winapi) HRESULT,
         CreateProcessAndAttach: *const fn(
             self: *const IDebugClient7,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             CreateFlags: u32,
             ProcessId: u32,
             AttachFlags: u32,
@@ -11792,13 +11792,13 @@ pub const IDebugClient7 = extern union {
         CreateProcessWide: *const fn(
             self: *const IDebugClient7,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             CreateFlags: u32,
         ) callconv(.winapi) HRESULT,
         CreateProcessAndAttachWide: *const fn(
             self: *const IDebugClient7,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             CreateFlags: u32,
             ProcessId: u32,
             AttachFlags: u32,
@@ -11921,7 +11921,7 @@ pub const IDebugClient7 = extern union {
         CreateProcess2: *const fn(
             self: *const IDebugClient7,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
@@ -11931,7 +11931,7 @@ pub const IDebugClient7 = extern union {
         CreateProcess2Wide: *const fn(
             self: *const IDebugClient7,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
@@ -11941,7 +11941,7 @@ pub const IDebugClient7 = extern union {
         CreateProcessAndAttach2: *const fn(
             self: *const IDebugClient7,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
@@ -11953,7 +11953,7 @@ pub const IDebugClient7 = extern union {
         CreateProcessAndAttach2Wide: *const fn(
             self: *const IDebugClient7,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
@@ -12052,10 +12052,10 @@ pub const IDebugClient7 = extern union {
     pub fn AttachProcess(self: *const IDebugClient7, Server: u64, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AttachProcess(self, Server, ProcessId, AttachFlags);
     }
-    pub fn CreateProcessA(self: *const IDebugClient7, Server: u64, CommandLine: ?PSTR, CreateFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessA(self: *const IDebugClient7, Server: u64, CommandLine: ?[*:0]u8, CreateFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessA(self, Server, CommandLine, CreateFlags);
     }
-    pub fn CreateProcessAndAttach(self: *const IDebugClient7, Server: u64, CommandLine: ?PSTR, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttach(self: *const IDebugClient7, Server: u64, CommandLine: ?[*:0]u8, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttach(self, Server, CommandLine, CreateFlags, ProcessId, AttachFlags);
     }
     pub fn GetProcessOptions(self: *const IDebugClient7, Options: ?*u32) callconv(.@"inline") HRESULT {
@@ -12187,10 +12187,10 @@ pub const IDebugClient7 = extern union {
     pub fn GetRunningProcessDescriptionWide(self: *const IDebugClient7, Server: u64, SystemId: u32, Flags: u32, ExeName: ?[*:0]u16, ExeNameSize: u32, ActualExeNameSize: ?*u32, Description: ?[*:0]u16, DescriptionSize: u32, ActualDescriptionSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRunningProcessDescriptionWide(self, Server, SystemId, Flags, ExeName, ExeNameSize, ActualExeNameSize, Description, DescriptionSize, ActualDescriptionSize);
     }
-    pub fn CreateProcessWide(self: *const IDebugClient7, Server: u64, CommandLine: ?PWSTR, CreateFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessWide(self: *const IDebugClient7, Server: u64, CommandLine: ?[*:0]u16, CreateFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessWide(self, Server, CommandLine, CreateFlags);
     }
-    pub fn CreateProcessAndAttachWide(self: *const IDebugClient7, Server: u64, CommandLine: ?PWSTR, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttachWide(self: *const IDebugClient7, Server: u64, CommandLine: ?[*:0]u16, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttachWide(self, Server, CommandLine, CreateFlags, ProcessId, AttachFlags);
     }
     pub fn OpenDumpFileWide(self: *const IDebugClient7, FileName: ?[*:0]const u16, FileHandle: u64) callconv(.@"inline") HRESULT {
@@ -12256,16 +12256,16 @@ pub const IDebugClient7 = extern union {
     pub fn SetEventCallbacksWide(self: *const IDebugClient7, Callbacks: ?*IDebugEventCallbacksWide) callconv(.@"inline") HRESULT {
         return self.vtable.SetEventCallbacksWide(self, Callbacks);
     }
-    pub fn CreateProcess2(self: *const IDebugClient7, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8) callconv(.@"inline") HRESULT {
+    pub fn CreateProcess2(self: *const IDebugClient7, Server: u64, CommandLine: ?[*:0]u8, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcess2(self, Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment);
     }
-    pub fn CreateProcess2Wide(self: *const IDebugClient7, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+    pub fn CreateProcess2Wide(self: *const IDebugClient7, Server: u64, CommandLine: ?[*:0]u16, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcess2Wide(self, Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment);
     }
-    pub fn CreateProcessAndAttach2(self: *const IDebugClient7, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttach2(self: *const IDebugClient7, Server: u64, CommandLine: ?[*:0]u8, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttach2(self, Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment, ProcessId, AttachFlags);
     }
-    pub fn CreateProcessAndAttach2Wide(self: *const IDebugClient7, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttach2Wide(self: *const IDebugClient7, Server: u64, CommandLine: ?[*:0]u16, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttach2Wide(self, Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment, ProcessId, AttachFlags);
     }
     pub fn PushOutputLinePrefix(self: *const IDebugClient7, NewPrefix: ?[*:0]const u8, Handle: ?*u64) callconv(.@"inline") HRESULT {
@@ -12376,13 +12376,13 @@ pub const IDebugClient8 = extern union {
         CreateProcessA: *const fn(
             self: *const IDebugClient8,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             CreateFlags: u32,
         ) callconv(.winapi) HRESULT,
         CreateProcessAndAttach: *const fn(
             self: *const IDebugClient8,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             CreateFlags: u32,
             ProcessId: u32,
             AttachFlags: u32,
@@ -12582,13 +12582,13 @@ pub const IDebugClient8 = extern union {
         CreateProcessWide: *const fn(
             self: *const IDebugClient8,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             CreateFlags: u32,
         ) callconv(.winapi) HRESULT,
         CreateProcessAndAttachWide: *const fn(
             self: *const IDebugClient8,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             CreateFlags: u32,
             ProcessId: u32,
             AttachFlags: u32,
@@ -12711,7 +12711,7 @@ pub const IDebugClient8 = extern union {
         CreateProcess2: *const fn(
             self: *const IDebugClient8,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
@@ -12721,7 +12721,7 @@ pub const IDebugClient8 = extern union {
         CreateProcess2Wide: *const fn(
             self: *const IDebugClient8,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
@@ -12731,7 +12731,7 @@ pub const IDebugClient8 = extern union {
         CreateProcessAndAttach2: *const fn(
             self: *const IDebugClient8,
             Server: u64,
-            CommandLine: ?PSTR,
+            CommandLine: ?[*:0]u8,
             /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
@@ -12743,7 +12743,7 @@ pub const IDebugClient8 = extern union {
         CreateProcessAndAttach2Wide: *const fn(
             self: *const IDebugClient8,
             Server: u64,
-            CommandLine: ?PWSTR,
+            CommandLine: ?[*:0]u16,
             /// parameter "OptionsBufferSize" is the size in bytes
             OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
@@ -12848,10 +12848,10 @@ pub const IDebugClient8 = extern union {
     pub fn AttachProcess(self: *const IDebugClient8, Server: u64, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AttachProcess(self, Server, ProcessId, AttachFlags);
     }
-    pub fn CreateProcessA(self: *const IDebugClient8, Server: u64, CommandLine: ?PSTR, CreateFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessA(self: *const IDebugClient8, Server: u64, CommandLine: ?[*:0]u8, CreateFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessA(self, Server, CommandLine, CreateFlags);
     }
-    pub fn CreateProcessAndAttach(self: *const IDebugClient8, Server: u64, CommandLine: ?PSTR, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttach(self: *const IDebugClient8, Server: u64, CommandLine: ?[*:0]u8, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttach(self, Server, CommandLine, CreateFlags, ProcessId, AttachFlags);
     }
     pub fn GetProcessOptions(self: *const IDebugClient8, Options: ?*u32) callconv(.@"inline") HRESULT {
@@ -12983,10 +12983,10 @@ pub const IDebugClient8 = extern union {
     pub fn GetRunningProcessDescriptionWide(self: *const IDebugClient8, Server: u64, SystemId: u32, Flags: u32, ExeName: ?[*:0]u16, ExeNameSize: u32, ActualExeNameSize: ?*u32, Description: ?[*:0]u16, DescriptionSize: u32, ActualDescriptionSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRunningProcessDescriptionWide(self, Server, SystemId, Flags, ExeName, ExeNameSize, ActualExeNameSize, Description, DescriptionSize, ActualDescriptionSize);
     }
-    pub fn CreateProcessWide(self: *const IDebugClient8, Server: u64, CommandLine: ?PWSTR, CreateFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessWide(self: *const IDebugClient8, Server: u64, CommandLine: ?[*:0]u16, CreateFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessWide(self, Server, CommandLine, CreateFlags);
     }
-    pub fn CreateProcessAndAttachWide(self: *const IDebugClient8, Server: u64, CommandLine: ?PWSTR, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttachWide(self: *const IDebugClient8, Server: u64, CommandLine: ?[*:0]u16, CreateFlags: u32, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttachWide(self, Server, CommandLine, CreateFlags, ProcessId, AttachFlags);
     }
     pub fn OpenDumpFileWide(self: *const IDebugClient8, FileName: ?[*:0]const u16, FileHandle: u64) callconv(.@"inline") HRESULT {
@@ -13052,16 +13052,16 @@ pub const IDebugClient8 = extern union {
     pub fn SetEventCallbacksWide(self: *const IDebugClient8, Callbacks: ?*IDebugEventCallbacksWide) callconv(.@"inline") HRESULT {
         return self.vtable.SetEventCallbacksWide(self, Callbacks);
     }
-    pub fn CreateProcess2(self: *const IDebugClient8, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8) callconv(.@"inline") HRESULT {
+    pub fn CreateProcess2(self: *const IDebugClient8, Server: u64, CommandLine: ?[*:0]u8, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcess2(self, Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment);
     }
-    pub fn CreateProcess2Wide(self: *const IDebugClient8, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16) callconv(.@"inline") HRESULT {
+    pub fn CreateProcess2Wide(self: *const IDebugClient8, Server: u64, CommandLine: ?[*:0]u16, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcess2Wide(self, Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment);
     }
-    pub fn CreateProcessAndAttach2(self: *const IDebugClient8, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttach2(self: *const IDebugClient8, Server: u64, CommandLine: ?[*:0]u8, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttach2(self, Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment, ProcessId, AttachFlags);
     }
-    pub fn CreateProcessAndAttach2Wide(self: *const IDebugClient8, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
+    pub fn CreateProcessAndAttach2Wide(self: *const IDebugClient8, Server: u64, CommandLine: ?[*:0]u16, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16, ProcessId: u32, AttachFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProcessAndAttach2Wide(self, Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment, ProcessId, AttachFlags);
     }
     pub fn PushOutputLinePrefix(self: *const IDebugClient8, NewPrefix: ?[*:0]const u8, Handle: ?*u64) callconv(.@"inline") HRESULT {
@@ -15372,7 +15372,7 @@ pub const IDebugControl3 = extern union {
             self: *const IDebugControl3,
             Index: u32,
             Which: u32,
-            Buffer: ?PSTR,
+            Buffer: ?[*:0]u8,
             BufferSize: u32,
             DescSize: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -15719,7 +15719,7 @@ pub const IDebugControl3 = extern union {
     pub fn GetNumberEvents(self: *const IDebugControl3, Events: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNumberEvents(self, Events);
     }
-    pub fn GetEventIndexDescription(self: *const IDebugControl3, Index: u32, Which: u32, Buffer: ?PSTR, BufferSize: u32, DescSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetEventIndexDescription(self: *const IDebugControl3, Index: u32, Which: u32, Buffer: ?[*:0]u8, BufferSize: u32, DescSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetEventIndexDescription(self, Index, Which, Buffer, BufferSize, DescSize);
     }
     pub fn GetCurrentEventIndex(self: *const IDebugControl3, Index: ?*u32) callconv(.@"inline") HRESULT {
@@ -16329,7 +16329,7 @@ pub const IDebugControl4 = extern union {
             self: *const IDebugControl4,
             Index: u32,
             Which: u32,
-            Buffer: ?PSTR,
+            Buffer: ?[*:0]u8,
             BufferSize: u32,
             DescSize: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -16595,7 +16595,7 @@ pub const IDebugControl4 = extern union {
             self: *const IDebugControl4,
             Index: u32,
             Which: u32,
-            Buffer: ?PWSTR,
+            Buffer: ?[*:0]u16,
             BufferSize: u32,
             DescSize: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -17036,7 +17036,7 @@ pub const IDebugControl4 = extern union {
     pub fn GetNumberEvents(self: *const IDebugControl4, Events: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNumberEvents(self, Events);
     }
-    pub fn GetEventIndexDescription(self: *const IDebugControl4, Index: u32, Which: u32, Buffer: ?PSTR, BufferSize: u32, DescSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetEventIndexDescription(self: *const IDebugControl4, Index: u32, Which: u32, Buffer: ?[*:0]u8, BufferSize: u32, DescSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetEventIndexDescription(self, Index, Which, Buffer, BufferSize, DescSize);
     }
     pub fn GetCurrentEventIndex(self: *const IDebugControl4, Index: ?*u32) callconv(.@"inline") HRESULT {
@@ -17162,7 +17162,7 @@ pub const IDebugControl4 = extern union {
     pub fn GetExpressionSyntaxNamesWide(self: *const IDebugControl4, Index: u32, FullNameBuffer: ?[*:0]u16, FullNameBufferSize: u32, FullNameSize: ?*u32, AbbrevNameBuffer: ?[*:0]u16, AbbrevNameBufferSize: u32, AbbrevNameSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetExpressionSyntaxNamesWide(self, Index, FullNameBuffer, FullNameBufferSize, FullNameSize, AbbrevNameBuffer, AbbrevNameBufferSize, AbbrevNameSize);
     }
-    pub fn GetEventIndexDescriptionWide(self: *const IDebugControl4, Index: u32, Which: u32, Buffer: ?PWSTR, BufferSize: u32, DescSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetEventIndexDescriptionWide(self: *const IDebugControl4, Index: u32, Which: u32, Buffer: ?[*:0]u16, BufferSize: u32, DescSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetEventIndexDescriptionWide(self, Index, Which, Buffer, BufferSize, DescSize);
     }
     pub fn GetLogFile2(self: *const IDebugControl4, Buffer: ?[*:0]u8, BufferSize: u32, FileSize: ?*u32, Flags: ?*u32) callconv(.@"inline") HRESULT {
@@ -17805,7 +17805,7 @@ pub const IDebugControl5 = extern union {
             self: *const IDebugControl5,
             Index: u32,
             Which: u32,
-            Buffer: ?PSTR,
+            Buffer: ?[*:0]u8,
             BufferSize: u32,
             DescSize: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -18071,7 +18071,7 @@ pub const IDebugControl5 = extern union {
             self: *const IDebugControl5,
             Index: u32,
             Which: u32,
-            Buffer: ?PWSTR,
+            Buffer: ?[*:0]u16,
             BufferSize: u32,
             DescSize: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -18557,7 +18557,7 @@ pub const IDebugControl5 = extern union {
     pub fn GetNumberEvents(self: *const IDebugControl5, Events: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNumberEvents(self, Events);
     }
-    pub fn GetEventIndexDescription(self: *const IDebugControl5, Index: u32, Which: u32, Buffer: ?PSTR, BufferSize: u32, DescSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetEventIndexDescription(self: *const IDebugControl5, Index: u32, Which: u32, Buffer: ?[*:0]u8, BufferSize: u32, DescSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetEventIndexDescription(self, Index, Which, Buffer, BufferSize, DescSize);
     }
     pub fn GetCurrentEventIndex(self: *const IDebugControl5, Index: ?*u32) callconv(.@"inline") HRESULT {
@@ -18683,7 +18683,7 @@ pub const IDebugControl5 = extern union {
     pub fn GetExpressionSyntaxNamesWide(self: *const IDebugControl5, Index: u32, FullNameBuffer: ?[*:0]u16, FullNameBufferSize: u32, FullNameSize: ?*u32, AbbrevNameBuffer: ?[*:0]u16, AbbrevNameBufferSize: u32, AbbrevNameSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetExpressionSyntaxNamesWide(self, Index, FullNameBuffer, FullNameBufferSize, FullNameSize, AbbrevNameBuffer, AbbrevNameBufferSize, AbbrevNameSize);
     }
-    pub fn GetEventIndexDescriptionWide(self: *const IDebugControl5, Index: u32, Which: u32, Buffer: ?PWSTR, BufferSize: u32, DescSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetEventIndexDescriptionWide(self: *const IDebugControl5, Index: u32, Which: u32, Buffer: ?[*:0]u16, BufferSize: u32, DescSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetEventIndexDescriptionWide(self, Index, Which, Buffer, BufferSize, DescSize);
     }
     pub fn GetLogFile2(self: *const IDebugControl5, Buffer: ?[*:0]u8, BufferSize: u32, FileSize: ?*u32, Flags: ?*u32) callconv(.@"inline") HRESULT {
@@ -19341,7 +19341,7 @@ pub const IDebugControl6 = extern union {
             self: *const IDebugControl6,
             Index: u32,
             Which: u32,
-            Buffer: ?PSTR,
+            Buffer: ?[*:0]u8,
             BufferSize: u32,
             DescSize: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -19607,7 +19607,7 @@ pub const IDebugControl6 = extern union {
             self: *const IDebugControl6,
             Index: u32,
             Which: u32,
-            Buffer: ?PWSTR,
+            Buffer: ?[*:0]u16,
             BufferSize: u32,
             DescSize: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -20102,7 +20102,7 @@ pub const IDebugControl6 = extern union {
     pub fn GetNumberEvents(self: *const IDebugControl6, Events: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNumberEvents(self, Events);
     }
-    pub fn GetEventIndexDescription(self: *const IDebugControl6, Index: u32, Which: u32, Buffer: ?PSTR, BufferSize: u32, DescSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetEventIndexDescription(self: *const IDebugControl6, Index: u32, Which: u32, Buffer: ?[*:0]u8, BufferSize: u32, DescSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetEventIndexDescription(self, Index, Which, Buffer, BufferSize, DescSize);
     }
     pub fn GetCurrentEventIndex(self: *const IDebugControl6, Index: ?*u32) callconv(.@"inline") HRESULT {
@@ -20228,7 +20228,7 @@ pub const IDebugControl6 = extern union {
     pub fn GetExpressionSyntaxNamesWide(self: *const IDebugControl6, Index: u32, FullNameBuffer: ?[*:0]u16, FullNameBufferSize: u32, FullNameSize: ?*u32, AbbrevNameBuffer: ?[*:0]u16, AbbrevNameBufferSize: u32, AbbrevNameSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetExpressionSyntaxNamesWide(self, Index, FullNameBuffer, FullNameBufferSize, FullNameSize, AbbrevNameBuffer, AbbrevNameBufferSize, AbbrevNameSize);
     }
-    pub fn GetEventIndexDescriptionWide(self: *const IDebugControl6, Index: u32, Which: u32, Buffer: ?PWSTR, BufferSize: u32, DescSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetEventIndexDescriptionWide(self: *const IDebugControl6, Index: u32, Which: u32, Buffer: ?[*:0]u16, BufferSize: u32, DescSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetEventIndexDescriptionWide(self, Index, Which, Buffer, BufferSize, DescSize);
     }
     pub fn GetLogFile2(self: *const IDebugControl6, Buffer: ?[*:0]u8, BufferSize: u32, FileSize: ?*u32, Flags: ?*u32) callconv(.@"inline") HRESULT {
@@ -20892,7 +20892,7 @@ pub const IDebugControl7 = extern union {
             self: *const IDebugControl7,
             Index: u32,
             Which: u32,
-            Buffer: ?PSTR,
+            Buffer: ?[*:0]u8,
             BufferSize: u32,
             DescSize: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -21158,7 +21158,7 @@ pub const IDebugControl7 = extern union {
             self: *const IDebugControl7,
             Index: u32,
             Which: u32,
-            Buffer: ?PWSTR,
+            Buffer: ?[*:0]u16,
             BufferSize: u32,
             DescSize: ?*u32,
         ) callconv(.winapi) HRESULT,
@@ -21659,7 +21659,7 @@ pub const IDebugControl7 = extern union {
     pub fn GetNumberEvents(self: *const IDebugControl7, Events: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNumberEvents(self, Events);
     }
-    pub fn GetEventIndexDescription(self: *const IDebugControl7, Index: u32, Which: u32, Buffer: ?PSTR, BufferSize: u32, DescSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetEventIndexDescription(self: *const IDebugControl7, Index: u32, Which: u32, Buffer: ?[*:0]u8, BufferSize: u32, DescSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetEventIndexDescription(self, Index, Which, Buffer, BufferSize, DescSize);
     }
     pub fn GetCurrentEventIndex(self: *const IDebugControl7, Index: ?*u32) callconv(.@"inline") HRESULT {
@@ -21785,7 +21785,7 @@ pub const IDebugControl7 = extern union {
     pub fn GetExpressionSyntaxNamesWide(self: *const IDebugControl7, Index: u32, FullNameBuffer: ?[*:0]u16, FullNameBufferSize: u32, FullNameSize: ?*u32, AbbrevNameBuffer: ?[*:0]u16, AbbrevNameBufferSize: u32, AbbrevNameSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetExpressionSyntaxNamesWide(self, Index, FullNameBuffer, FullNameBufferSize, FullNameSize, AbbrevNameBuffer, AbbrevNameBufferSize, AbbrevNameSize);
     }
-    pub fn GetEventIndexDescriptionWide(self: *const IDebugControl7, Index: u32, Which: u32, Buffer: ?PWSTR, BufferSize: u32, DescSize: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetEventIndexDescriptionWide(self: *const IDebugControl7, Index: u32, Which: u32, Buffer: ?[*:0]u16, BufferSize: u32, DescSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetEventIndexDescriptionWide(self, Index, Which, Buffer, BufferSize, DescSize);
     }
     pub fn GetLogFile2(self: *const IDebugControl7, Buffer: ?[*:0]u8, BufferSize: u32, FileSize: ?*u32, Flags: ?*u32) callconv(.@"inline") HRESULT {
@@ -34407,7 +34407,7 @@ pub const IMAGEHLP_LINEW64 = extern struct {
     SizeOfStruct: u32,
     Key: ?*anyopaque,
     LineNumber: u32,
-    FileName: ?PWSTR,
+    FileName: ?[*:0]u16,
     Address: u64,
 };
 
@@ -35912,7 +35912,7 @@ pub const IScriptNode = extern union {
         CreateChildHandler: *const fn(
             self: *const IScriptNode,
             pszDefaultName: ?[*:0]const u16,
-            prgpszNames: [*]?PWSTR,
+            prgpszNames: [*]?[*:0]u16,
             cpszNames: u32,
             pszEvent: ?[*:0]const u16,
             pszDelimiter: ?[*:0]const u16,
@@ -35952,7 +35952,7 @@ pub const IScriptNode = extern union {
     pub fn CreateChildEntry(self: *const IScriptNode, isn: u32, dwCookie: u32, pszDelimiter: ?[*:0]const u16, ppse: ?*?*IScriptEntry) callconv(.@"inline") HRESULT {
         return self.vtable.CreateChildEntry(self, isn, dwCookie, pszDelimiter, ppse);
     }
-    pub fn CreateChildHandler(self: *const IScriptNode, pszDefaultName: ?[*:0]const u16, prgpszNames: [*]?PWSTR, cpszNames: u32, pszEvent: ?[*:0]const u16, pszDelimiter: ?[*:0]const u16, ptiSignature: ?*ITypeInfo, iMethodSignature: u32, isn: u32, dwCookie: u32, ppse: ?*?*IScriptEntry) callconv(.@"inline") HRESULT {
+    pub fn CreateChildHandler(self: *const IScriptNode, pszDefaultName: ?[*:0]const u16, prgpszNames: [*]?[*:0]u16, cpszNames: u32, pszEvent: ?[*:0]const u16, pszDelimiter: ?[*:0]const u16, ptiSignature: ?*ITypeInfo, iMethodSignature: u32, isn: u32, dwCookie: u32, ppse: ?*?*IScriptEntry) callconv(.@"inline") HRESULT {
         return self.vtable.CreateChildHandler(self, pszDefaultName, prgpszNames, cpszNames, pszEvent, pszDelimiter, ptiSignature, iMethodSignature, isn, dwCookie, ppse);
     }
 };
@@ -37639,7 +37639,7 @@ pub const OPEN_THREAD_WAIT_CHAIN_SESSION_FLAGS = enum(u32) {
 pub const WCT_ASYNC_OPEN_FLAG = OPEN_THREAD_WAIT_CHAIN_SESSION_FLAGS.G;
 
 pub const OUTPUT_DEBUG_STRING_INFO = extern struct {
-    lpDebugStringData: ?PSTR,
+    lpDebugStringData: ?[*:0]u8,
     fUnicode: u16,
     nDebugStringLength: u16,
 };
@@ -37678,7 +37678,7 @@ pub const PDEBUG_EXTENSION_INITIALIZE = *const fn(
 pub const PDEBUG_EXTENSION_KNOWN_STRUCT = *const fn(
     Flags: u32,
     Offset: u64,
-    TypeName: ?PSTR,
+    TypeName: ?[*:0]u8,
     Buffer: ?[*:0]u8,
     BufferChars: ?*u32,
 ) callconv(.winapi) HRESULT;
@@ -38397,21 +38397,21 @@ pub const PSYMBOLSERVERBYINDEXPROC = *const fn(
     param0: ?[*:0]const u8,
     param1: ?[*:0]const u8,
     param2: ?[*:0]const u8,
-    param3: ?PSTR,
+    param3: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub const PSYMBOLSERVERBYINDEXPROCA = *const fn(
     param0: ?[*:0]const u8,
     param1: ?[*:0]const u8,
     param2: ?[*:0]const u8,
-    param3: ?PSTR,
+    param3: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub const PSYMBOLSERVERBYINDEXPROCW = *const fn(
     param0: ?[*:0]const u16,
     param1: ?[*:0]const u16,
     param2: ?[*:0]const u16,
-    param3: ?PWSTR,
+    param3: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub const PSYMBOLSERVERCALLBACKPROC = *const fn(
@@ -38431,7 +38431,7 @@ pub const PSYMBOLSERVERDELTANAME = *const fn(
     param4: ?*anyopaque,
     param5: u32,
     param6: u32,
-    param7: ?PSTR,
+    param7: ?[*:0]u8,
     param8: usize,
 ) callconv(.winapi) BOOL;
 
@@ -38443,7 +38443,7 @@ pub const PSYMBOLSERVERDELTANAMEW = *const fn(
     param4: ?*anyopaque,
     param5: u32,
     param6: u32,
-    param7: ?PWSTR,
+    param7: ?[*:0]u16,
     param8: usize,
 ) callconv(.winapi) BOOL;
 
@@ -38451,7 +38451,7 @@ pub const PSYMBOLSERVERGETINDEXSTRING = *const fn(
     param0: ?*anyopaque,
     param1: u32,
     param2: u32,
-    param3: ?PSTR,
+    param3: ?[*:0]u8,
     param4: usize,
 ) callconv(.winapi) BOOL;
 
@@ -38459,7 +38459,7 @@ pub const PSYMBOLSERVERGETINDEXSTRINGW = *const fn(
     param0: ?*anyopaque,
     param1: u32,
     param2: u32,
-    param3: ?PWSTR,
+    param3: ?[*:0]u16,
     param4: usize,
 ) callconv(.winapi) BOOL;
 
@@ -38475,7 +38475,7 @@ pub const PSYMBOLSERVERGETSUPPLEMENT = *const fn(
     param0: ?[*:0]const u8,
     param1: ?[*:0]const u8,
     param2: ?[*:0]const u8,
-    param3: ?PSTR,
+    param3: ?[*:0]u8,
     param4: usize,
 ) callconv(.winapi) BOOL;
 
@@ -38483,7 +38483,7 @@ pub const PSYMBOLSERVERGETSUPPLEMENTW = *const fn(
     param0: ?[*:0]const u16,
     param1: ?[*:0]const u16,
     param2: ?[*:0]const u16,
-    param3: ?PWSTR,
+    param3: ?[*:0]u16,
     param4: usize,
 ) callconv(.winapi) BOOL;
 
@@ -38530,7 +38530,7 @@ pub const PSYMBOLSERVERPROC = *const fn(
     param2: ?*anyopaque,
     param3: u32,
     param4: u32,
-    param5: ?PSTR,
+    param5: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub const PSYMBOLSERVERPROCA = *const fn(
@@ -38539,7 +38539,7 @@ pub const PSYMBOLSERVERPROCA = *const fn(
     param2: ?*anyopaque,
     param3: u32,
     param4: u32,
-    param5: ?PSTR,
+    param5: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub const PSYMBOLSERVERPROCW = *const fn(
@@ -38548,7 +38548,7 @@ pub const PSYMBOLSERVERPROCW = *const fn(
     param2: ?*anyopaque,
     param3: u32,
     param4: u32,
-    param5: ?PWSTR,
+    param5: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub const PSYMBOLSERVERSETHTTPAUTHHEADER = *const fn(
@@ -38571,7 +38571,7 @@ pub const PSYMBOLSERVERSTOREFILE = *const fn(
     param2: ?*anyopaque,
     param3: u32,
     param4: u32,
-    param5: ?PSTR,
+    param5: ?[*:0]u8,
     param6: usize,
     param7: u32,
 ) callconv(.winapi) BOOL;
@@ -38582,7 +38582,7 @@ pub const PSYMBOLSERVERSTOREFILEW = *const fn(
     param2: ?*anyopaque,
     param3: u32,
     param4: u32,
-    param5: ?PWSTR,
+    param5: ?[*:0]u16,
     param6: usize,
     param7: u32,
 ) callconv(.winapi) BOOL;
@@ -38591,7 +38591,7 @@ pub const PSYMBOLSERVERSTORESUPPLEMENT = *const fn(
     param0: ?[*:0]const u8,
     param1: ?[*:0]const u8,
     param2: ?[*:0]const u8,
-    param3: ?PSTR,
+    param3: ?[*:0]u8,
     param4: usize,
     param5: u32,
 ) callconv(.winapi) BOOL;
@@ -38600,7 +38600,7 @@ pub const PSYMBOLSERVERSTORESUPPLEMENTW = *const fn(
     param0: ?[*:0]const u16,
     param1: ?[*:0]const u16,
     param2: ?[*:0]const u16,
-    param3: ?PWSTR,
+    param3: ?[*:0]u16,
     param4: usize,
     param5: u32,
 ) callconv(.winapi) BOOL;
@@ -38614,7 +38614,7 @@ pub const PSYMBOLSERVERWEXPROC = *const fn(
     param2: ?*anyopaque,
     param3: u32,
     param4: u32,
-    param5: ?PWSTR,
+    param5: ?[*:0]u16,
     param6: ?*SYMSRV_EXTENDED_OUTPUT_DATA,
 ) callconv(.winapi) BOOL;
 
@@ -39123,7 +39123,7 @@ pub const SOURCEFILE = extern struct {
 
 pub const SOURCEFILEW = extern struct {
     ModBase: u64,
-    FileName: ?PWSTR,
+    FileName: ?[*:0]u16,
 };
 
 pub const SRCCODEINFO = extern struct {
@@ -39699,7 +39699,7 @@ pub const WDBGEXTS_DISASSEMBLE_BUFFER = extern struct {
     DataBufferBytes: u32,
     DisasmBufferChars: u32,
     DataBuffer: ?*anyopaque,
-    DisasmBuffer: ?PWSTR,
+    DisasmBuffer: ?[*:0]u16,
     Reserved0: [3]u64,
 };
 
@@ -40534,7 +40534,7 @@ pub const IMAGE_DEBUG_INFORMATION = switch(@import("../../zig.zig").arch) {
         ReservedNumberOfSections: u32,
         ReservedSections: ?*IMAGE_SECTION_HEADER,
         ReservedExportedNamesSize: u32,
-        ReservedExportedNames: ?PSTR,
+        ReservedExportedNames: ?[*:0]u8,
         ReservedNumberOfFunctionTableEntries: u32,
         ReservedFunctionTableEntries: ?*IMAGE_FUNCTION_ENTRY,
         ReservedLowestFunctionStartingAddress: u32,
@@ -40545,9 +40545,9 @@ pub const IMAGE_DEBUG_INFORMATION = switch(@import("../../zig.zig").arch) {
         CoffSymbols: ?*IMAGE_COFF_SYMBOLS_HEADER,
         ReservedSizeOfCodeViewSymbols: u32,
         ReservedCodeViewSymbols: ?*anyopaque,
-        ImageFilePath: ?PSTR,
-        ImageFileName: ?PSTR,
-        ReservedDebugFilePath: ?PSTR,
+        ImageFilePath: ?[*:0]u8,
+        ImageFileName: ?[*:0]u8,
+        ReservedDebugFilePath: ?[*:0]u8,
         ReservedTimeDateStamp: u32,
         ReservedRomImage: BOOL,
         ReservedDebugDirectory: ?*IMAGE_DEBUG_DIRECTORY,
@@ -40758,7 +40758,7 @@ pub const KNONVOLATILE_CONTEXT_POINTERS_ARM64 = switch(@import("../../zig.zig").
 };
 pub const LOADED_IMAGE = switch(@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
-        ModuleName: ?PSTR,
+        ModuleName: ?[*:0]u8,
         hFile: ?HANDLE,
         MappedAddress: ?*u8,
         FileHeader: ?*IMAGE_NT_HEADERS64,
@@ -40774,7 +40774,7 @@ pub const LOADED_IMAGE = switch(@import("../../zig.zig").arch) {
         SizeOfImage: u32,
     },
     .X86 => extern struct {
-        ModuleName: ?PSTR,
+        ModuleName: ?[*:0]u8,
         hFile: ?HANDLE,
         MappedAddress: ?*u8,
         FileHeader: ?*IMAGE_NT_HEADERS32,
@@ -41200,7 +41200,7 @@ pub extern "dbghelp" fn EnumDirTree(
     hProcess: ?HANDLE,
     RootPath: ?[*:0]const u8,
     InputPathName: ?[*:0]const u8,
-    OutputPathBuffer: ?PSTR,
+    OutputPathBuffer: ?[*:0]u8,
     cb: ?PENUMDIRTREE_CALLBACK,
     data: ?*anyopaque,
 ) callconv(.winapi) BOOL;
@@ -41209,7 +41209,7 @@ pub extern "dbghelp" fn EnumDirTreeW(
     hProcess: ?HANDLE,
     RootPath: ?[*:0]const u16,
     InputPathName: ?[*:0]const u16,
-    OutputPathBuffer: ?PWSTR,
+    OutputPathBuffer: ?[*:0]u16,
     cb: ?PENUMDIRTREE_CALLBACKW,
     data: ?*anyopaque,
 ) callconv(.winapi) BOOL;
@@ -41271,13 +41271,13 @@ pub extern "kernel32" fn FatalExit(
 pub extern "dbghelp" fn FindDebugInfoFile(
     FileName: ?[*:0]const u8,
     SymbolPath: ?[*:0]const u8,
-    DebugFilePath: ?PSTR,
+    DebugFilePath: ?[*:0]u8,
 ) callconv(.winapi) ?HANDLE;
 
 pub extern "dbghelp" fn FindDebugInfoFileEx(
     FileName: ?[*:0]const u8,
     SymbolPath: ?[*:0]const u8,
-    DebugFilePath: ?PSTR,
+    DebugFilePath: ?[*:0]u8,
     Callback: ?PFIND_DEBUG_FILE_CALLBACK,
     CallerData: ?*anyopaque,
 ) callconv(.winapi) ?HANDLE;
@@ -41285,7 +41285,7 @@ pub extern "dbghelp" fn FindDebugInfoFileEx(
 pub extern "dbghelp" fn FindDebugInfoFileExW(
     FileName: ?[*:0]const u16,
     SymbolPath: ?[*:0]const u16,
-    DebugFilePath: ?PWSTR,
+    DebugFilePath: ?[*:0]u16,
     Callback: ?PFIND_DEBUG_FILE_CALLBACKW,
     CallerData: ?*anyopaque,
 ) callconv(.winapi) ?HANDLE;
@@ -41293,13 +41293,13 @@ pub extern "dbghelp" fn FindDebugInfoFileExW(
 pub extern "dbghelp" fn FindExecutableImage(
     FileName: ?[*:0]const u8,
     SymbolPath: ?[*:0]const u8,
-    ImageFilePath: ?PSTR,
+    ImageFilePath: ?[*:0]u8,
 ) callconv(.winapi) ?HANDLE;
 
 pub extern "dbghelp" fn FindExecutableImageEx(
     FileName: ?[*:0]const u8,
     SymbolPath: ?[*:0]const u8,
-    ImageFilePath: ?PSTR,
+    ImageFilePath: ?[*:0]u8,
     Callback: ?PFIND_EXE_FILE_CALLBACK,
     CallerData: ?*anyopaque,
 ) callconv(.winapi) ?HANDLE;
@@ -41307,7 +41307,7 @@ pub extern "dbghelp" fn FindExecutableImageEx(
 pub extern "dbghelp" fn FindExecutableImageExW(
     FileName: ?[*:0]const u16,
     SymbolPath: ?[*:0]const u16,
-    ImageFilePath: ?PWSTR,
+    ImageFilePath: ?[*:0]u16,
     Callback: ?PFIND_EXE_FILE_CALLBACKW,
     CallerData: ?*anyopaque,
 ) callconv(.winapi) ?HANDLE;
@@ -41320,7 +41320,7 @@ pub extern "dbghelp" fn FindFileInPath(
     two: u32,
     three: u32,
     flags: u32,
-    FilePath: ?PSTR,
+    FilePath: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "dbghelp" fn FindFileInSearchPath(
@@ -41330,7 +41330,7 @@ pub extern "dbghelp" fn FindFileInSearchPath(
     one: u32,
     two: u32,
     three: u32,
-    FilePath: ?PSTR,
+    FilePath: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -41347,7 +41347,7 @@ pub extern "kernel32" fn FormatMessageA(
     lpSource: ?*const anyopaque,
     dwMessageId: u32,
     dwLanguageId: u32,
-    lpBuffer: ?PSTR,
+    lpBuffer: ?[*:0]u8,
     nSize: u32,
     Arguments: ?*?*i8,
 ) callconv(.winapi) u32;
@@ -41358,7 +41358,7 @@ pub extern "kernel32" fn FormatMessageW(
     lpSource: ?*const anyopaque,
     dwMessageId: u32,
     dwLanguageId: u32,
-    lpBuffer: ?PWSTR,
+    lpBuffer: ?[*:0]u16,
     nSize: u32,
     Arguments: ?*?*i8,
 ) callconv(.winapi) u32;
@@ -42060,13 +42060,13 @@ pub extern "kernel32" fn RtlVirtualUnwind(
 pub extern "dbghelp" fn SearchTreeForFile(
     RootPath: ?[*:0]const u8,
     InputPathName: ?[*:0]const u8,
-    OutputPathBuffer: ?PSTR,
+    OutputPathBuffer: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "dbghelp" fn SearchTreeForFileW(
     RootPath: ?[*:0]const u16,
     InputPathName: ?[*:0]const u16,
-    OutputPathBuffer: ?PWSTR,
+    OutputPathBuffer: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "dbghelp" fn SetCheckUserInterruptShared(
@@ -42478,7 +42478,7 @@ pub extern "dbghelp" fn SymEnumTypesW(
 pub extern "dbghelp" fn SymFindDebugInfoFile(
     hProcess: ?HANDLE,
     FileName: ?[*:0]const u8,
-    DebugFilePath: ?PSTR,
+    DebugFilePath: ?[*:0]u8,
     Callback: ?PFIND_DEBUG_FILE_CALLBACK,
     CallerData: ?*anyopaque,
 ) callconv(.winapi) ?HANDLE;
@@ -42486,7 +42486,7 @@ pub extern "dbghelp" fn SymFindDebugInfoFile(
 pub extern "dbghelp" fn SymFindDebugInfoFileW(
     hProcess: ?HANDLE,
     FileName: ?[*:0]const u16,
-    DebugFilePath: ?PWSTR,
+    DebugFilePath: ?[*:0]u16,
     Callback: ?PFIND_DEBUG_FILE_CALLBACKW,
     CallerData: ?*anyopaque,
 ) callconv(.winapi) ?HANDLE;
@@ -42494,7 +42494,7 @@ pub extern "dbghelp" fn SymFindDebugInfoFileW(
 pub extern "dbghelp" fn SymFindExecutableImage(
     hProcess: ?HANDLE,
     FileName: ?[*:0]const u8,
-    ImageFilePath: ?PSTR,
+    ImageFilePath: ?[*:0]u8,
     Callback: ?PFIND_EXE_FILE_CALLBACK,
     CallerData: ?*anyopaque,
 ) callconv(.winapi) ?HANDLE;
@@ -42502,7 +42502,7 @@ pub extern "dbghelp" fn SymFindExecutableImage(
 pub extern "dbghelp" fn SymFindExecutableImageW(
     hProcess: ?HANDLE,
     FileName: ?[*:0]const u16,
-    ImageFilePath: ?PWSTR,
+    ImageFilePath: ?[*:0]u16,
     Callback: ?PFIND_EXE_FILE_CALLBACKW,
     CallerData: ?*anyopaque,
 ) callconv(.winapi) ?HANDLE;
@@ -42515,7 +42515,7 @@ pub extern "dbghelp" fn SymFindFileInPath(
     two: u32,
     three: u32,
     flags: SYM_FIND_ID_OPTION,
-    FoundFile: ?PSTR,
+    FoundFile: ?[*:0]u8,
     callback: ?PFINDFILEINPATHCALLBACK,
     context: ?*anyopaque,
 ) callconv(.winapi) BOOL;
@@ -42528,7 +42528,7 @@ pub extern "dbghelp" fn SymFindFileInPathW(
     two: u32,
     three: u32,
     flags: SYM_FIND_ID_OPTION,
-    FoundFile: ?PWSTR,
+    FoundFile: ?[*:0]u16,
     callback: ?PFINDFILEINPATHCALLBACKW,
     context: ?*anyopaque,
 ) callconv(.winapi) BOOL;
@@ -42643,13 +42643,13 @@ pub extern "dbghelp" fn SymGetHomeDirectory(
     type: IMAGEHLP_HD_TYPE,
     dir: [*:0]u8,
     size: usize,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "dbghelp" fn SymGetHomeDirectoryW(
     type: IMAGEHLP_HD_TYPE,
     dir: [*:0]u16,
     size: usize,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 pub const SymGetLineFromAddr = switch (@import("../../zig.zig").arch) {
 .X86 => (struct {
@@ -43172,15 +43172,15 @@ pub fn SymLoadModuleExW() void { @panic("this function is not working"); }
 pub extern "dbghelp" fn SymMatchFileName(
     FileName: ?[*:0]const u8,
     Match: ?[*:0]const u8,
-    FileNameStop: ?*?PSTR,
-    MatchStop: ?*?PSTR,
+    FileNameStop: ?*?[*:0]u8,
+    MatchStop: ?*?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 pub extern "dbghelp" fn SymMatchFileNameW(
     FileName: ?[*:0]const u16,
     Match: ?[*:0]const u16,
-    FileNameStop: ?*?PWSTR,
-    MatchStop: ?*?PWSTR,
+    FileNameStop: ?*?[*:0]u16,
+    MatchStop: ?*?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "dbghelp" fn SymMatchString(
@@ -43317,12 +43317,12 @@ pub extern "dbghelp" fn SymSetExtendedOption(
 pub extern "dbghelp" fn SymSetHomeDirectory(
     hProcess: ?HANDLE,
     dir: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "dbghelp" fn SymSetHomeDirectoryW(
     hProcess: ?HANDLE,
     dir: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 pub extern "dbghelp" fn SymSetOptions(
     SymOptions: u32,
@@ -43365,7 +43365,7 @@ pub extern "dbghelp" fn SymSrvDeltaName(
     Type: ?[*:0]const u8,
     File1: ?[*:0]const u8,
     File2: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "dbghelp" fn SymSrvDeltaNameW(
     hProcess: ?HANDLE,
@@ -43373,7 +43373,7 @@ pub extern "dbghelp" fn SymSrvDeltaNameW(
     Type: ?[*:0]const u16,
     File1: ?[*:0]const u16,
     File2: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 pub extern "dbghelp" fn SymSrvGetFileIndexes(
     File: ?[*:0]const u8,
@@ -43426,14 +43426,14 @@ pub extern "dbghelp" fn SymSrvGetSupplement(
     SymPath: ?[*:0]const u8,
     Node: ?[*:0]const u8,
     File: ?[*:0]const u8,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "dbghelp" fn SymSrvGetSupplementW(
     hProcess: ?HANDLE,
     SymPath: ?[*:0]const u16,
     Node: ?[*:0]const u16,
     File: ?[*:0]const u16,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 pub extern "dbghelp" fn SymSrvIsStore(
     hProcess: ?HANDLE,
@@ -43450,14 +43450,14 @@ pub extern "dbghelp" fn SymSrvStoreFile(
     SrvPath: ?[*:0]const u8,
     File: ?[*:0]const u8,
     Flags: SYM_SRV_STORE_FILE_FLAGS,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "dbghelp" fn SymSrvStoreFileW(
     hProcess: ?HANDLE,
     SrvPath: ?[*:0]const u16,
     File: ?[*:0]const u16,
     Flags: SYM_SRV_STORE_FILE_FLAGS,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 pub extern "dbghelp" fn SymSrvStoreSupplement(
     hProcess: ?HANDLE,
@@ -43465,7 +43465,7 @@ pub extern "dbghelp" fn SymSrvStoreSupplement(
     Node: ?[*:0]const u8,
     File: ?[*:0]const u8,
     Flags: u32,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "dbghelp" fn SymSrvStoreSupplementW(
     hProcess: ?HANDLE,
@@ -43473,7 +43473,7 @@ pub extern "dbghelp" fn SymSrvStoreSupplementW(
     Node: ?[*:0]const u16,
     File: ?[*:0]const u16,
     Flags: u32,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 pub const SymUnDName = switch (@import("../../zig.zig").arch) {
 .X86 => (struct {
@@ -43549,7 +43549,7 @@ pub extern "imagehlp" fn UnMapAndLoad(
 pub extern "imagehlp" fn UpdateDebugInfoFile(
     ImageFileName: ?[*:0]const u8,
     SymbolPath: ?[*:0]const u8,
-    DebugFilePath: ?PSTR,
+    DebugFilePath: ?[*:0]u8,
     NtHeaders: ?*IMAGE_NT_HEADERS32,
 ) callconv(.winapi) BOOL;
 
@@ -43557,7 +43557,7 @@ pub extern "imagehlp" fn UpdateDebugInfoFile(
 pub extern "imagehlp" fn UpdateDebugInfoFileEx(
     ImageFileName: ?[*:0]const u8,
     SymbolPath: ?[*:0]const u8,
-    DebugFilePath: ?PSTR,
+    DebugFilePath: ?[*:0]u8,
     NtHeaders: ?*IMAGE_NT_HEADERS32,
     OldCheckSum: u32,
 ) callconv(.winapi) BOOL;
@@ -43636,7 +43636,7 @@ pub const OutputDebugString = switch (@import("../../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (42)
+// Section: Imports (40)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -43667,8 +43667,6 @@ const LPTHREAD_START_ROUTINE = @import("../../system/threading.zig").LPTHREAD_ST
 const MEMORY_BASIC_INFORMATION64 = @import("../../system/memory.zig").MEMORY_BASIC_INFORMATION64;
 const MESSAGEBOX_STYLE = @import("../../ui/windows_and_messaging.zig").MESSAGEBOX_STYLE;
 const NTSTATUS = @import("../../foundation.zig").NTSTATUS;
-const PSTR = @import("../../foundation.zig").PSTR;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const SYSTEMTIME = @import("../../foundation.zig").SYSTEMTIME;
 const TIME_ZONE_INFORMATION = @import("../../system/time.zig").TIME_ZONE_INFORMATION;
 const TYPEDESC = @import("../../system/com.zig").TYPEDESC;

@@ -4556,21 +4556,21 @@ pub const ID3D10EffectStringVariable = extern union {
         base: ID3D10EffectVariable.VTable,
         GetString: *const fn(
             self: *const ID3D10EffectStringVariable,
-            ppString: ?*?PSTR,
+            ppString: ?*?[*:0]u8,
         ) callconv(.winapi) HRESULT,
         GetStringArray: *const fn(
             self: *const ID3D10EffectStringVariable,
-            ppStrings: [*]?PSTR,
+            ppStrings: [*]?[*:0]u8,
             Offset: u32,
             Count: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn GetString(self: *const ID3D10EffectStringVariable, ppString: ?*?PSTR) callconv(.@"inline") HRESULT {
+    pub fn GetString(self: *const ID3D10EffectStringVariable, ppString: ?*?[*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetString(self, ppString);
     }
-    pub fn GetStringArray(self: *const ID3D10EffectStringVariable, ppStrings: [*]?PSTR, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
+    pub fn GetStringArray(self: *const ID3D10EffectStringVariable, ppStrings: [*]?[*:0]u8, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStringArray(self, ppStrings, Offset, Count);
     }
 };
@@ -4659,11 +4659,11 @@ pub const ID3D10EffectType = extern union {
         GetMemberName: *const fn(
             self: *const ID3D10EffectType,
             Index: u32,
-        ) callconv(.winapi) ?PSTR,
+        ) callconv(.winapi) ?[*:0]u8,
         GetMemberSemantic: *const fn(
             self: *const ID3D10EffectType,
             Index: u32,
-        ) callconv(.winapi) ?PSTR,
+        ) callconv(.winapi) ?[*:0]u8,
     };
     vtable: *const VTable,
     pub fn IsValid(self: *const ID3D10EffectType) callconv(.@"inline") BOOL {
@@ -4681,10 +4681,10 @@ pub const ID3D10EffectType = extern union {
     pub fn GetMemberTypeBySemantic(self: *const ID3D10EffectType, Semantic: ?[*:0]const u8) callconv(.@"inline") ?*ID3D10EffectType {
         return self.vtable.GetMemberTypeBySemantic(self, Semantic);
     }
-    pub fn GetMemberName(self: *const ID3D10EffectType, Index: u32) callconv(.@"inline") ?PSTR {
+    pub fn GetMemberName(self: *const ID3D10EffectType, Index: u32) callconv(.@"inline") ?[*:0]u8 {
         return self.vtable.GetMemberName(self, Index);
     }
-    pub fn GetMemberSemantic(self: *const ID3D10EffectType, Index: u32) callconv(.@"inline") ?PSTR {
+    pub fn GetMemberSemantic(self: *const ID3D10EffectType, Index: u32) callconv(.@"inline") ?[*:0]u8 {
         return self.vtable.GetMemberSemantic(self, Index);
     }
 };
@@ -5644,7 +5644,7 @@ pub const ID3D10ShaderReflectionType = extern union {
         GetMemberTypeName: *const fn(
             self: *const ID3D10ShaderReflectionType,
             Index: u32,
-        ) callconv(.winapi) ?PSTR,
+        ) callconv(.winapi) ?[*:0]u8,
     };
     vtable: *const VTable,
     pub fn GetDesc(self: *const ID3D10ShaderReflectionType, pDesc: ?*D3D10_SHADER_TYPE_DESC) callconv(.@"inline") HRESULT {
@@ -5656,7 +5656,7 @@ pub const ID3D10ShaderReflectionType = extern union {
     pub fn GetMemberTypeByName(self: *const ID3D10ShaderReflectionType, Name: ?[*:0]const u8) callconv(.@"inline") ?*ID3D10ShaderReflectionType {
         return self.vtable.GetMemberTypeByName(self, Name);
     }
-    pub fn GetMemberTypeName(self: *const ID3D10ShaderReflectionType, Index: u32) callconv(.@"inline") ?PSTR {
+    pub fn GetMemberTypeName(self: *const ID3D10ShaderReflectionType, Index: u32) callconv(.@"inline") ?[*:0]u8 {
         return self.vtable.GetMemberTypeName(self, Index);
     }
 };
@@ -6068,7 +6068,7 @@ pub extern "d3d10" fn D3D10DisassembleShader(
 
 pub extern "d3d10" fn D3D10GetGeometryShaderProfile(
     pDevice: ?*ID3D10Device,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "d3d10" fn D3D10GetInputAndOutputSignatureBlob(
     /// parameter "BytecodeLength" is the size in bytes
@@ -6093,7 +6093,7 @@ pub extern "d3d10" fn D3D10GetOutputSignatureBlob(
 
 pub extern "d3d10" fn D3D10GetPixelShaderProfile(
     pDevice: ?*ID3D10Device,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "d3d10" fn D3D10GetShaderDebugInfo(
     /// parameter "BytecodeLength" is the size in bytes
@@ -6104,7 +6104,7 @@ pub extern "d3d10" fn D3D10GetShaderDebugInfo(
 
 pub extern "d3d10" fn D3D10GetVertexShaderProfile(
     pDevice: ?*ID3D10Device,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 pub extern "d3d10" fn D3D10PreprocessShader(
     /// parameter "SrcDataSize" is the size in bytes
@@ -6175,7 +6175,7 @@ pub extern "d3d10" fn D3D10StateBlockMaskUnion(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (26)
+// Section: Imports (25)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -6201,7 +6201,6 @@ const ID3DInclude = @import("../graphics/direct3d.zig").ID3DInclude;
 const IDXGIAdapter = @import("../graphics/dxgi.zig").IDXGIAdapter;
 const IDXGISwapChain = @import("../graphics/dxgi.zig").IDXGISwapChain;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PSTR = @import("../foundation.zig").PSTR;
 const RECT = @import("../foundation.zig").RECT;
 
 test {

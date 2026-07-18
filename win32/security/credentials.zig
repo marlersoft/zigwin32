@@ -385,40 +385,40 @@ pub const CRED_TYPE_MAXIMUM = CRED_TYPE.MAXIMUM;
 pub const CRED_TYPE_MAXIMUM_EX = CRED_TYPE.MAXIMUM_EX;
 
 pub const CREDENTIAL_ATTRIBUTEA = extern struct {
-    Keyword: ?PSTR,
+    Keyword: ?[*:0]u8,
     Flags: u32,
     ValueSize: u32,
     Value: ?*u8,
 };
 
 pub const CREDENTIAL_ATTRIBUTEW = extern struct {
-    Keyword: ?PWSTR,
+    Keyword: ?[*:0]u16,
     Flags: u32,
     ValueSize: u32,
     Value: ?*u8,
 };
 
 pub const CREDENTIAL_TARGET_INFORMATIONA = extern struct {
-    TargetName: ?PSTR,
-    NetbiosServerName: ?PSTR,
-    DnsServerName: ?PSTR,
-    NetbiosDomainName: ?PSTR,
-    DnsDomainName: ?PSTR,
-    DnsTreeName: ?PSTR,
-    PackageName: ?PSTR,
+    TargetName: ?[*:0]u8,
+    NetbiosServerName: ?[*:0]u8,
+    DnsServerName: ?[*:0]u8,
+    NetbiosDomainName: ?[*:0]u8,
+    DnsDomainName: ?[*:0]u8,
+    DnsTreeName: ?[*:0]u8,
+    PackageName: ?[*:0]u8,
     Flags: u32,
     CredTypeCount: u32,
     CredTypes: ?*u32,
 };
 
 pub const CREDENTIAL_TARGET_INFORMATIONW = extern struct {
-    TargetName: ?PWSTR,
-    NetbiosServerName: ?PWSTR,
-    DnsServerName: ?PWSTR,
-    NetbiosDomainName: ?PWSTR,
-    DnsDomainName: ?PWSTR,
-    DnsTreeName: ?PWSTR,
-    PackageName: ?PWSTR,
+    TargetName: ?[*:0]u16,
+    NetbiosServerName: ?[*:0]u16,
+    DnsServerName: ?[*:0]u16,
+    NetbiosDomainName: ?[*:0]u16,
+    DnsDomainName: ?[*:0]u16,
+    DnsTreeName: ?[*:0]u16,
+    PackageName: ?[*:0]u16,
     Flags: u32,
     CredTypeCount: u32,
     CredTypes: ?*u32,
@@ -427,31 +427,31 @@ pub const CREDENTIAL_TARGET_INFORMATIONW = extern struct {
 pub const CREDENTIALA = extern struct {
     Flags: CRED_FLAGS,
     Type: CRED_TYPE,
-    TargetName: ?PSTR,
-    Comment: ?PSTR,
+    TargetName: ?[*:0]u8,
+    Comment: ?[*:0]u8,
     LastWritten: FILETIME,
     CredentialBlobSize: u32,
     CredentialBlob: ?*u8,
     Persist: CRED_PERSIST,
     AttributeCount: u32,
     Attributes: ?*CREDENTIAL_ATTRIBUTEA,
-    TargetAlias: ?PSTR,
-    UserName: ?PSTR,
+    TargetAlias: ?[*:0]u8,
+    UserName: ?[*:0]u8,
 };
 
 pub const CREDENTIALW = extern struct {
     Flags: CRED_FLAGS,
     Type: CRED_TYPE,
-    TargetName: ?PWSTR,
-    Comment: ?PWSTR,
+    TargetName: ?[*:0]u16,
+    Comment: ?[*:0]u16,
     LastWritten: FILETIME,
     CredentialBlobSize: u32,
     CredentialBlob: ?*u8,
     Persist: CRED_PERSIST,
     AttributeCount: u32,
     Attributes: ?*CREDENTIAL_ATTRIBUTEW,
-    TargetAlias: ?PWSTR,
-    UserName: ?PWSTR,
+    TargetAlias: ?[*:0]u16,
+    UserName: ?[*:0]u16,
 };
 
 pub const CREDSPP_SUBMIT_TYPE = enum(i32) {
@@ -659,15 +659,15 @@ pub const LPOCNCHKPROC = *const fn(
 
 pub const LPOCNCONNPROCA = *const fn(
     param0: usize,
-    param1: ?PSTR,
-    param2: ?PSTR,
+    param1: ?[*:0]u8,
+    param2: ?[*:0]u8,
     param3: ?*anyopaque,
 ) callconv(.winapi) usize;
 
 pub const LPOCNCONNPROCW = *const fn(
     param0: usize,
-    param1: ?PWSTR,
-    param2: ?PWSTR,
+    param1: ?[*:0]u16,
+    param2: ?[*:0]u16,
     param3: ?*anyopaque,
 ) callconv(.winapi) usize;
 
@@ -679,11 +679,11 @@ pub const LPOCNDSCPROC = *const fn(
 
 pub const OPENCARD_SEARCH_CRITERIAA = extern struct {
     dwStructSize: u32,
-    lpstrGroupNames: ?PSTR,
+    lpstrGroupNames: ?[*:0]u8,
     nMaxGroupNames: u32,
     rgguidInterfaces: ?*const Guid,
     cguidInterfaces: u32,
-    lpstrCardNames: ?PSTR,
+    lpstrCardNames: ?[*:0]u8,
     nMaxCardNames: u32,
     lpfnCheck: ?LPOCNCHKPROC,
     lpfnConnect: ?LPOCNCONNPROCA,
@@ -695,11 +695,11 @@ pub const OPENCARD_SEARCH_CRITERIAA = extern struct {
 
 pub const OPENCARD_SEARCH_CRITERIAW = extern struct {
     dwStructSize: u32,
-    lpstrGroupNames: ?PWSTR,
+    lpstrGroupNames: ?[*:0]u16,
     nMaxGroupNames: u32,
     rgguidInterfaces: ?*const Guid,
     cguidInterfaces: u32,
-    lpstrCardNames: ?PWSTR,
+    lpstrCardNames: ?[*:0]u16,
     nMaxCardNames: u32,
     lpfnCheck: ?LPOCNCHKPROC,
     lpfnConnect: ?LPOCNCONNPROCW,
@@ -722,9 +722,9 @@ pub const OPENCARDNAME_EXA = extern struct {
     pvUserData: ?*anyopaque,
     dwShareMode: u32,
     dwPreferredProtocols: u32,
-    lpstrRdr: ?PSTR,
+    lpstrRdr: ?[*:0]u8,
     nMaxRdr: u32,
-    lpstrCard: ?PSTR,
+    lpstrCard: ?[*:0]u8,
     nMaxCard: u32,
     dwActiveProtocol: u32,
     hCardHandle: usize,
@@ -743,9 +743,9 @@ pub const OPENCARDNAME_EXW = extern struct {
     pvUserData: ?*anyopaque,
     dwShareMode: u32,
     dwPreferredProtocols: u32,
-    lpstrRdr: ?PWSTR,
+    lpstrRdr: ?[*:0]u16,
     nMaxRdr: u32,
-    lpstrCard: ?PWSTR,
+    lpstrCard: ?[*:0]u16,
     nMaxCard: u32,
     dwActiveProtocol: u32,
     hCardHandle: usize,
@@ -755,15 +755,15 @@ pub const OPENCARDNAMEA = extern struct {
     dwStructSize: u32,
     hwndOwner: ?HWND,
     hSCardContext: usize,
-    lpstrGroupNames: ?PSTR,
+    lpstrGroupNames: ?[*:0]u8,
     nMaxGroupNames: u32,
-    lpstrCardNames: ?PSTR,
+    lpstrCardNames: ?[*:0]u8,
     nMaxCardNames: u32,
     rgguidInterfaces: ?*const Guid,
     cguidInterfaces: u32,
-    lpstrRdr: ?PSTR,
+    lpstrRdr: ?[*:0]u8,
     nMaxRdr: u32,
-    lpstrCard: ?PSTR,
+    lpstrCard: ?[*:0]u8,
     nMaxCard: u32,
     lpstrTitle: ?[*:0]const u8,
     dwFlags: u32,
@@ -781,15 +781,15 @@ pub const OPENCARDNAMEW = extern struct {
     dwStructSize: u32,
     hwndOwner: ?HWND,
     hSCardContext: usize,
-    lpstrGroupNames: ?PWSTR,
+    lpstrGroupNames: ?[*:0]u16,
     nMaxGroupNames: u32,
-    lpstrCardNames: ?PWSTR,
+    lpstrCardNames: ?[*:0]u16,
     nMaxCardNames: u32,
     rgguidInterfaces: ?*const Guid,
     cguidInterfaces: u32,
-    lpstrRdr: ?PWSTR,
+    lpstrRdr: ?[*:0]u16,
     nMaxRdr: u32,
-    lpstrCard: ?PWSTR,
+    lpstrCard: ?[*:0]u16,
     nMaxCard: u32,
     lpstrTitle: ?[*:0]const u16,
     dwFlags: u32,
@@ -934,7 +934,7 @@ pub const SecPkgContext_ClientCreds = extern struct {
 };
 
 pub const USERNAME_TARGET_CREDENTIAL_INFO = extern struct {
-    UserName: ?PWSTR,
+    UserName: ?[*:0]u16,
 };
 
 
@@ -1024,13 +1024,13 @@ pub extern "advapi32" fn CredIsMarshaledCredentialW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn CredIsProtectedA(
-    pszProtectedCredentials: ?PSTR,
+    pszProtectedCredentials: ?[*:0]u8,
     pProtectionType: ?*CRED_PROTECTION_TYPE,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn CredIsProtectedW(
-    pszProtectedCredentials: ?PWSTR,
+    pszProtectedCredentials: ?[*:0]u16,
     pProtectionType: ?*CRED_PROTECTION_TYPE,
 ) callconv(.winapi) BOOL;
 
@@ -1038,21 +1038,21 @@ pub extern "advapi32" fn CredIsProtectedW(
 pub extern "advapi32" fn CredMarshalCredentialA(
     CredType: CRED_MARSHAL_TYPE,
     Credential: ?*anyopaque,
-    MarshaledCredential: ?*?PSTR,
+    MarshaledCredential: ?*?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn CredMarshalCredentialW(
     CredType: CRED_MARSHAL_TYPE,
     Credential: ?*anyopaque,
-    MarshaledCredential: ?*?PWSTR,
+    MarshaledCredential: ?*?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "credui" fn CredPackAuthenticationBufferA(
     dwFlags: CRED_PACK_FLAGS,
-    pszUserName: ?PSTR,
-    pszPassword: ?PSTR,
+    pszUserName: ?[*:0]u8,
+    pszPassword: ?[*:0]u8,
     /// parameter "pcbPackedCredentials" is the size in bytes
     pPackedCredentials: ?*u8,
     pcbPackedCredentials: ?*u32,
@@ -1061,8 +1061,8 @@ pub extern "credui" fn CredPackAuthenticationBufferA(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "credui" fn CredPackAuthenticationBufferW(
     dwFlags: CRED_PACK_FLAGS,
-    pszUserName: ?PWSTR,
-    pszPassword: ?PWSTR,
+    pszUserName: ?[*:0]u16,
+    pszPassword: ?[*:0]u16,
     /// parameter "pcbPackedCredentials" is the size in bytes
     pPackedCredentials: ?*u8,
     pcbPackedCredentials: ?*u32,
@@ -1253,7 +1253,7 @@ pub extern "credui" fn CredUIPromptForWindowsCredentialsW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "credui" fn CredUIReadSSOCredW(
     pszRealm: ?[*:0]const u16,
-    ppszUsername: ?*?PWSTR,
+    ppszUsername: ?*?[*:0]u16,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1798,7 +1798,7 @@ pub extern "winscard" fn SCardReadCacheA(
     hContext: usize,
     CardIdentifier: ?*Guid,
     FreshnessCounter: u32,
-    LookupName: ?PSTR,
+    LookupName: ?[*:0]u8,
     /// parameter "DataLen" is the size in bytes
     Data: ?*u8,
     DataLen: ?*u32,
@@ -1809,7 +1809,7 @@ pub extern "winscard" fn SCardReadCacheW(
     hContext: usize,
     CardIdentifier: ?*Guid,
     FreshnessCounter: u32,
-    LookupName: ?PWSTR,
+    LookupName: ?[*:0]u16,
     /// parameter "DataLen" is the size in bytes
     Data: ?*u8,
     DataLen: ?*u32,
@@ -1931,7 +1931,7 @@ pub extern "winscard" fn SCardWriteCacheA(
     hContext: usize,
     CardIdentifier: ?*Guid,
     FreshnessCounter: u32,
-    LookupName: ?PSTR,
+    LookupName: ?[*:0]u8,
     /// parameter "DataLen" is the size in bytes
     Data: ?*u8,
     DataLen: u32,
@@ -1942,7 +1942,7 @@ pub extern "winscard" fn SCardWriteCacheW(
     hContext: usize,
     CardIdentifier: ?*Guid,
     FreshnessCounter: u32,
-    LookupName: ?PWSTR,
+    LookupName: ?[*:0]u16,
     /// parameter "DataLen" is the size in bytes
     Data: ?*u8,
     DataLen: u32,
@@ -2366,7 +2366,7 @@ pub const SCardWriteCache = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -2377,8 +2377,6 @@ const HICON = @import("../ui/windows_and_messaging.zig").HICON;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

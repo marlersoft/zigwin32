@@ -187,13 +187,13 @@ pub const IOpcDigitalSignature = extern union {
         base: IUnknown.VTable,
         GetNamespaces: *const fn(
             self: *const IOpcDigitalSignature,
-            prefixes: [*]?*?PWSTR,
-            namespaces: [*]?*?PWSTR,
+            prefixes: [*]?*?[*:0]u16,
+            namespaces: [*]?*?[*:0]u16,
             count: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetSignatureId: *const fn(
             self: *const IOpcDigitalSignature,
-            signatureId: ?*?PWSTR,
+            signatureId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetSignaturePartName: *const fn(
             self: *const IOpcDigitalSignature,
@@ -201,7 +201,7 @@ pub const IOpcDigitalSignature = extern union {
         ) callconv(.winapi) HRESULT,
         GetSignatureMethod: *const fn(
             self: *const IOpcDigitalSignature,
-            signatureMethod: ?*?PWSTR,
+            signatureMethod: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetCanonicalizationMethod: *const fn(
             self: *const IOpcDigitalSignature,
@@ -222,7 +222,7 @@ pub const IOpcDigitalSignature = extern union {
         ) callconv(.winapi) HRESULT,
         GetSigningTime: *const fn(
             self: *const IOpcDigitalSignature,
-            signingTime: ?*?PWSTR,
+            signingTime: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetTimeFormat: *const fn(
             self: *const IOpcDigitalSignature,
@@ -252,16 +252,16 @@ pub const IOpcDigitalSignature = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetNamespaces(self: *const IOpcDigitalSignature, prefixes: [*]?*?PWSTR, namespaces: [*]?*?PWSTR, count: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetNamespaces(self: *const IOpcDigitalSignature, prefixes: [*]?*?[*:0]u16, namespaces: [*]?*?[*:0]u16, count: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNamespaces(self, prefixes, namespaces, count);
     }
-    pub fn GetSignatureId(self: *const IOpcDigitalSignature, signatureId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSignatureId(self: *const IOpcDigitalSignature, signatureId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSignatureId(self, signatureId);
     }
     pub fn GetSignaturePartName(self: *const IOpcDigitalSignature, signaturePartName: ?*?*IOpcPartUri) callconv(.@"inline") HRESULT {
         return self.vtable.GetSignaturePartName(self, signaturePartName);
     }
-    pub fn GetSignatureMethod(self: *const IOpcDigitalSignature, signatureMethod: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSignatureMethod(self: *const IOpcDigitalSignature, signatureMethod: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSignatureMethod(self, signatureMethod);
     }
     pub fn GetCanonicalizationMethod(self: *const IOpcDigitalSignature, canonicalizationMethod: ?*OPC_CANONICALIZATION_METHOD) callconv(.@"inline") HRESULT {
@@ -276,7 +276,7 @@ pub const IOpcDigitalSignature = extern union {
     pub fn GetSignatureRelationshipReferenceEnumerator(self: *const IOpcDigitalSignature, relationshipReferenceEnumerator: ?*?*IOpcSignatureRelationshipReferenceEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetSignatureRelationshipReferenceEnumerator(self, relationshipReferenceEnumerator);
     }
-    pub fn GetSigningTime(self: *const IOpcDigitalSignature, signingTime: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSigningTime(self: *const IOpcDigitalSignature, signingTime: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSigningTime(self, signingTime);
     }
     pub fn GetTimeFormat(self: *const IOpcDigitalSignature, timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT) callconv(.@"inline") HRESULT {
@@ -527,7 +527,7 @@ pub const IOpcPart = extern union {
         ) callconv(.winapi) HRESULT,
         GetContentType: *const fn(
             self: *const IOpcPart,
-            contentType: ?*?PWSTR,
+            contentType: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetCompressionOptions: *const fn(
             self: *const IOpcPart,
@@ -545,7 +545,7 @@ pub const IOpcPart = extern union {
     pub fn GetName(self: *const IOpcPart, name: ?*?*IOpcPartUri) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetContentType(self: *const IOpcPart, contentType: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetContentType(self: *const IOpcPart, contentType: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetContentType(self, contentType);
     }
     pub fn GetCompressionOptions(self: *const IOpcPart, compressionOptions: ?*OPC_COMPRESSION_OPTIONS) callconv(.@"inline") HRESULT {
@@ -686,11 +686,11 @@ pub const IOpcRelationship = extern union {
         base: IUnknown.VTable,
         GetId: *const fn(
             self: *const IOpcRelationship,
-            relationshipIdentifier: ?*?PWSTR,
+            relationshipIdentifier: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetRelationshipType: *const fn(
             self: *const IOpcRelationship,
-            relationshipType: ?*?PWSTR,
+            relationshipType: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetSourceUri: *const fn(
             self: *const IOpcRelationship,
@@ -707,10 +707,10 @@ pub const IOpcRelationship = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetId(self: *const IOpcRelationship, relationshipIdentifier: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetId(self: *const IOpcRelationship, relationshipIdentifier: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetId(self, relationshipIdentifier);
     }
-    pub fn GetRelationshipType(self: *const IOpcRelationship, relationshipType: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetRelationshipType(self: *const IOpcRelationship, relationshipType: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetRelationshipType(self, relationshipType);
     }
     pub fn GetSourceUri(self: *const IOpcRelationship, sourceUri: ?*?*IOpcUri) callconv(.@"inline") HRESULT {
@@ -775,7 +775,7 @@ pub const IOpcRelationshipSelector = extern union {
         ) callconv(.winapi) HRESULT,
         GetSelectionCriterion: *const fn(
             self: *const IOpcRelationshipSelector,
-            selectionCriterion: ?*?PWSTR,
+            selectionCriterion: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -783,7 +783,7 @@ pub const IOpcRelationshipSelector = extern union {
     pub fn GetSelectorType(self: *const IOpcRelationshipSelector, selector: ?*OPC_RELATIONSHIP_SELECTOR) callconv(.@"inline") HRESULT {
         return self.vtable.GetSelectorType(self, selector);
     }
-    pub fn GetSelectionCriterion(self: *const IOpcRelationshipSelector, selectionCriterion: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSelectionCriterion(self: *const IOpcRelationshipSelector, selectionCriterion: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSelectionCriterion(self, selectionCriterion);
     }
 };
@@ -1032,11 +1032,11 @@ pub const IOpcSignaturePartReference = extern union {
         ) callconv(.winapi) HRESULT,
         GetContentType: *const fn(
             self: *const IOpcSignaturePartReference,
-            contentType: ?*?PWSTR,
+            contentType: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetDigestMethod: *const fn(
             self: *const IOpcSignaturePartReference,
-            digestMethod: ?*?PWSTR,
+            digestMethod: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetDigestValue: *const fn(
             self: *const IOpcSignaturePartReference,
@@ -1053,10 +1053,10 @@ pub const IOpcSignaturePartReference = extern union {
     pub fn GetPartName(self: *const IOpcSignaturePartReference, partName: ?*?*IOpcPartUri) callconv(.@"inline") HRESULT {
         return self.vtable.GetPartName(self, partName);
     }
-    pub fn GetContentType(self: *const IOpcSignaturePartReference, contentType: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetContentType(self: *const IOpcSignaturePartReference, contentType: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetContentType(self, contentType);
     }
-    pub fn GetDigestMethod(self: *const IOpcSignaturePartReference, digestMethod: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDigestMethod(self: *const IOpcSignaturePartReference, digestMethod: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDigestMethod(self, digestMethod);
     }
     pub fn GetDigestValue(self: *const IOpcSignaturePartReference, digestValue: [*]?*u8, count: ?*u32) callconv(.@"inline") HRESULT {
@@ -1149,7 +1149,7 @@ pub const IOpcSignatureReference = extern union {
         base: IUnknown.VTable,
         GetId: *const fn(
             self: *const IOpcSignatureReference,
-            referenceId: ?*?PWSTR,
+            referenceId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetUri: *const fn(
             self: *const IOpcSignatureReference,
@@ -1157,7 +1157,7 @@ pub const IOpcSignatureReference = extern union {
         ) callconv(.winapi) HRESULT,
         GetType: *const fn(
             self: *const IOpcSignatureReference,
-            type: ?*?PWSTR,
+            type: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetTransformMethod: *const fn(
             self: *const IOpcSignatureReference,
@@ -1165,7 +1165,7 @@ pub const IOpcSignatureReference = extern union {
         ) callconv(.winapi) HRESULT,
         GetDigestMethod: *const fn(
             self: *const IOpcSignatureReference,
-            digestMethod: ?*?PWSTR,
+            digestMethod: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetDigestValue: *const fn(
             self: *const IOpcSignatureReference,
@@ -1175,19 +1175,19 @@ pub const IOpcSignatureReference = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetId(self: *const IOpcSignatureReference, referenceId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetId(self: *const IOpcSignatureReference, referenceId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetId(self, referenceId);
     }
     pub fn GetUri(self: *const IOpcSignatureReference, referenceUri: ?*?*IUri) callconv(.@"inline") HRESULT {
         return self.vtable.GetUri(self, referenceUri);
     }
-    pub fn GetType(self: *const IOpcSignatureReference, @"type": ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetType(self: *const IOpcSignatureReference, @"type": ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetType(self, @"type");
     }
     pub fn GetTransformMethod(self: *const IOpcSignatureReference, transformMethod: ?*OPC_CANONICALIZATION_METHOD) callconv(.@"inline") HRESULT {
         return self.vtable.GetTransformMethod(self, transformMethod);
     }
-    pub fn GetDigestMethod(self: *const IOpcSignatureReference, digestMethod: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDigestMethod(self: *const IOpcSignatureReference, digestMethod: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDigestMethod(self, digestMethod);
     }
     pub fn GetDigestValue(self: *const IOpcSignatureReference, digestValue: [*]?*u8, count: ?*u32) callconv(.@"inline") HRESULT {
@@ -1283,7 +1283,7 @@ pub const IOpcSignatureRelationshipReference = extern union {
         ) callconv(.winapi) HRESULT,
         GetDigestMethod: *const fn(
             self: *const IOpcSignatureRelationshipReference,
-            digestMethod: ?*?PWSTR,
+            digestMethod: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetDigestValue: *const fn(
             self: *const IOpcSignatureRelationshipReference,
@@ -1308,7 +1308,7 @@ pub const IOpcSignatureRelationshipReference = extern union {
     pub fn GetSourceUri(self: *const IOpcSignatureRelationshipReference, sourceUri: ?*?*IOpcUri) callconv(.@"inline") HRESULT {
         return self.vtable.GetSourceUri(self, sourceUri);
     }
-    pub fn GetDigestMethod(self: *const IOpcSignatureRelationshipReference, digestMethod: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDigestMethod(self: *const IOpcSignatureRelationshipReference, digestMethod: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDigestMethod(self, digestMethod);
     }
     pub fn GetDigestValue(self: *const IOpcSignatureRelationshipReference, digestValue: [*]?*u8, count: ?*u32) callconv(.@"inline") HRESULT {
@@ -1416,7 +1416,7 @@ pub const IOpcSigningOptions = extern union {
         base: IUnknown.VTable,
         GetSignatureId: *const fn(
             self: *const IOpcSigningOptions,
-            signatureId: ?*?PWSTR,
+            signatureId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetSignatureId: *const fn(
             self: *const IOpcSigningOptions,
@@ -1424,7 +1424,7 @@ pub const IOpcSigningOptions = extern union {
         ) callconv(.winapi) HRESULT,
         GetSignatureMethod: *const fn(
             self: *const IOpcSigningOptions,
-            signatureMethod: ?*?PWSTR,
+            signatureMethod: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetSignatureMethod: *const fn(
             self: *const IOpcSigningOptions,
@@ -1432,7 +1432,7 @@ pub const IOpcSigningOptions = extern union {
         ) callconv(.winapi) HRESULT,
         GetDefaultDigestMethod: *const fn(
             self: *const IOpcSigningOptions,
-            digestMethod: ?*?PWSTR,
+            digestMethod: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetDefaultDigestMethod: *const fn(
             self: *const IOpcSigningOptions,
@@ -1485,19 +1485,19 @@ pub const IOpcSigningOptions = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSignatureId(self: *const IOpcSigningOptions, signatureId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSignatureId(self: *const IOpcSigningOptions, signatureId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSignatureId(self, signatureId);
     }
     pub fn SetSignatureId(self: *const IOpcSigningOptions, signatureId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetSignatureId(self, signatureId);
     }
-    pub fn GetSignatureMethod(self: *const IOpcSigningOptions, signatureMethod: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetSignatureMethod(self: *const IOpcSigningOptions, signatureMethod: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSignatureMethod(self, signatureMethod);
     }
     pub fn SetSignatureMethod(self: *const IOpcSigningOptions, signatureMethod: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetSignatureMethod(self, signatureMethod);
     }
-    pub fn GetDefaultDigestMethod(self: *const IOpcSigningOptions, digestMethod: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetDefaultDigestMethod(self: *const IOpcSigningOptions, digestMethod: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultDigestMethod(self, digestMethod);
     }
     pub fn SetDefaultDigestMethod(self: *const IOpcSigningOptions, digestMethod: ?[*:0]const u16) callconv(.@"inline") HRESULT {
@@ -1741,7 +1741,7 @@ pub const CLSID_OpcFactory = &CLSID_OpcFactory_Value;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -1750,7 +1750,6 @@ const HRESULT = @import("../../foundation.zig").HRESULT;
 const IStream = @import("../../system/com.zig").IStream;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const IUri = @import("../../system/com.zig").IUri;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../../security.zig").SECURITY_ATTRIBUTES;
 
 test {

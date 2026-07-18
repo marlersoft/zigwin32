@@ -956,7 +956,7 @@ pub const BLUETOOTH_SELECT_DEVICE_PARAMS = extern struct {
     dwSize: u32,
     cNumOfClasses: u32,
     prgClassOfDevices: ?*BLUETOOTH_COD_PAIRS,
-    pszInfo: ?PWSTR,
+    pszInfo: ?[*:0]u16,
     hwndParent: ?HWND,
     fForceAuthentication: BOOL,
     fShowAuthenticated: BOOL,
@@ -1695,7 +1695,7 @@ pub extern "bluetoothapis" fn BluetoothUpdateDeviceRecord(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -1704,7 +1704,6 @@ const CHAR = @import("../foundation.zig").CHAR;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {

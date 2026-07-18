@@ -940,14 +940,14 @@ pub const PQUERYHANDLER = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PVALUEA = extern struct {
-    pv_valuename: ?PSTR,
+    pv_valuename: ?[*:0]u8,
     pv_valuelen: i32,
     pv_value_context: ?*anyopaque,
     pv_type: u32,
 };
 
 pub const PVALUEW = extern struct {
-    pv_valuename: ?PWSTR,
+    pv_valuename: ?[*:0]u16,
     pv_valuelen: i32,
     pv_value_context: ?*anyopaque,
     pv_type: u32,
@@ -1251,14 +1251,14 @@ pub const val_context = extern struct {
 };
 
 pub const VALENTA = extern struct {
-    ve_valuename: ?PSTR,
+    ve_valuename: ?[*:0]u8,
     ve_valuelen: u32,
     ve_valueptr: usize,
     ve_type: REG_VALUE_TYPE,
 };
 
 pub const VALENTW = extern struct {
-    ve_valuename: ?PWSTR,
+    ve_valuename: ?[*:0]u16,
     ve_valuelen: u32,
     ve_valueptr: usize,
     ve_type: REG_VALUE_TYPE,
@@ -1341,7 +1341,7 @@ pub extern "advapi32" fn RegCreateKeyExA(
     hKey: ?HKEY,
     lpSubKey: ?[*:0]const u8,
     Reserved: u32,
-    lpClass: ?PSTR,
+    lpClass: ?[*:0]u8,
     dwOptions: REG_OPEN_CREATE_OPTIONS,
     samDesired: REG_SAM_FLAGS,
     lpSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
@@ -1354,7 +1354,7 @@ pub extern "advapi32" fn RegCreateKeyExW(
     hKey: ?HKEY,
     lpSubKey: ?[*:0]const u16,
     Reserved: u32,
-    lpClass: ?PWSTR,
+    lpClass: ?[*:0]u16,
     dwOptions: REG_OPEN_CREATE_OPTIONS,
     samDesired: REG_SAM_FLAGS,
     lpSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
@@ -1367,7 +1367,7 @@ pub extern "advapi32" fn RegCreateKeyTransactedA(
     hKey: ?HKEY,
     lpSubKey: ?[*:0]const u8,
     Reserved: u32,
-    lpClass: ?PSTR,
+    lpClass: ?[*:0]u8,
     dwOptions: REG_OPEN_CREATE_OPTIONS,
     samDesired: REG_SAM_FLAGS,
     lpSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
@@ -1382,7 +1382,7 @@ pub extern "advapi32" fn RegCreateKeyTransactedW(
     hKey: ?HKEY,
     lpSubKey: ?[*:0]const u16,
     Reserved: u32,
-    lpClass: ?PWSTR,
+    lpClass: ?[*:0]u16,
     dwOptions: REG_OPEN_CREATE_OPTIONS,
     samDesired: REG_SAM_FLAGS,
     lpSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
@@ -1644,7 +1644,7 @@ pub extern "advapi32" fn RegLoadMUIStringA(
     hKey: ?HKEY,
     pszValue: ?[*:0]const u8,
     /// parameter "cbOutBuf" is the size in bytes
-    pszOutBuf: ?PSTR,
+    pszOutBuf: ?[*:0]u8,
     cbOutBuf: u32,
     pcbData: ?*u32,
     Flags: u32,
@@ -1656,7 +1656,7 @@ pub extern "advapi32" fn RegLoadMUIStringW(
     hKey: ?HKEY,
     pszValue: ?[*:0]const u16,
     /// parameter "cbOutBuf" is the size in bytes
-    pszOutBuf: ?PWSTR,
+    pszOutBuf: ?[*:0]u16,
     cbOutBuf: u32,
     pcbData: ?*u32,
     Flags: u32,
@@ -1784,7 +1784,7 @@ pub extern "advapi32" fn RegQueryMultipleValuesA(
     val_list: [*]VALENTA,
     num_vals: u32,
     /// parameter "ldwTotsize" is the size in bytes
-    lpValueBuf: ?PSTR,
+    lpValueBuf: ?[*:0]u8,
     ldwTotsize: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
 
@@ -1794,7 +1794,7 @@ pub extern "advapi32" fn RegQueryMultipleValuesW(
     val_list: [*]VALENTW,
     num_vals: u32,
     /// parameter "ldwTotsize" is the size in bytes
-    lpValueBuf: ?PWSTR,
+    lpValueBuf: ?[*:0]u16,
     ldwTotsize: ?*u32,
 ) callconv(.winapi) WIN32_ERROR;
 
@@ -1809,7 +1809,7 @@ pub extern "advapi32" fn RegQueryValueA(
     hKey: ?HKEY,
     lpSubKey: ?[*:0]const u8,
     /// parameter "lpcbData" is the size in bytes
-    lpData: ?PSTR,
+    lpData: ?[*:0]u8,
     lpcbData: ?*i32,
 ) callconv(.winapi) WIN32_ERROR;
 
@@ -1840,7 +1840,7 @@ pub extern "advapi32" fn RegQueryValueW(
     hKey: ?HKEY,
     lpSubKey: ?[*:0]const u16,
     /// parameter "lpcbData" is the size in bytes
-    lpData: ?PWSTR,
+    lpData: ?[*:0]u16,
     lpcbData: ?*i32,
 ) callconv(.winapi) WIN32_ERROR;
 
@@ -2250,14 +2250,12 @@ pub const RegUnLoadKey = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
 

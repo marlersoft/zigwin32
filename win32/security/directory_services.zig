@@ -128,7 +128,7 @@ pub extern "dssec" fn DSEditSecurity(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
 const HRESULT = @import("../foundation.zig").HRESULT;
@@ -136,7 +136,6 @@ const HWND = @import("../foundation.zig").HWND;
 const ISecurityInformation = @import("../security/authorization/ui.zig").ISecurityInformation;
 const LPARAM = @import("../foundation.zig").LPARAM;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

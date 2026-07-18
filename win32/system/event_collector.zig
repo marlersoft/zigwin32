@@ -166,7 +166,7 @@ pub const EC_VARIANT = extern struct {
         BinaryVal: ?*u8,
         BooleanArr: ?*BOOL,
         Int32Arr: ?*i32,
-        StringArr: ?*?PWSTR,
+        StringArr: ?*?[*:0]u16,
         PropertyHandleVal: isize,
     },
     Count: u32,
@@ -308,10 +308,9 @@ pub extern "wecapi" fn EcSetSubscriptionProperty(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (2)
+// Section: Imports (1)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

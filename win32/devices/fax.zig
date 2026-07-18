@@ -463,9 +463,9 @@ pub const FAX_DEV_STATUS = extern struct {
     StatusId: u32,
     StringId: u32,
     PageCount: u32,
-    CSI: ?PWSTR,
-    CallerId: ?PWSTR,
-    RoutingInfo: ?PWSTR,
+    CSI: ?[*:0]u16,
+    CallerId: ?[*:0]u16,
+    RoutingInfo: ?[*:0]u16,
     ErrorCode: u32,
     Reserved: [3]u32,
 };
@@ -927,9 +927,9 @@ pub const frtMSGBOX = FAX_RECEIPT_TYPE_ENUM.MSGBOX;
 
 pub const FAX_RECEIVE = extern struct {
     SizeOfStruct: u32,
-    FileName: ?PWSTR,
-    ReceiverName: ?PWSTR,
-    ReceiverNumber: ?PWSTR,
+    FileName: ?[*:0]u16,
+    ReceiverName: ?[*:0]u16,
+    ReceiverNumber: ?[*:0]u16,
     Reserved: [4]u32,
 };
 
@@ -1013,11 +1013,11 @@ pub const fstDISCOUNT_PERIOD = FAX_SCHEDULE_TYPE_ENUM.DISCOUNT_PERIOD;
 
 pub const FAX_SEND = extern struct {
     SizeOfStruct: u32,
-    FileName: ?PWSTR,
-    CallerName: ?PWSTR,
-    CallerNumber: ?PWSTR,
-    ReceiverName: ?PWSTR,
-    ReceiverNumber: ?PWSTR,
+    FileName: ?[*:0]u16,
+    CallerName: ?[*:0]u16,
+    CallerNumber: ?[*:0]u16,
+    ReceiverName: ?[*:0]u16,
+    ReceiverNumber: ?[*:0]u16,
     Branding: BOOL,
     CallHandle: u32,
     Reserved: [3]u32,
@@ -6869,20 +6869,20 @@ pub const IStillImageW = extern union {
         ) callconv(.winapi) HRESULT,
         GetDeviceInfo: *const fn(
             self: *const IStillImageW,
-            pwszDeviceName: ?PWSTR,
+            pwszDeviceName: ?[*:0]u16,
             ppBuffer: ?*?*anyopaque,
         ) callconv(.winapi) HRESULT,
         CreateDevice: *const fn(
             self: *const IStillImageW,
-            pwszDeviceName: ?PWSTR,
+            pwszDeviceName: ?[*:0]u16,
             dwMode: u32,
             pDevice: ?*?*IStiDevice,
             punkOuter: ?*IUnknown,
         ) callconv(.winapi) HRESULT,
         GetDeviceValue: *const fn(
             self: *const IStillImageW,
-            pwszDeviceName: ?PWSTR,
-            pValueName: ?PWSTR,
+            pwszDeviceName: ?[*:0]u16,
+            pValueName: ?[*:0]u16,
             pType: ?*u32,
             /// parameter "cbData" is the size in bytes
             pData: ?*u8,
@@ -6890,8 +6890,8 @@ pub const IStillImageW = extern union {
         ) callconv(.winapi) HRESULT,
         SetDeviceValue: *const fn(
             self: *const IStillImageW,
-            pwszDeviceName: ?PWSTR,
-            pValueName: ?PWSTR,
+            pwszDeviceName: ?[*:0]u16,
+            pValueName: ?[*:0]u16,
             Type: u32,
             /// parameter "cbData" is the size in bytes
             pData: ?*u8,
@@ -6905,12 +6905,12 @@ pub const IStillImageW = extern union {
         ) callconv(.winapi) HRESULT,
         RegisterLaunchApplication: *const fn(
             self: *const IStillImageW,
-            pwszAppName: ?PWSTR,
-            pwszCommandLine: ?PWSTR,
+            pwszAppName: ?[*:0]u16,
+            pwszCommandLine: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         UnregisterLaunchApplication: *const fn(
             self: *const IStillImageW,
-            pwszAppName: ?PWSTR,
+            pwszAppName: ?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         EnableHwNotifications: *const fn(
             self: *const IStillImageW,
@@ -6928,8 +6928,8 @@ pub const IStillImageW = extern union {
         ) callconv(.winapi) HRESULT,
         LaunchApplicationForDevice: *const fn(
             self: *const IStillImageW,
-            pwszDeviceName: ?PWSTR,
-            pwszAppName: ?PWSTR,
+            pwszDeviceName: ?[*:0]u16,
+            pwszAppName: ?[*:0]u16,
             pStiNotify: ?*STINOTIFY,
         ) callconv(.winapi) HRESULT,
         SetupDeviceParameters: *const fn(
@@ -6950,25 +6950,25 @@ pub const IStillImageW = extern union {
     pub fn GetDeviceList(self: *const IStillImageW, dwType: u32, dwFlags: u32, pdwItemsReturned: ?*u32, ppBuffer: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceList(self, dwType, dwFlags, pdwItemsReturned, ppBuffer);
     }
-    pub fn GetDeviceInfo(self: *const IStillImageW, pwszDeviceName: ?PWSTR, ppBuffer: ?*?*anyopaque) callconv(.@"inline") HRESULT {
+    pub fn GetDeviceInfo(self: *const IStillImageW, pwszDeviceName: ?[*:0]u16, ppBuffer: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceInfo(self, pwszDeviceName, ppBuffer);
     }
-    pub fn CreateDevice(self: *const IStillImageW, pwszDeviceName: ?PWSTR, dwMode: u32, pDevice: ?*?*IStiDevice, punkOuter: ?*IUnknown) callconv(.@"inline") HRESULT {
+    pub fn CreateDevice(self: *const IStillImageW, pwszDeviceName: ?[*:0]u16, dwMode: u32, pDevice: ?*?*IStiDevice, punkOuter: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDevice(self, pwszDeviceName, dwMode, pDevice, punkOuter);
     }
-    pub fn GetDeviceValue(self: *const IStillImageW, pwszDeviceName: ?PWSTR, pValueName: ?PWSTR, pType: ?*u32, pData: ?*u8, cbData: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetDeviceValue(self: *const IStillImageW, pwszDeviceName: ?[*:0]u16, pValueName: ?[*:0]u16, pType: ?*u32, pData: ?*u8, cbData: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceValue(self, pwszDeviceName, pValueName, pType, pData, cbData);
     }
-    pub fn SetDeviceValue(self: *const IStillImageW, pwszDeviceName: ?PWSTR, pValueName: ?PWSTR, Type: u32, pData: ?*u8, cbData: u32) callconv(.@"inline") HRESULT {
+    pub fn SetDeviceValue(self: *const IStillImageW, pwszDeviceName: ?[*:0]u16, pValueName: ?[*:0]u16, Type: u32, pData: ?*u8, cbData: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetDeviceValue(self, pwszDeviceName, pValueName, Type, pData, cbData);
     }
     pub fn GetSTILaunchInformation(self: *const IStillImageW, pwszDeviceName: *[128]u16, pdwEventCode: ?*u32, pwszEventName: *[128]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSTILaunchInformation(self, pwszDeviceName, pdwEventCode, pwszEventName);
     }
-    pub fn RegisterLaunchApplication(self: *const IStillImageW, pwszAppName: ?PWSTR, pwszCommandLine: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn RegisterLaunchApplication(self: *const IStillImageW, pwszAppName: ?[*:0]u16, pwszCommandLine: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterLaunchApplication(self, pwszAppName, pwszCommandLine);
     }
-    pub fn UnregisterLaunchApplication(self: *const IStillImageW, pwszAppName: ?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn UnregisterLaunchApplication(self: *const IStillImageW, pwszAppName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterLaunchApplication(self, pwszAppName);
     }
     pub fn EnableHwNotifications(self: *const IStillImageW, pwszDeviceName: ?[*:0]const u16, bNewState: BOOL) callconv(.@"inline") HRESULT {
@@ -6980,7 +6980,7 @@ pub const IStillImageW = extern union {
     pub fn RefreshDeviceBus(self: *const IStillImageW, pwszDeviceName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.RefreshDeviceBus(self, pwszDeviceName);
     }
-    pub fn LaunchApplicationForDevice(self: *const IStillImageW, pwszDeviceName: ?PWSTR, pwszAppName: ?PWSTR, pStiNotify: ?*STINOTIFY) callconv(.@"inline") HRESULT {
+    pub fn LaunchApplicationForDevice(self: *const IStillImageW, pwszDeviceName: ?[*:0]u16, pwszAppName: ?[*:0]u16, pStiNotify: ?*STINOTIFY) callconv(.@"inline") HRESULT {
         return self.vtable.LaunchApplicationForDevice(self, pwszDeviceName, pwszAppName, pStiNotify);
     }
     pub fn SetupDeviceParameters(self: *const IStillImageW, param0: ?*STI_DEVICE_INFORMATIONW) callconv(.@"inline") HRESULT {
@@ -7208,10 +7208,10 @@ pub const PFAX_RECIPIENT_CALLBACKW = *const fn(
 pub const PFAX_ROUTING_INSTALLATION_CALLBACKW = *const fn(
     FaxHandle: ?HANDLE,
     Context: ?*anyopaque,
-    MethodName: ?PWSTR,
-    FriendlyName: ?PWSTR,
-    FunctionName: ?PWSTR,
-    Guid: ?PWSTR,
+    MethodName: ?[*:0]u16,
+    FriendlyName: ?[*:0]u16,
+    FunctionName: ?[*:0]u16,
+    Guid: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub const PFAX_SEND_CALLBACK = *const fn(
@@ -7543,7 +7543,7 @@ pub const PFAXROUTEGETFILE = *const fn(
     JobId: u32,
     Index: u32,
     /// parameter "RequiredSize" is the size in bytes
-    FileNameBuffer: ?PWSTR,
+    FileNameBuffer: ?[*:0]u16,
     RequiredSize: ?*u32,
 ) callconv(.winapi) BOOL;
 
@@ -7714,11 +7714,11 @@ pub const STI_DEVICE_INFORMATIONW = extern struct {
     szDeviceInternalName: [128]u16,
     DeviceCapabilitiesA: STI_DEV_CAPS,
     dwHardwareConfiguration: u32,
-    pszVendorDescription: ?PWSTR,
-    pszDeviceDescription: ?PWSTR,
-    pszPortName: ?PWSTR,
-    pszPropProvider: ?PWSTR,
-    pszLocalName: ?PWSTR,
+    pszVendorDescription: ?[*:0]u16,
+    pszDeviceDescription: ?[*:0]u16,
+    pszPortName: ?[*:0]u16,
+    pszPropProvider: ?[*:0]u16,
+    pszLocalName: ?[*:0]u16,
 };
 
 pub const STI_DEVICE_MJ_TYPE = enum(i32) {
@@ -7760,13 +7760,13 @@ pub const STI_WIA_DEVICE_INFORMATIONW = extern struct {
     szDeviceInternalName: [128]u16,
     DeviceCapabilitiesA: STI_DEV_CAPS,
     dwHardwareConfiguration: u32,
-    pszVendorDescription: ?PWSTR,
-    pszDeviceDescription: ?PWSTR,
-    pszPortName: ?PWSTR,
-    pszPropProvider: ?PWSTR,
-    pszLocalName: ?PWSTR,
-    pszUiDll: ?PWSTR,
-    pszServer: ?PWSTR,
+    pszVendorDescription: ?[*:0]u16,
+    pszDeviceDescription: ?[*:0]u16,
+    pszPortName: ?[*:0]u16,
+    pszPropProvider: ?[*:0]u16,
+    pszLocalName: ?[*:0]u16,
+    pszUiDll: ?[*:0]u16,
+    pszServer: ?[*:0]u16,
 };
 
 pub const STINOTIFY = extern struct {
@@ -8607,7 +8607,7 @@ pub const FaxStartPrintJob = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (21)
+// Section: Imports (19)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -8625,8 +8625,6 @@ const HWND = @import("../foundation.zig").HWND;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;
 const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;

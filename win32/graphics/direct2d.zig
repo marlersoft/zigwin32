@@ -9506,7 +9506,7 @@ pub extern "d2d1" fn D2D1Vec3Length(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (45)
+// Section: Imports (43)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -9550,8 +9550,6 @@ const IWICBitmapSource = @import("../graphics/imaging.zig").IWICBitmapSource;
 const IWICColorContext = @import("../graphics/imaging.zig").IWICColorContext;
 const IWICImagingFactory = @import("../graphics/imaging.zig").IWICImagingFactory;
 const POINT = @import("../foundation.zig").POINT;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 
 test {

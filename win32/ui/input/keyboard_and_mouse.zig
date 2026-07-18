@@ -1082,7 +1082,7 @@ pub const VK_VSC = extern struct {
 
 pub const VSC_LPWSTR = extern struct {
     vsc: u8,
-    pwsz: ?PWSTR,
+    pwsz: ?[*:0]u16,
 };
 
 pub const VSC_VK = extern struct {
@@ -1457,15 +1457,13 @@ pub const VkKeyScanEx = switch (@import("../../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../../foundation.zig").BOOL;
 const CHAR = @import("../../foundation.zig").CHAR;
 const HKL = @import("../../ui/text_services.zig").HKL;
 const HWND = @import("../../foundation.zig").HWND;
 const POINT = @import("../../foundation.zig").POINT;
-const PSTR = @import("../../foundation.zig").PSTR;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

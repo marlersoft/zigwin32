@@ -354,12 +354,11 @@ pub extern "ntdll" fn RtlQueryDepthSList(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const CONTEXT = @import("../system/diagnostics/debug.zig").CONTEXT;
 const EXCEPTION_RECORD = @import("../system/diagnostics/debug.zig").EXCEPTION_RECORD;
-const PSTR = @import("../foundation.zig").PSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -2271,13 +2271,13 @@ pub const CCSTYLEA = extern struct {
 pub const CCSTYLEFLAGA = extern struct {
     flStyle: u32,
     flStyleMask: u32,
-    pszStyle: ?PSTR,
+    pszStyle: ?[*:0]u8,
 };
 
 pub const CCSTYLEFLAGW = extern struct {
     flStyle: u32,
     flStyleMask: u32,
-    pszStyle: ?PWSTR,
+    pszStyle: ?[*:0]u16,
 };
 
 pub const CCSTYLEW = extern struct {
@@ -2448,7 +2448,7 @@ pub const CBEIF_TEXT = COMBOBOX_EX_ITEM_FLAGS{ .TEXT = 1 };
 pub const COMBOBOXEXITEMA = extern struct {
     mask: COMBOBOX_EX_ITEM_FLAGS,
     iItem: isize,
-    pszText: ?PSTR,
+    pszText: ?[*:0]u8,
     cchTextMax: i32,
     iImage: i32,
     iSelectedImage: i32,
@@ -2460,7 +2460,7 @@ pub const COMBOBOXEXITEMA = extern struct {
 pub const COMBOBOXEXITEMW = extern struct {
     mask: COMBOBOX_EX_ITEM_FLAGS,
     iItem: isize,
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     cchTextMax: i32,
     iImage: i32,
     iSelectedImage: i32,
@@ -3164,14 +3164,14 @@ pub const ETS_ASSIST = EDITTEXTSTATES.ASSIST;
 pub const ETS_CUEBANNER = EDITTEXTSTATES.CUEBANNER;
 
 pub const EDITWORDBREAKPROCA = *const fn(
-    lpch: ?PSTR,
+    lpch: ?[*:0]u8,
     ichCurrent: i32,
     cch: i32,
     code: WORD_BREAK_ACTION,
 ) callconv(.winapi) i32;
 
 pub const EDITWORDBREAKPROCW = *const fn(
-    lpch: ?PWSTR,
+    lpch: ?[*:0]u16,
     ichCurrent: i32,
     cch: i32,
     code: WORD_BREAK_ACTION,
@@ -3538,12 +3538,12 @@ pub const HA_CENTER = HALIGN.CENTER;
 pub const HA_RIGHT = HALIGN.RIGHT;
 
 pub const HD_TEXTFILTERA = extern struct {
-    pszText: ?PSTR,
+    pszText: ?[*:0]u8,
     cchTextMax: i32,
 };
 
 pub const HD_TEXTFILTERW = extern struct {
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     cchTextMax: i32,
 };
 
@@ -3603,7 +3603,7 @@ pub const HDI_STATE = HDI_MASK{ .STATE = 1 };
 pub const HDITEMA = extern struct {
     mask: HDI_MASK,
     cxy: i32,
-    pszText: ?PSTR,
+    pszText: ?[*:0]u8,
     hbm: ?HBITMAP,
     cchTextMax: i32,
     fmt: HEADER_CONTROL_FORMAT_FLAGS,
@@ -3618,7 +3618,7 @@ pub const HDITEMA = extern struct {
 pub const HDITEMW = extern struct {
     mask: HDI_MASK,
     cxy: i32,
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     hbm: ?HBITMAP,
     cchTextMax: i32,
     fmt: HEADER_CONTROL_FORMAT_FLAGS,
@@ -5171,14 +5171,14 @@ pub const LPFNCCSIZETOTEXTA = *const fn(
     flStyle: u32,
     flExtStyle: u32,
     hfont: ?HFONT,
-    pszText: ?PSTR,
+    pszText: ?[*:0]u8,
 ) callconv(.winapi) i32;
 
 pub const LPFNCCSIZETOTEXTW = *const fn(
     flStyle: u32,
     flExtStyle: u32,
     hfont: ?HFONT,
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
 ) callconv(.winapi) i32;
 
 pub const LPFNCCSTYLEA = *const fn(
@@ -5211,7 +5211,7 @@ pub const LPFNSVADDPROPSHEETPAGE = *const fn(
 pub const LVBKIMAGEA = extern struct {
     ulFlags: LIST_VIEW_BACKGROUND_IMAGE_FLAGS,
     hbm: ?HBITMAP,
-    pszImage: ?PSTR,
+    pszImage: ?[*:0]u8,
     cchImageMax: u32,
     xOffsetPercent: i32,
     yOffsetPercent: i32,
@@ -5220,7 +5220,7 @@ pub const LVBKIMAGEA = extern struct {
 pub const LVBKIMAGEW = extern struct {
     ulFlags: LIST_VIEW_BACKGROUND_IMAGE_FLAGS,
     hbm: ?HBITMAP,
-    pszImage: ?PWSTR,
+    pszImage: ?[*:0]u16,
     cchImageMax: u32,
     xOffsetPercent: i32,
     yOffsetPercent: i32,
@@ -5230,7 +5230,7 @@ pub const LVCOLUMNA = extern struct {
     mask: LVCOLUMNW_MASK,
     fmt: LVCOLUMNW_FORMAT,
     cx: i32,
-    pszText: ?PSTR,
+    pszText: ?[*:0]u8,
     cchTextMax: i32,
     iSubItem: i32,
     iImage: i32,
@@ -5244,7 +5244,7 @@ pub const LVCOLUMNW = extern struct {
     mask: LVCOLUMNW_MASK,
     fmt: LVCOLUMNW_FORMAT,
     cx: i32,
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     cchTextMax: i32,
     iSubItem: i32,
     iImage: i32,
@@ -5406,7 +5406,7 @@ pub const LVFI_NEARESTXY = LVFINDINFOW_FLAGS{ .NEARESTXY = 1 };
 
 pub const LVFOOTERINFO = extern struct {
     mask: u32,
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     cchTextMax: i32,
     cItems: u32,
 };
@@ -5414,7 +5414,7 @@ pub const LVFOOTERINFO = extern struct {
 pub const LVFOOTERITEM = extern struct {
     mask: LVFOOTERITEM_MASK,
     iItem: i32,
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     cchTextMax: i32,
     state: u32,
     stateMask: u32,
@@ -5430,27 +5430,27 @@ pub const LVFIF_STATE = LVFOOTERITEM_MASK.STATE;
 pub const LVGROUP = extern struct {
     cbSize: u32,
     mask: LVGROUP_MASK,
-    pszHeader: ?PWSTR,
+    pszHeader: ?[*:0]u16,
     cchHeader: i32,
-    pszFooter: ?PWSTR,
+    pszFooter: ?[*:0]u16,
     cchFooter: i32,
     iGroupId: i32,
     stateMask: LIST_VIEW_GROUP_STATE_FLAGS,
     state: LIST_VIEW_GROUP_STATE_FLAGS,
     uAlign: LIST_VIEW_GROUP_ALIGN_FLAGS,
-    pszSubtitle: ?PWSTR,
+    pszSubtitle: ?[*:0]u16,
     cchSubtitle: u32,
-    pszTask: ?PWSTR,
+    pszTask: ?[*:0]u16,
     cchTask: u32,
-    pszDescriptionTop: ?PWSTR,
+    pszDescriptionTop: ?[*:0]u16,
     cchDescriptionTop: u32,
-    pszDescriptionBottom: ?PWSTR,
+    pszDescriptionBottom: ?[*:0]u16,
     cchDescriptionBottom: u32,
     iTitleImage: i32,
     iExtendedImage: i32,
     iFirstItem: i32,
     cItems: u32,
-    pszSubsetTitle: ?PWSTR,
+    pszSubsetTitle: ?[*:0]u16,
     cchSubsetTitle: u32,
 };
 
@@ -5595,7 +5595,7 @@ pub const LVITEMA = extern struct {
     iSubItem: i32,
     state: LIST_VIEW_ITEM_STATE_FLAGS,
     stateMask: LIST_VIEW_ITEM_STATE_FLAGS,
-    pszText: ?PSTR,
+    pszText: ?[*:0]u8,
     cchTextMax: i32,
     iImage: i32,
     lParam: LPARAM,
@@ -5625,7 +5625,7 @@ pub const LVITEMW = extern struct {
     iSubItem: i32,
     state: LIST_VIEW_ITEM_STATE_FLAGS,
     stateMask: LIST_VIEW_ITEM_STATE_FLAGS,
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     cchTextMax: i32,
     iImage: i32,
     lParam: LPARAM,
@@ -5640,7 +5640,7 @@ pub const LVITEMW = extern struct {
 pub const LVSETINFOTIP = extern struct {
     cbSize: u32,
     dwFlags: u32,
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     iItem: i32,
     iSubItem: i32,
 };
@@ -5787,7 +5787,7 @@ pub const MCGRIDINFO = extern struct {
     stStart: SYSTEMTIME,
     stEnd: SYSTEMTIME,
     rc: RECT,
-    pszName: ?PWSTR,
+    pszName: ?[*:0]u16,
     cchName: usize,
 };
 
@@ -6506,7 +6506,7 @@ pub const NMHDDISPINFOA = extern struct {
     hdr: NMHDR,
     iItem: i32,
     mask: HDI_MASK,
-    pszText: ?PSTR,
+    pszText: ?[*:0]u8,
     cchTextMax: i32,
     iImage: i32,
     lParam: LPARAM,
@@ -6516,7 +6516,7 @@ pub const NMHDDISPINFOW = extern struct {
     hdr: NMHDR,
     iItem: i32,
     mask: HDI_MASK,
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     cchTextMax: i32,
     iImage: i32,
     lParam: LPARAM,
@@ -6661,7 +6661,7 @@ pub const LVGIT_ZERO = NMLVGETINFOTIP_FLAGS.ZERO;
 pub const NMLVGETINFOTIPA = extern struct {
     hdr: NMHDR,
     dwFlags: NMLVGETINFOTIP_FLAGS,
-    pszText: ?PSTR,
+    pszText: ?[*:0]u8,
     cchTextMax: i32,
     iItem: i32,
     iSubItem: i32,
@@ -6671,7 +6671,7 @@ pub const NMLVGETINFOTIPA = extern struct {
 pub const NMLVGETINFOTIPW = extern struct {
     hdr: NMHDR,
     dwFlags: NMLVGETINFOTIP_FLAGS,
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     cchTextMax: i32,
     iItem: i32,
     iSubItem: i32,
@@ -6909,7 +6909,7 @@ pub const NMTBDISPINFOA = extern struct {
     idCommand: i32,
     lParam: usize,
     iImage: i32,
-    pszText: ?PSTR,
+    pszText: ?[*:0]u8,
     cchText: i32,
 };
 
@@ -6919,7 +6919,7 @@ pub const NMTBDISPINFOW = extern struct {
     idCommand: i32,
     lParam: usize,
     iImage: i32,
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     cchText: i32,
 };
 
@@ -6963,7 +6963,7 @@ pub const TBNF_DI_SETITEM = NMTBDISPINFOW_MASK{ .DI_SETITEM = 1 };
 
 pub const NMTBGETINFOTIPA = extern struct {
     hdr: NMHDR,
-    pszText: ?PSTR,
+    pszText: ?[*:0]u8,
     cchTextMax: i32,
     iItem: i32,
     lParam: LPARAM,
@@ -6971,7 +6971,7 @@ pub const NMTBGETINFOTIPA = extern struct {
 
 pub const NMTBGETINFOTIPW = extern struct {
     hdr: NMHDR,
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     cchTextMax: i32,
     iItem: i32,
     lParam: LPARAM,
@@ -7061,7 +7061,7 @@ pub const NMTOOLBARA = extern struct {
     iItem: i32,
     tbButton: TBBUTTON,
     cchText: i32,
-    pszText: ?PSTR,
+    pszText: ?[*:0]u8,
     rcButton: RECT,
 };
 
@@ -7070,7 +7070,7 @@ pub const NMTOOLBARW = extern struct {
     iItem: i32,
     tbButton: TBBUTTON,
     cchText: i32,
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     rcButton: RECT,
 };
 
@@ -7108,7 +7108,7 @@ pub const NMTTCUSTOMDRAW = extern struct {
 
 pub const NMTTDISPINFOA = extern struct {
     hdr: NMHDR,
-    lpszText: ?PSTR,
+    lpszText: ?[*:0]u8,
     szText: [80]CHAR,
     hinst: ?HINSTANCE,
     uFlags: TOOLTIP_FLAGS,
@@ -7117,7 +7117,7 @@ pub const NMTTDISPINFOA = extern struct {
 
 pub const NMTTDISPINFOW = extern struct {
     hdr: NMHDR,
-    lpszText: ?PWSTR,
+    lpszText: ?[*:0]u16,
     szText: [80]u16,
     hinst: ?HINSTANCE,
     uFlags: TOOLTIP_FLAGS,
@@ -7163,7 +7163,7 @@ pub const NMTVDISPINFOW = extern struct {
 
 pub const NMTVGETINFOTIPA = extern struct {
     hdr: NMHDR,
-    pszText: ?PSTR,
+    pszText: ?[*:0]u8,
     cchTextMax: i32,
     hItem: ?HTREEITEM,
     lParam: LPARAM,
@@ -7171,7 +7171,7 @@ pub const NMTVGETINFOTIPA = extern struct {
 
 pub const NMTVGETINFOTIPW = extern struct {
     hdr: NMHDR,
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     cchTextMax: i32,
     hItem: ?HTREEITEM,
     lParam: LPARAM,
@@ -7948,7 +7948,7 @@ pub const REBARBANDINFOA = extern struct {
     fStyle: u32,
     clrFore: COLORREF,
     clrBack: COLORREF,
-    lpText: ?PSTR,
+    lpText: ?[*:0]u8,
     cch: u32,
     iImage: i32,
     hwndChild: ?HWND,
@@ -7973,7 +7973,7 @@ pub const REBARBANDINFOW = extern struct {
     fStyle: u32,
     clrFore: COLORREF,
     clrBack: COLORREF,
-    lpText: ?PWSTR,
+    lpText: ?[*:0]u16,
     cch: u32,
     iImage: i32,
     hwndChild: ?HWND,
@@ -8853,7 +8853,7 @@ pub const TBBUTTONINFOA = extern struct {
     fsStyle: u8,
     cx: u16,
     lParam: usize,
-    pszText: ?PSTR,
+    pszText: ?[*:0]u8,
     cchText: i32,
 };
 
@@ -8866,7 +8866,7 @@ pub const TBBUTTONINFOW = extern struct {
     fsStyle: u8,
     cx: u16,
     lParam: usize,
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     cchText: i32,
 };
 
@@ -8978,7 +8978,7 @@ pub const TCITEMA = extern struct {
     mask: TCITEMHEADERA_MASK,
     dwState: TAB_CONTROL_ITEM_STATE,
     dwStateMask: TAB_CONTROL_ITEM_STATE,
-    pszText: ?PSTR,
+    pszText: ?[*:0]u8,
     cchTextMax: i32,
     iImage: i32,
     lParam: LPARAM,
@@ -8988,7 +8988,7 @@ pub const TCITEMHEADERA = extern struct {
     mask: TCITEMHEADERA_MASK,
     lpReserved1: u32,
     lpReserved2: u32,
-    pszText: ?PSTR,
+    pszText: ?[*:0]u8,
     cchTextMax: i32,
     iImage: i32,
 };
@@ -9037,7 +9037,7 @@ pub const TCITEMHEADERW = extern struct {
     mask: TCITEMHEADERA_MASK,
     lpReserved1: u32,
     lpReserved2: u32,
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     cchTextMax: i32,
     iImage: i32,
 };
@@ -9046,7 +9046,7 @@ pub const TCITEMW = extern struct {
     mask: TCITEMHEADERA_MASK,
     dwState: TAB_CONTROL_ITEM_STATE,
     dwStateMask: TAB_CONTROL_ITEM_STATE,
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     cchTextMax: i32,
     iImage: i32,
     lParam: LPARAM,
@@ -10038,7 +10038,7 @@ pub const TTGETTITLE = extern struct {
     dwSize: u32,
     uTitleBitmap: u32,
     cch: u32,
-    pszTitle: ?PWSTR,
+    pszTitle: ?[*:0]u16,
 };
 
 pub const TTHITTESTINFOA = extern struct {
@@ -10060,7 +10060,7 @@ pub const TTTOOLINFOA = extern struct {
     uId: usize,
     rect: RECT,
     hinst: ?HINSTANCE,
-    lpszText: ?PSTR,
+    lpszText: ?[*:0]u8,
     lParam: LPARAM,
     lpReserved: ?*anyopaque,
 };
@@ -10072,7 +10072,7 @@ pub const TTTOOLINFOW = extern struct {
     uId: usize,
     rect: RECT,
     hinst: ?HINSTANCE,
-    lpszText: ?PWSTR,
+    lpszText: ?[*:0]u16,
     lParam: LPARAM,
     lpReserved: ?*anyopaque,
 };
@@ -10209,7 +10209,7 @@ pub const TVITEMA = extern struct {
     hItem: ?HTREEITEM,
     state: TREE_VIEW_ITEM_STATE_FLAGS,
     stateMask: TREE_VIEW_ITEM_STATE_FLAGS,
-    pszText: ?PSTR,
+    pszText: ?[*:0]u8,
     cchTextMax: i32,
     iImage: i32,
     iSelectedImage: i32,
@@ -10222,7 +10222,7 @@ pub const TVITEMEXA = extern struct {
     hItem: ?HTREEITEM,
     state: u32,
     stateMask: u32,
-    pszText: ?PSTR,
+    pszText: ?[*:0]u8,
     cchTextMax: i32,
     iImage: i32,
     iSelectedImage: i32,
@@ -10240,7 +10240,7 @@ pub const TVITEMEXW = extern struct {
     hItem: ?HTREEITEM,
     state: u32,
     stateMask: u32,
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     cchTextMax: i32,
     iImage: i32,
     iSelectedImage: i32,
@@ -10274,7 +10274,7 @@ pub const TVITEMW = extern struct {
     hItem: ?HTREEITEM,
     state: TREE_VIEW_ITEM_STATE_FLAGS,
     stateMask: TREE_VIEW_ITEM_STATE_FLAGS,
-    pszText: ?PWSTR,
+    pszText: ?[*:0]u16,
     cchTextMax: i32,
     iImage: i32,
     iSelectedImage: i32,
@@ -10716,7 +10716,7 @@ pub extern "user32" fn DestroySyntheticPointerDevice(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn DlgDirListA(
     hDlg: ?HWND,
-    lpPathSpec: ?PSTR,
+    lpPathSpec: ?[*:0]u8,
     nIDListBox: i32,
     nIDStaticPath: i32,
     uFileType: DLG_DIR_LIST_FILE_TYPE,
@@ -10725,7 +10725,7 @@ pub extern "user32" fn DlgDirListA(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn DlgDirListComboBoxA(
     hDlg: ?HWND,
-    lpPathSpec: ?PSTR,
+    lpPathSpec: ?[*:0]u8,
     nIDComboBox: i32,
     nIDStaticPath: i32,
     uFiletype: DLG_DIR_LIST_FILE_TYPE,
@@ -10734,7 +10734,7 @@ pub extern "user32" fn DlgDirListComboBoxA(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn DlgDirListComboBoxW(
     hDlg: ?HWND,
-    lpPathSpec: ?PWSTR,
+    lpPathSpec: ?[*:0]u16,
     nIDComboBox: i32,
     nIDStaticPath: i32,
     uFiletype: DLG_DIR_LIST_FILE_TYPE,
@@ -10743,7 +10743,7 @@ pub extern "user32" fn DlgDirListComboBoxW(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn DlgDirListW(
     hDlg: ?HWND,
-    lpPathSpec: ?PWSTR,
+    lpPathSpec: ?[*:0]u16,
     nIDListBox: i32,
     nIDStaticPath: i32,
     uFileType: DLG_DIR_LIST_FILE_TYPE,
@@ -12110,7 +12110,7 @@ pub extern "user32" fn ShowScrollBar(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "comctl32" fn Str_SetPtrW(
-    ppsz: ?*?PWSTR,
+    ppsz: ?*?[*:0]u16,
     psz: ?[*:0]const u16,
 ) callconv(.winapi) BOOL;
 
@@ -12537,7 +12537,7 @@ pub const PropertySheet = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (46)
+// Section: Imports (44)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLENDFUNCTION = @import("../graphics/gdi.zig").BLENDFUNCTION;
@@ -12574,8 +12574,6 @@ const POINT = @import("../foundation.zig").POINT;
 const POINTER_INPUT_TYPE = @import("../ui/windows_and_messaging.zig").POINTER_INPUT_TYPE;
 const POINTER_PEN_INFO = @import("../ui/input/pointer.zig").POINTER_PEN_INFO;
 const POINTER_TOUCH_INFO = @import("../ui/input/pointer.zig").POINTER_TOUCH_INFO;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const RGBQUAD = @import("../graphics/gdi.zig").RGBQUAD;
 const SCROLLBAR_CONSTANTS = @import("../ui/windows_and_messaging.zig").SCROLLBAR_CONSTANTS;

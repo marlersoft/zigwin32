@@ -672,17 +672,17 @@ pub const APPLICATION_RECOVERY_CALLBACK = *const fn(
 ) callconv(.winapi) u32;
 
 pub const CABINFOA = extern struct {
-    pszCab: ?PSTR,
-    pszInf: ?PSTR,
-    pszSection: ?PSTR,
+    pszCab: ?[*:0]u8,
+    pszInf: ?[*:0]u8,
+    pszSection: ?[*:0]u8,
     szSrcPath: [260]CHAR,
     dwFlags: u32,
 };
 
 pub const CABINFOW = extern struct {
-    pszCab: ?PWSTR,
-    pszInf: ?PWSTR,
-    pszSection: ?PWSTR,
+    pszCab: ?[*:0]u16,
+    pszInf: ?[*:0]u16,
+    pszSection: ?[*:0]u16,
     szSrcPath: [260]u16,
     dwFlags: u32,
 };
@@ -1166,7 +1166,7 @@ pub const IEditionUpgradeHelper = extern union {
         ) callconv(.winapi) HRESULT,
         GetOsProductContentId: *const fn(
             self: *const IEditionUpgradeHelper,
-            contentId: ?*?PWSTR,
+            contentId: ?*?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         GetGenuineLocalStatus: *const fn(
             self: *const IEditionUpgradeHelper,
@@ -1184,7 +1184,7 @@ pub const IEditionUpgradeHelper = extern union {
     pub fn ShowProductKeyUI(self: *const IEditionUpgradeHelper) callconv(.@"inline") HRESULT {
         return self.vtable.ShowProductKeyUI(self);
     }
-    pub fn GetOsProductContentId(self: *const IEditionUpgradeHelper, contentId: ?*?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn GetOsProductContentId(self: *const IEditionUpgradeHelper, contentId: ?*?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetOsProductContentId(self, contentId);
     }
     pub fn GetGenuineLocalStatus(self: *const IEditionUpgradeHelper, isGenuine: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -1504,13 +1504,13 @@ pub const REGINSTALLA = *const fn(
 ) callconv(.winapi) HRESULT;
 
 pub const STRENTRYA = extern struct {
-    pszName: ?PSTR,
-    pszValue: ?PSTR,
+    pszName: ?[*:0]u8,
+    pszValue: ?[*:0]u8,
 };
 
 pub const STRENTRYW = extern struct {
-    pszName: ?PWSTR,
-    pszValue: ?PWSTR,
+    pszName: ?[*:0]u16,
+    pszValue: ?[*:0]u16,
 };
 
 pub const STRINGEXSTRUCT = extern struct {
@@ -1768,7 +1768,7 @@ pub const WLDP_DEVICE_SECURITY_INFORMATION = extern struct {
     UnlockIdSize: u32,
     UnlockId: ?*u8,
     ManufacturerIDLength: u32,
-    ManufacturerID: ?PWSTR,
+    ManufacturerID: ?[*:0]u16,
 };
 
 pub const WLDP_HOST = enum(i32) {
@@ -2096,7 +2096,7 @@ pub extern "advpack" fn DelNodeA(
 pub extern "advpack" fn DelNodeRunDLL32W(
     hwnd: ?HWND,
     hInstance: ?HINSTANCE,
-    pszParms: ?PWSTR,
+    pszParms: ?[*:0]u16,
     nShow: i32,
 ) callconv(.winapi) HRESULT;
 
@@ -2201,7 +2201,7 @@ pub extern "advpack" fn FileSaveRestoreOnINFW(
 
 pub extern "advpack" fn FileSaveRestoreW(
     hDlg: ?HWND,
-    lpFileList: ?PWSTR,
+    lpFileList: ?[*:0]u16,
     lpDir: ?[*:0]const u16,
     lpBaseName: ?[*:0]const u16,
     dwFlags: u32,
@@ -2568,14 +2568,14 @@ pub extern "advapi32" fn IsTokenUntrusted(
 pub extern "advpack" fn LaunchINFSectionExW(
     hwnd: ?HWND,
     hInstance: ?HINSTANCE,
-    pszParms: ?PWSTR,
+    pszParms: ?[*:0]u16,
     nShow: i32,
 ) callconv(.winapi) HRESULT;
 
 pub extern "advpack" fn LaunchINFSectionW(
     hwndOwner: ?HWND,
     hInstance: ?HINSTANCE,
-    pszParams: ?PWSTR,
+    pszParams: ?[*:0]u16,
     nShow: i32,
 ) callconv(.winapi) i32;
 
@@ -2885,8 +2885,8 @@ pub extern "advpack" fn RegSaveRestoreW(
 ) callconv(.winapi) HRESULT;
 
 pub extern "kernel32" fn ReplacePartitionUnit(
-    TargetPartition: ?PWSTR,
-    SparePartition: ?PWSTR,
+    TargetPartition: ?[*:0]u16,
+    SparePartition: ?[*:0]u16,
     Flags: u32,
 ) callconv(.winapi) BOOL;
 
@@ -3793,7 +3793,7 @@ pub const WriteProfileString = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (30)
+// Section: Imports (28)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -3814,8 +3814,6 @@ const LPARAM = @import("../foundation.zig").LPARAM;
 const LRESULT = @import("../foundation.zig").LRESULT;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const OLE_HANDLE = @import("../system/ole.zig").OLE_HANDLE;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const RGNDATA = @import("../graphics/gdi.zig").RGNDATA;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;

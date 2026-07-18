@@ -1393,12 +1393,12 @@ pub const IRecoverableErrorData = extern union {
         ) callconv(.winapi) HRESULT,
         GetItemDisplayName: *const fn(
             self: *const IRecoverableErrorData,
-            pszItemDisplayName: ?PWSTR,
+            pszItemDisplayName: ?[*:0]u16,
             pcchItemDisplayName: ?*u32,
         ) callconv(.winapi) HRESULT,
         GetErrorDescription: *const fn(
             self: *const IRecoverableErrorData,
-            pszErrorDescription: ?PWSTR,
+            pszErrorDescription: ?[*:0]u16,
             pcchErrorDescription: ?*u32,
         ) callconv(.winapi) HRESULT,
     };
@@ -1407,10 +1407,10 @@ pub const IRecoverableErrorData = extern union {
     pub fn Initialize(self: *const IRecoverableErrorData, pcszItemDisplayName: ?[*:0]const u16, pcszErrorDescription: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pcszItemDisplayName, pcszErrorDescription);
     }
-    pub fn GetItemDisplayName(self: *const IRecoverableErrorData, pszItemDisplayName: ?PWSTR, pcchItemDisplayName: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetItemDisplayName(self: *const IRecoverableErrorData, pszItemDisplayName: ?[*:0]u16, pcchItemDisplayName: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemDisplayName(self, pszItemDisplayName, pcchItemDisplayName);
     }
-    pub fn GetErrorDescription(self: *const IRecoverableErrorData, pszErrorDescription: ?PWSTR, pcchErrorDescription: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetErrorDescription(self: *const IRecoverableErrorData, pszErrorDescription: ?[*:0]u16, pcchErrorDescription: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetErrorDescription(self, pszErrorDescription, pcchErrorDescription);
     }
 };
@@ -3420,7 +3420,7 @@ pub const CLSID_SyncProviderRegistration = &CLSID_SyncProviderRegistration_Value
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -3430,7 +3430,6 @@ const HWND = @import("../foundation.zig").HWND;
 const IPropertyStore = @import("../ui/shell/properties_system.zig").IPropertyStore;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PROPERTYKEY = @import("../ui/shell/properties_system.zig").PROPERTYKEY;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

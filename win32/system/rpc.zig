@@ -425,7 +425,7 @@ pub const I_RpcProxyFilterIfFn = *const fn(
 
 pub const I_RpcProxyGetClientAddressFn = *const fn(
     Context: ?*anyopaque,
-    Buffer: ?PSTR,
+    Buffer: ?[*:0]u8,
     BufferLength: ?*u32,
 ) callconv(.winapi) RPC_STATUS;
 
@@ -511,7 +511,7 @@ pub const MIDL_ES_READ = *const fn(
 
 pub const MIDL_ES_WRITE = *const fn(
     state: ?*anyopaque,
-    buffer: ?PSTR,
+    buffer: ?[*:0]u8,
     size: u32,
 ) callconv(.winapi) void;
 
@@ -1469,7 +1469,7 @@ pub const RPC_C_HTTP_FLAG_ENABLE_CERT_REVOCATION_CHECK = RPC_C_HTTP_FLAGS{ .ENAB
 
 pub const RPC_C_OPT_COOKIE_AUTH_DESCRIPTOR = extern struct {
     BufferSize: u32,
-    Buffer: ?PSTR,
+    Buffer: ?[*:0]u8,
 };
 
 pub const RPC_C_QOS_CAPABILITIES = packed struct(u32) {
@@ -1680,8 +1680,8 @@ pub const RPC_DISPATCH_TABLE = extern struct {
 pub const RPC_EE_INFO_PARAM = extern struct {
     ParameterType: ExtendedErrorParamTypes,
     u: extern union {
-        AnsiString: ?PSTR,
-        UnicodeString: ?PWSTR,
+        AnsiString: ?[*:0]u8,
+        UnicodeString: ?[*:0]u16,
         LVal: i32,
         SVal: i16,
         PVal: u64,
@@ -1713,7 +1713,7 @@ pub const RPC_ERROR_ENUM_HANDLE = extern struct {
 
 pub const RPC_EXTENDED_ERROR_INFO = extern struct {
     Version: u32,
-    ComputerName: ?PWSTR,
+    ComputerName: ?[*:0]u16,
     ProcessID: u32,
     u: extern union {
         SystemTime: SYSTEMTIME,
@@ -2943,7 +2943,7 @@ pub extern "rpcrt4" fn MesBufferHandleReset(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rpcrt4" fn MesDecodeBufferHandleCreate(
     /// parameter "BufferSize" is the size in bytes
-    Buffer: ?PSTR,
+    Buffer: ?[*:0]u8,
     BufferSize: u32,
     pHandle: ?*?*anyopaque,
 ) callconv(.winapi) RPC_STATUS;
@@ -2965,7 +2965,7 @@ pub extern "rpcrt4" fn MesEncodeDynBufferHandleCreate(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rpcrt4" fn MesEncodeFixedBufferHandleCreate(
     /// parameter "BufferSize" is the size in bytes
-    pBuffer: ?PSTR,
+    pBuffer: ?[*:0]u8,
     BufferSize: u32,
     pEncodedSize: ?*u32,
     pHandle: ?*?*anyopaque,
@@ -6291,7 +6291,7 @@ pub const UuidToString = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (17)
+// Section: Imports (15)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -6306,8 +6306,6 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const LUID = @import("../foundation.zig").LUID;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RPC_C_IMP_LEVEL = @import("../system/com.zig").RPC_C_IMP_LEVEL;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 

@@ -853,7 +853,7 @@ pub const IRoSimpleMetaDataBuilder = extern union {
             self: *const IRoSimpleMetaDataBuilder,
             name: ?[*:0]const u16,
             elementCount: u32,
-            defaultInterfaceNameElements: [*]?PWSTR,
+            defaultInterfaceNameElements: [*]?[*:0]u16,
         ) callconv(.winapi) HRESULT,
         SetRuntimeClassSimpleDefault: *const fn(
             self: *const IRoSimpleMetaDataBuilder,
@@ -899,7 +899,7 @@ pub const IRoSimpleMetaDataBuilder = extern union {
     pub fn SetInterfaceGroupSimpleDefault(self: *const IRoSimpleMetaDataBuilder, name: ?[*:0]const u16, defaultInterfaceName: ?[*:0]const u16, defaultInterfaceIID: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetInterfaceGroupSimpleDefault(self, name, defaultInterfaceName, defaultInterfaceIID);
     }
-    pub fn SetInterfaceGroupParameterizedDefault(self: *const IRoSimpleMetaDataBuilder, name: ?[*:0]const u16, elementCount: u32, defaultInterfaceNameElements: [*]?PWSTR) callconv(.@"inline") HRESULT {
+    pub fn SetInterfaceGroupParameterizedDefault(self: *const IRoSimpleMetaDataBuilder, name: ?[*:0]const u16, elementCount: u32, defaultInterfaceNameElements: [*]?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetInterfaceGroupParameterizedDefault(self, name, elementCount, defaultInterfaceNameElements);
     }
     pub fn SetRuntimeClassSimpleDefault(self: *const IRoSimpleMetaDataBuilder, name: ?[*:0]const u16, defaultInterfaceName: ?[*:0]const u16, defaultInterfaceIID: ?*const Guid) callconv(.@"inline") HRESULT {
@@ -1435,7 +1435,7 @@ pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoGetMatchingRestrictedErrorI
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-roparameterizediid-l1-1-0" fn RoGetParameterizedTypeInstanceIID(
     nameElementCount: u32,
-    nameElements: [*]?PWSTR,
+    nameElements: [*]?[*:0]u16,
     metaDataLocator: ?*IRoMetaDataLocator,
     iid: ?*Guid,
     pExtra: ?*ROPARAMIIDHANDLE,
@@ -1495,7 +1495,7 @@ pub extern "api-ms-win-core-winrt-error-l1-1-1" fn RoOriginateLanguageException(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-roparameterizediid-l1-1-0" fn RoParameterizedTypeExtraGetTypeSignature(
     extra: ROPARAMIIDHANDLE,
-) callconv(.winapi) ?PSTR;
+) callconv(.winapi) ?[*:0]u8;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-l1-1-0" fn RoRegisterActivationFactories(
@@ -1620,7 +1620,7 @@ pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsGetStringLen(
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsGetStringRawBuffer(
     string: ?HSTRING,
     length: ?*u32,
-) callconv(.winapi) ?PWSTR;
+) callconv(.winapi) ?[*:0]u16;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsInspectString(
@@ -1708,7 +1708,7 @@ pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsTrimStringStart(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -1719,8 +1719,6 @@ const IMarshal = @import("../system/com/marshal.zig").IMarshal;
 const INamedPropertyStore = @import("../ui/shell/properties_system.zig").INamedPropertyStore;
 const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

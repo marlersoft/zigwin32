@@ -484,19 +484,19 @@ pub const HTTP_VERSION_INFO = extern struct {
 
 pub const URL_COMPONENTS = extern struct {
     dwStructSize: u32,
-    lpszScheme: ?PWSTR,
+    lpszScheme: ?[*:0]u16,
     dwSchemeLength: u32,
     nScheme: WINHTTP_INTERNET_SCHEME,
-    lpszHostName: ?PWSTR,
+    lpszHostName: ?[*:0]u16,
     dwHostNameLength: u32,
     nPort: u16,
-    lpszUserName: ?PWSTR,
+    lpszUserName: ?[*:0]u16,
     dwUserNameLength: u32,
-    lpszPassword: ?PWSTR,
+    lpszPassword: ?[*:0]u16,
     dwPasswordLength: u32,
-    lpszUrlPath: ?PWSTR,
+    lpszUrlPath: ?[*:0]u16,
     dwUrlPathLength: u32,
-    lpszExtraInfo: ?PWSTR,
+    lpszExtraInfo: ?[*:0]u16,
     dwExtraInfoLength: u32,
 };
 
@@ -537,11 +537,11 @@ pub const WINHTTP_AUTOPROXY_OPTIONS = extern struct {
 pub const WINHTTP_CERTIFICATE_INFO = extern struct {
     ftExpiry: FILETIME,
     ftStart: FILETIME,
-    lpszSubjectInfo: ?PWSTR,
-    lpszIssuerInfo: ?PWSTR,
-    lpszProtocolName: ?PWSTR,
-    lpszSignatureAlgName: ?PWSTR,
-    lpszEncryptionAlgName: ?PWSTR,
+    lpszSubjectInfo: ?[*:0]u16,
+    lpszIssuerInfo: ?[*:0]u16,
+    lpszProtocolName: ?[*:0]u16,
+    lpszSignatureAlgName: ?[*:0]u16,
+    lpszEncryptionAlgName: ?[*:0]u16,
     dwKeySize: u32,
 };
 
@@ -553,11 +553,11 @@ pub const WINHTTP_CONNECTION_GROUP = extern struct {
 
 
 pub const WINHTTP_CREDS = extern struct {
-    lpszUserName: ?PSTR,
-    lpszPassword: ?PSTR,
-    lpszRealm: ?PSTR,
+    lpszUserName: ?[*:0]u8,
+    lpszPassword: ?[*:0]u8,
+    lpszRealm: ?[*:0]u8,
     dwAuthScheme: WINHTTP_CREDS_AUTHSCHEME,
-    lpszHostName: ?PSTR,
+    lpszHostName: ?[*:0]u8,
     dwPort: u32,
 };
 
@@ -571,20 +571,20 @@ pub const WINHTTP_AUTH_SCHEME_NTLM = WINHTTP_CREDS_AUTHSCHEME.NTLM;
 pub const WINHTTP_AUTH_SCHEME_NEGOTIATE = WINHTTP_CREDS_AUTHSCHEME.NEGOTIATE;
 
 pub const WINHTTP_CREDS_EX = extern struct {
-    lpszUserName: ?PSTR,
-    lpszPassword: ?PSTR,
-    lpszRealm: ?PSTR,
+    lpszUserName: ?[*:0]u8,
+    lpszPassword: ?[*:0]u8,
+    lpszRealm: ?[*:0]u8,
     dwAuthScheme: WINHTTP_CREDS_AUTHSCHEME,
-    lpszHostName: ?PSTR,
+    lpszHostName: ?[*:0]u8,
     dwPort: u32,
-    lpszUrl: ?PSTR,
+    lpszUrl: ?[*:0]u8,
 };
 
 pub const WINHTTP_CURRENT_USER_IE_PROXY_CONFIG = extern struct {
     fAutoDetect: BOOL,
-    lpszAutoConfigUrl: ?PWSTR,
-    lpszProxy: ?PWSTR,
-    lpszProxyBypass: ?PWSTR,
+    lpszAutoConfigUrl: ?[*:0]u16,
+    lpszProxy: ?[*:0]u16,
+    lpszProxyBypass: ?[*:0]u16,
 };
 
 pub const WINHTTP_EXTENDED_HEADER = extern struct {
@@ -677,8 +677,8 @@ pub const WINHTTP_FLAG_SECURE = WINHTTP_OPEN_REQUEST_FLAGS{ .SECURE = 1 };
 
 pub const WINHTTP_PROXY_INFO = extern struct {
     dwAccessType: WINHTTP_ACCESS_TYPE,
-    lpszProxy: ?PWSTR,
-    lpszProxyBypass: ?PWSTR,
+    lpszProxy: ?[*:0]u16,
+    lpszProxyBypass: ?[*:0]u16,
 };
 
 pub const WINHTTP_PROXY_NETWORKING_KEY = extern struct {
@@ -694,7 +694,7 @@ pub const WINHTTP_PROXY_RESULT_ENTRY = extern struct {
     fProxy: BOOL,
     fBypass: BOOL,
     ProxyScheme: WINHTTP_INTERNET_SCHEME,
-    pwszProxy: ?PWSTR,
+    pwszProxy: ?[*:0]u16,
     ProxyPort: u16,
 };
 
@@ -709,13 +709,13 @@ pub const WINHTTP_PROXY_SETTINGS = extern struct {
     dwStructSize: u32,
     dwFlags: u32,
     dwCurrentSettingsVersion: u32,
-    pwszConnectionName: ?PWSTR,
-    pwszProxy: ?PWSTR,
-    pwszProxyBypass: ?PWSTR,
-    pwszAutoconfigUrl: ?PWSTR,
-    pwszAutoconfigSecondaryUrl: ?PWSTR,
+    pwszConnectionName: ?[*:0]u16,
+    pwszProxy: ?[*:0]u16,
+    pwszProxyBypass: ?[*:0]u16,
+    pwszAutoconfigUrl: ?[*:0]u16,
+    pwszAutoconfigSecondaryUrl: ?[*:0]u16,
     dwAutoDiscoveryFlags: u32,
-    pwszLastKnownGoodAutoConfigUrl: ?PWSTR,
+    pwszLastKnownGoodAutoConfigUrl: ?[*:0]u16,
     dwAutoconfigReloadDelayMins: u32,
     ftLastKnownDetectTime: FILETIME,
     dwDetectedInterfaceIpCount: u32,
@@ -1062,7 +1062,7 @@ pub extern "winhttp" fn WinHttpCreateUrl(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "winhttp" fn WinHttpDetectAutoProxyConfigUrl(
     dwAutoDetectFlags: u32,
-    ppwstrAutoConfigUrl: ?*?PWSTR,
+    ppwstrAutoConfigUrl: ?*?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1150,7 +1150,7 @@ pub extern "winhttp" fn WinHttpOpenRequest(
     pwszObjectName: ?[*:0]const u16,
     pwszVersion: ?[*:0]const u16,
     pwszReferrer: ?[*:0]const u16,
-    ppwszAcceptTypes: ?*?PWSTR,
+    ppwszAcceptTypes: ?*?[*:0]u16,
     dwFlags: WINHTTP_OPEN_REQUEST_FLAGS,
 ) callconv(.winapi) ?*anyopaque;
 
@@ -1392,14 +1392,12 @@ pub extern "winhttp" fn WinHttpWriteProxySettings(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 

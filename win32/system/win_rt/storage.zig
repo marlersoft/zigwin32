@@ -286,13 +286,12 @@ pub const IUnbufferedFileHandleProvider = extern union {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IUnknown = @import("../../system/com.zig").IUnknown;
-const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     @setEvalBranchQuota(

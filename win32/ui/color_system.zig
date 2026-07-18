@@ -238,11 +238,11 @@ pub const COLORMATCHSETUPA = extern struct {
     pPrinterName: ?[*:0]const u8,
     dwRenderIntent: u32,
     dwProofingIntent: u32,
-    pMonitorProfile: ?PSTR,
+    pMonitorProfile: ?[*:0]u8,
     ccMonitorProfile: u32,
-    pPrinterProfile: ?PSTR,
+    pPrinterProfile: ?[*:0]u8,
     ccPrinterProfile: u32,
-    pTargetProfile: ?PSTR,
+    pTargetProfile: ?[*:0]u8,
     ccTargetProfile: u32,
     lpfnHook: ?DLGPROC,
     lParam: LPARAM,
@@ -260,11 +260,11 @@ pub const COLORMATCHSETUPW = extern struct {
     pPrinterName: ?[*:0]const u16,
     dwRenderIntent: u32,
     dwProofingIntent: u32,
-    pMonitorProfile: ?PWSTR,
+    pMonitorProfile: ?[*:0]u16,
     ccMonitorProfile: u32,
-    pPrinterProfile: ?PWSTR,
+    pPrinterProfile: ?[*:0]u16,
     ccPrinterProfile: u32,
-    pTargetProfile: ?PWSTR,
+    pTargetProfile: ?[*:0]u16,
     ccTargetProfile: u32,
     lpfnHook: ?DLGPROC,
     lParam: LPARAM,
@@ -461,12 +461,12 @@ pub const ICM_QUERY = ICM_MODE.QUERY;
 pub const ICM_DONE_OUTSIDEDC = ICM_MODE.DONE_OUTSIDEDC;
 
 pub const ICMENUMPROCA = *const fn(
-    param0: ?PSTR,
+    param0: ?[*:0]u8,
     param1: LPARAM,
 ) callconv(.winapi) i32;
 
 pub const ICMENUMPROCW = *const fn(
-    param0: ?PWSTR,
+    param0: ?[*:0]u16,
     param1: LPARAM,
 ) callconv(.winapi) i32;
 
@@ -1007,14 +1007,14 @@ pub extern "mscms" fn ColorProfileGetDisplayDefault(
     sourceID: u32,
     profileType: COLORPROFILETYPE,
     profileSubType: COLORPROFILESUBTYPE,
-    profileName: ?*?PWSTR,
+    profileName: ?*?[*:0]u16,
 ) callconv(.winapi) HRESULT;
 
 pub extern "mscms" fn ColorProfileGetDisplayList(
     scope: WCS_PROFILE_MANAGEMENT_SCOPE,
     targetAdapterID: LUID,
     sourceID: u32,
-    profileList: ?*?*?PWSTR,
+    profileList: ?*?*?[*:0]u16,
     profileCount: ?*u32,
 ) callconv(.winapi) HRESULT;
 
@@ -1169,14 +1169,14 @@ pub extern "mscms" fn GetCMMInfo(
 pub extern "mscms" fn GetColorDirectoryA(
     pMachineName: ?[*:0]const u8,
     /// parameter "pdwSize" is the size in bytes
-    pBuffer: ?PSTR,
+    pBuffer: ?[*:0]u8,
     pdwSize: ?*u32,
 ) callconv(.winapi) BOOL;
 
 pub extern "mscms" fn GetColorDirectoryW(
     pMachineName: ?[*:0]const u16,
     /// parameter "pdwSize" is the size in bytes
-    pBuffer: ?PWSTR,
+    pBuffer: ?[*:0]u16,
     pdwSize: ?*u32,
 ) callconv(.winapi) BOOL;
 
@@ -1290,7 +1290,7 @@ pub extern "mscms" fn GetStandardColorSpaceProfileA(
     pMachineName: ?[*:0]const u8,
     dwSCS: u32,
     /// parameter "pcbSize" is the size in bytes
-    pBuffer: ?PSTR,
+    pBuffer: ?[*:0]u8,
     pcbSize: ?*u32,
 ) callconv(.winapi) BOOL;
 
@@ -1298,7 +1298,7 @@ pub extern "mscms" fn GetStandardColorSpaceProfileW(
     pMachineName: ?[*:0]const u16,
     dwSCS: u32,
     /// parameter "pcbSize" is the size in bytes
-    pBuffer: ?PWSTR,
+    pBuffer: ?[*:0]u16,
     pcbSize: ?*u32,
 ) callconv(.winapi) BOOL;
 
@@ -1399,13 +1399,13 @@ pub extern "gdi32" fn SetICMMode(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn SetICMProfileA(
     hdc: ?HDC,
-    lpFileName: ?PSTR,
+    lpFileName: ?[*:0]u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn SetICMProfileW(
     hdc: ?HDC,
-    lpFileName: ?PWSTR,
+    lpFileName: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "mscms" fn SetStandardColorSpaceProfileA(
@@ -1476,16 +1476,16 @@ pub extern "mscms" fn UnregisterCMMW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn UpdateICMRegKeyA(
     reserved: u32,
-    lpszCMID: ?PSTR,
-    lpszFileName: ?PSTR,
+    lpszCMID: ?[*:0]u8,
+    lpszFileName: ?[*:0]u8,
     command: ICM_COMMAND,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn UpdateICMRegKeyW(
     reserved: u32,
-    lpszCMID: ?PWSTR,
-    lpszFileName: ?PWSTR,
+    lpszCMID: ?[*:0]u16,
+    lpszFileName: ?[*:0]u16,
     command: ICM_COMMAND,
 ) callconv(.winapi) BOOL;
 
@@ -1544,7 +1544,7 @@ pub extern "mscms" fn WcsGetDefaultColorProfile(
     dwProfileID: u32,
     cbProfileName: u32,
     /// parameter "cbProfileName" is the size in bytes
-    pProfileName: ?PWSTR,
+    pProfileName: ?[*:0]u16,
 ) callconv(.winapi) BOOL;
 
 pub extern "mscms" fn WcsGetDefaultColorProfileSize(
@@ -1813,7 +1813,7 @@ pub const WcsOpenColorProfile = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (19)
+// Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -1831,8 +1831,6 @@ const HWND = @import("../foundation.zig").HWND;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LPARAM = @import("../foundation.zig").LPARAM;
 const LUID = @import("../foundation.zig").LUID;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const RGBTRIPLE = @import("../graphics/gdi.zig").RGBTRIPLE;
 
 test {

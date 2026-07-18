@@ -5111,53 +5111,53 @@ pub const CLSID_LogFiles = &CLSID_LogFiles_Value;
 pub const PDH_BROWSE_DLG_CONFIG_A = extern struct {
     _bitfield: u32,
     hWndOwner: ?HWND,
-    szDataSource: ?PSTR,
-    szReturnPathBuffer: ?PSTR,
+    szDataSource: ?[*:0]u8,
+    szReturnPathBuffer: ?[*:0]u8,
     cchReturnPathLength: u32,
     pCallBack: ?CounterPathCallBack,
     dwCallBackArg: usize,
     CallBackStatus: i32,
     dwDefaultDetailLevel: PERF_DETAIL,
-    szDialogBoxCaption: ?PSTR,
+    szDialogBoxCaption: ?[*:0]u8,
 };
 
 pub const PDH_BROWSE_DLG_CONFIG_HA = extern struct {
     _bitfield: u32,
     hWndOwner: ?HWND,
     hDataSource: isize,
-    szReturnPathBuffer: ?PSTR,
+    szReturnPathBuffer: ?[*:0]u8,
     cchReturnPathLength: u32,
     pCallBack: ?CounterPathCallBack,
     dwCallBackArg: usize,
     CallBackStatus: i32,
     dwDefaultDetailLevel: PERF_DETAIL,
-    szDialogBoxCaption: ?PSTR,
+    szDialogBoxCaption: ?[*:0]u8,
 };
 
 pub const PDH_BROWSE_DLG_CONFIG_HW = extern struct {
     _bitfield: u32,
     hWndOwner: ?HWND,
     hDataSource: isize,
-    szReturnPathBuffer: ?PWSTR,
+    szReturnPathBuffer: ?[*:0]u16,
     cchReturnPathLength: u32,
     pCallBack: ?CounterPathCallBack,
     dwCallBackArg: usize,
     CallBackStatus: i32,
     dwDefaultDetailLevel: PERF_DETAIL,
-    szDialogBoxCaption: ?PWSTR,
+    szDialogBoxCaption: ?[*:0]u16,
 };
 
 pub const PDH_BROWSE_DLG_CONFIG_W = extern struct {
     _bitfield: u32,
     hWndOwner: ?HWND,
-    szDataSource: ?PWSTR,
-    szReturnPathBuffer: ?PWSTR,
+    szDataSource: ?[*:0]u16,
+    szReturnPathBuffer: ?[*:0]u16,
     cchReturnPathLength: u32,
     pCallBack: ?CounterPathCallBack,
     dwCallBackArg: usize,
     CallBackStatus: i32,
     dwDefaultDetailLevel: PERF_DETAIL,
-    szDialogBoxCaption: ?PWSTR,
+    szDialogBoxCaption: ?[*:0]u16,
 };
 
 pub const PDH_COUNTER_INFO_A = extern struct {
@@ -5169,20 +5169,20 @@ pub const PDH_COUNTER_INFO_A = extern struct {
     lDefaultScale: i32,
     dwUserData: usize,
     dwQueryUserData: usize,
-    szFullPath: ?PSTR,
+    szFullPath: ?[*:0]u8,
     Anonymous: extern union {
         DataItemPath: PDH_DATA_ITEM_PATH_ELEMENTS_A,
         CounterPath: PDH_COUNTER_PATH_ELEMENTS_A,
         Anonymous: extern struct {
-            szMachineName: ?PSTR,
-            szObjectName: ?PSTR,
-            szInstanceName: ?PSTR,
-            szParentInstance: ?PSTR,
+            szMachineName: ?[*:0]u8,
+            szObjectName: ?[*:0]u8,
+            szInstanceName: ?[*:0]u8,
+            szParentInstance: ?[*:0]u8,
             dwInstanceIndex: u32,
-            szCounterName: ?PSTR,
+            szCounterName: ?[*:0]u8,
         },
     },
-    szExplainText: ?PSTR,
+    szExplainText: ?[*:0]u8,
     DataBuffer: [1]u32,
 };
 
@@ -5195,53 +5195,53 @@ pub const PDH_COUNTER_INFO_W = extern struct {
     lDefaultScale: i32,
     dwUserData: usize,
     dwQueryUserData: usize,
-    szFullPath: ?PWSTR,
+    szFullPath: ?[*:0]u16,
     Anonymous: extern union {
         DataItemPath: PDH_DATA_ITEM_PATH_ELEMENTS_W,
         CounterPath: PDH_COUNTER_PATH_ELEMENTS_W,
         Anonymous: extern struct {
-            szMachineName: ?PWSTR,
-            szObjectName: ?PWSTR,
-            szInstanceName: ?PWSTR,
-            szParentInstance: ?PWSTR,
+            szMachineName: ?[*:0]u16,
+            szObjectName: ?[*:0]u16,
+            szInstanceName: ?[*:0]u16,
+            szParentInstance: ?[*:0]u16,
             dwInstanceIndex: u32,
-            szCounterName: ?PWSTR,
+            szCounterName: ?[*:0]u16,
         },
     },
-    szExplainText: ?PWSTR,
+    szExplainText: ?[*:0]u16,
     DataBuffer: [1]u32,
 };
 
 pub const PDH_COUNTER_PATH_ELEMENTS_A = extern struct {
-    szMachineName: ?PSTR,
-    szObjectName: ?PSTR,
-    szInstanceName: ?PSTR,
-    szParentInstance: ?PSTR,
+    szMachineName: ?[*:0]u8,
+    szObjectName: ?[*:0]u8,
+    szInstanceName: ?[*:0]u8,
+    szParentInstance: ?[*:0]u8,
     dwInstanceIndex: u32,
-    szCounterName: ?PSTR,
+    szCounterName: ?[*:0]u8,
 };
 
 pub const PDH_COUNTER_PATH_ELEMENTS_W = extern struct {
-    szMachineName: ?PWSTR,
-    szObjectName: ?PWSTR,
-    szInstanceName: ?PWSTR,
-    szParentInstance: ?PWSTR,
+    szMachineName: ?[*:0]u16,
+    szObjectName: ?[*:0]u16,
+    szInstanceName: ?[*:0]u16,
+    szParentInstance: ?[*:0]u16,
     dwInstanceIndex: u32,
-    szCounterName: ?PWSTR,
+    szCounterName: ?[*:0]u16,
 };
 
 pub const PDH_DATA_ITEM_PATH_ELEMENTS_A = extern struct {
-    szMachineName: ?PSTR,
+    szMachineName: ?[*:0]u8,
     ObjectGUID: Guid,
     dwItemId: u32,
-    szInstanceName: ?PSTR,
+    szInstanceName: ?[*:0]u8,
 };
 
 pub const PDH_DATA_ITEM_PATH_ELEMENTS_W = extern struct {
-    szMachineName: ?PWSTR,
+    szMachineName: ?[*:0]u16,
     ObjectGUID: Guid,
     dwItemId: u32,
-    szInstanceName: ?PWSTR,
+    szInstanceName: ?[*:0]u16,
 };
 
 pub const PDH_DLL_VERSION = enum(u32) {
@@ -5272,12 +5272,12 @@ pub const PDH_FMT_COUNTERVALUE = extern struct {
 };
 
 pub const PDH_FMT_COUNTERVALUE_ITEM_A = extern struct {
-    szName: ?PSTR,
+    szName: ?[*:0]u8,
     FmtValue: PDH_FMT_COUNTERVALUE,
 };
 
 pub const PDH_FMT_COUNTERVALUE_ITEM_W = extern struct {
-    szName: ?PWSTR,
+    szName: ?[*:0]u16,
     FmtValue: PDH_FMT_COUNTERVALUE,
 };
 
@@ -5294,17 +5294,17 @@ pub const PDH_LOG_SERVICE_QUERY_INFO_A = extern struct {
     dwSize: u32,
     dwFlags: u32,
     dwLogQuota: u32,
-    szLogFileCaption: ?PSTR,
-    szDefaultDir: ?PSTR,
-    szBaseFileName: ?PSTR,
+    szLogFileCaption: ?[*:0]u8,
+    szDefaultDir: ?[*:0]u8,
+    szBaseFileName: ?[*:0]u8,
     dwFileType: u32,
     dwReserved: u32,
     Anonymous: extern union {
         Anonymous1: extern struct {
             PdlAutoNameInterval: u32,
             PdlAutoNameUnits: u32,
-            PdlCommandFilename: ?PSTR,
-            PdlCounterList: ?PSTR,
+            PdlCommandFilename: ?[*:0]u8,
+            PdlCounterList: ?[*:0]u8,
             PdlAutoNameFormat: u32,
             PdlSampleInterval: u32,
             PdlLogStartTime: FILETIME,
@@ -5320,7 +5320,7 @@ pub const PDH_LOG_SERVICE_QUERY_INFO_A = extern struct {
             TlLoggerThreadId: u32,
             TlBuffersWritten: u32,
             TlLogHandle: u32,
-            TlLogFileName: ?PSTR,
+            TlLogFileName: ?[*:0]u8,
         },
     },
 };
@@ -5329,17 +5329,17 @@ pub const PDH_LOG_SERVICE_QUERY_INFO_W = extern struct {
     dwSize: u32,
     dwFlags: u32,
     dwLogQuota: u32,
-    szLogFileCaption: ?PWSTR,
-    szDefaultDir: ?PWSTR,
-    szBaseFileName: ?PWSTR,
+    szLogFileCaption: ?[*:0]u16,
+    szDefaultDir: ?[*:0]u16,
+    szBaseFileName: ?[*:0]u16,
     dwFileType: u32,
     dwReserved: u32,
     Anonymous: extern union {
         Anonymous1: extern struct {
             PdlAutoNameInterval: u32,
             PdlAutoNameUnits: u32,
-            PdlCommandFilename: ?PWSTR,
-            PdlCounterList: ?PWSTR,
+            PdlCommandFilename: ?[*:0]u16,
+            PdlCounterList: ?[*:0]u16,
             PdlAutoNameFormat: u32,
             PdlSampleInterval: u32,
             PdlLogStartTime: FILETIME,
@@ -5355,7 +5355,7 @@ pub const PDH_LOG_SERVICE_QUERY_INFO_W = extern struct {
             TlLoggerThreadId: u32,
             TlBuffersWritten: u32,
             TlLogHandle: u32,
-            TlLogFileName: ?PWSTR,
+            TlLogFileName: ?[*:0]u16,
         },
     },
 };
@@ -5393,12 +5393,12 @@ pub const PDH_RAW_COUNTER = extern struct {
 };
 
 pub const PDH_RAW_COUNTER_ITEM_A = extern struct {
-    szName: ?PSTR,
+    szName: ?[*:0]u8,
     RawValue: PDH_RAW_COUNTER,
 };
 
 pub const PDH_RAW_COUNTER_ITEM_W = extern struct {
-    szName: ?PWSTR,
+    szName: ?[*:0]u16,
     RawValue: PDH_RAW_COUNTER,
 };
 
@@ -5677,7 +5677,7 @@ pub const PM_CLOSE_PROC = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PM_COLLECT_PROC = *const fn(
-    pValueName: ?PWSTR,
+    pValueName: ?[*:0]u16,
     /// parameter "pcbTotalBytes" is the size in bytes
     ppData: ?*?*anyopaque,
     pcbTotalBytes: ?*u32,
@@ -5685,7 +5685,7 @@ pub const PM_COLLECT_PROC = *const fn(
 ) callconv(.winapi) u32;
 
 pub const PM_OPEN_PROC = *const fn(
-    pContext: ?PWSTR,
+    pContext: ?[*:0]u16,
 ) callconv(.winapi) u32;
 
 pub const REAL_TIME_DATA_SOURCE_ID_FLAGS = enum(u32) {
@@ -5848,9 +5848,9 @@ pub const PERF_COUNTER_DEFINITION = switch(@import("../zig.zig").arch) {
     .X86 => extern struct {
         ByteLength: u32,
         CounterNameTitleIndex: u32,
-        CounterNameTitle: ?PWSTR,
+        CounterNameTitle: ?[*:0]u16,
         CounterHelpTitleIndex: u32,
-        CounterHelpTitle: ?PWSTR,
+        CounterHelpTitle: ?[*:0]u16,
         DefaultScale: i32,
         DetailLevel: u32,
         CounterType: u32,
@@ -5880,9 +5880,9 @@ pub const PERF_OBJECT_TYPE = switch(@import("../zig.zig").arch) {
         DefinitionLength: u32,
         HeaderLength: u32,
         ObjectNameTitleIndex: u32,
-        ObjectNameTitle: ?PWSTR,
+        ObjectNameTitle: ?[*:0]u16,
         ObjectHelpTitleIndex: u32,
-        ObjectHelpTitle: ?PWSTR,
+        ObjectHelpTitle: ?[*:0]u16,
         DetailLevel: u32,
         NumCounters: u32,
         DefaultCounter: i32,
@@ -5915,13 +5915,13 @@ pub extern "loadperf" fn InstallPerfDllW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "loadperf" fn LoadPerfCounterTextStringsA(
-    lpCommandLine: ?PSTR,
+    lpCommandLine: ?[*:0]u8,
     bQuietModeArg: BOOL,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "loadperf" fn LoadPerfCounterTextStringsW(
-    lpCommandLine: ?PWSTR,
+    lpCommandLine: ?[*:0]u16,
     bQuietModeArg: BOOL,
 ) callconv(.winapi) u32;
 
@@ -6300,7 +6300,7 @@ pub extern "pdh" fn PdhGetDefaultPerfCounterA(
     szDataSource: ?[*:0]const u8,
     szMachineName: ?[*:0]const u8,
     szObjectName: ?[*:0]const u8,
-    szDefaultCounterName: ?PSTR,
+    szDefaultCounterName: ?[*:0]u8,
     pcchBufferSize: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -6309,7 +6309,7 @@ pub extern "pdh" fn PdhGetDefaultPerfCounterHA(
     hDataSource: isize,
     szMachineName: ?[*:0]const u8,
     szObjectName: ?[*:0]const u8,
-    szDefaultCounterName: ?PSTR,
+    szDefaultCounterName: ?[*:0]u8,
     pcchBufferSize: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -6318,7 +6318,7 @@ pub extern "pdh" fn PdhGetDefaultPerfCounterHW(
     hDataSource: isize,
     szMachineName: ?[*:0]const u16,
     szObjectName: ?[*:0]const u16,
-    szDefaultCounterName: ?PWSTR,
+    szDefaultCounterName: ?[*:0]u16,
     pcchBufferSize: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -6327,7 +6327,7 @@ pub extern "pdh" fn PdhGetDefaultPerfCounterW(
     szDataSource: ?[*:0]const u16,
     szMachineName: ?[*:0]const u16,
     szObjectName: ?[*:0]const u16,
-    szDefaultCounterName: ?PWSTR,
+    szDefaultCounterName: ?[*:0]u16,
     pcchBufferSize: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -6335,7 +6335,7 @@ pub extern "pdh" fn PdhGetDefaultPerfCounterW(
 pub extern "pdh" fn PdhGetDefaultPerfObjectA(
     szDataSource: ?[*:0]const u8,
     szMachineName: ?[*:0]const u8,
-    szDefaultObjectName: ?PSTR,
+    szDefaultObjectName: ?[*:0]u8,
     pcchBufferSize: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -6343,7 +6343,7 @@ pub extern "pdh" fn PdhGetDefaultPerfObjectA(
 pub extern "pdh" fn PdhGetDefaultPerfObjectHA(
     hDataSource: isize,
     szMachineName: ?[*:0]const u8,
-    szDefaultObjectName: ?PSTR,
+    szDefaultObjectName: ?[*:0]u8,
     pcchBufferSize: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -6351,7 +6351,7 @@ pub extern "pdh" fn PdhGetDefaultPerfObjectHA(
 pub extern "pdh" fn PdhGetDefaultPerfObjectHW(
     hDataSource: isize,
     szMachineName: ?[*:0]const u16,
-    szDefaultObjectName: ?PWSTR,
+    szDefaultObjectName: ?[*:0]u16,
     pcchBufferSize: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -6359,7 +6359,7 @@ pub extern "pdh" fn PdhGetDefaultPerfObjectHW(
 pub extern "pdh" fn PdhGetDefaultPerfObjectW(
     szDataSource: ?[*:0]const u16,
     szMachineName: ?[*:0]const u16,
-    szDefaultObjectName: ?PWSTR,
+    szDefaultObjectName: ?[*:0]u16,
     pcchBufferSize: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -6452,7 +6452,7 @@ pub extern "pdh" fn PdhLookupPerfIndexByNameW(
 pub extern "pdh" fn PdhLookupPerfNameByIndexA(
     szMachineName: ?[*:0]const u8,
     dwNameIndex: u32,
-    szNameBuffer: ?PSTR,
+    szNameBuffer: ?[*:0]u8,
     pcchNameBufferSize: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -6460,14 +6460,14 @@ pub extern "pdh" fn PdhLookupPerfNameByIndexA(
 pub extern "pdh" fn PdhLookupPerfNameByIndexW(
     szMachineName: ?[*:0]const u16,
     dwNameIndex: u32,
-    szNameBuffer: ?PWSTR,
+    szNameBuffer: ?[*:0]u16,
     pcchNameBufferSize: ?*u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhMakeCounterPathA(
     pCounterPathElements: ?*PDH_COUNTER_PATH_ELEMENTS_A,
-    szFullPathBuffer: ?PSTR,
+    szFullPathBuffer: ?[*:0]u8,
     pcchBufferSize: ?*u32,
     dwFlags: PDH_PATH_FLAGS,
 ) callconv(.winapi) u32;
@@ -6475,7 +6475,7 @@ pub extern "pdh" fn PdhMakeCounterPathA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhMakeCounterPathW(
     pCounterPathElements: ?*PDH_COUNTER_PATH_ELEMENTS_W,
-    szFullPathBuffer: ?PWSTR,
+    szFullPathBuffer: ?[*:0]u16,
     pcchBufferSize: ?*u32,
     dwFlags: PDH_PATH_FLAGS,
 ) callconv(.winapi) u32;
@@ -6542,9 +6542,9 @@ pub extern "pdh" fn PdhParseCounterPathW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhParseInstanceNameA(
     szInstanceString: ?[*:0]const u8,
-    szInstanceName: ?PSTR,
+    szInstanceName: ?[*:0]u8,
     pcchInstanceNameLength: ?*u32,
-    szParentName: ?PSTR,
+    szParentName: ?[*:0]u8,
     pcchParentNameLength: ?*u32,
     lpIndex: ?*u32,
 ) callconv(.winapi) u32;
@@ -6552,9 +6552,9 @@ pub extern "pdh" fn PdhParseInstanceNameA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhParseInstanceNameW(
     szInstanceString: ?[*:0]const u16,
-    szInstanceName: ?PWSTR,
+    szInstanceName: ?[*:0]u16,
     pcchInstanceNameLength: ?*u32,
-    szParentName: ?PWSTR,
+    szParentName: ?[*:0]u16,
     pcchParentNameLength: ?*u32,
     lpIndex: ?*u32,
 ) callconv(.winapi) u32;
@@ -6576,7 +6576,7 @@ pub extern "pdh" fn PdhRemoveCounter(
 pub extern "pdh" fn PdhSelectDataSourceA(
     hWndOwner: ?HWND,
     dwFlags: PDH_SELECT_DATA_SOURCE_FLAGS,
-    szDataSource: ?PSTR,
+    szDataSource: ?[*:0]u8,
     pcchBufferLength: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -6584,7 +6584,7 @@ pub extern "pdh" fn PdhSelectDataSourceA(
 pub extern "pdh" fn PdhSelectDataSourceW(
     hWndOwner: ?HWND,
     dwFlags: PDH_SELECT_DATA_SOURCE_FLAGS,
-    szDataSource: ?PWSTR,
+    szDataSource: ?[*:0]u16,
     pcchBufferLength: ?*u32,
 ) callconv(.winapi) u32;
 
@@ -6864,27 +6864,27 @@ pub extern "loadperf" fn SetServiceAsTrustedW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "loadperf" fn UnloadPerfCounterTextStringsA(
-    lpCommandLine: ?PSTR,
+    lpCommandLine: ?[*:0]u8,
     bQuietModeArg: BOOL,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "loadperf" fn UnloadPerfCounterTextStringsW(
-    lpCommandLine: ?PWSTR,
+    lpCommandLine: ?[*:0]u16,
     bQuietModeArg: BOOL,
 ) callconv(.winapi) u32;
 
 pub extern "loadperf" fn UpdatePerfNameFilesA(
     szNewCtrFilePath: ?[*:0]const u8,
     szNewHlpFilePath: ?[*:0]const u8,
-    szLanguageID: ?PSTR,
+    szLanguageID: ?[*:0]u8,
     dwFlags: usize,
 ) callconv(.winapi) u32;
 
 pub extern "loadperf" fn UpdatePerfNameFilesW(
     szNewCtrFilePath: ?[*:0]const u16,
     szNewHlpFilePath: ?[*:0]const u16,
-    szLanguageID: ?PWSTR,
+    szLanguageID: ?[*:0]u16,
     dwFlags: usize,
 ) callconv(.winapi) u32;
 
@@ -7243,7 +7243,7 @@ pub const UpdatePerfNameFiles = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (18)
+// Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -7257,8 +7257,6 @@ const IDispatch = @import("../system/com.zig").IDispatch;
 const IFontDisp = @import("../system/ole.zig").IFontDisp;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
-const PSTR = @import("../foundation.zig").PSTR;
-const PWSTR = @import("../foundation.zig").PWSTR;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;
