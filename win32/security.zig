@@ -2887,7 +2887,7 @@ const FILETIME = @import("foundation.zig").FILETIME;
 const HANDLE = @import("foundation.zig").HANDLE;
 const LARGE_INTEGER = @import("foundation.zig").LARGE_INTEGER;
 const LUID = @import("foundation.zig").LUID;
-const NTSTATUS = @import("foundation.zig").NTSTATUS;
+const NTSTATUS = @import("std").os.windows.NTSTATUS;
 const PSID = @import("foundation.zig").PSID;
 const UNICODE_STRING = @import("foundation.zig").UNICODE_STRING;
 

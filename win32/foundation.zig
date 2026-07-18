@@ -6689,7 +6689,6 @@ pub const LUID = extern struct {
 pub const NEARPROC = *const fn(
 ) callconv(.winapi) isize;
 
-pub const NTSTATUS = i32;
 
 pub const NTSTATUS_FACILITY_CODE = enum(u32) {
     DEBUGGER = 1,
@@ -16634,11 +16633,12 @@ pub extern "oleaut32" fn SysStringLen(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const BOOL = i32;
 const BSTR = *u16;
 const HRESULT = @import("zig.zig").HRESULT;
+const NTSTATUS = @import("std").os.windows.NTSTATUS;
 const VARIANT_BOOL = i16;
 
 test {

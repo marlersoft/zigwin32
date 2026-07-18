@@ -2238,7 +2238,7 @@ const FILE_INFO_BY_HANDLE_CLASS = @import("../storage/file_system.zig").FILE_INF
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../zig.zig").HRESULT;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
-const NTSTATUS = @import("../foundation.zig").NTSTATUS;
+const NTSTATUS = @import("std").os.windows.NTSTATUS;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
 const WIN32_FIND_DATAA = @import("../storage/file_system.zig").WIN32_FIND_DATAA;
 

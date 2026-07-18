@@ -7173,7 +7173,7 @@ const HRESULT = @import("../zig.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const IXMLDOMNodeList = @import("../data/xml/ms_xml.zig").IXMLDOMNodeList;
-const NTSTATUS = @import("../foundation.zig").NTSTATUS;
+const NTSTATUS = @import("std").os.windows.NTSTATUS;
 const PSID = @import("../foundation.zig").PSID;
 const SID_NAME_USE = @import("../security.zig").SID_NAME_USE;
 

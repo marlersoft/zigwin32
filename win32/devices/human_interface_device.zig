@@ -5922,7 +5922,7 @@ const HKEY = @import("../system/registry.zig").HKEY;
 const HRESULT = @import("../zig.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const NTSTATUS = @import("../foundation.zig").NTSTATUS;
+const NTSTATUS = @import("std").os.windows.NTSTATUS;
 const POINT = @import("../foundation.zig").POINT;
 const RECT = @import("../foundation.zig").RECT;
 

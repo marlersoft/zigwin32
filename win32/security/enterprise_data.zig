@@ -356,7 +356,7 @@ const HSTRING = @import("../system/win_rt.zig").HSTRING;
 const HWND = @import("../foundation.zig").HWND;
 const IInspectable = @import("../system/win_rt.zig").IInspectable;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const NTSTATUS = @import("../foundation.zig").NTSTATUS;
+const NTSTATUS = @import("std").os.windows.NTSTATUS;
 const PACKAGE_ID = @import("../storage/packaging/appx.zig").PACKAGE_ID;
 
 test {
