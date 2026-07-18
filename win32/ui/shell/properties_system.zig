@@ -2722,7 +2722,7 @@ pub extern "propsys" fn PropVariantToVariant(
 pub extern "propsys" fn PropVariantToWinRTPropertyValue(
     propvar: ?*const PROPVARIANT,
     riid: ?*const Guid,
-    ppv: ?**anyopaque,
+    ppv: **anyopaque,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'

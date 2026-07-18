@@ -32567,7 +32567,7 @@ pub const IDynamicConceptProviderConcept = extern union {
             self: *const IDynamicConceptProviderConcept,
             contextObject: ?*IModelObject,
             conceptId: ?*const Guid,
-            conceptInterface: ?**IUnknown,
+            conceptInterface: **IUnknown,
             conceptMetadata: ?**IKeyStore,
             hasConcept: ?*bool,
         ) callconv(.winapi) HRESULT,
@@ -32592,7 +32592,7 @@ pub const IDynamicConceptProviderConcept = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetConcept(self: *const IDynamicConceptProviderConcept, contextObject: ?*IModelObject, conceptId: ?*const Guid, conceptInterface: ?**IUnknown, conceptMetadata: ?**IKeyStore, hasConcept: ?*bool) callconv(.@"inline") HRESULT {
+    pub fn GetConcept(self: *const IDynamicConceptProviderConcept, contextObject: ?*IModelObject, conceptId: ?*const Guid, conceptInterface: **IUnknown, conceptMetadata: ?**IKeyStore, hasConcept: ?*bool) callconv(.@"inline") HRESULT {
         return self.vtable.GetConcept(self, contextObject, conceptId, conceptInterface, conceptMetadata, hasConcept);
     }
     pub fn SetConcept(self: *const IDynamicConceptProviderConcept, contextObject: ?*IModelObject, conceptId: ?*const Guid, conceptInterface: ?*IUnknown, conceptMetadata: ?*IKeyStore) callconv(.@"inline") HRESULT {
@@ -34795,7 +34795,7 @@ pub const IModelObject = extern union {
         base: IUnknown.VTable,
         GetContext: *const fn(
             self: *const IModelObject,
-            context: ?**IDebugHostContext,
+            context: **IDebugHostContext,
         ) callconv(.winapi) HRESULT,
         GetKind: *const fn(
             self: *const IModelObject,
@@ -34873,7 +34873,7 @@ pub const IModelObject = extern union {
             self: *const IModelObject,
             i: u64,
             model: **IModelObject,
-            contextObject: ?**IModelObject,
+            contextObject: **IModelObject,
         ) callconv(.winapi) HRESULT,
         AddParentModel: *const fn(
             self: *const IModelObject,
@@ -34959,7 +34959,7 @@ pub const IModelObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetContext(self: *const IModelObject, context: ?**IDebugHostContext) callconv(.@"inline") HRESULT {
+    pub fn GetContext(self: *const IModelObject, context: **IDebugHostContext) callconv(.@"inline") HRESULT {
         return self.vtable.GetContext(self, context);
     }
     pub fn GetKind(self: *const IModelObject, kind: ?*ModelObjectKind) callconv(.@"inline") HRESULT {
@@ -35007,7 +35007,7 @@ pub const IModelObject = extern union {
     pub fn GetNumberOfParentModels(self: *const IModelObject, numModels: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetNumberOfParentModels(self, numModels);
     }
-    pub fn GetParentModel(self: *const IModelObject, i: u64, model: **IModelObject, contextObject: ?**IModelObject) callconv(.@"inline") HRESULT {
+    pub fn GetParentModel(self: *const IModelObject, i: u64, model: **IModelObject, contextObject: **IModelObject) callconv(.@"inline") HRESULT {
         return self.vtable.GetParentModel(self, i, model, contextObject);
     }
     pub fn AddParentModel(self: *const IModelObject, model: ?*IModelObject, contextObject: ?*IModelObject, override: u8) callconv(.@"inline") HRESULT {
@@ -41094,7 +41094,7 @@ pub extern "advapi32" fn CloseThreadWaitChainSession(
 pub extern "kernel32" fn ContinueDebugEvent(
     dwProcessId: u32,
     dwThreadId: u32,
-    dwContinueStatus: u32,
+    dwContinueStatus: NTSTATUS,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'

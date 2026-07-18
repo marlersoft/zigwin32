@@ -900,12 +900,12 @@ pub const PROCESSOR_OBJECT_INFO_EX = extern struct {
 };
 
 pub const PROCESSOR_POWER_INFORMATION = extern struct {
-    Number: u64,
-    MaxMhz: u64,
-    CurrentMhz: u64,
-    MhzLimit: u64,
-    MaxIdleState: u64,
-    CurrentIdleState: u64,
+    Number: u32,
+    MaxMhz: u32,
+    CurrentMhz: u32,
+    MhzLimit: u32,
+    MaxIdleState: u32,
+    CurrentIdleState: u32,
 };
 
 pub const PROCESSOR_POWER_POLICY = extern struct {
@@ -1022,9 +1022,9 @@ pub const PoHot = SYSTEM_POWER_CONDITION.Hot;
 pub const PoConditionMaximum = SYSTEM_POWER_CONDITION.ConditionMaximum;
 
 pub const SYSTEM_POWER_INFORMATION = extern struct {
-    MaxIdlenessAllowed: u64,
-    Idleness: u64,
-    TimeRemaining: u64,
+    MaxIdlenessAllowed: u32,
+    Idleness: u32,
+    TimeRemaining: u32,
     CoolingMode: POWER_COOLING_MODE,
 };
 

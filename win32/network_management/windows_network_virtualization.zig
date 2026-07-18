@@ -21,10 +21,10 @@ pub const WnvCustomerAddressMax = WNV_CA_NOTIFICATION_TYPE.Max;
 
 pub const WNV_CUSTOMER_ADDRESS_CHANGE_PARAM = extern struct {
     MACAddress: DL_EUI48,
-    CAFamily: u16,
+    CAFamily: ADDRESS_FAMILY,
     CA: WNV_IP_ADDRESS,
     VirtualSubnetId: u32,
-    PAFamily: u16,
+    PAFamily: ADDRESS_FAMILY,
     PA: WNV_IP_ADDRESS,
     NotificationReason: WNV_CA_NOTIFICATION_TYPE,
 };
@@ -79,23 +79,23 @@ pub const WnvCustomerAddressType = WNV_OBJECT_TYPE.CustomerAddressType;
 pub const WnvObjectTypeMax = WNV_OBJECT_TYPE.ObjectTypeMax;
 
 pub const WNV_POLICY_MISMATCH_PARAM = extern struct {
-    CAFamily: u16,
-    PAFamily: u16,
+    CAFamily: ADDRESS_FAMILY,
+    PAFamily: ADDRESS_FAMILY,
     VirtualSubnetId: u32,
     CA: WNV_IP_ADDRESS,
     PA: WNV_IP_ADDRESS,
 };
 
 pub const WNV_PROVIDER_ADDRESS_CHANGE_PARAM = extern struct {
-    PAFamily: u16,
+    PAFamily: ADDRESS_FAMILY,
     PA: WNV_IP_ADDRESS,
     AddressState: NL_DAD_STATE,
 };
 
 pub const WNV_REDIRECT_PARAM = extern struct {
-    CAFamily: u16,
-    PAFamily: u16,
-    NewPAFamily: u16,
+    CAFamily: ADDRESS_FAMILY,
+    PAFamily: ADDRESS_FAMILY,
+    NewPAFamily: ADDRESS_FAMILY,
     VirtualSubnetId: u32,
     CA: WNV_IP_ADDRESS,
     PA: WNV_IP_ADDRESS,
@@ -123,8 +123,9 @@ pub extern "wnvapi" fn WnvRequestNotification(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
+const ADDRESS_FAMILY = @import("../networking/win_sock.zig").ADDRESS_FAMILY;
 const DL_EUI48 = @import("../networking/win_sock.zig").DL_EUI48;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const IN6_ADDR = @import("../networking/win_sock.zig").IN6_ADDR;

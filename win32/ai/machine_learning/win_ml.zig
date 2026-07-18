@@ -81,19 +81,19 @@ pub const IMLOperatorKernelContext = extern union {
         GetInputTensor: *const fn(
             self: *const IMLOperatorKernelContext,
             inputIndex: u32,
-            tensor: ?**IMLOperatorTensor,
+            tensor: **IMLOperatorTensor,
         ) callconv(.winapi) HRESULT,
         GetOutputTensorWithShape: *const fn(
             self: *const IMLOperatorKernelContext,
             outputIndex: u32,
             dimensionCount: u32,
             dimensionSizes: [*]const u32,
-            tensor: ?**IMLOperatorTensor,
+            tensor: **IMLOperatorTensor,
         ) callconv(.winapi) HRESULT,
         GetOutputTensorDefault: *const fn(
             self: *const IMLOperatorKernelContext,
             outputIndex: u32,
-            tensor: ?**IMLOperatorTensor,
+            tensor: **IMLOperatorTensor,
         ) callconv(.winapi) HRESULT,
         AllocateTemporaryData: *const fn(
             self: *const IMLOperatorKernelContext,
@@ -108,13 +108,13 @@ pub const IMLOperatorKernelContext = extern union {
     vtable: *const VTable,
     IUnknown: IUnknown,
     pub const GetOutputTensor = @compileError("COM method 'GetOutputTensor' must be called using one of the following overload names: GetOutputTensorDefault, GetOutputTensorWithShape");
-    pub fn GetInputTensor(self: *const IMLOperatorKernelContext, inputIndex: u32, tensor: ?**IMLOperatorTensor) callconv(.@"inline") HRESULT {
+    pub fn GetInputTensor(self: *const IMLOperatorKernelContext, inputIndex: u32, tensor: **IMLOperatorTensor) callconv(.@"inline") HRESULT {
         return self.vtable.GetInputTensor(self, inputIndex, tensor);
     }
-    pub fn GetOutputTensorWithShape(self: *const IMLOperatorKernelContext, outputIndex: u32, dimensionCount: u32, dimensionSizes: [*]const u32, tensor: ?**IMLOperatorTensor) callconv(.@"inline") HRESULT {
+    pub fn GetOutputTensorWithShape(self: *const IMLOperatorKernelContext, outputIndex: u32, dimensionCount: u32, dimensionSizes: [*]const u32, tensor: **IMLOperatorTensor) callconv(.@"inline") HRESULT {
         return self.vtable.GetOutputTensorWithShape(self, outputIndex, dimensionCount, dimensionSizes, tensor);
     }
-    pub fn GetOutputTensorDefault(self: *const IMLOperatorKernelContext, outputIndex: u32, tensor: ?**IMLOperatorTensor) callconv(.@"inline") HRESULT {
+    pub fn GetOutputTensorDefault(self: *const IMLOperatorKernelContext, outputIndex: u32, tensor: **IMLOperatorTensor) callconv(.@"inline") HRESULT {
         return self.vtable.GetOutputTensorDefault(self, outputIndex, tensor);
     }
     pub fn AllocateTemporaryData(self: *const IMLOperatorKernelContext, size: usize, data: **IUnknown) callconv(.@"inline") HRESULT {
@@ -163,7 +163,7 @@ pub const IMLOperatorKernelCreationContext = extern union {
         ) callconv(.winapi) HRESULT,
         GetExecutionInterface: *const fn(
             self: *const IMLOperatorKernelCreationContext,
-            executionObject: ?**IUnknown,
+            executionObject: **IUnknown,
         ) callconv(.winapi) void,
     };
     vtable: *const VTable,
@@ -193,7 +193,7 @@ pub const IMLOperatorKernelCreationContext = extern union {
     pub fn GetTensorShapeDescription(self: *const IMLOperatorKernelCreationContext, shapeDescription: **IMLOperatorTensorShapeDescription) callconv(.@"inline") HRESULT {
         return self.vtable.GetTensorShapeDescription(self, shapeDescription);
     }
-    pub fn GetExecutionInterface(self: *const IMLOperatorKernelCreationContext, executionObject: ?**IUnknown) callconv(.@"inline") void {
+    pub fn GetExecutionInterface(self: *const IMLOperatorKernelCreationContext, executionObject: **IUnknown) callconv(.@"inline") void {
         return self.vtable.GetExecutionInterface(self, executionObject);
     }
 };
@@ -362,7 +362,7 @@ pub const IMLOperatorTensor = extern union {
         ) callconv(.winapi) ?*anyopaque,
         GetDataInterface: *const fn(
             self: *const IMLOperatorTensor,
-            dataInterface: ?**IUnknown,
+            dataInterface: **IUnknown,
         ) callconv(.winapi) void,
     };
     vtable: *const VTable,
@@ -385,7 +385,7 @@ pub const IMLOperatorTensor = extern union {
     pub fn GetData(self: *const IMLOperatorTensor) callconv(.@"inline") ?*anyopaque {
         return self.vtable.GetData(self);
     }
-    pub fn GetDataInterface(self: *const IMLOperatorTensor, dataInterface: ?**IUnknown) callconv(.@"inline") void {
+    pub fn GetDataInterface(self: *const IMLOperatorTensor, dataInterface: **IUnknown) callconv(.@"inline") void {
         return self.vtable.GetDataInterface(self, dataInterface);
     }
 };

@@ -3757,7 +3757,7 @@ pub const ID2D1Bitmap1 = extern union {
         ) callconv(.winapi) D2D1_BITMAP_OPTIONS,
         GetSurface: *const fn(
             self: *const ID2D1Bitmap1,
-            dxgiSurface: ?**IDXGISurface,
+            dxgiSurface: **IDXGISurface,
         ) callconv(.winapi) HRESULT,
         Map: *const fn(
             self: *const ID2D1Bitmap1,
@@ -3779,7 +3779,7 @@ pub const ID2D1Bitmap1 = extern union {
     pub fn GetOptions(self: *const ID2D1Bitmap1) callconv(.@"inline") D2D1_BITMAP_OPTIONS {
         return self.vtable.GetOptions(self);
     }
-    pub fn GetSurface(self: *const ID2D1Bitmap1, dxgiSurface: ?**IDXGISurface) callconv(.@"inline") HRESULT {
+    pub fn GetSurface(self: *const ID2D1Bitmap1, dxgiSurface: **IDXGISurface) callconv(.@"inline") HRESULT {
         return self.vtable.GetSurface(self, dxgiSurface);
     }
     pub fn Map(self: *const ID2D1Bitmap1, options: D2D1_MAP_OPTIONS, mappedRect: ?*D2D1_MAPPED_RECT) callconv(.@"inline") HRESULT {
@@ -7529,7 +7529,7 @@ pub const ID2D1Properties = extern union {
         GetSubProperties: *const fn(
             self: *const ID2D1Properties,
             index: u32,
-            subProperties: ?**ID2D1Properties,
+            subProperties: **ID2D1Properties,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -7564,7 +7564,7 @@ pub const ID2D1Properties = extern union {
     pub fn GetValueSize(self: *const ID2D1Properties, index: u32) callconv(.@"inline") u32 {
         return self.vtable.GetValueSize(self, index);
     }
-    pub fn GetSubProperties(self: *const ID2D1Properties, index: u32, subProperties: ?**ID2D1Properties) callconv(.@"inline") HRESULT {
+    pub fn GetSubProperties(self: *const ID2D1Properties, index: u32, subProperties: **ID2D1Properties) callconv(.@"inline") HRESULT {
         return self.vtable.GetSubProperties(self, index, subProperties);
     }
 };
@@ -8183,12 +8183,12 @@ pub const ID2D1Resource = extern union {
         base: IUnknown.VTable,
         GetFactory: *const fn(
             self: *const ID2D1Resource,
-            factory: ?*?*ID2D1Factory,
+            factory: **ID2D1Factory,
         ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFactory(self: *const ID2D1Resource, factory: ?*?*ID2D1Factory) callconv(.@"inline") void {
+    pub fn GetFactory(self: *const ID2D1Resource, factory: **ID2D1Factory) callconv(.@"inline") void {
         return self.vtable.GetFactory(self, factory);
     }
 };
@@ -8505,7 +8505,7 @@ pub const ID2D1SvgDocument = extern union {
         FindElementById: *const fn(
             self: *const ID2D1SvgDocument,
             id: ?[*:0]const u16,
-            svgElement: ?**ID2D1SvgElement,
+            svgElement: **ID2D1SvgElement,
         ) callconv(.winapi) HRESULT,
         Serialize: *const fn(
             self: *const ID2D1SvgDocument,
@@ -8562,7 +8562,7 @@ pub const ID2D1SvgDocument = extern union {
     pub fn GetRoot(self: *const ID2D1SvgDocument, root: ?*?*ID2D1SvgElement) callconv(.@"inline") void {
         return self.vtable.GetRoot(self, root);
     }
-    pub fn FindElementById(self: *const ID2D1SvgDocument, id: ?[*:0]const u16, svgElement: ?**ID2D1SvgElement) callconv(.@"inline") HRESULT {
+    pub fn FindElementById(self: *const ID2D1SvgDocument, id: ?[*:0]const u16, svgElement: **ID2D1SvgElement) callconv(.@"inline") HRESULT {
         return self.vtable.FindElementById(self, id, svgElement);
     }
     pub fn Serialize(self: *const ID2D1SvgDocument, outputXmlStream: ?*IStream, subtree: ?*ID2D1SvgElement) callconv(.@"inline") HRESULT {
@@ -8624,12 +8624,12 @@ pub const ID2D1SvgElement = extern union {
         GetPreviousChild: *const fn(
             self: *const ID2D1SvgElement,
             referenceChild: ?*ID2D1SvgElement,
-            previousChild: ?**ID2D1SvgElement,
+            previousChild: **ID2D1SvgElement,
         ) callconv(.winapi) HRESULT,
         GetNextChild: *const fn(
             self: *const ID2D1SvgElement,
             referenceChild: ?*ID2D1SvgElement,
-            nextChild: ?**ID2D1SvgElement,
+            nextChild: **ID2D1SvgElement,
         ) callconv(.winapi) HRESULT,
         InsertChildBefore: *const fn(
             self: *const ID2D1SvgElement,
@@ -8715,7 +8715,7 @@ pub const ID2D1SvgElement = extern union {
             self: *const ID2D1SvgElement,
             name: ?[*:0]const u16,
             riid: ?*const Guid,
-            value: ?**anyopaque,
+            value: **anyopaque,
         ) callconv(.winapi) HRESULT,
         GetAttributeValuePod: *const fn(
             self: *const ID2D1SvgElement,
@@ -8768,10 +8768,10 @@ pub const ID2D1SvgElement = extern union {
     pub fn GetLastChild(self: *const ID2D1SvgElement, child: ?*?*ID2D1SvgElement) callconv(.@"inline") void {
         return self.vtable.GetLastChild(self, child);
     }
-    pub fn GetPreviousChild(self: *const ID2D1SvgElement, referenceChild: ?*ID2D1SvgElement, previousChild: ?**ID2D1SvgElement) callconv(.@"inline") HRESULT {
+    pub fn GetPreviousChild(self: *const ID2D1SvgElement, referenceChild: ?*ID2D1SvgElement, previousChild: **ID2D1SvgElement) callconv(.@"inline") HRESULT {
         return self.vtable.GetPreviousChild(self, referenceChild, previousChild);
     }
-    pub fn GetNextChild(self: *const ID2D1SvgElement, referenceChild: ?*ID2D1SvgElement, nextChild: ?**ID2D1SvgElement) callconv(.@"inline") HRESULT {
+    pub fn GetNextChild(self: *const ID2D1SvgElement, referenceChild: ?*ID2D1SvgElement, nextChild: **ID2D1SvgElement) callconv(.@"inline") HRESULT {
         return self.vtable.GetNextChild(self, referenceChild, nextChild);
     }
     pub fn InsertChildBefore(self: *const ID2D1SvgElement, newChild: ?*ID2D1SvgElement, referenceChild: ?*ID2D1SvgElement) callconv(.@"inline") HRESULT {
@@ -8822,7 +8822,7 @@ pub const ID2D1SvgElement = extern union {
     pub fn SetAttributeValueString(self: *const ID2D1SvgElement, name: ?[*:0]const u16, @"type": D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetAttributeValueString(self, name, @"type", value);
     }
-    pub fn GetAttributeValueObj(self: *const ID2D1SvgElement, name: ?[*:0]const u16, riid: ?*const Guid, value: ?**anyopaque) callconv(.@"inline") HRESULT {
+    pub fn GetAttributeValueObj(self: *const ID2D1SvgElement, name: ?[*:0]const u16, riid: ?*const Guid, value: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttributeValueObj(self, name, riid, value);
     }
     pub fn GetAttributeValuePod(self: *const ID2D1SvgElement, name: ?[*:0]const u16, @"type": D2D1_SVG_ATTRIBUTE_POD_TYPE, value: ?*anyopaque, valueSizeInBytes: u32) callconv(.@"inline") HRESULT {

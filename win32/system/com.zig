@@ -4741,7 +4741,7 @@ pub const ITypeInfo = extern union {
         GetImplTypeFlags: *const fn(
             self: *const ITypeInfo,
             index: u32,
-            pImplTypeFlags: ?*i32,
+            pImplTypeFlags: ?*IMPLTYPEFLAGS,
         ) callconv(.winapi) HRESULT,
         GetIDsOfNames: *const fn(
             self: *const ITypeInfo,
@@ -4835,7 +4835,7 @@ pub const ITypeInfo = extern union {
     pub fn GetRefTypeOfImplType(self: *const ITypeInfo, index: u32, pRefType: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRefTypeOfImplType(self, index, pRefType);
     }
-    pub fn GetImplTypeFlags(self: *const ITypeInfo, index: u32, pImplTypeFlags: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn GetImplTypeFlags(self: *const ITypeInfo, index: u32, pImplTypeFlags: ?*IMPLTYPEFLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.GetImplTypeFlags(self, index, pImplTypeFlags);
     }
     pub fn GetIDsOfNames(self: *const ITypeInfo, rgszNames: [*]?PWSTR, cNames: u32, pMemId: [*]i32) callconv(.@"inline") HRESULT {
@@ -6682,7 +6682,7 @@ pub extern "ole32" fn BindMoniker(
     pmk: ?*IMoniker,
     grfOpt: u32,
     iidResult: ?*const Guid,
-    ppvResult: ?*?*anyopaque,
+    ppvResult: **anyopaque,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6845,7 +6845,7 @@ pub extern "ole32" fn CoGetApartmentType(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn CoGetCallContext(
     riid: ?*const Guid,
-    ppInterface: ?*?*anyopaque,
+    ppInterface: **anyopaque,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6857,7 +6857,7 @@ pub extern "ole32" fn CoGetCallerTID(
 pub extern "ole32" fn CoGetCancelObject(
     dwThreadId: u32,
     iid: ?*const Guid,
-    ppUnk: ?*?*anyopaque,
+    ppUnk: **anyopaque,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6866,7 +6866,7 @@ pub extern "ole32" fn CoGetClassObject(
     dwClsContext: CLSCTX,
     pvReserved: ?*anyopaque,
     riid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6894,13 +6894,13 @@ pub extern "ole32" fn CoGetObject(
     pszName: ?[*:0]const u16,
     pBindOptions: ?*BIND_OPTS,
     riid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn CoGetObjectContext(
     riid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7195,7 +7195,7 @@ pub extern "ole32" fn CreateDataCache(
     pUnkOuter: ?*IUnknown,
     rclsid: ?*const Guid,
     iid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'

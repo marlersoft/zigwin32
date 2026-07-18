@@ -614,7 +614,7 @@ pub const ARM64_RegisterCntvCtlEl0 = REGISTER_ID.ARM64_RegisterCntvCtlEl0;
 pub const ARM64_RegisterMax = REGISTER_ID.ARM64_RegisterMax;
 
 pub const SOCKADDR_HV = extern struct {
-    Family: u16,
+    Family: ADDRESS_FAMILY,
     Reserved: u16,
     VmId: Guid,
     ServiceId: Guid,
@@ -3488,9 +3488,10 @@ pub extern "winhvplatform" fn WHvWriteVpciDeviceRegister(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const ADDRESS_FAMILY = @import("../networking/win_sock.zig").ADDRESS_FAMILY;
 const BOOL = @import("../foundation.zig").BOOL;
 const DEVICE_POWER_STATE = @import("../system/power.zig").DEVICE_POWER_STATE;
 const HANDLE = @import("../foundation.zig").HANDLE;

@@ -313,21 +313,21 @@ pub const IDxcCompiler3 = extern union {
             argCount: u32,
             pIncludeHandler: ?*IDxcIncludeHandler,
             riid: ?*const Guid,
-            ppResult: ?*?*anyopaque,
+            ppResult: **anyopaque,
         ) callconv(.winapi) HRESULT,
         Disassemble: *const fn(
             self: *const IDxcCompiler3,
             pObject: ?*const DxcBuffer,
             riid: ?*const Guid,
-            ppResult: ?*?*anyopaque,
+            ppResult: **anyopaque,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Compile(self: *const IDxcCompiler3, pSource: ?*const DxcBuffer, pArguments: ?[*]?PWSTR, argCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, riid: ?*const Guid, ppResult: ?*?*anyopaque) callconv(.@"inline") HRESULT {
+    pub fn Compile(self: *const IDxcCompiler3, pSource: ?*const DxcBuffer, pArguments: ?[*]?PWSTR, argCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, riid: ?*const Guid, ppResult: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Compile(self, pSource, pArguments, argCount, pIncludeHandler, riid, ppResult);
     }
-    pub fn Disassemble(self: *const IDxcCompiler3, pObject: ?*const DxcBuffer, riid: ?*const Guid, ppResult: ?*?*anyopaque) callconv(.@"inline") HRESULT {
+    pub fn Disassemble(self: *const IDxcCompiler3, pObject: ?*const DxcBuffer, riid: ?*const Guid, ppResult: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Disassemble(self, pObject, riid, ppResult);
     }
 };
@@ -509,12 +509,12 @@ pub const IDxcIncludeHandler = extern union {
         LoadSource: *const fn(
             self: *const IDxcIncludeHandler,
             pFilename: ?[*:0]const u16,
-            ppIncludeSource: ?**IDxcBlob,
+            ppIncludeSource: **IDxcBlob,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn LoadSource(self: *const IDxcIncludeHandler, pFilename: ?[*:0]const u16, ppIncludeSource: ?**IDxcBlob) callconv(.@"inline") HRESULT {
+    pub fn LoadSource(self: *const IDxcIncludeHandler, pFilename: ?[*:0]const u16, ppIncludeSource: **IDxcBlob) callconv(.@"inline") HRESULT {
         return self.vtable.LoadSource(self, pFilename, ppIncludeSource);
     }
 };
@@ -662,11 +662,11 @@ pub const IDxcOperationResult = extern union {
         ) callconv(.winapi) HRESULT,
         GetResult: *const fn(
             self: *const IDxcOperationResult,
-            ppResult: ?**IDxcBlob,
+            ppResult: **IDxcBlob,
         ) callconv(.winapi) HRESULT,
         GetErrorBuffer: *const fn(
             self: *const IDxcOperationResult,
-            ppErrors: ?**IDxcBlobEncoding,
+            ppErrors: **IDxcBlobEncoding,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -674,10 +674,10 @@ pub const IDxcOperationResult = extern union {
     pub fn GetStatus(self: *const IDxcOperationResult, pStatus: ?*HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, pStatus);
     }
-    pub fn GetResult(self: *const IDxcOperationResult, ppResult: ?**IDxcBlob) callconv(.@"inline") HRESULT {
+    pub fn GetResult(self: *const IDxcOperationResult, ppResult: **IDxcBlob) callconv(.@"inline") HRESULT {
         return self.vtable.GetResult(self, ppResult);
     }
-    pub fn GetErrorBuffer(self: *const IDxcOperationResult, ppErrors: ?**IDxcBlobEncoding) callconv(.@"inline") HRESULT {
+    pub fn GetErrorBuffer(self: *const IDxcOperationResult, ppErrors: **IDxcBlobEncoding) callconv(.@"inline") HRESULT {
         return self.vtable.GetErrorBuffer(self, ppErrors);
     }
 };

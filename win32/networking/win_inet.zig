@@ -504,9 +504,9 @@ pub const INTERNET_CUSTOMDIAL_SAFE_FOR_UNATTENDED = @as(u32, 1);
 pub const INTERNET_CUSTOMDIAL_SHOWOFFLINE = @as(u32, 4);
 pub const INTERNET_CUSTOMDIAL_UNATTENDED = @as(u32, 1);
 pub const INTERNET_CUSTOMDIAL_WILL_SUPPLY_STATE = @as(u32, 2);
-pub const INTERNET_DEFAULT_FTP_PORT = @as(u32, 21);
-pub const INTERNET_DEFAULT_GOPHER_PORT = @as(u32, 70);
-pub const INTERNET_DEFAULT_SOCKS_PORT = @as(u32, 1080);
+pub const INTERNET_DEFAULT_FTP_PORT = @as(u16, 21);
+pub const INTERNET_DEFAULT_GOPHER_PORT = @as(u16, 70);
+pub const INTERNET_DEFAULT_SOCKS_PORT = @as(u16, 1080);
 pub const INTERNET_DIAL_FORCE_PROMPT = @as(u32, 8192);
 pub const INTERNET_DIAL_SHOW_OFFLINE = @as(u32, 16384);
 pub const INTERNET_DIAL_UNATTENDED = @as(u32, 32768);
@@ -2895,7 +2895,7 @@ pub extern "wininet" fn GetUrlCacheEntryBinaryBlob(
     pftExpireTime: ?*FILETIME,
     pftAccessTime: ?*FILETIME,
     pftModifiedTime: ?*FILETIME,
-    ppbBlob: ?[*]?*u8,
+    ppbBlob: [*]?*u8,
     pcbBlob: ?*u32,
 ) callconv(.winapi) u32;
 

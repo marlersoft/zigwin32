@@ -744,7 +744,7 @@ pub const XO_TO_MONO = @as(u32, 4);
 pub const XO_TRIVIAL = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
-// Section: Types (316)
+// Section: Types (318)
 //--------------------------------------------------------------------------------
 pub const Adapter = extern struct {
     AdapterName: [128]u16,
@@ -2926,6 +2926,47 @@ pub const PVIDEO_WIN32K_CALLOUT = *const fn(
     Params: ?*anyopaque,
 ) callconv(.winapi) void;
 
+pub const QUERY_DISPLAY_CONFIG_FLAGS = packed struct(u32) {
+    ALL_PATHS: u1 = 0,
+    ONLY_ACTIVE_PATHS: u1 = 0,
+    DATABASE_CURRENT: u1 = 0,
+    _3: u1 = 0,
+    VIRTUAL_MODE_AWARE: u1 = 0,
+    INCLUDE_HMD: u1 = 0,
+    VIRTUAL_REFRESH_RATE_AWARE: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const QDC_ALL_PATHS = QUERY_DISPLAY_CONFIG_FLAGS{ .ALL_PATHS = 1 };
+pub const QDC_ONLY_ACTIVE_PATHS = QUERY_DISPLAY_CONFIG_FLAGS{ .ONLY_ACTIVE_PATHS = 1 };
+pub const QDC_DATABASE_CURRENT = QUERY_DISPLAY_CONFIG_FLAGS{ .DATABASE_CURRENT = 1 };
+pub const QDC_VIRTUAL_MODE_AWARE = QUERY_DISPLAY_CONFIG_FLAGS{ .VIRTUAL_MODE_AWARE = 1 };
+pub const QDC_INCLUDE_HMD = QUERY_DISPLAY_CONFIG_FLAGS{ .INCLUDE_HMD = 1 };
+pub const QDC_VIRTUAL_REFRESH_RATE_AWARE = QUERY_DISPLAY_CONFIG_FLAGS{ .VIRTUAL_REFRESH_RATE_AWARE = 1 };
+
 pub const RECTFX = extern struct {
     xLeft: i32,
     yTop: i32,
@@ -2941,6 +2982,63 @@ pub const RUN = extern struct {
 pub const SET_ACTIVE_COLOR_PROFILE_NAME = extern struct {
     ColorProfileName: [1]u16,
 };
+
+pub const SET_DISPLAY_CONFIG_FLAGS = packed struct(u32) {
+    TOPOLOGY_INTERNAL: u1 = 0,
+    TOPOLOGY_CLONE: u1 = 0,
+    TOPOLOGY_EXTEND: u1 = 0,
+    TOPOLOGY_EXTERNAL: u1 = 0,
+    TOPOLOGY_SUPPLIED: u1 = 0,
+    USE_SUPPLIED_DISPLAY_CONFIG: u1 = 0,
+    VALIDATE: u1 = 0,
+    APPLY: u1 = 0,
+    NO_OPTIMIZATION: u1 = 0,
+    SAVE_TO_DATABASE: u1 = 0,
+    ALLOW_CHANGES: u1 = 0,
+    PATH_PERSIST_IF_REQUIRED: u1 = 0,
+    FORCE_MODE_ENUMERATION: u1 = 0,
+    ALLOW_PATH_ORDER_CHANGES: u1 = 0,
+    _14: u1 = 0,
+    VIRTUAL_MODE_AWARE: u1 = 0,
+    _16: u1 = 0,
+    VIRTUAL_REFRESH_RATE_AWARE: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const SDC_USE_DATABASE_CURRENT = SET_DISPLAY_CONFIG_FLAGS{
+    .TOPOLOGY_INTERNAL = 1,
+    .TOPOLOGY_CLONE = 1,
+    .TOPOLOGY_EXTEND = 1,
+    .TOPOLOGY_EXTERNAL = 1,
+};
+pub const SDC_TOPOLOGY_INTERNAL = SET_DISPLAY_CONFIG_FLAGS{ .TOPOLOGY_INTERNAL = 1 };
+pub const SDC_TOPOLOGY_CLONE = SET_DISPLAY_CONFIG_FLAGS{ .TOPOLOGY_CLONE = 1 };
+pub const SDC_TOPOLOGY_EXTEND = SET_DISPLAY_CONFIG_FLAGS{ .TOPOLOGY_EXTEND = 1 };
+pub const SDC_TOPOLOGY_EXTERNAL = SET_DISPLAY_CONFIG_FLAGS{ .TOPOLOGY_EXTERNAL = 1 };
+pub const SDC_TOPOLOGY_SUPPLIED = SET_DISPLAY_CONFIG_FLAGS{ .TOPOLOGY_SUPPLIED = 1 };
+pub const SDC_USE_SUPPLIED_DISPLAY_CONFIG = SET_DISPLAY_CONFIG_FLAGS{ .USE_SUPPLIED_DISPLAY_CONFIG = 1 };
+pub const SDC_VALIDATE = SET_DISPLAY_CONFIG_FLAGS{ .VALIDATE = 1 };
+pub const SDC_APPLY = SET_DISPLAY_CONFIG_FLAGS{ .APPLY = 1 };
+pub const SDC_NO_OPTIMIZATION = SET_DISPLAY_CONFIG_FLAGS{ .NO_OPTIMIZATION = 1 };
+pub const SDC_SAVE_TO_DATABASE = SET_DISPLAY_CONFIG_FLAGS{ .SAVE_TO_DATABASE = 1 };
+pub const SDC_ALLOW_CHANGES = SET_DISPLAY_CONFIG_FLAGS{ .ALLOW_CHANGES = 1 };
+pub const SDC_PATH_PERSIST_IF_REQUIRED = SET_DISPLAY_CONFIG_FLAGS{ .PATH_PERSIST_IF_REQUIRED = 1 };
+pub const SDC_FORCE_MODE_ENUMERATION = SET_DISPLAY_CONFIG_FLAGS{ .FORCE_MODE_ENUMERATION = 1 };
+pub const SDC_ALLOW_PATH_ORDER_CHANGES = SET_DISPLAY_CONFIG_FLAGS{ .ALLOW_PATH_ORDER_CHANGES = 1 };
+pub const SDC_VIRTUAL_MODE_AWARE = SET_DISPLAY_CONFIG_FLAGS{ .VIRTUAL_MODE_AWARE = 1 };
+pub const SDC_VIRTUAL_REFRESH_RATE_AWARE = SET_DISPLAY_CONFIG_FLAGS{ .VIRTUAL_REFRESH_RATE_AWARE = 1 };
 
 pub const SORTCOMP = *const fn(
     pv1: ?*const anyopaque,
@@ -4159,10 +4257,10 @@ pub extern "user32" fn GetDisplayAutoRotationPreferences(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn GetDisplayConfigBufferSizes(
-    flags: u32,
+    flags: QUERY_DISPLAY_CONFIG_FLAGS,
     numPathArrayElements: ?*u32,
     numModeInfoArrayElements: ?*u32,
-) callconv(.winapi) i32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn GetMonitorBrightness(
@@ -4328,13 +4426,13 @@ pub extern "gdi32" fn PATHOBJ_vGetBounds(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "user32" fn QueryDisplayConfig(
-    flags: u32,
+    flags: QUERY_DISPLAY_CONFIG_FLAGS,
     numPathArrayElements: ?*u32,
     pathArray: [*]DISPLAYCONFIG_PATH_INFO,
     numModeInfoArrayElements: ?*u32,
     modeInfoArray: [*]DISPLAYCONFIG_MODE_INFO,
     currentTopologyId: ?*DISPLAYCONFIG_TOPOLOGY_ID,
-) callconv(.winapi) i32;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dxva2" fn RestoreMonitorFactoryColorDefaults(
@@ -4366,7 +4464,7 @@ pub extern "user32" fn SetDisplayConfig(
     pathArray: ?[*]DISPLAYCONFIG_PATH_INFO,
     numModeInfoArrayElements: u32,
     modeInfoArray: ?[*]DISPLAYCONFIG_MODE_INFO,
-    flags: u32,
+    flags: SET_DISPLAY_CONFIG_FLAGS,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -4498,7 +4596,7 @@ pub extern "gdi32" fn XLATEOBJ_piVector(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (45)
+// Section: Imports (46)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLENDFUNCTION = @import("../graphics/gdi.zig").BLENDFUNCTION;
@@ -4545,6 +4643,7 @@ const SIZE = @import("../foundation.zig").SIZE;
 const TRIVERTEX = @import("../graphics/gdi.zig").TRIVERTEX;
 const TTPOLYGONHEADER = @import("../graphics/gdi.zig").TTPOLYGONHEADER;
 const VIDEOMEMORY = @import("../graphics/direct_draw.zig").VIDEOMEMORY;
+const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

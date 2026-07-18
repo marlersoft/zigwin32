@@ -1170,7 +1170,7 @@ pub const IInternetHostSecurityManager = extern union {
         QueryCustomPolicy: *const fn(
             self: *const IInternetHostSecurityManager,
             guidKey: ?*const Guid,
-            ppPolicy: ?[*]?*u8,
+            ppPolicy: [*]?*u8,
             pcbPolicy: ?*u32,
             pContext: [*:0]u8,
             cbContext: u32,
@@ -1185,7 +1185,7 @@ pub const IInternetHostSecurityManager = extern union {
     pub fn ProcessUrlAction(self: *const IInternetHostSecurityManager, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, pContext: ?[*:0]u8, cbContext: u32, dwFlags: u32, dwReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ProcessUrlAction(self, dwAction, pPolicy, cbPolicy, pContext, cbContext, dwFlags, dwReserved);
     }
-    pub fn QueryCustomPolicy(self: *const IInternetHostSecurityManager, guidKey: ?*const Guid, ppPolicy: ?[*]?*u8, pcbPolicy: ?*u32, pContext: [*:0]u8, cbContext: u32, dwReserved: u32) callconv(.@"inline") HRESULT {
+    pub fn QueryCustomPolicy(self: *const IInternetHostSecurityManager, guidKey: ?*const Guid, ppPolicy: [*]?*u8, pcbPolicy: ?*u32, pContext: [*:0]u8, cbContext: u32, dwReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.QueryCustomPolicy(self, guidKey, ppPolicy, pcbPolicy, pContext, cbContext, dwReserved);
     }
 };

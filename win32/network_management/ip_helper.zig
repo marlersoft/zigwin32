@@ -1306,7 +1306,7 @@ pub const MIB_IPFORWARDTABLE = extern struct {
 };
 
 pub const MIB_IPINTERFACE_ROW = extern struct {
-    Family: u16,
+    Family: ADDRESS_FAMILY,
     InterfaceLuid: NET_LUID_LH,
     InterfaceIndex: u32,
     MaxReassemblySize: u32,
@@ -2807,13 +2807,13 @@ pub extern "iphlpapi" fn FlushIpNetTable(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn FlushIpNetTable2(
-    Family: u16,
+    Family: ADDRESS_FAMILY,
     InterfaceIndex: u32,
 ) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn FlushIpPathTable(
-    Family: u16,
+    Family: ADDRESS_FAMILY,
 ) callconv(.winapi) NTSTATUS;
 
 pub extern "iphlpapi" fn FreeDnsSettings(
@@ -2841,7 +2841,7 @@ pub extern "iphlpapi" fn GetAdapterOrderMap(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "iphlpapi" fn GetAdaptersAddresses(
-    Family: ADDRESS_FAMILY,
+    Family: u32,
     Flags: GET_ADAPTERS_ADDRESSES_FLAGS,
     Reserved: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 4?
@@ -2863,7 +2863,7 @@ pub extern "iphlpapi" fn GetAnycastIpAddressEntry(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn GetAnycastIpAddressTable(
-    Family: u16,
+    Family: ADDRESS_FAMILY,
     Table: ?*?*MIB_ANYCASTIPADDRESS_TABLE,
 ) callconv(.winapi) NTSTATUS;
 
@@ -3048,7 +3048,7 @@ pub extern "iphlpapi" fn GetIpForwardTable(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn GetIpForwardTable2(
-    Family: u16,
+    Family: ADDRESS_FAMILY,
     Table: ?*?*MIB_IPFORWARD_TABLE2,
 ) callconv(.winapi) NTSTATUS;
 
@@ -3059,7 +3059,7 @@ pub extern "iphlpapi" fn GetIpInterfaceEntry(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn GetIpInterfaceTable(
-    Family: u16,
+    Family: ADDRESS_FAMILY,
     Table: ?*?*MIB_IPINTERFACE_TABLE,
 ) callconv(.winapi) NTSTATUS;
 
@@ -3078,14 +3078,14 @@ pub extern "iphlpapi" fn GetIpNetTable(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn GetIpNetTable2(
-    Family: u16,
+    Family: ADDRESS_FAMILY,
     Table: ?*?*MIB_IPNET_TABLE2,
 ) callconv(.winapi) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "iphlpapi" fn GetIpNetworkConnectionBandwidthEstimates(
     InterfaceIndex: u32,
-    AddressFamily: u16,
+    AddressFamily: ADDRESS_FAMILY,
     BandwidthEstimates: ?*MIB_IP_NETWORK_CONNECTION_BANDWIDTH_ESTIMATES,
 ) callconv(.winapi) NTSTATUS;
 
@@ -3096,7 +3096,7 @@ pub extern "iphlpapi" fn GetIpPathEntry(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn GetIpPathTable(
-    Family: u16,
+    Family: ADDRESS_FAMILY,
     Table: ?*?*MIB_IPPATH_TABLE,
 ) callconv(.winapi) NTSTATUS;
 
@@ -3108,7 +3108,7 @@ pub extern "iphlpapi" fn GetIpStatistics(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "iphlpapi" fn GetIpStatisticsEx(
     Statistics: ?*MIB_IPSTATS_LH,
-    Family: ADDRESS_FAMILY,
+    Family: u32,
 ) callconv(.winapi) u32;
 
 pub extern "iphlpapi" fn GetJobCompartmentId(
@@ -3122,7 +3122,7 @@ pub extern "iphlpapi" fn GetMulticastIpAddressEntry(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn GetMulticastIpAddressTable(
-    Family: u16,
+    Family: ADDRESS_FAMILY,
     Table: ?*?*MIB_MULTICASTIPADDRESS_TABLE,
 ) callconv(.winapi) NTSTATUS;
 
@@ -3282,13 +3282,13 @@ pub extern "iphlpapi" fn GetTcpStatistics(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "iphlpapi" fn GetTcpStatisticsEx(
     Statistics: ?*MIB_TCPSTATS_LH,
-    Family: ADDRESS_FAMILY,
+    Family: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "iphlpapi" fn GetTcpStatisticsEx2(
     Statistics: ?*MIB_TCPSTATS2,
-    Family: ADDRESS_FAMILY,
+    Family: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3328,13 +3328,13 @@ pub extern "iphlpapi" fn GetUdpStatistics(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "iphlpapi" fn GetUdpStatisticsEx(
     Statistics: ?*MIB_UDPSTATS,
-    Family: ADDRESS_FAMILY,
+    Family: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "iphlpapi" fn GetUdpStatisticsEx2(
     Statistics: ?*MIB_UDPSTATS2,
-    Family: ADDRESS_FAMILY,
+    Family: u32,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3352,7 +3352,7 @@ pub extern "iphlpapi" fn GetUnicastIpAddressEntry(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn GetUnicastIpAddressTable(
-    Family: u16,
+    Family: ADDRESS_FAMILY,
     Table: ?*?*MIB_UNICASTIPADDRESS_TABLE,
 ) callconv(.winapi) NTSTATUS;
 
@@ -3523,7 +3523,7 @@ pub extern "iphlpapi" fn NotifyAddrChange(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn NotifyIpInterfaceChange(
-    Family: u16,
+    Family: ADDRESS_FAMILY,
     Callback: ?PIPINTERFACE_CHANGE_CALLBACK,
     CallerContext: ?*anyopaque,
     InitialNotification: BOOLEAN,
@@ -3546,7 +3546,7 @@ pub extern "iphlpapi" fn NotifyRouteChange(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn NotifyRouteChange2(
-    AddressFamily: u16,
+    AddressFamily: ADDRESS_FAMILY,
     Callback: ?PIPFORWARD_CHANGE_CALLBACK,
     CallerContext: ?*anyopaque,
     InitialNotification: BOOLEAN,
@@ -3555,7 +3555,7 @@ pub extern "iphlpapi" fn NotifyRouteChange2(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn NotifyStableUnicastIpAddressTable(
-    Family: u16,
+    Family: ADDRESS_FAMILY,
     Table: ?*?*MIB_UNICASTIPADDRESS_TABLE,
     CallerCallback: ?PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK,
     CallerContext: ?*anyopaque,
@@ -3572,7 +3572,7 @@ pub extern "iphlpapi" fn NotifyTeredoPortChange(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "iphlpapi" fn NotifyUnicastIpAddressChange(
-    Family: u16,
+    Family: ADDRESS_FAMILY,
     Callback: ?PUNICAST_IPADDRESS_CHANGE_CALLBACK,
     CallerContext: ?*anyopaque,
     InitialNotification: BOOLEAN,

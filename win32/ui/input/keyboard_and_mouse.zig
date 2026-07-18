@@ -154,7 +154,7 @@ pub const wszTONOS = "\xce\x84";
 pub const wszUMLAUT = "\xcc\x88";
 
 //--------------------------------------------------------------------------------
-// Section: Types (44)
+// Section: Types (45)
 //--------------------------------------------------------------------------------
 pub const ACTIVATE_KEYBOARD_LAYOUT_FLAGS = enum(u32) {
     REORDER = 8,
@@ -378,6 +378,19 @@ pub const LIGATURE5 = extern struct {
     ModificationNumber: u16,
     wch: [5]u16,
 };
+
+pub const MAP_VIRTUAL_KEY_TYPE = enum(u32) {
+    K_TO_VSC = 0,
+    SC_TO_VK = 1,
+    K_TO_CHAR = 2,
+    SC_TO_VK_EX = 3,
+    K_TO_VSC_EX = 4,
+};
+pub const MAPVK_VK_TO_VSC = MAP_VIRTUAL_KEY_TYPE.K_TO_VSC;
+pub const MAPVK_VSC_TO_VK = MAP_VIRTUAL_KEY_TYPE.SC_TO_VK;
+pub const MAPVK_VK_TO_CHAR = MAP_VIRTUAL_KEY_TYPE.K_TO_CHAR;
+pub const MAPVK_VSC_TO_VK_EX = MAP_VIRTUAL_KEY_TYPE.SC_TO_VK_EX;
+pub const MAPVK_VK_TO_VSC_EX = MAP_VIRTUAL_KEY_TYPE.K_TO_VSC_EX;
 
 pub const MODIFIERS = extern struct {
     pVkToBit: ?*VK_TO_BIT,
@@ -1209,27 +1222,27 @@ pub extern "user32" fn LoadKeyboardLayoutW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn MapVirtualKeyA(
     uCode: u32,
-    uMapType: u32,
+    uMapType: MAP_VIRTUAL_KEY_TYPE,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn MapVirtualKeyExA(
     uCode: u32,
-    uMapType: u32,
+    uMapType: MAP_VIRTUAL_KEY_TYPE,
     dwhkl: ?HKL,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn MapVirtualKeyExW(
     uCode: u32,
-    uMapType: u32,
+    uMapType: MAP_VIRTUAL_KEY_TYPE,
     dwhkl: ?HKL,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn MapVirtualKeyW(
     uCode: u32,
-    uMapType: u32,
+    uMapType: MAP_VIRTUAL_KEY_TYPE,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'

@@ -2711,7 +2711,7 @@ pub const IDWriteFont = extern union {
         GetInformationalStrings: *const fn(
             self: *const IDWriteFont,
             informationalStringID: DWRITE_INFORMATIONAL_STRING_ID,
-            informationalStrings: ?**IDWriteLocalizedStrings,
+            informationalStrings: **IDWriteLocalizedStrings,
             exists: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         GetSimulations: *const fn(
@@ -2751,7 +2751,7 @@ pub const IDWriteFont = extern union {
     pub fn GetFaceNames(self: *const IDWriteFont, names: **IDWriteLocalizedStrings) callconv(.@"inline") HRESULT {
         return self.vtable.GetFaceNames(self, names);
     }
-    pub fn GetInformationalStrings(self: *const IDWriteFont, informationalStringID: DWRITE_INFORMATIONAL_STRING_ID, informationalStrings: ?**IDWriteLocalizedStrings, exists: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn GetInformationalStrings(self: *const IDWriteFont, informationalStringID: DWRITE_INFORMATIONAL_STRING_ID, informationalStrings: **IDWriteLocalizedStrings, exists: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetInformationalStrings(self, informationalStringID, informationalStrings, exists);
     }
     pub fn GetSimulations(self: *const IDWriteFont) callconv(.@"inline") DWRITE_FONT_SIMULATIONS {
@@ -3466,7 +3466,7 @@ pub const IDWriteFontFace3 = extern union {
         GetInformationalStrings: *const fn(
             self: *const IDWriteFontFace3,
             informationalStringID: DWRITE_INFORMATIONAL_STRING_ID,
-            informationalStrings: ?**IDWriteLocalizedStrings,
+            informationalStrings: **IDWriteLocalizedStrings,
             exists: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         HasCharacter: *const fn(
@@ -3535,7 +3535,7 @@ pub const IDWriteFontFace3 = extern union {
     pub fn GetFaceNames(self: *const IDWriteFontFace3, names: **IDWriteLocalizedStrings) callconv(.@"inline") HRESULT {
         return self.vtable.GetFaceNames(self, names);
     }
-    pub fn GetInformationalStrings(self: *const IDWriteFontFace3, informationalStringID: DWRITE_INFORMATIONAL_STRING_ID, informationalStrings: ?**IDWriteLocalizedStrings, exists: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn GetInformationalStrings(self: *const IDWriteFontFace3, informationalStringID: DWRITE_INFORMATIONAL_STRING_ID, informationalStrings: **IDWriteLocalizedStrings, exists: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetInformationalStrings(self, informationalStringID, informationalStrings, exists);
     }
     pub fn HasCharacter(self: *const IDWriteFontFace3, unicodeValue: u32) callconv(.@"inline") BOOL {
@@ -3850,13 +3850,13 @@ pub const IDWriteFontFallback = extern union {
             baseStyle: DWRITE_FONT_STYLE,
             baseStretch: DWRITE_FONT_STRETCH,
             mappedLength: ?*u32,
-            mappedFont: ?**IDWriteFont,
+            mappedFont: **IDWriteFont,
             scale: ?*f32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MapCharacters(self: *const IDWriteFontFallback, analysisSource: ?*IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, baseFontCollection: ?*IDWriteFontCollection, baseFamilyName: ?[*:0]const u16, baseWeight: DWRITE_FONT_WEIGHT, baseStyle: DWRITE_FONT_STYLE, baseStretch: DWRITE_FONT_STRETCH, mappedLength: ?*u32, mappedFont: ?**IDWriteFont, scale: ?*f32) callconv(.@"inline") HRESULT {
+    pub fn MapCharacters(self: *const IDWriteFontFallback, analysisSource: ?*IDWriteTextAnalysisSource, textPosition: u32, textLength: u32, baseFontCollection: ?*IDWriteFontCollection, baseFamilyName: ?[*:0]const u16, baseWeight: DWRITE_FONT_WEIGHT, baseStyle: DWRITE_FONT_STYLE, baseStretch: DWRITE_FONT_STRETCH, mappedLength: ?*u32, mappedFont: **IDWriteFont, scale: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.MapCharacters(self, analysisSource, textPosition, textLength, baseFontCollection, baseFamilyName, baseWeight, baseStyle, baseStretch, mappedLength, mappedFont, scale);
     }
 };
@@ -4400,7 +4400,7 @@ pub const IDWriteFontSet = extern union {
             listIndex: u32,
             propertyId: DWRITE_FONT_PROPERTY_ID,
             exists: ?*BOOL,
-            values: ?**IDWriteLocalizedStrings,
+            values: **IDWriteLocalizedStrings,
         ) callconv(.winapi) HRESULT,
         GetPropertyOccurrenceCount: *const fn(
             self: *const IDWriteFontSet,
@@ -4444,7 +4444,7 @@ pub const IDWriteFontSet = extern union {
     pub fn GetPropertyValuesByIdPreferLocale(self: *const IDWriteFontSet, propertyID: DWRITE_FONT_PROPERTY_ID, preferredLocaleNames: ?[*:0]const u16, values: **IDWriteStringList) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyValuesByIdPreferLocale(self, propertyID, preferredLocaleNames, values);
     }
-    pub fn GetPropertyValuesForFont(self: *const IDWriteFontSet, listIndex: u32, propertyId: DWRITE_FONT_PROPERTY_ID, exists: ?*BOOL, values: ?**IDWriteLocalizedStrings) callconv(.@"inline") HRESULT {
+    pub fn GetPropertyValuesForFont(self: *const IDWriteFontSet, listIndex: u32, propertyId: DWRITE_FONT_PROPERTY_ID, exists: ?*BOOL, values: **IDWriteLocalizedStrings) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyValuesForFont(self, listIndex, propertyId, exists, values);
     }
     pub fn GetPropertyOccurrenceCount(self: *const IDWriteFontSet, property: ?*const DWRITE_FONT_PROPERTY, propertyOccurrenceCount: ?*u32) callconv(.@"inline") HRESULT {
@@ -5183,7 +5183,7 @@ pub const IDWriteRemoteFontFileStream = extern union {
             downloadOperationID: ?*const Guid,
             fileFragments: [*]const DWRITE_FILE_FRAGMENT,
             fragmentCount: u32,
-            asyncResult: ?**IDWriteAsyncResult,
+            asyncResult: **IDWriteAsyncResult,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -5198,7 +5198,7 @@ pub const IDWriteRemoteFontFileStream = extern union {
     pub fn GetLocality(self: *const IDWriteRemoteFontFileStream) callconv(.@"inline") DWRITE_LOCALITY {
         return self.vtable.GetLocality(self);
     }
-    pub fn BeginDownload(self: *const IDWriteRemoteFontFileStream, downloadOperationID: ?*const Guid, fileFragments: [*]const DWRITE_FILE_FRAGMENT, fragmentCount: u32, asyncResult: ?**IDWriteAsyncResult) callconv(.@"inline") HRESULT {
+    pub fn BeginDownload(self: *const IDWriteRemoteFontFileStream, downloadOperationID: ?*const Guid, fileFragments: [*]const DWRITE_FILE_FRAGMENT, fragmentCount: u32, asyncResult: **IDWriteAsyncResult) callconv(.@"inline") HRESULT {
         return self.vtable.BeginDownload(self, downloadOperationID, fileFragments, fragmentCount, asyncResult);
     }
 };

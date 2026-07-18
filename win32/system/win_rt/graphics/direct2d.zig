@@ -43,7 +43,7 @@ pub const IGeometrySource2DInterop = extern union {
         TryGetGeometryUsingFactory: *const fn(
             self: *const IGeometrySource2DInterop,
             factory: ?*ID2D1Factory,
-            value: ?**ID2D1Geometry,
+            value: **ID2D1Geometry,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -51,7 +51,7 @@ pub const IGeometrySource2DInterop = extern union {
     pub fn GetGeometry(self: *const IGeometrySource2DInterop, value: **ID2D1Geometry) callconv(.@"inline") HRESULT {
         return self.vtable.GetGeometry(self, value);
     }
-    pub fn TryGetGeometryUsingFactory(self: *const IGeometrySource2DInterop, factory: ?*ID2D1Factory, value: ?**ID2D1Geometry) callconv(.@"inline") HRESULT {
+    pub fn TryGetGeometryUsingFactory(self: *const IGeometrySource2DInterop, factory: ?*ID2D1Factory, value: **ID2D1Geometry) callconv(.@"inline") HRESULT {
         return self.vtable.TryGetGeometryUsingFactory(self, factory, value);
     }
 };
