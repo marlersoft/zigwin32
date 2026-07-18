@@ -80,7 +80,7 @@ pub const IRadialControllerInterop = extern union {
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const HRESULT = @import("../../foundation.zig").HRESULT;
+const HRESULT = @import("../../zig.zig").HRESULT;
 const HWND = @import("../../foundation.zig").HWND;
 const IInspectable = @import("../../system/win_rt.zig").IInspectable;
 const IUnknown = @import("../../system/com.zig").IUnknown;

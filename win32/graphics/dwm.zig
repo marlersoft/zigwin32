@@ -565,7 +565,7 @@ pub extern "dwmapi" fn DwmUpdateThumbnailProperties(
 const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const HRGN = @import("../graphics/gdi.zig").HRGN;
 const HWND = @import("../foundation.zig").HWND;
 const LPARAM = isize;

@@ -48,7 +48,7 @@ pub extern "ualapi" fn UalStop(
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;
 
 test {

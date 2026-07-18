@@ -131,7 +131,7 @@ pub extern "dssec" fn DSEditSecurity(
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const ISecurityInformation = @import("../security/authorization/ui.zig").ISecurityInformation;
 const LPARAM = isize;

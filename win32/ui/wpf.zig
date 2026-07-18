@@ -787,7 +787,7 @@ pub const MilRectD = extern struct {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BSTR = *u16;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const IWICBitmapSource = @import("../graphics/imaging.zig").IWICBitmapSource;
 const MilMatrix3x2D = @import("../graphics/dwm.zig").MilMatrix3x2D;

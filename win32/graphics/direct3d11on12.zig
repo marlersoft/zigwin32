@@ -147,7 +147,7 @@ pub extern "d3d11" fn D3D11On12CreateDevice(
 const Guid = @import("../zig.zig").Guid;
 const D3D12_RESOURCE_STATES = @import("../graphics/direct3d12.zig").D3D12_RESOURCE_STATES;
 const D3D_FEATURE_LEVEL = @import("../graphics/direct3d.zig").D3D_FEATURE_LEVEL;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const ID3D11Device = @import("../graphics/direct3d11.zig").ID3D11Device;
 const ID3D11DeviceContext = @import("../graphics/direct3d11.zig").ID3D11DeviceContext;
 const ID3D11Resource = @import("../graphics/direct3d11.zig").ID3D11Resource;

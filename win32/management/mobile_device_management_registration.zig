@@ -198,7 +198,7 @@ pub extern "mdmregistration" fn UnregisterDeviceWithManagement(
 //--------------------------------------------------------------------------------
 const BOOL = i32;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

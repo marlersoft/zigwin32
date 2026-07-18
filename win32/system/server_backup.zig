@@ -163,7 +163,7 @@ pub const WSB_OB_STATUS_INFO = extern struct {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOLEAN = u8;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 
 test {

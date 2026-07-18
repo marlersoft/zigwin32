@@ -1261,7 +1261,7 @@ pub extern "dxcompiler" fn DxcCreateInstance2(
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = i32;
 const BSTR = *u16;
-const HRESULT = @import("../../foundation.zig").HRESULT;
+const HRESULT = @import("../../zig.zig").HRESULT;
 const IMalloc = @import("../../system/com.zig").IMalloc;
 const IStream = @import("../../system/com.zig").IStream;
 const IUnknown = @import("../../system/com.zig").IUnknown;

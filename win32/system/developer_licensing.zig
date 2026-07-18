@@ -31,7 +31,7 @@ pub extern "wsclient" fn RemoveDeveloperLicense(
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
 const FILETIME = @import("../foundation.zig").FILETIME;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 
 test {

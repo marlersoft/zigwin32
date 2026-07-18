@@ -115,7 +115,7 @@ pub const ITensorStaticsNative = extern union {
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const HRESULT = @import("../../foundation.zig").HRESULT;
+const HRESULT = @import("../../zig.zig").HRESULT;
 const ID3D12CommandQueue = @import("../../graphics/direct3d12.zig").ID3D12CommandQueue;
 const ID3D12Resource = @import("../../graphics/direct3d12.zig").ID3D12Resource;
 const IMLOperatorRegistry = @import("../../ai/machine_learning/win_ml.zig").IMLOperatorRegistry;

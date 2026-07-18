@@ -996,7 +996,7 @@ pub const WriteConsoleOutputCharacter = switch (@import("../zig.zig").unicode_mo
 const BOOL = i32;
 const COLORREF = @import("../foundation.zig").COLORREF;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 

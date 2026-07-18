@@ -179,7 +179,7 @@ pub const IHolographicQuadLayerUpdateParametersInterop = extern union {
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const D3D12_RESOURCE_DESC = @import("../../graphics/direct3d12.zig").D3D12_RESOURCE_DESC;
-const HRESULT = @import("../../foundation.zig").HRESULT;
+const HRESULT = @import("../../zig.zig").HRESULT;
 const ID3D12CommandQueue = @import("../../graphics/direct3d12.zig").ID3D12CommandQueue;
 const ID3D12Device = @import("../../graphics/direct3d12.zig").ID3D12Device;
 const ID3D12Fence = @import("../../graphics/direct3d12.zig").ID3D12Fence;

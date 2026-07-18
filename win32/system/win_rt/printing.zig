@@ -221,7 +221,7 @@ pub const IPrintWorkflowXpsReceiver2 = extern union {
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const HRESULT = @import("../../foundation.zig").HRESULT;
+const HRESULT = @import("../../zig.zig").HRESULT;
 const HWND = @import("../../foundation.zig").HWND;
 const IInspectable = @import("../../system/win_rt.zig").IInspectable;
 const IPrinterPropertyBag = @import("../../graphics/printing.zig").IPrinterPropertyBag;

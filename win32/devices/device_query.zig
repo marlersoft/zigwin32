@@ -485,7 +485,7 @@ const DEVPROPERTY = @import("../devices/properties.zig").DEVPROPERTY;
 const DEVPROPKEY = @import("../devices/properties.zig").DEVPROPKEY;
 const DEVPROPSTORE = @import("../devices/properties.zig").DEVPROPSTORE;
 const DEVPROPTYPE = @import("../devices/properties.zig").DEVPROPTYPE;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

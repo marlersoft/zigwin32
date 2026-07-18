@@ -555,7 +555,7 @@ pub extern "fltlib" fn FilterVolumeInstanceFindNext(
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
 const HANDLE = @import("../foundation.zig").HANDLE;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;

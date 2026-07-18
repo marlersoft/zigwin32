@@ -76,7 +76,7 @@ pub const IWICImagingFactory2 = extern union {
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const HRESULT = @import("../../foundation.zig").HRESULT;
+const HRESULT = @import("../../zig.zig").HRESULT;
 const ID2D1Device = @import("../../graphics/direct2d.zig").ID2D1Device;
 const ID2D1Image = @import("../../graphics/direct2d.zig").ID2D1Image;
 const IUnknown = @import("../../system/com.zig").IUnknown;

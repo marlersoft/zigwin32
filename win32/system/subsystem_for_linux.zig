@@ -103,7 +103,7 @@ pub extern "api-ms-win-wsl-api-l1-1-0" fn WslUnregisterDistribution(
 //--------------------------------------------------------------------------------
 const BOOL = i32;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

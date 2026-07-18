@@ -3496,7 +3496,7 @@ const BOOL = i32;
 const DEVICE_POWER_STATE = @import("../system/power.zig").DEVICE_POWER_STATE;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HCS_SYSTEM = @import("../system/host_compute_system.zig").HCS_SYSTEM;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const LUID = @import("../foundation.zig").LUID;
 
 test {

@@ -192,7 +192,7 @@ pub extern "tbs" fn Tbsip_Submit_Command(
 // Section: Imports (2)
 //--------------------------------------------------------------------------------
 const BOOL = i32;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

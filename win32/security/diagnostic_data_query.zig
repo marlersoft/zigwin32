@@ -371,7 +371,7 @@ const HDIAGNOSTIC_EVENT_PRODUCER_DESCRIPTION = @import("../security.zig").HDIAGN
 const HDIAGNOSTIC_EVENT_TAG_DESCRIPTION = @import("../security.zig").HDIAGNOSTIC_EVENT_TAG_DESCRIPTION;
 const HDIAGNOSTIC_RECORD = @import("../security.zig").HDIAGNOSTIC_RECORD;
 const HDIAGNOSTIC_REPORT = @import("../security.zig").HDIAGNOSTIC_REPORT;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

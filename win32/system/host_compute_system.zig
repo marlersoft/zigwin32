@@ -578,7 +578,7 @@ pub extern "computecore" fn HcsWaitForProcessExit(
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
 const HANDLE = @import("../foundation.zig").HANDLE;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 
 test {

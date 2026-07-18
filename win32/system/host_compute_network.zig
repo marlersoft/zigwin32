@@ -329,7 +329,7 @@ pub extern "computenetwork" fn HcnUnregisterServiceCallback(
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

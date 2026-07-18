@@ -6650,7 +6650,6 @@ pub const HLSURF__ = extern struct {
     unused: i32,
 };
 
-pub const HRESULT = i32;
 
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HRSRC = *opaque{};
@@ -16636,10 +16635,11 @@ pub extern "oleaut32" fn SysStringLen(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (3)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const BOOL = i32;
 const BSTR = *u16;
+const HRESULT = @import("zig.zig").HRESULT;
 const VARIANT_BOOL = i16;
 
 test {

@@ -210,7 +210,7 @@ pub extern "xpsprint" fn StartXpsPrintJob1(
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const HANDLE = @import("../../foundation.zig").HANDLE;
-const HRESULT = @import("../../foundation.zig").HRESULT;
+const HRESULT = @import("../../zig.zig").HRESULT;
 const IDispatch = @import("../../system/com.zig").IDispatch;
 const ISequentialStream = @import("../../system/com.zig").ISequentialStream;
 const IStream = @import("../../system/com.zig").IStream;

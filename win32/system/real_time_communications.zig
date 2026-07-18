@@ -4280,7 +4280,7 @@ pub const TRANSPORT_SETTING = extern struct {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BSTR = *u16;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const IVideoWindow = @import("../media/direct_show.zig").IVideoWindow;

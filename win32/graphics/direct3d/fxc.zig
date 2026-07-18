@@ -374,7 +374,7 @@ pub extern "d3dcompiler_47" fn D3DWriteBlobToFile(
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = i32;
 const D3D_SHADER_MACRO = @import("../../graphics/direct3d.zig").D3D_SHADER_MACRO;
-const HRESULT = @import("../../foundation.zig").HRESULT;
+const HRESULT = @import("../../zig.zig").HRESULT;
 const ID3D10Effect = @import("../../graphics/direct3d10.zig").ID3D10Effect;
 const ID3D11FunctionLinkingGraph = @import("../../graphics/direct3d11.zig").ID3D11FunctionLinkingGraph;
 const ID3D11Linker = @import("../../graphics/direct3d11.zig").ID3D11Linker;

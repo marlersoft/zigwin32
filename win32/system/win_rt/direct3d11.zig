@@ -46,7 +46,7 @@ pub extern "d3d11" fn CreateDirect3D11SurfaceFromDXGISurface(
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const HRESULT = @import("../../foundation.zig").HRESULT;
+const HRESULT = @import("../../zig.zig").HRESULT;
 const IDXGIDevice = @import("../../graphics/dxgi.zig").IDXGIDevice;
 const IDXGISurface = @import("../../graphics/dxgi.zig").IDXGISurface;
 const IInspectable = @import("../../system/win_rt.zig").IInspectable;

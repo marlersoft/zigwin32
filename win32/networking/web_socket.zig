@@ -234,7 +234,7 @@ pub extern "websocket" fn WebSocketSend(
 //--------------------------------------------------------------------------------
 // Section: Imports (1)
 //--------------------------------------------------------------------------------
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

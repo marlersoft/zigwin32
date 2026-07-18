@@ -366,7 +366,7 @@ pub extern "winmm" fn timeSetEvent(
 const Guid = @import("zig.zig").Guid;
 const HANDLE = @import("foundation.zig").HANDLE;
 const HDRVR = @import("media/multimedia.zig").HDRVR;
-const HRESULT = @import("foundation.zig").HRESULT;
+const HRESULT = @import("zig.zig").HRESULT;
 const IUnknown = @import("system/com.zig").IUnknown;
 
 test {

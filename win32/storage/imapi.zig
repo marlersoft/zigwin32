@@ -5257,7 +5257,7 @@ pub extern "mapi32" fn SetAttribIMsgOnIStg(
 const Guid = @import("../zig.zig").Guid;
 const BOOLEAN = u8;
 const BSTR = *u16;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IEnumVARIANT = @import("../system/ole.zig").IEnumVARIANT;
 const IMalloc = @import("../system/com.zig").IMalloc;

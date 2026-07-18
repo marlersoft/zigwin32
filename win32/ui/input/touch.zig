@@ -931,7 +931,7 @@ pub extern "user32" fn UnregisterTouchWindow(
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = i32;
 const HANDLE = @import("../../foundation.zig").HANDLE;
-const HRESULT = @import("../../foundation.zig").HRESULT;
+const HRESULT = @import("../../zig.zig").HRESULT;
 const HWND = @import("../../foundation.zig").HWND;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const POINTS = @import("../../foundation.zig").POINTS;

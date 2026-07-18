@@ -130,7 +130,7 @@ pub extern "prntvpt" fn PTReleaseMemory(
 const BSTR = *u16;
 const DEVMODEA = @import("../../graphics/gdi.zig").DEVMODEA;
 const HPTPROVIDER = @import("../../storage/xps.zig").HPTPROVIDER;
-const HRESULT = @import("../../foundation.zig").HRESULT;
+const HRESULT = @import("../../zig.zig").HRESULT;
 const IStream = @import("../../system/com.zig").IStream;
 
 test {

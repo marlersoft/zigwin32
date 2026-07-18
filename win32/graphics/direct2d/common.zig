@@ -492,7 +492,7 @@ pub const ID2D1SimplifiedGeometrySink = extern union {
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const DXGI_FORMAT = @import("../../graphics/dxgi/common.zig").DXGI_FORMAT;
-const HRESULT = @import("../../foundation.zig").HRESULT;
+const HRESULT = @import("../../zig.zig").HRESULT;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 
 test {

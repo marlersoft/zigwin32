@@ -1701,7 +1701,7 @@ const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
 const BOOLEAN = u8;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 

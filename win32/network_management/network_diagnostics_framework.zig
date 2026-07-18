@@ -624,7 +624,7 @@ pub extern "ndfapi" fn NdfRepairIncident(
 const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
 const FILETIME = @import("../foundation.zig").FILETIME;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const SID = @import("../security.zig").SID;

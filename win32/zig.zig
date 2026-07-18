@@ -10,7 +10,6 @@ const mod_root = @import("../win32.zig");
 const win32 = struct {
     const BOOL = i32;
     const WIN32_ERROR = mod_root.foundation.WIN32_ERROR;
-    const HRESULT = mod_root.foundation.HRESULT;
     const HWND = mod_root.foundation.HWND;
     const HANDLE = mod_root.foundation.HANDLE;
     const POINT = mod_root.foundation.POINT;
@@ -136,12 +135,35 @@ pub const PropertyKey = extern struct {
     }
 };
 
-pub fn FAILED(hr: win32.HRESULT) bool {
-    return hr < 0;
-}
-pub fn SUCCEEDED(hr: win32.HRESULT) bool {
-    return hr >= 0;
-}
+pub const HRESULT = packed struct (u32) {
+    code: u16,
+    facility: u11,
+    x: u1,
+    nt: u1,
+    customer: u1,
+    reserved: u1,
+    failed: bool,
+    pub fn fromInt(i: u32) HRESULT { return @bitCast(i); }
+
+    pub const format = if (@import("builtin").zig_version.order(.{ .major = 0, .minor = 15, .patch = 0 }) == .lt)
+        formatLegacy
+    else
+        formatNew;
+    fn formatLegacy(
+        self: @This(),
+        comptime fmt: []const u8,
+        options: std.fmt.FormatOptions,
+        writer: anytype,
+    ) @TypeOf(writer).Error!void {
+        _ = fmt;
+        _ = options;
+        try writer.print("0x{X:0>8}", .{@as(u32, @bitCast(self))});
+    }
+    fn formatNew(self: HRESULT, writer: *std.Io.Writer) error{WriteFailed}!void {
+        try writer.print("0x{X:0>8}", .{@as(u32, @bitCast(self))});
+    }
+    pub const S_OK: HRESULT = .fromInt(0);
+};
 
 // These constants were removed from the metadata to allow each projection
 // to define them however they like (see https://github.com/microsoft/win32metadata/issues/530)
@@ -307,8 +329,8 @@ pub fn panicWin32(what: []const u8, err: win32.WIN32_ERROR) noreturn {
 
 /// Calls std.debug.panic with a message that indicates what failed and the
 /// associated hresult error code.
-pub fn panicHresult(what: []const u8, hresult: win32.HRESULT) noreturn {
-    std.debug.panic("{s} failed, hresult=0x{x}", .{ what, @as(u32, @bitCast(hresult)) });
+pub fn panicHresult(what: []const u8, hresult: HRESULT) noreturn {
+    std.debug.panic("{s} failed, hresult={f}", .{ what, hresult });
 }
 
 /// calls CloseHandle, panics on failure
@@ -461,6 +483,10 @@ fn typedConst2(comptime ReturnType: type, comptime SwitchType: type, comptime va
         .@"enum" => switch (@typeInfo(@TypeOf(value))) {
             .Int => return @as(ReturnType, @enumFromInt(value)),
             else => target_type_error,
+        },
+        .@"struct" => |struct_info| {
+            if (struct_info.layout != .@"packed") @compileError(target_type_error);
+            return @bitCast(value);
         },
         else => @compileError(target_type_error),
     }

@@ -115,7 +115,7 @@ pub const IWindowsDevicesAllJoynBusObjectInterop = extern union {
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const HRESULT = @import("../../foundation.zig").HRESULT;
+const HRESULT = @import("../../zig.zig").HRESULT;
 const HSTRING = @import("../../system/win_rt.zig").HSTRING;
 const IInspectable = @import("../../system/win_rt.zig").IInspectable;
 const IUnknown = @import("../../system/com.zig").IUnknown;

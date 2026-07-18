@@ -56,7 +56,7 @@ pub const IXMLGraphBuilder = extern union {
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BSTR = *u16;
-const HRESULT = @import("../../foundation.zig").HRESULT;
+const HRESULT = @import("../../zig.zig").HRESULT;
 const IGraphBuilder = @import("../../media/direct_show.zig").IGraphBuilder;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const IXMLElement = @import("../../data/xml/ms_xml.zig").IXMLElement;

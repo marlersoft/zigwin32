@@ -2374,7 +2374,7 @@ const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 const HICON = @import("../ui/windows_and_messaging.zig").HICON;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 

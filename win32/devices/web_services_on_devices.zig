@@ -2523,7 +2523,7 @@ const BOOL = i32;
 const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HCERTSTORE = @import("../security/cryptography.zig").HCERTSTORE;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;
 

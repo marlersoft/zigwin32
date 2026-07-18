@@ -68,7 +68,7 @@ const Guid = @import("../../zig.zig").Guid;
 const HBITMAP = @import("../../graphics/gdi.zig").HBITMAP;
 const HDC = @import("../../graphics/gdi.zig").HDC;
 const HICON = @import("../../ui/windows_and_messaging.zig").HICON;
-const HRESULT = @import("../../foundation.zig").HRESULT;
+const HRESULT = @import("../../zig.zig").HRESULT;
 const IStorage = @import("../../system/com/structured_storage.zig").IStorage;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 

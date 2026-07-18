@@ -1443,7 +1443,7 @@ pub const PFN_DESTRUCTION_CALLBACK = *const fn(
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 
 test {

@@ -73,7 +73,7 @@ pub const IDisplayPathInterop = extern union {
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const HANDLE = @import("../../foundation.zig").HANDLE;
-const HRESULT = @import("../../foundation.zig").HRESULT;
+const HRESULT = @import("../../zig.zig").HRESULT;
 const HSTRING = @import("../../system/win_rt.zig").HSTRING;
 const IInspectable = @import("../../system/win_rt.zig").IInspectable;
 const IUnknown = @import("../../system/com.zig").IUnknown;

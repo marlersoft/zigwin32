@@ -290,7 +290,7 @@ pub const IUnbufferedFileHandleProvider = extern union {
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const HANDLE = @import("../../foundation.zig").HANDLE;
-const HRESULT = @import("../../foundation.zig").HRESULT;
+const HRESULT = @import("../../zig.zig").HRESULT;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 
 test {

@@ -114,7 +114,7 @@ pub const IVideoFrameNativeFactory = extern union {
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = i32;
-const HRESULT = @import("../../foundation.zig").HRESULT;
+const HRESULT = @import("../../zig.zig").HRESULT;
 const IInspectable = @import("../../system/win_rt.zig").IInspectable;
 const IMFDXGIDeviceManager = @import("../../media/media_foundation.zig").IMFDXGIDeviceManager;
 const IMFSample = @import("../../media/media_foundation.zig").IMFSample;

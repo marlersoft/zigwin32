@@ -568,7 +568,7 @@ pub const SetEnvironmentVariable = switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const BOOL = i32;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

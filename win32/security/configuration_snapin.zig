@@ -220,7 +220,7 @@ pub const SceSvcInternalUse = SCESVC_INFO_TYPE.InternalUse;
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 
 test {

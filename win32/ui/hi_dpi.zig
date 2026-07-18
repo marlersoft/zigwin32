@@ -308,7 +308,7 @@ pub extern "user32" fn SystemParametersInfoForDpi(
 const BOOL = i32;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const HTHEME = @import("../ui/controls.zig").HTHEME;
 const HWND = @import("../foundation.zig").HWND;
 const POINT = @import("../foundation.zig").POINT;

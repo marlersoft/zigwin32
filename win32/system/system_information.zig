@@ -1401,7 +1401,7 @@ const BOOL = i32;
 const BOOLEAN = u8;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const PROCESSOR_ARCHITECTURE = @import("../system/diagnostics/debug.zig").PROCESSOR_ARCHITECTURE;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 

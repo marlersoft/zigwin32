@@ -44,7 +44,7 @@ pub extern "licenseprotection" fn ValidateLicenseKeyProtection(
 // Section: Imports (2)
 //--------------------------------------------------------------------------------
 const FILETIME = @import("../foundation.zig").FILETIME;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

@@ -74,7 +74,7 @@ pub const ISoftwareBitmapNativeFactory = extern union {
 //--------------------------------------------------------------------------------
 const Guid = @import("../../../zig.zig").Guid;
 const BOOL = i32;
-const HRESULT = @import("../../../foundation.zig").HRESULT;
+const HRESULT = @import("../../../zig.zig").HRESULT;
 const IInspectable = @import("../../../system/win_rt.zig").IInspectable;
 const IMF2DBuffer2 = @import("../../../media/media_foundation.zig").IMF2DBuffer2;
 const IUnknown = @import("../../../system/com.zig").IUnknown;

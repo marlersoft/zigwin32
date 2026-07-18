@@ -331,7 +331,7 @@ pub extern "dxcore" fn DXCoreCreateAdapterFactory(
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LUID = @import("../foundation.zig").LUID;
 

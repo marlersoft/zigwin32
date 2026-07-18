@@ -633,7 +633,7 @@ pub extern "chakra" fn JsVariantToValue(
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const IActiveScriptProfilerCallback = @import("../system/diagnostics/debug.zig").IActiveScriptProfilerCallback;
 const IActiveScriptProfilerHeapEnum = @import("../system/diagnostics/debug.zig").IActiveScriptProfilerHeapEnum;
 const PROFILER_EVENT_MASK = @import("../system/diagnostics/debug.zig").PROFILER_EVENT_MASK;

@@ -423,7 +423,7 @@ const BOOL = i32;
 const BSTR = *u16;
 const FH_SERVICE_PIPE_HANDLE = @import("../system/windows_programming.zig").FH_SERVICE_PIPE_HANDLE;
 const FILETIME = @import("../foundation.zig").FILETIME;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 
 test {

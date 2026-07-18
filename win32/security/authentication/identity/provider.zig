@@ -863,7 +863,7 @@ pub const IIdentityStoreEx = extern union {
 //--------------------------------------------------------------------------------
 const Guid = @import("../../../zig.zig").Guid;
 const BOOL = i32;
-const HRESULT = @import("../../../foundation.zig").HRESULT;
+const HRESULT = @import("../../../zig.zig").HRESULT;
 const HWND = @import("../../../foundation.zig").HWND;
 const IBindCtx = @import("../../../system/com.zig").IBindCtx;
 const IEnumUnknown = @import("../../../system/com.zig").IEnumUnknown;

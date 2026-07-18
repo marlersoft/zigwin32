@@ -2335,7 +2335,7 @@ const BSTR = *u16;
 const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 

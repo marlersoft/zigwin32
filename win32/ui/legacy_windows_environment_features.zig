@@ -331,7 +331,7 @@ pub const ALL_RECONCILE_FLAGS = RECONCILEF.ALL_RECONCILE_FLAGS;
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HKEY = @import("../system/registry.zig").HKEY;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IMoniker = @import("../system/com.zig").IMoniker;
 const IOleObject = @import("../system/ole.zig").IOleObject;

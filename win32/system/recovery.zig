@@ -108,7 +108,7 @@ pub extern "kernel32" fn UnregisterApplicationRestart(
 const APPLICATION_RECOVERY_CALLBACK = @import("../system/windows_programming.zig").APPLICATION_RECOVERY_CALLBACK;
 const BOOL = i32;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

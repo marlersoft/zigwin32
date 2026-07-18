@@ -351,7 +351,7 @@ pub extern "efswrt" fn UnprotectFile(
 const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const HSTRING = @import("../system/win_rt.zig").HSTRING;
 const HWND = @import("../foundation.zig").HWND;
 const IInspectable = @import("../system/win_rt.zig").IInspectable;

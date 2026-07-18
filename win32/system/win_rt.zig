@@ -1713,7 +1713,7 @@ pub extern "api-ms-win-core-winrt-string-l1-1-0" fn WindowsTrimStringStart(
 const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
 const BSTR = *u16;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IMarshal = @import("../system/com/marshal.zig").IMarshal;
 const INamedPropertyStore = @import("../ui/shell/properties_system.zig").INamedPropertyStore;

@@ -2655,7 +2655,7 @@ const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const HRESULT = @import("../foundation.zig").HRESULT;
+const HRESULT = @import("../zig.zig").HRESULT;
 const IMoniker = @import("../system/com.zig").IMoniker;
 const IUnknown = @import("../system/com.zig").IUnknown;
 
