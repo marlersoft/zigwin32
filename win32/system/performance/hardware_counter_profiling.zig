@@ -33,40 +33,8 @@ pub const PERFORMANCE_DATA = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (4)
+// Section: Imports (0)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "kernel32" fn DisableThreadProfiling(
-    PerformanceDataHandle: ?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "kernel32" fn EnableThreadProfiling(
-    ThreadHandle: ?HANDLE,
-    Flags: u32,
-    HardwareCounters: u64,
-    PerformanceDataHandle: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "kernel32" fn QueryThreadProfiling(
-    ThreadHandle: ?HANDLE,
-    Enabled: ?*BOOLEAN,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "kernel32" fn ReadThreadProfilingData(
-    PerformanceDataHandle: ?HANDLE,
-    Flags: u32,
-    PerformanceData: ?*PERFORMANCE_DATA,
-) callconv(.winapi) u32;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (2)
-//--------------------------------------------------------------------------------
-const BOOLEAN = u8;
-const HANDLE = @import("../../foundation.zig").HANDLE;
 
 test {
     @setEvalBranchQuota(

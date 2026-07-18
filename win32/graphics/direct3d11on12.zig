@@ -122,23 +122,6 @@ pub const PFN_D3D11ON12_CREATE_DEVICE = *const fn(
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (1)
-//--------------------------------------------------------------------------------
-pub extern "d3d11" fn D3D11On12CreateDevice(
-    pDevice: ?*IUnknown,
-    Flags: u32,
-    pFeatureLevels: ?[*]const D3D_FEATURE_LEVEL,
-    FeatureLevels: u32,
-    ppCommandQueues: ?[*]?*IUnknown,
-    NumQueues: u32,
-    NodeMask: u32,
-    ppDevice: ?**ID3D11Device,
-    ppImmediateContext: ?**ID3D11DeviceContext,
-    pChosenFeatureLevel: ?*D3D_FEATURE_LEVEL,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

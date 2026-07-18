@@ -5578,105 +5578,13 @@ pub const CLSID_XpsSignatureManager = &CLSID_XpsSignatureManager_Value;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (12)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn AbortDoc(
-    hdc: ?HDC,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winspool.drv" fn DeviceCapabilitiesA(
-    pDevice: ?[*:0]const u8,
-    pPort: ?[*:0]const u8,
-    fwCapability: DEVICE_CAPABILITIES,
-    pOutput: ?[*:0]u8,
-    pDevMode: ?*const DEVMODEA,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winspool.drv" fn DeviceCapabilitiesW(
-    pDevice: ?[*:0]const u16,
-    pPort: ?[*:0]const u16,
-    fwCapability: DEVICE_CAPABILITIES,
-    pOutput: ?[*:0]u16,
-    pDevMode: ?*const DEVMODEW,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn EndDoc(
-    hdc: ?HDC,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn EndPage(
-    hdc: ?HDC,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn Escape(
-    hdc: ?HDC,
-    iEscape: i32,
-    cjIn: i32,
-    /// parameter "cjIn" is the size in bytes
-    pvIn: ?[*:0]const u8,
-    pvOut: ?*anyopaque,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn ExtEscape(
-    hdc: ?HDC,
-    iEscape: i32,
-    cjInput: i32,
-    /// parameter "cjInput" is the size in bytes
-    lpInData: ?[*:0]const u8,
-    cjOutput: i32,
-    /// parameter "cjOutput" is the size in bytes
-    lpOutData: ?[*:0]u8,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn PrintWindow(
-    hwnd: ?HWND,
-    hdcBlt: ?HDC,
-    nFlags: PRINT_WINDOW_FLAGS,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn SetAbortProc(
-    hdc: ?HDC,
-    proc: ?ABORTPROC,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn StartDocA(
-    hdc: ?HDC,
-    lpdi: ?*const DOCINFOA,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn StartDocW(
-    hdc: ?HDC,
-    lpdi: ?*const DOCINFOW,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn StartPage(
-    hdc: ?HDC,
-) callconv(.winapi) i32;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (23)
+// Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
 const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
-const DEVMODEA = @import("../graphics/gdi.zig").DEVMODEA;
-const DEVMODEW = @import("../graphics/gdi.zig").DEVMODEW;
 const HDC = @import("../graphics/gdi.zig").HDC;
 const HRESULT = @import("../zig.zig").HRESULT;
-const HWND = @import("../foundation.zig").HWND;
 const IOpcCertificateEnumerator = @import("../storage/packaging/opc.zig").IOpcCertificateEnumerator;
 const IOpcCertificateSet = @import("../storage/packaging/opc.zig").IOpcCertificateSet;
 const IOpcPartUri = @import("../storage/packaging/opc.zig").IOpcPartUri;

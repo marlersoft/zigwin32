@@ -314,50 +314,6 @@ pub const ED_DEVCAP_RTC_READ = TIMECODE_SAMPLE_FLAGS{
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (7)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn timeBeginPeriod(
-    uPeriod: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn timeEndPeriod(
-    uPeriod: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn timeGetDevCaps(
-    /// parameter "cbtc" is the size in bytes
-    ptc: ?*TIMECAPS,
-    cbtc: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn timeGetSystemTime(
-    /// parameter "cbmmt" is the size in bytes
-    pmmt: ?*MMTIME,
-    cbmmt: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn timeGetTime(
-) callconv(.winapi) u32;
-
-pub extern "winmm" fn timeKillEvent(
-    uTimerID: u32,
-) callconv(.winapi) u32;
-
-pub extern "winmm" fn timeSetEvent(
-    uDelay: u32,
-    uResolution: u32,
-    fptc: ?LPTIMECALLBACK,
-    dwUser: usize,
-    fuEvent: u32,
-) callconv(.winapi) u32;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("zig.zig").Guid;

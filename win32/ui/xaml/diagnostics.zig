@@ -513,28 +513,6 @@ pub const Remove = VisualMutationType.Remove;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (2)
-//--------------------------------------------------------------------------------
-pub extern "windows.ui.xaml" fn InitializeXamlDiagnostic(
-    endPointName: ?[*:0]const u16,
-    pid: u32,
-    wszDllXamlDiagnostics: ?[*:0]const u16,
-    wszTAPDllName: ?[*:0]const u16,
-    tapClsid: Guid,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.15063'
-pub extern "windows.ui.xaml" fn InitializeXamlDiagnosticsEx(
-    endPointName: ?[*:0]const u16,
-    pid: u32,
-    wszDllXamlDiagnostics: ?[*:0]const u16,
-    wszTAPDllName: ?[*:0]const u16,
-    tapClsid: Guid,
-    wszInitializationData: ?[*:0]const u16,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;

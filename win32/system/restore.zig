@@ -80,25 +80,8 @@ pub const STATEMGRSTATUS = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (2)
+// Section: Imports (1)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "sfc" fn SRSetRestorePointA(
-    pRestorePtSpec: ?*RESTOREPOINTINFOA,
-    pSMgrStatus: ?*STATEMGRSTATUS,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "sfc" fn SRSetRestorePointW(
-    pRestorePtSpec: ?*RESTOREPOINTINFOW,
-    pSMgrStatus: ?*STATEMGRSTATUS,
-) callconv(.winapi) BOOL;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (2)
-//--------------------------------------------------------------------------------
-const BOOL = i32;
 const FILETIME = @import("../foundation.zig").FILETIME;
 
 test {

@@ -8,28 +8,8 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Functions (3)
+// Section: Imports (0)
 //--------------------------------------------------------------------------------
-pub extern "wsclient" fn AcquireDeveloperLicense(
-    hwndParent: ?HWND,
-    pExpiration: ?*FILETIME,
-) callconv(.winapi) HRESULT;
-
-pub extern "wsclient" fn CheckDeveloperLicense(
-    pExpiration: ?*FILETIME,
-) callconv(.winapi) HRESULT;
-
-pub extern "wsclient" fn RemoveDeveloperLicense(
-    hwndParent: ?HWND,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (3)
-//--------------------------------------------------------------------------------
-const FILETIME = @import("../foundation.zig").FILETIME;
-const HRESULT = @import("../zig.zig").HRESULT;
-const HWND = @import("../foundation.zig").HWND;
 
 test {
     @setEvalBranchQuota(

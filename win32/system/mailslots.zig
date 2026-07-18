@@ -8,46 +8,8 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Functions (4)
+// Section: Imports (0)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn CreateMailslotA(
-    lpName: ?[*:0]const u8,
-    nMaxMessageSize: u32,
-    lReadTimeout: u32,
-    lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
-) callconv(.winapi) HANDLE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn CreateMailslotW(
-    lpName: ?[*:0]const u16,
-    nMaxMessageSize: u32,
-    lReadTimeout: u32,
-    lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
-) callconv(.winapi) HANDLE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetMailslotInfo(
-    hMailslot: ?HANDLE,
-    lpMaxMessageSize: ?*u32,
-    lpNextSize: ?*u32,
-    lpMessageCount: ?*u32,
-    lpReadTimeout: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn SetMailslotInfo(
-    hMailslot: ?HANDLE,
-    lReadTimeout: u32,
-) callconv(.winapi) BOOL;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (3)
-//--------------------------------------------------------------------------------
-const BOOL = i32;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
     @setEvalBranchQuota(

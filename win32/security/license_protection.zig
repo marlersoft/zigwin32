@@ -21,27 +21,8 @@ pub const LicenseKeyAlreadyExists = LicenseProtectionStatus.LicenseKeyAlreadyExi
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (2)
+// Section: Imports (0)
 //--------------------------------------------------------------------------------
-pub extern "licenseprotection" fn RegisterLicenseKeyWithExpiration(
-    licenseKey: ?[*:0]const u16,
-    validityInDays: u32,
-    status: ?*LicenseProtectionStatus,
-) callconv(.winapi) HRESULT;
-
-pub extern "licenseprotection" fn ValidateLicenseKeyProtection(
-    licenseKey: ?[*:0]const u16,
-    notValidBefore: ?*FILETIME,
-    notValidAfter: ?*FILETIME,
-    status: ?*LicenseProtectionStatus,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (2)
-//--------------------------------------------------------------------------------
-const FILETIME = @import("../foundation.zig").FILETIME;
-const HRESULT = @import("../zig.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

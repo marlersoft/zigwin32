@@ -428,29 +428,7 @@ pub const SID_INFO_LIST = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (3)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "aclui" fn CreateSecurityPage(
-    psi: ?*ISecurityInformation,
-) callconv(.winapi) ?HPROPSHEETPAGE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "aclui" fn EditSecurity(
-    hwndOwner: ?HWND,
-    psi: ?*ISecurityInformation,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "aclui" fn EditSecurityAdvanced(
-    hwndOwner: ?HWND,
-    psi: ?*ISecurityInformation,
-    uSIPage: SI_PAGE_TYPE,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (21)
+// Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const ACE_FLAGS = @import("../../security.zig").ACE_FLAGS;
@@ -461,7 +439,6 @@ const AUTHZ_SID_OPERATION = @import("../../security/authorization.zig").AUTHZ_SI
 const BOOL = i32;
 const BOOLEAN = u8;
 const HINSTANCE = @import("../../foundation.zig").HINSTANCE;
-const HPROPSHEETPAGE = @import("../../ui/controls.zig").HPROPSHEETPAGE;
 const HRESULT = @import("../../zig.zig").HRESULT;
 const HWND = @import("../../foundation.zig").HWND;
 const IDataObject = @import("../../system/com.zig").IDataObject;

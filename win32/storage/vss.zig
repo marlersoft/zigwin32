@@ -2434,15 +2434,6 @@ pub const CLSID_VssSnapshotMgmt = &CLSID_VssSnapshotMgmt_Value;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (1)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "vssapi" fn CreateVssExpressWriterInternal(
-    ppWriter: ?*?*IVssExpressWriter,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

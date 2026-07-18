@@ -226,104 +226,14 @@ pub const SAFER_URLZONE_IDENTIFICATION = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (10)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SaferCloseLevel(
-    hLevelHandle: SAFER_LEVEL_HANDLE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SaferComputeTokenFromLevel(
-    LevelHandle: SAFER_LEVEL_HANDLE,
-    InAccessToken: ?HANDLE,
-    OutAccessToken: ?*?HANDLE,
-    dwFlags: SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS,
-    lpReserved: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SaferCreateLevel(
-    dwScopeId: u32,
-    dwLevelId: u32,
-    OpenFlags: u32,
-    pLevelHandle: ?*SAFER_LEVEL_HANDLE,
-    lpReserved: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SaferGetLevelInformation(
-    LevelHandle: SAFER_LEVEL_HANDLE,
-    dwInfoType: SAFER_OBJECT_INFO_CLASS,
-    /// parameter "dwInBufferSize" is the size in bytes
-    lpQueryBuffer: ?*anyopaque,
-    dwInBufferSize: u32,
-    lpdwOutBufferSize: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SaferGetPolicyInformation(
-    dwScopeId: u32,
-    SaferPolicyInfoClass: SAFER_POLICY_INFO_CLASS,
-    InfoBufferSize: u32,
-    /// parameter "InfoBufferSize" is the size in bytes
-    InfoBuffer: ?*anyopaque,
-    InfoBufferRetSize: ?*u32,
-    lpReserved: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SaferIdentifyLevel(
-    dwNumProperties: u32,
-    pCodeProperties: ?[*]SAFER_CODE_PROPERTIES_V2,
-    pLevelHandle: ?*SAFER_LEVEL_HANDLE,
-    lpReserved: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SaferiIsExecutableFileType(
-    szFullPathname: ?[*:0]const u16,
-    bFromShellExecute: BOOLEAN,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SaferRecordEventLogEntry(
-    hLevel: SAFER_LEVEL_HANDLE,
-    szTargetPath: ?[*:0]const u16,
-    lpReserved: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SaferSetLevelInformation(
-    LevelHandle: SAFER_LEVEL_HANDLE,
-    dwInfoType: SAFER_OBJECT_INFO_CLASS,
-    /// parameter "dwInBufferSize" is the size in bytes
-    lpQueryBuffer: ?*anyopaque,
-    dwInBufferSize: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn SaferSetPolicyInformation(
-    dwScopeId: u32,
-    SaferPolicyInfoClass: SAFER_POLICY_INFO_CLASS,
-    InfoBufferSize: u32,
-    /// parameter "InfoBufferSize" is the size in bytes
-    InfoBuffer: ?*anyopaque,
-    lpReserved: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
-const BOOLEAN = u8;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HWND = @import("../foundation.zig").HWND;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
-const SAFER_LEVEL_HANDLE = @import("../security.zig").SAFER_LEVEL_HANDLE;
 
 test {
     @setEvalBranchQuota(

@@ -6617,65 +6617,9 @@ pub const TxAbort = TransactionVote.Abort;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (9)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "comsvcs" fn CoCreateActivity(
-    pIUnknown: ?*IUnknown,
-    riid: ?*const Guid,
-    ppObj: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "comsvcs" fn CoEnterServiceDomain(
-    pConfigObject: ?*IUnknown,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ole32" fn CoGetDefaultContext(
-    aptType: APTTYPE,
-    riid: ?*const Guid,
-    ppv: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "comsvcs" fn CoLeaveServiceDomain(
-    pUnkStatus: ?*IUnknown,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "mtxdm" fn GetDispenserManager(
-    param0: ?*?*IDispenserManager,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "comsvcs" fn GetManagedExtensions(
-    dwExts: ?*u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "comsvcs" fn MTSCreateActivity(
-    riid: ?*const Guid,
-    ppobj: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "comsvcs" fn RecycleSurrogate(
-    lReasonCode: i32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "comsvcs" fn SafeRef(
-    rid: ?*const Guid,
-    pUnk: ?*IUnknown,
-) callconv(.winapi) ?*anyopaque;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (17)
+// Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const APTTYPE = @import("../system/com.zig").APTTYPE;
 const BLOB = @import("../system/com.zig").BLOB;
 const BOOL = i32;
 const BSTR = *u16;

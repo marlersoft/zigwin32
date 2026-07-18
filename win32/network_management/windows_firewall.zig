@@ -3497,75 +3497,15 @@ pub const CLSID_UPnPNAT = &CLSID_UPnPNAT_Value;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (8)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationDiagnoseConnectFailureAndGetInfo(
-    wszServerName: ?[*:0]const u16,
-    netIsoError: ?*NETISO_ERROR_TYPE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationEnumAppContainers(
-    Flags: u32,
-    pdwNumPublicAppCs: ?*u32,
-    ppPublicAppCs: ?*?*INET_FIREWALL_APP_CONTAINER,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationFreeAppContainers(
-    pPublicAppCs: ?*INET_FIREWALL_APP_CONTAINER,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationGetAppContainerConfig(
-    pdwNumPublicAppCs: ?*u32,
-    appContainerSids: ?*?*SID_AND_ATTRIBUTES,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationRegisterForAppContainerChanges(
-    flags: u32,
-    callback: ?PAC_CHANGES_CALLBACK_FN,
-    context: ?*anyopaque,
-    registrationObject: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationSetAppContainerConfig(
-    dwNumPublicAppCs: u32,
-    appContainerSids: [*]SID_AND_ATTRIBUTES,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationSetupAppContainerBinaries(
-    applicationContainerSid: ?PSID,
-    packageFullName: ?[*:0]const u16,
-    packageFolder: ?[*:0]const u16,
-    displayName: ?[*:0]const u16,
-    bBinariesFullyComputed: BOOL,
-    binaries: [*]?[*:0]u16,
-    binariesCount: u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationUnregisterForAppContainerChanges(
-    registrationObject: ?HANDLE,
-) callconv(.winapi) u32;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (13)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
 const BSTR = *u16;
-const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../zig.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const PSID = @import("../foundation.zig").PSID;
 const SID = @import("../security.zig").SID;
 const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
 const VARIANT = @import("../system/com.zig").VARIANT;

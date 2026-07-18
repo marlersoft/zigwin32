@@ -18,31 +18,8 @@ pub const CORRELATION_VECTOR = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (4)
+// Section: Imports (0)
 //--------------------------------------------------------------------------------
-pub extern "ntdll" fn RtlExtendCorrelationVector(
-    CorrelationVector: ?*CORRELATION_VECTOR,
-) callconv(.winapi) u32;
-
-pub extern "ntdll" fn RtlIncrementCorrelationVector(
-    CorrelationVector: ?*CORRELATION_VECTOR,
-) callconv(.winapi) u32;
-
-pub extern "ntdll" fn RtlInitializeCorrelationVector(
-    CorrelationVector: ?*CORRELATION_VECTOR,
-    Version: i32,
-    Guid: ?*const Guid,
-) callconv(.winapi) u32;
-
-pub extern "ntdll" fn RtlValidateCorrelationVector(
-    Vector: ?*CORRELATION_VECTOR,
-) callconv(.winapi) u32;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (1)
-//--------------------------------------------------------------------------------
-const Guid = @import("../zig.zig").Guid;
 
 test {
     @setEvalBranchQuota(

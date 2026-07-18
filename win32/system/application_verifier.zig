@@ -136,21 +136,8 @@ pub const AVRF_ENUM_RESOURCES_FLAGS_SUSPEND = VERIFIER_ENUM_RESOURCE_FLAGS{ .SUS
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (1)
+// Section: Imports (0)
 //--------------------------------------------------------------------------------
-pub extern "verifier" fn VerifierEnumerateResource(
-    Process: ?HANDLE,
-    Flags: VERIFIER_ENUM_RESOURCE_FLAGS,
-    ResourceType: eAvrfResourceTypes,
-    ResourceCallback: ?AVRF_RESOURCE_ENUMERATE_CALLBACK,
-    EnumerationContext: ?*anyopaque,
-) callconv(.winapi) u32;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (1)
-//--------------------------------------------------------------------------------
-const HANDLE = @import("../foundation.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -429,16 +429,6 @@ pub const SystemInterruptTime = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (1)
-//--------------------------------------------------------------------------------
-pub extern "dcomp" fn CreatePresentationFactory(
-    d3dDevice: ?*IUnknown,
-    riid: ?*const Guid,
-    presentationFactory: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

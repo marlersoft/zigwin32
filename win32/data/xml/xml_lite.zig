@@ -943,60 +943,11 @@ pub const _XmlWriterProperty_Last = XmlWriterProperty.XmlWriterProperty_CompactE
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (6)
-//--------------------------------------------------------------------------------
-pub extern "xmllite" fn CreateXmlReader(
-    riid: ?*const Guid,
-    ppvObject: ?*?*anyopaque,
-    pMalloc: ?*IMalloc,
-) callconv(.winapi) HRESULT;
-
-pub extern "xmllite" fn CreateXmlReaderInputWithEncodingCodePage(
-    pInputStream: ?*IUnknown,
-    pMalloc: ?*IMalloc,
-    nEncodingCodePage: u32,
-    fEncodingHint: BOOL,
-    pwszBaseUri: ?[*:0]const u16,
-    ppInput: ?*?*IUnknown,
-) callconv(.winapi) HRESULT;
-
-pub extern "xmllite" fn CreateXmlReaderInputWithEncodingName(
-    pInputStream: ?*IUnknown,
-    pMalloc: ?*IMalloc,
-    pwszEncodingName: ?[*:0]const u16,
-    fEncodingHint: BOOL,
-    pwszBaseUri: ?[*:0]const u16,
-    ppInput: ?*?*IUnknown,
-) callconv(.winapi) HRESULT;
-
-pub extern "xmllite" fn CreateXmlWriter(
-    riid: ?*const Guid,
-    ppvObject: ?*?*anyopaque,
-    pMalloc: ?*IMalloc,
-) callconv(.winapi) HRESULT;
-
-pub extern "xmllite" fn CreateXmlWriterOutputWithEncodingCodePage(
-    pOutputStream: ?*IUnknown,
-    pMalloc: ?*IMalloc,
-    nEncodingCodePage: u32,
-    ppOutput: ?*?*IUnknown,
-) callconv(.winapi) HRESULT;
-
-pub extern "xmllite" fn CreateXmlWriterOutputWithEncodingName(
-    pOutputStream: ?*IUnknown,
-    pMalloc: ?*IMalloc,
-    pwszEncodingName: ?[*:0]const u16,
-    ppOutput: ?*?*IUnknown,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = i32;
 const HRESULT = @import("../../zig.zig").HRESULT;
-const IMalloc = @import("../../system/com.zig").IMalloc;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 
 test {

@@ -73,58 +73,6 @@ pub const PFNWRITEOBJECTSECURITY = *const fn(
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (4)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windowsserver2008'
-pub extern "dssec" fn DSCreateISecurityInfoObject(
-    pwszObjectPath: ?[*:0]const u16,
-    pwszObjectClass: ?[*:0]const u16,
-    dwFlags: u32,
-    ppSI: ?*?*ISecurityInformation,
-    pfnReadSD: ?PFNREADOBJECTSECURITY,
-    pfnWriteSD: ?PFNWRITEOBJECTSECURITY,
-    lpContext: LPARAM,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windowsserver2008'
-pub extern "dssec" fn DSCreateISecurityInfoObjectEx(
-    pwszObjectPath: ?[*:0]const u16,
-    pwszObjectClass: ?[*:0]const u16,
-    pwszServer: ?[*:0]const u16,
-    pwszUserName: ?[*:0]const u16,
-    pwszPassword: ?[*:0]const u16,
-    dwFlags: u32,
-    ppSI: ?*?*ISecurityInformation,
-    pfnReadSD: ?PFNREADOBJECTSECURITY,
-    pfnWriteSD: ?PFNWRITEOBJECTSECURITY,
-    lpContext: LPARAM,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windowsserver2003'
-pub extern "dssec" fn DSCreateSecurityPage(
-    pwszObjectPath: ?[*:0]const u16,
-    pwszObjectClass: ?[*:0]const u16,
-    dwFlags: u32,
-    phPage: ?*?HPROPSHEETPAGE,
-    pfnReadSD: ?PFNREADOBJECTSECURITY,
-    pfnWriteSD: ?PFNWRITEOBJECTSECURITY,
-    lpContext: LPARAM,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windowsserver2008'
-pub extern "dssec" fn DSEditSecurity(
-    hwndOwner: ?HWND,
-    pwszObjectPath: ?[*:0]const u16,
-    pwszObjectClass: ?[*:0]const u16,
-    dwFlags: u32,
-    pwszCaption: ?[*:0]const u16,
-    pfnReadSD: ?PFNREADOBJECTSECURITY,
-    pfnWriteSD: ?PFNWRITEOBJECTSECURITY,
-    lpContext: LPARAM,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;

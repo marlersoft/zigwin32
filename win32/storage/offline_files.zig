@@ -1960,33 +1960,6 @@ pub const CLSID_OfflineFilesSetting = &CLSID_OfflineFilesSetting_Value;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (4)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "cscapi" fn OfflineFilesEnable(
-    bEnable: BOOL,
-    pbRebootRequired: ?*BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "cscapi" fn OfflineFilesQueryStatus(
-    pbActive: ?*BOOL,
-    pbEnabled: ?*BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "cscapi" fn OfflineFilesQueryStatusEx(
-    pbActive: ?*BOOL,
-    pbEnabled: ?*BOOL,
-    pbAvailable: ?*BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "cscapi" fn OfflineFilesStart(
-) callconv(.winapi) u32;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

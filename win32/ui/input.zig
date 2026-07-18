@@ -208,90 +208,11 @@ pub const RIM_TYPEHID = RID_DEVICE_INFO_TYPE.HID;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (10)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn DefRawInputProc(
-    paRawInput: [*]?*RAWINPUT,
-    nInput: i32,
-    cbSizeHeader: u32,
-) callconv(.winapi) LRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetCIMSSM(
-    inputMessageSource: ?*INPUT_MESSAGE_SOURCE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetCurrentInputMessageSource(
-    inputMessageSource: ?*INPUT_MESSAGE_SOURCE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn GetRawInputBuffer(
-    /// parameter "pcbSize" is the size in bytes
-    pData: ?*RAWINPUT,
-    pcbSize: ?*u32,
-    cbSizeHeader: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn GetRawInputData(
-    hRawInput: ?HRAWINPUT,
-    uiCommand: RAW_INPUT_DATA_COMMAND_FLAGS,
-    /// parameter "pcbSize" is the size in bytes
-    pData: ?*anyopaque,
-    pcbSize: ?*u32,
-    cbSizeHeader: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn GetRawInputDeviceInfoA(
-    hDevice: ?HANDLE,
-    uiCommand: RAW_INPUT_DEVICE_INFO_COMMAND,
-    /// parameter "pcbSize" is the size in bytes
-    pData: ?*anyopaque,
-    pcbSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn GetRawInputDeviceInfoW(
-    hDevice: ?HANDLE,
-    uiCommand: RAW_INPUT_DEVICE_INFO_COMMAND,
-    /// parameter "pcbSize" is the size in bytes
-    pData: ?*anyopaque,
-    pcbSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn GetRawInputDeviceList(
-    pRawInputDeviceList: ?[*]RAWINPUTDEVICELIST,
-    puiNumDevices: ?*u32,
-    cbSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn GetRegisteredRawInputDevices(
-    pRawInputDevices: ?[*]RAWINPUTDEVICE,
-    puiNumDevices: ?*u32,
-    cbSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn RegisterRawInputDevices(
-    pRawInputDevices: [*]RAWINPUTDEVICE,
-    uiNumDevices: u32,
-    cbSize: u32,
-) callconv(.winapi) BOOL;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const BOOL = i32;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HWND = @import("../foundation.zig").HWND;
-const LRESULT = isize;
 const WPARAM = usize;
 
 test {

@@ -6879,17 +6879,6 @@ pub const IDWriteTypography = extern union {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (1)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "dwrite" fn DWriteCreateFactory(
-    factoryType: DWRITE_FACTORY_TYPE,
-    iid: ?*const Guid,
-    factory: **anyopaque,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (18)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

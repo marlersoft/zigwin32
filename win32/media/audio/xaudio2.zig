@@ -1155,38 +1155,6 @@ pub const XAUDIO2FX_VOLUMEMETER_LEVELS = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (5)
-//--------------------------------------------------------------------------------
-pub extern "xaudio2_8" fn CreateAudioReverb(
-    ppApo: ?*?*IUnknown,
-) callconv(.winapi) HRESULT;
-
-pub extern "xaudio2_8" fn CreateAudioVolumeMeter(
-    ppApo: ?*?*IUnknown,
-) callconv(.winapi) HRESULT;
-
-pub extern "xaudio2_8" fn CreateFX(
-    clsid: ?*const Guid,
-    pEffect: ?*?*IUnknown,
-    /// parameter "InitDataByteSize" is the size in bytes
-    pInitDat: ?*const anyopaque,
-    InitDataByteSize: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "hrtfapo" fn CreateHrtfApo(
-    init: ?*const HrtfApoInit,
-    xApo: **IXAPO,
-) callconv(.winapi) HRESULT;
-
-pub extern "xaudio2_8" fn XAudio2CreateWithVersionInfo(
-    ppXAudio2: ?*?*IXAudio2,
-    Flags: u32,
-    XAudio2Processor: u32,
-    ntddiVersion: u32,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;

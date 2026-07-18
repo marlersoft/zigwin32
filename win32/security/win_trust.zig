@@ -848,119 +848,7 @@ pub const WTD_GENERIC_CHAIN_POLICY_SIGNER_INFO = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (18)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn OpenPersonalTrustDBDialog(
-    hwndParent: ?HWND,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn OpenPersonalTrustDBDialogEx(
-    hwndParent: ?HWND,
-    dwFlags: u32,
-    pvReserved: ?*?*anyopaque,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn WintrustAddActionID(
-    pgActionID: ?*Guid,
-    fdwFlags: u32,
-    psProvInfo: ?*CRYPT_REGISTER_ACTIONID,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn WintrustAddDefaultForUsage(
-    pszUsageOID: ?[*:0]const u8,
-    psDefUsage: ?*CRYPT_PROVIDER_REGDEFUSAGE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn WintrustGetDefaultForUsage(
-    dwAction: WINTRUST_GET_DEFAULT_FOR_USAGE_ACTION,
-    pszUsageOID: ?[*:0]const u8,
-    psUsage: ?*CRYPT_PROVIDER_DEFUSAGE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn WintrustGetRegPolicyFlags(
-    pdwPolicyFlags: ?*WINTRUST_POLICY_FLAGS,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn WintrustLoadFunctionPointers(
-    pgActionID: ?*Guid,
-    pPfns: ?*CRYPT_PROVIDER_FUNCTIONS,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn WintrustRemoveActionID(
-    pgActionID: ?*Guid,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wintrust" fn WintrustSetDefaultIncludePEPageHashes(
-    fIncludePEPageHashes: BOOL,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn WintrustSetRegPolicyFlags(
-    dwPolicyFlags: WINTRUST_POLICY_FLAGS,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn WinVerifyTrust(
-    hwnd: ?HWND,
-    pgActionID: ?*Guid,
-    pWVTData: ?*anyopaque,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn WinVerifyTrustEx(
-    hwnd: ?HWND,
-    pgActionID: ?*Guid,
-    pWinTrustData: ?*WINTRUST_DATA,
-) callconv(.winapi) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wintrust" fn WTHelperCertCheckValidSignature(
-    pProvData: ?*CRYPT_PROVIDER_DATA,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn WTHelperCertIsSelfSigned(
-    dwEncoding: u32,
-    pCert: ?*CERT_INFO,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn WTHelperGetProvCertFromChain(
-    pSgnr: ?*CRYPT_PROVIDER_SGNR,
-    idxCert: u32,
-) callconv(.winapi) ?*CRYPT_PROVIDER_CERT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn WTHelperGetProvPrivateDataFromChain(
-    pProvData: ?*CRYPT_PROVIDER_DATA,
-    pgProviderID: ?*Guid,
-) callconv(.winapi) ?*CRYPT_PROVIDER_PRIVDATA;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn WTHelperGetProvSignerFromChain(
-    pProvData: ?*CRYPT_PROVIDER_DATA,
-    idxSigner: u32,
-    fCounterSigner: BOOL,
-    idxCounterSigner: u32,
-) callconv(.winapi) ?*CRYPT_PROVIDER_SGNR;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn WTHelperProvDataFromStateData(
-    hStateData: ?HANDLE,
-) callconv(.winapi) ?*CRYPT_PROVIDER_DATA;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (25)
+// Section: Imports (24)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
@@ -969,7 +857,6 @@ const CERT_CHAIN_CONTEXT = @import("../security/cryptography.zig").CERT_CHAIN_CO
 const CERT_CHAIN_ELEMENT = @import("../security/cryptography.zig").CERT_CHAIN_ELEMENT;
 const CERT_CHAIN_PARA = @import("../security/cryptography.zig").CERT_CHAIN_PARA;
 const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
-const CERT_INFO = @import("../security/cryptography.zig").CERT_INFO;
 const CERT_STRONG_SIGN_PARA = @import("../security/cryptography.zig").CERT_STRONG_SIGN_PARA;
 const CERT_USAGE_MATCH = @import("../security/cryptography.zig").CERT_USAGE_MATCH;
 const CMSG_SIGNER_INFO = @import("../security/cryptography.zig").CMSG_SIGNER_INFO;

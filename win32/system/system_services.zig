@@ -6410,19 +6410,9 @@ pub const REARRANGE_FILE_DATA32 = switch(@import("../zig.zig").arch) {
 };
 
 //--------------------------------------------------------------------------------
-// Section: Functions (1)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn UnregisterDeviceNotification(
-    Handle: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (18)
+// Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = i32;
 const BOOLEAN = u8;
 const BYTE_BLOB = @import("../system/com.zig").BYTE_BLOB;
 const DWORD_BLOB = @import("../system/com.zig").DWORD_BLOB;

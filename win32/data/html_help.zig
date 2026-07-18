@@ -1260,24 +1260,6 @@ pub const ITWW_OPEN_CONNECT = WORD_WHEEL_OPEN_FLAGS{ };
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (2)
-//--------------------------------------------------------------------------------
-pub extern "htmlhelp" fn HtmlHelpA(
-    hwndCaller: ?HWND,
-    pszFile: ?[*:0]const u8,
-    uCommand: HTML_HELP_COMMAND,
-    dwData: usize,
-) callconv(.winapi) ?HWND;
-
-pub extern "htmlhelp" fn HtmlHelpW(
-    hwndCaller: ?HWND,
-    pszFile: ?[*:0]const u16,
-    uCommand: HTML_HELP_COMMAND,
-    dwData: usize,
-) callconv(.winapi) ?HWND;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (15)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

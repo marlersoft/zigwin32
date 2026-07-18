@@ -15,52 +15,8 @@ pub const HCOMDB = *opaque{};
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (7)
+// Section: Imports (0)
 //--------------------------------------------------------------------------------
-pub extern "msports" fn ComDBClaimNextFreePort(
-    HComDB: ?HCOMDB,
-    ComNumber: ?*u32,
-) callconv(.winapi) i32;
-
-pub extern "msports" fn ComDBClaimPort(
-    HComDB: ?HCOMDB,
-    ComNumber: u32,
-    ForceClaim: BOOL,
-    Forced: ?*BOOL,
-) callconv(.winapi) i32;
-
-pub extern "msports" fn ComDBClose(
-    HComDB: ?HCOMDB,
-) callconv(.winapi) i32;
-
-pub extern "msports" fn ComDBGetCurrentPortUsage(
-    HComDB: ?HCOMDB,
-    /// parameter "BufferSize" is the size in bytes
-    Buffer: ?*u8,
-    BufferSize: u32,
-    ReportType: u32,
-    MaxPortsReported: ?*u32,
-) callconv(.winapi) i32;
-
-pub extern "msports" fn ComDBOpen(
-    PHComDB: ?*isize,
-) callconv(.winapi) i32;
-
-pub extern "msports" fn ComDBReleasePort(
-    HComDB: ?HCOMDB,
-    ComNumber: u32,
-) callconv(.winapi) i32;
-
-pub extern "msports" fn ComDBResizeDatabase(
-    HComDB: ?HCOMDB,
-    NewSize: u32,
-) callconv(.winapi) i32;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (1)
-//--------------------------------------------------------------------------------
-const BOOL = i32;
 
 test {
     @setEvalBranchQuota(

@@ -173,97 +173,10 @@ pub const SIP_SUBJECTINFO = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (12)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "crypt32" fn CryptSIPAddProvider(
-    psNewProv: ?*SIP_ADD_NEWPROVIDER,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn CryptSIPCreateIndirectData(
-    pSubjectInfo: ?*SIP_SUBJECTINFO,
-    pcbIndirectData: ?*u32,
-    pIndirectData: ?*SIP_INDIRECT_DATA,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "wintrust" fn CryptSIPGetCaps(
-    pSubjInfo: ?*SIP_SUBJECTINFO,
-    pCaps: ?*SIP_CAP_SET_V3,
-) callconv(.winapi) BOOL;
-
-pub extern "wintrust" fn CryptSIPGetSealedDigest(
-    pSubjectInfo: ?*SIP_SUBJECTINFO,
-    pSig: ?[*:0]const u8,
-    dwSig: u32,
-    pbDigest: ?[*:0]u8,
-    pcbDigest: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn CryptSIPGetSignedDataMsg(
-    pSubjectInfo: ?*SIP_SUBJECTINFO,
-    pdwEncodingType: ?*CERT_QUERY_ENCODING_TYPE,
-    dwIndex: u32,
-    pcbSignedDataMsg: ?*u32,
-    pbSignedDataMsg: ?*u8,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "crypt32" fn CryptSIPLoad(
-    pgSubject: ?*const Guid,
-    dwFlags: u32,
-    pSipDispatch: ?*SIP_DISPATCH_INFO,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn CryptSIPPutSignedDataMsg(
-    pSubjectInfo: ?*SIP_SUBJECTINFO,
-    dwEncodingType: CERT_QUERY_ENCODING_TYPE,
-    pdwIndex: ?*u32,
-    cbSignedDataMsg: u32,
-    pbSignedDataMsg: ?*u8,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "crypt32" fn CryptSIPRemoveProvider(
-    pgProv: ?*Guid,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn CryptSIPRemoveSignedDataMsg(
-    pSubjectInfo: ?*SIP_SUBJECTINFO,
-    dwIndex: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "crypt32" fn CryptSIPRetrieveSubjectGuid(
-    FileName: ?[*:0]const u16,
-    hFileIn: ?HANDLE,
-    pgSubject: ?*Guid,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "crypt32" fn CryptSIPRetrieveSubjectGuidForCatalogFile(
-    FileName: ?[*:0]const u16,
-    hFileIn: ?HANDLE,
-    pgSubject: ?*Guid,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "wintrust" fn CryptSIPVerifyIndirectData(
-    pSubjectInfo: ?*SIP_SUBJECTINFO,
-    pIndirectData: ?*SIP_INDIRECT_DATA,
-) callconv(.winapi) BOOL;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = i32;
-const CERT_QUERY_ENCODING_TYPE = @import("../../security/cryptography.zig").CERT_QUERY_ENCODING_TYPE;
 const CRYPT_ALGORITHM_IDENTIFIER = @import("../../security/cryptography.zig").CRYPT_ALGORITHM_IDENTIFIER;
 const CRYPT_ATTRIBUTE_TYPE_VALUE = @import("../../security/cryptography.zig").CRYPT_ATTRIBUTE_TYPE_VALUE;
 const CRYPT_INTEGER_BLOB = @import("../../security/cryptography.zig").CRYPT_INTEGER_BLOB;

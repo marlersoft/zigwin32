@@ -68,23 +68,6 @@ pub const PFN_Direct3DCreate9On12Ex = *const fn(
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (2)
-//--------------------------------------------------------------------------------
-pub extern "d3d9" fn Direct3DCreate9On12(
-    SDKVersion: u32,
-    pOverrideList: ?*D3D9ON12_ARGS,
-    NumOverrideEntries: u32,
-) callconv(.winapi) ?*IDirect3D9;
-
-pub extern "d3d9" fn Direct3DCreate9On12Ex(
-    SDKVersion: u32,
-    pOverrideList: ?*D3D9ON12_ARGS,
-    NumOverrideEntries: u32,
-    ppOutputInterface: ?*?*IDirect3D9Ex,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

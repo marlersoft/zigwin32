@@ -42176,22 +42176,6 @@ pub const CLSID_XDSToRat = &CLSID_XDSToRat_Value;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (2)
-//--------------------------------------------------------------------------------
-pub extern "quartz" fn AMGetErrorTextA(
-    hr: HRESULT,
-    pbuffer: [*:0]u8,
-    MaxLen: u32,
-) callconv(.winapi) u32;
-
-pub extern "quartz" fn AMGetErrorTextW(
-    hr: HRESULT,
-    pbuffer: [*:0]u16,
-    MaxLen: u32,
-) callconv(.winapi) u32;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (82)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

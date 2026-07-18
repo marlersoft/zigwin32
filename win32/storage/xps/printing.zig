@@ -174,45 +174,14 @@ pub const XPS_JOB_STATUS = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (2)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "xpsprint" fn StartXpsPrintJob(
-    printerName: ?[*:0]const u16,
-    jobName: ?[*:0]const u16,
-    outputFileName: ?[*:0]const u16,
-    progressEvent: ?HANDLE,
-    completionEvent: ?HANDLE,
-    printablePagesOn: [*:0]u8,
-    printablePagesOnCount: u32,
-    xpsPrintJob: ?*?*IXpsPrintJob,
-    documentStream: ?*?*IXpsPrintJobStream,
-    printTicketStream: ?*?*IXpsPrintJobStream,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "xpsprint" fn StartXpsPrintJob1(
-    printerName: ?[*:0]const u16,
-    jobName: ?[*:0]const u16,
-    outputFileName: ?[*:0]const u16,
-    progressEvent: ?HANDLE,
-    completionEvent: ?HANDLE,
-    xpsPrintJob: ?*?*IXpsPrintJob,
-    printContentReceiver: ?*?*IXpsOMPackageTarget,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const HANDLE = @import("../../foundation.zig").HANDLE;
 const HRESULT = @import("../../zig.zig").HRESULT;
 const IDispatch = @import("../../system/com.zig").IDispatch;
 const ISequentialStream = @import("../../system/com.zig").ISequentialStream;
 const IStream = @import("../../system/com.zig").IStream;
 const IUnknown = @import("../../system/com.zig").IUnknown;
-const IXpsOMPackageTarget = @import("../../storage/xps.zig").IXpsOMPackageTarget;
 
 test {
     @setEvalBranchQuota(

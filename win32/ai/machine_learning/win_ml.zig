@@ -1009,18 +1009,6 @@ pub const WINML_VARIABLE_DESC = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (2)
-//--------------------------------------------------------------------------------
-pub extern "windows.ai.machinelearning" fn MLCreateOperatorRegistry(
-    registry: **IMLOperatorRegistry,
-) callconv(.winapi) HRESULT;
-
-pub extern "winml" fn WinMLCreateRuntime(
-    runtime: **IWinMLRuntime,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;

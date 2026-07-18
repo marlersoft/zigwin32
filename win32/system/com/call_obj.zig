@@ -430,33 +430,12 @@ pub const IInterfaceRelated = extern union {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (2)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn CoGetInterceptor(
-    iidIntercepted: ?*const Guid,
-    punkOuter: ?*IUnknown,
-    iid: ?*const Guid,
-    ppv: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "ole32" fn CoGetInterceptorFromTypeInfo(
-    iidIntercepted: ?*const Guid,
-    punkOuter: ?*IUnknown,
-    typeInfo: ?*ITypeInfo,
-    iid: ?*const Guid,
-    ppv: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = i32;
 const BOOLEAN = u8;
 const HRESULT = @import("../../zig.zig").HRESULT;
-const ITypeInfo = @import("../../system/com.zig").ITypeInfo;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const MSHLFLAGS = @import("../../system/com.zig").MSHLFLAGS;
 const VARIANT = @import("../../system/com.zig").VARIANT;

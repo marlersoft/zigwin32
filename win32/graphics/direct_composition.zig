@@ -2966,79 +2966,7 @@ pub const IDCompositionVisualDebug = extern union {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (11)
-//--------------------------------------------------------------------------------
-pub extern "dcomp" fn DCompositionAttachMouseDragToHwnd(
-    visual: ?*IDCompositionVisual,
-    hwnd: ?HWND,
-    enable: BOOL,
-) callconv(.winapi) HRESULT;
-
-pub extern "dcomp" fn DCompositionAttachMouseWheelToHwnd(
-    visual: ?*IDCompositionVisual,
-    hwnd: ?HWND,
-    enable: BOOL,
-) callconv(.winapi) HRESULT;
-
-pub extern "dcomp" fn DCompositionBoostCompositorClock(
-    enable: BOOL,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "dcomp" fn DCompositionCreateDevice(
-    dxgiDevice: ?*IDXGIDevice,
-    iid: ?*const Guid,
-    dcompositionDevice: **anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "dcomp" fn DCompositionCreateDevice2(
-    renderingDevice: ?*IUnknown,
-    iid: ?*const Guid,
-    dcompositionDevice: **anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "dcomp" fn DCompositionCreateDevice3(
-    renderingDevice: ?*IUnknown,
-    iid: ?*const Guid,
-    dcompositionDevice: **anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "dcomp" fn DCompositionCreateSurfaceHandle(
-    desiredAccess: u32,
-    securityAttributes: ?*SECURITY_ATTRIBUTES,
-    surfaceHandle: ?*?HANDLE,
-) callconv(.winapi) HRESULT;
-
-pub extern "dcomp" fn DCompositionGetFrameId(
-    frameIdType: COMPOSITION_FRAME_ID_TYPE,
-    frameId: ?*u64,
-) callconv(.winapi) HRESULT;
-
-pub extern "dcomp" fn DCompositionGetStatistics(
-    frameId: u64,
-    frameStats: ?*COMPOSITION_FRAME_STATS,
-    targetIdCount: u32,
-    targetIds: ?*COMPOSITION_TARGET_ID,
-    actualTargetIdCount: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "dcomp" fn DCompositionGetTargetStatistics(
-    frameId: u64,
-    targetId: ?*const COMPOSITION_TARGET_ID,
-    targetStats: ?*COMPOSITION_TARGET_STATS,
-) callconv(.winapi) HRESULT;
-
-pub extern "dcomp" fn DCompositionWaitForCompositorClock(
-    count: u32,
-    handles: ?[*]const ?HANDLE,
-    timeoutInMs: u32,
-) callconv(.winapi) u32;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (29)
+// Section: Imports (27)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
@@ -3062,13 +2990,11 @@ const DXGI_RATIONAL = @import("../graphics/dxgi/common.zig").DXGI_RATIONAL;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../zig.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
-const IDXGIDevice = @import("../graphics/dxgi.zig").IDXGIDevice;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const LUID = @import("../foundation.zig").LUID;
 const POINT = @import("../foundation.zig").POINT;
 const RECT = @import("../foundation.zig").RECT;
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
     @setEvalBranchQuota(

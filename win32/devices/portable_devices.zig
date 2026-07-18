@@ -3531,17 +3531,6 @@ pub const CLSID_WpdSerializer = &CLSID_WpdSerializer_Value;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (1)
-//--------------------------------------------------------------------------------
-pub extern "dmprocessxmlfiltered" fn DMProcessConfigXMLFiltered(
-    pszXmlIn: ?[*:0]const u16,
-    rgszAllowedCspNodes: [*]?[*:0]u16,
-    dwNumAllowedCspNodes: u32,
-    pbstrXmlOut: ?*?BSTR,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (15)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

@@ -679,113 +679,11 @@ pub const MaxJobObjectInfoClass = JOBOBJECTINFOCLASS.MaxJobObjectInfoClass;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (14)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn AssignProcessToJobObject(
-    hJob: ?HANDLE,
-    hProcess: ?HANDLE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn CreateJobObjectA(
-    lpJobAttributes: ?*SECURITY_ATTRIBUTES,
-    lpName: ?[*:0]const u8,
-) callconv(.winapi) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn CreateJobObjectW(
-    lpJobAttributes: ?*SECURITY_ATTRIBUTES,
-    lpName: ?[*:0]const u16,
-) callconv(.winapi) ?HANDLE;
-
-pub extern "kernel32" fn CreateJobSet(
-    NumJob: u32,
-    UserJobSet: [*]JOB_SET_ARRAY,
-    Flags: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "kernel32" fn FreeMemoryJobObject(
-    Buffer: ?*anyopaque,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn IsProcessInJob(
-    ProcessHandle: ?HANDLE,
-    JobHandle: ?HANDLE,
-    Result: ?*BOOL,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn OpenJobObjectA(
-    dwDesiredAccess: u32,
-    bInheritHandle: BOOL,
-    lpName: ?[*:0]const u8,
-) callconv(.winapi) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn OpenJobObjectW(
-    dwDesiredAccess: u32,
-    bInheritHandle: BOOL,
-    lpName: ?[*:0]const u16,
-) callconv(.winapi) ?HANDLE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn QueryInformationJobObject(
-    hJob: ?HANDLE,
-    JobObjectInformationClass: JOBOBJECTINFOCLASS,
-    /// parameter "cbJobObjectInformationLength" is the size in bytes
-    lpJobObjectInformation: ?*anyopaque,
-    cbJobObjectInformationLength: u32,
-    lpReturnLength: ?*u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "kernel32" fn QueryIoRateControlInformationJobObject(
-    hJob: ?HANDLE,
-    VolumeName: ?[*:0]const u16,
-    InfoBlocks: ?*?*JOBOBJECT_IO_RATE_CONTROL_INFORMATION,
-    InfoBlockCount: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn SetInformationJobObject(
-    hJob: ?HANDLE,
-    JobObjectInformationClass: JOBOBJECTINFOCLASS,
-    /// parameter "cbJobObjectInformationLength" is the size in bytes
-    lpJobObjectInformation: ?*anyopaque,
-    cbJobObjectInformationLength: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "kernel32" fn SetIoRateControlInformationJobObject(
-    hJob: ?HANDLE,
-    IoRateControlInfo: ?*JOBOBJECT_IO_RATE_CONTROL_INFORMATION,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn TerminateJobObject(
-    hJob: ?HANDLE,
-    uExitCode: u32,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn UserHandleGrantAccess(
-    hUserHandle: ?HANDLE,
-    hJob: ?HANDLE,
-    bGrant: BOOL,
-) callconv(.winapi) BOOL;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (7)
-//--------------------------------------------------------------------------------
-const BOOL = i32;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const IO_COUNTERS = @import("../system/threading.zig").IO_COUNTERS;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const TOKEN_GROUPS = @import("../security.zig").TOKEN_GROUPS;
 const TOKEN_PRIVILEGES = @import("../security.zig").TOKEN_PRIVILEGES;
 

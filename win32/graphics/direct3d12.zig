@@ -12339,64 +12339,6 @@ pub const PFN_D3D12_SERIALIZE_VERSIONED_ROOT_SIGNATURE = *const fn(
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (8)
-//--------------------------------------------------------------------------------
-pub extern "d3d12" fn D3D12CreateDevice(
-    pAdapter: ?*IUnknown,
-    MinimumFeatureLevel: D3D_FEATURE_LEVEL,
-    riid: ?*const Guid,
-    ppDevice: ?**anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "d3d12" fn D3D12CreateRootSignatureDeserializer(
-    /// parameter "SrcDataSizeInBytes" is the size in bytes
-    pSrcData: ?*const anyopaque,
-    SrcDataSizeInBytes: usize,
-    pRootSignatureDeserializerInterface: ?*const Guid,
-    ppRootSignatureDeserializer: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "d3d12" fn D3D12CreateVersionedRootSignatureDeserializer(
-    /// parameter "SrcDataSizeInBytes" is the size in bytes
-    pSrcData: ?*const anyopaque,
-    SrcDataSizeInBytes: usize,
-    pRootSignatureDeserializerInterface: ?*const Guid,
-    ppRootSignatureDeserializer: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "d3d12" fn D3D12EnableExperimentalFeatures(
-    NumFeatures: u32,
-    pIIDs: [*]const Guid,
-    pConfigurationStructs: ?[*]u8,
-    pConfigurationStructSizes: ?[*]u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "d3d12" fn D3D12GetDebugInterface(
-    riid: ?*const Guid,
-    ppvDebug: ?**anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "d3d12" fn D3D12GetInterface(
-    rclsid: ?*const Guid,
-    riid: ?*const Guid,
-    ppvDebug: ?**anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "d3d12" fn D3D12SerializeRootSignature(
-    pRootSignature: ?*const D3D12_ROOT_SIGNATURE_DESC,
-    Version: D3D_ROOT_SIGNATURE_VERSION,
-    ppBlob: ?*?*ID3DBlob,
-    ppErrorBlob: ?*?*ID3DBlob,
-) callconv(.winapi) HRESULT;
-
-pub extern "d3d12" fn D3D12SerializeVersionedRootSignature(
-    pRootSignature: ?*const D3D12_VERSIONED_ROOT_SIGNATURE_DESC,
-    ppBlob: ?*?*ID3DBlob,
-    ppErrorBlob: ?*?*ID3DBlob,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (29)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

@@ -47,65 +47,8 @@ pub const RESTART_NO_REBOOT = REGISTER_APPLICATION_RESTART_FLAGS{ .REBOOT = 1 };
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (8)
+// Section: Imports (0)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn ApplicationRecoveryFinished(
-    bSuccess: BOOL,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn ApplicationRecoveryInProgress(
-    pbCancelled: ?*BOOL,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetApplicationRecoveryCallback(
-    hProcess: ?HANDLE,
-    pRecoveryCallback: ?*?APPLICATION_RECOVERY_CALLBACK,
-    ppvParameter: ?*?*anyopaque,
-    pdwPingInterval: ?*u32,
-    pdwFlags: ?*u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetApplicationRestartSettings(
-    hProcess: ?HANDLE,
-    pwzCommandline: ?[*:0]u16,
-    pcchSize: ?*u32,
-    pdwFlags: ?*u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn RegisterApplicationRecoveryCallback(
-    pRecoveyCallback: ?APPLICATION_RECOVERY_CALLBACK,
-    pvParameter: ?*anyopaque,
-    dwPingInterval: u32,
-    dwFlags: u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn RegisterApplicationRestart(
-    pwzCommandline: ?[*:0]const u16,
-    dwFlags: REGISTER_APPLICATION_RESTART_FLAGS,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn UnregisterApplicationRecoveryCallback(
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn UnregisterApplicationRestart(
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (4)
-//--------------------------------------------------------------------------------
-const APPLICATION_RECOVERY_CALLBACK = @import("../system/windows_programming.zig").APPLICATION_RECOVERY_CALLBACK;
-const BOOL = i32;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const HRESULT = @import("../zig.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

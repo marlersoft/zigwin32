@@ -371,54 +371,11 @@ pub const IFhTarget = extern union {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (7)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "fhsvcctl" fn FhServiceBlockBackup(
-    Pipe: FH_SERVICE_PIPE_HANDLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "fhsvcctl" fn FhServiceClosePipe(
-    Pipe: FH_SERVICE_PIPE_HANDLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "fhsvcctl" fn FhServiceOpenPipe(
-    StartServiceIfStopped: BOOL,
-    Pipe: ?*FH_SERVICE_PIPE_HANDLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "fhsvcctl" fn FhServiceReloadConfiguration(
-    Pipe: FH_SERVICE_PIPE_HANDLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "fhsvcctl" fn FhServiceStartBackup(
-    Pipe: FH_SERVICE_PIPE_HANDLE,
-    LowPriorityIo: BOOL,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "fhsvcctl" fn FhServiceStopBackup(
-    Pipe: FH_SERVICE_PIPE_HANDLE,
-    StopTracking: BOOL,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "fhsvcctl" fn FhServiceUnblockBackup(
-    Pipe: FH_SERVICE_PIPE_HANDLE,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
 const BSTR = *u16;
-const FH_SERVICE_PIPE_HANDLE = @import("../system/windows_programming.zig").FH_SERVICE_PIPE_HANDLE;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../zig.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;

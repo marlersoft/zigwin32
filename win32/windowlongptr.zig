@@ -3,21 +3,21 @@
 const win32 = @import("../win32.zig");
 
 pub const SetWindowLongPtrA = if (@sizeOf(usize) == 8)
-    win32.ui.windows_and_messaging.SetWindowLongPtrA
+    win32.user32.SetWindowLongPtrA
 else
-    win32.ui.windows_and_messaging.SetWindowLongA;
+    win32.user32.SetWindowLongA;
 
 pub const SetWindowLongPtrW = if (@sizeOf(usize) == 8)
-    win32.ui.windows_and_messaging.SetWindowLongPtrW
+    win32.user32.SetWindowLongPtrW
 else
-    win32.ui.windows_and_messaging.SetWindowLongW;
+    win32.user32.SetWindowLongW;
 
 pub const GetWindowLongPtrA = if (@sizeOf(usize) == 8)
-    win32.ui.windows_and_messaging.GetWindowLongPtrA
+    win32.user32.GetWindowLongPtrA
 else
-    win32.ui.windows_and_messaging.GetWindowLongA;
+    win32.user32.GetWindowLongA;
 
 pub const GetWindowLongPtrW = if (@sizeOf(usize) == 8)
-    win32.ui.windows_and_messaging.GetWindowLongPtrW
+    win32.user32.GetWindowLongPtrW
 else
-    win32.ui.windows_and_messaging.GetWindowLongW;
+    win32.user32.GetWindowLongW;

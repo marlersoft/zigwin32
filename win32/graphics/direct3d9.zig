@@ -4492,47 +4492,6 @@ pub const D3DPRESENTSTATS = switch(@import("../zig.zig").arch) {
 };
 
 //--------------------------------------------------------------------------------
-// Section: Functions (9)
-//--------------------------------------------------------------------------------
-pub extern "d3d9" fn D3DPERF_BeginEvent(
-    col: u32,
-    wszName: ?[*:0]const u16,
-) callconv(.winapi) i32;
-
-pub extern "d3d9" fn D3DPERF_EndEvent(
-) callconv(.winapi) i32;
-
-pub extern "d3d9" fn D3DPERF_GetStatus(
-) callconv(.winapi) u32;
-
-pub extern "d3d9" fn D3DPERF_QueryRepeatFrame(
-) callconv(.winapi) BOOL;
-
-pub extern "d3d9" fn D3DPERF_SetMarker(
-    col: u32,
-    wszName: ?[*:0]const u16,
-) callconv(.winapi) void;
-
-pub extern "d3d9" fn D3DPERF_SetOptions(
-    dwOptions: u32,
-) callconv(.winapi) void;
-
-pub extern "d3d9" fn D3DPERF_SetRegion(
-    col: u32,
-    wszName: ?[*:0]const u16,
-) callconv(.winapi) void;
-
-pub extern "d3d9" fn Direct3DCreate9(
-    SDKVersion: u32,
-) callconv(.winapi) ?*IDirect3D9;
-
-pub extern "d3d9" fn Direct3DCreate9Ex(
-    SDKVersion: u32,
-    param1: ?*?*IDirect3D9Ex,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

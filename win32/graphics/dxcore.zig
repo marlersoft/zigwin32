@@ -316,15 +316,6 @@ pub const PFN_DXCORE_NOTIFICATION_CALLBACK = *const fn(
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (1)
-//--------------------------------------------------------------------------------
-pub extern "dxcore" fn DXCoreCreateAdapterFactory(
-    riid: ?*const Guid,
-    ppvFactory: **anyopaque,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

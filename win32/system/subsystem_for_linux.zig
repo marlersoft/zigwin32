@@ -47,60 +47,8 @@ pub const WSL_DISTRIBUTION_FLAGS_ENABLE_DRIVE_MOUNTING = WSL_DISTRIBUTION_FLAGS{
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (7)
+// Section: Imports (0)
 //--------------------------------------------------------------------------------
-pub extern "api-ms-win-wsl-api-l1-1-0" fn WslConfigureDistribution(
-    distributionName: ?[*:0]const u16,
-    defaultUID: u32,
-    wslDistributionFlags: WSL_DISTRIBUTION_FLAGS,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-wsl-api-l1-1-0" fn WslGetDistributionConfiguration(
-    distributionName: ?[*:0]const u16,
-    distributionVersion: ?*u32,
-    defaultUID: ?*u32,
-    wslDistributionFlags: ?*WSL_DISTRIBUTION_FLAGS,
-    defaultEnvironmentVariables: ?*?*?[*:0]u8,
-    defaultEnvironmentVariableCount: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-wsl-api-l1-1-0" fn WslIsDistributionRegistered(
-    distributionName: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-pub extern "api-ms-win-wsl-api-l1-1-0" fn WslLaunch(
-    distributionName: ?[*:0]const u16,
-    command: ?[*:0]const u16,
-    useCurrentWorkingDirectory: BOOL,
-    stdIn: ?HANDLE,
-    stdOut: ?HANDLE,
-    stdErr: ?HANDLE,
-    process: ?*?HANDLE,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-wsl-api-l1-1-0" fn WslLaunchInteractive(
-    distributionName: ?[*:0]const u16,
-    command: ?[*:0]const u16,
-    useCurrentWorkingDirectory: BOOL,
-    exitCode: ?*u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-wsl-api-l1-1-0" fn WslRegisterDistribution(
-    distributionName: ?[*:0]const u16,
-    tarGzFilename: ?[*:0]const u16,
-) callconv(.winapi) HRESULT;
-
-pub extern "api-ms-win-wsl-api-l1-1-0" fn WslUnregisterDistribution(
-    distributionName: ?[*:0]const u16,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (3)
-//--------------------------------------------------------------------------------
-const BOOL = i32;
-const HANDLE = @import("../foundation.zig").HANDLE;
-const HRESULT = @import("../zig.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

@@ -150,16 +150,6 @@ pub const IDeviceRequestCompletionCallback = extern union {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (1)
-//--------------------------------------------------------------------------------
-pub extern "deviceaccess" fn CreateDeviceAccessInstance(
-    deviceInterfacePath: ?[*:0]const u16,
-    desiredAccess: u32,
-    createAsync: **ICreateDeviceAccessAsync,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

@@ -143,90 +143,12 @@ pub const WCM_USAGE_DATA = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (10)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "ondemandconnroutehelper" fn FreeInterfaceContextTable(
-    InterfaceContextTable: ?*NET_INTERFACE_CONTEXT_TABLE,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "ondemandconnroutehelper" fn GetInterfaceContextTableForHostName(
-    HostName: ?[*:0]const u16,
-    ProxyName: ?[*:0]const u16,
-    Flags: u32,
-    /// parameter "ConnectionProfileFilterRawDataSize" is the size in bytes
-    ConnectionProfileFilterRawData: ?*u8,
-    ConnectionProfileFilterRawDataSize: u32,
-    InterfaceContextTable: ?*?*NET_INTERFACE_CONTEXT_TABLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "ondemandconnroutehelper" fn OnDemandGetRoutingHint(
-    destinationHostName: ?[*:0]const u16,
-    interfaceIndex: ?*u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "ondemandconnroutehelper" fn OnDemandRegisterNotification(
-    callback: ?ONDEMAND_NOTIFICATION_CALLBACK,
-    callbackContext: ?*anyopaque,
-    registrationHandle: ?*?HANDLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "ondemandconnroutehelper" fn OnDemandUnRegisterNotification(
-    registrationHandle: ?HANDLE,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "wcmapi" fn WcmFreeMemory(
-    pMemory: ?*anyopaque,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "wcmapi" fn WcmGetProfileList(
-    pReserved: ?*anyopaque,
-    ppProfileList: ?*?*WCM_PROFILE_INFO_LIST,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "wcmapi" fn WcmQueryProperty(
-    pInterface: ?*const Guid,
-    strProfileName: ?[*:0]const u16,
-    Property: WCM_PROPERTY,
-    pReserved: ?*anyopaque,
-    pdwDataSize: ?*u32,
-    ppData: ?*?*u8,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "wcmapi" fn WcmSetProfileList(
-    pProfileList: ?*WCM_PROFILE_INFO_LIST,
-    dwPosition: u32,
-    fIgnoreUnknownProfiles: BOOL,
-    pReserved: ?*anyopaque,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "wcmapi" fn WcmSetProperty(
-    pInterface: ?*const Guid,
-    strProfileName: ?[*:0]const u16,
-    Property: WCM_PROPERTY,
-    pReserved: ?*anyopaque,
-    dwDataSize: u32,
-    pbData: ?[*:0]const u8,
-) callconv(.winapi) u32;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const HRESULT = @import("../zig.zig").HRESULT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

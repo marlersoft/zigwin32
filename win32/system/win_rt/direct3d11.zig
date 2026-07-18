@@ -26,27 +26,10 @@ pub const IDirect3DDxgiInterfaceAccess = extern union {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (2)
-//--------------------------------------------------------------------------------
-pub extern "d3d11" fn CreateDirect3D11DeviceFromDXGIDevice(
-    dxgiDevice: ?*IDXGIDevice,
-    graphicsDevice: **IInspectable,
-) callconv(.winapi) HRESULT;
-
-pub extern "d3d11" fn CreateDirect3D11SurfaceFromDXGISurface(
-    dgxiSurface: ?*IDXGISurface,
-    graphicsSurface: **IInspectable,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const HRESULT = @import("../../zig.zig").HRESULT;
-const IDXGIDevice = @import("../../graphics/dxgi.zig").IDXGIDevice;
-const IDXGISurface = @import("../../graphics/dxgi.zig").IDXGISurface;
-const IInspectable = @import("../../system/win_rt.zig").IInspectable;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 
 test {

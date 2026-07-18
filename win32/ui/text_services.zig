@@ -7976,32 +7976,13 @@ pub const TS_SD_FORWARD = TsShiftDir.FORWARD;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (3)
-//--------------------------------------------------------------------------------
-pub extern "msctfmonitor" fn DoMsCtfMonitor(
-    dwFlags: u32,
-    hEventForServiceStop: ?HANDLE,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "msctfmonitor" fn InitLocalMsCtfMonitor(
-    dwFlags: u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "msctfmonitor" fn UninitLocalMsCtfMonitor(
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (23)
+// Section: Imports (22)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
 const BSTR = *u16;
 const COLORREF = @import("../zig.zig").COLORREF;
 const FORMATETC = @import("../system/com.zig").FORMATETC;
-const HANDLE = @import("../foundation.zig").HANDLE;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 const HICON = @import("../ui/windows_and_messaging.zig").HICON;
 const HRESULT = @import("../zig.zig").HRESULT;

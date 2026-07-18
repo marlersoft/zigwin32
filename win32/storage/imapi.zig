@@ -5204,52 +5204,7 @@ pub const CLSID_tagIMMPID_RPV_STRUCT = &CLSID_tagIMMPID_RPV_STRUCT_Value;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (6)
-//--------------------------------------------------------------------------------
-pub extern "mapi32" fn CloseIMsgSession(
-    lpMsgSess: ?*_MSGSESS,
-) callconv(.winapi) void;
-
-pub extern "mapi32" fn GetAttribIMsgOnIStg(
-    lpObject: ?*anyopaque,
-    lpPropTagArray: ?*SPropTagArray,
-    lppPropAttrArray: ?*?*SPropAttrArray,
-) callconv(.winapi) HRESULT;
-
-pub extern "mapi32" fn MapStorageSCode(
-    StgSCode: i32,
-) callconv(.winapi) i32;
-
-pub extern "mapi32" fn OpenIMsgOnIStg(
-    lpMsgSess: ?*_MSGSESS,
-    lpAllocateBuffer: ?LPALLOCATEBUFFER,
-    lpAllocateMore: ?LPALLOCATEMORE,
-    lpFreeBuffer: ?LPFREEBUFFER,
-    lpMalloc: ?*IMalloc,
-    lpMapiSup: ?*anyopaque,
-    lpStg: ?*IStorage,
-    lpfMsgCallRelease: ?*?MSGCALLRELEASE,
-    ulCallerData: u32,
-    ulFlags: u32,
-    lppMsg: ?*?*IMessage,
-) callconv(.winapi) i32;
-
-pub extern "mapi32" fn OpenIMsgSession(
-    lpMalloc: ?*IMalloc,
-    ulFlags: u32,
-    lppMsgSess: ?*?*_MSGSESS,
-) callconv(.winapi) i32;
-
-pub extern "mapi32" fn SetAttribIMsgOnIStg(
-    lpObject: ?*anyopaque,
-    lpPropTags: ?*SPropTagArray,
-    lpPropAttrs: ?*SPropAttrArray,
-    lppPropProblems: ?*?*SPropProblemArray,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (20)
+// Section: Imports (14)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOLEAN = u8;
@@ -5257,19 +5212,13 @@ const BSTR = *u16;
 const HRESULT = @import("../zig.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IEnumVARIANT = @import("../system/ole.zig").IEnumVARIANT;
-const IMalloc = @import("../system/com.zig").IMalloc;
 const IMessage = @import("../system/address_book.zig").IMessage;
 const IPropertyStorage = @import("../system/com/structured_storage.zig").IPropertyStorage;
 const ISequentialStream = @import("../system/com.zig").ISequentialStream;
 const IStorage = @import("../system/com/structured_storage.zig").IStorage;
 const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const LPALLOCATEBUFFER = @import("../system/address_book.zig").LPALLOCATEBUFFER;
-const LPALLOCATEMORE = @import("../system/address_book.zig").LPALLOCATEMORE;
-const LPFREEBUFFER = @import("../system/address_book.zig").LPFREEBUFFER;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
-const SPropProblemArray = @import("../system/address_book.zig").SPropProblemArray;
-const SPropTagArray = @import("../system/address_book.zig").SPropTagArray;
 const VARIANT_BOOL = i16;
 
 test {

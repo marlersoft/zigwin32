@@ -3610,39 +3610,6 @@ pub const IDXGraphicsAnalysis = extern union {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (5)
-//--------------------------------------------------------------------------------
-pub extern "dxgi" fn CreateDXGIFactory(
-    riid: ?*const Guid,
-    ppFactory: **anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "dxgi" fn CreateDXGIFactory1(
-    riid: ?*const Guid,
-    ppFactory: **anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "dxgi" fn CreateDXGIFactory2(
-    Flags: u32,
-    riid: ?*const Guid,
-    ppFactory: **anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.17134'
-pub extern "dxgi" fn DXGIDeclareAdapterRemovalSupport(
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "dxgi" fn DXGIGetDebugInterface1(
-    Flags: u32,
-    riid: ?*const Guid,
-    pDebug: **anyopaque,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (25)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

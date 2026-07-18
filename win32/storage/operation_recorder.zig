@@ -92,23 +92,8 @@ pub const OPERATION_START_PARAMETERS = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (2)
+// Section: Imports (0)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "advapi32" fn OperationEnd(
-    OperationEndParams: ?*OPERATION_END_PARAMETERS,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "advapi32" fn OperationStart(
-    OperationStartParams: ?*OPERATION_START_PARAMETERS,
-) callconv(.winapi) BOOL;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (1)
-//--------------------------------------------------------------------------------
-const BOOL = i32;
 
 test {
     @setEvalBranchQuota(

@@ -245,31 +245,9 @@ pub const SENS_QOCINFO = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (3)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "sensapi" fn IsDestinationReachableA(
-    lpszDestination: ?[*:0]const u8,
-    lpQOCInfo: ?*QOCINFO,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "sensapi" fn IsDestinationReachableW(
-    lpszDestination: ?[*:0]const u16,
-    lpQOCInfo: ?*QOCINFO,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "sensapi" fn IsNetworkAlive(
-    lpdwFlags: ?*u32,
-) callconv(.winapi) BOOL;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = i32;
 const BSTR = *u16;
 const HRESULT = @import("../zig.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;

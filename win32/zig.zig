@@ -21,28 +21,30 @@ const win32 = struct {
     const HBRUSH = mod_root.graphics.gdi.HBRUSH;
     const PAINTSTRUCT = mod_root.graphics.gdi.PAINTSTRUCT;
 
-    const GetLastError = mod_root.foundation.GetLastError;
-    const CloseHandle = mod_root.foundation.CloseHandle;
-    const FormatMessageA = mod_root.system.diagnostics.debug.FormatMessageA;
-    const DeleteObject = mod_root.graphics.gdi.DeleteObject;
-    const DeleteDC = mod_root.graphics.gdi.DeleteDC;
-    const InvalidateRect = mod_root.graphics.gdi.InvalidateRect;
-    const BeginPaint = mod_root.graphics.gdi.BeginPaint;
-    const EndPaint = mod_root.graphics.gdi.EndPaint;
-    const CreateSolidBrush = mod_root.graphics.gdi.CreateSolidBrush;
-    const FillRect = mod_root.graphics.gdi.FillRect;
-    const TextOutA = mod_root.graphics.gdi.TextOutA;
-    const TextOutW = mod_root.graphics.gdi.TextOutW;
-    const GetTextExtentPoint32A = mod_root.graphics.gdi.GetTextExtentPoint32A;
-    const GetTextExtentPoint32W = mod_root.graphics.gdi.GetTextExtentPoint32W;
+    const GetLastError = mod_root.kernel32.GetLastError;
+    const CloseHandle = mod_root.kernel32.CloseHandle;
+    const FormatMessageA = mod_root.kernel32.FormatMessageA;
+
+    const DeleteObject = mod_root.gdi32.DeleteObject;
+    const DeleteDC = mod_root.gdi32.DeleteDC;
+    const CreateSolidBrush = mod_root.gdi32.CreateSolidBrush;
+    const TextOutA = mod_root.gdi32.TextOutA;
+    const TextOutW = mod_root.gdi32.TextOutW;
+    const GetTextExtentPoint32A = mod_root.gdi32.GetTextExtentPoint32A;
+    const GetTextExtentPoint32W = mod_root.gdi32.GetTextExtentPoint32W;
     const MESSAGEBOX_STYLE = mod_root.ui.windows_and_messaging.MESSAGEBOX_STYLE;
-    const MessageBoxA = mod_root.ui.windows_and_messaging.MessageBoxA;
-    const GetWindowLongPtrA = mod_root.ui.windows_and_messaging.GetWindowLongPtrA;
-    const GetWindowLongPtrW = mod_root.ui.windows_and_messaging.GetWindowLongPtrW;
-    const SetWindowLongPtrA = mod_root.ui.windows_and_messaging.SetWindowLongPtrA;
-    const SetWindowLongPtrW = mod_root.ui.windows_and_messaging.SetWindowLongPtrW;
-    const GetClientRect = mod_root.ui.windows_and_messaging.GetClientRect;
-    const GetDpiForWindow = mod_root.ui.hi_dpi.GetDpiForWindow;
+
+    const BeginPaint = mod_root.user32.BeginPaint;
+    const EndPaint = mod_root.user32.EndPaint;
+    const FillRect = mod_root.user32.FillRect;
+    const InvalidateRect = mod_root.user32.InvalidateRect;
+    const MessageBoxA = mod_root.user32.MessageBoxA;
+    const GetWindowLongPtrA = mod_root.user32.GetWindowLongPtrA;
+    const GetWindowLongPtrW = mod_root.user32.GetWindowLongPtrW;
+    const SetWindowLongPtrA = mod_root.user32.SetWindowLongPtrA;
+    const SetWindowLongPtrW = mod_root.user32.SetWindowLongPtrW;
+    const GetClientRect = mod_root.user32.GetClientRect;
+    const GetDpiForWindow = mod_root.user32.GetDpiForWindow;
 };
 
 pub const L = std.unicode.utf8ToUtf16LeStringLiteral;

@@ -219,71 +219,10 @@ pub const TOKEN_VALUE = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (8)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "netsh" fn MatchEnumTag(
-    hModule: ?HANDLE,
-    pwcArg: ?[*:0]const u16,
-    dwNumArg: u32,
-    pEnumTable: ?*const TOKEN_VALUE,
-    pdwValue: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "netsh" fn MatchToken(
-    pwszUserToken: ?[*:0]const u16,
-    pwszCmdToken: ?[*:0]const u16,
-) callconv(.winapi) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "netsh" fn PreprocessCommand(
-    hModule: ?HANDLE,
-    ppwcArguments: [*]?[*:0]u16,
-    dwCurrentIndex: u32,
-    dwArgCount: u32,
-    pttTags: ?[*]TAG_TYPE,
-    dwTagCount: u32,
-    dwMinArgs: u32,
-    dwMaxArgs: u32,
-    pdwTagType: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "netsh" fn PrintError(
-    hModule: ?HANDLE,
-    dwErrId: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "netsh" fn PrintMessage(
-    pwszFormat: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "netsh" fn PrintMessageFromModule(
-    hModule: ?HANDLE,
-    dwMsgId: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "netsh" fn RegisterContext(
-    pChildContext: ?*const NS_CONTEXT_ATTRIBUTES,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "netsh" fn RegisterHelper(
-    pguidParentContext: ?*const Guid,
-    pfnRegisterSubContext: ?*const NS_HELPER_ATTRIBUTES,
-) callconv(.winapi) u32;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (3)
+// Section: Imports (2)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
-const HANDLE = @import("../foundation.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

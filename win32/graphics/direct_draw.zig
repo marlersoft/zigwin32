@@ -7473,51 +7473,6 @@ pub const VMEMR = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (7)
-//--------------------------------------------------------------------------------
-pub extern "ddraw" fn DirectDrawCreate(
-    lpGUID: ?*Guid,
-    lplpDD: ?*?*IDirectDraw,
-    pUnkOuter: ?*IUnknown,
-) callconv(.winapi) HRESULT;
-
-pub extern "ddraw" fn DirectDrawCreateClipper(
-    dwFlags: u32,
-    lplpDDClipper: ?*?*IDirectDrawClipper,
-    pUnkOuter: ?*IUnknown,
-) callconv(.winapi) HRESULT;
-
-pub extern "ddraw" fn DirectDrawCreateEx(
-    lpGuid: ?*Guid,
-    lplpDD: ?*?*anyopaque,
-    iid: ?*const Guid,
-    pUnkOuter: ?*IUnknown,
-) callconv(.winapi) HRESULT;
-
-pub extern "ddraw" fn DirectDrawEnumerateA(
-    lpCallback: ?LPDDENUMCALLBACKA,
-    lpContext: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "ddraw" fn DirectDrawEnumerateExA(
-    lpCallback: ?LPDDENUMCALLBACKEXA,
-    lpContext: ?*anyopaque,
-    dwFlags: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "ddraw" fn DirectDrawEnumerateExW(
-    lpCallback: ?LPDDENUMCALLBACKEXW,
-    lpContext: ?*anyopaque,
-    dwFlags: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "ddraw" fn DirectDrawEnumerateW(
-    lpCallback: ?LPDDENUMCALLBACKW,
-    lpContext: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

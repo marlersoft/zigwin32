@@ -287,49 +287,14 @@ pub const CLSID_WSCProductList = &CLSID_WSCProductList_Value;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (6)
-//--------------------------------------------------------------------------------
-pub extern "wscapi" fn WscGetAntiMalwareUri(
-    ppszUri: ?*?[*:0]u16,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wscapi" fn WscGetSecurityProviderHealth(
-    Providers: u32,
-    pHealth: ?*WSC_SECURITY_PROVIDER_HEALTH,
-) callconv(.winapi) HRESULT;
-
-pub extern "wscapi" fn WscQueryAntiMalwareUri(
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wscapi" fn WscRegisterForChanges(
-    Reserved: ?*anyopaque,
-    phCallbackRegistration: ?*?HANDLE,
-    lpCallbackAddress: ?LPTHREAD_START_ROUTINE,
-    pContext: ?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "wscapi" fn WscRegisterForUserNotifications(
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wscapi" fn WscUnRegisterChanges(
-    hRegistrationHandle: ?HANDLE,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
 const BSTR = *u16;
-const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../zig.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const LPTHREAD_START_ROUTINE = @import("../system/threading.zig").LPTHREAD_START_ROUTINE;
 
 test {
     @setEvalBranchQuota(

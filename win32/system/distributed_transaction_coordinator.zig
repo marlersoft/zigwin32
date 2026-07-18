@@ -2588,50 +2588,6 @@ pub const XID = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (4)
-//--------------------------------------------------------------------------------
-pub extern "xolehlp" fn DtcGetTransactionManager(
-    i_pszHost: ?[*:0]u8,
-    i_pszTmName: ?[*:0]u8,
-    i_riid: ?*const Guid,
-    i_dwReserved1: u32,
-    i_wcbReserved2: u16,
-    /// parameter "i_wcbReserved2" is the size in bytes
-    i_pvReserved2: ?*anyopaque,
-    o_ppvObject: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "xolehlp" fn DtcGetTransactionManagerC(
-    i_pszHost: ?[*:0]u8,
-    i_pszTmName: ?[*:0]u8,
-    i_riid: ?*const Guid,
-    i_dwReserved1: u32,
-    i_wcbReserved2: u16,
-    /// parameter "i_wcbReserved2" is the size in bytes
-    i_pvReserved2: ?*anyopaque,
-    o_ppvObject: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "xolehlp" fn DtcGetTransactionManagerExA(
-    i_pszHost: ?[*:0]u8,
-    i_pszTmName: ?[*:0]u8,
-    i_riid: ?*const Guid,
-    i_grfOptions: u32,
-    i_pvConfigParams: ?*anyopaque,
-    o_ppvObject: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "xolehlp" fn DtcGetTransactionManagerExW(
-    i_pwszHost: ?[*:0]u16,
-    i_pwszTmName: ?[*:0]u16,
-    i_riid: ?*const Guid,
-    i_grfOptions: u32,
-    i_pvConfigParams: ?*anyopaque,
-    o_ppvObject: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

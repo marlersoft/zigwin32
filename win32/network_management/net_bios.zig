@@ -208,15 +208,6 @@ pub const NCB = switch(@import("../zig.zig").arch) {
 };
 
 //--------------------------------------------------------------------------------
-// Section: Functions (1)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "netapi32" fn Netbios(
-    pncb: ?*NCB,
-) callconv(.winapi) u8;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (1)
 //--------------------------------------------------------------------------------
 const HANDLE = @import("../foundation.zig").HANDLE;

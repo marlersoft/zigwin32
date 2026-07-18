@@ -1236,23 +1236,6 @@ pub const IDxcVersionInfo3 = extern union {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (2)
-//--------------------------------------------------------------------------------
-pub extern "dxcompiler" fn DxcCreateInstance(
-    rclsid: ?*const Guid,
-    riid: ?*const Guid,
-    ppv: **anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "dxcompiler" fn DxcCreateInstance2(
-    pMalloc: ?*IMalloc,
-    rclsid: ?*const Guid,
-    riid: ?*const Guid,
-    ppv: **anyopaque,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;

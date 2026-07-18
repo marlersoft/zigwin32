@@ -3840,87 +3840,7 @@ pub const WICWebpAnmfProperties_FORCE_DWORD = WICWebpAnmfProperties.Properties_F
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (9)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "windowscodecs" fn WICConvertBitmapSource(
-    dstFormat: ?*Guid,
-    pISrc: ?*IWICBitmapSource,
-    ppIDst: ?*?*IWICBitmapSource,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "windowscodecs" fn WICCreateBitmapFromSection(
-    width: u32,
-    height: u32,
-    pixelFormat: ?*Guid,
-    hSection: ?HANDLE,
-    stride: u32,
-    offset: u32,
-    ppIBitmap: ?*?*IWICBitmap,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "windowscodecs" fn WICCreateBitmapFromSectionEx(
-    width: u32,
-    height: u32,
-    pixelFormat: ?*Guid,
-    hSection: ?HANDLE,
-    stride: u32,
-    offset: u32,
-    desiredAccessLevel: WICSectionAccessLevel,
-    ppIBitmap: ?*?*IWICBitmap,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "windowscodecs" fn WICGetMetadataContentSize(
-    guidContainerFormat: ?*const Guid,
-    pIWriter: ?*IWICMetadataWriter,
-    pcbSize: ?*ULARGE_INTEGER,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "windowscodecs" fn WICMapGuidToShortName(
-    guid: ?*const Guid,
-    cchName: u32,
-    wzName: ?[*:0]u16,
-    pcchActual: ?*u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "windowscodecs" fn WICMapSchemaToName(
-    guidMetadataFormat: ?*const Guid,
-    pwzSchema: ?[*:0]u16,
-    cchName: u32,
-    wzName: ?[*:0]u16,
-    pcchActual: ?*u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "windowscodecs" fn WICMapShortNameToGuid(
-    wzName: ?[*:0]const u16,
-    pguid: ?*Guid,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "windowscodecs" fn WICMatchMetadataContent(
-    guidContainerFormat: ?*const Guid,
-    pguidVendor: ?*const Guid,
-    pIStream: ?*IStream,
-    pguidMetadataFormat: ?*Guid,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "windowscodecs" fn WICSerializeMetadataContent(
-    guidContainerFormat: ?*const Guid,
-    pIWriter: ?*IWICMetadataWriter,
-    dwPersistOptions: u32,
-    pIStream: ?*IStream,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (23)
+// Section: Imports (22)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
@@ -3929,7 +3849,6 @@ const DXGI_FORMAT = @import("../graphics/dxgi/common.zig").DXGI_FORMAT;
 const DXGI_JPEG_AC_HUFFMAN_TABLE = @import("../graphics/dxgi/common.zig").DXGI_JPEG_AC_HUFFMAN_TABLE;
 const DXGI_JPEG_DC_HUFFMAN_TABLE = @import("../graphics/dxgi/common.zig").DXGI_JPEG_DC_HUFFMAN_TABLE;
 const DXGI_JPEG_QUANTIZATION_TABLE = @import("../graphics/dxgi/common.zig").DXGI_JPEG_QUANTIZATION_TABLE;
-const HANDLE = @import("../foundation.zig").HANDLE;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 const HICON = @import("../ui/windows_and_messaging.zig").HICON;
 const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;

@@ -7846,18 +7846,6 @@ pub const WMIQ_RPNF_ARRAY_ACCESS_USED = WMIQ_RPNF_FEATURE.ARRAY_ACCESS_USED;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (1)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "mi" fn MI_Application_InitializeV1(
-    flags: u32,
-    applicationID: ?*const u16,
-    extendedError: ?*?*MI_Instance,
-    application: ?*MI_Application,
-) callconv(.winapi) MI_Result;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

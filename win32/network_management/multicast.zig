@@ -54,60 +54,8 @@ pub const MCAST_SCOPE_ENTRY = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (7)
+// Section: Imports (1)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dhcpcsvc" fn McastApiCleanup(
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dhcpcsvc" fn McastApiStartup(
-    Version: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dhcpcsvc" fn McastEnumerateScopes(
-    AddrFamily: u16,
-    ReQuery: BOOL,
-    pScopeList: ?*MCAST_SCOPE_ENTRY,
-    pScopeLen: ?*u32,
-    pScopeCount: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dhcpcsvc" fn McastGenUID(
-    pRequestID: ?*MCAST_CLIENT_UID,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dhcpcsvc" fn McastReleaseAddress(
-    AddrFamily: u16,
-    pRequestID: ?*MCAST_CLIENT_UID,
-    pReleaseRequest: ?*MCAST_LEASE_REQUEST,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dhcpcsvc" fn McastRenewAddress(
-    AddrFamily: u16,
-    pRequestID: ?*MCAST_CLIENT_UID,
-    pRenewRequest: ?*MCAST_LEASE_REQUEST,
-    pRenewResponse: ?*MCAST_LEASE_RESPONSE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "dhcpcsvc" fn McastRequestAddress(
-    AddrFamily: u16,
-    pRequestID: ?*MCAST_CLIENT_UID,
-    pScopeCtx: ?*MCAST_SCOPE_CTX,
-    pAddrRequest: ?*MCAST_LEASE_REQUEST,
-    pAddrResponse: ?*MCAST_LEASE_RESPONSE,
-) callconv(.winapi) u32;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (2)
-//--------------------------------------------------------------------------------
-const BOOL = i32;
 const UNICODE_STRING = @import("../foundation.zig").UNICODE_STRING;
 
 test {

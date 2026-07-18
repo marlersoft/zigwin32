@@ -58,87 +58,9 @@ pub const PFNDAVAUTHCALLBACK_FREECRED = *const fn(
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (11)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn DavAddConnection(
-    ConnectionHandle: ?*?HANDLE,
-    RemoteName: ?[*:0]const u16,
-    UserName: ?[*:0]const u16,
-    Password: ?[*:0]const u16,
-    /// parameter "CertSize" is the size in bytes
-    ClientCert: ?*u8,
-    CertSize: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "davclnt" fn DavCancelConnectionsToServer(
-    lpName: ?[*:0]u16,
-    fForce: BOOL,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn DavDeleteConnection(
-    ConnectionHandle: ?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn DavFlushFile(
-    hFile: ?HANDLE,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn DavGetExtendedError(
-    hFile: ?HANDLE,
-    ExtError: ?*u32,
-    ExtErrorString: [*:0]u16,
-    cChSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn DavGetHTTPFromUNCPath(
-    UncPath: ?[*:0]const u16,
-    Url: ?[*:0]u16,
-    lpSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "davclnt" fn DavGetTheLockOwnerOfTheFile(
-    FileName: ?[*:0]const u16,
-    /// parameter "LockOwnerNameLengthInBytes" is the size in bytes
-    LockOwnerName: ?[*:0]u16,
-    LockOwnerNameLengthInBytes: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "netapi32" fn DavGetUNCFromHTTPPath(
-    Url: ?[*:0]const u16,
-    UncPath: ?[*:0]u16,
-    lpSize: ?*u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "davclnt" fn DavInvalidateCache(
-    URLName: ?[*:0]const u16,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "davclnt" fn DavRegisterAuthCallback(
-    CallBack: ?PFNDAVAUTHCALLBACK,
-    Version: u32,
-) callconv(.winapi) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "davclnt" fn DavUnregisterAuthCallback(
-    hCallback: u32,
-) callconv(.winapi) void;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (2)
+// Section: Imports (1)
 //--------------------------------------------------------------------------------
 const BOOL = i32;
-const HANDLE = @import("../foundation.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -264,97 +264,15 @@ pub const SRPHOSTING_VERSION1 = SRPHOSTING_VERSION.@"1";
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (13)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "efswrt" fn ProtectFileToEnterpriseIdentity(
-    fileOrFolderPath: ?[*:0]const u16,
-    identity: ?[*:0]const u16,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "srpapi" fn SrpCloseThreadNetworkContext(
-    threadNetworkContext: ?*HTHREAD_NETWORK_CONTEXT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "srpapi" fn SrpCreateThreadNetworkContext(
-    enterpriseId: ?[*:0]const u16,
-    threadNetworkContext: ?*HTHREAD_NETWORK_CONTEXT,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "srpapi" fn SrpDisablePermissiveModeFileEncryption(
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "srpapi" fn SrpDoesPolicyAllowAppExecution(
-    packageId: ?*const PACKAGE_ID,
-    isAllowed: ?*BOOL,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "srpapi" fn SrpEnablePermissiveModeFileEncryption(
-    enterpriseId: ?[*:0]const u16,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "srpapi" fn SrpGetEnterpriseIds(
-    tokenHandle: ?HANDLE,
-    numberOfBytes: ?*u32,
-    /// parameter "numberOfBytes" is the size in bytes
-    enterpriseIds: ?*?[*:0]u16,
-    enterpriseIdCount: ?*u32,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "srpapi" fn SrpGetEnterprisePolicy(
-    tokenHandle: ?HANDLE,
-    policyFlags: ?*ENTERPRISE_DATA_POLICIES,
-) callconv(.winapi) HRESULT;
-
-pub extern "srpapi" fn SrpHostingInitialize(
-    Version: SRPHOSTING_VERSION,
-    Type: SRPHOSTING_TYPE,
-    pvData: ?*anyopaque,
-    cbData: u32,
-) callconv(.winapi) HRESULT;
-
-pub extern "srpapi" fn SrpHostingTerminate(
-    Type: SRPHOSTING_TYPE,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "srpapi" fn SrpIsTokenService(
-    TokenHandle: ?HANDLE,
-    IsTokenService: ?*u8,
-) callconv(.winapi) NTSTATUS;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "srpapi" fn SrpSetTokenEnterpriseId(
-    tokenHandle: ?HANDLE,
-    enterpriseId: ?[*:0]const u16,
-) callconv(.winapi) HRESULT;
-
-pub extern "efswrt" fn UnprotectFile(
-    fileOrFolderPath: ?[*:0]const u16,
-    options: ?*const FILE_UNPROTECT_OPTIONS,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = i32;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../zig.zig").HRESULT;
 const HSTRING = @import("../system/win_rt.zig").HSTRING;
 const HWND = @import("../foundation.zig").HWND;
 const IInspectable = @import("../system/win_rt.zig").IInspectable;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const NTSTATUS = @import("std").os.windows.NTSTATUS;
-const PACKAGE_ID = @import("../storage/packaging/appx.zig").PACKAGE_ID;
 
 test {
     @setEvalBranchQuota(

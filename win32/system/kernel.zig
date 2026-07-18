@@ -309,48 +309,6 @@ pub const SLIST_HEADER = switch(@import("../zig.zig").arch) {
 };
 
 //--------------------------------------------------------------------------------
-// Section: Functions (7)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ntdll" fn RtlFirstEntrySList(
-    ListHead: ?*const SLIST_HEADER,
-) callconv(.winapi) ?*SLIST_ENTRY;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ntdll" fn RtlInitializeSListHead(
-    ListHead: ?*SLIST_HEADER,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ntdll" fn RtlInterlockedFlushSList(
-    ListHead: ?*SLIST_HEADER,
-) callconv(.winapi) ?*SLIST_ENTRY;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ntdll" fn RtlInterlockedPopEntrySList(
-    ListHead: ?*SLIST_HEADER,
-) callconv(.winapi) ?*SLIST_ENTRY;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ntdll" fn RtlInterlockedPushEntrySList(
-    ListHead: ?*SLIST_HEADER,
-    ListEntry: ?*SLIST_ENTRY,
-) callconv(.winapi) ?*SLIST_ENTRY;
-
-pub extern "ntdll" fn RtlInterlockedPushListSListEx(
-    ListHead: ?*SLIST_HEADER,
-    List: ?*SLIST_ENTRY,
-    ListEnd: ?*SLIST_ENTRY,
-    Count: u32,
-) callconv(.winapi) ?*SLIST_ENTRY;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ntdll" fn RtlQueryDepthSList(
-    ListHead: ?*SLIST_HEADER,
-) callconv(.winapi) u16;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

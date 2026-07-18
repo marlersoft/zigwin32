@@ -2302,28 +2302,6 @@ pub const SF_STATUS_REQ_READ_NEXT = SF_STATUS_TYPE.READ_NEXT;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (4)
-//--------------------------------------------------------------------------------
-pub extern "rpcproxy" fn GetExtensionVersion(
-    pVer: ?*HSE_VERSION_INFO,
-) callconv(.winapi) BOOL;
-
-pub extern "rpcproxy" fn GetFilterVersion(
-    pVer: ?*HTTP_FILTER_VERSION,
-) callconv(.winapi) BOOL;
-
-pub extern "rpcproxy" fn HttpExtensionProc(
-    pECB: ?*EXTENSION_CONTROL_BLOCK,
-) callconv(.winapi) u32;
-
-pub extern "rpcproxy" fn HttpFilterProc(
-    pfc: ?*HTTP_FILTER_CONTEXT,
-    NotificationType: u32,
-    pvNotification: ?*anyopaque,
-) callconv(.winapi) u32;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

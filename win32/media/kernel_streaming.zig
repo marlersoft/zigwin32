@@ -7199,62 +7199,6 @@ pub const KSSTREAM_HEADER = switch(@import("../zig.zig").arch) {
 };
 
 //--------------------------------------------------------------------------------
-// Section: Functions (8)
-//--------------------------------------------------------------------------------
-pub extern "ksuser" fn KsCreateAllocator(
-    ConnectionHandle: ?HANDLE,
-    AllocatorFraming: ?*KSALLOCATOR_FRAMING,
-    AllocatorHandle: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-pub extern "ksuser" fn KsCreateAllocator2(
-    ConnectionHandle: ?HANDLE,
-    AllocatorFraming: ?*KSALLOCATOR_FRAMING,
-    AllocatorHandle: ?*?HANDLE,
-) callconv(.winapi) HRESULT;
-
-pub extern "ksuser" fn KsCreateClock(
-    ConnectionHandle: ?HANDLE,
-    ClockCreate: ?*KSCLOCK_CREATE,
-    ClockHandle: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-pub extern "ksuser" fn KsCreateClock2(
-    ConnectionHandle: ?HANDLE,
-    ClockCreate: ?*KSCLOCK_CREATE,
-    ClockHandle: ?*?HANDLE,
-) callconv(.winapi) HRESULT;
-
-pub extern "ksuser" fn KsCreatePin(
-    FilterHandle: ?HANDLE,
-    Connect: ?*KSPIN_CONNECT,
-    DesiredAccess: u32,
-    ConnectionHandle: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-pub extern "ksuser" fn KsCreatePin2(
-    FilterHandle: ?HANDLE,
-    Connect: ?*KSPIN_CONNECT,
-    DesiredAccess: u32,
-    ConnectionHandle: ?*?HANDLE,
-) callconv(.winapi) HRESULT;
-
-pub extern "ksuser" fn KsCreateTopologyNode(
-    ParentHandle: ?HANDLE,
-    NodeCreate: ?*KSNODE_CREATE,
-    DesiredAccess: u32,
-    NodeHandle: ?*?HANDLE,
-) callconv(.winapi) u32;
-
-pub extern "ksuser" fn KsCreateTopologyNode2(
-    ParentHandle: ?HANDLE,
-    NodeCreate: ?*KSNODE_CREATE,
-    DesiredAccess: u32,
-    NodeHandle: ?*?HANDLE,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

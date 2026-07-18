@@ -1133,83 +1133,11 @@ pub const CLSID_UPnPServices = &CLSID_UPnPServices_Value;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (9)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "cfgmgr32" fn SwDeviceClose(
-    hSwDevice: ?HSWDEVICE,
-) callconv(.winapi) void;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "cfgmgr32" fn SwDeviceCreate(
-    pszEnumeratorName: ?[*:0]const u16,
-    pszParentDeviceInstance: ?[*:0]const u16,
-    pCreateInfo: ?*const SW_DEVICE_CREATE_INFO,
-    cPropertyCount: u32,
-    pProperties: ?[*]const DEVPROPERTY,
-    pCallback: ?SW_DEVICE_CREATE_CALLBACK,
-    pContext: ?*anyopaque,
-    phSwDevice: ?*isize,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "cfgmgr32" fn SwDeviceGetLifetime(
-    hSwDevice: ?HSWDEVICE,
-    pLifetime: ?*SW_DEVICE_LIFETIME,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "cfgmgr32" fn SwDeviceInterfacePropertySet(
-    hSwDevice: ?HSWDEVICE,
-    pszDeviceInterfaceId: ?[*:0]const u16,
-    cPropertyCount: u32,
-    pProperties: [*]const DEVPROPERTY,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "cfgmgr32" fn SwDeviceInterfaceRegister(
-    hSwDevice: ?HSWDEVICE,
-    pInterfaceClassGuid: ?*const Guid,
-    pszReferenceString: ?[*:0]const u16,
-    cPropertyCount: u32,
-    pProperties: ?[*]const DEVPROPERTY,
-    fEnabled: BOOL,
-    ppszDeviceInterfaceId: ?*?[*:0]u16,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "cfgmgr32" fn SwDeviceInterfaceSetState(
-    hSwDevice: ?HSWDEVICE,
-    pszDeviceInterfaceId: ?[*:0]const u16,
-    fEnabled: BOOL,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "cfgmgr32" fn SwDevicePropertySet(
-    hSwDevice: ?HSWDEVICE,
-    cPropertyCount: u32,
-    pProperties: [*]const DEVPROPERTY,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.1'
-pub extern "cfgmgr32" fn SwDeviceSetLifetime(
-    hSwDevice: ?HSWDEVICE,
-    Lifetime: SW_DEVICE_LIFETIME,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "cfgmgr32" fn SwMemFree(
-    pMem: ?*anyopaque,
-) callconv(.winapi) void;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = i32;
 const BSTR = *u16;
-const DEVPROPERTY = @import("../../devices/properties.zig").DEVPROPERTY;
 const HRESULT = @import("../../zig.zig").HRESULT;
 const IDispatch = @import("../../system/com.zig").IDispatch;
 const IUnknown = @import("../../system/com.zig").IUnknown;

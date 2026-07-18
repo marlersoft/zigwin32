@@ -2266,27 +2266,7 @@ pub const IDMLPageable = extern union {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (2)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "directml" fn DMLCreateDevice(
-    d3d12Device: ?*ID3D12Device,
-    flags: DML_CREATE_DEVICE_FLAGS,
-    riid: ?*const Guid,
-    ppv: ?**anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "directml" fn DMLCreateDevice1(
-    d3d12Device: ?*ID3D12Device,
-    flags: DML_CREATE_DEVICE_FLAGS,
-    minimumFeatureLevel: DML_FEATURE_LEVEL,
-    riid: ?*const Guid,
-    ppv: ?**anyopaque,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = i32;
@@ -2294,7 +2274,6 @@ const D3D12_CPU_DESCRIPTOR_HANDLE = @import("../../graphics/direct3d12.zig").D3D
 const D3D12_GPU_DESCRIPTOR_HANDLE = @import("../../graphics/direct3d12.zig").D3D12_GPU_DESCRIPTOR_HANDLE;
 const HRESULT = @import("../../zig.zig").HRESULT;
 const ID3D12CommandList = @import("../../graphics/direct3d12.zig").ID3D12CommandList;
-const ID3D12Device = @import("../../graphics/direct3d12.zig").ID3D12Device;
 const ID3D12Resource = @import("../../graphics/direct3d12.zig").ID3D12Resource;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 

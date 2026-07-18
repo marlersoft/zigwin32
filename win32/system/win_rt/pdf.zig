@@ -50,15 +50,6 @@ pub const PFN_PDF_CREATE_RENDERER = *const fn(
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (1)
-//--------------------------------------------------------------------------------
-pub extern "windows.data.pdf" fn PdfCreateRenderer(
-    pDevice: ?*IDXGIDevice,
-    ppRenderer: ?*?*IPdfRendererNative,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;

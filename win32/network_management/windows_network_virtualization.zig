@@ -104,31 +104,13 @@ pub const WNV_REDIRECT_PARAM = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (2)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windowsserver2012'
-pub extern "wnvapi" fn WnvOpen(
-) callconv(.winapi) ?HANDLE;
-
-// TODO: this type is limited to platform 'windowsserver2012'
-pub extern "wnvapi" fn WnvRequestNotification(
-    WnvHandle: ?HANDLE,
-    NotificationParam: ?*WNV_NOTIFICATION_PARAM,
-    Overlapped: ?*OVERLAPPED,
-    BytesTransferred: ?*u32,
-) callconv(.winapi) u32;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const ADDRESS_FAMILY = @import("../networking/win_sock.zig").ADDRESS_FAMILY;
 const DL_EUI48 = @import("../networking/win_sock.zig").DL_EUI48;
-const HANDLE = @import("../foundation.zig").HANDLE;
 const IN6_ADDR = @import("../networking/win_sock.zig").IN6_ADDR;
 const IN_ADDR = @import("../networking/win_sock.zig").IN_ADDR;
 const NL_DAD_STATE = @import("../networking/win_sock.zig").NL_DAD_STATE;
-const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
 
 test {
     @setEvalBranchQuota(

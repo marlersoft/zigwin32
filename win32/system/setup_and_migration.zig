@@ -12,27 +12,8 @@ pub const OOBE_COMPLETED_CALLBACK = *const fn(
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (3)
+// Section: Imports (0)
 //--------------------------------------------------------------------------------
-pub extern "kernel32" fn OOBEComplete(
-    isOOBEComplete: ?*BOOL,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn RegisterWaitUntilOOBECompleted(
-    OOBECompletedCallback: ?OOBE_COMPLETED_CALLBACK,
-    CallbackContext: ?*anyopaque,
-    WaitHandle: ?*?*anyopaque,
-) callconv(.winapi) BOOL;
-
-pub extern "kernel32" fn UnregisterWaitUntilOOBECompleted(
-    WaitHandle: ?*anyopaque,
-) callconv(.winapi) BOOL;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (1)
-//--------------------------------------------------------------------------------
-const BOOL = i32;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

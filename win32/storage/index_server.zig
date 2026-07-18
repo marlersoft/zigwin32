@@ -379,44 +379,10 @@ pub const DBID = switch(@import("../zig.zig").arch) {
 };
 
 //--------------------------------------------------------------------------------
-// Section: Functions (4)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "query" fn BindIFilterFromStorage(
-    pStg: ?*IStorage,
-    pUnkOuter: ?*IUnknown,
-    ppIUnk: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "query" fn BindIFilterFromStream(
-    pStm: ?*IStream,
-    pUnkOuter: ?*IUnknown,
-    ppIUnk: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "query" fn LoadIFilter(
-    pwcsPath: ?[*:0]const u16,
-    pUnkOuter: ?*IUnknown,
-    ppIUnk: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-pub extern "query" fn LoadIFilterEx(
-    pwcsPath: ?[*:0]const u16,
-    dwFlags: u32,
-    riid: ?*const Guid,
-    ppIUnk: ?*?*anyopaque,
-) callconv(.winapi) HRESULT;
-
-
-//--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HRESULT = @import("../zig.zig").HRESULT;
-const IStorage = @import("../system/com/structured_storage.zig").IStorage;
-const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PROPSPEC = @import("../system/com/structured_storage.zig").PROPSPEC;
 const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
