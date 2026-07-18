@@ -43,16 +43,6 @@ pub extern "kernel32" fn SetMailslotInfo(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (1)
-//--------------------------------------------------------------------------------
-pub const CreateMailslot = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CreateMailslotA,
-    .wide => @This().CreateMailslotW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CreateMailslot' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
 const BOOL = i32;

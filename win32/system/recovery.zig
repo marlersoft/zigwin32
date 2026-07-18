@@ -100,9 +100,6 @@ pub extern "kernel32" fn UnregisterApplicationRestart(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (0)
-//--------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
 const APPLICATION_RECOVERY_CALLBACK = @import("../system/windows_programming.zig").APPLICATION_RECOVERY_CALLBACK;

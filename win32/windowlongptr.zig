@@ -21,15 +21,3 @@ pub const GetWindowLongPtrW = if (@sizeOf(usize) == 8)
     win32.ui.windows_and_messaging.GetWindowLongPtrW
 else
     win32.ui.windows_and_messaging.GetWindowLongW;
-
-pub const SetWindowLongPtr = switch (@import("zig.zig").unicode_mode) {
-    .ansi => SetWindowLongPtrA,
-    .wide => SetWindowLongPtrW,
-    .unspecified => if (@import("builtin").is_test) *opaque {} else @compileError("'SetWindowLongPtr' requires that UNICODE be set to true or false in the root module"),
-};
-
-pub const GetWindowLongPtr = switch (@import("zig.zig").unicode_mode) {
-    .ansi => GetWindowLongPtrA,
-    .wide => GetWindowLongPtrW,
-    .unspecified => if (@import("builtin").is_test) *opaque {} else @compileError("'GetWindowLongPtr' requires that UNICODE be set to true or false in the root module"),
-};

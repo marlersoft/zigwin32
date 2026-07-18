@@ -1007,58 +1007,6 @@ pub extern "advapi32" fn ReportEventW(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (7)
-//--------------------------------------------------------------------------------
-pub const BackupEventLog = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().BackupEventLogA,
-    .wide => @This().BackupEventLogW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'BackupEventLog' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ClearEventLog = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ClearEventLogA,
-    .wide => @This().ClearEventLogW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ClearEventLog' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const OpenBackupEventLog = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().OpenBackupEventLogA,
-    .wide => @This().OpenBackupEventLogW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'OpenBackupEventLog' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const OpenEventLog = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().OpenEventLogA,
-    .wide => @This().OpenEventLogW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'OpenEventLog' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ReadEventLog = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ReadEventLogA,
-    .wide => @This().ReadEventLogW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ReadEventLog' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const RegisterEventSource = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RegisterEventSourceA,
-    .wide => @This().RegisterEventSourceW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RegisterEventSource' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ReportEvent = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ReportEventA,
-    .wide => @This().ReportEventW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ReportEvent' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

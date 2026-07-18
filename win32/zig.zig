@@ -45,26 +45,7 @@ const win32 = struct {
     const GetDpiForWindow = mod_root.ui.hi_dpi.GetDpiForWindow;
 };
 
-const root = @import("root");
-pub const UnicodeMode = enum { ansi, wide, unspecified };
-pub const unicode_mode: UnicodeMode = if (@hasDecl(root, "UNICODE")) (if (root.UNICODE) .wide else .ansi) else .unspecified;
-
 pub const L = std.unicode.utf8ToUtf16LeStringLiteral;
-
-pub const TCHAR = switch (unicode_mode) {
-    .ansi => u8,
-    .wide => u16,
-    .unspecified => if (builtin.is_test) void else @compileError("'TCHAR' requires that UNICODE be set to true or false in the root module"),
-};
-pub const _T = switch (unicode_mode) {
-    .ansi => (struct {
-        pub fn _T(comptime str: []const u8) *const [str.len:0]u8 {
-            return str;
-        }
-    })._T,
-    .wide => L,
-    .unspecified => if (builtin.is_test) void else @compileError("'_T' requires that UNICODE be set to true or false in the root module"),
-};
 
 pub const Arch = enum { X86, X64, Arm64 };
 pub const arch: Arch = switch (builtin.target.cpu.arch) {
@@ -400,22 +381,6 @@ pub fn hiword(value: anytype) u16 {
 pub const has_window_longptr = switch (arch) {
     .X86 => false,
     .X64, .Arm64 => true,
-};
-
-pub const getWindowLongPtr = switch (unicode_mode) {
-    .ansi => getWindowLongPtrA,
-    .wide => getWindowLongPtrW,
-    .unspecified => if (builtin.is_test) struct {} else @compileError(
-        "getWindowLongPtr requires that UNICODE be set to true or false in the root module",
-    ),
-};
-
-pub const setWindowLongPtr = switch (unicode_mode) {
-    .ansi => setWindowLongPtrA,
-    .wide => setWindowLongPtrW,
-    .unspecified => if (builtin.is_test) struct {} else @compileError(
-        "setWindowLongPtr requires that UNICODE be set to true or false in the root module",
-    ),
 };
 
 pub fn getWindowLongPtrA(hwnd: win32.HWND, index: i32) usize {

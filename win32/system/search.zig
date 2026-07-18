@@ -15730,44 +15730,6 @@ pub extern "odbc32" fn SQLTransact(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (5)
-//--------------------------------------------------------------------------------
-pub const bcp_init = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().bcp_initA,
-    .wide => @This().bcp_initW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'bcp_init' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const bcp_readfmt = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().bcp_readfmtA,
-    .wide => @This().bcp_readfmtW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'bcp_readfmt' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const bcp_writefmt = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().bcp_writefmtA,
-    .wide => @This().bcp_writefmtW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'bcp_writefmt' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const dbprtype = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().dbprtypeA,
-    .wide => @This().dbprtypeW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'dbprtype' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SQLLinkedCatalogs = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SQLLinkedCatalogsA,
-    .wide => @This().SQLLinkedCatalogsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SQLLinkedCatalogs' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (45)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

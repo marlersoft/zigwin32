@@ -10955,51 +10955,6 @@ pub extern "uiautomationcore" fn WindowPattern_WaitForInputIdle(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (6)
-//--------------------------------------------------------------------------------
-pub const HIGHCONTRAST = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().HIGHCONTRASTA,
-    .wide => @This().HIGHCONTRASTW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'HIGHCONTRAST' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SERIALKEYS = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SERIALKEYSA,
-    .wide => @This().SERIALKEYSW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SERIALKEYS' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SOUNDSENTRY = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SOUNDSENTRYA,
-    .wide => @This().SOUNDSENTRYW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SOUNDSENTRY' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CreateStdAccessibleProxy = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CreateStdAccessibleProxyA,
-    .wide => @This().CreateStdAccessibleProxyW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CreateStdAccessibleProxy' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetRoleText = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetRoleTextA,
-    .wide => @This().GetRoleTextW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetRoleText' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetStateText = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetStateTextA,
-    .wide => @This().GetStateTextW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetStateText' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

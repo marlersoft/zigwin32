@@ -774,44 +774,6 @@ pub extern "kernel32" fn WaitCommEvent(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (5)
-//--------------------------------------------------------------------------------
-pub const BuildCommDCB = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().BuildCommDCBA,
-    .wide => @This().BuildCommDCBW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'BuildCommDCB' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const BuildCommDCBAndTimeouts = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().BuildCommDCBAndTimeoutsA,
-    .wide => @This().BuildCommDCBAndTimeoutsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'BuildCommDCBAndTimeouts' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CommConfigDialog = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CommConfigDialogA,
-    .wide => @This().CommConfigDialogW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CommConfigDialog' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetDefaultCommConfig = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetDefaultCommConfigA,
-    .wide => @This().GetDefaultCommConfigW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetDefaultCommConfig' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SetDefaultCommConfig = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SetDefaultCommConfigA,
-    .wide => @This().SetDefaultCommConfigW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SetDefaultCommConfig' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

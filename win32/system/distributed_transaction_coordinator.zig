@@ -2632,23 +2632,6 @@ pub extern "xolehlp" fn DtcGetTransactionManagerExW(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (2)
-//--------------------------------------------------------------------------------
-pub const DTC_GET_TRANSACTION_MANAGER_EX_ = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().DTC_GET_TRANSACTION_MANAGER_EX_A,
-    .wide => @This().DTC_GET_TRANSACTION_MANAGER_EX_W,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'DTC_GET_TRANSACTION_MANAGER_EX_' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const DtcGetTransactionManagerEx = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().DtcGetTransactionManagerExA,
-    .wide => @This().DtcGetTransactionManagerExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'DtcGetTransactionManagerEx' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

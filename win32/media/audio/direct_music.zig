@@ -1476,16 +1476,6 @@ pub const WSMPL = extern struct {
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (1)
-//--------------------------------------------------------------------------------
-pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKA,
-    .wide => @This().LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;

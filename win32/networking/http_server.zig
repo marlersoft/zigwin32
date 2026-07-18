@@ -1757,16 +1757,6 @@ pub extern "httpapi" fn HttpWaitForDisconnectEx(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (1)
-//--------------------------------------------------------------------------------
-pub const HTTP_SERVICE_BINDING_ = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().HTTP_SERVICE_BINDING_A,
-    .wide => @This().HTTP_SERVICE_BINDING_W,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'HTTP_SERVICE_BINDING_' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

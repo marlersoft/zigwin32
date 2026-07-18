@@ -7106,44 +7106,6 @@ pub const UID_AUTOTABLE = UNDONAMEID.AUTOTABLE;
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (5)
-//--------------------------------------------------------------------------------
-pub const CHARFORMAT2 = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().CHARFORMAT2A,
-    .wide => @This().CHARFORMAT2W,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CHARFORMAT2' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CHARFORMAT = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().CHARFORMATA,
-    .wide => @This().CHARFORMATW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CHARFORMAT' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const FINDTEXT = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().FINDTEXTA,
-    .wide => @This().FINDTEXTW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'FINDTEXT' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const FINDTEXTEX = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().FINDTEXTEXA,
-    .wide => @This().FINDTEXTEXW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'FINDTEXTEX' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const TEXTRANGE = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().TEXTRANGEA,
-    .wide => @This().TEXTRANGEW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'TEXTRANGE' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (46)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;

@@ -1387,37 +1387,6 @@ pub extern "api-ms-win-core-memory-l1-1-5" fn VirtualUnlockEx(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (4)
-//--------------------------------------------------------------------------------
-pub const CreateFileMapping = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CreateFileMappingA,
-    .wide => @This().CreateFileMappingW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CreateFileMapping' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CreateFileMappingNuma = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CreateFileMappingNumaA,
-    .wide => @This().CreateFileMappingNumaW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CreateFileMappingNuma' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const IsBadStringPtr = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().IsBadStringPtrA,
-    .wide => @This().IsBadStringPtrW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'IsBadStringPtr' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const OpenFileMapping = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().OpenFileMappingA,
-    .wide => @This().OpenFileMappingW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'OpenFileMapping' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
 const BOOL = i32;

@@ -5667,30 +5667,6 @@ pub extern "gdi32" fn StartPage(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (3)
-//--------------------------------------------------------------------------------
-pub const DOCINFO = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().DOCINFOA,
-    .wide => @This().DOCINFOW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'DOCINFO' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const DeviceCapabilities = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().DeviceCapabilitiesA,
-    .wide => @This().DeviceCapabilitiesW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'DeviceCapabilities' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const StartDoc = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().StartDocA,
-    .wide => @This().StartDocW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'StartDoc' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

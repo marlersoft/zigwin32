@@ -817,23 +817,6 @@ pub extern "kernel32" fn WerUnregisterRuntimeExceptionModule(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (2)
-//--------------------------------------------------------------------------------
-pub const pfn_ADDEREXCLUDEDAPPLICATION = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().pfn_ADDEREXCLUDEDAPPLICATIONA,
-    .wide => @This().pfn_ADDEREXCLUDEDAPPLICATIONW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'pfn_ADDEREXCLUDEDAPPLICATION' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const AddERExcludedApplication = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().AddERExcludedApplicationA,
-    .wide => @This().AddERExcludedApplicationW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'AddERExcludedApplication' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

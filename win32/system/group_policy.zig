@@ -4279,37 +4279,6 @@ pub extern "userenv" fn UnregisterGPNotification(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (4)
-//--------------------------------------------------------------------------------
-pub const GROUP_POLICY_OBJECT = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GROUP_POLICY_OBJECTA,
-    .wide => @This().GROUP_POLICY_OBJECTW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GROUP_POLICY_OBJECT' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const FreeGPOList = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().FreeGPOListA,
-    .wide => @This().FreeGPOListW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'FreeGPOList' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetAppliedGPOList = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetAppliedGPOListA,
-    .wide => @This().GetAppliedGPOListW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetAppliedGPOList' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetGPOList = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetGPOListA,
-    .wide => @This().GetGPOListW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetGPOList' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (24)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

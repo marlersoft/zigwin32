@@ -286,16 +286,6 @@ pub extern "user32" fn RegisterRawInputDevices(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (1)
-//--------------------------------------------------------------------------------
-pub const GetRawInputDeviceInfo = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetRawInputDeviceInfoA,
-    .wide => @This().GetRawInputDeviceInfoW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetRawInputDeviceInfo' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
 const BOOL = i32;

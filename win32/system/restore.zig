@@ -96,23 +96,6 @@ pub extern "sfc" fn SRSetRestorePointW(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (2)
-//--------------------------------------------------------------------------------
-pub const RESTOREPOINTINFO = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().RESTOREPOINTINFOA,
-    .wide => @This().RESTOREPOINTINFOW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'RESTOREPOINTINFO' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const SRSetRestorePoint = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().SRSetRestorePointA,
-    .wide => @This().SRSetRestorePointW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'SRSetRestorePoint' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (2)
 //--------------------------------------------------------------------------------
 const BOOL = i32;

@@ -3344,23 +3344,6 @@ pub extern "opengl32" fn wglUseFontOutlinesW(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (2)
-//--------------------------------------------------------------------------------
-pub const wglUseFontBitmaps = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().wglUseFontBitmapsA,
-    .wide => @This().wglUseFontBitmapsW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'wglUseFontBitmaps' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const wglUseFontOutlines = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().wglUseFontOutlinesA,
-    .wide => @This().wglUseFontOutlinesW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'wglUseFontOutlines' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const BOOL = i32;

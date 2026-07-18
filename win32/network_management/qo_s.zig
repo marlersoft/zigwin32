@@ -1575,37 +1575,6 @@ pub extern "traffic" fn TcSetInterface(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (4)
-//--------------------------------------------------------------------------------
-pub const TcGetFlowName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().TcGetFlowNameA,
-    .wide => @This().TcGetFlowNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'TcGetFlowName' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const TcOpenInterface = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().TcOpenInterfaceA,
-    .wide => @This().TcOpenInterfaceW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'TcOpenInterface' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const TcQueryFlow = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().TcQueryFlowA,
-    .wide => @This().TcQueryFlowW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'TcQueryFlow' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const TcSetFlow = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().TcSetFlowA,
-    .wide => @This().TcSetFlowW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'TcSetFlow' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

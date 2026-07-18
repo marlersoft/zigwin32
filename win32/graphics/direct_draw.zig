@@ -7518,44 +7518,6 @@ pub extern "ddraw" fn DirectDrawEnumerateW(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (5)
-//--------------------------------------------------------------------------------
-pub const LPDDENUMCALLBACK = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().LPDDENUMCALLBACKA,
-    .wide => @This().LPDDENUMCALLBACKW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LPDDENUMCALLBACK' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const LPDDENUMCALLBACKEX = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().LPDDENUMCALLBACKEXA,
-    .wide => @This().LPDDENUMCALLBACKEXW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LPDDENUMCALLBACKEX' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const LPDIRECTDRAWENUMERATEEX = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().LPDIRECTDRAWENUMERATEEXA,
-    .wide => @This().LPDIRECTDRAWENUMERATEEXW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'LPDIRECTDRAWENUMERATEEX' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const DirectDrawEnumerate = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().DirectDrawEnumerateA,
-    .wide => @This().DirectDrawEnumerateW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'DirectDrawEnumerate' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const DirectDrawEnumerateEx = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().DirectDrawEnumerateExA,
-    .wide => @This().DirectDrawEnumerateExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'DirectDrawEnumerateEx' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

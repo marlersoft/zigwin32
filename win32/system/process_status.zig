@@ -307,65 +307,6 @@ pub extern "kernel32" fn K32QueryWorkingSetEx(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (8)
-//--------------------------------------------------------------------------------
-pub const PENUM_PAGE_FILE_CALLBACK = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().PENUM_PAGE_FILE_CALLBACKA,
-    .wide => @This().PENUM_PAGE_FILE_CALLBACKW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'PENUM_PAGE_FILE_CALLBACK' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const K32EnumPageFiles = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().K32EnumPageFilesA,
-    .wide => @This().K32EnumPageFilesW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'K32EnumPageFiles' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const K32GetDeviceDriverBaseName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().K32GetDeviceDriverBaseNameA,
-    .wide => @This().K32GetDeviceDriverBaseNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'K32GetDeviceDriverBaseName' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const K32GetDeviceDriverFileName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().K32GetDeviceDriverFileNameA,
-    .wide => @This().K32GetDeviceDriverFileNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'K32GetDeviceDriverFileName' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const K32GetMappedFileName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().K32GetMappedFileNameA,
-    .wide => @This().K32GetMappedFileNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'K32GetMappedFileName' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const K32GetModuleBaseName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().K32GetModuleBaseNameA,
-    .wide => @This().K32GetModuleBaseNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'K32GetModuleBaseName' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const K32GetModuleFileNameEx = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().K32GetModuleFileNameExA,
-    .wide => @This().K32GetModuleFileNameExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'K32GetModuleFileNameEx' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const K32GetProcessImageFileName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().K32GetProcessImageFileNameA,
-    .wide => @This().K32GetProcessImageFileNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'K32GetProcessImageFileName' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
 const BOOL = i32;

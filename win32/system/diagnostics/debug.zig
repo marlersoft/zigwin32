@@ -43605,37 +43605,6 @@ pub extern "kernel32" fn WriteProcessMemory(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (4)
-//--------------------------------------------------------------------------------
-pub const FatalAppExit = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().FatalAppExitA,
-    .wide => @This().FatalAppExitW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'FatalAppExit' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const FormatMessage = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().FormatMessageA,
-    .wide => @This().FormatMessageW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'FormatMessage' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const MapFileAndCheckSum = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().MapFileAndCheckSumA,
-    .wide => @This().MapFileAndCheckSumW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'MapFileAndCheckSum' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const OutputDebugString = switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => @This().OutputDebugStringA,
-    .wide => @This().OutputDebugStringW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'OutputDebugString' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (39)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;

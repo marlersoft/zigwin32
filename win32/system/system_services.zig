@@ -6419,23 +6419,6 @@ pub extern "user32" fn UnregisterDeviceNotification(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (2)
-//--------------------------------------------------------------------------------
-pub const DEV_BROADCAST_DEVICEINTERFACE_ = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().DEV_BROADCAST_DEVICEINTERFACE_A,
-    .wide => @This().DEV_BROADCAST_DEVICEINTERFACE_W,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'DEV_BROADCAST_DEVICEINTERFACE_' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const DEV_BROADCAST_PORT_ = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().DEV_BROADCAST_PORT_A,
-    .wide => @This().DEV_BROADCAST_PORT_W,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'DEV_BROADCAST_PORT_' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (18)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

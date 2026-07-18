@@ -42192,23 +42192,6 @@ pub extern "quartz" fn AMGetErrorTextW(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (2)
-//--------------------------------------------------------------------------------
-pub const AMGETERRORTEXTPROC = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().AMGETERRORTEXTPROCA,
-    .wide => @This().AMGETERRORTEXTPROCW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'AMGETERRORTEXTPROC' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const AMGetErrorText = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().AMGetErrorTextA,
-    .wide => @This().AMGetErrorTextW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'AMGetErrorText' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (82)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

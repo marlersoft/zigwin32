@@ -422,37 +422,6 @@ pub extern "user32" fn ShutdownBlockReasonQuery(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (4)
-//--------------------------------------------------------------------------------
-pub const AbortSystemShutdown = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().AbortSystemShutdownA,
-    .wide => @This().AbortSystemShutdownW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'AbortSystemShutdown' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const InitiateShutdown = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().InitiateShutdownA,
-    .wide => @This().InitiateShutdownW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'InitiateShutdown' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const InitiateSystemShutdown = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().InitiateSystemShutdownA,
-    .wide => @This().InitiateSystemShutdownW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'InitiateSystemShutdown' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const InitiateSystemShutdownEx = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().InitiateSystemShutdownExA,
-    .wide => @This().InitiateSystemShutdownExW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'InitiateSystemShutdownEx' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
 const BOOL = i32;

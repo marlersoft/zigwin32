@@ -266,16 +266,6 @@ pub extern "sensapi" fn IsNetworkAlive(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (1)
-//--------------------------------------------------------------------------------
-pub const IsDestinationReachable = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().IsDestinationReachableA,
-    .wide => @This().IsDestinationReachableW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'IsDestinationReachable' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

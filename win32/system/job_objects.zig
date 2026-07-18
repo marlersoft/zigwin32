@@ -779,23 +779,6 @@ pub extern "user32" fn UserHandleGrantAccess(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (2)
-//--------------------------------------------------------------------------------
-pub const CreateJobObject = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CreateJobObjectA,
-    .wide => @This().CreateJobObjectW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CreateJobObject' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const OpenJobObject = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().OpenJobObjectA,
-    .wide => @This().OpenJobObjectW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'OpenJobObject' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
 const BOOL = i32;

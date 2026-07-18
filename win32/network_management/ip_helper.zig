@@ -3837,23 +3837,6 @@ pub extern "iphlpapi" fn UnregisterInterfaceTimestampConfigChange(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (2)
-//--------------------------------------------------------------------------------
-pub const ConvertInterfaceLuidToName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ConvertInterfaceLuidToNameA,
-    .wide => @This().ConvertInterfaceLuidToNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ConvertInterfaceLuidToName' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const ConvertInterfaceNameToLuid = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().ConvertInterfaceNameToLuidA,
-    .wide => @This().ConvertInterfaceNameToLuidW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'ConvertInterfaceNameToLuid' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (38)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;

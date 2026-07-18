@@ -246,44 +246,6 @@ pub extern "kernel32" fn WaitNamedPipeW(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (5)
-//--------------------------------------------------------------------------------
-pub const CallNamedPipe = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CallNamedPipeA,
-    .wide => @This().CallNamedPipeW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CallNamedPipe' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const CreateNamedPipe = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().CreateNamedPipeA,
-    .wide => @This().CreateNamedPipeW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'CreateNamedPipe' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetNamedPipeClientComputerName = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetNamedPipeClientComputerNameA,
-    .wide => @This().GetNamedPipeClientComputerNameW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetNamedPipeClientComputerName' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const GetNamedPipeHandleState = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().GetNamedPipeHandleStateA,
-    .wide => @This().GetNamedPipeHandleStateW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'GetNamedPipeHandleState' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-pub const WaitNamedPipe = switch (@import("../zig.zig").unicode_mode) {
-    .ansi => @This().WaitNamedPipeA,
-    .wide => @This().WaitNamedPipeW,
-    .unspecified => if (@import("builtin").is_test) void else @compileError(
-        "'WaitNamedPipe' requires that UNICODE be set to true or false in the root module",
-    ),
-};
-//--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
 const BOOL = i32;
