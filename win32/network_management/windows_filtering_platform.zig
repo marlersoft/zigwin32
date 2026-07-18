@@ -5248,7 +5248,7 @@ pub extern "fwpuclnt" fn IPsecSaEnum1(
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ACL = @import("../security.zig").ACL;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;

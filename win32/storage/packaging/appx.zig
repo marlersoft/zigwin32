@@ -3469,7 +3469,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageRelativeApplicat
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOL = @import("../../foundation.zig").BOOL;
+const BOOL = i32;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IStream = @import("../../system/com.zig").IStream;

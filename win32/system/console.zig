@@ -993,7 +993,7 @@ pub const WriteConsoleOutputCharacter = switch (@import("../zig.zig").unicode_mo
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const COLORREF = @import("../foundation.zig").COLORREF;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;

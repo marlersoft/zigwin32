@@ -65,7 +65,7 @@ pub extern "windows.data.pdf" fn PdfCreateRenderer(
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOLEAN = @import("../../foundation.zig").BOOLEAN;
+const BOOLEAN = u8;
 const D2D_COLOR_F = @import("../../graphics/direct2d/common.zig").D2D_COLOR_F;
 const D2D_RECT_F = @import("../../graphics/direct2d/common.zig").D2D_RECT_F;
 const HRESULT = @import("../../foundation.zig").HRESULT;

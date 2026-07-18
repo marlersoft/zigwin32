@@ -3044,7 +3044,7 @@ pub extern "dcomp" fn DCompositionWaitForCompositorClock(
 // Section: Imports (29)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE = @import("../graphics/direct2d/common.zig").D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE;
 const D2D1_BLEND_MODE = @import("../graphics/direct2d/common.zig").D2D1_BLEND_MODE;
 const D2D1_BORDER_MODE = @import("../graphics/direct2d/common.zig").D2D1_BORDER_MODE;

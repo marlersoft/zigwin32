@@ -1027,7 +1027,7 @@ pub extern "winml" fn WinMLCreateRuntime(
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOL = @import("../../foundation.zig").BOOL;
+const BOOL = i32;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const ID3D12Device = @import("../../graphics/direct3d12.zig").ID3D12Device;
 const ID3D12Resource = @import("../../graphics/direct3d12.zig").ID3D12Resource;

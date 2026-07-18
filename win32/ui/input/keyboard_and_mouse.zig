@@ -1459,7 +1459,7 @@ pub const VkKeyScanEx = switch (@import("../../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../../foundation.zig").BOOL;
+const BOOL = i32;
 const HKL = @import("../../ui/text_services.zig").HKL;
 const HWND = @import("../../foundation.zig").HWND;
 const POINT = @import("../../foundation.zig").POINT;

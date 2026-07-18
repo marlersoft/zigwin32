@@ -141,7 +141,7 @@ pub const MODULEENTRY = extern struct {
 pub const PROCESSENUMPROC = *const fn(
     dwProcessId: u32,
     dwAttributes: u32,
-    lpUserDefined: isize,
+    lpUserDefined: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const SEGMENT_NOTE = extern struct {
@@ -158,7 +158,7 @@ pub const TASKENUMPROC = *const fn(
     dwThreadId: u32,
     hMod16: u16,
     hTask16: u16,
-    lpUserDefined: isize,
+    lpUserDefined: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const TASKENUMPROCEX = *const fn(
@@ -167,7 +167,7 @@ pub const TASKENUMPROCEX = *const fn(
     hTask16: u16,
     pszModName: ?*i8,
     pszFileName: ?*i8,
-    lpUserDefined: isize,
+    lpUserDefined: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const TEMP_BP_NOTE = extern struct {
@@ -222,19 +222,19 @@ pub const VDMDETECTWOWPROC = *const fn(
 
 pub const VDMENUMPROCESSWOWPROC = *const fn(
     param0: ?PROCESSENUMPROC,
-    param1: isize,
+    param1: LPARAM,
 ) callconv(.winapi) i32;
 
 pub const VDMENUMTASKWOWEXPROC = *const fn(
     param0: u32,
     param1: ?TASKENUMPROCEX,
-    param2: isize,
+    param2: LPARAM,
 ) callconv(.winapi) i32;
 
 pub const VDMENUMTASKWOWPROC = *const fn(
     param0: u32,
     param1: ?TASKENUMPROC,
-    param2: isize,
+    param2: LPARAM,
 ) callconv(.winapi) i32;
 
 pub const VDMGETADDREXPRESSIONPROC = *const fn(
@@ -456,12 +456,13 @@ pub const VDMSETCONTEXTPROC = switch(@import("../zig.zig").arch) {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const DEBUG_EVENT = @import("../system/diagnostics/debug.zig").DEBUG_EVENT;
 const FLOATING_SAVE_AREA = @import("../system/kernel.zig").FLOATING_SAVE_AREA;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const LPARAM = isize;
 // 2 arch-specific imports
 const CONTEXT = switch(@import("../zig.zig").arch) {
     .X86 => @import("../system/diagnostics/debug.zig").CONTEXT,

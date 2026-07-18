@@ -127,7 +127,7 @@ pub extern "prntvpt" fn PTReleaseMemory(
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
-const BSTR = @import("../../foundation.zig").BSTR;
+const BSTR = *u16;
 const DEVMODEA = @import("../../graphics/gdi.zig").DEVMODEA;
 const HPTPROVIDER = @import("../../storage/xps.zig").HPTPROVIDER;
 const HRESULT = @import("../../foundation.zig").HRESULT;

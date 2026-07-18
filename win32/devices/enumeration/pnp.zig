@@ -1210,15 +1210,15 @@ pub extern "cfgmgr32" fn SwMemFree(
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOL = @import("../../foundation.zig").BOOL;
-const BSTR = @import("../../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const DEVPROPERTY = @import("../../devices/properties.zig").DEVPROPERTY;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IDispatch = @import("../../system/com.zig").IDispatch;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const SECURITY_DESCRIPTOR = @import("../../security.zig").SECURITY_DESCRIPTOR;
 const VARIANT = @import("../../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

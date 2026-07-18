@@ -3384,7 +3384,7 @@ pub const URLOpenStream = switch (@import("../../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BINDINFO = @import("../../system/com.zig").BINDINFO;
-const BOOL = @import("../../foundation.zig").BOOL;
+const BOOL = i32;
 const CLSCTX = @import("../../system/com.zig").CLSCTX;
 const FORMATETC = @import("../../system/com.zig").FORMATETC;
 const HANDLE = @import("../../foundation.zig").HANDLE;
@@ -3410,7 +3410,7 @@ const STGMEDIUM = @import("../../system/com.zig").STGMEDIUM;
 const SYSTEMTIME = @import("../../foundation.zig").SYSTEMTIME;
 const uCLSSPEC = @import("../../system/com.zig").uCLSSPEC;
 const ULARGE_INTEGER = @import("../../foundation.zig").ULARGE_INTEGER;
-const VARIANT_BOOL = @import("../../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 
 test {
     @setEvalBranchQuota(

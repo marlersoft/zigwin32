@@ -8448,14 +8448,14 @@ pub const LPFNCREATESTDACCESSIBLEOBJECT = *const fn(
 
 pub const LPFNLRESULTFROMOBJECT = *const fn(
     riid: ?*const Guid,
-    wParam: usize,
+    wParam: WPARAM,
     punk: ?*IUnknown,
-) callconv(.winapi) isize;
+) callconv(.winapi) LRESULT;
 
 pub const LPFNOBJECTFROMLRESULT = *const fn(
-    lResult: isize,
+    lResult: LRESULT,
     riid: ?*const Guid,
-    wParam: usize,
+    wParam: WPARAM,
     ppvObject: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
@@ -10316,9 +10316,9 @@ pub extern "uiautomationcore" fn LegacyIAccessiblePattern_SetValue(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "oleacc" fn LresultFromObject(
     riid: ?*const Guid,
-    wParam: usize,
+    wParam: WPARAM,
     punk: ?*IUnknown,
-) callconv(.winapi) isize;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "uiautomationcore" fn MultipleViewPattern_GetViewName(
@@ -10343,9 +10343,9 @@ pub extern "user32" fn NotifyWinEvent(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "oleacc" fn ObjectFromLresult(
-    lResult: isize,
+    lResult: LRESULT,
     riid: ?*const Guid,
-    wParam: usize,
+    wParam: WPARAM,
     ppvObject: ?*?*anyopaque,
 ) callconv(.winapi) HRESULT;
 
@@ -10886,10 +10886,10 @@ pub extern "uiautomationcore" fn UiaRemoveEvent(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "uiautomationcore" fn UiaReturnRawElementProvider(
     hwnd: ?HWND,
-    wParam: usize,
-    lParam: isize,
+    wParam: WPARAM,
+    lParam: LPARAM,
     el: ?*IRawElementProviderSimple,
-) callconv(.winapi) isize;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "uiautomationcore" fn UiaSetFocus(
@@ -11000,22 +11000,25 @@ pub const GetStateText = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (14)
+// Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const HMENU = @import("../ui/windows_and_messaging.zig").HMENU;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
+const LPARAM = isize;
+const LRESULT = isize;
 const POINT = @import("../foundation.zig").POINT;
 const POINTER_INPUT_TYPE = @import("../ui/windows_and_messaging.zig").POINTER_INPUT_TYPE;
 const RECT = @import("../foundation.zig").RECT;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const WPARAM = usize;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -20,7 +20,7 @@ pub const PFNDSCREATEISECINFO = *const fn(
     param3: ?*?*ISecurityInformation,
     param4: ?PFNREADOBJECTSECURITY,
     param5: ?PFNWRITEOBJECTSECURITY,
-    param6: isize,
+    param6: LPARAM,
 ) callconv(.winapi) HRESULT;
 
 pub const PFNDSCREATEISECINFOEX = *const fn(
@@ -33,7 +33,7 @@ pub const PFNDSCREATEISECINFOEX = *const fn(
     param6: ?*?*ISecurityInformation,
     param7: ?PFNREADOBJECTSECURITY,
     param8: ?PFNWRITEOBJECTSECURITY,
-    param9: isize,
+    param9: LPARAM,
 ) callconv(.winapi) HRESULT;
 
 pub const PFNDSCREATESECPAGE = *const fn(
@@ -43,7 +43,7 @@ pub const PFNDSCREATESECPAGE = *const fn(
     param3: ?*?HPROPSHEETPAGE,
     param4: ?PFNREADOBJECTSECURITY,
     param5: ?PFNWRITEOBJECTSECURITY,
-    param6: isize,
+    param6: LPARAM,
 ) callconv(.winapi) HRESULT;
 
 pub const PFNDSEDITSECURITY = *const fn(
@@ -54,21 +54,21 @@ pub const PFNDSEDITSECURITY = *const fn(
     param4: ?[*:0]const u16,
     param5: ?PFNREADOBJECTSECURITY,
     param6: ?PFNWRITEOBJECTSECURITY,
-    param7: isize,
+    param7: LPARAM,
 ) callconv(.winapi) HRESULT;
 
 pub const PFNREADOBJECTSECURITY = *const fn(
     param0: ?[*:0]const u16,
     param1: u32,
     param2: ?*?PSECURITY_DESCRIPTOR,
-    param3: isize,
+    param3: LPARAM,
 ) callconv(.winapi) HRESULT;
 
 pub const PFNWRITEOBJECTSECURITY = *const fn(
     param0: ?[*:0]const u16,
     param1: u32,
     param2: ?PSECURITY_DESCRIPTOR,
-    param3: isize,
+    param3: LPARAM,
 ) callconv(.winapi) HRESULT;
 
 
@@ -83,7 +83,7 @@ pub extern "dssec" fn DSCreateISecurityInfoObject(
     ppSI: ?*?*ISecurityInformation,
     pfnReadSD: ?PFNREADOBJECTSECURITY,
     pfnWriteSD: ?PFNWRITEOBJECTSECURITY,
-    lpContext: isize,
+    lpContext: LPARAM,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsserver2008'
@@ -97,7 +97,7 @@ pub extern "dssec" fn DSCreateISecurityInfoObjectEx(
     ppSI: ?*?*ISecurityInformation,
     pfnReadSD: ?PFNREADOBJECTSECURITY,
     pfnWriteSD: ?PFNWRITEOBJECTSECURITY,
-    lpContext: isize,
+    lpContext: LPARAM,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsserver2003'
@@ -108,7 +108,7 @@ pub extern "dssec" fn DSCreateSecurityPage(
     phPage: ?*?HPROPSHEETPAGE,
     pfnReadSD: ?PFNREADOBJECTSECURITY,
     pfnWriteSD: ?PFNWRITEOBJECTSECURITY,
-    lpContext: isize,
+    lpContext: LPARAM,
 ) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsserver2008'
@@ -120,7 +120,7 @@ pub extern "dssec" fn DSEditSecurity(
     pwszCaption: ?[*:0]const u16,
     pfnReadSD: ?PFNREADOBJECTSECURITY,
     pfnWriteSD: ?PFNWRITEOBJECTSECURITY,
-    lpContext: isize,
+    lpContext: LPARAM,
 ) callconv(.winapi) HRESULT;
 
 
@@ -128,12 +128,13 @@ pub extern "dssec" fn DSEditSecurity(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const ISecurityInformation = @import("../security/authorization/ui.zig").ISecurityInformation;
+const LPARAM = isize;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 
 test {

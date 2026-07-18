@@ -343,7 +343,7 @@ pub const WINSAT_OEM_NO_DATA_SUPPLIED = WINSAT_OEM_CUSTOMIZATION_STATE.NO_DATA_S
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BSTR = @import("../foundation.zig").BSTR;
+const BSTR = *u16;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;

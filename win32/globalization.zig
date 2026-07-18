@@ -898,7 +898,7 @@ pub const CALINFO_ENUMPROCEXEX = *const fn(
     param0: ?[*:0]u16,
     param1: u32,
     param2: ?[*:0]u16,
-    param3: isize,
+    param3: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const CALINFO_ENUMPROCEXW = *const fn(
@@ -1047,7 +1047,7 @@ pub const DATEFMT_ENUMPROCEXA = *const fn(
 pub const DATEFMT_ENUMPROCEXEX = *const fn(
     param0: ?[*:0]u16,
     param1: u32,
-    param2: isize,
+    param2: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const DATEFMT_ENUMPROCEXW = *const fn(
@@ -1172,7 +1172,7 @@ pub const FONTSIGNATURE = extern struct {
 
 pub const GEO_ENUMNAMEPROC = *const fn(
     param0: ?[*:0]u16,
-    param1: isize,
+    param1: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const GEO_ENUMPROC = *const fn(
@@ -2990,7 +2990,7 @@ pub const LOCALE_ENUMPROCA = *const fn(
 pub const LOCALE_ENUMPROCEX = *const fn(
     param0: ?[*:0]u16,
     param1: u32,
-    param2: isize,
+    param2: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const LOCALE_ENUMPROCW = *const fn(
@@ -3636,7 +3636,7 @@ pub const TIMEFMT_ENUMPROCA = *const fn(
 
 pub const TIMEFMT_ENUMPROCEX = *const fn(
     param0: ?[*:0]u16,
-    param1: isize,
+    param1: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const TIMEFMT_ENUMPROCW = *const fn(
@@ -8524,7 +8524,7 @@ pub extern "kernel32" fn CompareStringEx(
     cchCount2: i32,
     lpVersionInformation: ?*NLSVERSIONINFO,
     lpReserved: ?*anyopaque,
-    lParam: isize,
+    lParam: LPARAM,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8574,7 +8574,7 @@ pub extern "kernel32" fn EnumCalendarInfoExEx(
     Calendar: u32,
     lpReserved: ?[*:0]const u16,
     CalType: u32,
-    lParam: isize,
+    lParam: LPARAM,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -8612,7 +8612,7 @@ pub extern "kernel32" fn EnumDateFormatsExEx(
     lpDateFmtEnumProcExEx: ?DATEFMT_ENUMPROCEXEX,
     lpLocaleName: ?[*:0]const u16,
     dwFlags: ENUM_DATE_FORMATS_FLAGS,
-    lParam: isize,
+    lParam: LPARAM,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -8668,7 +8668,7 @@ pub extern "kernel32" fn EnumSystemGeoID(
 pub extern "kernel32" fn EnumSystemGeoNames(
     geoClass: u32,
     geoEnumProc: ?GEO_ENUMNAMEPROC,
-    data: isize,
+    data: LPARAM,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -8695,7 +8695,7 @@ pub extern "kernel32" fn EnumSystemLocalesA(
 pub extern "kernel32" fn EnumSystemLocalesEx(
     lpLocaleEnumProcEx: ?LOCALE_ENUMPROCEX,
     dwFlags: u32,
-    lParam: isize,
+    lParam: LPARAM,
     lpReserved: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -8717,7 +8717,7 @@ pub extern "kernel32" fn EnumTimeFormatsEx(
     lpTimeFmtEnumProcEx: ?TIMEFMT_ENUMPROCEX,
     lpLocaleName: ?[*:0]const u16,
     dwFlags: u32,
-    lParam: isize,
+    lParam: LPARAM,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -8763,7 +8763,7 @@ pub extern "kernel32" fn FindNLSStringEx(
     pcchFound: ?*i32,
     lpVersionInformation: ?*NLSVERSIONINFO,
     lpReserved: ?*anyopaque,
-    sortHandle: isize,
+    sortHandle: LPARAM,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -9361,7 +9361,7 @@ pub extern "kernel32" fn LCMapStringEx(
     cchDest: i32,
     lpVersionInformation: ?*NLSVERSIONINFO,
     lpReserved: ?*anyopaque,
-    sortHandle: isize,
+    sortHandle: LPARAM,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -16619,14 +16619,14 @@ pub const SetLocaleInfo = switch (@import("zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (19)
+// Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("zig.zig").Guid;
 const ABC = @import("graphics/gdi.zig").ABC;
 const AXESLISTA = @import("graphics/gdi.zig").AXESLISTA;
 const AXESLISTW = @import("graphics/gdi.zig").AXESLISTW;
-const BOOL = @import("foundation.zig").BOOL;
-const BSTR = @import("foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const ETO_OPTIONS = @import("graphics/gdi.zig").ETO_OPTIONS;
 const HDC = @import("graphics/gdi.zig").HDC;
 const HFONT = @import("graphics/gdi.zig").HFONT;
@@ -16635,6 +16635,7 @@ const HWND = @import("foundation.zig").HWND;
 const IEnumString = @import("system/com.zig").IEnumString;
 const IStream = @import("system/com.zig").IStream;
 const IUnknown = @import("system/com.zig").IUnknown;
+const LPARAM = isize;
 const NEWTEXTMETRICA = @import("graphics/gdi.zig").NEWTEXTMETRICA;
 const NEWTEXTMETRICW = @import("graphics/gdi.zig").NEWTEXTMETRICW;
 const RECT = @import("foundation.zig").RECT;

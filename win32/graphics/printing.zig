@@ -4405,12 +4405,12 @@ pub const IPrintOemUI = extern union {
         DocumentPropertySheets: *const fn(
             self: *const IPrintOemUI,
             pPSUIInfo: ?*PROPSHEETUI_INFO,
-            lParam: isize,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
         DevicePropertySheets: *const fn(
             self: *const IPrintOemUI,
             pPSUIInfo: ?*PROPSHEETUI_INFO,
-            lParam: isize,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
         DevQueryPrintEx: *const fn(
             self: *const IPrintOemUI,
@@ -4441,14 +4441,14 @@ pub const IPrintOemUI = extern union {
             pPrinterName: ?[*:0]u16,
             iDriverEvent: i32,
             dwFlags: u32,
-            lParam: isize,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
         DriverEvent: *const fn(
             self: *const IPrintOemUI,
             dwDriverEvent: u32,
             dwLevel: u32,
             pDriverInfo: ?*u8,
-            lParam: isize,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
         QueryColorProfile: *const fn(
             self: *const IPrintOemUI,
@@ -4465,8 +4465,8 @@ pub const IPrintOemUI = extern union {
             self: *const IPrintOemUI,
             hWnd: ?HWND,
             usMsg: u32,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
         UpdateExternalFonts: *const fn(
             self: *const IPrintOemUI,
@@ -4484,10 +4484,10 @@ pub const IPrintOemUI = extern union {
     pub fn CommonUIProp(self: *const IPrintOemUI, dwMode: u32, pOemCUIPParam: ?*OEMCUIPPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.CommonUIProp(self, dwMode, pOemCUIPParam);
     }
-    pub fn DocumentPropertySheets(self: *const IPrintOemUI, pPSUIInfo: ?*PROPSHEETUI_INFO, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn DocumentPropertySheets(self: *const IPrintOemUI, pPSUIInfo: ?*PROPSHEETUI_INFO, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.DocumentPropertySheets(self, pPSUIInfo, lParam);
     }
-    pub fn DevicePropertySheets(self: *const IPrintOemUI, pPSUIInfo: ?*PROPSHEETUI_INFO, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn DevicePropertySheets(self: *const IPrintOemUI, pPSUIInfo: ?*PROPSHEETUI_INFO, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.DevicePropertySheets(self, pPSUIInfo, lParam);
     }
     pub fn DevQueryPrintEx(self: *const IPrintOemUI, poemuiobj: ?*OEMUIOBJ, pDQPInfo: ?*DEVQUERYPRINT_INFO, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque) callconv(.@"inline") HRESULT {
@@ -4499,16 +4499,16 @@ pub const IPrintOemUI = extern union {
     pub fn UpgradePrinter(self: *const IPrintOemUI, dwLevel: u32, pDriverUpgradeInfo: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.UpgradePrinter(self, dwLevel, pDriverUpgradeInfo);
     }
-    pub fn PrinterEvent(self: *const IPrintOemUI, pPrinterName: ?[*:0]u16, iDriverEvent: i32, dwFlags: u32, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn PrinterEvent(self: *const IPrintOemUI, pPrinterName: ?[*:0]u16, iDriverEvent: i32, dwFlags: u32, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.PrinterEvent(self, pPrinterName, iDriverEvent, dwFlags, lParam);
     }
-    pub fn DriverEvent(self: *const IPrintOemUI, dwDriverEvent: u32, dwLevel: u32, pDriverInfo: ?*u8, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn DriverEvent(self: *const IPrintOemUI, dwDriverEvent: u32, dwLevel: u32, pDriverInfo: ?*u8, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.DriverEvent(self, dwDriverEvent, dwLevel, pDriverInfo, lParam);
     }
     pub fn QueryColorProfile(self: *const IPrintOemUI, hPrinter: ?HANDLE, poemuiobj: ?*OEMUIOBJ, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque, ulQueryMode: u32, pvProfileData: [*]u8, pcbProfileData: ?*u32, pflProfileData: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.QueryColorProfile(self, hPrinter, poemuiobj, pPublicDM, pOEMDM, ulQueryMode, pvProfileData, pcbProfileData, pflProfileData);
     }
-    pub fn FontInstallerDlgProc(self: *const IPrintOemUI, hWnd: ?HWND, usMsg: u32, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn FontInstallerDlgProc(self: *const IPrintOemUI, hWnd: ?HWND, usMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.FontInstallerDlgProc(self, hWnd, usMsg, wParam, lParam);
     }
     pub fn UpdateExternalFonts(self: *const IPrintOemUI, hPrinter: ?HANDLE, hHeap: ?HANDLE, pwstrCartridges: ?[*:0]u16) callconv(.@"inline") HRESULT {
@@ -6302,7 +6302,7 @@ pub const OPTPARAM = extern struct {
     Style: u8,
     pData: ?*i8,
     IconID: usize,
-    lParam: isize,
+    lParam: LPARAM,
     dwReserved: [2]usize,
 };
 
@@ -6351,13 +6351,13 @@ pub const PFN_DrvUpgradeRegistrySetting = *const fn(
 pub const PFNCOMPROPSHEET = *const fn(
     hComPropSheet: ?HANDLE,
     Function: u32,
-    lParam1: isize,
-    lParam2: isize,
+    lParam1: LPARAM,
+    lParam2: LPARAM,
 ) callconv(.winapi) isize;
 
 pub const PFNPROPSHEETUI = *const fn(
     pPSUIInfo: ?*PROPSHEETUI_INFO,
-    lParam: isize,
+    lParam: LPARAM,
 ) callconv(.winapi) i32;
 
 pub const PORT_DATA_1 = extern struct {
@@ -7171,7 +7171,7 @@ pub const PROPSHEETUI_INFO = extern struct {
     Reason: u16,
     hComPropSheet: ?HANDLE,
     pfnComPropSheet: ?PFNCOMPROPSHEET,
-    lParamInit: isize,
+    lParamInit: LPARAM,
     UserData: usize,
     Result: usize,
 };
@@ -7240,7 +7240,7 @@ pub const SETRESULT_INFO = extern struct {
     cbSize: u16,
     wReserved: u16,
     hSetResult: ?HANDLE,
-    Result: isize,
+    Result: LRESULT,
 };
 
 pub const SHIMOPTS = enum(i32) {
@@ -7638,14 +7638,14 @@ pub extern "winspool.drv" fn CommitSpoolData(
 pub extern "compstui" fn CommonPropertySheetUIA(
     hWndOwner: ?HWND,
     pfnPropSheetUI: ?PFNPROPSHEETUI,
-    lParam: isize,
+    lParam: LPARAM,
     pResult: ?*u32,
 ) callconv(.winapi) i32;
 
 pub extern "compstui" fn CommonPropertySheetUIW(
     hWndOwner: ?HWND,
     pfnPropSheetUI: ?PFNPROPSHEETUI,
-    lParam: isize,
+    lParam: LPARAM,
     pResult: ?*u32,
 ) callconv(.winapi) i32;
 
@@ -9672,11 +9672,11 @@ pub const UploadPrinterDriverPackage = switch (@import("../zig.zig").unicode_mod
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (36)
+// Section: Imports (39)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const DEVMODEA = @import("../graphics/gdi.zig").DEVMODEA;
 const DEVMODEW = @import("../graphics/gdi.zig").DEVMODEW;
 const DLGPROC = @import("../ui/windows_and_messaging.zig").DLGPROC;
@@ -9701,6 +9701,8 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const IWICBitmap = @import("../graphics/imaging.zig").IWICBitmap;
 const IXMLDOMDocument2 = @import("../data/xml/ms_xml.zig").IXMLDOMDocument2;
 const IXpsOMPage = @import("../storage/xps.zig").IXpsOMPage;
+const LPARAM = isize;
+const LRESULT = isize;
 const PANOSE = @import("../graphics/gdi.zig").PANOSE;
 const POINTL = @import("../foundation.zig").POINTL;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
@@ -9710,6 +9712,7 @@ const SIZE = @import("../foundation.zig").SIZE;
 const STREAM_SEEK = @import("../system/com.zig").STREAM_SEEK;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const WPARAM = usize;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

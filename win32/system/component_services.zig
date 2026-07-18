@@ -6680,8 +6680,8 @@ pub extern "comsvcs" fn SafeRef(
 const Guid = @import("../zig.zig").Guid;
 const APTTYPE = @import("../system/com.zig").APTTYPE;
 const BLOB = @import("../system/com.zig").BLOB;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IClassFactory = @import("../system/com.zig").IClassFactory;
@@ -6693,7 +6693,7 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const PSID = @import("../foundation.zig").PSID;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const VARIANT = @import("../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 
 test {
     @setEvalBranchQuota(

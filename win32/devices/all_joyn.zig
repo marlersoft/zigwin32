@@ -4412,7 +4412,7 @@ pub extern "msajapi" fn QCC_StatusText(
 //--------------------------------------------------------------------------------
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 

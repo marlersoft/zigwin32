@@ -110,7 +110,7 @@ pub extern "dhcpcsvc" fn McastRequestAddress(
 //--------------------------------------------------------------------------------
 // Section: Imports (2)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const UNICODE_STRING = @import("../foundation.zig").UNICODE_STRING;
 
 test {

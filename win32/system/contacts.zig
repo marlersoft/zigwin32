@@ -1472,7 +1472,7 @@ pub const IContactPropertyCollection = extern union {
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IStream = @import("../system/com.zig").IStream;

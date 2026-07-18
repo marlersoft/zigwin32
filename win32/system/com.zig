@@ -7359,8 +7359,8 @@ pub extern "ole32" fn StringFromIID(
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ARRAYDESC = @import("../system/ole.zig").ARRAYDESC;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const DECIMAL = @import("../foundation.zig").DECIMAL;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
@@ -7381,7 +7381,7 @@ const userHENHMETAFILE = @import("../system/system_services.zig").userHENHMETAFI
 const userHGLOBAL = @import("../system/system_services.zig").userHGLOBAL;
 const userHMETAFILEPICT = @import("../system/system_services.zig").userHMETAFILEPICT;
 const userHPALETTE = @import("../system/system_services.zig").userHPALETTE;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

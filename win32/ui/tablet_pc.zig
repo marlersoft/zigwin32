@@ -9179,8 +9179,8 @@ pub extern "inkobjcore" fn SetWordList(
 // Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const COLORREF = @import("../foundation.zig").COLORREF;
 const HANDLE_PTR = @import("../foundation.zig").HANDLE_PTR;
 const HRESULT = @import("../foundation.zig").HRESULT;
@@ -9196,7 +9196,7 @@ const POINT = @import("../foundation.zig").POINT;
 const RECT = @import("../foundation.zig").RECT;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const VARIANT = @import("../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 const XFORM = @import("../graphics/gdi.zig").XFORM;
 
 test {

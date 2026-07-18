@@ -786,12 +786,12 @@ pub const MilRectD = extern struct {
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BSTR = @import("../foundation.zig").BSTR;
+const BSTR = *u16;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const IWICBitmapSource = @import("../graphics/imaging.zig").IWICBitmapSource;
 const MilMatrix3x2D = @import("../graphics/dwm.zig").MilMatrix3x2D;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 
 test {
     @setEvalBranchQuota(

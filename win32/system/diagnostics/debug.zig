@@ -43639,9 +43639,9 @@ pub const OutputDebugString = switch (@import("../../zig.zig").unicode_mode) {
 // Section: Imports (39)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOL = @import("../../foundation.zig").BOOL;
-const BOOLEAN = @import("../../foundation.zig").BOOLEAN;
-const BSTR = @import("../../foundation.zig").BSTR;
+const BOOL = i32;
+const BOOLEAN = u8;
+const BSTR = *u16;
 const CADWORD = @import("../../system/ole.zig").CADWORD;
 const CALPOLESTR = @import("../../system/ole.zig").CALPOLESTR;
 const DISPPARAMS = @import("../../system/com.zig").DISPPARAMS;
@@ -43671,7 +43671,7 @@ const TIME_ZONE_INFORMATION = @import("../../system/time.zig").TIME_ZONE_INFORMA
 const TYPEDESC = @import("../../system/com.zig").TYPEDESC;
 const VARENUM = @import("../../system/com.zig").VARENUM;
 const VARIANT = @import("../../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 const VIRTUAL_ALLOCATION_TYPE = @import("../../system/memory.zig").VIRTUAL_ALLOCATION_TYPE;
 const VS_FIXEDFILEINFO = @import("../../storage/file_system.zig").VS_FIXEDFILEINFO;
 const WIN_CERTIFICATE = @import("../../security/win_trust.zig").WIN_CERTIFICATE;

@@ -7559,7 +7559,7 @@ pub const DirectDrawEnumerateEx = switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HDC = @import("../graphics/gdi.zig").HDC;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;

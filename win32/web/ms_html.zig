@@ -14338,7 +14338,7 @@ pub const IDocHostShowUI = extern union {
             dwType: u32,
             lpstrHelpFile: ?[*:0]u16,
             dwHelpContext: u32,
-            plResult: ?*isize,
+            plResult: ?*LRESULT,
         ) callconv(.winapi) HRESULT,
         ShowHelp: *const fn(
             self: *const IDocHostShowUI,
@@ -14352,7 +14352,7 @@ pub const IDocHostShowUI = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ShowMessage(self: *const IDocHostShowUI, hwnd: ?HWND, lpstrText: ?[*:0]u16, lpstrCaption: ?[*:0]u16, dwType: u32, lpstrHelpFile: ?[*:0]u16, dwHelpContext: u32, plResult: ?*isize) callconv(.@"inline") HRESULT {
+    pub fn ShowMessage(self: *const IDocHostShowUI, hwnd: ?HWND, lpstrText: ?[*:0]u16, lpstrCaption: ?[*:0]u16, dwType: u32, lpstrHelpFile: ?[*:0]u16, dwHelpContext: u32, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.ShowMessage(self, hwnd, lpstrText, lpstrCaption, dwType, lpstrHelpFile, dwHelpContext, plResult);
     }
     pub fn ShowHelp(self: *const IDocHostShowUI, hwnd: ?HWND, pszHelpFile: ?[*:0]u16, uCommand: u32, dwData: u32, ptMouse: POINT, pDispatchObjectHit: ?*IDispatch) callconv(.@"inline") HRESULT {
@@ -69189,14 +69189,14 @@ pub const ITridentTouchInput = extern union {
         OnPointerMessage: *const fn(
             self: *const ITridentTouchInput,
             msg: u32,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
             pfAllowManipulations: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnPointerMessage(self: *const ITridentTouchInput, msg: u32, wParam: usize, lParam: isize, pfAllowManipulations: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn OnPointerMessage(self: *const ITridentTouchInput, msg: u32, wParam: WPARAM, lParam: LPARAM, pfAllowManipulations: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnPointerMessage(self, msg, wParam, lParam, pfAllowManipulations);
     }
 };
@@ -73616,12 +73616,12 @@ pub extern "imgutil" fn SniffStream(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (52)
+// Section: Imports (55)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BINDINFO = @import("../system/com.zig").BINDINFO;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const DXGI_FORMAT = @import("../graphics/dxgi/common.zig").DXGI_FORMAT;
 const DXGI_MODE_ROTATION = @import("../graphics/dxgi/common.zig").DXGI_MODE_ROTATION;
 const FILETIME = @import("../foundation.zig").FILETIME;
@@ -73658,6 +73658,8 @@ const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const IUri = @import("../system/com.zig").IUri;
 const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
+const LPARAM = isize;
+const LRESULT = isize;
 const LUID = @import("../foundation.zig").LUID;
 const MSG = @import("../ui/windows_and_messaging.zig").MSG;
 const POINT = @import("../foundation.zig").POINT;
@@ -73668,8 +73670,9 @@ const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const SIZE = @import("../foundation.zig").SIZE;
 const VARIANT = @import("../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 const WIN32_FIND_DATAA = @import("../storage/file_system.zig").WIN32_FIND_DATAA;
+const WPARAM = usize;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

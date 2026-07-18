@@ -950,8 +950,8 @@ pub const USER_INPUT_PATH_ELEMENT = USER_INPUT_STRING_TYPE.PATH_ELEMENT;
 // Section: Imports (15)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 const HICON = @import("../ui/windows_and_messaging.zig").HICON;

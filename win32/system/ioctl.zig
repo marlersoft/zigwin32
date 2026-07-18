@@ -6507,7 +6507,7 @@ pub const MOVE_FILE_DATA32 = switch(@import("../zig.zig").arch) {
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOLEAN = u8;
 const DEVPROPKEY = @import("../devices/properties.zig").DEVPROPKEY;
 const FILE_ID_128 = @import("../storage/file_system.zig").FILE_ID_128;
 const HANDLE = @import("../foundation.zig").HANDLE;

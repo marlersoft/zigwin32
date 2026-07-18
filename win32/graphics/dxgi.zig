@@ -3649,7 +3649,7 @@ pub extern "dxgi" fn DXGIGetDebugInterface1(
 // Section: Imports (25)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const DXGI_ALPHA_MODE = @import("../graphics/dxgi/common.zig").DXGI_ALPHA_MODE;
 const DXGI_COLOR_SPACE_TYPE = @import("../graphics/dxgi/common.zig").DXGI_COLOR_SPACE_TYPE;
 const DXGI_FORMAT = @import("../graphics/dxgi/common.zig").DXGI_FORMAT;

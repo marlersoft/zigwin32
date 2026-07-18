@@ -5640,7 +5640,7 @@ pub const RasValidateEntryName = switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const CRYPT_INTEGER_BLOB = @import("../security/cryptography.zig").CRYPT_INTEGER_BLOB;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;

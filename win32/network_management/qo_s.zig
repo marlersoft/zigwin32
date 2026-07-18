@@ -1609,8 +1609,8 @@ pub const TcSetFlow = switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOL = i32;
+const BOOLEAN = u8;
 const FLOWSPEC = @import("../networking/win_sock.zig").FLOWSPEC;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const IN_ADDR = @import("../networking/win_sock.zig").IN_ADDR;

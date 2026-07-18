@@ -42215,9 +42215,9 @@ const Guid = @import("../zig.zig").Guid;
 const AM_MEDIA_TYPE = @import("../media/media_foundation.zig").AM_MEDIA_TYPE;
 const BITMAPINFO = @import("../graphics/gdi.zig").BITMAPINFO;
 const BITMAPINFOHEADER = @import("../graphics/gdi.zig").BITMAPINFOHEADER;
-const BOOL = @import("../foundation.zig").BOOL;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BOOLEAN = u8;
+const BSTR = *u16;
 const CAUUID = @import("../system/ole.zig").CAUUID;
 const COLORREF = @import("../foundation.zig").COLORREF;
 const D3DFORMAT = @import("../graphics/direct3d9.zig").D3DFORMAT;
@@ -42291,7 +42291,7 @@ const SIZE = @import("../foundation.zig").SIZE;
 const TIMECODE = @import("../media.zig").TIMECODE;
 const TIMECODE_SAMPLE = @import("../media.zig").TIMECODE_SAMPLE;
 const VARIANT = @import("../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 const WAVEFORMATEX = @import("../media/audio.zig").WAVEFORMATEX;
 
 test {

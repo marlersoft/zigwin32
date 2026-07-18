@@ -142,8 +142,8 @@ pub extern "kernel32" fn TzSpecificLocalTimeToSystemTimeEx(
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../foundation.zig").BOOL;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOL = i32;
+const BOOLEAN = u8;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 

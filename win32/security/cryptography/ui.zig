@@ -111,7 +111,7 @@ pub const CERT_SELECT_STRUCT_A = extern struct {
     szPurposeOid: ?[*:0]const u8,
     cCertContext: u32,
     arrayCertContext: ?*?*CERT_CONTEXT,
-    lCustData: isize,
+    lCustData: LPARAM,
     pfnHook: ?PFNCMHOOKPROC,
     pfnFilter: ?PFNCMFILTERPROC,
     szHelpFileName: ?[*:0]const u8,
@@ -172,7 +172,7 @@ pub const CERT_SELECT_STRUCT_W = extern struct {
     szPurposeOid: ?[*:0]const u8,
     cCertContext: u32,
     arrayCertContext: ?*?*CERT_CONTEXT,
-    lCustData: isize,
+    lCustData: LPARAM,
     pfnHook: ?PFNCMHOOKPROC,
     pfnFilter: ?PFNCMFILTERPROC,
     szHelpFileName: ?[*:0]const u16,
@@ -200,7 +200,7 @@ pub const CERT_VERIFY_CERTIFICATE_TRUST = extern struct {
     rghstoreCAs: ?*?HCERTSTORE,
     cTrustStores: u32,
     rghstoreTrust: ?*?HCERTSTORE,
-    lCustData: isize,
+    lCustData: LPARAM,
     pfnTrustHelper: ?PFNTRUSTHELPER,
     pcChain: ?*u32,
     prgChain: ?*?*?*CERT_CONTEXT,
@@ -224,7 +224,7 @@ pub const CERT_VIEWPROPERTIES_STRUCT_A = extern struct {
     cTrustStores: u32,
     rghstoreTrust: ?*?HCERTSTORE,
     hprov: usize,
-    lCustData: isize,
+    lCustData: LPARAM,
     dwPad: u32,
     szHelpFileName: ?[*:0]const u8,
     dwHelpId: u32,
@@ -294,7 +294,7 @@ pub const CERT_VIEWPROPERTIES_STRUCT_W = extern struct {
     cTrustStores: u32,
     rghstoreTrust: ?*?HCERTSTORE,
     hprov: usize,
-    lCustData: isize,
+    lCustData: LPARAM,
     dwPad: u32,
     szHelpFileName: ?[*:0]const u16,
     dwHelpId: u32,
@@ -312,7 +312,7 @@ pub const CRYPTUI_CERT_MGR_STRUCT = extern struct {
 };
 
 pub const CRYPTUI_INITDIALOG_STRUCT = extern struct {
-    lParam: isize,
+    lParam: LPARAM,
     pCertContext: ?*const CERT_CONTEXT,
 };
 
@@ -683,7 +683,7 @@ pub const PFNCFILTERPROC = *const fn(
 
 pub const PFNCMFILTERPROC = *const fn(
     pCertContext: ?*const CERT_CONTEXT,
-    param1: isize,
+    param1: LPARAM,
     param2: u32,
     param3: u32,
 ) callconv(.winapi) BOOL;
@@ -691,13 +691,13 @@ pub const PFNCMFILTERPROC = *const fn(
 pub const PFNCMHOOKPROC = *const fn(
     hwndDialog: ?HWND,
     message: u32,
-    wParam: usize,
-    lParam: isize,
+    wParam: WPARAM,
+    lParam: LPARAM,
 ) callconv(.winapi) u32;
 
 pub const PFNTRUSTHELPER = *const fn(
     pCertContext: ?*const CERT_CONTEXT,
-    lCustData: isize,
+    lCustData: LPARAM,
     fLeafCertificate: BOOL,
     pbTrustBlob: ?*u8,
 ) callconv(.winapi) HRESULT;
@@ -816,10 +816,10 @@ pub const CryptUIDlgViewCertificate = switch (@import("../../zig.zig").unicode_m
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (18)
+// Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOL = @import("../../foundation.zig").BOOL;
+const BOOL = i32;
 const CERT_CHAIN_CONTEXT = @import("../../security/cryptography.zig").CERT_CHAIN_CONTEXT;
 const CERT_CONTEXT = @import("../../security/cryptography.zig").CERT_CONTEXT;
 const CRL_CONTEXT = @import("../../security/cryptography.zig").CRL_CONTEXT;
@@ -834,8 +834,10 @@ const HCERTSTORE = @import("../../security/cryptography.zig").HCERTSTORE;
 const HINSTANCE = @import("../../foundation.zig").HINSTANCE;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const HWND = @import("../../foundation.zig").HWND;
+const LPARAM = isize;
 const PROPSHEETPAGEA = @import("../../ui/controls.zig").PROPSHEETPAGEA;
 const PROPSHEETPAGEW = @import("../../ui/controls.zig").PROPSHEETPAGEW;
+const WPARAM = usize;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

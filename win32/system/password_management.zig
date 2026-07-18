@@ -55,7 +55,7 @@ pub extern "advapi32" fn MSChapSrvChangePassword2(
 //--------------------------------------------------------------------------------
 // Section: Imports (1)
 //--------------------------------------------------------------------------------
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOLEAN = u8;
 
 test {
     @setEvalBranchQuota(

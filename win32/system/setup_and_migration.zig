@@ -35,7 +35,7 @@ pub extern "kernel32" fn UnregisterWaitUntilOOBECompleted(
 //--------------------------------------------------------------------------------
 // Section: Imports (1)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

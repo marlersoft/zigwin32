@@ -6896,7 +6896,7 @@ pub extern "dwrite" fn DWriteCreateFactory(
 // Section: Imports (18)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const COLORREF = @import("../foundation.zig").COLORREF;
 const D2D_POINT_2F = @import("../graphics/direct2d/common.zig").D2D_POINT_2F;
 const D2D_SIZE_U = @import("../graphics/direct2d/common.zig").D2D_SIZE_U;

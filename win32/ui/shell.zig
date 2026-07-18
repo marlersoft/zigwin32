@@ -2302,8 +2302,8 @@ pub const AIM_UPDATEINFOURL = APPINFODATAFLAGS.UPDATEINFOURL;
 pub const APPLET_PROC = *const fn(
     hwndCpl: ?HWND,
     msg: u32,
-    lParam1: isize,
-    lParam2: isize,
+    lParam1: LPARAM,
+    lParam2: LPARAM,
 ) callconv(.winapi) i32;
 
 pub const APPLICATION_VIEW_MIN_WIDTH = enum(i32) {
@@ -2756,8 +2756,8 @@ pub const BASEBROWSERDATAXP = extern struct {
 pub const BFFCALLBACK = *const fn(
     hwnd: ?HWND,
     uMsg: u32,
-    lParam: isize,
-    lpData: isize,
+    lParam: LPARAM,
+    lpData: LPARAM,
 ) callconv(.winapi) i32;
 
 pub const BNSTATE = enum(i32) {
@@ -2776,7 +2776,7 @@ pub const BROWSEINFOA = extern struct {
     lpszTitle: ?[*:0]const u8,
     ulFlags: u32,
     lpfn: ?BFFCALLBACK,
-    lParam: isize,
+    lParam: LPARAM,
     iImage: i32,
 };
 
@@ -2787,7 +2787,7 @@ pub const BROWSEINFOW = extern struct {
     lpszTitle: ?[*:0]const u16,
     ulFlags: u32,
     lpfn: ?BFFCALLBACK,
-    lParam: isize,
+    lParam: LPARAM,
     iImage: i32,
 };
 
@@ -3490,7 +3490,7 @@ pub const DFM_MODIFYQCMFLAGS = DFM_MESSAGE_ID.MODIFYQCMFLAGS;
 pub const DFMICS = extern struct {
     cbSize: u32,
     fMask: u32,
-    lParam: isize,
+    lParam: LPARAM,
     idCmdFirst: u32,
     idDefMax: u32,
     pici: ?*CMINVOKECOMMANDINFO,
@@ -6307,9 +6307,9 @@ pub const IBrowserService2 = extern union {
             self: *const IBrowserService2,
             hwnd: ?HWND,
             uMsg: u32,
-            wParam: usize,
-            lParam: isize,
-        ) callconv(.winapi) isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
+        ) callconv(.winapi) LRESULT,
         SetAsDefFolderSettings: *const fn(
             self: *const IBrowserService2,
         ) callconv(.winapi) HRESULT,
@@ -6319,7 +6319,7 @@ pub const IBrowserService2 = extern union {
         ) callconv(.winapi) HRESULT,
         OnSize: *const fn(
             self: *const IBrowserService2,
-            wParam: usize,
+            wParam: WPARAM,
         ) callconv(.winapi) HRESULT,
         OnCreate: *const fn(
             self: *const IBrowserService2,
@@ -6327,16 +6327,16 @@ pub const IBrowserService2 = extern union {
         ) callconv(.winapi) HRESULT,
         OnCommand: *const fn(
             self: *const IBrowserService2,
-            wParam: usize,
-            lParam: isize,
-        ) callconv(.winapi) isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
+        ) callconv(.winapi) LRESULT,
         OnDestroy: *const fn(
             self: *const IBrowserService2,
         ) callconv(.winapi) HRESULT,
         OnNotify: *const fn(
             self: *const IBrowserService2,
             pnm: ?*NMHDR,
-        ) callconv(.winapi) isize,
+        ) callconv(.winapi) LRESULT,
         OnSetFocus: *const fn(
             self: *const IBrowserService2,
         ) callconv(.winapi) HRESULT,
@@ -6453,8 +6453,8 @@ pub const IBrowserService2 = extern union {
             hwndBar: ?HWND,
             fBroadcast: BOOL,
             uMsg: u32,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
         GetFolderSetData: *const fn(
             self: *const IBrowserService2,
@@ -6507,9 +6507,9 @@ pub const IBrowserService2 = extern union {
         ForwardViewMsg: *const fn(
             self: *const IBrowserService2,
             uMsg: u32,
-            wParam: usize,
-            lParam: isize,
-        ) callconv(.winapi) isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
+        ) callconv(.winapi) LRESULT,
         SetAcceleratorMenu: *const fn(
             self: *const IBrowserService2,
             hacc: ?HACCEL,
@@ -6574,7 +6574,7 @@ pub const IBrowserService2 = extern union {
     vtable: *const VTable,
     IBrowserService: IBrowserService,
     IUnknown: IUnknown,
-    pub fn WndProcBS(self: *const IBrowserService2, hwnd: ?HWND, uMsg: u32, wParam: usize, lParam: isize) callconv(.@"inline") isize {
+    pub fn WndProcBS(self: *const IBrowserService2, hwnd: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") LRESULT {
         return self.vtable.WndProcBS(self, hwnd, uMsg, wParam, lParam);
     }
     pub fn SetAsDefFolderSettings(self: *const IBrowserService2) callconv(.@"inline") HRESULT {
@@ -6583,19 +6583,19 @@ pub const IBrowserService2 = extern union {
     pub fn GetViewRect(self: *const IBrowserService2, prc: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.GetViewRect(self, prc);
     }
-    pub fn OnSize(self: *const IBrowserService2, wParam: usize) callconv(.@"inline") HRESULT {
+    pub fn OnSize(self: *const IBrowserService2, wParam: WPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.OnSize(self, wParam);
     }
     pub fn OnCreate(self: *const IBrowserService2, pcs: ?*CREATESTRUCTW) callconv(.@"inline") HRESULT {
         return self.vtable.OnCreate(self, pcs);
     }
-    pub fn OnCommand(self: *const IBrowserService2, wParam: usize, lParam: isize) callconv(.@"inline") isize {
+    pub fn OnCommand(self: *const IBrowserService2, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") LRESULT {
         return self.vtable.OnCommand(self, wParam, lParam);
     }
     pub fn OnDestroy(self: *const IBrowserService2) callconv(.@"inline") HRESULT {
         return self.vtable.OnDestroy(self);
     }
-    pub fn OnNotify(self: *const IBrowserService2, pnm: ?*NMHDR) callconv(.@"inline") isize {
+    pub fn OnNotify(self: *const IBrowserService2, pnm: ?*NMHDR) callconv(.@"inline") LRESULT {
         return self.vtable.OnNotify(self, pnm);
     }
     pub fn OnSetFocus(self: *const IBrowserService2) callconv(.@"inline") HRESULT {
@@ -6679,7 +6679,7 @@ pub const IBrowserService2 = extern union {
     pub fn _ExecChildren(self: *const IBrowserService2, punkBar: ?*IUnknown, fBroadcast: BOOL, pguidCmdGroup: ?*const Guid, nCmdID: u32, nCmdexecopt: u32, pvarargIn: ?*VARIANT, pvarargOut: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable._ExecChildren(self, punkBar, fBroadcast, pguidCmdGroup, nCmdID, nCmdexecopt, pvarargIn, pvarargOut);
     }
-    pub fn _SendChildren(self: *const IBrowserService2, hwndBar: ?HWND, fBroadcast: BOOL, uMsg: u32, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn _SendChildren(self: *const IBrowserService2, hwndBar: ?HWND, fBroadcast: BOOL, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable._SendChildren(self, hwndBar, fBroadcast, uMsg, wParam, lParam);
     }
     pub fn GetFolderSetData(self: *const IBrowserService2, pfsd: ?*FOLDERSETDATA) callconv(.@"inline") HRESULT {
@@ -6718,7 +6718,7 @@ pub const IBrowserService2 = extern union {
     pub fn v_GetViewStream(self: *const IBrowserService2, pidl: ?*ITEMIDLIST, grfMode: u32, pwszName: ?[*:0]const u16) callconv(.@"inline") ?*IStream {
         return self.vtable.v_GetViewStream(self, pidl, grfMode, pwszName);
     }
-    pub fn ForwardViewMsg(self: *const IBrowserService2, uMsg: u32, wParam: usize, lParam: isize) callconv(.@"inline") isize {
+    pub fn ForwardViewMsg(self: *const IBrowserService2, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") LRESULT {
         return self.vtable.ForwardViewMsg(self, uMsg, wParam, lParam);
     }
     pub fn SetAcceleratorMenu(self: *const IBrowserService2, hacc: ?HACCEL) callconv(.@"inline") HRESULT {
@@ -7286,14 +7286,14 @@ pub const IContextMenu2 = extern union {
         HandleMenuMsg: *const fn(
             self: *const IContextMenu2,
             uMsg: u32,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IContextMenu: IContextMenu,
     IUnknown: IUnknown,
-    pub fn HandleMenuMsg(self: *const IContextMenu2, uMsg: u32, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn HandleMenuMsg(self: *const IContextMenu2, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.HandleMenuMsg(self, uMsg, wParam, lParam);
     }
 };
@@ -7307,16 +7307,16 @@ pub const IContextMenu3 = extern union {
         HandleMenuMsg2: *const fn(
             self: *const IContextMenu3,
             uMsg: u32,
-            wParam: usize,
-            lParam: isize,
-            plResult: ?*isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            plResult: ?*LRESULT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IContextMenu2: IContextMenu2,
     IContextMenu: IContextMenu,
     IUnknown: IUnknown,
-    pub fn HandleMenuMsg2(self: *const IContextMenu3, uMsg: u32, wParam: usize, lParam: isize, plResult: ?*isize) callconv(.@"inline") HRESULT {
+    pub fn HandleMenuMsg2(self: *const IContextMenu3, uMsg: u32, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.HandleMenuMsg2(self, uMsg, wParam, lParam, plResult);
     }
 };
@@ -7333,13 +7333,13 @@ pub const IContextMenuCB = extern union {
             hwndOwner: ?HWND,
             pdtobj: ?*IDataObject,
             uMsg: u32,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CallBack(self: *const IContextMenuCB, psf: ?*IShellFolder, hwndOwner: ?HWND, pdtobj: ?*IDataObject, uMsg: u32, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn CallBack(self: *const IContextMenuCB, psf: ?*IShellFolder, hwndOwner: ?HWND, pdtobj: ?*IDataObject, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.CallBack(self, psf, hwndOwner, pdtobj, uMsg, wParam, lParam);
     }
 };
@@ -13201,7 +13201,7 @@ pub const IMenuBand = extern union {
         TranslateMenuMessage: *const fn(
             self: *const IMenuBand,
             pmsg: ?*MSG,
-            plRet: ?*isize,
+            plRet: ?*LRESULT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -13209,7 +13209,7 @@ pub const IMenuBand = extern union {
     pub fn IsMenuMessage(self: *const IMenuBand, pmsg: ?*MSG) callconv(.@"inline") HRESULT {
         return self.vtable.IsMenuMessage(self, pmsg);
     }
-    pub fn TranslateMenuMessage(self: *const IMenuBand, pmsg: ?*MSG, plRet: ?*isize) callconv(.@"inline") HRESULT {
+    pub fn TranslateMenuMessage(self: *const IMenuBand, pmsg: ?*MSG, plRet: ?*LRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.TranslateMenuMessage(self, pmsg, plRet);
     }
 };
@@ -13556,7 +13556,7 @@ pub const INameSpaceTreeControlCustomDraw = extern union {
             self: *const INameSpaceTreeControlCustomDraw,
             hdc: ?HDC,
             prc: ?*RECT,
-            plres: ?*isize,
+            plres: ?*LRESULT,
         ) callconv(.winapi) HRESULT,
         PostPaint: *const fn(
             self: *const INameSpaceTreeControlCustomDraw,
@@ -13570,7 +13570,7 @@ pub const INameSpaceTreeControlCustomDraw = extern union {
             pnstccdItem: ?*NSTCCUSTOMDRAW,
             pclrText: ?*COLORREF,
             pclrTextBk: ?*COLORREF,
-            plres: ?*isize,
+            plres: ?*LRESULT,
         ) callconv(.winapi) HRESULT,
         ItemPostPaint: *const fn(
             self: *const INameSpaceTreeControlCustomDraw,
@@ -13581,13 +13581,13 @@ pub const INameSpaceTreeControlCustomDraw = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn PrePaint(self: *const INameSpaceTreeControlCustomDraw, hdc: ?HDC, prc: ?*RECT, plres: ?*isize) callconv(.@"inline") HRESULT {
+    pub fn PrePaint(self: *const INameSpaceTreeControlCustomDraw, hdc: ?HDC, prc: ?*RECT, plres: ?*LRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.PrePaint(self, hdc, prc, plres);
     }
     pub fn PostPaint(self: *const INameSpaceTreeControlCustomDraw, hdc: ?HDC, prc: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.PostPaint(self, hdc, prc);
     }
-    pub fn ItemPrePaint(self: *const INameSpaceTreeControlCustomDraw, hdc: ?HDC, prc: ?*RECT, pnstccdItem: ?*NSTCCUSTOMDRAW, pclrText: ?*COLORREF, pclrTextBk: ?*COLORREF, plres: ?*isize) callconv(.@"inline") HRESULT {
+    pub fn ItemPrePaint(self: *const INameSpaceTreeControlCustomDraw, hdc: ?HDC, prc: ?*RECT, pnstccdItem: ?*NSTCCUSTOMDRAW, pclrText: ?*COLORREF, pclrTextBk: ?*COLORREF, plres: ?*LRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.ItemPrePaint(self, hdc, prc, pnstccdItem, pclrText, pclrTextBk, plres);
     }
     pub fn ItemPostPaint(self: *const INameSpaceTreeControlCustomDraw, hdc: ?HDC, prc: ?*RECT, pnstccdItem: ?*NSTCCUSTOMDRAW) callconv(.@"inline") HRESULT {
@@ -13700,8 +13700,8 @@ pub const INameSpaceTreeControlEvents = extern union {
         OnKeyboardInput: *const fn(
             self: *const INameSpaceTreeControlEvents,
             uMsg: u32,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
         OnBeforeExpand: *const fn(
             self: *const INameSpaceTreeControlEvents,
@@ -13780,7 +13780,7 @@ pub const INameSpaceTreeControlEvents = extern union {
     pub fn OnSelectionChanged(self: *const INameSpaceTreeControlEvents, psiaSelection: ?*IShellItemArray) callconv(.@"inline") HRESULT {
         return self.vtable.OnSelectionChanged(self, psiaSelection);
     }
-    pub fn OnKeyboardInput(self: *const INameSpaceTreeControlEvents, uMsg: u32, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn OnKeyboardInput(self: *const INameSpaceTreeControlEvents, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.OnKeyboardInput(self, uMsg, wParam, lParam);
     }
     pub fn OnBeforeExpand(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.@"inline") HRESULT {
@@ -16047,9 +16047,9 @@ pub const IShellBrowser = extern union {
             self: *const IShellBrowser,
             id: u32,
             uMsg: u32,
-            wParam: usize,
-            lParam: isize,
-            pret: ?*isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            pret: ?*LRESULT,
         ) callconv(.winapi) HRESULT,
         QueryActiveShellView: *const fn(
             self: *const IShellBrowser,
@@ -16096,7 +16096,7 @@ pub const IShellBrowser = extern union {
     pub fn GetControlWindow(self: *const IShellBrowser, id: u32, phwnd: ?*?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.GetControlWindow(self, id, phwnd);
     }
-    pub fn SendControlMsg(self: *const IShellBrowser, id: u32, uMsg: u32, wParam: usize, lParam: isize, pret: ?*isize) callconv(.@"inline") HRESULT {
+    pub fn SendControlMsg(self: *const IShellBrowser, id: u32, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pret: ?*LRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.SendControlMsg(self, id, uMsg, wParam, lParam, pret);
     }
     pub fn QueryActiveShellView(self: *const IShellBrowser, ppshv: ?*?*IShellView) callconv(.@"inline") HRESULT {
@@ -16671,7 +16671,7 @@ pub const IShellFolder = extern union {
         ) callconv(.winapi) HRESULT,
         CompareIDs: *const fn(
             self: *const IShellFolder,
-            lParam: isize,
+            lParam: LPARAM,
             pidl1: ?*ITEMIDLIST,
             pidl2: ?*ITEMIDLIST,
         ) callconv(.winapi) HRESULT,
@@ -16725,7 +16725,7 @@ pub const IShellFolder = extern union {
     pub fn BindToStorage(self: *const IShellFolder, pidl: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.BindToStorage(self, pidl, pbc, riid, ppv);
     }
-    pub fn CompareIDs(self: *const IShellFolder, lParam: isize, pidl1: ?*ITEMIDLIST, pidl2: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
+    pub fn CompareIDs(self: *const IShellFolder, lParam: LPARAM, pidl1: ?*ITEMIDLIST, pidl2: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.CompareIDs(self, lParam, pidl1, pidl2);
     }
     pub fn CreateViewObject(self: *const IShellFolder, hwndOwner: ?HWND, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
@@ -16855,11 +16855,11 @@ pub const IShellFolderView = extern union {
         base: IUnknown.VTable,
         Rearrange: *const fn(
             self: *const IShellFolderView,
-            lParamSort: isize,
+            lParamSort: LPARAM,
         ) callconv(.winapi) HRESULT,
         GetArrangeParam: *const fn(
             self: *const IShellFolderView,
-            plParamSort: ?*isize,
+            plParamSort: ?*LPARAM,
         ) callconv(.winapi) HRESULT,
         ArrangeGrid: *const fn(
             self: *const IShellFolderView,
@@ -16975,10 +16975,10 @@ pub const IShellFolderView = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Rearrange(self: *const IShellFolderView, lParamSort: isize) callconv(.@"inline") HRESULT {
+    pub fn Rearrange(self: *const IShellFolderView, lParamSort: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.Rearrange(self, lParamSort);
     }
-    pub fn GetArrangeParam(self: *const IShellFolderView, plParamSort: ?*isize) callconv(.@"inline") HRESULT {
+    pub fn GetArrangeParam(self: *const IShellFolderView, plParamSort: ?*LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.GetArrangeParam(self, plParamSort);
     }
     pub fn ArrangeGrid(self: *const IShellFolderView) callconv(.@"inline") HRESULT {
@@ -17070,13 +17070,13 @@ pub const IShellFolderViewCB = extern union {
         MessageSFVCB: *const fn(
             self: *const IShellFolderViewCB,
             uMsg: SFVM_MESSAGE_ID,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MessageSFVCB(self: *const IShellFolderViewCB, uMsg: SFVM_MESSAGE_ID, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn MessageSFVCB(self: *const IShellFolderViewCB, uMsg: SFVM_MESSAGE_ID, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.MessageSFVCB(self, uMsg, wParam, lParam);
     }
 };
@@ -18832,13 +18832,13 @@ pub const IShellMenuCallback = extern union {
             self: *const IShellMenuCallback,
             psmd: ?*SMDATA,
             uMsg: u32,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CallbackSM(self: *const IShellMenuCallback, psmd: ?*SMDATA, uMsg: u32, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn CallbackSM(self: *const IShellMenuCallback, psmd: ?*SMDATA, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.CallbackSM(self, psmd, uMsg, wParam, lParam);
     }
 };
@@ -19028,21 +19028,21 @@ pub const IShellPropSheetExt = extern union {
         AddPages: *const fn(
             self: *const IShellPropSheetExt,
             pfnAddPage: ?LPFNSVADDPROPSHEETPAGE,
-            lParam: isize,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
         ReplacePage: *const fn(
             self: *const IShellPropSheetExt,
             uPageID: u32,
             pfnReplaceWith: ?LPFNSVADDPROPSHEETPAGE,
-            lParam: isize,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPages(self: *const IShellPropSheetExt, pfnAddPage: ?LPFNSVADDPROPSHEETPAGE, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn AddPages(self: *const IShellPropSheetExt, pfnAddPage: ?LPFNSVADDPROPSHEETPAGE, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.AddPages(self, pfnAddPage, lParam);
     }
-    pub fn ReplacePage(self: *const IShellPropSheetExt, uPageID: u32, pfnReplaceWith: ?LPFNSVADDPROPSHEETPAGE, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn ReplacePage(self: *const IShellPropSheetExt, uPageID: u32, pfnReplaceWith: ?LPFNSVADDPROPSHEETPAGE, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.ReplacePage(self, uPageID, pfnReplaceWith, lParam);
     }
 };
@@ -20013,7 +20013,7 @@ pub const IShellView = extern union {
             self: *const IShellView,
             dwReserved: u32,
             pfn: ?LPFNSVADDPROPSHEETPAGE,
-            lparam: isize,
+            lparam: LPARAM,
         ) callconv(.winapi) HRESULT,
         SaveViewState: *const fn(
             self: *const IShellView,
@@ -20054,7 +20054,7 @@ pub const IShellView = extern union {
     pub fn GetCurrentInfo(self: *const IShellView, pfs: ?*FOLDERSETTINGS) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentInfo(self, pfs);
     }
-    pub fn AddPropertySheetPages(self: *const IShellView, dwReserved: u32, pfn: ?LPFNSVADDPROPSHEETPAGE, lparam: isize) callconv(.@"inline") HRESULT {
+    pub fn AddPropertySheetPages(self: *const IShellView, dwReserved: u32, pfn: ?LPFNSVADDPROPSHEETPAGE, lparam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.AddPropertySheetPages(self, dwReserved, pfn, lparam);
     }
     pub fn SaveViewState(self: *const IShellView) callconv(.@"inline") HRESULT {
@@ -24130,8 +24130,8 @@ pub const LPFNDFMCALLBACK = *const fn(
     hwnd: ?HWND,
     pdtobj: ?*IDataObject,
     uMsg: u32,
-    wParam: usize,
-    lParam: isize,
+    wParam: WPARAM,
+    lParam: LPARAM,
 ) callconv(.winapi) HRESULT;
 
 pub const LPFNVIEWCALLBACK = *const fn(
@@ -24139,8 +24139,8 @@ pub const LPFNVIEWCALLBACK = *const fn(
     psf: ?*IShellFolder,
     hwndMain: ?HWND,
     uMsg: u32,
-    wParam: usize,
-    lParam: isize,
+    wParam: WPARAM,
+    lParam: LPARAM,
 ) callconv(.winapi) HRESULT;
 
 const CLSID_MailRecipient_Value = Guid.initString("9e56be60-c50f-11cf-9a2c-00a0c90a90ce");
@@ -25737,7 +25737,7 @@ pub const SFVM_GETANIMATION = SFVM_MESSAGE_ID.GETANIMATION;
 pub const SFVM_PROPPAGE_DATA = extern struct {
     dwReserved: u32,
     pfn: ?LPFNSVADDPROPSHEETPAGE,
-    lParam: isize,
+    lParam: LPARAM,
 };
 
 pub const SFVS_SELECT = enum(i32) {
@@ -27462,11 +27462,11 @@ pub const STPF_USEAPPPEEKWHENACTIVE = STPFLAG.USEAPPPEEKWHENACTIVE;
 pub const SUBCLASSPROC = *const fn(
     hWnd: ?HWND,
     uMsg: u32,
-    wParam: usize,
-    lParam: isize,
+    wParam: WPARAM,
+    lParam: LPARAM,
     uIdSubclass: usize,
     dwRefData: usize,
-) callconv(.winapi) isize;
+) callconv(.winapi) LRESULT;
 
 const CLSID_SuspensionDependencyManager_Value = Guid.initString("6b273fc5-61fd-4918-95a2-c3b5e9d7f581");
 pub const CLSID_SuspensionDependencyManager = &CLSID_SuspensionDependencyManager_Value;
@@ -28355,7 +28355,7 @@ pub const APPBARDATA = switch(@import("../zig.zig").arch) {
         uCallbackMessage: u32,
         uEdge: u32,
         rc: RECT,
-        lParam: isize,
+        lParam: LPARAM,
     },
     .X86 => extern struct {
         cbSize: u32 align(1),
@@ -28363,7 +28363,7 @@ pub const APPBARDATA = switch(@import("../zig.zig").arch) {
         uCallbackMessage: u32 align(1),
         uEdge: u32 align(1),
         rc: RECT align(1),
-        lParam: isize align(1),
+        lParam: LPARAM align(1),
     },
 };
 pub const ASSOCIATIONELEMENT = switch(@import("../zig.zig").arch) {
@@ -29010,9 +29010,9 @@ pub extern "shell32" fn DAD_ShowDragImage(
 pub extern "comctl32" fn DefSubclassProc(
     hWnd: ?HWND,
     uMsg: u32,
-    wParam: usize,
-    lParam: isize,
-) callconv(.winapi) isize;
+    wParam: WPARAM,
+    lParam: LPARAM,
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "userenv" fn DeleteProfileA(
@@ -30801,7 +30801,7 @@ pub extern "comctl32" fn SetWindowSubclass(
 pub extern "shell32" fn SHAddFromPropSheetExtArray(
     hpsxa: ?HPSXA,
     lpfnAddPage: ?LPFNSVADDPROPSHEETPAGE,
-    lParam: isize,
+    lParam: LPARAM,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -32533,7 +32533,7 @@ pub extern "shell32" fn SHReplaceFromPropSheetExtArray(
     hpsxa: ?HPSXA,
     uPageID: u32,
     lpfnReplaceWith: ?LPFNSVADDPROPSHEETPAGE,
-    lParam: isize,
+    lParam: LPARAM,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -32549,16 +32549,16 @@ pub extern "shell32" fn SHRestricted(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "shlwapi" fn SHSendMessageBroadcastA(
     uMsg: u32,
-    wParam: usize,
-    lParam: isize,
-) callconv(.winapi) isize;
+    wParam: WPARAM,
+    lParam: LPARAM,
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "shlwapi" fn SHSendMessageBroadcastW(
     uMsg: u32,
-    wParam: usize,
-    lParam: isize,
-) callconv(.winapi) isize;
+    wParam: WPARAM,
+    lParam: LPARAM,
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "shell32" fn SHSetDefaultProperties(
@@ -32649,8 +32649,8 @@ pub extern "shlwapi" fn SHSetValueW(
 pub extern "shell32" fn SHShellFolderView_Message(
     hwndMain: ?HWND,
     uMsg: u32,
-    lParam: isize,
-) callconv(.winapi) isize;
+    lParam: LPARAM,
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "shell32" fn SHShowManageLibraryUI(
@@ -34976,12 +34976,12 @@ pub const wvnsprintf = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (108)
+// Section: Imports (111)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BOOLEAN = u8;
+const BSTR = *u16;
 const BYTE_BLOB = @import("../system/com.zig").BYTE_BLOB;
 const COLORREF = @import("../foundation.zig").COLORREF;
 const COMDLG_FILTERSPEC = @import("../ui/shell/common.zig").COMDLG_FILTERSPEC;
@@ -35045,8 +35045,10 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const IXMLDOMDocument = @import("../data/xml/ms_xml.zig").IXMLDOMDocument;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
+const LPARAM = isize;
 const LPFNSVADDPROPSHEETPAGE = @import("../ui/controls.zig").LPFNSVADDPROPSHEETPAGE;
 const LPTHREAD_START_ROUTINE = @import("../system/threading.zig").LPTHREAD_START_ROUTINE;
+const LRESULT = isize;
 const MESSAGEBOX_STYLE = @import("../ui/windows_and_messaging.zig").MESSAGEBOX_STYLE;
 const MSG = @import("../ui/windows_and_messaging.zig").MSG;
 const NETRESOURCEA = @import("../network_management/wnet.zig").NETRESOURCEA;
@@ -35082,10 +35084,11 @@ const TBBUTTON = @import("../ui/controls.zig").TBBUTTON;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
 const VARENUM = @import("../system/com.zig").VARENUM;
 const VARIANT = @import("../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
 const WIN32_FIND_DATAA = @import("../storage/file_system.zig").WIN32_FIND_DATAA;
 const WIN32_FIND_DATAW = @import("../storage/file_system.zig").WIN32_FIND_DATAW;
+const WPARAM = usize;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

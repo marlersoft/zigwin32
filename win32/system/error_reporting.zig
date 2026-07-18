@@ -837,7 +837,7 @@ pub const AddERExcludedApplication = switch (@import("../zig.zig").unicode_mode)
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const CONTEXT = @import("../system/diagnostics/debug.zig").CONTEXT;
 const EXCEPTION_POINTERS = @import("../system/diagnostics/debug.zig").EXCEPTION_POINTERS;
 const EXCEPTION_RECORD = @import("../system/diagnostics/debug.zig").EXCEPTION_RECORD;

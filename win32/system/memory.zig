@@ -1420,8 +1420,8 @@ pub const OpenFileMapping = switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../foundation.zig").BOOL;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOL = i32;
+const BOOLEAN = u8;
 const FARPROC = @import("../foundation.zig").FARPROC;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;

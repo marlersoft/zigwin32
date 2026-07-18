@@ -12285,9 +12285,9 @@ pub extern "clusapi" fn SetGroupDependencyExpression(
 // Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BOOLEAN = u8;
+const BSTR = *u16;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HFONT = @import("../graphics/gdi.zig").HFONT;

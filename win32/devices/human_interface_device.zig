@@ -5912,8 +5912,8 @@ pub const LPDIENUMEFFECTSCALLBACK = switch (@import("../zig.zig").unicode_mode) 
 // Section: Imports (14)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOL = i32;
+const BOOLEAN = u8;
 const DEVPROPKEY = @import("../devices/properties.zig").DEVPROPKEY;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;

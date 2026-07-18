@@ -2302,8 +2302,8 @@ pub extern "winusb" fn WinUsb_WritePipe(
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOL = i32;
+const BOOLEAN = u8;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;

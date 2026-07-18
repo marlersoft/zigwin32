@@ -1918,8 +1918,8 @@ pub const DSS_RIGHT = DRAWSTATE_FLAGS{ .S_RIGHT = 1 };
 
 pub const DRAWSTATEPROC = *const fn(
     hdc: ?HDC,
-    lData: isize,
-    wData: usize,
+    lData: LPARAM,
+    wData: WPARAM,
     cx: i32,
     cy: i32,
 ) callconv(.winapi) BOOL;
@@ -2801,7 +2801,7 @@ pub const ENHMFENUMPROC = *const fn(
     lpht: [*]HANDLETABLE,
     lpmr: ?*const ENHMETARECORD,
     nHandles: i32,
-    data: isize,
+    data: LPARAM,
 ) callconv(.winapi) i32;
 
 pub const ENUM_DISPLAY_SETTINGS_FLAGS = packed struct(u32) {
@@ -3176,14 +3176,14 @@ pub const FONTENUMPROCA = *const fn(
     param0: ?*const LOGFONTA,
     param1: ?*const TEXTMETRICA,
     param2: u32,
-    param3: isize,
+    param3: LPARAM,
 ) callconv(.winapi) i32;
 
 pub const FONTENUMPROCW = *const fn(
     param0: ?*const LOGFONTW,
     param1: ?*const TEXTMETRICW,
     param2: u32,
-    param3: isize,
+    param3: LPARAM,
 ) callconv(.winapi) i32;
 
 pub const GCP_RESULTSA = extern struct {
@@ -3482,7 +3482,7 @@ pub const GLYPHSET = extern struct {
 
 pub const GOBJENUMPROC = *const fn(
     param0: ?*anyopaque,
-    param1: isize,
+    param1: LPARAM,
 ) callconv(.winapi) i32;
 
 pub const GRADIENT_FILL = enum(u32) {
@@ -3514,7 +3514,7 @@ pub const GM_ADVANCED = GRAPHICS_MODE.ADVANCED;
 
 pub const GRAYSTRINGPROC = *const fn(
     param0: ?HDC,
-    param1: isize,
+    param1: LPARAM,
     param2: i32,
 ) callconv(.winapi) BOOL;
 
@@ -3633,7 +3633,7 @@ pub const KERNINGPAIR = extern struct {
 pub const LINEDDAPROC = *const fn(
     param0: i32,
     param1: i32,
-    param2: isize,
+    param2: LPARAM,
 ) callconv(.winapi) void;
 
 pub const LOGBRUSH = extern struct {
@@ -3741,7 +3741,7 @@ pub const MFENUMPROC = *const fn(
     lpht: [*]HANDLETABLE,
     lpMR: ?*METARECORD,
     nObj: i32,
-    param4: isize,
+    param4: LPARAM,
 ) callconv(.winapi) i32;
 
 pub const MODIFY_WORLD_TRANSFORM_MODE = enum(u32) {
@@ -3766,7 +3766,7 @@ pub const MONITORENUMPROC = *const fn(
     param0: ?HMONITOR,
     param1: ?HDC,
     param2: ?*RECT,
-    param3: isize,
+    param3: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const MONITORINFO = extern struct {
@@ -5694,8 +5694,8 @@ pub extern "user32" fn DrawStateA(
     hdc: ?HDC,
     hbrFore: ?HBRUSH,
     qfnCallBack: ?DRAWSTATEPROC,
-    lData: isize,
-    wData: usize,
+    lData: LPARAM,
+    wData: WPARAM,
     x: i32,
     y: i32,
     cx: i32,
@@ -5708,8 +5708,8 @@ pub extern "user32" fn DrawStateW(
     hdc: ?HDC,
     hbrFore: ?HBRUSH,
     qfnCallBack: ?DRAWSTATEPROC,
-    lData: isize,
-    wData: usize,
+    lData: LPARAM,
+    wData: WPARAM,
     x: i32,
     y: i32,
     cx: i32,
@@ -5796,7 +5796,7 @@ pub extern "user32" fn EnumDisplayMonitors(
     hdc: ?HDC,
     lprcClip: ?*RECT,
     lpfnEnum: ?MONITORENUMPROC,
-    dwData: isize,
+    dwData: LPARAM,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5843,7 +5843,7 @@ pub extern "gdi32" fn EnumFontFamiliesA(
     hdc: ?HDC,
     lpLogfont: ?[*:0]const u8,
     lpProc: ?FONTENUMPROCA,
-    lParam: isize,
+    lParam: LPARAM,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5851,7 +5851,7 @@ pub extern "gdi32" fn EnumFontFamiliesExA(
     hdc: ?HDC,
     lpLogfont: ?*LOGFONTA,
     lpProc: ?FONTENUMPROCA,
-    lParam: isize,
+    lParam: LPARAM,
     dwFlags: u32,
 ) callconv(.winapi) i32;
 
@@ -5860,7 +5860,7 @@ pub extern "gdi32" fn EnumFontFamiliesExW(
     hdc: ?HDC,
     lpLogfont: ?*LOGFONTW,
     lpProc: ?FONTENUMPROCW,
-    lParam: isize,
+    lParam: LPARAM,
     dwFlags: u32,
 ) callconv(.winapi) i32;
 
@@ -5869,7 +5869,7 @@ pub extern "gdi32" fn EnumFontFamiliesW(
     hdc: ?HDC,
     lpLogfont: ?[*:0]const u16,
     lpProc: ?FONTENUMPROCW,
-    lParam: isize,
+    lParam: LPARAM,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5877,7 +5877,7 @@ pub extern "gdi32" fn EnumFontsA(
     hdc: ?HDC,
     lpLogfont: ?[*:0]const u8,
     lpProc: ?FONTENUMPROCA,
-    lParam: isize,
+    lParam: LPARAM,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5885,7 +5885,7 @@ pub extern "gdi32" fn EnumFontsW(
     hdc: ?HDC,
     lpLogfont: ?[*:0]const u16,
     lpProc: ?FONTENUMPROCW,
-    lParam: isize,
+    lParam: LPARAM,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5893,7 +5893,7 @@ pub extern "gdi32" fn EnumMetaFile(
     hdc: ?HDC,
     hmf: ?HMETAFILE,
     proc: ?MFENUMPROC,
-    param3: isize,
+    param3: LPARAM,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5901,7 +5901,7 @@ pub extern "gdi32" fn EnumObjects(
     hdc: ?HDC,
     nType: OBJ_TYPE,
     lpFunc: ?GOBJENUMPROC,
-    lParam: isize,
+    lParam: LPARAM,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6892,7 +6892,7 @@ pub extern "user32" fn GrayStringA(
     hDC: ?HDC,
     hBrush: ?HBRUSH,
     lpOutputFunc: ?GRAYSTRINGPROC,
-    lpData: isize,
+    lpData: LPARAM,
     nCount: i32,
     X: i32,
     Y: i32,
@@ -6905,7 +6905,7 @@ pub extern "user32" fn GrayStringW(
     hDC: ?HDC,
     hBrush: ?HBRUSH,
     lpOutputFunc: ?GRAYSTRINGPROC,
-    lpData: isize,
+    lpData: LPARAM,
     nCount: i32,
     X: i32,
     Y: i32,
@@ -6974,7 +6974,7 @@ pub extern "gdi32" fn LineDDA(
     xEnd: i32,
     yEnd: i32,
     lpProc: ?LINEDDAPROC,
-    data: isize,
+    data: LPARAM,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -8530,19 +8530,21 @@ pub const TextOut = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (13)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const COLORREF = @import("../foundation.zig").COLORREF;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const HWND = @import("../foundation.zig").HWND;
+const LPARAM = isize;
 const POINT = @import("../foundation.zig").POINT;
 const POINTL = @import("../foundation.zig").POINTL;
 const POINTS = @import("../foundation.zig").POINTS;
 const RECT = @import("../foundation.zig").RECT;
 const RECTL = @import("../foundation.zig").RECTL;
 const SIZE = @import("../foundation.zig").SIZE;
+const WPARAM = usize;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

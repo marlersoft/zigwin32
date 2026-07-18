@@ -3546,7 +3546,7 @@ pub const OFFLOAD_IPSEC_UDPESP_ENCAPTYPE_OTHER = UDP_ENCAP_TYPE.OTHER;
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOLEAN = u8;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 

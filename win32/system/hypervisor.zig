@@ -3492,7 +3492,7 @@ pub extern "winhvplatform" fn WHvWriteVpciDeviceRegister(
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ADDRESS_FAMILY = @import("../networking/win_sock.zig").ADDRESS_FAMILY;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const DEVICE_POWER_STATE = @import("../system/power.zig").DEVICE_POWER_STATE;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HCS_SYSTEM = @import("../system/host_compute_system.zig").HCS_SYSTEM;

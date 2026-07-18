@@ -4279,14 +4279,14 @@ pub const TRANSPORT_SETTING = extern struct {
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BSTR = @import("../foundation.zig").BSTR;
+const BSTR = *u16;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const IVideoWindow = @import("../media/direct_show.zig").IVideoWindow;
 const TRANSPORT_SETTING_ID = @import("../networking/win_sock.zig").TRANSPORT_SETTING_ID;
 const VARIANT = @import("../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 
 test {
     @setEvalBranchQuota(

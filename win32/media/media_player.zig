@@ -3714,9 +3714,9 @@ pub const IWMPEffects2 = extern union {
         OnWindowMessage: *const fn(
             self: *const IWMPEffects2,
             msg: u32,
-            WParam: usize,
-            LParam: isize,
-            plResultParam: ?*isize,
+            WParam: WPARAM,
+            LParam: LPARAM,
+            plResultParam: ?*LRESULT,
         ) callconv(.winapi) HRESULT,
         RenderWindowed: *const fn(
             self: *const IWMPEffects2,
@@ -3739,7 +3739,7 @@ pub const IWMPEffects2 = extern union {
     pub fn NotifyNewMedia(self: *const IWMPEffects2, pMedia: ?*IWMPMedia) callconv(.@"inline") HRESULT {
         return self.vtable.NotifyNewMedia(self, pMedia);
     }
-    pub fn OnWindowMessage(self: *const IWMPEffects2, msg: u32, WParam: usize, LParam: isize, plResultParam: ?*isize) callconv(.@"inline") HRESULT {
+    pub fn OnWindowMessage(self: *const IWMPEffects2, msg: u32, WParam: WPARAM, LParam: LPARAM, plResultParam: ?*LRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.OnWindowMessage(self, msg, WParam, LParam, plResultParam);
     }
     pub fn RenderWindowed(self: *const IWMPEffects2, pData: ?*TimedLevel, fRequiredRender: BOOL) callconv(.@"inline") HRESULT {
@@ -5442,15 +5442,15 @@ pub const IWMPNodeWindowedHost = extern union {
         OnWindowMessageFromRenderer: *const fn(
             self: *const IWMPNodeWindowedHost,
             uMsg: u32,
-            wparam: usize,
-            lparam: isize,
-            plRet: ?*isize,
+            wparam: WPARAM,
+            lparam: LPARAM,
+            plRet: ?*LRESULT,
             pfHandled: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnWindowMessageFromRenderer(self: *const IWMPNodeWindowedHost, uMsg: u32, wparam: usize, lparam: isize, plRet: ?*isize, pfHandled: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn OnWindowMessageFromRenderer(self: *const IWMPNodeWindowedHost, uMsg: u32, wparam: WPARAM, lparam: LPARAM, plRet: ?*LRESULT, pfHandled: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnWindowMessageFromRenderer(self, uMsg, wparam, lparam, plRet, pfHandled);
     }
 };
@@ -7156,15 +7156,15 @@ pub const IWMPWindowMessageSink = extern union {
         OnWindowMessage: *const fn(
             self: *const IWMPWindowMessageSink,
             uMsg: u32,
-            wparam: usize,
-            lparam: isize,
-            plRet: ?*isize,
+            wparam: WPARAM,
+            lparam: LPARAM,
+            plRet: ?*LRESULT,
             pfHandled: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnWindowMessage(self: *const IWMPWindowMessageSink, uMsg: u32, wparam: usize, lparam: isize, plRet: ?*isize, pfHandled: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn OnWindowMessage(self: *const IWMPWindowMessageSink, uMsg: u32, wparam: WPARAM, lparam: LPARAM, plRet: ?*LRESULT, pfHandled: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnWindowMessage(self, uMsg, wparam, lparam, plRet, pfHandled);
     }
 };
@@ -8689,12 +8689,12 @@ pub const wmpttBuy = WMPTransactionType.Buy;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (18)
+// Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLOB = @import("../system/com.zig").BLOB;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const HDC = @import("../graphics/gdi.zig").HDC;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
@@ -8703,12 +8703,15 @@ const IEnumVARIANT = @import("../system/ole.zig").IEnumVARIANT;
 const IMFActivate = @import("../media/media_foundation.zig").IMFActivate;
 const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
+const LPARAM = isize;
+const LRESULT = isize;
 const MSG = @import("../ui/windows_and_messaging.zig").MSG;
 const RECT = @import("../foundation.zig").RECT;
 const SIZE = @import("../foundation.zig").SIZE;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
+const WPARAM = usize;
 
 test {
     @setEvalBranchQuota(

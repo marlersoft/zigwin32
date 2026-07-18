@@ -173,7 +173,7 @@ pub extern "magnification" fn MagUninitialize(
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const HRGN = @import("../graphics/gdi.zig").HRGN;
 const HWND = @import("../foundation.zig").HWND;
 const RECT = @import("../foundation.zig").RECT;

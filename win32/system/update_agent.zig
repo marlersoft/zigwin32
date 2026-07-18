@@ -4486,14 +4486,14 @@ pub const CLSID_WindowsUpdateAgentInfo = &CLSID_WindowsUpdateAgentInfo_Value;
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BSTR = @import("../foundation.zig").BSTR;
+const BSTR = *u16;
 const DECIMAL = @import("../foundation.zig").DECIMAL;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const VARIANT = @import("../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 
 test {
     @setEvalBranchQuota(

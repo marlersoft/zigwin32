@@ -9001,8 +9001,8 @@ pub const TestApplyPatchToFile = switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA = @import("../system/windows_programming.zig").ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
@@ -9016,7 +9016,7 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

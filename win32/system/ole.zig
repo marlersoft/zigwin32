@@ -3153,9 +3153,9 @@ pub const IOleInPlaceObjectWindowless = extern union {
         OnWindowMessage: *const fn(
             self: *const IOleInPlaceObjectWindowless,
             msg: u32,
-            wParam: usize,
-            lParam: isize,
-            plResult: ?*isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            plResult: ?*LRESULT,
         ) callconv(.winapi) HRESULT,
         GetDropTarget: *const fn(
             self: *const IOleInPlaceObjectWindowless,
@@ -3166,7 +3166,7 @@ pub const IOleInPlaceObjectWindowless = extern union {
     IOleInPlaceObject: IOleInPlaceObject,
     IOleWindow: IOleWindow,
     IUnknown: IUnknown,
-    pub fn OnWindowMessage(self: *const IOleInPlaceObjectWindowless, msg: u32, wParam: usize, lParam: isize, plResult: ?*isize) callconv(.@"inline") HRESULT {
+    pub fn OnWindowMessage(self: *const IOleInPlaceObjectWindowless, msg: u32, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.OnWindowMessage(self, msg, wParam, lParam, plResult);
     }
     pub fn GetDropTarget(self: *const IOleInPlaceObjectWindowless, ppDropTarget: ?*?*IDropTarget) callconv(.@"inline") HRESULT {
@@ -3345,9 +3345,9 @@ pub const IOleInPlaceSiteWindowless = extern union {
         OnDefWindowMessage: *const fn(
             self: *const IOleInPlaceSiteWindowless,
             msg: u32,
-            wParam: usize,
-            lParam: isize,
-            plResult: ?*isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            plResult: ?*LRESULT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -3388,7 +3388,7 @@ pub const IOleInPlaceSiteWindowless = extern union {
     pub fn AdjustRect(self: *const IOleInPlaceSiteWindowless, prc: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.AdjustRect(self, prc);
     }
-    pub fn OnDefWindowMessage(self: *const IOleInPlaceSiteWindowless, msg: u32, wParam: usize, lParam: isize, plResult: ?*isize) callconv(.@"inline") HRESULT {
+    pub fn OnDefWindowMessage(self: *const IOleInPlaceSiteWindowless, msg: u32, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.OnDefWindowMessage(self, msg, wParam, lParam, plResult);
     }
 };
@@ -5244,27 +5244,27 @@ pub const ISimpleFrameSite = extern union {
             self: *const ISimpleFrameSite,
             hWnd: ?HWND,
             msg: u32,
-            wp: usize,
-            lp: isize,
-            plResult: ?*isize,
+            wp: WPARAM,
+            lp: LPARAM,
+            plResult: ?*LRESULT,
             pdwCookie: ?*u32,
         ) callconv(.winapi) HRESULT,
         PostMessageFilter: *const fn(
             self: *const ISimpleFrameSite,
             hWnd: ?HWND,
             msg: u32,
-            wp: usize,
-            lp: isize,
-            plResult: ?*isize,
+            wp: WPARAM,
+            lp: LPARAM,
+            plResult: ?*LRESULT,
             dwCookie: u32,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn PreMessageFilter(self: *const ISimpleFrameSite, hWnd: ?HWND, msg: u32, wp: usize, lp: isize, plResult: ?*isize, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn PreMessageFilter(self: *const ISimpleFrameSite, hWnd: ?HWND, msg: u32, wp: WPARAM, lp: LPARAM, plResult: ?*LRESULT, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.PreMessageFilter(self, hWnd, msg, wp, lp, plResult, pdwCookie);
     }
-    pub fn PostMessageFilter(self: *const ISimpleFrameSite, hWnd: ?HWND, msg: u32, wp: usize, lp: isize, plResult: ?*isize, dwCookie: u32) callconv(.@"inline") HRESULT {
+    pub fn PostMessageFilter(self: *const ISimpleFrameSite, hWnd: ?HWND, msg: u32, wp: WPARAM, lp: LPARAM, plResult: ?*LRESULT, dwCookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PostMessageFilter(self, hWnd, msg, wp, lp, plResult, dwCookie);
     }
 };
@@ -5721,8 +5721,8 @@ pub const LP_COLOR = LOAD_PICTURE_FLAGS{ .COLOR = 1 };
 pub const LPFNOLEUIHOOK = *const fn(
     param0: ?HWND,
     param1: u32,
-    param2: usize,
-    param3: isize,
+    param2: WPARAM,
+    param3: LPARAM,
 ) callconv(.winapi) u32;
 
 pub const MEDIAPLAYBACK_STATE = enum(i32) {
@@ -6418,7 +6418,7 @@ pub const OLEUIBUSYA = extern struct {
     hWndOwner: ?HWND,
     lpszCaption: ?[*:0]const u8,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     hInstance: ?HINSTANCE,
     lpszTemplate: ?[*:0]const u8,
     hResource: ?HRSRC,
@@ -6432,7 +6432,7 @@ pub const OLEUIBUSYW = extern struct {
     hWndOwner: ?HWND,
     lpszCaption: ?[*:0]const u16,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     hInstance: ?HINSTANCE,
     lpszTemplate: ?[*:0]const u16,
     hResource: ?HRSRC,
@@ -6446,7 +6446,7 @@ pub const OLEUICHANGEICONA = extern struct {
     hWndOwner: ?HWND,
     lpszCaption: ?[*:0]const u8,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     hInstance: ?HINSTANCE,
     lpszTemplate: ?[*:0]const u8,
     hResource: ?HRSRC,
@@ -6462,7 +6462,7 @@ pub const OLEUICHANGEICONW = extern struct {
     hWndOwner: ?HWND,
     lpszCaption: ?[*:0]const u16,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     hInstance: ?HINSTANCE,
     lpszTemplate: ?[*:0]const u16,
     hResource: ?HRSRC,
@@ -6478,7 +6478,7 @@ pub const OLEUICHANGESOURCEA = extern struct {
     hWndOwner: ?HWND,
     lpszCaption: ?[*:0]const u8,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     hInstance: ?HINSTANCE,
     lpszTemplate: ?[*:0]const u8,
     hResource: ?HRSRC,
@@ -6498,7 +6498,7 @@ pub const OLEUICHANGESOURCEW = extern struct {
     hWndOwner: ?HWND,
     lpszCaption: ?[*:0]const u16,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     hInstance: ?HINSTANCE,
     lpszTemplate: ?[*:0]const u16,
     hResource: ?HRSRC,
@@ -6518,7 +6518,7 @@ pub const OLEUICONVERTA = extern struct {
     hWndOwner: ?HWND,
     lpszCaption: ?[*:0]const u8,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     hInstance: ?HINSTANCE,
     lpszTemplate: ?[*:0]const u8,
     hResource: ?HRSRC,
@@ -6543,7 +6543,7 @@ pub const OLEUICONVERTW = extern struct {
     hWndOwner: ?HWND,
     lpszCaption: ?[*:0]const u16,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     hInstance: ?HINSTANCE,
     lpszTemplate: ?[*:0]const u16,
     hResource: ?HRSRC,
@@ -6568,7 +6568,7 @@ pub const OLEUIEDITLINKSA = extern struct {
     hWndOwner: ?HWND,
     lpszCaption: ?[*:0]const u8,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     hInstance: ?HINSTANCE,
     lpszTemplate: ?[*:0]const u8,
     hResource: ?HRSRC,
@@ -6581,7 +6581,7 @@ pub const OLEUIEDITLINKSW = extern struct {
     hWndOwner: ?HWND,
     lpszCaption: ?[*:0]const u16,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     hInstance: ?HINSTANCE,
     lpszTemplate: ?[*:0]const u16,
     hResource: ?HRSRC,
@@ -6593,7 +6593,7 @@ pub const OLEUIGNRLPROPSA = extern struct {
     dwFlags: u32,
     dwReserved1: [2]u32,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     dwReserved2: [3]u32,
     lpOP: ?*OLEUIOBJECTPROPSA,
 };
@@ -6603,7 +6603,7 @@ pub const OLEUIGNRLPROPSW = extern struct {
     dwFlags: u32,
     dwReserved1: [2]u32,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     dwReserved2: [3]u32,
     lpOP: ?*OLEUIOBJECTPROPSW,
 };
@@ -6614,7 +6614,7 @@ pub const OLEUIINSERTOBJECTA = extern struct {
     hWndOwner: ?HWND,
     lpszCaption: ?[*:0]const u8,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     hInstance: ?HINSTANCE,
     lpszTemplate: ?[*:0]const u8,
     hResource: ?HRSRC,
@@ -6639,7 +6639,7 @@ pub const OLEUIINSERTOBJECTW = extern struct {
     hWndOwner: ?HWND,
     lpszCaption: ?[*:0]const u16,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     hInstance: ?HINSTANCE,
     lpszTemplate: ?[*:0]const u16,
     hResource: ?HRSRC,
@@ -6663,7 +6663,7 @@ pub const OLEUILINKPROPSA = extern struct {
     dwFlags: u32,
     dwReserved1: [2]u32,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     dwReserved2: [3]u32,
     lpOP: ?*OLEUIOBJECTPROPSA,
 };
@@ -6673,7 +6673,7 @@ pub const OLEUILINKPROPSW = extern struct {
     dwFlags: u32,
     dwReserved1: [2]u32,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     dwReserved2: [3]u32,
     lpOP: ?*OLEUIOBJECTPROPSW,
 };
@@ -6753,7 +6753,7 @@ pub const OLEUIPASTESPECIALA = extern struct {
     hWndOwner: ?HWND,
     lpszCaption: ?[*:0]const u8,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     hInstance: ?HINSTANCE,
     lpszTemplate: ?[*:0]const u8,
     hResource: ?HRSRC,
@@ -6776,7 +6776,7 @@ pub const OLEUIPASTESPECIALW = extern struct {
     hWndOwner: ?HWND,
     lpszCaption: ?[*:0]const u16,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     hInstance: ?HINSTANCE,
     lpszTemplate: ?[*:0]const u16,
     hResource: ?HRSRC,
@@ -6798,7 +6798,7 @@ pub const OLEUIVIEWPROPSA = extern struct {
     dwFlags: VIEW_OBJECT_PROPERTIES_FLAGS,
     dwReserved1: [2]u32,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     dwReserved2: [3]u32,
     lpOP: ?*OLEUIOBJECTPROPSA,
     nScaleMin: i32,
@@ -6810,7 +6810,7 @@ pub const OLEUIVIEWPROPSW = extern struct {
     dwFlags: VIEW_OBJECT_PROPERTIES_FLAGS,
     dwReserved1: [2]u32,
     lpfnHook: ?LPFNOLEUIHOOK,
-    lCustData: isize,
+    lCustData: LPARAM,
     dwReserved2: [3]u32,
     lpOP: ?*OLEUIOBJECTPROPSW,
     nScaleMin: i32,
@@ -10500,12 +10500,12 @@ pub const OleUIUpdateLinks = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (90)
+// Section: Imports (93)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ADVF = @import("../system/com.zig").ADVF;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const BYTE_SIZEDARR = @import("../system/com.zig").BYTE_SIZEDARR;
 const CALLCONV = @import("../system/com.zig").CALLCONV;
 const COLORREF = @import("../foundation.zig").COLORREF;
@@ -10566,6 +10566,8 @@ const ITypeInfo = @import("../system/com.zig").ITypeInfo;
 const ITypeLib = @import("../system/com.zig").ITypeLib;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LOGPALETTE = @import("../graphics/gdi.zig").LOGPALETTE;
+const LPARAM = isize;
+const LRESULT = isize;
 const MENU_ITEM_FLAGS = @import("../ui/windows_and_messaging.zig").MENU_ITEM_FLAGS;
 const MODIFIERKEYS_FLAGS = @import("../system/system_services.zig").MODIFIERKEYS_FLAGS;
 const MSG = @import("../ui/windows_and_messaging.zig").MSG;
@@ -10590,8 +10592,9 @@ const TYPEKIND = @import("../system/com.zig").TYPEKIND;
 const VARDESC = @import("../system/com.zig").VARDESC;
 const VARENUM = @import("../system/com.zig").VARENUM;
 const VARIANT = @import("../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 const WORD_SIZEDARR = @import("../system/com.zig").WORD_SIZEDARR;
+const WPARAM = usize;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

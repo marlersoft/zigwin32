@@ -1524,9 +1524,9 @@ pub extern "ole32" fn WriteFmtUserTypeStg(
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BLOB = @import("../../system/com.zig").BLOB;
-const BOOL = @import("../../foundation.zig").BOOL;
-const BOOLEAN = @import("../../foundation.zig").BOOLEAN;
-const BSTR = @import("../../foundation.zig").BSTR;
+const BOOL = i32;
+const BOOLEAN = u8;
+const BSTR = *u16;
 const CLSCTX = @import("../../system/com.zig").CLSCTX;
 const COSERVERINFO = @import("../../system/com.zig").COSERVERINFO;
 const CY = @import("../../system/com.zig").CY;
@@ -1553,7 +1553,7 @@ const StorageLayout = @import("../../system/com.zig").StorageLayout;
 const ULARGE_INTEGER = @import("../../foundation.zig").ULARGE_INTEGER;
 const VARENUM = @import("../../system/com.zig").VARENUM;
 const VARIANT = @import("../../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 
 test {
     @setEvalBranchQuota(

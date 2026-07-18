@@ -2706,7 +2706,7 @@ pub extern "mapi32" fn WrapStoreEntryID(
 // Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const CY = @import("../system/com.zig").CY;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;

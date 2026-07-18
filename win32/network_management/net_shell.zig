@@ -285,7 +285,7 @@ pub extern "netsh" fn RegisterHelper(
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const HANDLE = @import("../foundation.zig").HANDLE;
 
 test {

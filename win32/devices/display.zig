@@ -4600,8 +4600,8 @@ pub extern "gdi32" fn XLATEOBJ_piVector(
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLENDFUNCTION = @import("../graphics/gdi.zig").BLENDFUNCTION;
-const BOOL = @import("../foundation.zig").BOOL;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOL = i32;
+const BOOLEAN = u8;
 const CHAR_INFO = @import("../system/console.zig").CHAR_INFO;
 const COLORADJUSTMENT = @import("../graphics/gdi.zig").COLORADJUSTMENT;
 const COORD = @import("../system/console.zig").COORD;

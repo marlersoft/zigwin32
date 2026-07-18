@@ -527,7 +527,7 @@ pub extern "kernel32" fn PssWalkSnapshot(
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../../foundation.zig").BOOL;
+const BOOL = i32;
 const CONTEXT = @import("../../system/diagnostics/debug.zig").CONTEXT;
 const FILETIME = @import("../../foundation.zig").FILETIME;
 const HANDLE = @import("../../foundation.zig").HANDLE;

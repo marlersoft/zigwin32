@@ -5694,7 +5694,7 @@ pub const StartDoc = switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
 const DEVMODEA = @import("../graphics/gdi.zig").DEVMODEA;
 const DEVMODEW = @import("../graphics/gdi.zig").DEVMODEW;

@@ -12265,7 +12265,7 @@ pub extern "d3dcsx" fn D3DX11CreateSegmentedScan(
 // Section: Imports (36)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const D3D_CBUFFER_TYPE = @import("../graphics/direct3d.zig").D3D_CBUFFER_TYPE;
 const D3D_DRIVER_TYPE = @import("../graphics/direct3d.zig").D3D_DRIVER_TYPE;
 const D3D_FEATURE_LEVEL = @import("../graphics/direct3d.zig").D3D_FEATURE_LEVEL;

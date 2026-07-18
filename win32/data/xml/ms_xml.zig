@@ -6746,15 +6746,15 @@ pub const CLSID_XSLTemplate60 = &CLSID_XSLTemplate60_Value;
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOL = @import("../../foundation.zig").BOOL;
-const BSTR = @import("../../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const FILETIME = @import("../../foundation.zig").FILETIME;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IDispatch = @import("../../system/com.zig").IDispatch;
 const ISequentialStream = @import("../../system/com.zig").ISequentialStream;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const VARIANT = @import("../../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 
 test {
     @setEvalBranchQuota(

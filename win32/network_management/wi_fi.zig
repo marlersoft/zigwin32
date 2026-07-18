@@ -5490,8 +5490,8 @@ pub extern "wlanui" fn WlanUIEditProfile(
 // Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOL = i32;
+const BOOLEAN = u8;
 const DEVPROPKEY = @import("../devices/properties.zig").DEVPROPKEY;
 const EAP_ATTRIBUTES = @import("../security/extensible_authentication_protocol.zig").EAP_ATTRIBUTES;
 const EAP_METHOD_TYPE = @import("../security/extensible_authentication_protocol.zig").EAP_METHOD_TYPE;

@@ -1291,7 +1291,7 @@ pub const HtmlHelp = switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (15)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const COLORREF = @import("../foundation.zig").COLORREF;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const HRESULT = @import("../foundation.zig").HRESULT;

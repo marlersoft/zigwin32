@@ -459,8 +459,8 @@ pub const MONMSGSTRUCT = extern struct {
     dwTime: u32,
     hTask: ?HANDLE,
     wMsg: u32,
-    wParam: usize,
-    lParam: isize,
+    wParam: WPARAM,
+    lParam: LPARAM,
     dmhd: DDEML_MSG_HOOK_DATA,
 };
 
@@ -762,7 +762,7 @@ pub extern "kernel32" fn FindAtomW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn FreeDDElParam(
     msg: u32,
-    lParam: isize,
+    lParam: LPARAM,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -902,7 +902,7 @@ pub extern "user32" fn PackDDElParam(
     msg: u32,
     uiLo: usize,
     uiHi: usize,
-) callconv(.winapi) isize;
+) callconv(.winapi) LPARAM;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn RegisterClipboardFormatA(
@@ -921,12 +921,12 @@ pub extern "user32" fn RemoveClipboardFormatListener(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn ReuseDDElParam(
-    lParam: isize,
+    lParam: LPARAM,
     msgIn: u32,
     msgOut: u32,
     uiLo: usize,
     uiHi: usize,
-) callconv(.winapi) isize;
+) callconv(.winapi) LPARAM;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetClipboardData(
@@ -951,7 +951,7 @@ pub extern "gdi32" fn SetWinMetaFileBits(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn UnpackDDElParam(
     msg: u32,
-    lParam: isize,
+    lParam: LPARAM,
     puiLo: ?*usize,
     puiHi: ?*usize,
 ) callconv(.winapi) BOOL;
@@ -1052,15 +1052,17 @@ pub const RegisterClipboardFormat = switch (@import("../zig.zig").unicode_mode) 
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HDC = @import("../graphics/gdi.zig").HDC;
 const HENHMETAFILE = @import("../graphics/gdi.zig").HENHMETAFILE;
 const HMETAFILE = @import("../graphics/gdi.zig").HMETAFILE;
 const HWND = @import("../foundation.zig").HWND;
+const LPARAM = isize;
 const SECURITY_QUALITY_OF_SERVICE = @import("../security.zig").SECURITY_QUALITY_OF_SERVICE;
+const WPARAM = usize;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

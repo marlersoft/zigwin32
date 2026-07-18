@@ -599,7 +599,7 @@ pub extern "projectedfslib" fn PrjWritePlaceholderInfo2(
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOLEAN = u8;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 

@@ -245,9 +245,9 @@ pub const COLORMATCHSETUPA = extern struct {
     pTargetProfile: ?[*:0]u8,
     ccTargetProfile: u32,
     lpfnHook: ?DLGPROC,
-    lParam: isize,
+    lParam: LPARAM,
     lpfnApplyCallback: ?PCMSCALLBACKA,
-    lParamApplyCallback: isize,
+    lParamApplyCallback: LPARAM,
 };
 
 pub const COLORMATCHSETUPW = extern struct {
@@ -267,9 +267,9 @@ pub const COLORMATCHSETUPW = extern struct {
     pTargetProfile: ?[*:0]u16,
     ccTargetProfile: u32,
     lpfnHook: ?DLGPROC,
-    lParam: isize,
+    lParam: LPARAM,
     lpfnApplyCallback: ?PCMSCALLBACKW,
-    lParamApplyCallback: isize,
+    lParamApplyCallback: LPARAM,
 };
 
 pub const COLORPROFILESUBTYPE = enum(i32) {
@@ -462,12 +462,12 @@ pub const ICM_DONE_OUTSIDEDC = ICM_MODE.DONE_OUTSIDEDC;
 
 pub const ICMENUMPROCA = *const fn(
     param0: ?[*:0]u8,
-    param1: isize,
+    param1: LPARAM,
 ) callconv(.winapi) i32;
 
 pub const ICMENUMPROCW = *const fn(
     param0: ?[*:0]u16,
-    param1: isize,
+    param1: LPARAM,
 ) callconv(.winapi) i32;
 
 const IID_IDeviceModelPlugIn_Value = Guid.initString("1cd63475-07c4-46fe-a903-d655316d11fd");
@@ -653,7 +653,7 @@ pub const LOGCOLORSPACEW = extern struct {
 pub const LPBMCALLBACKFN = *const fn(
     param0: u32,
     param1: u32,
-    param2: isize,
+    param2: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const NAMED_PROFILE_INFO = extern struct {
@@ -798,7 +798,7 @@ pub extern "mscms" fn CheckBitmapBits(
     dwStride: u32,
     paResult: ?*u8,
     pfnCallback: ?LPBMCALLBACKFN,
-    lpCallbackData: isize,
+    lpCallbackData: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub extern "mscms" fn CheckColors(
@@ -847,7 +847,7 @@ pub extern "icm32" fn CMCheckRGBs(
     dwStride: u32,
     lpaResult: ?*u8,
     pfnCallback: ?LPBMCALLBACKFN,
-    ulCallbackData: isize,
+    ulCallbackData: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub extern "icm32" fn CMConvertColorNameToIndex(
@@ -974,7 +974,7 @@ pub extern "icm32" fn CMTranslateRGBsExt(
     bmOutput: BMFORMAT,
     dwOutputStride: u32,
     lpfnCallback: ?LPBMCALLBACKFN,
-    ulCallbackData: isize,
+    ulCallbackData: LPARAM,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1151,14 +1151,14 @@ pub extern "mscms" fn EnumColorProfilesW(
 pub extern "gdi32" fn EnumICMProfilesA(
     hdc: ?HDC,
     proc: ?ICMENUMPROCA,
-    param2: isize,
+    param2: LPARAM,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn EnumICMProfilesW(
     hdc: ?HDC,
     proc: ?ICMENUMPROCW,
-    param2: isize,
+    param2: LPARAM,
 ) callconv(.winapi) i32;
 
 pub extern "mscms" fn GetCMMInfo(
@@ -1439,7 +1439,7 @@ pub extern "mscms" fn TranslateBitmapBits(
     bmOutput: BMFORMAT,
     dwOutputStride: u32,
     pfnCallBack: ?LPBMCALLBACKFN,
-    ulCallbackData: isize,
+    ulCallbackData: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub extern "mscms" fn TranslateColors(
@@ -1813,11 +1813,11 @@ pub const WcsOpenColorProfile = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (15)
+// Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const CIEXYZ = @import("../graphics/gdi.zig").CIEXYZ;
 const CIEXYZTRIPLE = @import("../graphics/gdi.zig").CIEXYZTRIPLE;
 const COLORREF = @import("../foundation.zig").COLORREF;
@@ -1828,6 +1828,7 @@ const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IUnknown = @import("../system/com.zig").IUnknown;
+const LPARAM = isize;
 const LUID = @import("../foundation.zig").LUID;
 const RGBTRIPLE = @import("../graphics/gdi.zig").RGBTRIPLE;
 

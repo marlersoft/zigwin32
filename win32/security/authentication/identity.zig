@@ -9065,8 +9065,8 @@ pub const TranslateName = switch (@import("../../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const ACL = @import("../../security.zig").ACL;
-const BOOL = @import("../../foundation.zig").BOOL;
-const BOOLEAN = @import("../../foundation.zig").BOOLEAN;
+const BOOL = i32;
+const BOOLEAN = u8;
 const CERT_CONTEXT = @import("../../security/cryptography.zig").CERT_CONTEXT;
 const CREDENTIAL_TARGET_INFORMATIONW = @import("../../security/credentials.zig").CREDENTIAL_TARGET_INFORMATIONW;
 const CREDENTIALW = @import("../../security/credentials.zig").CREDENTIALW;

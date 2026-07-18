@@ -2292,7 +2292,7 @@ pub extern "directml" fn DMLCreateDevice1(
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOL = @import("../../foundation.zig").BOOL;
+const BOOL = i32;
 const D3D12_CPU_DESCRIPTOR_HANDLE = @import("../../graphics/direct3d12.zig").D3D12_CPU_DESCRIPTOR_HANDLE;
 const D3D12_GPU_DESCRIPTOR_HANDLE = @import("../../graphics/direct3d12.zig").D3D12_GPU_DESCRIPTOR_HANDLE;
 const HRESULT = @import("../../foundation.zig").HRESULT;

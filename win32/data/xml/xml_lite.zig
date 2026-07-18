@@ -997,7 +997,7 @@ pub extern "xmllite" fn CreateXmlWriterOutputWithEncodingName(
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOL = @import("../../foundation.zig").BOOL;
+const BOOL = i32;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IMalloc = @import("../../system/com.zig").IMalloc;
 const IUnknown = @import("../../system/com.zig").IUnknown;

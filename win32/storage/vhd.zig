@@ -1523,7 +1523,7 @@ pub extern "virtdisk" fn TakeSnapshotVhdSet(
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;

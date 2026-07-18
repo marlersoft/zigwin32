@@ -91,7 +91,7 @@ pub extern "d3d9" fn Direct3DCreate9On12Ex(
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const ID3D12CommandQueue = @import("../graphics/direct3d12.zig").ID3D12CommandQueue;
 const ID3D12Fence = @import("../graphics/direct3d12.zig").ID3D12Fence;

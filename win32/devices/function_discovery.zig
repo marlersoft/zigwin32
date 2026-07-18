@@ -1235,7 +1235,7 @@ pub const SVF_USER = SystemVisibilityFlags.USER;
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IPropertyStore = @import("../ui/shell/properties_system.zig").IPropertyStore;
 const IServiceProvider = @import("../system/com.zig").IServiceProvider;

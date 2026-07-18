@@ -866,7 +866,7 @@ pub extern "msdrm" fn DRMVerify(
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const FARPROC = @import("../foundation.zig").FARPROC;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;

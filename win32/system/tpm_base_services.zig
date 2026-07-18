@@ -191,7 +191,7 @@ pub extern "tbs" fn Tbsip_Submit_Command(
 //--------------------------------------------------------------------------------
 // Section: Imports (2)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {

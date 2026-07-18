@@ -475,7 +475,7 @@ pub const IDedupReadFileCallback = extern union {
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BSTR = @import("../foundation.zig").BSTR;
+const BSTR = *u16;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;

@@ -5637,8 +5637,8 @@ const Guid = @import("../zig.zig").Guid;
 const ACE_FLAGS = @import("../security.zig").ACE_FLAGS;
 const ACE_HEADER = @import("../security.zig").ACE_HEADER;
 const ACL = @import("../security.zig").ACL;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const GENERIC_MAPPING = @import("../security.zig").GENERIC_MAPPING;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
@@ -5657,7 +5657,7 @@ const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
 const SYSTEM_AUDIT_OBJECT_ACE_FLAGS = @import("../security.zig").SYSTEM_AUDIT_OBJECT_ACE_FLAGS;
 const TOKEN_GROUPS = @import("../security.zig").TOKEN_GROUPS;
 const VARIANT = @import("../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
 
 test {

@@ -621,22 +621,22 @@ pub const ACMFILTERCHOOSEA = extern struct {
     pwfltrEnum: ?*WAVEFILTER align(1),
     hInstance: ?HINSTANCE align(1),
     pszTemplateName: ?[*:0]const u8 align(1),
-    lCustData: isize align(1),
+    lCustData: LPARAM align(1),
     pfnHook: ?ACMFILTERCHOOSEHOOKPROCA align(1),
 };
 
 pub const ACMFILTERCHOOSEHOOKPROCA = *const fn(
     hwnd: ?HWND,
     uMsg: u32,
-    wParam: usize,
-    lParam: isize,
+    wParam: WPARAM,
+    lParam: LPARAM,
 ) callconv(.winapi) u32;
 
 pub const ACMFILTERCHOOSEHOOKPROCW = *const fn(
     hwnd: ?HWND,
     uMsg: u32,
-    wParam: usize,
-    lParam: isize,
+    wParam: WPARAM,
+    lParam: LPARAM,
 ) callconv(.winapi) u32;
 
 pub const ACMFILTERCHOOSEW = extern struct {
@@ -654,7 +654,7 @@ pub const ACMFILTERCHOOSEW = extern struct {
     pwfltrEnum: ?*WAVEFILTER align(1),
     hInstance: ?HINSTANCE align(1),
     pszTemplateName: ?[*:0]const u16 align(1),
-    lCustData: isize align(1),
+    lCustData: LPARAM align(1),
     pfnHook: ?ACMFILTERCHOOSEHOOKPROCW align(1),
 };
 
@@ -741,22 +741,22 @@ pub const ACMFORMATCHOOSEA = extern struct {
     pwfxEnum: ?*WAVEFORMATEX align(1),
     hInstance: ?HINSTANCE align(1),
     pszTemplateName: ?[*:0]const u8 align(1),
-    lCustData: isize align(1),
+    lCustData: LPARAM align(1),
     pfnHook: ?ACMFORMATCHOOSEHOOKPROCA align(1),
 };
 
 pub const ACMFORMATCHOOSEHOOKPROCA = *const fn(
     hwnd: ?HWND,
     uMsg: u32,
-    wParam: usize,
-    lParam: isize,
+    wParam: WPARAM,
+    lParam: LPARAM,
 ) callconv(.winapi) u32;
 
 pub const ACMFORMATCHOOSEHOOKPROCW = *const fn(
     hwnd: ?HWND,
     uMsg: u32,
-    wParam: usize,
-    lParam: isize,
+    wParam: WPARAM,
+    lParam: LPARAM,
 ) callconv(.winapi) u32;
 
 pub const ACMFORMATCHOOSEW = extern struct {
@@ -774,7 +774,7 @@ pub const ACMFORMATCHOOSEW = extern struct {
     pwfxEnum: ?*WAVEFORMATEX align(1),
     hInstance: ?HINSTANCE align(1),
     pszTemplateName: ?[*:0]const u16 align(1),
-    lCustData: isize align(1),
+    lCustData: LPARAM align(1),
     pfnHook: ?ACMFORMATCHOOSEHOOKPROCW align(1),
 };
 
@@ -1043,7 +1043,7 @@ pub const AudioClientProperties = extern struct {
 };
 
 pub const AudioExtensionParams = extern struct {
-    AddPageParam: isize,
+    AddPageParam: LPARAM,
     pEndpoint: ?*IMMDevice,
     pPnpInterface: ?*IMMDevice,
     pPnpDevnode: ?*IMMDevice,
@@ -3953,9 +3953,9 @@ pub const LPACMDRIVERPROC = *const fn(
     param0: usize,
     param1: ?HACMDRIVERID,
     param2: u32,
-    param3: isize,
-    param4: isize,
-) callconv(.winapi) isize;
+    param3: LPARAM,
+    param4: LPARAM,
+) callconv(.winapi) LRESULT;
 
 pub const LPMIDICALLBACK = *const fn(
     hdrvr: ?HDRVR,
@@ -4892,7 +4892,7 @@ pub const ACMSTREAMHEADER = switch(@import("../zig.zig").arch) {
 pub extern "msacm32" fn acmDriverAddA(
     phadid: ?*isize,
     hinstModule: ?HINSTANCE,
-    lParam: isize,
+    lParam: LPARAM,
     dwPriority: u32,
     fdwAdd: u32,
 ) callconv(.winapi) u32;
@@ -4901,7 +4901,7 @@ pub extern "msacm32" fn acmDriverAddA(
 pub extern "msacm32" fn acmDriverAddW(
     phadid: ?*isize,
     hinstModule: ?HINSTANCE,
-    lParam: isize,
+    lParam: LPARAM,
     dwPriority: u32,
     fdwAdd: u32,
 ) callconv(.winapi) u32;
@@ -4944,9 +4944,9 @@ pub extern "msacm32" fn acmDriverID(
 pub extern "msacm32" fn acmDriverMessage(
     had: ?HACMDRIVER,
     uMsg: u32,
-    lParam1: isize,
-    lParam2: isize,
-) callconv(.winapi) isize;
+    lParam1: LPARAM,
+    lParam2: LPARAM,
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmDriverOpen(
@@ -5153,8 +5153,8 @@ pub extern "msacm32" fn acmStreamConvert(
 pub extern "msacm32" fn acmStreamMessage(
     has: ?HACMSTREAM,
     uMsg: u32,
-    lParam1: isize,
-    lParam2: isize,
+    lParam1: LPARAM,
+    lParam2: LPARAM,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6355,10 +6355,10 @@ pub const waveOutGetErrorText = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (17)
+// Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const CLSCTX = @import("../system/com.zig").CLSCTX;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HDRVR = @import("../media/multimedia.zig").HDRVR;
@@ -6370,10 +6370,13 @@ const HWND = @import("../foundation.zig").HWND;
 const INTERFACEINFO = @import("../system/com.zig").INTERFACEINFO;
 const IPropertyStore = @import("../ui/shell/properties_system.zig").IPropertyStore;
 const IUnknown = @import("../system/com.zig").IUnknown;
+const LPARAM = isize;
+const LRESULT = isize;
 const MMTIME = @import("../media.zig").MMTIME;
 const PROPERTYKEY = @import("../ui/shell/properties_system.zig").PROPERTYKEY;
 const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
 const STGM = @import("../system/com.zig").STGM;
+const WPARAM = usize;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

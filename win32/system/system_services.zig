@@ -6439,8 +6439,8 @@ pub const DEV_BROADCAST_PORT_ = switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (18)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOL = i32;
+const BOOLEAN = u8;
 const BYTE_BLOB = @import("../system/com.zig").BYTE_BLOB;
 const DWORD_BLOB = @import("../system/com.zig").DWORD_BLOB;
 const FLAGGED_BYTE_BLOB = @import("../system/com.zig").FLAGGED_BYTE_BLOB;

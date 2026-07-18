@@ -372,7 +372,7 @@ pub extern "xinput1_4" fn XInputSetState(
 //--------------------------------------------------------------------------------
 // Section: Imports (1)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../../foundation.zig").BOOL;
+const BOOL = i32;
 
 test {
     @setEvalBranchQuota(

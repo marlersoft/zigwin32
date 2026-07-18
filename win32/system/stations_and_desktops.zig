@@ -135,12 +135,12 @@ pub const DF_ALLOWOTHERACCOUNTHOOK = DESKTOP_CONTROL_FLAGS.K;
 
 pub const DESKTOPENUMPROCA = *const fn(
     param0: ?[*:0]u8,
-    param1: isize,
+    param1: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const DESKTOPENUMPROCW = *const fn(
     param0: ?[*:0]u16,
-    param1: isize,
+    param1: LPARAM,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type has a FreeFunc 'CloseDesktop', what can Zig do with this information?
@@ -174,12 +174,12 @@ pub const USEROBJECTFLAGS = extern struct {
 
 pub const WINSTAENUMPROCA = *const fn(
     param0: ?[*:0]u8,
-    param1: isize,
+    param1: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const WINSTAENUMPROCW = *const fn(
     param0: ?[*:0]u16,
-    param1: isize,
+    param1: LPARAM,
 ) callconv(.winapi) BOOL;
 
 
@@ -190,8 +190,8 @@ pub extern "user32" fn BroadcastSystemMessageA(
     flags: u32,
     lpInfo: ?*u32,
     Msg: u32,
-    wParam: usize,
-    lParam: isize,
+    wParam: WPARAM,
+    lParam: LPARAM,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -199,8 +199,8 @@ pub extern "user32" fn BroadcastSystemMessageExA(
     flags: BROADCAST_SYSTEM_MESSAGE_FLAGS,
     lpInfo: ?*BROADCAST_SYSTEM_MESSAGE_INFO,
     Msg: u32,
-    wParam: usize,
-    lParam: isize,
+    wParam: WPARAM,
+    lParam: LPARAM,
     pbsmInfo: ?*BSMINFO,
 ) callconv(.winapi) i32;
 
@@ -209,8 +209,8 @@ pub extern "user32" fn BroadcastSystemMessageExW(
     flags: BROADCAST_SYSTEM_MESSAGE_FLAGS,
     lpInfo: ?*BROADCAST_SYSTEM_MESSAGE_INFO,
     Msg: u32,
-    wParam: usize,
-    lParam: isize,
+    wParam: WPARAM,
+    lParam: LPARAM,
     pbsmInfo: ?*BSMINFO,
 ) callconv(.winapi) i32;
 
@@ -219,8 +219,8 @@ pub extern "user32" fn BroadcastSystemMessageW(
     flags: BROADCAST_SYSTEM_MESSAGE_FLAGS,
     lpInfo: ?*BROADCAST_SYSTEM_MESSAGE_INFO,
     Msg: u32,
-    wParam: usize,
-    lParam: isize,
+    wParam: WPARAM,
+    lParam: LPARAM,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -297,33 +297,33 @@ pub extern "user32" fn CreateWindowStationW(
 pub extern "user32" fn EnumDesktopsA(
     hwinsta: ?HWINSTA,
     lpEnumFunc: ?DESKTOPENUMPROCA,
-    lParam: isize,
+    lParam: LPARAM,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EnumDesktopsW(
     hwinsta: ?HWINSTA,
     lpEnumFunc: ?DESKTOPENUMPROCW,
-    lParam: isize,
+    lParam: LPARAM,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EnumDesktopWindows(
     hDesktop: ?HDESK,
     lpfn: ?WNDENUMPROC,
-    lParam: isize,
+    lParam: LPARAM,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EnumWindowStationsA(
     lpEnumFunc: ?WINSTAENUMPROCA,
-    lParam: isize,
+    lParam: LPARAM,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EnumWindowStationsW(
     lpEnumFunc: ?WINSTAENUMPROCW,
-    lParam: isize,
+    lParam: LPARAM,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -521,16 +521,18 @@ pub const SetUserObjectInformation = switch (@import("../zig.zig").unicode_mode)
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const DEVMODEA = @import("../graphics/gdi.zig").DEVMODEA;
 const DEVMODEW = @import("../graphics/gdi.zig").DEVMODEW;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HWND = @import("../foundation.zig").HWND;
+const LPARAM = isize;
 const LUID = @import("../foundation.zig").LUID;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const WNDENUMPROC = @import("../ui/windows_and_messaging.zig").WNDENUMPROC;
+const WPARAM = usize;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

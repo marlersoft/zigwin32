@@ -1744,7 +1744,7 @@ pub const CLSID_OpcFactory = &CLSID_OpcFactory_Value;
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOL = @import("../../foundation.zig").BOOL;
+const BOOL = i32;
 const CERT_CONTEXT = @import("../../security/cryptography.zig").CERT_CONTEXT;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IStream = @import("../../system/com.zig").IStream;

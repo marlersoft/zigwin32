@@ -817,8 +817,8 @@ pub extern "api-ms-win-gaming-tcui-l1-1-0" fn TryCancelPendingGameUI(
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("zig.zig").Guid;
-const BOOL = @import("foundation.zig").BOOL;
-const BSTR = @import("foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const HRESULT = @import("foundation.zig").HRESULT;
 const HSTRING = @import("system/win_rt.zig").HSTRING;
 const IInspectable = @import("system/win_rt.zig").IInspectable;

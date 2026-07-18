@@ -68,7 +68,7 @@ pub extern "kernel32" fn ReadThreadProfilingData(
 //--------------------------------------------------------------------------------
 // Section: Imports (2)
 //--------------------------------------------------------------------------------
-const BOOLEAN = @import("../../foundation.zig").BOOLEAN;
+const BOOLEAN = u8;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 
 test {

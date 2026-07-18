@@ -3926,7 +3926,7 @@ pub extern "windowscodecs" fn WICSerializeMetadataContent(
 // Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const D2D1_PIXEL_FORMAT = @import("../graphics/direct2d/common.zig").D2D1_PIXEL_FORMAT;
 const DXGI_FORMAT = @import("../graphics/dxgi/common.zig").DXGI_FORMAT;
 const DXGI_JPEG_AC_HUFFMAN_TABLE = @import("../graphics/dxgi/common.zig").DXGI_JPEG_AC_HUFFMAN_TABLE;

@@ -5014,8 +5014,8 @@ pub const SetUrlCacheGroupAttribute = switch (@import("../zig.zig").unicode_mode
 // Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const CERT_CHAIN_CONTEXT = @import("../security/cryptography.zig").CERT_CHAIN_CONTEXT;
 const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
 const FILETIME = @import("../foundation.zig").FILETIME;

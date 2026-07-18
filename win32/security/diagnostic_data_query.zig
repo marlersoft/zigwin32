@@ -363,7 +363,7 @@ pub extern "diagnosticdataquery" fn DdqSetTranscriptConfiguration(
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HDIAGNOSTIC_DATA_QUERY_SESSION = @import("../security.zig").HDIAGNOSTIC_DATA_QUERY_SESSION;
 const HDIAGNOSTIC_EVENT_CATEGORY_DESCRIPTION = @import("../security.zig").HDIAGNOSTIC_EVENT_CATEGORY_DESCRIPTION;

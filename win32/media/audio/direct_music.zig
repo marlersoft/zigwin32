@@ -1489,7 +1489,7 @@ pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK = switch (@import("../../zig.zi
 // Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOL = @import("../../foundation.zig").BOOL;
+const BOOL = i32;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const HMIDI = @import("../../media/audio.zig").HMIDI;
 const HRESULT = @import("../../foundation.zig").HRESULT;

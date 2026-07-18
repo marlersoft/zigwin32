@@ -2053,7 +2053,7 @@ pub const SetIScsiTunnelModeOuterAddress = switch (@import("../zig.zig").unicode
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOLEAN = u8;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const STORAGE_DEVICE_NUMBER = @import("../system/ioctl.zig").STORAGE_DEVICE_NUMBER;
 

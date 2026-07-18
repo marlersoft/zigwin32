@@ -1194,7 +1194,7 @@ pub extern "xaudio2_8" fn XAudio2CreateWithVersionInfo(
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const AUDIO_STREAM_CATEGORY = @import("../../media/audio.zig").AUDIO_STREAM_CATEGORY;
-const BOOL = @import("../../foundation.zig").BOOL;
+const BOOL = i32;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const WAVEFORMATEX = @import("../../media/audio.zig").WAVEFORMATEX;

@@ -387,8 +387,8 @@ pub const SNMPAPI_CALLBACK = *const fn(
     hSession: isize,
     hWnd: ?HWND,
     wMsg: u32,
-    wParam: usize,
-    lParam: isize,
+    wParam: WPARAM,
+    lParam: LPARAM,
     lpClientData: ?*anyopaque,
 ) callconv(.winapi) u32;
 
@@ -954,12 +954,14 @@ pub extern "snmpapi" fn SnmpUtilVarBindListFree(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HWND = @import("../foundation.zig").HWND;
+const LPARAM = isize;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
+const WPARAM = usize;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

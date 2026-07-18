@@ -15478,8 +15478,8 @@ pub extern "certpoleng" fn PstValidate(
 // Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOL = @import("../../foundation.zig").BOOL;
-const BSTR = @import("../../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const CERT_CHAIN_CONTEXT = @import("../../security/cryptography.zig").CERT_CHAIN_CONTEXT;
 const CERT_CONTEXT = @import("../../security/cryptography.zig").CERT_CONTEXT;
 const CERT_EXTENSIONS = @import("../../security/cryptography.zig").CERT_EXTENSIONS;
@@ -15499,7 +15499,7 @@ const NTSTATUS = @import("../../foundation.zig").NTSTATUS;
 const SecPkgContext_IssuerListInfoEx = @import("../../security/authentication/identity.zig").SecPkgContext_IssuerListInfoEx;
 const UNICODE_STRING = @import("../../foundation.zig").UNICODE_STRING;
 const VARIANT = @import("../../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -7261,7 +7261,7 @@ pub extern "ksuser" fn KsCreateTopologyNode2(
 // Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const DEVPROPKEY = @import("../devices/properties.zig").DEVPROPKEY;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;

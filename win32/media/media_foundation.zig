@@ -30363,8 +30363,8 @@ pub extern "opmxbox" fn OPMXboxGetHDCPStatusAndType(
 const Guid = @import("../zig.zig").Guid;
 const AudioObjectType = @import("../media/audio.zig").AudioObjectType;
 const BITMAPINFOHEADER = @import("../graphics/gdi.zig").BITMAPINFOHEADER;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const COLORREF = @import("../foundation.zig").COLORREF;
 const D3D12_BARRIER_GROUP = @import("../graphics/direct3d12.zig").D3D12_BARRIER_GROUP;
 const D3D12_COMMAND_LIST_SUPPORT_FLAGS = @import("../graphics/direct3d12.zig").D3D12_COMMAND_LIST_SUPPORT_FLAGS;
@@ -30421,7 +30421,7 @@ const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
 const RECT = @import("../foundation.zig").RECT;
 const SIZE = @import("../foundation.zig").SIZE;
 const VARIANT = @import("../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 const WAVEFORMATEX = @import("../media/audio.zig").WAVEFORMATEX;
 
 test {

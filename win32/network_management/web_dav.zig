@@ -140,7 +140,7 @@ pub extern "davclnt" fn DavUnregisterAuthCallback(
 //--------------------------------------------------------------------------------
 // Section: Imports (2)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const HANDLE = @import("../foundation.zig").HANDLE;
 
 test {

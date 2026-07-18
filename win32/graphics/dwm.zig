@@ -369,9 +369,9 @@ pub extern "dwmapi" fn DwmAttachMilContent(
 pub extern "dwmapi" fn DwmDefWindowProc(
     hWnd: ?HWND,
     msg: u32,
-    wParam: usize,
-    lParam: isize,
-    plResult: ?*isize,
+    wParam: WPARAM,
+    lParam: LPARAM,
+    plResult: ?*LRESULT,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -560,18 +560,21 @@ pub extern "dwmapi" fn DwmUpdateThumbnailProperties(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HRGN = @import("../graphics/gdi.zig").HRGN;
 const HWND = @import("../foundation.zig").HWND;
+const LPARAM = isize;
+const LRESULT = isize;
 const MARGINS = @import("../ui/controls.zig").MARGINS;
 const POINT = @import("../foundation.zig").POINT;
 const RECT = @import("../foundation.zig").RECT;
 const SIZE = @import("../foundation.zig").SIZE;
+const WPARAM = usize;
 
 test {
     @setEvalBranchQuota(

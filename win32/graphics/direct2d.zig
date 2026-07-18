@@ -9509,7 +9509,7 @@ pub extern "d2d1" fn D2D1Vec3Length(
 // Section: Imports (43)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const D2D1_ALPHA_MODE = @import("../graphics/direct2d/common.zig").D2D1_ALPHA_MODE;
 const D2D1_BEZIER_SEGMENT = @import("../graphics/direct2d/common.zig").D2D1_BEZIER_SEGMENT;
 const D2D1_BLEND_MODE = @import("../graphics/direct2d/common.zig").D2D1_BLEND_MODE;

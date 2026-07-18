@@ -2865,8 +2865,8 @@ pub const UpdateTrace = switch (@import("../../zig.zig").unicode_mode) {
 // Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOLEAN = @import("../../foundation.zig").BOOLEAN;
-const BSTR = @import("../../foundation.zig").BSTR;
+const BOOLEAN = u8;
+const BSTR = *u16;
 const FILETIME = @import("../../foundation.zig").FILETIME;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const HRESULT = @import("../../foundation.zig").HRESULT;

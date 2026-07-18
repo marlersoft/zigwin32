@@ -9083,7 +9083,7 @@ pub const LINEREQMAKECALLW = extern struct {
 
 pub const LINEREQMEDIACALL = extern struct {
     hWnd: ?HWND align(1),
-    wRequestID: usize align(1),
+    wRequestID: WPARAM align(1),
     szDeviceClass: [40]u8 align(1),
     ucDeviceID: [40]u8 align(1),
     dwSize: u32 align(1),
@@ -9096,7 +9096,7 @@ pub const LINEREQMEDIACALL = extern struct {
 
 pub const LINEREQMEDIACALLW = extern struct {
     hWnd: ?HWND align(1),
-    wRequestID: usize align(1),
+    wRequestID: WPARAM align(1),
     szDeviceClass: [40]u16 align(1),
     ucDeviceID: [40]u8 align(1),
     dwSize: u32 align(1),
@@ -11645,7 +11645,7 @@ pub extern "tapi32" fn tapiGetLocationInfoW(
 
 pub extern "tapi32" fn tapiRequestDrop(
     hwnd: ?HWND,
-    wRequestID: usize,
+    wRequestID: WPARAM,
 ) callconv(.winapi) i32;
 
 pub extern "tapi32" fn tapiRequestMakeCall(
@@ -11671,7 +11671,7 @@ pub extern "tapi32" fn tapiRequestMakeCallW(
 
 pub extern "tapi32" fn tapiRequestMediaCall(
     hwnd: ?HWND,
-    wRequestID: usize,
+    wRequestID: WPARAM,
     lpszDeviceClass: ?[*:0]const u8,
     lpDeviceID: ?[*:0]const u8,
     dwSize: u32,
@@ -11684,7 +11684,7 @@ pub extern "tapi32" fn tapiRequestMediaCall(
 
 pub extern "tapi32" fn tapiRequestMediaCallA(
     hwnd: ?HWND,
-    wRequestID: usize,
+    wRequestID: WPARAM,
     lpszDeviceClass: ?[*:0]const u8,
     lpDeviceID: ?[*:0]const u8,
     dwSize: u32,
@@ -11697,7 +11697,7 @@ pub extern "tapi32" fn tapiRequestMediaCallA(
 
 pub extern "tapi32" fn tapiRequestMediaCallW(
     hwnd: ?HWND,
-    wRequestID: usize,
+    wRequestID: WPARAM,
     lpszDeviceClass: ?[*:0]const u16,
     lpDeviceID: ?[*:0]const u16,
     dwSize: u32,
@@ -11783,13 +11783,13 @@ pub const phoneInitializeEx = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (22)
+// Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ALLOCATOR_PROPERTIES = @import("../media/direct_show.zig").ALLOCATOR_PROPERTIES;
 const AM_MEDIA_TYPE = @import("../media/media_foundation.zig").AM_MEDIA_TYPE;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const CY = @import("../system/com.zig").CY;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
@@ -11806,7 +11806,8 @@ const SPropTagArray = @import("../system/address_book.zig").SPropTagArray;
 const SPropValue = @import("../system/address_book.zig").SPropValue;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
+const WPARAM = usize;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

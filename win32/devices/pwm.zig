@@ -86,7 +86,7 @@ pub const PWM_ACTIVE_LOW = PWM_POLARITY.LOW;
 // Section: Imports (2)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOLEAN = u8;
 
 test {
     @setEvalBranchQuota(

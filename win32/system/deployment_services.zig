@@ -1524,8 +1524,8 @@ pub const PFN_WDS_CLI_CALLBACK_MESSAGE_ID = enum(u32) {
 
 pub const PFN_WdsCliCallback = *const fn(
     dwMessageId: PFN_WDS_CLI_CALLBACK_MESSAGE_ID,
-    wParam: usize,
-    lParam: isize,
+    wParam: WPARAM,
+    lParam: LPARAM,
     pvUserData: ?*anyopaque,
 ) callconv(.winapi) void;
 
@@ -2649,19 +2649,21 @@ pub extern "wdsmc" fn WdsTransportServerTraceV(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HKEY = @import("../system/registry.zig").HKEY;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
+const LPARAM = isize;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
+const WPARAM = usize;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

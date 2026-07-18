@@ -455,8 +455,8 @@ pub const InitiateSystemShutdownEx = switch (@import("../zig.zig").unicode_mode)
 //--------------------------------------------------------------------------------
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../foundation.zig").BOOL;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOL = i32;
+const BOOLEAN = u8;
 const HWND = @import("../foundation.zig").HWND;
 
 test {

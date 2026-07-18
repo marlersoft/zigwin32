@@ -2507,7 +2507,7 @@ pub const LPNSPV2STARTUP = *const fn(
 ) callconv(.winapi) i32;
 
 pub const LPSERVICE_CALLBACK_PROC = *const fn(
-    lParam: isize,
+    lParam: LPARAM,
     hAsyncTaskHandle: ?HANDLE,
 ) callconv(.winapi) void;
 
@@ -2570,8 +2570,8 @@ pub const LPWPUOPENCURRENTTHREAD = *const fn(
 pub const LPWPUPOSTMESSAGE = *const fn(
     hWnd: ?HWND,
     Msg: u32,
-    wParam: usize,
-    lParam: isize,
+    wParam: WPARAM,
+    lParam: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub const LPWPUQUERYBLOCKINGCALLBACK = *const fn(
@@ -4022,7 +4022,7 @@ pub const SERVICE_ADDRESSES = extern struct {
 
 pub const SERVICE_ASYNC_INFO = extern struct {
     lpServiceCallbackProc: ?LPSERVICE_CALLBACK_PROC,
-    lParam: isize,
+    lParam: LPARAM,
     hAsyncTaskHandle: ?HANDLE,
 };
 
@@ -4872,7 +4872,7 @@ pub const WSACOMPLETION = extern struct {
         WindowMessage: extern struct {
             hWnd: ?HWND,
             uMsg: u32,
-            context: usize,
+            context: WPARAM,
         },
         Event: extern struct {
             lpOverlapped: ?*OVERLAPPED,
@@ -7369,22 +7369,24 @@ pub const WSAStringToAddress = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (14)
+// Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLOB = @import("../system/com.zig").BLOB;
-const BOOL = @import("../foundation.zig").BOOL;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOL = i32;
+const BOOLEAN = u8;
 const COMPARTMENT_ID = @import("../system/kernel.zig").COMPARTMENT_ID;
 const FARPROC = @import("../foundation.zig").FARPROC;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
+const LPARAM = isize;
 const LUID = @import("../foundation.zig").LUID;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
 const OVERLAPPED_ENTRY = @import("../system/io.zig").OVERLAPPED_ENTRY;
 const PROCESSOR_NUMBER = @import("../system/kernel.zig").PROCESSOR_NUMBER;
+const WPARAM = usize;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

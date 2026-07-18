@@ -286,7 +286,7 @@ pub const WaitNamedPipe = switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const FILE_FLAGS_AND_ATTRIBUTES = @import("../storage/file_system.zig").FILE_FLAGS_AND_ATTRIBUTES;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;

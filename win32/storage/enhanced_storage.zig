@@ -1686,7 +1686,7 @@ pub const SILO_INFO = extern struct {
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IPortableDevice = @import("../devices/portable_devices.zig").IPortableDevice;
 const IUnknown = @import("../system/com.zig").IUnknown;

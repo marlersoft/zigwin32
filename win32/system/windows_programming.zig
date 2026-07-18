@@ -1246,13 +1246,13 @@ pub const IMEPROW = extern struct {
 
 pub const IMESTRUCT = extern struct {
     fnc: u32,
-    wParam: usize,
+    wParam: WPARAM,
     wCount: u32,
     dchSource: u32,
     dchDest: u32,
-    lParam1: isize,
-    lParam2: isize,
-    lParam3: isize,
+    lParam1: LPARAM,
+    lParam2: LPARAM,
+    lParam3: LPARAM,
 };
 
 pub const IO_STATUS_BLOCK = extern struct {
@@ -1761,7 +1761,7 @@ pub const WINWATCHNOTIFYPROC = *const fn(
     hww: ?HWINWATCH,
     hwnd: ?HWND,
     code: u32,
-    lParam: isize,
+    lParam: LPARAM,
 ) callconv(.winapi) void;
 
 pub const WLDP_DEVICE_SECURITY_INFORMATION = extern struct {
@@ -3023,14 +3023,14 @@ pub extern "advpack" fn RunSetupCommandW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendIMEMessageExA(
     param0: ?HWND,
-    param1: isize,
-) callconv(.winapi) isize;
+    param1: LPARAM,
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendIMEMessageExW(
     param0: ?HWND,
-    param1: isize,
-) callconv(.winapi) isize;
+    param1: LPARAM,
+) callconv(.winapi) LRESULT;
 
 pub extern "kernel32" fn SetEnvironmentStringsA(
     NewEnvironment: ?[*]u8,
@@ -3307,7 +3307,7 @@ pub extern "dciman32" fn WinWatchGetClipList(
 pub extern "dciman32" fn WinWatchNotify(
     hWW: ?HWINWATCH,
     NotifyCallback: ?WINWATCHNOTIFYPROC,
-    NotifyParam: isize,
+    NotifyParam: LPARAM,
 ) callconv(.winapi) BOOL;
 
 pub extern "dciman32" fn WinWatchOpen(
@@ -3793,12 +3793,12 @@ pub const WriteProfileString = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (24)
+// Section: Imports (27)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BOOLEAN = u8;
+const BSTR = *u16;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HDC = @import("../graphics/gdi.zig").HDC;
@@ -3809,6 +3809,8 @@ const HWND = @import("../foundation.zig").HWND;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const LIST_ENTRY = @import("../system/kernel.zig").LIST_ENTRY;
+const LPARAM = isize;
+const LRESULT = isize;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const OLE_HANDLE = @import("../system/ole.zig").OLE_HANDLE;
 const RECT = @import("../foundation.zig").RECT;
@@ -3817,8 +3819,9 @@ const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const STRING = @import("../system/kernel.zig").STRING;
 const UNICODE_STRING = @import("../foundation.zig").UNICODE_STRING;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
+const WPARAM = usize;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

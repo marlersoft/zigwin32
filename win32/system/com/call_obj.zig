@@ -456,8 +456,8 @@ pub extern "ole32" fn CoGetInterceptorFromTypeInfo(
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOL = @import("../../foundation.zig").BOOL;
-const BOOLEAN = @import("../../foundation.zig").BOOLEAN;
+const BOOL = i32;
+const BOOLEAN = u8;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const ITypeInfo = @import("../../system/com.zig").ITypeInfo;
 const IUnknown = @import("../../system/com.zig").IUnknown;

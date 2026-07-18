@@ -5817,7 +5817,7 @@ pub const WM_READER_CLIENTINFO = extern struct {
     wszBrowserUserAgent: ?[*:0]u16,
     wszBrowserWebPage: ?[*:0]u16,
     qwReserved: u64,
-    pReserved: ?*isize,
+    pReserved: ?*LPARAM,
     wszHostExe: ?[*:0]u16,
     qwHostVersion: u64,
     wszPlayerUserAgent: ?[*:0]u16,
@@ -6454,15 +6454,16 @@ pub extern "wmvcore" fn WMIsContentProtected(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BITMAPINFOHEADER = @import("../graphics/gdi.zig").BITMAPINFOHEADER;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
+const LPARAM = isize;
 const RECT = @import("../foundation.zig").RECT;
 const VARIANT = @import("../system/com.zig").VARIANT;
 

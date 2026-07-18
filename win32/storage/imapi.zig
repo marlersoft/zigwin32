@@ -5255,8 +5255,8 @@ pub extern "mapi32" fn SetAttribIMsgOnIStg(
 // Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOLEAN = u8;
+const BSTR = *u16;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IEnumVARIANT = @import("../system/ole.zig").IEnumVARIANT;
@@ -5273,7 +5273,7 @@ const LPFREEBUFFER = @import("../system/address_book.zig").LPFREEBUFFER;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const SPropProblemArray = @import("../system/address_book.zig").SPropProblemArray;
 const SPropTagArray = @import("../system/address_book.zig").SPropTagArray;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

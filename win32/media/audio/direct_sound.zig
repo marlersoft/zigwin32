@@ -1723,7 +1723,7 @@ pub const DirectSoundEnumerate = switch (@import("../../zig.zig").unicode_mode) 
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOL = @import("../../foundation.zig").BOOL;
+const BOOL = i32;
 const D3DVECTOR = @import("../../graphics/direct3d.zig").D3DVECTOR;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const HRESULT = @import("../../foundation.zig").HRESULT;

@@ -263,7 +263,7 @@ pub const AUDIO_SYSTEMEFFECTS_PROPERTY_CHANGE_NOTIFICATION = extern struct {
 };
 
 pub const AudioFXExtensionParams = extern struct {
-    AddPageParam: isize,
+    AddPageParam: LPARAM,
     pwstrEndpointID: ?[*:0]u16,
     pFxProperties: ?*IPropertyStore,
 };
@@ -723,12 +723,12 @@ pub const UNCOMPRESSEDAUDIOFORMAT = extern struct {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (13)
+// Section: Imports (14)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE = @import("../../media/audio.zig").AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE;
 const AUDIO_VOLUME_NOTIFICATION_DATA = @import("../../media/audio.zig").AUDIO_VOLUME_NOTIFICATION_DATA;
-const BOOL = @import("../../foundation.zig").BOOL;
+const BOOL = i32;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IMMDevice = @import("../../media/audio.zig").IMMDevice;
@@ -736,6 +736,7 @@ const IMMDeviceCollection = @import("../../media/audio.zig").IMMDeviceCollection
 const IPropertyStore = @import("../../ui/shell/properties_system.zig").IPropertyStore;
 const IServiceProvider = @import("../../system/com.zig").IServiceProvider;
 const IUnknown = @import("../../system/com.zig").IUnknown;
+const LPARAM = isize;
 const PROPERTYKEY = @import("../../ui/shell/properties_system.zig").PROPERTYKEY;
 const WAVEFORMATEX = @import("../../media/audio.zig").WAVEFORMATEX;
 

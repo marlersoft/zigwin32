@@ -3629,8 +3629,8 @@ pub extern "propsys" fn WinRTPropertyValueToPropVariant(
 // Section: Imports (24)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOL = @import("../../foundation.zig").BOOL;
-const BSTR = @import("../../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const CONDITION_OPERATION = @import("../../system/search/common.zig").CONDITION_OPERATION;
 const FILETIME = @import("../../foundation.zig").FILETIME;
 const HANDLE = @import("../../foundation.zig").HANDLE;

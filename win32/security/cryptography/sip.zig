@@ -265,7 +265,7 @@ pub extern "wintrust" fn CryptSIPVerifyIndirectData(
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOL = @import("../../foundation.zig").BOOL;
+const BOOL = i32;
 const CERT_QUERY_ENCODING_TYPE = @import("../../security/cryptography.zig").CERT_QUERY_ENCODING_TYPE;
 const CRYPT_ALGORITHM_IDENTIFIER = @import("../../security/cryptography.zig").CRYPT_ALGORITHM_IDENTIFIER;
 const CRYPT_ATTRIBUTE_TYPE_VALUE = @import("../../security/cryptography.zig").CRYPT_ATTRIBUTE_TYPE_VALUE;

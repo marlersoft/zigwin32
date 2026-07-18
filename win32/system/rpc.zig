@@ -6294,7 +6294,7 @@ pub const UuidToString = switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (15)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;

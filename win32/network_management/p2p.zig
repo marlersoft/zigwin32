@@ -2455,7 +2455,7 @@ pub extern "p2p" fn PeerPnrpUpdateRegistration(
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLOB = @import("../system/com.zig").BLOB;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
 const CERT_PUBLIC_KEY_INFO = @import("../security/cryptography.zig").CERT_PUBLIC_KEY_INFO;
 const FILETIME = @import("../foundation.zig").FILETIME;

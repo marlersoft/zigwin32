@@ -6081,7 +6081,7 @@ pub extern "webservices" fn WsXmlStringEquals(
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
 const DECIMAL = @import("../foundation.zig").DECIMAL;
 const FILETIME = @import("../foundation.zig").FILETIME;

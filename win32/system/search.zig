@@ -15772,8 +15772,8 @@ pub const SQLLinkedCatalogs = switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLOB = @import("../system/com.zig").BLOB;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const CONDITION_OPERATION = @import("../system/search/common.zig").CONDITION_OPERATION;
 const CONDITION_TYPE = @import("../system/search/common.zig").CONDITION_TYPE;
 const COSERVERINFO = @import("../system/com.zig").COSERVERINFO;
@@ -15813,7 +15813,7 @@ const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const TRUSTEE_W = @import("../security/authorization.zig").TRUSTEE_W;
 const VARENUM = @import("../system/com.zig").VARENUM;
 const VARIANT = @import("../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 const WORDREP_BREAK_TYPE = @import("../storage/index_server.zig").WORDREP_BREAK_TYPE;
 
 test {

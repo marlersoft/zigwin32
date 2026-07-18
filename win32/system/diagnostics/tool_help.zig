@@ -256,7 +256,7 @@ pub extern "kernel32" fn Toolhelp32ReadProcessMemory(
 //--------------------------------------------------------------------------------
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../../foundation.zig").BOOL;
+const BOOL = i32;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const HINSTANCE = @import("../../foundation.zig").HINSTANCE;
 

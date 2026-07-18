@@ -6524,12 +6524,8 @@ pub const APP_LOCAL_DEVICE_ID = extern struct {
     value: [32]u8,
 };
 
-pub const BOOL = i32;
 
-pub const BOOLEAN = u8;
 
-// TODO: this type has a FreeFunc 'SysFreeString', what can Zig do with this information?
-pub const BSTR = *u16;
 
 
 pub const COLORREF = u32;
@@ -6886,7 +6882,6 @@ pub const UNICODE_STRING = extern struct {
     Buffer: ?[*]u16,
 };
 
-pub const VARIANT_BOOL = i16;
 
 pub const WIN32_ERROR = enum(u32) {
     NO_ERROR = 0,
@@ -16641,8 +16636,11 @@ pub extern "oleaut32" fn SysStringLen(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (0)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
+const BOOL = i32;
+const BSTR = *u16;
+const VARIANT_BOOL = i16;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

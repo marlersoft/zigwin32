@@ -3080,7 +3080,7 @@ pub const SP_INSTALLWIZARD_DATA = switch(@import("../zig.zig").arch) {
         NumDynamicPages: u32,
         DynamicPageFlags: u32,
         PrivateFlags: u32,
-        PrivateData: isize,
+        PrivateData: LPARAM,
         hwndWizardDlg: ?HWND,
     },
     .X86 => extern struct {
@@ -3090,7 +3090,7 @@ pub const SP_INSTALLWIZARD_DATA = switch(@import("../zig.zig").arch) {
         NumDynamicPages: u32 align(1),
         DynamicPageFlags: u32 align(1),
         PrivateFlags: u32 align(1),
-        PrivateData: isize align(1),
+        PrivateData: LPARAM align(1),
         hwndWizardDlg: ?HWND align(1),
     },
 };
@@ -9474,10 +9474,10 @@ pub const UpdateDriverForPlugAndPlayDevices = switch (@import("../zig.zig").unic
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (19)
+// Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const DEVPROPKEY = @import("../devices/properties.zig").DEVPROPKEY;
 const DEVPROPTYPE = @import("../devices/properties.zig").DEVPROPTYPE;
 const FILETIME = @import("../foundation.zig").FILETIME;
@@ -9490,6 +9490,7 @@ const HKEY = @import("../system/registry.zig").HKEY;
 const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
 const HWND = @import("../foundation.zig").HWND;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
+const LPARAM = isize;
 const PRIORITY = @import("../data/html_help.zig").PRIORITY;
 const PROPSHEETHEADERA_V2 = @import("../ui/controls.zig").PROPSHEETHEADERA_V2;
 const PROPSHEETHEADERW_V2 = @import("../ui/controls.zig").PROPSHEETHEADERW_V2;

@@ -1016,8 +1016,8 @@ pub const IComponent = extern union {
             self: *const IComponent,
             lpDataObject: ?*IDataObject,
             event: MMC_NOTIFY_TYPE,
-            arg: isize,
-            param3: isize,
+            arg: LPARAM,
+            param3: LPARAM,
         ) callconv(.winapi) HRESULT,
         Destroy: *const fn(
             self: *const IComponent,
@@ -1050,7 +1050,7 @@ pub const IComponent = extern union {
     pub fn Initialize(self: *const IComponent, lpConsole: ?*IConsole) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, lpConsole);
     }
-    pub fn Notify(self: *const IComponent, lpDataObject: ?*IDataObject, event: MMC_NOTIFY_TYPE, arg: isize, param3: isize) callconv(.@"inline") HRESULT {
+    pub fn Notify(self: *const IComponent, lpDataObject: ?*IDataObject, event: MMC_NOTIFY_TYPE, arg: LPARAM, param3: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.Notify(self, lpDataObject, event, arg, param3);
     }
     pub fn Destroy(self: *const IComponent, cookie: isize) callconv(.@"inline") HRESULT {
@@ -1125,8 +1125,8 @@ pub const IComponentData = extern union {
             self: *const IComponentData,
             lpDataObject: ?*IDataObject,
             event: MMC_NOTIFY_TYPE,
-            arg: isize,
-            param3: isize,
+            arg: LPARAM,
+            param3: LPARAM,
         ) callconv(.winapi) HRESULT,
         Destroy: *const fn(
             self: *const IComponentData,
@@ -1155,7 +1155,7 @@ pub const IComponentData = extern union {
     pub fn CreateComponent(self: *const IComponentData, ppComponent: ?*?*IComponent) callconv(.@"inline") HRESULT {
         return self.vtable.CreateComponent(self, ppComponent);
     }
-    pub fn Notify(self: *const IComponentData, lpDataObject: ?*IDataObject, event: MMC_NOTIFY_TYPE, arg: isize, param3: isize) callconv(.@"inline") HRESULT {
+    pub fn Notify(self: *const IComponentData, lpDataObject: ?*IDataObject, event: MMC_NOTIFY_TYPE, arg: LPARAM, param3: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.Notify(self, lpDataObject, event, arg, param3);
     }
     pub fn Destroy(self: *const IComponentData) callconv(.@"inline") HRESULT {
@@ -1239,7 +1239,7 @@ pub const IConsole = extern union {
         UpdateAllViews: *const fn(
             self: *const IConsole,
             lpDataObject: ?*IDataObject,
-            data: isize,
+            data: LPARAM,
             hint: isize,
         ) callconv(.winapi) HRESULT,
         MessageBox: *const fn(
@@ -1284,7 +1284,7 @@ pub const IConsole = extern union {
     pub fn QueryResultImageList(self: *const IConsole, ppImageList: ?*?*IImageList) callconv(.@"inline") HRESULT {
         return self.vtable.QueryResultImageList(self, ppImageList);
     }
-    pub fn UpdateAllViews(self: *const IConsole, lpDataObject: ?*IDataObject, data: isize, hint: isize) callconv(.@"inline") HRESULT {
+    pub fn UpdateAllViews(self: *const IConsole, lpDataObject: ?*IDataObject, data: LPARAM, hint: isize) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateAllViews(self, lpDataObject, data, hint);
     }
     pub fn MessageBox(self: *const IConsole, lpszText: ?[*:0]const u16, lpszTitle: ?[*:0]const u16, fuStyle: u32, piRetval: ?*i32) callconv(.@"inline") HRESULT {
@@ -1486,13 +1486,13 @@ pub const IConsolePowerSink = extern union {
         OnPowerBroadcast: *const fn(
             self: *const IConsolePowerSink,
             nEvent: u32,
-            lParam: isize,
-            plReturn: ?*isize,
+            lParam: LPARAM,
+            plReturn: ?*LRESULT,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnPowerBroadcast(self: *const IConsolePowerSink, nEvent: u32, lParam: isize, plReturn: ?*isize) callconv(.@"inline") HRESULT {
+    pub fn OnPowerBroadcast(self: *const IConsolePowerSink, nEvent: u32, lParam: LPARAM, plReturn: ?*LRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.OnPowerBroadcast(self, nEvent, lParam, plReturn);
     }
 };
@@ -1753,8 +1753,8 @@ pub const IExtendControlbar = extern union {
         ControlbarNotify: *const fn(
             self: *const IExtendControlbar,
             event: MMC_NOTIFY_TYPE,
-            arg: isize,
-            param2: isize,
+            arg: LPARAM,
+            param2: LPARAM,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -1762,7 +1762,7 @@ pub const IExtendControlbar = extern union {
     pub fn SetControlbar(self: *const IExtendControlbar, pControlbar: ?*IControlbar) callconv(.@"inline") HRESULT {
         return self.vtable.SetControlbar(self, pControlbar);
     }
-    pub fn ControlbarNotify(self: *const IExtendControlbar, event: MMC_NOTIFY_TYPE, arg: isize, param2: isize) callconv(.@"inline") HRESULT {
+    pub fn ControlbarNotify(self: *const IExtendControlbar, event: MMC_NOTIFY_TYPE, arg: LPARAM, param2: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.ControlbarNotify(self, event, arg, param2);
     }
 };
@@ -2266,7 +2266,7 @@ pub const IResultData = extern union {
         ) callconv(.winapi) HRESULT,
         FindItemByLParam: *const fn(
             self: *const IResultData,
-            lParam: isize,
+            lParam: LPARAM,
             pItemID: ?*isize,
         ) callconv(.winapi) HRESULT,
         DeleteAllRsltItems: *const fn(
@@ -2312,7 +2312,7 @@ pub const IResultData = extern union {
             self: *const IResultData,
             nColumn: i32,
             dwSortOptions: u32,
-            lUserParam: isize,
+            lUserParam: LPARAM,
         ) callconv(.winapi) HRESULT,
         SetDescBarText: *const fn(
             self: *const IResultData,
@@ -2332,7 +2332,7 @@ pub const IResultData = extern union {
     pub fn DeleteItem(self: *const IResultData, itemID: isize, nCol: i32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteItem(self, itemID, nCol);
     }
-    pub fn FindItemByLParam(self: *const IResultData, lParam: isize, pItemID: ?*isize) callconv(.@"inline") HRESULT {
+    pub fn FindItemByLParam(self: *const IResultData, lParam: LPARAM, pItemID: ?*isize) callconv(.@"inline") HRESULT {
         return self.vtable.FindItemByLParam(self, lParam, pItemID);
     }
     pub fn DeleteAllRsltItems(self: *const IResultData) callconv(.@"inline") HRESULT {
@@ -2362,7 +2362,7 @@ pub const IResultData = extern union {
     pub fn UpdateItem(self: *const IResultData, itemID: isize) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateItem(self, itemID);
     }
-    pub fn Sort(self: *const IResultData, nColumn: i32, dwSortOptions: u32, lUserParam: isize) callconv(.@"inline") HRESULT {
+    pub fn Sort(self: *const IResultData, nColumn: i32, dwSortOptions: u32, lUserParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.Sort(self, nColumn, dwSortOptions, lUserParam);
     }
     pub fn SetDescBarText(self: *const IResultData, DescText: ?[*:0]u16) callconv(.@"inline") HRESULT {
@@ -2400,7 +2400,7 @@ pub const IResultDataCompare = extern union {
         base: IUnknown.VTable,
         Compare: *const fn(
             self: *const IResultDataCompare,
-            lUserParam: isize,
+            lUserParam: LPARAM,
             cookieA: isize,
             cookieB: isize,
             pnResult: ?*i32,
@@ -2408,7 +2408,7 @@ pub const IResultDataCompare = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Compare(self: *const IResultDataCompare, lUserParam: isize, cookieA: isize, cookieB: isize, pnResult: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn Compare(self: *const IResultDataCompare, lUserParam: LPARAM, cookieA: isize, cookieB: isize, pnResult: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.Compare(self, lUserParam, cookieA, cookieB, pnResult);
     }
 };
@@ -2452,7 +2452,7 @@ pub const IResultOwnerData = extern union {
             self: *const IResultOwnerData,
             nColumn: i32,
             dwSortOptions: u32,
-            lUserParam: isize,
+            lUserParam: LPARAM,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -2463,7 +2463,7 @@ pub const IResultOwnerData = extern union {
     pub fn CacheHint(self: *const IResultOwnerData, nStartIndex: i32, nEndIndex: i32) callconv(.@"inline") HRESULT {
         return self.vtable.CacheHint(self, nStartIndex, nEndIndex);
     }
-    pub fn SortItems(self: *const IResultOwnerData, nColumn: i32, dwSortOptions: u32, lUserParam: isize) callconv(.@"inline") HRESULT {
+    pub fn SortItems(self: *const IResultOwnerData, nColumn: i32, dwSortOptions: u32, lUserParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.SortItems(self, nColumn, dwSortOptions, lUserParam);
     }
 };
@@ -3302,7 +3302,7 @@ pub const RDCOMPARE = extern struct {
     cbSize: u32,
     dwFlags: u32,
     nColumn: i32,
-    lUserParam: isize,
+    lUserParam: LPARAM,
     prdch1: ?*RDITEMHDR,
     prdch2: ?*RDITEMHDR,
 };
@@ -3310,7 +3310,7 @@ pub const RDCOMPARE = extern struct {
 pub const RDITEMHDR = extern struct {
     dwFlags: u32,
     cookie: isize,
-    lpReserved: isize,
+    lpReserved: LPARAM,
 };
 
 pub const RESULT_VIEW_TYPE_INFO = extern struct {
@@ -3339,7 +3339,7 @@ pub const RESULTDATAITEM = extern struct {
     str: ?[*:0]u16,
     nImage: i32,
     nState: u32,
-    lParam: isize,
+    lParam: LPARAM,
     iIndent: i32,
 };
 
@@ -3362,7 +3362,7 @@ pub const SCOPEDATAITEM = extern struct {
     nOpenImage: i32,
     nState: u32,
     cChildren: i32,
-    lParam: isize,
+    lParam: LPARAM,
     relativeID: isize,
     ID: isize,
 };
@@ -3931,11 +3931,11 @@ pub const Views = extern union {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (16)
+// Section: Imports (18)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const COLORREF = @import("../foundation.zig").COLORREF;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 const HICON = @import("../ui/windows_and_messaging.zig").HICON;
@@ -3947,8 +3947,10 @@ const IDataObject = @import("../system/com.zig").IDataObject;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IEnumString = @import("../system/com.zig").IEnumString;
 const IUnknown = @import("../system/com.zig").IUnknown;
+const LPARAM = isize;
+const LRESULT = isize;
 const VARIANT = @import("../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 
 test {
     @setEvalBranchQuota(

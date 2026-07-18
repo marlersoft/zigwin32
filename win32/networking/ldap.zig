@@ -2653,7 +2653,7 @@ pub const ldap_start_tls_s = switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOLEAN = u8;
 const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const SecPkgContext_IssuerListInfoEx = @import("../security/authentication/identity.zig").SecPkgContext_IssuerListInfoEx;

@@ -587,7 +587,7 @@ pub const CLSID_SideShowSession = &CLSID_SideShowSession_Value;
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const HICON = @import("../ui/windows_and_messaging.zig").HICON;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;

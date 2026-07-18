@@ -7494,9 +7494,9 @@ pub const WTSStartRemoteControlSession = switch (@import("../zig.zig").unicode_m
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const APO_CONNECTION_PROPERTY = @import("../media/audio/apo.zig").APO_CONNECTION_PROPERTY;
-const BOOL = @import("../foundation.zig").BOOL;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BOOLEAN = u8;
+const BSTR = *u16;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HANDLE_PTR = @import("../foundation.zig").HANDLE_PTR;
@@ -7514,7 +7514,7 @@ const PSID = @import("../foundation.zig").PSID;
 const RECT = @import("../foundation.zig").RECT;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const VARIANT = @import("../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 const WAVEFORMATEX = @import("../media/audio.zig").WAVEFORMATEX;
 
 test {

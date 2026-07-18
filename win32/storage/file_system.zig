@@ -8513,8 +8513,8 @@ pub const VerQueryValue = switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (22)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOL = i32;
+const BOOLEAN = u8;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const GENERIC_MAPPING = @import("../security.zig").GENERIC_MAPPING;
 const HANDLE = @import("../foundation.zig").HANDLE;

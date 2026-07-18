@@ -3562,41 +3562,41 @@ pub const ITfContextKeyEventSink = extern union {
         base: IUnknown.VTable,
         OnKeyDown: *const fn(
             self: *const ITfContextKeyEventSink,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
             pfEaten: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         OnKeyUp: *const fn(
             self: *const ITfContextKeyEventSink,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
             pfEaten: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         OnTestKeyDown: *const fn(
             self: *const ITfContextKeyEventSink,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
             pfEaten: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         OnTestKeyUp: *const fn(
             self: *const ITfContextKeyEventSink,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
             pfEaten: ?*BOOL,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnKeyDown(self: *const ITfContextKeyEventSink, wParam: usize, lParam: isize, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn OnKeyDown(self: *const ITfContextKeyEventSink, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnKeyDown(self, wParam, lParam, pfEaten);
     }
-    pub fn OnKeyUp(self: *const ITfContextKeyEventSink, wParam: usize, lParam: isize, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn OnKeyUp(self: *const ITfContextKeyEventSink, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnKeyUp(self, wParam, lParam, pfEaten);
     }
-    pub fn OnTestKeyDown(self: *const ITfContextKeyEventSink, wParam: usize, lParam: isize, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn OnTestKeyDown(self: *const ITfContextKeyEventSink, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnTestKeyDown(self, wParam, lParam, pfEaten);
     }
-    pub fn OnTestKeyUp(self: *const ITfContextKeyEventSink, wParam: usize, lParam: isize, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn OnTestKeyUp(self: *const ITfContextKeyEventSink, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnTestKeyUp(self, wParam, lParam, pfEaten);
     }
 };
@@ -4373,15 +4373,15 @@ pub const ITfFnLMProcessor = extern union {
         QueryKey: *const fn(
             self: *const ITfFnLMProcessor,
             fUp: BOOL,
-            vKey: usize,
-            lparamKeydata: isize,
+            vKey: WPARAM,
+            lparamKeydata: LPARAM,
             pfInterested: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         InvokeKey: *const fn(
             self: *const ITfFnLMProcessor,
             fUp: BOOL,
-            vKey: usize,
-            lparamKeyData: isize,
+            vKey: WPARAM,
+            lparamKeyData: LPARAM,
         ) callconv(.winapi) HRESULT,
         InvokeFunc: *const fn(
             self: *const ITfFnLMProcessor,
@@ -4404,10 +4404,10 @@ pub const ITfFnLMProcessor = extern union {
     pub fn Reconvert(self: *const ITfFnLMProcessor, pRange: ?*ITfRange) callconv(.@"inline") HRESULT {
         return self.vtable.Reconvert(self, pRange);
     }
-    pub fn QueryKey(self: *const ITfFnLMProcessor, fUp: BOOL, vKey: usize, lparamKeydata: isize, pfInterested: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn QueryKey(self: *const ITfFnLMProcessor, fUp: BOOL, vKey: WPARAM, lparamKeydata: LPARAM, pfInterested: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.QueryKey(self, fUp, vKey, lparamKeydata, pfInterested);
     }
-    pub fn InvokeKey(self: *const ITfFnLMProcessor, fUp: BOOL, vKey: usize, lparamKeyData: isize) callconv(.@"inline") HRESULT {
+    pub fn InvokeKey(self: *const ITfFnLMProcessor, fUp: BOOL, vKey: WPARAM, lparamKeyData: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.InvokeKey(self, fUp, vKey, lparamKeyData);
     }
     pub fn InvokeFunc(self: *const ITfFnLMProcessor, pic: ?*ITfContext, refguidFunc: ?*const Guid) callconv(.@"inline") HRESULT {
@@ -5063,8 +5063,8 @@ pub const ITfIntegratableCandidateListUIElement = extern union {
         ) callconv(.winapi) HRESULT,
         OnKeyDown: *const fn(
             self: *const ITfIntegratableCandidateListUIElement,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
             pfEaten: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         ShowCandidateNumbers: *const fn(
@@ -5083,7 +5083,7 @@ pub const ITfIntegratableCandidateListUIElement = extern union {
     pub fn GetSelectionStyle(self: *const ITfIntegratableCandidateListUIElement, ptfSelectionStyle: ?*TfIntegratableCandidateListSelectionStyle) callconv(.@"inline") HRESULT {
         return self.vtable.GetSelectionStyle(self, ptfSelectionStyle);
     }
-    pub fn OnKeyDown(self: *const ITfIntegratableCandidateListUIElement, wParam: usize, lParam: isize, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn OnKeyDown(self: *const ITfIntegratableCandidateListUIElement, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnKeyDown(self, wParam, lParam, pfEaten);
     }
     pub fn ShowCandidateNumbers(self: *const ITfIntegratableCandidateListUIElement, pfShow: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -5107,29 +5107,29 @@ pub const ITfKeyEventSink = extern union {
         OnTestKeyDown: *const fn(
             self: *const ITfKeyEventSink,
             pic: ?*ITfContext,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
             pfEaten: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         OnTestKeyUp: *const fn(
             self: *const ITfKeyEventSink,
             pic: ?*ITfContext,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
             pfEaten: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         OnKeyDown: *const fn(
             self: *const ITfKeyEventSink,
             pic: ?*ITfContext,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
             pfEaten: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         OnKeyUp: *const fn(
             self: *const ITfKeyEventSink,
             pic: ?*ITfContext,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
             pfEaten: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         OnPreservedKey: *const fn(
@@ -5144,16 +5144,16 @@ pub const ITfKeyEventSink = extern union {
     pub fn OnSetFocus(self: *const ITfKeyEventSink, fForeground: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnSetFocus(self, fForeground);
     }
-    pub fn OnTestKeyDown(self: *const ITfKeyEventSink, pic: ?*ITfContext, wParam: usize, lParam: isize, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn OnTestKeyDown(self: *const ITfKeyEventSink, pic: ?*ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnTestKeyDown(self, pic, wParam, lParam, pfEaten);
     }
-    pub fn OnTestKeyUp(self: *const ITfKeyEventSink, pic: ?*ITfContext, wParam: usize, lParam: isize, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn OnTestKeyUp(self: *const ITfKeyEventSink, pic: ?*ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnTestKeyUp(self, pic, wParam, lParam, pfEaten);
     }
-    pub fn OnKeyDown(self: *const ITfKeyEventSink, pic: ?*ITfContext, wParam: usize, lParam: isize, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn OnKeyDown(self: *const ITfKeyEventSink, pic: ?*ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnKeyDown(self, pic, wParam, lParam, pfEaten);
     }
-    pub fn OnKeyUp(self: *const ITfKeyEventSink, pic: ?*ITfContext, wParam: usize, lParam: isize, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn OnKeyUp(self: *const ITfKeyEventSink, pic: ?*ITfContext, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnKeyUp(self, pic, wParam, lParam, pfEaten);
     }
     pub fn OnPreservedKey(self: *const ITfKeyEventSink, pic: ?*ITfContext, rguid: ?*const Guid, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -5183,26 +5183,26 @@ pub const ITfKeystrokeMgr = extern union {
         ) callconv(.winapi) HRESULT,
         TestKeyDown: *const fn(
             self: *const ITfKeystrokeMgr,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
             pfEaten: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         TestKeyUp: *const fn(
             self: *const ITfKeystrokeMgr,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
             pfEaten: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         KeyDown: *const fn(
             self: *const ITfKeystrokeMgr,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
             pfEaten: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         KeyUp: *const fn(
             self: *const ITfKeystrokeMgr,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
             pfEaten: ?*BOOL,
         ) callconv(.winapi) HRESULT,
         GetPreservedKey: *const fn(
@@ -5259,16 +5259,16 @@ pub const ITfKeystrokeMgr = extern union {
     pub fn GetForeground(self: *const ITfKeystrokeMgr, pclsid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetForeground(self, pclsid);
     }
-    pub fn TestKeyDown(self: *const ITfKeystrokeMgr, wParam: usize, lParam: isize, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn TestKeyDown(self: *const ITfKeystrokeMgr, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.TestKeyDown(self, wParam, lParam, pfEaten);
     }
-    pub fn TestKeyUp(self: *const ITfKeystrokeMgr, wParam: usize, lParam: isize, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn TestKeyUp(self: *const ITfKeystrokeMgr, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.TestKeyUp(self, wParam, lParam, pfEaten);
     }
-    pub fn KeyDown(self: *const ITfKeystrokeMgr, wParam: usize, lParam: isize, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn KeyDown(self: *const ITfKeystrokeMgr, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.KeyDown(self, wParam, lParam, pfEaten);
     }
-    pub fn KeyUp(self: *const ITfKeystrokeMgr, wParam: usize, lParam: isize, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
+    pub fn KeyUp(self: *const ITfKeystrokeMgr, wParam: WPARAM, lParam: LPARAM, pfEaten: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.KeyUp(self, wParam, lParam, pfEaten);
     }
     pub fn GetPreservedKey(self: *const ITfKeystrokeMgr, pic: ?*ITfContext, pprekey: ?*const TF_PRESERVEDKEY, pguid: ?*Guid) callconv(.@"inline") HRESULT {
@@ -5302,21 +5302,21 @@ pub const ITfKeyTraceEventSink = extern union {
         base: IUnknown.VTable,
         OnKeyTraceDown: *const fn(
             self: *const ITfKeyTraceEventSink,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
         OnKeyTraceUp: *const fn(
             self: *const ITfKeyTraceEventSink,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnKeyTraceDown(self: *const ITfKeyTraceEventSink, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn OnKeyTraceDown(self: *const ITfKeyTraceEventSink, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.OnKeyTraceDown(self, wParam, lParam);
     }
-    pub fn OnKeyTraceUp(self: *const ITfKeyTraceEventSink, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn OnKeyTraceUp(self: *const ITfKeyTraceEventSink, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.OnKeyTraceUp(self, wParam, lParam);
     }
 };
@@ -5343,8 +5343,8 @@ pub const ITfLangBarEventSink = extern union {
             self: *const ITfLangBarEventSink,
             dwThreadId: u32,
             uMsg: u32,
-            wParam: usize,
-            lParam: isize,
+            wParam: WPARAM,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
         ShowFloating: *const fn(
             self: *const ITfLangBarEventSink,
@@ -5368,7 +5368,7 @@ pub const ITfLangBarEventSink = extern union {
     pub fn OnThreadItemChange(self: *const ITfLangBarEventSink, dwThreadId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnThreadItemChange(self, dwThreadId);
     }
-    pub fn OnModalInput(self: *const ITfLangBarEventSink, dwThreadId: u32, uMsg: u32, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn OnModalInput(self: *const ITfLangBarEventSink, dwThreadId: u32, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.OnModalInput(self, dwThreadId, uMsg, wParam, lParam);
     }
     pub fn ShowFloating(self: *const ITfLangBarEventSink, dwFlags: u32) callconv(.@"inline") HRESULT {
@@ -7997,11 +7997,11 @@ pub extern "msctfmonitor" fn UninitLocalMsCtfMonitor(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (21)
+// Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const COLORREF = @import("../foundation.zig").COLORREF;
 const FORMATETC = @import("../system/com.zig").FORMATETC;
 const HANDLE = @import("../foundation.zig").HANDLE;
@@ -8015,11 +8015,13 @@ const IEnumString = @import("../system/com.zig").IEnumString;
 const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
 const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
+const LPARAM = isize;
 const MSG = @import("../ui/windows_and_messaging.zig").MSG;
 const POINT = @import("../foundation.zig").POINT;
 const RECT = @import("../foundation.zig").RECT;
 const SIZE = @import("../foundation.zig").SIZE;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const WPARAM = usize;
 
 test {
     @setEvalBranchQuota(

@@ -1536,7 +1536,7 @@ pub const CQPAGE = extern struct {
     idPageName: i32,
     idPageTemplate: i32,
     pDlgProc: ?DLGPROC,
-    lParam: isize,
+    lParam: LPARAM,
 };
 
 const CLSID_DNWithBinary_Value = Guid.initString("7e99c0a3-f935-11d2-ba96-00c04fb6d0d1");
@@ -2283,7 +2283,7 @@ pub const DSBROWSEINFOA = extern struct {
     cchPath: u32,
     dwFlags: u32,
     pfnCallback: ?BFFCALLBACK,
-    lParam: isize,
+    lParam: LPARAM,
     dwReturnFormat: u32,
     pUserName: ?[*:0]const u16,
     pPassword: ?[*:0]const u16,
@@ -2301,7 +2301,7 @@ pub const DSBROWSEINFOW = extern struct {
     cchPath: u32,
     dwFlags: u32,
     pfnCallback: ?BFFCALLBACK,
-    lParam: isize,
+    lParam: LPARAM,
     dwReturnFormat: u32,
     pUserName: ?[*:0]const u16,
     pPassword: ?[*:0]const u16,
@@ -8160,7 +8160,7 @@ pub const IDsAdminNewObjExt = extern union {
         AddPages: *const fn(
             self: *const IDsAdminNewObjExt,
             lpfnAddPage: ?LPFNSVADDPROPSHEETPAGE,
-            lParam: isize,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
         SetObject: *const fn(
             self: *const IDsAdminNewObjExt,
@@ -8187,7 +8187,7 @@ pub const IDsAdminNewObjExt = extern union {
     pub fn Initialize(self: *const IDsAdminNewObjExt, pADsContainerObj: ?*IADsContainer, pADsCopySource: ?*IADs, lpszClassName: ?[*:0]const u16, pDsAdminNewObj: ?*IDsAdminNewObj, pDispInfo: ?*DSA_NEWOBJ_DISPINFO) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pADsContainerObj, pADsCopySource, lpszClassName, pDsAdminNewObj, pDispInfo);
     }
-    pub fn AddPages(self: *const IDsAdminNewObjExt, lpfnAddPage: ?LPFNSVADDPROPSHEETPAGE, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn AddPages(self: *const IDsAdminNewObjExt, lpfnAddPage: ?LPFNSVADDPROPSHEETPAGE, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.AddPages(self, lpfnAddPage, lParam);
     }
     pub fn SetObject(self: *const IDsAdminNewObjExt, pADsObj: ?*IADs) callconv(.@"inline") HRESULT {
@@ -8388,7 +8388,7 @@ pub const IDsDisplaySpecifier = extern union {
             self: *const IDsDisplaySpecifier,
             pszObjectClass: ?[*:0]const u16,
             pcbEnum: ?LPDSENUMATTRIBUTES,
-            lParam: isize,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
         GetAttributeADsType: *const fn(
             self: *const IDsDisplaySpecifier,
@@ -8424,7 +8424,7 @@ pub const IDsDisplaySpecifier = extern union {
     pub fn GetClassCreationInfo(self: *const IDsDisplaySpecifier, pszObjectClass: ?[*:0]const u16, ppdscci: ?*?*DSCLASSCREATIONINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetClassCreationInfo(self, pszObjectClass, ppdscci);
     }
-    pub fn EnumClassAttributes(self: *const IDsDisplaySpecifier, pszObjectClass: ?[*:0]const u16, pcbEnum: ?LPDSENUMATTRIBUTES, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn EnumClassAttributes(self: *const IDsDisplaySpecifier, pszObjectClass: ?[*:0]const u16, pcbEnum: ?LPDSENUMATTRIBUTES, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.EnumClassAttributes(self, pszObjectClass, pcbEnum, lParam);
     }
     pub fn GetAttributeADsType(self: *const IDsDisplaySpecifier, pszAttributeName: ?[*:0]const u16) callconv(.@"inline") ADSTYPE {
@@ -8649,12 +8649,12 @@ pub const IQueryForm = extern union {
         AddForms: *const fn(
             self: *const IQueryForm,
             pAddFormsProc: ?LPCQADDFORMSPROC,
-            lParam: isize,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
         AddPages: *const fn(
             self: *const IQueryForm,
             pAddPagesProc: ?LPCQADDPAGESPROC,
-            lParam: isize,
+            lParam: LPARAM,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -8662,10 +8662,10 @@ pub const IQueryForm = extern union {
     pub fn Initialize(self: *const IQueryForm, hkForm: ?HKEY) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, hkForm);
     }
-    pub fn AddForms(self: *const IQueryForm, pAddFormsProc: ?LPCQADDFORMSPROC, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn AddForms(self: *const IQueryForm, pAddFormsProc: ?LPCQADDFORMSPROC, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.AddForms(self, pAddFormsProc, lParam);
     }
-    pub fn AddPages(self: *const IQueryForm, pAddPagesProc: ?LPCQADDPAGESPROC, lParam: isize) callconv(.@"inline") HRESULT {
+    pub fn AddPages(self: *const IQueryForm, pAddPagesProc: ?LPCQADDPAGESPROC, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.AddPages(self, pAddPagesProc, lParam);
     }
 };
@@ -8674,12 +8674,12 @@ const CLSID_LargeInteger_Value = Guid.initString("927971f5-0939-11d1-8be1-00c04f
 pub const CLSID_LargeInteger = &CLSID_LargeInteger_Value;
 
 pub const LPCQADDFORMSPROC = *const fn(
-    lParam: isize,
+    lParam: LPARAM,
     pForm: ?*CQFORM,
 ) callconv(.winapi) HRESULT;
 
 pub const LPCQADDPAGESPROC = *const fn(
-    lParam: isize,
+    lParam: LPARAM,
     clsidForm: ?*const Guid,
     pPage: ?*CQPAGE,
 ) callconv(.winapi) HRESULT;
@@ -8688,12 +8688,12 @@ pub const LPCQPAGEPROC = *const fn(
     pPage: ?*CQPAGE,
     hwnd: ?HWND,
     uMsg: u32,
-    wParam: usize,
-    lParam: isize,
+    wParam: WPARAM,
+    lParam: LPARAM,
 ) callconv(.winapi) HRESULT;
 
 pub const LPDSENUMATTRIBUTES = *const fn(
-    lParam: isize,
+    lParam: LPARAM,
     pszAttributeName: ?[*:0]const u16,
     pszDisplayName: ?[*:0]const u16,
     dwFlags: u32,
@@ -10516,13 +10516,13 @@ pub const DsWriteAccountSpn = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (31)
+// Section: Imports (33)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BFFCALLBACK = @import("../ui/shell.zig").BFFCALLBACK;
-const BOOL = @import("../foundation.zig").BOOL;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BOOLEAN = u8;
+const BSTR = *u16;
 const DISPPARAMS = @import("../system/com.zig").DISPPARAMS;
 const DLGPROC = @import("../ui/windows_and_messaging.zig").DLGPROC;
 const EXCEPINFO = @import("../system/com.zig").EXCEPINFO;
@@ -10541,6 +10541,7 @@ const IPropertyBag = @import("../system/com/structured_storage.zig").IPropertyBa
 const ITypeInfo = @import("../system/com.zig").ITypeInfo;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
+const LPARAM = isize;
 const LPFNSVADDPROPSHEETPAGE = @import("../ui/controls.zig").LPFNSVADDPROPSHEETPAGE;
 const LSA_FOREST_TRUST_INFORMATION = @import("../security/authentication/identity.zig").LSA_FOREST_TRUST_INFORMATION;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
@@ -10548,7 +10549,8 @@ const PSID = @import("../foundation.zig").PSID;
 const SOCKET_ADDRESS = @import("../networking/win_sock.zig").SOCKET_ADDRESS;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
+const WPARAM = usize;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

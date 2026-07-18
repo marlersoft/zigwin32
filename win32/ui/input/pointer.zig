@@ -357,7 +357,7 @@ pub extern "user32" fn SkipPointerFrameMessages(
 //--------------------------------------------------------------------------------
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../../foundation.zig").BOOL;
+const BOOL = i32;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const HSYNTHETICPOINTERDEVICE = @import("../../ui/controls.zig").HSYNTHETICPOINTERDEVICE;
 const HWND = @import("../../foundation.zig").HWND;

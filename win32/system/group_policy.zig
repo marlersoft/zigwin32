@@ -452,11 +452,11 @@ pub const GROUP_POLICY_OBJECTA = extern struct {
     lpDisplayName: ?[*:0]u8,
     szGPOName: [50]u8,
     GPOLink: GPO_LINK,
-    lParam: isize,
+    lParam: LPARAM,
     pNext: ?*GROUP_POLICY_OBJECTA,
     pPrev: ?*GROUP_POLICY_OBJECTA,
     lpExtensions: ?[*:0]u8,
-    lParam2: isize,
+    lParam2: LPARAM,
     lpLink: ?[*:0]u8,
 };
 
@@ -468,11 +468,11 @@ pub const GROUP_POLICY_OBJECTW = extern struct {
     lpDisplayName: ?[*:0]u16,
     szGPOName: [50]u16,
     GPOLink: GPO_LINK,
-    lParam: isize,
+    lParam: LPARAM,
     pNext: ?*GROUP_POLICY_OBJECTW,
     pPrev: ?*GROUP_POLICY_OBJECTW,
     lpExtensions: ?[*:0]u16,
-    lParam2: isize,
+    lParam2: LPARAM,
     lpLink: ?[*:0]u16,
 };
 
@@ -4310,12 +4310,12 @@ pub const GetGPOList = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (23)
+// Section: Imports (24)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const APPCATEGORYINFOLIST = @import("../ui/shell.zig").APPCATEGORYINFOLIST;
-const BOOL = @import("../foundation.zig").BOOL;
-const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const GENERIC_MAPPING = @import("../security.zig").GENERIC_MAPPING;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HKEY = @import("../system/registry.zig").HKEY;
@@ -4327,6 +4327,7 @@ const IEnumVARIANT = @import("../system/ole.zig").IEnumVARIANT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const IWbemClassObject = @import("../system/wmi.zig").IWbemClassObject;
 const IWbemServices = @import("../system/wmi.zig").IWbemServices;
+const LPARAM = isize;
 const OBJECT_TYPE_LIST = @import("../security.zig").OBJECT_TYPE_LIST;
 const PRIVILEGE_SET = @import("../security.zig").PRIVILEGE_SET;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
@@ -4334,7 +4335,7 @@ const PSID = @import("../foundation.zig").PSID;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;
-const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const VARIANT_BOOL = i16;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

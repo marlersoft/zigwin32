@@ -6178,7 +6178,7 @@ pub extern "d3d10" fn D3D10StateBlockMaskUnion(
 // Section: Imports (25)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const D3D_CBUFFER_TYPE = @import("../graphics/direct3d.zig").D3D_CBUFFER_TYPE;
 const D3D_NAME = @import("../graphics/direct3d.zig").D3D_NAME;
 const D3D_PRIMITIVE = @import("../graphics/direct3d.zig").D3D_PRIMITIVE;

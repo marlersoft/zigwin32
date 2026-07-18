@@ -2154,7 +2154,7 @@ pub const CLSID_UIAnimationTransitionLibrary2 = &CLSID_UIAnimationTransitionLibr
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IDCompositionAnimation = @import("../graphics/direct_composition.zig").IDCompositionAnimation;
 const IUnknown = @import("../system/com.zig").IUnknown;

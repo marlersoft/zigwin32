@@ -413,7 +413,7 @@ pub extern "wintrust" fn IsCatalogFile(
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOL = @import("../../foundation.zig").BOOL;
+const BOOL = i32;
 const CERT_STRONG_SIGN_PARA = @import("../../security/cryptography.zig").CERT_STRONG_SIGN_PARA;
 const CRYPT_INTEGER_BLOB = @import("../../security/cryptography.zig").CRYPT_INTEGER_BLOB;
 const HANDLE = @import("../../foundation.zig").HANDLE;

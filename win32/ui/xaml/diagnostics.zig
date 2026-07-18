@@ -541,8 +541,8 @@ pub extern "windows.ui.xaml" fn InitializeXamlDiagnosticsEx(
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOL = @import("../../foundation.zig").BOOL;
-const BSTR = @import("../../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const DXGI_ALPHA_MODE = @import("../../graphics/dxgi/common.zig").DXGI_ALPHA_MODE;
 const DXGI_FORMAT = @import("../../graphics/dxgi/common.zig").DXGI_FORMAT;
 const HRESULT = @import("../../foundation.zig").HRESULT;

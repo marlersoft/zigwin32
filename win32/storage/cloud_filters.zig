@@ -2231,7 +2231,7 @@ pub extern "cldapi" fn CfUpdateSyncProviderStatus(
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOLEAN = u8;
 const CORRELATION_VECTOR = @import("../system/correlation_vector.zig").CORRELATION_VECTOR;
 const FILE_BASIC_INFO = @import("../storage/file_system.zig").FILE_BASIC_INFO;
 const FILE_INFO_BY_HANDLE_CLASS = @import("../storage/file_system.zig").FILE_INFO_BY_HANDLE_CLASS;

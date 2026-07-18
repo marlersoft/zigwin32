@@ -3858,8 +3858,8 @@ pub const ConvertInterfaceNameToLuid = switch (@import("../zig.zig").unicode_mod
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ADDRESS_FAMILY = @import("../networking/win_sock.zig").ADDRESS_FAMILY;
-const BOOL = @import("../foundation.zig").BOOL;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOL = i32;
+const BOOLEAN = u8;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const IF_OPER_STATUS = @import("../network_management/ndis.zig").IF_OPER_STATUS;
 const IN6_ADDR = @import("../networking/win_sock.zig").IN6_ADDR;

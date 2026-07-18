@@ -798,7 +798,7 @@ pub const OpenJobObject = switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const IO_COUNTERS = @import("../system/threading.zig").IO_COUNTERS;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;

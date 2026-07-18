@@ -4539,7 +4539,7 @@ pub extern "d3d9" fn Direct3DCreate9Ex(
 // Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const D3DMATRIX = @import("../graphics/direct3d.zig").D3DMATRIX;
 const D3DVECTOR = @import("../graphics/direct3d.zig").D3DVECTOR;
 const HANDLE = @import("../foundation.zig").HANDLE;

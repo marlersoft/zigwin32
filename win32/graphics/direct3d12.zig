@@ -12403,7 +12403,7 @@ pub extern "d3d12" fn D3D12SerializeVersionedRootSignature(
 // Section: Imports (29)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const D3D_CBUFFER_TYPE = @import("../graphics/direct3d.zig").D3D_CBUFFER_TYPE;
 const D3D_FEATURE_LEVEL = @import("../graphics/direct3d.zig").D3D_FEATURE_LEVEL;
 const D3D_INTERPOLATION_MODE = @import("../graphics/direct3d.zig").D3D_INTERPOLATION_MODE;

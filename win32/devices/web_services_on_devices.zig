@@ -2519,7 +2519,7 @@ pub extern "wsdapi" fn WSDXMLGetValueFromAny(
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HCERTSTORE = @import("../security/cryptography.zig").HCERTSTORE;

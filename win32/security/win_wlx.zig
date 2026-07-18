@@ -127,7 +127,7 @@ pub const PWLX_DIALOG_BOX_INDIRECT_PARAM = *const fn(
     hDialogTemplate: ?*DLGTEMPLATE,
     hwndOwner: ?HWND,
     dlgprc: ?DLGPROC,
-    dwInitParam: isize,
+    dwInitParam: LPARAM,
 ) callconv(.winapi) i32;
 
 pub const PWLX_DIALOG_BOX_PARAM = *const fn(
@@ -136,7 +136,7 @@ pub const PWLX_DIALOG_BOX_PARAM = *const fn(
     lpszTemplate: ?[*:0]u16,
     hwndOwner: ?HWND,
     dlgprc: ?DLGPROC,
-    dwInitParam: isize,
+    dwInitParam: LPARAM,
 ) callconv(.winapi) i32;
 
 pub const PWLX_DISCONNECT = *const fn(
@@ -459,15 +459,16 @@ pub const WLX_TERMINAL_SERVICES_DATA = extern struct {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const DLGPROC = @import("../ui/windows_and_messaging.zig").DLGPROC;
 const DLGTEMPLATE = @import("../ui/windows_and_messaging.zig").DLGTEMPLATE;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HDESK = @import("../system/stations_and_desktops.zig").HDESK;
 const HWND = @import("../foundation.zig").HWND;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
+const LPARAM = isize;
 const LUID = @import("../foundation.zig").LUID;
 const QUOTA_LIMITS = @import("../security.zig").QUOTA_LIMITS;
 

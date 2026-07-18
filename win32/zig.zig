@@ -8,7 +8,7 @@ const zig_atleast_16 = builtin.zig_version.order(.{ .major = 0, .minor = 16, .pa
 
 const mod_root = @import("../win32.zig");
 const win32 = struct {
-    const BOOL = mod_root.foundation.BOOL;
+    const BOOL = i32;
     const WIN32_ERROR = mod_root.foundation.WIN32_ERROR;
     const HRESULT = mod_root.foundation.HRESULT;
     const HWND = mod_root.foundation.HWND;

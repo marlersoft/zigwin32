@@ -238,7 +238,7 @@ pub const TPMVSCMGR_STATUS_CARD_DESTROYED = TPMVSCMGR_STATUS.CARD_DESTROYED;
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 

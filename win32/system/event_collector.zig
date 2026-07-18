@@ -310,7 +310,7 @@ pub extern "wecapi" fn EcSetSubscriptionProperty(
 //--------------------------------------------------------------------------------
 // Section: Imports (1)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 
 test {
     @setEvalBranchQuota(

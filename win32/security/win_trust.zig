@@ -966,8 +966,8 @@ pub extern "wintrust" fn WTHelperProvDataFromStateData(
 // Section: Imports (25)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
-const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const BOOL = i32;
+const BOOLEAN = u8;
 const CERT_CHAIN_CONTEXT = @import("../security/cryptography.zig").CERT_CHAIN_CONTEXT;
 const CERT_CHAIN_ELEMENT = @import("../security/cryptography.zig").CERT_CHAIN_ELEMENT;
 const CERT_CHAIN_PARA = @import("../security/cryptography.zig").CERT_CHAIN_PARA;

@@ -1993,7 +1993,7 @@ pub extern "cscapi" fn OfflineFilesStart(
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const BOOL = @import("../foundation.zig").BOOL;
+const BOOL = i32;
 const BYTE_BLOB = @import("../system/com.zig").BYTE_BLOB;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;

@@ -855,8 +855,8 @@ pub const ENDROPFILES = extern struct {
 pub const ENLINK = extern struct {
     nmhdr: NMHDR align(4),
     msg: u32 align(4),
-    wParam: usize align(4),
-    lParam: isize align(4),
+    wParam: WPARAM align(4),
+    lParam: LPARAM align(4),
     chrg: CHARRANGE align(4),
 };
 
@@ -875,8 +875,8 @@ pub const ENOLEOPFAILED = extern struct {
 pub const ENPROTECTED = extern struct {
     nmhdr: NMHDR align(4),
     msg: u32 align(4),
-    wParam: usize align(4),
-    lParam: isize align(4),
+    wParam: WPARAM align(4),
+    lParam: LPARAM align(4),
     chrg: CHARRANGE align(4),
 };
 
@@ -4805,9 +4805,9 @@ pub const ITextServices = extern union {
         TxSendMessage: *const fn(
             self: *const ITextServices,
             msg: u32,
-            wparam: usize,
-            lparam: isize,
-            plresult: ?*isize,
+            wparam: WPARAM,
+            lparam: LPARAM,
+            plresult: ?*LRESULT,
         ) callconv(.winapi) HRESULT,
         TxDraw: *const fn(
             self: *const ITextServices,
@@ -4922,7 +4922,7 @@ pub const ITextServices = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn TxSendMessage(self: *const ITextServices, msg: u32, wparam: usize, lparam: isize, plresult: ?*isize) callconv(.@"inline") HRESULT {
+    pub fn TxSendMessage(self: *const ITextServices, msg: u32, wparam: WPARAM, lparam: LPARAM, plresult: ?*LRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.TxSendMessage(self, msg, wparam, lparam, plresult);
     }
     pub fn TxDraw(self: *const ITextServices, dwDrawAspect: DVASPECT, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hdcDraw: ?HDC, hicTargetDev: ?HDC, lprcBounds: ?*RECTL, lprcWBounds: ?*RECTL, lprcUpdate: ?*RECT, pfnContinue: isize, dwContinue: u32, lViewId: i32) callconv(.@"inline") HRESULT {
@@ -5369,8 +5369,8 @@ pub const MOPENA = MANCODE.OPENA;
 pub const MSGFILTER = extern struct {
     nmhdr: NMHDR align(4),
     msg: u32 align(4),
-    wParam: usize align(4),
-    lParam: isize align(4),
+    wParam: WPARAM align(4),
+    lParam: LPARAM align(4),
 };
 
 pub const OBJECTPOSITIONS = extern struct {
@@ -7144,11 +7144,11 @@ pub const TEXTRANGE = switch (@import("../../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (43)
+// Section: Imports (46)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BOOL = @import("../../foundation.zig").BOOL;
-const BSTR = @import("../../foundation.zig").BSTR;
+const BOOL = i32;
+const BSTR = *u16;
 const COLORREF = @import("../../foundation.zig").COLORREF;
 const DROPEFFECT = @import("../../system/ole.zig").DROPEFFECT;
 const DVASPECT = @import("../../system/com.zig").DVASPECT;
@@ -7176,6 +7176,8 @@ const IOleObject = @import("../../system/ole.zig").IOleObject;
 const IStorage = @import("../../system/com/structured_storage.zig").IStorage;
 const IStream = @import("../../system/com.zig").IStream;
 const IUnknown = @import("../../system/com.zig").IUnknown;
+const LPARAM = isize;
+const LRESULT = isize;
 const MODIFIERKEYS_FLAGS = @import("../../system/system_services.zig").MODIFIERKEYS_FLAGS;
 const NMHDR = @import("../../ui/controls.zig").NMHDR;
 const OLEINPLACEFRAMEINFO = @import("../../system/ole.zig").OLEINPLACEFRAMEINFO;
@@ -7189,6 +7191,7 @@ const SIZE = @import("../../foundation.zig").SIZE;
 const SYS_COLOR_INDEX = @import("../../graphics/gdi.zig").SYS_COLOR_INDEX;
 const TEXT_ALIGN_OPTIONS = @import("../../graphics/gdi.zig").TEXT_ALIGN_OPTIONS;
 const VARIANT = @import("../../system/com.zig").VARIANT;
+const WPARAM = usize;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

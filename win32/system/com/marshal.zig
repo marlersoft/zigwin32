@@ -851,7 +851,7 @@ pub extern "oleaut32" fn VARIANT_UserUnmarshal64(
 // Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const BSTR = @import("../../foundation.zig").BSTR;
+const BSTR = *u16;
 const CO_MARSHALING_CONTEXT_ATTRIBUTES = @import("../../system/com.zig").CO_MARSHALING_CONTEXT_ATTRIBUTES;
 const HACCEL = @import("../../ui/windows_and_messaging.zig").HACCEL;
 const HBITMAP = @import("../../graphics/gdi.zig").HBITMAP;
