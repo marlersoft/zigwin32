@@ -8002,7 +8002,7 @@ pub extern "msctfmonitor" fn UninitLocalMsCtfMonitor(
 const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
 const BSTR = *u16;
-const COLORREF = @import("../foundation.zig").COLORREF;
+const COLORREF = @import("../zig.zig").COLORREF;
 const FORMATETC = @import("../system/com.zig").FORMATETC;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;

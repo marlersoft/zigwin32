@@ -8533,7 +8533,7 @@ pub const TextOut = switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (13)
 //--------------------------------------------------------------------------------
 const BOOL = i32;
-const COLORREF = @import("../foundation.zig").COLORREF;
+const COLORREF = @import("../zig.zig").COLORREF;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const HWND = @import("../foundation.zig").HWND;

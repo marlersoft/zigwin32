@@ -9181,7 +9181,7 @@ pub extern "inkobjcore" fn SetWordList(
 const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
 const BSTR = *u16;
-const COLORREF = @import("../foundation.zig").COLORREF;
+const COLORREF = @import("../zig.zig").COLORREF;
 const HANDLE_PTR = @import("../foundation.zig").HANDLE_PTR;
 const HRESULT = @import("../zig.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;

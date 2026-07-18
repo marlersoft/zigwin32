@@ -165,6 +165,31 @@ pub const HRESULT = packed struct (u32) {
     pub const S_OK: HRESULT = .fromInt(0);
 };
 
+pub const COLORREF = packed struct(u32) {
+    r: u8,
+    g: u8,
+    b: u8,
+    flags: u8,
+    pub fn fromInt(i: u32) COLORREF {
+        return @bitCast(i);
+    }
+    pub fn rgb(r: u8, g: u8, b: u8) COLORREF {
+        return .{ .r = r, .g = g, .b = b, .flags = 0 };
+    }
+    pub const invalid: COLORREF = .fromInt(0xFFFFFFFF);
+    pub const none: COLORREF = .fromInt(0xFFFFFFFF);
+    pub const default: COLORREF = .fromInt(0xFF000000);
+    pub const black: COLORREF = .rgb(0, 0, 0);
+    pub const white: COLORREF = .rgb(255, 255, 255);
+    pub const red: COLORREF = .rgb(255, 0, 0);
+    pub const green: COLORREF = .rgb(0, 255, 0);
+    pub const blue: COLORREF = .rgb(0, 0, 255);
+    pub const yellow: COLORREF = .rgb(255, 255, 0);
+    pub const cyan: COLORREF = .rgb(0, 255, 255);
+    pub const magenta: COLORREF = .rgb(255, 0, 255);
+    pub const gray: COLORREF = .rgb(128, 128, 128);
+};
+
 // These constants were removed from the metadata to allow each projection
 // to define them however they like (see https://github.com/microsoft/win32metadata/issues/530)
 pub const FALSE: win32.BOOL = 0;
@@ -572,7 +597,7 @@ pub fn endPaint(hwnd: win32.HWND, paintstruct: *const win32.PAINTSTRUCT) void {
 }
 
 /// calls CreateSolidBrush, panics on failure
-pub fn createSolidBrush(color: u32) win32.HBRUSH {
+pub fn createSolidBrush(color: COLORREF) win32.HBRUSH {
     return win32.CreateSolidBrush(color) orelse panicWin32(
         "CreateSolidBrush",
         win32.GetLastError(),

@@ -1292,7 +1292,7 @@ pub const HtmlHelp = switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = i32;
-const COLORREF = @import("../foundation.zig").COLORREF;
+const COLORREF = @import("../zig.zig").COLORREF;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const HRESULT = @import("../zig.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;

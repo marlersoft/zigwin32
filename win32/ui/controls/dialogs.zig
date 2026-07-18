@@ -1732,7 +1732,7 @@ pub const ReplaceText = switch (@import("../../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = i32;
-const COLORREF = @import("../../foundation.zig").COLORREF;
+const COLORREF = @import("../../zig.zig").COLORREF;
 const DEVMODEA = @import("../../graphics/gdi.zig").DEVMODEA;
 const HDC = @import("../../graphics/gdi.zig").HDC;
 const HINSTANCE = @import("../../foundation.zig").HINSTANCE;

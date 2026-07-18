@@ -6528,7 +6528,6 @@ pub const APP_LOCAL_DEVICE_ID = extern struct {
 
 
 
-pub const COLORREF = u32;
 
 pub const DECIMAL = extern struct {
     wReserved: u16,

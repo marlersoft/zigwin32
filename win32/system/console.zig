@@ -994,7 +994,7 @@ pub const WriteConsoleOutputCharacter = switch (@import("../zig.zig").unicode_mo
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const BOOL = i32;
-const COLORREF = @import("../foundation.zig").COLORREF;
+const COLORREF = @import("../zig.zig").COLORREF;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../zig.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;

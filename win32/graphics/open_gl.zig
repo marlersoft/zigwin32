@@ -3364,7 +3364,7 @@ pub const wglUseFontOutlines = switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const BOOL = i32;
-const COLORREF = @import("../foundation.zig").COLORREF;
+const COLORREF = @import("../zig.zig").COLORREF;
 const EMR = @import("../graphics/gdi.zig").EMR;
 const HDC = @import("../graphics/gdi.zig").HDC;
 const HENHMETAFILE = @import("../graphics/gdi.zig").HENHMETAFILE;
