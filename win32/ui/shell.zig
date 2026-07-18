@@ -6200,7 +6200,7 @@ pub const IBrowserService = extern union {
         RegisterWindow: *const fn(
             self: *const IBrowserService,
             fForceRegister: BOOL,
-            swc: i32,
+            swc: ShellWindowTypeConstants,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -6292,7 +6292,7 @@ pub const IBrowserService = extern union {
     pub fn GetPalette(self: *const IBrowserService, hpal: ?*?HPALETTE) callconv(.@"inline") HRESULT {
         return self.vtable.GetPalette(self, hpal);
     }
-    pub fn RegisterWindow(self: *const IBrowserService, fForceRegister: BOOL, swc: i32) callconv(.@"inline") HRESULT {
+    pub fn RegisterWindow(self: *const IBrowserService, fForceRegister: BOOL, swc: ShellWindowTypeConstants) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterWindow(self, fForceRegister, swc);
     }
 };
@@ -11444,12 +11444,12 @@ pub const IFolderView = extern union {
         ) callconv(.winapi) HRESULT,
         ItemCount: *const fn(
             self: *const IFolderView,
-            uFlags: u32,
+            uFlags: _SVGIO,
             pcItems: ?*i32,
         ) callconv(.winapi) HRESULT,
         Items: *const fn(
             self: *const IFolderView,
-            uFlags: u32,
+            uFlags: _SVGIO,
             riid: ?*const Guid,
             ppv: **anyopaque,
         ) callconv(.winapi) HRESULT,
@@ -11504,10 +11504,10 @@ pub const IFolderView = extern union {
     pub fn Item(self: *const IFolderView, iItemIndex: i32, ppidl: ?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.Item(self, iItemIndex, ppidl);
     }
-    pub fn ItemCount(self: *const IFolderView, uFlags: u32, pcItems: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn ItemCount(self: *const IFolderView, uFlags: _SVGIO, pcItems: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.ItemCount(self, uFlags, pcItems);
     }
-    pub fn Items(self: *const IFolderView, uFlags: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+    pub fn Items(self: *const IFolderView, uFlags: _SVGIO, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Items(self, uFlags, riid, ppv);
     }
     pub fn GetSelectionMarkedItem(self: *const IFolderView, piItem: ?*i32) callconv(.@"inline") HRESULT {
@@ -18288,11 +18288,11 @@ pub const IShellLinkA = extern union {
         ) callconv(.winapi) HRESULT,
         GetShowCmd: *const fn(
             self: *const IShellLinkA,
-            piShowCmd: ?*i32,
+            piShowCmd: ?*SHOW_WINDOW_CMD,
         ) callconv(.winapi) HRESULT,
         SetShowCmd: *const fn(
             self: *const IShellLinkA,
-            iShowCmd: i32,
+            iShowCmd: SHOW_WINDOW_CMD,
         ) callconv(.winapi) HRESULT,
         GetIconLocation: *const fn(
             self: *const IShellLinkA,
@@ -18355,10 +18355,10 @@ pub const IShellLinkA = extern union {
     pub fn SetHotkey(self: *const IShellLinkA, wHotkey: u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetHotkey(self, wHotkey);
     }
-    pub fn GetShowCmd(self: *const IShellLinkA, piShowCmd: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn GetShowCmd(self: *const IShellLinkA, piShowCmd: ?*SHOW_WINDOW_CMD) callconv(.@"inline") HRESULT {
         return self.vtable.GetShowCmd(self, piShowCmd);
     }
-    pub fn SetShowCmd(self: *const IShellLinkA, iShowCmd: i32) callconv(.@"inline") HRESULT {
+    pub fn SetShowCmd(self: *const IShellLinkA, iShowCmd: SHOW_WINDOW_CMD) callconv(.@"inline") HRESULT {
         return self.vtable.SetShowCmd(self, iShowCmd);
     }
     pub fn GetIconLocation(self: *const IShellLinkA, pszIconPath: [*:0]u8, cch: i32, piIcon: ?*i32) callconv(.@"inline") HRESULT {
@@ -18640,11 +18640,11 @@ pub const IShellLinkW = extern union {
         ) callconv(.winapi) HRESULT,
         GetShowCmd: *const fn(
             self: *const IShellLinkW,
-            piShowCmd: ?*i32,
+            piShowCmd: ?*SHOW_WINDOW_CMD,
         ) callconv(.winapi) HRESULT,
         SetShowCmd: *const fn(
             self: *const IShellLinkW,
-            iShowCmd: i32,
+            iShowCmd: SHOW_WINDOW_CMD,
         ) callconv(.winapi) HRESULT,
         GetIconLocation: *const fn(
             self: *const IShellLinkW,
@@ -18707,10 +18707,10 @@ pub const IShellLinkW = extern union {
     pub fn SetHotkey(self: *const IShellLinkW, wHotkey: u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetHotkey(self, wHotkey);
     }
-    pub fn GetShowCmd(self: *const IShellLinkW, piShowCmd: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn GetShowCmd(self: *const IShellLinkW, piShowCmd: ?*SHOW_WINDOW_CMD) callconv(.@"inline") HRESULT {
         return self.vtable.GetShowCmd(self, piShowCmd);
     }
-    pub fn SetShowCmd(self: *const IShellLinkW, iShowCmd: i32) callconv(.@"inline") HRESULT {
+    pub fn SetShowCmd(self: *const IShellLinkW, iShowCmd: SHOW_WINDOW_CMD) callconv(.@"inline") HRESULT {
         return self.vtable.SetShowCmd(self, iShowCmd);
     }
     pub fn GetIconLocation(self: *const IShellLinkW, pszIconPath: [*:0]u16, cch: i32, piIcon: ?*i32) callconv(.@"inline") HRESULT {
@@ -20025,7 +20025,7 @@ pub const IShellView = extern union {
         ) callconv(.winapi) HRESULT,
         GetItemObject: *const fn(
             self: *const IShellView,
-            uItem: u32,
+            uItem: _SVGIO,
             riid: ?*const Guid,
             ppv: **anyopaque,
         ) callconv(.winapi) HRESULT,
@@ -20063,7 +20063,7 @@ pub const IShellView = extern union {
     pub fn SelectItem(self: *const IShellView, pidlItem: ?*ITEMIDLIST, uFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SelectItem(self, pidlItem, uFlags);
     }
-    pub fn GetItemObject(self: *const IShellView, uItem: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
+    pub fn GetItemObject(self: *const IShellView, uItem: _SVGIO, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemObject(self, uItem, riid, ppv);
     }
 };
@@ -20164,7 +20164,7 @@ pub const IShellWindows = extern union {
             self: *const IShellWindows,
             pid: ?*IDispatch,
             hwnd: i32,
-            swClass: i32,
+            swClass: ShellWindowTypeConstants,
             plCookie: ?*i32,
         ) callconv(.winapi) HRESULT,
         RegisterPending: *const fn(
@@ -20172,7 +20172,7 @@ pub const IShellWindows = extern union {
             lThreadId: i32,
             pvarloc: ?*VARIANT,
             pvarlocRoot: ?*VARIANT,
-            swClass: i32,
+            swClass: ShellWindowTypeConstants,
             plCookie: ?*i32,
         ) callconv(.winapi) HRESULT,
         Revoke: *const fn(
@@ -20193,9 +20193,9 @@ pub const IShellWindows = extern union {
             self: *const IShellWindows,
             pvarLoc: ?*VARIANT,
             pvarLocRoot: ?*VARIANT,
-            swClass: i32,
+            swClass: ShellWindowTypeConstants,
             phwnd: ?*i32,
-            swfwOptions: i32,
+            swfwOptions: ShellWindowFindWindowOptions,
             ppdispOut: ?*?*IDispatch,
         ) callconv(.winapi) HRESULT,
         OnCreated: *const fn(
@@ -20220,10 +20220,10 @@ pub const IShellWindows = extern union {
     pub fn _NewEnum(self: *const IShellWindows, ppunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable._NewEnum(self, ppunk);
     }
-    pub fn Register(self: *const IShellWindows, pid: ?*IDispatch, hwnd: i32, swClass: i32, plCookie: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn Register(self: *const IShellWindows, pid: ?*IDispatch, hwnd: i32, swClass: ShellWindowTypeConstants, plCookie: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.Register(self, pid, hwnd, swClass, plCookie);
     }
-    pub fn RegisterPending(self: *const IShellWindows, lThreadId: i32, pvarloc: ?*VARIANT, pvarlocRoot: ?*VARIANT, swClass: i32, plCookie: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn RegisterPending(self: *const IShellWindows, lThreadId: i32, pvarloc: ?*VARIANT, pvarlocRoot: ?*VARIANT, swClass: ShellWindowTypeConstants, plCookie: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterPending(self, lThreadId, pvarloc, pvarlocRoot, swClass, plCookie);
     }
     pub fn Revoke(self: *const IShellWindows, lCookie: i32) callconv(.@"inline") HRESULT {
@@ -20235,7 +20235,7 @@ pub const IShellWindows = extern union {
     pub fn OnActivated(self: *const IShellWindows, lCookie: i32, fActive: VARIANT_BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnActivated(self, lCookie, fActive);
     }
-    pub fn FindWindowSW(self: *const IShellWindows, pvarLoc: ?*VARIANT, pvarLocRoot: ?*VARIANT, swClass: i32, phwnd: ?*i32, swfwOptions: i32, ppdispOut: ?*?*IDispatch) callconv(.@"inline") HRESULT {
+    pub fn FindWindowSW(self: *const IShellWindows, pvarLoc: ?*VARIANT, pvarLocRoot: ?*VARIANT, swClass: ShellWindowTypeConstants, phwnd: ?*i32, swfwOptions: ShellWindowFindWindowOptions, ppdispOut: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.FindWindowSW(self, pvarLoc, pvarLocRoot, swClass, phwnd, swfwOptions, ppdispOut);
     }
     pub fn OnCreated(self: *const IShellWindows, lCookie: i32, punk: ?*IUnknown) callconv(.@"inline") HRESULT {

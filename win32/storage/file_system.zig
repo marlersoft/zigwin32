@@ -7809,7 +7809,7 @@ pub extern "advapi32" fn WriteEncryptedFileRaw(
 pub extern "kernel32" fn WriteFile(
     hFile: ?HANDLE,
     /// parameter "nNumberOfBytesToWrite" is the size in bytes
-    lpBuffer: ?*const anyopaque,
+    lpBuffer: ?[*]const u8,
     nNumberOfBytesToWrite: u32,
     lpNumberOfBytesWritten: ?*u32,
     lpOverlapped: ?*OVERLAPPED,
@@ -7819,7 +7819,7 @@ pub extern "kernel32" fn WriteFile(
 pub extern "kernel32" fn WriteFileEx(
     hFile: ?HANDLE,
     /// parameter "nNumberOfBytesToWrite" is the size in bytes
-    lpBuffer: ?*const anyopaque,
+    lpBuffer: ?*const u8,
     nNumberOfBytesToWrite: u32,
     lpOverlapped: ?*OVERLAPPED,
     lpCompletionRoutine: ?LPOVERLAPPED_COMPLETION_ROUTINE,

@@ -1,7 +1,7 @@
 .{
     .name = .win32,
     .fingerprint = 0xb50ba1d115697e99,
-    .version = "41.0.25-preview",
+    .version = "42.0.39-preview",
     .minimum_zig_version = "0.14.0",
     .paths = .{
         "build.zig",

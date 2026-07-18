@@ -666,7 +666,7 @@ pub const Document = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const Document,
-            Name: ?*?*u16,
+            Name: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
@@ -676,7 +676,7 @@ pub const Document = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Location: *const fn(
             self: *const Document,
-            Location: ?*?*u16,
+            Location: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsSaved: *const fn(
@@ -734,13 +734,13 @@ pub const Document = extern union {
     pub fn get_ActiveView(self: *const Document, _param_View: ?*?*View) callconv(.@"inline") HRESULT {
         return self.vtable.get_ActiveView(self, _param_View);
     }
-    pub fn get_Name(self: *const Document, _param_Name: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_Name(self: *const Document, _param_Name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, _param_Name);
     }
     pub fn put_Name(self: *const Document, _param_Name: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, _param_Name);
     }
-    pub fn get_Location(self: *const Document, Location: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_Location(self: *const Document, Location: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Location(self, Location);
     }
     pub fn get_IsSaved(self: *const Document, IsSaved: ?*BOOL) callconv(.@"inline") HRESULT {
@@ -774,17 +774,17 @@ pub const Extension = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const Extension,
-            Name: ?*?*u16,
+            Name: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Vendor: *const fn(
             self: *const Extension,
-            Vendor: ?*?*u16,
+            Vendor: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Version: *const fn(
             self: *const Extension,
-            Version: ?*?*u16,
+            Version: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Extensions: *const fn(
@@ -794,7 +794,7 @@ pub const Extension = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SnapinCLSID: *const fn(
             self: *const Extension,
-            SnapinCLSID: ?*?*u16,
+            SnapinCLSID: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         EnableAllExtensions: *const fn(
             self: *const Extension,
@@ -808,19 +808,19 @@ pub const Extension = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const Extension, _param_Name: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_Name(self: *const Extension, _param_Name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, _param_Name);
     }
-    pub fn get_Vendor(self: *const Extension, Vendor: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_Vendor(self: *const Extension, Vendor: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Vendor(self, Vendor);
     }
-    pub fn get_Version(self: *const Extension, Version: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_Version(self: *const Extension, Version: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Version(self, Version);
     }
     pub fn get_Extensions(self: *const Extension, _param_Extensions: ?*?*Extensions) callconv(.@"inline") HRESULT {
         return self.vtable.get_Extensions(self, _param_Extensions);
     }
-    pub fn get_SnapinCLSID(self: *const Extension, SnapinCLSID: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_SnapinCLSID(self: *const Extension, SnapinCLSID: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_SnapinCLSID(self, SnapinCLSID);
     }
     pub fn EnableAllExtensions(self: *const Extension, _param_Enable: BOOL) callconv(.@"inline") HRESULT {
@@ -2128,12 +2128,12 @@ pub const INodeProperties = extern union {
             self: *const INodeProperties,
             pDataObject: ?*IDataObject,
             szPropertyName: ?BSTR,
-            pbstrProperty: ?*?*u16,
+            pbstrProperty: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetProperty(self: *const INodeProperties, pDataObject: ?*IDataObject, szPropertyName: ?BSTR, pbstrProperty: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn GetProperty(self: *const INodeProperties, pDataObject: ?*IDataObject, szPropertyName: ?BSTR, pbstrProperty: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, pDataObject, szPropertyName, pbstrProperty);
     }
 };
@@ -2766,22 +2766,22 @@ pub const MenuItem = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayName: *const fn(
             self: *const MenuItem,
-            DisplayName: ?*?*u16,
+            DisplayName: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LanguageIndependentName: *const fn(
             self: *const MenuItem,
-            LanguageIndependentName: ?*?*u16,
+            LanguageIndependentName: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Path: *const fn(
             self: *const MenuItem,
-            Path: ?*?*u16,
+            Path: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LanguageIndependentPath: *const fn(
             self: *const MenuItem,
-            LanguageIndependentPath: ?*?*u16,
+            LanguageIndependentPath: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         Execute: *const fn(
             self: *const MenuItem,
@@ -2795,16 +2795,16 @@ pub const MenuItem = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DisplayName(self: *const MenuItem, DisplayName: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_DisplayName(self: *const MenuItem, DisplayName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_DisplayName(self, DisplayName);
     }
-    pub fn get_LanguageIndependentName(self: *const MenuItem, LanguageIndependentName: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_LanguageIndependentName(self: *const MenuItem, LanguageIndependentName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LanguageIndependentName(self, LanguageIndependentName);
     }
-    pub fn get_Path(self: *const MenuItem, Path: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_Path(self: *const MenuItem, Path: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Path(self, Path);
     }
-    pub fn get_LanguageIndependentPath(self: *const MenuItem, LanguageIndependentPath: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_LanguageIndependentPath(self: *const MenuItem, LanguageIndependentPath: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LanguageIndependentPath(self, LanguageIndependentPath);
     }
     pub fn Execute(self: *const MenuItem) callconv(.@"inline") HRESULT {
@@ -3144,17 +3144,17 @@ pub const Node = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const Node,
-            Name: ?*?*u16,
+            Name: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         get_Property: *const fn(
             self: *const Node,
             PropertyName: ?BSTR,
-            PropertyValue: ?*?*u16,
+            PropertyValue: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Bookmark: *const fn(
             self: *const Node,
-            Bookmark: ?*?*u16,
+            Bookmark: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         IsScopeNode: *const fn(
             self: *const Node,
@@ -3163,25 +3163,25 @@ pub const Node = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Nodetype: *const fn(
             self: *const Node,
-            Nodetype: ?*?*u16,
+            Nodetype: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const Node, _param_Name: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_Name(self: *const Node, _param_Name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, _param_Name);
     }
-    pub fn get_Property(self: *const Node, PropertyName: ?BSTR, PropertyValue: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_Property(self: *const Node, PropertyName: ?BSTR, PropertyValue: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Property(self, PropertyName, PropertyValue);
     }
-    pub fn get_Bookmark(self: *const Node, Bookmark: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_Bookmark(self: *const Node, Bookmark: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Bookmark(self, Bookmark);
     }
     pub fn IsScopeNode(self: *const Node, _param_IsScopeNode: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsScopeNode(self, _param_IsScopeNode);
     }
-    pub fn get_Nodetype(self: *const Node, Nodetype: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_Nodetype(self: *const Node, Nodetype: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Nodetype(self, Nodetype);
     }
 };
@@ -3281,7 +3281,7 @@ pub const Property = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const Property,
-            Name: ?*?*u16,
+            Name: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -3293,7 +3293,7 @@ pub const Property = extern union {
     pub fn put_Value(self: *const Property, Value: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.put_Value(self, Value);
     }
-    pub fn get_Name(self: *const Property, _param_Name: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_Name(self: *const Property, _param_Name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, _param_Name);
     }
 };
@@ -3434,17 +3434,17 @@ pub const SnapIn = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const SnapIn,
-            Name: ?*?*u16,
+            Name: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Vendor: *const fn(
             self: *const SnapIn,
-            Vendor: ?*?*u16,
+            Vendor: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Version: *const fn(
             self: *const SnapIn,
-            Version: ?*?*u16,
+            Version: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Extensions: *const fn(
@@ -3454,7 +3454,7 @@ pub const SnapIn = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SnapinCLSID: *const fn(
             self: *const SnapIn,
-            SnapinCLSID: ?*?*u16,
+            SnapinCLSID: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
@@ -3469,19 +3469,19 @@ pub const SnapIn = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const SnapIn, _param_Name: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_Name(self: *const SnapIn, _param_Name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, _param_Name);
     }
-    pub fn get_Vendor(self: *const SnapIn, Vendor: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_Vendor(self: *const SnapIn, Vendor: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Vendor(self, Vendor);
     }
-    pub fn get_Version(self: *const SnapIn, Version: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_Version(self: *const SnapIn, Version: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Version(self, Version);
     }
     pub fn get_Extensions(self: *const SnapIn, _param_Extensions: ?*?*Extensions) callconv(.@"inline") HRESULT {
         return self.vtable.get_Extensions(self, _param_Extensions);
     }
-    pub fn get_SnapinCLSID(self: *const SnapIn, SnapinCLSID: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_SnapinCLSID(self: *const SnapIn, SnapinCLSID: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_SnapinCLSID(self, SnapinCLSID);
     }
     pub fn get_Properties(self: *const SnapIn, _param_Properties: ?*?*Properties) callconv(.@"inline") HRESULT {
@@ -3710,7 +3710,7 @@ pub const View = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Memento: *const fn(
             self: *const View,
-            Memento: ?*?*u16,
+            Memento: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         ViewMemento: *const fn(
             self: *const View,
@@ -3725,7 +3725,7 @@ pub const View = extern union {
             self: *const View,
             Node: ?*Node,
             Column: i32,
-            CellContents: ?*?*u16,
+            CellContents: ?*?BSTR,
         ) callconv(.winapi) HRESULT,
         ExportList: *const fn(
             self: *const View,
@@ -3853,7 +3853,7 @@ pub const View = extern union {
     pub fn put_StatusBarText(self: *const View, StatusBarText: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_StatusBarText(self, StatusBarText);
     }
-    pub fn get_Memento(self: *const View, Memento: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_Memento(self: *const View, Memento: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Memento(self, Memento);
     }
     pub fn ViewMemento(self: *const View, Memento: ?BSTR) callconv(.@"inline") HRESULT {
@@ -3862,7 +3862,7 @@ pub const View = extern union {
     pub fn get_Columns(self: *const View, _param_Columns: ?*?*Columns) callconv(.@"inline") HRESULT {
         return self.vtable.get_Columns(self, _param_Columns);
     }
-    pub fn get_CellContents(self: *const View, _param_Node: ?*Node, _param_Column: i32, CellContents: ?*?*u16) callconv(.@"inline") HRESULT {
+    pub fn get_CellContents(self: *const View, _param_Node: ?*Node, _param_Column: i32, CellContents: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_CellContents(self, _param_Node, _param_Column, CellContents);
     }
     pub fn ExportList(self: *const View, File: ?BSTR, exportoptions: _ExportListOptions) callconv(.@"inline") HRESULT {

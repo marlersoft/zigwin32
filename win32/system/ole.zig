@@ -4809,7 +4809,7 @@ pub const IPropertyPage = extern union {
         ) callconv(.winapi) HRESULT,
         Show: *const fn(
             self: *const IPropertyPage,
-            nCmdShow: u32,
+            nCmdShow: SHOW_WINDOW_CMD,
         ) callconv(.winapi) HRESULT,
         Move: *const fn(
             self: *const IPropertyPage,
@@ -4847,7 +4847,7 @@ pub const IPropertyPage = extern union {
     pub fn SetObjects(self: *const IPropertyPage, cObjects: u32, ppUnk: [*]?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.SetObjects(self, cObjects, ppUnk);
     }
-    pub fn Show(self: *const IPropertyPage, nCmdShow: u32) callconv(.@"inline") HRESULT {
+    pub fn Show(self: *const IPropertyPage, nCmdShow: SHOW_WINDOW_CMD) callconv(.@"inline") HRESULT {
         return self.vtable.Show(self, nCmdShow);
     }
     pub fn Move(self: *const IPropertyPage, pRect: ?*RECT) callconv(.@"inline") HRESULT {
@@ -8463,7 +8463,7 @@ pub extern "oleaut32" fn QueryPathOfRegTypeLib(
     wMaj: u16,
     wMin: u16,
     lcid: u32,
-    lpbstrPathName: ?*?*u16,
+    lpbstrPathName: ?*?BSTR,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn RegisterActiveObject(
@@ -8789,7 +8789,7 @@ pub extern "oleaut32" fn VarBoolFromUI8(
 pub extern "oleaut32" fn VarBstrCat(
     bstrLeft: ?BSTR,
     bstrRight: ?BSTR,
-    pbstrResult: ?*?*u16,
+    pbstrResult: ?*?BSTR,
 ) callconv(.winapi) HRESULT;
 
 pub extern "oleaut32" fn VarBstrCmp(
@@ -10500,7 +10500,7 @@ pub const OleUIUpdateLinks = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (95)
+// Section: Imports (96)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ADVF = @import("../system/com.zig").ADVF;
@@ -10584,6 +10584,7 @@ const RECT = @import("../foundation.zig").RECT;
 const RECTL = @import("../foundation.zig").RECTL;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const SAFEARRAYBOUND = @import("../system/com.zig").SAFEARRAYBOUND;
+const SHOW_WINDOW_CMD = @import("../ui/windows_and_messaging.zig").SHOW_WINDOW_CMD;
 const SIZE = @import("../foundation.zig").SIZE;
 const STGMEDIUM = @import("../system/com.zig").STGMEDIUM;
 const SYSKIND = @import("../system/com.zig").SYSKIND;

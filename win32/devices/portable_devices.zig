@@ -1600,14 +1600,14 @@ pub const IPortableDeviceConnector = extern union {
         GetProperty: *const fn(
             self: *const IPortableDeviceConnector,
             pPropertyKey: ?*const DEVPROPKEY,
-            pPropertyType: ?*u32,
+            pPropertyType: ?*DEVPROPTYPE,
             ppData: [*]?*u8,
             pcbData: ?*u32,
         ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IPortableDeviceConnector,
             pPropertyKey: ?*const DEVPROPKEY,
-            PropertyType: u32,
+            PropertyType: DEVPROPTYPE,
             pData: [*:0]const u8,
             cbData: u32,
         ) callconv(.winapi) HRESULT,
@@ -1627,10 +1627,10 @@ pub const IPortableDeviceConnector = extern union {
     pub fn Cancel(self: *const IPortableDeviceConnector, pCallback: ?*IConnectionRequestCallback) callconv(.@"inline") HRESULT {
         return self.vtable.Cancel(self, pCallback);
     }
-    pub fn GetProperty(self: *const IPortableDeviceConnector, pPropertyKey: ?*const DEVPROPKEY, pPropertyType: ?*u32, ppData: [*]?*u8, pcbData: ?*u32) callconv(.@"inline") HRESULT {
+    pub fn GetProperty(self: *const IPortableDeviceConnector, pPropertyKey: ?*const DEVPROPKEY, pPropertyType: ?*DEVPROPTYPE, ppData: [*]?*u8, pcbData: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, pPropertyKey, pPropertyType, ppData, pcbData);
     }
-    pub fn SetProperty(self: *const IPortableDeviceConnector, pPropertyKey: ?*const DEVPROPKEY, PropertyType: u32, pData: [*:0]const u8, cbData: u32) callconv(.@"inline") HRESULT {
+    pub fn SetProperty(self: *const IPortableDeviceConnector, pPropertyKey: ?*const DEVPROPKEY, PropertyType: DEVPROPTYPE, pData: [*:0]const u8, cbData: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperty(self, pPropertyKey, PropertyType, pData, cbData);
     }
     pub fn GetPnPID(self: *const IPortableDeviceConnector, ppwszPnPID: ?*?PWSTR) callconv(.@"inline") HRESULT {
@@ -3545,12 +3545,13 @@ pub extern "dmprocessxmlfiltered" fn DMProcessConfigXMLFiltered(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (15)
+// Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
 const DEVPROPKEY = @import("../devices/properties.zig").DEVPROPKEY;
+const DEVPROPTYPE = @import("../devices/properties.zig").DEVPROPTYPE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IDispatch = @import("../system/com.zig").IDispatch;
 const IPropertyStore = @import("../ui/shell/properties_system.zig").IPropertyStore;

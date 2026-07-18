@@ -23754,7 +23754,7 @@ pub const IMFVirtualCamera = extern union {
         AddProperty: *const fn(
             self: *const IMFVirtualCamera,
             pKey: ?*const DEVPROPKEY,
-            Type: u32,
+            Type: DEVPROPTYPE,
             /// parameter "cbData" is the size in bytes
             pbData: ?*const u8,
             cbData: u32,
@@ -23822,7 +23822,7 @@ pub const IMFVirtualCamera = extern union {
     pub fn AddDeviceSourceInfo(self: *const IMFVirtualCamera, DeviceSourceInfo: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.AddDeviceSourceInfo(self, DeviceSourceInfo);
     }
-    pub fn AddProperty(self: *const IMFVirtualCamera, pKey: ?*const DEVPROPKEY, Type: u32, pbData: ?*const u8, cbData: u32) callconv(.@"inline") HRESULT {
+    pub fn AddProperty(self: *const IMFVirtualCamera, pKey: ?*const DEVPROPKEY, Type: DEVPROPTYPE, pbData: ?*const u8, cbData: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddProperty(self, pKey, Type, pbData, cbData);
     }
     pub fn AddRegistryEntry(self: *const IMFVirtualCamera, EntryName: ?[*:0]const u16, SubkeyPath: ?[*:0]const u16, dwRegType: u32, pbData: ?*const u8, cbData: u32) callconv(.@"inline") HRESULT {
@@ -30358,7 +30358,7 @@ pub extern "opmxbox" fn OPMXboxGetHDCPStatusAndType(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (64)
+// Section: Imports (65)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const AudioObjectType = @import("../media/audio.zig").AudioObjectType;
@@ -30383,6 +30383,7 @@ const D3DENCRYPTED_BLOCK_INFO = @import("../graphics/direct3d9.zig").D3DENCRYPTE
 const D3DFORMAT = @import("../graphics/direct3d9.zig").D3DFORMAT;
 const D3DPOOL = @import("../graphics/direct3d9.zig").D3DPOOL;
 const DEVPROPKEY = @import("../devices/properties.zig").DEVPROPKEY;
+const DEVPROPTYPE = @import("../devices/properties.zig").DEVPROPTYPE;
 const DMO_MEDIA_TYPE = @import("../media/dx_media_objects.zig").DMO_MEDIA_TYPE;
 const DXGI_COLOR_SPACE_TYPE = @import("../graphics/dxgi/common.zig").DXGI_COLOR_SPACE_TYPE;
 const DXGI_FORMAT = @import("../graphics/dxgi/common.zig").DXGI_FORMAT;

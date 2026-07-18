@@ -55,7 +55,7 @@ pub const DevQueryFlagAsyncClose = DEV_QUERY_FLAGS.AsyncClose;
 
 pub const DEV_QUERY_PARAMETER = extern struct {
     Key: DEVPROPKEY,
-    Type: u32,
+    Type: DEVPROPTYPE,
     BufferSize: u32,
     Buffer: ?*anyopaque,
 };
@@ -478,12 +478,13 @@ pub extern "api-ms-win-devices-query-l1-1-1" fn DevGetObjectsEx(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const DEVPROPCOMPKEY = @import("../devices/properties.zig").DEVPROPCOMPKEY;
 const DEVPROPERTY = @import("../devices/properties.zig").DEVPROPERTY;
 const DEVPROPKEY = @import("../devices/properties.zig").DEVPROPKEY;
 const DEVPROPSTORE = @import("../devices/properties.zig").DEVPROPSTORE;
+const DEVPROPTYPE = @import("../devices/properties.zig").DEVPROPTYPE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const PWSTR = @import("../foundation.zig").PWSTR;
 

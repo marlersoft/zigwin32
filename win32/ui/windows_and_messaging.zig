@@ -1317,7 +1317,7 @@ pub const XBUTTON1 = @as(u16, 1);
 pub const XBUTTON2 = @as(u16, 2);
 
 //--------------------------------------------------------------------------------
-// Section: Types (155)
+// Section: Types (157)
 //--------------------------------------------------------------------------------
 pub const ACCEL = extern struct {
     fVirt: ACCEL_VIRT_FLAGS,
@@ -3153,6 +3153,45 @@ pub const QS_RAWINPUT = QUEUE_STATUS_FLAGS{ .RAWINPUT = 1 };
 pub const QS_SENDMESSAGE = QUEUE_STATUS_FLAGS{ .SENDMESSAGE = 1 };
 pub const QS_TIMER = QUEUE_STATUS_FLAGS{ .TIMER = 1 };
 
+pub const SCROLL_WINDOW_FLAGS = packed struct(u32) {
+    SCROLLCHILDREN: u1 = 0,
+    INVALIDATE: u1 = 0,
+    ERASE: u1 = 0,
+    _3: u1 = 0,
+    SMOOTHSCROLL: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const SW_SCROLLCHILDREN = SCROLL_WINDOW_FLAGS{ .SCROLLCHILDREN = 1 };
+pub const SW_INVALIDATE = SCROLL_WINDOW_FLAGS{ .INVALIDATE = 1 };
+pub const SW_ERASE = SCROLL_WINDOW_FLAGS{ .ERASE = 1 };
+pub const SW_SMOOTHSCROLL = SCROLL_WINDOW_FLAGS{ .SMOOTHSCROLL = 1 };
+
 pub const SCROLLBAR_COMMAND = enum(i32) {
     LINEUP = 0,
     LINEDOWN = 1,
@@ -3398,103 +3437,49 @@ pub const SHELLHOOKINFO = extern struct {
     rc: RECT,
 };
 
-pub const SHOW_WINDOW_CMD = packed struct(u32) {
-    SHOWNORMAL: u1 = 0,
-    SHOWMINIMIZED: u1 = 0,
-    SHOWNOACTIVATE: u1 = 0,
-    SHOWNA: u1 = 0,
-    SMOOTHSCROLL: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-    // NORMAL (bit index 0) conflicts with SHOWNORMAL
-    // PARENTCLOSING (bit index 0) conflicts with SHOWNORMAL
-    // OTHERZOOM (bit index 1) conflicts with SHOWMINIMIZED
-    // OTHERUNZOOM (bit index 2) conflicts with SHOWNOACTIVATE
-    // SCROLLCHILDREN (bit index 0) conflicts with SHOWNORMAL
-    // INVALIDATE (bit index 1) conflicts with SHOWMINIMIZED
-    // ERASE (bit index 2) conflicts with SHOWNOACTIVATE
+pub const SHOW_WINDOW_CMD = enum(u32) {
+    HIDE = 0,
+    SHOWNORMAL = 1,
+    SHOWMINIMIZED = 2,
+    SHOWMAXIMIZED = 3,
+    SHOWNOACTIVATE = 4,
+    SHOW = 5,
+    MINIMIZE = 6,
+    SHOWMINNOACTIVE = 7,
+    SHOWNA = 8,
+    RESTORE = 9,
+    SHOWDEFAULT = 10,
+    FORCEMINIMIZE = 11,
+    pub const NORMAL = .SHOWNORMAL;
+    pub const MAXIMIZE = .SHOWMAXIMIZED;
+    pub const MAX = .FORCEMINIMIZE;
 };
-pub const SW_FORCEMINIMIZE = SHOW_WINDOW_CMD{
-    .SHOWNORMAL = 1,
-    .SHOWMINIMIZED = 1,
-    .SHOWNA = 1,
+pub const SW_HIDE = SHOW_WINDOW_CMD.HIDE;
+pub const SW_SHOWNORMAL = SHOW_WINDOW_CMD.SHOWNORMAL;
+pub const SW_NORMAL = SHOW_WINDOW_CMD.SHOWNORMAL;
+pub const SW_SHOWMINIMIZED = SHOW_WINDOW_CMD.SHOWMINIMIZED;
+pub const SW_SHOWMAXIMIZED = SHOW_WINDOW_CMD.SHOWMAXIMIZED;
+pub const SW_MAXIMIZE = SHOW_WINDOW_CMD.SHOWMAXIMIZED;
+pub const SW_SHOWNOACTIVATE = SHOW_WINDOW_CMD.SHOWNOACTIVATE;
+pub const SW_SHOW = SHOW_WINDOW_CMD.SHOW;
+pub const SW_MINIMIZE = SHOW_WINDOW_CMD.MINIMIZE;
+pub const SW_SHOWMINNOACTIVE = SHOW_WINDOW_CMD.SHOWMINNOACTIVE;
+pub const SW_SHOWNA = SHOW_WINDOW_CMD.SHOWNA;
+pub const SW_RESTORE = SHOW_WINDOW_CMD.RESTORE;
+pub const SW_SHOWDEFAULT = SHOW_WINDOW_CMD.SHOWDEFAULT;
+pub const SW_FORCEMINIMIZE = SHOW_WINDOW_CMD.FORCEMINIMIZE;
+pub const SW_MAX = SHOW_WINDOW_CMD.FORCEMINIMIZE;
+
+pub const SHOW_WINDOW_STATUS = enum(u32) {
+    PARENTCLOSING = 1,
+    OTHERZOOM = 2,
+    PARENTOPENING = 3,
+    OTHERUNZOOM = 4,
 };
-pub const SW_HIDE = SHOW_WINDOW_CMD{ };
-pub const SW_MAXIMIZE = SHOW_WINDOW_CMD{
-    .SHOWNORMAL = 1,
-    .SHOWMINIMIZED = 1,
-};
-pub const SW_MINIMIZE = SHOW_WINDOW_CMD{
-    .SHOWMINIMIZED = 1,
-    .SHOWNOACTIVATE = 1,
-};
-pub const SW_RESTORE = SHOW_WINDOW_CMD{
-    .SHOWNORMAL = 1,
-    .SHOWNA = 1,
-};
-pub const SW_SHOW = SHOW_WINDOW_CMD{
-    .SHOWNORMAL = 1,
-    .SHOWNOACTIVATE = 1,
-};
-pub const SW_SHOWDEFAULT = SHOW_WINDOW_CMD{
-    .SHOWMINIMIZED = 1,
-    .SHOWNA = 1,
-};
-pub const SW_SHOWMAXIMIZED = SHOW_WINDOW_CMD{
-    .SHOWNORMAL = 1,
-    .SHOWMINIMIZED = 1,
-};
-pub const SW_SHOWMINIMIZED = SHOW_WINDOW_CMD{ .SHOWMINIMIZED = 1 };
-pub const SW_SHOWMINNOACTIVE = SHOW_WINDOW_CMD{
-    .SHOWNORMAL = 1,
-    .SHOWMINIMIZED = 1,
-    .SHOWNOACTIVATE = 1,
-};
-pub const SW_SHOWNA = SHOW_WINDOW_CMD{ .SHOWNA = 1 };
-pub const SW_SHOWNOACTIVATE = SHOW_WINDOW_CMD{ .SHOWNOACTIVATE = 1 };
-pub const SW_SHOWNORMAL = SHOW_WINDOW_CMD{ .SHOWNORMAL = 1 };
-pub const SW_NORMAL = SHOW_WINDOW_CMD{ .SHOWNORMAL = 1 };
-pub const SW_MAX = SHOW_WINDOW_CMD{
-    .SHOWNORMAL = 1,
-    .SHOWMINIMIZED = 1,
-    .SHOWNA = 1,
-};
-pub const SW_PARENTCLOSING = SHOW_WINDOW_CMD{ .SHOWNORMAL = 1 };
-pub const SW_OTHERZOOM = SHOW_WINDOW_CMD{ .SHOWMINIMIZED = 1 };
-pub const SW_PARENTOPENING = SHOW_WINDOW_CMD{
-    .SHOWNORMAL = 1,
-    .SHOWMINIMIZED = 1,
-};
-pub const SW_OTHERUNZOOM = SHOW_WINDOW_CMD{ .SHOWNOACTIVATE = 1 };
-pub const SW_SCROLLCHILDREN = SHOW_WINDOW_CMD{ .SHOWNORMAL = 1 };
-pub const SW_INVALIDATE = SHOW_WINDOW_CMD{ .SHOWMINIMIZED = 1 };
-pub const SW_ERASE = SHOW_WINDOW_CMD{ .SHOWNOACTIVATE = 1 };
-pub const SW_SMOOTHSCROLL = SHOW_WINDOW_CMD{ .SMOOTHSCROLL = 1 };
+pub const SW_PARENTCLOSING = SHOW_WINDOW_STATUS.PARENTCLOSING;
+pub const SW_OTHERZOOM = SHOW_WINDOW_STATUS.OTHERZOOM;
+pub const SW_PARENTOPENING = SHOW_WINDOW_STATUS.PARENTOPENING;
+pub const SW_OTHERUNZOOM = SHOW_WINDOW_STATUS.OTHERUNZOOM;
 
 pub const STYLESTRUCT = extern struct {
     styleOld: u32,
@@ -7779,7 +7764,7 @@ pub extern "user32" fn PrivateExtractIconsA(
     cxIcon: i32,
     cyIcon: i32,
     phicon: ?[*]?HICON,
-    piconid: ?[*]u32,
+    piconid: ?*u32,
     nIcons: u32,
     flags: u32,
 ) callconv(.winapi) u32;
@@ -7791,7 +7776,7 @@ pub extern "user32" fn PrivateExtractIconsW(
     cxIcon: i32,
     cyIcon: i32,
     phicon: ?[*]?HICON,
-    piconid: ?[*]u32,
+    piconid: ?*u32,
     nIcons: u32,
     flags: u32,
 ) callconv(.winapi) u32;
@@ -7917,7 +7902,7 @@ pub extern "user32" fn ScrollWindowEx(
     prcClip: ?*const RECT,
     hrgnUpdate: ?HRGN,
     prcUpdate: ?*RECT,
-    flags: SHOW_WINDOW_CMD,
+    flags: SCROLL_WINDOW_FLAGS,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'

@@ -1976,7 +1976,7 @@ pub extern "cldapi" fn CfCloseHandle(
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfConnectSyncRoot(
     SyncRootPath: ?[*:0]const u16,
-    CallbackTable: ?*const CF_CALLBACK_REGISTRATION,
+    CallbackTable: [*]const CF_CALLBACK_REGISTRATION,
     CallbackContext: ?*const anyopaque,
     ConnectFlags: CF_CONNECT_FLAGS,
     ConnectionKey: ?*CF_CONNECTION_KEY,

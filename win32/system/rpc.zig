@@ -234,7 +234,7 @@ pub const USER_MARSHAL_FC_USMALL = @as(u32, 4);
 pub const USER_MARSHAL_FC_WCHAR = @as(u32, 5);
 
 //--------------------------------------------------------------------------------
-// Section: Types (237)
+// Section: Types (236)
 //--------------------------------------------------------------------------------
 pub const _NDR_ASYNC_MESSAGE = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -246,11 +246,6 @@ pub const _NDR_CORRELATION_INFO = extern struct {
 
 pub const _NDR_PROC_CONTEXT = extern struct {
     placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _NDR_SCONTEXT = extern struct {
-    pad: [2]?*anyopaque,
-    userContext: ?*anyopaque,
 };
 
 pub const ARRAY_INFO = extern struct {
@@ -622,7 +617,7 @@ pub const MIDL_STUB_MESSAGE = extern struct {
     _bitfield: i32,
     dwDestContext: u32,
     pvDestContext: ?*anyopaque,
-    SavedContextHandles: ?*?*NDR_SCONTEXT_1,
+    SavedContextHandles: ?*?*NDR_SCONTEXT,
     ParamNumber: i32,
     pRpcChannelBuffer: ?*IRpcChannelBuffer,
     pArrayInfo: ?*ARRAY_INFO,
@@ -1167,7 +1162,7 @@ pub const NDR_RUNDOWN = *const fn(
     context: ?*anyopaque,
 ) callconv(.winapi) void;
 
-pub const NDR_SCONTEXT_1 = extern struct {
+pub const NDR_SCONTEXT = extern struct {
     pad: [2]?*anyopaque,
     userContext: ?*anyopaque,
 };
@@ -2388,7 +2383,7 @@ pub const RpcLastCounter = RpcPerfCounters.LastCounter;
 
 pub const SCONTEXT_QUEUE = extern struct {
     NumberOfObjects: u32,
-    ArrayOfObjects: ?*?*NDR_SCONTEXT_1,
+    ArrayOfObjects: ?*?*NDR_SCONTEXT,
 };
 
 pub const SEC_WINNT_AUTH_IDENTITY = enum(u32) {
@@ -3356,7 +3351,7 @@ pub extern "rpcrt4" fn NdrConformantVaryingStructUnmarshall(
 pub extern "rpcrt4" fn NdrContextHandleInitialize(
     pStubMsg: ?*MIDL_STUB_MESSAGE,
     pFormat: ?*u8,
-) callconv(.winapi) ?*NDR_SCONTEXT_1;
+) callconv(.winapi) ?*NDR_SCONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "rpcrt4" fn NdrContextHandleSize(
@@ -3854,14 +3849,14 @@ pub extern "rpcrt4" fn NdrRpcSsEnableAllocate(
 ) callconv(.winapi) void;
 
 pub extern "rpcrt4" fn NDRSContextMarshall(
-    CContext: ?*NDR_SCONTEXT_1,
+    CContext: ?*NDR_SCONTEXT,
     pBuff: ?*anyopaque,
     userRunDownIn: ?NDR_RUNDOWN,
 ) callconv(.winapi) void;
 
 pub extern "rpcrt4" fn NDRSContextMarshall2(
     BindingHandle: ?*anyopaque,
-    CContext: ?*NDR_SCONTEXT_1,
+    CContext: ?*NDR_SCONTEXT,
     pBuff: ?*anyopaque,
     userRunDownIn: ?NDR_RUNDOWN,
     CtxGuard: ?*anyopaque,
@@ -3870,7 +3865,7 @@ pub extern "rpcrt4" fn NDRSContextMarshall2(
 
 pub extern "rpcrt4" fn NDRSContextMarshallEx(
     BindingHandle: ?*anyopaque,
-    CContext: ?*NDR_SCONTEXT_1,
+    CContext: ?*NDR_SCONTEXT,
     pBuff: ?*anyopaque,
     userRunDownIn: ?NDR_RUNDOWN,
 ) callconv(.winapi) void;
@@ -3878,7 +3873,7 @@ pub extern "rpcrt4" fn NDRSContextMarshallEx(
 pub extern "rpcrt4" fn NDRSContextUnmarshall(
     pBuff: ?*anyopaque,
     DataRepresentation: u32,
-) callconv(.winapi) ?*NDR_SCONTEXT_1;
+) callconv(.winapi) ?*NDR_SCONTEXT;
 
 pub extern "rpcrt4" fn NDRSContextUnmarshall2(
     BindingHandle: ?*anyopaque,
@@ -3886,13 +3881,13 @@ pub extern "rpcrt4" fn NDRSContextUnmarshall2(
     DataRepresentation: u32,
     CtxGuard: ?*anyopaque,
     Flags: u32,
-) callconv(.winapi) ?*NDR_SCONTEXT_1;
+) callconv(.winapi) ?*NDR_SCONTEXT;
 
 pub extern "rpcrt4" fn NDRSContextUnmarshallEx(
     BindingHandle: ?*anyopaque,
     pBuff: ?*anyopaque,
     DataRepresentation: u32,
-) callconv(.winapi) ?*NDR_SCONTEXT_1;
+) callconv(.winapi) ?*NDR_SCONTEXT;
 
 pub extern "rpcrt4" fn NdrSendReceive(
     pStubMsg: ?*MIDL_STUB_MESSAGE,
@@ -3915,13 +3910,13 @@ pub extern "rpcrt4" fn NdrServerCallNdr64(
 
 pub extern "rpcrt4" fn NdrServerContextMarshall(
     pStubMsg: ?*MIDL_STUB_MESSAGE,
-    ContextHandle: ?*NDR_SCONTEXT_1,
+    ContextHandle: ?*NDR_SCONTEXT,
     RundownRoutine: ?NDR_RUNDOWN,
 ) callconv(.winapi) void;
 
 pub extern "rpcrt4" fn NdrServerContextNewMarshall(
     pStubMsg: ?*MIDL_STUB_MESSAGE,
-    ContextHandle: ?*NDR_SCONTEXT_1,
+    ContextHandle: ?*NDR_SCONTEXT,
     RundownRoutine: ?NDR_RUNDOWN,
     pFormat: ?*u8,
 ) callconv(.winapi) void;
@@ -3929,11 +3924,11 @@ pub extern "rpcrt4" fn NdrServerContextNewMarshall(
 pub extern "rpcrt4" fn NdrServerContextNewUnmarshall(
     pStubMsg: ?*MIDL_STUB_MESSAGE,
     pFormat: ?*u8,
-) callconv(.winapi) ?*NDR_SCONTEXT_1;
+) callconv(.winapi) ?*NDR_SCONTEXT;
 
 pub extern "rpcrt4" fn NdrServerContextUnmarshall(
     pStubMsg: ?*MIDL_STUB_MESSAGE,
-) callconv(.winapi) ?*NDR_SCONTEXT_1;
+) callconv(.winapi) ?*NDR_SCONTEXT;
 
 pub extern "rpcrt4" fn NdrServerInitialize(
     pRpcMsg: ?*RPC_MESSAGE,

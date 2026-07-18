@@ -1121,7 +1121,7 @@ pub extern "sensorsutilsv2" fn PropVariantGetInformation(
     PropVariantOffset: ?*u32,
     PropVariantSize: ?*u32,
     PropVariantPointer: ?*?*anyopaque,
-    RemappedType: ?*u32,
+    RemappedType: ?*DEVPROPTYPE,
 ) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn SensorCollectionGetAt(
@@ -1145,12 +1145,13 @@ pub extern "sensorsutilsv2" fn SerializationBufferFree(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (15)
+// Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const BSTR = @import("../foundation.zig").BSTR;
+const DEVPROPTYPE = @import("../devices/properties.zig").DEVPROPTYPE;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;

@@ -3900,7 +3900,7 @@ pub const CERT_INFO = extern struct {
     IssuerUniqueId: CRYPT_BIT_BLOB,
     SubjectUniqueId: CRYPT_BIT_BLOB,
     cExtension: u32,
-    rgExtension: ?*CERT_EXTENSION,
+    rgExtension: [*]CERT_EXTENSION,
 };
 
 pub const CERT_ISSUER_SERIAL_NUMBER = extern struct {

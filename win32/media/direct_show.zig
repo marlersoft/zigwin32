@@ -35899,7 +35899,7 @@ pub const IVideoWindow = extern union {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WindowState: *const fn(
             self: *const IVideoWindow,
-            WindowState: ?*i32,
+            WindowState: ?*SHOW_WINDOW_CMD,
         ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BackgroundPalette: *const fn(
@@ -36082,7 +36082,7 @@ pub const IVideoWindow = extern union {
     pub fn put_WindowState(self: *const IVideoWindow, WindowState: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_WindowState(self, WindowState);
     }
-    pub fn get_WindowState(self: *const IVideoWindow, WindowState: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn get_WindowState(self: *const IVideoWindow, WindowState: ?*SHOW_WINDOW_CMD) callconv(.@"inline") HRESULT {
         return self.vtable.get_WindowState(self, WindowState);
     }
     pub fn put_BackgroundPalette(self: *const IVideoWindow, BackgroundPalette: i32) callconv(.@"inline") HRESULT {
@@ -42209,7 +42209,7 @@ pub const AMGetErrorText = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (84)
+// Section: Imports (85)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const AM_MEDIA_TYPE = @import("../media/media_foundation.zig").AM_MEDIA_TYPE;
@@ -42289,6 +42289,7 @@ const RECT = @import("../foundation.zig").RECT;
 const RGBQUAD = @import("../graphics/gdi.zig").RGBQUAD;
 const RGNDATA = @import("../graphics/gdi.zig").RGNDATA;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
+const SHOW_WINDOW_CMD = @import("../ui/windows_and_messaging.zig").SHOW_WINDOW_CMD;
 const SIZE = @import("../foundation.zig").SIZE;
 const TIMECODE = @import("../media.zig").TIMECODE;
 const TIMECODE_SAMPLE = @import("../media.zig").TIMECODE_SAMPLE;

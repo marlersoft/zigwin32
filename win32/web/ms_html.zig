@@ -73265,7 +73265,7 @@ pub const CLSID_XMLSerializer = &CLSID_XMLSerializer_Value;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (29)
+// Section: Functions (56)
 //--------------------------------------------------------------------------------
 pub extern "imgutil" fn ComputeInvCMAP(
     pRGBColors: ?*const RGBQUAD,
@@ -73328,6 +73328,160 @@ pub extern "imgutil" fn IdentifyMIMEType(
     pbBytes: ?*const u8,
     nBytes: u32,
     pnFormat: ?*u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "ieframe" fn IEAssociateThreadWithTab(
+    dwTabThreadID: u32,
+    dwAssociatedThreadID: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "ieframe" fn IECancelSaveFile(
+    hState: ?HANDLE,
+) callconv(.winapi) HRESULT;
+
+pub extern "ieframe" fn IECreateDirectory(
+    lpPathName: ?[*:0]const u16,
+    lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
+) callconv(.winapi) BOOL;
+
+pub extern "ieframe" fn IEDeleteFile(
+    lpFileName: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
+
+pub extern "ieframe" fn IEDisassociateThreadWithTab(
+    dwTabThreadID: u32,
+    dwAssociatedThreadID: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "ieframe" fn IEFindFirstFile(
+    lpFileName: ?[*:0]const u16,
+    lpFindFileData: ?*WIN32_FIND_DATAA,
+) callconv(.winapi) ?HANDLE;
+
+pub extern "ieframe" fn IEGetFileAttributesEx(
+    lpFileName: ?[*:0]const u16,
+    fInfoLevelId: GET_FILEEX_INFO_LEVELS,
+    lpFileInformation: ?*anyopaque,
+) callconv(.winapi) BOOL;
+
+pub extern "ieframe" fn IEGetProtectedModeCookie(
+    lpszURL: ?[*:0]const u16,
+    lpszCookieName: ?[*:0]const u16,
+    lpszCookieData: [*:0]u16,
+    pcchCookieData: ?*u32,
+    dwFlags: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "ieframe" fn IEGetWriteableFolderPath(
+    clsidFolderID: ?*const Guid,
+    lppwstrPath: ?*?PWSTR,
+) callconv(.winapi) HRESULT;
+
+pub extern "ieframe" fn IEGetWriteableLowHKCU(
+    pHKey: ?*?HKEY,
+) callconv(.winapi) HRESULT;
+
+pub extern "ieframe" fn IEInPrivateFilteringEnabled(
+) callconv(.winapi) BOOL;
+
+pub extern "ieframe" fn IEIsInPrivateBrowsing(
+) callconv(.winapi) BOOL;
+
+pub extern "ieframe" fn IEIsProtectedModeProcess(
+    pbResult: ?*BOOL,
+) callconv(.winapi) HRESULT;
+
+pub extern "ieframe" fn IEIsProtectedModeURL(
+    lpwstrUrl: ?[*:0]const u16,
+) callconv(.winapi) HRESULT;
+
+pub extern "ieframe" fn IELaunchURL(
+    lpwstrUrl: ?[*:0]const u16,
+    lpProcInfo: ?*PROCESS_INFORMATION,
+    lpInfo: ?*anyopaque,
+) callconv(.winapi) HRESULT;
+
+pub extern "ieframe" fn IEMoveFileEx(
+    lpExistingFileName: ?[*:0]const u16,
+    lpNewFileName: ?[*:0]const u16,
+    dwFlags: u32,
+) callconv(.winapi) BOOL;
+
+pub extern "ieframe" fn IERefreshElevationPolicy(
+) callconv(.winapi) HRESULT;
+
+pub extern "ieframe" fn IERegCreateKeyEx(
+    lpSubKey: ?[*:0]const u16,
+    Reserved: u32,
+    lpClass: ?PWSTR,
+    dwOptions: u32,
+    samDesired: u32,
+    lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
+    phkResult: ?*?HKEY,
+    lpdwDisposition: ?*u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "ieframe" fn IERegisterWritableRegistryKey(
+    guid: Guid,
+    lpSubkey: ?[*:0]const u16,
+    fSubkeyAllowed: BOOL,
+) callconv(.winapi) HRESULT;
+
+pub extern "ieframe" fn IERegisterWritableRegistryValue(
+    guid: Guid,
+    lpPath: ?[*:0]const u16,
+    lpValueName: ?[*:0]const u16,
+    dwType: u32,
+    /// parameter "cbMaxData" is the size in bytes
+    lpData: ?*const u8,
+    cbMaxData: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "ieframe" fn IERemoveDirectory(
+    lpPathName: ?[*:0]const u16,
+) callconv(.winapi) BOOL;
+
+pub extern "ieframe" fn IESaveFile(
+    hState: ?HANDLE,
+    lpwstrSourceFile: ?[*:0]const u16,
+) callconv(.winapi) HRESULT;
+
+pub extern "ieframe" fn IESetProtectedModeCookie(
+    lpszURL: ?[*:0]const u16,
+    lpszCookieName: ?[*:0]const u16,
+    lpszCookieData: ?[*:0]const u16,
+    dwFlags: u32,
+) callconv(.winapi) HRESULT;
+
+pub extern "ieframe" fn IEShowOpenFileDialog(
+    hwnd: ?HWND,
+    lpwstrFileName: [*:0]u16,
+    cchMaxFileName: u32,
+    lpwstrInitialDir: ?[*:0]const u16,
+    lpwstrFilter: ?[*:0]const u16,
+    lpwstrDefExt: ?[*:0]const u16,
+    dwFilterIndex: u32,
+    dwFlags: u32,
+    phFile: ?*?HANDLE,
+) callconv(.winapi) HRESULT;
+
+pub extern "ieframe" fn IEShowSaveFileDialog(
+    hwnd: ?HWND,
+    lpwstrInitialFileName: ?[*:0]const u16,
+    lpwstrInitialDir: ?[*:0]const u16,
+    lpwstrFilter: ?[*:0]const u16,
+    lpwstrDefExt: ?[*:0]const u16,
+    dwFilterIndex: u32,
+    dwFlags: u32,
+    lppwstrDestinationFilePath: ?*?PWSTR,
+    phState: ?*?HANDLE,
+) callconv(.winapi) HRESULT;
+
+pub extern "ieframe" fn IETrackingProtectionEnabled(
+) callconv(.winapi) BOOL;
+
+pub extern "ieframe" fn IEUnregisterWritableRegistry(
+    guid: Guid,
 ) callconv(.winapi) HRESULT;
 
 pub extern "msrating" fn RatingAccessDeniedDialog(
@@ -73462,7 +73616,7 @@ pub extern "imgutil" fn SniffStream(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (52)
+// Section: Imports (57)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BINDINFO = @import("../system/com.zig").BINDINFO;
@@ -73471,11 +73625,13 @@ const BSTR = @import("../foundation.zig").BSTR;
 const DXGI_FORMAT = @import("../graphics/dxgi/common.zig").DXGI_FORMAT;
 const DXGI_MODE_ROTATION = @import("../graphics/dxgi/common.zig").DXGI_MODE_ROTATION;
 const FILETIME = @import("../foundation.zig").FILETIME;
+const GET_FILEEX_INFO_LEVELS = @import("../storage/file_system.zig").GET_FILEEX_INFO_LEVELS;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 const HDC = @import("../graphics/gdi.zig").HDC;
 const HICON = @import("../ui/windows_and_messaging.zig").HICON;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const HKEY = @import("../system/registry.zig").HKEY;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HRGN = @import("../graphics/gdi.zig").HRGN;
 const HWND = @import("../foundation.zig").HWND;
@@ -73507,14 +73663,17 @@ const LRESULT = @import("../foundation.zig").LRESULT;
 const LUID = @import("../foundation.zig").LUID;
 const MSG = @import("../ui/windows_and_messaging.zig").MSG;
 const POINT = @import("../foundation.zig").POINT;
+const PROCESS_INFORMATION = @import("../system/threading.zig").PROCESS_INFORMATION;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const RGBQUAD = @import("../graphics/gdi.zig").RGBQUAD;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const SIZE = @import("../foundation.zig").SIZE;
 const VARIANT = @import("../system/com.zig").VARIANT;
 const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
+const WIN32_FIND_DATAA = @import("../storage/file_system.zig").WIN32_FIND_DATAA;
 const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {

@@ -10248,7 +10248,7 @@ pub const ID3D12GraphicsCommandList = extern union {
             RenderTargetView: D3D12_CPU_DESCRIPTOR_HANDLE,
             ColorRGBA: ?*const f32,
             NumRects: u32,
-            pRects: [*]const RECT,
+            pRects: ?[*]const RECT,
         ) callconv(.winapi) void,
         ClearUnorderedAccessViewUint: *const fn(
             self: *const ID3D12GraphicsCommandList,
@@ -10449,7 +10449,7 @@ pub const ID3D12GraphicsCommandList = extern union {
     pub fn ClearDepthStencilView(self: *const ID3D12GraphicsCommandList, DepthStencilView: D3D12_CPU_DESCRIPTOR_HANDLE, ClearFlags: D3D12_CLEAR_FLAGS, Depth: f32, Stencil: u8, NumRects: u32, pRects: [*]const RECT) callconv(.@"inline") void {
         return self.vtable.ClearDepthStencilView(self, DepthStencilView, ClearFlags, Depth, Stencil, NumRects, pRects);
     }
-    pub fn ClearRenderTargetView(self: *const ID3D12GraphicsCommandList, RenderTargetView: D3D12_CPU_DESCRIPTOR_HANDLE, ColorRGBA: ?*const f32, NumRects: u32, pRects: [*]const RECT) callconv(.@"inline") void {
+    pub fn ClearRenderTargetView(self: *const ID3D12GraphicsCommandList, RenderTargetView: D3D12_CPU_DESCRIPTOR_HANDLE, ColorRGBA: ?*const f32, NumRects: u32, pRects: ?[*]const RECT) callconv(.@"inline") void {
         return self.vtable.ClearRenderTargetView(self, RenderTargetView, ColorRGBA, NumRects, pRects);
     }
     pub fn ClearUnorderedAccessViewUint(self: *const ID3D12GraphicsCommandList, ViewGPUHandleInCurrentHeap: D3D12_GPU_DESCRIPTOR_HANDLE, ViewCPUHandle: D3D12_CPU_DESCRIPTOR_HANDLE, pResource: ?*ID3D12Resource, Values: ?*const u32, NumRects: u32, pRects: [*]const RECT) callconv(.@"inline") void {

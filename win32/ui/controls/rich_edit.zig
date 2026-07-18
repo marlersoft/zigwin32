@@ -774,7 +774,7 @@ pub const CHARFORMATA = extern struct {
     yHeight: i32,
     yOffset: i32,
     crTextColor: COLORREF,
-    bCharSet: EMBED_FONT_CHARSET,
+    bCharSet: FONT_CHARSET,
     bPitchAndFamily: u8,
     szFaceName: [32]CHAR,
 };
@@ -786,7 +786,7 @@ pub const CHARFORMATW = extern struct {
     yHeight: i32,
     yOffset: i32,
     crTextColor: COLORREF,
-    bCharSet: EMBED_FONT_CHARSET,
+    bCharSet: FONT_CHARSET,
     bPitchAndFamily: u8,
     szFaceName: [32]u16,
 };
@@ -2778,7 +2778,7 @@ pub const ITextHost = extern union {
             lprcClip: ?*RECT,
             hrgnUpdate: ?HRGN,
             lprcUpdate: ?*RECT,
-            fuScroll: SHOW_WINDOW_CMD,
+            fuScroll: SCROLL_WINDOW_FLAGS,
         ) callconv(.winapi) void,
         TxSetCapture: *const fn(
             self: *const ITextHost,
@@ -2923,7 +2923,7 @@ pub const ITextHost = extern union {
     pub fn TxKillTimer(self: *const ITextHost, idTimer: u32) callconv(.@"inline") void {
         return self.vtable.TxKillTimer(self, idTimer);
     }
-    pub fn TxScrollWindowEx(self: *const ITextHost, dx: i32, dy: i32, lprcScroll: ?*RECT, lprcClip: ?*RECT, hrgnUpdate: ?HRGN, lprcUpdate: ?*RECT, fuScroll: SHOW_WINDOW_CMD) callconv(.@"inline") void {
+    pub fn TxScrollWindowEx(self: *const ITextHost, dx: i32, dy: i32, lprcScroll: ?*RECT, lprcClip: ?*RECT, hrgnUpdate: ?HRGN, lprcUpdate: ?*RECT, fuScroll: SCROLL_WINDOW_FLAGS) callconv(.@"inline") void {
         return self.vtable.TxScrollWindowEx(self, dx, dy, lprcScroll, lprcClip, hrgnUpdate, lprcUpdate, fuScroll);
     }
     pub fn TxSetCapture(self: *const ITextHost, fCapture: BOOL) callconv(.@"inline") void {
@@ -7154,8 +7154,8 @@ const COLORREF = @import("../../foundation.zig").COLORREF;
 const DROPEFFECT = @import("../../system/ole.zig").DROPEFFECT;
 const DVASPECT = @import("../../system/com.zig").DVASPECT;
 const DVTARGETDEVICE = @import("../../system/com.zig").DVTARGETDEVICE;
-const EMBED_FONT_CHARSET = @import("../../graphics/gdi.zig").EMBED_FONT_CHARSET;
 const ENABLE_SCROLL_BAR_ARROWS = @import("../../ui/controls.zig").ENABLE_SCROLL_BAR_ARROWS;
+const FONT_CHARSET = @import("../../graphics/gdi.zig").FONT_CHARSET;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const HBITMAP = @import("../../graphics/gdi.zig").HBITMAP;
 const HCURSOR = @import("../../ui/windows_and_messaging.zig").HCURSOR;
@@ -7188,8 +7188,8 @@ const PWSTR = @import("../../foundation.zig").PWSTR;
 const RECO_FLAGS = @import("../../system/system_services.zig").RECO_FLAGS;
 const RECT = @import("../../foundation.zig").RECT;
 const RECTL = @import("../../foundation.zig").RECTL;
+const SCROLL_WINDOW_FLAGS = @import("../../ui/windows_and_messaging.zig").SCROLL_WINDOW_FLAGS;
 const SCROLLBAR_CONSTANTS = @import("../../ui/windows_and_messaging.zig").SCROLLBAR_CONSTANTS;
-const SHOW_WINDOW_CMD = @import("../../ui/windows_and_messaging.zig").SHOW_WINDOW_CMD;
 const SIZE = @import("../../foundation.zig").SIZE;
 const SYS_COLOR_INDEX = @import("../../graphics/gdi.zig").SYS_COLOR_INDEX;
 const TEXT_ALIGN_OPTIONS = @import("../../graphics/gdi.zig").TEXT_ALIGN_OPTIONS;

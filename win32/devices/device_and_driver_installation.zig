@@ -3683,7 +3683,7 @@ pub extern "cfgmgr32" fn CM_Get_Class_NameW(
 pub extern "cfgmgr32" fn CM_Get_Class_Property_ExW(
     ClassGUID: ?*const Guid,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: ?*u32,
+    PropertyType: ?*DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: ?*u32,
@@ -3712,7 +3712,7 @@ pub extern "cfgmgr32" fn CM_Get_Class_Property_Keys_Ex(
 pub extern "cfgmgr32" fn CM_Get_Class_PropertyW(
     ClassGUID: ?*const Guid,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: ?*u32,
+    PropertyType: ?*DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: ?*u32,
@@ -3973,7 +3973,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_ListW(
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_Property_ExW(
     pszDeviceInterface: ?[*:0]const u16,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: ?*u32,
+    PropertyType: ?*DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: ?*u32,
@@ -4002,7 +4002,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_Property_KeysW(
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_PropertyW(
     pszDeviceInterface: ?[*:0]const u16,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: ?*u32,
+    PropertyType: ?*DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: ?*u32,
@@ -4055,7 +4055,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Custom_PropertyW(
 pub extern "cfgmgr32" fn CM_Get_DevNode_Property_ExW(
     dnDevInst: u32,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: ?*u32,
+    PropertyType: ?*DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: ?*u32,
@@ -4084,7 +4084,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Property_Keys_Ex(
 pub extern "cfgmgr32" fn CM_Get_DevNode_PropertyW(
     dnDevInst: u32,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: ?*u32,
+    PropertyType: ?*DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: ?*u32,
@@ -4828,7 +4828,7 @@ pub extern "cfgmgr32" fn CM_Run_Detection_Ex(
 pub extern "cfgmgr32" fn CM_Set_Class_Property_ExW(
     ClassGUID: ?*const Guid,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: u32,
+    PropertyType: DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
@@ -4840,7 +4840,7 @@ pub extern "cfgmgr32" fn CM_Set_Class_Property_ExW(
 pub extern "cfgmgr32" fn CM_Set_Class_PropertyW(
     ClassGUID: ?*const Guid,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: u32,
+    PropertyType: DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
@@ -4872,7 +4872,7 @@ pub extern "cfgmgr32" fn CM_Set_Class_Registry_PropertyW(
 pub extern "cfgmgr32" fn CM_Set_Device_Interface_Property_ExW(
     pszDeviceInterface: ?[*:0]const u16,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: u32,
+    PropertyType: DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
@@ -4884,7 +4884,7 @@ pub extern "cfgmgr32" fn CM_Set_Device_Interface_Property_ExW(
 pub extern "cfgmgr32" fn CM_Set_Device_Interface_PropertyW(
     pszDeviceInterface: ?[*:0]const u16,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: u32,
+    PropertyType: DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
@@ -4910,7 +4910,7 @@ pub extern "cfgmgr32" fn CM_Set_DevNode_Problem_Ex(
 pub extern "cfgmgr32" fn CM_Set_DevNode_Property_ExW(
     dnDevInst: u32,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: u32,
+    PropertyType: DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
@@ -4922,7 +4922,7 @@ pub extern "cfgmgr32" fn CM_Set_DevNode_Property_ExW(
 pub extern "cfgmgr32" fn CM_Set_DevNode_PropertyW(
     dnDevInst: u32,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: u32,
+    PropertyType: DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
@@ -5979,7 +5979,7 @@ pub extern "setupapi" fn SetupDiGetClassInstallParamsW(
 pub extern "setupapi" fn SetupDiGetClassPropertyExW(
     ClassGuid: ?*const Guid,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: ?*u32,
+    PropertyType: ?*DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: u32,
@@ -6013,7 +6013,7 @@ pub extern "setupapi" fn SetupDiGetClassPropertyKeysExW(
 pub extern "setupapi" fn SetupDiGetClassPropertyW(
     ClassGuid: ?*const Guid,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: ?*u32,
+    PropertyType: ?*DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: u32,
@@ -6168,7 +6168,7 @@ pub extern "setupapi" fn SetupDiGetDeviceInterfacePropertyW(
     DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: ?*u32,
+    PropertyType: ?*DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: u32,
@@ -6191,7 +6191,7 @@ pub extern "setupapi" fn SetupDiGetDevicePropertyW(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: ?*u32,
+    PropertyType: ?*DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*u8,
     PropertyBufferSize: u32,
@@ -6594,7 +6594,7 @@ pub extern "setupapi" fn SetupDiSetClassInstallParamsW(
 pub extern "setupapi" fn SetupDiSetClassPropertyExW(
     ClassGuid: ?*const Guid,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: u32,
+    PropertyType: DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
@@ -6607,7 +6607,7 @@ pub extern "setupapi" fn SetupDiSetClassPropertyExW(
 pub extern "setupapi" fn SetupDiSetClassPropertyW(
     ClassGuid: ?*const Guid,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: u32,
+    PropertyType: DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
@@ -6663,7 +6663,7 @@ pub extern "setupapi" fn SetupDiSetDeviceInterfacePropertyW(
     DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: u32,
+    PropertyType: DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
@@ -6675,7 +6675,7 @@ pub extern "setupapi" fn SetupDiSetDevicePropertyW(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     PropertyKey: ?*const DEVPROPKEY,
-    PropertyType: u32,
+    PropertyType: DEVPROPTYPE,
     /// parameter "PropertyBufferSize" is the size in bytes
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
@@ -9474,12 +9474,13 @@ pub const UpdateDriverForPlugAndPlayDevices = switch (@import("../zig.zig").unic
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (22)
+// Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const CHAR = @import("../foundation.zig").CHAR;
 const DEVPROPKEY = @import("../devices/properties.zig").DEVPROPKEY;
+const DEVPROPTYPE = @import("../devices/properties.zig").DEVPROPTYPE;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HDC = @import("../graphics/gdi.zig").HDC;

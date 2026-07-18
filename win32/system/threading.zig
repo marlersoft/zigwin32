@@ -746,45 +746,60 @@ pub const PTIMERAPCROUTINE = *const fn(
     dwTimerHighValue: u32,
 ) callconv(.winapi) void;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const PTP_CALLBACK_INSTANCE = isize;
+
 pub const PTP_CLEANUP_GROUP_CANCEL_CALLBACK = *const fn(
     ObjectContext: ?*anyopaque,
     CleanupContext: ?*anyopaque,
 ) callconv(.winapi) void;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const PTP_IO = isize;
+
 // TODO: this type has a FreeFunc 'CloseThreadpool', what can Zig do with this information?
 pub const PTP_POOL = isize;
 
 pub const PTP_SIMPLE_CALLBACK = *const fn(
-    Instance: ?*TP_CALLBACK_INSTANCE,
+    Instance: PTP_CALLBACK_INSTANCE,
     Context: ?*anyopaque,
 ) callconv(.winapi) void;
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const PTP_TIMER = isize;
 
 pub const PTP_TIMER_CALLBACK = *const fn(
-    Instance: ?*TP_CALLBACK_INSTANCE,
+    Instance: PTP_CALLBACK_INSTANCE,
     Context: ?*anyopaque,
-    Timer: ?*TP_TIMER,
+    Timer: PTP_TIMER,
 ) callconv(.winapi) void;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const PTP_WAIT = isize;
+
 pub const PTP_WAIT_CALLBACK = *const fn(
-    Instance: ?*TP_CALLBACK_INSTANCE,
+    Instance: PTP_CALLBACK_INSTANCE,
     Context: ?*anyopaque,
-    Wait: ?*TP_WAIT,
+    Wait: PTP_WAIT,
     WaitResult: u32,
 ) callconv(.winapi) void;
 
 pub const PTP_WIN32_IO_CALLBACK = *const fn(
-    Instance: ?*TP_CALLBACK_INSTANCE,
+    Instance: PTP_CALLBACK_INSTANCE,
     Context: ?*anyopaque,
     Overlapped: ?*anyopaque,
     IoResult: u32,
     NumberOfBytesTransferred: usize,
-    Io: ?*TP_IO,
+    Io: PTP_IO,
 ) callconv(.winapi) void;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const PTP_WORK = isize;
+
 pub const PTP_WORK_CALLBACK = *const fn(
-    Instance: ?*TP_CALLBACK_INSTANCE,
+    Instance: PTP_CALLBACK_INSTANCE,
     Context: ?*anyopaque,
-    Work: ?*TP_WORK,
+    Work: PTP_WORK,
 ) callconv(.winapi) void;
 
 pub const QUEUE_USER_APC_FLAGS = enum(i32) {
@@ -1252,10 +1267,6 @@ pub const TP_CALLBACK_ENVIRON_V3 = extern struct {
     Size: u32,
 };
 
-pub const TP_CALLBACK_INSTANCE = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 pub const TP_CALLBACK_PRIORITY = enum(i32) {
     HIGH = 0,
     NORMAL = 1,
@@ -1269,25 +1280,9 @@ pub const TP_CALLBACK_PRIORITY_LOW = TP_CALLBACK_PRIORITY.LOW;
 pub const TP_CALLBACK_PRIORITY_INVALID = TP_CALLBACK_PRIORITY.INVALID;
 pub const TP_CALLBACK_PRIORITY_COUNT = TP_CALLBACK_PRIORITY.INVALID;
 
-pub const TP_IO = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 pub const TP_POOL_STACK_INFORMATION = extern struct {
     StackReserve: usize,
     StackCommit: usize,
-};
-
-pub const TP_TIMER = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const TP_WAIT = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const TP_WORK = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const UMS_SCHEDULER_STARTUP_INFO = extern struct {
@@ -1481,12 +1476,12 @@ pub extern "avrt" fn AvSetMmThreadPriority(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn CallbackMayRunLong(
-    pci: ?*TP_CALLBACK_INSTANCE,
+    pci: PTP_CALLBACK_INSTANCE,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn CancelThreadpoolIo(
-    pio: ?*TP_IO,
+    pio: PTP_IO,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1527,22 +1522,22 @@ pub extern "kernel32" fn CloseThreadpoolCleanupGroupMembers(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn CloseThreadpoolIo(
-    pio: ?*TP_IO,
+    pio: PTP_IO,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn CloseThreadpoolTimer(
-    pti: ?*TP_TIMER,
+    pti: PTP_TIMER,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn CloseThreadpoolWait(
-    pwa: ?*TP_WAIT,
+    pwa: PTP_WAIT,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn CloseThreadpoolWork(
-    pwk: ?*TP_WORK,
+    pwk: PTP_WORK,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1832,28 +1827,28 @@ pub extern "kernel32" fn CreateThreadpoolIo(
     pfnio: ?PTP_WIN32_IO_CALLBACK,
     pv: ?*anyopaque,
     pcbe: ?*TP_CALLBACK_ENVIRON_V3,
-) callconv(.winapi) ?*TP_IO;
+) callconv(.winapi) PTP_IO;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn CreateThreadpoolTimer(
     pfnti: ?PTP_TIMER_CALLBACK,
     pv: ?*anyopaque,
     pcbe: ?*TP_CALLBACK_ENVIRON_V3,
-) callconv(.winapi) ?*TP_TIMER;
+) callconv(.winapi) PTP_TIMER;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn CreateThreadpoolWait(
     pfnwa: ?PTP_WAIT_CALLBACK,
     pv: ?*anyopaque,
     pcbe: ?*TP_CALLBACK_ENVIRON_V3,
-) callconv(.winapi) ?*TP_WAIT;
+) callconv(.winapi) PTP_WAIT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn CreateThreadpoolWork(
     pfnwk: ?PTP_WORK_CALLBACK,
     pv: ?*anyopaque,
     pcbe: ?*TP_CALLBACK_ENVIRON_V3,
-) callconv(.winapi) ?*TP_WORK;
+) callconv(.winapi) PTP_WORK;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn CreateTimerQueue(
@@ -1957,7 +1952,7 @@ pub extern "kernel32" fn DequeueUmsCompletionListItems(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn DisassociateCurrentThreadFromCallback(
-    pci: ?*TP_CALLBACK_INSTANCE,
+    pci: PTP_CALLBACK_INSTANCE,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2018,7 +2013,7 @@ pub extern "kernel32" fn FlushProcessWriteBuffers(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn FreeLibraryWhenCallbackReturns(
-    pci: ?*TP_CALLBACK_INSTANCE,
+    pci: PTP_CALLBACK_INSTANCE,
     mod: ?HINSTANCE,
 ) callconv(.winapi) void;
 
@@ -2505,7 +2500,7 @@ pub extern "kernel32" fn IsThreadAFiber(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn IsThreadpoolTimerSet(
-    pti: ?*TP_TIMER,
+    pti: PTP_TIMER,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2528,7 +2523,7 @@ pub extern "kernel32" fn LeaveCriticalSection(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn LeaveCriticalSectionWhenCallbackReturns(
-    pci: ?*TP_CALLBACK_INSTANCE,
+    pci: PTP_CALLBACK_INSTANCE,
     pcs: ?*RTL_CRITICAL_SECTION,
 ) callconv(.winapi) void;
 
@@ -2723,7 +2718,7 @@ pub extern "kernel32" fn ReleaseMutex(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn ReleaseMutexWhenCallbackReturns(
-    pci: ?*TP_CALLBACK_INSTANCE,
+    pci: PTP_CALLBACK_INSTANCE,
     mut: ?HANDLE,
 ) callconv(.winapi) void;
 
@@ -2736,7 +2731,7 @@ pub extern "kernel32" fn ReleaseSemaphore(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn ReleaseSemaphoreWhenCallbackReturns(
-    pci: ?*TP_CALLBACK_INSTANCE,
+    pci: PTP_CALLBACK_INSTANCE,
     sem: ?HANDLE,
     crel: u32,
 ) callconv(.winapi) void;
@@ -2774,7 +2769,7 @@ pub extern "kernel32" fn SetEvent(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn SetEventWhenCallbackReturns(
-    pci: ?*TP_CALLBACK_INSTANCE,
+    pci: PTP_CALLBACK_INSTANCE,
     evt: ?HANDLE,
 ) callconv(.winapi) void;
 
@@ -2934,7 +2929,7 @@ pub extern "kernel32" fn SetThreadpoolThreadMinimum(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn SetThreadpoolTimer(
-    pti: ?*TP_TIMER,
+    pti: PTP_TIMER,
     pftDueTime: ?*FILETIME,
     msPeriod: u32,
     msWindowLength: u32,
@@ -2942,7 +2937,7 @@ pub extern "kernel32" fn SetThreadpoolTimer(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn SetThreadpoolTimerEx(
-    pti: ?*TP_TIMER,
+    pti: PTP_TIMER,
     pftDueTime: ?*FILETIME,
     msPeriod: u32,
     msWindowLength: u32,
@@ -2950,14 +2945,14 @@ pub extern "kernel32" fn SetThreadpoolTimerEx(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn SetThreadpoolWait(
-    pwa: ?*TP_WAIT,
+    pwa: PTP_WAIT,
     h: ?HANDLE,
     pftTimeout: ?*FILETIME,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn SetThreadpoolWaitEx(
-    pwa: ?*TP_WAIT,
+    pwa: PTP_WAIT,
     h: ?HANDLE,
     pftTimeout: ?*FILETIME,
     Reserved: ?*anyopaque,
@@ -3064,12 +3059,12 @@ pub extern "kernel32" fn SleepEx(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn StartThreadpoolIo(
-    pio: ?*TP_IO,
+    pio: PTP_IO,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn SubmitThreadpoolWork(
-    pwk: ?*TP_WORK,
+    pwk: PTP_WORK,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3207,25 +3202,25 @@ pub extern "kernel32" fn WaitForSingleObjectEx(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn WaitForThreadpoolIoCallbacks(
-    pio: ?*TP_IO,
+    pio: PTP_IO,
     fCancelPendingCallbacks: BOOL,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn WaitForThreadpoolTimerCallbacks(
-    pti: ?*TP_TIMER,
+    pti: PTP_TIMER,
     fCancelPendingCallbacks: BOOL,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn WaitForThreadpoolWaitCallbacks(
-    pwa: ?*TP_WAIT,
+    pwa: PTP_WAIT,
     fCancelPendingCallbacks: BOOL,
 ) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn WaitForThreadpoolWorkCallbacks(
-    pwk: ?*TP_WORK,
+    pwk: PTP_WORK,
     fCancelPendingCallbacks: BOOL,
 ) callconv(.winapi) void;
 
