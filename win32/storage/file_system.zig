@@ -2571,9 +2571,9 @@ pub const NTMS_ASYNC_IO = extern struct {
 pub const NTMS_CHANGERINFORMATIONA = extern struct {
     Number: u32,
     ChangerType: Guid,
-    szSerialNumber: [32]CHAR,
-    szRevision: [32]CHAR,
-    szDeviceName: [64]CHAR,
+    szSerialNumber: [32]u8,
+    szRevision: [32]u8,
+    szDeviceName: [64]u8,
     ScsiPort: u16,
     ScsiBus: u16,
     ScsiTarget: u16,
@@ -2595,8 +2595,8 @@ pub const NTMS_CHANGERINFORMATIONW = extern struct {
 };
 
 pub const NTMS_CHANGERTYPEINFORMATIONA = extern struct {
-    szVendor: [128]CHAR,
-    szProduct: [128]CHAR,
+    szVendor: [128]u8,
+    szProduct: [128]u8,
     DeviceType: u32,
 };
 
@@ -2618,9 +2618,9 @@ pub const NTMS_DRIVEINFORMATIONA = extern struct {
     Number: u32,
     State: NtmsDriveState,
     DriveType: Guid,
-    szDeviceName: [64]CHAR,
-    szSerialNumber: [32]CHAR,
-    szRevision: [32]CHAR,
+    szDeviceName: [64]u8,
+    szSerialNumber: [32]u8,
+    szRevision: [32]u8,
     ScsiPort: u16,
     ScsiBus: u16,
     ScsiTarget: u16,
@@ -2653,8 +2653,8 @@ pub const NTMS_DRIVEINFORMATIONW = extern struct {
 };
 
 pub const NTMS_DRIVETYPEINFORMATIONA = extern struct {
-    szVendor: [128]CHAR,
-    szProduct: [128]CHAR,
+    szVendor: [128]u8,
+    szProduct: [128]u8,
     NumberOfHeads: u32,
     DeviceType: FILE_DEVICE_TYPE,
 };
@@ -2707,9 +2707,9 @@ pub const NTMS_I1_LIBREQUESTINFORMATIONA = extern struct {
     SlotId: Guid,
     TimeQueued: SYSTEMTIME,
     TimeCompleted: SYSTEMTIME,
-    szApplication: [64]CHAR,
-    szUser: [64]CHAR,
-    szComputer: [64]CHAR,
+    szApplication: [64]u8,
+    szUser: [64]u8,
+    szComputer: [64]u8,
 };
 
 pub const NTMS_I1_LIBREQUESTINFORMATIONW = extern struct {
@@ -2736,8 +2736,8 @@ pub const NTMS_I1_OBJECTINFORMATIONA = extern struct {
     ObjectGuid: Guid,
     Enabled: BOOL,
     dwOperationalState: u32,
-    szName: [64]CHAR,
-    szDescription: [127]CHAR,
+    szName: [64]u8,
+    szDescription: [127]u8,
     Info: extern union {
         Drive: NTMS_DRIVEINFORMATIONA,
         DriveType: NTMS_DRIVETYPEINFORMATIONA,
@@ -2790,14 +2790,14 @@ pub const NTMS_I1_OPREQUESTINFORMATIONA = extern struct {
     Request: u32,
     Submitted: SYSTEMTIME,
     State: u32,
-    szMessage: [127]CHAR,
+    szMessage: [127]u8,
     Arg1Type: u32,
     Arg1: Guid,
     Arg2Type: u32,
     Arg2: Guid,
-    szApplication: [64]CHAR,
-    szUser: [64]CHAR,
-    szComputer: [64]CHAR,
+    szApplication: [64]u8,
+    szUser: [64]u8,
+    szComputer: [64]u8,
 };
 
 pub const NTMS_I1_OPREQUESTINFORMATIONW = extern struct {
@@ -2821,8 +2821,8 @@ pub const NTMS_I1_PARTITIONINFORMATIONA = extern struct {
     Side: u16,
     dwOmidLabelIdLength: u32,
     OmidLabelId: [255]u8,
-    szOmidLabelType: [64]CHAR,
-    szOmidLabelInfo: [256]CHAR,
+    szOmidLabelType: [64]u8,
+    szOmidLabelInfo: [256]u8,
     dwMountCount: u32,
     dwAllocateCount: u32,
 };
@@ -2847,9 +2847,9 @@ pub const NTMS_I1_PMIDINFORMATIONA = extern struct {
     LocationType: u32,
     MediaType: Guid,
     HomeSlot: Guid,
-    szBarCode: [64]CHAR,
+    szBarCode: [64]u8,
     BarCodeState: u32,
-    szSequenceNumber: [32]CHAR,
+    szSequenceNumber: [32]u8,
     MediaState: u32,
     dwNumberOfPartitions: u32,
 };
@@ -2920,9 +2920,9 @@ pub const NTMS_LIBREQUESTINFORMATIONA = extern struct {
     SlotId: Guid,
     TimeQueued: SYSTEMTIME,
     TimeCompleted: SYSTEMTIME,
-    szApplication: [64]CHAR,
-    szUser: [64]CHAR,
-    szComputer: [64]CHAR,
+    szApplication: [64]u8,
+    szUser: [64]u8,
+    szComputer: [64]u8,
     dwErrorCode: u32,
     WorkItemId: Guid,
     dwPriority: u32,
@@ -2989,8 +2989,8 @@ pub const NTMS_OBJECTINFORMATIONA = extern struct {
     ObjectGuid: Guid,
     Enabled: BOOL,
     dwOperationalState: NtmsOperationalState,
-    szName: [64]CHAR,
-    szDescription: [127]CHAR,
+    szName: [64]u8,
+    szDescription: [127]u8,
     Info: extern union {
         Drive: NTMS_DRIVEINFORMATIONA,
         DriveType: NTMS_DRIVETYPEINFORMATIONA,
@@ -3052,14 +3052,14 @@ pub const NTMS_OPREQUESTINFORMATIONA = extern struct {
     Request: NtmsOpreqCommand,
     Submitted: SYSTEMTIME,
     State: NtmsOpreqState,
-    szMessage: [256]CHAR,
+    szMessage: [256]u8,
     Arg1Type: NtmsObjectsTypes,
     Arg1: Guid,
     Arg2Type: NtmsObjectsTypes,
     Arg2: Guid,
-    szApplication: [64]CHAR,
-    szUser: [64]CHAR,
-    szComputer: [64]CHAR,
+    szApplication: [64]u8,
+    szUser: [64]u8,
+    szComputer: [64]u8,
 };
 
 pub const NTMS_OPREQUESTINFORMATIONW = extern struct {
@@ -3083,8 +3083,8 @@ pub const NTMS_PARTITIONINFORMATIONA = extern struct {
     Side: u16,
     dwOmidLabelIdLength: u32,
     OmidLabelId: [255]u8,
-    szOmidLabelType: [64]CHAR,
-    szOmidLabelInfo: [256]CHAR,
+    szOmidLabelType: [64]u8,
+    szOmidLabelInfo: [256]u8,
     dwMountCount: u32,
     dwAllocateCount: u32,
     Capacity: LARGE_INTEGER,
@@ -3111,9 +3111,9 @@ pub const NTMS_PMIDINFORMATIONA = extern struct {
     LocationType: u32,
     MediaType: Guid,
     HomeSlot: Guid,
-    szBarCode: [64]CHAR,
+    szBarCode: [64]u8,
     BarCodeState: NtmsBarCodeState,
-    szSequenceNumber: [32]CHAR,
+    szSequenceNumber: [32]u8,
     MediaState: NtmsMediaState,
     dwNumberOfPartitions: u32,
     dwMediaTypeCode: u32,
@@ -3683,7 +3683,7 @@ pub const OFSTRUCT = extern struct {
     nErrCode: u16,
     Reserved1: u16,
     Reserved2: u16,
-    szPathName: [128]CHAR,
+    szPathName: [128]u8,
 };
 
 pub const PCLFS_COMPLETION_ROUTINE = *const fn(
@@ -4761,8 +4761,8 @@ pub const WIN32_FIND_DATAA = extern struct {
     nFileSizeLow: u32,
     dwReserved0: u32,
     dwReserved1: u32,
-    cFileName: [260]CHAR,
-    cAlternateFileName: [14]CHAR,
+    cFileName: [260]u8,
+    cAlternateFileName: [14]u8,
 };
 
 pub const WIN32_FIND_DATAW = extern struct {
@@ -8510,12 +8510,11 @@ pub const VerQueryValue = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (23)
+// Section: Imports (22)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const CHAR = @import("../foundation.zig").CHAR;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const GENERIC_MAPPING = @import("../security.zig").GENERIC_MAPPING;
 const HANDLE = @import("../foundation.zig").HANDLE;

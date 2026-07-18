@@ -422,9 +422,9 @@ pub const IPrintDialogCallback = extern union {
             self: *const IPrintDialogCallback,
             hDlg: ?HWND,
             uMsg: u32,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            pResult: ?*LRESULT,
+            wParam: usize,
+            lParam: isize,
+            pResult: ?*isize,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -435,7 +435,7 @@ pub const IPrintDialogCallback = extern union {
     pub fn SelectionChange(self: *const IPrintDialogCallback) callconv(.@"inline") HRESULT {
         return self.vtable.SelectionChange(self);
     }
-    pub fn HandleMessage(self: *const IPrintDialogCallback, hDlg: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pResult: ?*LRESULT) callconv(.@"inline") HRESULT {
+    pub fn HandleMessage(self: *const IPrintDialogCallback, hDlg: ?HWND, uMsg: u32, wParam: usize, lParam: isize, pResult: ?*isize) callconv(.@"inline") HRESULT {
         return self.vtable.HandleMessage(self, hDlg, uMsg, wParam, lParam, pResult);
     }
 };
@@ -478,57 +478,57 @@ pub const IPrintDialogServices = extern union {
 pub const LPCCHOOKPROC = *const fn(
     param0: ?HWND,
     param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
+    param2: usize,
+    param3: isize,
 ) callconv(.winapi) usize;
 
 pub const LPCFHOOKPROC = *const fn(
     param0: ?HWND,
     param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
+    param2: usize,
+    param3: isize,
 ) callconv(.winapi) usize;
 
 pub const LPFRHOOKPROC = *const fn(
     param0: ?HWND,
     param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
+    param2: usize,
+    param3: isize,
 ) callconv(.winapi) usize;
 
 pub const LPOFNHOOKPROC = *const fn(
     param0: ?HWND,
     param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
+    param2: usize,
+    param3: isize,
 ) callconv(.winapi) usize;
 
 pub const LPPAGEPAINTHOOK = *const fn(
     param0: ?HWND,
     param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
+    param2: usize,
+    param3: isize,
 ) callconv(.winapi) usize;
 
 pub const LPPAGESETUPHOOK = *const fn(
     param0: ?HWND,
     param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
+    param2: usize,
+    param3: isize,
 ) callconv(.winapi) usize;
 
 pub const LPPRINTHOOKPROC = *const fn(
     param0: ?HWND,
     param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
+    param2: usize,
+    param3: isize,
 ) callconv(.winapi) usize;
 
 pub const LPSETUPHOOKPROC = *const fn(
     param0: ?HWND,
     param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
+    param2: usize,
+    param3: isize,
 ) callconv(.winapi) usize;
 
 
@@ -785,7 +785,7 @@ pub const CHOOSECOLORA = switch(@import("../../zig.zig").arch) {
         rgbResult: COLORREF,
         lpCustColors: ?*COLORREF,
         Flags: CHOOSECOLOR_FLAGS,
-        lCustData: LPARAM,
+        lCustData: isize,
         lpfnHook: ?LPCCHOOKPROC,
         lpTemplateName: ?[*:0]const u8,
     },
@@ -796,7 +796,7 @@ pub const CHOOSECOLORA = switch(@import("../../zig.zig").arch) {
         rgbResult: COLORREF align(1),
         lpCustColors: ?*COLORREF align(1),
         Flags: CHOOSECOLOR_FLAGS align(1),
-        lCustData: LPARAM align(1),
+        lCustData: isize align(1),
         lpfnHook: ?LPCCHOOKPROC align(1),
         lpTemplateName: ?[*:0]const u8 align(1),
     },
@@ -809,7 +809,7 @@ pub const CHOOSECOLORW = switch(@import("../../zig.zig").arch) {
         rgbResult: COLORREF,
         lpCustColors: ?*COLORREF,
         Flags: CHOOSECOLOR_FLAGS,
-        lCustData: LPARAM,
+        lCustData: isize,
         lpfnHook: ?LPCCHOOKPROC,
         lpTemplateName: ?[*:0]const u16,
     },
@@ -820,7 +820,7 @@ pub const CHOOSECOLORW = switch(@import("../../zig.zig").arch) {
         rgbResult: COLORREF align(1),
         lpCustColors: ?*COLORREF align(1),
         Flags: CHOOSECOLOR_FLAGS align(1),
-        lCustData: LPARAM align(1),
+        lCustData: isize align(1),
         lpfnHook: ?LPCCHOOKPROC align(1),
         lpTemplateName: ?[*:0]const u16 align(1),
     },
@@ -834,7 +834,7 @@ pub const CHOOSEFONTA = switch(@import("../../zig.zig").arch) {
         iPointSize: i32,
         Flags: CHOOSEFONT_FLAGS,
         rgbColors: COLORREF,
-        lCustData: LPARAM,
+        lCustData: isize,
         lpfnHook: ?LPCFHOOKPROC,
         lpTemplateName: ?[*:0]const u8,
         hInstance: ?HINSTANCE,
@@ -852,7 +852,7 @@ pub const CHOOSEFONTA = switch(@import("../../zig.zig").arch) {
         iPointSize: i32 align(1),
         Flags: CHOOSEFONT_FLAGS align(1),
         rgbColors: COLORREF align(1),
-        lCustData: LPARAM align(1),
+        lCustData: isize align(1),
         lpfnHook: ?LPCFHOOKPROC align(1),
         lpTemplateName: ?[*:0]const u8 align(1),
         hInstance: ?HINSTANCE align(1),
@@ -872,7 +872,7 @@ pub const CHOOSEFONTW = switch(@import("../../zig.zig").arch) {
         iPointSize: i32,
         Flags: CHOOSEFONT_FLAGS,
         rgbColors: COLORREF,
-        lCustData: LPARAM,
+        lCustData: isize,
         lpfnHook: ?LPCFHOOKPROC,
         lpTemplateName: ?[*:0]const u16,
         hInstance: ?HINSTANCE,
@@ -890,7 +890,7 @@ pub const CHOOSEFONTW = switch(@import("../../zig.zig").arch) {
         iPointSize: i32 align(1),
         Flags: CHOOSEFONT_FLAGS align(1),
         rgbColors: COLORREF align(1),
-        lCustData: LPARAM align(1),
+        lCustData: isize align(1),
         lpfnHook: ?LPCFHOOKPROC align(1),
         lpTemplateName: ?[*:0]const u16 align(1),
         hInstance: ?HINSTANCE align(1),
@@ -925,7 +925,7 @@ pub const FINDREPLACEA = switch(@import("../../zig.zig").arch) {
         lpstrReplaceWith: ?[*:0]u8,
         wFindWhatLen: u16,
         wReplaceWithLen: u16,
-        lCustData: LPARAM,
+        lCustData: isize,
         lpfnHook: ?LPFRHOOKPROC,
         lpTemplateName: ?[*:0]const u8,
     },
@@ -938,7 +938,7 @@ pub const FINDREPLACEA = switch(@import("../../zig.zig").arch) {
         lpstrReplaceWith: ?[*:0]u8 align(1),
         wFindWhatLen: u16 align(1),
         wReplaceWithLen: u16 align(1),
-        lCustData: LPARAM align(1),
+        lCustData: isize align(1),
         lpfnHook: ?LPFRHOOKPROC align(1),
         lpTemplateName: ?[*:0]const u8 align(1),
     },
@@ -953,7 +953,7 @@ pub const FINDREPLACEW = switch(@import("../../zig.zig").arch) {
         lpstrReplaceWith: ?[*:0]u16,
         wFindWhatLen: u16,
         wReplaceWithLen: u16,
-        lCustData: LPARAM,
+        lCustData: isize,
         lpfnHook: ?LPFRHOOKPROC,
         lpTemplateName: ?[*:0]const u16,
     },
@@ -966,7 +966,7 @@ pub const FINDREPLACEW = switch(@import("../../zig.zig").arch) {
         lpstrReplaceWith: ?[*:0]u16 align(1),
         wFindWhatLen: u16 align(1),
         wReplaceWithLen: u16 align(1),
-        lCustData: LPARAM align(1),
+        lCustData: isize align(1),
         lpfnHook: ?LPFRHOOKPROC align(1),
         lpTemplateName: ?[*:0]const u16 align(1),
     },
@@ -1042,7 +1042,7 @@ pub const OPENFILENAME_NT4A = switch(@import("../../zig.zig").arch) {
         nFileOffset: u16,
         nFileExtension: u16,
         lpstrDefExt: ?[*:0]const u8,
-        lCustData: LPARAM,
+        lCustData: isize,
         lpfnHook: ?LPOFNHOOKPROC,
         lpTemplateName: ?[*:0]const u8,
     },
@@ -1064,7 +1064,7 @@ pub const OPENFILENAME_NT4A = switch(@import("../../zig.zig").arch) {
         nFileOffset: u16 align(1),
         nFileExtension: u16 align(1),
         lpstrDefExt: ?[*:0]const u8 align(1),
-        lCustData: LPARAM align(1),
+        lCustData: isize align(1),
         lpfnHook: ?LPOFNHOOKPROC align(1),
         lpTemplateName: ?[*:0]const u8 align(1),
     },
@@ -1088,7 +1088,7 @@ pub const OPENFILENAME_NT4W = switch(@import("../../zig.zig").arch) {
         nFileOffset: u16,
         nFileExtension: u16,
         lpstrDefExt: ?[*:0]const u16,
-        lCustData: LPARAM,
+        lCustData: isize,
         lpfnHook: ?LPOFNHOOKPROC,
         lpTemplateName: ?[*:0]const u16,
     },
@@ -1110,7 +1110,7 @@ pub const OPENFILENAME_NT4W = switch(@import("../../zig.zig").arch) {
         nFileOffset: u16 align(1),
         nFileExtension: u16 align(1),
         lpstrDefExt: ?[*:0]const u16 align(1),
-        lCustData: LPARAM align(1),
+        lCustData: isize align(1),
         lpfnHook: ?LPOFNHOOKPROC align(1),
         lpTemplateName: ?[*:0]const u16 align(1),
     },
@@ -1134,7 +1134,7 @@ pub const OPENFILENAMEA = switch(@import("../../zig.zig").arch) {
         nFileOffset: u16,
         nFileExtension: u16,
         lpstrDefExt: ?[*:0]const u8,
-        lCustData: LPARAM,
+        lCustData: isize,
         lpfnHook: ?LPOFNHOOKPROC,
         lpTemplateName: ?[*:0]const u8,
         pvReserved: ?*anyopaque,
@@ -1159,7 +1159,7 @@ pub const OPENFILENAMEA = switch(@import("../../zig.zig").arch) {
         nFileOffset: u16 align(1),
         nFileExtension: u16 align(1),
         lpstrDefExt: ?[*:0]const u8 align(1),
-        lCustData: LPARAM align(1),
+        lCustData: isize align(1),
         lpfnHook: ?LPOFNHOOKPROC align(1),
         lpTemplateName: ?[*:0]const u8 align(1),
         pvReserved: ?*anyopaque align(1),
@@ -1186,7 +1186,7 @@ pub const OPENFILENAMEW = switch(@import("../../zig.zig").arch) {
         nFileOffset: u16,
         nFileExtension: u16,
         lpstrDefExt: ?[*:0]const u16,
-        lCustData: LPARAM,
+        lCustData: isize,
         lpfnHook: ?LPOFNHOOKPROC,
         lpTemplateName: ?[*:0]const u16,
         pvReserved: ?*anyopaque,
@@ -1211,7 +1211,7 @@ pub const OPENFILENAMEW = switch(@import("../../zig.zig").arch) {
         nFileOffset: u16 align(1),
         nFileExtension: u16 align(1),
         lpstrDefExt: ?[*:0]const u16 align(1),
-        lCustData: LPARAM align(1),
+        lCustData: isize align(1),
         lpfnHook: ?LPOFNHOOKPROC align(1),
         lpTemplateName: ?[*:0]const u16 align(1),
         pvReserved: ?*anyopaque align(1),
@@ -1230,7 +1230,7 @@ pub const PAGESETUPDLGA = switch(@import("../../zig.zig").arch) {
         rtMinMargin: RECT,
         rtMargin: RECT,
         hInstance: ?HINSTANCE,
-        lCustData: LPARAM,
+        lCustData: isize,
         lpfnPageSetupHook: ?LPPAGESETUPHOOK,
         lpfnPagePaintHook: ?LPPAGEPAINTHOOK,
         lpPageSetupTemplateName: ?[*:0]const u8,
@@ -1246,7 +1246,7 @@ pub const PAGESETUPDLGA = switch(@import("../../zig.zig").arch) {
         rtMinMargin: RECT align(1),
         rtMargin: RECT align(1),
         hInstance: ?HINSTANCE align(1),
-        lCustData: LPARAM align(1),
+        lCustData: isize align(1),
         lpfnPageSetupHook: ?LPPAGESETUPHOOK align(1),
         lpfnPagePaintHook: ?LPPAGEPAINTHOOK align(1),
         lpPageSetupTemplateName: ?[*:0]const u8 align(1),
@@ -1264,7 +1264,7 @@ pub const PAGESETUPDLGW = switch(@import("../../zig.zig").arch) {
         rtMinMargin: RECT,
         rtMargin: RECT,
         hInstance: ?HINSTANCE,
-        lCustData: LPARAM,
+        lCustData: isize,
         lpfnPageSetupHook: ?LPPAGESETUPHOOK,
         lpfnPagePaintHook: ?LPPAGEPAINTHOOK,
         lpPageSetupTemplateName: ?[*:0]const u16,
@@ -1280,7 +1280,7 @@ pub const PAGESETUPDLGW = switch(@import("../../zig.zig").arch) {
         rtMinMargin: RECT align(1),
         rtMargin: RECT align(1),
         hInstance: ?HINSTANCE align(1),
-        lCustData: LPARAM align(1),
+        lCustData: isize align(1),
         lpfnPageSetupHook: ?LPPAGESETUPHOOK align(1),
         lpfnPagePaintHook: ?LPPAGEPAINTHOOK align(1),
         lpPageSetupTemplateName: ?[*:0]const u16 align(1),
@@ -1301,7 +1301,7 @@ pub const PRINTDLGA = switch(@import("../../zig.zig").arch) {
         nMaxPage: u16,
         nCopies: u16,
         hInstance: ?HINSTANCE,
-        lCustData: LPARAM,
+        lCustData: isize,
         lpfnPrintHook: ?LPPRINTHOOKPROC,
         lpfnSetupHook: ?LPSETUPHOOKPROC,
         lpPrintTemplateName: ?[*:0]const u8,
@@ -1322,7 +1322,7 @@ pub const PRINTDLGA = switch(@import("../../zig.zig").arch) {
         nMaxPage: u16 align(1),
         nCopies: u16 align(1),
         hInstance: ?HINSTANCE align(1),
-        lCustData: LPARAM align(1),
+        lCustData: isize align(1),
         lpfnPrintHook: ?LPPRINTHOOKPROC align(1),
         lpfnSetupHook: ?LPSETUPHOOKPROC align(1),
         lpPrintTemplateName: ?[*:0]const u8 align(1),
@@ -1441,7 +1441,7 @@ pub const PRINTDLGW = switch(@import("../../zig.zig").arch) {
         nMaxPage: u16,
         nCopies: u16,
         hInstance: ?HINSTANCE,
-        lCustData: LPARAM,
+        lCustData: isize,
         lpfnPrintHook: ?LPPRINTHOOKPROC,
         lpfnSetupHook: ?LPSETUPHOOKPROC,
         lpPrintTemplateName: ?[*:0]const u16,
@@ -1462,7 +1462,7 @@ pub const PRINTDLGW = switch(@import("../../zig.zig").arch) {
         nMaxPage: u16 align(1),
         nCopies: u16 align(1),
         hInstance: ?HINSTANCE align(1),
-        lCustData: LPARAM align(1),
+        lCustData: isize align(1),
         lpfnPrintHook: ?LPPRINTHOOKPROC align(1),
         lpfnSetupHook: ?LPSETUPHOOKPROC align(1),
         lpPrintTemplateName: ?[*:0]const u16 align(1),
@@ -1728,7 +1728,7 @@ pub const ReplaceText = switch (@import("../../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (18)
+// Section: Imports (15)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -1742,12 +1742,9 @@ const HWND = @import("../../foundation.zig").HWND;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const LOGFONTA = @import("../../graphics/gdi.zig").LOGFONTA;
 const LOGFONTW = @import("../../graphics/gdi.zig").LOGFONTW;
-const LPARAM = @import("../../foundation.zig").LPARAM;
-const LRESULT = @import("../../foundation.zig").LRESULT;
 const NMHDR = @import("../../ui/controls.zig").NMHDR;
 const POINT = @import("../../foundation.zig").POINT;
 const RECT = @import("../../foundation.zig").RECT;
-const WPARAM = @import("../../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

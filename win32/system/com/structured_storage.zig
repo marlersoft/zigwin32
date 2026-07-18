@@ -1029,7 +1029,7 @@ pub const PROPVARIANT = extern struct {
             wReserved2: u16,
             wReserved3: u16,
             Anonymous: extern union {
-                cVal: CHAR,
+                cVal: u8,
                 bVal: u8,
                 iVal: i16,
                 uiVal: u16,
@@ -1520,14 +1520,13 @@ pub extern "ole32" fn WriteFmtUserTypeStg(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (33)
+// Section: Imports (32)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BLOB = @import("../../system/com.zig").BLOB;
 const BOOL = @import("../../foundation.zig").BOOL;
 const BOOLEAN = @import("../../foundation.zig").BOOLEAN;
 const BSTR = @import("../../foundation.zig").BSTR;
-const CHAR = @import("../../foundation.zig").CHAR;
 const CLSCTX = @import("../../system/com.zig").CLSCTX;
 const COSERVERINFO = @import("../../system/com.zig").COSERVERINFO;
 const CY = @import("../../system/com.zig").CY;

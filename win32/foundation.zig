@@ -6531,7 +6531,6 @@ pub const BOOLEAN = u8;
 // TODO: this type has a FreeFunc 'SysFreeString', what can Zig do with this information?
 pub const BSTR = *u16;
 
-pub const CHAR = u8;
 
 pub const COLORREF = u32;
 
@@ -6686,9 +6685,7 @@ pub const LARGE_INTEGER = extern union {
     QuadPart: i64,
 };
 
-pub const LPARAM = isize;
 
-pub const LRESULT = isize;
 
 pub const LUID = extern struct {
     LowPart: u32,
@@ -16532,7 +16529,6 @@ pub const ERROR_VHD_CHANGE_TRACKING_DISABLED = WIN32_ERROR.ERROR_VHD_CHANGE_TRAC
 pub const ERROR_VHD_MISSING_CHANGE_TRACKING_INFORMATION = WIN32_ERROR.ERROR_VHD_MISSING_CHANGE_TRACKING_INFORMATION;
 pub const ERROR_QUERY_STORAGE_ERROR = WIN32_ERROR.ERROR_QUERY_STORAGE_ERROR;
 
-pub const WPARAM = usize;
 
 
 //--------------------------------------------------------------------------------

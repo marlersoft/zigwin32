@@ -123,33 +123,33 @@ pub const GLOBALENTRY = extern struct {
 };
 
 pub const IMAGE_NOTE = extern struct {
-    Module: [10]CHAR,
-    FileName: [256]CHAR,
+    Module: [10]u8,
+    FileName: [256]u8,
     hModule: u16,
     hTask: u16,
 };
 
 pub const MODULEENTRY = extern struct {
     dwSize: u32 align(4),
-    szModule: [10]CHAR align(4),
+    szModule: [10]u8 align(4),
     hModule: ?HANDLE align(4),
     wcUsage: u16 align(4),
-    szExePath: [256]CHAR align(4),
+    szExePath: [256]u8 align(4),
     wNext: u16 align(4),
 };
 
 pub const PROCESSENUMPROC = *const fn(
     dwProcessId: u32,
     dwAttributes: u32,
-    lpUserDefined: LPARAM,
+    lpUserDefined: isize,
 ) callconv(.winapi) BOOL;
 
 pub const SEGMENT_NOTE = extern struct {
     Selector1: u16,
     Selector2: u16,
     Segment: u16,
-    Module: [10]CHAR,
-    FileName: [256]CHAR,
+    Module: [10]u8,
+    FileName: [256]u8,
     Type: u16,
     Length: u32,
 };
@@ -158,7 +158,7 @@ pub const TASKENUMPROC = *const fn(
     dwThreadId: u32,
     hMod16: u16,
     hTask16: u16,
-    lpUserDefined: LPARAM,
+    lpUserDefined: isize,
 ) callconv(.winapi) BOOL;
 
 pub const TASKENUMPROCEX = *const fn(
@@ -167,7 +167,7 @@ pub const TASKENUMPROCEX = *const fn(
     hTask16: u16,
     pszModName: ?*i8,
     pszFileName: ?*i8,
-    lpUserDefined: LPARAM,
+    lpUserDefined: isize,
 ) callconv(.winapi) BOOL;
 
 pub const TEMP_BP_NOTE = extern struct {
@@ -181,8 +181,8 @@ pub const VDM_SEGINFO = extern struct {
     SegNumber: u16,
     Length: u32,
     Type: u16,
-    ModuleName: [9]CHAR,
-    FileName: [255]CHAR,
+    ModuleName: [9]u8,
+    FileName: [255]u8,
 };
 
 pub const VDMBREAKTHREADPROC = *const fn(
@@ -222,19 +222,19 @@ pub const VDMDETECTWOWPROC = *const fn(
 
 pub const VDMENUMPROCESSWOWPROC = *const fn(
     param0: ?PROCESSENUMPROC,
-    param1: LPARAM,
+    param1: isize,
 ) callconv(.winapi) i32;
 
 pub const VDMENUMTASKWOWEXPROC = *const fn(
     param0: u32,
     param1: ?TASKENUMPROCEX,
-    param2: LPARAM,
+    param2: isize,
 ) callconv(.winapi) i32;
 
 pub const VDMENUMTASKWOWPROC = *const fn(
     param0: u32,
     param1: ?TASKENUMPROC,
-    param2: LPARAM,
+    param2: isize,
 ) callconv(.winapi) i32;
 
 pub const VDMGETADDREXPRESSIONPROC = *const fn(
@@ -456,14 +456,12 @@ pub const VDMSETCONTEXTPROC = switch(@import("../zig.zig").arch) {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
-const CHAR = @import("../foundation.zig").CHAR;
 const DEBUG_EVENT = @import("../system/diagnostics/debug.zig").DEBUG_EVENT;
 const FLOATING_SAVE_AREA = @import("../system/kernel.zig").FLOATING_SAVE_AREA;
 const HANDLE = @import("../foundation.zig").HANDLE;
-const LPARAM = @import("../foundation.zig").LPARAM;
 // 2 arch-specific imports
 const CONTEXT = switch(@import("../zig.zig").arch) {
     .X86 => @import("../system/diagnostics/debug.zig").CONTEXT,

@@ -2502,7 +2502,7 @@ pub const DIACTIONFORMATA = extern struct {
     hInstString: ?HINSTANCE,
     ftTimeStamp: FILETIME,
     dwCRC: u32,
-    tszActionMap: [260]CHAR,
+    tszActionMap: [260]u8,
 };
 
 pub const DIACTIONFORMATW = extern struct {
@@ -2622,7 +2622,7 @@ pub const DIDEVCAPS_DX3 = extern struct {
 };
 
 pub const DIDEVICEIMAGEINFOA = extern struct {
-    tszImagePath: [260]CHAR,
+    tszImagePath: [260]u8,
     dwFlags: u32,
     dwViewID: u32,
     rcOverlay: RECT,
@@ -2674,8 +2674,8 @@ pub const DIDEVICEINSTANCE_DX3A = extern struct {
     guidInstance: Guid,
     guidProduct: Guid,
     dwDevType: u32,
-    tszInstanceName: [260]CHAR,
-    tszProductName: [260]CHAR,
+    tszInstanceName: [260]u8,
+    tszProductName: [260]u8,
 };
 
 pub const DIDEVICEINSTANCE_DX3W = extern struct {
@@ -2692,8 +2692,8 @@ pub const DIDEVICEINSTANCEA = extern struct {
     guidInstance: Guid,
     guidProduct: Guid,
     dwDevType: u32,
-    tszInstanceName: [260]CHAR,
-    tszProductName: [260]CHAR,
+    tszInstanceName: [260]u8,
+    tszProductName: [260]u8,
     guidFFDriver: Guid,
     wUsagePage: u16,
     wUsage: u16,
@@ -2732,7 +2732,7 @@ pub const DIDEVICEOBJECTINSTANCE_DX3A = extern struct {
     dwOfs: u32,
     dwType: u32,
     dwFlags: u32,
-    tszName: [260]CHAR,
+    tszName: [260]u8,
 };
 
 pub const DIDEVICEOBJECTINSTANCE_DX3W = extern struct {
@@ -2750,7 +2750,7 @@ pub const DIDEVICEOBJECTINSTANCEA = extern struct {
     dwOfs: u32,
     dwType: u32,
     dwFlags: u32,
-    tszName: [260]CHAR,
+    tszName: [260]u8,
     dwFFMaxForce: u32,
     dwFFForceResolution: u32,
     wCollectionNumber: u16,
@@ -2840,7 +2840,7 @@ pub const DIEFFECTINFOA = extern struct {
     dwEffType: u32,
     dwStaticParams: u32,
     dwDynamicParams: u32,
-    tszName: [260]CHAR,
+    tszName: [260]u8,
 };
 
 pub const DIEFFECTINFOW = extern struct {
@@ -2884,7 +2884,7 @@ pub const DIFILEEFFECT = extern struct {
     dwSize: u32,
     GuidEffect: Guid,
     lpDiEffect: ?*DIEFFECT,
-    szFriendlyName: [260]CHAR,
+    szFriendlyName: [260]u8,
 };
 
 pub const DIHIDFFINITINFO = extern struct {
@@ -5909,12 +5909,11 @@ pub const LPDIENUMEFFECTSCALLBACK = switch (@import("../zig.zig").unicode_mode) 
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (15)
+// Section: Imports (14)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const CHAR = @import("../foundation.zig").CHAR;
 const DEVPROPKEY = @import("../devices/properties.zig").DEVPROPKEY;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;

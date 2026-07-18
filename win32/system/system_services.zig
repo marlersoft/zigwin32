@@ -3111,7 +3111,7 @@ pub const _DEV_BROADCAST_HEADER = extern struct {
 
 pub const _DEV_BROADCAST_USERDEFINED = extern struct {
     dbud_dbh: DEV_BROADCAST_HDR,
-    dbud_szName: [1]CHAR,
+    dbud_szName: [1]u8,
 };
 
 pub const ACCESS_REASON_TYPE = enum(i32) {
@@ -3539,7 +3539,7 @@ pub const DEV_BROADCAST_DEVICEINTERFACE_A = extern struct {
     dbcc_devicetype: u32,
     dbcc_reserved: u32,
     dbcc_classguid: Guid,
-    dbcc_name: [1]CHAR,
+    dbcc_name: [1]u8,
 };
 
 pub const DEV_BROADCAST_DEVICEINTERFACE_W = extern struct {
@@ -3629,7 +3629,7 @@ pub const DEV_BROADCAST_PORT_A = extern struct {
     dbcp_size: u32,
     dbcp_devicetype: u32,
     dbcp_reserved: u32,
-    dbcp_name: [1]CHAR,
+    dbcp_name: [1]u8,
 };
 
 pub const DEV_BROADCAST_PORT_W = extern struct {
@@ -4099,7 +4099,7 @@ pub const IMAGE_HOT_PATCH_INFO = extern struct {
 
 pub const IMAGE_IMPORT_BY_NAME = extern struct {
     Hint: u16,
-    Name: [1]CHAR,
+    Name: [1]u8,
 };
 
 pub const IMAGE_IMPORT_CONTROL_TRANSFER_DYNAMIC_RELOCATION = extern struct {
@@ -4131,8 +4131,8 @@ pub const IMAGE_LINENUMBER = extern struct {
 
 pub const IMAGE_OS2_HEADER = extern struct {
     ne_magic: u16 align(2),
-    ne_ver: CHAR align(2),
-    ne_rev: CHAR align(2),
+    ne_ver: u8 align(2),
+    ne_rev: u8 align(2),
     ne_enttab: u16 align(2),
     ne_cbenttab: u16 align(2),
     ne_crc: i32 align(2),
@@ -4300,7 +4300,7 @@ pub const IMAGE_RESOURCE_DIRECTORY_ENTRY = extern struct {
 
 pub const IMAGE_RESOURCE_DIRECTORY_STRING = extern struct {
     Length: u16,
-    NameString: [1]CHAR,
+    NameString: [1]u8,
 };
 
 pub const IMAGE_SEPARATE_DEBUG_HEADER = extern struct {
@@ -6436,13 +6436,12 @@ pub const DEV_BROADCAST_PORT_ = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (19)
+// Section: Imports (18)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const BYTE_BLOB = @import("../system/com.zig").BYTE_BLOB;
-const CHAR = @import("../foundation.zig").CHAR;
 const DWORD_BLOB = @import("../system/com.zig").DWORD_BLOB;
 const FLAGGED_BYTE_BLOB = @import("../system/com.zig").FLAGGED_BYTE_BLOB;
 const HANDLE = @import("../foundation.zig").HANDLE;

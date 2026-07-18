@@ -6629,7 +6629,7 @@ pub const VARIANT = extern struct {
                 pparray: ?*?*SAFEARRAY,
                 pvarVal: ?*VARIANT,
                 byref: ?*anyopaque,
-                cVal: CHAR,
+                cVal: u8,
                 uiVal: u16,
                 ulVal: u32,
                 ullVal: u64,
@@ -7355,13 +7355,12 @@ pub extern "ole32" fn StringFromIID(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (26)
+// Section: Imports (25)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ARRAYDESC = @import("../system/ole.zig").ARRAYDESC;
 const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
-const CHAR = @import("../foundation.zig").CHAR;
 const DECIMAL = @import("../foundation.zig").DECIMAL;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;

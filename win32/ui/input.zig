@@ -136,7 +136,7 @@ pub const RAWINPUTHEADER = extern struct {
     dwType: u32,
     dwSize: u32,
     hDevice: ?HANDLE,
-    wParam: WPARAM,
+    wParam: usize,
 };
 
 pub const RAWKEYBOARD = extern struct {
@@ -215,7 +215,7 @@ pub extern "user32" fn DefRawInputProc(
     paRawInput: [*]?*RAWINPUT,
     nInput: i32,
     cbSizeHeader: u32,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "user32" fn GetCIMSSM(
@@ -296,13 +296,11 @@ pub const GetRawInputDeviceInfo = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HWND = @import("../foundation.zig").HWND;
-const LRESULT = @import("../foundation.zig").LRESULT;
-const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     @setEvalBranchQuota(

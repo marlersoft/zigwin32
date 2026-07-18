@@ -2986,19 +2986,19 @@ pub const DEBUG_PROCESSOR_IDENTIFICATION_AMD64 = extern struct {
     Family: u32,
     Model: u32,
     Stepping: u32,
-    VendorString: [16]CHAR,
+    VendorString: [16]u8,
 };
 
 pub const DEBUG_PROCESSOR_IDENTIFICATION_ARM = extern struct {
     Model: u32,
     Revision: u32,
-    VendorString: [16]CHAR,
+    VendorString: [16]u8,
 };
 
 pub const DEBUG_PROCESSOR_IDENTIFICATION_ARM64 = extern struct {
     Model: u32,
     Revision: u32,
-    VendorString: [16]CHAR,
+    VendorString: [16]u8,
 };
 
 pub const DEBUG_PROCESSOR_IDENTIFICATION_IA64 = extern struct {
@@ -3006,14 +3006,14 @@ pub const DEBUG_PROCESSOR_IDENTIFICATION_IA64 = extern struct {
     Revision: u32,
     Family: u32,
     ArchRev: u32,
-    VendorString: [16]CHAR,
+    VendorString: [16]u8,
 };
 
 pub const DEBUG_PROCESSOR_IDENTIFICATION_X86 = extern struct {
     Family: u32,
     Model: u32,
     Stepping: u32,
-    VendorString: [16]CHAR,
+    VendorString: [16]u8,
 };
 
 pub const DEBUG_READ_USER_MINIDUMP_STREAM = extern struct {
@@ -3274,7 +3274,7 @@ pub const DUMP_HEADER32 = extern struct {
     BugCheckParameter2: u32,
     BugCheckParameter3: u32,
     BugCheckParameter4: u32,
-    VersionUser: [32]CHAR,
+    VersionUser: [32]u8,
     PaeEnabled: u8,
     KdSecondaryVersion: u8,
     Spare3: [2]u8,
@@ -3285,7 +3285,7 @@ pub const DUMP_HEADER32 = extern struct {
     },
     ContextRecord: [1200]u8,
     Exception: EXCEPTION_RECORD32,
-    Comment: [128]CHAR,
+    Comment: [128]u8,
     Attributes: DUMP_FILE_ATTRIBUTES,
     BootId: u32,
     _reserved0: [1760]u8,
@@ -3318,7 +3318,7 @@ pub const DUMP_HEADER64 = extern struct {
     BugCheckParameter2: u64,
     BugCheckParameter3: u64,
     BugCheckParameter4: u64,
-    VersionUser: [32]CHAR,
+    VersionUser: [32]u8,
     KdDebuggerDataBlock: u64,
     Anonymous: extern union {
         PhysicalMemoryBlock: PHYSICAL_MEMORY_DESCRIPTOR64,
@@ -3329,7 +3329,7 @@ pub const DUMP_HEADER64 = extern struct {
     DumpType: u32,
     RequiredDumpSpace: LARGE_INTEGER,
     SystemTime: LARGE_INTEGER,
-    Comment: [128]CHAR,
+    Comment: [128]u8,
     SystemUpTime: LARGE_INTEGER,
     MiniDumpFields: u32,
     SecondaryDataState: u32,
@@ -34310,7 +34310,7 @@ pub const IMAGEHLP_DEFERRED_SYMBOL_LOAD64 = extern struct {
     BaseOfImage: u64,
     CheckSum: u32,
     TimeDateStamp: u32,
-    FileName: [260]CHAR,
+    FileName: [260]u8,
     Reparse: BOOLEAN,
     hFile: ?HANDLE,
     Flags: u32,
@@ -34420,12 +34420,12 @@ pub const IMAGEHLP_MODULE64 = extern struct {
     CheckSum: u32,
     NumSyms: u32,
     SymType: SYM_TYPE,
-    ModuleName: [32]CHAR,
-    ImageName: [256]CHAR,
-    LoadedImageName: [256]CHAR,
-    LoadedPdbName: [256]CHAR,
+    ModuleName: [32]u8,
+    ImageName: [256]u8,
+    LoadedImageName: [256]u8,
+    LoadedPdbName: [256]u8,
     CVSig: u32,
-    CVData: [780]CHAR,
+    CVData: [780]u8,
     PdbSig: u32,
     PdbSig70: Guid,
     PdbAge: u32,
@@ -34555,19 +34555,19 @@ pub const IMAGEHLP_SYMBOL64 = extern struct {
     Size: u32,
     Flags: u32,
     MaxNameLength: u32,
-    Name: [1]CHAR,
+    Name: [1]u8,
 };
 
 pub const IMAGEHLP_SYMBOL64_PACKAGE = extern struct {
     sym: IMAGEHLP_SYMBOL64,
-    name: [2001]CHAR,
+    name: [2001]u8,
 };
 
 
 pub const IMAGEHLP_SYMBOL_SRC = extern struct {
     sizeofstruct: u32,
     type: u32,
-    file: [260]CHAR,
+    file: [260]u8,
 };
 
 pub const IMAGEHLP_SYMBOL_TYPE_INFO = enum(i32) {
@@ -39130,8 +39130,8 @@ pub const SRCCODEINFO = extern struct {
     SizeOfStruct: u32,
     Key: ?*anyopaque,
     ModBase: u64,
-    Obj: [261]CHAR,
-    FileName: [261]CHAR,
+    Obj: [261]u8,
+    FileName: [261]u8,
     LineNumber: u32,
     Address: u64,
 };
@@ -39326,7 +39326,7 @@ pub const SYMBOL_INFO = extern struct {
     Tag: u32,
     NameLen: u32,
     MaxNameLen: u32,
-    Name: [1]CHAR,
+    Name: [1]u8,
 };
 
 pub const SYMBOL_INFO_EX = extern struct {
@@ -39392,7 +39392,7 @@ pub const SYMFLAG_VIRTUAL = SYMBOL_INFO_FLAGS{ .VIRTUAL = 1 };
 
 pub const SYMBOL_INFO_PACKAGE = extern struct {
     si: SYMBOL_INFO,
-    name: [2001]CHAR,
+    name: [2001]u8,
 };
 
 pub const SYMBOL_INFO_PACKAGEW = extern struct {
@@ -39456,12 +39456,12 @@ pub const SYMSRV_EXTENDED_OUTPUT_DATA = extern struct {
 
 pub const SYMSRV_INDEX_INFO = extern struct {
     sizeofstruct: u32,
-    file: [261]CHAR,
+    file: [261]u8,
     stripped: BOOL,
     timestamp: u32,
     size: u32,
-    dbgfile: [261]CHAR,
-    pdbfile: [261]CHAR,
+    dbgfile: [261]u8,
+    pdbfile: [261]u8,
     guid: Guid,
     sig: u32,
     age: u32,
@@ -40563,7 +40563,7 @@ pub const IMAGEHLP_DEFERRED_SYMBOL_LOAD = switch(@import("../../zig.zig").arch) 
         BaseOfImage: u32,
         CheckSum: u32,
         TimeDateStamp: u32,
-        FileName: [260]CHAR,
+        FileName: [260]u8,
         Reparse: BOOLEAN,
         hFile: ?HANDLE,
     },
@@ -40607,9 +40607,9 @@ pub const IMAGEHLP_MODULE = switch(@import("../../zig.zig").arch) {
         CheckSum: u32,
         NumSyms: u32,
         SymType: SYM_TYPE,
-        ModuleName: [32]CHAR,
-        ImageName: [256]CHAR,
-        LoadedImageName: [256]CHAR,
+        ModuleName: [32]u8,
+        ImageName: [256]u8,
+        LoadedImageName: [256]u8,
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
@@ -40635,14 +40635,14 @@ pub const IMAGEHLP_SYMBOL = switch(@import("../../zig.zig").arch) {
         Size: u32,
         Flags: u32,
         MaxNameLength: u32,
-        Name: [1]CHAR,
+        Name: [1]u8,
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
 pub const IMAGEHLP_SYMBOL_PACKAGE = switch(@import("../../zig.zig").arch) {
     .X86 => extern struct {
         sym: IMAGEHLP_SYMBOL,
-        name: [2001]CHAR,
+        name: [2001]u8,
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
@@ -43636,7 +43636,7 @@ pub const OutputDebugString = switch (@import("../../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (40)
+// Section: Imports (39)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -43644,7 +43644,6 @@ const BOOLEAN = @import("../../foundation.zig").BOOLEAN;
 const BSTR = @import("../../foundation.zig").BSTR;
 const CADWORD = @import("../../system/ole.zig").CADWORD;
 const CALPOLESTR = @import("../../system/ole.zig").CALPOLESTR;
-const CHAR = @import("../../foundation.zig").CHAR;
 const DISPPARAMS = @import("../../system/com.zig").DISPPARAMS;
 const EXCEPINFO = @import("../../system/com.zig").EXCEPINFO;
 const FARPROC = @import("../../foundation.zig").FARPROC;

@@ -541,9 +541,9 @@ pub const DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_W = DSPROPERTY_DIRECTSOUNDDEVIC
 
 pub const DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_1_DATA = extern struct {
     DeviceId: Guid,
-    DescriptionA: [256]CHAR,
+    DescriptionA: [256]u8,
     DescriptionW: [256]u16,
-    ModuleA: [260]CHAR,
+    ModuleA: [260]u8,
     ModuleW: [260]u16,
     Type: DIRECTSOUNDDEVICE_TYPE,
     DataFlow: DIRECTSOUNDDEVICE_DATAFLOW,
@@ -1486,11 +1486,10 @@ pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK = switch (@import("../../zig.zi
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (14)
+// Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
-const CHAR = @import("../../foundation.zig").CHAR;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const HMIDI = @import("../../media/audio.zig").HMIDI;
 const HRESULT = @import("../../foundation.zig").HRESULT;

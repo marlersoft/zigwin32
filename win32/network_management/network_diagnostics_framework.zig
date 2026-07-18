@@ -71,7 +71,7 @@ pub const AT_OCTET_STRING = ATTRIBUTE_TYPE.OCTET_STRING;
 
 pub const DIAG_SOCKADDR = extern struct {
     family: u16,
-    data: [126]CHAR,
+    data: [126]u8,
 };
 
 pub const DIAGNOSIS_STATUS = enum(i32) {
@@ -619,11 +619,10 @@ pub extern "ndfapi" fn NdfRepairIncident(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
-const CHAR = @import("../foundation.zig").CHAR;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;

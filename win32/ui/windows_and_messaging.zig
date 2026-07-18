@@ -1571,16 +1571,16 @@ pub const CWP_SKIPDISABLED = CWP_FLAGS{ .SKIPDISABLED = 1 };
 pub const CWP_SKIPTRANSPARENT = CWP_FLAGS{ .SKIPTRANSPARENT = 1 };
 
 pub const CWPRETSTRUCT = extern struct {
-    lResult: LRESULT,
-    lParam: LPARAM,
-    wParam: WPARAM,
+    lResult: isize,
+    lParam: isize,
+    wParam: usize,
     message: u32,
     hwnd: ?HWND,
 };
 
 pub const CWPSTRUCT = extern struct {
-    lParam: LPARAM,
-    wParam: WPARAM,
+    lParam: isize,
+    wParam: usize,
     message: u32,
     hwnd: ?HWND,
 };
@@ -1588,8 +1588,8 @@ pub const CWPSTRUCT = extern struct {
 pub const DEBUGHOOKINFO = extern struct {
     idThread: u32,
     idThreadInstaller: u32,
-    lParam: LPARAM,
-    wParam: WPARAM,
+    lParam: isize,
+    wParam: usize,
     code: i32,
 };
 
@@ -1650,8 +1650,8 @@ pub const DLGITEMTEMPLATE = extern struct {
 pub const DLGPROC = *const fn(
     param0: HWND,
     param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
+    param2: usize,
+    param3: isize,
 ) callconv(.winapi) isize;
 
 pub const DLGTEMPLATE = extern struct {
@@ -1927,8 +1927,8 @@ pub const HANDEDNESS_RIGHT = HANDEDNESS.RIGHT;
 pub const HARDWAREHOOKSTRUCT = extern struct {
     hwnd: ?HWND,
     message: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
 };
 
 // TODO: this type has a FreeFunc 'DestroyCursor', what can Zig do with this information?
@@ -1955,9 +1955,9 @@ pub const HMENU = *opaque{};
 
 pub const HOOKPROC = *const fn(
     code: i32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) LRESULT;
+    wParam: usize,
+    lParam: isize,
+) callconv(.winapi) isize;
 
 pub const ICONINFO = extern struct {
     fIcon: BOOL,
@@ -1975,8 +1975,8 @@ pub const ICONINFOEXA = extern struct {
     hbmMask: ?HBITMAP,
     hbmColor: ?HBITMAP,
     wResID: u16,
-    szModName: [260]CHAR,
-    szResName: [260]CHAR,
+    szModName: [260]u8,
+    szResName: [260]u8,
 };
 
 pub const ICONINFOEXW = extern struct {
@@ -2153,7 +2153,7 @@ pub const MDICREATESTRUCTA = extern struct {
     cx: i32,
     cy: i32,
     style: WINDOW_STYLE,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const MDICREATESTRUCTW = extern struct {
@@ -2165,7 +2165,7 @@ pub const MDICREATESTRUCTW = extern struct {
     cx: i32,
     cy: i32,
     style: WINDOW_STYLE,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const MDINEXTMENU = extern struct {
@@ -2805,8 +2805,8 @@ pub const MrmResourceIndexerMessageSeverityError = MrmResourceIndexerMessageSeve
 pub const MSG = extern struct {
     hwnd: ?HWND,
     message: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
     time: u32,
     pt: POINT,
 };
@@ -2901,12 +2901,12 @@ pub const MSLLHOOKSTRUCT = extern struct {
 
 pub const NAMEENUMPROCA = *const fn(
     param0: ?[*:0]u8,
-    param1: LPARAM,
+    param1: isize,
 ) callconv(.winapi) BOOL;
 
 pub const NAMEENUMPROCW = *const fn(
     param0: ?[*:0]u16,
-    param1: LPARAM,
+    param1: isize,
 ) callconv(.winapi) BOOL;
 
 pub const NCCALCSIZE_PARAMS = extern struct {
@@ -3377,7 +3377,7 @@ pub const SENDASYNCPROC = *const fn(
     param0: HWND,
     param1: u32,
     param2: usize,
-    param3: LRESULT,
+    param3: isize,
 ) callconv(.winapi) void;
 
 pub const SET_WINDOW_POS_FLAGS = packed struct(u32) {
@@ -5668,15 +5668,15 @@ pub const WNDCLASSW = extern struct {
 
 pub const WNDENUMPROC = *const fn(
     param0: HWND,
-    param1: LPARAM,
+    param1: isize,
 ) callconv(.winapi) BOOL;
 
 pub const WNDPROC = *const fn(
     param0: HWND,
     param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
-) callconv(.winapi) LRESULT;
+    param2: usize,
+    param3: isize,
+) callconv(.winapi) isize;
 
 
 //--------------------------------------------------------------------------------
@@ -5769,27 +5769,27 @@ pub extern "user32" fn CallMsgFilterW(
 pub extern "user32" fn CallNextHookEx(
     hhk: ?HHOOK,
     nCode: i32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) LRESULT;
+    wParam: usize,
+    lParam: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CallWindowProcA(
     lpPrevWndFunc: ?WNDPROC,
     hWnd: ?HWND,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) LRESULT;
+    wParam: usize,
+    lParam: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CallWindowProcW(
     lpPrevWndFunc: ?WNDPROC,
     hWnd: ?HWND,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) LRESULT;
+    wParam: usize,
+    lParam: isize,
+) callconv(.winapi) isize;
 
 pub extern "user32" fn CancelShutdown(
 ) callconv(.winapi) BOOL;
@@ -6044,7 +6044,7 @@ pub extern "user32" fn CreateDialogIndirectParamA(
     lpTemplate: ?*DLGTEMPLATE,
     hWndParent: ?HWND,
     lpDialogFunc: ?DLGPROC,
-    dwInitParam: LPARAM,
+    dwInitParam: isize,
 ) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6053,7 +6053,7 @@ pub extern "user32" fn CreateDialogIndirectParamW(
     lpTemplate: ?*DLGTEMPLATE,
     hWndParent: ?HWND,
     lpDialogFunc: ?DLGPROC,
-    dwInitParam: LPARAM,
+    dwInitParam: isize,
 ) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6062,7 +6062,7 @@ pub extern "user32" fn CreateDialogParamA(
     lpTemplateName: ?[*:0]const u8,
     hWndParent: ?HWND,
     lpDialogFunc: ?DLGPROC,
-    dwInitParam: LPARAM,
+    dwInitParam: isize,
 ) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6071,7 +6071,7 @@ pub extern "user32" fn CreateDialogParamW(
     lpTemplateName: ?[*:0]const u16,
     hWndParent: ?HWND,
     lpDialogFunc: ?DLGPROC,
-    dwInitParam: LPARAM,
+    dwInitParam: isize,
 ) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6122,7 +6122,7 @@ pub extern "user32" fn CreateMDIWindowA(
     nHeight: i32,
     hWndParent: ?HWND,
     hInstance: ?HINSTANCE,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6136,7 +6136,7 @@ pub extern "user32" fn CreateMDIWindowW(
     nHeight: i32,
     hWndParent: ?HWND,
     hInstance: ?HINSTANCE,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6189,17 +6189,17 @@ pub extern "user32" fn CreateWindowExW(
 pub extern "user32" fn DefDlgProcA(
     hDlg: ?HWND,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) LRESULT;
+    wParam: usize,
+    lParam: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DefDlgProcW(
     hDlg: ?HWND,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) LRESULT;
+    wParam: usize,
+    lParam: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DeferWindowPos(
@@ -6218,50 +6218,50 @@ pub extern "user32" fn DefFrameProcA(
     hWnd: ?HWND,
     hWndMDIClient: ?HWND,
     uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) LRESULT;
+    wParam: usize,
+    lParam: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DefFrameProcW(
     hWnd: ?HWND,
     hWndMDIClient: ?HWND,
     uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) LRESULT;
+    wParam: usize,
+    lParam: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DefMDIChildProcA(
     hWnd: ?HWND,
     uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) LRESULT;
+    wParam: usize,
+    lParam: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DefMDIChildProcW(
     hWnd: ?HWND,
     uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) LRESULT;
+    wParam: usize,
+    lParam: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DefWindowProcA(
     hWnd: ?HWND,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) LRESULT;
+    wParam: usize,
+    lParam: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DefWindowProcW(
     hWnd: ?HWND,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) LRESULT;
+    wParam: usize,
+    lParam: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DeleteMenu(
@@ -6322,7 +6322,7 @@ pub extern "user32" fn DialogBoxIndirectParamA(
     hDialogTemplate: ?*DLGTEMPLATE,
     hWndParent: ?HWND,
     lpDialogFunc: ?DLGPROC,
-    dwInitParam: LPARAM,
+    dwInitParam: isize,
 ) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6331,7 +6331,7 @@ pub extern "user32" fn DialogBoxIndirectParamW(
     hDialogTemplate: ?*DLGTEMPLATE,
     hWndParent: ?HWND,
     lpDialogFunc: ?DLGPROC,
-    dwInitParam: LPARAM,
+    dwInitParam: isize,
 ) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6340,7 +6340,7 @@ pub extern "user32" fn DialogBoxParamA(
     lpTemplateName: ?[*:0]const u8,
     hWndParent: ?HWND,
     lpDialogFunc: ?DLGPROC,
-    dwInitParam: LPARAM,
+    dwInitParam: isize,
 ) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6349,7 +6349,7 @@ pub extern "user32" fn DialogBoxParamW(
     lpTemplateName: ?[*:0]const u16,
     hWndParent: ?HWND,
     lpDialogFunc: ?DLGPROC,
-    dwInitParam: LPARAM,
+    dwInitParam: isize,
 ) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6359,12 +6359,12 @@ pub extern "user32" fn DisableProcessWindowsGhosting(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DispatchMessageA(
     lpMsg: ?*const MSG,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DispatchMessageW(
     lpMsg: ?*const MSG,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 pub extern "user32" fn DragObject(
     hwndParent: ?HWND,
@@ -6426,7 +6426,7 @@ pub extern "user32" fn EndMenu(
 pub extern "user32" fn EnumChildWindows(
     hWndParent: ?HWND,
     lpEnumFunc: ?WNDENUMPROC,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6439,14 +6439,14 @@ pub extern "user32" fn EnumPropsA(
 pub extern "user32" fn EnumPropsExA(
     hWnd: ?HWND,
     lpEnumFunc: ?PROPENUMPROCEXA,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EnumPropsExW(
     hWnd: ?HWND,
     lpEnumFunc: ?PROPENUMPROCEXW,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6459,13 +6459,13 @@ pub extern "user32" fn EnumPropsW(
 pub extern "user32" fn EnumThreadWindows(
     dwThreadId: u32,
     lpfn: ?WNDENUMPROC,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EnumWindows(
     lpEnumFunc: ?WNDENUMPROC,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6839,7 +6839,7 @@ pub extern "user32" fn GetMessageA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMessageExtraInfo(
-) callconv(.winapi) LPARAM;
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMessagePos(
@@ -7159,12 +7159,12 @@ pub extern "user32" fn InternalGetWindowText(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsCharAlphaA(
-    ch: CHAR,
+    ch: u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsCharAlphaNumericA(
-    ch: CHAR,
+    ch: u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7179,12 +7179,12 @@ pub extern "user32" fn IsCharAlphaW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsCharLowerA(
-    ch: CHAR,
+    ch: u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsCharUpperA(
-    ch: CHAR,
+    ch: u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7724,16 +7724,16 @@ pub extern "user32" fn PhysicalToLogicalPoint(
 pub extern "user32" fn PostMessageA(
     hWnd: ?HWND,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn PostMessageW(
     hWnd: ?HWND,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7745,16 +7745,16 @@ pub extern "user32" fn PostQuitMessage(
 pub extern "user32" fn PostThreadMessageA(
     idThread: u32,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn PostThreadMessageW(
     idThread: u32,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7870,7 +7870,7 @@ pub extern "user32" fn RemovePropW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn ReplyMessage(
-    lResult: LRESULT,
+    lResult: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7910,33 +7910,33 @@ pub extern "user32" fn SendDlgItemMessageA(
     hDlg: ?HWND,
     nIDDlgItem: i32,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) LRESULT;
+    wParam: usize,
+    lParam: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendDlgItemMessageW(
     hDlg: ?HWND,
     nIDDlgItem: i32,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) LRESULT;
+    wParam: usize,
+    lParam: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendMessageA(
     hWnd: ?HWND,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) LRESULT;
+    wParam: usize,
+    lParam: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendMessageCallbackA(
     hWnd: ?HWND,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
     lpResultCallBack: ?SENDASYNCPROC,
     dwData: usize,
 ) callconv(.winapi) BOOL;
@@ -7945,8 +7945,8 @@ pub extern "user32" fn SendMessageCallbackA(
 pub extern "user32" fn SendMessageCallbackW(
     hWnd: ?HWND,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
     lpResultCallBack: ?SENDASYNCPROC,
     dwData: usize,
 ) callconv(.winapi) BOOL;
@@ -7955,46 +7955,46 @@ pub extern "user32" fn SendMessageCallbackW(
 pub extern "user32" fn SendMessageTimeoutA(
     hWnd: ?HWND,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
     fuFlags: SEND_MESSAGE_TIMEOUT_FLAGS,
     uTimeout: u32,
     lpdwResult: ?*usize,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendMessageTimeoutW(
     hWnd: ?HWND,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
     fuFlags: SEND_MESSAGE_TIMEOUT_FLAGS,
     uTimeout: u32,
     lpdwResult: ?*usize,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendMessageW(
     hWnd: ?HWND,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(.winapi) LRESULT;
+    wParam: usize,
+    lParam: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendNotifyMessageA(
     hWnd: ?HWND,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendNotifyMessageW(
     hWnd: ?HWND,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -8162,8 +8162,8 @@ pub extern "user32" fn SetMenuItemInfoW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetMessageExtraInfo(
-    lParam: LPARAM,
-) callconv(.winapi) LPARAM;
+    lParam: isize,
+) callconv(.winapi) isize;
 
 pub extern "user32" fn SetMessageQueue(
     cMessagesMax: i32,
@@ -9284,12 +9284,11 @@ pub const wvsprintf = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (23)
+// Section: Imports (19)
 //--------------------------------------------------------------------------------
 const BLENDFUNCTION = @import("../graphics/gdi.zig").BLENDFUNCTION;
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const CHAR = @import("../foundation.zig").CHAR;
 const COLORREF = @import("../foundation.zig").COLORREF;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
@@ -9302,13 +9301,10 @@ const HRGN = @import("../graphics/gdi.zig").HRGN;
 const HWND = @import("../foundation.zig").HWND;
 const LOGFONTA = @import("../graphics/gdi.zig").LOGFONTA;
 const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
-const LPARAM = @import("../foundation.zig").LPARAM;
-const LRESULT = @import("../foundation.zig").LRESULT;
 const POINT = @import("../foundation.zig").POINT;
 const POWER_SETTING_REGISTER_NOTIFICATION_FLAGS = @import("../system/power.zig").POWER_SETTING_REGISTER_NOTIFICATION_FLAGS;
 const RECT = @import("../foundation.zig").RECT;
 const SIZE = @import("../foundation.zig").SIZE;
-const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

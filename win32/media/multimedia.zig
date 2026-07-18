@@ -4709,7 +4709,7 @@ pub const AVIFILEINFOA = extern struct {
     dwRate: u32,
     dwLength: u32,
     dwEditCount: u32,
-    szFileType: [64]CHAR,
+    szFileType: [64]u8,
 };
 
 pub const AVIFILEINFOW = extern struct {
@@ -4749,7 +4749,7 @@ pub const AVISTREAMINFOA = extern struct {
     rcFrame: RECT,
     dwEditCount: u32,
     dwFormatChangeCount: u32,
-    szName: [64]CHAR,
+    szName: [64]u8,
 };
 
 pub const AVISTREAMINFOW = extern struct {
@@ -4776,7 +4776,7 @@ pub const AVISTREAMINFOW = extern struct {
 pub const CAPCONTROLCALLBACK = *const fn(
     hWnd: ?HWND,
     nState: i32,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 pub const CAPDRIVERCAPS = extern struct {
     wDeviceIndex: u32,
@@ -4796,13 +4796,13 @@ pub const CAPERRORCALLBACKA = *const fn(
     hWnd: ?HWND,
     nID: i32,
     lpsz: ?[*:0]const u8,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 pub const CAPERRORCALLBACKW = *const fn(
     hWnd: ?HWND,
     nID: i32,
     lpsz: ?[*:0]const u16,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 pub const CAPINFOCHUNK = extern struct {
     fccInfoID: u32,
@@ -4835,13 +4835,13 @@ pub const CAPSTATUSCALLBACKA = *const fn(
     hWnd: ?HWND,
     nID: i32,
     lpsz: ?[*:0]const u8,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 pub const CAPSTATUSCALLBACKW = *const fn(
     hWnd: ?HWND,
     nID: i32,
     lpsz: ?[*:0]const u16,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 pub const CAPTUREPARMS = extern struct {
     dwRequestMicroSecPerFrame: u32,
@@ -4873,16 +4873,16 @@ pub const CAPTUREPARMS = extern struct {
 pub const CAPVIDEOCALLBACK = *const fn(
     hWnd: ?HWND,
     lpVHdr: ?*VIDEOHDR,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 pub const CAPWAVECALLBACK = *const fn(
     hWnd: ?HWND,
     lpWHdr: ?*WAVEHDR,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 pub const CAPYIELDCALLBACK = *const fn(
     hWnd: ?HWND,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 pub const CHANNEL_CAPS = extern struct {
     dwFlags: u32,
@@ -4993,9 +4993,9 @@ pub const DRIVERPROC = *const fn(
     param0: usize,
     param1: ?HDRVR,
     param2: u32,
-    param3: LPARAM,
-    param4: LPARAM,
-) callconv(.winapi) LRESULT;
+    param3: isize,
+    param4: isize,
+) callconv(.winapi) isize;
 
 pub const DRMWAVEFORMAT = extern struct {
     wfx: WAVEFORMATEX align(1),
@@ -5222,8 +5222,8 @@ pub const IAVIStream = extern union {
         base: IUnknown.VTable,
         Create: *const fn(
             self: *const IAVIStream,
-            lParam1: LPARAM,
-            lParam2: LPARAM,
+            lParam1: isize,
+            lParam2: isize,
         ) callconv(.winapi) HRESULT,
         Info: *const fn(
             self: *const IAVIStream,
@@ -5299,7 +5299,7 @@ pub const IAVIStream = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Create(self: *const IAVIStream, lParam1: LPARAM, lParam2: LPARAM) callconv(.@"inline") HRESULT {
+    pub fn Create(self: *const IAVIStream, lParam1: isize, lParam2: isize) callconv(.@"inline") HRESULT {
         return self.vtable.Create(self, lParam1, lParam2);
     }
     pub fn Info(self: *const IAVIStream, psi: ?*AVISTREAMINFOW, lSize: i32) callconv(.@"inline") HRESULT {
@@ -5378,9 +5378,9 @@ pub const ICCOMPRESS = extern struct {
 pub const ICCOMPRESSFRAMES = extern struct {
     dwFlags: u32,
     lpbiOutput: ?*BITMAPINFOHEADER,
-    lOutput: LPARAM,
+    lOutput: isize,
     lpbiInput: ?*BITMAPINFOHEADER,
-    lInput: LPARAM,
+    lInput: isize,
     lStartFrame: i32,
     lFrameCount: i32,
     lQuality: i32,
@@ -5473,7 +5473,7 @@ pub const ICOPEN = extern struct {
     fccHandler: u32,
     dwVersion: u32,
     dwFlags: u32,
-    dwError: LRESULT,
+    dwError: isize,
     pV1Reserved: ?*anyopaque,
     pV2Reserved: ?*anyopaque,
     dnDevNode: u32,
@@ -5488,7 +5488,7 @@ pub const ICPALETTE = extern struct {
 
 pub const ICSETSTATUSPROC = extern struct {
     dwFlags: u32,
-    lParam: LPARAM,
+    lParam: isize,
     Status: isize,
 };
 
@@ -5545,7 +5545,7 @@ pub const IMAADPCMWAVEFORMAT = extern struct {
 pub const JOYCAPS2A = extern struct {
     wMid: u16 align(1),
     wPid: u16 align(1),
-    szPname: [32]CHAR align(1),
+    szPname: [32]u8 align(1),
     wXmin: u32 align(1),
     wXmax: u32 align(1),
     wYmin: u32 align(1),
@@ -5565,8 +5565,8 @@ pub const JOYCAPS2A = extern struct {
     wMaxAxes: u32 align(1),
     wNumAxes: u32 align(1),
     wMaxButtons: u32 align(1),
-    szRegKey: [32]CHAR align(1),
-    szOEMVxD: [260]CHAR align(1),
+    szRegKey: [32]u8 align(1),
+    szOEMVxD: [260]u8 align(1),
     ManufacturerGuid: Guid align(1),
     ProductGuid: Guid align(1),
     NameGuid: Guid align(1),
@@ -5605,7 +5605,7 @@ pub const JOYCAPS2W = extern struct {
 pub const JOYCAPSA = extern struct {
     wMid: u16 align(1),
     wPid: u16 align(1),
-    szPname: [32]CHAR align(1),
+    szPname: [32]u8 align(1),
     wXmin: u32 align(1),
     wXmax: u32 align(1),
     wYmin: u32 align(1),
@@ -5625,8 +5625,8 @@ pub const JOYCAPSA = extern struct {
     wMaxAxes: u32 align(1),
     wNumAxes: u32 align(1),
     wMaxButtons: u32 align(1),
-    szRegKey: [32]CHAR align(1),
-    szOEMVxD: [260]CHAR align(1),
+    szRegKey: [32]u8 align(1),
+    szOEMVxD: [260]u8 align(1),
 };
 
 pub const JOYCAPSW = extern struct {
@@ -5692,7 +5692,7 @@ const CLSID_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT_Value = Guid.initString("00000003-00
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT = &CLSID_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT_Value;
 
 pub const LPFNEXTDEVIO = *const fn(
-    lParam: LPARAM,
+    lParam: isize,
     dwFlags: u32,
     dwIoControlCode: u32,
     lpInBuffer: ?*anyopaque,
@@ -5706,9 +5706,9 @@ pub const LPFNEXTDEVIO = *const fn(
 pub const LPMMIOPROC = *const fn(
     lpmmioinfo: ?[*:0]u8,
     uMsg: u32,
-    lParam1: LPARAM,
-    lParam2: LPARAM,
-) callconv(.winapi) LRESULT;
+    lParam1: isize,
+    lParam2: isize,
+) callconv(.winapi) isize;
 
 pub const LPTASKCALLBACK = *const fn(
     dwInst: usize,
@@ -6376,8 +6376,8 @@ pub const OLISBCWAVEFORMAT = extern struct {
 
 pub const s_RIFFWAVE_inst = extern struct {
     bUnshiftedNote: u8,
-    chFineTune: CHAR,
-    chGain: CHAR,
+    chFineTune: u8,
+    chGain: u8,
     bLowNote: u8,
     bHighNote: u8,
     bLowVelocity: u8,
@@ -6413,7 +6413,7 @@ pub const TRUESPEECHWAVEFORMAT = extern struct {
 pub const VFWWDMExtensionProc = *const fn(
     pfnDeviceIoControl: ?*anyopaque,
     pfnAddPropertyPage: ?LPFNSVADDPROPSHEETPAGE,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) u32;
 
 pub const VIDEOHDR = extern struct {
@@ -6884,9 +6884,9 @@ pub extern "avicap32" fn capGetDriverDescriptionW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn CloseDriver(
     hDriver: ?HDRVR,
-    lParam1: LPARAM,
-    lParam2: LPARAM,
-) callconv(.winapi) LRESULT;
+    lParam1: isize,
+    lParam2: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "avifil32" fn CreateEditableStream(
@@ -6899,9 +6899,9 @@ pub extern "winmm" fn DefDriverProc(
     dwDriverIdentifier: usize,
     hdrvr: ?HDRVR,
     uMsg: u32,
-    lParam1: LPARAM,
-    lParam2: LPARAM,
-) callconv(.winapi) LRESULT;
+    lParam1: isize,
+    lParam2: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msvfw32" fn DrawDibBegin(
@@ -6970,7 +6970,7 @@ pub extern "msvfw32" fn DrawDibOpen(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msvfw32" fn DrawDibProfileDisplay(
     lpbi: ?*BITMAPINFOHEADER,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msvfw32" fn DrawDibRealize(
@@ -7106,7 +7106,7 @@ pub extern "msvfw32" fn GetSaveFileNamePreviewW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msvfw32" fn ICClose(
     hic: ?HIC,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msvfw32" fn ICCompress(
@@ -7197,7 +7197,7 @@ pub extern "msvfw32" fn ICGetInfo(
     /// parameter "cb" is the size in bytes
     picinfo: ?*ICINFO,
     cb: u32,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msvfw32" fn ICImageCompress(
@@ -7230,7 +7230,7 @@ pub extern "msvfw32" fn ICInfo(
 pub extern "msvfw32" fn ICInstall(
     fccType: u32,
     fccHandler: u32,
-    lParam: LPARAM,
+    lParam: isize,
     szDesc: ?[*:0]u8,
     wFlags: u32,
 ) callconv(.winapi) BOOL;
@@ -7272,7 +7272,7 @@ pub extern "msvfw32" fn ICSendMessage(
     msg: u32,
     dw1: usize,
     dw2: usize,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msvfw32" fn ICSeqCompressFrame(
@@ -7593,9 +7593,9 @@ pub extern "winmm" fn mmioSeek(
 pub extern "winmm" fn mmioSendMessage(
     hmmio: ?HMMIO,
     uMsg: u32,
-    lParam1: LPARAM,
-    lParam2: LPARAM,
-) callconv(.winapi) LRESULT;
+    lParam1: isize,
+    lParam2: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mmioSetBuffer(
@@ -7653,16 +7653,16 @@ pub extern "winmm" fn mmTaskYield(
 pub extern "winmm" fn OpenDriver(
     szDriverName: ?[*:0]const u16,
     szSectionName: ?[*:0]const u16,
-    lParam2: LPARAM,
+    lParam2: isize,
 ) callconv(.winapi) ?HDRVR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn SendDriverMessage(
     hDriver: ?HDRVR,
     message: u32,
-    lParam1: LPARAM,
-    lParam2: LPARAM,
-) callconv(.winapi) LRESULT;
+    lParam1: isize,
+    lParam2: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "api-ms-win-mm-misc-l1-1-1" fn sndOpenSound(
@@ -8072,13 +8072,12 @@ pub const mmioStringToFOURCC = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (31)
+// Section: Imports (28)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BITMAPINFO = @import("../graphics/gdi.zig").BITMAPINFO;
 const BITMAPINFOHEADER = @import("../graphics/gdi.zig").BITMAPINFOHEADER;
 const BOOL = @import("../foundation.zig").BOOL;
-const CHAR = @import("../foundation.zig").CHAR;
 const FARPROC = @import("../foundation.zig").FARPROC;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HDC = @import("../graphics/gdi.zig").HDC;
@@ -8092,10 +8091,8 @@ const HWND = @import("../foundation.zig").HWND;
 const IPersist = @import("../system/com.zig").IPersist;
 const IPersistFile = @import("../system/com.zig").IPersistFile;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const LPARAM = @import("../foundation.zig").LPARAM;
 const LPFNSVADDPROPSHEETPAGE = @import("../ui/controls.zig").LPFNSVADDPROPSHEETPAGE;
 const LPTIMECALLBACK = @import("../media.zig").LPTIMECALLBACK;
-const LRESULT = @import("../foundation.zig").LRESULT;
 const OPENFILENAMEA = @import("../ui/controls/dialogs.zig").OPENFILENAMEA;
 const OPENFILENAMEW = @import("../ui/controls/dialogs.zig").OPENFILENAMEW;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;

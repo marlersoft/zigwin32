@@ -3083,8 +3083,8 @@ pub const TYPE1_FONT = extern struct {
 };
 
 pub const VGA_CHAR = extern struct {
-    Char: CHAR,
-    Attributes: CHAR,
+    Char: u8,
+    Attributes: u8,
 };
 
 pub const VIDEO_BANK_SELECT = extern struct {
@@ -4596,13 +4596,12 @@ pub extern "gdi32" fn XLATEOBJ_piVector(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (44)
+// Section: Imports (43)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLENDFUNCTION = @import("../graphics/gdi.zig").BLENDFUNCTION;
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const CHAR = @import("../foundation.zig").CHAR;
 const CHAR_INFO = @import("../system/console.zig").CHAR_INFO;
 const COLORADJUSTMENT = @import("../graphics/gdi.zig").COLORADJUSTMENT;
 const COORD = @import("../system/console.zig").COORD;

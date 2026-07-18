@@ -760,7 +760,7 @@ pub const IActiveIME = extern union {
             hIMC: ?HIMC,
             uEscape: u32,
             pData: ?*anyopaque,
-            plResult: ?*LRESULT,
+            plResult: ?*isize,
         ) callconv(.winapi) HRESULT,
         SetActiveContext: *const fn(
             self: *const IActiveIME,
@@ -854,7 +854,7 @@ pub const IActiveIME = extern union {
     pub fn Destroy(self: *const IActiveIME, uReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Destroy(self, uReserved);
     }
-    pub fn Escape(self: *const IActiveIME, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
+    pub fn Escape(self: *const IActiveIME, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*isize) callconv(.@"inline") HRESULT {
         return self.vtable.Escape(self, hIMC, uEscape, pData, plResult);
     }
     pub fn SetActiveContext(self: *const IActiveIME, hIMC: ?HIMC, fFlag: BOOL) callconv(.@"inline") HRESULT {
@@ -976,7 +976,7 @@ pub const IActiveIMMApp = extern union {
             hIMC: ?HIMC,
             uEscape: u32,
             pData: ?*anyopaque,
-            plResult: ?*LRESULT,
+            plResult: ?*isize,
         ) callconv(.winapi) HRESULT,
         EscapeW: *const fn(
             self: *const IActiveIMMApp,
@@ -984,7 +984,7 @@ pub const IActiveIMMApp = extern union {
             hIMC: ?HIMC,
             uEscape: u32,
             pData: ?*anyopaque,
-            plResult: ?*LRESULT,
+            plResult: ?*isize,
         ) callconv(.winapi) HRESULT,
         GetCandidateListA: *const fn(
             self: *const IActiveIMMApp,
@@ -1185,15 +1185,15 @@ pub const IActiveIMMApp = extern union {
             self: *const IActiveIMMApp,
             hWndIME: ?HWND,
             msg: u32,
-            wParam: WPARAM,
-            lParam: LPARAM,
+            wParam: usize,
+            lParam: isize,
         ) callconv(.winapi) HRESULT,
         IsUIMessageW: *const fn(
             self: *const IActiveIMMApp,
             hWndIME: ?HWND,
             msg: u32,
-            wParam: WPARAM,
-            lParam: LPARAM,
+            wParam: usize,
+            lParam: isize,
         ) callconv(.winapi) HRESULT,
         NotifyIME: *const fn(
             self: *const IActiveIMMApp,
@@ -1305,9 +1305,9 @@ pub const IActiveIMMApp = extern union {
             self: *const IActiveIMMApp,
             hWnd: ?HWND,
             Msg: u32,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            plResult: ?*LRESULT,
+            wParam: usize,
+            lParam: isize,
+            plResult: ?*isize,
         ) callconv(.winapi) HRESULT,
         FilterClientWindows: *const fn(
             self: *const IActiveIMMApp,
@@ -1383,10 +1383,10 @@ pub const IActiveIMMApp = extern union {
     pub fn EnumRegisterWordW(self: *const IActiveIMMApp, hKL: ?HKL, szReading: ?[*:0]u16, dwStyle: u32, szRegister: ?[*:0]u16, pData: ?*anyopaque, pEnum: ?*?*IEnumRegisterWordW) callconv(.@"inline") HRESULT {
         return self.vtable.EnumRegisterWordW(self, hKL, szReading, dwStyle, szRegister, pData, pEnum);
     }
-    pub fn EscapeA(self: *const IActiveIMMApp, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
+    pub fn EscapeA(self: *const IActiveIMMApp, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*isize) callconv(.@"inline") HRESULT {
         return self.vtable.EscapeA(self, hKL, hIMC, uEscape, pData, plResult);
     }
-    pub fn EscapeW(self: *const IActiveIMMApp, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
+    pub fn EscapeW(self: *const IActiveIMMApp, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*isize) callconv(.@"inline") HRESULT {
         return self.vtable.EscapeW(self, hKL, hIMC, uEscape, pData, plResult);
     }
     pub fn GetCandidateListA(self: *const IActiveIMMApp, hIMC: ?HIMC, dwIndex: u32, uBufLen: u32, pCandList: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.@"inline") HRESULT {
@@ -1479,10 +1479,10 @@ pub const IActiveIMMApp = extern union {
     pub fn IsIME(self: *const IActiveIMMApp, hKL: ?HKL) callconv(.@"inline") HRESULT {
         return self.vtable.IsIME(self, hKL);
     }
-    pub fn IsUIMessageA(self: *const IActiveIMMApp, hWndIME: ?HWND, msg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
+    pub fn IsUIMessageA(self: *const IActiveIMMApp, hWndIME: ?HWND, msg: u32, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
         return self.vtable.IsUIMessageA(self, hWndIME, msg, wParam, lParam);
     }
-    pub fn IsUIMessageW(self: *const IActiveIMMApp, hWndIME: ?HWND, msg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
+    pub fn IsUIMessageW(self: *const IActiveIMMApp, hWndIME: ?HWND, msg: u32, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
         return self.vtable.IsUIMessageW(self, hWndIME, msg, wParam, lParam);
     }
     pub fn NotifyIME(self: *const IActiveIMMApp, hIMC: ?HIMC, dwAction: u32, dwIndex: u32, dwValue: u32) callconv(.@"inline") HRESULT {
@@ -1539,7 +1539,7 @@ pub const IActiveIMMApp = extern union {
     pub fn Deactivate(self: *const IActiveIMMApp) callconv(.@"inline") HRESULT {
         return self.vtable.Deactivate(self);
     }
-    pub fn OnDefWindowProc(self: *const IActiveIMMApp, hWnd: ?HWND, Msg: u32, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
+    pub fn OnDefWindowProc(self: *const IActiveIMMApp, hWnd: ?HWND, Msg: u32, wParam: usize, lParam: isize, plResult: ?*isize) callconv(.@"inline") HRESULT {
         return self.vtable.OnDefWindowProc(self, hWnd, Msg, wParam, lParam, plResult);
     }
     pub fn FilterClientWindows(self: *const IActiveIMMApp, aaClassList: ?*u16, uSize: u32) callconv(.@"inline") HRESULT {
@@ -1625,7 +1625,7 @@ pub const IActiveIMMIME = extern union {
             hIMC: ?HIMC,
             uEscape: u32,
             pData: ?*anyopaque,
-            plResult: ?*LRESULT,
+            plResult: ?*isize,
         ) callconv(.winapi) HRESULT,
         EscapeW: *const fn(
             self: *const IActiveIMMIME,
@@ -1633,7 +1633,7 @@ pub const IActiveIMMIME = extern union {
             hIMC: ?HIMC,
             uEscape: u32,
             pData: ?*anyopaque,
-            plResult: ?*LRESULT,
+            plResult: ?*isize,
         ) callconv(.winapi) HRESULT,
         GetCandidateListA: *const fn(
             self: *const IActiveIMMIME,
@@ -1834,15 +1834,15 @@ pub const IActiveIMMIME = extern union {
             self: *const IActiveIMMIME,
             hWndIME: ?HWND,
             msg: u32,
-            wParam: WPARAM,
-            lParam: LPARAM,
+            wParam: usize,
+            lParam: isize,
         ) callconv(.winapi) HRESULT,
         IsUIMessageW: *const fn(
             self: *const IActiveIMMIME,
             hWndIME: ?HWND,
             msg: u32,
-            wParam: WPARAM,
-            lParam: LPARAM,
+            wParam: usize,
+            lParam: isize,
         ) callconv(.winapi) HRESULT,
         NotifyIME: *const fn(
             self: *const IActiveIMMIME,
@@ -2088,32 +2088,32 @@ pub const IActiveIMMIME = extern union {
         RequestMessageA: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            plResult: ?*LRESULT,
+            wParam: usize,
+            lParam: isize,
+            plResult: ?*isize,
         ) callconv(.winapi) HRESULT,
         RequestMessageW: *const fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            plResult: ?*LRESULT,
+            wParam: usize,
+            lParam: isize,
+            plResult: ?*isize,
         ) callconv(.winapi) HRESULT,
         SendIMCA: *const fn(
             self: *const IActiveIMMIME,
             hWnd: ?HWND,
             uMsg: u32,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            plResult: ?*LRESULT,
+            wParam: usize,
+            lParam: isize,
+            plResult: ?*isize,
         ) callconv(.winapi) HRESULT,
         SendIMCW: *const fn(
             self: *const IActiveIMMIME,
             hWnd: ?HWND,
             uMsg: u32,
-            wParam: WPARAM,
-            lParam: LPARAM,
-            plResult: ?*LRESULT,
+            wParam: usize,
+            lParam: isize,
+            plResult: ?*isize,
         ) callconv(.winapi) HRESULT,
         IsSleeping: *const fn(
             self: *const IActiveIMMIME,
@@ -2142,10 +2142,10 @@ pub const IActiveIMMIME = extern union {
     pub fn EnumRegisterWordW(self: *const IActiveIMMIME, hKL: ?HKL, szReading: ?[*:0]u16, dwStyle: u32, szRegister: ?[*:0]u16, pData: ?*anyopaque, pEnum: ?*?*IEnumRegisterWordW) callconv(.@"inline") HRESULT {
         return self.vtable.EnumRegisterWordW(self, hKL, szReading, dwStyle, szRegister, pData, pEnum);
     }
-    pub fn EscapeA(self: *const IActiveIMMIME, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
+    pub fn EscapeA(self: *const IActiveIMMIME, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*isize) callconv(.@"inline") HRESULT {
         return self.vtable.EscapeA(self, hKL, hIMC, uEscape, pData, plResult);
     }
-    pub fn EscapeW(self: *const IActiveIMMIME, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
+    pub fn EscapeW(self: *const IActiveIMMIME, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*isize) callconv(.@"inline") HRESULT {
         return self.vtable.EscapeW(self, hKL, hIMC, uEscape, pData, plResult);
     }
     pub fn GetCandidateListA(self: *const IActiveIMMIME, hIMC: ?HIMC, dwIndex: u32, uBufLen: u32, pCandList: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.@"inline") HRESULT {
@@ -2238,10 +2238,10 @@ pub const IActiveIMMIME = extern union {
     pub fn IsIME(self: *const IActiveIMMIME, hKL: ?HKL) callconv(.@"inline") HRESULT {
         return self.vtable.IsIME(self, hKL);
     }
-    pub fn IsUIMessageA(self: *const IActiveIMMIME, hWndIME: ?HWND, msg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
+    pub fn IsUIMessageA(self: *const IActiveIMMIME, hWndIME: ?HWND, msg: u32, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
         return self.vtable.IsUIMessageA(self, hWndIME, msg, wParam, lParam);
     }
-    pub fn IsUIMessageW(self: *const IActiveIMMIME, hWndIME: ?HWND, msg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
+    pub fn IsUIMessageW(self: *const IActiveIMMIME, hWndIME: ?HWND, msg: u32, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
         return self.vtable.IsUIMessageW(self, hWndIME, msg, wParam, lParam);
     }
     pub fn NotifyIME(self: *const IActiveIMMIME, hIMC: ?HIMC, dwAction: u32, dwIndex: u32, dwValue: u32) callconv(.@"inline") HRESULT {
@@ -2370,16 +2370,16 @@ pub const IActiveIMMIME = extern union {
     pub fn EnumInputContext(self: *const IActiveIMMIME, idThread: u32, ppEnum: ?*?*IEnumInputContext) callconv(.@"inline") HRESULT {
         return self.vtable.EnumInputContext(self, idThread, ppEnum);
     }
-    pub fn RequestMessageA(self: *const IActiveIMMIME, hIMC: ?HIMC, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
+    pub fn RequestMessageA(self: *const IActiveIMMIME, hIMC: ?HIMC, wParam: usize, lParam: isize, plResult: ?*isize) callconv(.@"inline") HRESULT {
         return self.vtable.RequestMessageA(self, hIMC, wParam, lParam, plResult);
     }
-    pub fn RequestMessageW(self: *const IActiveIMMIME, hIMC: ?HIMC, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
+    pub fn RequestMessageW(self: *const IActiveIMMIME, hIMC: ?HIMC, wParam: usize, lParam: isize, plResult: ?*isize) callconv(.@"inline") HRESULT {
         return self.vtable.RequestMessageW(self, hIMC, wParam, lParam, plResult);
     }
-    pub fn SendIMCA(self: *const IActiveIMMIME, hWnd: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
+    pub fn SendIMCA(self: *const IActiveIMMIME, hWnd: ?HWND, uMsg: u32, wParam: usize, lParam: isize, plResult: ?*isize) callconv(.@"inline") HRESULT {
         return self.vtable.SendIMCA(self, hWnd, uMsg, wParam, lParam, plResult);
     }
-    pub fn SendIMCW(self: *const IActiveIMMIME, hWnd: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
+    pub fn SendIMCW(self: *const IActiveIMMIME, hWnd: ?HWND, uMsg: u32, wParam: usize, lParam: isize, plResult: ?*isize) callconv(.@"inline") HRESULT {
         return self.vtable.SendIMCW(self, hWnd, uMsg, wParam, lParam, plResult);
     }
     pub fn IsSleeping(self: *const IActiveIMMIME) callconv(.@"inline") HRESULT {
@@ -2850,13 +2850,13 @@ pub const IImePad = extern union {
             self: *const IImePad,
             pIImePadApplet: ?*IImePadApplet,
             reqId: IME_PAD_REQUEST_FLAGS,
-            wParam: WPARAM,
-            lParam: LPARAM,
+            wParam: usize,
+            lParam: isize,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Request(self: *const IImePad, pIImePadApplet: ?*IImePadApplet, reqId: IME_PAD_REQUEST_FLAGS, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
+    pub fn Request(self: *const IImePad, pIImePadApplet: ?*IImePadApplet, reqId: IME_PAD_REQUEST_FLAGS, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
         return self.vtable.Request(self, pIImePadApplet, reqId, wParam, lParam);
     }
 };
@@ -2886,8 +2886,8 @@ pub const IImePadApplet = extern union {
             self: *const IImePadApplet,
             lpImePad: ?*IUnknown,
             notify: i32,
-            wParam: WPARAM,
-            lParam: LPARAM,
+            wParam: usize,
+            lParam: isize,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
@@ -2904,7 +2904,7 @@ pub const IImePadApplet = extern union {
     pub fn CreateUI(self: *const IImePadApplet, hwndParent: ?HWND, lpImeAppletUI: ?*IMEAPPLETUI) callconv(.@"inline") HRESULT {
         return self.vtable.CreateUI(self, hwndParent, lpImeAppletUI);
     }
-    pub fn Notify(self: *const IImePadApplet, lpImePad: ?*IUnknown, notify: i32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
+    pub fn Notify(self: *const IImePadApplet, lpImePad: ?*IUnknown, notify: i32, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
         return self.vtable.Notify(self, lpImePad, notify, wParam, lParam);
     }
 };
@@ -2956,7 +2956,7 @@ pub const IImeSpecifyApplets = extern union {
 
 pub const IMCENUMPROC = *const fn(
     param0: ?HIMC,
-    param1: LPARAM,
+    param1: isize,
 ) callconv(.winapi) BOOL;
 
 pub const IME_COMPOSITION_STRING = packed struct(u32) {
@@ -3234,7 +3234,7 @@ pub const IMEAPPLETCFG = extern struct {
     hIcon: ?HICON,
     langID: u16,
     dummy: u16,
-    lReserved1: LPARAM,
+    lReserved1: isize,
 };
 
 pub const IMEAPPLETUI = extern struct {
@@ -3246,8 +3246,8 @@ pub const IMEAPPLETUI = extern struct {
     minHeight: i32,
     maxWidth: i32,
     maxHeight: i32,
-    lReserved1: LPARAM,
-    lReserved2: LPARAM,
+    lReserved1: isize,
+    lReserved2: isize,
 };
 
 pub const IMECHARINFO = extern struct {
@@ -3432,7 +3432,7 @@ pub const IMEMENUITEMINFOA = extern struct {
     hbmpChecked: ?HBITMAP,
     hbmpUnchecked: ?HBITMAP,
     dwItemData: u32,
-    szString: [80]CHAR,
+    szString: [80]u8,
     hbmpItem: ?HBITMAP,
 };
 
@@ -3513,9 +3513,9 @@ pub const IFED_REL_ALL = IMEREL.ALL;
 pub const IMESHF = extern struct {
     cbShf: u16 align(1),
     verDic: u16 align(1),
-    szTitle: [48]CHAR align(1),
-    szDescription: [256]CHAR align(1),
-    szCopyright: [128]CHAR align(1),
+    szTitle: [48]u8 align(1),
+    szDescription: [256]u8 align(1),
+    szCopyright: [128]u8 align(1),
 };
 
 pub const IMESTRINGCANDIDATE = extern struct {
@@ -3709,7 +3709,7 @@ pub const SOFTKBDDATA = extern struct {
 
 pub const STYLEBUFA = extern struct {
     dwStyle: u32,
-    szDescription: [32]CHAR,
+    szDescription: [32]u8,
 };
 
 pub const STYLEBUFW = extern struct {
@@ -3719,8 +3719,8 @@ pub const STYLEBUFW = extern struct {
 
 pub const TRANSMSG = extern struct {
     message: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
 };
 
 pub const TRANSMSGLIST = extern struct {
@@ -3824,7 +3824,7 @@ pub extern "imm32" fn ImmDisableTextFrameService(
 pub extern "imm32" fn ImmEnumInputContext(
     idThread: u32,
     lpfn: ?IMCENUMPROC,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -3853,7 +3853,7 @@ pub extern "imm32" fn ImmEscapeA(
     param1: ?HIMC,
     param2: IME_ESCAPE,
     param3: ?*anyopaque,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmEscapeW(
@@ -3861,7 +3861,7 @@ pub extern "imm32" fn ImmEscapeW(
     param1: ?HIMC,
     param2: IME_ESCAPE,
     param3: ?*anyopaque,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 pub extern "imm32" fn ImmGenerateMessage(
     param0: ?HIMC,
@@ -4123,16 +4123,16 @@ pub extern "imm32" fn ImmIsIME(
 pub extern "imm32" fn ImmIsUIMessageA(
     param0: ?HWND,
     param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
+    param2: usize,
+    param3: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmIsUIMessageW(
     param0: ?HWND,
     param1: u32,
-    param2: WPARAM,
-    param3: LPARAM,
+    param2: usize,
+    param3: isize,
 ) callconv(.winapi) BOOL;
 
 pub extern "imm32" fn ImmLockIMC(
@@ -4176,16 +4176,16 @@ pub extern "imm32" fn ImmReleaseContext(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmRequestMessageA(
     param0: ?HIMC,
-    param1: WPARAM,
-    param2: LPARAM,
-) callconv(.winapi) LRESULT;
+    param1: usize,
+    param2: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imm32" fn ImmRequestMessageW(
     param0: ?HIMC,
-    param1: WPARAM,
-    param2: LPARAM,
-) callconv(.winapi) LRESULT;
+    param1: usize,
+    param2: isize,
+) callconv(.winapi) isize;
 
 pub extern "imm32" fn ImmReSizeIMCC(
     param0: ?HIMCC,
@@ -4481,12 +4481,11 @@ pub const ImmUnregisterWord = switch (@import("../../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (22)
+// Section: Imports (18)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
 const BSTR = @import("../../foundation.zig").BSTR;
-const CHAR = @import("../../foundation.zig").CHAR;
 const HBITMAP = @import("../../graphics/gdi.zig").HBITMAP;
 const HICON = @import("../../ui/windows_and_messaging.zig").HICON;
 const HIMC = @import("../../globalization.zig").HIMC;
@@ -4498,13 +4497,10 @@ const IClassFactory = @import("../../system/com.zig").IClassFactory;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const LOGFONTA = @import("../../graphics/gdi.zig").LOGFONTA;
 const LOGFONTW = @import("../../graphics/gdi.zig").LOGFONTW;
-const LPARAM = @import("../../foundation.zig").LPARAM;
-const LRESULT = @import("../../foundation.zig").LRESULT;
 const MSG = @import("../../ui/windows_and_messaging.zig").MSG;
 const POINT = @import("../../foundation.zig").POINT;
 const RECT = @import("../../foundation.zig").RECT;
 const SAFEARRAY = @import("../../system/com.zig").SAFEARRAY;
-const WPARAM = @import("../../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

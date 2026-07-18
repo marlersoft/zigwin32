@@ -1754,7 +1754,7 @@ pub const CONFLICT_DETAILS_A = extern struct {
     CD_dnDevInst: u32,
     CD_rdResDes: usize,
     CD_ulFlags: u32,
-    CD_szDescription: [260]CHAR,
+    CD_szDescription: [260]u8,
 };
 
 pub const CONFLICT_DETAILS_W = extern struct {
@@ -1852,7 +1852,7 @@ pub const HDEVINFO = isize;
 
 pub const HWProfileInfo_sA = extern struct {
     HWPI_ulHWProfile: u32 align(1),
-    HWPI_szFriendlyName: [80]CHAR align(1),
+    HWPI_szFriendlyName: [80]u8 align(1),
     HWPI_dwFlags: u32 align(1),
 };
 
@@ -2252,7 +2252,7 @@ pub const INF_STYLE_WIN4 = SP_INF_STYLE.WIN4;
 
 pub const SP_POWERMESSAGEWAKE_PARAMS_A = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    PowerMessageWake: [512]CHAR,
+    PowerMessageWake: [512]u8,
 };
 
 
@@ -2269,10 +2269,10 @@ pub const SP_POWERMESSAGEWAKE_PARAMS_A = extern struct {
 
 pub const SP_SELECTDEVICE_PARAMS_A = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    Title: [60]CHAR,
-    Instructions: [256]CHAR,
-    ListLabel: [30]CHAR,
-    SubTitle: [256]CHAR,
+    Title: [60]u8,
+    Instructions: [256]u8,
+    ListLabel: [30]u8,
+    SubTitle: [256]u8,
     Reserved: [2]u8,
 };
 
@@ -2280,8 +2280,8 @@ pub const SP_SELECTDEVICE_PARAMS_A = extern struct {
 
 pub const SP_TROUBLESHOOTER_PARAMS_A = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    ChmFile: [260]CHAR,
-    HtmlTroubleShooter: [260]CHAR,
+    ChmFile: [260]u8,
+    HtmlTroubleShooter: [260]u8,
 };
 
 
@@ -2340,7 +2340,7 @@ pub const FILE_IN_CABINET_INFO_A = switch(@import("../zig.zig").arch) {
         DosDate: u16,
         DosTime: u16,
         DosAttribs: u16,
-        FullTargetName: [260]CHAR,
+        FullTargetName: [260]u8,
     },
     .X86 => extern struct {
         NameInCabinet: ?[*:0]const u8 align(1),
@@ -2349,7 +2349,7 @@ pub const FILE_IN_CABINET_INFO_A = switch(@import("../zig.zig").arch) {
         DosDate: u16 align(1),
         DosTime: u16 align(1),
         DosAttribs: u16 align(1),
-        FullTargetName: [260]CHAR align(1),
+        FullTargetName: [260]u8 align(1),
     },
 };
 pub const FILE_IN_CABINET_INFO_W = switch(@import("../zig.zig").arch) {
@@ -2573,12 +2573,12 @@ pub const SP_ALTPLATFORM_INFO_V3 = switch(@import("../zig.zig").arch) {
 pub const SP_BACKUP_QUEUE_PARAMS_V1_A = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         cbSize: u32,
-        FullInfPath: [260]CHAR,
+        FullInfPath: [260]u8,
         FilenameOffset: i32,
     },
     .X86 => extern struct {
         cbSize: u32 align(1),
-        FullInfPath: [260]CHAR align(1),
+        FullInfPath: [260]u8 align(1),
         FilenameOffset: i32 align(1),
     },
 };
@@ -2597,15 +2597,15 @@ pub const SP_BACKUP_QUEUE_PARAMS_V1_W = switch(@import("../zig.zig").arch) {
 pub const SP_BACKUP_QUEUE_PARAMS_V2_A = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         cbSize: u32,
-        FullInfPath: [260]CHAR,
+        FullInfPath: [260]u8,
         FilenameOffset: i32,
-        ReinstallInstance: [260]CHAR,
+        ReinstallInstance: [260]u8,
     },
     .X86 => extern struct {
         cbSize: u32 align(1),
-        FullInfPath: [260]CHAR align(1),
+        FullInfPath: [260]u8 align(1),
         FilenameOffset: i32 align(1),
-        ReinstallInstance: [260]CHAR align(1),
+        ReinstallInstance: [260]u8 align(1),
     },
 };
 pub const SP_BACKUP_QUEUE_PARAMS_V2_W = switch(@import("../zig.zig").arch) {
@@ -2673,11 +2673,11 @@ pub const SP_DEVICE_INTERFACE_DATA = switch(@import("../zig.zig").arch) {
 pub const SP_DEVICE_INTERFACE_DETAIL_DATA_A = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         cbSize: u32,
-        DevicePath: [1]CHAR,
+        DevicePath: [1]u8,
     },
     .X86 => extern struct {
         cbSize: u32 align(1),
-        DevicePath: [1]CHAR align(1),
+        DevicePath: [1]u8 align(1),
     },
 };
 pub const SP_DEVICE_INTERFACE_DETAIL_DATA_W = switch(@import("../zig.zig").arch) {
@@ -2709,13 +2709,13 @@ pub const SP_DEVINFO_LIST_DETAIL_DATA_A = switch(@import("../zig.zig").arch) {
         cbSize: u32,
         ClassGuid: Guid,
         RemoteMachineHandle: ?HANDLE,
-        RemoteMachineName: [263]CHAR,
+        RemoteMachineName: [263]u8,
     },
     .X86 => extern struct {
         cbSize: u32 align(1),
         ClassGuid: Guid align(1),
         RemoteMachineHandle: ?HANDLE align(1),
-        RemoteMachineName: [263]CHAR align(1),
+        RemoteMachineName: [263]u8 align(1),
     },
 };
 pub const SP_DEVINFO_LIST_DETAIL_DATA_W = switch(@import("../zig.zig").arch) {
@@ -2743,7 +2743,7 @@ pub const SP_DEVINSTALL_PARAMS_A = switch(@import("../zig.zig").arch) {
         FileQueue: ?*anyopaque,
         ClassInstallReserved: usize,
         Reserved: u32,
-        DriverPath: [260]CHAR,
+        DriverPath: [260]u8,
     },
     .X86 => extern struct {
         cbSize: u32 align(1),
@@ -2755,7 +2755,7 @@ pub const SP_DEVINSTALL_PARAMS_A = switch(@import("../zig.zig").arch) {
         FileQueue: ?*anyopaque align(1),
         ClassInstallReserved: usize align(1),
         Reserved: u32 align(1),
-        DriverPath: [260]CHAR align(1),
+        DriverPath: [260]u8 align(1),
     },
 };
 pub const SP_DEVINSTALL_PARAMS_W = switch(@import("../zig.zig").arch) {
@@ -2789,17 +2789,17 @@ pub const SP_DRVINFO_DATA_V1_A = switch(@import("../zig.zig").arch) {
         cbSize: u32,
         DriverType: u32,
         Reserved: usize,
-        Description: [256]CHAR,
-        MfgName: [256]CHAR,
-        ProviderName: [256]CHAR,
+        Description: [256]u8,
+        MfgName: [256]u8,
+        ProviderName: [256]u8,
     },
     .X86 => extern struct {
         cbSize: u32 align(1),
         DriverType: u32 align(1),
         Reserved: usize align(1),
-        Description: [256]CHAR align(1),
-        MfgName: [256]CHAR align(1),
-        ProviderName: [256]CHAR align(1),
+        Description: [256]u8 align(1),
+        MfgName: [256]u8 align(1),
+        ProviderName: [256]u8 align(1),
     },
 };
 pub const SP_DRVINFO_DATA_V1_W = switch(@import("../zig.zig").arch) {
@@ -2825,9 +2825,9 @@ pub const SP_DRVINFO_DATA_V2_A = switch(@import("../zig.zig").arch) {
         cbSize: u32,
         DriverType: u32,
         Reserved: usize,
-        Description: [256]CHAR,
-        MfgName: [256]CHAR,
-        ProviderName: [256]CHAR,
+        Description: [256]u8,
+        MfgName: [256]u8,
+        ProviderName: [256]u8,
         DriverDate: FILETIME,
         DriverVersion: u64,
     },
@@ -2835,9 +2835,9 @@ pub const SP_DRVINFO_DATA_V2_A = switch(@import("../zig.zig").arch) {
         cbSize: u32 align(1),
         DriverType: u32 align(1),
         Reserved: usize align(1),
-        Description: [256]CHAR align(1),
-        MfgName: [256]CHAR align(1),
-        ProviderName: [256]CHAR align(1),
+        Description: [256]u8 align(1),
+        MfgName: [256]u8 align(1),
+        ProviderName: [256]u8 align(1),
         DriverDate: FILETIME align(1),
         DriverVersion: u64 align(1),
     },
@@ -2871,10 +2871,10 @@ pub const SP_DRVINFO_DETAIL_DATA_A = switch(@import("../zig.zig").arch) {
         CompatIDsOffset: u32,
         CompatIDsLength: u32,
         Reserved: usize,
-        SectionName: [256]CHAR,
-        InfFileName: [260]CHAR,
-        DrvDescription: [256]CHAR,
-        HardwareID: [1]CHAR,
+        SectionName: [256]u8,
+        InfFileName: [260]u8,
+        DrvDescription: [256]u8,
+        HardwareID: [1]u8,
     },
     .X86 => extern struct {
         cbSize: u32 align(1),
@@ -2882,10 +2882,10 @@ pub const SP_DRVINFO_DETAIL_DATA_A = switch(@import("../zig.zig").arch) {
         CompatIDsOffset: u32 align(1),
         CompatIDsLength: u32 align(1),
         Reserved: usize align(1),
-        SectionName: [256]CHAR align(1),
-        InfFileName: [260]CHAR align(1),
-        DrvDescription: [256]CHAR align(1),
-        HardwareID: [1]CHAR align(1),
+        SectionName: [256]u8 align(1),
+        InfFileName: [260]u8 align(1),
+        DrvDescription: [256]u8 align(1),
+        HardwareID: [1]u8 align(1),
     },
 };
 pub const SP_DRVINFO_DETAIL_DATA_W = switch(@import("../zig.zig").arch) {
@@ -3015,15 +3015,15 @@ pub const SP_INF_INFORMATION = switch(@import("../zig.zig").arch) {
 pub const SP_INF_SIGNER_INFO_V1_A = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         cbSize: u32,
-        CatalogFile: [260]CHAR,
-        DigitalSigner: [260]CHAR,
-        DigitalSignerVersion: [260]CHAR,
+        CatalogFile: [260]u8,
+        DigitalSigner: [260]u8,
+        DigitalSignerVersion: [260]u8,
     },
     .X86 => extern struct {
         cbSize: u32 align(1),
-        CatalogFile: [260]CHAR align(1),
-        DigitalSigner: [260]CHAR align(1),
-        DigitalSignerVersion: [260]CHAR align(1),
+        CatalogFile: [260]u8 align(1),
+        DigitalSigner: [260]u8 align(1),
+        DigitalSignerVersion: [260]u8 align(1),
     },
 };
 pub const SP_INF_SIGNER_INFO_V1_W = switch(@import("../zig.zig").arch) {
@@ -3043,16 +3043,16 @@ pub const SP_INF_SIGNER_INFO_V1_W = switch(@import("../zig.zig").arch) {
 pub const SP_INF_SIGNER_INFO_V2_A = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         cbSize: u32,
-        CatalogFile: [260]CHAR,
-        DigitalSigner: [260]CHAR,
-        DigitalSignerVersion: [260]CHAR,
+        CatalogFile: [260]u8,
+        DigitalSigner: [260]u8,
+        DigitalSignerVersion: [260]u8,
         SignerScore: u32,
     },
     .X86 => extern struct {
         cbSize: u32 align(1),
-        CatalogFile: [260]CHAR align(1),
-        DigitalSigner: [260]CHAR align(1),
-        DigitalSignerVersion: [260]CHAR align(1),
+        CatalogFile: [260]u8 align(1),
+        DigitalSigner: [260]u8 align(1),
+        DigitalSignerVersion: [260]u8 align(1),
         SignerScore: u32 align(1),
     },
 };
@@ -3080,7 +3080,7 @@ pub const SP_INSTALLWIZARD_DATA = switch(@import("../zig.zig").arch) {
         NumDynamicPages: u32,
         DynamicPageFlags: u32,
         PrivateFlags: u32,
-        PrivateData: LPARAM,
+        PrivateData: isize,
         hwndWizardDlg: ?HWND,
     },
     .X86 => extern struct {
@@ -3090,7 +3090,7 @@ pub const SP_INSTALLWIZARD_DATA = switch(@import("../zig.zig").arch) {
         NumDynamicPages: u32 align(1),
         DynamicPageFlags: u32 align(1),
         PrivateFlags: u32 align(1),
-        PrivateData: LPARAM align(1),
+        PrivateData: isize align(1),
         hwndWizardDlg: ?HWND align(1),
     },
 };
@@ -3113,13 +3113,13 @@ pub const SP_NEWDEVICEWIZARD_DATA = switch(@import("../zig.zig").arch) {
 pub const SP_ORIGINAL_FILE_INFO_A = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         cbSize: u32,
-        OriginalInfName: [260]CHAR,
-        OriginalCatalogName: [260]CHAR,
+        OriginalInfName: [260]u8,
+        OriginalCatalogName: [260]u8,
     },
     .X86 => extern struct {
         cbSize: u32 align(1),
-        OriginalInfName: [260]CHAR align(1),
-        OriginalCatalogName: [260]CHAR align(1),
+        OriginalInfName: [260]u8 align(1),
+        OriginalCatalogName: [260]u8 align(1),
     },
 };
 pub const SP_ORIGINAL_FILE_INFO_W = switch(@import("../zig.zig").arch) {
@@ -9474,11 +9474,10 @@ pub const UpdateDriverForPlugAndPlayDevices = switch (@import("../zig.zig").unic
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (21)
+// Section: Imports (19)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
-const CHAR = @import("../foundation.zig").CHAR;
 const DEVPROPKEY = @import("../devices/properties.zig").DEVPROPKEY;
 const DEVPROPTYPE = @import("../devices/properties.zig").DEVPROPTYPE;
 const FILETIME = @import("../foundation.zig").FILETIME;
@@ -9491,7 +9490,6 @@ const HKEY = @import("../system/registry.zig").HKEY;
 const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
 const HWND = @import("../foundation.zig").HWND;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
-const LPARAM = @import("../foundation.zig").LPARAM;
 const PRIORITY = @import("../data/html_help.zig").PRIORITY;
 const PROPSHEETHEADERA_V2 = @import("../ui/controls.zig").PROPSHEETHEADERA_V2;
 const PROPSHEETHEADERW_V2 = @import("../ui/controls.zig").PROPSHEETHEADERW_V2;

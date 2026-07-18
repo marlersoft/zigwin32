@@ -966,20 +966,20 @@ pub const JET_BKINFO = extern struct {
 };
 
 pub const JET_BKLOGTIME = extern struct {
-    bSeconds: CHAR,
-    bMinutes: CHAR,
-    bHours: CHAR,
-    bDay: CHAR,
-    bMonth: CHAR,
-    bYear: CHAR,
+    bSeconds: u8,
+    bMinutes: u8,
+    bHours: u8,
+    bDay: u8,
+    bMonth: u8,
+    bYear: u8,
     Anonymous1: extern union {
-        bFiller1: CHAR,
+        bFiller1: u8,
         Anonymous: extern struct {
             _bitfield: u8,
         },
     },
     Anonymous2: extern union {
-        bFiller2: CHAR,
+        bFiller2: u8,
         Anonymous: extern struct {
             _bitfield: u8,
         },
@@ -1007,8 +1007,8 @@ pub const JET_COLUMNBASE_A = extern struct {
     wFiller: u16,
     cbMax: u32,
     grbit: u32,
-    szBaseTableName: [256]CHAR,
-    szBaseColumnName: [256]CHAR,
+    szBaseTableName: [256]u8,
+    szBaseColumnName: [256]u8,
 };
 
 pub const JET_COLUMNBASE_W = extern struct {
@@ -1561,7 +1561,7 @@ pub const JET_LOGINFO_A = extern struct {
     cbSize: u32,
     ulGenLow: u32,
     ulGenHigh: u32,
-    szBaseName: [4]CHAR,
+    szBaseName: [4]u8,
 };
 
 pub const JET_LOGINFO_W = extern struct {
@@ -1572,20 +1572,20 @@ pub const JET_LOGINFO_W = extern struct {
 };
 
 pub const JET_LOGTIME = extern struct {
-    bSeconds: CHAR,
-    bMinutes: CHAR,
-    bHours: CHAR,
-    bDay: CHAR,
-    bMonth: CHAR,
-    bYear: CHAR,
+    bSeconds: u8,
+    bMinutes: u8,
+    bHours: u8,
+    bDay: u8,
+    bMonth: u8,
+    bYear: u8,
     Anonymous1: extern union {
-        bFiller1: CHAR,
+        bFiller1: u8,
         Anonymous: extern struct {
             _bitfield: u8,
         },
     },
     Anonymous2: extern union {
-        bFiller2: CHAR,
+        bFiller2: u8,
         Anonymous: extern struct {
             _bitfield: u8,
         },
@@ -1789,7 +1789,7 @@ pub const JET_SETSYSPARAM_W = extern struct {
 pub const JET_SIGNATURE = extern struct {
     ulRandom: u32 align(1),
     logtimeCreate: JET_LOGTIME align(1),
-    szComputerName: [16]CHAR align(1),
+    szComputerName: [16]u8 align(1),
 };
 
 pub const JET_SNPROG = extern struct {
@@ -4437,9 +4437,8 @@ pub const JetSetSystemParameter = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
-const CHAR = @import("../foundation.zig").CHAR;
 const JET_API_PTR = @import("../storage/structured_storage.zig").JET_API_PTR;
 const JET_HANDLE = @import("../storage/structured_storage.zig").JET_HANDLE;
 const JET_INSTANCE = @import("../storage/structured_storage.zig").JET_INSTANCE;

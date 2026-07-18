@@ -1383,12 +1383,12 @@ pub extern "user32" fn UnregisterHotKey(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn VkKeyScanA(
-    ch: CHAR,
+    ch: u8,
 ) callconv(.winapi) i16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn VkKeyScanExA(
-    ch: CHAR,
+    ch: u8,
     dwhkl: ?HKL,
 ) callconv(.winapi) i16;
 
@@ -1457,10 +1457,9 @@ pub const VkKeyScanEx = switch (@import("../../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../../foundation.zig").BOOL;
-const CHAR = @import("../../foundation.zig").CHAR;
 const HKL = @import("../../ui/text_services.zig").HKL;
 const HWND = @import("../../foundation.zig").HWND;
 const POINT = @import("../../foundation.zig").POINT;

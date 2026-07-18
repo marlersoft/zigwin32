@@ -48,9 +48,9 @@ pub const CCAB = extern struct {
     iDisk: i32,
     fFailOnIncompressible: i32,
     setID: u16,
-    szDisk: [256]CHAR,
-    szCab: [256]CHAR,
-    szCabPath: [256]CHAR,
+    szDisk: [256]u8,
+    szCab: [256]u8,
+    szCabPath: [256]u8,
 };
 
 pub const ERF = extern struct {
@@ -337,11 +337,11 @@ pub const PFNWRITE = *const fn(
 
 pub const FDISPILLFILE = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
-        ach: [2]CHAR,
+        ach: [2]u8,
         cbFile: i32,
     },
     .X86 => extern struct {
-        ach: [2]CHAR align(1),
+        ach: [2]u8 align(1),
         cbFile: i32 align(1),
     },
 };
@@ -440,10 +440,9 @@ pub extern "cabinet" fn FDITruncateCabinet(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (2)
+// Section: Imports (1)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
-const CHAR = @import("../foundation.zig").CHAR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

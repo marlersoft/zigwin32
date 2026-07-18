@@ -8755,7 +8755,7 @@ pub const PROV_ENUMALGS = extern struct {
     aiAlgid: u32,
     dwBitLen: u32,
     dwNameLen: u32,
-    szName: [20]CHAR,
+    szName: [20]u8,
 };
 
 pub const PROV_ENUMALGS_EX = extern struct {
@@ -8765,9 +8765,9 @@ pub const PROV_ENUMALGS_EX = extern struct {
     dwMaxLen: u32,
     dwProtocols: u32,
     dwNameLen: u32,
-    szName: [20]CHAR,
+    szName: [20]u8,
     dwLongNameLen: u32,
-    szLongName: [40]CHAR,
+    szLongName: [40]u8,
 };
 
 pub const PUBKEY = extern struct {
@@ -12539,12 +12539,11 @@ pub const CryptVerifySignature = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (21)
+// Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
-const CHAR = @import("../foundation.zig").CHAR;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;

@@ -1106,12 +1106,12 @@ pub const GOPHER_ATTRIBUTE_TYPE = extern struct {
 };
 
 pub const GOPHER_FIND_DATAA = extern struct {
-    DisplayString: [129]CHAR,
+    DisplayString: [129]u8,
     GopherType: GOPHER_TYPE,
     SizeLow: u32,
     SizeHigh: u32,
     LastModificationTime: FILETIME,
-    Locator: [654]CHAR,
+    Locator: [654]u8,
 };
 
 pub const GOPHER_FIND_DATAW = extern struct {
@@ -1574,7 +1574,7 @@ pub const INTERNET_CACHE_CONFIG_INFOA = extern struct {
     dwNumCachePaths: u32,
     Anonymous: extern union {
         Anonymous: extern struct {
-            CachePath: [260]CHAR,
+            CachePath: [260]u8,
             dwCacheSize: u32,
         },
         CachePaths: [1]INTERNET_CACHE_CONFIG_PATH_ENTRYA,
@@ -1603,7 +1603,7 @@ pub const INTERNET_CACHE_CONFIG_INFOW = extern struct {
 };
 
 pub const INTERNET_CACHE_CONFIG_PATH_ENTRYA = extern struct {
-    CachePath: [260]CHAR,
+    CachePath: [260]u8,
     dwCacheSize: u32,
 };
 
@@ -1679,7 +1679,7 @@ pub const INTERNET_CACHE_GROUP_INFOA = extern struct {
     dwDiskUsage: u32,
     dwDiskQuota: u32,
     dwOwnerStorage: [4]u32,
-    szGroupName: [120]CHAR,
+    szGroupName: [120]u8,
 };
 
 pub const INTERNET_CACHE_GROUP_INFOW = extern struct {
@@ -5011,14 +5011,13 @@ pub const SetUrlCacheGroupAttribute = switch (@import("../zig.zig").unicode_mode
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (21)
+// Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
 const CERT_CHAIN_CONTEXT = @import("../security/cryptography.zig").CERT_CHAIN_CONTEXT;
 const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
-const CHAR = @import("../foundation.zig").CHAR;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;

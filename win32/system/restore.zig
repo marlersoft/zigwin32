@@ -55,7 +55,7 @@ pub const RESTOREPOINTINFOA = extern struct {
     dwEventType: RESTOREPOINTINFO_EVENT_TYPE align(1),
     dwRestorePtType: RESTOREPOINTINFO_TYPE align(1),
     llSequenceNumber: i64 align(1),
-    szDescription: [64]CHAR align(1),
+    szDescription: [64]u8 align(1),
 };
 
 pub const RESTOREPOINTINFOEX = extern struct {
@@ -113,10 +113,9 @@ pub const SRSetRestorePoint = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (3)
+// Section: Imports (2)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
-const CHAR = @import("../foundation.zig").CHAR;
 const FILETIME = @import("../foundation.zig").FILETIME;
 
 test {

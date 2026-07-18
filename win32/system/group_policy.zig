@@ -450,13 +450,13 @@ pub const GROUP_POLICY_OBJECTA = extern struct {
     lpDSPath: ?[*:0]u8,
     lpFileSysPath: ?[*:0]u8,
     lpDisplayName: ?[*:0]u8,
-    szGPOName: [50]CHAR,
+    szGPOName: [50]u8,
     GPOLink: GPO_LINK,
-    lParam: LPARAM,
+    lParam: isize,
     pNext: ?*GROUP_POLICY_OBJECTA,
     pPrev: ?*GROUP_POLICY_OBJECTA,
     lpExtensions: ?[*:0]u8,
-    lParam2: LPARAM,
+    lParam2: isize,
     lpLink: ?[*:0]u8,
 };
 
@@ -468,11 +468,11 @@ pub const GROUP_POLICY_OBJECTW = extern struct {
     lpDisplayName: ?[*:0]u16,
     szGPOName: [50]u16,
     GPOLink: GPO_LINK,
-    lParam: LPARAM,
+    lParam: isize,
     pNext: ?*GROUP_POLICY_OBJECTW,
     pPrev: ?*GROUP_POLICY_OBJECTW,
     lpExtensions: ?[*:0]u16,
-    lParam2: LPARAM,
+    lParam2: isize,
     lpLink: ?[*:0]u16,
 };
 
@@ -4310,13 +4310,12 @@ pub const GetGPOList = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (25)
+// Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const APPCATEGORYINFOLIST = @import("../ui/shell.zig").APPCATEGORYINFOLIST;
 const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
-const CHAR = @import("../foundation.zig").CHAR;
 const GENERIC_MAPPING = @import("../security.zig").GENERIC_MAPPING;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HKEY = @import("../system/registry.zig").HKEY;
@@ -4328,7 +4327,6 @@ const IEnumVARIANT = @import("../system/ole.zig").IEnumVARIANT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const IWbemClassObject = @import("../system/wmi.zig").IWbemClassObject;
 const IWbemServices = @import("../system/wmi.zig").IWbemServices;
-const LPARAM = @import("../foundation.zig").LPARAM;
 const OBJECT_TYPE_LIST = @import("../security.zig").OBJECT_TYPE_LIST;
 const PRIVILEGE_SET = @import("../security.zig").PRIVILEGE_SET;
 const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;

@@ -535,12 +535,12 @@ pub const DNS_SETTINGS2 = extern struct {
 };
 
 pub const FIXED_INFO_W2KSP1 = extern struct {
-    HostName: [132]CHAR,
-    DomainName: [132]CHAR,
+    HostName: [132]u8,
+    DomainName: [132]u8,
     CurrentDnsServer: ?*IP_ADDR_STRING,
     DnsServerList: IP_ADDR_STRING,
     NodeType: u32,
-    ScopeId: [260]CHAR,
+    ScopeId: [260]u8,
     EnableRouting: u32,
     EnableProxy: u32,
     EnableDns: u32,
@@ -877,8 +877,8 @@ pub const IP_ADAPTER_INDEX_MAP = extern struct {
 pub const IP_ADAPTER_INFO = extern struct {
     Next: ?*IP_ADAPTER_INFO,
     ComboIndex: u32,
-    AdapterName: [260]CHAR,
-    Description: [132]CHAR,
+    AdapterName: [260]u8,
+    Description: [132]u8,
     AddressLength: u32,
     Address: [8]u8,
     Index: u32,
@@ -987,7 +987,7 @@ pub const IP_ADDRESS_PREFIX = extern struct {
 };
 
 pub const IP_ADDRESS_STRING = extern struct {
-    String: [16]CHAR,
+    String: [16]u8,
 };
 
 pub const IP_INTERFACE_INFO = extern struct {
@@ -3854,13 +3854,12 @@ pub const ConvertInterfaceNameToLuid = switch (@import("../zig.zig").unicode_mod
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (39)
+// Section: Imports (38)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ADDRESS_FAMILY = @import("../networking/win_sock.zig").ADDRESS_FAMILY;
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const CHAR = @import("../foundation.zig").CHAR;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const IF_OPER_STATUS = @import("../network_management/ndis.zig").IF_OPER_STATUS;
 const IN6_ADDR = @import("../networking/win_sock.zig").IN6_ADDR;

@@ -3070,7 +3070,7 @@ pub const NDIS_WMI_ENUM_ADAPTER = extern struct {
     IfIndex: u32,
     NetLuid: NET_LUID_LH,
     DeviceNameLength: u16,
-    DeviceName: [1]CHAR,
+    DeviceName: [1]u8,
 };
 
 pub const NDIS_WMI_EVENT_HEADER = extern struct {
@@ -3543,11 +3543,10 @@ pub const OFFLOAD_IPSEC_UDPESP_ENCAPTYPE_OTHER = UDP_ENCAP_TYPE.OTHER;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const CHAR = @import("../foundation.zig").CHAR;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 

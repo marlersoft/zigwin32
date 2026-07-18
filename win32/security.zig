@@ -1258,7 +1258,7 @@ pub const SE_PRIVILEGE_REMOVED = TOKEN_PRIVILEGES_ATTRIBUTES{ .REMOVED = 1 };
 pub const SE_PRIVILEGE_USED_FOR_ACCESS = TOKEN_PRIVILEGES_ATTRIBUTES{ .USED_FOR_ACCESS = 1 };
 
 pub const TOKEN_SOURCE = extern struct {
-    SourceName: [8]CHAR,
+    SourceName: [8]u8,
     SourceIdentifier: LUID,
 };
 
@@ -2878,12 +2878,11 @@ pub const SetFileSecurity = switch (@import("zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("zig.zig").Guid;
 const BOOL = @import("foundation.zig").BOOL;
 const BOOLEAN = @import("foundation.zig").BOOLEAN;
-const CHAR = @import("foundation.zig").CHAR;
 const FILETIME = @import("foundation.zig").FILETIME;
 const HANDLE = @import("foundation.zig").HANDLE;
 const LARGE_INTEGER = @import("foundation.zig").LARGE_INTEGER;

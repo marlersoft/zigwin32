@@ -2358,7 +2358,7 @@ pub const ERROR_LOG = extern struct {
 pub const FLAT_STRING = extern struct {
     MaximumLength: i16,
     Length: i16,
-    Buffer: [1]CHAR,
+    Buffer: [1]u8,
 };
 
 pub const FORCE_LEVEL_FLAGS = enum(u32) {
@@ -7159,14 +7159,13 @@ pub const TraceVprintfEx = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (16)
+// Section: Imports (15)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const BSTR = @import("../foundation.zig").BSTR;
 const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
-const CHAR = @import("../foundation.zig").CHAR;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HKEY = @import("../system/registry.zig").HKEY;

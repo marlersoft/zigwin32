@@ -12,8 +12,8 @@ pub const RTL_CORRELATION_VECTOR_V2_PREFIX_LENGTH = @as(u32, 22);
 // Section: Types (1)
 //--------------------------------------------------------------------------------
 pub const CORRELATION_VECTOR = extern struct {
-    Version: CHAR,
-    Vector: [129]CHAR,
+    Version: u8,
+    Vector: [129]u8,
 };
 
 
@@ -43,10 +43,9 @@ pub extern "ntdll" fn RtlValidateCorrelationVector(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (2)
+// Section: Imports (1)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const CHAR = @import("../foundation.zig").CHAR;
 
 test {
     @setEvalBranchQuota(

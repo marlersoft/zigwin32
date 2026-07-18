@@ -1641,7 +1641,7 @@ pub const CHANGE_PASSWORD_FN_W = *const fn(
 ) callconv(.winapi) HRESULT;
 
 pub const CLEAR_BLOCK = extern struct {
-    data: [8]CHAR,
+    data: [8]u8,
 };
 
 pub const COMPLETE_AUTH_TOKEN_FN = *const fn(
@@ -9061,14 +9061,13 @@ pub const TranslateName = switch (@import("../../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (43)
+// Section: Imports (42)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const ACL = @import("../../security.zig").ACL;
 const BOOL = @import("../../foundation.zig").BOOL;
 const BOOLEAN = @import("../../foundation.zig").BOOLEAN;
 const CERT_CONTEXT = @import("../../security/cryptography.zig").CERT_CONTEXT;
-const CHAR = @import("../../foundation.zig").CHAR;
 const CREDENTIAL_TARGET_INFORMATIONW = @import("../../security/credentials.zig").CREDENTIAL_TARGET_INFORMATIONW;
 const CREDENTIALW = @import("../../security/credentials.zig").CREDENTIALW;
 const CRYPT_INTEGER_BLOB = @import("../../security/cryptography.zig").CRYPT_INTEGER_BLOB;

@@ -675,7 +675,7 @@ pub const CABINFOA = extern struct {
     pszCab: ?[*:0]u8,
     pszInf: ?[*:0]u8,
     pszSection: ?[*:0]u8,
-    szSrcPath: [260]CHAR,
+    szSrcPath: [260]u8,
     dwFlags: u32,
 };
 
@@ -912,8 +912,8 @@ pub const FileDirectoryInformation = FILE_INFORMATION_CLASS.n;
 
 pub const HW_PROFILE_INFOA = extern struct {
     dwDockInfo: u32,
-    szHwProfileGuid: [39]CHAR,
-    szHwProfileName: [80]CHAR,
+    szHwProfileGuid: [39]u8,
+    szHwProfileName: [80]u8,
 };
 
 pub const HW_PROFILE_INFOW = extern struct {
@@ -1246,13 +1246,13 @@ pub const IMEPROW = extern struct {
 
 pub const IMESTRUCT = extern struct {
     fnc: u32,
-    wParam: WPARAM,
+    wParam: usize,
     wCount: u32,
     dchSource: u32,
     dchDest: u32,
-    lParam1: LPARAM,
-    lParam2: LPARAM,
-    lParam3: LPARAM,
+    lParam1: isize,
+    lParam2: isize,
+    lParam3: isize,
 };
 
 pub const IO_STATUS_BLOCK = extern struct {
@@ -1367,12 +1367,12 @@ pub const PDELAYLOAD_FAILURE_DLL_CALLBACK = *const fn(
 ) callconv(.winapi) ?*anyopaque;
 
 pub const PERUSERSECTIONA = extern struct {
-    szGUID: [59]CHAR,
-    szDispName: [128]CHAR,
-    szLocale: [10]CHAR,
-    szStub: [1040]CHAR,
-    szVersion: [32]CHAR,
-    szCompID: [128]CHAR,
+    szGUID: [59]u8,
+    szDispName: [128]u8,
+    szLocale: [10]u8,
+    szStub: [1040]u8,
+    szVersion: [32]u8,
+    szCompID: [128]u8,
     dwIsInstalled: u32,
     bRollback: BOOL,
 };
@@ -1761,7 +1761,7 @@ pub const WINWATCHNOTIFYPROC = *const fn(
     hww: ?HWINWATCH,
     hwnd: ?HWND,
     code: u32,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) void;
 
 pub const WLDP_DEVICE_SECURITY_INFORMATION = extern struct {
@@ -3023,14 +3023,14 @@ pub extern "advpack" fn RunSetupCommandW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendIMEMessageExA(
     param0: ?HWND,
-    param1: LPARAM,
-) callconv(.winapi) LRESULT;
+    param1: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendIMEMessageExW(
     param0: ?HWND,
-    param1: LPARAM,
-) callconv(.winapi) LRESULT;
+    param1: isize,
+) callconv(.winapi) isize;
 
 pub extern "kernel32" fn SetEnvironmentStringsA(
     NewEnvironment: ?[*]u8,
@@ -3307,7 +3307,7 @@ pub extern "dciman32" fn WinWatchGetClipList(
 pub extern "dciman32" fn WinWatchNotify(
     hWW: ?HWINWATCH,
     NotifyCallback: ?WINWATCHNOTIFYPROC,
-    NotifyParam: LPARAM,
+    NotifyParam: isize,
 ) callconv(.winapi) BOOL;
 
 pub extern "dciman32" fn WinWatchOpen(
@@ -3793,13 +3793,12 @@ pub const WriteProfileString = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (28)
+// Section: Imports (24)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const BSTR = @import("../foundation.zig").BSTR;
-const CHAR = @import("../foundation.zig").CHAR;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HDC = @import("../graphics/gdi.zig").HDC;
@@ -3810,8 +3809,6 @@ const HWND = @import("../foundation.zig").HWND;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const LIST_ENTRY = @import("../system/kernel.zig").LIST_ENTRY;
-const LPARAM = @import("../foundation.zig").LPARAM;
-const LRESULT = @import("../foundation.zig").LRESULT;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const OLE_HANDLE = @import("../system/ole.zig").OLE_HANDLE;
 const RECT = @import("../foundation.zig").RECT;
@@ -3822,7 +3819,6 @@ const STRING = @import("../system/kernel.zig").STRING;
 const UNICODE_STRING = @import("../foundation.zig").UNICODE_STRING;
 const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
-const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

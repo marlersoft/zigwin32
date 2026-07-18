@@ -1170,7 +1170,7 @@ pub const EXTENSION_CONTROL_BLOCK = extern struct {
     dwVersion: u32,
     ConnID: ?*anyopaque,
     dwHttpStatusCode: u32,
-    lpszLogData: [80]CHAR,
+    lpszLogData: [80]u8,
     lpszMethod: ?[*:0]u8,
     lpszQueryString: ?[*:0]u8,
     lpszPathInfo: ?[*:0]u8,
@@ -1302,7 +1302,7 @@ pub const HSE_UNICODE_URL_MAPEX_INFO = extern struct {
 };
 
 pub const HSE_URL_MAPEX_INFO = extern struct {
-    lpszPath: [260]CHAR,
+    lpszPath: [260]u8,
     dwFlags: u32,
     cchMatchingPath: u32,
     cchMatchingURL: u32,
@@ -1319,7 +1319,7 @@ pub const HSE_VECTOR_ELEMENT = extern struct {
 
 pub const HSE_VERSION_INFO = extern struct {
     dwExtensionVersion: u32,
-    lpszExtensionDesc: [256]CHAR,
+    lpszExtensionDesc: [256]u8,
 };
 
 pub const HTTP_FILTER_ACCESS_DENIED = extern struct {
@@ -1407,7 +1407,7 @@ pub const HTTP_FILTER_URL_MAP_EX = extern struct {
 pub const HTTP_FILTER_VERSION = extern struct {
     dwServerFilterVersion: u32,
     dwFilterVersion: u32,
-    lpszFilterDesc: [257]CHAR,
+    lpszFilterDesc: [257]u8,
     dwFlags: u32,
 };
 
@@ -2327,13 +2327,12 @@ pub extern "rpcproxy" fn HttpFilterProc(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
 const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
-const CHAR = @import("../foundation.zig").CHAR;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;

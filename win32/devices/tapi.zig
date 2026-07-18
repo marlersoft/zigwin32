@@ -1149,9 +1149,9 @@ pub const ACDQE_NEW_QUEUE = ACDQUEUE_EVENT.NEW_QUEUE;
 pub const ACDQE_QUEUE_REMOVED = ACDQUEUE_EVENT.QUEUE_REMOVED;
 
 pub const ADDRALIAS = extern struct {
-    rgchName: [41]CHAR,
-    rgchEName: [11]CHAR,
-    rgchSrvr: [12]CHAR,
+    rgchName: [41]u8,
+    rgchEName: [11]u8,
+    rgchSrvr: [12]u8,
     dibDetail: u32,
     type: u16,
 };
@@ -9068,10 +9068,10 @@ pub const LINEQUEUELIST = extern struct {
 };
 
 pub const LINEREQMAKECALL = extern struct {
-    szDestAddress: [80]CHAR,
-    szAppName: [40]CHAR,
-    szCalledParty: [40]CHAR,
-    szComment: [80]CHAR,
+    szDestAddress: [80]u8,
+    szAppName: [40]u8,
+    szCalledParty: [40]u8,
+    szComment: [80]u8,
 };
 
 pub const LINEREQMAKECALLW = extern struct {
@@ -9083,20 +9083,20 @@ pub const LINEREQMAKECALLW = extern struct {
 
 pub const LINEREQMEDIACALL = extern struct {
     hWnd: ?HWND align(1),
-    wRequestID: WPARAM align(1),
-    szDeviceClass: [40]CHAR align(1),
+    wRequestID: usize align(1),
+    szDeviceClass: [40]u8 align(1),
     ucDeviceID: [40]u8 align(1),
     dwSize: u32 align(1),
     dwSecure: u32 align(1),
-    szDestAddress: [80]CHAR align(1),
-    szAppName: [40]CHAR align(1),
-    szCalledParty: [40]CHAR align(1),
-    szComment: [80]CHAR align(1),
+    szDestAddress: [80]u8 align(1),
+    szAppName: [40]u8 align(1),
+    szCalledParty: [40]u8 align(1),
+    szComment: [80]u8 align(1),
 };
 
 pub const LINEREQMEDIACALLW = extern struct {
     hWnd: ?HWND align(1),
-    wRequestID: WPARAM align(1),
+    wRequestID: usize align(1),
     szDeviceClass: [40]u16 align(1),
     ucDeviceID: [40]u8 align(1),
     dwSize: u32 align(1),
@@ -9283,7 +9283,7 @@ pub const NSID = extern struct {
     lTime: i32,
     address: extern union {
         alias: ADDRALIAS,
-        rgchInterNet: [1]CHAR,
+        rgchInterNet: [1]u8,
     },
 };
 
@@ -11645,7 +11645,7 @@ pub extern "tapi32" fn tapiGetLocationInfoW(
 
 pub extern "tapi32" fn tapiRequestDrop(
     hwnd: ?HWND,
-    wRequestID: WPARAM,
+    wRequestID: usize,
 ) callconv(.winapi) i32;
 
 pub extern "tapi32" fn tapiRequestMakeCall(
@@ -11671,7 +11671,7 @@ pub extern "tapi32" fn tapiRequestMakeCallW(
 
 pub extern "tapi32" fn tapiRequestMediaCall(
     hwnd: ?HWND,
-    wRequestID: WPARAM,
+    wRequestID: usize,
     lpszDeviceClass: ?[*:0]const u8,
     lpDeviceID: ?[*:0]const u8,
     dwSize: u32,
@@ -11684,7 +11684,7 @@ pub extern "tapi32" fn tapiRequestMediaCall(
 
 pub extern "tapi32" fn tapiRequestMediaCallA(
     hwnd: ?HWND,
-    wRequestID: WPARAM,
+    wRequestID: usize,
     lpszDeviceClass: ?[*:0]const u8,
     lpDeviceID: ?[*:0]const u8,
     dwSize: u32,
@@ -11697,7 +11697,7 @@ pub extern "tapi32" fn tapiRequestMediaCallA(
 
 pub extern "tapi32" fn tapiRequestMediaCallW(
     hwnd: ?HWND,
-    wRequestID: WPARAM,
+    wRequestID: usize,
     lpszDeviceClass: ?[*:0]const u16,
     lpDeviceID: ?[*:0]const u16,
     dwSize: u32,
@@ -11783,14 +11783,13 @@ pub const phoneInitializeEx = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (24)
+// Section: Imports (22)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ALLOCATOR_PROPERTIES = @import("../media/direct_show.zig").ALLOCATOR_PROPERTIES;
 const AM_MEDIA_TYPE = @import("../media/media_foundation.zig").AM_MEDIA_TYPE;
 const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
-const CHAR = @import("../foundation.zig").CHAR;
 const CY = @import("../system/com.zig").CY;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
@@ -11808,7 +11807,6 @@ const SPropValue = @import("../system/address_book.zig").SPropValue;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;
 const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
-const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

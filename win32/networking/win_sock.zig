@@ -2507,7 +2507,7 @@ pub const LPNSPV2STARTUP = *const fn(
 ) callconv(.winapi) i32;
 
 pub const LPSERVICE_CALLBACK_PROC = *const fn(
-    lParam: LPARAM,
+    lParam: isize,
     hAsyncTaskHandle: ?HANDLE,
 ) callconv(.winapi) void;
 
@@ -2570,8 +2570,8 @@ pub const LPWPUOPENCURRENTTHREAD = *const fn(
 pub const LPWPUPOSTMESSAGE = *const fn(
     hWnd: ?HWND,
     Msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
 ) callconv(.winapi) BOOL;
 
 pub const LPWPUQUERYBLOCKINGCALLBACK = *const fn(
@@ -3557,14 +3557,14 @@ pub const NLA_BLOB = extern struct {
         nextOffset: u32,
     },
     data: extern union {
-        rawData: [1]CHAR,
+        rawData: [1]u8,
         interfaceData: extern struct {
             dwType: u32,
             dwSpeed: u32,
-            adapterName: [1]CHAR,
+            adapterName: [1]u8,
         },
         locationData: extern struct {
-            information: [1]CHAR,
+            information: [1]u8,
         },
         connectivity: extern struct {
             type: NLA_CONNECTIVITY_TYPE,
@@ -4022,7 +4022,7 @@ pub const SERVICE_ADDRESSES = extern struct {
 
 pub const SERVICE_ASYNC_INFO = extern struct {
     lpServiceCallbackProc: ?LPSERVICE_CALLBACK_PROC,
-    lParam: LPARAM,
+    lParam: isize,
     hAsyncTaskHandle: ?HANDLE,
 };
 
@@ -4126,7 +4126,7 @@ pub const SOCK_NOTIFY_REGISTRATION = extern struct {
 
 pub const SOCKADDR = extern struct {
     sa_family: ADDRESS_FAMILY,
-    sa_data: [14]CHAR,
+    sa_data: [14]u8,
 };
 
 pub const SOCKADDR_ATM = extern struct {
@@ -4152,7 +4152,7 @@ pub const SOCKADDR_IN = extern struct {
     sin_family: ADDRESS_FAMILY,
     sin_port: u16,
     sin_addr: IN_ADDR,
-    sin_zero: [8]CHAR,
+    sin_zero: [8]u8,
 };
 
 pub const SOCKADDR_IN6 = extern struct {
@@ -4194,35 +4194,35 @@ pub const SOCKADDR_INET = extern union {
 
 pub const SOCKADDR_IPX = extern struct {
     sa_family: i16,
-    sa_netnum: [4]CHAR,
-    sa_nodenum: [6]CHAR,
+    sa_netnum: [4]u8,
+    sa_nodenum: [6]u8,
     sa_socket: u16,
 };
 
 pub const SOCKADDR_IRDA = extern struct {
     irdaAddressFamily: u16,
     irdaDeviceID: [4]u8,
-    irdaServiceName: [25]CHAR,
+    irdaServiceName: [25]u8,
 };
 
 pub const SOCKADDR_NB = extern struct {
     snb_family: i16,
     snb_type: u16,
-    snb_name: [16]CHAR,
+    snb_name: [16]u8,
 };
 
 pub const SOCKADDR_STORAGE = extern struct {
     ss_family: ADDRESS_FAMILY,
-    __ss_pad1: [6]CHAR,
+    __ss_pad1: [6]u8,
     __ss_align: i64,
-    __ss_pad2: [112]CHAR,
+    __ss_pad2: [112]u8,
 };
 
 pub const SOCKADDR_STORAGE_XP = extern struct {
     ss_family: i16,
-    __ss_pad1: [6]CHAR,
+    __ss_pad1: [6]u8,
     __ss_align: i64,
-    __ss_pad2: [112]CHAR,
+    __ss_pad2: [112]u8,
 };
 
 pub const SOCKADDR_TP = extern struct {
@@ -4235,7 +4235,7 @@ pub const SOCKADDR_TP = extern struct {
 
 pub const SOCKADDR_UN = extern struct {
     sun_family: ADDRESS_FAMILY,
-    sun_path: [108]CHAR,
+    sun_path: [108]u8,
 };
 
 pub const SOCKADDR_VNS = extern struct {
@@ -4590,7 +4590,7 @@ pub const WCE_DEVICELIST = extern struct {
 
 pub const WCE_IRDA_DEVICE_INFO = extern struct {
     irdaDeviceID: [4]u8,
-    irdaDeviceName: [22]CHAR,
+    irdaDeviceName: [22]u8,
     Reserved: [2]u8,
 };
 
@@ -4601,8 +4601,8 @@ pub const WINDOWS_DEVICELIST = extern struct {
 
 pub const WINDOWS_IAS_QUERY = extern struct {
     irdaDeviceID: [4]u8,
-    irdaClassName: [64]CHAR,
-    irdaAttribName: [256]CHAR,
+    irdaClassName: [64]u8,
+    irdaAttribName: [256]u8,
     irdaAttribType: u32,
     irdaAttribute: extern union {
         irdaAttribInt: i32,
@@ -4619,8 +4619,8 @@ pub const WINDOWS_IAS_QUERY = extern struct {
 };
 
 pub const WINDOWS_IAS_SET = extern struct {
-    irdaClassName: [64]CHAR,
-    irdaAttribName: [256]CHAR,
+    irdaClassName: [64]u8,
+    irdaAttribName: [256]u8,
     irdaAttribType: u32,
     irdaAttribute: extern union {
         irdaAttribInt: i32,
@@ -4638,7 +4638,7 @@ pub const WINDOWS_IAS_SET = extern struct {
 
 pub const WINDOWS_IRDA_DEVICE_INFO = extern struct {
     irdaDeviceID: [4]u8,
-    irdaDeviceName: [22]CHAR,
+    irdaDeviceName: [22]u8,
     irdaDeviceHints1: u8,
     irdaDeviceHints2: u8,
     irdaCharSet: u8,
@@ -4872,7 +4872,7 @@ pub const WSACOMPLETION = extern struct {
         WindowMessage: extern struct {
             hWnd: ?HWND,
             uMsg: u32,
-            context: WPARAM,
+            context: usize,
         },
         Event: extern struct {
             lpOverlapped: ?*OVERLAPPED,
@@ -5017,7 +5017,7 @@ pub const WSAPROTOCOL_INFOA = extern struct {
     iSecurityScheme: i32,
     dwMessageSize: u32,
     dwProviderReserved: u32,
-    szProtocol: [256]CHAR,
+    szProtocol: [256]u8,
 };
 
 pub const WSAPROTOCOL_INFOW = extern struct {
@@ -5240,14 +5240,14 @@ pub const WSADATA = switch(@import("../zig.zig").arch) {
         iMaxSockets: u16,
         iMaxUdpDg: u16,
         lpVendorInfo: ?[*:0]u8,
-        szDescription: [257]CHAR,
-        szSystemStatus: [129]CHAR,
+        szDescription: [257]u8,
+        szSystemStatus: [129]u8,
     },
     .X86 => extern struct {
         wVersion: u16,
         wHighVersion: u16,
-        szDescription: [257]CHAR,
-        szSystemStatus: [129]CHAR,
+        szDescription: [257]u8,
+        szSystemStatus: [129]u8,
         iMaxSockets: u16,
         iMaxUdpDg: u16,
         lpVendorInfo: ?[*:0]u8,
@@ -7369,25 +7369,22 @@ pub const WSAStringToAddress = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (17)
+// Section: Imports (14)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLOB = @import("../system/com.zig").BLOB;
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const CHAR = @import("../foundation.zig").CHAR;
 const COMPARTMENT_ID = @import("../system/kernel.zig").COMPARTMENT_ID;
 const FARPROC = @import("../foundation.zig").FARPROC;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
-const LPARAM = @import("../foundation.zig").LPARAM;
 const LUID = @import("../foundation.zig").LUID;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
 const OVERLAPPED_ENTRY = @import("../system/io.zig").OVERLAPPED_ENTRY;
 const PROCESSOR_NUMBER = @import("../system/kernel.zig").PROCESSOR_NUMBER;
-const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

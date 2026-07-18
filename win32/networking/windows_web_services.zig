@@ -1544,8 +1544,8 @@ pub const WS_INT64_DESCRIPTION = extern struct {
 };
 
 pub const WS_INT8_DESCRIPTION = extern struct {
-    minValue: CHAR,
-    maxValue: CHAR,
+    minValue: u8,
+    maxValue: u8,
 };
 
 pub const WS_IP_VERSION = enum(i32) {
@@ -6078,12 +6078,11 @@ pub extern "webservices" fn WsXmlStringEquals(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (12)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
-const CHAR = @import("../foundation.zig").CHAR;
 const DECIMAL = @import("../foundation.zig").DECIMAL;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;

@@ -93,8 +93,8 @@ pub const MODULEENTRY32 = extern struct {
     modBaseAddr: ?*u8,
     modBaseSize: u32,
     hModule: ?HINSTANCE,
-    szModule: [256]CHAR,
-    szExePath: [260]CHAR,
+    szModule: [256]u8,
+    szExePath: [260]u8,
 };
 
 pub const MODULEENTRY32W = extern struct {
@@ -120,7 +120,7 @@ pub const PROCESSENTRY32 = extern struct {
     th32ParentProcessID: u32,
     pcPriClassBase: i32,
     dwFlags: u32,
-    szExeFile: [260]CHAR,
+    szExeFile: [260]u8,
 };
 
 pub const PROCESSENTRY32W = extern struct {
@@ -254,10 +254,9 @@ pub extern "kernel32" fn Toolhelp32ReadProcessMemory(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../../foundation.zig").BOOL;
-const CHAR = @import("../../foundation.zig").CHAR;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const HINSTANCE = @import("../../foundation.zig").HINSTANCE;
 

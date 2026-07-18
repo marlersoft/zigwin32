@@ -974,7 +974,7 @@ pub const BTH_DEVICE_INFO = extern struct {
     flags: u32,
     address: u64,
     classOfDevice: u32,
-    name: [248]CHAR,
+    name: [248]u8,
 };
 
 pub const BTH_HCI_EVENT_INFO = extern struct {
@@ -1220,7 +1220,7 @@ pub const SDP_ELEMENT_DATA = extern struct {
         int64: i64,
         int32: i32,
         int16: i16,
-        int8: CHAR,
+        int8: u8,
         uint128: SDP_ULARGE_INTEGER_16,
         uint64: u64,
         uint32: u32,
@@ -1695,12 +1695,11 @@ pub extern "bluetoothapis" fn BluetoothUpdateDeviceRecord(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const CHAR = @import("../foundation.zig").CHAR;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;

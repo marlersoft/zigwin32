@@ -376,7 +376,7 @@ pub const FAX_CONFIGURATIONW = extern struct {
 pub const FAX_CONTEXT_INFOA = extern struct {
     SizeOfStruct: u32,
     hDC: ?HDC,
-    ServerName: [16]CHAR,
+    ServerName: [16]u8,
 };
 
 pub const FAX_CONTEXT_INFOW = extern struct {
@@ -8607,12 +8607,11 @@ pub const FaxStartPrintJob = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (19)
+// Section: Imports (18)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
-const CHAR = @import("../foundation.zig").CHAR;
 const DEVPROPKEY = @import("../devices/properties.zig").DEVPROPKEY;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;

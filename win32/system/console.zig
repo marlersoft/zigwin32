@@ -58,7 +58,7 @@ pub const WINDOW_BUFFER_SIZE_EVENT = @as(u32, 4);
 pub const CHAR_INFO = extern struct {
     Char: extern union {
         UnicodeChar: u16,
-        AsciiChar: CHAR,
+        AsciiChar: u8,
     },
     Attributes: u16,
 };
@@ -246,7 +246,7 @@ pub const KEY_EVENT_RECORD = extern struct {
     wVirtualScanCode: u16,
     uChar: extern union {
         UnicodeChar: u16,
-        AsciiChar: CHAR,
+        AsciiChar: u8,
     },
     dwControlKeyState: u32,
 };
@@ -347,7 +347,7 @@ pub extern "kernel32" fn FillConsoleOutputAttribute(
 
 pub extern "kernel32" fn FillConsoleOutputCharacterA(
     hConsoleOutput: ?HANDLE,
-    cCharacter: CHAR,
+    cCharacter: u8,
     nLength: u32,
     dwWriteCoord: COORD,
     lpNumberOfCharsWritten: ?*u32,
@@ -991,10 +991,9 @@ pub const WriteConsoleOutputCharacter = switch (@import("../zig.zig").unicode_mo
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
-const CHAR = @import("../foundation.zig").CHAR;
 const COLORREF = @import("../foundation.zig").COLORREF;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;

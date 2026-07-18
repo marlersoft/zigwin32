@@ -7,7 +7,7 @@
 // Section: Types (4)
 //--------------------------------------------------------------------------------
 pub const CYPHER_BLOCK = extern struct {
-    data: [8]CHAR,
+    data: [8]u8,
 };
 
 pub const ENCRYPTED_LM_OWF_PASSWORD = extern struct {
@@ -53,10 +53,9 @@ pub extern "advapi32" fn MSChapSrvChangePassword2(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (2)
+// Section: Imports (1)
 //--------------------------------------------------------------------------------
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const CHAR = @import("../foundation.zig").CHAR;
 
 test {
     @setEvalBranchQuota(

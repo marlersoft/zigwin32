@@ -3211,7 +3211,7 @@ pub const VAL = extern struct {
     ppButtonNames: ?*?*u16,
     pHandle: ?*?HANDLE,
     lReserved: i32,
-    szVal: [255]CHAR,
+    szVal: [255]u8,
 };
 
 pub const WIA_BARCODE_INFO = extern struct {
@@ -3484,12 +3484,11 @@ pub const WIAVIDEO_DESTROYING_VIDEO = WIAVIDEO_STATE.DESTROYING_VIDEO;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (19)
+// Section: Imports (18)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
-const CHAR = @import("../foundation.zig").CHAR;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;

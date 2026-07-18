@@ -662,7 +662,7 @@ pub const GNSS_Ni_UserResponseTimeout = GNSS_NI_USER_RESPONSE.Timeout;
 pub const GNSS_NMEA_DATA = extern struct {
     Size: u32,
     Version: u32,
-    NmeaSentences: [256]CHAR,
+    NmeaSentences: [256]u8,
 };
 
 pub const GNSS_PLATFORM_CAPABILITY = extern struct {
@@ -727,7 +727,7 @@ pub const GNSS_SUPL_CERT_CONFIG = extern struct {
     Size: u32,
     Version: u32,
     CertAction: GNSS_SUPL_CERT_ACTION,
-    SuplCertName: [260]CHAR,
+    SuplCertName: [260]u8,
     CertSize: u32,
     Unused: [512]u8,
     CertData: [1]u8,
@@ -736,8 +736,8 @@ pub const GNSS_SUPL_CERT_CONFIG = extern struct {
 pub const GNSS_SUPL_HSLP_CONFIG = extern struct {
     Size: u32,
     Version: u32,
-    SuplHslp: [260]CHAR,
-    SuplHslpFromImsi: [260]CHAR,
+    SuplHslp: [260]u8,
+    SuplHslpFromImsi: [260]u8,
     Reserved: u32,
     Unused: [512]u8,
 };
@@ -747,7 +747,7 @@ pub const GNSS_SUPL_NI_INFO = extern struct {
     Version: u32,
     RequestorId: [260]u16,
     ClientName: [260]u16,
-    SuplNiUrl: [260]CHAR,
+    SuplNiUrl: [260]u8,
 };
 
 pub const GNSS_SUPL_VERSION = extern struct {
@@ -764,8 +764,8 @@ pub const GNSS_SUPL_VERSION_2 = extern struct {
 pub const GNSS_V2UPL_CONFIG = extern struct {
     Size: u32,
     Version: u32,
-    MPC: [260]CHAR,
-    PDE: [260]CHAR,
+    MPC: [260]u8,
+    PDE: [260]u8,
     ApplicationTypeIndicator_MR: u8,
     Unused: [512]u8,
 };
@@ -1355,12 +1355,11 @@ pub const REPORT_RUNNING = LOCATION_REPORT_STATUS.RUNNING;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (14)
+// Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
-const CHAR = @import("../foundation.zig").CHAR;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;

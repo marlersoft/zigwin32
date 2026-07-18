@@ -265,7 +265,7 @@ pub const DNS_AAAA_DATA = extern struct {
 };
 
 pub const DNS_ADDR = extern struct {
-    MaxSa: [32]CHAR,
+    MaxSa: [32]u8,
     Data: extern union {
         DnsAddrUserDword: [8]u32 align(1),
     },
@@ -460,7 +460,7 @@ pub const DNS_CUSTOM_SERVER = extern struct {
         pwszTemplate: ?[*:0]u16,
     },
     Anonymous2: extern union {
-        MaxSa: [32]CHAR,
+        MaxSa: [32]u8,
     },
 };
 
@@ -524,7 +524,7 @@ pub const DNS_LOC_DATA = extern struct {
 
 pub const DNS_MESSAGE_BUFFER = extern struct {
     MessageHead: DNS_HEADER,
-    MessageBody: [1]CHAR,
+    MessageBody: [1]u8,
 };
 
 pub const DNS_MINFO_DATAA = extern struct {
@@ -671,7 +671,7 @@ pub const DNS_PTR_DATAW = extern struct {
 };
 
 pub const DNS_QUERY_CANCEL = extern struct {
-    Reserved: [32]CHAR,
+    Reserved: [32]u8,
 };
 
 pub const DNS_QUERY_OPTIONS = packed struct(u32) {
@@ -2009,10 +2009,9 @@ pub const DnsValidateName_ = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
-const CHAR = @import("../foundation.zig").CHAR;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
 

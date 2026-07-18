@@ -269,11 +269,11 @@ pub const DCB = extern struct {
     ByteSize: u8,
     Parity: DCB_PARITY,
     StopBits: DCB_STOP_BITS,
-    XonChar: CHAR,
-    XoffChar: CHAR,
-    ErrorChar: CHAR,
-    EofChar: CHAR,
-    EvtChar: CHAR,
+    XonChar: u8,
+    XoffChar: u8,
+    ErrorChar: u8,
+    EofChar: u8,
+    EvtChar: u8,
     wReserved1: u16,
 };
 
@@ -762,7 +762,7 @@ pub extern "kernel32" fn SetupComm(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn TransmitCommChar(
     hFile: ?HANDLE,
-    cChar: CHAR,
+    cChar: u8,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -812,11 +812,10 @@ pub const SetDefaultCommConfig = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
-const CHAR = @import("../foundation.zig").CHAR;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HWND = @import("../foundation.zig").HWND;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;

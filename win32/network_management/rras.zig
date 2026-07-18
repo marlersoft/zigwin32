@@ -1894,7 +1894,7 @@ pub const RAS_QUAR_STATE_NOT_CAPABLE = RAS_QUARANTINE_STATE.NOT_CAPABLE;
 pub const RAS_SECURITY_INFO = extern struct {
     LastError: u32,
     BytesReceived: u32,
-    DeviceName: [129]CHAR,
+    DeviceName: [129]u8,
 };
 
 pub const RAS_STATS = extern struct {
@@ -1958,7 +1958,7 @@ pub const RASADPARAMS = extern struct {
 pub const RASAMBA = extern struct {
     dwSize: u32,
     dwError: u32,
-    szNetBiosError: [17]CHAR,
+    szNetBiosError: [17]u8,
     bLana: u8,
 };
 
@@ -1984,7 +1984,7 @@ pub const RASAUTODIALENTRYA = extern struct {
     dwSize: u32,
     dwFlags: u32,
     dwDialingLocation: u32,
-    szEntry: [257]CHAR,
+    szEntry: [257]u8,
 };
 
 pub const RASAUTODIALENTRYW = extern struct {
@@ -2005,10 +2005,10 @@ pub const RASCOMMSETTINGS = extern struct {
 pub const RASCONNA = extern struct {
     dwSize: u32 align(4),
     hrasconn: ?HRASCONN align(4),
-    szEntryName: [257]CHAR align(4),
-    szDeviceType: [17]CHAR align(4),
-    szDeviceName: [129]CHAR align(4),
-    szPhonebook: [260]CHAR align(4),
+    szEntryName: [257]u8 align(4),
+    szDeviceType: [17]u8 align(4),
+    szDeviceName: [129]u8 align(4),
+    szPhonebook: [260]u8 align(4),
     dwSubEntry: u32 align(4),
     guidEntry: Guid align(4),
     dwFlags: u32 align(4),
@@ -2087,9 +2087,9 @@ pub const RASCONNSTATUSA = extern struct {
     dwSize: u32,
     rasconnstate: RASCONNSTATE,
     dwError: u32,
-    szDeviceType: [17]CHAR,
-    szDeviceName: [129]CHAR,
-    szPhoneNumber: [129]CHAR,
+    szDeviceType: [17]u8,
+    szDeviceName: [129]u8,
+    szPhoneNumber: [129]u8,
     localEndPoint: RASTUNNELENDPOINT,
     remoteEndPoint: RASTUNNELENDPOINT,
     rasconnsubstate: RASCONNSUBSTATE,
@@ -2135,9 +2135,9 @@ pub const RASCONNW = extern struct {
 pub const RASCREDENTIALSA = extern struct {
     dwSize: u32,
     dwMask: u32,
-    szUserName: [257]CHAR,
-    szPassword: [257]CHAR,
-    szDomain: [16]CHAR,
+    szUserName: [257]u8,
+    szPassword: [257]u8,
+    szDomain: [16]u8,
 };
 
 pub const RASCREDENTIALSW = extern struct {
@@ -2216,8 +2216,8 @@ pub const RASCUSTOMSCRIPTEXTENSIONS = extern struct {
 
 pub const RASDEVINFOA = extern struct {
     dwSize: u32,
-    szDeviceType: [17]CHAR,
-    szDeviceName: [129]CHAR,
+    szDeviceType: [17]u8,
+    szDeviceName: [129]u8,
 };
 
 pub const RASDEVINFOW = extern struct {
@@ -2280,12 +2280,12 @@ pub const RASDIALFUNC2 = *const fn(
 
 pub const RASDIALPARAMSA = extern struct {
     dwSize: u32 align(4),
-    szEntryName: [257]CHAR align(4),
-    szPhoneNumber: [129]CHAR align(4),
-    szCallbackNumber: [129]CHAR align(4),
-    szUserName: [257]CHAR align(4),
-    szPassword: [257]CHAR align(4),
-    szDomain: [16]CHAR align(4),
+    szEntryName: [257]u8 align(4),
+    szPhoneNumber: [129]u8 align(4),
+    szCallbackNumber: [129]u8 align(4),
+    szUserName: [257]u8 align(4),
+    szPassword: [257]u8 align(4),
+    szDomain: [16]u8 align(4),
     dwSubEntry: u32 align(4),
     dwCallbackId: usize align(4),
     dwIfIndex: u32 align(4),
@@ -2312,7 +2312,7 @@ pub const RASEAPINFO = extern struct {
 };
 
 pub const RASEAPUSERIDENTITYA = extern struct {
-    szUserName: [257]CHAR,
+    szUserName: [257]u8,
     dwSizeofEapInfo: u32,
     pbEapInfo: [1]u8,
 };
@@ -2335,8 +2335,8 @@ pub const RASENTRYA = extern struct {
     dwfOptions: u32,
     dwCountryID: u32,
     dwCountryCode: u32,
-    szAreaCode: [11]CHAR,
-    szLocalPhoneNumber: [129]CHAR,
+    szAreaCode: [11]u8,
+    szLocalPhoneNumber: [129]u8,
     dwAlternateOffset: u32,
     ipaddr: RASIPADDR,
     ipaddrDns: RASIPADDR,
@@ -2346,15 +2346,15 @@ pub const RASENTRYA = extern struct {
     dwFrameSize: u32,
     dwfNetProtocols: u32,
     dwFramingProtocol: u32,
-    szScript: [260]CHAR,
-    szAutodialDll: [260]CHAR,
-    szAutodialFunc: [260]CHAR,
-    szDeviceType: [17]CHAR,
-    szDeviceName: [129]CHAR,
-    szX25PadType: [33]CHAR,
-    szX25Address: [201]CHAR,
-    szX25Facilities: [201]CHAR,
-    szX25UserData: [201]CHAR,
+    szScript: [260]u8,
+    szAutodialDll: [260]u8,
+    szAutodialFunc: [260]u8,
+    szDeviceType: [17]u8,
+    szDeviceName: [129]u8,
+    szX25PadType: [33]u8,
+    szX25Address: [201]u8,
+    szX25Facilities: [201]u8,
+    szX25UserData: [201]u8,
     dwChannels: u32,
     dwReserved1: u32,
     dwReserved2: u32,
@@ -2369,14 +2369,14 @@ pub const RASENTRYA = extern struct {
     dwEncryptionType: u32,
     dwCustomAuthKey: u32,
     guidId: Guid,
-    szCustomDialDll: [260]CHAR,
+    szCustomDialDll: [260]u8,
     dwVpnStrategy: u32,
     dwfOptions2: u32,
     dwfOptions3: u32,
-    szDnsSuffix: [256]CHAR,
+    szDnsSuffix: [256]u8,
     dwTcpWindowSize: u32,
-    szPrerequisitePbk: [260]CHAR,
-    szPrerequisiteEntry: [257]CHAR,
+    szPrerequisitePbk: [260]u8,
+    szPrerequisiteEntry: [257]u8,
     dwRedialCount: u32,
     dwRedialPause: u32,
     ipv6addrDns: IN6_ADDR,
@@ -2386,8 +2386,8 @@ pub const RASENTRYA = extern struct {
     ipv6addr: IN6_ADDR,
     dwIPv6PrefixLength: u32,
     dwNetworkOutageTime: u32,
-    szIDi: [257]CHAR,
-    szIDr: [257]CHAR,
+    szIDi: [257]u8,
+    szIDr: [257]u8,
     fIsImsConfig: BOOL,
     IdiType: IKEV2_ID_PAYLOAD_TYPE,
     IdrType: IKEV2_ID_PAYLOAD_TYPE,
@@ -2400,7 +2400,7 @@ pub const RASENTRYDLGA = extern struct {
     dwFlags: u32 align(4),
     xDlg: i32 align(4),
     yDlg: i32 align(4),
-    szEntry: [257]CHAR align(4),
+    szEntry: [257]u8 align(4),
     dwError: u32 align(4),
     reserved: usize align(4),
     reserved2: usize align(4),
@@ -2420,9 +2420,9 @@ pub const RASENTRYDLGW = extern struct {
 
 pub const RASENTRYNAMEA = extern struct {
     dwSize: u32,
-    szEntryName: [257]CHAR,
+    szEntryName: [257]u8,
     dwFlags: u32,
-    szPhonebookPath: [261]CHAR,
+    szPhonebookPath: [261]u8,
 };
 
 pub const RASENTRYNAMEW = extern struct {
@@ -2569,9 +2569,9 @@ pub const RASNOUSERA = extern struct {
     dwSize: u32,
     dwFlags: u32,
     dwTimeoutMs: u32,
-    szUserName: [257]CHAR,
-    szPassword: [257]CHAR,
-    szDomain: [16]CHAR,
+    szUserName: [257]u8,
+    szPassword: [257]u8,
+    szDomain: [16]u8,
 };
 
 pub const RASNOUSERW = extern struct {
@@ -2681,8 +2681,8 @@ pub const RASPPPCCP = extern struct {
 pub const RASPPPIPA = extern struct {
     dwSize: u32,
     dwError: u32,
-    szIpAddress: [16]CHAR,
-    szServerIpAddress: [16]CHAR,
+    szIpAddress: [16]u8,
+    szServerIpAddress: [16]u8,
     dwOptions: u32,
     dwServerOptions: u32,
 };
@@ -2708,7 +2708,7 @@ pub const RASPPPIPW = extern struct {
 pub const RASPPPIPXA = extern struct {
     dwSize: u32,
     dwError: u32,
-    szIpxAddress: [22]CHAR,
+    szIpxAddress: [22]u8,
 };
 
 pub const RASPPPLCPA = extern struct {
@@ -2724,7 +2724,7 @@ pub const RASPPPLCPA = extern struct {
     fMultilink: BOOL,
     dwTerminateReason: u32,
     dwServerTerminateReason: u32,
-    szReplyMessage: [1024]CHAR,
+    szReplyMessage: [1024]u8,
     dwOptions: u32,
     dwServerOptions: u32,
 };
@@ -2751,8 +2751,8 @@ pub const RASPPPNBFA = extern struct {
     dwSize: u32,
     dwError: u32,
     dwNetBiosError: u32,
-    szNetBiosError: [17]CHAR,
-    szWorkstationName: [17]CHAR,
+    szNetBiosError: [17]u8,
+    szWorkstationName: [17]u8,
     bLana: u8,
 };
 
@@ -2795,9 +2795,9 @@ pub const RASSECURITYPROC = *const fn(
 pub const RASSUBENTRYA = extern struct {
     dwSize: u32,
     dwfFlags: u32,
-    szDeviceType: [17]CHAR,
-    szDeviceName: [129]CHAR,
-    szLocalPhoneNumber: [129]CHAR,
+    szDeviceType: [17]u8,
+    szDeviceName: [129]u8,
+    szLocalPhoneNumber: [129]u8,
     dwAlternateOffset: u32,
 };
 
@@ -3031,8 +3031,8 @@ pub const SECURITY_MESSAGE = extern struct {
     dwMsgId: SECURITY_MESSAGE_MSG_ID,
     hPort: isize,
     dwError: u32,
-    UserName: [257]CHAR,
-    Domain: [16]CHAR,
+    UserName: [257]u8,
+    Domain: [16]u8,
 };
 
 pub const SECURITY_MESSAGE_MSG_ID = enum(u32) {
@@ -5637,11 +5637,10 @@ pub const RasValidateEntryName = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (12)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
-const CHAR = @import("../foundation.zig").CHAR;
 const CRYPT_INTEGER_BLOB = @import("../security/cryptography.zig").CRYPT_INTEGER_BLOB;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;

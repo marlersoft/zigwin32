@@ -4109,7 +4109,7 @@ pub const DvbParentalRatingDescriptor = extern struct {
 };
 
 pub const DvbParentalRatingParam = extern struct {
-    szCountryCode: [4]CHAR,
+    szCountryCode: [4]u8,
     bRating: u8,
 };
 
@@ -38243,7 +38243,7 @@ pub const KSM_BDA_CAS_CAPTURETOKEN = extern struct {
 pub const KSM_BDA_CAS_CLOSEMMIDIALOG = extern struct {
     NodeMethod: KSM_NODE,
     ulDialogRequest: u32,
-    cLanguage: [12]CHAR,
+    cLanguage: [12]u8,
     ulDialogNumber: u32,
     ulReason: u32,
 };
@@ -38251,7 +38251,7 @@ pub const KSM_BDA_CAS_CLOSEMMIDIALOG = extern struct {
 pub const KSM_BDA_CAS_ENTITLEMENTTOKEN = extern struct {
     NodeMethod: KSM_NODE,
     ulDialogRequest: u32,
-    cLanguage: [12]CHAR,
+    cLanguage: [12]u8,
     ulRequestType: u32,
     ulEntitlementTokenLen: u32,
     argbEntitlementToken: [1]u8,
@@ -38260,7 +38260,7 @@ pub const KSM_BDA_CAS_ENTITLEMENTTOKEN = extern struct {
 pub const KSM_BDA_CAS_OPENBROADCASTMMI = extern struct {
     NodeMethod: KSM_NODE,
     ulDialogRequest: u32,
-    cLanguage: [12]CHAR,
+    cLanguage: [12]u8,
     ulEventId: u32,
 };
 
@@ -38296,7 +38296,7 @@ pub const KSM_BDA_GDDS_TUNEXMLFROMIDX = extern struct {
 pub const KSM_BDA_GPNV_GETVALUE = extern struct {
     Method: KSIDENTIFIER,
     ulNameLength: u32,
-    cLanguage: [12]CHAR,
+    cLanguage: [12]u8,
     argbData: [1]u8,
 };
 
@@ -38308,7 +38308,7 @@ pub const KSM_BDA_GPNV_NAMEINDEX = extern struct {
 pub const KSM_BDA_GPNV_SETVALUE = extern struct {
     Method: KSIDENTIFIER,
     ulDialogRequest: u32,
-    cLanguage: [12]CHAR,
+    cLanguage: [12]u8,
     ulNameLength: u32,
     ulValueLength: u32,
     argbName: [1]u8,
@@ -38396,7 +38396,7 @@ pub const KSM_BDA_WMDRMTUNER_GETPIDPROTECTION = extern struct {
 pub const KSM_BDA_WMDRMTUNER_PURCHASEENTITLEMENT = extern struct {
     NodeMethod: KSM_NODE,
     ulDialogRequest: u32,
-    cLanguage: [12]CHAR,
+    cLanguage: [12]u8,
     ulPurchaseTokenLength: u32,
     argbDataBuffer: [1]u8,
 };
@@ -42209,7 +42209,7 @@ pub const AMGetErrorText = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (83)
+// Section: Imports (82)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const AM_MEDIA_TYPE = @import("../media/media_foundation.zig").AM_MEDIA_TYPE;
@@ -42219,7 +42219,6 @@ const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const BSTR = @import("../foundation.zig").BSTR;
 const CAUUID = @import("../system/ole.zig").CAUUID;
-const CHAR = @import("../foundation.zig").CHAR;
 const COLORREF = @import("../foundation.zig").COLORREF;
 const D3DFORMAT = @import("../graphics/direct3d9.zig").D3DFORMAT;
 const D3DPOOL = @import("../graphics/direct3d9.zig").D3DPOOL;

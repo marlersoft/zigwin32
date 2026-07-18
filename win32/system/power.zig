@@ -936,7 +936,7 @@ pub const PWRSCHEMESENUMPROC = *const fn(
     /// parameter "DescriptionSize" is the size in bytes
     Description: ?[*:0]u16,
     Policy: ?*POWER_POLICY,
-    Context: LPARAM,
+    Context: isize,
 ) callconv(.winapi) BOOLEAN;
 
 pub const PWRSCHEMESENUMPROC_V1 = *const fn(
@@ -948,7 +948,7 @@ pub const PWRSCHEMESENUMPROC_V1 = *const fn(
     /// parameter "DescriptionSize" is the size in bytes
     Description: ?*i8,
     Policy: ?*POWER_POLICY,
-    Context: LPARAM,
+    Context: isize,
 ) callconv(.winapi) BOOLEAN;
 
 pub const SET_POWER_SETTING_VALUE = extern struct {
@@ -1227,7 +1227,7 @@ pub extern "powrprof" fn DevicePowerSetDeviceState(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "powrprof" fn EnumPwrSchemes(
     lpfn: ?PWRSCHEMESENUMPROC,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1876,7 +1876,7 @@ pub extern "powrprof" fn WritePwrScheme(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (12)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -1885,7 +1885,6 @@ const DEVPROPKEY = @import("../devices/properties.zig").DEVPROPKEY;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HKEY = @import("../system/registry.zig").HKEY;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const LPARAM = @import("../foundation.zig").LPARAM;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const REASON_CONTEXT = @import("../system/threading.zig").REASON_CONTEXT;
 const REG_SAM_FLAGS = @import("../system/registry.zig").REG_SAM_FLAGS;

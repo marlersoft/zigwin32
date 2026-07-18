@@ -3780,7 +3780,7 @@ pub const KSGOP_USERDATA = extern struct {
     sc: u32,
     reserved1: u32,
     cFields: u8,
-    l21Data: [3]CHAR,
+    l21Data: [3]u8,
 };
 
 pub const KSIDENTIFIER = extern struct {
@@ -7258,11 +7258,10 @@ pub extern "ksuser" fn KsCreateTopologyNode2(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (13)
+// Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
-const CHAR = @import("../foundation.zig").CHAR;
 const DEVPROPKEY = @import("../devices/properties.zig").DEVPROPKEY;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;

@@ -13,7 +13,6 @@ const win32 = struct {
     const HRESULT = mod_root.foundation.HRESULT;
     const HWND = mod_root.foundation.HWND;
     const HANDLE = mod_root.foundation.HANDLE;
-    const LPARAM = mod_root.foundation.LPARAM;
     const POINT = mod_root.foundation.POINT;
     const SIZE = mod_root.foundation.SIZE;
     const RECT = mod_root.foundation.RECT;
@@ -320,13 +319,13 @@ pub fn closeHandle(handle: win32.HANDLE) void {
     );
 }
 
-pub fn xFromLparam(lparam: win32.LPARAM) i16 {
+pub fn xFromLparam(lparam: isize) i16 {
     return @bitCast(loword(lparam));
 }
-pub fn yFromLparam(lparam: win32.LPARAM) i16 {
+pub fn yFromLparam(lparam: isize) i16 {
     return @bitCast(hiword(lparam));
 }
-pub fn pointFromLparam(lparam: win32.LPARAM) win32.POINT {
+pub fn pointFromLparam(lparam: isize) win32.POINT {
     return win32.POINT{ .x = xFromLparam(lparam), .y = yFromLparam(lparam) };
 }
 

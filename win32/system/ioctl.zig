@@ -1876,7 +1876,7 @@ pub const DEVICEDUMP_PRIVATE_SUBSECTION = extern struct {
 pub const DEVICEDUMP_PUBLIC_SUBSECTION = extern struct {
     dwFlags: u32 align(1),
     GPLogTable: [16]GP_LOG_PAGE_DESCRIPTOR align(1),
-    szDescription: [16]CHAR align(1),
+    szDescription: [16]u8 align(1),
     bData: [1]u8 align(1),
 };
 
@@ -2482,7 +2482,7 @@ pub const FILE_STORAGE_TIER_REGION = extern struct {
 };
 
 pub const FILE_SYSTEM_RECOGNITION_INFORMATION = extern struct {
-    FileSystem: [9]CHAR,
+    FileSystem: [9]u8,
 };
 
 pub const FILE_TYPE_NOTIFICATION_INPUT = extern struct {
@@ -3829,7 +3829,7 @@ pub const SCM_PD_DEVICE_INFO = extern struct {
     ManufacturingYear: u8,
     SerialNumber4Byte: u32,
     SerialNumberLengthInChars: u32,
-    SerialNumber: [1]CHAR,
+    SerialNumber: [1]u8,
 };
 
 pub const SCM_PD_DEVICE_SPECIFIC_INFO = extern struct {
@@ -6504,11 +6504,10 @@ pub const MOVE_FILE_DATA32 = switch(@import("../zig.zig").arch) {
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const CHAR = @import("../foundation.zig").CHAR;
 const DEVPROPKEY = @import("../devices/properties.zig").DEVPROPKEY;
 const FILE_ID_128 = @import("../storage/file_system.zig").FILE_ID_128;
 const HANDLE = @import("../foundation.zig").HANDLE;

@@ -2225,15 +2225,15 @@ pub const CS_INACTIVE = CAPTIONSTATES.INACTIVE;
 pub const CS_DISABLED = CAPTIONSTATES.DISABLED;
 
 pub const CCINFOA = extern struct {
-    szClass: [32]CHAR,
+    szClass: [32]u8,
     flOptions: u32,
-    szDesc: [32]CHAR,
+    szDesc: [32]u8,
     cxDefault: u32,
     cyDefault: u32,
     flStyleDefault: u32,
     flExtStyleDefault: u32,
     flCtrlTypeMask: u32,
-    szTextDefault: [256]CHAR,
+    szTextDefault: [256]u8,
     cStyleFlags: i32,
     aStyleFlags: ?*CCSTYLEFLAGA,
     lpfnStyle: ?LPFNCCSTYLEA,
@@ -2263,7 +2263,7 @@ pub const CCINFOW = extern struct {
 pub const CCSTYLEA = extern struct {
     flStyle: u32,
     flExtStyle: u32,
-    szText: [256]CHAR,
+    szText: [256]u8,
     lgid: u16,
     wReserved1: u16,
 };
@@ -2454,7 +2454,7 @@ pub const COMBOBOXEXITEMA = extern struct {
     iSelectedImage: i32,
     iOverlay: i32,
     iIndent: i32,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const COMBOBOXEXITEMW = extern struct {
@@ -2466,7 +2466,7 @@ pub const COMBOBOXEXITEMW = extern struct {
     iSelectedImage: i32,
     iOverlay: i32,
     iIndent: i32,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const COMBOBOXINFO = extern struct {
@@ -2952,7 +2952,7 @@ pub const DTT_CALLBACK_PROC = *const fn(
     cchText: i32,
     prc: ?*RECT,
     dwFlags: u32,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) i32;
 
 pub const DTTOPTS = extern struct {
@@ -2970,7 +2970,7 @@ pub const DTTOPTS = extern struct {
     fApplyOverlay: BOOL,
     iGlowSize: i32,
     pfnDrawTextCallback: ?DTT_CALLBACK_PROC,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const DTTOPTS_FLAGS = packed struct(u32) {
@@ -3607,7 +3607,7 @@ pub const HDITEMA = extern struct {
     hbm: ?HBITMAP,
     cchTextMax: i32,
     fmt: HEADER_CONTROL_FORMAT_FLAGS,
-    lParam: LPARAM,
+    lParam: isize,
     iImage: i32,
     iOrder: i32,
     type: HEADER_CONTROL_FORMAT_TYPE,
@@ -3622,7 +3622,7 @@ pub const HDITEMW = extern struct {
     hbm: ?HBITMAP,
     cchTextMax: i32,
     fmt: HEADER_CONTROL_FORMAT_FLAGS,
-    lParam: LPARAM,
+    lParam: isize,
     iImage: i32,
     iOrder: i32,
     type: HEADER_CONTROL_FORMAT_TYPE,
@@ -5156,7 +5156,7 @@ pub const SPLS_PRESSED = LOGOFFBUTTONSSTATES.PRESSED;
 pub const LPFNADDPROPSHEETPAGES = *const fn(
     param0: ?*anyopaque,
     param1: ?LPFNSVADDPROPSHEETPAGE,
-    param2: LPARAM,
+    param2: isize,
 ) callconv(.winapi) BOOL;
 
 pub const LPFNCCINFOA = *const fn(
@@ -5205,7 +5205,7 @@ pub const LPFNPSPCALLBACKW = *const fn(
 
 pub const LPFNSVADDPROPSHEETPAGE = *const fn(
     param0: ?HPROPSHEETPAGE,
-    param1: LPARAM,
+    param1: isize,
 ) callconv(.winapi) BOOL;
 
 pub const LVBKIMAGEA = extern struct {
@@ -5350,7 +5350,7 @@ pub const LVCF_IDEALWIDTH = LVCOLUMNW_MASK{ .IDEALWIDTH = 1 };
 pub const LVFINDINFOA = extern struct {
     flags: LVFINDINFOW_FLAGS,
     psz: ?[*:0]const u8,
-    lParam: LPARAM,
+    lParam: isize,
     pt: POINT,
     vkDirection: u32,
 };
@@ -5358,7 +5358,7 @@ pub const LVFINDINFOA = extern struct {
 pub const LVFINDINFOW = extern struct {
     flags: LVFINDINFOW_FLAGS,
     psz: ?[*:0]const u16,
-    lParam: LPARAM,
+    lParam: isize,
     pt: POINT,
     vkDirection: u32,
 };
@@ -5598,7 +5598,7 @@ pub const LVITEMA = extern struct {
     pszText: ?[*:0]u8,
     cchTextMax: i32,
     iImage: i32,
-    lParam: LPARAM,
+    lParam: isize,
     iIndent: i32,
     iGroupId: LVITEMA_GROUP_ID,
     cColumns: u32,
@@ -5628,7 +5628,7 @@ pub const LVITEMW = extern struct {
     pszText: ?[*:0]u16,
     cchTextMax: i32,
     iImage: i32,
-    lParam: LPARAM,
+    lParam: isize,
     iIndent: i32,
     iGroupId: LVITEMA_GROUP_ID,
     cColumns: u32,
@@ -6290,7 +6290,7 @@ pub const NMBCHOTITEM = extern struct {
 pub const NMCBEDRAGBEGINA = extern struct {
     hdr: NMHDR,
     iItemid: i32,
-    szText: [260]CHAR,
+    szText: [260]u8,
 };
 
 pub const NMCBEDRAGBEGINW = extern struct {
@@ -6303,7 +6303,7 @@ pub const NMCBEENDEDITA = extern struct {
     hdr: NMHDR,
     fChanged: BOOL,
     iNewSelection: i32,
-    szText: [260]CHAR,
+    szText: [260]u8,
     iWhy: i32,
 };
 
@@ -6339,7 +6339,7 @@ pub const NMCUSTOMDRAW = extern struct {
     rc: RECT,
     dwItemSpec: usize,
     uItemState: NMCUSTOMDRAW_DRAW_STATE_FLAGS,
-    lItemlParam: LPARAM,
+    lItemlParam: isize,
 };
 
 pub const NMCUSTOMDRAW_DRAW_STAGE = enum(u32) {
@@ -6444,7 +6444,7 @@ pub const NMDATETIMEFORMATA = extern struct {
     pszFormat: ?[*:0]const u8,
     st: SYSTEMTIME,
     pszDisplay: ?[*:0]const u8,
-    szDisplay: [64]CHAR,
+    szDisplay: [64]u8,
 };
 
 pub const NMDATETIMEFORMATQUERYA = extern struct {
@@ -6509,7 +6509,7 @@ pub const NMHDDISPINFOA = extern struct {
     pszText: ?[*:0]u8,
     cchTextMax: i32,
     iImage: i32,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const NMHDDISPINFOW = extern struct {
@@ -6519,7 +6519,7 @@ pub const NMHDDISPINFOW = extern struct {
     pszText: ?[*:0]u16,
     cchTextMax: i32,
     iImage: i32,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const NMHDFILTERBTNCLICK = extern struct {
@@ -6562,7 +6562,7 @@ pub const NMITEMACTIVATE = extern struct {
     uOldState: u32,
     uChanged: u32,
     ptAction: POINT,
-    lParam: LPARAM,
+    lParam: isize,
     uKeyFlags: u32,
 };
 
@@ -6585,7 +6585,7 @@ pub const NMLISTVIEW = extern struct {
     uOldState: u32,
     uChanged: LIST_VIEW_ITEM_FLAGS,
     ptAction: POINT,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const NMLVCACHEHINT = extern struct {
@@ -6665,7 +6665,7 @@ pub const NMLVGETINFOTIPA = extern struct {
     cchTextMax: i32,
     iItem: i32,
     iSubItem: i32,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const NMLVGETINFOTIPW = extern struct {
@@ -6675,7 +6675,7 @@ pub const NMLVGETINFOTIPW = extern struct {
     cchTextMax: i32,
     iItem: i32,
     iSubItem: i32,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const NMLVKEYDOWN = extern struct {
@@ -6710,7 +6710,7 @@ pub const NMMOUSE = extern struct {
     dwItemSpec: usize,
     dwItemData: usize,
     pt: POINT,
-    dwHitInfo: LPARAM,
+    dwHitInfo: isize,
 };
 
 pub const NMOBJECTNOTIFY = extern struct {
@@ -6800,7 +6800,7 @@ pub const NMREBAR = extern struct {
     uBand: u32,
     fStyle: u32,
     wID: u32,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const NMREBAR_MASK_FLAGS = packed struct(u32) {
@@ -6845,7 +6845,7 @@ pub const NMREBARAUTOBREAK = extern struct {
     hdr: NMHDR,
     uBand: u32,
     wID: u32,
-    lParam: LPARAM,
+    lParam: isize,
     uMsg: u32,
     fStyleCurrent: u32,
     fAutoBreak: BOOL,
@@ -6855,9 +6855,9 @@ pub const NMREBARCHEVRON = extern struct {
     hdr: NMHDR,
     uBand: u32,
     wID: u32,
-    lParam: LPARAM,
+    lParam: isize,
     rc: RECT,
-    lParamNM: LPARAM,
+    lParamNM: isize,
 };
 
 pub const NMREBARCHILDSIZE = extern struct {
@@ -6966,7 +6966,7 @@ pub const NMTBGETINFOTIPA = extern struct {
     pszText: ?[*:0]u8,
     cchTextMax: i32,
     iItem: i32,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const NMTBGETINFOTIPW = extern struct {
@@ -6974,7 +6974,7 @@ pub const NMTBGETINFOTIPW = extern struct {
     pszText: ?[*:0]u16,
     cchTextMax: i32,
     iItem: i32,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const NMTBHOTITEM = extern struct {
@@ -7109,10 +7109,10 @@ pub const NMTTCUSTOMDRAW = extern struct {
 pub const NMTTDISPINFOA = extern struct {
     hdr: NMHDR,
     lpszText: ?[*:0]u8,
-    szText: [80]CHAR,
+    szText: [80]u8,
     hinst: ?HINSTANCE,
     uFlags: TOOLTIP_FLAGS,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const NMTTDISPINFOW = extern struct {
@@ -7121,7 +7121,7 @@ pub const NMTTDISPINFOW = extern struct {
     szText: [80]u16,
     hinst: ?HINSTANCE,
     uFlags: TOOLTIP_FLAGS,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const NMTVASYNCDRAW = extern struct {
@@ -7129,7 +7129,7 @@ pub const NMTVASYNCDRAW = extern struct {
     pimldp: ?*IMAGELISTDRAWPARAMS,
     hr: HRESULT,
     hItem: ?HTREEITEM,
-    lParam: LPARAM,
+    lParam: isize,
     dwRetFlags: u32,
     iRetImageIndex: i32,
 };
@@ -7166,7 +7166,7 @@ pub const NMTVGETINFOTIPA = extern struct {
     pszText: ?[*:0]u8,
     cchTextMax: i32,
     hItem: ?HTREEITEM,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const NMTVGETINFOTIPW = extern struct {
@@ -7174,7 +7174,7 @@ pub const NMTVGETINFOTIPW = extern struct {
     pszText: ?[*:0]u16,
     cchTextMax: i32,
     hItem: ?HTREEITEM,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const NMTVITEMCHANGE = extern struct {
@@ -7183,7 +7183,7 @@ pub const NMTVITEMCHANGE = extern struct {
     hItem: ?HTREEITEM,
     uStateNew: u32,
     uStateOld: u32,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const NMTVKEYDOWN = extern struct {
@@ -7370,13 +7370,13 @@ pub const PBRANGE = extern struct {
 pub const PFNDACOMPARE = *const fn(
     p1: ?*anyopaque,
     p2: ?*anyopaque,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) i32;
 
 pub const PFNDACOMPARECONST = *const fn(
     p1: ?*const anyopaque,
     p2: ?*const anyopaque,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) i32;
 
 pub const PFNDAENUMCALLBACK = *const fn(
@@ -7393,14 +7393,14 @@ pub const PFNDPAMERGE = *const fn(
     uMsg: DPAMM_MESSAGE,
     pvDest: ?*anyopaque,
     pvSrc: ?*anyopaque,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) ?*anyopaque;
 
 pub const PFNDPAMERGECONST = *const fn(
     uMsg: DPAMM_MESSAGE,
     pvDest: ?*const anyopaque,
     pvSrc: ?*const anyopaque,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) ?*anyopaque;
 
 pub const PFNDPASTREAM = *const fn(
@@ -7410,9 +7410,9 @@ pub const PFNDPASTREAM = *const fn(
 ) callconv(.winapi) HRESULT;
 
 pub const PFNLVCOMPARE = *const fn(
-    param0: LPARAM,
-    param1: LPARAM,
-    param2: LPARAM,
+    param0: isize,
+    param1: isize,
+    param2: isize,
 ) callconv(.winapi) i32;
 
 pub const PFNLVGROUPCOMPARE = *const fn(
@@ -7424,20 +7424,20 @@ pub const PFNLVGROUPCOMPARE = *const fn(
 pub const PFNPROPSHEETCALLBACK = *const fn(
     param0: ?HWND,
     param1: u32,
-    param2: LPARAM,
+    param2: isize,
 ) callconv(.winapi) i32;
 
 pub const PFNTVCOMPARE = *const fn(
-    lParam1: LPARAM,
-    lParam2: LPARAM,
-    lParamSort: LPARAM,
+    lParam1: isize,
+    lParam2: isize,
+    lParamSort: isize,
 ) callconv(.winapi) i32;
 
 pub const PFTASKDIALOGCALLBACK = *const fn(
     hwnd: ?HWND,
     msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
     lpRefData: isize,
 ) callconv(.winapi) HRESULT;
 
@@ -7706,7 +7706,7 @@ pub const PROPSHEETPAGEA = extern struct {
     },
     pszTitle: ?[*:0]const u8,
     pfnDlgProc: ?DLGPROC,
-    lParam: LPARAM,
+    lParam: isize,
     pfnCallback: ?LPFNPSPCALLBACKA,
     pcRefParent: ?*u32,
     pszHeaderTitle: ?[*:0]const u8,
@@ -7732,7 +7732,7 @@ pub const PROPSHEETPAGEA_V1 = extern struct {
     },
     pszTitle: ?[*:0]const u8,
     pfnDlgProc: ?DLGPROC,
-    lParam: LPARAM,
+    lParam: isize,
     pfnCallback: ?LPFNPSPCALLBACKA,
     pcRefParent: ?*u32,
 };
@@ -7751,7 +7751,7 @@ pub const PROPSHEETPAGEA_V2 = extern struct {
     },
     pszTitle: ?[*:0]const u8,
     pfnDlgProc: ?DLGPROC,
-    lParam: LPARAM,
+    lParam: isize,
     pfnCallback: ?LPFNPSPCALLBACKA,
     pcRefParent: ?*u32,
     pszHeaderTitle: ?[*:0]const u8,
@@ -7772,7 +7772,7 @@ pub const PROPSHEETPAGEA_V3 = extern struct {
     },
     pszTitle: ?[*:0]const u8,
     pfnDlgProc: ?DLGPROC,
-    lParam: LPARAM,
+    lParam: isize,
     pfnCallback: ?LPFNPSPCALLBACKA,
     pcRefParent: ?*u32,
     pszHeaderTitle: ?[*:0]const u8,
@@ -7794,7 +7794,7 @@ pub const PROPSHEETPAGEW = extern struct {
     },
     pszTitle: ?[*:0]const u16,
     pfnDlgProc: ?DLGPROC,
-    lParam: LPARAM,
+    lParam: isize,
     pfnCallback: ?LPFNPSPCALLBACKW,
     pcRefParent: ?*u32,
     pszHeaderTitle: ?[*:0]const u16,
@@ -7820,7 +7820,7 @@ pub const PROPSHEETPAGEW_V1 = extern struct {
     },
     pszTitle: ?[*:0]const u16,
     pfnDlgProc: ?DLGPROC,
-    lParam: LPARAM,
+    lParam: isize,
     pfnCallback: ?LPFNPSPCALLBACKW,
     pcRefParent: ?*u32,
 };
@@ -7839,7 +7839,7 @@ pub const PROPSHEETPAGEW_V2 = extern struct {
     },
     pszTitle: ?[*:0]const u16,
     pfnDlgProc: ?DLGPROC,
-    lParam: LPARAM,
+    lParam: isize,
     pfnCallback: ?LPFNPSPCALLBACKW,
     pcRefParent: ?*u32,
     pszHeaderTitle: ?[*:0]const u16,
@@ -7860,7 +7860,7 @@ pub const PROPSHEETPAGEW_V3 = extern struct {
     },
     pszTitle: ?[*:0]const u16,
     pfnDlgProc: ?DLGPROC,
-    lParam: LPARAM,
+    lParam: isize,
     pfnCallback: ?LPFNPSPCALLBACKW,
     pcRefParent: ?*u32,
     pszHeaderTitle: ?[*:0]const u16,
@@ -7870,7 +7870,7 @@ pub const PROPSHEETPAGEW_V3 = extern struct {
 
 pub const PSHNOTIFY = extern struct {
     hdr: NMHDR,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const PSPCB_MESSAGE = enum(u32) {
@@ -7961,7 +7961,7 @@ pub const REBARBANDINFOA = extern struct {
     cyMaxChild: u32,
     cyIntegral: u32,
     cxIdeal: u32,
-    lParam: LPARAM,
+    lParam: isize,
     cxHeader: u32,
     rcChevronLocation: RECT,
     uChevronState: u32,
@@ -7986,7 +7986,7 @@ pub const REBARBANDINFOW = extern struct {
     cyMaxChild: u32,
     cyIntegral: u32,
     cxIdeal: u32,
-    lParam: LPARAM,
+    lParam: isize,
     cxHeader: u32,
     rcChevronLocation: RECT,
     uChevronState: u32,
@@ -8981,7 +8981,7 @@ pub const TCITEMA = extern struct {
     pszText: ?[*:0]u8,
     cchTextMax: i32,
     iImage: i32,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const TCITEMHEADERA = extern struct {
@@ -9049,7 +9049,7 @@ pub const TCITEMW = extern struct {
     pszText: ?[*:0]u16,
     cchTextMax: i32,
     iImage: i32,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const TEXTSELECTIONGRIPPERPARTS = enum(i32) {
@@ -10061,7 +10061,7 @@ pub const TTTOOLINFOA = extern struct {
     rect: RECT,
     hinst: ?HINSTANCE,
     lpszText: ?[*:0]u8,
-    lParam: LPARAM,
+    lParam: isize,
     lpReserved: ?*anyopaque,
 };
 
@@ -10073,7 +10073,7 @@ pub const TTTOOLINFOW = extern struct {
     rect: RECT,
     hinst: ?HINSTANCE,
     lpszText: ?[*:0]u16,
-    lParam: LPARAM,
+    lParam: isize,
     lpReserved: ?*anyopaque,
 };
 
@@ -10214,7 +10214,7 @@ pub const TVITEMA = extern struct {
     iImage: i32,
     iSelectedImage: i32,
     cChildren: TVITEMEXW_CHILDREN,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const TVITEMEXA = extern struct {
@@ -10227,7 +10227,7 @@ pub const TVITEMEXA = extern struct {
     iImage: i32,
     iSelectedImage: i32,
     cChildren: TVITEMEXW_CHILDREN,
-    lParam: LPARAM,
+    lParam: isize,
     iIntegral: i32,
     uStateEx: u32,
     hwnd: ?HWND,
@@ -10245,7 +10245,7 @@ pub const TVITEMEXW = extern struct {
     iImage: i32,
     iSelectedImage: i32,
     cChildren: TVITEMEXW_CHILDREN,
-    lParam: LPARAM,
+    lParam: isize,
     iIntegral: i32,
     uStateEx: u32,
     hwnd: ?HWND,
@@ -10279,13 +10279,13 @@ pub const TVITEMW = extern struct {
     iImage: i32,
     iSelectedImage: i32,
     cChildren: TVITEMEXW_CHILDREN,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const TVSORTCB = extern struct {
     hParent: ?HTREEITEM,
     lpfnCompare: ?PFNTVCOMPARE,
-    lParam: LPARAM,
+    lParam: isize,
 };
 
 pub const UDACCEL = extern struct {
@@ -10873,7 +10873,7 @@ pub extern "comctl32" fn DPA_Merge(
     dwFlags: u32,
     pfnCompare: ?PFNDACOMPARE,
     pfnMerge: ?PFNDPAMERGE,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -10890,7 +10890,7 @@ pub extern "comctl32" fn DPA_Search(
     pFind: ?*anyopaque,
     iStart: i32,
     pfnCompare: ?PFNDACOMPARE,
-    lParam: LPARAM,
+    lParam: isize,
     options: u32,
 ) callconv(.winapi) i32;
 
@@ -10905,7 +10905,7 @@ pub extern "comctl32" fn DPA_SetPtr(
 pub extern "comctl32" fn DPA_Sort(
     hdpa: ?HDPA,
     pfnCompare: ?PFNDACOMPARE,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -11105,7 +11105,7 @@ pub extern "comctl32" fn DSA_SetItem(
 pub extern "comctl32" fn DSA_Sort(
     pdsa: ?HDSA,
     pfnCompare: ?PFNDACOMPARE,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -11989,8 +11989,8 @@ pub extern "comctl32" fn MakeDragList(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "comctl32" fn MenuHelp(
     uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
     hMainMenu: ?HMENU,
     hInst: ?HINSTANCE,
     hwndStatus: ?HWND,
@@ -12014,7 +12014,7 @@ pub extern "uxtheme" fn OpenThemeDataEx(
 pub extern "user32" fn PackTouchHitTestingProximityEvaluation(
     pHitTestingInput: ?*const TOUCH_HIT_TESTING_INPUT,
     pProximityEval: ?*const TOUCH_HIT_TESTING_PROXIMITY_EVALUATION,
-) callconv(.winapi) LRESULT;
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "comctl32" fn PropertySheetA(
@@ -12537,12 +12537,11 @@ pub const PropertySheet = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (44)
+// Section: Imports (40)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLENDFUNCTION = @import("../graphics/gdi.zig").BLENDFUNCTION;
 const BOOL = @import("../foundation.zig").BOOL;
-const CHAR = @import("../foundation.zig").CHAR;
 const COLORREF = @import("../foundation.zig").COLORREF;
 const DLGPROC = @import("../ui/windows_and_messaging.zig").DLGPROC;
 const DLGTEMPLATE = @import("../ui/windows_and_messaging.zig").DLGTEMPLATE;
@@ -12568,8 +12567,6 @@ const IMAGE_FLAGS = @import("../ui/windows_and_messaging.zig").IMAGE_FLAGS;
 const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
-const LPARAM = @import("../foundation.zig").LPARAM;
-const LRESULT = @import("../foundation.zig").LRESULT;
 const POINT = @import("../foundation.zig").POINT;
 const POINTER_INPUT_TYPE = @import("../ui/windows_and_messaging.zig").POINTER_INPUT_TYPE;
 const POINTER_PEN_INFO = @import("../ui/input/pointer.zig").POINTER_PEN_INFO;
@@ -12582,7 +12579,6 @@ const SIZE = @import("../foundation.zig").SIZE;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const TEXTMETRICW = @import("../graphics/gdi.zig").TEXTMETRICW;
 const WINDOWPOS = @import("../ui/windows_and_messaging.zig").WINDOWPOS;
-const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

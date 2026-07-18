@@ -682,7 +682,7 @@ pub const OSVERSIONINFOA = extern struct {
     dwMinorVersion: u32,
     dwBuildNumber: u32,
     dwPlatformId: u32,
-    szCSDVersion: [128]CHAR,
+    szCSDVersion: [128]u8,
 };
 
 pub const OSVERSIONINFOEXA = extern struct {
@@ -691,7 +691,7 @@ pub const OSVERSIONINFOEXA = extern struct {
     dwMinorVersion: u32,
     dwBuildNumber: u32,
     dwPlatformId: u32,
-    szCSDVersion: [128]CHAR,
+    szCSDVersion: [128]u8,
     wServicePackMajor: u16,
     wServicePackMinor: u16,
     wSuiteMask: u16,
@@ -1395,11 +1395,10 @@ pub const VerifyVersionInfo = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
-const CHAR = @import("../foundation.zig").CHAR;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;

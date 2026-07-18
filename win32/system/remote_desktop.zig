@@ -361,7 +361,7 @@ pub const BITMAP_RENDERER_STATISTICS = extern struct {
 };
 
 pub const CHANNEL_DEF = extern struct {
-    name: [8]CHAR align(1),
+    name: [8]u8 align(1),
     options: u32 align(1),
 };
 
@@ -5168,8 +5168,8 @@ pub const PnpRedirectionDisabled = PolicyAttributeType.PnpRedirectionDisabled;
 pub const AllowOnlySDRServers = PolicyAttributeType.AllowOnlySDRServers;
 
 pub const PRODUCT_INFOA = extern struct {
-    CompanyName: [256]CHAR,
-    ProductID: [4]CHAR,
+    CompanyName: [256]u8,
+    ProductID: [4]u8,
 };
 
 pub const PRODUCT_INFOW = extern struct {
@@ -6352,25 +6352,25 @@ pub const WTSVirtualClientData = WTS_VIRTUAL_CLASS.ClientData;
 pub const WTSVirtualFileHandle = WTS_VIRTUAL_CLASS.FileHandle;
 
 pub const WTSCLIENTA = extern struct {
-    ClientName: [21]CHAR,
-    Domain: [18]CHAR,
-    UserName: [21]CHAR,
-    WorkDirectory: [261]CHAR,
-    InitialProgram: [261]CHAR,
+    ClientName: [21]u8,
+    Domain: [18]u8,
+    UserName: [21]u8,
+    WorkDirectory: [261]u8,
+    InitialProgram: [261]u8,
     EncryptionLevel: u8,
     ClientAddressFamily: u32,
     ClientAddress: [31]u16,
     HRes: u16,
     VRes: u16,
     ColorDepth: u16,
-    ClientDirectory: [261]CHAR,
+    ClientDirectory: [261]u8,
     ClientBuildNumber: u32,
     ClientHardwareId: u32,
     ClientProductId: u16,
     OutBufCountHost: u16,
     OutBufCountClient: u16,
     OutBufLength: u16,
-    DeviceId: [261]CHAR,
+    DeviceId: [261]u8,
 };
 
 pub const WTSCLIENTW = extern struct {
@@ -6402,11 +6402,11 @@ pub const WTSCONFIGINFOA = extern struct {
     fDisablePrinterRedirection: u32,
     fDisableDefaultMainClientPrinter: u32,
     ShadowSettings: u32,
-    LogonUserName: [21]CHAR,
-    LogonDomain: [18]CHAR,
-    WorkDirectory: [261]CHAR,
-    InitialProgram: [261]CHAR,
-    ApplicationName: [261]CHAR,
+    LogonUserName: [21]u8,
+    LogonDomain: [18]u8,
+    WorkDirectory: [261]u8,
+    InitialProgram: [261]u8,
+    ApplicationName: [261]u8,
 };
 
 pub const WTSCONFIGINFOW = extern struct {
@@ -6432,9 +6432,9 @@ pub const WTSINFOA = extern struct {
     OutgoingFrames: u32,
     IncomingCompressedBytes: u32,
     OutgoingCompressedBy: u32,
-    WinStationName: [32]CHAR,
-    Domain: [17]CHAR,
-    UserName: [21]CHAR,
+    WinStationName: [32]u8,
+    Domain: [17]u8,
+    UserName: [21]u8,
     ConnectTime: LARGE_INTEGER,
     DisconnectTime: LARGE_INTEGER,
     LastInputTime: LARGE_INTEGER,
@@ -6446,9 +6446,9 @@ pub const WTSINFOEX_LEVEL1_A = extern struct {
     SessionId: u32,
     SessionState: WTS_CONNECTSTATE_CLASS,
     SessionFlags: i32,
-    WinStationName: [33]CHAR,
-    UserName: [21]CHAR,
-    DomainName: [18]CHAR,
+    WinStationName: [33]u8,
+    UserName: [21]u8,
+    DomainName: [18]u8,
     LogonTime: LARGE_INTEGER,
     ConnectTime: LARGE_INTEGER,
     DisconnectTime: LARGE_INTEGER,
@@ -6546,11 +6546,11 @@ pub const WTSLISTENERCONFIGA = extern struct {
     SecurityLayer: u32,
     MinEncryptionLevel: u32,
     UserAuthentication: u32,
-    Comment: [61]CHAR,
-    LogonUserName: [21]CHAR,
-    LogonDomain: [18]CHAR,
-    WorkDirectory: [261]CHAR,
-    InitialProgram: [261]CHAR,
+    Comment: [61]u8,
+    LogonUserName: [21]u8,
+    LogonDomain: [18]u8,
+    WorkDirectory: [261]u8,
+    InitialProgram: [261]u8,
 };
 
 pub const WTSLISTENERCONFIGW = extern struct {
@@ -6701,11 +6701,11 @@ pub const WTSUSERCONFIGA = extern struct {
     ReconnectSettings: u32,
     ShadowingSettings: u32,
     TerminalServerRemoteHomeDir: u32,
-    InitialProgram: [261]CHAR,
-    WorkDirectory: [261]CHAR,
-    TerminalServerProfilePath: [261]CHAR,
-    TerminalServerHomeDir: [261]CHAR,
-    TerminalServerHomeDirDrive: [4]CHAR,
+    InitialProgram: [261]u8,
+    WorkDirectory: [261]u8,
+    TerminalServerProfilePath: [261]u8,
+    TerminalServerHomeDir: [261]u8,
+    TerminalServerHomeDirDrive: [4]u8,
 };
 
 pub const WTSUSERCONFIGW = extern struct {
@@ -7490,14 +7490,13 @@ pub const WTSStartRemoteControlSession = switch (@import("../zig.zig").unicode_m
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (25)
+// Section: Imports (24)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const APO_CONNECTION_PROPERTY = @import("../media/audio/apo.zig").APO_CONNECTION_PROPERTY;
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const BSTR = @import("../foundation.zig").BSTR;
-const CHAR = @import("../foundation.zig").CHAR;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HANDLE_PTR = @import("../foundation.zig").HANDLE_PTR;

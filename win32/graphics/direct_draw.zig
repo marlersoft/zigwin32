@@ -984,8 +984,8 @@ pub const DBLNODE = extern struct {
 };
 
 pub const DD32BITDRIVERDATA = extern struct {
-    szName: [260]CHAR,
-    szEntryPoint: [64]CHAR,
+    szName: [260]u8,
+    szEntryPoint: [64]u8,
     dwContext: u32,
 };
 
@@ -2261,8 +2261,8 @@ pub const DDCORECAPS = extern struct {
 };
 
 pub const DDDEVICEIDENTIFIER = extern struct {
-    szDriver: [512]CHAR,
-    szDescription: [512]CHAR,
+    szDriver: [512]u8,
+    szDescription: [512]u8,
     liDriverVersion: LARGE_INTEGER,
     dwVendorId: u32,
     dwDeviceId: u32,
@@ -2272,8 +2272,8 @@ pub const DDDEVICEIDENTIFIER = extern struct {
 };
 
 pub const DDDEVICEIDENTIFIER2 = extern struct {
-    szDriver: [512]CHAR,
-    szDescription: [512]CHAR,
+    szDriver: [512]u8,
+    szDescription: [512]u8,
     liDriverVersion: LARGE_INTEGER,
     dwVendorId: u32,
     dwDeviceId: u32,
@@ -3585,7 +3585,7 @@ pub const DDRAWI_DIRECTDRAW_GBL = extern struct {
     dwAliasedLockCnt: u32,
     dwReserved3: usize,
     hDD: usize,
-    cObsolete: [12]CHAR,
+    cObsolete: [12]u8,
     dwReserved1: u32,
     dwReserved2: u32,
     dbnOverlayRoot: DBLNODE,
@@ -3616,7 +3616,7 @@ pub const DDRAWI_DIRECTDRAW_GBL = extern struct {
     lpD3DExtendedCaps: usize,
     dwDOSBoxEvent: u32,
     rectDesktop: RECT,
-    cDriverName: [32]CHAR,
+    cDriverName: [32]u8,
     lpD3DHALCallbacks3: usize,
     dwNumZPixelFormats: u32,
     lpZPixelFormats: ?*DDPIXELFORMAT,
@@ -7556,11 +7556,10 @@ pub const DirectDrawEnumerateEx = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (17)
+// Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
-const CHAR = @import("../foundation.zig").CHAR;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HDC = @import("../graphics/gdi.zig").HDC;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;

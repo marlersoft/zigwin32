@@ -4412,9 +4412,9 @@ pub const IDirect3DVolumeTexture9 = extern union {
 
 pub const D3DADAPTER_IDENTIFIER9 = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
-        Driver: [512]CHAR,
-        Description: [512]CHAR,
-        DeviceName: [32]CHAR,
+        Driver: [512]u8,
+        Description: [512]u8,
+        DeviceName: [32]u8,
         DriverVersion: LARGE_INTEGER,
         VendorId: u32,
         DeviceId: u32,
@@ -4424,9 +4424,9 @@ pub const D3DADAPTER_IDENTIFIER9 = switch(@import("../zig.zig").arch) {
         WHQLLevel: u32,
     },
     .X86 => extern struct {
-        Driver: [512]CHAR align(4),
-        Description: [512]CHAR align(4),
-        DeviceName: [32]CHAR align(4),
+        Driver: [512]u8 align(4),
+        Description: [512]u8 align(4),
+        DeviceName: [32]u8 align(4),
         DriverVersion: LARGE_INTEGER align(4),
         VendorId: u32 align(4),
         DeviceId: u32 align(4),
@@ -4536,11 +4536,10 @@ pub extern "d3d9" fn Direct3DCreate9Ex(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (17)
+// Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
-const CHAR = @import("../foundation.zig").CHAR;
 const D3DMATRIX = @import("../graphics/direct3d.zig").D3DMATRIX;
 const D3DVECTOR = @import("../graphics/direct3d.zig").D3DVECTOR;
 const HANDLE = @import("../foundation.zig").HANDLE;

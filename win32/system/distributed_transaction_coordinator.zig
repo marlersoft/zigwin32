@@ -2402,7 +2402,7 @@ pub const XA_START_EPT = *const fn(
 ) callconv(.winapi) i32;
 
 pub const xa_switch_t = extern struct {
-    name: [32]CHAR,
+    name: [32]u8,
     flags: i32,
     version: i32,
     xa_open_entry: isize,
@@ -2583,7 +2583,7 @@ pub const XID = extern struct {
     formatID: i32,
     gtrid_length: i32,
     bqual_length: i32,
-    data: [128]CHAR,
+    data: [128]u8,
 };
 
 
@@ -2649,11 +2649,10 @@ pub const DtcGetTransactionManagerEx = switch (@import("../zig.zig").unicode_mod
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
-const CHAR = @import("../foundation.zig").CHAR;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HRESULT = @import("../foundation.zig").HRESULT;

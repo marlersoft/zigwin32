@@ -5215,12 +5215,12 @@ pub const ISpNotifyCallback = extern union {
     pub const VTable = extern struct {
         NotifyCallback: *const fn(
             self: *const ISpNotifyCallback,
-            wParam: WPARAM,
-            lParam: LPARAM,
+            wParam: usize,
+            lParam: isize,
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    pub fn NotifyCallback(self: *const ISpNotifyCallback, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
+    pub fn NotifyCallback(self: *const ISpNotifyCallback, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
         return self.vtable.NotifyCallback(self, wParam, lParam);
     }
 };
@@ -5254,20 +5254,20 @@ pub const ISpNotifySource = extern union {
             self: *const ISpNotifySource,
             hWnd: ?HWND,
             Msg: u32,
-            wParam: WPARAM,
-            lParam: LPARAM,
+            wParam: usize,
+            lParam: isize,
         ) callconv(.winapi) HRESULT,
         SetNotifyCallbackFunction: *const fn(
             self: *const ISpNotifySource,
             pfnCallback: ?*?SPNOTIFYCALLBACK,
-            wParam: WPARAM,
-            lParam: LPARAM,
+            wParam: usize,
+            lParam: isize,
         ) callconv(.winapi) HRESULT,
         SetNotifyCallbackInterface: *const fn(
             self: *const ISpNotifySource,
             pSpCallback: ?*ISpNotifyCallback,
-            wParam: WPARAM,
-            lParam: LPARAM,
+            wParam: usize,
+            lParam: isize,
         ) callconv(.winapi) HRESULT,
         SetNotifyWin32Event: *const fn(
             self: *const ISpNotifySource,
@@ -5285,13 +5285,13 @@ pub const ISpNotifySource = extern union {
     pub fn SetNotifySink(self: *const ISpNotifySource, pNotifySink: ?*ISpNotifySink) callconv(.@"inline") HRESULT {
         return self.vtable.SetNotifySink(self, pNotifySink);
     }
-    pub fn SetNotifyWindowMessage(self: *const ISpNotifySource, hWnd: ?HWND, Msg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
+    pub fn SetNotifyWindowMessage(self: *const ISpNotifySource, hWnd: ?HWND, Msg: u32, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
         return self.vtable.SetNotifyWindowMessage(self, hWnd, Msg, wParam, lParam);
     }
-    pub fn SetNotifyCallbackFunction(self: *const ISpNotifySource, pfnCallback: ?*?SPNOTIFYCALLBACK, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
+    pub fn SetNotifyCallbackFunction(self: *const ISpNotifySource, pfnCallback: ?*?SPNOTIFYCALLBACK, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
         return self.vtable.SetNotifyCallbackFunction(self, pfnCallback, wParam, lParam);
     }
-    pub fn SetNotifyCallbackInterface(self: *const ISpNotifySource, pSpCallback: ?*ISpNotifyCallback, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
+    pub fn SetNotifyCallbackInterface(self: *const ISpNotifySource, pSpCallback: ?*ISpNotifyCallback, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
         return self.vtable.SetNotifyCallbackInterface(self, pSpCallback, wParam, lParam);
     }
     pub fn SetNotifyWin32Event(self: *const ISpNotifySource) callconv(.@"inline") HRESULT {
@@ -5314,20 +5314,20 @@ pub const ISpNotifyTranslator = extern union {
             self: *const ISpNotifyTranslator,
             hWnd: ?HWND,
             Msg: u32,
-            wParam: WPARAM,
-            lParam: LPARAM,
+            wParam: usize,
+            lParam: isize,
         ) callconv(.winapi) HRESULT,
         InitCallback: *const fn(
             self: *const ISpNotifyTranslator,
             pfnCallback: ?*?SPNOTIFYCALLBACK,
-            wParam: WPARAM,
-            lParam: LPARAM,
+            wParam: usize,
+            lParam: isize,
         ) callconv(.winapi) HRESULT,
         InitSpNotifyCallback: *const fn(
             self: *const ISpNotifyTranslator,
             pSpCallback: ?*ISpNotifyCallback,
-            wParam: WPARAM,
-            lParam: LPARAM,
+            wParam: usize,
+            lParam: isize,
         ) callconv(.winapi) HRESULT,
         InitWin32Event: *const fn(
             self: *const ISpNotifyTranslator,
@@ -5345,13 +5345,13 @@ pub const ISpNotifyTranslator = extern union {
     vtable: *const VTable,
     ISpNotifySink: ISpNotifySink,
     IUnknown: IUnknown,
-    pub fn InitWindowMessage(self: *const ISpNotifyTranslator, hWnd: ?HWND, Msg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
+    pub fn InitWindowMessage(self: *const ISpNotifyTranslator, hWnd: ?HWND, Msg: u32, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
         return self.vtable.InitWindowMessage(self, hWnd, Msg, wParam, lParam);
     }
-    pub fn InitCallback(self: *const ISpNotifyTranslator, pfnCallback: ?*?SPNOTIFYCALLBACK, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
+    pub fn InitCallback(self: *const ISpNotifyTranslator, pfnCallback: ?*?SPNOTIFYCALLBACK, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
         return self.vtable.InitCallback(self, pfnCallback, wParam, lParam);
     }
-    pub fn InitSpNotifyCallback(self: *const ISpNotifyTranslator, pSpCallback: ?*ISpNotifyCallback, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
+    pub fn InitSpNotifyCallback(self: *const ISpNotifyTranslator, pSpCallback: ?*ISpNotifyCallback, wParam: usize, lParam: isize) callconv(.@"inline") HRESULT {
         return self.vtable.InitSpNotifyCallback(self, pSpCallback, wParam, lParam);
     }
     pub fn InitWin32Event(self: *const ISpNotifyTranslator, hEvent: ?HANDLE, fCloseHandleOnRelease: BOOL) callconv(.@"inline") HRESULT {
@@ -5864,7 +5864,7 @@ pub const ISpRecoContext = extern union {
             self: *const ISpRecoContext,
             Options: SPBOOKMARKOPTIONS,
             ullStreamPosition: u64,
-            lparamEvent: LPARAM,
+            lparamEvent: isize,
         ) callconv(.winapi) HRESULT,
         SetAdaptationData: *const fn(
             self: *const ISpRecoContext,
@@ -5933,7 +5933,7 @@ pub const ISpRecoContext = extern union {
     pub fn DeserializeResult(self: *const ISpRecoContext, pSerializedResult: ?*const SPSERIALIZEDRESULT, ppResult: ?*?*ISpRecoResult) callconv(.@"inline") HRESULT {
         return self.vtable.DeserializeResult(self, pSerializedResult, ppResult);
     }
-    pub fn Bookmark(self: *const ISpRecoContext, Options: SPBOOKMARKOPTIONS, ullStreamPosition: u64, lparamEvent: LPARAM) callconv(.@"inline") HRESULT {
+    pub fn Bookmark(self: *const ISpRecoContext, Options: SPBOOKMARKOPTIONS, ullStreamPosition: u64, lparamEvent: isize) callconv(.@"inline") HRESULT {
         return self.vtable.Bookmark(self, Options, ullStreamPosition, lparamEvent);
     }
     pub fn SetAdaptationData(self: *const ISpRecoContext, pAdaptationData: ?[*:0]const u16, cch: u32) callconv(.@"inline") HRESULT {
@@ -7879,8 +7879,8 @@ pub const SPEVENT = extern struct {
     _bitfield: i32,
     ulStreamNum: u32,
     ullAudioStreamOffset: u64,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
 };
 
 pub const SPEVENTENUM = enum(i32) {
@@ -7970,8 +7970,8 @@ pub const SPEVENTEX = extern struct {
     _bitfield: i32,
     ulStreamNum: u32,
     ullAudioStreamOffset: u64,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
     ullAudioTimeOffset: u64,
 };
 
@@ -8196,8 +8196,8 @@ pub const SPNORMALIZATIONLIST = extern struct {
 };
 
 pub const SPNOTIFYCALLBACK = *const fn(
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
 ) callconv(.winapi) void;
 
 const CLSID_SpNotifyTranslator_Value = Guid.initString("e2ae5372-5d40-11d2-960e-00c04f8ee628");
@@ -8914,7 +8914,7 @@ pub const SPXRO_Alternates_SML = SPXMLRESULTOPTIONS.Alternates_SML;
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (20)
+// Section: Imports (18)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -8931,11 +8931,9 @@ const ISequentialStream = @import("../system/com.zig").ISequentialStream;
 const IServiceProvider = @import("../system/com.zig").IServiceProvider;
 const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const LPARAM = @import("../foundation.zig").LPARAM;
 const VARIANT = @import("../system/com.zig").VARIANT;
 const VARIANT_BOOL = @import("../foundation.zig").VARIANT_BOOL;
 const WAVEFORMATEX = @import("../media/audio.zig").WAVEFORMATEX;
-const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

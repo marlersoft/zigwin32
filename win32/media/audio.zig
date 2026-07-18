@@ -497,11 +497,11 @@ pub const ACMDRIVERDETAILSA = extern struct {
     cFormatTags: u32 align(1),
     cFilterTags: u32 align(1),
     hicon: ?HICON align(1),
-    szShortName: [32]CHAR align(1),
-    szLongName: [128]CHAR align(1),
-    szCopyright: [80]CHAR align(1),
-    szLicensing: [128]CHAR align(1),
-    szFeatures: [512]CHAR align(1),
+    szShortName: [32]u8 align(1),
+    szLongName: [128]u8 align(1),
+    szCopyright: [80]u8 align(1),
+    szLicensing: [128]u8 align(1),
+    szFeatures: [512]u8 align(1),
 };
 
 pub const ACMDRIVERDETAILSW = extern struct {
@@ -613,30 +613,30 @@ pub const ACMFILTERCHOOSEA = extern struct {
     pwfltr: ?*WAVEFILTER align(1),
     cbwfltr: u32 align(1),
     pszTitle: ?[*:0]const u8 align(1),
-    szFilterTag: [48]CHAR align(1),
-    szFilter: [128]CHAR align(1),
+    szFilterTag: [48]u8 align(1),
+    szFilter: [128]u8 align(1),
     pszName: ?[*:0]u8 align(1),
     cchName: u32 align(1),
     fdwEnum: u32 align(1),
     pwfltrEnum: ?*WAVEFILTER align(1),
     hInstance: ?HINSTANCE align(1),
     pszTemplateName: ?[*:0]const u8 align(1),
-    lCustData: LPARAM align(1),
+    lCustData: isize align(1),
     pfnHook: ?ACMFILTERCHOOSEHOOKPROCA align(1),
 };
 
 pub const ACMFILTERCHOOSEHOOKPROCA = *const fn(
     hwnd: ?HWND,
     uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
 ) callconv(.winapi) u32;
 
 pub const ACMFILTERCHOOSEHOOKPROCW = *const fn(
     hwnd: ?HWND,
     uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
 ) callconv(.winapi) u32;
 
 pub const ACMFILTERCHOOSEW = extern struct {
@@ -654,7 +654,7 @@ pub const ACMFILTERCHOOSEW = extern struct {
     pwfltrEnum: ?*WAVEFILTER align(1),
     hInstance: ?HINSTANCE align(1),
     pszTemplateName: ?[*:0]const u16 align(1),
-    lCustData: LPARAM align(1),
+    lCustData: isize align(1),
     pfnHook: ?ACMFILTERCHOOSEHOOKPROCW align(1),
 };
 
@@ -665,7 +665,7 @@ pub const ACMFILTERDETAILSA = extern struct {
     fdwSupport: u32 align(1),
     pwfltr: ?*WAVEFILTER align(1),
     cbwfltr: u32 align(1),
-    szFilter: [128]CHAR align(1),
+    szFilter: [128]u8 align(1),
 };
 
 pub const ACMFILTERDETAILSW = extern struct {
@@ -699,7 +699,7 @@ pub const ACMFILTERTAGDETAILSA = extern struct {
     cbFilterSize: u32 align(1),
     fdwSupport: u32 align(1),
     cStandardFilters: u32 align(1),
-    szFilterTag: [48]CHAR align(1),
+    szFilterTag: [48]u8 align(1),
 };
 
 pub const ACMFILTERTAGDETAILSW = extern struct {
@@ -733,30 +733,30 @@ pub const ACMFORMATCHOOSEA = extern struct {
     pwfx: ?*WAVEFORMATEX align(1),
     cbwfx: u32 align(1),
     pszTitle: ?[*:0]const u8 align(1),
-    szFormatTag: [48]CHAR align(1),
-    szFormat: [128]CHAR align(1),
+    szFormatTag: [48]u8 align(1),
+    szFormat: [128]u8 align(1),
     pszName: ?[*:0]u8 align(1),
     cchName: u32 align(1),
     fdwEnum: u32 align(1),
     pwfxEnum: ?*WAVEFORMATEX align(1),
     hInstance: ?HINSTANCE align(1),
     pszTemplateName: ?[*:0]const u8 align(1),
-    lCustData: LPARAM align(1),
+    lCustData: isize align(1),
     pfnHook: ?ACMFORMATCHOOSEHOOKPROCA align(1),
 };
 
 pub const ACMFORMATCHOOSEHOOKPROCA = *const fn(
     hwnd: ?HWND,
     uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
 ) callconv(.winapi) u32;
 
 pub const ACMFORMATCHOOSEHOOKPROCW = *const fn(
     hwnd: ?HWND,
     uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    wParam: usize,
+    lParam: isize,
 ) callconv(.winapi) u32;
 
 pub const ACMFORMATCHOOSEW = extern struct {
@@ -774,7 +774,7 @@ pub const ACMFORMATCHOOSEW = extern struct {
     pwfxEnum: ?*WAVEFORMATEX align(1),
     hInstance: ?HINSTANCE align(1),
     pszTemplateName: ?[*:0]const u16 align(1),
-    lCustData: LPARAM align(1),
+    lCustData: isize align(1),
     pfnHook: ?ACMFORMATCHOOSEHOOKPROCW align(1),
 };
 
@@ -785,7 +785,7 @@ pub const ACMFORMATDETAILSA = extern struct {
     fdwSupport: u32 align(1),
     pwfx: ?*WAVEFORMATEX align(1),
     cbwfx: u32 align(1),
-    szFormat: [128]CHAR align(1),
+    szFormat: [128]u8 align(1),
 };
 
 pub const ACMFORMATENUMCBA = *const fn(
@@ -809,7 +809,7 @@ pub const ACMFORMATTAGDETAILSA = extern struct {
     cbFormatSize: u32 align(1),
     fdwSupport: u32 align(1),
     cStandardFormats: u32 align(1),
-    szFormatTag: [48]CHAR align(1),
+    szFormatTag: [48]u8 align(1),
 };
 
 pub const ACMFORMATTAGDETAILSW = extern struct {
@@ -1043,7 +1043,7 @@ pub const AudioClientProperties = extern struct {
 };
 
 pub const AudioExtensionParams = extern struct {
-    AddPageParam: LPARAM,
+    AddPageParam: isize,
     pEndpoint: ?*IMMDevice,
     pPnpInterface: ?*IMMDevice,
     pPnpDevnode: ?*IMMDevice,
@@ -1140,7 +1140,7 @@ pub const AUXCAPS2A = extern struct {
     wMid: u16 align(1),
     wPid: u16 align(1),
     vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
+    szPname: [32]u8 align(1),
     wTechnology: u16 align(1),
     wReserved1: u16 align(1),
     dwSupport: u32 align(1),
@@ -1166,7 +1166,7 @@ pub const AUXCAPSA = extern struct {
     wMid: u16 align(1),
     wPid: u16 align(1),
     vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
+    szPname: [32]u8 align(1),
     wTechnology: u16 align(1),
     wReserved1: u16 align(1),
     dwSupport: u32 align(1),
@@ -3953,9 +3953,9 @@ pub const LPACMDRIVERPROC = *const fn(
     param0: usize,
     param1: ?HACMDRIVERID,
     param2: u32,
-    param3: LPARAM,
-    param4: LPARAM,
-) callconv(.winapi) LRESULT;
+    param3: isize,
+    param4: isize,
+) callconv(.winapi) isize;
 
 pub const LPMIDICALLBACK = *const fn(
     hdrvr: ?HDRVR,
@@ -4059,7 +4059,7 @@ pub const MIDIINCAPS2A = extern struct {
     wMid: u16 align(1),
     wPid: u16 align(1),
     vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
+    szPname: [32]u8 align(1),
     dwSupport: u32 align(1),
     ManufacturerGuid: Guid align(1),
     ProductGuid: Guid align(1),
@@ -4081,7 +4081,7 @@ pub const MIDIINCAPSA = extern struct {
     wMid: u16 align(1),
     wPid: u16 align(1),
     vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
+    szPname: [32]u8 align(1),
     dwSupport: u32 align(1),
 };
 
@@ -4097,7 +4097,7 @@ pub const MIDIOUTCAPS2A = extern struct {
     wMid: u16 align(1),
     wPid: u16 align(1),
     vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
+    szPname: [32]u8 align(1),
     wTechnology: u16 align(1),
     wVoices: u16 align(1),
     wNotes: u16 align(1),
@@ -4127,7 +4127,7 @@ pub const MIDIOUTCAPSA = extern struct {
     wMid: u16 align(1),
     wPid: u16 align(1),
     vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
+    szPname: [32]u8 align(1),
     wTechnology: u16 align(1),
     wVoices: u16 align(1),
     wNotes: u16 align(1),
@@ -4167,7 +4167,7 @@ pub const MIXERCAPS2A = extern struct {
     wMid: u16 align(1),
     wPid: u16 align(1),
     vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
+    szPname: [32]u8 align(1),
     fdwSupport: u32 align(1),
     cDestinations: u32 align(1),
     ManufacturerGuid: Guid align(1),
@@ -4191,7 +4191,7 @@ pub const MIXERCAPSA = extern struct {
     wMid: u16 align(1),
     wPid: u16 align(1),
     vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
+    szPname: [32]u8 align(1),
     fdwSupport: u32 align(1),
     cDestinations: u32 align(1),
 };
@@ -4211,8 +4211,8 @@ pub const MIXERCONTROLA = extern struct {
     dwControlType: u32 align(1),
     fdwControl: u32 align(1),
     cMultipleItems: u32 align(1),
-    szShortName: [16]CHAR align(1),
-    szName: [64]CHAR align(1),
+    szShortName: [16]u8 align(1),
+    szName: [64]u8 align(1),
     Bounds: extern union {
         Anonymous1: extern struct {
             lMinimum: i32 align(1),
@@ -4250,7 +4250,7 @@ pub const MIXERCONTROLDETAILS_BOOLEAN = extern struct {
 pub const MIXERCONTROLDETAILS_LISTTEXTA = extern struct {
     dwParam1: u32 align(1),
     dwParam2: u32 align(1),
-    szName: [64]CHAR align(1),
+    szName: [64]u8 align(1),
 };
 
 pub const MIXERCONTROLDETAILS_LISTTEXTW = extern struct {
@@ -4347,15 +4347,15 @@ pub const MIXERLINEA = extern struct {
     cChannels: u32 align(1),
     cConnections: u32 align(1),
     cControls: u32 align(1),
-    szShortName: [16]CHAR align(1),
-    szName: [64]CHAR align(1),
+    szShortName: [16]u8 align(1),
+    szName: [64]u8 align(1),
     Target: extern struct {
         dwType: u32 align(1),
         dwDeviceID: u32 align(1),
         wMid: u16 align(1),
         wPid: u16 align(1),
         vDriverVersion: u32 align(1),
-        szPname: [32]CHAR align(1),
+        szPname: [32]u8 align(1),
     } align(1),
 };
 
@@ -4762,7 +4762,7 @@ pub const WAVEINCAPS2A = extern struct {
     wMid: u16 align(1),
     wPid: u16 align(1),
     vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
+    szPname: [32]u8 align(1),
     dwFormats: u32 align(1),
     wChannels: u16 align(1),
     wReserved1: u16 align(1),
@@ -4788,7 +4788,7 @@ pub const WAVEINCAPSA = extern struct {
     wMid: u16 align(1),
     wPid: u16 align(1),
     vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
+    szPname: [32]u8 align(1),
     dwFormats: u32 align(1),
     wChannels: u16 align(1),
     wReserved1: u16 align(1),
@@ -4808,7 +4808,7 @@ pub const WAVEOUTCAPS2A = extern struct {
     wMid: u16 align(1),
     wPid: u16 align(1),
     vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
+    szPname: [32]u8 align(1),
     dwFormats: u32 align(1),
     wChannels: u16 align(1),
     wReserved1: u16 align(1),
@@ -4836,7 +4836,7 @@ pub const WAVEOUTCAPSA = extern struct {
     wMid: u16 align(1),
     wPid: u16 align(1),
     vDriverVersion: u32 align(1),
-    szPname: [32]CHAR align(1),
+    szPname: [32]u8 align(1),
     dwFormats: u32 align(1),
     wChannels: u16 align(1),
     wReserved1: u16 align(1),
@@ -4892,7 +4892,7 @@ pub const ACMSTREAMHEADER = switch(@import("../zig.zig").arch) {
 pub extern "msacm32" fn acmDriverAddA(
     phadid: ?*isize,
     hinstModule: ?HINSTANCE,
-    lParam: LPARAM,
+    lParam: isize,
     dwPriority: u32,
     fdwAdd: u32,
 ) callconv(.winapi) u32;
@@ -4901,7 +4901,7 @@ pub extern "msacm32" fn acmDriverAddA(
 pub extern "msacm32" fn acmDriverAddW(
     phadid: ?*isize,
     hinstModule: ?HINSTANCE,
-    lParam: LPARAM,
+    lParam: isize,
     dwPriority: u32,
     fdwAdd: u32,
 ) callconv(.winapi) u32;
@@ -4944,9 +4944,9 @@ pub extern "msacm32" fn acmDriverID(
 pub extern "msacm32" fn acmDriverMessage(
     had: ?HACMDRIVER,
     uMsg: u32,
-    lParam1: LPARAM,
-    lParam2: LPARAM,
-) callconv(.winapi) LRESULT;
+    lParam1: isize,
+    lParam2: isize,
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmDriverOpen(
@@ -5153,8 +5153,8 @@ pub extern "msacm32" fn acmStreamConvert(
 pub extern "msacm32" fn acmStreamMessage(
     has: ?HACMSTREAM,
     uMsg: u32,
-    lParam1: LPARAM,
-    lParam2: LPARAM,
+    lParam1: isize,
+    lParam2: isize,
 ) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6355,11 +6355,10 @@ pub const waveOutGetErrorText = switch (@import("../zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (21)
+// Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
-const CHAR = @import("../foundation.zig").CHAR;
 const CLSCTX = @import("../system/com.zig").CLSCTX;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HDRVR = @import("../media/multimedia.zig").HDRVR;
@@ -6371,13 +6370,10 @@ const HWND = @import("../foundation.zig").HWND;
 const INTERFACEINFO = @import("../system/com.zig").INTERFACEINFO;
 const IPropertyStore = @import("../ui/shell/properties_system.zig").IPropertyStore;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const LPARAM = @import("../foundation.zig").LPARAM;
-const LRESULT = @import("../foundation.zig").LRESULT;
 const MMTIME = @import("../media.zig").MMTIME;
 const PROPERTYKEY = @import("../ui/shell/properties_system.zig").PROPERTYKEY;
 const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
 const STGM = @import("../system/com.zig").STGM;
-const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

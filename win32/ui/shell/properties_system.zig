@@ -1766,16 +1766,16 @@ pub const PUIFNF_MNEMONIC = PROPERTYUI_NAME_FLAGS{ .MNEMONIC = 1 };
 pub const PROPPRG = extern struct {
     flPrg: u16 align(1),
     flPrgInit: u16 align(1),
-    achTitle: [30]CHAR align(1),
-    achCmdLine: [128]CHAR align(1),
-    achWorkDir: [64]CHAR align(1),
+    achTitle: [30]u8 align(1),
+    achCmdLine: [128]u8 align(1),
+    achWorkDir: [64]u8 align(1),
     wHotKey: u16 align(1),
-    achIconFile: [80]CHAR align(1),
+    achIconFile: [80]u8 align(1),
     wIconIndex: u16 align(1),
     dwEnhModeFlags: u32 align(1),
     dwRealModeFlags: u32 align(1),
-    achOtherFile: [80]CHAR align(1),
-    achPIFFile: [260]CHAR align(1),
+    achOtherFile: [80]u8 align(1),
+    achPIFFile: [260]u8 align(1),
 };
 
 pub const PROPVAR_CHANGE_FLAGS = packed struct(u32) {
@@ -3626,12 +3626,11 @@ pub extern "propsys" fn WinRTPropertyValueToPropVariant(
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// Section: Imports (25)
+// Section: Imports (24)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
 const BSTR = @import("../../foundation.zig").BSTR;
-const CHAR = @import("../../foundation.zig").CHAR;
 const CONDITION_OPERATION = @import("../../system/search/common.zig").CONDITION_OPERATION;
 const FILETIME = @import("../../foundation.zig").FILETIME;
 const HANDLE = @import("../../foundation.zig").HANDLE;

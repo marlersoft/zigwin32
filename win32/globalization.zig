@@ -898,7 +898,7 @@ pub const CALINFO_ENUMPROCEXEX = *const fn(
     param0: ?[*:0]u16,
     param1: u32,
     param2: ?[*:0]u16,
-    param3: LPARAM,
+    param3: isize,
 ) callconv(.winapi) BOOL;
 
 pub const CALINFO_ENUMPROCEXW = *const fn(
@@ -1001,7 +1001,7 @@ pub const CPINFOEXA = extern struct {
     LeadByte: [12]u8,
     UnicodeDefaultChar: u16,
     CodePage: u32,
-    CodePageName: [260]CHAR,
+    CodePageName: [260]u8,
 };
 
 pub const CPINFOEXW = extern struct {
@@ -1047,7 +1047,7 @@ pub const DATEFMT_ENUMPROCEXA = *const fn(
 pub const DATEFMT_ENUMPROCEXEX = *const fn(
     param0: ?[*:0]u16,
     param1: u32,
-    param2: LPARAM,
+    param2: isize,
 ) callconv(.winapi) BOOL;
 
 pub const DATEFMT_ENUMPROCEXW = *const fn(
@@ -1172,7 +1172,7 @@ pub const FONTSIGNATURE = extern struct {
 
 pub const GEO_ENUMNAMEPROC = *const fn(
     param0: ?[*:0]u16,
-    param1: LPARAM,
+    param1: isize,
 ) callconv(.winapi) BOOL;
 
 pub const GEO_ENUMPROC = *const fn(
@@ -1796,7 +1796,7 @@ pub const IMLangStringBufA = extern union {
             self: *const IMLangStringBufA,
             cchOffset: i32,
             cchMaxLock: i32,
-            ppszBuf: ?*?*CHAR,
+            ppszBuf: ?*?*u8,
             pcchBuf: ?*i32,
         ) callconv(.winapi) HRESULT,
         UnlockBuf: *const fn(
@@ -1822,7 +1822,7 @@ pub const IMLangStringBufA = extern union {
     pub fn GetStatus(self: *const IMLangStringBufA, plFlags: ?*i32, pcchBuf: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, plFlags, pcchBuf);
     }
-    pub fn LockBuf(self: *const IMLangStringBufA, cchOffset: i32, cchMaxLock: i32, ppszBuf: ?*?*CHAR, pcchBuf: ?*i32) callconv(.@"inline") HRESULT {
+    pub fn LockBuf(self: *const IMLangStringBufA, cchOffset: i32, cchMaxLock: i32, ppszBuf: ?*?*u8, pcchBuf: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.LockBuf(self, cchOffset, cchMaxLock, ppszBuf, pcchBuf);
     }
     pub fn UnlockBuf(self: *const IMLangStringBufA, pszBuf: ?[*:0]const u8, cchOffset: i32, cchWrite: i32) callconv(.@"inline") HRESULT {
@@ -2990,7 +2990,7 @@ pub const LOCALE_ENUMPROCA = *const fn(
 pub const LOCALE_ENUMPROCEX = *const fn(
     param0: ?[*:0]u16,
     param1: u32,
-    param2: LPARAM,
+    param2: isize,
 ) callconv(.winapi) BOOL;
 
 pub const LOCALE_ENUMPROCW = *const fn(
@@ -3636,7 +3636,7 @@ pub const TIMEFMT_ENUMPROCA = *const fn(
 
 pub const TIMEFMT_ENUMPROCEX = *const fn(
     param0: ?[*:0]u16,
-    param1: LPARAM,
+    param1: isize,
 ) callconv(.winapi) BOOL;
 
 pub const TIMEFMT_ENUMPROCW = *const fn(
@@ -8524,7 +8524,7 @@ pub extern "kernel32" fn CompareStringEx(
     cchCount2: i32,
     lpVersionInformation: ?*NLSVERSIONINFO,
     lpReserved: ?*anyopaque,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -8574,7 +8574,7 @@ pub extern "kernel32" fn EnumCalendarInfoExEx(
     Calendar: u32,
     lpReserved: ?[*:0]const u16,
     CalType: u32,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -8612,7 +8612,7 @@ pub extern "kernel32" fn EnumDateFormatsExEx(
     lpDateFmtEnumProcExEx: ?DATEFMT_ENUMPROCEXEX,
     lpLocaleName: ?[*:0]const u16,
     dwFlags: ENUM_DATE_FORMATS_FLAGS,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -8668,7 +8668,7 @@ pub extern "kernel32" fn EnumSystemGeoID(
 pub extern "kernel32" fn EnumSystemGeoNames(
     geoClass: u32,
     geoEnumProc: ?GEO_ENUMNAMEPROC,
-    data: LPARAM,
+    data: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -8695,7 +8695,7 @@ pub extern "kernel32" fn EnumSystemLocalesA(
 pub extern "kernel32" fn EnumSystemLocalesEx(
     lpLocaleEnumProcEx: ?LOCALE_ENUMPROCEX,
     dwFlags: u32,
-    lParam: LPARAM,
+    lParam: isize,
     lpReserved: ?*anyopaque,
 ) callconv(.winapi) BOOL;
 
@@ -8717,7 +8717,7 @@ pub extern "kernel32" fn EnumTimeFormatsEx(
     lpTimeFmtEnumProcEx: ?TIMEFMT_ENUMPROCEX,
     lpLocaleName: ?[*:0]const u16,
     dwFlags: u32,
-    lParam: LPARAM,
+    lParam: isize,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -8763,7 +8763,7 @@ pub extern "kernel32" fn FindNLSStringEx(
     pcchFound: ?*i32,
     lpVersionInformation: ?*NLSVERSIONINFO,
     lpReserved: ?*anyopaque,
-    sortHandle: LPARAM,
+    sortHandle: isize,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -9361,7 +9361,7 @@ pub extern "kernel32" fn LCMapStringEx(
     cchDest: i32,
     lpVersionInformation: ?*NLSVERSIONINFO,
     lpReserved: ?*anyopaque,
-    sortHandle: LPARAM,
+    sortHandle: isize,
 ) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -16619,7 +16619,7 @@ pub const SetLocaleInfo = switch (@import("zig.zig").unicode_mode) {
     ),
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (21)
+// Section: Imports (19)
 //--------------------------------------------------------------------------------
 const Guid = @import("zig.zig").Guid;
 const ABC = @import("graphics/gdi.zig").ABC;
@@ -16627,7 +16627,6 @@ const AXESLISTA = @import("graphics/gdi.zig").AXESLISTA;
 const AXESLISTW = @import("graphics/gdi.zig").AXESLISTW;
 const BOOL = @import("foundation.zig").BOOL;
 const BSTR = @import("foundation.zig").BSTR;
-const CHAR = @import("foundation.zig").CHAR;
 const ETO_OPTIONS = @import("graphics/gdi.zig").ETO_OPTIONS;
 const HDC = @import("graphics/gdi.zig").HDC;
 const HFONT = @import("graphics/gdi.zig").HFONT;
@@ -16636,7 +16635,6 @@ const HWND = @import("foundation.zig").HWND;
 const IEnumString = @import("system/com.zig").IEnumString;
 const IStream = @import("system/com.zig").IStream;
 const IUnknown = @import("system/com.zig").IUnknown;
-const LPARAM = @import("foundation.zig").LPARAM;
 const NEWTEXTMETRICA = @import("graphics/gdi.zig").NEWTEXTMETRICA;
 const NEWTEXTMETRICW = @import("graphics/gdi.zig").NEWTEXTMETRICW;
 const RECT = @import("foundation.zig").RECT;
