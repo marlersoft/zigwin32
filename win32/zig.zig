@@ -173,11 +173,6 @@ pub const COLORREF = packed struct(u32) {
     pub const gray: COLORREF = .rgb(128, 128, 128);
 };
 
-// These constants were removed from the metadata to allow each projection
-// to define them however they like (see https://github.com/microsoft/win32metadata/issues/530)
-pub const FALSE: win32.BOOL = 0;
-pub const TRUE: win32.BOOL = 1;
-
 /// Returns a formatter that will print the given error code using FormatMessage, i.e.
 ///
 ///   "The system cannot find the file specified."
