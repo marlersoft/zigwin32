@@ -546,6 +546,8 @@ test {
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        _ = @field(@This(), decl.name);
+        // zig 0.17.0 changed declarations to return names instead of Declaration structs
+        const name = if (@TypeOf(decl) == [:0]const u8) decl else decl.name;
+        _ = @field(@This(), name);
     }
 }

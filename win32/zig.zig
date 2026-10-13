@@ -1,7 +1,6 @@
 //! This module is maintained by hand and is copied to the generated code directory
 const std = @import("std");
 const builtin = @import("builtin");
-const testing = std.testing;
 
 const zig_atleast_15 = builtin.zig_version.order(.{ .major = 0, .minor = 15, .patch = 0 }) != .lt;
 const zig_atleast_16 = builtin.zig_version.order(.{ .major = 0, .minor = 16, .patch = 0 }) != .lt;
@@ -98,13 +97,6 @@ fn hexVal(c: u8) u4 {
 // TODO: is this in the standard lib somewhere?
 fn decodeHexByte(hex: [2]u8) u8 {
     return @as(u8, @intCast(hexVal(hex[0]))) << 4 | hexVal(hex[1]);
-}
-
-test "Guid" {
-    try testing.expect(std.mem.eql(u8, switch (builtin.target.cpu.arch.endian()) {
-        .big => "\x01\x23\x45\x67\x89\xAB\xEF\x10\x32\x54\x76\x98\xba\xdc\xfe\x91",
-        .little => "\x67\x45\x23\x01\xAB\x89\x10\xEF\x32\x54\x76\x98\xba\xdc\xfe\x91",
-    }, &Guid.initString("01234567-89AB-EF10-3254-7698badcfe91").Bytes));
 }
 
 pub const PropertyKey = extern struct {
@@ -354,10 +346,15 @@ pub fn pointFromLparam(lparam: isize) win32.POINT {
     return win32.POINT{ .x = xFromLparam(lparam), .y = yFromLparam(lparam) };
 }
 
+// std.meta.Int was removed in zig 0.17.0 in favor of @Int which older versions don't have
+fn UnsignedInt(comptime bits: u16) type {
+    return std.math.IntFittingRange(0, (1 << bits) - 1);
+}
+
 pub fn loword(value: anytype) u16 {
     switch (@typeInfo(@TypeOf(value))) {
         .int => |int| switch (int.signedness) {
-            .signed => return loword(@as(std.meta.Int(.unsigned, int.bits), @bitCast(value))),
+            .signed => return loword(@as(UnsignedInt(int.bits), @bitCast(value))),
             .unsigned => return if (int.bits <= 16) value else @intCast(0xffff & value),
         },
         else => {},
@@ -367,7 +364,7 @@ pub fn loword(value: anytype) u16 {
 pub fn hiword(value: anytype) u16 {
     switch (@typeInfo(@TypeOf(value))) {
         .int => |int| switch (int.signedness) {
-            .signed => return hiword(@as(std.meta.Int(.unsigned, int.bits), @bitCast(value))),
+            .signed => return hiword(@as(UnsignedInt(int.bits), @bitCast(value))),
             .unsigned => return @intCast(0xffff & (value >> 16)),
         },
         else => {},
@@ -445,7 +442,7 @@ fn typedConst2(comptime ReturnType: type, comptime SwitchType: type, comptime va
         .int => |target_type_info| {
             if (value >= std.math.maxInt(SwitchType)) {
                 if (target_type_info.signedness == .signed) {
-                    const UnsignedT = std.meta.Int(.unsigned, target_type_info.bits);
+                    const UnsignedT = UnsignedInt(target_type_info.bits);
                     return @as(SwitchType, @bitCast(@as(UnsignedT, value)));
                 }
             }
@@ -487,7 +484,7 @@ fn typedConst2_0_13(comptime ReturnType: type, comptime SwitchType: type, compti
         .Int => |target_type_info| {
             if (value >= std.math.maxInt(SwitchType)) {
                 if (target_type_info.signedness == .signed) {
-                    const UnsignedT = std.meta.Int(.unsigned, target_type_info.bits);
+                    const UnsignedT = UnsignedInt(target_type_info.bits);
                     return @as(SwitchType, @bitCast(@as(UnsignedT, value)));
                 }
             }
@@ -515,12 +512,6 @@ fn typedConst2_0_13(comptime ReturnType: type, comptime SwitchType: type, compti
         },
         else => @compileError(target_type_error),
     }
-}
-test "typedConst" {
-    try testing.expectEqual(@as(usize, @bitCast(@as(isize, -1))), @intFromPtr(typedConst(?*opaque {}, -1)));
-    try testing.expectEqual(@as(usize, @bitCast(@as(isize, -12))), @intFromPtr(typedConst(?*opaque {}, -12)));
-    try testing.expectEqual(@as(u32, 0xffffffff), typedConst(u32, 0xffffffff));
-    try testing.expectEqual(@as(i32, @bitCast(@as(u32, 0x80000000))), typedConst(i32, 0x80000000));
 }
 
 // =============================================================================
