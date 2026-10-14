@@ -3601,14 +3601,14 @@ pub extern "kernel32" fn GetModuleHandleA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn GetModuleHandleExA(
     dwFlags: u32,
-    lpModuleName: ?[*:0]const u8,
+    lpModuleName: ?[*:0]align(1) const u8,
     phModule: ?*?HINSTANCE,
 ) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn GetModuleHandleExW(
     dwFlags: u32,
-    lpModuleName: ?[*:0]const u16,
+    lpModuleName: ?[*:0]align(1) const u16,
     phModule: ?*?HINSTANCE,
 ) callconv(.winapi) BOOL;
 
