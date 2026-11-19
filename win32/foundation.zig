@@ -13308,7 +13308,7 @@ _,
     ) !void {
         try @import("zig.zig").fmtError(@intFromEnum(self)).format(fmt, options, writer);
     }
-    fn formatNew(self: WIN32_ERROR, writer: *@import("std").Io.Writer) @import("std").Io.Writer.Error!void {
+    fn formatNew(self: WIN32_ERROR, writer: *@import("std").Io.Writer) error{WriteFailed}!void {
         try @import("zig.zig").fmtError(@intFromEnum(self)).format(writer);
     }
 };

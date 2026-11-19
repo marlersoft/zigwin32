@@ -212,7 +212,7 @@ pub fn FormatErrorString(comptime max_len: usize) type {
                 try writer.writeAll("...");
             }
         }
-        fn formatNew(self: @This(), writer: *std.Io.Writer) std.Io.Writer.Error!void {
+        fn formatNew(self: @This(), writer: *std.Io.Writer) error{WriteFailed}!void {
             var buf: [max_len]u8 = undefined;
             const len = win32.FormatMessageA(
                 .{ .FROM_SYSTEM = 1, .IGNORE_INSERTS = 1 },
@@ -274,7 +274,7 @@ pub const FormatError = struct {
         try fmtErrorString(self.error_code).format("", .{}, writer);
         if (with_code) try writer.writeAll(")");
     }
-    fn formatNew(self: @This(), writer: *std.Io.Writer) std.Io.Writer.Error!void {
+    fn formatNew(self: @This(), writer: *std.Io.Writer) error{WriteFailed}!void {
         try writer.print("{} (", .{self.error_code});
         try fmtErrorString(self.error_code).format(writer);
         try writer.writeAll(")");

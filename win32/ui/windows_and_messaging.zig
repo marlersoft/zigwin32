@@ -5344,7 +5344,7 @@ _,
         _ = options;
         try writer.print("{s}({})", .{self.value.tagName() orelse "?", @intFromEnum(self.value)});
     }
-    fn formatNew(self: WINDOW_LONG_PTR_INDEX, writer: *@import("std").Io.Writer) @import("std").Io.Writer.Error!void {
+    fn formatNew(self: WINDOW_LONG_PTR_INDEX, writer: *@import("std").Io.Writer) error{WriteFailed}!void {
         try writer.print("{s}({})", .{self.value.tagName() orelse "?", @intFromEnum(self.value)});
     }
 };
